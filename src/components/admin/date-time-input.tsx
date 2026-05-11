@@ -1,5 +1,4 @@
 import * as React from "react";
-import clsx from "clsx";
 import type { InputProps } from "ra-core";
 import { useInput, FieldTitle } from "ra-core";
 import {
@@ -10,6 +9,7 @@ import {
 } from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
+import { cn } from "@/lib/utils";
 
 /**
  * Date and time picker input for editing datetime values with timezone support.
@@ -41,6 +41,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  */
 export const DateTimeInput = ({
   className,
+  inputClassName,
   defaultValue,
   format = formatDateTime,
   parse = convertDateStringToISO,
@@ -68,7 +69,7 @@ export const DateTimeInput = ({
     parse,
     ...rest,
   });
-  const localInputRef = React.useRef<HTMLInputElement>(undefined);
+  const localInputRef = React.useRef<HTMLInputElement | null>(null);
   // DateInput is not a really controlled input to ensure users can start entering a date, go to another input and come back to complete it.
   // This ref stores the value that is passed to the input defaultValue prop to solve this issue.
   const initialDefaultValueRef = React.useRef(field.value);
@@ -186,11 +187,11 @@ export const DateTimeInput = ({
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className={clsx(
+          className={cn(
             "ra-input",
             `ra-input-${source}`,
             "scheme-light dark:scheme-dark relative [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-3 [&::-webkit-calendar-picker-indicator]:opacity-100 appearance-none",
-            className,
+            inputClassName,
           )}
           disabled={disabled || readOnly}
           readOnly={readOnly}
@@ -204,6 +205,7 @@ export const DateTimeInput = ({
 
 export type DateTimeInputProps = Omit<InputProps, "defaultValue"> & {
   defaultValue?: string | number | Date;
+  inputClassName?: string;
 } & Omit<React.ComponentProps<"input">, "defaultValue" | "type">;
 
 const leftPad =
@@ -254,11 +256,14 @@ const formatDateTime = (value: string | Date) => {
   return convertDateToString(new Date(value));
 };
 
-// converts a date string entered usinf a datetime-local input
+// converts a date string entered using a datetime-local input
 // into an ISO date using the browser timezone
-const convertDateStringToISO = (date: string) => {
-  const localDate = new Date(date);
-  return localDate.toISOString();
+const convertDateStringToISO = (
+  value: string | null | undefined,
+): string | null => {
+  if (value == null || value === "") return null;
+  const date = new Date(value);
+  return isNaN(date.getTime()) ? null : date.toISOString();
 };
 
 /**

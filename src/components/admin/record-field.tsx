@@ -61,7 +61,7 @@ export const RecordField = <
     ...rest
   } = props;
   const resource = useResourceContext(props);
-  const record = useRecordContext<RecordType>({ recordProp });
+  const record = useRecordContext<RecordType>({ record: recordProp });
   const translate = useTranslate();
 
   if (!source && !label && !render) return null;

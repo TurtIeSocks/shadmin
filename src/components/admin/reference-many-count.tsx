@@ -3,7 +3,11 @@ import {
   useCreatePath,
   useRecordContext,
   useReferenceManyFieldController,
+  useTimeout,
+  useTranslate,
 } from "ra-core";
+import { CircleX, LoaderCircle } from "lucide-react";
+import get from "lodash/get";
 import { Link } from "react-router";
 
 /**
@@ -39,11 +43,14 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
     link,
     resource,
     source = "id",
+    timeout = 1000,
   } = props;
   const record = useRecordContext<RecordType>(props);
   const createPath = useCreatePath();
+  const translate = useTranslate();
+  const timeoutReached = useTimeout(timeout);
 
-  const { isLoading, error, total } =
+  const { isPending, error, total } =
     useReferenceManyFieldController<RecordType>({
       filter,
       sort,
@@ -56,7 +63,20 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
       target,
     });
 
-  const body = isLoading ? "" : error ? "error" : total;
+  const body = isPending ? (
+    timeoutReached ? (
+      <LoaderCircle className="size-4 animate-spin" />
+    ) : (
+      ""
+    )
+  ) : error ? (
+    <CircleX
+      className="size-4 text-destructive"
+      aria-label={translate("ra.notification.http_error", { _: "Error" })}
+    />
+  ) : (
+    total
+  );
 
   return link && record ? (
     <Link
@@ -64,7 +84,7 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
         pathname: createPath({ resource: reference, type: "list" }),
         search: `filter=${JSON.stringify({
           ...(filter || {}),
-          [target]: record[source],
+          [target]: get(record, source),
         })}`,
       }}
       onClick={(e) => e.stopPropagation()}

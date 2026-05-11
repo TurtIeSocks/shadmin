@@ -1,5 +1,4 @@
 import type { MouseEvent } from "react";
-import { useState } from "react";
 import type { RaRecord, UseGetListOptions } from "ra-core";
 import { Translate, useListContext } from "ra-core";
 import { Button } from "@/components/ui/button";
@@ -27,14 +26,15 @@ import { cn } from "@/lib/utils";
  */
 export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
   label = "ra.action.select_all",
-  limit,
+  limit = 250,
   queryOptions,
   className,
   onClick,
   ...props
 }: SelectAllButtonProps<RecordType>) => {
-  const [isSelected, setIsSelected] = useState(false);
-  const { getData, onSelect, onSelectAll } = useListContext<RecordType>();
+  const listContext = useListContext<RecordType>();
+  const { getData, onSelect, onSelectAll, selectedIds, total } = listContext;
+  const data: RecordType[] | undefined = listContext.data;
 
   const handleClick = async (event: MouseEvent<HTMLButtonElement>) => {
     if (getData) {
@@ -47,12 +47,26 @@ export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
       onSelectAll({ limit, queryOptions });
     }
     onClick?.(event);
-    setIsSelected(true);
   };
 
-  if (isSelected) {
+  // Hide the button when:
+  // - there are no records to select
+  // - everything is already selected (total === selectedIds.length, or
+  //   if total is unknown, all currently loaded data is selected)
+  // - we've hit the selection cap
+  const dataLength = data?.length ?? 0;
+  const hasRecords = dataLength > 0 || (total ?? 0) > 0;
+  const allSelected =
+    total != null
+      ? selectedIds.length >= total
+      : data != null && data.length > 0
+        ? data.every((item) => selectedIds.includes(item.id))
+        : true;
+
+  if (!hasRecords || allSelected || selectedIds.length >= limit) {
     return null;
   }
+
   return (
     <Button
       type="button"

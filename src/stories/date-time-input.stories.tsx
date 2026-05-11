@@ -66,7 +66,7 @@ export const WithRecord = () => (
 
 export const ClassName = () => (
   <Wrapper>
-    <DateTimeInput source="publishedAt" className="max-w-xs" />
+    <DateTimeInput source="publishedAt" inputClassName="max-w-xs" />
   </Wrapper>
 );
 

@@ -3,6 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import type { RaRecord } from "ra-core";
 import {
+  useCanAccess,
   useCreatePath,
   useGetRecordRepresentation,
   useGetResourceLabel,
@@ -44,6 +45,11 @@ export const EditButton = (props: EditButtonProps) => {
   const resource = useResourceContext(props);
   const record = useRecordContext(props);
   const createPath = useCreatePath();
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "edit",
+    resource,
+    record,
+  });
   const getResourceLabel = useGetResourceLabel();
   const getRecordRepresentation = useGetRecordRepresentation(resource);
   const recordRepresentationValue = getRecordRepresentation(record);
@@ -51,11 +57,6 @@ export const EditButton = (props: EditButtonProps) => {
     typeof recordRepresentationValue === "string"
       ? recordRepresentationValue
       : recordRepresentationValue?.toString();
-  const link = createPath({
-    resource,
-    type: "edit",
-    id: record?.id,
-  });
   const label = useResourceTranslation({
     resourceI18nKey: resource ? `resources.${resource}.action.edit` : undefined,
     baseI18nKey: "ra.action.edit",
@@ -64,6 +65,14 @@ export const EditButton = (props: EditButtonProps) => {
       recordRepresentation,
     },
     userText: labelProp,
+  });
+  if (!record || record.id == null || !canAccess || isAccessPending) {
+    return null;
+  }
+  const link = createPath({
+    resource,
+    type: "edit",
+    id: record.id,
   });
   return (
     <Link
