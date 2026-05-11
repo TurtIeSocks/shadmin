@@ -1,5 +1,11 @@
 import type { ReactNode } from "react";
-import { Children, createElement, isValidElement, useCallback } from "react";
+import {
+  Children,
+  createElement,
+  isValidElement,
+  useCallback,
+  useMemo,
+} from "react";
 import type {
   DataTableBaseProps,
   ExtractRecordPaths,
@@ -11,6 +17,7 @@ import type {
 import {
   DataTableBase,
   DataTableRenderContext,
+  DataTableStoreContext,
   FieldTitle,
   RecordContextProvider,
   useDataTableCallbacksContext,
@@ -42,6 +49,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
@@ -59,6 +67,7 @@ import {
 } from "@/components/admin/bulk-actions-toolbar";
 
 const defaultBulkActionButtons = <BulkActionsToolbarChildren />;
+const emptyHiddenColumns: string[] = [];
 
 /**
  * A powerful data table with sorting, selection, and column customization.
@@ -100,40 +109,73 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
   const hasBulkActions = !!bulkActionsToolbar || bulkActionButtons !== false;
   const resourceFromContext = useResourceContext(props);
   const storeKey = props.storeKey || `${resourceFromContext}.datatable`;
+  const hiddenColumns = rest.hiddenColumns ?? emptyHiddenColumns;
   const [columnRanks] = useStore<number[]>(`${storeKey}_columnRanks`);
   const columns = columnRanks
     ? reorderChildren(children, columnRanks)
     : children;
+  const nbColumns = Children.count(children);
+
+  // Provide DataTableStoreContext explicitly so that ColumnsSelector keeps
+  // working alongside (rather than inside) DataTableBase. DataTableBase
+  // short-circuits its children rendering when isPending or data is empty,
+  // so anything that must stay mounted across data states lives outside it.
+  const storeContextValue = useMemo(
+    () => ({ storeKey, defaultHiddenColumns: hiddenColumns }),
+    [storeKey, hiddenColumns],
+  );
 
   return (
-    <DataTableBase<RecordType>
-      hasBulkActions={hasBulkActions}
-      loading={null}
-      empty={<DataTableEmpty />}
-      {...rest}
-    >
-      <div className={cn("rounded-md border", className)}>
-        <Table>
-          <DataTableRenderContext.Provider value="header">
-            <DataTableHead>{columns}</DataTableHead>
-          </DataTableRenderContext.Provider>
-          <DataTableBody<RecordType> rowClassName={rowClassName}>
-            {columns}
-          </DataTableBody>
-        </Table>
-      </div>
-      {bulkActionsToolbar ??
-        (bulkActionButtons !== false && (
-          <BulkActionsToolbar>
-            {isValidElement(bulkActionButtons)
-              ? bulkActionButtons
-              : defaultBulkActionButtons}
-          </BulkActionsToolbar>
-        ))}
-      <DataTableRenderContext.Provider value="columnsSelector">
-        <ColumnsSelector>{children}</ColumnsSelector>
-      </DataTableRenderContext.Provider>
-    </DataTableBase>
+    <>
+      <DataTableBase<RecordType>
+        hasBulkActions={hasBulkActions}
+        loading={
+          <DataTableLoadingSkeleton
+            className={className}
+            hasBulkActions={hasBulkActions}
+            nbColumns={nbColumns}
+          />
+        }
+        empty={
+          <div className={cn("rounded-md border p-4", className)}>
+            <DataTableEmpty />
+          </div>
+        }
+        {...rest}
+      >
+        <div className={cn("rounded-md border", className)}>
+          <Table>
+            <DataTableRenderContext.Provider value="header">
+              <DataTableHead>{columns}</DataTableHead>
+            </DataTableRenderContext.Provider>
+            <DataTableBody<RecordType> rowClassName={rowClassName}>
+              {columns}
+            </DataTableBody>
+          </Table>
+        </div>
+      </DataTableBase>
+      {/*
+        BulkActionsToolbar and ColumnsSelector are rendered outside
+        DataTableBase so they stay mounted in every data state — including
+        empty and loading, where DataTableBase short-circuits its children.
+        ColumnsSelector reads DataTableStoreContext via useDataTableStoreContext,
+        which we provide here; BulkActionsToolbar only depends on the outer
+        useListContext (from <List>), so it works regardless.
+      */}
+      <DataTableStoreContext.Provider value={storeContextValue}>
+        {bulkActionsToolbar ??
+          (bulkActionButtons !== false && (
+            <BulkActionsToolbar>
+              {isValidElement(bulkActionButtons)
+                ? bulkActionButtons
+                : defaultBulkActionButtons}
+            </BulkActionsToolbar>
+          ))}
+        <DataTableRenderContext.Provider value="columnsSelector">
+          <ColumnsSelector>{children}</ColumnsSelector>
+        </DataTableRenderContext.Provider>
+      </DataTableStoreContext.Provider>
+    </>
   );
 }
 
@@ -143,23 +185,36 @@ DataTable.NumberCol = DataTableNumberColumn;
 const DataTableHead = ({ children }: { children: ReactNode }) => {
   const data = useDataTableDataContext();
   const { hasBulkActions = false } = useDataTableConfigContext();
-  const { onSelect } = useDataTableCallbacksContext();
+  const { isRowSelectable, onSelect } = useDataTableCallbacksContext();
   const selectedIds = useDataTableSelectedIdsContext();
-  const handleToggleSelectAll = (checked: boolean) => {
+  const handleToggleSelectAll = (checked: boolean | "indeterminate") => {
     if (!onSelect || !data || !selectedIds) return;
-    onSelect(
-      checked
-        ? selectedIds.concat(
-            data
-              .filter((record) => !selectedIds.includes(record.id))
-              .map((record) => record.id),
-          )
-        : // We should only unselect the ids present in the current page
-          selectedIds.filter((id) => !data.some((record) => record.id === id)),
-    );
+    // Narrow to checked === true: the shadcn Checkbox can emit
+    // "indeterminate", and we should not treat that as "select all".
+    if (checked === true) {
+      onSelect(
+        selectedIds.concat(
+          data
+            .filter(
+              (record) =>
+                !selectedIds.includes(record.id) &&
+                (!isRowSelectable || isRowSelectable(record)),
+            )
+            .map((record) => record.id),
+        ),
+      );
+    } else {
+      // We should only unselect the ids present in the current page
+      onSelect(
+        selectedIds.filter((id) => !data.some((record) => record.id === id)),
+      );
+    }
   };
   const selectableIds = Array.isArray(data)
-    ? data.map((record) => record.id)
+    ? (isRowSelectable
+        ? data.filter((record) => isRowSelectable(record))
+        : data
+      ).map((record) => record.id)
     : [];
   return (
     <TableHeader>
@@ -269,7 +324,13 @@ const DataTableRow = ({
       className={cn(rowClick !== false && "cursor-pointer", className)}
     >
       {hasBulkActions ? (
-        <TableCell className="flex w-8" onClick={handleToggle}>
+        <TableCell className="flex w-8">
+          {/*
+            Single source of truth for row toggle: keep onClick on the
+            checkbox only. The handler calls stopPropagation so the row's
+            onClick (navigation) does not fire, and the MouseEvent it
+            receives carries shiftKey for range selection.
+          */}
           <Checkbox
             checked={selectedIds?.includes(record.id)}
             onClick={handleToggle}
@@ -290,6 +351,55 @@ const DataTableEmpty = () => {
     <Alert>
       <AlertDescription>No results found.</AlertDescription>
     </Alert>
+  );
+};
+
+const DataTableLoadingSkeleton = ({
+  className,
+  hasBulkActions,
+  nbColumns,
+  nbFakeLines = 5,
+}: {
+  className?: string;
+  hasBulkActions?: boolean;
+  nbColumns: number;
+  nbFakeLines?: number;
+}) => {
+  return (
+    <div className={cn("rounded-md border", className)}>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {hasBulkActions ? (
+              <TableHead className="w-8">
+                <Skeleton className="size-4" />
+              </TableHead>
+            ) : null}
+            {Array.from({ length: nbColumns }).map((_, i) => (
+              <TableHead key={i}>
+                <Skeleton className="h-4 w-24" />
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {Array.from({ length: nbFakeLines }).map((_, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {hasBulkActions ? (
+                <TableCell className="w-8">
+                  <Skeleton className="size-4" />
+                </TableCell>
+              ) : null}
+              {Array.from({ length: nbColumns }).map((_, colIndex) => (
+                <TableCell key={colIndex} className="py-2">
+                  <Skeleton className="h-4 w-full max-w-[12rem]" />
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 
