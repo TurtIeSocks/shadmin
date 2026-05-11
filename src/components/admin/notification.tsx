@@ -38,7 +38,7 @@ export const Notification = (props: ToasterProps) => {
   const { notifications, takeNotification, resetNotifications } =
     useNotificationContext();
   const takeMutation = useTakeUndoableMutation();
-  const { theme } = useTheme();
+  const [theme] = useTheme();
   const [currentNotification, setCurrentNotification] = useState<
     NotificationPayload | undefined
   >(undefined);
