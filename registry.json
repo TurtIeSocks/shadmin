@@ -554,7 +554,7 @@
           "type": "registry:component"
         },
         {
-          "path": "src/lib/field.type.ts",
+          "path": "src/lib/field-types.ts",
           "type": "registry:lib"
         },
         {

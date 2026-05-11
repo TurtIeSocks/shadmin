@@ -3,7 +3,7 @@ import type { AnchorHTMLAttributes } from "react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import type { FieldProps } from "@/lib/field.type.ts";
+import type { FieldProps } from "@/lib/field-types";
 
 /**
  * Displays a URL as a clickable hyperlink.
