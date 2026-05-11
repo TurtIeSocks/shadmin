@@ -220,6 +220,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/image-input.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/index.ts",
           "type": "registry:component"
         },
@@ -329,6 +333,10 @@
         },
         {
           "path": "src/components/admin/refresh-icon-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/resettable-text-input.tsx",
           "type": "registry:component"
         },
         {
