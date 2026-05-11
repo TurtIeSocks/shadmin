@@ -10,6 +10,7 @@ import {
   useTranslate,
   useUpdate,
 } from "ra-core";
+import type { FieldValues } from "react-hook-form";
 import isEqual from "lodash/isEqual";
 import { Check, X } from "lucide-react";
 
@@ -20,17 +21,14 @@ import { TextInput } from "@/components/admin/text-input";
 
 export type InPlaceEditorAction =
   | { type: "edit" }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | { type: "save"; values: any }
+  | { type: "save"; values: FieldValues }
   | { type: "cancel" }
   | { type: "success" }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | { type: "error"; error: any };
+  | { type: "error"; error: unknown };
 
 export type InPlaceEditorState =
   | { state: "editing" }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | { state: "saving"; values: any }
+  | { state: "saving"; values: FieldValues }
   | { state: "reading" };
 
 export interface InPlaceEditorProps<
@@ -94,11 +92,6 @@ export const InPlaceEditor = <
       "InPlaceEditor requires either a source prop, children, or an editor prop",
     );
   }
-  if (mutationMode === "undoable" && !notifyOnSuccess) {
-    throw new Error(
-      "InPlaceEditor requires notifyOnSuccess to be true when mutationMode is undoable",
-    );
-  }
 
   const submitButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -147,8 +140,7 @@ export const InPlaceEditor = <
     ...otherMutationOptions
   } = mutationOptions;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSave = async (values: any) => {
+  const handleSave = async (values: FieldValues) => {
     if (!record) {
       throw new Error("InPlaceEditor: no record found in context");
     }
@@ -161,8 +153,7 @@ export const InPlaceEditor = <
       resource,
       {
         id: record.id,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        data: values as any,
+        data: values as Partial<RecordType>,
         previousData: record,
         meta: mutationMeta,
       },

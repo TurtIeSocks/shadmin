@@ -4,6 +4,7 @@ import type { SubmitHandler, FieldValues } from "react-hook-form";
 import { Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { notifyAuthError } from "@/lib/notify-auth-error";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 
@@ -54,24 +55,7 @@ export const LoginForm = (props: LoginFormProps) => {
       })
       .catch((error) => {
         setLoading(false);
-        notify(
-          typeof error === "string"
-            ? error
-            : typeof error === "undefined" || !error.message
-              ? "ra.auth.sign_in_error"
-              : error.message,
-          {
-            type: "error",
-            messageArgs: {
-              _:
-                typeof error === "string"
-                  ? error
-                  : error && error.message
-                    ? error.message
-                    : undefined,
-            },
-          },
-        );
+        notifyAuthError(notify, error);
       });
   };
 

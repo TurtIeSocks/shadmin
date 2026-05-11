@@ -19,12 +19,38 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
   </ThemeProvider>
 );
 
+const SampleAside = () => (
+  <>
+    <div className="absolute inset-0 bg-zinc-900" />
+    <div className="relative z-20 flex items-center text-lg font-medium">
+      Acme Inc
+    </div>
+    <div className="relative z-20 mt-auto">
+      <blockquote className="space-y-2">
+        <p className="text-lg">
+          &ldquo;Shadcn Admin Kit has allowed us to quickly create and evolve
+          a powerful tool that otherwise would have taken months of time and
+          effort to develop.&rdquo;
+        </p>
+        <footer className="text-sm">Jane Doe</footer>
+      </blockquote>
+    </div>
+  </>
+);
+
 export const Basic = () => (
   <Wrapper>
-    <AuthLayout
-      title="Sign in"
-      subtitle="Welcome back to Acme Inc."
-    >
+    <AuthLayout title="Sign in" subtitle="Welcome back">
+      <p className="text-sm text-muted-foreground text-center">
+        Your custom form would go here.
+      </p>
+    </AuthLayout>
+  </Wrapper>
+);
+
+export const WithAside = () => (
+  <Wrapper>
+    <AuthLayout title="Sign in" subtitle="Welcome back" aside={<SampleAside />}>
       <p className="text-sm text-muted-foreground text-center">
         Your custom form would go here.
       </p>

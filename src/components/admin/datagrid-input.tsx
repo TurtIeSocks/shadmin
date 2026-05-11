@@ -23,15 +23,7 @@ export type DatagridInputProps = Omit<
 > &
   Omit<ChoicesProps, "disableValue"> & {
     children?: ReactNode;
-    /**
-     * Optional filters. **Currently unimplemented** in this port — see the
-     * `@experimental` note in the JSDoc above the component.
-     */
-    filters?: ReactElement | ReactElement[];
-    /**
-     * Optional pagination element rendered below the table. **Currently
-     * unimplemented** in this port — pass your own component or omit.
-     */
+    /** Optional pagination element rendered below the table. */
     pagination?: ReactElement | false;
     className?: string;
     label?: ReactNode;
@@ -39,8 +31,7 @@ export type DatagridInputProps = Omit<
     source?: string;
     resource?: string;
     reference?: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    choices?: any[];
+    choices?: RaRecord[];
   };
 
 /**
@@ -52,28 +43,10 @@ export type DatagridInputProps = Omit<
  * prop for static data.
  *
  * @experimental Upstream `<DatagridInput>` is marked WIP. This simplified port
- * supports row selection but **does not** yet integrate:
- * - `filters` (FilterContext / FilterForm / FilterButton)
- * - `pagination` (pass your own component or omit)
- * - the create-suggestion flow (`SupportCreateSuggestionOptions`)
+ * supports row selection and pagination but does not yet integrate filter
+ * contexts or the create-suggestion flow.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datagridinput/ DatagridInput documentation}
- *
- * @example
- * import { DatagridInput, ReferenceArrayInput, TextField } from '@/components/admin';
- *
- * const TeamEdit = () => (
- *   <Edit>
- *     <SimpleForm>
- *       <ReferenceArrayInput source="members" reference="users">
- *         <DatagridInput>
- *           <DataTable.Col source="firstName" />
- *           <DataTable.Col source="lastName" />
- *         </DatagridInput>
- *       </ReferenceArrayInput>
- *     </SimpleForm>
- *   </Edit>
- * );
  */
 export const DatagridInput = <RecordType extends RaRecord = RaRecord>(
   props: DatagridInputProps,
@@ -82,7 +55,6 @@ export const DatagridInput = <RecordType extends RaRecord = RaRecord>(
     children,
     choices,
     className,
-    filters: _filters,
     pagination,
     source: sourceProp,
     resource: resourceProp,
@@ -171,7 +143,7 @@ export const DatagridInput = <RecordType extends RaRecord = RaRecord>(
       className={cn("ra-input", source ? `ra-input-${source}` : undefined, className)}
       data-slot="datagrid-input"
     >
-      <ListContextProvider value={listContext as unknown as ListControllerResult}>
+      <ListContextProvider value={listContext as ListControllerResult}>
         {!fieldState.error && !fetchError && (
           <>
             <DataTable<RecordType>
