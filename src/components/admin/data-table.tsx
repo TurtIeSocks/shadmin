@@ -1,10 +1,13 @@
-import type { ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import {
   Children,
+  createContext,
   createElement,
   isValidElement,
   useCallback,
+  useContext,
   useMemo,
+  useState,
 } from "react";
 import type {
   DataTableBaseProps,
@@ -36,7 +39,7 @@ import {
   useTranslateLabel,
 } from "ra-core";
 import { useNavigate } from "react-router";
-import { ArrowDownAZ, ArrowUpZA } from "lucide-react";
+import { ArrowDownAZ, ArrowUpZA, ChevronDown, ChevronRight } from "lucide-react";
 import get from "lodash/get";
 import { cn } from "@/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -69,6 +72,18 @@ import {
 
 const defaultBulkActionButtons = <BulkActionsToolbarChildren />;
 const emptyHiddenColumns: string[] = [];
+
+interface DataTableExpandContextValue<RecordType extends RaRecord = RaRecord> {
+  expand: ReactElement | null;
+  expandedIds: Identifier[];
+  toggleExpand: (id: Identifier) => void;
+  isRowExpandable?: (record: RecordType) => boolean;
+}
+
+const DataTableExpandContext =
+  createContext<DataTableExpandContextValue | null>(null);
+
+const useDataTableExpandContext = () => useContext(DataTableExpandContext);
 
 /**
  * A powerful data table with sorting, selection, and column customization.
@@ -105,9 +120,34 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
     rowClassName,
     bulkActionButtons = defaultBulkActionButtons,
     bulkActionsToolbar,
+    expand,
+    expandSingle = false,
+    isRowExpandable,
     ...rest
   } = props;
   const hasBulkActions = !!bulkActionsToolbar || bulkActionButtons !== false;
+  const [expandedIds, setExpandedIds] = useState<Identifier[]>([]);
+  const toggleExpand = useCallback(
+    (id: Identifier) => {
+      setExpandedIds((prev) => {
+        if (prev.includes(id)) return prev.filter((x) => x !== id);
+        return expandSingle ? [id] : [...prev, id];
+      });
+    },
+    [expandSingle],
+  );
+  const expandContextValue = useMemo<DataTableExpandContextValue | null>(
+    () =>
+      expand
+        ? {
+            expand,
+            expandedIds,
+            toggleExpand,
+            isRowExpandable: isRowExpandable as (record: RaRecord) => boolean,
+          }
+        : null,
+    [expand, expandedIds, toggleExpand, isRowExpandable],
+  );
   const resourceFromContext = useResourceContext(props);
   const storeKey = props.storeKey || `${resourceFromContext}.datatable`;
   const hiddenColumns = rest.hiddenColumns ?? emptyHiddenColumns;
@@ -127,7 +167,7 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
   );
 
   return (
-    <>
+    <DataTableExpandContext.Provider value={expandContextValue}>
       <DataTableBase<RecordType>
         hasBulkActions={hasBulkActions}
         loading={
@@ -176,7 +216,7 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
           <ColumnsSelector>{children}</ColumnsSelector>
         </DataTableRenderContext.Provider>
       </DataTableStoreContext.Provider>
-    </>
+    </DataTableExpandContext.Provider>
   );
 }
 
@@ -194,6 +234,7 @@ export const DataTableHead = ({ children }: { children: ReactNode }) => {
   const { hasBulkActions = false } = useDataTableConfigContext();
   const { isRowSelectable, onSelect } = useDataTableCallbacksContext();
   const selectedIds = useDataTableSelectedIdsContext();
+  const expandContext = useDataTableExpandContext();
   const handleToggleSelectAll = (checked: boolean | "indeterminate") => {
     if (!onSelect || !data || !selectedIds) return;
     // Narrow to checked === true: the shadcn Checkbox can emit
@@ -240,6 +281,7 @@ export const DataTableHead = ({ children }: { children: ReactNode }) => {
             />
           </TableHead>
         ) : null}
+        {expandContext ? <TableHead className="w-8" /> : null}
         {children}
       </TableRow>
     </TableHeader>
@@ -260,18 +302,31 @@ export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
   rowClassName?: (record: RecordType) => string | undefined;
 }) => {
   const data = useDataTableDataContext();
+  const { hasBulkActions = false } = useDataTableConfigContext();
+  const expandContext = useDataTableExpandContext();
+  const nbVisibleChildren = Children.count(children);
+  const expandColSpan =
+    nbVisibleChildren + (hasBulkActions ? 1 : 0) + (expandContext ? 1 : 0);
   return (
     <TableBody>
-      {data?.map((record, rowIndex) => (
-        <RecordContextProvider
-          value={record}
-          key={record.id ?? `row${rowIndex}`}
-        >
-          <DataTableRow className={rowClassName?.(record)}>
-            {children}
-          </DataTableRow>
-        </RecordContextProvider>
-      ))}
+      {data?.map((record, rowIndex) => {
+        const key = record.id ?? `row${rowIndex}`;
+        const isExpanded = expandContext?.expandedIds.includes(record.id);
+        return (
+          <RecordContextProvider value={record} key={key}>
+            <DataTableRow className={rowClassName?.(record)}>
+              {children}
+            </DataTableRow>
+            {expandContext && isExpanded ? (
+              <TableRow data-slot="data-table-expand-panel">
+                <TableCell colSpan={expandColSpan} className="bg-muted/30">
+                  {expandContext.expand}
+                </TableCell>
+              </TableRow>
+            ) : null}
+          </RecordContextProvider>
+        );
+      })}
     </TableBody>
   );
 };
@@ -292,6 +347,7 @@ export const DataTableRow = ({
   const { rowClick, handleToggleItem } = useDataTableCallbacksContext();
   const selectedIds = useDataTableSelectedIdsContext();
   const { hasBulkActions = false } = useDataTableConfigContext();
+  const expandContext = useDataTableExpandContext();
 
   const record = useRecordContext();
   if (!record) {
@@ -336,6 +392,14 @@ export const DataTableRow = ({
     });
   }, [record, resource, rowClick, navigate, getPathForRecord]);
 
+  const isExpanded = expandContext?.expandedIds.includes(record.id) ?? false;
+  const canExpand =
+    expandContext != null &&
+    (!expandContext.isRowExpandable || expandContext.isRowExpandable(record));
+  const expandLabel = isExpanded
+    ? "Collapse row"
+    : "Expand row";
+
   return (
     <TableRow
       key={record.id}
@@ -344,16 +408,34 @@ export const DataTableRow = ({
     >
       {hasBulkActions ? (
         <TableCell className="flex w-8">
-          {/*
-            Single source of truth for row toggle: keep onClick on the
-            checkbox only. The handler calls stopPropagation so the row's
-            onClick (navigation) does not fire, and the MouseEvent it
-            receives carries shiftKey for range selection.
-          */}
           <Checkbox
             checked={selectedIds?.includes(record.id)}
             onClick={handleToggle}
           />
+        </TableCell>
+      ) : null}
+      {expandContext ? (
+        <TableCell className="w-8 p-0">
+          {canExpand ? (
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7"
+              onClick={(event) => {
+                event.stopPropagation();
+                expandContext.toggleExpand(record.id);
+              }}
+              aria-label={expandLabel}
+              aria-expanded={isExpanded}
+            >
+              {isExpanded ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronRight className="h-4 w-4" />
+              )}
+            </Button>
+          ) : null}
         </TableCell>
       ) : null}
       {children}
@@ -436,6 +518,22 @@ export interface DataTableProps<
   rowClassName?: (record: RecordType) => string | undefined;
   bulkActionButtons?: ReactNode;
   bulkActionsToolbar?: ReactNode;
+  /**
+   * Element rendered as the expand panel under each row. Receives the row's
+   * record through `RecordContext`. When provided, a chevron toggle column
+   * is added at the start of every row.
+   */
+  expand?: ReactElement;
+  /**
+   * When true, expanding a row collapses any previously-expanded one so
+   * only a single row is expanded at a time. Defaults to `false`.
+   */
+  expandSingle?: boolean;
+  /**
+   * Predicate that decides whether a given record can be expanded. When it
+   * returns `false`, the chevron toggle is hidden for that row.
+   */
+  isRowExpandable?: (record: RecordType) => boolean;
 }
 
 export function DataTableColumn<

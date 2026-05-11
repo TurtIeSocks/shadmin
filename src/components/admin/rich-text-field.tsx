@@ -1,4 +1,9 @@
-import { genericMemo, useFieldValue, useTranslate } from "ra-core";
+import {
+  genericMemo,
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "ra-core";
 import type { HTMLAttributes } from "react";
 import DOMPurify from "dompurify";
 import type { Config as DOMPurifyConfig } from "dompurify";
@@ -40,11 +45,11 @@ const RichTextFieldImpl = <
     const fallback = empty ?? emptyText;
     if (!fallback) {
       return (
-        <span className={cn(className)} {...rest} />
+        <span className={cn(className)} {...sanitizeFieldRestProps(rest)} />
       );
     }
     return (
-      <span className={cn(className)} {...rest}>
+      <span className={cn(className)} {...sanitizeFieldRestProps(rest)}>
         {typeof fallback === "string"
           ? translate(fallback, { _: fallback })
           : fallback}
@@ -56,7 +61,7 @@ const RichTextFieldImpl = <
 
   if (stripTags) {
     return (
-      <span className={cn(className)} {...rest}>
+      <span className={cn(className)} {...sanitizeFieldRestProps(rest)}>
         {stripHtmlTags(stringValue)}
       </span>
     );
@@ -67,7 +72,7 @@ const RichTextFieldImpl = <
   const sanitized = DOMPurify.sanitize(stringValue, purifyOptions ?? {});
 
   return (
-    <span className={cn(className)} {...rest}>
+    <span className={cn(className)} {...sanitizeFieldRestProps(rest)}>
       {parse(sanitized as string)}
     </span>
   );

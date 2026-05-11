@@ -63,10 +63,10 @@ export const FieldsSelector = ({
     index2: string | number | null,
   ) => {
     const index1Pos = availableFields.findIndex(
-      (field) => field.index == index1,
+      (field) => field.index === String(index1),
     );
     const index2Pos = availableFields.findIndex(
-      (field) => field.index == index2,
+      (field) => field.index === String(index2),
     );
     if (index1Pos === -1 || index2Pos === -1) {
       return;

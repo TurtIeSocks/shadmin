@@ -18,7 +18,7 @@ import { useTheme } from "@/components/admin/use-theme";
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/thememodetoggle ThemeModeToggle documentation}
  */
 export function ThemeModeToggle() {
-  const { theme, setTheme } = useTheme();
+  const [theme, setTheme] = useTheme();
 
   return (
     <DropdownMenu modal={false}>

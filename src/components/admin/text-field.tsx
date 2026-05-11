@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { HTMLAttributes } from "react";
-import { useFieldValue, useTranslate } from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import type { FieldProps } from "@/lib/field-types";
 
 /**
@@ -42,14 +42,14 @@ export const TextField = <
     }
 
     return (
-      <span {...rest}>
+      <span {...sanitizeFieldRestProps(rest)}>
         {typeof empty === "string" ? translate(empty, { _: empty }) : empty}
       </span>
     );
   }
 
   return (
-    <span {...rest}>
+    <span {...sanitizeFieldRestProps(rest)}>
       {typeof value !== "string" ? value.toString() : value}
     </span>
   );

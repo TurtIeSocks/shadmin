@@ -3,9 +3,6 @@ import type { AdminTheme } from "./theme-types";
 
 /**
  * Value exposed by `<ThemesContext.Provider>` to descendants.
- *
- * Mirrors the upstream `ra-ui-materialui` `ThemesContextValue` shape so that
- * existing patterns (e.g. `useThemesContext`) translate directly.
  */
 export interface ThemesContextValue {
   /**
@@ -26,8 +23,7 @@ export interface ThemesContextValue {
 
 /**
  * React context that carries the active named themes down the tree.
- *
- * Populated by `<ThemeProvider>` and read via `useThemesContext`. Defaults to
- * an empty object so consumers can call the hook without a provider in tests.
+ * Populated by `<ThemeProvider>` and consumed internally by hooks like
+ * `useTheme`.
  */
 export const ThemesContext = createContext<ThemesContextValue>({});

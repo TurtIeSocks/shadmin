@@ -193,21 +193,7 @@ function TabbedShowLayoutView({
   };
 
   const tabsList = (
-    <TabsList className="w-full mb-2">
-      {tabs.map((tab, index) => {
-        const tabPath = getShowTabPath(tab, index);
-        const value = syncWithLocation ? tabPath : index.toString();
-        return (
-          <ShowTabTrigger
-            key={value}
-            value={value}
-            label={tab.props.label}
-            icon={tab.props.icon}
-            count={tab.props.count}
-          />
-        );
-      })}
-    </TabsList>
+    <TabbedShowLayoutTabsList tabs={tabs} syncWithLocation={syncWithLocation} />
   );
 
   const tabPanels = tabs.map((tab, index) => {
@@ -249,6 +235,44 @@ function TabbedShowLayoutView({
         {tabPanels}
       </Tabs>
     </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// TabbedShowLayoutTabsList (public)
+// ---------------------------------------------------------------------------
+
+export interface TabbedShowLayoutTabsListProps {
+  tabs: ReactElement<ShowTabProps>[];
+  syncWithLocation: boolean;
+}
+
+/**
+ * Renders the tab trigger list for a {@link TabbedShowLayout}.
+ *
+ * Exported so consumers can compose their own custom TabbedShowLayout
+ * without forking the entire `TabbedShowLayoutView`.
+ */
+export function TabbedShowLayoutTabsList({
+  tabs,
+  syncWithLocation,
+}: TabbedShowLayoutTabsListProps) {
+  return (
+    <TabsList className="w-full mb-2">
+      {tabs.map((tab, index) => {
+        const tabPath = getShowTabPath(tab, index);
+        const value = syncWithLocation ? tabPath : index.toString();
+        return (
+          <ShowTabTrigger
+            key={value}
+            value={value}
+            label={tab.props.label}
+            icon={tab.props.icon}
+            count={tab.props.count}
+          />
+        );
+      })}
+    </TabsList>
   );
 }
 

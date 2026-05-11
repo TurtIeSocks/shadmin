@@ -14,63 +14,11 @@ import { TranslatableFieldsTabContent } from "@/components/admin/translatable-fi
 import { TranslatableFieldsTabs } from "@/components/admin/translatable-fields-tabs";
 
 /**
- * Provides a way to show multiple languages for any field passed as children.
- *
- * Expects the translatable values to have the following structure:
- * ```
- * {
- *   name: {
- *     en: 'The english value',
- *     fr: 'The french value',
- *     tlh: 'The klingon value',
- *   },
- *   description: {
- *     en: 'The english value',
- *     fr: 'The french value',
- *     tlh: 'The klingon value',
- *   }
- * }
- * ```
- *
- * Children read from a fresh `RecordContext` filtered to the active locale,
- * and a `SourceContext` rewrites their `source` prop from `name` to
- * `name.${locale}` automatically — so you can use plain field components
- * such as `<TextField source="name" />` and they will pick the correct
- * locale value.
+ * Show multiple language values for any field passed as children. Children
+ * automatically get their `source` rewritten to `source.${locale}` via a
+ * `SourceContext`, so plain `<TextField source="name" />` works.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatablefields/ TranslatableFields documentation}
- *
- * @example
- * import { TranslatableFields, TextField } from '@/components/admin';
- *
- * <TranslatableFields locales={['en', 'fr']}>
- *     <TextField source="name" />
- *     <TextField source="description" />
- * </TranslatableFields>
- *
- * @example <caption>With a custom language selector</caption>
- * import { useTranslatableContext } from 'ra-core';
- *
- * const MyLanguageSelector = () => {
- *     const { locales, selectedLocale, selectLocale } = useTranslatableContext();
- *     return (
- *         <select
- *             value={selectedLocale}
- *             onChange={(e) => selectLocale(e.target.value)}
- *         >
- *             {locales.map((locale) => (
- *                 <option key={locale} value={locale}>{locale}</option>
- *             ))}
- *         </select>
- *     );
- * };
- *
- * <TranslatableFields
- *     locales={['en', 'fr']}
- *     selector={<MyLanguageSelector />}
- * >
- *     <TextField source="name" />
- * </TranslatableFields>
  */
 export const TranslatableFields = (props: TranslatableFieldsProps) => {
   const {

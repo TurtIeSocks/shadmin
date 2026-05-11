@@ -7,18 +7,9 @@ import { cn } from "@/lib/utils";
 
 /**
  * Single tab that selects a locale in a `<TranslatableInputs>` component.
- *
- * Renders as a shadcn `<TabsTrigger>` whose label is the translated locale
- * name (e.g. `ra.locales.en`), falling back to the capitalized locale code
- * when no translation key is found. Subscribes to the
- * `${groupKey}${locale}` form group via `useFormGroup` and applies
- * `text-destructive` when the group has invalid inputs (matches MUI's
- * upstream behavior of coloring tabs containing errors).
+ * Highlights in `text-destructive` when its form group has invalid inputs.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
- *
- * @example
- * <TranslatableInputsTab locale="fr" />
  */
 export const TranslatableInputsTab = (props: TranslatableInputsTabProps) => {
   const { groupKey = "", locale, className, ...rest } = props;

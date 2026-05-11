@@ -67,30 +67,31 @@ export const SimpleFormConfigurable = ({
 
   useEffect(() => {
     // first render, or the preferences have been cleared
-    const inputs =
-      (
-        Children.map(props.children, (child, index) =>
-          isValidElement<{ source?: string; label?: ReactNode }>(child)
-            ? {
-                index: String(index),
-                source: child.props.source ?? `input-${index}`,
-                label:
-                  child.props.source || child.props.label
-                    ? child.props.label
-                    : translate("ra.configurable.SimpleForm.unlabeled", {
-                        input: index,
-                        _: `Unlabeled input #%{input}`,
-                      }),
-              }
-            : null,
-        ) as Array<SelectableField | null> | undefined
-      )?.filter((column): column is SelectableField => column != null) ??
-      EMPTY_ARRAY;
+    const inputs: SelectableField[] = [];
+    Children.forEach(props.children, (child, index) => {
+      if (!isValidElement<{ source?: string; label?: ReactNode }>(child)) {
+        return;
+      }
+      inputs.push({
+        index: String(index),
+        source: child.props.source ?? `input-${index}`,
+        label:
+          child.props.source || child.props.label
+            ? child.props.label
+            : translate("ra.configurable.SimpleForm.unlabeled", {
+                input: index,
+                _: `Unlabeled input #%{input}`,
+              }),
+      });
+    });
 
     if (inputs.length !== availableInputs.length) {
       setAvailableInputs(inputs);
       setOmit(omit || []);
     }
+    // Re-initialize only when the persisted availableInputs list is
+    // cleared. Re-running on every child / translate change would clobber
+    // the user's saved order.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableInputs]);
 

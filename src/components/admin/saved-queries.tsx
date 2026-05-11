@@ -4,11 +4,18 @@ import {
   useSavedQueries,
   useTranslate,
 } from "ra-core";
-import type { ChangeEvent, FormEvent, ReactElement } from "react";
+import type {
+  ChangeEvent,
+  ComponentProps,
+  FormEvent,
+  ReactElement,
+} from "react";
 import { useState } from "react";
 import isEqual from "lodash/isEqual";
+import { MinusCircle, PlusCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
@@ -177,3 +184,73 @@ export interface RemoveSavedQueryDialogProps {
   open: boolean;
   onClose: () => void;
 }
+
+type IconButtonProps = Omit<ComponentProps<typeof Button>, "children">;
+
+/**
+ * Standalone icon button that opens the {@link AddSavedQueryDialog}.
+ *
+ * Drop into a list toolbar to let users save the current query (filters,
+ * sort, pagination) under a name. Renders a small plus-circle icon.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
+ */
+export const AddSavedQueryIconButton = ({
+  className,
+  ...rest
+}: IconButtonProps) => {
+  const [open, setOpen] = useState(false);
+  const translate = useTranslate();
+  return (
+    <>
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        aria-label={translate("ra.saved_queries.new_label", {
+          _: "Save current query...",
+        })}
+        onClick={() => setOpen(true)}
+        className={cn("h-8 w-8", className)}
+        {...rest}
+      >
+        <PlusCircle className="h-4 w-4" />
+      </Button>
+      <AddSavedQueryDialog open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+};
+
+/**
+ * Standalone icon button that opens the {@link RemoveSavedQueryDialog}.
+ *
+ * Drop into a list toolbar (typically alongside a `<SavedQueriesList>`
+ * trigger) to let users delete the currently-selected saved query.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
+ */
+export const RemoveSavedQueryIconButton = ({
+  className,
+  ...rest
+}: IconButtonProps) => {
+  const [open, setOpen] = useState(false);
+  const translate = useTranslate();
+  return (
+    <>
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        aria-label={translate("ra.saved_queries.remove_label", {
+          _: "Remove saved query",
+        })}
+        onClick={() => setOpen(true)}
+        className={cn("h-8 w-8", className)}
+        {...rest}
+      >
+        <MinusCircle className="h-4 w-4" />
+      </Button>
+      <RemoveSavedQueryDialog open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+};

@@ -1,4 +1,9 @@
-import { genericMemo, useFieldValue, useTranslate } from "ra-core";
+import {
+  genericMemo,
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "ra-core";
 import type { AnchorHTMLAttributes } from "react";
 import * as React from "react";
 
@@ -52,7 +57,7 @@ const UrlFieldImpl = <
     }
 
     return (
-      <span className={className} {...rest}>
+      <span className={className} {...sanitizeFieldRestProps(rest)}>
         {typeof empty === "string" ? translate(empty, { _: empty }) : empty}
       </span>
     );
@@ -62,7 +67,7 @@ const UrlFieldImpl = <
     // Refuse to render a clickable anchor for potentially unsafe schemes
     // (e.g. `javascript:`), but still surface the value as plain text.
     return (
-      <span className={className} {...rest}>
+      <span className={className} {...sanitizeFieldRestProps(rest)}>
         {value}
       </span>
     );
@@ -76,7 +81,7 @@ const UrlFieldImpl = <
     <a
       className={cn("underline hover:no-underline", className)}
       onClick={stopPropagation}
-      {...rest}
+      {...sanitizeFieldRestProps(rest)}
       href={value}
       target={target}
       rel={safeRel}

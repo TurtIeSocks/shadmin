@@ -53,16 +53,13 @@ export const LoadingInput = ({
       role="group"
       data-slot="loading-input"
     >
-      {label !== false && label != null ? (
-        <Label aria-disabled>{label}</Label>
-      ) : null}
+      {label != null ? <Label aria-disabled>{label}</Label> : null}
       <div className="relative">
         <Input
           disabled
           aria-busy
           readOnly
           value=""
-          onChange={() => {}}
           className={cn("pr-10", size === "sm" ? "h-8 text-sm" : undefined)}
         />
         <span className="absolute inset-y-0 right-2 flex items-center text-muted-foreground">

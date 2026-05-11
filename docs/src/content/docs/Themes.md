@@ -160,29 +160,3 @@ export const oceanTheme: AdminTheme = {
 
 For the full list of variables shadcn-admin-kit understands, see the `:root` and `.dark` blocks in `src/index.css`. The `defaultTheme` export contains every key — copy it as a starting point and adjust values to taste.
 
-## `ThemesContext` and `useThemesContext`
-
-The active themes are exposed to descendants through `<ThemesContext>`. Components that need to introspect the current palette — for example, to render a theme switcher — can read it via the `useThemesContext` hook:
-
-```tsx
-import { useThemesContext } from "@/components/admin";
-
-const ThemeIndicator = () => {
-  const { lightTheme, darkTheme } = useThemesContext();
-  return (
-    <div>
-      Light: {lightTheme?.label ?? lightTheme?.name ?? "(default)"}
-      {" / "}
-      Dark: {darkTheme?.label ?? darkTheme?.name ?? "(default)"}
-    </div>
-  );
-};
-```
-
-`useThemesContext` also accepts a `params` object that overrides the context values, mirroring the upstream `ra-ui-materialui` API:
-
-```tsx
-const { lightTheme, darkTheme } = useThemesContext({ darkTheme: myDarkTheme });
-```
-
-This pattern is handy for components that accept their own theme props but want to fall back to whatever `<Admin>` already configured.

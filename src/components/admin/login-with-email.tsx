@@ -4,6 +4,7 @@ import type { SubmitHandler, FieldValues } from "react-hook-form";
 import { Loader2, Mail } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { notifyAuthError } from "@/lib/notify-auth-error";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 
@@ -84,15 +85,7 @@ export const LoginWithEmail = (props: LoginWithEmailProps) => {
       try {
         await onSubmit(formValues);
       } catch (error) {
-        const err = error as Error | string | undefined;
-        notify(
-          typeof err === "string"
-            ? err
-            : typeof err === "undefined" || !err.message
-              ? "ra.auth.sign_in_error"
-              : err.message,
-          { type: "error" },
-        );
+        notifyAuthError(notify, error);
       }
       return;
     }
@@ -104,24 +97,7 @@ export const LoginWithEmail = (props: LoginWithEmailProps) => {
       })
       .catch((error) => {
         setInternalLoading(false);
-        notify(
-          typeof error === "string"
-            ? error
-            : typeof error === "undefined" || !error.message
-              ? "ra.auth.sign_in_error"
-              : error.message,
-          {
-            type: "error",
-            messageArgs: {
-              _:
-                typeof error === "string"
-                  ? error
-                  : error && error.message
-                    ? error.message
-                    : undefined,
-            },
-          },
-        );
+        notifyAuthError(notify, error);
       });
   };
 

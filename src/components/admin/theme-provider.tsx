@@ -52,7 +52,7 @@ type ThemeProviderProps = {
  *
  * Both pieces of state are exposed via two contexts:
  * - `ThemeProviderContext` for the mode (consumed by `useTheme`)
- * - `ThemesContext` for the named themes (consumed by `useThemesContext`)
+ * - `ThemesContext` for the named themes (internal)
  *
  * @internal
  */
