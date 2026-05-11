@@ -256,6 +256,14 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/infinite-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/infinite-pagination.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/input-helper-text.tsx",
           "type": "registry:component"
         },
@@ -433,6 +441,18 @@
         },
         {
           "path": "src/components/admin/simple-form-iterator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/simple-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/simple-list-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/simple-list-loading.tsx",
           "type": "registry:component"
         },
         {

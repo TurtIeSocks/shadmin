@@ -1,0 +1,178 @@
+import type {
+  InfiniteListBaseProps,
+  InfiniteListControllerResult,
+  RaRecord,
+} from "ra-core";
+import {
+  FilterContext,
+  InfiniteListBase,
+  Translate,
+  useGetResourceLabel,
+  useHasDashboard,
+  useResourceContext,
+  useResourceDefinition,
+  useTranslate,
+} from "ra-core";
+import type { ReactElement, ReactNode } from "react";
+import { Link } from "react-router";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbPage,
+} from "@/components/admin/breadcrumb";
+import { CreateButton } from "@/components/admin/create-button";
+import { ExportButton } from "@/components/admin/export-button";
+import { FilterButton } from "@/components/admin/filter-button";
+import { FilterForm } from "@/components/admin/filter-form";
+import { InfinitePagination } from "@/components/admin/infinite-pagination";
+import { cn } from "@/lib/utils";
+
+/**
+ * An infinite scroll variant of `<List>`, backed by `useInfiniteListController`.
+ *
+ * Renders the same breadcrumb / title / filter / actions chrome as `<List>` but
+ * delegates pagination to `<InfinitePagination>`, which fetches the next page as
+ * the user scrolls (or clicks the "Load more" button).
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/infinitelist/ InfiniteList documentation}
+ *
+ * @example
+ * import { DataTable, InfiniteList } from "@/components/admin";
+ *
+ * export const PostList = () => (
+ *   <InfiniteList>
+ *     <DataTable>
+ *       <DataTable.Col source="id" />
+ *       <DataTable.Col source="title" />
+ *     </DataTable>
+ *   </InfiniteList>
+ * );
+ */
+export const InfiniteList = <RecordType extends RaRecord = RaRecord>(
+  props: InfiniteListProps<RecordType>,
+) => {
+  const {
+    debounce,
+    disableAuthentication,
+    disableSyncWithLocation,
+    exporter,
+    filter,
+    filterDefaultValues,
+    loading,
+    perPage,
+    queryOptions,
+    resource,
+    sort,
+    storeKey,
+    ...rest
+  } = props;
+
+  return (
+    <InfiniteListBase<RecordType>
+      debounce={debounce}
+      disableAuthentication={disableAuthentication}
+      disableSyncWithLocation={disableSyncWithLocation}
+      exporter={exporter}
+      filter={filter}
+      filterDefaultValues={filterDefaultValues}
+      loading={loading}
+      perPage={perPage}
+      queryOptions={queryOptions}
+      resource={resource}
+      sort={sort}
+      storeKey={storeKey}
+    >
+      <InfiniteListView<RecordType> {...rest} />
+    </InfiniteListBase>
+  );
+};
+
+export interface InfiniteListProps<RecordType extends RaRecord = RaRecord>
+  extends InfiniteListBaseProps<RecordType>,
+    InfiniteListViewProps<RecordType> {}
+
+/**
+ * The view component for `<InfiniteList>` pages with layout and UI.
+ *
+ * @internal
+ */
+export const InfiniteListView = <RecordType extends RaRecord = RaRecord>(
+  props: InfiniteListViewProps<RecordType>,
+) => {
+  const {
+    disableBreadcrumb,
+    filters,
+    pagination = defaultPagination,
+    title,
+    children,
+    actions,
+  } = props;
+  const translate = useTranslate();
+  const resource = useResourceContext();
+  if (!resource) {
+    throw new Error(
+      "The InfiniteListView component must be used within a ResourceContextProvider",
+    );
+  }
+  const getResourceLabel = useGetResourceLabel();
+  const resourceLabel = getResourceLabel(resource, 2);
+  const finalTitle =
+    title !== undefined
+      ? title
+      : translate("ra.page.list", {
+          name: resourceLabel,
+        });
+  const { hasCreate } = useResourceDefinition({ resource });
+  const hasDashboard = useHasDashboard();
+
+  return (
+    <>
+      {!disableBreadcrumb && (
+        <Breadcrumb>
+          {hasDashboard && (
+            <BreadcrumbItem>
+              <Link to="/">
+                <Translate i18nKey="ra.page.dashboard">Home</Translate>
+              </Link>
+            </BreadcrumbItem>
+          )}
+          <BreadcrumbPage>{resourceLabel}</BreadcrumbPage>
+        </Breadcrumb>
+      )}
+
+      <FilterContext.Provider value={filters}>
+        <div className="flex justify-between items-start flex-wrap gap-2 my-2">
+          <h2 className="text-2xl font-bold tracking-tight mb-2">
+            {finalTitle}
+          </h2>
+          {actions ?? (
+            <div className="flex items-center gap-2">
+              {filters && filters.length > 0 ? <FilterButton /> : null}
+              {hasCreate ? <CreateButton /> : null}
+              {<ExportButton />}
+            </div>
+          )}
+        </div>
+        <FilterForm />
+
+        <div className={cn("my-2", props.className)}>{children}</div>
+        {pagination}
+      </FilterContext.Provider>
+    </>
+  );
+};
+
+const defaultPagination = <InfinitePagination />;
+
+export interface InfiniteListViewProps<RecordType extends RaRecord = RaRecord> {
+  children?: ReactNode;
+  disableBreadcrumb?: boolean;
+  render?: (
+    props: InfiniteListControllerResult<RecordType, Error>,
+  ) => ReactNode;
+  actions?: ReactElement | false;
+  filters?: ReactNode[];
+  pagination?: ReactNode;
+  title?: ReactNode | string | false;
+  className?: string;
+}
