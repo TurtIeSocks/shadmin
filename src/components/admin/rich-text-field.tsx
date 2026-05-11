@@ -5,7 +5,7 @@ import type { Config as DOMPurifyConfig } from "dompurify";
 import parse from "html-react-parser";
 
 import { cn } from "@/lib/utils";
-import type { FieldProps } from "@/lib/field.type.ts";
+import type { FieldProps } from "@/lib/field-types";
 
 /**
  * Strips all HTML tags by sanitizing with an empty allow-list.

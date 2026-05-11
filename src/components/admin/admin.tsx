@@ -12,8 +12,33 @@ import { LoginPage } from "@/components/admin/login-page";
 import { NotFound } from "@/components/admin/not-found";
 import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { AuthCallback } from "@/components/admin/authentication";
+import type { AdminTheme } from "@/components/admin/theme-types";
+import { AuthCallback } from "@/components/admin/auth-callback";
 import { useEffect } from "react";
+
+/**
+ * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
+ *
+ * The shadcn-admin-kit extension adds the `theme` / `lightTheme` / `darkTheme`
+ * trio so a named {@link AdminTheme} palette can be selected at the root.
+ */
+export interface AdminProps extends CoreAdminProps {
+  /**
+   * Convenience alias for `lightTheme`. Use this when you only want to pass
+   * one named theme — its `light` and `dark` variable maps cover both modes.
+   */
+  theme?: AdminTheme;
+  /**
+   * The theme applied in light mode.
+   */
+  lightTheme?: AdminTheme;
+  /**
+   * The theme applied in dark mode.
+   *
+   * Falls back to `lightTheme` (or `theme`) if omitted.
+   */
+  darkTheme?: AdminTheme;
+}
 
 const defaultStore = localStorageStore();
 
@@ -37,8 +62,20 @@ const AdminContext = (props: CoreAdminContextProps) => (
  *
  * @internal
  */
-const AdminUI = (props: CoreAdminUIProps) => {
-  const { disableTelemetry = false, ...rest } = props;
+const AdminUI = (
+  props: CoreAdminUIProps & {
+    theme?: AdminTheme;
+    lightTheme?: AdminTheme;
+    darkTheme?: AdminTheme;
+  },
+) => {
+  const {
+    disableTelemetry = false,
+    theme,
+    lightTheme,
+    darkTheme,
+    ...rest
+  } = props;
 
   useEffect(() => {
     if (
@@ -55,7 +92,7 @@ const AdminUI = (props: CoreAdminUIProps) => {
   }, [disableTelemetry]);
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme} lightTheme={lightTheme} darkTheme={darkTheme}>
       <CoreAdminUI
         layout={Layout}
         loginPage={LoginPage}
@@ -98,8 +135,32 @@ const AdminUI = (props: CoreAdminUIProps) => {
  * >
  *   <Resource name="posts" list={PostList} edit={PostEdit} />
  * </Admin>
+ *
+ * @example
+ * // With a named theme palette
+ * import { Admin, radiantTheme } from "@/components/admin";
+ *
+ * const App = () => (
+ *   <Admin dataProvider={dataProvider} theme={radiantTheme}>
+ *     <Resource name="posts" list={PostList} />
+ *   </Admin>
+ * );
+ *
+ * @example
+ * // With distinct light and dark themes
+ * import { Admin, nanoTheme, bwTheme } from "@/components/admin";
+ *
+ * const App = () => (
+ *   <Admin
+ *     dataProvider={dataProvider}
+ *     lightTheme={nanoTheme}
+ *     darkTheme={bwTheme}
+ *   >
+ *     <Resource name="posts" list={PostList} />
+ *   </Admin>
+ * );
  */
-export const Admin = (props: CoreAdminProps) => {
+export const Admin = (props: AdminProps) => {
   const {
     accessDenied,
     authCallbackPage = AuthCallback,
@@ -120,6 +181,9 @@ export const Admin = (props: CoreAdminProps) => {
     ready = Ready,
     requireAuth,
     store = defaultStore,
+    theme,
+    lightTheme,
+    darkTheme,
     title = "Shadcn Admin",
   } = props;
   return (
@@ -144,6 +208,9 @@ export const Admin = (props: CoreAdminProps) => {
         loginPage={loginPage}
         ready={ready}
         requireAuth={requireAuth}
+        theme={theme}
+        lightTheme={lightTheme}
+        darkTheme={darkTheme}
         title={title}
       >
         {children}

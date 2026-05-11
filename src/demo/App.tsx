@@ -1,5 +1,5 @@
 import { Resource } from "ra-core";
-import { Admin } from "@/components/admin";
+import { Admin, defaultTheme } from "@/components/admin";
 
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
@@ -10,6 +10,7 @@ import { orders } from "./orders";
 import { customers } from "./customers";
 import { reviews } from "./reviews";
 import { Dashboard } from "./dashboard/Dashboard";
+import { InspectorLayout } from "./InspectorLayout";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       dashboard={Dashboard}
+      theme={defaultTheme}
+      layout={InspectorLayout}
     >
       <Resource {...orders} />
       <Resource {...products} />

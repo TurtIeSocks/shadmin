@@ -1,0 +1,23 @@
+---
+title: "LoadingPage"
+---
+
+Full-page loading indicator. Alias for [`<Loading>`](./Loading.md). Used by ra-core as the `loadingPage` slot when bootstrapping the admin app.
+
+## Usage
+
+```tsx
+import { LoadingPage } from "@/components/admin/loading-page";
+
+const App = () => <LoadingPage />;
+```
+
+`<LoadingPage>` simply forwards its props to `<Loading>`. Use it any place ra-core expects a `loadingPage` component (for example as the `loadingPage` prop of `<Admin>`).
+
+## Props
+
+| Prop | Required | Type | Default | Description |
+|------|----------|------|---------|-------------|
+| `loadingPrimary` | Optional | `string` | `ra.page.loading` | Main heading i18n key. |
+| `loadingSecondary` | Optional | `string` | `ra.message.loading` | Secondary text key. |
+| `delay` | Optional | `number` | `1000` | Delay before showing the spinner (ms). |

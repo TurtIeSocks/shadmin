@@ -1,0 +1,49 @@
+import { useTranslatableContext } from "ra-core";
+
+import { TabsList } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
+import { TranslatableInputsTab } from "@/components/admin/translatable-inputs-tab";
+
+/**
+ * Default locale selector for the `<TranslatableInputs>` component.
+ *
+ * Reads the list of locales from the `TranslatableContext` and renders one
+ * `<TranslatableInputsTab>` per locale, wrapped in a shadcn `<TabsList>`.
+ * Each tab reflects the validation state of the inputs for its locale.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
+ *
+ * @example
+ * <TranslatableInputs
+ *     locales={['en', 'fr']}
+ *     selector={<TranslatableInputsTabs />}
+ * >
+ *     <TextInput source="name" />
+ * </TranslatableInputs>
+ */
+export const TranslatableInputsTabs = (props: TranslatableInputsTabsProps) => {
+  const { groupKey, className } = props;
+  const { locales } = useTranslatableContext();
+
+  return (
+    <TabsList
+      className={cn(
+        "w-full justify-start rounded-b-none h-auto",
+        className,
+      )}
+    >
+      {locales.map((locale) => (
+        <TranslatableInputsTab
+          key={locale}
+          locale={locale}
+          groupKey={groupKey}
+        />
+      ))}
+    </TabsList>
+  );
+};
+
+export interface TranslatableInputsTabsProps {
+  groupKey?: string;
+  className?: string;
+}

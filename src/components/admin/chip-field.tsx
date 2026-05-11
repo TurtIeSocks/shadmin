@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import type { FieldProps } from "@/lib/field.type.ts";
+import type { FieldProps } from "@/lib/field-types";
 
 type BadgeProps = ComponentProps<typeof Badge>;
 

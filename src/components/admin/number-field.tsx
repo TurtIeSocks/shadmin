@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { HTMLAttributes } from "react";
 import { useFieldValue, useTranslate } from "ra-core";
-import type { FieldProps } from "@/lib/field.type.ts";
+import type { FieldProps } from "@/lib/field-types";
 
 /**
  * Displays a numeric value with locale-specific formatting.

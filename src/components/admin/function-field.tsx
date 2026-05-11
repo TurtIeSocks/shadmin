@@ -2,7 +2,7 @@ import { useMemo, type HTMLAttributes, type ReactNode } from "react";
 import { useRecordContext } from "ra-core";
 
 import { cn } from "@/lib/utils";
-import type { FieldProps } from "@/lib/field.type.ts";
+import type { FieldProps } from "@/lib/field-types";
 
 /**
  * Field rendering its value with a custom render function.
