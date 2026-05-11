@@ -105,6 +105,9 @@ export const Notification = (props: ToasterProps) => {
         mutation({ isUndo: true });
       }
       window.removeEventListener("beforeunload", beforeunload);
+      // Sonner doesn't fire onDismiss when the action button is clicked, so
+      // release the queue slot here. handleExited won't fire for this toast.
+      setCurrentNotification(undefined);
     };
 
     const localTranslate = translateRef.current;

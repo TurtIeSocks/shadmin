@@ -51,19 +51,42 @@ describe("Notification", () => {
   it("should undo several notifications correctly", async () => {
     const screen = render(<Undoable />);
     const button = screen.getByText("Trigger mutation");
+
+    // Trigger first notification and undo it before queuing the next one,
+    // since the notification queue is now one-at-a-time.
     await button.click();
     await expect
       .element(screen.getByText("mutation 1 triggered"))
+      .toBeVisible();
+    // Sonner animates toasts in over ~400ms; force the click so the test
+    // doesn't retry-storm while the button is still moving into place.
+    await screen.getByText("ra.action.undo").click({ force: true });
+    await expect
+      .element(screen.getByText("mutation 1 undone"))
       .toBeInTheDocument();
+    // Wait for the first toast (and its undo button) to be fully dismissed
+    // so the queue can release the slot for the next notification.
+    await expect
+      .element(screen.getByText("ra.action.undo"))
+      .not.toBeInTheDocument();
+
+    // Trigger the second notification only after the first has been dismissed.
     await button.click();
     await expect
       .element(screen.getByText("mutation 2 triggered"))
+      .toBeVisible();
+    await screen.getByText("ra.action.undo").click({ force: true });
+    await expect
+      .element(screen.getByText("mutation 2 undone"))
       .toBeInTheDocument();
-    const undoButtons = screen.getByText("ra.action.undo");
-    await undoButtons.first().click();
-    expect(screen.getByText("mutation 1 undone"));
-    await undoButtons.last().click();
-    expect(screen.getByText("mutation 2 undone"));
+
+    // Neither mutation should have been "executed" - both were undone.
+    await expect
+      .element(screen.getByText("mutation 1 executed"))
+      .not.toBeInTheDocument();
+    await expect
+      .element(screen.getByText("mutation 2 executed"))
+      .not.toBeInTheDocument();
   });
 
   it("should pass autoHideDuration to sonner duration", async () => {
