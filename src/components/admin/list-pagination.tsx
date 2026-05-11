@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
 } from "@/components/ui/pagination";
 import {
   Select,
@@ -21,6 +21,13 @@ import { useListPaginationContext, Translate, useTranslate } from "ra-core";
  *
  * Displays pagination controls with previous/next buttons, page numbers with ellipsis for long lists,
  * and a dropdown to change items per page. Works with List context.
+ *
+ * When the total number of records is known, displays page numbers with ellipsis
+ * for long lists ("1-25 of 312"). When the total is unknown (partial pagination
+ * from cursor-based / infinite providers), displays simplified prev/next buttons
+ * with a range indicator only ("1-25").
+ *
+ * Returns `null` when the list is empty (total === 0).
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listpagination/ ListPagination documentation}
  *
@@ -55,12 +62,32 @@ export const ListPagination = ({
     setPage,
   } = useListPaginationContext();
 
+  // Partial pagination = total is unknown (cursor-based / infinite providers).
+  const isPartial = total == null;
+
+  // Issue 1: when the total is known and equals 0, render nothing.
+  // No pagination is needed for an empty list. The empty state is handled
+  // by the component displaying the data (Datagrid, DataTable, SimpleList).
+  if (!isPartial && total === 0) {
+    return null;
+  }
+
   const pageStart = (page - 1) * perPage + 1;
-  const pageEnd = hasNextPage ? page * perPage : total;
+
+  // Issue 3: avoid "undefined" in the range info when total is unknown.
+  // When total is known, clamp the end to `total` so the last page shows the
+  // real number of items rather than `page * perPage`.
+  const pageEnd = isPartial
+    ? page * perPage
+    : Math.min(page * perPage, total as number);
+
+  // Issue 2: page-number/ellipsis logic only makes sense when total is known.
+  // We compute it lazily below and guard the JSX with `!isPartial`.
+  const count =
+    !isPartial && total ? Math.ceil((total as number) / perPage) : 1;
 
   const boundaryCount = 1;
   const siblingCount = 1;
-  const count = total ? Math.ceil(total / perPage) : 1;
 
   const range = (start: number, end: number) => {
     const length = end - start + 1;
@@ -97,16 +124,32 @@ export const ListPagination = ({
 
   const siblingPages = range(siblingsStart, siblingsEnd);
 
-  const pageChangeHandler = (newPage: number) => {
-    return (event: React.MouseEvent<HTMLAnchorElement>) => {
-      event.preventDefault();
-      setPage(newPage);
-    };
-  };
+  const goToPage = (newPage: number) => setPage(newPage);
+
+  const previousLabel = translate("ra.navigation.previous", { _: "Previous" });
+  const nextLabel = translate("ra.navigation.next", { _: "Next" });
+
+  // Issue 6: use <button type="button"> semantics for in-page navigation
+  // (no href, no fake "#" anchor). Styled with the same shadcn button variants
+  // that PaginationLink uses so the visual is identical.
+  // Issue 4: a single element is rendered for prev/next regardless of disabled
+  // state so tab order is preserved; we use aria-disabled and pointer-events-none
+  // when disabled rather than swapping the DOM element.
+  const navButtonClass = (active = false, disabled = false) =>
+    cn(
+      buttonVariants({
+        variant: active ? "outline" : "ghost",
+        size: "icon",
+      }),
+      disabled && "pointer-events-none opacity-50 cursor-not-allowed",
+    );
 
   return (
     <div
-      className={`flex items-center justify-end space-x-2 gap-4 ${className}`}
+      className={cn(
+        "flex items-center justify-end space-x-2 gap-4",
+        className,
+      )}
     >
       <div className="hidden md:flex items-center space-x-2">
         <p className="text-sm font-medium">
@@ -133,130 +176,132 @@ export const ListPagination = ({
         </Select>
       </div>
       <div className="text-sm text-muted-foreground">
-        <Translate
-          i18nKey="ra.navigation.page_range_info"
-          options={{
-            offsetBegin: pageStart,
-            offsetEnd: pageEnd,
-            total: total === -1 ? pageEnd : total,
-          }}
-        >
-          {total != null
-            ? `${pageStart}-${pageEnd} of ${total === -1 ? pageEnd : total}`
-            : null}
-        </Translate>
+        {isPartial ? (
+          <Translate
+            i18nKey="ra.navigation.partial_page_range_info"
+            options={{
+              offsetBegin: pageStart,
+              offsetEnd: pageEnd,
+            }}
+          >
+            {`${pageStart}-${pageEnd}`}
+          </Translate>
+        ) : (
+          <Translate
+            i18nKey="ra.navigation.page_range_info"
+            options={{
+              offsetBegin: pageStart,
+              offsetEnd: pageEnd,
+              total: total === -1 ? pageEnd : total,
+            }}
+          >
+            {`${pageStart}-${pageEnd} of ${total === -1 ? pageEnd : total}`}
+          </Translate>
+        )}
       </div>
       <Pagination className="-w-full -mx-auto">
         <PaginationContent>
           <PaginationItem>
-            {hasPreviousPage ? (
-              <PaginationLink
-                href="#"
-                onClick={pageChangeHandler(page - 1)}
-                aria-label={translate("ra.navigation.previous", {
-                  _: "Previous",
-                })}
-              >
-                <ChevronLeftIcon />
-              </PaginationLink>
-            ) : (
-              <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium size-9">
-                <ChevronLeftIcon
-                  aria-label={translate("ra.navigation.previous", {
-                    _: "Previous",
-                  })}
-                  size="16"
-                  className="text-muted-foreground"
-                />
-              </span>
-            )}
+            <button
+              type="button"
+              aria-label={previousLabel}
+              aria-disabled={!hasPreviousPage || undefined}
+              disabled={!hasPreviousPage}
+              onClick={
+                hasPreviousPage ? () => goToPage(page - 1) : undefined
+              }
+              className={navButtonClass(false, !hasPreviousPage)}
+            >
+              <ChevronLeftIcon />
+            </button>
           </PaginationItem>
-          {startPages.map((pageNumber) => (
-            <PaginationItem key={pageNumber}>
-              <PaginationLink
-                href="#"
-                onClick={pageChangeHandler(pageNumber)}
-                isActive={pageNumber === page}
-              >
-                {pageNumber}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-          {siblingsStart > boundaryCount + 2 ? (
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-          ) : boundaryCount + 1 < count - boundaryCount ? (
-            <PaginationItem>
-              <PaginationLink
-                href="#"
-                onClick={pageChangeHandler(boundaryCount + 1)}
-                isActive={boundaryCount + 1 === page}
-              >
-                {boundaryCount + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ) : null}
-          {siblingPages.map((pageNumber) => (
-            <PaginationItem key={pageNumber}>
-              <PaginationLink
-                href="#"
-                onClick={pageChangeHandler(pageNumber)}
-                isActive={pageNumber === page}
-              >
-                {pageNumber}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-          {siblingsEnd < count - boundaryCount - 1 ? (
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-          ) : count - boundaryCount > boundaryCount ? (
-            <PaginationItem>
-              <PaginationLink
-                href="#"
-                onClick={pageChangeHandler(count - boundaryCount)}
-                isActive={count - boundaryCount === page}
-              >
-                {count - boundaryCount}
-              </PaginationLink>
-            </PaginationItem>
-          ) : null}
-          {endPages.map((pageNumber) => (
-            <PaginationItem key={pageNumber}>
-              <PaginationLink
-                href="#"
-                onClick={pageChangeHandler(pageNumber)}
-                isActive={pageNumber === page}
-              >
-                {pageNumber}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
+          {!isPartial && (
+            <>
+              {startPages.map((pageNumber) => (
+                <PaginationItem key={pageNumber}>
+                  <button
+                    type="button"
+                    onClick={() => goToPage(pageNumber)}
+                    aria-current={pageNumber === page ? "page" : undefined}
+                    className={navButtonClass(pageNumber === page)}
+                  >
+                    {pageNumber}
+                  </button>
+                </PaginationItem>
+              ))}
+              {siblingsStart > boundaryCount + 2 ? (
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              ) : boundaryCount + 1 < count - boundaryCount ? (
+                <PaginationItem>
+                  <button
+                    type="button"
+                    onClick={() => goToPage(boundaryCount + 1)}
+                    aria-current={
+                      boundaryCount + 1 === page ? "page" : undefined
+                    }
+                    className={navButtonClass(boundaryCount + 1 === page)}
+                  >
+                    {boundaryCount + 1}
+                  </button>
+                </PaginationItem>
+              ) : null}
+              {siblingPages.map((pageNumber) => (
+                <PaginationItem key={pageNumber}>
+                  <button
+                    type="button"
+                    onClick={() => goToPage(pageNumber)}
+                    aria-current={pageNumber === page ? "page" : undefined}
+                    className={navButtonClass(pageNumber === page)}
+                  >
+                    {pageNumber}
+                  </button>
+                </PaginationItem>
+              ))}
+              {siblingsEnd < count - boundaryCount - 1 ? (
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              ) : count - boundaryCount > boundaryCount ? (
+                <PaginationItem>
+                  <button
+                    type="button"
+                    onClick={() => goToPage(count - boundaryCount)}
+                    aria-current={
+                      count - boundaryCount === page ? "page" : undefined
+                    }
+                    className={navButtonClass(count - boundaryCount === page)}
+                  >
+                    {count - boundaryCount}
+                  </button>
+                </PaginationItem>
+              ) : null}
+              {endPages.map((pageNumber) => (
+                <PaginationItem key={pageNumber}>
+                  <button
+                    type="button"
+                    onClick={() => goToPage(pageNumber)}
+                    aria-current={pageNumber === page ? "page" : undefined}
+                    className={navButtonClass(pageNumber === page)}
+                  >
+                    {pageNumber}
+                  </button>
+                </PaginationItem>
+              ))}
+            </>
+          )}
           <PaginationItem>
-            {hasNextPage ? (
-              <PaginationLink
-                href="#"
-                onClick={pageChangeHandler(page + 1)}
-                size="default"
-                className={cn(
-                  "gap-1 px-2.5 sm:pr-2.5",
-                  !hasNextPage ? "opacity-50 cursor-not-allowed" : "",
-                )}
-                aria-label={translate("ra.navigation.next", { _: "Next" })}
-              >
-                <ChevronRightIcon />
-              </PaginationLink>
-            ) : (
-              <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium size-9">
-                <ChevronRightIcon
-                  aria-label={translate("ra.navigation.next", { _: "Next" })}
-                  size="16"
-                  className="text-muted-foreground"
-                />
-              </span>
-            )}
+            <button
+              type="button"
+              aria-label={nextLabel}
+              aria-disabled={!hasNextPage || undefined}
+              disabled={!hasNextPage}
+              onClick={hasNextPage ? () => goToPage(page + 1) : undefined}
+              className={navButtonClass(false, !hasNextPage)}
+            >
+              <ChevronRightIcon />
+            </button>
           </PaginationItem>
         </PaginationContent>
       </Pagination>
