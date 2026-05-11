@@ -1,6 +1,15 @@
-import { useState } from "react";
-import { Form, required, useLogin, useNotify } from "ra-core";
+import { useEffect, useState } from "react";
+import {
+  Form,
+  required,
+  useCheckAuth,
+  useLogin,
+  useNotify,
+  useTranslate,
+} from "ra-core";
+import { useNavigate } from "react-router";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 import { Notification } from "@/components/admin/notification";
@@ -19,6 +28,20 @@ export const LoginPage = (props: { redirectTo?: string }) => {
   const [loading, setLoading] = useState(false);
   const login = useLogin();
   const notify = useNotify();
+  const translate = useTranslate();
+  const checkAuth = useCheckAuth();
+  const navigate = useNavigate();
+
+  // Redirect already-authenticated users away from the login page.
+  useEffect(() => {
+    checkAuth({}, false)
+      .then(() => {
+        navigate("/");
+      })
+      .catch(() => {
+        // not authenticated, stay on the login page
+      });
+  }, [checkAuth, navigate]);
 
   const handleSubmit: SubmitHandler<FieldValues> = (values) => {
     setLoading(true);
@@ -83,22 +106,24 @@ export const LoginPage = (props: { redirectTo?: string }) => {
         <div className="lg:p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight">Sign in</h1>
-              <p className="text-sm leading-none text-muted-foreground">
-                Try janedoe@acme.com / password
-              </p>
+              <h1 className="text-2xl font-semibold tracking-tight">
+                {translate("ra.auth.sign_in", { _: "Sign in" })}
+              </h1>
             </div>
             <Form className="space-y-8" onSubmit={handleSubmit}>
               <TextInput
                 label="Email"
                 source="email"
                 type="email"
+                autoComplete="username"
+                autoFocus
                 validate={required()}
               />
               <TextInput
                 label="Password"
                 source="password"
                 type="password"
+                autoComplete="current-password"
                 validate={required()}
               />
               <Button
@@ -106,7 +131,10 @@ export const LoginPage = (props: { redirectTo?: string }) => {
                 className="cursor-pointer"
                 disabled={loading}
               >
-                Sign in
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : null}
+                {translate("ra.auth.sign_in", { _: "Sign in" })}
               </Button>
             </Form>
           </div>
