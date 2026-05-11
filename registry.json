@@ -188,6 +188,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/empty.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/export-button.tsx",
           "type": "registry:component"
         },
@@ -236,7 +240,15 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/link.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list-actions.tsx",
           "type": "registry:component"
         },
         {
@@ -248,7 +260,15 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/list-no-results.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/list-pagination.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list-toolbar.tsx",
           "type": "registry:component"
         },
         {
@@ -380,6 +400,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/sidebar-toggle-button.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/simple-form.tsx",
           "type": "registry:component"
         },
@@ -481,6 +505,10 @@
         },
         {
           "path": "src/components/admin/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/loading-indicator.tsx",
           "type": "registry:component"
         },
         {

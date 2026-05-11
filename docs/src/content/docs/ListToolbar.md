@@ -1,0 +1,42 @@
+---
+title: "ListToolbar"
+---
+
+Toolbar that pairs an inline [`<FilterForm>`](./SearchInput.md) with a [`<ListActions>`](./ListActions.md) slot.
+
+## Usage
+
+```tsx
+import { DataTable, List, ListActions, ListToolbar, TextInput } from "@/components/admin";
+
+const postFilters = [<TextInput key="q" source="q" label="Search" alwaysOn />];
+
+export const PostList = () => (
+  <List
+    filters={postFilters}
+    actions={<ListToolbar filters={postFilters} actions={<ListActions />} />}
+  >
+    <DataTable>
+      <DataTable.Col source="title" />
+    </DataTable>
+  </List>
+);
+```
+
+`<ListToolbar>` exposes its `filters` through a `FilterContext` so the descendant `<FilterButton>` and `<FilterForm>` pick them up automatically.
+
+## Props
+
+| Prop | Required | Type | Default | Description |
+|------|----------|------|---------|-------------|
+| `filters` | Optional | `ReactElement \| ReactNode[]` | — | Filter inputs passed to the embedded `<FilterForm>` |
+| `actions` | Optional | `ReactNode \| false` | `<ListActions />` | Replace the right-hand actions slot — pass `false` to hide it |
+| `className` | Optional | `string` | — | Extra Tailwind classes appended to the root element |
+
+## `actions`
+
+By default `<ListToolbar>` renders [`<ListActions>`](./ListActions.md) on the right. Pass a custom node to replace it, or `false` to hide the actions slot entirely:
+
+```tsx
+<ListToolbar filters={postFilters} actions={false} />
+```
