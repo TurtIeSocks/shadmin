@@ -19,9 +19,14 @@ export const Loading = (props: LoadingProps) => {
   } = props;
   const oneSecondHasPassed = useTimeout(delay);
   return oneSecondHasPassed ? (
-    <div className="flex flex-col justify-center items-center h-full" {...rest}>
-      <div className="text-center font-sans color-muted pt-1 pb-1">
-        <Spinner size="large" className="width-9 height-9" />
+    <div
+      className="flex flex-col justify-center items-center h-full"
+      role="status"
+      aria-live="polite"
+      {...rest}
+    >
+      <div className="text-center font-sans text-muted-foreground py-1">
+        <Spinner size="large" className="w-9 h-9" />
         <h5 className="mt-3 text-2xl text-secondary-foreground">
           <Translate i18nKey={loadingPrimary}>{loadingPrimary}</Translate>
         </h5>

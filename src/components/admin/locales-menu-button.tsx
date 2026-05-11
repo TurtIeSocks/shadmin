@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { useLocales, useLocaleState } from "ra-core";
+import { useLocales, useLocaleState, useTranslate } from "ra-core";
 
 /**
  * Language switcher button that displays a menu allowing users to select the interface language.
@@ -22,6 +22,7 @@ import { useLocales, useLocaleState } from "ra-core";
 export function LocalesMenuButton() {
   const languages = useLocales();
   const [locale, setLocale] = useLocaleState();
+  const translate = useTranslate();
 
   const getNameForLocale = (locale: string): string => {
     const language = languages.find((language) => language.locale === locale);
@@ -38,7 +39,14 @@ export function LocalesMenuButton() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="hidden sm:inline-flex"
+          aria-label={translate("ra.action.change_locale", {
+            _: "Change locale",
+          })}
+        >
           {locale.toUpperCase()}
         </Button>
       </DropdownMenuTrigger>

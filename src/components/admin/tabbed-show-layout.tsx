@@ -215,12 +215,7 @@ function TabbedShowLayoutView({
     const value = syncWithLocation ? tabPath : index.toString();
     return (
       <TabsContent key={value} value={value}>
-        <div
-          className={cn("flex flex-col gap-4", tab.props.contentClassName)}
-          role="tabpanel"
-          id={`show-tabpanel-${value}`}
-          aria-labelledby={`show-tabheader-${value}`}
-        >
+        <div className={cn("flex flex-col gap-4", tab.props.contentClassName)}>
           {Children.map(tab.props.children, (field) => {
             if (!field || !isValidElement(field)) return null;
             return (
@@ -286,11 +281,7 @@ function ShowTabTrigger({
   }
 
   return (
-    <TabsTrigger
-      value={value}
-      id={`show-tabheader-${value}`}
-      aria-controls={`show-tabpanel-${value}`}
-    >
+    <TabsTrigger value={value}>
       {icon && <span className="mr-1.5">{icon}</span>}
       {tabLabel}
     </TabsTrigger>

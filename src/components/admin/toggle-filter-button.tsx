@@ -44,6 +44,7 @@ export const ToggleFilterButton = ({
     <Button
       variant={isSelected ? "secondary" : "ghost"}
       onClick={handleClick}
+      aria-pressed={isSelected}
       className={cn(
         "cursor-pointer",
         "flex flex-row items-center justify-between gap-2 px-2.5 w-full",

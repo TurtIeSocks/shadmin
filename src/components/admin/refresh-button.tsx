@@ -1,4 +1,4 @@
-import { useRefresh, useLoading } from "ra-core";
+import { useRefresh, useLoading, useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle, RotateCw } from "lucide-react";
 
@@ -13,10 +13,13 @@ import { LoaderCircle, RotateCw } from "lucide-react";
 export const RefreshButton = () => {
   const refresh = useRefresh();
   const loading = useLoading();
+  const translate = useTranslate();
 
   const handleRefresh = () => {
     refresh();
   };
+
+  const label = translate("ra.action.refresh", { _: "Refresh" });
 
   return (
     <Button
@@ -24,6 +27,8 @@ export const RefreshButton = () => {
       variant="ghost"
       size="icon"
       className="hidden sm:inline-flex"
+      aria-label={label}
+      disabled={loading}
     >
       {loading ? <LoaderCircle className="animate-spin" /> : <RotateCw />}
     </Button>

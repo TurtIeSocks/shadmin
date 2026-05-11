@@ -33,14 +33,27 @@ interface SpinnerContentProps
     VariantProps<typeof spinnerVariants>,
     VariantProps<typeof loaderVariants> {
   className?: string;
+  "aria-label"?: string;
 }
 
 /**
  * Animated spinner component for loading states.
  */
-export function Spinner({ size, show, className }: SpinnerContentProps) {
+export function Spinner({
+  size,
+  show,
+  className,
+  "aria-label": ariaLabel,
+}: SpinnerContentProps) {
+  if (show === false) {
+    return null;
+  }
   return (
-    <span className={spinnerVariants({ show })}>
+    <span
+      className={spinnerVariants({ show })}
+      role="status"
+      aria-label={ariaLabel ?? "Loading"}
+    >
       <Loader2 className={cn(loaderVariants({ size }), className)} />
     </span>
   );

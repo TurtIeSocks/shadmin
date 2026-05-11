@@ -72,12 +72,17 @@ describe("<TabbedShowLayout />", () => {
 
   it("should associate tab panels with tab triggers via aria attributes", async () => {
     const { container } = render(<Basic theme="system" />);
-    const trigger = container.querySelector('[role="tab"][id^="show-tabheader-"]') as HTMLElement;
+    // Radix manages the ARIA wiring: the active trigger has aria-controls
+    // pointing to the panel's id, and the panel has aria-labelledby pointing
+    // back at the trigger.
+    const trigger = container.querySelector(
+      '[role="tab"][aria-controls]',
+    ) as HTMLElement;
     expect(trigger).toBeTruthy();
-    const value = trigger.id.replace("show-tabheader-", "");
-    const panel = container.querySelector(`#show-tabpanel-${value}`) as HTMLElement;
+    const panelId = trigger.getAttribute("aria-controls")!;
+    const panel = container.querySelector(`#${panelId}`) as HTMLElement;
     expect(panel).toBeTruthy();
     expect(panel.getAttribute("role")).toBe("tabpanel");
-    expect(panel.getAttribute("aria-labelledby")).toBe(`show-tabheader-${value}`);
+    expect(panel.getAttribute("aria-labelledby")).toBe(trigger.id);
   });
 });

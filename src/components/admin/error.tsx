@@ -42,7 +42,7 @@ export const Error = (props: InternalErrorProps & {}) => {
       <div>
         <Translate i18nKey="ra.message.error" />
       </div>
-      {process.env.NODE_ENV !== "production" && (
+      {import.meta.env.DEV && (
         <>
           <Accordion
             type="multiple"
@@ -53,7 +53,7 @@ export const Error = (props: InternalErrorProps & {}) => {
                 <Translate i18nKey={errorMessage}>{errorMessage}</Translate>
               </AccordionTrigger>
               <AccordionContent className="whitespace-pre-wrap pt-1">
-                <pre className="text-xls">{errorInfo?.componentStack}</pre>
+                <pre className="text-xs">{errorInfo?.componentStack}</pre>
               </AccordionContent>
             </AccordionItem>
           </Accordion>

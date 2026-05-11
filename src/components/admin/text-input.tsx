@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { InputHelperText } from "@/components/admin/input-helper-text";
+import { sanitizeInputRestProps } from "@/lib/sanitizeInputRestProps";
 
 export type TextInputProps = InputProps & {
   multiline?: boolean;
@@ -46,11 +47,10 @@ export const TextInput = (props: TextInputProps) => {
     className,
     inputClassName,
     helperText,
-    validate: _validateProp,
-    format: _formatProp,
+    type = "text",
     ...rest
   } = props;
-  const { id, field, isRequired } = useInput(props);
+  const { id, field, isRequired } = useInput({ ...props, type });
 
   return (
     <FormField id={id} className={className} name={field.name}>
@@ -66,9 +66,18 @@ export const TextInput = (props: TextInputProps) => {
       )}
       <FormControl>
         {multiline ? (
-          <Textarea {...rest} {...field} className={inputClassName} />
+          <Textarea
+            {...sanitizeInputRestProps(rest)}
+            {...field}
+            className={inputClassName}
+          />
         ) : (
-          <Input {...rest} {...field} className={inputClassName} />
+          <Input
+            {...sanitizeInputRestProps(rest)}
+            {...field}
+            type={type}
+            className={inputClassName}
+          />
         )}
       </FormControl>
       <InputHelperText helperText={helperText} />

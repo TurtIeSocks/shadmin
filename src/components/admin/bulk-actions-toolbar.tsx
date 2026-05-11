@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useListContext, Translate } from "ra-core";
+import { useListContext, Translate, useTranslate } from "ra-core";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BulkDeleteButton } from "@/components/admin/bulk-delete-button";
@@ -53,6 +53,7 @@ export const BulkActionsToolbar = ({
   children?: ReactNode;
 }) => {
   const { selectedIds, onUnselectItems } = useListContext();
+  const translate = useTranslate();
   if (!selectedIds?.length) {
     return null;
   }
@@ -67,6 +68,7 @@ export const BulkActionsToolbar = ({
           variant="ghost"
           className="has-[>svg]:px-0"
           onClick={handleUnselectAll}
+          aria-label={translate("ra.action.unselect", { _: "Unselect" })}
         >
           <X />
         </Button>
