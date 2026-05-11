@@ -11,6 +11,7 @@ import {
 } from "ra-core";
 import { capitalize, singularize } from "inflection";
 import { ShowView } from "@/components/admin/show";
+import { SimpleShowLayout } from "@/components/admin/simple-show-layout";
 import { RecordField } from "@/components/admin/record-field";
 import { DateField } from "./date-field";
 import { ReferenceField } from "@/components/admin/reference-field";
@@ -113,16 +114,16 @@ interface ShowGuesserProps {
 const showFieldTypes: InferredTypeMap = {
   show: {
     component: (props: any) => (
-      <div className="flex flex-col gap-4">{props.children}</div>
+      <SimpleShowLayout>{props.children}</SimpleShowLayout>
     ),
     representation: (
       _props: any,
       children: { getRepresentation: () => string }[],
-    ) => `        <div className="flex flex-col gap-4">
+    ) => `        <SimpleShowLayout>
 ${children
   .map((child) => `            ${child.getRepresentation()}`)
   .join("\n")}
-        </div>`,
+        </SimpleShowLayout>`,
   },
   reference: {
     component: (props: any) => (

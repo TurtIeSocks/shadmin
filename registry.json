@@ -338,6 +338,18 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/labeled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/tabbed-show-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/toolbar.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/text-array-input.tsx",
           "type": "registry:component"
         },
