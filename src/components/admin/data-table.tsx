@@ -24,6 +24,7 @@ import {
   useRecordContext,
   useResourceContext,
   useStore,
+  useTimeout,
   useTranslate,
   useTranslateLabel,
 } from "ra-core";
@@ -112,7 +113,7 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
       empty={<DataTableEmpty />}
       {...rest}
     >
-      <div className={cn("rounded-md border", className)}>
+      <DataTableRoot className={className}>
         <Table>
           <DataTableRenderContext.Provider value="header">
             <DataTableHead>{columns}</DataTableHead>
@@ -121,7 +122,7 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
             {columns}
           </DataTableBody>
         </Table>
-      </div>
+      </DataTableRoot>
       {bulkActionsToolbar ??
         (bulkActionButtons !== false && (
           <BulkActionsToolbar>
@@ -140,42 +141,20 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
 DataTable.Col = DataTableColumn;
 DataTable.NumberCol = DataTableNumberColumn;
 
-const DataTableHead = ({ children }: { children: ReactNode }) => {
-  const data = useDataTableDataContext();
+/**
+ * Header row of a DataTable. Renders the column headers and a "select all" checkbox when bulk actions are enabled.
+ * Used internally by `<DataTable>`; also exported for custom DataTable compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const DataTableHead = ({ children }: { children: ReactNode }) => {
   const { hasBulkActions = false } = useDataTableConfigContext();
-  const { onSelect } = useDataTableCallbacksContext();
-  const selectedIds = useDataTableSelectedIdsContext();
-  const handleToggleSelectAll = (checked: boolean) => {
-    if (!onSelect || !data || !selectedIds) return;
-    onSelect(
-      checked
-        ? selectedIds.concat(
-            data
-              .filter((record) => !selectedIds.includes(record.id))
-              .map((record) => record.id),
-          )
-        : // We should only unselect the ids present in the current page
-          selectedIds.filter((id) => !data.some((record) => record.id === id)),
-    );
-  };
-  const selectableIds = Array.isArray(data)
-    ? data.map((record) => record.id)
-    : [];
   return (
     <TableHeader>
       <TableRow>
         {hasBulkActions ? (
           <TableHead className="w-8">
-            <Checkbox
-              onCheckedChange={handleToggleSelectAll}
-              checked={
-                selectedIds &&
-                selectedIds.length > 0 &&
-                selectableIds.length > 0 &&
-                selectableIds.every((id) => selectedIds.includes(id))
-              }
-              className="mb-2"
-            />
+            <SelectPageCheckbox />
           </TableHead>
         ) : null}
         {children}
@@ -184,7 +163,13 @@ const DataTableHead = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const DataTableBody = <RecordType extends RaRecord = RaRecord>({
+/**
+ * Body of a DataTable. Renders one `<DataTableRow>` per record in the current page.
+ * Used internally by `<DataTable>`; also exported for custom DataTable compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
   children,
   rowClassName,
 }: {
@@ -208,7 +193,13 @@ const DataTableBody = <RecordType extends RaRecord = RaRecord>({
   );
 };
 
-const DataTableRow = ({
+/**
+ * A row in a DataTable. Wires up row click navigation and renders a `<SelectRowCheckbox>` when bulk actions are enabled.
+ * Used internally by `<DataTableBody>`; also exported for custom DataTable compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const DataTableRow = ({
   children,
   className,
 }: {
@@ -216,7 +207,6 @@ const DataTableRow = ({
   className?: string;
 }) => {
   const { rowClick, handleToggleItem } = useDataTableCallbacksContext();
-  const selectedIds = useDataTableSelectedIdsContext();
   const { hasBulkActions = false } = useDataTableConfigContext();
 
   const record = useRecordContext();
@@ -270,10 +260,7 @@ const DataTableRow = ({
     >
       {hasBulkActions ? (
         <TableCell className="flex w-8" onClick={handleToggle}>
-          <Checkbox
-            checked={selectedIds?.includes(record.id)}
-            onClick={handleToggle}
-          />
+          <SelectRowCheckbox />
         </TableCell>
       ) : null}
       {children}
@@ -285,7 +272,13 @@ const DataTableRow = ({
 const isPromise = (value: any): value is Promise<any> =>
   value && typeof value.then === "function";
 
-const DataTableEmpty = () => {
+/**
+ * Default placeholder rendered when a DataTable has no records. Shows a "No results found." alert.
+ * Used internally by `<DataTable>`; also exported for custom empty-state compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const DataTableEmpty = () => {
   return (
     <Alert>
       <AlertDescription>No results found.</AlertDescription>
@@ -335,7 +328,14 @@ const reorderChildren = (children: ReactNode, columnRanks: number[]) =>
     return acc;
   }, []);
 
-function DataTableHeadCell<
+/**
+ * A header cell in a DataTable. Renders the column label and a sort button when sorting is enabled.
+ * Used internally when `<DataTableColumn>` (a.k.a. `<DataTable.Col>`) is rendered inside `<DataTableHead>`.
+ * Also exported for custom DataTable header compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export function DataTableHeadCell<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 >(props: DataTableColumnProps<RecordType>) {
   const {
@@ -429,7 +429,14 @@ const oppositeOrder: Record<SortPayload["order"], SortPayload["order"]> = {
   DESC: "ASC",
 };
 
-function DataTableCell<
+/**
+ * A body cell in a DataTable. Renders the column value for the current record using `children`, `render`, `field`, or `source`.
+ * Used internally when `<DataTableColumn>` (a.k.a. `<DataTable.Col>`) is rendered inside `<DataTableBody>`.
+ * Also exported for custom DataTable row compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export function DataTableCell<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 >(props: DataTableColumnProps<RecordType>) {
   const {
@@ -520,3 +527,138 @@ export interface DataTableNumberColumnProps<
   locales?: string | string[];
   options?: Intl.NumberFormatOptions;
 }
+
+/**
+ * Wrapper element for a DataTable. Provides standard rounded border styling.
+ * Used internally by `<DataTable>`; also exported for custom DataTable compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const DataTableRoot = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => <div className={cn("rounded-md border", className)}>{children}</div>;
+
+/**
+ * Checkbox in the DataTable header that selects/deselects all rows on the current page.
+ * Used internally by `<DataTableHead>`; also exported for custom header compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const SelectPageCheckbox = ({ className }: { className?: string }) => {
+  const data = useDataTableDataContext();
+  const { onSelect } = useDataTableCallbacksContext();
+  const selectedIds = useDataTableSelectedIdsContext();
+  const handleToggleSelectAll = (checked: boolean) => {
+    if (!onSelect || !data || !selectedIds) return;
+    onSelect(
+      checked
+        ? selectedIds.concat(
+            data
+              .filter((record) => !selectedIds.includes(record.id))
+              .map((record) => record.id),
+          )
+        : // We should only unselect the ids present in the current page
+          selectedIds.filter((id) => !data.some((record) => record.id === id)),
+    );
+  };
+  const selectableIds = Array.isArray(data)
+    ? data.map((record) => record.id)
+    : [];
+  return (
+    <Checkbox
+      onCheckedChange={handleToggleSelectAll}
+      checked={
+        selectedIds &&
+        selectedIds.length > 0 &&
+        selectableIds.length > 0 &&
+        selectableIds.every((id) => selectedIds.includes(id))
+      }
+      className={cn("mb-2", className)}
+      aria-label="Select all rows on this page"
+    />
+  );
+};
+
+/**
+ * Checkbox in a DataTable row that selects/deselects that row.
+ * Used internally by `<DataTableRow>`; also exported for custom row compositions.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const SelectRowCheckbox = ({ className }: { className?: string }) => {
+  const record = useRecordContext();
+  const selectedIds = useDataTableSelectedIdsContext();
+  const { handleToggleItem } = useDataTableCallbacksContext();
+  const handleClick = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      if (!handleToggleItem || !record) return;
+      handleToggleItem(record.id, event);
+    },
+    [handleToggleItem, record],
+  );
+  return (
+    <Checkbox
+      onClick={handleClick}
+      checked={!!record && selectedIds?.includes(record.id)}
+      className={cn(className)}
+      aria-label="Select row"
+    />
+  );
+};
+
+export interface DataTableLoadingProps {
+  className?: string;
+  hasBulkActions?: boolean;
+  nbChildren: number;
+  nbFakeLines?: number;
+}
+
+/**
+ * Skeleton placeholder shown while a DataTable is loading.
+ * Renders `nbFakeLines` rows of grey placeholders for `nbChildren` columns.
+ * Waits 1 second before showing (via `useTimeout`) to avoid flashes for fast loads.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ */
+export const DataTableLoading = ({
+  className,
+  hasBulkActions,
+  nbChildren,
+  nbFakeLines = 5,
+}: DataTableLoadingProps) => {
+  const oneSecondHasPassed = useTimeout(1000);
+  if (!oneSecondHasPassed) return null;
+  return (
+    <DataTableRoot className={className}>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            {hasBulkActions && <TableHead className="w-8" />}
+            {Array.from({ length: nbChildren }).map((_, i) => (
+              <TableHead key={i}>
+                <div className="h-4 w-24 animate-pulse rounded bg-muted" />
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {Array.from({ length: nbFakeLines }).map((_, rowIdx) => (
+            <TableRow key={rowIdx} className="opacity-50">
+              {hasBulkActions && <TableCell />}
+              {Array.from({ length: nbChildren }).map((_, colIdx) => (
+                <TableCell key={colIdx}>
+                  <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </DataTableRoot>
+  );
+};

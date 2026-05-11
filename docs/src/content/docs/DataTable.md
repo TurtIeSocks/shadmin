@@ -484,3 +484,72 @@ const ReviewList = () => (
     </List>
 );
 ```
+
+## Composing a custom DataTable
+
+For advanced use cases, `<DataTable>`'s internal building blocks are exported individually so you can assemble a fully custom layout while reusing the standard cells, headers, and selection logic.
+
+| Export | Role |
+|--------|------|
+| [`DataTableRoot`](#) | Wrapper element with the standard rounded border. |
+| [`DataTableHead`](#) | Header row, renders column headers and a "select all" checkbox when bulk actions are enabled. |
+| [`DataTableBody`](#) | Body, renders one `<DataTableRow>` per record in the current page. |
+| [`DataTableRow`](#) | A single row. Wires up row click navigation and renders a `<SelectRowCheckbox>` when bulk actions are enabled. |
+| [`DataTableHeadCell`](#) | A header cell. Renders the column label and sort button. |
+| [`DataTableCell`](#) | A body cell. Renders the column value via `children`, `render`, `field`, or `source`. |
+| [`DataTableEmpty`](#) | Default placeholder shown when there are no records. |
+| [`DataTableLoading`](#) | Skeleton placeholder shown while data is loading. Waits 1 second before appearing to avoid flashes on fast loads. |
+| [`SelectPageCheckbox`](#) | Checkbox in the header that selects/deselects all rows on the current page. |
+| [`SelectRowCheckbox`](#) | Checkbox in a row that selects/deselects that row. |
+
+Here is a small example showing how to assemble a custom layout using these granular exports:
+
+```tsx
+import {
+    DataTableBody,
+    DataTableColumn,
+    DataTableHead,
+    DataTableRoot,
+    List,
+} from '@/components/admin';
+import { DataTableRenderContext } from 'ra-core';
+import { Table } from '@/components/ui/table';
+
+const columns = (
+    <>
+        <DataTableColumn source="id" />
+        <DataTableColumn source="title" />
+        <DataTableColumn label="Author" source="author.name" />
+        <DataTableColumn source="year" />
+    </>
+);
+
+const CustomDataTable = () => (
+    <DataTableRoot>
+        <Table>
+            <DataTableRenderContext.Provider value="header">
+                <DataTableHead>{columns}</DataTableHead>
+            </DataTableRenderContext.Provider>
+            <DataTableRenderContext.Provider value="data">
+                <DataTableBody>{columns}</DataTableBody>
+            </DataTableRenderContext.Provider>
+        </Table>
+    </DataTableRoot>
+);
+
+const BookList = () => (
+    <List>
+        <CustomDataTable />
+    </List>
+);
+```
+
+`<DataTableLoading>` can be used to provide a custom skeleton screen while data is loading:
+
+```tsx
+import { DataTableLoading } from '@/components/admin';
+
+const MyLoadingState = () => (
+    <DataTableLoading nbChildren={4} nbFakeLines={5} hasBulkActions />
+);
+```

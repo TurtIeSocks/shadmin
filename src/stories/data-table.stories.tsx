@@ -11,6 +11,11 @@ import {
   BulkDeleteButton,
   CreateButton,
   DataTable,
+  DataTableBody,
+  DataTableColumn,
+  DataTableHead,
+  DataTableLoading,
+  DataTableRoot,
   EditButton,
   List,
   ShowGuesser,
@@ -18,6 +23,8 @@ import {
 import { i18nProvider } from "@/lib/i18nProvider";
 import { BulkExportButton } from "@/components/admin/bulk-export-button";
 import { Button } from "@/components/ui/button";
+import { Table } from "@/components/ui/table";
+import { DataTableRenderContext } from "ra-core";
 
 export default {
   title: "List/DataTable",
@@ -212,5 +219,40 @@ export const HeaderButton = () => (
         <EditButton />
       </DataTable.Col>
     </DataTable>
+  </Wrapper>
+);
+
+export const Loading = () => (
+  <DataTableLoading nbChildren={4} nbFakeLines={5} hasBulkActions />
+);
+
+const columns = (
+  <>
+    <DataTableColumn source="id" />
+    <DataTableColumn source="title" />
+    <DataTableColumn label="Author" source="author.name" />
+    <DataTableColumn source="year" />
+  </>
+);
+
+export const ComposedCustom = () => (
+  <Wrapper>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col label="Author" source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+    <h2 className="mt-6">Composed from granular exports</h2>
+    <DataTableRoot>
+      <Table>
+        <DataTableRenderContext.Provider value="header">
+          <DataTableHead>{columns}</DataTableHead>
+        </DataTableRenderContext.Provider>
+        <DataTableRenderContext.Provider value="data">
+          <DataTableBody>{columns}</DataTableBody>
+        </DataTableRenderContext.Provider>
+      </Table>
+    </DataTableRoot>
   </Wrapper>
 );
