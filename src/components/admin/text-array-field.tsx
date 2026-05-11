@@ -1,5 +1,5 @@
 import type { ComponentProps, HTMLAttributes, ReactNode } from "react";
-import { useFieldValue, useTranslate } from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -60,7 +60,10 @@ export const TextArrayField = <
   }
 
   return (
-    <div className={cn("flex flex-wrap gap-1", className)} {...rest}>
+    <div
+      className={cn("flex flex-wrap gap-1", className)}
+      {...sanitizeFieldRestProps(rest)}
+    >
       {(data as ReactNode[]).map((item, index) => (
         <Badge key={index} variant={variant}>
           {item != null && typeof item !== "string" ? String(item) : item}

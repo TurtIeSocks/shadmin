@@ -1,5 +1,5 @@
 import { useMemo, type HTMLAttributes, type ReactNode } from "react";
-import { useRecordContext } from "ra-core";
+import { sanitizeFieldRestProps, useRecordContext } from "ra-core";
 
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
@@ -39,7 +39,7 @@ export const FunctionField = <
   return useMemo(
     () =>
       record ? (
-        <span className={cn(className)} {...rest}>
+        <span className={cn(className)} {...sanitizeFieldRestProps(rest)}>
           {render(record, source)}
         </span>
       ) : null,

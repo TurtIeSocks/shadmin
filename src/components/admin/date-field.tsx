@@ -1,5 +1,10 @@
 import type { HTMLAttributes } from "react";
-import { genericMemo, useFieldValue, useTranslate } from "ra-core";
+import {
+  genericMemo,
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "ra-core";
 
 import type { FieldProps } from "@/lib/field-types";
 
@@ -36,7 +41,7 @@ const DateFieldImpl = <
     }
 
     return (
-      <span {...rest}>
+      <span {...sanitizeFieldRestProps(rest)}>
         {typeof empty === "string" ? translate(empty, { _: empty }) : empty}
       </span>
     );
@@ -69,7 +74,7 @@ const DateFieldImpl = <
     }
   }
 
-  return <span {...rest}>{dateString}</span>;
+  return <span {...sanitizeFieldRestProps(rest)}>{dateString}</span>;
 };
 DateFieldImpl.displayName = "DateFieldImpl";
 

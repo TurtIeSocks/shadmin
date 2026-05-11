@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from "react";
 import get from "lodash/get";
 import type { ExtractRecordPaths, HintedString } from "ra-core";
-import { useFieldValue, useTranslate } from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
 
@@ -60,7 +60,7 @@ export const FileField = <
     }
 
     return (
-      <div className={cn("inline-block", className)} {...rest}>
+      <div className={cn("inline-block", className)} {...sanitizeFieldRestProps(rest)}>
         {typeof empty === "string" ? translate(empty, { _: empty }) : empty}
       </div>
     );
@@ -68,7 +68,7 @@ export const FileField = <
 
   if (Array.isArray(sourceValue)) {
     return (
-      <ul className={cn("inline-block", className)} {...rest}>
+      <ul className={cn("inline-block", className)} {...sanitizeFieldRestProps(rest)}>
         {sourceValue.map((file, index) => {
           const fileTitleValue = title ? get(file, title, title) : title;
           const srcValue = src ? get(file, src, title) : title;
@@ -93,7 +93,7 @@ export const FileField = <
   }
 
   return (
-    <div className={cn("inline-block", className)} {...rest}>
+    <div className={cn("inline-block", className)} {...sanitizeFieldRestProps(rest)}>
       <a
         href={sourceValue?.toString()}
         title={titleValue}

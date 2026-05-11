@@ -4,6 +4,7 @@ import get from "lodash/get.js";
 import {
   type ExtractRecordPaths,
   type HintedString,
+  sanitizeFieldRestProps,
   useFieldValue,
   useTranslate,
 } from "ra-core";
@@ -52,7 +53,10 @@ export const ImageField = <
       return null;
     }
     return (
-      <span {...rest} className={cn("image-empty", rest.className)}>
+      <span
+        {...sanitizeFieldRestProps(rest)}
+        className={cn("image-empty", rest.className)}
+      >
         {typeof empty === "string" ? translate(empty, { _: empty }) : empty}
       </span>
     );
@@ -60,7 +64,10 @@ export const ImageField = <
 
   if (Array.isArray(value)) {
     return (
-      <span {...rest} className={cn("image-list", rest.className)}>
+      <span
+        {...sanitizeFieldRestProps(rest)}
+        className={cn("image-list", rest.className)}
+      >
         <ul>
           {value.map((file, index) => {
             const fileTitleValue = title ? get(file, title, title) : title;
@@ -82,7 +89,10 @@ export const ImageField = <
   }
 
   return (
-    <span {...rest} className={cn("image-single", rest.className)}>
+    <span
+      {...sanitizeFieldRestProps(rest)}
+      className={cn("image-single", rest.className)}
+    >
       <img title={titleValue} alt={titleValue} src={value?.toString()} />
     </span>
   );

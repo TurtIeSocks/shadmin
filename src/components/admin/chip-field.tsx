@@ -1,4 +1,9 @@
-import { genericMemo, useFieldValue, useTranslate } from "ra-core";
+import {
+  genericMemo,
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "ra-core";
 import type { ComponentProps } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -38,7 +43,11 @@ const ChipFieldImpl = <
   }
 
   return (
-    <Badge variant={variant} className={cn(className)} {...rest}>
+    <Badge
+      variant={variant}
+      className={cn(className)}
+      {...sanitizeFieldRestProps(rest)}
+    >
       {typeof value !== "string" ? value.toString() : value}
     </Badge>
   );

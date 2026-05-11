@@ -1,4 +1,9 @@
-import { genericMemo, useFieldValue, useTranslate } from "ra-core";
+import {
+  genericMemo,
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "ra-core";
 import type { AnchorHTMLAttributes } from "react";
 import React from "react";
 
@@ -21,7 +26,7 @@ const EmailFieldImpl = <
     }
 
     return (
-      <span className={className} {...rest}>
+      <span className={className} {...sanitizeFieldRestProps(rest)}>
         {typeof empty === "string" ? translate(empty, { _: empty }) : empty}
       </span>
     );
@@ -32,7 +37,7 @@ const EmailFieldImpl = <
       className={cn("underline hover:no-underline", className)}
       href={`mailto:${value}`}
       onClick={stopPropagation}
-      {...rest}
+      {...sanitizeFieldRestProps(rest)}
     >
       {value}
     </a>

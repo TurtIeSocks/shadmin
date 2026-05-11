@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { RaRecord } from "ra-core";
-import { useFieldValue, useTranslate } from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import { Badge } from "@/components/ui/badge";
 import type { FieldProps } from "@/lib/field-types";
 
@@ -52,7 +52,7 @@ export const BadgeField = <RecordType extends RaRecord = RaRecord>({
   }
 
   return (
-    <Badge variant={variant} {...rest}>
+    <Badge variant={variant} {...sanitizeFieldRestProps(rest)}>
       {typeof value !== "string" ? value.toString() : value}
     </Badge>
   );

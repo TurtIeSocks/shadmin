@@ -1,6 +1,12 @@
 import type { HTMLAttributes } from "react";
 import type { ChoicesProps } from "ra-core";
-import { genericMemo, useChoices, useFieldValue, useTranslate } from "ra-core";
+import {
+  genericMemo,
+  sanitizeFieldRestProps,
+  useChoices,
+  useFieldValue,
+  useTranslate,
+} from "ra-core";
 
 import type { FieldProps } from "@/lib/field-types";
 
@@ -80,7 +86,7 @@ const SelectFieldImpl = <
     }
 
     return (
-      <span className={className} {...rest}>
+      <span className={className} {...sanitizeFieldRestProps(rest)}>
         {typeof empty === "string" ? translate(empty, { _: empty }) : empty}
       </span>
     );
@@ -89,7 +95,7 @@ const SelectFieldImpl = <
   const choiceText = getChoiceText(choice);
 
   return (
-    <span className={className} {...rest}>
+    <span className={className} {...sanitizeFieldRestProps(rest)}>
       {choiceText}
     </span>
   );
