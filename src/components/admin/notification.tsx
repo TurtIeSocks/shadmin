@@ -1,10 +1,13 @@
 import * as React from "react";
-import { useCallback, useEffect } from "react";
-import type { ToasterProps } from "sonner";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { ExternalToast, ToasterProps } from "sonner";
 import { Toaster, toast } from "sonner";
 import { useTheme } from "@/components/admin/use-theme";
 import {
   CloseNotificationContext,
+  type NotificationPayload,
+  useAuthProvider,
+  useAuthState,
   useNotificationContext,
   useTakeUndoableMutation,
   useTranslate,
@@ -32,88 +35,164 @@ import {
  * };
  */
 export const Notification = (props: ToasterProps) => {
-  const translate = useTranslate();
-  const { notifications, takeNotification } = useNotificationContext();
+  const { notifications, takeNotification, resetNotifications } =
+    useNotificationContext();
   const takeMutation = useTakeUndoableMutation();
   const { theme } = useTheme();
+  const [currentNotification, setCurrentNotification] = useState<
+    NotificationPayload | undefined
+  >(undefined);
+  const undoRef = useRef(false);
+
+  // Capture translate via ref so the effect deps don't include it (avoids
+  // re-firing the queue drain on locale change).
+  const translate = useTranslate();
+  const translateRef = useRef(translate);
+  useEffect(() => {
+    translateRef.current = translate;
+  }, [translate]);
+
+  const resetQueue = useCallback(() => {
+    toast.dismiss();
+    resetNotifications();
+    setCurrentNotification(undefined);
+    undoRef.current = false;
+  }, [resetNotifications]);
 
   useEffect(() => {
-    if (notifications.length) {
-      const notification = takeNotification();
-      if (notification) {
-        const { message, type = "info", notificationOptions } = notification;
-        const { messageArgs, undoable, autoHideDuration } =
-          notificationOptions || {};
+    if (notifications.length === 0 || currentNotification) return;
 
-        const beforeunload = (e: BeforeUnloadEvent) => {
-          e.preventDefault();
-          const confirmationMessage = "";
-          e.returnValue = confirmationMessage;
-          return confirmationMessage;
-        };
+    const notification = takeNotification();
+    if (!notification) return;
 
-        if (undoable) {
-          window.addEventListener("beforeunload", beforeunload);
-        }
+    setCurrentNotification(notification);
 
-        const mutation = takeMutation();
+    const { message, type = "info", notificationOptions } = notification;
+    const { messageArgs, undoable, autoHideDuration } =
+      notificationOptions || {};
 
-        const handleExited = () => {
-          if (undoable) {
-            if (mutation) {
-              mutation({ isUndo: false });
-            }
-            window.removeEventListener("beforeunload", beforeunload);
-          }
-        };
+    const beforeunload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      const confirmationMessage = "";
+      e.returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
 
-        const handleUndo = () => {
-          if (mutation) {
-            mutation({ isUndo: true });
-          }
-          window.removeEventListener("beforeunload", beforeunload);
-        };
-
-        const finalMessage = message
-          ? typeof message === "string"
-            ? translate(message, messageArgs)
-            : React.isValidElement(message)
-              ? message
-              : undefined
-          : undefined;
-
-        const duration =
-          autoHideDuration === null ? Infinity : autoHideDuration;
-
-        toast[type](finalMessage, {
-          duration,
-          action: undoable
-            ? {
-                label: translate("ra.action.undo"),
-                onClick: handleUndo,
-              }
-            : undefined,
-          onDismiss: handleExited,
-          onAutoClose: handleExited,
-        });
-      }
+    if (undoable) {
+      window.addEventListener("beforeunload", beforeunload);
     }
-  }, [notifications, takeMutation, takeNotification, translate]);
+
+    // Only consume a mutation for undoable notifications, and only once.
+    // Captured here so handleUndo and handleExited share the same instance.
+    const mutation = undoable ? takeMutation() : undefined;
+
+    const handleExited = () => {
+      // If the user clicked Undo, handleUndo already fired the mutation
+      // with isUndo: true. Skip firing it again here to avoid a double-fire.
+      if (!undoRef.current && undoable && mutation) {
+        mutation({ isUndo: false });
+      }
+      undoRef.current = false;
+      if (undoable) {
+        window.removeEventListener("beforeunload", beforeunload);
+      }
+      setCurrentNotification(undefined);
+    };
+
+    const handleUndo = () => {
+      undoRef.current = true;
+      if (mutation) {
+        mutation({ isUndo: true });
+      }
+      window.removeEventListener("beforeunload", beforeunload);
+    };
+
+    const localTranslate = translateRef.current;
+    const finalMessage = message
+      ? typeof message === "string"
+        ? localTranslate(message, messageArgs)
+        : React.isValidElement(message)
+          ? message
+          : undefined
+      : undefined;
+
+    // Map ra-core's autoHideDuration to sonner's duration:
+    //   undefined -> omit (use Toaster's default)
+    //   null      -> Infinity (persistent toast)
+    //   number    -> use as-is
+    const toastOptions: ExternalToast = {
+      action: undoable
+        ? {
+            label: localTranslate("ra.action.undo"),
+            onClick: handleUndo,
+          }
+        : undefined,
+      onDismiss: handleExited,
+      onAutoClose: handleExited,
+    };
+    if (autoHideDuration === null) {
+      toastOptions.duration = Infinity;
+    } else if (autoHideDuration !== undefined) {
+      toastOptions.duration = autoHideDuration;
+    }
+
+    // Sonner exposes aria-live at the container level only, so we annotate
+    // error/warning toasts with a className so assistive tech / custom CSS
+    // can target them, and the audit trail keeps a stable per-type hook.
+    if (type === "error" || type === "warning") {
+      toastOptions.className = `notification-${type}`;
+    }
+
+    toast[type](finalMessage, toastOptions);
+  }, [
+    notifications.length,
+    currentNotification,
+    takeMutation,
+    takeNotification,
+  ]);
 
   const handleRequestClose = useCallback(() => {
     // Dismiss all toasts
     toast.dismiss();
   }, []);
 
+  // Only watch auth state when an authProvider is configured. Otherwise the
+  // dependent hooks (useLogout, useQuery, useNavigate) would throw in unit
+  // tests / storybook that mount Notification without the Admin context.
+  const authProvider = useAuthProvider();
+
+  const defaultToasterProps: Partial<ToasterProps> = {
+    richColors: true,
+    closeButton: true,
+    position: "bottom-center",
+  };
+
   return (
     <CloseNotificationContext.Provider value={handleRequestClose}>
-      <Toaster
-        richColors
-        theme={theme}
-        closeButton
-        position="bottom-center"
-        {...props}
-      />
+      {authProvider != null ? (
+        <LogoutQueueReset resetQueue={resetQueue} />
+      ) : null}
+      <Toaster {...defaultToasterProps} theme={theme} {...props} />
     </CloseNotificationContext.Provider>
   );
+};
+
+/**
+ * Listens for the user becoming unauthenticated (e.g. after logout) and
+ * clears the notification queue so a stale notification doesn't surface
+ * against the login screen or a subsequent session.
+ */
+const LogoutQueueReset = ({ resetQueue }: { resetQueue: () => void }) => {
+  const { authenticated } = useAuthState(undefined, false);
+  const wasAuthenticatedRef = useRef<boolean | undefined>(undefined);
+  useEffect(() => {
+    if (
+      wasAuthenticatedRef.current === true &&
+      authenticated === false
+    ) {
+      resetQueue();
+    }
+    wasAuthenticatedRef.current = authenticated;
+  }, [authenticated, resetQueue]);
+  return null;
 };
