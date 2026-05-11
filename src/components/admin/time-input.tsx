@@ -1,0 +1,291 @@
+import * as React from "react";
+import clsx from "clsx";
+import type { InputProps } from "ra-core";
+import { useInput, FieldTitle } from "ra-core";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
+import { Input } from "@/components/ui/input";
+import { InputHelperText } from "@/components/admin/input-helper-text";
+
+/**
+ * Time picker input for editing time values in `hh:mm` format.
+ *
+ * Use `<TimeInput>` for time-of-day fields like opening hours, alarms, or scheduling slots.
+ * Renders a native browser time picker. The value can be a Date object or a string.
+ * Returns a string formatted as "HH:mm" by default.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/timeinput/ TimeInput documentation}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time MDN documentation for input type="time"}
+ *
+ * @example
+ * import { Edit, SimpleForm, TimeInput, TextInput } from '@/components/admin';
+ *
+ * const EventEdit = () => (
+ *   <Edit>
+ *     <SimpleForm>
+ *       <TextInput source="title" />
+ *       <TimeInput source="opens_at" />
+ *       <TimeInput source="closes_at" />
+ *     </SimpleForm>
+ *   </Edit>
+ * );
+ */
+export const TimeInput = ({
+  className,
+  defaultValue,
+  format = formatTime,
+  parse = parseTime,
+  label,
+  helperText,
+  onBlur,
+  onChange,
+  onFocus,
+  source,
+  resource,
+  validate,
+  disabled,
+  readOnly,
+  ...rest
+}: TimeInputProps) => {
+  const { field, id, isRequired } = useInput({
+    defaultValue,
+    onBlur,
+    resource,
+    source,
+    validate,
+    disabled,
+    readOnly,
+    format,
+    parse,
+    ...rest,
+  });
+  const localInputRef = React.useRef<HTMLInputElement>(undefined);
+  // TimeInput is not really a controlled input to ensure users can start entering a time, go to another input and come back to complete it.
+  // This ref stores the value that is passed to the input defaultValue prop to solve this issue.
+  const initialDefaultValueRef = React.useRef(field.value);
+  // As the defaultValue prop won't trigger a remount of the HTML input, we will force it by changing the key.
+  const [inputKey, setInputKey] = React.useState(1);
+  // This ref let us track that the last change of the form state value was made by the input itself
+  const wasLastChangedByInput = React.useRef(false);
+
+  // This effect ensures we stay in sync with the react-hook-form state when the value changes from outside the input.
+  React.useEffect(() => {
+    if (wasLastChangedByInput.current) {
+      wasLastChangedByInput.current = false;
+      return;
+    }
+
+    const hasNewValueFromForm =
+      localInputRef.current?.value !== field.value &&
+      !(localInputRef.current?.value === "" && field.value == null);
+
+    if (hasNewValueFromForm) {
+      initialDefaultValueRef.current = field.value;
+      setInputKey((r) => r + 1);
+      wasLastChangedByInput.current = false;
+    }
+  }, [setInputKey, field.value]);
+
+  const { onBlur: onBlurFromField } = field;
+  const hasFocus = React.useRef(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(event);
+    }
+    if (
+      typeof event.target === "undefined" ||
+      typeof event.target.value === "undefined"
+    ) {
+      return;
+    }
+    const target = event.target;
+    const newValue = target.value;
+    // Time strings without seconds are valid: "HH:mm". Browser may also include "HH:mm:ss".
+    const isNewValueValid = newValue === "" || timeRegex.test(newValue);
+
+    if (newValue !== "" && newValue != null && isNewValueValid) {
+      field.onChange(newValue);
+      wasLastChangedByInput.current = true;
+    }
+  };
+
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (onFocus) {
+      onFocus(event);
+    }
+    hasFocus.current = true;
+  };
+
+  const handleBlur = () => {
+    hasFocus.current = false;
+
+    if (!localInputRef.current) {
+      return;
+    }
+
+    const newValue = localInputRef.current.value;
+    const isNewValueValid = newValue === "" || timeRegex.test(newValue);
+
+    if (isNewValueValid && field.value !== newValue) {
+      field.onChange(newValue ?? "");
+    }
+
+    if (onBlurFromField) {
+      onBlurFromField();
+    }
+  };
+
+  const { ref, name } = field;
+  const inputRef = useForkRef(ref, localInputRef);
+
+  return (
+    <FormField id={id} className={className} name={field.name}>
+      {label !== false && (
+        <FormLabel>
+          <FieldTitle
+            label={label}
+            source={source}
+            resource={resource}
+            isRequired={isRequired}
+          />
+        </FormLabel>
+      )}
+      <FormControl>
+        <Input
+          id={id}
+          ref={inputRef}
+          name={name}
+          defaultValue={format(initialDefaultValueRef.current)}
+          key={inputKey}
+          type="time"
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          className={clsx(
+            "ra-input",
+            `ra-input-${source}`,
+            "scheme-light dark:scheme-dark relative [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-3 [&::-webkit-calendar-picker-indicator]:opacity-100 appearance-none",
+            className,
+          )}
+          disabled={disabled || readOnly}
+          readOnly={readOnly}
+        />
+      </FormControl>
+      <InputHelperText helperText={helperText} />
+      <FormError />
+    </FormField>
+  );
+};
+
+export type TimeInputProps = Omit<InputProps, "defaultValue"> & {
+  defaultValue?: string | number | Date;
+} & Omit<React.ComponentProps<"input">, "defaultValue" | "type">;
+
+const leftPad =
+  (nb = 2) =>
+  (value: number) =>
+    ("0".repeat(nb) + value).slice(-nb);
+const leftPad2 = leftPad(2);
+
+/**
+ * @param {Date} value value to convert
+ * @returns {String} A standardized time (hh:mm), to be passed to an <input type="time" />
+ */
+const convertDateToString = (value: Date) => {
+  if (!(value instanceof Date) || isNaN(value.getDate())) return "";
+  const hh = leftPad2(value.getHours());
+  const mm = leftPad2(value.getMinutes());
+  return `${hh}:${mm}`;
+};
+
+// hh:mm or hh:mm:ss
+const timeRegex = /^\d{2}:\d{2}(:\d{2})?$/;
+
+/**
+ * Converts a date/time from the dataProvider to a time string in the "hh:mm" format,
+ * suitable for an <input type="time" />.
+ *
+ * @param {Date | String} value date string or object
+ */
+const formatTime = (value: string | Date | null | undefined) => {
+  if (value == null || value === "") {
+    return "";
+  }
+
+  if (value instanceof Date) {
+    return convertDateToString(value);
+  }
+  // Valid time strings should not be converted
+  if (typeof value === "string" && timeRegex.test(value)) {
+    return value;
+  }
+
+  // Otherwise try to parse as a Date
+  return convertDateToString(new Date(value));
+};
+
+/**
+ * Converts a "hh:mm" string entered using a <input type="time" /> input into the value
+ * stored in the form state. By default, we keep the string value as-is (no timezone).
+ */
+const parseTime = (value: string): string => value;
+
+/**
+ * Merges multiple refs into a single callback ref.
+ */
+function useForkRef<Instance>(
+  ...refs: Array<React.Ref<Instance> | undefined>
+): React.RefCallback<Instance> | null {
+  const cleanupRef = React.useRef<() => void>(undefined);
+
+  const refEffect = React.useCallback((instance: Instance) => {
+    const cleanups = refs.map((ref) => {
+      if (ref == null) {
+        return null;
+      }
+
+      if (typeof ref === "function") {
+        const refCallback = ref;
+        const refCleanup: void | (() => void) = refCallback(instance);
+        return typeof refCleanup === "function"
+          ? refCleanup
+          : () => {
+              refCallback(null);
+            };
+      }
+
+      ref.current = instance;
+      return () => {
+        ref.current = null;
+      };
+    });
+
+    return () => {
+      cleanups.forEach((refCleanup) => refCleanup?.());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, refs);
+
+  return React.useMemo(() => {
+    if (refs.every((ref) => ref == null)) {
+      return null;
+    }
+
+    return (value) => {
+      if (cleanupRef.current) {
+        cleanupRef.current();
+        cleanupRef.current = undefined;
+      }
+
+      if (value != null) {
+        cleanupRef.current = refEffect(value);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, refs);
+}

@@ -124,6 +124,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/checkbox-group-input.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/chip-field.tsx",
           "type": "registry:component"
         },
@@ -260,11 +264,19 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/nullable-boolean-input.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/number-field.tsx",
           "type": "registry:component"
         },
         {
           "path": "src/components/admin/number-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/password-input.tsx",
           "type": "registry:component"
         },
         {
@@ -333,6 +345,10 @@
         },
         {
           "path": "src/components/admin/search-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/select-array-input.tsx",
           "type": "registry:component"
         },
         {
@@ -409,6 +425,10 @@
         },
         {
           "path": "src/components/admin/text-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/time-input.tsx",
           "type": "registry:component"
         },
         {
