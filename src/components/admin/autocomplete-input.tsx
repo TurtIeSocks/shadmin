@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import debounce from "lodash/debounce";
 import { Check, ChevronsUpDown } from "lucide-react";
+import { areIdsEqual } from "@/lib/areIdsEqual";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -81,6 +83,7 @@ export const AutocompleteInput = (
     Partial<Pick<InputProps, "source">> &
     ChoicesProps & {
       className?: string;
+      debounce?: number;
       disableValue?: string;
       filterToQuery?: (searchText: string) => any;
       translateChoice?: boolean;
@@ -91,6 +94,7 @@ export const AutocompleteInput = (
     } & Pick<PopoverProps, "modal">,
 ) => {
   const {
+    debounce: debounceDelay = 250,
     filterToQuery = DefaultFilterToQuery,
     inputText,
     create,
@@ -126,9 +130,33 @@ export const AutocompleteInput = (
   const [filterValue, setFilterValue] = React.useState("");
   const listRef = React.useRef<HTMLDivElement>(null);
 
+  // Keep stable references to dependencies so the debounced setter doesn't
+  // need to be recreated on every render (which would defeat debouncing).
+  const setFiltersRef = useRef(setFilters);
+  const filterToQueryRef = useRef(filterToQuery);
+  useEffect(() => {
+    setFiltersRef.current = setFilters;
+  }, [setFilters]);
+  useEffect(() => {
+    filterToQueryRef.current = filterToQuery;
+  }, [filterToQuery]);
+
+  const debouncedSetFilters = useMemo(
+    () =>
+      debounce((filter: string) => {
+        setFiltersRef.current(filterToQueryRef.current(filter));
+      }, debounceDelay),
+    [debounceDelay],
+  );
+
+  // Cancel any in-flight debounced call when the component unmounts to
+  // avoid `setState` on an unmounted component during late dataProvider
+  // responses.
+  useEffect(() => () => debouncedSetFilters.cancel(), [debouncedSetFilters]);
+
   const [open, setOpen] = React.useState(false);
-  const selectedChoice = allChoices.find(
-    (choice) => getChoiceValue(choice) === field.value,
+  const selectedChoice = allChoices.find((choice) =>
+    areIdsEqual(getChoiceValue(choice), field.value),
   );
 
   const getInputText = useCallback(
@@ -146,18 +174,21 @@ export const AutocompleteInput = (
 
   const handleOpenChange = useEvent((isOpen: boolean) => {
     setOpen(isOpen);
-    // Reset the filter when the popover is closed
+    // Reset the filter when the popover is closed. Run immediately
+    // (no debounce) so re-opening the popover always shows the full list.
     if (!isOpen) {
+      debouncedSetFilters.cancel();
       setFilters(filterToQuery(""));
     }
   });
 
   const handleChange = useCallback(
     (choice: any) => {
-      if (field.value === getChoiceValue(choice) && !isRequired) {
+      if (areIdsEqual(field.value, getChoiceValue(choice)) && !isRequired) {
         field.onChange("");
         setFilterValue("");
         if (isFromReference) {
+          debouncedSetFilters.cancel();
           setFilters(filterToQuery(""));
         }
         setOpen(false);
@@ -174,6 +205,7 @@ export const AutocompleteInput = (
       isFromReference,
       setFilters,
       filterToQuery,
+      debouncedSetFilters,
       setOpen,
     ],
   );
@@ -248,7 +280,7 @@ export const AutocompleteInput = (
                     // We don't want the ChoicesContext to filter the choices if the input
                     // is not from a reference as it would also filter out the selected values
                     if (isFromReference) {
-                      setFilters(filterToQuery(filter));
+                      debouncedSetFilters(filter);
                     }
                   }}
                 />
@@ -286,7 +318,7 @@ export const AutocompleteInput = (
                           <Check
                             className={cn(
                               "mr-2 h-4 w-4",
-                              field.value === getChoiceValue(choice)
+                              areIdsEqual(field.value, getChoiceValue(choice))
                                 ? "opacity-100"
                                 : "opacity-0",
                             )}

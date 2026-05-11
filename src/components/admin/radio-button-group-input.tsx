@@ -2,6 +2,7 @@ import * as React from "react";
 import type { ChoicesProps, InputProps } from "ra-core";
 import { FieldTitle, useChoices, useChoicesContext, useInput } from "ra-core";
 import { cn } from "@/lib/utils";
+import { sanitizeInputRestProps } from "@/lib/sanitizeInputRestProps";
 import {
   FormField,
   FormControl,
@@ -136,25 +137,33 @@ export const RadioButtonGroupInput = (inProps: RadioButtonGroupInputProps) => {
 
       <FormControl>
         <RadioGroup
-          {...rest}
-          value={field.value || ""}
-          onValueChange={field.onChange}
+          {...sanitizeInputRestProps(rest)}
+          // Radix' RadioGroup only deals in string values; coerce here
+          // but pass the original (possibly numeric) id back on change.
+          value={field.value != null ? String(field.value) : undefined}
+          onValueChange={(nextValue) => {
+            const choice = allChoices?.find(
+              (c) => String(getChoiceValue(c)) === nextValue,
+            );
+            field.onChange(choice ? getChoiceValue(choice) : nextValue);
+          }}
           className={cn("flex", row ? "flex-row gap-4" : "flex-col gap-2")}
           disabled={disabled || readOnly}
         >
           {allChoices?.map((choice) => {
             const value = getChoiceValue(choice);
+            const stringValue = String(value);
             const isDisabled = disabled || readOnly || getDisableValue(choice);
 
             return (
-              <div key={value} className="flex items-center space-x-2">
+              <div key={stringValue} className="flex items-center space-x-2">
                 <RadioGroupItem
-                  value={value}
-                  id={`${id}-${value}`}
+                  value={stringValue}
+                  id={`${id}-${stringValue}`}
                   disabled={isDisabled}
                 />
                 <Label
-                  htmlFor={`${id}-${value}`}
+                  htmlFor={`${id}-${stringValue}`}
                   className={cn(
                     "text-sm font-normal cursor-pointer",
                     isDisabled && "opacity-50 cursor-not-allowed",

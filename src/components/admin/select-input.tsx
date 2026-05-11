@@ -180,9 +180,12 @@ export const SelectInput = (props: SelectInputProps) => {
       if (value === emptyValue) {
         field.onChange(emptyValue);
       } else {
-        // Find the choice by value and pass it to field.onChange
+        // The Radix Select API only deals in strings, but the original
+        // choice id may be numeric. Stringify both sides for comparison
+        // and submit the *original* id type so we don't silently corrupt
+        // numeric ids into strings on the wire.
         const choice = allChoices?.find(
-          (choice) => getChoiceValue(choice) === value,
+          (choice) => String(getChoiceValue(choice)) === value,
         );
         field.onChange(choice ? getChoiceValue(choice) : value);
       }
@@ -237,7 +240,7 @@ export const SelectInput = (props: SelectInputProps) => {
   }
 
   // Handle reset functionality
-  const handleReset = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     field.onChange(emptyValue);
   };
@@ -277,13 +280,16 @@ export const SelectInput = (props: SelectInputProps) => {
               <SelectValue placeholder={renderEmptyItemOption()} />
 
               {field.value && field.value !== emptyValue ? (
-                <div
-                  role="button"
+                <button
+                  type="button"
+                  aria-label={translate("ra.action.clear_input_value", {
+                    _: "Clear",
+                  })}
                   className="p-0 ml-auto pointer-events-auto hover:bg-transparent text-muted-foreground opacity-50 hover:opacity-100"
                   onClick={handleReset}
                 >
                   <X className="h-4 w-4" />
-                </div>
+                </button>
               ) : null}
             </SelectTrigger>
             <SelectContent>
@@ -310,6 +316,7 @@ export const SelectInput = (props: SelectInputProps) => {
           </Select>
         </div>
         <InputHelperText helperText={helperText} />
+        <FormError />
       </FormField>
       {createElement}
     </>

@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import debounce from "lodash/debounce";
 import { X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -25,8 +27,8 @@ import {
   FieldTitle,
   useEvent,
 } from "ra-core";
+import { areIdsEqual } from "@/lib/areIdsEqual";
 import { InputHelperText } from "./input-helper-text";
-import { useCallback } from "react";
 
 /**
  * Form control that lets users choose multiple values from a list using a dropdown with autocompletion.
@@ -67,6 +69,7 @@ export const AutocompleteArrayInput = (
     Partial<Pick<InputProps, "source">> &
     ChoicesProps & {
       className?: string;
+      debounce?: number;
       disableValue?: string;
       filterToQuery?: (searchText: string) => any;
       translateChoice?: boolean;
@@ -76,7 +79,11 @@ export const AutocompleteArrayInput = (
         | ((option: any | undefined) => React.ReactNode);
     },
 ) => {
-  const { filterToQuery = DefaultFilterToQuery, inputText } = props;
+  const {
+    debounce: debounceDelay = 250,
+    filterToQuery = DefaultFilterToQuery,
+    inputText,
+  } = props;
   const {
     allChoices = [],
     source,
@@ -98,13 +105,39 @@ export const AutocompleteArrayInput = (
     translateChoice: props.translateChoice ?? !isFromReference,
   });
 
+  // `field.value` may be `undefined` (no default + uncontrolled state).
+  // Coalesce to an empty array so the rest of the component can rely on
+  // array semantics without crashing.
+  const values: any[] = Array.isArray(field.value) ? field.value : [];
+
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listRef = React.useRef<HTMLDivElement>(null);
   const [open, setOpen] = React.useState(false);
 
+  // Keep stable references for the debounced filter setter so it isn't
+  // recreated each render (which would defeat debouncing).
+  const setFiltersRef = useRef(setFilters);
+  const filterToQueryRef = useRef(filterToQuery);
+  useEffect(() => {
+    setFiltersRef.current = setFilters;
+  }, [setFilters]);
+  useEffect(() => {
+    filterToQueryRef.current = filterToQuery;
+  }, [filterToQuery]);
+
+  const debouncedSetFilters = useMemo(
+    () =>
+      debounce((filter: string) => {
+        setFiltersRef.current(filterToQueryRef.current(filter), undefined, true);
+      }, debounceDelay),
+    [debounceDelay],
+  );
+
+  useEffect(() => () => debouncedSetFilters.cancel(), [debouncedSetFilters]);
+
   const handleUnselect = useEvent((choice: any) => {
     field.onChange(
-      field.value.filter((v: any) => v !== getChoiceValue(choice)),
+      values.filter((v: any) => !areIdsEqual(v, getChoiceValue(choice))),
     );
   });
 
@@ -113,7 +146,7 @@ export const AutocompleteArrayInput = (
     if (input) {
       if (e.key === "Delete" || e.key === "Backspace") {
         if (input.value === "") {
-          field.onChange(field.value.slice(0, -1));
+          field.onChange(values.slice(0, -1));
         }
       }
       // This is not a default behavior of the <input /> field
@@ -124,10 +157,11 @@ export const AutocompleteArrayInput = (
   });
 
   const availableChoices = allChoices.filter(
-    (choice) => !field.value.includes(getChoiceValue(choice)),
+    (choice) =>
+      !values.some((v: any) => areIdsEqual(v, getChoiceValue(choice))),
   );
   const selectedChoices = allChoices.filter((choice) =>
-    field.value.includes(getChoiceValue(choice)),
+    values.some((v: any) => areIdsEqual(v, getChoiceValue(choice))),
   );
   const [filterValue, setFilterValue] = React.useState("");
 
@@ -204,7 +238,7 @@ export const AutocompleteArrayInput = (
                   // We don't want the ChoicesContext to filter the choices if the input
                   // is not from a reference as it would also filter out the selected values
                   if (isFromReference) {
-                    setFilters(filterToQuery(filter), undefined, true);
+                    debouncedSetFilters(filter);
                   }
                 }}
                 onBlur={() => setOpen(false)}
@@ -237,10 +271,11 @@ export const AutocompleteArrayInput = (
                           onSelect={() => {
                             setFilterValue("");
                             if (isFromReference) {
+                              debouncedSetFilters.cancel();
                               setFilters(filterToQuery(""));
                             }
                             field.onChange([
-                              ...field.value,
+                              ...values,
                               getChoiceValue(choice),
                             ]);
                           }}

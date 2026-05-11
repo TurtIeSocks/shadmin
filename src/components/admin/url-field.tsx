@@ -39,12 +39,14 @@ const UrlFieldImpl = <
     source,
     record,
     resource: _,
+    target,
+    rel,
     ...rest
   } = inProps;
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
-  if (value == null) {
+  if (value == null || value === "") {
     if (!empty) {
       return null;
     }
@@ -56,12 +58,28 @@ const UrlFieldImpl = <
     );
   }
 
+  if (!isSafeUrl(value)) {
+    // Refuse to render a clickable anchor for potentially unsafe schemes
+    // (e.g. `javascript:`), but still surface the value as plain text.
+    return (
+      <span className={className} {...rest}>
+        {value}
+      </span>
+    );
+  }
+
+  // When opening in a new tab, default to a secure rel value unless the
+  // caller has explicitly provided their own.
+  const safeRel = target === "_blank" && rel == null ? "noopener noreferrer" : rel;
+
   return (
     <a
       className={cn("underline hover:no-underline", className)}
-      href={value}
       onClick={stopPropagation}
       {...rest}
+      href={value}
+      target={target}
+      rel={safeRel}
     >
       {value}
     </a>
@@ -80,3 +98,12 @@ export interface UrlFieldProps<
 // useful to prevent click bubbling in a DataTable with rowClick
 const stopPropagation = (e: React.MouseEvent<HTMLAnchorElement>) =>
   e.stopPropagation();
+
+// Allowlist of safe URL schemes / prefixes. Prevents `javascript:`,
+// `data:` and other XSS-prone URLs from being rendered as live links.
+const SAFE_URL_PATTERN = /^(https?:|mailto:|tel:|\/|#)/i;
+
+const isSafeUrl = (value: unknown): value is string => {
+  if (typeof value !== "string") return false;
+  return SAFE_URL_PATTERN.test(value.trim());
+};

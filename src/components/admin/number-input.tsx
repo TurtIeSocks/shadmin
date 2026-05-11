@@ -39,19 +39,41 @@ export const NumberInput = (props: NumberInputProps) => {
     format: _formatProp,
     parse = convertStringToNumber,
     onFocus,
+    onChange: onChangeProp,
+    onBlur: onBlurProp,
     helperText,
     ...rest
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const { id, field, isRequired } = useInput(props);
+  // Strip `onChange` / `onBlur` from the props passed to `useInput` so the
+  // user's handlers aren't invoked twice (once by ra-core's `useInput`
+  // wiring and once by our handlers below).
+  const {
+    onChange: _onChangeStripped,
+    onBlur: _onBlurStripped,
+    ...inputProps
+  } = props;
+  void _onChangeStripped;
+  void _onBlurStripped;
+
+  const { id, field, isRequired } = useInput(inputProps);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const numberValue = parse(value);
+    const rawValue = event.target.value;
+    // Use `valueAsNumber` for accurate float parsing (handles locale,
+    // exponents, etc.) but fall back to the string when the input is
+    // empty or otherwise not parseable as a number.
+    const numericValue = event.target.valueAsNumber;
+    const numberValue = parse(
+      Number.isNaN(numericValue) ? rawValue : numericValue,
+    );
 
-    setValue(value);
-    field.onChange(numberValue ?? 0);
+    setValue(rawValue);
+    // Write `null` (not 0) on empty so required validation still triggers
+    // and we don't silently corrupt the record with zeros.
+    field.onChange(numberValue);
+    onChangeProp?.(event);
   };
 
   const [value, setValue] = useState<string | undefined>(
@@ -66,7 +88,8 @@ export const NumberInput = (props: NumberInputProps) => {
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    field.onBlur?.(event);
+    field.onBlur?.();
+    onBlurProp?.(event);
     hasFocus.current = false;
     setValue(field.value?.toString() ?? "");
   };
@@ -76,6 +99,19 @@ export const NumberInput = (props: NumberInputProps) => {
       setValue(field.value?.toString() ?? "");
     }
   }, [field.value]);
+
+  // Destructure `field` so the spread below doesn't reinstate the value /
+  // onChange / onBlur we're handling manually.
+  const {
+    ref,
+    value: _fieldValue,
+    onChange: _fieldOnChange,
+    onBlur: _fieldOnBlur,
+    ...fieldRest
+  } = field;
+  void _fieldValue;
+  void _fieldOnChange;
+  void _fieldOnBlur;
 
   return (
     <FormField id={id} className={className} name={field.name}>
@@ -92,7 +128,8 @@ export const NumberInput = (props: NumberInputProps) => {
       <FormControl>
         <Input
           {...rest}
-          {...field}
+          {...fieldRest}
+          ref={ref}
           type="number"
           value={value}
           onChange={handleChange}
@@ -113,14 +150,14 @@ export interface NumberInputProps
       React.ComponentProps<"input">,
       "defaultValue" | "onBlur" | "onChange" | "type"
     > {
-  parse?: (value: string) => number;
+  parse?: (value: string | number) => number | null;
 }
 
-const convertStringToNumber = (value?: string | null) => {
+const convertStringToNumber = (value?: string | number | null) => {
   if (value == null || value === "") {
     return null;
   }
-  const float = parseFloat(value);
+  const float = typeof value === "number" ? value : parseFloat(value);
 
-  return isNaN(float) ? 0 : float;
+  return Number.isNaN(float) ? null : float;
 };
