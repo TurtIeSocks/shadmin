@@ -12,17 +12,22 @@ import { RefreshButton } from "@/components/admin/refresh-button";
 import { LocalesMenuButton } from "@/components/admin/locales-menu-button";
 import { Error } from "@/components/admin/error";
 import { Loading } from "@/components/admin/loading";
-// Phase 2 follow-up #2: wire <InspectorButton /> + <Inspector /> below.
-// Uncomment when you fill in the TODO placements.
-// import { InspectorButton } from "@/components/admin/inspector-button";
-// import { Inspector } from "@/components/admin/inspector";
+import { InspectorButton } from "@/components/admin/inspector-button";
+import { Inspector } from "@/components/admin/inspector";
 
 /**
  * Demo layout that exposes the Inspector / Configurable system.
  *
- * Mirrors the default <Layout> but reserves space for the Inspector edit-mode
- * UI so users can toggle which DataTable columns / form fields are visible at
- * runtime. Wire-in steps marked with TODO below.
+ * Mirrors the default <Layout> but mounts the Inspector edit-mode UI so users
+ * can toggle which DataTable columns / form fields are visible at runtime.
+ *
+ * The <InspectorButton /> sits between <LocalesMenuButton /> and
+ * <ThemeModeToggle /> in the header — grouped with the other "global toggle"
+ * buttons (option 2a from the Phase 2 follow-up design).
+ *
+ * The <Inspector /> floating panel mounts as a sibling of <main> after
+ * <Notification />, so both `position: fixed` overlays sit above the layout
+ * flow without affecting it.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
  */
@@ -49,19 +54,7 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
           <SidebarTrigger className="scale-125 sm:scale-100" />
           <div className="flex-1 flex items-center" id="breadcrumb" />
           <LocalesMenuButton />
-          {/*
-            TODO (Learning Mode #2a): place <InspectorButton /> in the header.
-
-            Where does it belong? Options:
-              (a) Right here, between LocalesMenuButton and ThemeModeToggle —
-                  groups it with the other "global toggle" buttons.
-              (b) Right before UserMenu — keeps it visually distinct as a
-                  power-user / admin action.
-              (c) Inside UserMenu as a dropdown item — hides it from casual
-                  users until they explicitly opt into "Configure mode".
-
-            Pick (a), (b), or (c). Replace the comment with <InspectorButton />.
-          */}
+          <InspectorButton />
           <ThemeModeToggle />
           <RefreshButton />
           <UserMenu />
@@ -82,11 +75,7 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
         </ErrorBoundary>
       </main>
       <Notification />
-      {/*
-        TODO (Learning Mode #2b): mount <Inspector /> here as a sibling of
-        <main>, so its position: fixed floats above the content without
-        affecting layout flow. Replace this comment with <Inspector />.
-      */}
+      <Inspector />
     </SidebarProvider>
   );
 };
