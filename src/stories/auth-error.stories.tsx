@@ -2,7 +2,7 @@ import React from "react";
 import { CoreAdminContext } from "ra-core";
 import { i18nProvider } from "@/lib/i18nProvider.ts";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { AuthError } from "@/components/admin/authentication";
+import { AuthError } from "@/components/admin/auth-error";
 
 export default {
   title: "Layout/AuthError",
