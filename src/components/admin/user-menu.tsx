@@ -1,23 +1,21 @@
 import { Children, useCallback, useState } from "react";
 import {
-  Translate,
   useAuthProvider,
   useGetIdentity,
-  useLogout,
   useTranslate,
   UserMenuContext,
 } from "ra-core";
-import { LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+
+import { Logout } from "./logout";
 
 export type UserMenuProps = {
   children?: React.ReactNode;
@@ -35,7 +33,6 @@ export type UserMenuProps = {
 export function UserMenu({ children }: UserMenuProps) {
   const authProvider = useAuthProvider();
   const { data: identity } = useGetIdentity();
-  const logout = useLogout();
   const translate = useTranslate();
 
   const [open, setOpen] = useState(false);
@@ -79,10 +76,7 @@ export function UserMenu({ children }: UserMenuProps) {
           <DropdownMenuSeparator />
           {children}
           {Children.count(children) > 0 && <DropdownMenuSeparator />}
-          <DropdownMenuItem onClick={() => logout()} className="cursor-pointer">
-            <LogOut />
-            <Translate i18nKey="ra.auth.logout">Log out</Translate>
-          </DropdownMenuItem>
+          <Logout />
         </DropdownMenuContent>
       </DropdownMenu>
     </UserMenuContext.Provider>

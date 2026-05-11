@@ -89,6 +89,7 @@ export * from "./locales-menu-button";
 export * from "./login-form";
 export * from "./login-page";
 export * from "./login-with-email";
+export * from "./logout";
 export * from "./menu";
 export * from "./menu-item-link";
 export * from "./nano-theme";

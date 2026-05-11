@@ -49,21 +49,27 @@ function getTabPath(tab: ReactElement<FormTabProps>, index: number): string {
       : "";
 }
 
-/**
- * Renders the tab trigger list. Must be inside a Route context when
- * syncWithLocation is true so that useParams() can read params['*'].
- */
-function TabbedFormTabsList({
-  tabs,
-  syncWithLocation,
-  tabValue,
-  onValueChange,
-}: {
+export interface TabbedFormTabsListProps {
   tabs: ReactElement<FormTabProps>[];
   syncWithLocation: boolean;
   tabValue: number;
   onValueChange: (value: string) => void;
-}) {
+}
+
+/**
+ * Renders the tab trigger list for a {@link TabbedForm}. Must be inside a
+ * Route context when `syncWithLocation` is true so that `useParams()` can
+ * read `params['*']`.
+ *
+ * Exported so consumers can compose their own custom TabbedForm without
+ * forking the entire `TabbedFormView`.
+ */
+export function TabbedFormTabsList({
+  tabs,
+  syncWithLocation,
+  tabValue,
+  onValueChange,
+}: TabbedFormTabsListProps) {
   const params = useParams();
   const currentValue = syncWithLocation
     ? (params["*"] ?? "")
