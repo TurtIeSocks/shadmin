@@ -1,0 +1,168 @@
+import {
+  Children,
+  useEffect,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+} from "react";
+import {
+  usePreference,
+  useResourceContext,
+  useStore,
+  useTranslate,
+  useSetInspectorTitle,
+} from "ra-core";
+
+import { Configurable } from "./configurable";
+import { FieldsSelector, type SelectableField } from "./fields-selector";
+import { SimpleForm, type SimpleFormProps } from "./simple-form";
+
+const EMPTY_ARRAY: SelectableField[] = [];
+
+/**
+ * A {@link SimpleForm} whose visible inputs can be reordered or hidden by the
+ * end user via the {@link Inspector}.
+ *
+ * Drop this component anywhere a `SimpleForm` would go. It wraps the form in a
+ * {@link Configurable} whose editor is a {@link FieldsSelector}. When the user
+ * enters preferences edit mode (see {@link InspectorButton}) and clicks the
+ * cogwheel near this form, the Inspector renders the inputs picker.
+ *
+ * Preferences are persisted under `preferences.${preferenceKey}` (defaulting
+ * to `preferences.${resource}.simpleForm`). The user's input order and
+ * selection survive page reloads.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/simpleformconfigurable/ SimpleFormConfigurable documentation}
+ *
+ * @example
+ * import { Edit, SimpleFormConfigurable, TextInput } from "@/components/admin";
+ *
+ * const PostEdit = () => (
+ *   <Edit>
+ *     <SimpleFormConfigurable omit={["id"]}>
+ *       <TextInput source="id" />
+ *       <TextInput source="title" />
+ *       <TextInput source="body" />
+ *     </SimpleFormConfigurable>
+ *   </Edit>
+ * );
+ */
+export const SimpleFormConfigurable = ({
+  preferenceKey,
+  omit,
+  ...props
+}: SimpleFormConfigurableProps) => {
+  const translate = useTranslate();
+  const resource = useResourceContext();
+  const finalPreferenceKey = preferenceKey || `${resource}.simpleForm`;
+
+  const [availableInputs = EMPTY_ARRAY, setAvailableInputs] = useStore<
+    SelectableField[]
+  >(`preferences.${finalPreferenceKey}.availableInputs`, EMPTY_ARRAY);
+
+  const [, setOmit] = useStore<string[]>(
+    `preferences.${finalPreferenceKey}.omit`,
+    omit,
+  );
+
+  useEffect(() => {
+    // first render, or the preferences have been cleared
+    const inputs =
+      (
+        Children.map(props.children, (child, index) =>
+          isValidElement<{ source?: string; label?: ReactNode }>(child)
+            ? {
+                index: String(index),
+                source: child.props.source ?? `input-${index}`,
+                label:
+                  child.props.source || child.props.label
+                    ? child.props.label
+                    : translate("ra.configurable.SimpleForm.unlabeled", {
+                        input: index,
+                        _: `Unlabeled input #%{input}`,
+                      }),
+              }
+            : null,
+        ) as Array<SelectableField | null> | undefined
+      )?.filter((column): column is SelectableField => column != null) ??
+      EMPTY_ARRAY;
+
+    if (inputs.length !== availableInputs.length) {
+      setAvailableInputs(inputs);
+      setOmit(omit || []);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [availableInputs]);
+
+  return (
+    <Configurable
+      editor={<SimpleFormEditor />}
+      preferenceKey={finalPreferenceKey}
+      className="block"
+    >
+      <SimpleFormWithPreferences {...props} />
+    </Configurable>
+  );
+};
+
+/**
+ * Filters the children of {@link SimpleForm} based on the user's saved
+ * preferences for input order and visibility.
+ *
+ * @internal
+ */
+const SimpleFormWithPreferences = ({
+  children,
+  ...props
+}: SimpleFormProps) => {
+  const [availableInputs = []] = usePreference<SelectableField[]>(
+    "availableInputs",
+    [],
+  );
+  const [omit] = usePreference<string[]>("omit", []);
+  const [inputs] = usePreference<string[]>(
+    "inputs",
+    availableInputs
+      .filter((input) => !omit?.includes(input.source))
+      .map((input) => input.index),
+  );
+  const childrenArray = Children.toArray(children) as ReactElement[];
+  return (
+    <SimpleForm {...props}>
+      {inputs === undefined
+        ? children
+        : inputs
+            .map((index) => childrenArray[Number(index)])
+            .filter((child): child is ReactElement => child != null)}
+    </SimpleForm>
+  );
+};
+
+/**
+ * Inspector editor for {@link SimpleFormConfigurable}. Sets the inspector
+ * title and shows a {@link FieldsSelector} backed by the form-specific
+ * preference keys.
+ *
+ * @internal
+ */
+const SimpleFormEditor = () => {
+  useSetInspectorTitle("ra.configurable.SimpleForm.title", { _: "Form" });
+  return <FieldsSelector name="inputs" availableName="availableInputs" />;
+};
+
+export interface SimpleFormConfigurableProps extends SimpleFormProps {
+  /**
+   * Key used to store user preferences for this form. Defaults to
+   * `${resource}.simpleForm`. Pass a custom key when several
+   * `<SimpleFormConfigurable>` instances render in the same resource.
+   */
+  preferenceKey?: string;
+  /**
+   * Inputs to hide by default. Users can re-enable them from the Inspector.
+   *
+   * @example
+   * // hide id and author by default
+   * <SimpleFormConfigurable omit={["id", "author"]}>...</SimpleFormConfigurable>
+   */
+  omit?: string[];
+}
