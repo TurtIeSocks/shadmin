@@ -1,5 +1,5 @@
 import { Resource } from "ra-core";
-import { Admin } from "@/components/admin";
+import { Admin, defaultTheme } from "@/components/admin";
 
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
@@ -18,6 +18,7 @@ function App() {
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       dashboard={Dashboard}
+      theme={defaultTheme}
     >
       <Resource {...orders} />
       <Resource {...products} />
