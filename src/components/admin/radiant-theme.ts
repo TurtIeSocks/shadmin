@@ -1,84 +1,113 @@
 import type { AdminTheme } from "./theme-types";
 
 /**
- * Bold, vivid theme — acid violet primary, magenta destructive, cyan/lime charts.
+ * Faithful oklch port of upstream `ra-ui-materialui`'s `radiantLightTheme`
+ * and `radiantDarkTheme` ("a theme emphasizing clarity and ease of use,
+ * with generous margins and an acid color palette").
  *
- * Generous `--radius: 0.75rem` softens the impact of saturated hues. Light mode
- * keeps backgrounds near-white so the violet primary remains the focal point;
- * dark mode tints surfaces with a hint of violet for a richer, more atmospheric
- * look.
- *
- * Equivalent to the upstream `ra-ui-materialui` `radiantLightTheme` / `radiantDarkTheme`.
+ * Both modes share the same vivid violet primary (`#9055fd`). Light mode
+ * pairs it with a lighter violet secondary (`#A270FF`); dark mode flips
+ * the secondary to hot pink (`#FF83F6`). Alert colors are intentionally
+ * acidic: success `#0FBF9F` (teal), info `#3ED0EB` (cyan), warning
+ * `#F2E963` (lime), error `#DB488B` (magenta). Border radius is 6px
+ * (`shape.borderRadius: 6`).
  */
 export const radiantTheme: AdminTheme = {
   name: "radiant",
   label: "Radiant",
   light: {
-    "--radius": "0.75rem",
-    "--background": "oklch(0.99 0.005 300)",
-    "--foreground": "oklch(0.2 0.05 290)",
+    // Upstream: shape.borderRadius: 6 → 6 / 16 = 0.375rem.
+    "--radius": "0.375rem",
+
+    // background.default: #f0f1f6
+    "--background": "oklch(0.965 0.005 285)",
+    "--foreground": "oklch(0.42 0.018 295)", // text.primary: #544f5a
     "--card": "oklch(1 0 0)",
-    "--card-foreground": "oklch(0.2 0.05 290)",
+    "--card-foreground": "oklch(0.42 0.018 295)",
     "--popover": "oklch(1 0 0)",
-    "--popover-foreground": "oklch(0.2 0.05 290)",
-    "--primary": "oklch(0.45 0.27 295)",
-    "--primary-foreground": "oklch(0.985 0.005 300)",
-    "--secondary": "oklch(0.95 0.04 300)",
-    "--secondary-foreground": "oklch(0.35 0.18 295)",
-    "--muted": "oklch(0.95 0.02 300)",
-    "--muted-foreground": "oklch(0.5 0.08 295)",
-    "--accent": "oklch(0.85 0.12 195)",
-    "--accent-foreground": "oklch(0.2 0.08 220)",
-    "--destructive": "oklch(0.55 0.28 0)",
-    "--border": "oklch(0.9 0.04 300)",
-    "--input": "oklch(0.9 0.04 300)",
-    "--ring": "oklch(0.55 0.22 295)",
-    "--chart-1": "oklch(0.55 0.27 295)",
-    "--chart-2": "oklch(0.75 0.17 175)",
-    "--chart-3": "oklch(0.8 0.2 130)",
-    "--chart-4": "oklch(0.65 0.25 25)",
-    "--chart-5": "oklch(0.68 0.23 340)",
-    "--sidebar": "oklch(0.97 0.02 300)",
-    "--sidebar-foreground": "oklch(0.2 0.05 290)",
-    "--sidebar-primary": "oklch(0.45 0.27 295)",
-    "--sidebar-primary-foreground": "oklch(0.985 0.005 300)",
-    "--sidebar-accent": "oklch(0.9 0.08 195)",
-    "--sidebar-accent-foreground": "oklch(0.2 0.08 220)",
-    "--sidebar-border": "oklch(0.9 0.04 300)",
-    "--sidebar-ring": "oklch(0.55 0.22 295)",
+    "--popover-foreground": "oklch(0.42 0.018 295)",
+
+    // primary.main: #9055fd (vivid violet)
+    "--primary": "oklch(0.553 0.245 296)",
+    "--primary-foreground": "oklch(0.985 0.005 296)",
+
+    // secondary.main light: #A270FF (lighter violet)
+    "--secondary": "oklch(0.617 0.21 297)",
+    "--secondary-foreground": "oklch(0.985 0.005 296)",
+
+    "--muted": "oklch(0.94 0.008 285)",
+    "--muted-foreground": "oklch(0.6 0.015 295)", // text.secondary: #89868D
+
+    // accent: cyan info, softened for hover surfaces.
+    "--accent": "oklch(0.92 0.06 215)",
+    "--accent-foreground": "oklch(0.42 0.018 295)",
+
+    // alert.error: #DB488B (magenta)
+    "--destructive": "oklch(0.625 0.198 0.5)",
+
+    "--border": "oklch(0.9 0.01 285)",
+    "--input": "oklch(0.9 0.01 285)",
+    "--ring": "oklch(0.553 0.245 296)",
+
+    "--chart-1": "oklch(0.553 0.245 296)", // primary violet
+    "--chart-2": "oklch(0.72 0.135 175)",  // success teal #0FBF9F
+    "--chart-3": "oklch(0.79 0.115 215)",  // info cyan #3ED0EB
+    "--chart-4": "oklch(0.91 0.155 105)",  // warning lime #F2E963
+    "--chart-5": "oklch(0.625 0.198 0.5)", // error magenta #DB488B
+
+    "--sidebar": "oklch(1 0 0)",
+    "--sidebar-foreground": "oklch(0.42 0.018 295)",
+    "--sidebar-primary": "oklch(0.553 0.245 296)",
+    "--sidebar-primary-foreground": "oklch(0.985 0.005 296)",
+    "--sidebar-accent": "oklch(0.92 0.06 215)",
+    "--sidebar-accent-foreground": "oklch(0.42 0.018 295)",
+    "--sidebar-border": "oklch(0.9 0.01 285)",
+    "--sidebar-ring": "oklch(0.553 0.245 296)",
   },
   dark: {
-    "--radius": "0.75rem",
-    "--background": "oklch(0.18 0.05 295)",
-    "--foreground": "oklch(0.95 0.02 300)",
-    "--card": "oklch(0.23 0.06 295)",
-    "--card-foreground": "oklch(0.95 0.02 300)",
-    "--popover": "oklch(0.23 0.06 295)",
-    "--popover-foreground": "oklch(0.95 0.02 300)",
-    "--primary": "oklch(0.7 0.25 295)",
-    "--primary-foreground": "oklch(0.15 0.05 290)",
-    "--secondary": "oklch(0.3 0.08 295)",
-    "--secondary-foreground": "oklch(0.95 0.02 300)",
-    "--muted": "oklch(0.3 0.05 295)",
-    "--muted-foreground": "oklch(0.72 0.05 300)",
-    "--accent": "oklch(0.6 0.18 195)",
-    "--accent-foreground": "oklch(0.15 0.05 290)",
-    "--destructive": "oklch(0.7 0.25 0)",
+    "--radius": "0.375rem",
+
+    // background.default: #110e1c, background.paper: #151221
+    "--background": "oklch(0.13 0.025 285)",
+    "--foreground": "oklch(0.95 0.008 285)",
+    "--card": "oklch(0.16 0.025 285)",
+    "--card-foreground": "oklch(0.95 0.008 285)",
+    "--popover": "oklch(0.16 0.025 285)",
+    "--popover-foreground": "oklch(0.95 0.008 285)",
+
+    // primary.main: #9055fd (same as light)
+    "--primary": "oklch(0.553 0.245 296)",
+    "--primary-foreground": "oklch(0.985 0.005 296)",
+
+    // secondary.main dark: #FF83F6 (hot pink)
+    "--secondary": "oklch(0.755 0.265 333)",
+    "--secondary-foreground": "oklch(0.13 0.025 285)",
+
+    "--muted": "oklch(0.22 0.025 285)",
+    "--muted-foreground": "oklch(0.7 0.015 285)",
+
+    "--accent": "oklch(0.4 0.08 215)",
+    "--accent-foreground": "oklch(0.95 0.008 285)",
+
+    "--destructive": "oklch(0.625 0.198 0.5)",
+
     "--border": "oklch(1 0 0 / 12%)",
     "--input": "oklch(1 0 0 / 18%)",
-    "--ring": "oklch(0.65 0.22 295)",
-    "--chart-1": "oklch(0.7 0.27 295)",
-    "--chart-2": "oklch(0.7 0.17 175)",
-    "--chart-3": "oklch(0.78 0.2 130)",
-    "--chart-4": "oklch(0.7 0.25 25)",
-    "--chart-5": "oklch(0.73 0.23 340)",
-    "--sidebar": "oklch(0.21 0.06 295)",
-    "--sidebar-foreground": "oklch(0.95 0.02 300)",
-    "--sidebar-primary": "oklch(0.7 0.25 295)",
-    "--sidebar-primary-foreground": "oklch(0.15 0.05 290)",
-    "--sidebar-accent": "oklch(0.32 0.08 195)",
-    "--sidebar-accent-foreground": "oklch(0.95 0.02 300)",
+    "--ring": "oklch(0.755 0.265 333)",
+
+    "--chart-1": "oklch(0.553 0.245 296)",
+    "--chart-2": "oklch(0.755 0.265 333)",
+    "--chart-3": "oklch(0.72 0.135 175)",
+    "--chart-4": "oklch(0.79 0.115 215)",
+    "--chart-5": "oklch(0.91 0.155 105)",
+
+    "--sidebar": "oklch(0.16 0.025 285)",
+    "--sidebar-foreground": "oklch(0.95 0.008 285)",
+    "--sidebar-primary": "oklch(0.553 0.245 296)",
+    "--sidebar-primary-foreground": "oklch(0.985 0.005 296)",
+    "--sidebar-accent": "oklch(0.4 0.08 215)",
+    "--sidebar-accent-foreground": "oklch(0.95 0.008 285)",
     "--sidebar-border": "oklch(1 0 0 / 12%)",
-    "--sidebar-ring": "oklch(0.65 0.22 295)",
+    "--sidebar-ring": "oklch(0.755 0.265 333)",
   },
 };
