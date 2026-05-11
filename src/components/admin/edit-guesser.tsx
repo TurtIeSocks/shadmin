@@ -10,6 +10,7 @@ import {
   getElementsFromRecords,
 } from "ra-core";
 import { capitalize, singularize } from "inflection";
+import type { EditProps } from "@/components/admin/edit";
 import { EditView } from "@/components/admin/edit";
 import { SimpleForm } from "@/components/admin/simple-form";
 import { TextInput } from "@/components/admin/text-input";
@@ -39,14 +40,34 @@ import { ReferenceArrayInput } from "@/components/admin/reference-array-input";
  * );
  */
 export const EditGuesser = (props: EditGuesserProps) => {
+  const {
+    disableAuthentication,
+    id,
+    mutationMode,
+    mutationOptions,
+    queryOptions,
+    redirect,
+    resource,
+    transform,
+    ...rest
+  } = props;
   return (
-    <EditBase>
-      <EditViewGuesser {...props} />
+    <EditBase
+      disableAuthentication={disableAuthentication}
+      id={id}
+      mutationMode={mutationMode}
+      mutationOptions={mutationOptions}
+      queryOptions={queryOptions}
+      redirect={redirect}
+      resource={resource}
+      transform={transform}
+    >
+      <EditViewGuesser {...rest} />
     </EditBase>
   );
 };
 
-const EditViewGuesser = (props: EditGuesserProps) => {
+const EditViewGuesser = (props: Omit<EditGuesserProps, EditBaseControllerProps>) => {
   const resource = useResourceContext();
 
   if (!resource) {
@@ -55,7 +76,7 @@ const EditViewGuesser = (props: EditGuesserProps) => {
 
   const { record } = useEditContext();
   const [child, setChild] = useState<ReactNode>(null);
-  const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
+  const { enableLog = import.meta.env.DEV, ...rest } = props;
 
   useEffect(() => {
     setChild(null);
@@ -112,7 +133,17 @@ ${representation}
   return <EditView {...rest}>{child}</EditView>;
 };
 
-interface EditGuesserProps {
+type EditBaseControllerProps =
+  | "disableAuthentication"
+  | "id"
+  | "mutationMode"
+  | "mutationOptions"
+  | "queryOptions"
+  | "redirect"
+  | "resource"
+  | "transform";
+
+interface EditGuesserProps extends Omit<EditProps, "children"> {
   enableLog?: boolean;
 }
 

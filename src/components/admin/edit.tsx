@@ -52,6 +52,7 @@ export const Edit = ({
   children,
   className,
   disableBreadcrumb,
+  emptyWhileLoading,
   title,
   ...rest
 }: EditProps) => (
@@ -60,6 +61,7 @@ export const Edit = ({
       actions={actions}
       className={className}
       disableBreadcrumb={disableBreadcrumb}
+      emptyWhileLoading={emptyWhileLoading}
       title={title}
     >
       {children}
@@ -69,8 +71,9 @@ export const Edit = ({
 
 export interface EditViewProps {
   disableBreadcrumb?: boolean;
+  emptyWhileLoading?: boolean;
   title?: ReactNode | string | false;
-  actions?: ReactNode;
+  actions?: ReactNode | false;
   children?: ReactNode;
   className?: string;
 }
@@ -82,6 +85,7 @@ export interface EditViewProps {
  */
 export const EditView = ({
   disableBreadcrumb,
+  emptyWhileLoading,
   title,
   actions,
   className,
@@ -109,9 +113,19 @@ export const EditView = ({
   const { hasShow } = useResourceDefinition({ resource });
   const hasDashboard = useHasDashboard();
 
-  if (context.isLoading || !context.record) {
+  if (!context.record && context.isPending && emptyWhileLoading) {
     return null;
   }
+
+  const resolvedActions =
+    actions === false
+      ? null
+      : (actions ?? (
+          <div className="flex justify-end items-center gap-2">
+            {hasShow ? <ShowButton /> : null}
+            <DeleteButton />
+          </div>
+        ));
 
   return (
     <>
@@ -139,14 +153,9 @@ export const EditView = ({
         <h2 className="text-2xl font-bold tracking-tight">
           {title !== undefined ? title : context.defaultTitle}
         </h2>
-        {actions ?? (
-          <div className="flex justify-end items-center gap-2">
-            {hasShow ? <ShowButton /> : null}
-            <DeleteButton />
-          </div>
-        )}
+        {resolvedActions}
       </div>
-      <div className="my-2">{children}</div>
+      <div className="my-2">{context.record ? children : null}</div>
     </>
   );
 };

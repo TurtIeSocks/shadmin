@@ -56,6 +56,7 @@ export const Show = ({
   className,
   disableAuthentication,
   disableBreadcrumb,
+  emptyWhileLoading,
   id,
   loading,
   queryOptions,
@@ -76,6 +77,7 @@ export const Show = ({
       actions={actions}
       className={className}
       disableBreadcrumb={disableBreadcrumb}
+      emptyWhileLoading={emptyWhileLoading}
     >
       {children}
     </ShowView>
@@ -83,7 +85,7 @@ export const Show = ({
 );
 
 export interface ShowViewProps {
-  actions?: ReactNode;
+  actions?: ReactNode | false;
   disableBreadcrumb?: boolean;
   children: ReactNode;
   className?: string;
@@ -138,12 +140,18 @@ export const ShowView = ({
   const { hasEdit } = useResourceDefinition({ resource });
   const hasDashboard = useHasDashboard();
 
-  if (context.isLoading || !context.record) {
+  if (!context.record && context.isPending && emptyWhileLoading) {
     return null;
   }
-  if (!context.record && emptyWhileLoading) {
-    return null;
-  }
+
+  const resolvedActions =
+    actions === false
+      ? null
+      : (actions ?? (
+          <div className="flex justify-end items-center">
+            {hasEdit ? <EditButton /> : null}
+          </div>
+        ));
 
   return (
     <>
@@ -171,13 +179,9 @@ export const ShowView = ({
         <h2 className="text-2xl font-bold tracking-tight">
           {title !== undefined ? title : context.defaultTitle}
         </h2>
-        {actions ?? (
-          <div className="flex justify-end items-center">
-            {hasEdit ? <EditButton /> : null}
-          </div>
-        )}
+        {resolvedActions}
       </div>
-      <div className="my-2">{children}</div>
+      <div className="my-2">{context.record ? children : null}</div>
     </>
   );
 };

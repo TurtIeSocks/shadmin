@@ -10,6 +10,7 @@ import {
   useShowContext,
 } from "ra-core";
 import { capitalize, singularize } from "inflection";
+import type { ShowProps } from "@/components/admin/show";
 import { ShowView } from "@/components/admin/show";
 import { SimpleShowLayout } from "@/components/admin/simple-show-layout";
 import { RecordField } from "@/components/admin/record-field";
@@ -33,14 +34,26 @@ import { ReferenceArrayField } from "@/components/admin/reference-array-field";
  * export const PostShow = () => <ShowGuesser enableLog />;
  */
 export const ShowGuesser = (props: ShowGuesserProps) => {
+  const {
+    disableAuthentication,
+    id,
+    queryOptions,
+    resource,
+    ...rest
+  } = props;
   return (
-    <ShowBase>
-      <ShowViewGuesser {...props} />
+    <ShowBase
+      disableAuthentication={disableAuthentication}
+      id={id}
+      queryOptions={queryOptions}
+      resource={resource}
+    >
+      <ShowViewGuesser {...rest} />
     </ShowBase>
   );
 };
 
-const ShowViewGuesser = (props: ShowGuesserProps) => {
+const ShowViewGuesser = (props: Omit<ShowGuesserProps, ShowBaseControllerProps>) => {
   const resource = useResourceContext();
 
   if (!resource) {
@@ -49,7 +62,7 @@ const ShowViewGuesser = (props: ShowGuesserProps) => {
 
   const { record } = useShowContext();
   const [child, setChild] = useState<ReactNode>(null);
-  const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
+  const { enableLog = import.meta.env.DEV, ...rest } = props;
 
   useEffect(() => {
     setChild(null);
@@ -107,7 +120,13 @@ ${inferredChild.getRepresentation()}
   return <ShowView {...rest}>{child}</ShowView>;
 };
 
-interface ShowGuesserProps {
+type ShowBaseControllerProps =
+  | "disableAuthentication"
+  | "id"
+  | "queryOptions"
+  | "resource";
+
+interface ShowGuesserProps extends Omit<ShowProps, "children"> {
   enableLog?: boolean;
 }
 
