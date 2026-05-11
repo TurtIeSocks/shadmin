@@ -6,13 +6,15 @@ import {
 } from "ra-core";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 export interface ListNoResultsProps {
   resource?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  filterValues?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setFilters?: (filters: any, displayedFilters?: any) => void;
+  filterValues?: UnknownRecord;
+  setFilters?: (
+    filters: UnknownRecord,
+    displayedFilters?: UnknownRecord,
+  ) => void;
   className?: string;
 }
 

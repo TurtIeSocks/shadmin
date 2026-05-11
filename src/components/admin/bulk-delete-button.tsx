@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { Fragment, useState } from "react";
 import { humanize, inflect } from "inflection";
@@ -16,10 +15,11 @@ import {
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 import { Confirm } from "@/components/admin/confirm";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 export type BulkDeleteButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > = {
   label?: string;
   icon?: ReactNode;
@@ -54,8 +54,8 @@ export type BulkDeleteButtonProps<
  * );
  */
 export const BulkDeleteButton = <
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 >(
   props: BulkDeleteButtonProps<RecordType, MutationOptionsError>,
 ) => {
@@ -82,8 +82,8 @@ export const BulkDeleteButton = <
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
  */
 export const BulkDeleteWithUndoButton = <
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 >({
   icon = defaultIcon,
   label: labelProp,
@@ -129,8 +129,8 @@ export const BulkDeleteWithUndoButton = <
 };
 
 export type BulkDeleteWithConfirmButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > = BulkDeleteButtonProps<RecordType, MutationOptionsError> & {
   confirmTitle?: ReactNode;
   confirmContent?: ReactNode;
@@ -145,8 +145,8 @@ export type BulkDeleteWithConfirmButtonProps<
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
  */
 export const BulkDeleteWithConfirmButton = <
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 >(
   props: BulkDeleteWithConfirmButtonProps<RecordType, MutationOptionsError>,
 ) => {

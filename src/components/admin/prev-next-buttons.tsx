@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router";
 import { ChevronLeft, ChevronRight, AlertCircle } from "lucide-react";
 import {
@@ -11,7 +10,7 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export interface PrevNextButtonsProps<RecordType extends RaRecord = any>
+export interface PrevNextButtonsProps<RecordType extends RaRecord = RaRecord>
   extends UsePrevNextControllerProps<RecordType> {
   className?: string;
 }
@@ -34,7 +33,7 @@ export interface PrevNextButtonsProps<RecordType extends RaRecord = any>
  *   </Edit>
  * );
  */
-export const PrevNextButtons = <RecordType extends RaRecord = any>(
+export const PrevNextButtons = <RecordType extends RaRecord = RaRecord>(
   props: PrevNextButtonsProps<RecordType>,
 ) => {
   const { className } = props;

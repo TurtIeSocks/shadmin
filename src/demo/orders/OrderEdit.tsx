@@ -10,6 +10,7 @@ import { RecordRepresentation } from "ra-core";
 import { Link } from "react-router";
 import { Basket } from "./Basket";
 import { Totals } from "./Totals";
+import type { Order } from "../types";
 
 export const OrderEdit = () => (
   <Edit>
@@ -17,7 +18,7 @@ export const OrderEdit = () => (
       <div className="flex flex-col md:flex-row gap-8">
         <div className="flex-2">
           <div className="flex flex-col md:flex-row gap-4 mb-4">
-            <RecordField
+            <RecordField<Order>
               source="date"
               render={(record) => new Date(record.date).toLocaleString()}
               className="flex-1 md:text-sm"

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   CoreAdminContext,
@@ -47,7 +46,7 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
         >
           <ResourceContextProvider value="posts">
             <ListContext.Provider
-              value={{ selectedIds: [1, 2], onUnselectItems: () => {} } as any}
+              value={{ selectedIds: [1, 2], onUnselectItems: () => {} } as never}
             >
               {children}
             </ListContext.Provider>

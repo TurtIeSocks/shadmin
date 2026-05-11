@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import debounce from "lodash/debounce";
@@ -29,6 +28,7 @@ import {
 } from "ra-core";
 import { areIdsEqual } from "@/lib/areIdsEqual";
 import { InputHelperText } from "./input-helper-text";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Form control that lets users choose multiple values from a list using a dropdown with autocompletion.
@@ -71,12 +71,12 @@ export const AutocompleteArrayInput = (
       className?: string;
       debounce?: number;
       disableValue?: string;
-      filterToQuery?: (searchText: string) => any;
+      filterToQuery?: (searchText: string) => UnknownValue;
       translateChoice?: boolean;
       placeholder?: string;
       inputText?:
         | React.ReactNode
-        | ((option: any | undefined) => React.ReactNode);
+        | ((option: UnknownValue) => React.ReactNode);
     },
 ) => {
   const {
@@ -108,7 +108,7 @@ export const AutocompleteArrayInput = (
   // `field.value` may be `undefined` (no default + uncontrolled state).
   // Coalesce to an empty array so the rest of the component can rely on
   // array semantics without crashing.
-  const values: any[] = Array.isArray(field.value) ? field.value : [];
+  const values: UnknownValue[] = Array.isArray(field.value) ? field.value : [];
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listRef = React.useRef<HTMLDivElement>(null);
@@ -135,9 +135,11 @@ export const AutocompleteArrayInput = (
 
   useEffect(() => () => debouncedSetFilters.cancel(), [debouncedSetFilters]);
 
-  const handleUnselect = useEvent((choice: any) => {
+  const handleUnselect = useEvent((choice: UnknownValue) => {
     field.onChange(
-      values.filter((v: any) => !areIdsEqual(v, getChoiceValue(choice))),
+      values.filter(
+        (v: UnknownValue) => !areIdsEqual(v, getChoiceValue(choice)),
+      ),
     );
   });
 
@@ -158,15 +160,15 @@ export const AutocompleteArrayInput = (
 
   const availableChoices = allChoices.filter(
     (choice) =>
-      !values.some((v: any) => areIdsEqual(v, getChoiceValue(choice))),
+      !values.some((v: UnknownValue) => areIdsEqual(v, getChoiceValue(choice))),
   );
   const selectedChoices = allChoices.filter((choice) =>
-    values.some((v: any) => areIdsEqual(v, getChoiceValue(choice))),
+    values.some((v: UnknownValue) => areIdsEqual(v, getChoiceValue(choice))),
   );
   const [filterValue, setFilterValue] = React.useState("");
 
   const getInputText = useCallback(
-    (selectedChoice: any) => {
+    (selectedChoice: UnknownValue) => {
       if (typeof inputText === "function") {
         return inputText(selectedChoice);
       }

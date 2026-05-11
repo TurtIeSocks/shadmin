@@ -27,8 +27,7 @@ import {
  *   </Show>
  * );
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const BooleanField = <RecordType extends RaRecord = any>({
+export const BooleanField = <RecordType extends RaRecord = RaRecord>({
   source,
   record,
   defaultValue,
@@ -97,8 +96,7 @@ function RenderLabel({
 }
 
 export interface BooleanFieldProps<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends RaRecord = any,
+  RecordType extends RaRecord = RaRecord,
 > extends FieldProps<RecordType> {
   className?: string;
   defaultValue?: unknown;

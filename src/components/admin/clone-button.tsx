@@ -86,7 +86,6 @@ const defaultIcon = <Copy />;
 const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
 
 const omitId = (record: Partial<RaRecord>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id, ...rest } = record;
+  const { id: _id, ...rest } = record;
   return rest;
 };

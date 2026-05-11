@@ -11,6 +11,7 @@ import {
   useResourceTranslation,
 } from "ra-core";
 import { Button } from "@/components/ui/button";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
  * A button that exports list data to a file.
@@ -127,6 +128,5 @@ export interface ExportButtonProps {
   maxResults?: number;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   resource?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  meta?: any;
+  meta?: UnknownValue;
 }

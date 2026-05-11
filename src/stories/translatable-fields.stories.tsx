@@ -10,6 +10,7 @@ import { TextField } from "@/components/admin/text-field";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { TranslatableFields } from "@/components/admin/translatable-fields";
 import { i18nProvider } from "@/lib/i18nProvider";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 const defaultRecord = {
   id: 1,
@@ -41,8 +42,7 @@ const StoryWrapper = ({
 }: {
   children: ReactNode;
   theme: "system" | "light" | "dark";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  record?: any;
+  record?: UnknownRecord;
 }) => (
   <ThemeProvider defaultTheme={theme}>
     <CoreAdminContext i18nProvider={i18nProvider}>

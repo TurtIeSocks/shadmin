@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { HTMLAttributes } from "react";
 import get from "lodash/get.js";
 import {
@@ -11,6 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Displays an image or a list of images from a record field inside an img element or a ul of img elements.
@@ -31,7 +31,7 @@ import type { FieldProps } from "@/lib/field-types";
  * />
  */
 export const ImageField = <
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   props: ImageFieldProps<RecordType>,
 ) => {
@@ -102,10 +102,10 @@ export const ImageField = <
 ImageField.displayName = "ImageField";
 
 export interface ImageFieldProps<
-  RecordType extends Record<string, any> = Record<string, any>,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
-  defaultValue?: any;
+  RecordType extends UnknownRecord = UnknownRecord,
+> extends FieldProps<RecordType>,
+    Omit<HTMLAttributes<HTMLSpanElement>, "defaultValue"> {
+  defaultValue?: UnknownValue;
   src?: string;
   title?: HintedString<ExtractRecordPaths<RecordType>>;
 }

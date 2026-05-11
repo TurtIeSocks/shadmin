@@ -11,6 +11,7 @@ import parse from "html-react-parser";
 
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 /**
  * Strips all HTML tags by sanitizing with an empty allow-list.
@@ -22,8 +23,7 @@ const stripHtmlTags = (input: string): string => {
 };
 
 const RichTextFieldImpl = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   inProps: RichTextFieldProps<RecordType>,
 ) => {
@@ -115,8 +115,7 @@ export type PurifyOptions = DOMPurifyConfig & {
 };
 
 export interface RichTextFieldProps<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 > extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
   stripTags?: boolean;

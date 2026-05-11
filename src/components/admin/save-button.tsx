@@ -18,6 +18,7 @@ import { useFormContext, useFormState } from "react-hook-form";
 import type { UseMutationOptions } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
 /**
  * A button that saves form data with loading state and validation.
@@ -68,8 +69,7 @@ export const SaveButton = <RecordType extends RaRecord = RaRecord>(
   );
 
   const handleSubmit = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async (values: any) => {
+    async (values: UnknownRecord) => {
       let errors;
       if (saveContext?.save) {
         errors = await saveContext.save(values, {
@@ -126,7 +126,7 @@ const defaultIcon = <Save className="h-4 w-4" />;
 
 interface Props<
   RecordType extends RaRecord = RaRecord,
-  MutationOptionsError = unknown,
+  MutationOptionsError = UnknownValue,
 > {
   className?: string;
   disabled?: boolean;

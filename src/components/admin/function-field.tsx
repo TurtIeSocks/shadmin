@@ -3,6 +3,7 @@ import { sanitizeFieldRestProps, useRecordContext } from "ra-core";
 
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 /**
  * Field rendering its value with a custom render function.
@@ -29,8 +30,7 @@ import type { FieldProps } from "@/lib/field-types";
  * );
  */
 export const FunctionField = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   props: FunctionFieldProps<RecordType>,
 ) => {
@@ -48,8 +48,7 @@ export const FunctionField = <
 };
 
 export interface FunctionFieldProps<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 > extends Omit<FieldProps<RecordType>, "source">,
     Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
   source?: string;

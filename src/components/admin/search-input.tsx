@@ -52,13 +52,13 @@ export const SearchInput = (inProps: SearchInputProps) => {
   const showClearButton = !disableClearable && hasValue;
 
   return (
-    <div className="flex flex-grow relative mt-auto">
+    <div className="flex grow relative mt-auto">
       <TextInput
         source={source}
         label={false}
         helperText={false}
         placeholder={translate("ra.action.search")}
-        className={cn("flex-grow", className)}
+        className={cn("grow", className)}
         inputClassName={cn("pr-8", showClearButton ? "pr-16" : "pr-8")}
         {...rest}
       />

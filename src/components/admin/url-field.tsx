@@ -9,6 +9,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Displays a URL as a clickable hyperlink.
@@ -32,8 +33,7 @@ import type { FieldProps } from "@/lib/field-types";
  * );
  */
 const UrlFieldImpl = <
-  //eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   inProps: UrlFieldProps<RecordType>,
 ) => {
@@ -95,8 +95,7 @@ UrlFieldImpl.displayName = "UrlFieldImpl";
 export const UrlField = genericMemo(UrlFieldImpl);
 
 export interface UrlFieldProps<
-  //eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, AnchorHTMLAttributes<HTMLAnchorElement> {}
 
@@ -108,7 +107,7 @@ const stopPropagation = (e: React.MouseEvent<HTMLAnchorElement>) =>
 // `data:` and other XSS-prone URLs from being rendered as live links.
 const SAFE_URL_PATTERN = /^(https?:|mailto:|tel:|\/|#)/i;
 
-const isSafeUrl = (value: unknown): value is string => {
+const isSafeUrl = (value: UnknownValue): value is string => {
   if (typeof value !== "string") return false;
   return SAFE_URL_PATTERN.test(value.trim());
 };

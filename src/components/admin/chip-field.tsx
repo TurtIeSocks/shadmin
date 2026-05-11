@@ -9,12 +9,12 @@ import type { ComponentProps } from "react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 type BadgeProps = ComponentProps<typeof Badge>;
 
 const ChipFieldImpl = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   inProps: ChipFieldProps<RecordType>,
 ) => {
@@ -79,8 +79,7 @@ ChipFieldImpl.displayName = "ChipFieldImpl";
 export const ChipField = genericMemo(ChipFieldImpl);
 
 export interface ChipFieldProps<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 > extends FieldProps<RecordType>, Omit<BadgeProps, "children"> {
   variant?: "default" | "outline" | "secondary" | "destructive";
 }

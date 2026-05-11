@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 
 declare global {
   interface Window {
-    chatwootSettings: any;
-    chatwootSDK: any;
+    chatwootSettings: typeof defaultSettings | typeof settings;
+    chatwootSDK: {
+      run: (args: { websiteToken: string; baseUrl: string }) => void;
+    };
   }
 }
 
@@ -37,7 +38,7 @@ const defaultSettings = {
 const loadChatwoot = (
   baseUrl: string,
   websiteToken: string,
-  settings: any = defaultSettings,
+  settings = defaultSettings,
 ) => {
   window.chatwootSettings = settings;
 

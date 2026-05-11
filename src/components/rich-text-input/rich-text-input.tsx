@@ -14,8 +14,7 @@ import {
   type MinimalTiptapToolbar,
 } from "@/components/rich-text-input/minimal-tiptap";
 import { RichTextInputToolbar } from "@/components/rich-text-input/rich-text-input-toolbar";
-
-export const DefaultEditorOptions: Partial<UseEditorOptions> = {};
+import { DefaultEditorOptions } from "./default-editor-options";
 
 export type RichTextInputProps = InputProps & {
   className?: string;

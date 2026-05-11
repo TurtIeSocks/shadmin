@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { HTMLAttributes } from "react";
 import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Displays a numeric value with locale-specific formatting.
@@ -27,7 +27,7 @@ import type { FieldProps } from "@/lib/field-types";
  * );
  */
 export const NumberField = <
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >({
   defaultValue,
   source,
@@ -67,16 +67,18 @@ export const NumberField = <
 };
 
 export interface NumberFieldProps<
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   locales?: string | string[];
   options?: object;
-  transform?: (value: any) => number;
+  transform?: (value: UnknownValue) => UnknownValue;
 }
 
-const defaultTransform = (value: any) =>
-  value && typeof value === "string" && !isNaN(value as any) ? +value : value;
+const defaultTransform = (value: UnknownValue): UnknownValue =>
+  value && typeof value === "string" && !Number.isNaN(Number(value))
+    ? +value
+    : value;
 
 const hasNumberFormat = !!(
   typeof Intl === "object" &&

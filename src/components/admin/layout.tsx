@@ -9,6 +9,7 @@ import { AppSidebar } from "@/components/admin/app-sidebar";
 import { AppBar } from "@/components/admin/app-bar";
 import { Error } from "@/components/admin/error";
 import { Loading } from "@/components/admin/loading";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
  * The main application layout with sidebar, header, and content area.
@@ -23,7 +24,7 @@ import { Loading } from "@/components/admin/loading";
  */
 export const Layout = (props: CoreLayoutProps) => {
   const [errorInfo, setErrorInfo] = useState<ErrorInfo | undefined>(undefined);
-  const handleError = (_: unknown, info: ErrorInfo) => {
+  const handleError = (_: UnknownValue, info: ErrorInfo) => {
     setErrorInfo(info);
   };
   return (

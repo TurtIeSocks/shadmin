@@ -4,6 +4,7 @@ import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 type BadgeProps = ComponentProps<typeof Badge>;
 
@@ -29,8 +30,7 @@ type BadgeProps = ComponentProps<typeof Badge>;
  * );
  */
 export const TextArrayField = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   props: TextArrayFieldProps<RecordType>,
 ) => {
@@ -74,8 +74,7 @@ export const TextArrayField = <
 };
 
 export interface TextArrayFieldProps<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 > extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   variant?: BadgeProps["variant"];

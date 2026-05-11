@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import type { HtmlHTMLAttributes, ReactNode } from "react";
 import { useCallback, useEffect, isValidElement } from "react";
@@ -13,6 +12,16 @@ import {
 import { MinusCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import type { UnknownValue } from "@/lib/unknown-types";
+
+interface FilterElementProps {
+  source: string;
+  alwaysOn?: boolean;
+  defaultValue?: UnknownValue;
+  size?: string;
+  label?: React.ReactNode;
+  disabled?: boolean;
+}
 
 /**
  * A form for filter inputs with live updates. Included by default in List.
@@ -46,12 +55,12 @@ export const FilterFormBase = (props: FilterFormBaseProps) => {
   useEffect(() => {
     if (!filters) return;
     filters
-      .filter((filterElement) => isValidElement(filterElement))
+      .filter(
+        (filterElement): filterElement is React.ReactElement<FilterElementProps> =>
+          isValidElement(filterElement),
+      )
       .forEach((filter) => {
-        if (
-          (filter.props as any).alwaysOn &&
-          (filter.props as any).defaultValue
-        ) {
+        if (filter.props.alwaysOn && filter.props.defaultValue) {
           throw new Error(
             "Cannot use alwaysOn and defaultValue on a filter input. Please set the filterDefaultValues props on the <List> element instead.",
           );
@@ -63,12 +72,15 @@ export const FilterFormBase = (props: FilterFormBaseProps) => {
     if (!filters) return [];
     const values = filterValues;
     return filters
-      .filter((filterElement) => isValidElement(filterElement))
+      .filter(
+        (filterElement): filterElement is React.ReactElement<FilterElementProps> =>
+          isValidElement(filterElement),
+      )
       .filter((filterElement) => {
-        const filterValue = get(values, (filterElement.props as any).source);
+        const filterValue = get(values, filterElement.props.source);
         return (
-          (filterElement.props as any).alwaysOn ||
-          displayedFilters[(filterElement.props as any).source] ||
+          filterElement.props.alwaysOn ||
+          displayedFilters[filterElement.props.source] ||
           !isEmptyValue(filterValue)
         );
       });
@@ -84,7 +96,7 @@ export const FilterFormBase = (props: FilterFormBaseProps) => {
     <>
       {getShownFilters().map((filterElement) => (
         <FilterFormInput
-          key={filterElement.key || (filterElement.props as any).source}
+          key={filterElement.key || filterElement.props.source}
           filterElement={filterElement}
           handleHide={handleHide}
           resource={resource}
@@ -122,14 +134,14 @@ const StyledForm = (props: React.FormHTMLAttributes<HTMLFormElement>) => {
   );
 };
 
-const isEmptyValue = (filterValue: any): boolean => {
+const isEmptyValue = (filterValue: UnknownValue): boolean => {
   if (filterValue === "" || filterValue == null) return true;
 
   // If one of the value leaf is not empty
   // the value is considered not empty
   if (typeof filterValue === "object") {
     return Object.keys(filterValue).every((key) =>
-      isEmptyValue(filterValue[key]),
+      isEmptyValue(filterValue[key as keyof typeof filterValue]),
     );
   }
 
@@ -179,7 +191,7 @@ export const FilterFormInput = (inProps: FilterFormInputProps) => {
 };
 
 export interface FilterFormInputProps {
-  filterElement: React.ReactElement<any>;
+  filterElement: React.ReactElement<FilterElementProps>;
   handleHide: (event: React.MouseEvent<HTMLElement>) => void;
   className?: string;
   resource?: string;

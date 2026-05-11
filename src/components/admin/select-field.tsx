@@ -9,6 +9,7 @@ import {
 } from "ra-core";
 
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 /**
  * Displays a value from an enumeration by mapping it to a human-readable label.
@@ -49,8 +50,7 @@ import type { FieldProps } from "@/lib/field-types";
  * **Tip**: <ReferenceField> sets `translateChoice` to false by default.
  */
 const SelectFieldImpl = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   props: SelectFieldProps<RecordType>,
 ) => {
@@ -76,8 +76,7 @@ const SelectFieldImpl = <
   const translate = useTranslate();
 
   const choice = choices
-    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      choices.find((choice: any) => getChoiceValue(choice) === value)
+    ? choices.find((choice) => getChoiceValue(choice) === value)
     : null;
 
   if (!choice) {
@@ -106,8 +105,7 @@ SelectFieldImpl.displayName = "SelectFieldImpl";
 export const SelectField = genericMemo(SelectFieldImpl);
 
 export interface SelectFieldProps<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >
   extends
     Omit<ChoicesProps, "disableValue" | "createValue" | "createHintValue">,

@@ -7,7 +7,14 @@ export default {
   title: "Fields/FunctionField",
 };
 
-const record = {
+type Person = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  views: number;
+};
+
+const record: Person = {
   id: 1,
   first_name: "John",
   last_name: "Doe",
@@ -24,7 +31,7 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
 
 export const Basic = () => (
   <Wrapper>
-    <FunctionField
+    <FunctionField<Person>
       source="last_name"
       render={(r) => `${r.first_name} ${r.last_name}`}
     />
@@ -33,7 +40,7 @@ export const Basic = () => (
 
 export const Formatted = () => (
   <Wrapper>
-    <FunctionField
+    <FunctionField<Person>
       source="views"
       render={(r) => `${r.views.toLocaleString()} views`}
     />

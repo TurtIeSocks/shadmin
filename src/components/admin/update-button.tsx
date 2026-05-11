@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { Fragment, useState } from "react";
 import { humanize, singularize } from "inflection";
@@ -16,16 +15,17 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Confirm } from "@/components/admin/confirm";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 export interface UpdateWithUndoButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > extends Omit<
     UseUpdateControllerParams<RecordType, MutationOptionsError>,
     "mutationMode"
   > {
   className?: string;
-  data: any;
+  data: Partial<RecordType>;
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -33,13 +33,13 @@ export interface UpdateWithUndoButtonProps<
 }
 
 export interface UpdateWithConfirmButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > extends UseUpdateControllerParams<RecordType, MutationOptionsError> {
   className?: string;
   confirmContent?: React.ReactNode;
   confirmTitle?: React.ReactNode;
-  data: any;
+  data: Partial<RecordType>;
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -49,8 +49,8 @@ export interface UpdateWithConfirmButtonProps<
 }
 
 export type UpdateButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > =
   | ({ mutationMode?: "undoable" } & UpdateWithUndoButtonProps<
       RecordType,

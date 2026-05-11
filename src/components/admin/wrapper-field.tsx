@@ -1,9 +1,7 @@
 import type { ReactNode } from "react";
 
 import type { FieldProps } from "@/lib/field-types";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyRecord = Record<string, any>;
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 /**
  * Wraps several fields, exposing layout-level props (like `label` and `source`)
@@ -29,15 +27,14 @@ type AnyRecord = Record<string, any>;
  * );
  */
 export const WrapperField = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >({
   children,
 }: WrapperFieldProps<RecordType>) => <>{children}</>;
 
 WrapperField.displayName = "WrapperField";
 
-export interface WrapperFieldProps<RecordType extends AnyRecord = AnyRecord>
+export interface WrapperFieldProps<RecordType extends UnknownRecord = UnknownRecord>
   extends Omit<FieldProps<RecordType>, "source"> {
   source?: FieldProps<RecordType>["source"];
   /**

@@ -1,39 +1,15 @@
 import * as React from "react";
-import { createContext, useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { ValidationError } from "ra-core";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
-import { FormProvider, useFormContext } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
+import { FormItemContext, FormItemContextValue } from "./form-item-context";
+import { useFormField } from "./use-form-field";
 
 const Form = FormProvider;
-
-type FormItemContextValue = {
-  id: string;
-  name: string;
-};
-
-const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
-);
-
-const useFormField = () => {
-  const { getFieldState, formState } = useFormContext();
-  const { id, name } = useContext(FormItemContext);
-
-  const fieldState = getFieldState(name, formState);
-
-  return useMemo(
-    () => ({
-      formItemId: id,
-      formDescriptionId: `${id}-description`,
-      formMessageId: `${id}-message`,
-      ...fieldState,
-    }),
-    [id, fieldState],
-  );
-};
 
 function FormField({ className, id, name, ...props }: FormItemProps) {
   const contextValue: FormItemContextValue = useMemo(
@@ -130,11 +106,7 @@ const FormError = ({ className, ...props }: React.ComponentProps<"p">) => {
   );
 };
 
-export { SaveButton, type SaveButtonProps } from "./save-button";
-
 export {
-  // eslint-disable-next-line react-refresh/only-export-components
-  useFormField,
   Form,
   FormField,
   FormLabel,

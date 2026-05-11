@@ -33,8 +33,7 @@ describe("RichTextField", () => {
     await expect.element(screen.getByText("Safe")).toBeInTheDocument();
     // The container should not include the script content as text either
     // (DOMPurify removes script tags entirely)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect((window as any).__pwned).toBeUndefined();
+    expect((window as Window & { __pwned?: unknown }).__pwned).toBeUndefined();
   });
 
   it("strips inline event handlers", async () => {
@@ -48,8 +47,7 @@ describe("RichTextField", () => {
       </RecordContextProvider>,
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect((window as any).__xss).toBeUndefined();
+    expect((window as Window & { __xss?: unknown }).__xss).toBeUndefined();
   });
 
   it("renders plain text when stripTags is set", async () => {

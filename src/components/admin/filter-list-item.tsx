@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { memo, type LiHTMLAttributes, type ReactNode } from "react";
 import {
@@ -12,14 +11,18 @@ import pickBy from "lodash/pickBy";
 import { CircleX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import type { UnknownRecord } from "@/lib/unknown-types";
 
 const isElement = (value: unknown): value is React.ReactElement =>
   React.isValidElement(value);
 
-const DefaultIsSelected = (value: any, filters: any) =>
+const DefaultIsSelected = (value: UnknownRecord, filters: UnknownRecord) =>
   matches(pickBy(value, (val) => typeof val !== "undefined"))(filters);
 
-const DefaultToggleFilter = (value: any, filters: any) => {
+const DefaultToggleFilter = (
+  value: UnknownRecord,
+  filters: UnknownRecord,
+) => {
   const isSelected = matches(
     pickBy(value, (val) => typeof val !== "undefined"),
   )(filters);
@@ -27,9 +30,13 @@ const DefaultToggleFilter = (value: any, filters: any) => {
   if (isSelected) {
     const keysToRemove = Object.keys(value);
     return Object.keys(filters).reduce(
-      (acc, key) =>
-        keysToRemove.includes(key) ? acc : { ...acc, [key]: filters[key] },
-      {},
+      (acc, key) => {
+        if (!keysToRemove.includes(key)) {
+          acc[key] = filters[key];
+        }
+        return acc;
+      },
+      {} as UnknownRecord,
     );
   }
 
@@ -140,8 +147,11 @@ export const FilterListItem = memo((props: FilterListItemProps) => {
 export interface FilterListItemProps
   extends Omit<LiHTMLAttributes<HTMLLIElement>, "value" | "children"> {
   label: ReactNode;
-  value: any;
+  value: UnknownRecord;
   icon?: ReactNode;
-  toggleFilter?: (value: any, filters: any) => any;
-  isSelected?: (value: any, filters: any) => boolean;
+  toggleFilter?: (
+    value: UnknownRecord,
+    filters: UnknownRecord,
+  ) => UnknownRecord;
+  isSelected?: (value: UnknownRecord, filters: UnknownRecord) => boolean;
 }

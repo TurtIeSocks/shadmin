@@ -151,6 +151,7 @@ export type { AdminTheme } from "./theme-types";
 export * from "./time-input";
 export * from "./title";
 export * from "./title-portal";
+export * from "./title-portal-id";
 export * from "./toggle-filter-button";
 export * from "./toolbar";
 export * from "./top-toolbar";

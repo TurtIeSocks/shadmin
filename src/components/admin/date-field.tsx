@@ -7,10 +7,10 @@ import {
 } from "ra-core";
 
 import type { FieldProps } from "@/lib/field-types";
+import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
 const DateFieldImpl = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >(
   inProps: DateFieldProps<RecordType>,
 ) => {
@@ -111,18 +111,17 @@ DateFieldImpl.displayName = "DateFieldImpl";
 export const DateField = genericMemo(DateFieldImpl);
 
 export interface DateFieldProps<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  RecordType extends Record<string, any> = Record<string, any>,
+  RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   locales?: Intl.LocalesArgument;
   options?: Intl.DateTimeFormatOptions;
   showTime?: boolean;
   showDate?: boolean;
-  transform?: (value: unknown) => Date;
+  transform?: (value: UnknownValue) => Date;
 }
 
-const defaultTransform = (value: unknown) =>
+const defaultTransform = (value: UnknownValue) =>
   value instanceof Date
     ? value
     : typeof value === "string" || typeof value === "number"

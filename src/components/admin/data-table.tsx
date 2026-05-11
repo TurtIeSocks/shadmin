@@ -69,6 +69,7 @@ import {
   BulkActionsToolbar,
   BulkActionsToolbarChildren,
 } from "@/components/admin/bulk-actions-toolbar";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 const defaultBulkActionButtons = <BulkActionsToolbarChildren />;
 const emptyHiddenColumns: string[] = [];
@@ -443,9 +444,11 @@ export const DataTableRow = ({
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isPromise = (value: any): value is Promise<any> =>
-  value && typeof value.then === "function";
+function isPromise<T>(value: UnknownValue): value is Promise<T> {
+  return (
+    value != null && typeof (value as Promise<UnknownValue>).then === "function"
+  );
+}
 
 /**
  * Default empty-state placeholder rendered when a DataTable has no records.

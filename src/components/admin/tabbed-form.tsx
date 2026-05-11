@@ -1,6 +1,5 @@
 'use client'
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import type { FormProps } from "ra-core";
 import {
@@ -14,12 +13,13 @@ import {
   useMatchPath,
   useRouterProvider,
 } from "ra-core";
-import type { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode, SyntheticEvent } from "react";
 import { Children, cloneElement, isValidElement, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { FormToolbar } from "./simple-form";
 import { cn } from "@/lib/utils";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Infers the tabbed form root path from the current location.
@@ -80,7 +80,7 @@ export function TabbedFormTabsList({
       <TabsList className="mb-4 w-full">
         {tabs.map((tab, index) => {
           const tabPath = getTabPath(tab, index);
-          return cloneElement(tab as ReactElement<any>, {
+          return cloneElement(tab as ReactElement<FormTabProps>, {
             key: tabPath !== "" ? tabPath : "tab-0",
             intent: "header",
             value: syncWithLocation ? tabPath : index,
@@ -279,7 +279,7 @@ function TabbedFormView({
             ? !matchPath(`${splatPathBase}/${tabPath}`, location.pathname)
             : tabValue !== index;
 
-          return cloneElement(tab as ReactElement<any>, {
+          return cloneElement(tab as ReactElement<FormTabProps>, {
             key: tabPath !== "" ? tabPath : "tab-0",
             intent: "content",
             hidden,
@@ -359,12 +359,12 @@ export interface FormTabProps {
   iconPosition?: "top" | "bottom" | "start" | "end";
   intent?: "header" | "content";
   label: string | ReactElement;
-  onChange?: (event: any, value: any) => void;
+  onChange?: (event: SyntheticEvent, value: UnknownValue) => void;
   path?: string;
   resource?: string;
   syncWithLocation?: boolean;
   value?: string | number;
-  [key: string]: any;
+  [key: string]: UnknownValue;
 }
 
 interface TabbedFormViewProps {

@@ -5,6 +5,7 @@ import {
 } from "ra-core";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Renders a horizontal list of records from a ListContext, displaying each as a badge.
@@ -38,8 +39,7 @@ import { cn } from "@/lib/utils";
  *     </Show>
  * );
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const SingleFieldList = <RecordType = any,>({
+export const SingleFieldList = <RecordType = UnknownValue,>({
   children,
   render,
   className,

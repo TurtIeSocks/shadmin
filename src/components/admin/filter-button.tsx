@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import type { HtmlHTMLAttributes, ReactNode } from "react";
 import { useCallback, useState, isValidElement } from "react";
@@ -36,6 +35,15 @@ import {
   AddSavedQueryDialog,
   RemoveSavedQueryDialog,
 } from "@/components/admin/saved-queries";
+import type { UnknownValue } from "@/lib/unknown-types";
+
+interface FilterElementProps {
+  source: string;
+  alwaysOn?: boolean;
+  defaultValue?: UnknownValue;
+  label?: React.ReactNode;
+  disabled?: boolean;
+}
 
 /**
  * A button that opens a dropdown to add, remove, and manage filters.
@@ -93,11 +101,18 @@ export const FilterButton = (props: FilterButtonProps) => {
 
   const allTogglableFilters = filters.filter(
     (filterElement) =>
-      isValidElement(filterElement) && !(filterElement.props as any).alwaysOn,
+      isValidElement(filterElement) &&
+      !(filterElement.props as FilterElementProps).alwaysOn,
   );
 
   const handleShow = useCallback(
-    ({ source, defaultValue }: { source: string; defaultValue: any }) => {
+    ({
+      source,
+      defaultValue,
+    }: {
+      source: string;
+      defaultValue: UnknownValue;
+    }) => {
       showFilter(source, defaultValue === "" ? undefined : defaultValue);
       // We have to fallback to imperative code because the new FilterFormInput
       // has no way of knowing it has just been displayed (and thus that it should focus its input)
@@ -167,14 +182,15 @@ export const FilterButton = (props: FilterButtonProps) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-56">
           {allTogglableFilters
-            .filter((filterElement) => isValidElement(filterElement))
+            .filter(
+              (filterElement): filterElement is React.ReactElement<FilterElementProps> =>
+                isValidElement(filterElement),
+            )
             .map((filterElement, index: number) => (
               <FilterButtonMenuItem
-                key={(filterElement.props as any).source}
+                key={filterElement.props.source}
                 filter={filterElement}
-                displayed={
-                  !!displayedFilters[(filterElement.props as any).source]
-                }
+                displayed={!!displayedFilters[filterElement.props.source]}
                 resource={resource}
                 onShow={handleShow}
                 onHide={handleRemove}
@@ -333,10 +349,10 @@ export const FilterButtonMenuItem = React.forwardRef<
 });
 
 export interface FilterButtonMenuItemProps {
-  filter: React.ReactElement<any>;
+  filter: React.ReactElement<FilterElementProps>;
   displayed: boolean;
 
-  onShow: (params: { source: string; defaultValue: any }) => void;
+  onShow: (params: { source: string; defaultValue: UnknownValue }) => void;
   onHide: (params: { source: string }) => void;
   resource?: string;
   autoFocus?: boolean;

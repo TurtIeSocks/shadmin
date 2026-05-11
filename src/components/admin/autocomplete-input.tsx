@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import debounce from "lodash/debounce";
@@ -42,6 +41,7 @@ import {
 } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
 import { PopoverProps } from "@radix-ui/react-popover";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Form control that lets users choose a value from a list using a dropdown with autocompletion.
@@ -85,12 +85,12 @@ export const AutocompleteInput = (
       className?: string;
       debounce?: number;
       disableValue?: string;
-      filterToQuery?: (searchText: string) => any;
+      filterToQuery?: (searchText: string) => UnknownValue;
       translateChoice?: boolean;
       placeholder?: string;
       inputText?:
         | React.ReactNode
-        | ((option: any | undefined) => React.ReactNode);
+        | ((option: UnknownValue) => React.ReactNode);
     } & Pick<PopoverProps, "modal">,
 ) => {
   const {
@@ -160,7 +160,7 @@ export const AutocompleteInput = (
   );
 
   const getInputText = useCallback(
-    (selectedChoice: any) => {
+    (selectedChoice: UnknownValue) => {
       if (typeof inputText === "function") {
         return inputText(selectedChoice);
       }
@@ -183,7 +183,7 @@ export const AutocompleteInput = (
   });
 
   const handleChange = useCallback(
-    (choice: any) => {
+    (choice: UnknownValue) => {
       if (areIdsEqual(field.value, getChoiceValue(choice)) && !isRequired) {
         field.onChange("");
         setFilterValue("");

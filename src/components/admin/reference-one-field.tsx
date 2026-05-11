@@ -12,6 +12,7 @@ import {
 import type { UseQueryOptions } from "@tanstack/react-query";
 
 import { ReferenceFieldView } from "./reference-field";
+import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
 /**
  * Displays a related record from a one-to-one relationship.
@@ -107,8 +108,7 @@ export interface ReferenceOneFieldProps<
   target: string;
   source?: string;
   sort?: SortPayload;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  filter?: any;
+  filter?: UnknownRecord;
   link?: LinkToType<ReferenceRecordType>;
   empty?: ReactNode;
   loading?: ReactNode;
@@ -120,7 +120,6 @@ export interface ReferenceOneFieldProps<
       total: number;
     }>,
     "queryKey"
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  > & { meta?: any };
+  > & { meta?: UnknownValue };
   label?: string;
 }

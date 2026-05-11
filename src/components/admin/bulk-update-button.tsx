@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { Fragment, useState } from "react";
 import { humanize, inflect } from "inflection";
@@ -16,16 +15,17 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Confirm } from "@/components/admin/confirm";
+import type { UnknownValue } from "@/lib/unknown-types";
 
 export interface BulkUpdateWithUndoButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > extends Omit<
     UseBulkUpdateControllerParams<RecordType, MutationOptionsError>,
     "mutationMode"
   > {
   className?: string;
-  data: any;
+  data: Partial<RecordType>;
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -33,13 +33,13 @@ export interface BulkUpdateWithUndoButtonProps<
 }
 
 export interface BulkUpdateWithConfirmButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > extends UseBulkUpdateControllerParams<RecordType, MutationOptionsError> {
   className?: string;
   confirmContent?: React.ReactNode;
   confirmTitle?: React.ReactNode;
-  data: any;
+  data: Partial<RecordType>;
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -47,8 +47,8 @@ export interface BulkUpdateWithConfirmButtonProps<
 }
 
 export type BulkUpdateButtonProps<
-  RecordType extends RaRecord = any,
-  MutationOptionsError = unknown,
+  RecordType extends RaRecord = RaRecord,
+  MutationOptionsError = UnknownValue,
 > = { mutationMode?: MutationMode } & (
   | BulkUpdateWithUndoButtonProps<RecordType, MutationOptionsError>
   | BulkUpdateWithConfirmButtonProps<RecordType, MutationOptionsError>
