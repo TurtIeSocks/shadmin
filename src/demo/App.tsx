@@ -10,6 +10,7 @@ import { orders } from "./orders";
 import { customers } from "./customers";
 import { reviews } from "./reviews";
 import { Dashboard } from "./dashboard/Dashboard";
+import { InspectorLayout } from "./InspectorLayout";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       i18nProvider={i18nProvider}
       dashboard={Dashboard}
       theme={defaultTheme}
+      layout={InspectorLayout}
     >
       <Resource {...orders} />
       <Resource {...products} />
