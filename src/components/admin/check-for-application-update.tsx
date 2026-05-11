@@ -57,7 +57,7 @@ export const CheckForApplicationUpdate = (
   const initialHashRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (disabled || typeof window === "undefined") {
+    if (disabled) {
       return;
     }
 

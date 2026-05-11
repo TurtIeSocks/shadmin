@@ -42,10 +42,6 @@ export const Offline = (props: OfflineProps) => {
   );
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
 

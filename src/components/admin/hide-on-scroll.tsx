@@ -39,9 +39,6 @@ export const HideOnScroll = ({
   );
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollingDown = currentScrollY > lastScrollY.current;

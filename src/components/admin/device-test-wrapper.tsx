@@ -13,14 +13,7 @@ export interface DeviceTestWrapperProps {
   children: ReactNode;
 }
 
-type MediaQueryListLike = MediaQueryList & {
-  // Some legacy MUI code paths still call these on the returned list.
-  addListener: (listener: (event: MediaQueryListEvent) => void) => void;
-  removeListener: (listener: (event: MediaQueryListEvent) => void) => void;
-};
-
 const parseQuery = (query: string): ((width: number) => boolean) | null => {
-  // Supports `(min-width: 600px)` and `(max-width: 1200px)`.
   const minMatch = query.match(/\(min-width:\s*(\d+)px\)/);
   const maxMatch = query.match(/\(max-width:\s*(\d+)px\)/);
   if (!minMatch && !maxMatch) {
@@ -33,21 +26,23 @@ const parseQuery = (query: string): ((width: number) => boolean) | null => {
   };
 };
 
-const buildMatchMedia = (width: number) => (query: string) => {
-  const matcher = parseQuery(query);
-  const matches = matcher ? matcher(width) : false;
-  const list: MediaQueryListLike = {
-    matches,
-    media: query,
-    onchange: null,
-    addListener: () => {},
-    removeListener: () => {},
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    dispatchEvent: () => false,
-  } as MediaQueryListLike;
-  return list;
-};
+const buildMatchMedia =
+  (width: number) =>
+  (query: string): MediaQueryList => {
+    const matcher = parseQuery(query);
+    const matches = matcher ? matcher(width) : false;
+    return {
+      matches,
+      media: query,
+      onchange: null,
+      // Deprecated DOM API still part of the MediaQueryList type contract.
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    } as MediaQueryList;
+  };
 
 /**
  * Test utility that simulates a fixed device width by overriding
@@ -70,9 +65,6 @@ export const DeviceTestWrapper = ({
   const pixelWidth = WIDTH_MAP[width];
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
     const original = window.matchMedia;
     window.matchMedia = buildMatchMedia(pixelWidth) as typeof window.matchMedia;
     return () => {

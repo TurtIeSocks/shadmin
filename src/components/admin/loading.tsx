@@ -43,3 +43,6 @@ export interface LoadingProps {
   loadingSecondary?: string;
   delay?: number;
 }
+
+export { Loading as LoadingPage };
+export type LoadingPageProps = LoadingProps;

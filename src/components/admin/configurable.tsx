@@ -69,12 +69,11 @@ export const Configurable = (props: ConfigurableProps) => {
     editorOpenRef.current = isEditorOpen;
   }, [isEditorOpen]);
 
-  // on unmount, if selected, remove the editor from the inspector
   useEffect(() => {
     return () => {
       if (!editorOpenRef.current) return;
-      if (setPreferenceKey) setPreferenceKey(null);
-      if (setEditor) setEditor(null);
+      setPreferenceKey?.(null);
+      setEditor?.(null);
     };
   }, [setEditor, setPreferenceKey]);
 
@@ -83,17 +82,11 @@ export const Configurable = (props: ConfigurableProps) => {
   }
 
   const handleOpenEditor = () => {
-    if (!setEditor || !setPreferenceKey) {
-      throw new Error(
-        "Configurable must be used inside a PreferencesEditorContextProvider",
-      );
-    }
-
     // Include the editor key as React key to force destroy and mount
     // when switching between two identical editors with different keys.
     // Otherwise the editor would see a prop update and its useStore would
     // return one tick later, breaking uncontrolled inputs in the editor.
-    setEditor(
+    setEditor!(
       isValidElement(editor)
         ? cloneElement(editor as ReactElement<{ preferenceKey?: string }>, {
             preferenceKey: prefixedPreferenceKey,
@@ -101,7 +94,7 @@ export const Configurable = (props: ConfigurableProps) => {
           })
         : editor,
     );
-    setPreferenceKey(prefixedPreferenceKey);
+    setPreferenceKey!(prefixedPreferenceKey);
   };
 
   const showButton = isEnabled && (isHovered || isEditorOpen);

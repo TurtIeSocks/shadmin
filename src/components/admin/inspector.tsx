@@ -18,34 +18,10 @@ import { InspectorRoot } from "./inspector-root";
  *
  * Reads `editor`, `title`, `preferenceKey`, and the `isEnabled` flag from
  * {@link usePreferencesEditor}. When `isEnabled` is `false`, this component
- * renders nothing.
- *
- * - The Close button calls `disable()` to exit edit mode.
- * - The Trash button removes every preference under the current key prefix
- *   via {@link useRemoveItemsFromStore} and bumps an internal version counter
- *   so the editor re-mounts and re-reads its defaults.
- *
- * @remarks
- * Deviation from the upstream `ra-ui-materialui` `Inspector`: the panel is
- * pinned to the top-right corner of the viewport. The upstream component is
- * a draggable Material UI dialog whose position is persisted in the store.
- * Drag-and-drop positioning is intentionally omitted here to keep the
- * component shadcn-native.
+ * renders nothing. The Close button calls `disable()`; the Trash button
+ * removes every preference under the current key prefix.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
- *
- * @example
- * import { Inspector, InspectorButton } from "@/components/admin";
- *
- * const Layout = ({ children }) => (
- *   <>
- *     <header>
- *       <InspectorButton />
- *     </header>
- *     {children}
- *     <Inspector />
- *   </>
- * );
  */
 export const Inspector = ({ className }: InspectorProps = {}) => {
   const { isEnabled, disable, title, titleOptions, editor, preferenceKey } =
@@ -62,14 +38,14 @@ export const Inspector = ({ className }: InspectorProps = {}) => {
 
   if (!isEnabled) return null;
 
+  const resolvedTitle = title
+    ? translate(title, { _: "Inspector", ...titleOptions })
+    : translate("ra.configurable.inspector.title", { _: "Inspector" });
+
   return (
     <div
       role="dialog"
-      aria-label={
-        title
-          ? translate(title, { _: "Inspector", ...titleOptions })
-          : translate("ra.configurable.inspector.title", { _: "Inspector" })
-      }
+      aria-label={resolvedTitle}
       className={cn(
         "fixed top-4 right-4 z-50 w-80 max-w-[calc(100vw-2rem)]",
         "rounded-md border bg-popover text-popover-foreground shadow-lg",
@@ -78,11 +54,7 @@ export const Inspector = ({ className }: InspectorProps = {}) => {
     >
       <div className="flex items-center justify-between border-b px-3 py-2">
         <span className="text-xs uppercase font-semibold text-muted-foreground tracking-wide">
-          {title
-            ? translate(title, { _: "Inspector", ...titleOptions })
-            : translate("ra.configurable.inspector.title", {
-                _: "Inspector",
-              })}
+          {resolvedTitle}
         </span>
         <div className="flex items-center gap-1">
           {preferenceKey && (
