@@ -1,0 +1,50 @@
+---
+title: "Title"
+---
+
+Renders a page title inside the [`<TitlePortal>`](./TitlePortal.md) slot in the app bar.
+
+`<Title>` teleports its content into the `ra-title-portal` element rendered by `<TitlePortal>`. The default [`<Layout>`](./Layout.md) includes this portal inside [`<AppBar>`](./AppBar.md), so any view can declare its own page title without knowing where it appears in the DOM.
+
+## Usage
+
+Drop `<Title>` anywhere in a view to set the page title:
+
+```tsx
+import { Title } from "@/components/admin";
+
+const Dashboard = () => (
+  <>
+    <Title title="Dashboard" />
+    <div>Welcome!</div>
+  </>
+);
+```
+
+Strings are translated through the i18n provider; pass a React element to render a custom title:
+
+```tsx
+<Title
+  title={
+    <span>
+      Hello, <strong>world!</strong>
+    </span>
+  }
+/>
+```
+
+## Props
+
+| Prop | Required | Type | Default | Description |
+|------|----------|------|---------|-------------|
+| `title` | Optional | `string \| ReactElement` | — | Title content. Strings are passed to the i18n provider. |
+| `defaultTitle` | Optional | `string \| ReactElement` | — | Fallback rendered when `title` is unset. |
+| `className` | Optional | `string` | — | Extra Tailwind classes appended to the rendered title element (string titles only). |
+
+## `title`
+
+When `title` is a string, it is translated by the i18n provider using the value as both key and fallback. This means `ra.page.dashboard` would render the translated label, while an arbitrary string like `"My Page"` is rendered as-is when no translation exists.
+
+## `defaultTitle`
+
+Use `defaultTitle` to provide a fallback that only renders when `title` is undefined. Both props accept React elements as well as strings.

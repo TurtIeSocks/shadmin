@@ -3,13 +3,10 @@ import { Suspense, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { CoreLayoutProps } from "ra-core";
 import { ErrorBoundary } from "react-error-boundary";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { UserMenu } from "@/components/admin/user-menu";
-import { ThemeModeToggle } from "@/components/admin/theme-mode-toggle";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { Notification } from "@/components/admin/notification";
 import { AppSidebar } from "@/components/admin/app-sidebar";
-import { RefreshButton } from "@/components/admin/refresh-button";
-import { LocalesMenuButton } from "@/components/admin/locales-menu-button";
+import { AppBar } from "@/components/admin/app-bar";
 import { Error } from "@/components/admin/error";
 import { Loading } from "@/components/admin/loading";
 
@@ -18,6 +15,9 @@ import { Loading } from "@/components/admin/loading";
  *
  * Renders the app structure with a collapsible sidebar, header with breadcrumb navigation,
  * theme toggle, user menu, and main content area. Includes error boundary and loading states.
+ *
+ * Header markup is delegated to `<AppBar>`; sidebar markup to `<AppSidebar>`. The public
+ * `<Layout>` API and visuals are unchanged.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/layout/ Layout documentation}
  */
@@ -40,14 +40,7 @@ export const Layout = (props: CoreLayoutProps) => {
           "has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh",
         )}
       >
-        <header className="flex h-16 md:h-12 shrink-0 items-center gap-2 px-4">
-          <SidebarTrigger className="scale-125 sm:scale-100" />
-          <div className="flex-1 flex items-center" id="breadcrumb" />
-          <LocalesMenuButton />
-          <ThemeModeToggle />
-          <RefreshButton />
-          <UserMenu />
-        </header>
+        <AppBar />
         <ErrorBoundary
           onError={handleError}
           fallbackRender={({ error, resetErrorBoundary }) => (

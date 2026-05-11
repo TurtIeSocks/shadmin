@@ -64,6 +64,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/app-bar.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/app-sidebar.tsx",
           "type": "registry:component"
         },
@@ -149,6 +153,10 @@
         },
         {
           "path": "src/components/admin/columns-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/dashboard-menu-item.tsx",
           "type": "registry:component"
         },
         {
@@ -312,6 +320,14 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/menu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/menu-item-link.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/not-found.tsx",
           "type": "registry:component"
         },
@@ -389,6 +405,10 @@
         },
         {
           "path": "src/components/admin/resettable-text-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/resource-menu-item.tsx",
           "type": "registry:component"
         },
         {
@@ -505,6 +525,18 @@
         },
         {
           "path": "src/components/admin/time-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/title.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/title-portal.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/top-toolbar.tsx",
           "type": "registry:component"
         },
         {
