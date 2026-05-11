@@ -9,7 +9,7 @@ import {
 import { cn } from "@/lib/utils";
 import { CreateButton } from "@/components/admin/create-button";
 import { ExportButton } from "@/components/admin/export-button";
-import { FilterButton } from "@/components/admin/filter-form";
+import { FilterButton } from "@/components/admin/filter-button";
 
 export interface ListActionsProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {

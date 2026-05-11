@@ -20,7 +20,8 @@ import { cn } from "@/lib/utils";
 import { CreateButton } from "@/components/admin/create-button";
 import { ExportButton } from "@/components/admin/export-button";
 import { ListPagination } from "@/components/admin/list-pagination";
-import { FilterButton, FilterForm } from "@/components/admin/filter-form";
+import { FilterButton } from "@/components/admin/filter-button";
+import { FilterForm } from "@/components/admin/filter-form";
 
 /**
  * A complete list page with breadcrumb, title, filters, and pagination.

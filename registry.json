@@ -208,7 +208,31 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/filter-button.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/filter-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/filter-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/filter-list-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/filter-list-section.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/filter-live-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/filter-live-search.tsx",
           "type": "registry:component"
         },
         {
