@@ -27,6 +27,26 @@ On success, the button empties the selection, and notifies the user with the key
 
 On error, it notifies with an error message or `ra.notification.http_error`, then refreshes list.
 
+## Named exports
+
+`<BulkDeleteButton>` ships with two named variants for callers who want a specific behavior without setting `mutationMode`:
+
+| Export                          | Behavior                                                         |
+| ------------------------------- | ---------------------------------------------------------------- |
+| `BulkDeleteButton`              | Dispatches based on `mutationMode` (default: `undoable`)         |
+| `BulkDeleteWithUndoButton`      | Fires immediately, shows undo notification                       |
+| `BulkDeleteWithConfirmButton`   | Opens a confirmation dialog, fires on confirm                    |
+
+```tsx
+import { BulkDeleteWithConfirmButton, BulkDeleteWithUndoButton } from '@/components/admin';
+
+// Opens a confirm dialog
+<BulkDeleteWithConfirmButton />
+
+// Fires immediately with undo
+<BulkDeleteWithUndoButton />
+```
+
 ## Props
 
 | Prop | Required | Type | Default | Description |

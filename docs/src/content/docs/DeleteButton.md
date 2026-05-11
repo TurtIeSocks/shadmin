@@ -20,12 +20,33 @@ By default, it reads the resource from `ResourceContext` and record from `Record
 
 Upon success, the button redirects to the list view, and notifies the user with the key `resources.<resource>.notifications.deleted` (fallback `ra.notification.deleted`).
 
+## Named exports
+
+`<DeleteButton>` ships with two named variants for callers who want a specific behavior without setting `mutationMode`:
+
+| Export                     | Behavior                                                         |
+| -------------------------- | ---------------------------------------------------------------- |
+| `DeleteButton`             | Dispatches based on `mutationMode` (default: `undoable`)         |
+| `DeleteWithUndoButton`     | Fires immediately, shows undo notification                       |
+| `DeleteWithConfirmButton`  | Opens a confirmation dialog, fires on confirm                    |
+
+```tsx
+import { DeleteWithConfirmButton, DeleteWithUndoButton } from '@/components/admin';
+
+// Opens a confirm dialog
+<DeleteWithConfirmButton />
+
+// Fires immediately with undo
+<DeleteWithUndoButton />
+```
+
 ## Props
 
 | Prop | Required | Type | Default | Description |
 |------|----------|------|---------|-------------|
 | `className` | Optional | `string` | destructive styles | Additional classes |
 | `label` | Optional | `string` | i18n computed | i18n key / custom label (includes record name) |
+| `mutationMode` | Optional | `"undoable" \| "optimistic" \| "pessimistic"` | `undoable` | When to apply the mutation |
 | `mutationOptions` | Optional | `UseDeleteOptions` | - | Mutation options (onSuccess, etc.) |
 | `redirect` | Optional | `RedirectionSideEffect` | `list` | Where to redirect after delete |
 | `size` | Optional | `"default" \| "sm" \| "lg" \| "icon"` | - | Size variant |

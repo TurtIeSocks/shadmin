@@ -1,0 +1,92 @@
+import * as React from "react";
+import { buttonVariants } from "@/components/ui/button";
+import { Copy } from "lucide-react";
+import type { RaRecord } from "ra-core";
+import {
+  useCreatePath,
+  useGetResourceLabel,
+  useRecordContext,
+  useResourceContext,
+  useResourceTranslation,
+} from "ra-core";
+import { Link } from "react-router";
+import { cn } from "@/lib/utils";
+
+export type CloneButtonProps = {
+  record?: Partial<RaRecord>;
+  resource?: string;
+  label?: string;
+  icon?: React.ReactNode;
+  className?: string;
+  scrollToTop?: boolean;
+};
+
+/**
+ * A button that navigates to the create page, pre-filled with the current record's data.
+ *
+ * Used to clone the current record. Reads the resource from `ResourceContext` and the record
+ * from `RecordContext` by default.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/clonebutton/ CloneButton documentation}
+ *
+ * @example
+ * import { CloneButton, Show } from '@/components/admin';
+ *
+ * const PostShow = () => (
+ *   <Show actions={<CloneButton />}>
+ *     ...
+ *   </Show>
+ * );
+ */
+export const CloneButton = (props: CloneButtonProps) => {
+  const {
+    label: labelProp,
+    icon = defaultIcon,
+    className,
+    scrollToTop = true,
+  } = props;
+  const resource = useResourceContext(props);
+  const record = useRecordContext(props);
+  const createPath = useCreatePath();
+  const getResourceLabel = useGetResourceLabel();
+  const label = useResourceTranslation({
+    resourceI18nKey: resource
+      ? `resources.${resource}.action.clone`
+      : undefined,
+    baseI18nKey: "ra.action.clone",
+    options: {
+      name: resource ? getResourceLabel(resource, 1) : undefined,
+    },
+    userText: labelProp,
+  });
+  const pathname = createPath({ resource, type: "create" });
+  const recordWithoutId = record ? omitId(record) : undefined;
+  return (
+    <Link
+      className={cn(buttonVariants({ variant: "outline" }), className)}
+      to={{
+        pathname,
+        search: recordWithoutId
+          ? `?source=${encodeURIComponent(JSON.stringify(recordWithoutId))}`
+          : undefined,
+      }}
+      state={{ _scrollToTop: scrollToTop }}
+      onClick={stopPropagation}
+      aria-label={typeof label === "string" ? label : undefined}
+    >
+      {icon}
+      {label}
+    </Link>
+  );
+};
+
+const defaultIcon = <Copy />;
+
+// useful to prevent click bubbling in a datagrid with rowClick
+const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
+
+const omitId = (record: Partial<RaRecord>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { id, ...rest } = record;
+  return rest;
+};

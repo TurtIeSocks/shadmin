@@ -1,21 +1,37 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "@/components/ui/button";
+import * as React from "react";
+import { Fragment, useState } from "react";
+import { humanize, inflect } from "inflection";
 import { Trash } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import type { RaRecord, UseBulkDeleteControllerParams } from "ra-core";
 import {
   useBulkDeleteController,
   useGetResourceLabel,
+  useListContext,
   useResourceContext,
   useResourceTranslation,
+  useTranslate,
 } from "ra-core";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
+import { Confirm } from "@/components/admin/confirm";
+
+export type BulkDeleteButtonProps<
+  RecordType extends RaRecord = any,
+  MutationOptionsError = unknown,
+> = {
+  label?: string;
+  icon?: ReactNode;
+} & React.ComponentPropsWithoutRef<"button"> &
+  UseBulkDeleteControllerParams<RecordType, MutationOptionsError>;
 
 /**
  * A button that deletes multiple selected records at once.
  *
- * Allows to delete selected records in a DataTable. Use within
- * the bulkActionsButtons prop of DataTable or inside BulkActionsToolbar.
+ * Defaults to `mutationMode="undoable"`. When `mutationMode` is `pessimistic` or `optimistic`,
+ * a confirmation dialog is shown before firing. Use within the `bulkActionsButtons` prop of
+ * `<DataTable>` or inside `<BulkActionsToolbar>`.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
  *
@@ -40,13 +56,45 @@ import type { ReactNode } from "react";
 export const BulkDeleteButton = <
   RecordType extends RaRecord = any,
   MutationOptionsError = unknown,
+>(
+  props: BulkDeleteButtonProps<RecordType, MutationOptionsError>,
+) => {
+  const { mutationMode = "undoable" } = props;
+  if (mutationMode === "undoable") {
+    return (
+      <BulkDeleteWithUndoButton
+        {...(props as BulkDeleteButtonProps<RecordType, MutationOptionsError>)}
+      />
+    );
+  }
+  return (
+    <BulkDeleteWithConfirmButton
+      {...(props as BulkDeleteButtonProps<RecordType, MutationOptionsError>)}
+    />
+  );
+};
+
+/**
+ * Bulk delete button variant that fires immediately and shows an undo notification.
+ *
+ * Equivalent to `<BulkDeleteButton mutationMode="undoable">`.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
+ */
+export const BulkDeleteWithUndoButton = <
+  RecordType extends RaRecord = any,
+  MutationOptionsError = unknown,
 >({
   icon = defaultIcon,
   label: labelProp,
   className,
+  onClick,
   ...props
 }: BulkDeleteButtonProps<RecordType, MutationOptionsError>) => {
-  const { handleDelete, isPending } = useBulkDeleteController(props);
+  const { handleDelete, isPending } = useBulkDeleteController({
+    ...props,
+    mutationMode: "undoable",
+  });
   const resource = useResourceContext(props);
   const getResourceLabel = useGetResourceLabel();
   const label = useResourceTranslation({
@@ -60,11 +108,16 @@ export const BulkDeleteButton = <
     userText: labelProp,
   });
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleDelete();
+    onClick?.(e);
+  };
+
   return (
     <Button
       variant="destructive"
       type="button"
-      onClick={handleDelete}
+      onClick={handleClick}
       disabled={isPending}
       aria-label={typeof label === "string" ? label : undefined}
       className={cn("h-9", className)}
@@ -75,13 +128,131 @@ export const BulkDeleteButton = <
   );
 };
 
-export type BulkDeleteButtonProps<
+export type BulkDeleteWithConfirmButtonProps<
   RecordType extends RaRecord = any,
   MutationOptionsError = unknown,
-> = {
-  label?: string;
-  icon?: ReactNode;
-} & React.ComponentPropsWithoutRef<"button"> &
-  UseBulkDeleteControllerParams<RecordType, MutationOptionsError>;
+> = BulkDeleteButtonProps<RecordType, MutationOptionsError> & {
+  confirmTitle?: ReactNode;
+  confirmContent?: ReactNode;
+  confirmColor?: "primary" | "warning";
+};
+
+/**
+ * Bulk delete button variant that asks the user to confirm before firing the mutation.
+ *
+ * Equivalent to `<BulkDeleteButton mutationMode="pessimistic">` (or `optimistic`).
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
+ */
+export const BulkDeleteWithConfirmButton = <
+  RecordType extends RaRecord = any,
+  MutationOptionsError = unknown,
+>(
+  props: BulkDeleteWithConfirmButtonProps<RecordType, MutationOptionsError>,
+) => {
+  const {
+    icon = defaultIcon,
+    label: labelProp,
+    className,
+    onClick,
+    confirmTitle = "ra.message.bulk_delete_title",
+    confirmContent = "ra.message.bulk_delete_content",
+    confirmColor = "primary",
+    mutationMode = "pessimistic",
+    mutationOptions,
+    ...rest
+  } = props;
+  const [isOpen, setOpen] = useState(false);
+  const { selectedIds } = useListContext();
+  const resource = useResourceContext(props);
+  const translate = useTranslate();
+  const getResourceLabel = useGetResourceLabel();
+
+  const { handleDelete, isPending } = useBulkDeleteController({
+    ...rest,
+    mutationMode,
+    mutationOptions: {
+      ...mutationOptions,
+      onSettled: (...args) => {
+        if (mutationMode === "pessimistic") {
+          setOpen(false);
+        }
+        mutationOptions?.onSettled?.(...args);
+      },
+    },
+  });
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpen(false);
+  };
+
+  const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (mutationMode !== "pessimistic") {
+      setOpen(false);
+    }
+    handleDelete();
+    if (typeof onClick === "function") {
+      onClick(e);
+    }
+  };
+
+  const label = useResourceTranslation({
+    resourceI18nKey: resource
+      ? `resources.${resource}.action.delete`
+      : undefined,
+    baseI18nKey: "ra.action.delete",
+    options: {
+      name: resource ? getResourceLabel(resource, 1) : undefined,
+    },
+    userText: labelProp,
+  });
+
+  const nameOptions = {
+    smart_count: selectedIds.length,
+    name: translate(`resources.${resource}.forcedCaseName`, {
+      smart_count: selectedIds.length,
+      _: humanize(
+        translate(`resources.${resource}.name`, {
+          smart_count: selectedIds.length,
+          _: resource ? inflect(resource, selectedIds.length) : undefined,
+        }),
+        true,
+      ),
+    }),
+  };
+
+  return (
+    <Fragment>
+      <Button
+        variant="destructive"
+        type="button"
+        onClick={handleClick}
+        disabled={isPending}
+        aria-label={typeof label === "string" ? label : undefined}
+        className={cn("h-9", className)}
+      >
+        {icon}
+        {label}
+      </Button>
+      <Confirm
+        isOpen={isOpen}
+        loading={isPending}
+        title={confirmTitle}
+        content={confirmContent}
+        confirmColor={confirmColor}
+        titleTranslateOptions={nameOptions}
+        contentTranslateOptions={nameOptions}
+        onConfirm={handleConfirm}
+        onClose={handleDialogClose}
+      />
+    </Fragment>
+  );
+};
 
 const defaultIcon = <Trash />;
