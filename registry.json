@@ -43,6 +43,8 @@
         "class-variance-authority",
         "clsx",
         "diacritic",
+        "dompurify",
+        "html-react-parser",
         "inflection",
         "lodash",
         "lucide-react",
@@ -119,6 +121,10 @@
         },
         {
           "path": "src/components/admin/cancel-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/chip-field.tsx",
           "type": "registry:component"
         },
         {
@@ -199,6 +205,10 @@
         },
         {
           "path": "src/components/admin/form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/function-field.tsx",
           "type": "registry:component"
         },
         {
@@ -298,11 +308,19 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/reference-one-field.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/refresh-button.tsx",
           "type": "registry:component"
         },
         {
           "path": "src/components/admin/refresh-icon-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/rich-text-field.tsx",
           "type": "registry:component"
         },
         {
@@ -378,6 +396,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/text-array-field.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/text-array-input.tsx",
           "type": "registry:component"
         },
@@ -419,6 +441,10 @@
         },
         {
           "path": "src/components/admin/user-menu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/wrapper-field.tsx",
           "type": "registry:component"
         },
         {
