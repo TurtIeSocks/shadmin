@@ -69,6 +69,7 @@ export default defineConfig({
             "install",
             "quick-start-guide",
             "guides-and-concepts",
+            "migrating-from-ra-ui-materialui",
             "changelog",
           ],
         },

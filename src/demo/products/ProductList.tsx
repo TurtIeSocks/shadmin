@@ -1,19 +1,17 @@
 import type { ReactNode } from "react";
 import {
+  FilterLiveSearch,
   List,
   ListPagination,
   NumberField,
   TextField,
-  TextInput,
   ToggleFilterButton,
 } from "@/components/admin";
 import {
-  FilterLiveForm,
   RecordContextProvider,
   useGetList,
   useListContext,
   useRecordContext,
-  useTranslate,
   Translate,
 } from "ra-core";
 import { Link } from "react-router";
@@ -89,21 +87,13 @@ const ImageThumbnail = () => {
 };
 
 const SidebarFilters = () => {
-  const translate = useTranslate();
   const { data } = useGetList<Category>("categories", {
     pagination: { page: 1, perPage: 100 },
     sort: { field: "name", order: "ASC" },
   });
   return (
     <div className="min-w-48 hidden md:block">
-      <FilterLiveForm>
-        <TextInput
-          source="q"
-          placeholder={translate("ra.action.search")}
-          label={false}
-          className="mb-6"
-        />
-      </FilterLiveForm>
+      <FilterLiveSearch className="mb-6" />
       <FilterCategory
         icon={<DollarSign size={16} />}
         label="resources.products.filters.sales"

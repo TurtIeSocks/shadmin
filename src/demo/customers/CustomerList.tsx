@@ -1,23 +1,19 @@
-import type { ReactNode } from "react";
-import {
-  useRecordContext,
-  Translate,
-  useTranslate,
-  FilterLiveForm,
-} from "ra-core";
+import { useRecordContext, Translate } from "ra-core";
 import {
   BooleanField,
   ColumnsButton,
   DataTable,
   ExportButton,
+  FilterList,
+  FilterListItem,
+  FilterLiveSearch,
   List,
-  ToggleFilterButton,
-  TextInput,
   ListPagination,
   CreateButton,
 } from "@/components/admin";
 import { Badge } from "@/components/ui/badge";
-import { Clock, DollarSign, Mail } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Clock, DollarSign, Mail, Users } from "lucide-react";
 import {
   endOfYesterday,
   startOfWeek,
@@ -126,127 +122,99 @@ const SegmentList = () => {
   );
 };
 
-const SidebarFilters = () => {
-  const translate = useTranslate();
-  return (
-    <div className="min-w-48 hidden md:block">
-      <FilterLiveForm>
-        <TextInput
-          source="q"
-          placeholder={translate("ra.action.search")}
-          label={false}
-          className="mb-6"
+const SidebarFilters = () => (
+  <Card className="min-w-48 p-4 hidden md:block">
+    <FilterLiveSearch />
+    <FilterList
+      label="resources.customers.filters.last_visited"
+      icon={<Clock size={16} />}
+    >
+      <FilterListItem
+        label="resources.customers.filters.today"
+        value={{
+          last_seen_gte: endOfYesterday().toISOString(),
+          last_seen_lte: undefined,
+        }}
+      />
+      <FilterListItem
+        label="resources.customers.filters.this_week"
+        value={{
+          last_seen_gte: startOfWeek(new Date()).toISOString(),
+          last_seen_lte: undefined,
+        }}
+      />
+      <FilterListItem
+        label="resources.customers.filters.last_week"
+        value={{
+          last_seen_gte: subWeeks(startOfWeek(new Date()), 1).toISOString(),
+          last_seen_lte: startOfWeek(new Date()).toISOString(),
+        }}
+      />
+      <FilterListItem
+        label="resources.customers.filters.this_month"
+        value={{
+          last_seen_gte: startOfMonth(new Date()).toISOString(),
+          last_seen_lte: undefined,
+        }}
+      />
+      <FilterListItem
+        label="resources.customers.filters.last_month"
+        value={{
+          last_seen_gte: subMonths(startOfMonth(new Date()), 1).toISOString(),
+          last_seen_lte: startOfMonth(new Date()).toISOString(),
+        }}
+      />
+      <FilterListItem
+        label="resources.customers.filters.earlier"
+        value={{
+          last_seen_gte: undefined,
+          last_seen_lte: subMonths(startOfMonth(new Date()), 1).toISOString(),
+        }}
+      />
+    </FilterList>
+    <FilterList
+      label="resources.customers.filters.has_ordered"
+      icon={<DollarSign size={16} />}
+    >
+      <FilterListItem
+        label="ra.boolean.true"
+        value={{
+          nb_orders_gte: 1,
+          nb_orders_lte: undefined,
+        }}
+      />
+      <FilterListItem
+        label="ra.boolean.false"
+        value={{
+          nb_orders_gte: undefined,
+          nb_orders_lte: 0,
+        }}
+      />
+    </FilterList>
+    <FilterList
+      label="resources.customers.filters.has_newsletter"
+      icon={<Mail size={16} />}
+    >
+      <FilterListItem
+        label="ra.boolean.true"
+        value={{ has_newsletter: true }}
+      />
+      <FilterListItem
+        label="ra.boolean.false"
+        value={{ has_newsletter: false }}
+      />
+    </FilterList>
+    <FilterList
+      label="resources.customers.filters.group"
+      icon={<Users size={16} />}
+    >
+      {segments.map((segment) => (
+        <FilterListItem
+          key={segment.id}
+          label={segment.name}
+          value={{ groups: segment.id }}
         />
-      </FilterLiveForm>
-      <FilterCategory
-        icon={<Clock size={16} />}
-        label="resources.customers.filters.last_visited"
-      >
-        <ToggleFilterButton
-          label="resources.customers.filters.today"
-          value={{
-            last_seen_gte: endOfYesterday().toISOString(),
-            last_seen_lte: undefined,
-          }}
-        />
-        <ToggleFilterButton
-          label="resources.customers.filters.this_week"
-          value={{
-            last_seen_gte: startOfWeek(new Date()).toISOString(),
-            last_seen_lte: undefined,
-          }}
-        />
-        <ToggleFilterButton
-          label="resources.customers.filters.last_week"
-          value={{
-            last_seen_gte: subWeeks(startOfWeek(new Date()), 1).toISOString(),
-            last_seen_lte: startOfWeek(new Date()).toISOString(),
-          }}
-        />
-        <ToggleFilterButton
-          label="resources.customers.filters.this_month"
-          value={{
-            last_seen_gte: startOfMonth(new Date()).toISOString(),
-            last_seen_lte: undefined,
-          }}
-        />
-        <ToggleFilterButton
-          label="resources.customers.filters.last_month"
-          value={{
-            last_seen_gte: subMonths(startOfMonth(new Date()), 1).toISOString(),
-            last_seen_lte: startOfMonth(new Date()).toISOString(),
-          }}
-        />
-        <ToggleFilterButton
-          label="resources.customers.filters.earlier"
-          value={{
-            last_seen_gte: undefined,
-            last_seen_lte: subMonths(startOfMonth(new Date()), 1).toISOString(),
-          }}
-        />
-      </FilterCategory>
-      <FilterCategory
-        icon={<DollarSign size={16} />}
-        label="resources.customers.filters.has_ordered"
-      >
-        <ToggleFilterButton
-          label="ra.boolean.true"
-          value={{
-            nb_orders_gte: 1,
-            nb_orders_lte: undefined,
-          }}
-        />
-        <ToggleFilterButton
-          label="ra.boolean.false"
-          value={{
-            nb_orders_gte: undefined,
-            nb_orders_lte: 0,
-          }}
-        />
-      </FilterCategory>
-      <FilterCategory
-        icon={<Mail size={16} />}
-        label="resources.customers.filters.has_newsletter"
-      >
-        <ToggleFilterButton
-          label="ra.boolean.true"
-          value={{ has_newsletter: true }}
-        />
-        <ToggleFilterButton
-          label="ra.boolean.false"
-          value={{ has_newsletter: false }}
-        />
-      </FilterCategory>
-      <FilterCategory
-        icon={<Mail size={16} />}
-        label="resources.customers.filters.group"
-      >
-        {segments.map((segment) => (
-          <ToggleFilterButton
-            key={segment.id}
-            label={segment.name}
-            value={{ groups: segment.id }}
-          />
-        ))}
-      </FilterCategory>
-    </div>
-  );
-};
-
-const FilterCategory = ({
-  icon,
-  label,
-  children,
-}: {
-  icon: ReactNode;
-  label: string;
-  children?: ReactNode;
-}) => (
-  <>
-    <h3 className="flex flex-row items-center gap-2 mb-1 font-bold text-sm">
-      {icon}
-      <Translate i18nKey={label} />
-    </h3>
-    <div className="flex flex-col items-start ml-3 mb-4">{children}</div>
-  </>
+      ))}
+    </FilterList>
+  </Card>
 );
