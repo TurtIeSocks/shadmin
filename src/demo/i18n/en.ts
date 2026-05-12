@@ -251,6 +251,9 @@ const customEnglishMessages: TranslationMessages = {
         reviewer: "Reviewer",
       },
     },
+    component_gallery: {
+      name: "Component |||| Component Gallery",
+    },
   },
 };
 

@@ -1,0 +1,27 @@
+---
+title: SimpleFormIterator
+---
+
+`<SimpleFormIterator>` renders editable array items inside an ArrayInput.
+
+## Usage
+
+```tsx
+import { SimpleFormIterator } from '@/components/admin';
+
+<ArrayInput source="items"><SimpleFormIterator><TextInput source="name" /></SimpleFormIterator></ArrayInput>
+```
+
+Before: teams had to infer this component from surrounding CRUD examples.
+
+After: the component has a direct import example and a focused behavior note.
+
+## Props
+
+| Prop | Required | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| children | Required | `ReactNode` | - | Inputs rendered for each array item. |
+
+## Behavior
+
+Use this component inside the matching ra-core context. For example, list helpers belong inside a list, form helpers belong inside a form, and show-layout helpers belong inside a show view.

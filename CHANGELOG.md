@@ -1,3 +1,13 @@
+## Unreleased
+
+### Add public component coverage audit and gallery
+
+- Add a reusable public component coverage audit script that checks Storybook, co-located specs, docs, and demo gallery entries for exported admin-facing components.
+- Add a component gallery resource to the demo app so public components have a visible demo route outside the commerce CRUD flows.
+- Add story-render smoke specs for public components that already had stories, plus coverage stories for previously missing public Storybook entries.
+- Add documentation pages for public components that were missing direct docs.
+- Verify the coverage gate now reports 149 public targets with no missing stories, specs, docs, or demo examples.
+
 ## v1.5.0 (Feb. 2026)
 
 ### 🚀 Features

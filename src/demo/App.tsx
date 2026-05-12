@@ -11,6 +11,7 @@ import { customers } from "./customers";
 import { reviews } from "./reviews";
 import { Dashboard } from "./dashboard/Dashboard";
 import { InspectorLayout } from "./InspectorLayout";
+import { componentGallery } from "./component-gallery";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Resource {...categories} />
       <Resource {...customers} />
       <Resource {...reviews} />
+      <Resource {...componentGallery} />
     </Admin>
   );
 }
