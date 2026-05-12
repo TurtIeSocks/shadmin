@@ -1,0 +1,119 @@
+---
+title: "MdxInput"
+---
+
+Use `<MdxInput>` to edit markdown content in a WYSIWYG editor (powered by [MDXEditor](https://mdxeditor.dev/)) and store it as a markdown string.
+
+## Installation
+
+This is an optional component and is not included in the `admin` registry block by default. Install it with:
+
+```bash
+npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/mdx-editor.json
+```
+
+You must also import the MDXEditor stylesheet once in your app:
+
+```tsx
+import "@mdxeditor/editor/style.css";
+```
+
+## Usage
+
+```tsx
+import { Edit, SimpleForm } from '@/components/admin';
+import { MdxInput } from '@/components/mdx-editor';
+import "@mdxeditor/editor/style.css";
+
+const PostEdit = () => (
+    <Edit>
+        <SimpleForm>
+            <MdxInput source="body" />
+        </SimpleForm>
+    </Edit>
+);
+```
+
+## Props
+
+| Prop | Required | Type | Default | Description |
+|------|----------|------|---------|-------------|
+| `source` | Required | `string` | - | Field name |
+| `className` | Optional | `string` | - | CSS classes applied to the field wrapper |
+| `defaultValue` | Optional | `string` | `""` | Default editor value |
+| `disabled` | Optional | `boolean` | - | Disable the editor (renders as read-only) |
+| `format` | Optional | `function` | - | Callback taking the value from the form state and returning the input value |
+| `helperText` | Optional | `ReactNode` | - | Help text displayed below the input |
+| `label` | Optional | `string \| false` | Inferred from `source` | Custom label, or `false` to hide it |
+| `mdxProps` | Optional | `Object` | - | Props passed to the underlying MDXEditor |
+| `parse` | Optional | `function` | - | Callback taking the editor value and returning the stored form value |
+| `readOnly` | Optional | `boolean` | - | Render the editor in read-only mode |
+| `validate` | Optional | `Validator \| Validator[]` | - | Validation rules |
+
+## `mdxProps`
+
+Pass any [MDXEditor prop](https://mdxeditor.dev/editor/api/interfaces/MDXEditorProps) via `mdxProps`, except for those managed internally (`markdown`, `onChange`, `onBlur`, `onError`, `readOnly`, `spellCheck`, and `ref`).
+
+```tsx
+<MdxInput
+    source="body"
+    mdxProps={{
+        placeholder: "Write your article here...",
+        autoFocus: true,
+    }}
+/>
+```
+
+## Customizing Plugins
+
+`<MdxInput>` uses `defaultInputPlugins` (which includes a default toolbar plugin). To extend or replace the plugin list, pass `plugins` via `mdxProps`:
+
+```tsx
+import { MdxInput, defaultInputPlugins } from '@/components/mdx-editor';
+import { headingsPlugin } from '@mdxeditor/editor';
+
+<MdxInput
+    source="body"
+    mdxProps={{
+        plugins: [
+            ...defaultInputPlugins,
+            headingsPlugin({ allowedHeadingLevels: [1, 2] }),
+        ],
+    }}
+/>
+```
+
+The default toolbar exposes:
+
+- Undo / Redo
+- Bold / Italic / Underline / Strikethrough / Highlight / Sub / Sup
+- Ordered / Bulleted lists
+- Block type (heading, paragraph, code, quote)
+- Insert link / image / table / thematic break
+- Code toggle
+
+To use a different toolbar, provide your own `toolbarPlugin` in place of the default one.
+
+## Validation
+
+Pass `validate` like any other react-admin input:
+
+```tsx
+import { required } from 'ra-core';
+
+<MdxInput source="body" validate={required()} />
+```
+
+## Lazy Loading
+
+`<MdxInput>` depends on MDXEditor and Lexical, which add noticeable JavaScript size. If you don't need it on every screen, lazy-load it:
+
+```tsx
+import React from 'react';
+
+const MdxInput = React.lazy(() =>
+    import('@/components/mdx-editor').then((module) => ({
+        default: module.MdxInput,
+    })),
+);
+```
