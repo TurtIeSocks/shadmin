@@ -1,6 +1,6 @@
 import React from "react";
 import { CoreAdminContext } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { LoadingInput, ThemeProvider } from "@/components/admin";
 
 export default {

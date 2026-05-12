@@ -20,7 +20,7 @@ import {
   List,
   ShowGuesser,
 } from "@/components/admin";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { BulkExportButton } from "@/components/admin/bulk-export-button";
 import { Button } from "@/components/ui/button";
 import { Table } from "@/components/ui/table";

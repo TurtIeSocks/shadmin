@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { ApplicationUpdatedNotification } from "@/components/admin/application-updated-notification";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 
 export default {
   title: "Layout/ApplicationUpdatedNotification",

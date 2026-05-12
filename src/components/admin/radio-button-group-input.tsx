@@ -2,7 +2,7 @@ import * as React from "react";
 import type { ChoicesProps, InputProps } from "ra-core";
 import { FieldTitle, useChoices, useChoicesContext, useInput } from "ra-core";
 import { cn } from "@/lib/utils";
-import { sanitizeInputRestProps } from "@/lib/sanitizeInputRestProps";
+import { sanitizeInputRestProps } from "@/lib/sanitize-input-rest-props";
 import {
   FormField,
   FormControl,

@@ -10,7 +10,7 @@ import { SimpleForm } from "@/components/admin/simple-form";
 import { TextInput } from "@/components/admin/text-input";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { TranslatableInputs } from "@/components/admin/translatable-inputs";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
 const defaultRecord = {

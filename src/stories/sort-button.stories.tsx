@@ -2,7 +2,7 @@ import React from "react";
 import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import defaultMessages from "ra-language-english";
 import polyglotI18nProvider from "ra-i18n-polyglot";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import {
   Admin,
   DataTable,

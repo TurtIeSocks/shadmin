@@ -7,7 +7,7 @@ import {
 } from "ra-core";
 import { MemoryRouter } from "react-router";
 import { Star } from "lucide-react";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { SimpleListItem, ThemeProvider } from "@/components/admin";
 
 export default {

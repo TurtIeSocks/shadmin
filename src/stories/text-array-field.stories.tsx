@@ -1,6 +1,6 @@
 import React from "react";
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { TextArrayField, ThemeProvider } from "@/components/admin";
 
 export default {

@@ -8,7 +8,7 @@ import {
   useResourceContext,
 } from "ra-core";
 import fakeRestProvider from "ra-data-fakerest";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { Button } from "@/components/ui/button";
 import { Admin, Show, ListGuesser } from "@/components/admin";
 import { Confirm } from "@/components/admin/confirm";

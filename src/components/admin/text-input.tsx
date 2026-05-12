@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { InputHelperText } from "@/components/admin/input-helper-text";
-import { sanitizeInputRestProps } from "@/lib/sanitizeInputRestProps";
+import { sanitizeInputRestProps } from "@/lib/sanitize-input-rest-props";
 
 export type TextInputProps = InputProps & {
   multiline?: boolean;

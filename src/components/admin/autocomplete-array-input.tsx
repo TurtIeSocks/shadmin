@@ -26,7 +26,7 @@ import {
   FieldTitle,
   useEvent,
 } from "ra-core";
-import { areIdsEqual } from "@/lib/areIdsEqual";
+import { areIdsEqual } from "@/lib/are-ids-equal";
 import { InputHelperText } from "./input-helper-text";
 import type { UnknownValue } from "@/lib/unknown-types";
 

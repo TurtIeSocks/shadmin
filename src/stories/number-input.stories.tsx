@@ -1,6 +1,6 @@
 import React from "react";
 import { CoreAdminContext, Form, RecordContextProvider } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { NumberInput, ThemeProvider } from "@/components/admin";
 import { useWatch } from "react-hook-form";
 

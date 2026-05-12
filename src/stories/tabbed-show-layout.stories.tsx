@@ -4,7 +4,7 @@ import {
   RecordContextProvider,
   ResourceContextProvider,
 } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 import {
   TabbedShowLayout,
   Labeled,

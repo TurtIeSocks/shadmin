@@ -1,7 +1,7 @@
 import React from "react";
 import { CoreAdminContext, Form, RecordContextProvider } from "ra-core";
 import type { RaRecord } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { BooleanInput, ThemeProvider } from "@/components/admin";
 import { useWatch } from "react-hook-form";
 

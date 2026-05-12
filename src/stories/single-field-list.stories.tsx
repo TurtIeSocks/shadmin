@@ -1,6 +1,6 @@
 import React from "react";
 import { CoreAdminContext, ListContextProvider, useList } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { SingleFieldList, ThemeProvider, TextField } from "@/components/admin";
 
 export default {

@@ -6,7 +6,7 @@ import {
 } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Star } from "lucide-react";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import {
   Admin,
   EditGuesser,

@@ -3,7 +3,7 @@ import { useEffect, type ReactNode } from "react";
 
 import { Offline } from "@/components/admin/offline";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 
 export default {
   title: "Layout/Offline",

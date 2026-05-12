@@ -1,7 +1,7 @@
 import React from "react";
 import type { RaRecord } from "ra-core";
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { ImageField, ThemeProvider } from "@/components/admin";
 
 export default {

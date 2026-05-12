@@ -7,7 +7,7 @@ import {
 } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { MemoryRouter } from "react-router";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import {
   InPlaceEditor,
   TextField,

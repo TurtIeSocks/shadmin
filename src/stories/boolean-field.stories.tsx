@@ -2,7 +2,7 @@ import React from "react";
 import type { RaRecord } from "ra-core";
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
 import { Heart, HeartOff } from "lucide-react";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { BooleanField, ThemeProvider } from "@/components/admin";
 
 export default {

@@ -12,7 +12,7 @@ import {
   EditGuesser,
   Breadcrumb,
 } from "@/components/admin";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { Link } from "react-router";
 
 export default {

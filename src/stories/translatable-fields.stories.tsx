@@ -9,7 +9,7 @@ import {
 import { TextField } from "@/components/admin/text-field";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { TranslatableFields } from "@/components/admin/translatable-fields";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
 const defaultRecord = {

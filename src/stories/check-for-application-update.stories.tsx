@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { ApplicationUpdatedNotification } from "@/components/admin/application-updated-notification";
 import { CheckForApplicationUpdate } from "@/components/admin/check-for-application-update";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 
 /**
  * `<CheckForApplicationUpdate>` polls a URL and shows a notification when the

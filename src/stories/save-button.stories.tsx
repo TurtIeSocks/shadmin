@@ -1,6 +1,6 @@
 import React from "react";
 import { CoreAdminContext, Form, RecordContextProvider } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { SaveButton, TextInput, ThemeProvider } from "@/components/admin";
 import { useFormState } from "react-hook-form";
 

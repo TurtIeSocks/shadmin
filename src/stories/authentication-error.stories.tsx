@@ -1,6 +1,6 @@
 import React from "react";
 import { CoreAdminContext } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { AuthenticationError } from "@/components/admin/authentication-error";
 

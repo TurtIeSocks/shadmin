@@ -2,7 +2,7 @@ import { Resource, TestMemoryRouter } from "ra-core";
 import fakeRestProvider from "ra-data-fakerest";
 import { Admin, ListGuesser, ShowGuesser } from "@/components/admin";
 import type { ListProps } from "@/components/admin/list";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 
 export default {
   title: "List/ListGuesser",

@@ -2,7 +2,7 @@ import { CoreAdminContext, RecordContextProvider } from "ra-core";
 
 import { SimpleForm, ThemeProvider } from "@/components/admin";
 import { RichTextInput } from "@/components/rich-text-input";
-import { i18nProvider } from "@/lib/i18nProvider";
+import { i18nProvider } from "@/lib/i18n-provider";
 
 const record = {
   id: 1,

@@ -5,7 +5,7 @@ import {
   ListContextProvider,
   useList,
 } from "ra-core";
-import { i18nProvider } from "@/lib/i18nProvider.ts";
+import { i18nProvider } from "@/lib/i18n-provider";
 import { SearchInput, ThemeProvider } from "@/components/admin";
 import { useWatch } from "react-hook-form";
 

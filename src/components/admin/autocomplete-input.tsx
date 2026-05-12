@@ -2,7 +2,7 @@ import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import debounce from "lodash/debounce";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { areIdsEqual } from "@/lib/areIdsEqual";
+import { areIdsEqual } from "@/lib/are-ids-equal";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
