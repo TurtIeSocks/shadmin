@@ -26,7 +26,7 @@ import {
   type ExtractRecordPaths,
 } from "ra-core";
 import { Columns, Search } from "lucide-react";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
+import { Popover as PopoverPrimitive } from "radix-ui";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

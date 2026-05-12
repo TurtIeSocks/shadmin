@@ -40,7 +40,7 @@ import {
   useSupportCreateSuggestion,
 } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
-import { PopoverProps } from "@radix-ui/react-popover";
+import { Popover as PopoverPrimitive } from "radix-ui";
 import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
@@ -91,7 +91,7 @@ export const AutocompleteInput = (
       inputText?:
         | React.ReactNode
         | ((option: UnknownValue) => React.ReactNode);
-    } & Pick<PopoverProps, "modal">,
+    } & Pick<PopoverPrimitive.PopoverProps, "modal">,
 ) => {
   const {
     debounce: debounceDelay = 250,
