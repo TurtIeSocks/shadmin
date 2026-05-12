@@ -13,12 +13,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
-  ClipboardCopyIcon,
-  DotsHorizontalIcon,
-  DownloadIcon,
-  Link2Icon,
-  SizeIcon,
-} from "@radix-ui/react-icons"
+  ClipboardCopy as ClipboardCopyIcon,
+  Download as DownloadIcon,
+  Link2 as Link2Icon,
+  Maximize2 as SizeIcon,
+  MoreHorizontal as DotsHorizontalIcon,
+} from "lucide-react"
 
 interface ImageActionsProps {
   shouldMerge?: boolean

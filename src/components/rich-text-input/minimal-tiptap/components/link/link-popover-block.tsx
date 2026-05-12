@@ -2,10 +2,10 @@ import * as React from "react"
 import { Separator } from "@/components/ui/separator"
 import { ToolbarButton } from "../toolbar-button"
 import {
-  CopyIcon,
-  ExternalLinkIcon,
-  LinkBreak2Icon,
-} from "@radix-ui/react-icons"
+  Copy as CopyIcon,
+  ExternalLink as ExternalLinkIcon,
+  Unlink2 as LinkBreak2Icon,
+} from "lucide-react"
 
 interface LinkPopoverBlockProps {
   url: string
