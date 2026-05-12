@@ -1,9 +1,15 @@
 import type { ReactNode } from "react";
 import { useHasDashboard, useResourceDefinitions } from "ra-core";
-import { SidebarMenu } from "@/components/ui/sidebar";
+import {
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+} from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { DashboardMenuItem } from "@/components/admin/dashboard-menu-item";
 import { MenuItemLink } from "@/components/admin/menu-item-link";
+import type { ResourceDefinitionWithGroup } from "@/components/admin/resource";
+import { ResourceMenuItemGroup } from "@/components/admin/resource-menu-item-group";
 import { ResourceMenuItem } from "@/components/admin/resource-menu-item";
 
 export type MenuProps = {
@@ -19,9 +25,46 @@ export type MenuProps = {
   className?: string;
 };
 
+interface ResourceMenuGroup {
+  label: string;
+  resources: string[];
+}
+
+const getResourceMenuGroups = (
+  resources: Record<string, ResourceDefinitionWithGroup>,
+) => {
+  const groupedResources: ResourceMenuGroup[] = [];
+  const groupIndexes = new Map<string, number>();
+  const ungroupedResources: string[] = [];
+
+  for (const [name, resource] of Object.entries(resources)) {
+    if (!resource.hasList) continue;
+
+    const group = resource.group?.trim();
+
+    if (!group) {
+      ungroupedResources.push(name);
+      continue;
+    }
+
+    const existingIndex = groupIndexes.get(group);
+
+    if (existingIndex === undefined) {
+      groupIndexes.set(group, groupedResources.length);
+      groupedResources.push({ label: group, resources: [name] });
+      continue;
+    }
+
+    groupedResources[existingIndex].resources.push(name);
+  }
+
+  return { groupedResources, ungroupedResources };
+};
+
 /**
  * Renders the sidebar menu: a dashboard link (if defined) followed by one
- * link per resource that exposes a list view.
+ * link per resource that exposes a list view. Resources can be grouped by
+ * passing the same `group` string to multiple `<Resource>` declarations.
  *
  * `<Menu>` is the building block of the default `<AppSidebar>`. Pass
  * children to replace the auto-generated entries with a custom list.
@@ -48,20 +91,47 @@ export type MenuProps = {
  */
 export const Menu = ({ children, className }: MenuProps) => {
   const hasDashboard = useHasDashboard();
-  const resources = useResourceDefinitions();
+  const resources = useResourceDefinitions() as Record<
+    string,
+    ResourceDefinitionWithGroup
+  >;
+  const { groupedResources, ungroupedResources } =
+    getResourceMenuGroups(resources);
+
+  if (children !== undefined && children !== null) {
+    return (
+      <SidebarGroup>
+        <SidebarGroupContent>
+          <SidebarMenu className={cn(className)}>{children}</SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+    );
+  }
+
   return (
-    <SidebarMenu className={cn(className)}>
-      {children ?? (
-        <>
-          {hasDashboard ? <DashboardMenuItem /> : null}
-          {Object.keys(resources)
-            .filter((name) => resources[name].hasList)
-            .map((name) => (
-              <ResourceMenuItem key={name} name={name} />
-            ))}
-        </>
-      )}
-    </SidebarMenu>
+    <>
+      {hasDashboard ? (
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu className={cn(className)}>
+              <DashboardMenuItem />
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      ) : null}
+      {groupedResources.map(({ label, resources }) => (
+        <ResourceMenuItemGroup
+          key={label}
+          label={label}
+          resources={resources}
+          menuClassName={className}
+        />
+      ))}
+      <ResourceMenuItemGroup
+        resources={ungroupedResources}
+        menuClassName={className}
+      />
+    </>
   );
 };
 
@@ -69,3 +139,4 @@ export const Menu = ({ children, className }: MenuProps) => {
 Menu.Item = MenuItemLink;
 Menu.DashboardItem = DashboardMenuItem;
 Menu.ResourceItem = ResourceMenuItem;
+Menu.ResourceGroup = ResourceMenuItemGroup;

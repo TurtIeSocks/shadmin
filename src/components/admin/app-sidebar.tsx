@@ -3,8 +3,6 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -45,11 +43,7 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <Menu />
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <Menu />
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

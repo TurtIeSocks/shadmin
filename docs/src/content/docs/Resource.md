@@ -1,12 +1,10 @@
 ---
-
 title: Resource
-
 ---
 
 `<Resource>` components define the CRUD routes of a shadcn-admin-kit application.
 
-A *resource* is a string that refers to an entity type (like ‘products’, ‘subscribers’, or ‘tags’). *Records* are objects with an `id` field, and two records of the same resource have the same field structure (e.g. all posts records have a title, a publication date, etc.).
+A _resource_ is a string that refers to an entity type (like ‘products’, ‘subscribers’, or ‘tags’). _Records_ are objects with an `id` field, and two records of the same resource have the same field structure (e.g. all posts records have a title, a publication date, etc.).
 
 A `<Resource>` component has 3 responsibilities:
 
@@ -21,28 +19,47 @@ A `<Resource>` component has 3 responsibilities:
 For instance, the following admin app offers an interface to the resources exposed by the JSONPlaceholder API (posts, users, comments, and tags):
 
 ```jsx
-import { Admin, ListGuesser, EditGuesser, ShowGuesser } from "@/components/admin";
-import { Resource } from 'ra-core';
-import jsonServerProvider from 'ra-data-json-server';
+import {
+  Admin,
+  Resource,
+  ListGuesser,
+  EditGuesser,
+  ShowGuesser,
+} from "@/components/admin";
+import jsonServerProvider from "ra-data-json-server";
 
-import { PostCreate, PostIcon } from './posts';
-import { CommentIcon } from './comments';
+import { PostCreate, PostIcon } from "./posts";
+import { CommentIcon } from "./comments";
 
 const App = () => (
-    <Admin dataProvider={jsonServerProvider('https://jsonplaceholder.typicode.com')}>
-        {/* complete CRUD pages for posts */}
-        <Resource name="posts" list={ListGuesser} edit={EditGuesser} show={ShowGuesser} create={PostCreate} icon={PostIcon} />
-        {/* read-only user list */}
-        <Resource name="users" list={ListGuesser} />
-        {/* no show page for the comments resource */}
-        <Resource name="comments" list={ListGuesser} edit={EditGuesser} icon={CommentIcon} />
-    </Admin>
+  <Admin
+    dataProvider={jsonServerProvider("https://jsonplaceholder.typicode.com")}
+  >
+    {/* complete CRUD pages for posts */}
+    <Resource
+      name="posts"
+      group="Content"
+      list={ListGuesser}
+      edit={EditGuesser}
+      show={ShowGuesser}
+      create={PostCreate}
+      icon={PostIcon}
+    />
+    {/* read-only user list */}
+    <Resource name="users" list={ListGuesser} />
+    {/* no show page for the comments resource */}
+    <Resource
+      name="comments"
+      group="Content"
+      list={ListGuesser}
+      edit={EditGuesser}
+      icon={CommentIcon}
+    />
+  </Admin>
 );
 ```
 
-:::note
-`<Resource>` is a headless component, and must be imported from `ra-core` rather than `@/components/admin`.
-:::
+The shadcn-admin-kit `<Resource>` wraps the headless `ra-core` resource component. It keeps the same routing behavior and adds the `group` prop used by the default sidebar menu.
 
 The routes call the following dataProvider methods:
 
@@ -64,6 +81,7 @@ Tip: Which API endpoint does a resource rely on? The `<Resource>` component does
 | `show`                  |          | `React.ComponentType`                           | -       | The component to render for the show view                                                 |
 | `record Representation` |          | `string` or `function` or `React.ComponentType` | -       | The representation of a record to use in the UI                                           |
 | `icon`                  |          | `React.ComponentType`                           | -       | The component to render in the menu                                                       |
+| `group`                 |          | `string`                                        | -       | The group label used by the default sidebar menu                                          |
 | `options`               |          | `object`                                        | -       | Additional options for the resource                                                       |
 | `children`              |          | `Route`                                         | -       | Sub-routes for the resource                                                               |
 
@@ -75,23 +93,37 @@ If you need to speed up the initial loading of your application, you may want to
 
 ```tsx
 // in src/App.js
-import * as React from 'react';
-import { Admin } from "@/components/admin";
-import { Resource } from "ra-core";
+import * as React from "react";
+import { Admin, Resource } from "@/components/admin";
 
-import { dataProvider } from './dataProvider';
+import { dataProvider } from "./dataProvider";
 
-const OrderList = React.lazy(() => import('./orders/OrderList'));
-const OrderEdit = React.lazy(() => import('./orders/OrderEdit'));
+const OrderList = React.lazy(() => import("./orders/OrderList"));
+const OrderEdit = React.lazy(() => import("./orders/OrderEdit"));
 
 const App = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="orders" list={OrderList} edit={OrderEdit} />
-        ...
-    </Admin>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="orders" list={OrderList} edit={OrderEdit} />
+    ...
+  </Admin>
 );
 ```
 
 When users navigate to the `/orders` route, Shadcn Admin Kit will display the [`<Loading>`](./Loading.md) component while the `OrderList` component is being loaded.
 
 ![Loading](./images/loading.png)
+
+## `group`
+
+Use `group` to organize resources in the default [`<Menu>`](./Menu.md):
+
+```tsx
+<Admin dataProvider={dataProvider}>
+  <Resource name="posts" group="Content" list={PostList} />
+  <Resource name="comments" group="Content" list={CommentList} />
+  <Resource name="orders" group="Store" list={OrderList} />
+  <Resource name="customers" list={CustomerList} />
+</Admin>
+```
+
+Resources with the same `group` render together under a sidebar label. Resources without `group` render last in an unlabeled section.

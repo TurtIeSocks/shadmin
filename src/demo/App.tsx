@@ -1,5 +1,4 @@
-import { Resource } from "ra-core";
-import { Admin, defaultTheme } from "@/components/admin";
+import { Admin, defaultTheme, Resource } from "@/components/admin";
 
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
@@ -23,11 +22,11 @@ function App() {
       theme={defaultTheme}
       layout={InspectorLayout}
     >
-      <Resource {...orders} />
-      <Resource {...products} />
-      <Resource {...categories} />
-      <Resource {...customers} />
-      <Resource {...reviews} />
+      <Resource {...orders} group="Sales" />
+      <Resource {...products} group="Catalog" />
+      <Resource {...categories} group="Catalog" />
+      <Resource {...customers} group="Sales" />
+      <Resource {...reviews} group="Content" />
       <Resource {...componentGallery} />
     </Admin>
   );

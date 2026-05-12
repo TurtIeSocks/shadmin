@@ -116,8 +116,7 @@ const AdminUI = (
  *
  * @example
  * // Basic usage with dataProvider and Resources
- * import { Admin } from "@/components/admin";
- * import { Resource } from 'ra-core';
+ * import { Admin, Resource } from "@/components/admin";
  * import simpleRestProvider from 'ra-data-simple-rest';
  *
  * const App = () => (
