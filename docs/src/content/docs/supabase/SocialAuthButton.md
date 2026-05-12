@@ -1,0 +1,34 @@
+---
+title: "SocialAuthButton"
+---
+
+Buttons that trigger Supabase OAuth flows. Available as a generic `<SocialAuthButton>` or one of 16 provider-named buttons that bind their icon + translated label.
+
+## Usage
+
+```tsx
+import {
+  GithubButton,
+  GoogleButton,
+  SocialAuthButton,
+} from "@/components/supabase";
+
+<div className="flex flex-col gap-2">
+  <GithubButton />
+  <GoogleButton />
+  <SocialAuthButton provider="discord">Sign in with Discord</SocialAuthButton>
+</div>
+```
+
+## Provider buttons
+
+`AppleButton`, `AzureButton`, `BitbucketButton`, `DiscordButton`, `FacebookButton`, `GithubButton`, `GitlabButton`, `GoogleButton`, `KeycloakButton`, `LinkedInButton`, `NotionButton`, `SlackButton`, `SpotifyButton`, `TwitchButton`, `TwitterButton`, `WorkosButton`.
+
+## Props
+
+| Prop | Type | Description |
+|---|---|---|
+| `provider` | `SupabaseAuthProvider` | OAuth provider name (omit on named buttons) |
+| `redirect` | `string` | Optional redirect URL passed to `login()` |
+
+All other `<Button>` props from shadcn/ui pass through.

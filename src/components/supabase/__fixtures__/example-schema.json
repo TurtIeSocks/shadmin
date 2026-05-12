@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": { "title": "test schema", "version": "0.0.0" },
+  "host": "localhost",
+  "basePath": "/",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/companies": {
+      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } },
+      "post": { "parameters": [], "responses": { "200": { "description": "OK" } } },
+      "patch": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+    },
+    "/contacts": {
+      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } },
+      "post": { "parameters": [], "responses": { "200": { "description": "OK" } } },
+      "patch": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+    },
+    "/readonly_view": {
+      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+    }
+  },
+  "definitions": {
+    "companies": {
+      "required": ["name"],
+      "properties": {
+        "id": { "format": "bigint", "type": "integer" },
+        "name": { "format": "text", "type": "string" },
+        "website": { "format": "text", "type": "string" },
+        "created_at": {
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "contacts": {
+      "required": ["email"],
+      "properties": {
+        "id": { "format": "bigint", "type": "integer" },
+        "first_name": { "format": "text", "type": "string" },
+        "email": { "format": "text", "type": "string" },
+        "company_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `companies.id`.<fk table='companies' column='id'/>"
+        },
+        "tag_ids": {
+          "type": "array",
+          "items": { "type": "integer" }
+        }
+      },
+      "type": "object"
+    },
+    "readonly_view": {
+      "properties": {
+        "id": { "format": "bigint", "type": "integer" },
+        "label": { "format": "text", "type": "string" }
+      },
+      "type": "object"
+    }
+  }
+}

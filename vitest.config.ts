@@ -13,6 +13,7 @@ export default defineConfig({
     include: [
       "src/components/admin/**/*.spec.{ts,tsx}",
       "src/components/rich-text-input/**/*.spec.{ts,tsx}",
+      "src/components/supabase/**/*.spec.{ts,tsx}",
       "src/{hooks,lib,stories}/**/*.spec.{ts,tsx}",
     ],
     browser: {

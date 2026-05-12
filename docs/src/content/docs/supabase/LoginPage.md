@@ -1,0 +1,42 @@
+---
+title: "SupabaseLoginPage"
+---
+
+`<SupabaseLoginPage>` is the sign-in page used by `<AdminGuesser>`. It renders an email/password form by default and can be extended with social-auth providers.
+
+## Usage
+
+```tsx
+import { Admin } from "@/components/admin";
+import { SupabaseLoginPage } from "@/components/supabase";
+
+const App = () => (
+  <Admin loginPage={SupabaseLoginPage} dataProvider={dataProvider}>
+    ...
+  </Admin>
+);
+```
+
+With social providers:
+
+```tsx
+const App = () => (
+  <Admin
+    loginPage={() => <SupabaseLoginPage providers={["github", "google"]} />}
+    dataProvider={dataProvider}
+  >
+    ...
+  </Admin>
+);
+```
+
+## Props
+
+| Prop | Type | Description |
+|---|---|---|
+| `children` | `ReactNode` | Replaces the form column entirely |
+| `disableEmailPassword` | `boolean` | Hide the email/password form |
+| `disableForgotPassword` | `boolean` | Hide the "Forgot password?" link |
+| `marketing` | `ReactNode` | Replace the left marketing panel |
+| `providers` | `SupabaseAuthProvider[]` | Social providers to expose as buttons |
+| `redirectTo` | `string` | Where to redirect after successful login |
