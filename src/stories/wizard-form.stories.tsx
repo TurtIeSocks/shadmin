@@ -64,3 +64,32 @@ export const Basic = ({ theme }: { theme: "system" | "light" | "dark" }) => {
   );
 };
 Object.assign(Basic, storyArgs);
+
+export const MultipleSteps = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <StoryWrapper theme={theme}>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create a product"
+        onSubmit={() => {}}
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="name" />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <TextInput source="price" />
+        </WizardForm.Step>
+        <WizardForm.Step label="Review">
+          <TextInput source="notes" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(MultipleSteps, storyArgs);

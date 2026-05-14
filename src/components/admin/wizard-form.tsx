@@ -1,8 +1,8 @@
 "use client";
 
-import { Children, isValidElement, useMemo } from "react";
+import { Children, cloneElement, isValidElement, useMemo, useState } from "react";
 import type { ReactElement, ReactNode } from "react";
-import { Form } from "ra-core";
+import { Form, FormGroupContextProvider } from "ra-core";
 import type { FormProps } from "ra-core";
 
 import {
@@ -35,6 +35,10 @@ export interface WizardStepProps {
   validateOnNext?: boolean;
   className?: string;
   children?: ReactNode;
+  // Injected by WizardForm at render time. Not part of the public API.
+  __stepIndex?: number;
+  __stepKey?: string;
+  __hidden?: boolean;
 }
 
 /**
@@ -68,6 +72,8 @@ export function WizardForm(props: WizardFormProps) {
     [children],
   );
 
+  const [currentStep] = useState(0);
+
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className={cn("sm:max-w-2xl", className)}>
@@ -78,7 +84,17 @@ export function WizardForm(props: WizardFormProps) {
           ) : null}
         </DialogHeader>
         <Form {...formProps}>
-          <div className="flex flex-col gap-4">{steps}</div>
+          <div className="flex flex-col gap-4">
+            {steps.map((step, index) => {
+              const stepKey = `wizard-step-${index}`;
+              return cloneElement(step, {
+                key: stepKey,
+                __stepIndex: index,
+                __stepKey: stepKey,
+                __hidden: index !== currentStep,
+              });
+            })}
+          </div>
         </Form>
       </DialogContent>
     </Dialog>
@@ -86,9 +102,24 @@ export function WizardForm(props: WizardFormProps) {
 }
 
 export function WizardFormStep(props: WizardStepProps) {
-  const { className, children } = props;
+  const { className, children, __stepKey, __hidden } = props;
+  if (!__stepKey) {
+    return (
+      <div className={cn("flex flex-col gap-4", className)}>{children}</div>
+    );
+  }
   return (
-    <div className={cn("flex flex-col gap-4", className)}>{children}</div>
+    <FormGroupContextProvider name={__stepKey}>
+      <div
+        role="group"
+        data-wizard-step={__stepKey}
+        aria-hidden={__hidden || undefined}
+        style={__hidden ? { display: "none" } : undefined}
+        className={cn("flex flex-col gap-4", className)}
+      >
+        {children}
+      </div>
+    </FormGroupContextProvider>
   );
 }
 
