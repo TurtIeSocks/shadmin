@@ -12,9 +12,12 @@ import {
 } from "react";
 import { useNavigate } from "react-router";
 import {
+  useGetList,
+  useGetRecordRepresentation,
   useGetResourceLabel,
   useResourceDefinitions,
   useTranslate,
+  type RaRecord,
 } from "ra-core";
 import {
   CommandDialog,
@@ -59,6 +62,7 @@ interface CommandMenuContextValue {
   open: () => void;
   close: () => void;
   toggle: () => void;
+  setQuery: (query: string) => void;
   registerCommand: (action: CommandAction) => void;
   unregisterCommand: (id: string) => void;
   registeredCommands: CommandAction[];
@@ -99,6 +103,95 @@ export const useCommandMenu = () => {
   return ctx;
 };
 
+const useDebouncedValue = <T,>(value: T, delay: number) => {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const t = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(t);
+  }, [value, delay]);
+  return debounced;
+};
+
+const CommandMenuResourceResults = ({
+  resource,
+  query,
+  searchField = "q",
+  perPage,
+  onSelect,
+}: {
+  resource: string;
+  query: string;
+  searchField?: string;
+  perPage: number;
+  onSelect: () => void;
+}) => {
+  const navigate = useNavigate();
+  const getRepresentation = useGetRecordRepresentation(resource);
+  const { data } = useGetList<RaRecord>(
+    resource,
+    {
+      filter: { [searchField]: query },
+      pagination: { page: 1, perPage },
+    },
+    { enabled: query.length > 0 },
+  );
+  if (!data || data.length === 0) return null;
+  return (
+    <>
+      {data.map((record) => (
+        <CommandItem
+          key={`${resource}:${record.id}`}
+          value={`record:${resource}:${record.id}:${String(getRepresentation(record))}`}
+          onSelect={() => {
+            navigate(`/${resource}/${record.id}/show`);
+            onSelect();
+          }}
+        >
+          {getRepresentation(record)}
+        </CommandItem>
+      ))}
+    </>
+  );
+};
+
+const CommandMenuRecords = ({
+  query,
+  resources,
+  searchFields,
+  perResourceLimit,
+  onSelect,
+}: {
+  query: string;
+  resources?: string[];
+  searchFields?: Record<string, string>;
+  perResourceLimit: number;
+  onSelect: () => void;
+}) => {
+  const definitions = useResourceDefinitions();
+  const translate = useTranslate();
+  if (!query) return null;
+  const allowed = Object.keys(definitions).filter(
+    (name) => !resources || resources.includes(name),
+  );
+  if (allowed.length === 0) return null;
+  return (
+    <CommandGroup
+      heading={translate("ra.command.group.records", { _: "Records" })}
+    >
+      {allowed.map((name) => (
+        <CommandMenuResourceResults
+          key={name}
+          resource={name}
+          query={query}
+          searchField={searchFields?.[name] ?? "q"}
+          perPage={perResourceLimit}
+          onSelect={onSelect}
+        />
+      ))}
+    </CommandGroup>
+  );
+};
+
 const CommandMenuResources = ({
   resources,
   onSelect,
@@ -136,11 +229,16 @@ const CommandMenuResources = ({
 
 export const CommandMenu = ({
   hotkey = DEFAULT_HOTKEYS,
+  searchDebounceMs = 200,
+  perResourceLimit = 5,
   placeholder,
   resources,
+  searchFields,
   children,
 }: CommandMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const debouncedQuery = useDebouncedValue(query, searchDebounceMs);
   const [registeredCommands, setRegisteredCommands] = useState<CommandAction[]>(
     [],
   );
@@ -165,11 +263,12 @@ export const CommandMenu = ({
       open,
       close,
       toggle,
+      setQuery,
       registerCommand,
       unregisterCommand,
       registeredCommands,
     }),
-    [isOpen, open, close, toggle, registerCommand, unregisterCommand, registeredCommands],
+    [isOpen, open, close, toggle, setQuery, registerCommand, unregisterCommand, registeredCommands],
   );
 
   const hotkeyRef = useRef(hotkey);
@@ -194,10 +293,19 @@ export const CommandMenu = ({
     <CommandMenuContext.Provider value={value}>
       <CommandDialog open={isOpen} onOpenChange={setIsOpen} title="Command menu">
         <CommandInput
+          value={query}
+          onValueChange={setQuery}
           placeholder={placeholder ?? "Search or run a command…"}
         />
         <CommandList>
           <CommandEmpty>No results.</CommandEmpty>
+          <CommandMenuRecords
+            query={debouncedQuery}
+            resources={resources}
+            searchFields={searchFields}
+            perResourceLimit={perResourceLimit}
+            onSelect={close}
+          />
           <CommandMenuResources resources={resources} onSelect={close} />
         </CommandList>
       </CommandDialog>

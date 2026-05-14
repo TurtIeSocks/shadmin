@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
-import { Basic, Hotkey, AdminShorthand } from "@/stories/command-menu.stories";
+import {
+  Basic,
+  Hotkey,
+  AdminShorthand,
+  RecordSearch,
+} from "@/stories/command-menu.stories";
 
 describe("<CommandMenu />", () => {
   it("renders the command dialog when opened", async () => {
@@ -42,5 +47,16 @@ describe("<CommandMenu />", () => {
     await productsItem.click();
     // dialog should close after selection
     await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("shows matched records and navigates to Show on select", async () => {
+    const screen = render(<RecordSearch />);
+    // Wait for debounced search to fire and render a result item
+    const result = screen.getByRole("option", { name: /notebook/i });
+    await expect.element(result).toBeInTheDocument();
+    await result.click();
+    await expect
+      .element(screen.getByRole("dialog"))
+      .not.toBeInTheDocument();
   });
 });

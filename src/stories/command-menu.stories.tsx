@@ -86,3 +86,42 @@ export const AdminShorthand = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+const AutoOpenWithQuery = ({ query }: { query: string }) => {
+  const { open, setQuery } = useCommandMenu();
+  useEffect(() => {
+    open();
+    setTimeout(() => {
+      setQuery(query);
+    }, 50);
+  }, [open, setQuery, query]);
+  return null;
+};
+
+export const RecordSearch = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      commandMenu={
+        <CommandMenu searchDebounceMs={50}>
+          <AutoOpenWithQuery query="Notebook" />
+        </CommandMenu>
+      }
+    >
+      <Resource
+        name="products"
+        list={ListGuesser}
+        show={ShowGuesser}
+        recordRepresentation="name"
+      />
+      <Resource
+        name="orders"
+        list={ListGuesser}
+        show={ShowGuesser}
+        recordRepresentation="reference"
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
