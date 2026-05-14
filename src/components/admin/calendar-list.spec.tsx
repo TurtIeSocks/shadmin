@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic } from "@/stories/calendar-list.stories";
+import { Basic, RangeLoading } from "@/stories/calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {
@@ -31,5 +31,14 @@ describe("<CalendarList />", () => {
     await expect
       .element(screen.getByText(/retro/i))
       .toBeInTheDocument();
+  });
+
+  it("filters records to the visible month range via _gte/_lte filters", async () => {
+    const screen = render(<RangeLoading />);
+    // In-range event renders
+    await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
+    // Far-past and far-future events are filtered out (ra-data-fakerest honors _gte/_lte)
+    expect(document.body.textContent).not.toMatch(/PastEvent/i);
+    expect(document.body.textContent).not.toMatch(/FutureEvent/i);
   });
 });

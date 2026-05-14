@@ -2,6 +2,7 @@
 
 import {
   type ReactNode,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -95,7 +96,7 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   eventRenderer,
   headerRenderer,
 }: CalendarListProps<R>) => {
-  const { data = [] } = useListContext<R>();
+  const { data = [], filterValues = {}, setFilters } = useListContext<R>();
   const resource = useResourceContext();
   const getRepresentation = useGetRecordRepresentation(resource ?? "");
   const translate = useTranslate();
@@ -110,6 +111,25 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
       end: endOfWeek(monthEnd, { weekStartsOn }),
     };
   }, [anchor, weekStartsOn]);
+
+  const startKey = `${startSource}_gte`;
+  const endKey = `${startSource}_lte`;
+  const rangeStartISO = range.start.toISOString();
+  const rangeEndISO = range.end.toISOString();
+
+  useEffect(() => {
+    if (!setFilters) return;
+    const current = filterValues as Record<string, unknown>;
+    if (current[startKey] === rangeStartISO && current[endKey] === rangeEndISO) {
+      return;
+    }
+    setFilters({
+      ...current,
+      [startKey]: rangeStartISO,
+      [endKey]: rangeEndISO,
+    }, undefined);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rangeStartISO, rangeEndISO, startKey, endKey, setFilters]);
 
   const events: CalendarEventInfo<R>[] = useMemo(() => {
     return data

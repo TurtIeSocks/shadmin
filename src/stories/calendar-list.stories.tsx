@@ -32,6 +32,42 @@ export default {
   parameters: { docs: { codePanel: true } },
 };
 
+const farPast = new Date(today);
+farPast.setFullYear(farPast.getFullYear() - 1);
+
+const farFuture = new Date(today);
+farFuture.setFullYear(farFuture.getFullYear() + 1);
+
+const rangeData = {
+  events: [
+    { id: 1, title: "Standup", start_at: iso(today) },
+    { id: 2, title: "PastEvent", start_at: iso(farPast) },
+    { id: 3, title: "FutureEvent", start_at: iso(farFuture) },
+  ],
+};
+
+const rangeDataProvider = fakeRestDataProvider(rangeData) as DataProvider;
+
+export const RangeLoading = () => (
+  <TestMemoryRouter initialEntries={["/events"]}>
+    <Admin
+      dataProvider={rangeDataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="events"
+        list={() => (
+          <List perPage={500}>
+            <CalendarList startSource="start_at" titleSource="title" />
+          </List>
+        )}
+        recordRepresentation="title"
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const Basic = () => (
   <TestMemoryRouter initialEntries={["/events"]}>
     <Admin
