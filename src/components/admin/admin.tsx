@@ -15,7 +15,7 @@ import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import type { AdminTheme } from "@/components/admin/theme-types";
 import { AuthCallback } from "@/components/admin/auth-callback";
-import { CommandMenu } from "@/components/admin/command-menu";
+import { CommandMenu, type CommandMenuProps } from "@/components/admin/command-menu";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
@@ -44,7 +44,7 @@ export interface AdminProps extends CoreAdminProps {
    * `<CommandMenu>` element to customize. The palette's context provider wraps
    * the admin tree, so any resource view can call `useRegisterCommand()`.
    */
-  commandMenu?: boolean | ReactElement;
+  commandMenu?: boolean | ReactElement<CommandMenuProps>;
 }
 
 const defaultStore = localStorageStore();
@@ -221,7 +221,12 @@ export const Admin = (props: AdminProps) => {
     commandMenu === true ? (
       <CommandMenu>{adminUI}</CommandMenu>
     ) : isValidElement(commandMenu) ? (
-      cloneElement(commandMenu, undefined, adminUI)
+      cloneElement(
+        commandMenu,
+        undefined,
+        (commandMenu as ReactElement<CommandMenuProps>).props.children,
+        adminUI,
+      )
     ) : (
       adminUI
     );

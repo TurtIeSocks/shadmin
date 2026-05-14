@@ -138,7 +138,7 @@ export const CommandMenu = ({
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- handler reads latest hotkey via ref
+  }, []); // handler reads latest hotkey via ref
 
   return (
     <CommandMenuContext.Provider value={value}>
