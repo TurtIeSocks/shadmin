@@ -98,6 +98,7 @@ export * from "./menu";
 export * from "./menu-item-link";
 export * from "./nano-theme";
 export * from "./not-found";
+export * from "./onboarding-tour";
 export * from "./notification";
 export * from "./nullable-boolean-input";
 export * from "./number-field";
