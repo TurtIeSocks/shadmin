@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, MapStep, PreviewStep, UploadStep } from "@/stories/csv-import.stories";
+import { Basic, CommitStep, MapStep, PreviewStep, UploadStep } from "@/stories/csv-import.stories";
 
 describe("<CsvImport />", () => {
   it("renders an Import button", async () => {
@@ -54,6 +54,17 @@ describe("<CsvImport />", () => {
     input.dispatchEvent(new Event("change", { bubbles: true }));
     await expect
       .element(screen.getByText(/2 rows parsed/i))
+      .toBeInTheDocument();
+  });
+
+  it("commits valid rows via dataProvider.create and shows complete", async () => {
+    const screen = render(<CommitStep />);
+    await screen.getByRole("button", { name: /import/i }).click();
+    await screen.getByRole("button", { name: /next/i }).click(); // upload → map
+    await screen.getByRole("button", { name: /next/i }).click(); // map → preview
+    await screen.getByRole("button", { name: /next/i }).click(); // preview → commit
+    await expect
+      .element(screen.getByText(/import complete/i))
       .toBeInTheDocument();
   });
 });

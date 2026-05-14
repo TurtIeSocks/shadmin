@@ -12,13 +12,14 @@ import {
   useState,
 } from "react";
 import { UploadIcon } from "lucide-react";
-import { useResourceContext, useTranslate } from "ra-core";
+import { useDataProvider, useResourceContext, useTranslate } from "ra-core";
 import { useDropzone } from "react-dropzone";
 import Papa from "papaparse";
 import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { WizardForm } from "@/components/admin/wizard-form";
 
 export interface ImportReport {
@@ -65,6 +66,12 @@ export const useCsvImport = () => {
   const ctx = useContext(CsvImportContext);
   if (!ctx) throw new Error("useCsvImport must be used inside <CsvImport>");
   return ctx;
+};
+
+const chunk = <T,>(arr: T[], size: number) => {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
 };
 
 const normalize = (s: string) => s.toLowerCase().replace(/[\s_-]+/g, "");
@@ -322,6 +329,127 @@ const CsvImportPreviewStep = () => {
   );
 };
 
+const CsvImportCommitStep = () => {
+  const ctx = useCsvImport();
+  const translate = useTranslate();
+  const dataProvider = useDataProvider();
+  const [progress, setProgress] = useState({ current: 0, total: 0 });
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const run = async () => {
+      const validations = validateRows(
+        ctx.parsedRows,
+        ctx.mapping,
+        ctx.schema,
+        ctx.transform,
+      );
+      const validRows = validations
+        .filter((v): v is Extract<RowValidation, { ok: true }> => v.ok)
+        .map((v) => v.row);
+      const errors: ImportReport["errors"] = [];
+      validations.forEach((v, idx) => {
+        if (!v.ok) {
+          errors.push({
+            rowIndex: idx,
+            row: v.row,
+            reason: (v as Extract<RowValidation, { ok: false }>).issues.join("; "),
+          });
+        }
+      });
+      const batches = chunk(validRows, ctx.batchSize);
+      let created = 0;
+      setProgress({ current: 0, total: validRows.length });
+      try {
+        for (const batch of batches) {
+          if (cancelled) break;
+          const dp = dataProvider as unknown as {
+            createMany?: (
+              resource: string,
+              params: { data: Array<Record<string, unknown>> },
+            ) => Promise<{ data: Array<Record<string, unknown>> }>;
+            create: (
+              resource: string,
+              params: { data: Record<string, unknown> },
+            ) => Promise<{ data: Record<string, unknown> }>;
+          };
+          if (typeof dp.createMany === "function") {
+            const result = await dp.createMany(ctx.resource, { data: batch });
+            created += result.data?.length ?? batch.length;
+          } else {
+            const settled = await Promise.allSettled(
+              batch.map((row) => dp.create(ctx.resource, { data: row })),
+            );
+            for (const s of settled) {
+              if (s.status === "fulfilled") created += 1;
+              else
+                errors.push({
+                  rowIndex: -1,
+                  row: {},
+                  reason: String(s.reason),
+                });
+            }
+          }
+          setProgress((p) => ({
+            current: Math.min(p.current + batch.length, p.total),
+            total: p.total,
+          }));
+        }
+        const report: ImportReport = {
+          total: ctx.parsedRows.length,
+          created,
+          failed: errors.length,
+          errors,
+        };
+        ctx.setReport(report);
+        ctx.onComplete?.(report);
+        setDone(true);
+      } catch (e) {
+        ctx.onError?.(e as Error);
+      }
+    };
+    run();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const percent =
+    progress.total > 0 ? (progress.current / progress.total) * 100 : 0;
+  return (
+    <div className="flex flex-col gap-3">
+      {!done ? (
+        <>
+          <div className="text-sm">
+            {translate("ra.csv_import.progress", {
+              _: `Importing ${progress.current} of ${progress.total}`,
+              current: progress.current,
+              total: progress.total,
+            })}
+          </div>
+          <Progress value={percent} />
+        </>
+      ) : (
+        <div className="flex flex-col gap-2">
+          <div className="font-medium">
+            {translate("ra.csv_import.complete", { _: "Import complete" })}
+          </div>
+          <div className="text-sm text-muted-foreground">
+            {translate("ra.csv_import.counters", {
+              _: `${ctx.report?.created ?? 0} valid · ${ctx.report?.failed ?? 0} errors · ${ctx.report?.total ?? 0} total`,
+              valid: ctx.report?.created ?? 0,
+              errors: ctx.report?.failed ?? 0,
+              total: ctx.report?.total ?? 0,
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export const CsvImport = ({
   schema,
   mapping: initialMapping = {},
@@ -396,6 +524,9 @@ export const CsvImport = ({
           </WizardForm.Step>
           <WizardForm.Step label={translate("ra.csv_import.step.preview", { _: "Preview" })}>
             <CsvImportPreviewStep />
+          </WizardForm.Step>
+          <WizardForm.Step label={translate("ra.csv_import.step.commit", { _: "Importing…" })}>
+            <CsvImportCommitStep />
           </WizardForm.Step>
         </WizardForm>
       ) : null}
