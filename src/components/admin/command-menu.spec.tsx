@@ -33,4 +33,14 @@ describe("<CommandMenu />", () => {
     await userEvent.keyboard("{Meta>}k{/Meta}");
     await expect.element(screen.getByRole("dialog")).toBeInTheDocument();
   });
+
+  it("lists resources and navigates to the list view on selection", async () => {
+    const screen = render(<AdminShorthand />);
+    await userEvent.keyboard("{Meta>}k{/Meta}");
+    const productsItem = screen.getByRole("option", { name: /products/i });
+    await expect.element(productsItem).toBeInTheDocument();
+    await productsItem.click();
+    // dialog should close after selection
+    await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
+  });
 });

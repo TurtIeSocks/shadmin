@@ -10,7 +10,20 @@ import {
   useRef,
   useState,
 } from "react";
-import { CommandDialog } from "@/components/ui/command";
+import { useNavigate } from "react-router";
+import {
+  useGetResourceLabel,
+  useResourceDefinitions,
+  useTranslate,
+} from "ra-core";
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 
 export interface CommandAction {
   id: string;
@@ -86,8 +99,45 @@ export const useCommandMenu = () => {
   return ctx;
 };
 
+const CommandMenuResources = ({
+  resources,
+  onSelect,
+}: {
+  resources?: string[];
+  onSelect: () => void;
+}) => {
+  const definitions = useResourceDefinitions();
+  const getLabel = useGetResourceLabel();
+  const navigate = useNavigate();
+  const translate = useTranslate();
+  const allowed = Object.keys(definitions).filter(
+    (name) => !resources || resources.includes(name),
+  );
+  if (allowed.length === 0) return null;
+  return (
+    <CommandGroup
+      heading={translate("ra.command.group.resources", { _: "Resources" })}
+    >
+      {allowed.map((name) => (
+        <CommandItem
+          key={name}
+          value={`resource:${name}`}
+          onSelect={() => {
+            navigate(`/${name}`);
+            onSelect();
+          }}
+        >
+          {getLabel(name, 2)}
+        </CommandItem>
+      ))}
+    </CommandGroup>
+  );
+};
+
 export const CommandMenu = ({
   hotkey = DEFAULT_HOTKEYS,
+  placeholder,
+  resources,
   children,
 }: CommandMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -143,7 +193,13 @@ export const CommandMenu = ({
   return (
     <CommandMenuContext.Provider value={value}>
       <CommandDialog open={isOpen} onOpenChange={setIsOpen} title="Command menu">
-        {/* Sub-components added in later tasks */}
+        <CommandInput
+          placeholder={placeholder ?? "Search or run a command…"}
+        />
+        <CommandList>
+          <CommandEmpty>No results.</CommandEmpty>
+          <CommandMenuResources resources={resources} onSelect={close} />
+        </CommandList>
       </CommandDialog>
       {children}
     </CommandMenuContext.Provider>
