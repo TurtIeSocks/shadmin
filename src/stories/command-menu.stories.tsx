@@ -12,7 +12,13 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin, ListGuesser, ShowGuesser } from "@/components/admin";
-import { CommandMenu, useCommandMenu, useRegisterCommand } from "@/components/admin/command-menu";
+import {
+  CommandMenu,
+  useCommandMenu,
+  useRegisterCommand,
+  RECENTS_KEY,
+  type RecentEntry,
+} from "@/components/admin/command-menu";
 
 const data = {
   products: [
@@ -213,15 +219,7 @@ export const PermissionDenied = () => (
 );
 
 const SeedRecents = () => {
-  const [, setRecents] = useStore<
-    Array<{
-      type: "record" | "resource";
-      resource: string;
-      id?: number | string;
-      label: string;
-      path: string;
-    }>
-  >("command-menu.recents", []);
+  const [, setRecents] = useStore<RecentEntry[]>(RECENTS_KEY, []);
   const { open } = useCommandMenu();
   useEffect(() => {
     setRecents([

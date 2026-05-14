@@ -133,7 +133,7 @@ const useDebouncedValue = <T,>(value: T, delay: number) => {
   return debounced;
 };
 
-interface RecentEntry {
+export interface RecentEntry {
   type: "record" | "resource";
   resource: string;
   id?: number | string;
@@ -141,7 +141,7 @@ interface RecentEntry {
   path: string;
 }
 
-const RECENTS_KEY = "command-menu.recents";
+export const RECENTS_KEY = "command-menu.recents";
 
 const useRecents = (limit: number) => {
   const [recents, setRecents] = useStore<RecentEntry[]>(RECENTS_KEY, []);
