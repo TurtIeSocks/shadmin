@@ -40,6 +40,8 @@ export * from "./date-time-input";
 export * from "./default-theme";
 export * from "./delete-button";
 export * from "./device-test-wrapper";
+export * from "./diff-viewer";
+
 export * from "./edit";
 export * from "./edit-button";
 export * from "./edit-guesser";
