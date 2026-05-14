@@ -171,3 +171,4 @@ export * from "./use-theme";
 export * from "./user-menu";
 export * from "./wizard-form";
 export * from "./wrapper-field";
+export * from "./command-menu";
