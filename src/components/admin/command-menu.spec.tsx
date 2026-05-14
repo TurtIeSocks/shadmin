@@ -111,4 +111,14 @@ describe("<CommandMenu />", () => {
       .element(screen.getByRole("option", { name: /notebook/i }))
       .toBeInTheDocument();
   });
+
+  it("renders keyboard hint footer", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByText(/navigate/i, { exact: false }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/select/i, { exact: false }))
+      .toBeInTheDocument();
+  });
 });

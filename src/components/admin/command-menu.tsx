@@ -32,6 +32,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
 export interface CommandAction {
   id: string;
@@ -434,6 +435,26 @@ const CommandMenuActions = ({
   );
 };
 
+const CommandMenuFooter = () => {
+  const translate = useTranslate();
+  return (
+    <div className="flex items-center justify-end gap-3 border-t px-3 py-2 text-xs text-muted-foreground">
+      <KbdGroup>
+        <Kbd>↑↓</Kbd>
+        <span>{translate("ra.command.footer.navigate", { _: "Navigate" })}</span>
+      </KbdGroup>
+      <KbdGroup>
+        <Kbd>↵</Kbd>
+        <span>{translate("ra.command.footer.select", { _: "Select" })}</span>
+      </KbdGroup>
+      <KbdGroup>
+        <Kbd>Esc</Kbd>
+        <span>{translate("ra.command.footer.close", { _: "Close" })}</span>
+      </KbdGroup>
+    </div>
+  );
+};
+
 export const CommandMenu = ({
   hotkey = DEFAULT_HOTKEYS,
   searchDebounceMs = 200,
@@ -548,6 +569,7 @@ export const CommandMenu = ({
             onSelect={close}
           />
         </CommandList>
+        <CommandMenuFooter />
       </CommandDialog>
       {children}
     </CommandMenuContext.Provider>
