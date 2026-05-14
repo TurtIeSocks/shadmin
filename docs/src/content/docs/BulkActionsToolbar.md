@@ -9,10 +9,18 @@ Floating bar showing actions for currently selected rows in a list or [`DataTabl
 Automatically rendered by `DataTable` when `hasBulkActions` and selection exists, unless you pass a custom `bulkActionsToolbar` prop.
 
 ```tsx
-<DataTable bulkActionButtons={<BulkDeleteButton />} />
+<DataTable bulkActionButtons={<BulkDeleteButton />} />;
 
-{/* Full override */}
-<DataTable bulkActionsToolbar={<BulkActionsToolbar><MyCustom /></BulkActionsToolbar>} />
+{
+  /* Full override */
+}
+<DataTable
+  bulkActionsToolbar={
+    <BulkActionsToolbar>
+      <MyCustom />
+    </BulkActionsToolbar>
+  }
+/>;
 ```
 
 ## Components

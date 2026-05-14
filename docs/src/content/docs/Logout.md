@@ -7,9 +7,9 @@ title: Logout
 ## Usage
 
 ```tsx
-import { Logout } from '@/components/admin';
+import { Logout } from "@/components/admin";
 
-<Logout />
+<Logout />;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,9 +18,9 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| className | Optional | `string` | - | Extra classes for the rendered action. |
+| Prop      | Required | Type     | Default | Description                            |
+| --------- | -------- | -------- | ------- | -------------------------------------- |
+| className | Optional | `string` | -       | Extra classes for the rendered action. |
 
 ## Behavior
 

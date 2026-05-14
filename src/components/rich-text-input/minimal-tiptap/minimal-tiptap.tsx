@@ -1,33 +1,33 @@
-import "./styles/index.css"
+import "./styles/index.css";
 
-import type { ReactNode } from "react"
-import type { Content, Editor } from "@tiptap/react"
-import type { UseMinimalTiptapEditorProps } from "./hooks/use-minimal-tiptap"
-import { EditorContent, EditorContext } from "@tiptap/react"
-import { Separator } from "@/components/ui/separator"
-import { cn } from "@/lib/utils"
-import { SectionOne } from "./components/section/one"
-import { SectionTwo } from "./components/section/two"
-import { SectionThree } from "./components/section/three"
-import { SectionFour } from "./components/section/four"
-import { SectionFive } from "./components/section/five"
-import { LinkBubbleMenu } from "./components/bubble-menu/link-bubble-menu"
-import { useMinimalTiptapEditor } from "./hooks/use-minimal-tiptap"
-import { MeasuredContainer } from "./components/measured-container"
-import { useTiptapEditor } from "./hooks/use-tiptap-editor"
+import type { ReactNode } from "react";
+import type { Content, Editor } from "@tiptap/react";
+import type { UseMinimalTiptapEditorProps } from "./hooks/use-minimal-tiptap";
+import { EditorContent, EditorContext } from "@tiptap/react";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import { SectionOne } from "./components/section/one";
+import { SectionTwo } from "./components/section/two";
+import { SectionThree } from "./components/section/three";
+import { SectionFour } from "./components/section/four";
+import { SectionFive } from "./components/section/five";
+import { LinkBubbleMenu } from "./components/bubble-menu/link-bubble-menu";
+import { useMinimalTiptapEditor } from "./hooks/use-minimal-tiptap";
+import { MeasuredContainer } from "./components/measured-container";
+import { useTiptapEditor } from "./hooks/use-tiptap-editor";
 
 export interface MinimalTiptapProps extends Omit<
   UseMinimalTiptapEditorProps,
   "onUpdate"
 > {
-  value?: Content
-  onChange?: (value: Content) => void
-  className?: string
-  editorContentClassName?: string
-  toolbar?: MinimalTiptapToolbar
+  value?: Content;
+  onChange?: (value: Content) => void;
+  className?: string;
+  editorContentClassName?: string;
+  toolbar?: MinimalTiptapToolbar;
 }
 
-export type MinimalTiptapToolbar = ReactNode
+export type MinimalTiptapToolbar = ReactNode;
 
 const Toolbar = ({ editor }: { editor: Editor }) => (
   <div className="border-border flex h-12 shrink-0 overflow-x-auto border-b p-2">
@@ -70,7 +70,7 @@ const Toolbar = ({ editor }: { editor: Editor }) => (
       />
     </div>
   </div>
-)
+);
 
 export const MinimalTiptapEditor = ({
   value,
@@ -84,10 +84,10 @@ export const MinimalTiptapEditor = ({
     value,
     onUpdate: onChange,
     ...props,
-  })
+  });
 
   if (!editor) {
-    return null
+    return null;
   }
 
   return (
@@ -99,12 +99,12 @@ export const MinimalTiptapEditor = ({
         toolbar={toolbar}
       />
     </EditorContext.Provider>
-  )
-}
+  );
+};
 
-MinimalTiptapEditor.displayName = "MinimalTiptapEditor"
+MinimalTiptapEditor.displayName = "MinimalTiptapEditor";
 
-export default MinimalTiptapEditor
+export default MinimalTiptapEditor;
 
 export const MainMinimalTiptapEditor = ({
   editor: providedEditor,
@@ -112,10 +112,10 @@ export const MainMinimalTiptapEditor = ({
   editorContentClassName,
   toolbar,
 }: MinimalTiptapProps & { editor: Editor }) => {
-  const { editor } = useTiptapEditor(providedEditor)
+  const { editor } = useTiptapEditor(providedEditor);
 
   if (!editor) {
-    return null
+    return null;
   }
 
   return (
@@ -125,7 +125,7 @@ export const MainMinimalTiptapEditor = ({
       className={cn(
         "border-input min-data-[orientation=vertical]:h-72 flex h-auto w-full flex-col rounded-md border shadow-xs",
         "focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]",
-        className
+        className,
       )}
     >
       <div className="border-border flex h-12 shrink-0 overflow-x-auto border-b p-2">
@@ -137,5 +137,5 @@ export const MainMinimalTiptapEditor = ({
       />
       <LinkBubbleMenu editor={editor} />
     </MeasuredContainer>
-  )
-}
+  );
+};

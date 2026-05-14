@@ -50,9 +50,9 @@ export const radiantTheme: AdminTheme = {
     "--ring": "oklch(0.553 0.245 296)",
 
     "--chart-1": "oklch(0.553 0.245 296)", // primary violet
-    "--chart-2": "oklch(0.72 0.135 175)",  // success teal #0FBF9F
-    "--chart-3": "oklch(0.79 0.115 215)",  // info cyan #3ED0EB
-    "--chart-4": "oklch(0.91 0.155 105)",  // warning lime #F2E963
+    "--chart-2": "oklch(0.72 0.135 175)", // success teal #0FBF9F
+    "--chart-3": "oklch(0.79 0.115 215)", // info cyan #3ED0EB
+    "--chart-4": "oklch(0.91 0.155 105)", // warning lime #F2E963
     "--chart-5": "oklch(0.625 0.198 0.5)", // error magenta #DB488B
 
     "--sidebar": "oklch(1 0 0)",

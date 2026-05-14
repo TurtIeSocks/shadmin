@@ -21,34 +21,34 @@ import "@mdxeditor/editor/style.css";
 ## Usage
 
 ```tsx
-import { Edit, SimpleForm } from '@/components/admin';
-import { MdxInput } from '@/components/mdx-editor';
+import { Edit, SimpleForm } from "@/components/admin";
+import { MdxInput } from "@/components/mdx-editor";
 import "@mdxeditor/editor/style.css";
 
 const PostEdit = () => (
-    <Edit>
-        <SimpleForm>
-            <MdxInput source="body" />
-        </SimpleForm>
-    </Edit>
+  <Edit>
+    <SimpleForm>
+      <MdxInput source="body" />
+    </SimpleForm>
+  </Edit>
 );
 ```
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name |
-| `className` | Optional | `string` | - | CSS classes applied to the field wrapper |
-| `defaultValue` | Optional | `string` | `""` | Default editor value |
-| `disabled` | Optional | `boolean` | - | Disable the editor (renders as read-only) |
-| `format` | Optional | `function` | - | Callback taking the value from the form state and returning the input value |
-| `helperText` | Optional | `ReactNode` | - | Help text displayed below the input |
-| `label` | Optional | `string \| false` | Inferred from `source` | Custom label, or `false` to hide it |
-| `mdxProps` | Optional | `Object` | - | Props passed to the underlying MDXEditor |
-| `parse` | Optional | `function` | - | Callback taking the editor value and returning the stored form value |
-| `readOnly` | Optional | `boolean` | - | Render the editor in read-only mode |
-| `validate` | Optional | `Validator \| Validator[]` | - | Validation rules |
+| Prop           | Required | Type                       | Default                | Description                                                                 |
+| -------------- | -------- | -------------------------- | ---------------------- | --------------------------------------------------------------------------- |
+| `source`       | Required | `string`                   | -                      | Field name                                                                  |
+| `className`    | Optional | `string`                   | -                      | CSS classes applied to the field wrapper                                    |
+| `defaultValue` | Optional | `string`                   | `""`                   | Default editor value                                                        |
+| `disabled`     | Optional | `boolean`                  | -                      | Disable the editor (renders as read-only)                                   |
+| `format`       | Optional | `function`                 | -                      | Callback taking the value from the form state and returning the input value |
+| `helperText`   | Optional | `ReactNode`                | -                      | Help text displayed below the input                                         |
+| `label`        | Optional | `string \| false`          | Inferred from `source` | Custom label, or `false` to hide it                                         |
+| `mdxProps`     | Optional | `Object`                   | -                      | Props passed to the underlying MDXEditor                                    |
+| `parse`        | Optional | `function`                 | -                      | Callback taking the editor value and returning the stored form value        |
+| `readOnly`     | Optional | `boolean`                  | -                      | Render the editor in read-only mode                                         |
+| `validate`     | Optional | `Validator \| Validator[]` | -                      | Validation rules                                                            |
 
 ## `mdxProps`
 
@@ -56,11 +56,11 @@ Pass any [MDXEditor prop](https://mdxeditor.dev/editor/api/interfaces/MDXEditorP
 
 ```tsx
 <MdxInput
-    source="body"
-    mdxProps={{
-        placeholder: "Write your article here...",
-        autoFocus: true,
-    }}
+  source="body"
+  mdxProps={{
+    placeholder: "Write your article here...",
+    autoFocus: true,
+  }}
 />
 ```
 
@@ -69,18 +69,18 @@ Pass any [MDXEditor prop](https://mdxeditor.dev/editor/api/interfaces/MDXEditorP
 `<MdxInput>` uses `defaultInputPlugins` (which includes a default toolbar plugin). To extend or replace the plugin list, pass `plugins` via `mdxProps`:
 
 ```tsx
-import { MdxInput, defaultInputPlugins } from '@/components/mdx-editor';
-import { headingsPlugin } from '@mdxeditor/editor';
+import { MdxInput, defaultInputPlugins } from "@/components/mdx-editor";
+import { headingsPlugin } from "@mdxeditor/editor";
 
 <MdxInput
-    source="body"
-    mdxProps={{
-        plugins: [
-            ...defaultInputPlugins,
-            headingsPlugin({ allowedHeadingLevels: [1, 2] }),
-        ],
-    }}
-/>
+  source="body"
+  mdxProps={{
+    plugins: [
+      ...defaultInputPlugins,
+      headingsPlugin({ allowedHeadingLevels: [1, 2] }),
+    ],
+  }}
+/>;
 ```
 
 The default toolbar exposes:
@@ -99,9 +99,9 @@ To use a different toolbar, provide your own `toolbarPlugin` in place of the def
 Pass `validate` like any other react-admin input:
 
 ```tsx
-import { required } from 'ra-core';
+import { required } from "ra-core";
 
-<MdxInput source="body" validate={required()} />
+<MdxInput source="body" validate={required()} />;
 ```
 
 ## Lazy Loading
@@ -109,11 +109,11 @@ import { required } from 'ra-core';
 `<MdxInput>` depends on MDXEditor and Lexical, which add noticeable JavaScript size. If you don't need it on every screen, lazy-load it:
 
 ```tsx
-import React from 'react';
+import React from "react";
 
 const MdxInput = React.lazy(() =>
-    import('@/components/mdx-editor').then((module) => ({
-        default: module.MdxInput,
-    })),
+  import("@/components/mdx-editor").then((module) => ({
+    default: module.MdxInput,
+  })),
 );
 ```

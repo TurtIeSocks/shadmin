@@ -11,11 +11,7 @@ Place it inside a `<Show>` or `<Edit>` view (where a `RecordContext` is provided
 ```tsx {4}
 import { Edit, PrevNextButtons } from "@/components/admin";
 
-const PostEdit = () => (
-  <Edit actions={<PrevNextButtons />}>
-    ...
-  </Edit>
-);
+const PostEdit = () => <Edit actions={<PrevNextButtons />}>...</Edit>;
 ```
 
 By default the buttons link to the same kind of view as the current one (edit if inside an `<Edit>`, show if inside a `<Show>`). Use the `linkType` prop to override.
@@ -24,17 +20,17 @@ The component uses `usePrevNextController` from `ra-core`, which re-fetches a pa
 
 ## Props
 
-| Prop                  | Required | Type                              | Default      | Description                                                |
-| --------------------- | -------- | --------------------------------- | ------------ | ---------------------------------------------------------- |
-| `className`           | Optional | `string`                          | -            | Additional classes on the wrapping `<nav>`                  |
-| `filter`              | Optional | `FilterPayload`                   | -            | Filters for the query that finds neighbouring records       |
-| `filterDefaultValues` | Optional | `FilterPayload`                   | -            | Default filters merged with stored ones                     |
-| `limit`               | Optional | `number`                          | 1000         | Max number of records fetched                               |
-| `linkType`            | Optional | `"edit" \| "show"`                | inferred     | Whether the links target the edit or show view              |
-| `queryOptions`        | Optional | `UseQueryOptions`                 | -            | Options forwarded to the underlying TanStack Query call     |
-| `resource`            | Optional | `string`                          | From context | Resource name                                               |
-| `sort`                | Optional | `SortPayload`                     | -            | Sort order                                                  |
-| `storeKey`            | Optional | `string \| false`                 | -            | Key used to find the saved list params (false disables)     |
+| Prop                  | Required | Type               | Default      | Description                                             |
+| --------------------- | -------- | ------------------ | ------------ | ------------------------------------------------------- |
+| `className`           | Optional | `string`           | -            | Additional classes on the wrapping `<nav>`              |
+| `filter`              | Optional | `FilterPayload`    | -            | Filters for the query that finds neighbouring records   |
+| `filterDefaultValues` | Optional | `FilterPayload`    | -            | Default filters merged with stored ones                 |
+| `limit`               | Optional | `number`           | 1000         | Max number of records fetched                           |
+| `linkType`            | Optional | `"edit" \| "show"` | inferred     | Whether the links target the edit or show view          |
+| `queryOptions`        | Optional | `UseQueryOptions`  | -            | Options forwarded to the underlying TanStack Query call |
+| `resource`            | Optional | `string`           | From context | Resource name                                           |
+| `sort`                | Optional | `SortPayload`      | -            | Sort order                                              |
+| `storeKey`            | Optional | `string \| false`  | -            | Key used to find the saved list params (false disables) |
 
 ## `linkType`
 

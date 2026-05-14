@@ -5,10 +5,7 @@ import type {
   SortPayload,
   UseReferenceResult,
 } from "ra-core";
-import {
-  ReferenceOneFieldBase,
-  useTranslate,
-} from "ra-core";
+import { ReferenceOneFieldBase, useTranslate } from "ra-core";
 import type { UseQueryOptions } from "@tanstack/react-query";
 
 import { ReferenceFieldView } from "./reference-field";

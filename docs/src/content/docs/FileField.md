@@ -30,13 +30,13 @@ If the record actually contains an array of files in its property defined by the
 ```js
 // This is the record
 {
-    files: [
-        { url: 'image1.jpg', desc: 'First image' },
-        { url: 'image2.jpg', desc: 'Second image' },
-    ]
+  files: [
+    { url: "image1.jpg", desc: "First image" },
+    { url: "image2.jpg", desc: "Second image" },
+  ];
 }
 
-<FileField source="files" src="url" title="desc" />
+<FileField source="files" src="url" title="desc" />;
 ```
 
 You can optionally set the `target` prop to choose which window will the link try to open in.
@@ -48,16 +48,16 @@ You can optionally set the `target` prop to choose which window will the link tr
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name (string or array) |
-| `defaultValue` | Optional | `any` | - | Fallback when no value |
-| `download` | Optional | `string` | - | Download attribute |
-| `empty` | Optional | `ReactNode` | - | Placeholder when empty |
-| `record` | Optional | `object` | Record from context | Explicit record |
-| `src` | Optional | `string` | - | Path within each file object to URL |
-| `target` | Optional | `string` | - | Anchor target |
-| `title` | Optional | `string` | - | Field used for link text (or literal) |
+| Prop           | Required | Type        | Default             | Description                           |
+| -------------- | -------- | ----------- | ------------------- | ------------------------------------- |
+| `source`       | Required | `string`    | -                   | Field name (string or array)          |
+| `defaultValue` | Optional | `any`       | -                   | Fallback when no value                |
+| `download`     | Optional | `string`    | -                   | Download attribute                    |
+| `empty`        | Optional | `ReactNode` | -                   | Placeholder when empty                |
+| `record`       | Optional | `object`    | Record from context | Explicit record                       |
+| `src`          | Optional | `string`    | -                   | Path within each file object to URL   |
+| `target`       | Optional | `string`    | -                   | Anchor target                         |
+| `title`        | Optional | `string`    | -                   | Field used for link text (or literal) |
 
 Remaining props are passed to the root `<div>` element (e.g., `className`).
 

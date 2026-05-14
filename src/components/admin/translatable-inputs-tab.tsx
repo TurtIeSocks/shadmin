@@ -30,8 +30,10 @@ export const TranslatableInputsTab = (props: TranslatableInputsTabProps) => {
   );
 };
 
-export interface TranslatableInputsTabProps
-  extends Omit<React.ComponentProps<typeof TabsTrigger>, "value"> {
+export interface TranslatableInputsTabProps extends Omit<
+  React.ComponentProps<typeof TabsTrigger>,
+  "value"
+> {
   groupKey?: string;
   locale: string;
 }

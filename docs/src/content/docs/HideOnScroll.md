@@ -11,9 +11,7 @@ import { HideOnScroll } from "@/components/admin/hide-on-scroll";
 
 const AppBar = () => (
   <HideOnScroll>
-    <header className="sticky top-0 bg-background border-b">
-      ...
-    </header>
+    <header className="sticky top-0 bg-background border-b">...</header>
   </HideOnScroll>
 );
 ```
@@ -30,8 +28,8 @@ The wrapper applies a Tailwind `transition-transform` to animate the show/hide m
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | Element to hide on scroll. |
-| `className` | Optional | `string` | - | Extra CSS class applied to the wrapping `div`. |
-| `threshold` | Optional | `number` | `100` | Distance in pixels from the top before hiding kicks in. |
+| Prop        | Required | Type        | Default | Description                                             |
+| ----------- | -------- | ----------- | ------- | ------------------------------------------------------- |
+| `children`  | Required | `ReactNode` | -       | Element to hide on scroll.                              |
+| `className` | Optional | `string`    | -       | Extra CSS class applied to the wrapping `div`.          |
+| `threshold` | Optional | `number`    | `100`   | Distance in pixels from the top before hiding kicks in. |

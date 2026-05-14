@@ -26,6 +26,6 @@ It is a thin wrapper around the shadcn/ui `<SidebarTrigger>` and therefore requi
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
+| Prop        | Required | Type     | Default                  | Description                                    |
+| ----------- | -------- | -------- | ------------------------ | ---------------------------------------------- |
 | `className` | Optional | `string` | `scale-125 sm:scale-100` | Extra Tailwind classes appended to the trigger |

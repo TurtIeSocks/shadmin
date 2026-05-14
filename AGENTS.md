@@ -27,7 +27,7 @@ The library re-implements react-admin's UI layer using shadcn/ui components whil
 
 ### Key Directories
 
-- `src/components/admin/`: All admin components (~94 files): views (List, Create, Edit, Show), fields (*-field.tsx), inputs (*-input.tsx), actions (buttons), layout, auth, guessers
+- `src/components/admin/`: All admin components (~94 files): views (List, Create, Edit, Show), fields (_-field.tsx), inputs (_-input.tsx), actions (buttons), layout, auth, guessers
 - `src/components/ui/`: Base shadcn/ui primitives (button, dialog, table, sidebar, etc.)
 - `src/components/rich-text-input/`: TipTap WYSIWYG editor integration
 - `src/demo/`: Demo app with fake REST data provider, organized by resource (products/, orders/, customers/, categories/, reviews/)
@@ -53,7 +53,7 @@ The library re-implements react-admin's UI layer using shadcn/ui components whil
 
 Every new feature must be documented. Documentation is written in Markdown files in the `docs/src/content/docs/` directory, which are then rendered in the Astro documentation site.
 
-Component doc pages use the same structure: Usage → Props → specific prop sections** (e.g., `## \`label\``).
+Component doc pages use the same structure: Usage → Props → specific prop sections\*\* (e.g., `## \`label\``).
 
 ## Tech Stack
 

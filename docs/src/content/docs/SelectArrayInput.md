@@ -9,13 +9,16 @@ Multi-select dropdown input for choosing several values from a static list. The 
 In addition to the `source`, `<SelectArrayInput>` requires one prop: the `choices` listing the possible values.
 
 ```tsx
-import { SelectArrayInput } from '@/components/admin';
+import { SelectArrayInput } from "@/components/admin";
 
-<SelectArrayInput source="tags" choices={[
-  { id: "tech", name: "Tech" },
-  { id: "lifestyle", name: "Lifestyle" },
-  { id: "people", name: "People" },
-]} />
+<SelectArrayInput
+  source="tags"
+  choices={[
+    { id: "tech", name: "Tech" },
+    { id: "lifestyle", name: "Lifestyle" },
+    { id: "people", name: "People" },
+  ]}
+/>;
 ```
 
 By default, the possible choices are built from the `choices` prop, using:
@@ -34,23 +37,23 @@ const record = {
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required* | `string` | - | Field name (inferred in ReferenceArrayInput) |
-| `choices` | Required* | `Object[]` | - | List of items. Required if not inside a ReferenceArrayInput. |
-| `className` | Optional | `string` | - | Wrapper classes |
-| `defaultValue` | Optional | `any[]` | `[]` | Default value |
-| `disabled` | Optional | `boolean` | - | Disable input |
-| `disableValue` | Optional | `string` | `disabled` | Field marking disabled choices |
-| `format` | Optional | `function` | - | Callback to convert the value from the form state into the input value |
-| `helperText` | Optional | `ReactNode` | - | Help text |
-| `label` | Optional | `string` &#124; `ReactNode` &#124; `false` | Inferred | Custom / hide label |
-| `optionText` | Optional | `string` &#124; `Function` &#124; `Component` | `name` | Field name of the record to display as the option text, or function/component that renders it |
-| `optionValue` | Optional | `string` | `id` | Field name of the record containing the value to use as the form value |
-| `parse` | Optional | `function` | - | Callback to convert the input value into the value stored in the form state |
-| `placeholder` | Optional | `string` | - | Text shown in the trigger button when no value is selected |
-| `translateChoice` | Optional | `boolean` | `true` | Whether the choices should be translated |
-| `validate` | Optional | `Validator` &#124; `Validator[]` | - | Validation |
+| Prop              | Required   | Type                                          | Default    | Description                                                                                   |
+| ----------------- | ---------- | --------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------- |
+| `source`          | Required\* | `string`                                      | -          | Field name (inferred in ReferenceArrayInput)                                                  |
+| `choices`         | Required\* | `Object[]`                                    | -          | List of items. Required if not inside a ReferenceArrayInput.                                  |
+| `className`       | Optional   | `string`                                      | -          | Wrapper classes                                                                               |
+| `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
+| `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
+| `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
+| `format`          | Optional   | `function`                                    | -          | Callback to convert the value from the form state into the input value                        |
+| `helperText`      | Optional   | `ReactNode`                                   | -          | Help text                                                                                     |
+| `label`           | Optional   | `string` &#124; `ReactNode` &#124; `false`    | Inferred   | Custom / hide label                                                                           |
+| `optionText`      | Optional   | `string` &#124; `Function` &#124; `Component` | `name`     | Field name of the record to display as the option text, or function/component that renders it |
+| `optionValue`     | Optional   | `string`                                      | `id`       | Field name of the record containing the value to use as the form value                        |
+| `parse`           | Optional   | `function`                                    | -          | Callback to convert the input value into the value stored in the form state                   |
+| `placeholder`     | Optional   | `string`                                      | -          | Text shown in the trigger button when no value is selected                                    |
+| `translateChoice` | Optional   | `boolean`                                     | `true`     | Whether the choices should be translated                                                      |
+| `validate`        | Optional   | `Validator` &#124; `Validator[]`              | -          | Validation                                                                                    |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
 
@@ -60,37 +63,37 @@ The list of choices must be an array of objects with at least two fields: one to
 
 ```jsx
 const choices = [
-    { id: 'tech', name: 'Tech' },
-    { id: 'lifestyle', name: 'Lifestyle' },
-    { id: 'people', name: 'People' },
+  { id: "tech", name: "Tech" },
+  { id: "lifestyle", name: "Lifestyle" },
+  { id: "people", name: "People" },
 ];
-<SelectArrayInput source="tags" choices={choices} />
+<SelectArrayInput source="tags" choices={choices} />;
 ```
 
 If the choices have different keys, use `optionText` and `optionValue`:
 
 ```jsx
 const choices = [
-    { _id: 'tech', label: 'Tech' },
-    { _id: 'lifestyle', label: 'Lifestyle' },
-    { _id: 'people', label: 'People' },
+  { _id: "tech", label: "Tech" },
+  { _id: "lifestyle", label: "Lifestyle" },
+  { _id: "people", label: "People" },
 ];
 
 <SelectArrayInput
-    source="tags"
-    choices={choices}
-    optionText="label"
-    optionValue="_id"
-/>
+  source="tags"
+  choices={choices}
+  optionText="label"
+  optionValue="_id"
+/>;
 ```
 
 The choices are translated by default, so you can use translation identifiers as choices:
 
 ```jsx
 const choices = [
-    { id: 'tech', name: 'myroot.tags.tech' },
-    { id: 'lifestyle', name: 'myroot.tags.lifestyle' },
-    { id: 'people', name: 'myroot.tags.people' },
+  { id: "tech", name: "myroot.tags.tech" },
+  { id: "lifestyle", name: "myroot.tags.lifestyle" },
+  { id: "people", name: "myroot.tags.people" },
 ];
 ```
 
@@ -100,7 +103,7 @@ To fetch the options from another resource, wrap `<SelectArrayInput>` in a [`<Re
 
 ```jsx
 <ReferenceArrayInput source="tag_ids" reference="tags">
-    <SelectArrayInput />
+  <SelectArrayInput />
 </ReferenceArrayInput>
 ```
 
@@ -122,11 +125,11 @@ You can disable some choices by setting a `disabled` field to `true` (or by pass
 
 ```jsx
 const choices = [
-    { id: 'tech', name: 'Tech' },
-    { id: 'lifestyle', name: 'Lifestyle' },
-    { id: 'people', name: 'People', disabled: true },
+  { id: "tech", name: "Tech" },
+  { id: "lifestyle", name: "Lifestyle" },
+  { id: "people", name: "People", disabled: true },
 ];
-<SelectArrayInput source="tags" choices={choices} />
+<SelectArrayInput source="tags" choices={choices} />;
 ```
 
 ## Alternatives

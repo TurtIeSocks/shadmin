@@ -108,7 +108,9 @@ describe("<TabbedForm />", () => {
 
   it("should associate tab panels with tab headers via aria attributes", async () => {
     const { container } = render(<Basic theme="system" />);
-    const firstTab = container.querySelector('[role="tab"][id^="tabheader-"]') as HTMLElement;
+    const firstTab = container.querySelector(
+      '[role="tab"][id^="tabheader-"]',
+    ) as HTMLElement;
     expect(firstTab).toBeTruthy();
     const value = firstTab.id.replace("tabheader-", "");
     // The corresponding panel must exist and point back to the tab header

@@ -49,9 +49,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *
  * **Tip**: <ReferenceField> sets `translateChoice` to false by default.
  */
-const SelectFieldImpl = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+const SelectFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
   props: SelectFieldProps<RecordType>,
 ) => {
   const {

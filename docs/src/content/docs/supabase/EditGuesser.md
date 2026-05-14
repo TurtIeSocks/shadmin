@@ -10,13 +10,13 @@ Schema-aware drop-in `<Edit>`. Renders inputs based on the Supabase OpenAPI sche
 import { Resource } from "ra-core";
 import { SupabaseEditGuesser } from "@/components/supabase";
 
-<Resource name="companies" edit={SupabaseEditGuesser} />
+<Resource name="companies" edit={SupabaseEditGuesser} />;
 ```
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop        | Type      | Description                                       |
+| ----------- | --------- | ------------------------------------------------- |
 | `enableLog` | `boolean` | Default: `process.env.NODE_ENV === "development"` |
 
 All `<Edit>` props are also accepted.

@@ -27,23 +27,23 @@ const PostShow = () => (
       <RecordField source="status" variant="inline" />
     </div>
   </Show>
-) 
+)
 ```
 
 `<RecordField>` reads the values from `RecordContext`.so you can also use it inside an `<Edit>` view.
 
 ## Props
 
-| Prop        | Required | Type                                | Default   | Description                                   |
-|-------------|----------|-------------------------------------|-----------|-----------------------------------------------|
-| `children`  | Optional | `ReactNode`                         | -         | Custom content (inside record context)        |
-| `className` | Optional | `string`                            | -         | Wrapper classes                               |
-| `empty`     | Optional | `ReactNode`                         | -         | Placeholder when value empty                  |
-| `field`     | Optional | `ComponentType`                     | -         | Field component type (e.g. `TextField`)       |
-| `label`     | Optional | `ReactNode`                         | derived   | Label (empty string or `false` hides)         |
-| `render`    | Optional | `(record) => ReactNode`             | -         | Render function alternative                   |
-| `source`    | Optional | `string`                            | -         | Record field path (if no children/render/field)|
-| `variant`   | Optional | `"default"\|"inline"`               | `default` | Layout direction                              |
+| Prop        | Required | Type                    | Default   | Description                                     |
+| ----------- | -------- | ----------------------- | --------- | ----------------------------------------------- |
+| `children`  | Optional | `ReactNode`             | -         | Custom content (inside record context)          |
+| `className` | Optional | `string`                | -         | Wrapper classes                                 |
+| `empty`     | Optional | `ReactNode`             | -         | Placeholder when value empty                    |
+| `field`     | Optional | `ComponentType`         | -         | Field component type (e.g. `TextField`)         |
+| `label`     | Optional | `ReactNode`             | derived   | Label (empty string or `false` hides)           |
+| `render`    | Optional | `(record) => ReactNode` | -         | Render function alternative                     |
+| `source`    | Optional | `string`                | -         | Record field path (if no children/render/field) |
+| `variant`   | Optional | `"default"\|"inline"`   | `default` | Layout direction                                |
 
 ## Value Rendering
 
@@ -76,8 +76,8 @@ const PostShow = () => (
 
 ```tsx
 <RecordField
-    label="dimensions"
-    render={record => `${record.width}x${record.height}`}
+  label="dimensions"
+  render={(record) => `${record.width}x${record.height}`}
 />
 ```
 

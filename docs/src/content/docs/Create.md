@@ -43,16 +43,16 @@ export const ProductCreate = () => (
 );
 
 // in src/App.js
-import { Admin } from '@/copmponents/admin';
-import { Resource } from 'ra-core';
+import { Admin } from "@/copmponents/admin";
+import { Resource } from "ra-core";
 
-import { dataProvider } from './dataProvider';
-import { PostCreate } from './posts';
+import { dataProvider } from "./dataProvider";
+import { PostCreate } from "./posts";
 
 const App = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="products" create={ProductCreate} />
-    </Admin>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="products" create={ProductCreate} />
+  </Admin>
 );
 
 export default App;
@@ -62,20 +62,20 @@ export default App;
 
 You can customize the `<Create>` component using the following props:
 
-| Prop                | Required | Type                | Default        | Description                                                                                      |
-|---------------------|----------|---------------------|----------------|--------------------------------------------------------------------------------------------------|
-| `children`          | Optional&nbsp;* | `ReactNode`         | -              | The components that render the form                                                              |
-| `render`            | Optional&nbsp;* | `function`          | -              | Alternative to children. Function that renders the form, receives the create context as argument |
-| `actions`           | Optional | `ReactNode`         | Default toolbar| Override the actions toolbar with a custom component                                             |
-| `className`         | Optional | `string`            | -              | Passed to the root component                                                                     |
-| `disableAuthentication` | Optional | `boolean`      | `false`         | Disable the authentication check                                                                 |
-| `disableBreadcrumb`  | Optional  | `boolean` | `false` | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
-| `mutationMode`      | Optional | `string`            | `pessimistic`  | Switch to optimistic or undoable mutations                                                       |
-| `mutationOptions`   | Optional | `object`            | -              | Options for the `dataProvider.create()` call                                                     |
-| `record`            | Optional | `object`            | `{}`           | Initialize the form with a record                                                                |
-| `redirect`          | Optional | `string`/`function` | `'edit'`       | Change the redirect location after successful creation                                           |
-| `resource`          | Optional | `string`            | From URL       | Override the name of the resource to create                                                      |
-| `title`             | Optional | `string`/`ReactNode`| Translation    | Override the page title                                                                          |
-| `transform`         | Optional | `function`          | -              | Transform the form data before calling `dataProvider.create()`                                   |
+| Prop                    | Required         | Type                 | Default         | Description                                                                                      |
+| ----------------------- | ---------------- | -------------------- | --------------- | ------------------------------------------------------------------------------------------------ |
+| `children`              | Optional&nbsp;\* | `ReactNode`          | -               | The components that render the form                                                              |
+| `render`                | Optional&nbsp;\* | `function`           | -               | Alternative to children. Function that renders the form, receives the create context as argument |
+| `actions`               | Optional         | `ReactNode`          | Default toolbar | Override the actions toolbar with a custom component                                             |
+| `className`             | Optional         | `string`             | -               | Passed to the root component                                                                     |
+| `disableAuthentication` | Optional         | `boolean`            | `false`         | Disable the authentication check                                                                 |
+| `disableBreadcrumb`     | Optional         | `boolean`            | `false`         | Set to `true` to define a custom breadcrumb for the page, instead of the default one             |
+| `mutationMode`          | Optional         | `string`             | `pessimistic`   | Switch to optimistic or undoable mutations                                                       |
+| `mutationOptions`       | Optional         | `object`             | -               | Options for the `dataProvider.create()` call                                                     |
+| `record`                | Optional         | `object`             | `{}`            | Initialize the form with a record                                                                |
+| `redirect`              | Optional         | `string`/`function`  | `'edit'`        | Change the redirect location after successful creation                                           |
+| `resource`              | Optional         | `string`             | From URL        | Override the name of the resource to create                                                      |
+| `title`                 | Optional         | `string`/`ReactNode` | Translation     | Override the page title                                                                          |
+| `transform`             | Optional         | `function`           | -               | Transform the form data before calling `dataProvider.create()`                                   |
 
 `*` You must provide either `children` or `render`.

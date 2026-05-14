@@ -9,9 +9,7 @@ import {
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
-const DateFieldImpl = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+const DateFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
   inProps: DateFieldProps<RecordType>,
 ) => {
   const {

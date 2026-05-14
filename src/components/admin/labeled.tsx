@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import type { ReactElement } from "react";
 import { FieldTitle } from "ra-core";
@@ -62,7 +62,10 @@ export const Labeled = ({
         <span className="text-muted-foreground text-xs font-medium">
           <FieldTitle
             label={label ?? childLabel}
-            source={source ?? (children as ReactElement<{ source?: string }>)?.props?.source}
+            source={
+              source ??
+              (children as ReactElement<{ source?: string }>)?.props?.source
+            }
             resource={resource}
             isRequired={isRequired}
           />

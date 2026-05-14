@@ -7,7 +7,13 @@ Toolbar that pairs an inline [`<FilterForm>`](./SearchInput.md) with a [`<ListAc
 ## Usage
 
 ```tsx
-import { DataTable, List, ListActions, ListToolbar, TextInput } from "@/components/admin";
+import {
+  DataTable,
+  List,
+  ListActions,
+  ListToolbar,
+  TextInput,
+} from "@/components/admin";
 
 const postFilters = [<TextInput key="q" source="q" label="Search" alwaysOn />];
 
@@ -27,11 +33,11 @@ export const PostList = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `filters` | Optional | `ReactElement \| ReactNode[]` | — | Filter inputs passed to the embedded `<FilterForm>` |
-| `actions` | Optional | `ReactNode \| false` | `<ListActions />` | Replace the right-hand actions slot — pass `false` to hide it |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the root element |
+| Prop        | Required | Type                          | Default           | Description                                                   |
+| ----------- | -------- | ----------------------------- | ----------------- | ------------------------------------------------------------- |
+| `filters`   | Optional | `ReactElement \| ReactNode[]` | —                 | Filter inputs passed to the embedded `<FilterForm>`           |
+| `actions`   | Optional | `ReactNode \| false`          | `<ListActions />` | Replace the right-hand actions slot — pass `false` to hide it |
+| `className` | Optional | `string`                      | —                 | Extra Tailwind classes appended to the root element           |
 
 ## `actions`
 

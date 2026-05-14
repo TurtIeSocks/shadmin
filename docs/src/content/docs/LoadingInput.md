@@ -9,14 +9,14 @@ An input placeholder with a loading indicator. Renders the same outer shape as a
 Use `<LoadingInput>` while you are fetching the data needed by a form input (for instance, the choices of a select), so the form keeps its layout stable:
 
 ```tsx
-import { LoadingInput, TextInput } from '@/components/admin';
+import { LoadingInput, TextInput } from "@/components/admin";
 
 const TitleInput = () => {
-    const { isPending } = useGetSomeData();
-    if (isPending) {
-        return <LoadingInput label="Title" />;
-    }
-    return <TextInput source="title" />;
+  const { isPending } = useGetSomeData();
+  if (isPending) {
+    return <LoadingInput label="Title" />;
+  }
+  return <TextInput source="title" />;
 };
 ```
 
@@ -24,13 +24,13 @@ The input is always disabled. A spinner appears inside the input once `timeout` 
 
 ## Props
 
-| Prop          | Required | Type        | Default | Description                                     |
-|---------------|----------|-------------|---------|-------------------------------------------------|
-| `className`   | Optional | `string`    | -       | CSS classes applied to the wrapper              |
-| `fullWidth`   | Optional | `boolean`   | `false` | Stretch the input to fill its container         |
-| `helperText`  | Optional | `ReactNode` | -       | Help text rendered below the input              |
-| `label`       | Optional | `ReactNode` | -       | Label rendered above the input                  |
-| `timeout`     | Optional | `number`    | `1000`  | Milliseconds to wait before showing the spinner |
+| Prop         | Required | Type        | Default | Description                                     |
+| ------------ | -------- | ----------- | ------- | ----------------------------------------------- |
+| `className`  | Optional | `string`    | -       | CSS classes applied to the wrapper              |
+| `fullWidth`  | Optional | `boolean`   | `false` | Stretch the input to fill its container         |
+| `helperText` | Optional | `ReactNode` | -       | Help text rendered below the input              |
+| `label`      | Optional | `ReactNode` | -       | Label rendered above the input                  |
+| `timeout`    | Optional | `number`    | `1000`  | Milliseconds to wait before showing the spinner |
 
 ## `timeout`
 

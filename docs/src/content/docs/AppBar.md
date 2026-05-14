@@ -42,10 +42,10 @@ const MinimalAppBar = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Optional | `ReactNode` | Default toolbar | Replace the entire AppBar content |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the `<header>` element |
+| Prop        | Required | Type        | Default         | Description                                               |
+| ----------- | -------- | ----------- | --------------- | --------------------------------------------------------- |
+| `children`  | Optional | `ReactNode` | Default toolbar | Replace the entire AppBar content                         |
+| `className` | Optional | `string`    | —               | Extra Tailwind classes appended to the `<header>` element |
 
 Additional props are forwarded to the underlying `<header>` element.
 

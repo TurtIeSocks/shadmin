@@ -39,7 +39,10 @@ ${children
   referenceArray: {
     component: (props: any) => (
       <RecordField source={props.source}>
-        <ReferenceArrayField source={props.source} reference={props.reference} />
+        <ReferenceArrayField
+          source={props.source}
+          reference={props.reference}
+        />
       </RecordField>
     ),
     representation: (props: any) =>

@@ -14,19 +14,19 @@ import { NumberField } from '@/components/admin';
 <NumberField source="views" locales="fr-FR" />
 ```
 
-`<NumberField>` works for values that are numbers (e.g. `2108`) or strings that convert to numbers (e.g. `'2108'`).  It uses `Intl.NumberFormat()` if available, passing the `locales` and `options` props as arguments. This allows a perfect display of decimals, currencies, percentages, etc.
+`<NumberField>` works for values that are numbers (e.g. `2108`) or strings that convert to numbers (e.g. `'2108'`). It uses `Intl.NumberFormat()` if available, passing the `locales` and `options` props as arguments. This allows a perfect display of decimals, currencies, percentages, etc.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field in the record |
-| `defaultValue` | Optional | `any` | - | Fallback value |
-| `empty` | Optional | `ReactNode` | - | Placeholder when value missing |
-| `locales` | Optional | `string \| string[]` | Browser locale | Locale(s) for `toLocaleString` |
-| `options` | Optional | `object` | - | Intl.NumberFormat options |
-| `record` | Optional | `object` | Record from context | Explicit record |
-| `transform` | Optional | `(value:any)=>number` | Coerce numeric strings | Custom transform before display |
+| Prop           | Required | Type                  | Default                | Description                     |
+| -------------- | -------- | --------------------- | ---------------------- | ------------------------------- |
+| `source`       | Required | `string`              | -                      | Field in the record             |
+| `defaultValue` | Optional | `any`                 | -                      | Fallback value                  |
+| `empty`        | Optional | `ReactNode`           | -                      | Placeholder when value missing  |
+| `locales`      | Optional | `string \| string[]`  | Browser locale         | Locale(s) for `toLocaleString`  |
+| `options`      | Optional | `object`              | -                      | Intl.NumberFormat options       |
+| `record`       | Optional | `object`              | Record from context    | Explicit record                 |
+| `transform`    | Optional | `(value:any)=>number` | Coerce numeric strings | Custom transform before display |
 
 Remaining props are passed to the underlying `<span>` (e.g., `className`).
 

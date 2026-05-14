@@ -11,7 +11,8 @@ import type { UnknownRecord } from "@/lib/unknown-types";
 import { defaultFieldPlugins } from "./default-plugins";
 
 export interface MdxFieldProps<RecordType extends UnknownRecord = UnknownRecord>
-  extends FieldProps<RecordType>,
+  extends
+    FieldProps<RecordType>,
     Omit<MDXEditorProps, "markdown" | "readOnly" | "ref"> {
   /**
    * @deprecated Use the `empty` prop instead.

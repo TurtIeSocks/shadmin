@@ -30,9 +30,9 @@ export const BookListAside = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `label` | Required | `string` | - | Section header label, translated through the i18n provider |
-| `icon` | Optional | `ReactNode` | - | Icon displayed before the label |
-| `children` | Required | `ReactNode` | - | Content rendered below the header |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the root element |
+| Prop        | Required | Type        | Default | Description                                                |
+| ----------- | -------- | ----------- | ------- | ---------------------------------------------------------- |
+| `label`     | Required | `string`    | -       | Section header label, translated through the i18n provider |
+| `icon`      | Optional | `ReactNode` | -       | Icon displayed before the label                            |
+| `children`  | Required | `ReactNode` | -       | Content rendered below the header                          |
+| `className` | Optional | `string`    | -       | Extra Tailwind classes appended to the root element        |

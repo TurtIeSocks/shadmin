@@ -49,9 +49,9 @@ export const nanoTheme: AdminTheme = {
 
     // Charts: cycle through the teal-leaning alert palette + primary.
     "--chart-1": "oklch(0.385 0.044 199)", // primary teal
-    "--chart-2": "oklch(0.65 0.085 187)",  // info #39AEA9
+    "--chart-2": "oklch(0.65 0.085 187)", // info #39AEA9
     "--chart-3": "oklch(0.471 0.085 167)", // success #00745F
-    "--chart-4": "oklch(0.85 0.165 95)",   // warning #F2CB05
+    "--chart-4": "oklch(0.85 0.165 95)", // warning #F2CB05
     "--chart-5": "oklch(0.585 0.115 358)", // error #B57185
 
     "--sidebar": "oklch(1 0 0)",

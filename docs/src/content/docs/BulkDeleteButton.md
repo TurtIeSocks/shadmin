@@ -9,7 +9,7 @@ Lets the user delete selected records in a list using `dataProvider.deleteMany()
 `<BulkDeleteButton>` is one fo the default bulk action buttons of `<DataTable>`, so you will need to use it only when you want to customize these bulk actions:
 
 ```tsx
-import { DataTable, BulkDeleteButton } from '@/components/admin';
+import { DataTable, BulkDeleteButton } from "@/components/admin";
 
 const BulkActions = () => (
   <>
@@ -20,7 +20,7 @@ const BulkActions = () => (
 
 <DataTable bulkActionsButtons={<BulkActions />}>
   {/* table content */}
-</DataTable>
+</DataTable>;
 ```
 
 On success, the button empties the selection, and notifies the user with the key `resources.<resource>.notifications.deleted` (fallback `ra.notification.deleted`).
@@ -31,11 +31,11 @@ On error, it notifies with an error message or `ra.notification.http_error`, the
 
 `<BulkDeleteButton>` ships with two named variants for callers who want a specific behavior without setting `mutationMode`:
 
-| Export                          | Behavior                                                         |
-| ------------------------------- | ---------------------------------------------------------------- |
-| `BulkDeleteButton`              | Dispatches based on `mutationMode` (default: `undoable`)         |
-| `BulkDeleteWithUndoButton`      | Fires immediately, shows undo notification                       |
-| `BulkDeleteWithConfirmButton`   | Opens a confirmation dialog, fires on confirm                    |
+| Export                        | Behavior                                                 |
+| ----------------------------- | -------------------------------------------------------- |
+| `BulkDeleteButton`            | Dispatches based on `mutationMode` (default: `undoable`) |
+| `BulkDeleteWithUndoButton`    | Fires immediately, shows undo notification               |
+| `BulkDeleteWithConfirmButton` | Opens a confirmation dialog, fires on confirm            |
 
 ```tsx
 import { BulkDeleteWithConfirmButton, BulkDeleteWithUndoButton } from '@/components/admin';
@@ -49,14 +49,14 @@ import { BulkDeleteWithConfirmButton, BulkDeleteWithUndoButton } from '@/compone
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | - | Extra CSS classes |
-| `icon` | Optional | `ReactNode` | Trash icon | Custom icon element |
-| `label` | Optional | `string` | `ra.action.delete` | i18n key override |
-| `mutationMode` | Optional | `MutationMode` | `undoable` | Mutation strategy (undoable/pessimistic/optimistic) |
-| `mutationOptions` | Optional | `UseDeleteManyOptions & { meta?: any }` | `{}` | Extra react-query mutation options & meta |
-| `resource` | Optional | `string` | inferred | Resource name (rarely needed) |
+| Prop              | Required | Type                                    | Default            | Description                                         |
+| ----------------- | -------- | --------------------------------------- | ------------------ | --------------------------------------------------- |
+| `className`       | Optional | `string`                                | -                  | Extra CSS classes                                   |
+| `icon`            | Optional | `ReactNode`                             | Trash icon         | Custom icon element                                 |
+| `label`           | Optional | `string`                                | `ra.action.delete` | i18n key override                                   |
+| `mutationMode`    | Optional | `MutationMode`                          | `undoable`         | Mutation strategy (undoable/pessimistic/optimistic) |
+| `mutationOptions` | Optional | `UseDeleteManyOptions & { meta?: any }` | `{}`               | Extra react-query mutation options & meta           |
+| `resource`        | Optional | `string`                                | inferred           | Resource name (rarely needed)                       |
 
 Additional props are passed to the underlying shadcn/ui `<Button>` component.
 
@@ -68,13 +68,13 @@ You can customize the label for a specific resource by adding a `resources.{reso
 
 ```js
 const messages = {
-    resources: {
-        posts: {
-            action: {
-                delete: 'Remove %{name}',
-            },
-        },
+  resources: {
+    posts: {
+      action: {
+        delete: "Remove %{name}",
+      },
     },
+  },
 };
 ```
 

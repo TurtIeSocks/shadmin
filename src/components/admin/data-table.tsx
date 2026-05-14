@@ -39,7 +39,12 @@ import {
   useTranslateLabel,
 } from "ra-core";
 import { useNavigate } from "react-router";
-import { ArrowDownAZ, ArrowUpZA, ChevronDown, ChevronRight } from "lucide-react";
+import {
+  ArrowDownAZ,
+  ArrowUpZA,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import get from "lodash/get";
 import { cn } from "@/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -397,9 +402,7 @@ export const DataTableRow = ({
   const canExpand =
     expandContext != null &&
     (!expandContext.isRowExpandable || expandContext.isRowExpandable(record));
-  const expandLabel = isExpanded
-    ? "Collapse row"
-    : "Expand row";
+  const expandLabel = isExpanded ? "Collapse row" : "Expand row";
 
   return (
     <TableRow

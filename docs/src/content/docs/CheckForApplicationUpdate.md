@@ -9,7 +9,12 @@ title: "CheckForApplicationUpdate"
 Mount it once near the root of your layout (or anywhere it stays mounted while the app is in use):
 
 ```tsx
-import { Admin, CheckForApplicationUpdate, Layout, Resource } from "@/components/admin";
+import {
+  Admin,
+  CheckForApplicationUpdate,
+  Layout,
+  Resource,
+} from "@/components/admin";
 
 const MyLayout = ({ children }) => (
   <Layout>
@@ -29,12 +34,12 @@ By default the component polls `${window.location.origin}/index.html` once per m
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `interval` | Optional | `number` | `60000` | Polling interval in milliseconds. |
-| `url` | Optional | `string` | `${origin}/index.html` | URL to poll. |
+| Prop           | Required | Type        | Default                              | Description                                 |
+| -------------- | -------- | ----------- | ------------------------------------ | ------------------------------------------- |
+| `interval`     | Optional | `number`    | `60000`                              | Polling interval in milliseconds.           |
+| `url`          | Optional | `string`    | `${origin}/index.html`               | URL to poll.                                |
 | `notification` | Optional | `ReactNode` | `<ApplicationUpdatedNotification />` | Element rendered when a change is detected. |
-| `disabled` | Optional | `boolean` | `false` | Skip polling entirely. |
+| `disabled`     | Optional | `boolean`   | `false`                              | Skip polling entirely.                      |
 
 ## `interval`
 
@@ -57,9 +62,7 @@ URL to fetch on each poll. Defaults to the application root's `index.html`. Prov
 The React node rendered when a new version is detected. Defaults to [`<ApplicationUpdatedNotification>`](./ApplicationUpdatedNotification.md).
 
 ```tsx
-<CheckForApplicationUpdate
-  notification={<MyCustomBanner />}
-/>
+<CheckForApplicationUpdate notification={<MyCustomBanner />} />
 ```
 
 ## `disabled`

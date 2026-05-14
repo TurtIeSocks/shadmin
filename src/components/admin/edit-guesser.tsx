@@ -67,7 +67,9 @@ export const EditGuesser = (props: EditGuesserProps) => {
   );
 };
 
-const EditViewGuesser = (props: Omit<EditGuesserProps, EditBaseControllerProps>) => {
+const EditViewGuesser = (
+  props: Omit<EditGuesserProps, EditBaseControllerProps>,
+) => {
   const resource = useResourceContext();
 
   if (!resource) {

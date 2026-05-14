@@ -15,8 +15,8 @@ The [default `<Layout>` component](./Layout.md) includes the `<UserMenu>` in the
 You can add more items to this menu by editing the Layout and passing additional menu items as `<UserMenu>` children.
 
 ```tsx {1-2,16-20} title="@/components/admin/layout.tsx"
-import { NavLink } from 'react-router';
-import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { NavLink } from "react-router";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 export const Layout = (props: { children: ReactNode }) => {
   /** ... **/
@@ -32,7 +32,7 @@ export const Layout = (props: { children: ReactNode }) => {
           <RefreshButton />
           <UserMenu>
             <DropdownMenuItem>
-                <NavLink to="/profile">Profile</NavLink>
+              <NavLink to="/profile">Profile</NavLink>
             </DropdownMenuItem>
           </UserMenu>
         </header>

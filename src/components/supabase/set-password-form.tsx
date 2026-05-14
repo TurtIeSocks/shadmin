@@ -1,14 +1,6 @@
-import {
-  Form,
-  required,
-  useNotify,
-  useTranslate,
-} from "ra-core";
+import { Form, required, useNotify, useTranslate } from "ra-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
-import {
-  useSetPassword,
-  useSupabaseAccessToken,
-} from "ra-supabase-core";
+import { useSetPassword, useSupabaseAccessToken } from "ra-supabase-core";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 
@@ -39,9 +31,7 @@ export const SetPasswordForm = () => {
 
   if (!access_token || !refresh_token) {
     if (process.env.NODE_ENV === "development") {
-      console.error(
-        "Missing access_token or refresh_token for set password",
-      );
+      console.error("Missing access_token or refresh_token for set password");
     }
     return (
       <div className="text-center text-sm text-muted-foreground">
@@ -93,27 +83,23 @@ export const SetPasswordForm = () => {
   };
 
   return (
-    <Form
-      className="space-y-6"
-      onSubmit={handleSubmit}
-      validate={validate}
-    >
-        <TextInput
-          label={translate("ra.auth.password", { _: "Password" })}
-          source="password"
-          type="password"
-          autoComplete="new-password"
-          validate={required()}
-        />
-        <TextInput
-          label={translate("ra.auth.confirm_password", {
-            _: "Confirm password",
-          })}
-          source="confirmPassword"
-          type="password"
-          autoComplete="new-password"
-          validate={required()}
-        />
+    <Form className="space-y-6" onSubmit={handleSubmit} validate={validate}>
+      <TextInput
+        label={translate("ra.auth.password", { _: "Password" })}
+        source="password"
+        type="password"
+        autoComplete="new-password"
+        validate={required()}
+      />
+      <TextInput
+        label={translate("ra.auth.confirm_password", {
+          _: "Confirm password",
+        })}
+        source="confirmPassword"
+        type="password"
+        autoComplete="new-password"
+        validate={required()}
+      />
       <Button type="submit" className="w-full cursor-pointer">
         {translate("ra.action.save", { _: "Save" })}
       </Button>

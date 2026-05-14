@@ -11,11 +11,7 @@ import { Settings } from "lucide-react";
 import { MenuItemLink } from "@/components/admin";
 
 const SettingsItem = () => (
-  <MenuItemLink
-    to="/settings"
-    primaryText="Settings"
-    leftIcon={<Settings />}
-  />
+  <MenuItemLink to="/settings" primaryText="Settings" leftIcon={<Settings />} />
 );
 ```
 
@@ -25,13 +21,13 @@ On mobile, the component automatically closes the sidebar drawer after navigatio
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `to` | Required | `string` | — | Target path passed to react-router |
-| `primaryText` | Required | `ReactNode` | — | Label rendered next to `leftIcon`. Strings are not auto-translated |
-| `leftIcon` | Optional | `ReactNode` | — | Icon rendered before the label |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the menu button |
-| `onClick` | Optional | `() => void` | — | Invoked after the default navigation |
+| Prop          | Required | Type         | Default | Description                                                        |
+| ------------- | -------- | ------------ | ------- | ------------------------------------------------------------------ |
+| `to`          | Required | `string`     | —       | Target path passed to react-router                                 |
+| `primaryText` | Required | `ReactNode`  | —       | Label rendered next to `leftIcon`. Strings are not auto-translated |
+| `leftIcon`    | Optional | `ReactNode`  | —       | Icon rendered before the label                                     |
+| `className`   | Optional | `string`     | —       | Extra Tailwind classes appended to the menu button                 |
+| `onClick`     | Optional | `() => void` | —       | Invoked after the default navigation                               |
 
 ## `primaryText`
 

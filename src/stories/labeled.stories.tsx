@@ -1,14 +1,24 @@
 import React from "react";
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
 import { i18nProvider } from "@/lib/i18n-provider";
-import { Labeled, TextField, NumberField, ThemeProvider } from "@/components/admin";
+import {
+  Labeled,
+  TextField,
+  NumberField,
+  ThemeProvider,
+} from "@/components/admin";
 
 export default {
   title: "Layout/Labeled",
   parameters: { docs: { codePanel: true } },
 };
 
-const record = { id: 1, title: "War and Peace", author: "Leo Tolstoy", year: 1869 };
+const record = {
+  id: 1,
+  title: "War and Peace",
+  author: "Leo Tolstoy",
+  year: 1869,
+};
 
 const Wrapper = ({ children }: React.PropsWithChildren) => (
   <ThemeProvider>

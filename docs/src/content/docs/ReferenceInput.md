@@ -16,23 +16,28 @@ For instance, a contact record has a `company_id` field, which is a foreign key 
 │ first_name   │   │   │ name       │
 │ last_name    │   │   │ address    │
 │ company_id   │───┘   └────────────┘
-└──────────────┘             
+└──────────────┘
 ```
 
 To make the `company_id` for a `contact` editable, use the following syntax:
 
 ```jsx
-import { Edit, SimpleForm, TextInput, ReferenceInput } from '@/components/admin';
+import {
+  Edit,
+  SimpleForm,
+  TextInput,
+  ReferenceInput,
+} from "@/components/admin";
 
 const ContactEdit = () => (
-    <Edit>
-        <SimpleForm>
-            <TextInput source="first_name" />
-            <TextInput source="last_name" />
-            <TextInput source="title" />
-            <ReferenceInput source="company_id" reference="companies" />
-        </SimpleForm>
-    </Edit>
+  <Edit>
+    <SimpleForm>
+      <TextInput source="first_name" />
+      <TextInput source="last_name" />
+      <TextInput source="title" />
+      <ReferenceInput source="company_id" reference="companies" />
+    </SimpleForm>
+  </Edit>
 );
 ```
 
@@ -52,21 +57,21 @@ const ContactEdit = () => (
 Then `<ReferenceInput>` will issue the following queries:
 
 ```js
-dataProvider.getMany('companies', { ids: [456] });
-dataProvider.getList('companies', { 
-    filter: {},
-    sort: { field: 'id', order: 'DESC' },
-    pagination: { page: 1, perPage: 25 }
+dataProvider.getMany("companies", { ids: [456] });
+dataProvider.getList("companies", {
+  filter: {},
+  sort: { field: "id", order: "DESC" },
+  pagination: { page: 1, perPage: 25 },
 });
 ```
 
 `<ReferenceInput>` renders an [`<AutocompleteInput>`](./AutocompleteInput.md) to let the user select the related record. Users can narrow down the choices by typing a search term in the input. This modifies the query sent to the `dataProvider` as follows:
 
 ```js
-dataProvider.getList('companies', { 
-    filter: { q: ['search term'] },
-    sort: { field: 'id', order: 'DESC' },
-    pagination: { page: 1, perPage: 25 }
+dataProvider.getList("companies", {
+  filter: { q: ["search term"] },
+  sort: { field: "id", order: "DESC" },
+  pagination: { page: 1, perPage: 25 },
 });
 ```
 
@@ -77,26 +82,26 @@ You can tweak how `<ReferenceInput>` fetches the possible values using the `page
 You can replace the default `<AutocompleteInput>` by another choice input. To do so, pass the choice input component as `<ReferenceInput>` child. For instance, to use a [`<SelectInput>`](./SelectInput.md):
 
 ```jsx
-import { ReferenceInput, SelectInput } from '@/components/admin';
+import { ReferenceInput, SelectInput } from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <SelectInput />
-</ReferenceInput>
+  <SelectInput />
+</ReferenceInput>;
 ```
 
 ## Props
 
-| Prop | Required | Type | Default |  Description |
-|------|----------|------|---------|--------------|
-| `source` | Required | `string` | Foreign key field |
-| `reference` | Required | `string` | Target resource |
-| `children` | Optional | `ReactElement` | Input consuming choices (default `<AutocompleteInput />`) |
-| `filter` | Optional | `Object` | `{}` | Permanent filters to use for getting the suggestion list |
-| `label` | Optional | `string` | - | Useful only when `ReferenceInput` is in a Filter array, the label is used as the Filter label. |
-| `page`  | Optional | `number` | 1 | The current page number |
-| `perPage` | Optional | `number` | 25  | Number of suggestions to show |
-| `queryOptions` | Optional | [`UseQueryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery)  | `{}` | `react-query` client options |
-| `sort`  | Optional | `{ field: String, order: 'ASC' or 'DESC' }` | `{ field:'id', order:'DESC' }` | How to order the list of suggestions |
+| Prop           | Required | Type                                                                             | Default                                                   | Description                                                                                    |
+| -------------- | -------- | -------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `source`       | Required | `string`                                                                         | Foreign key field                                         |
+| `reference`    | Required | `string`                                                                         | Target resource                                           |
+| `children`     | Optional | `ReactElement`                                                                   | Input consuming choices (default `<AutocompleteInput />`) |
+| `filter`       | Optional | `Object`                                                                         | `{}`                                                      | Permanent filters to use for getting the suggestion list                                       |
+| `label`        | Optional | `string`                                                                         | -                                                         | Useful only when `ReferenceInput` is in a Filter array, the label is used as the Filter label. |
+| `page`         | Optional | `number`                                                                         | 1                                                         | The current page number                                                                        |
+| `perPage`      | Optional | `number`                                                                         | 25                                                        | Number of suggestions to show                                                                  |
+| `queryOptions` | Optional | [`UseQueryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) | `{}`                                                      | `react-query` client options                                                                   |
+| `sort`         | Optional | `{ field: String, order: 'ASC' or 'DESC' }`                                      | `{ field:'id', order:'DESC' }`                            | How to order the list of suggestions                                                           |
 
 ## `children`
 
@@ -107,21 +112,21 @@ You can pass a child component to customize the way the reference selector is di
 For instance, to customize the input label, set the `label` prop on the child component:
 
 ```jsx
-import { ReferenceInput, AutocompleteInput } from '@/components/admin';
+import { ReferenceInput, AutocompleteInput } from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <AutocompleteInput label="Employer" />
-</ReferenceInput>
+  <AutocompleteInput label="Employer" />
+</ReferenceInput>;
 ```
 
 You can also use [`<SelectInput>`](./SelectInput.md) or [`<RadioButtonGroupInput>`](./RadioButtonGroupInput.md) instead of [`<AutocompleteInput>`](./AutocompleteInput.md).
 
 ```jsx
-import { ReferenceInput, SelectInput } from '@/components/admin';
+import { ReferenceInput, SelectInput } from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <SelectInput />
-</ReferenceInput>
+  <SelectInput />
+</ReferenceInput>;
 ```
 
 You can even use a component of your own as child, provided it detects a `ChoicesContext` is available and gets their choices from it.
@@ -130,52 +135,60 @@ You can even use a component of your own as child, provided it detects a `Choice
 
 By default, children of `<ReferenceInput>` transform `null` values from the `dataProvider` into empty strings.
 
-If you want to change this behavior, you have to pass a custom `format` prop to the `<ReferenceInput>` *child component*, because `<ReferenceInput>` doesn't have a `format` prop. It is the responsibility of the child component to format the input value.
+If you want to change this behavior, you have to pass a custom `format` prop to the `<ReferenceInput>` _child component_, because `<ReferenceInput>` doesn't have a `format` prop. It is the responsibility of the child component to format the input value.
 
 For instance, if you want to transform an option value before rendering, and the selection control is an `<AutocompleteInput>` (the default), set [the `<AutocompleteInput format>` prop](./AutocompleteInput.md) as follows:
 
 ```jsx
-import { ReferenceInput, AutocompleteInput } from '@/components/admin';
+import { ReferenceInput, AutocompleteInput } from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <AutocompleteInput format={value => value == null ? 'not defined' : value} />
-</ReferenceInput>
+  <AutocompleteInput
+    format={(value) => (value == null ? "not defined" : value)}
+  />
+</ReferenceInput>;
 ```
 
 The same goes if the child is a `<SelectInput>`:
 
 ```jsx
-import { ReferenceInput, SelectInput } from '@/components/admin';
+import { ReferenceInput, SelectInput } from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <SelectInput format={value => value === undefined ? 'not defined' : null} />
-</ReferenceInput>
+  <SelectInput
+    format={(value) => (value === undefined ? "not defined" : null)}
+  />
+</ReferenceInput>;
 ```
 
 ## `parse`
 
 By default, children of `<ReferenceInput>` transform the empty form value (an empty string) into `null` before passing it to the `dataProvider`.
 
-If you want to change this behavior, you have to pass a custom `parse` prop to the `<ReferenceInput>` *child component*, because  **`<ReferenceInput>` doesn't have a `parse` prop**. It is the responsibility of the child component to parse the input value.
+If you want to change this behavior, you have to pass a custom `parse` prop to the `<ReferenceInput>` _child component_, because **`<ReferenceInput>` doesn't have a `parse` prop**. It is the responsibility of the child component to parse the input value.
 
 For instance, if you want to transform an option value before submission, and the selection control is an `<AutocompleteInput>` (the default), set [the `<AutocompleteInput parse>` prop](./AutocompleteInput.md) as follows:
 
 ```jsx
-import { ReferenceInput, AutocompleteInput } from '@/components/admin';
+import { ReferenceInput, AutocompleteInput } from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <AutocompleteInput parse={value => value === 'not defined' ? null : value} />
-</ReferenceInput>
+  <AutocompleteInput
+    parse={(value) => (value === "not defined" ? null : value)}
+  />
+</ReferenceInput>;
 ```
 
 The same goes if the child is a `<SelectInput>`:
 
 ```jsx
-import { ReferenceInput, SelectInput } from '@/components/admin';
+import { ReferenceInput, SelectInput } from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <SelectInput parse={value => value === 'not defined' ? undefined : null} />
-</ReferenceInput>
+  <SelectInput
+    parse={(value) => (value === "not defined" ? undefined : null)}
+  />
+</ReferenceInput>;
 ```
 
 ## `reference`
@@ -198,22 +211,26 @@ You can override this default by specifying the `optionText` prop in the child c
 
 ```jsx
 <ReferenceInput source="company_id" reference="companies">
-    <AutocompleteInput optionText="reference" />
+  <AutocompleteInput optionText="reference" />
 </ReferenceInput>
 ```
 
 ## `validate`
 
-You can pass a validation function to `<ReferenceInput>` *child component*, because **`<ReferenceInput>` doesn't have a `validate` prop**. It is the responsibility of the child component to validate the input value.
+You can pass a validation function to `<ReferenceInput>` _child component_, because **`<ReferenceInput>` doesn't have a `validate` prop**. It is the responsibility of the child component to validate the input value.
 
 For instance, to make the reference required, and the selection control is an `<AutocompleteInput>` (the default), set [the `<AutocompleteInput validate>` prop](./AutocompleteInput.md) as follows:
 
 ```jsx
-import { ReferenceInput, AutocompleteInput, required } from '@/components/admin';
+import {
+  ReferenceInput,
+  AutocompleteInput,
+  required,
+} from "@/components/admin";
 
 <ReferenceInput source="company_id" reference="companies">
-    <AutocompleteInput validate={required()} />
-</ReferenceInput>
+  <AutocompleteInput validate={required()} />
+</ReferenceInput>;
 ```
 
 ## Customizing The Filter Query
@@ -223,11 +240,11 @@ By default, `<ReferenceInput>` renders an `<AutocompleteInput>`, which lets user
 If you want to customize the conversion between the search term and the query filter to match the filtering capabilities of your API, use the [`<AutocompleteInput filterToQuery>`](./AutocompleteInput.md) prop.
 
 ```jsx
-const filterToQuery = searchText => ({ name_ilike: `%${searchText}%` });
+const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 
 <ReferenceInput source="company_id" reference="companies">
-    <AutocompleteInput filterToQuery={filterToQuery} />
-</ReferenceInput>
+  <AutocompleteInput filterToQuery={filterToQuery} />
+</ReferenceInput>;
 ```
 
 ## Creating a New Reference
@@ -240,35 +257,35 @@ The following example is a contact edition form using a `<ReferenceInput>` to se
 
 ```tsx
 export const ContactEdit = () => {
-    const [create] = useCreate();
-    const notify = useNotify();
-    const handleCreateCompany = async (companyName?: string) => {
-        if (!companyName) return;
-        try {
-            const newCompany = await create(
-                'companies',
-                { data: { name: companyName } },
-                { returnPromise: true }
-            );
-            return newCompany;
-        } catch (error) {
-            notify('An error occurred while creating the company', {
-                type: 'error',
-            });
-            throw(error);
-        }
-    };
-    return (
-        <Edit>
-            <SimpleForm>
-                <TextInput source="first_name" />
-                <TextInput source="last_name" />
-                <ReferenceInput source="company_id" reference="companies">
-                    <AutocompleteInput onCreate={handleCreateCompany} />
-                </ReferenceInput>
-            </SimpleForm>
-        </Edit>
-    );
+  const [create] = useCreate();
+  const notify = useNotify();
+  const handleCreateCompany = async (companyName?: string) => {
+    if (!companyName) return;
+    try {
+      const newCompany = await create(
+        "companies",
+        { data: { name: companyName } },
+        { returnPromise: true },
+      );
+      return newCompany;
+    } catch (error) {
+      notify("An error occurred while creating the company", {
+        type: "error",
+      });
+      throw error;
+    }
+  };
+  return (
+    <Edit>
+      <SimpleForm>
+        <TextInput source="first_name" />
+        <TextInput source="last_name" />
+        <ReferenceInput source="company_id" reference="companies">
+          <AutocompleteInput onCreate={handleCreateCompany} />
+        </ReferenceInput>
+      </SimpleForm>
+    </Edit>
+  );
 };
 ```
 

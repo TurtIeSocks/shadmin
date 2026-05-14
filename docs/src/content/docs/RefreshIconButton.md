@@ -22,12 +22,12 @@ For a full text button, use [`<RefreshButton>`](./RefreshButton.md) instead.
 
 ## Props
 
-| Prop        | Required | Type                                            | Default             | Description                              |
-| ----------- | -------- | ----------------------------------------------- | ------------------- | ---------------------------------------- |
-| `className` | Optional | `string`                                        | -                   | Additional classes                       |
-| `icon`      | Optional | `ReactNode`                                     | RefreshCw icon      | Custom icon element                      |
-| `label`     | Optional | `string`                                        | `ra.action.refresh` | Tooltip and aria-label                   |
-| `onClick`   | Optional | `(e: MouseEvent<HTMLButtonElement>) => void`    | -                   | Additional click handler                 |
+| Prop        | Required | Type                                         | Default             | Description              |
+| ----------- | -------- | -------------------------------------------- | ------------------- | ------------------------ |
+| `className` | Optional | `string`                                     | -                   | Additional classes       |
+| `icon`      | Optional | `ReactNode`                                  | RefreshCw icon      | Custom icon element      |
+| `label`     | Optional | `string`                                     | `ra.action.refresh` | Tooltip and aria-label   |
+| `onClick`   | Optional | `(e: MouseEvent<HTMLButtonElement>) => void` | -                   | Additional click handler |
 
 ## `label`
 

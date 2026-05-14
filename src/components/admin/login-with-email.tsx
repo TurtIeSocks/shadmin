@@ -111,11 +111,7 @@ export const LoginWithEmail = (props: LoginWithEmailProps) => {
         validate={required()}
       />
       <Button type="submit" className="cursor-pointer" disabled={loading}>
-        {loading ? (
-          <Loader2 className="animate-spin" />
-        ) : (
-          <Mail />
-        )}
+        {loading ? <Loader2 className="animate-spin" /> : <Mail />}
         {submitLabel ?? translate("ra.auth.sign_in", { _: "Sign in" })}
       </Button>
     </Form>

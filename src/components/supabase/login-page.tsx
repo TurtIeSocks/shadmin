@@ -79,7 +79,10 @@ export const SupabaseLoginPage = (props: SupabaseLoginPageProps) => {
   const translate = useTranslate();
 
   return (
-    <AuthLayout title={translate("ra.auth.sign_in", { _: "Sign in" })} aside={aside}>
+    <AuthLayout
+      title={translate("ra.auth.sign_in", { _: "Sign in" })}
+      aside={aside}
+    >
       {children ?? (
         <>
           {!disableEmailPassword && (

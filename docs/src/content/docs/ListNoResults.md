@@ -12,9 +12,7 @@ Default placeholder rendered by [`<List>`](./List.md) when filters yield zero re
 import { List, ListNoResults } from "@/components/admin";
 
 export const PostList = () => (
-  <List empty={<ListNoResults />}>
-    {/* ... */}
-  </List>
+  <List empty={<ListNoResults />}>{/* ... */}</List>
 );
 ```
 
@@ -22,12 +20,12 @@ When no filters are active, `<ListNoResults>` falls back to a simple translated 
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `resource` | Optional | `string` | From context | Override the resource name |
-| `filterValues` | Optional | `object` | From `ListContext` | Override the active filter values |
-| `setFilters` | Optional | `function` | From `ListContext` | Override the function used to reset filters |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the root element |
+| Prop           | Required | Type       | Default            | Description                                         |
+| -------------- | -------- | ---------- | ------------------ | --------------------------------------------------- |
+| `resource`     | Optional | `string`   | From context       | Override the resource name                          |
+| `filterValues` | Optional | `object`   | From `ListContext` | Override the active filter values                   |
+| `setFilters`   | Optional | `function` | From `ListContext` | Override the function used to reset filters         |
+| `className`    | Optional | `string`   | —                  | Extra Tailwind classes appended to the root element |
 
 ## Translation Messages
 

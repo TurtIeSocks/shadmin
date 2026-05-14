@@ -24,19 +24,18 @@ export interface LinkProps extends RouterLinkProps {
  *
  * <Link to="/posts/1/show">Show</Link>
  */
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
-  props,
-  ref,
-) {
-  const { className, ...rest } = props;
-  return (
-    <RouterLink
-      ref={ref}
-      className={cn(
-        "text-primary underline-offset-4 hover:underline",
-        className,
-      )}
-      {...rest}
-    />
-  );
-});
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  function Link(props, ref) {
+    const { className, ...rest } = props;
+    return (
+      <RouterLink
+        ref={ref}
+        className={cn(
+          "text-primary underline-offset-4 hover:underline",
+          className,
+        )}
+        {...rest}
+      />
+    );
+  },
+);

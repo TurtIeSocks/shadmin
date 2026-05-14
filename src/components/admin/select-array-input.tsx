@@ -9,11 +9,7 @@ import {
   useInput,
   useTranslate,
 } from "ra-core";
-import {
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { FormError, FormField, FormLabel } from "@/components/admin/form";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -182,7 +178,7 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
     field.onChange([]);
   };
 
-  const choicesArr = fetchError ? [] : allChoices ?? [];
+  const choicesArr = fetchError ? [] : (allChoices ?? []);
   const selectedChoices = choicesArr.filter((choice) =>
     value.includes(getChoiceValue(choice)),
   );

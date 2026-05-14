@@ -46,31 +46,31 @@ Inside a `<Create>` or `<Edit>` view, the `onSubmit` prop is optional — the wi
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| `isOpen` | Required | `boolean` | - | Controls dialog visibility. |
-| `onClose` | Required | `() => void` | - | Called when the dialog requests to close. Also called by the default Cancel button after the form is reset. |
-| `title` | Required | `ReactNode` | - | Dialog title. |
-| `description` | Optional | `ReactNode` | - | Dialog description rendered under the title. |
-| `children` | Required | `ReactNode` | - | One or more `<WizardForm.Step>` elements. |
-| `className` | Optional | `string` | - | Forwarded to `DialogContent`. |
-| `progress` | Optional | `"steps" \| "dots" \| "none"` | `"steps"` | Visual progress indicator style. |
-| `toolbar` | Optional | `ReactNode \| false` | `<WizardToolbar />` | Custom toolbar. `false` hides it. |
-| `defaultValues` | Optional | `object \| function` | - | Default values for the form (forwarded to `<Form>`). |
-| `onSubmit` | Optional | `function` | - | Submit handler. Required outside `<Create>`/`<Edit>`. |
-| `validate` | Optional | `function` | - | Form-level validation function. |
-| `record` | Optional | `object` | - | Initial record to populate the form. |
+| Prop            | Required | Type                          | Default             | Description                                                                                                 |
+| --------------- | -------- | ----------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `isOpen`        | Required | `boolean`                     | -                   | Controls dialog visibility.                                                                                 |
+| `onClose`       | Required | `() => void`                  | -                   | Called when the dialog requests to close. Also called by the default Cancel button after the form is reset. |
+| `title`         | Required | `ReactNode`                   | -                   | Dialog title.                                                                                               |
+| `description`   | Optional | `ReactNode`                   | -                   | Dialog description rendered under the title.                                                                |
+| `children`      | Required | `ReactNode`                   | -                   | One or more `<WizardForm.Step>` elements.                                                                   |
+| `className`     | Optional | `string`                      | -                   | Forwarded to `DialogContent`.                                                                               |
+| `progress`      | Optional | `"steps" \| "dots" \| "none"` | `"steps"`           | Visual progress indicator style.                                                                            |
+| `toolbar`       | Optional | `ReactNode \| false`          | `<WizardToolbar />` | Custom toolbar. `false` hides it.                                                                           |
+| `defaultValues` | Optional | `object \| function`          | -                   | Default values for the form (forwarded to `<Form>`).                                                        |
+| `onSubmit`      | Optional | `function`                    | -                   | Submit handler. Required outside `<Create>`/`<Edit>`.                                                       |
+| `validate`      | Optional | `function`                    | -                   | Form-level validation function.                                                                             |
+| `record`        | Optional | `object`                      | -                   | Initial record to populate the form.                                                                        |
 
 ## `<WizardForm.Step>` Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| `label` | Required | `string \| ReactElement` | - | Step label shown in the progress indicator. |
-| `description` | Optional | `string \| ReactElement` | - | Description rendered above the step's children. |
-| `optional` | Optional | `boolean` | `false` | Skip the validation gate when advancing past this step. |
-| `validateOnNext` | Optional | `boolean` | `true` | Validate the step's fields when Next is clicked. |
-| `className` | Optional | `string` | - | Class applied to the step's content container. |
-| `children` | Optional | `ReactNode` | - | Any admin inputs. |
+| Prop             | Required | Type                     | Default | Description                                             |
+| ---------------- | -------- | ------------------------ | ------- | ------------------------------------------------------- |
+| `label`          | Required | `string \| ReactElement` | -       | Step label shown in the progress indicator.             |
+| `description`    | Optional | `string \| ReactElement` | -       | Description rendered above the step's children.         |
+| `optional`       | Optional | `boolean`                | `false` | Skip the validation gate when advancing past this step. |
+| `validateOnNext` | Optional | `boolean`                | `true`  | Validate the step's fields when Next is clicked.        |
+| `className`      | Optional | `string`                 | -       | Class applied to the step's content container.          |
+| `children`       | Optional | `ReactNode`              | -       | Any admin inputs.                                       |
 
 ## `progress`
 

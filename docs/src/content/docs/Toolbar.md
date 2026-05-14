@@ -7,9 +7,11 @@ title: Toolbar
 ## Usage
 
 ```tsx
-import { Toolbar } from '@/components/admin';
+import { Toolbar } from "@/components/admin";
 
-<Toolbar><SaveButton /></Toolbar>
+<Toolbar>
+  <SaveButton />
+</Toolbar>;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,8 +20,8 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
+| Prop     | Required | Type        | Default          | Description      |
+| -------- | -------- | ----------- | ---------------- | ---------------- |
 | children | Optional | `ReactNode` | `<SaveButton />` | Toolbar actions. |
 
 ## Behavior

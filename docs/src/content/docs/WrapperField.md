@@ -7,21 +7,20 @@ A pass-through field that renders its children unchanged but participates in lay
 ## Usage
 
 ```tsx
-import { WrapperField, TextField } from '@/components/admin';
+import { WrapperField, TextField } from "@/components/admin";
 
 <WrapperField label="Author" source="last_name">
-  <TextField source="first_name" />{' '}
-  <TextField source="last_name" />
-</WrapperField>
+  <TextField source="first_name" /> <TextField source="last_name" />
+</WrapperField>;
 ```
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | The fields to wrap |
-| `source` | Optional | `string` | - | Source used for sortable headers |
-| `label` | Optional | `string` | - | Label exposed to the parent layout |
+| Prop       | Required | Type        | Default | Description                        |
+| ---------- | -------- | ----------- | ------- | ---------------------------------- |
+| `children` | Required | `ReactNode` | -       | The fields to wrap                 |
+| `source`   | Optional | `string`    | -       | Source used for sortable headers   |
+| `label`    | Optional | `string`    | -       | Label exposed to the parent layout |
 
 `WrapperField` itself renders nothing other than its children — all other props are read by the parent container.
 
@@ -31,8 +30,7 @@ Optional source used by parent components such as `<DataTable.Col>` to drive sor
 
 ```tsx
 <WrapperField source="last_name" label="Author">
-  <TextField source="first_name" />{' '}
-  <TextField source="last_name" />
+  <TextField source="first_name" /> <TextField source="last_name" />
 </WrapperField>
 ```
 

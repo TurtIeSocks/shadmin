@@ -16,8 +16,8 @@ For instance, let's consider a model where a `post` has many `tags`, materialize
 │ title        │   │   │ name   │
 │ body         │   │   └────────┘
 │ is_published │   │
-│ tag_ids      │╾──┘   
-└──────────────┘       
+│ tag_ids      │╾──┘
+└──────────────┘
 ```
 
 A typical `post` record therefore looks like this:
@@ -34,21 +34,21 @@ A typical `post` record therefore looks like this:
 In that case, use `<ReferenceArrayField>` to display the post tag names as follows:
 
 ```jsx {9}
-import { List, DataTable, ReferenceArrayField } from '@/components/admin';
+import { List, DataTable, ReferenceArrayField } from "@/components/admin";
 
 export const PostList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="title" />
-            <DataTable.Col source="tag_ids" label="Tags">
-                <ReferenceArrayField reference="tags" source="tag_ids" />
-            </DataTable.Col>
-            <DataTable.Col>
-                <EditButton />
-            </DataTable.Col>
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="tag_ids" label="Tags">
+        <ReferenceArrayField reference="tags" source="tag_ids" />
+      </DataTable.Col>
+      <DataTable.Col>
+        <EditButton />
+      </DataTable.Col>
+    </DataTable>
+  </List>
 );
 ```
 
@@ -64,23 +64,23 @@ Configure the `<Resource recordRepresentation>` to render related records in a m
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field with array of ids |
-| `reference` | Required | `string` | - | Target resource name |
-| `children` | Optional | `ReactNode` | `<SingleFieldList />` | Display component(s) |
-| `className` | Optional | `string` | - | Wrapper classes |
-| `empty` | Optional | `ReactNode` | - | Placeholder when no data |
-| `error` | Optional | `ReactNode` | - | Error element (set `false` to hide) |
-| `filter` | Optional | `object` | - | Permanent filters |
-| `loading` | Optional | `ReactNode` | - | Loading element (set `false` to hide) |
-| `page` | Optional | `number` | 1 | Initial page |
-| `pagination` | Optional | `ReactNode` | - | Pagination component |
-| `perPage` | Optional | `number` | - | Page size (default 1000 in code if unspecified) |
-| `queryOptions` | Optional | `UseQueryOptions` | - | TanStack Query options |
-| `render` | Optional | `(props: ListControllerResult<ReferenceRecordType>) => ReactElement` | - | A function rendering the record list, receive the list context as its argument |
-| `resource` | Optional | `string` | Parent resource | Override resource name |
-| `sort` | Optional | `{ field: string; order: 'ASC' \| 'DESC' }` | - | Sort order |
+| Prop           | Required | Type                                                                 | Default               | Description                                                                    |
+| -------------- | -------- | -------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------ |
+| `source`       | Required | `string`                                                             | -                     | Field with array of ids                                                        |
+| `reference`    | Required | `string`                                                             | -                     | Target resource name                                                           |
+| `children`     | Optional | `ReactNode`                                                          | `<SingleFieldList />` | Display component(s)                                                           |
+| `className`    | Optional | `string`                                                             | -                     | Wrapper classes                                                                |
+| `empty`        | Optional | `ReactNode`                                                          | -                     | Placeholder when no data                                                       |
+| `error`        | Optional | `ReactNode`                                                          | -                     | Error element (set `false` to hide)                                            |
+| `filter`       | Optional | `object`                                                             | -                     | Permanent filters                                                              |
+| `loading`      | Optional | `ReactNode`                                                          | -                     | Loading element (set `false` to hide)                                          |
+| `page`         | Optional | `number`                                                             | 1                     | Initial page                                                                   |
+| `pagination`   | Optional | `ReactNode`                                                          | -                     | Pagination component                                                           |
+| `perPage`      | Optional | `number`                                                             | -                     | Page size (default 1000 in code if unspecified)                                |
+| `queryOptions` | Optional | `UseQueryOptions`                                                    | -                     | TanStack Query options                                                         |
+| `render`       | Optional | `(props: ListControllerResult<ReferenceRecordType>) => ReactElement` | -                     | A function rendering the record list, receive the list context as its argument |
+| `resource`     | Optional | `string`                                                             | Parent resource       | Override resource name                                                         |
+| `sort`         | Optional | `{ field: string; order: 'ASC' \| 'DESC' }`                          | -                     | Sort order                                                                     |
 
 ## Records Representation
 
@@ -91,50 +91,60 @@ You can change how the list of related records is rendered by passing a custom c
 For instance, use a `<DataTable>` to render the related records in a table:
 
 ```jsx {8-13}
-import { Show, TextField, ReferenceArrayField, DataTable } from '@/components/admin';
+import {
+  Show,
+  TextField,
+  ReferenceArrayField,
+  DataTable,
+} from "@/components/admin";
 
 export const PostShow = () => (
-    <Show>
-        <div className="flex flex-col gap-4">
-            <TextField source="id" />
-            <TextField source="title" />
-            <ReferenceArrayField label="Tags" reference="tags" source="tag_ids">
-                <DataTable>
-                    <DataTable.Col source="id" />
-                    <DataTable.Col source="name" />
-                </DataTable>
-            </ReferenceArrayField>
-            <EditButton />
-        </div>
-    </Show>
+  <Show>
+    <div className="flex flex-col gap-4">
+      <TextField source="id" />
+      <TextField source="title" />
+      <ReferenceArrayField label="Tags" reference="tags" source="tag_ids">
+        <DataTable>
+          <DataTable.Col source="id" />
+          <DataTable.Col source="name" />
+        </DataTable>
+      </ReferenceArrayField>
+      <EditButton />
+    </div>
+  </Show>
 );
 ```
 
 Alternatively, you can use the `render` prop to render the related records in a custom way:
 
 ```tsx {8-19}
-import { Show, SimpleShowLayout, TextField, ReferenceArrayField } from '@/components/admin';
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  ReferenceArrayField,
+} from "@/components/admin";
 
 export const PostShow = () => (
-    <Show>
-        <SimpleShowLayout>
-            <TextField source="id" />
-            <TextField source="title" />
-            <ReferenceArrayField
-                label="Tags"
-                reference="tags"
-                source="tag_ids"
-                render={({ data }) => (
-                    <ul>
-                        {data?.map(tag => (
-                            <li key={tag.id}>{tag.name}</li>
-                        ))}
-                    </ul>
-                )}
-            />
-            <EditButton />
-        </SimpleShowLayout>
-    </Show>
+  <Show>
+    <SimpleShowLayout>
+      <TextField source="id" />
+      <TextField source="title" />
+      <ReferenceArrayField
+        label="Tags"
+        reference="tags"
+        source="tag_ids"
+        render={({ data }) => (
+          <ul>
+            {data?.map((tag) => (
+              <li key={tag.id}>{tag.name}</li>
+            ))}
+          </ul>
+        )}
+      />
+      <EditButton />
+    </SimpleShowLayout>
+  </Show>
 );
 ```
 

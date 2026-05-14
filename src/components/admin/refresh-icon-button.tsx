@@ -45,7 +45,9 @@ export const RefreshIconButton = (props: RefreshIconButtonProps) => {
   } = props;
   const refresh = useRefresh();
   const translate = useTranslate();
-  const translatedLabel = label ? translate(label, { _: "Refresh" }) : "Refresh";
+  const translatedLabel = label
+    ? translate(label, { _: "Refresh" })
+    : "Refresh";
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {

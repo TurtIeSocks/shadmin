@@ -9,11 +9,9 @@ Renders a value and turns into an editable input on click. Saves the change via 
 `<InPlaceEditor>` is useful for quick edits on a detail page without leaving the view. Wrap it around a record context (for instance, inside a `<Show>` or `<Edit>` view, or any subtree where `useRecordContext()` returns a record).
 
 ```tsx
-import { InPlaceEditor } from '@/components/admin';
+import { InPlaceEditor } from "@/components/admin";
 
-const PostTitleEditor = () => (
-    <InPlaceEditor source="title" />
-);
+const PostTitleEditor = () => <InPlaceEditor source="title" />;
 ```
 
 By default, `<InPlaceEditor>`:
@@ -35,18 +33,18 @@ The editor uses a small state machine to track its state:
 
 ## Props
 
-| Prop              | Required | Type                                            | Default              | Description                                                              |
-|-------------------|----------|-------------------------------------------------|----------------------|--------------------------------------------------------------------------|
-| `cancelOnBlur`    | Optional | `boolean`                                       | `true`               | Cancel editing on blur instead of submitting                             |
-| `children`        | Optional | `ReactNode`                                     | `<TextField>`        | Reading-mode display                                                     |
-| `className`       | Optional | `string`                                        | -                    | Wrapper CSS classes                                                      |
-| `editor`          | Optional | `ReactNode`                                     | `<TextInput>`        | Editing-mode input                                                       |
-| `mutationMode`    | Optional | `'optimistic' \| 'pessimistic' \| 'undoable'`   | `'pessimistic'`      | Save strategy                                                            |
-| `mutationOptions` | Optional | `UseUpdateOptions`                              | `{}`                 | Options forwarded to `useUpdate()`                                       |
-| `notifyOnSuccess` | Optional | `boolean`                                       | `false`              | Show a notification after a successful save                              |
-| `resource`        | Optional | `string`                                        | from context         | Resource to update                                                       |
-| `showButtons`     | Optional | `boolean`                                       | `false`              | Show explicit save / cancel icon buttons next to the editor              |
-| `source`          | Optional | `string`                                        | -                    | Field to read and update. Required unless `children` and `editor` are passed |
+| Prop              | Required | Type                                          | Default         | Description                                                                  |
+| ----------------- | -------- | --------------------------------------------- | --------------- | ---------------------------------------------------------------------------- |
+| `cancelOnBlur`    | Optional | `boolean`                                     | `true`          | Cancel editing on blur instead of submitting                                 |
+| `children`        | Optional | `ReactNode`                                   | `<TextField>`   | Reading-mode display                                                         |
+| `className`       | Optional | `string`                                      | -               | Wrapper CSS classes                                                          |
+| `editor`          | Optional | `ReactNode`                                   | `<TextInput>`   | Editing-mode input                                                           |
+| `mutationMode`    | Optional | `'optimistic' \| 'pessimistic' \| 'undoable'` | `'pessimistic'` | Save strategy                                                                |
+| `mutationOptions` | Optional | `UseUpdateOptions`                            | `{}`            | Options forwarded to `useUpdate()`                                           |
+| `notifyOnSuccess` | Optional | `boolean`                                     | `false`         | Show a notification after a successful save                                  |
+| `resource`        | Optional | `string`                                      | from context    | Resource to update                                                           |
+| `showButtons`     | Optional | `boolean`                                     | `false`         | Show explicit save / cancel icon buttons next to the editor                  |
+| `source`          | Optional | `string`                                      | -               | Field to read and update. Required unless `children` and `editor` are passed |
 
 At least one of `source`, `children`, or `editor` is required.
 
@@ -64,10 +62,17 @@ Custom editor element used in editing mode. Useful to swap in a `<NumberInput>`,
 
 ```tsx
 <InPlaceEditor
-    source="description"
-    editor={
-        <TextInput source="description" multiline rows={3} label={false} helperText={false} autoFocus />
-    }
+  source="description"
+  editor={
+    <TextInput
+      source="description"
+      multiline
+      rows={3}
+      label={false}
+      helperText={false}
+      autoFocus
+    />
+  }
 />
 ```
 
@@ -77,7 +82,7 @@ Custom read display.
 
 ```tsx
 <InPlaceEditor source="title">
-    <TextField source="title" className="text-lg font-semibold" />
+  <TextField source="title" className="text-lg font-semibold" />
 </InPlaceEditor>
 ```
 

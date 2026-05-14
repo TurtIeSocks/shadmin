@@ -33,11 +33,7 @@ The `theme` prop is a convenience alias for `lightTheme`. The same theme is reus
 import { Admin, nanoTheme, bwTheme } from "@/components/admin";
 
 const App = () => (
-  <Admin
-    dataProvider={dataProvider}
-    lightTheme={nanoTheme}
-    darkTheme={bwTheme}
-  >
+  <Admin dataProvider={dataProvider} lightTheme={nanoTheme} darkTheme={bwTheme}>
     <Resource name="posts" list={PostList} />
   </Admin>
 );
@@ -60,7 +56,7 @@ import { Admin, defaultTheme } from "@/components/admin";
 
 <Admin dataProvider={dataProvider} theme={defaultTheme}>
   ...
-</Admin>
+</Admin>;
 ```
 
 ### `bwTheme`
@@ -76,7 +72,7 @@ import { Admin, bwTheme } from "@/components/admin";
 
 <Admin dataProvider={dataProvider} theme={bwTheme}>
   ...
-</Admin>
+</Admin>;
 ```
 
 ### `nanoTheme`
@@ -92,7 +88,7 @@ import { Admin, nanoTheme } from "@/components/admin";
 
 <Admin dataProvider={dataProvider} theme={nanoTheme}>
   ...
-</Admin>
+</Admin>;
 ```
 
 ### `radiantTheme`
@@ -108,7 +104,7 @@ import { Admin, radiantTheme } from "@/components/admin";
 
 <Admin dataProvider={dataProvider} theme={radiantTheme}>
   ...
-</Admin>
+</Admin>;
 ```
 
 ### `houseTheme`
@@ -124,7 +120,7 @@ import { Admin, houseTheme } from "@/components/admin";
 
 <Admin dataProvider={dataProvider} theme={houseTheme}>
   ...
-</Admin>
+</Admin>;
 ```
 
 ## Building a Custom Theme
@@ -159,4 +155,3 @@ export const oceanTheme: AdminTheme = {
 `ThemeProvider` will write each entry to `documentElement.style` via `setProperty(key, value)` when the matching mode is active, and clean those overrides up when the theme changes or the provider unmounts.
 
 For the full list of variables shadcn-admin-kit understands, see the `:root` and `.dark` blocks in `src/index.css`. The `defaultTheme` export contains every key — copy it as a starting point and adjust values to taste.
-

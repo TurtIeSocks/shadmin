@@ -7,9 +7,9 @@ title: "TimeInput"
 ## Usage
 
 ```tsx
-import { TimeInput } from '@/components/admin';
+import { TimeInput } from "@/components/admin";
 
-<TimeInput source="opens_at" />
+<TimeInput source="opens_at" />;
 ```
 
 The appearance of `<TimeInput>` depends on the browser, and falls back to a text input on browsers that do not support `<input type="time">`. The time formatting in this input depends on the user's locale.
@@ -18,18 +18,18 @@ The expected form value is a string in the `HH:mm` format (e.g. `'09:30'`). `<Ti
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name |
-| `className` | Optional | `string` | - | CSS classes |
-| `defaultValue` | Optional | `string` &#124; `Date` &#124; `number` | - | Default value |
-| `disabled` | Optional | `boolean` | - | Disable input |
-| `format` | Optional | `function` | - | Callback taking the value from the form state, and returning the input value |
-| `helperText` | Optional | `ReactNode` | - | Help text |
-| `label` | Optional | `string` &#124; `false` | Inferred | Custom / hide label |
-| `parse` | Optional | `(value:string) => string` | - | Callback taking the value from the input, and returning the value to be stored in the form state |
-| `readOnly` | Optional | `boolean` | - | If true, the input is read-only |
-| `validate` | Optional | `Validator` &#124; `Validator[]` | - | Validation |
+| Prop           | Required | Type                                   | Default  | Description                                                                                      |
+| -------------- | -------- | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `source`       | Required | `string`                               | -        | Field name                                                                                       |
+| `className`    | Optional | `string`                               | -        | CSS classes                                                                                      |
+| `defaultValue` | Optional | `string` &#124; `Date` &#124; `number` | -        | Default value                                                                                    |
+| `disabled`     | Optional | `boolean`                              | -        | Disable input                                                                                    |
+| `format`       | Optional | `function`                             | -        | Callback taking the value from the form state, and returning the input value                     |
+| `helperText`   | Optional | `ReactNode`                            | -        | Help text                                                                                        |
+| `label`        | Optional | `string` &#124; `false`                | Inferred | Custom / hide label                                                                              |
+| `parse`        | Optional | `(value:string) => string`             | -        | Callback taking the value from the input, and returning the value to be stored in the form state |
+| `readOnly`     | Optional | `boolean`                              | -        | If true, the input is read-only                                                                  |
+| `validate`     | Optional | `Validator` &#124; `Validator[]`       | -        | Validation                                                                                       |
 
 ## `defaultValue`
 

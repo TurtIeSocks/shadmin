@@ -13,12 +13,9 @@ import { AuthLayout } from "@/components/admin/auth-layout";
 import { LoginForm } from "@/components/admin/login-form";
 
 export const MyLoginPage = () => (
-    <AuthLayout
-        title="Sign in"
-        subtitle="Welcome back to Acme Inc."
-    >
-        <LoginForm />
-    </AuthLayout>
+  <AuthLayout title="Sign in" subtitle="Welcome back to Acme Inc.">
+    <LoginForm />
+  </AuthLayout>
 );
 ```
 
@@ -26,12 +23,12 @@ It is the same shell used by the default [`<LoginPage>`](./LoginPage.md), and is
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | Content rendered in the right pane — typically a form. |
-| `title` | Optional | `ReactNode` | - | Heading shown above the right-pane content. |
-| `subtitle` | Optional | `ReactNode` | - | Subtitle shown below the heading. |
-| `className` | Optional | `string` | - | Extra CSS class applied to the root wrapper. |
+| Prop        | Required | Type        | Default | Description                                            |
+| ----------- | -------- | ----------- | ------- | ------------------------------------------------------ |
+| `children`  | Required | `ReactNode` | -       | Content rendered in the right pane — typically a form. |
+| `title`     | Optional | `ReactNode` | -       | Heading shown above the right-pane content.            |
+| `subtitle`  | Optional | `ReactNode` | -       | Subtitle shown below the heading.                      |
+| `className` | Optional | `string`    | -       | Extra CSS class applied to the root wrapper.           |
 
 ### `children`
 
@@ -39,7 +36,7 @@ The content rendered in the right pane. Usually a form component such as [`<Logi
 
 ```tsx
 <AuthLayout>
-    <SignupForm />
+  <SignupForm />
 </AuthLayout>
 ```
 
@@ -49,7 +46,7 @@ Optional heading rendered above the children. When omitted, the heading block is
 
 ```tsx
 <AuthLayout title="Create your account">
-    <SignupForm />
+  <SignupForm />
 </AuthLayout>
 ```
 
@@ -59,7 +56,7 @@ Optional subtitle rendered just below `title`. Use it for a helper message or to
 
 ```tsx
 <AuthLayout title="Sign in" subtitle="Use your work email">
-    <LoginForm />
+  <LoginForm />
 </AuthLayout>
 ```
 

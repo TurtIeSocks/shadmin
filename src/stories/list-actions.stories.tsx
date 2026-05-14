@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  DataProvider,
-  memoryStore,
-  Resource,
-  TestMemoryRouter,
-} from "ra-core";
+import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import {
@@ -72,7 +67,9 @@ const Wrapper = ({
 export const Basic = () => <Wrapper />;
 
 export const WithFilters = () => (
-  <Wrapper filters={[<TextInput key="q" source="q" label="Search" alwaysOn />]} />
+  <Wrapper
+    filters={[<TextInput key="q" source="q" label="Search" alwaysOn />]}
+  />
 );
 
 export const CustomChildren = () => (

@@ -30,9 +30,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *     }
  * />
  */
-export const ImageField = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+export const ImageField = <RecordType extends UnknownRecord = UnknownRecord>(
   props: ImageFieldProps<RecordType>,
 ) => {
   const { src, defaultValue, source, record, empty, title, ...rest } = props;
@@ -103,7 +101,9 @@ ImageField.displayName = "ImageField";
 
 export interface ImageFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends FieldProps<RecordType>,
+>
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "defaultValue"> {
   defaultValue?: UnknownValue;
   src?: string;

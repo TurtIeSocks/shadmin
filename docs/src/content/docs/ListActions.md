@@ -23,7 +23,12 @@ export const PostList = () => (
 You can override the actions by passing custom children:
 
 ```tsx {6-9}
-import { CreateButton, ExportButton, List, ListActions } from "@/components/admin";
+import {
+  CreateButton,
+  ExportButton,
+  List,
+  ListActions,
+} from "@/components/admin";
 
 export const PostList = () => (
   <List
@@ -41,14 +46,14 @@ export const PostList = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Optional | `ReactNode` | Filter + Create + Export | Replace the toolbar content |
-| `resource` | Optional | `string` | From context | Override the resource name |
-| `filters` | Optional | `ReactElement \| ReactNode[]` | From `FilterContext` | Filter inputs used to render the `<FilterButton>` |
-| `exporter` | Optional | `Exporter \| boolean` | From `ListContext` | Disable the export button by passing `false` |
-| `hasCreate` | Optional | `boolean` | From resource definition | Force showing/hiding the create button |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the root element |
+| Prop        | Required | Type                          | Default                  | Description                                         |
+| ----------- | -------- | ----------------------------- | ------------------------ | --------------------------------------------------- |
+| `children`  | Optional | `ReactNode`                   | Filter + Create + Export | Replace the toolbar content                         |
+| `resource`  | Optional | `string`                      | From context             | Override the resource name                          |
+| `filters`   | Optional | `ReactElement \| ReactNode[]` | From `FilterContext`     | Filter inputs used to render the `<FilterButton>`   |
+| `exporter`  | Optional | `Exporter \| boolean`         | From `ListContext`       | Disable the export button by passing `false`        |
+| `hasCreate` | Optional | `boolean`                     | From resource definition | Force showing/hiding the create button              |
+| `className` | Optional | `string`                      | —                        | Extra Tailwind classes appended to the root element |
 
 ## `children`
 

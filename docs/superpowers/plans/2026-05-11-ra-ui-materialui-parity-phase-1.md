@@ -11,6 +11,7 @@
 **Spec:** [docs/superpowers/specs/2026-05-11-ra-ui-materialui-parity-design.md](../specs/2026-05-11-ra-ui-materialui-parity-design.md)
 
 **Reference codebases:**
+
 - Upstream MUI implementation: `/Users/rin/GitHub/react-admin/packages/ra-ui-materialui/src/`
 - shadcn-admin-kit current: `/Users/rin/GitHub/shadcn-admin-kit/src/`
 
@@ -27,17 +28,18 @@ Then implement the component **using shadcn-admin-kit conventions** with the **u
 
 ### File locations (the layout actually used by this repo)
 
-| Artifact | Location |
-|---|---|
-| Component | `src/components/admin/<kebab>.tsx` |
-| Story | `src/stories/<kebab>.stories.tsx` |
-| Test (when added) | `src/components/admin/<kebab>.spec.tsx` (co-located) |
-| Docs page | `docs/src/content/docs/<PascalCase>.md` |
-| Registry entry | new `{ "path": ..., "type": "registry:component" }` object inside `registry.json` files array |
+| Artifact          | Location                                                                                      |
+| ----------------- | --------------------------------------------------------------------------------------------- |
+| Component         | `src/components/admin/<kebab>.tsx`                                                            |
+| Story             | `src/stories/<kebab>.stories.tsx`                                                             |
+| Test (when added) | `src/components/admin/<kebab>.spec.tsx` (co-located)                                          |
+| Docs page         | `docs/src/content/docs/<PascalCase>.md`                                                       |
+| Registry entry    | new `{ "path": ..., "type": "registry:component" }` object inside `registry.json` files array |
 
 ### Per-component standard template
 
 Every new component file must:
+
 - Import `ra-core` hooks for logic
 - Import shadcn/ui primitives from `@/components/ui/`
 - Use `cn()` from `@/lib/utils` for class merging
@@ -47,6 +49,7 @@ Every new component file must:
 ### Per-story standard template
 
 Every new story file must:
+
 - Default export `{ title: "<Category>/<ComponentName>" }` (e.g., `"Buttons/CloneButton"`)
 - Wrap stories in `<ThemeProvider><CoreAdminContext i18nProvider={i18nProvider}>...` (see `src/stories/edit-button.stories.tsx` for the exact wrapper)
 - Export at minimum a `Default` story
@@ -55,6 +58,7 @@ Every new story file must:
 ### Per-docs-page standard template
 
 Every new docs page must:
+
 - Frontmatter: `---\ntitle: "<ComponentName>"\n---`
 - Opening paragraph (one sentence describing what it does)
 - `## Usage` section with a code example
@@ -108,6 +112,7 @@ After adding all entries for a task, run `node ./scripts/build_registry.mjs` to 
 ## Task 0: Pre-flight setup
 
 **Files:**
+
 - Modify: `package.json`
 - Run: `pnpm install`
 
@@ -147,24 +152,24 @@ All five tasks below have no inter-dependencies and operate on different files. 
 
 **Files to create (8):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/clone-button.tsx` | `CloneButton` | `…/button/CloneButton.tsx` |
-| `src/components/admin/list-button.tsx` | `ListButton` | upstream has no separate `ListButton.tsx` — model on `…/button/EditButton.tsx`, navigate to list route |
-| `src/components/admin/prev-next-buttons.tsx` | `PrevNextButtons` | `…/button/PrevNextButtons.tsx` |
-| `src/components/admin/save-button.tsx` | `SaveButton` | extracted from `src/components/admin/form.tsx` (currently lines 168-289). Re-export from `form.tsx` for backward-compat. |
-| `src/components/admin/refresh-icon-button.tsx` | `RefreshIconButton` | `…/button/RefreshIconButton.tsx` |
-| `src/components/admin/skip-navigation-button.tsx` | `SkipNavigationButton` | `…/button/SkipNavigationButton.tsx` |
-| `src/components/admin/update-button.tsx` | `UpdateButton`, `UpdateWithConfirmButton`, `UpdateWithUndoButton` (3 exports in 1 file) | `…/button/UpdateButton.tsx`, `…/button/UpdateWithConfirmButton.tsx`, `…/button/UpdateWithUndoButton.tsx` |
-| `src/components/admin/bulk-update-button.tsx` | `BulkUpdateButton`, `BulkUpdateWithConfirmButton`, `BulkUpdateWithUndoButton` (3 exports in 1 file) | `…/button/BulkUpdateButton.tsx`, `…/button/BulkUpdateWithConfirmButton.tsx`, `…/button/BulkUpdateWithUndoButton.tsx` |
+| File                                              | Component                                                                                           | Upstream reference                                                                                                       |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `src/components/admin/clone-button.tsx`           | `CloneButton`                                                                                       | `…/button/CloneButton.tsx`                                                                                               |
+| `src/components/admin/list-button.tsx`            | `ListButton`                                                                                        | upstream has no separate `ListButton.tsx` — model on `…/button/EditButton.tsx`, navigate to list route                   |
+| `src/components/admin/prev-next-buttons.tsx`      | `PrevNextButtons`                                                                                   | `…/button/PrevNextButtons.tsx`                                                                                           |
+| `src/components/admin/save-button.tsx`            | `SaveButton`                                                                                        | extracted from `src/components/admin/form.tsx` (currently lines 168-289). Re-export from `form.tsx` for backward-compat. |
+| `src/components/admin/refresh-icon-button.tsx`    | `RefreshIconButton`                                                                                 | `…/button/RefreshIconButton.tsx`                                                                                         |
+| `src/components/admin/skip-navigation-button.tsx` | `SkipNavigationButton`                                                                              | `…/button/SkipNavigationButton.tsx`                                                                                      |
+| `src/components/admin/update-button.tsx`          | `UpdateButton`, `UpdateWithConfirmButton`, `UpdateWithUndoButton` (3 exports in 1 file)             | `…/button/UpdateButton.tsx`, `…/button/UpdateWithConfirmButton.tsx`, `…/button/UpdateWithUndoButton.tsx`                 |
+| `src/components/admin/bulk-update-button.tsx`     | `BulkUpdateButton`, `BulkUpdateWithConfirmButton`, `BulkUpdateWithUndoButton` (3 exports in 1 file) | `…/button/BulkUpdateButton.tsx`, `…/button/BulkUpdateWithConfirmButton.tsx`, `…/button/BulkUpdateWithUndoButton.tsx`     |
 
 **Files to modify:**
 
-| File | Change |
-|---|---|
-| `src/components/admin/delete-button.tsx` | Add named exports `DeleteWithConfirmButton`, `DeleteWithUndoButton` (4-line wrappers fixing `mutationMode='pessimistic'` and `mutationMode='undoable'` respectively) |
-| `src/components/admin/bulk-delete-button.tsx` | Add named exports `BulkDeleteWithConfirmButton`, `BulkDeleteWithUndoButton` (same pattern) |
-| `src/components/admin/form.tsx` | Move `SaveButton` body (lines 168-289) into `save-button.tsx`. Re-export from `form.tsx`: `export { SaveButton } from "./save-button"`. |
+| File                                          | Change                                                                                                                                                               |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/components/admin/delete-button.tsx`      | Add named exports `DeleteWithConfirmButton`, `DeleteWithUndoButton` (4-line wrappers fixing `mutationMode='pessimistic'` and `mutationMode='undoable'` respectively) |
+| `src/components/admin/bulk-delete-button.tsx` | Add named exports `BulkDeleteWithConfirmButton`, `BulkDeleteWithUndoButton` (same pattern)                                                                           |
+| `src/components/admin/form.tsx`               | Move `SaveButton` body (lines 168-289) into `save-button.tsx`. Re-export from `form.tsx`: `export { SaveButton } from "./save-button"`.                              |
 
 **Convention pattern to follow:** `src/components/admin/edit-button.tsx` (an existing button using identical hooks).
 
@@ -193,7 +198,13 @@ Pattern: same as `EditButton`, but the link target is the `create` route with th
 import { buttonVariants } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import type { RaRecord } from "ra-core";
-import { useRecordContext, useResourceContext, useResourceTranslation, useCreatePath, useGetResourceLabel } from "ra-core";
+import {
+  useRecordContext,
+  useResourceContext,
+  useResourceTranslation,
+  useCreatePath,
+  useGetResourceLabel,
+} from "ra-core";
 import { Link } from "react-router";
 
 export type CloneButtonProps = {
@@ -209,7 +220,9 @@ export const CloneButton = (props: CloneButtonProps) => {
   const createPath = useCreatePath();
   const getResourceLabel = useGetResourceLabel();
   const label = useResourceTranslation({
-    resourceI18nKey: resource ? `resources.${resource}.action.clone` : undefined,
+    resourceI18nKey: resource
+      ? `resources.${resource}.action.clone`
+      : undefined,
     baseI18nKey: "ra.action.clone",
     options: { name: resource ? getResourceLabel(resource, 1) : undefined },
     userText: props.label,
@@ -237,7 +250,12 @@ Same pattern, target = `list` route, icon = `<List />` from lucide.
 ```tsx
 import { buttonVariants } from "@/components/ui/button";
 import { List as ListIcon } from "lucide-react";
-import { useResourceContext, useResourceTranslation, useCreatePath, useGetResourceLabel } from "ra-core";
+import {
+  useResourceContext,
+  useResourceTranslation,
+  useCreatePath,
+  useGetResourceLabel,
+} from "ra-core";
 import { Link } from "react-router";
 
 export type ListButtonProps = {
@@ -287,7 +305,13 @@ export const RefreshIconButton = (props: RefreshIconButtonProps) => {
   const translate = useTranslate();
   const label = props.label ?? translate("ra.action.refresh", { _: "Refresh" });
   return (
-    <Button variant="ghost" size="icon" onClick={() => refresh()} aria-label={label} className={props.className}>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => refresh()}
+      aria-label={label}
+      className={props.className}
+    >
       <RefreshCw />
     </Button>
   );
@@ -303,7 +327,14 @@ A11y skip-link to main content. Renders an `<a href="#main-content">` styled to 
 ```tsx
 // update-button.tsx
 import { Button } from "@/components/ui/button";
-import { useNotify, useRecordContext, useResourceContext, useResourceTranslation, useUpdate, type MutationMode } from "ra-core";
+import {
+  useNotify,
+  useRecordContext,
+  useResourceContext,
+  useResourceTranslation,
+  useUpdate,
+  type MutationMode,
+} from "ra-core";
 import { Pencil } from "lucide-react";
 
 export type UpdateButtonProps = {
@@ -315,27 +346,37 @@ export type UpdateButtonProps = {
 };
 
 export const UpdateButton = (props: UpdateButtonProps) => {
-  const { data, mutationMode = "undoable", icon = <Pencil />, label: labelProp } = props;
+  const {
+    data,
+    mutationMode = "undoable",
+    icon = <Pencil />,
+    label: labelProp,
+  } = props;
   const resource = useResourceContext(props);
   const record = useRecordContext();
   const notify = useNotify();
   const [update, { isPending }] = useUpdate();
   const label = useResourceTranslation({
-    resourceI18nKey: resource ? `resources.${resource}.action.update` : undefined,
+    resourceI18nKey: resource
+      ? `resources.${resource}.action.update`
+      : undefined,
     baseI18nKey: "ra.action.update",
     userText: labelProp,
   });
   const onClick = () => {
     if (!record?.id || !resource) return;
-    update(
-      resource,
-      { id: record.id, data, previousData: record },
-      {
-        mutationMode,
-        onSuccess: () => notify("ra.notification.updated", { type: "success", messageArgs: { smart_count: 1 } }),
-        onError: (error) => notify(typeof error === "string" ? error : (error as Error).message, { type: "error" }),
-      } as never,
-    );
+    update(resource, { id: record.id, data, previousData: record }, {
+      mutationMode,
+      onSuccess: () =>
+        notify("ra.notification.updated", {
+          type: "success",
+          messageArgs: { smart_count: 1 },
+        }),
+      onError: (error) =>
+        notify(typeof error === "string" ? error : (error as Error).message, {
+          type: "error",
+        }),
+    } as never);
   };
   return (
     <Button variant="outline" onClick={onClick} disabled={isPending}>
@@ -365,13 +406,13 @@ Same as UpdateButton but uses `useUpdateMany` and reads `useListContext().select
 Open `src/components/admin/delete-button.tsx`. After the existing `DeleteButton` export, append:
 
 ```tsx
-export const DeleteWithConfirmButton = (props: Omit<DeleteButtonProps, "mutationMode">) => (
-  <DeleteButton {...props} mutationMode="pessimistic" />
-);
+export const DeleteWithConfirmButton = (
+  props: Omit<DeleteButtonProps, "mutationMode">,
+) => <DeleteButton {...props} mutationMode="pessimistic" />;
 
-export const DeleteWithUndoButton = (props: Omit<DeleteButtonProps, "mutationMode">) => (
-  <DeleteButton {...props} mutationMode="undoable" />
-);
+export const DeleteWithUndoButton = (
+  props: Omit<DeleteButtonProps, "mutationMode">,
+) => <DeleteButton {...props} mutationMode="undoable" />;
 ```
 
 (Subagent: verify that `delete-button.tsx` already accepts a `mutationMode` prop. If not, add it as an optional prop on `DeleteButtonProps` and thread it into `useDelete`.)
@@ -389,6 +430,7 @@ For the same-file siblings (UpdateButton family, BulkUpdate family), one story f
 - [ ] **Step 13: Create docs pages**
 
 Files (8):
+
 - `docs/src/content/docs/CloneButton.md`
 - `docs/src/content/docs/ListButton.md`
 - `docs/src/content/docs/PrevNextButtons.md`
@@ -446,14 +488,14 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
 
 **Files to create (6):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/chip-field.tsx` | `ChipField` | `…/field/ChipField.tsx` |
-| `src/components/admin/function-field.tsx` | `FunctionField` | `…/field/FunctionField.tsx` |
+| File                                           | Component           | Upstream reference              |
+| ---------------------------------------------- | ------------------- | ------------------------------- |
+| `src/components/admin/chip-field.tsx`          | `ChipField`         | `…/field/ChipField.tsx`         |
+| `src/components/admin/function-field.tsx`      | `FunctionField`     | `…/field/FunctionField.tsx`     |
 | `src/components/admin/reference-one-field.tsx` | `ReferenceOneField` | `…/field/ReferenceOneField.tsx` |
-| `src/components/admin/rich-text-field.tsx` | `RichTextField` | `…/field/RichTextField.tsx` |
-| `src/components/admin/text-array-field.tsx` | `TextArrayField` | `…/field/TextArrayField.tsx` |
-| `src/components/admin/wrapper-field.tsx` | `WrapperField` | `…/field/WrapperField.tsx` |
+| `src/components/admin/rich-text-field.tsx`     | `RichTextField`     | `…/field/RichTextField.tsx`     |
+| `src/components/admin/text-array-field.tsx`    | `TextArrayField`    | `…/field/TextArrayField.tsx`    |
+| `src/components/admin/wrapper-field.tsx`       | `WrapperField`      | `…/field/WrapperField.tsx`      |
 
 **Convention pattern:** `src/components/admin/email-field.tsx` and `src/components/admin/badge-field.tsx`.
 
@@ -479,9 +521,15 @@ export type ChipFieldProps = FieldProps & {
 export const ChipField = (props: ChipFieldProps) => {
   const value = useFieldValue(props);
   if (value == null || value === "") {
-    return props.emptyText ? <span className="text-muted-foreground">{props.emptyText}</span> : null;
+    return props.emptyText ? (
+      <span className="text-muted-foreground">{props.emptyText}</span>
+    ) : null;
   }
-  return <Badge variant="secondary" className={cn(props.className)}>{String(value)}</Badge>;
+  return (
+    <Badge variant="secondary" className={cn(props.className)}>
+      {String(value)}
+    </Badge>
+  );
 };
 ```
 
@@ -499,7 +547,9 @@ export type FunctionFieldProps<RecordType extends RaRecord = RaRecord> = {
   className?: string;
 };
 
-export const FunctionField = <RecordType extends RaRecord = RaRecord>(props: FunctionFieldProps<RecordType>) => {
+export const FunctionField = <RecordType extends RaRecord = RaRecord>(
+  props: FunctionFieldProps<RecordType>,
+) => {
   const record = useRecordContext<RecordType>();
   if (!record) return null;
   return <span className={cn(props.className)}>{props.render(record)}</span>;
@@ -512,7 +562,11 @@ Reverse-one-to-one reference. Uses `useReferenceOneFieldController` from `ra-cor
 
 ```tsx
 import type { ReactNode } from "react";
-import { RecordContextProvider, useReferenceOneFieldController, type UseReferenceOneFieldControllerParams } from "ra-core";
+import {
+  RecordContextProvider,
+  useReferenceOneFieldController,
+  type UseReferenceOneFieldControllerParams,
+} from "ra-core";
 
 export type ReferenceOneFieldProps = UseReferenceOneFieldControllerParams & {
   children: ReactNode;
@@ -522,16 +576,22 @@ export type ReferenceOneFieldProps = UseReferenceOneFieldControllerParams & {
 
 export const ReferenceOneField = (props: ReferenceOneFieldProps) => {
   const { children, empty = null, loading = null, ...controllerProps } = props;
-  const { referenceRecord, isPending } = useReferenceOneFieldController(controllerProps);
+  const { referenceRecord, isPending } =
+    useReferenceOneFieldController(controllerProps);
   if (isPending) return <>{loading}</>;
   if (!referenceRecord) return <>{empty}</>;
-  return <RecordContextProvider value={referenceRecord}>{children}</RecordContextProvider>;
+  return (
+    <RecordContextProvider value={referenceRecord}>
+      {children}
+    </RecordContextProvider>
+  );
 };
 ```
 
 - [ ] **Step 5: Create RichTextField (with safe HTML rendering)**
 
 **Behavior requirements:**
+
 - Displays HTML content stored in a record field
 - Sanitizes input via DOMPurify before rendering — non-negotiable
 - Supports a `stripTags` prop that renders only plain text (no markup)
@@ -570,7 +630,9 @@ export const TextArrayField = (props: TextArrayFieldProps) => {
   return (
     <div className={cn("flex flex-wrap gap-1", props.className)}>
       {value.map((v, i) => (
-        <Badge key={`${i}-${String(v)}`} variant="secondary">{String(v)}</Badge>
+        <Badge key={`${i}-${String(v)}`} variant="secondary">
+          {String(v)}
+        </Badge>
       ))}
     </div>
   );
@@ -592,7 +654,9 @@ export type WrapperFieldProps = {
   children: ReactNode;
 };
 
-export const WrapperField = ({ children }: WrapperFieldProps) => <>{children}</>;
+export const WrapperField = ({ children }: WrapperFieldProps) => (
+  <>{children}</>
+);
 ```
 
 - [ ] **Step 8: Create stories for each (6 files)**
@@ -650,13 +714,13 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
 
 **Files to create (5):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/checkbox-group-input.tsx` | `CheckboxGroupInput` | `…/input/CheckboxGroupInput.tsx` + `CheckboxGroupInputItem.tsx` |
-| `src/components/admin/password-input.tsx` | `PasswordInput` | `…/input/PasswordInput.tsx` |
-| `src/components/admin/nullable-boolean-input.tsx` | `NullableBooleanInput` | `…/input/NullableBooleanInput.tsx` |
-| `src/components/admin/time-input.tsx` | `TimeInput` | `…/input/TimeInput.tsx` |
-| `src/components/admin/select-array-input.tsx` | `SelectArrayInput` | `…/input/SelectArrayInput.tsx` |
+| File                                              | Component              | Upstream reference                                              |
+| ------------------------------------------------- | ---------------------- | --------------------------------------------------------------- |
+| `src/components/admin/checkbox-group-input.tsx`   | `CheckboxGroupInput`   | `…/input/CheckboxGroupInput.tsx` + `CheckboxGroupInputItem.tsx` |
+| `src/components/admin/password-input.tsx`         | `PasswordInput`        | `…/input/PasswordInput.tsx`                                     |
+| `src/components/admin/nullable-boolean-input.tsx` | `NullableBooleanInput` | `…/input/NullableBooleanInput.tsx`                              |
+| `src/components/admin/time-input.tsx`             | `TimeInput`            | `…/input/TimeInput.tsx`                                         |
+| `src/components/admin/select-array-input.tsx`     | `SelectArrayInput`     | `…/input/SelectArrayInput.tsx`                                  |
 
 **Convention patterns:** `src/components/admin/radio-button-group-input.tsx`, `text-input.tsx`, `select-input.tsx`, `date-time-input.tsx`.
 
@@ -681,36 +745,59 @@ import { cn } from "@/lib/utils";
 import { FormError, FormField, FormLabel } from "@/components/admin/form";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 
-export type CheckboxGroupInputProps = CommonInputProps & ChoicesProps & {
-  row?: boolean;
-};
+export type CheckboxGroupInputProps = CommonInputProps &
+  ChoicesProps & {
+    row?: boolean;
+  };
 
 export const CheckboxGroupInput = (props: CheckboxGroupInputProps) => {
   const { source, helperText, row = false, label, ...rest } = props;
-  const choices = useChoicesContext({ choices: props.choices }).allChoices ?? props.choices ?? [];
+  const choices =
+    useChoicesContext({ choices: props.choices }).allChoices ??
+    props.choices ??
+    [];
   const { getChoiceText, getChoiceValue } = useChoices(props);
-  const { field, fieldState, isRequired } = useInput({ source: source!, ...rest });
-  const value: Array<string | number> = Array.isArray(field.value) ? field.value : [];
+  const { field, fieldState, isRequired } = useInput({
+    source: source!,
+    ...rest,
+  });
+  const value: Array<string | number> = Array.isArray(field.value)
+    ? field.value
+    : [];
   const toggle = (val: string | number) => {
-    const next = value.includes(val) ? value.filter((v) => v !== val) : [...value, val];
+    const next = value.includes(val)
+      ? value.filter((v) => v !== val)
+      : [...value, val];
     field.onChange(next);
   };
   return (
     <FormField>
-      <FormLabel htmlFor={source}>{label ?? source}{isRequired && " *"}</FormLabel>
+      <FormLabel htmlFor={source}>
+        {label ?? source}
+        {isRequired && " *"}
+      </FormLabel>
       <div className={cn("flex gap-3", row ? "flex-row" : "flex-col")}>
         {choices.map((choice) => {
           const choiceValue = getChoiceValue(choice);
           const choiceText = getChoiceText(choice);
           return (
-            <Label key={String(choiceValue)} className="flex items-center gap-2 cursor-pointer">
-              <Checkbox checked={value.includes(choiceValue)} onCheckedChange={() => toggle(choiceValue)} />
+            <Label
+              key={String(choiceValue)}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <Checkbox
+                checked={value.includes(choiceValue)}
+                onCheckedChange={() => toggle(choiceValue)}
+              />
               <span>{choiceText}</span>
             </Label>
           );
         })}
       </div>
-      <InputHelperText helperText={helperText} error={fieldState.error?.message} />
+      <InputHelperText
+        helperText={helperText}
+        error={fieldState.error?.message}
+      />
       <FormError error={fieldState.error?.message} />
     </FormField>
   );
@@ -731,7 +818,10 @@ export type PasswordInputProps = Omit<TextInputProps, "type"> & {
   initiallyVisible?: boolean;
 };
 
-export const PasswordInput = ({ initiallyVisible = false, ...rest }: PasswordInputProps) => {
+export const PasswordInput = ({
+  initiallyVisible = false,
+  ...rest
+}: PasswordInputProps) => {
   const [visible, setVisible] = useState(initiallyVisible);
   return (
     <div className="relative">
@@ -758,7 +848,13 @@ A 3-option Select: True / False / Null. Map null ⇄ a sentinel value.
 ```tsx
 import type { CommonInputProps } from "ra-core";
 import { useInput, useTranslate } from "ra-core";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { FormError, FormField, FormLabel } from "@/components/admin/form";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 
@@ -772,25 +868,47 @@ const NULL_SENTINEL = "__null__";
 const TRUE_SENTINEL = "__true__";
 const FALSE_SENTINEL = "__false__";
 
-const toSentinel = (v: unknown) => (v == null ? NULL_SENTINEL : v ? TRUE_SENTINEL : FALSE_SENTINEL);
-const fromSentinel = (s: string) => (s === NULL_SENTINEL ? null : s === TRUE_SENTINEL ? true : false);
+const toSentinel = (v: unknown) =>
+  v == null ? NULL_SENTINEL : v ? TRUE_SENTINEL : FALSE_SENTINEL;
+const fromSentinel = (s: string) =>
+  s === NULL_SENTINEL ? null : s === TRUE_SENTINEL ? true : false;
 
 export const NullableBooleanInput = (props: NullableBooleanInputProps) => {
   const { source, helperText, label, nullLabel, trueLabel, falseLabel } = props;
   const translate = useTranslate();
-  const { field, fieldState, isRequired } = useInput({ source: source!, ...props });
+  const { field, fieldState, isRequired } = useInput({
+    source: source!,
+    ...props,
+  });
   return (
     <FormField>
-      <FormLabel htmlFor={source}>{label ?? source}{isRequired && " *"}</FormLabel>
-      <Select value={toSentinel(field.value)} onValueChange={(v) => field.onChange(fromSentinel(v))}>
-        <SelectTrigger><SelectValue /></SelectTrigger>
+      <FormLabel htmlFor={source}>
+        {label ?? source}
+        {isRequired && " *"}
+      </FormLabel>
+      <Select
+        value={toSentinel(field.value)}
+        onValueChange={(v) => field.onChange(fromSentinel(v))}
+      >
+        <SelectTrigger>
+          <SelectValue />
+        </SelectTrigger>
         <SelectContent>
-          <SelectItem value={NULL_SENTINEL}>{nullLabel ?? translate("ra.boolean.null", { _: "" })}</SelectItem>
-          <SelectItem value={TRUE_SENTINEL}>{trueLabel ?? translate("ra.boolean.true", { _: "Yes" })}</SelectItem>
-          <SelectItem value={FALSE_SENTINEL}>{falseLabel ?? translate("ra.boolean.false", { _: "No" })}</SelectItem>
+          <SelectItem value={NULL_SENTINEL}>
+            {nullLabel ?? translate("ra.boolean.null", { _: "" })}
+          </SelectItem>
+          <SelectItem value={TRUE_SENTINEL}>
+            {trueLabel ?? translate("ra.boolean.true", { _: "Yes" })}
+          </SelectItem>
+          <SelectItem value={FALSE_SENTINEL}>
+            {falseLabel ?? translate("ra.boolean.false", { _: "No" })}
+          </SelectItem>
         </SelectContent>
       </Select>
-      <InputHelperText helperText={helperText} error={fieldState.error?.message} />
+      <InputHelperText
+        helperText={helperText}
+        error={fieldState.error?.message}
+      />
       <FormError error={fieldState.error?.message} />
     </FormField>
   );
@@ -842,10 +960,10 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
 
 **Files to create (2):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/image-input.tsx` | `ImageInput` | `…/input/ImageInput.tsx`, `…/input/ImageInputPreview.ts` |
-| `src/components/admin/resettable-text-input.tsx` | `ResettableTextInput` | `…/input/ResettableTextField.tsx` |
+| File                                             | Component             | Upstream reference                                       |
+| ------------------------------------------------ | --------------------- | -------------------------------------------------------- |
+| `src/components/admin/image-input.tsx`           | `ImageInput`          | `…/input/ImageInput.tsx`, `…/input/ImageInputPreview.ts` |
+| `src/components/admin/resettable-text-input.tsx` | `ResettableTextInput` | `…/input/ResettableTextField.tsx`                        |
 
 **Convention patterns:** `src/components/admin/file-input.tsx`, `text-input.tsx`.
 
@@ -858,6 +976,7 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
 - [ ] **Step 2: Create ImageInput**
 
 ImageInput is **almost identical** to FileInput. Differences:
+
 - Default `accept` prop = `{ "image/*": [] }` instead of unset
 - Default preview = `<img>` thumbnails instead of file-name list
 - Same dropzone behavior
@@ -876,7 +995,10 @@ export type ResettableTextInputProps = TextInputProps & {
   resettable?: boolean;
 };
 
-export const ResettableTextInput = ({ resettable = true, ...rest }: ResettableTextInputProps) => {
+export const ResettableTextInput = ({
+  resettable = true,
+  ...rest
+}: ResettableTextInputProps) => {
   const { field } = useInput({ source: rest.source!, ...rest });
   return (
     <div className="relative">
@@ -928,15 +1050,15 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
 
 **Files to create (7):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/empty.tsx` | `Empty` | `…/list/Empty.tsx` |
-| `src/components/admin/list-no-results.tsx` | `ListNoResults` | `…/list/ListNoResults.tsx` |
-| `src/components/admin/list-actions.tsx` | `ListActions` | `…/list/ListActions.tsx` |
-| `src/components/admin/list-toolbar.tsx` | `ListToolbar` | `…/list/ListToolbar.tsx` |
-| `src/components/admin/link.tsx` | `Link` (typed wrapper) | `…/Link.tsx` |
-| `src/components/admin/loading-indicator.tsx` | `LoadingIndicator` | `…/layout/LoadingIndicator.tsx` |
-| `src/components/admin/sidebar-toggle-button.tsx` | `SidebarToggleButton` | `…/layout/SidebarToggleButton.tsx` |
+| File                                             | Component              | Upstream reference                 |
+| ------------------------------------------------ | ---------------------- | ---------------------------------- |
+| `src/components/admin/empty.tsx`                 | `Empty`                | `…/list/Empty.tsx`                 |
+| `src/components/admin/list-no-results.tsx`       | `ListNoResults`        | `…/list/ListNoResults.tsx`         |
+| `src/components/admin/list-actions.tsx`          | `ListActions`          | `…/list/ListActions.tsx`           |
+| `src/components/admin/list-toolbar.tsx`          | `ListToolbar`          | `…/list/ListToolbar.tsx`           |
+| `src/components/admin/link.tsx`                  | `Link` (typed wrapper) | `…/Link.tsx`                       |
+| `src/components/admin/loading-indicator.tsx`     | `LoadingIndicator`     | `…/layout/LoadingIndicator.tsx`    |
+| `src/components/admin/sidebar-toggle-button.tsx` | `SidebarToggleButton`  | `…/layout/SidebarToggleButton.tsx` |
 
 **Convention patterns:** `src/components/admin/spinner.tsx`, `loading.tsx`, `breadcrumb.tsx`.
 
@@ -968,7 +1090,10 @@ export const Empty = (props: EmptyProps) => {
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <Inbox className="size-16 text-muted-foreground mb-4" />
       <h2 className="text-xl font-semibold mb-2">
-        {translate("ra.page.empty", { name: resourceName, _: `No ${resourceName} yet.` })}
+        {translate("ra.page.empty", {
+          name: resourceName,
+          _: `No ${resourceName} yet.`,
+        })}
       </h2>
       <p className="text-muted-foreground mb-4">
         {translate("ra.page.invite", { _: "Do you want to add one?" })}
@@ -993,9 +1118,17 @@ export const ListNoResults = () => {
   const hasFilters = filterValues && Object.keys(filterValues).length > 0;
   return (
     <div className="py-12 text-center text-muted-foreground">
-      <p>{translate("ra.navigation.no_filtered_results", { _: "No results match the current filters." })}</p>
+      <p>
+        {translate("ra.navigation.no_filtered_results", {
+          _: "No results match the current filters.",
+        })}
+      </p>
       {hasFilters && (
-        <Button variant="outline" className="mt-4" onClick={() => setFilters({}, {})}>
+        <Button
+          variant="outline"
+          className="mt-4"
+          onClick={() => setFilters({}, {})}
+        >
           {translate("ra.action.clear_input_value", { _: "Clear filters" })}
         </Button>
       )}
@@ -1041,7 +1174,11 @@ export type ListToolbarProps = {
   className?: string;
 };
 
-export const ListToolbar = ({ filters, actions, className }: ListToolbarProps) => (
+export const ListToolbar = ({
+  filters,
+  actions,
+  className,
+}: ListToolbarProps) => (
   <div className={cn("flex items-start justify-between gap-2 my-2", className)}>
     <div className="flex-1">{filters ?? <FilterForm />}</div>
     <div>{actions ?? <ListActions />}</div>
@@ -1052,7 +1189,10 @@ export const ListToolbar = ({ filters, actions, className }: ListToolbarProps) =
 - [ ] **Step 6: Create Link**
 
 ```tsx
-import { Link as RouterLink, type LinkProps as RouterLinkProps } from "react-router";
+import {
+  Link as RouterLink,
+  type LinkProps as RouterLinkProps,
+} from "react-router";
 
 export type LinkProps = RouterLinkProps;
 
@@ -1090,7 +1230,9 @@ export type SidebarToggleButtonProps = {
   className?: string;
 };
 
-export const SidebarToggleButton = ({ className }: SidebarToggleButtonProps) => (
+export const SidebarToggleButton = ({
+  className,
+}: SidebarToggleButtonProps) => (
   <SidebarTrigger className={cn("scale-125 sm:scale-100", className)} />
 );
 ```
@@ -1130,14 +1272,14 @@ Verify Wave 1 is fully merged before dispatching Wave 2.
 
 **Files to create (6):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/filter-list.tsx` | `FilterList` | `…/list/filter/FilterList.tsx` |
-| `src/components/admin/filter-list-item.tsx` | `FilterListItem` | `…/list/filter/FilterListItem.tsx` |
-| `src/components/admin/filter-list-section.tsx` | `FilterListSection` | `…/list/filter/FilterListSection.tsx` |
-| `src/components/admin/filter-live-form.tsx` | `FilterLiveForm` | `…/list/filter/FilterLiveForm.tsx` |
-| `src/components/admin/filter-live-search.tsx` | `FilterLiveSearch` | `…/list/filter/FilterLiveSearch.tsx` |
-| `src/components/admin/filter-button.tsx` | `FilterButton` | `…/list/filter/FilterButton.tsx` + `FilterButtonMenuItem.tsx` |
+| File                                           | Component           | Upstream reference                                            |
+| ---------------------------------------------- | ------------------- | ------------------------------------------------------------- |
+| `src/components/admin/filter-list.tsx`         | `FilterList`        | `…/list/filter/FilterList.tsx`                                |
+| `src/components/admin/filter-list-item.tsx`    | `FilterListItem`    | `…/list/filter/FilterListItem.tsx`                            |
+| `src/components/admin/filter-list-section.tsx` | `FilterListSection` | `…/list/filter/FilterListSection.tsx`                         |
+| `src/components/admin/filter-live-form.tsx`    | `FilterLiveForm`    | `…/list/filter/FilterLiveForm.tsx`                            |
+| `src/components/admin/filter-live-search.tsx`  | `FilterLiveSearch`  | `…/list/filter/FilterLiveSearch.tsx`                          |
+| `src/components/admin/filter-button.tsx`       | `FilterButton`      | `…/list/filter/FilterButton.tsx` + `FilterButtonMenuItem.tsx` |
 
 Note: `src/stories/filter-button.stories.tsx` already exists (orphaned). Honor its API.
 
@@ -1165,7 +1307,13 @@ export type FilterListProps = {
   className?: string;
 };
 
-export const FilterList = ({ label, icon, children, defaultOpen = true, className }: FilterListProps) => {
+export const FilterList = ({
+  label,
+  icon,
+  children,
+  defaultOpen = true,
+  className,
+}: FilterListProps) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className={cn("py-2", className)}>
@@ -1174,7 +1322,11 @@ export const FilterList = ({ label, icon, children, defaultOpen = true, classNam
         className="flex items-center gap-2 text-sm font-medium w-full hover:text-foreground/80"
         onClick={() => setOpen((o) => !o)}
       >
-        {open ? <ChevronDown className="size-4" /> : <ChevronRight className="size-4" />}
+        {open ? (
+          <ChevronDown className="size-4" />
+        ) : (
+          <ChevronRight className="size-4" />
+        )}
         {icon}
         <span>{label}</span>
       </button>
@@ -1198,16 +1350,24 @@ export type FilterListItemProps = {
   className?: string;
 };
 
-const matches = (subset: Record<string, unknown>, superset: Record<string, unknown>) =>
-  Object.entries(subset).every(([k, v]) => isEqual(superset?.[k], v));
+const matches = (
+  subset: Record<string, unknown>,
+  superset: Record<string, unknown>,
+) => Object.entries(subset).every(([k, v]) => isEqual(superset?.[k], v));
 
-export const FilterListItem = ({ label, value, className }: FilterListItemProps) => {
+export const FilterListItem = ({
+  label,
+  value,
+  className,
+}: FilterListItemProps) => {
   const { filterValues, setFilters, displayedFilters } = useListContext();
   const selected = matches(value, filterValues ?? {});
   const toggle = () => {
     if (selected) {
       const next = { ...filterValues };
-      Object.keys(value).forEach((k) => { delete next[k]; });
+      Object.keys(value).forEach((k) => {
+        delete next[k];
+      });
       setFilters(next, displayedFilters);
     } else {
       setFilters({ ...filterValues, ...value }, displayedFilters);
@@ -1242,9 +1402,17 @@ export type FilterListSectionProps = {
   className?: string;
 };
 
-export const FilterListSection = ({ label, children, className }: FilterListSectionProps) => (
+export const FilterListSection = ({
+  label,
+  children,
+  className,
+}: FilterListSectionProps) => (
   <section className={cn("flex flex-col gap-1", className)}>
-    {label && <h3 className="text-xs uppercase text-muted-foreground tracking-wider mt-2">{label}</h3>}
+    {label && (
+      <h3 className="text-xs uppercase text-muted-foreground tracking-wider mt-2">
+        {label}
+      </h3>
+    )}
     {children}
   </section>
 );
@@ -1301,9 +1469,16 @@ export type FilterLiveSearchProps = {
   className?: string;
 };
 
-export const FilterLiveSearch = ({ source = "q", placeholder, debounce = 500, className }: FilterLiveSearchProps) => {
+export const FilterLiveSearch = ({
+  source = "q",
+  placeholder,
+  debounce = 500,
+  className,
+}: FilterLiveSearchProps) => {
   const { filterValues, setFilters, displayedFilters } = useListContext();
-  const [value, setValue] = useState<string>(String(filterValues?.[source] ?? ""));
+  const [value, setValue] = useState<string>(
+    String(filterValues?.[source] ?? ""),
+  );
   const translate = useTranslate();
   useEffect(() => {
     const t = setTimeout(() => {
@@ -1325,7 +1500,9 @@ export const FilterLiveSearch = ({ source = "q", placeholder, debounce = 500, cl
         className="pl-8"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder={placeholder ?? translate("ra.action.search", { _: "Search" })}
+        placeholder={
+          placeholder ?? translate("ra.action.search", { _: "Search" })
+        }
       />
     </div>
   );
@@ -1339,7 +1516,12 @@ import type { ReactElement } from "react";
 import { Children } from "react";
 import { useListContext, useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuCheckboxItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Filter as FilterIcon } from "lucide-react";
 
 export type FilterButtonProps = {
@@ -1367,7 +1549,9 @@ export const FilterButton = ({ filters, className }: FilterButtonProps) => {
             <DropdownMenuCheckboxItem
               key={source}
               checked={checked}
-              onCheckedChange={(v) => (v ? showFilter(source) : hideFilter(source))}
+              onCheckedChange={(v) =>
+                v ? showFilter(source) : hideFilter(source)
+              }
             >
               {label}
             </DropdownMenuCheckboxItem>
@@ -1394,7 +1578,13 @@ For `FilterList.md` Usage section, show the canonical pattern:
 ````md
 ```tsx
 import { Card } from "@/components/ui/card";
-import { FilterList, FilterListItem, FilterLiveSearch, List, DataTable } from "@/components/admin";
+import {
+  FilterList,
+  FilterListItem,
+  FilterLiveSearch,
+  List,
+  DataTable,
+} from "@/components/admin";
 
 const FilterSidebar = () => (
   <Card className="p-4">
@@ -1441,12 +1631,12 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
 
 **Files to create (5):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/simple-list.tsx` | `SimpleList` | `…/list/SimpleList/SimpleList.tsx` |
-| `src/components/admin/simple-list-item.tsx` | `SimpleListItem` | `…/list/SimpleList/SimpleListItem.tsx` |
-| `src/components/admin/simple-list-loading.tsx` | `SimpleListLoading` | `…/list/SimpleList/SimpleListLoading.tsx` |
-| `src/components/admin/infinite-list.tsx` | `InfiniteList` | `…/list/InfiniteList.tsx` |
+| File                                           | Component            | Upstream reference                         |
+| ---------------------------------------------- | -------------------- | ------------------------------------------ |
+| `src/components/admin/simple-list.tsx`         | `SimpleList`         | `…/list/SimpleList/SimpleList.tsx`         |
+| `src/components/admin/simple-list-item.tsx`    | `SimpleListItem`     | `…/list/SimpleList/SimpleListItem.tsx`     |
+| `src/components/admin/simple-list-loading.tsx` | `SimpleListLoading`  | `…/list/SimpleList/SimpleListLoading.tsx`  |
+| `src/components/admin/infinite-list.tsx`       | `InfiniteList`       | `…/list/InfiniteList.tsx`                  |
 | `src/components/admin/infinite-pagination.tsx` | `InfinitePagination` | `…/list/pagination/InfinitePagination.tsx` |
 
 **Convention pattern:** `list.tsx`, `list-pagination.tsx`, `single-field-list.tsx`.
@@ -1460,7 +1650,12 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>"
 
 ```tsx
 import type { ReactNode } from "react";
-import { useListContext, useResourceContext, useCreatePath, type RaRecord } from "ra-core";
+import {
+  useListContext,
+  useResourceContext,
+  useCreatePath,
+  type RaRecord,
+} from "ra-core";
 import { Link } from "react-router";
 import { Avatar } from "@/components/ui/avatar";
 import { SimpleListLoading } from "@/components/admin/simple-list-loading";
@@ -1478,7 +1673,9 @@ export type SimpleListProps<T extends RaRecord = RaRecord> = {
   className?: string;
 };
 
-export const SimpleList = <T extends RaRecord = RaRecord>(props: SimpleListProps<T>) => {
+export const SimpleList = <T extends RaRecord = RaRecord>(
+  props: SimpleListProps<T>,
+) => {
   const { data, isPending } = useListContext<T>();
   const resource = useResourceContext();
   const createPath = useCreatePath();
@@ -1492,9 +1689,21 @@ export const SimpleList = <T extends RaRecord = RaRecord>(props: SimpleListProps
             {props.leftAvatar && <Avatar>{props.leftAvatar(record)}</Avatar>}
             {props.leftIcon && props.leftIcon(record)}
             <div className="flex-1 min-w-0">
-              {props.primaryText && <div className="font-medium truncate">{props.primaryText(record)}</div>}
-              {props.secondaryText && <div className="text-sm text-muted-foreground truncate">{props.secondaryText(record)}</div>}
-              {props.tertiaryText && <div className="text-xs text-muted-foreground/70">{props.tertiaryText(record)}</div>}
+              {props.primaryText && (
+                <div className="font-medium truncate">
+                  {props.primaryText(record)}
+                </div>
+              )}
+              {props.secondaryText && (
+                <div className="text-sm text-muted-foreground truncate">
+                  {props.secondaryText(record)}
+                </div>
+              )}
+              {props.tertiaryText && (
+                <div className="text-xs text-muted-foreground/70">
+                  {props.tertiaryText(record)}
+                </div>
+              )}
             </div>
             {props.rightIcon && props.rightIcon(record)}
           </div>
@@ -1504,7 +1713,15 @@ export const SimpleList = <T extends RaRecord = RaRecord>(props: SimpleListProps
             {props.linkType === false || !resource ? (
               inner
             ) : (
-              <Link to={createPath({ resource, type: props.linkType ?? "edit", id: record.id })}>{inner}</Link>
+              <Link
+                to={createPath({
+                  resource,
+                  type: props.linkType ?? "edit",
+                  id: record.id,
+                })}
+              >
+                {inner}
+              </Link>
             )}
           </li>
         );
@@ -1554,7 +1771,8 @@ import { useInfinitePaginationContext, useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
 
 export const InfinitePagination = () => {
-  const { hasNextPage, fetchNextPage, isFetchingNextPage } = useInfinitePaginationContext();
+  const { hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfinitePaginationContext();
   const translate = useTranslate();
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -1571,7 +1789,11 @@ export const InfinitePagination = () => {
   if (!hasNextPage) return null;
   return (
     <div ref={sentinelRef} className="py-4 text-center">
-      <Button variant="outline" onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+      <Button
+        variant="outline"
+        onClick={() => fetchNextPage()}
+        disabled={isFetchingNextPage}
+      >
         {isFetchingNextPage
           ? translate("ra.action.loading", { _: "Loading..." })
           : translate("ra.navigation.next", { _: "Load more" })}
@@ -1614,18 +1836,19 @@ This wave touches `layout.tsx` and `app-sidebar.tsx`. Must run after Wave 1 is c
 
 **Files to create (8):**
 
-| File | Component | Upstream reference |
-|---|---|---|
-| `src/components/admin/app-bar.tsx` | `AppBar` | `…/layout/AppBar.tsx` |
-| `src/components/admin/title.tsx` | `Title` | `…/layout/Title.tsx` |
-| `src/components/admin/title-portal.tsx` | `TitlePortal` | `…/layout/TitlePortal.tsx` |
-| `src/components/admin/menu.tsx` | `Menu` | `…/layout/Menu.tsx` |
-| `src/components/admin/resource-menu-item.tsx` | `ResourceMenuItem` | `…/layout/ResourceMenuItem.tsx` |
-| `src/components/admin/menu-item-link.tsx` | `MenuItemLink` | `…/layout/MenuItemLink.tsx` |
+| File                                           | Component           | Upstream reference               |
+| ---------------------------------------------- | ------------------- | -------------------------------- |
+| `src/components/admin/app-bar.tsx`             | `AppBar`            | `…/layout/AppBar.tsx`            |
+| `src/components/admin/title.tsx`               | `Title`             | `…/layout/Title.tsx`             |
+| `src/components/admin/title-portal.tsx`        | `TitlePortal`       | `…/layout/TitlePortal.tsx`       |
+| `src/components/admin/menu.tsx`                | `Menu`              | `…/layout/Menu.tsx`              |
+| `src/components/admin/resource-menu-item.tsx`  | `ResourceMenuItem`  | `…/layout/ResourceMenuItem.tsx`  |
+| `src/components/admin/menu-item-link.tsx`      | `MenuItemLink`      | `…/layout/MenuItemLink.tsx`      |
 | `src/components/admin/dashboard-menu-item.tsx` | `DashboardMenuItem` | `…/layout/DashboardMenuItem.tsx` |
-| `src/components/admin/top-toolbar.tsx` | `TopToolbar` | `…/layout/TopToolbar.tsx` |
+| `src/components/admin/top-toolbar.tsx`         | `TopToolbar`        | `…/layout/TopToolbar.tsx`        |
 
 **Files to modify:**
+
 - `src/components/admin/layout.tsx`
 - `src/components/admin/app-sidebar.tsx`
 
@@ -1658,10 +1881,15 @@ export type TitleProps = {
 
 export const Title = ({ title, defaultTitle }: TitleProps) => {
   const [target, setTarget] = useState<HTMLElement | null>(null);
-  useEffect(() => { setTarget(document.getElementById(TITLE_PORTAL_ID)); }, []);
+  useEffect(() => {
+    setTarget(document.getElementById(TITLE_PORTAL_ID));
+  }, []);
   const text = title ?? defaultTitle ?? "";
   if (!target) return null;
-  return createPortal(<h1 className="text-lg font-semibold truncate">{text}</h1>, target);
+  return createPortal(
+    <h1 className="text-lg font-semibold truncate">{text}</h1>,
+    target,
+  );
 };
 ```
 
@@ -1683,7 +1911,12 @@ export type AppBarProps = {
 };
 
 export const AppBar = ({ children, className }: AppBarProps) => (
-  <header className={cn("flex h-16 md:h-12 shrink-0 items-center gap-2 px-4", className)}>
+  <header
+    className={cn(
+      "flex h-16 md:h-12 shrink-0 items-center gap-2 px-4",
+      className,
+    )}
+  >
     {children ?? (
       <>
         <SidebarToggleButton />
@@ -1717,9 +1950,10 @@ export const Menu = ({ children, className }: MenuProps) => {
   const resources = useResourceDefinitions();
   return (
     <nav className={cn("flex flex-col gap-1 p-2", className)}>
-      {children ?? Object.keys(resources)
-        .filter((name) => resources[name].hasList)
-        .map((name) => <ResourceMenuItem key={name} name={name} />)}
+      {children ??
+        Object.keys(resources)
+          .filter((name) => resources[name].hasList)
+          .map((name) => <ResourceMenuItem key={name} name={name} />)}
     </nav>
   );
 };
@@ -1729,7 +1963,11 @@ export const Menu = ({ children, className }: MenuProps) => {
 
 ```tsx
 import { NavLink } from "react-router";
-import { useResourceDefinition, useGetResourceLabel, useCreatePath } from "ra-core";
+import {
+  useResourceDefinition,
+  useGetResourceLabel,
+  useCreatePath,
+} from "ra-core";
 import { cn } from "@/lib/utils";
 import { createElement } from "react";
 
@@ -1738,7 +1976,10 @@ export type ResourceMenuItemProps = {
   className?: string;
 };
 
-export const ResourceMenuItem = ({ name, className }: ResourceMenuItemProps) => {
+export const ResourceMenuItem = ({
+  name,
+  className,
+}: ResourceMenuItemProps) => {
   const definition = useResourceDefinition({ resource: name });
   const getResourceLabel = useGetResourceLabel();
   const createPath = useCreatePath();
@@ -1749,8 +1990,11 @@ export const ResourceMenuItem = ({ name, className }: ResourceMenuItemProps) => 
     <NavLink
       to={to}
       className={({ isActive }) =>
-        cn("flex items-center gap-2 px-3 py-2 rounded hover:bg-accent text-sm",
-          isActive && "bg-accent font-medium", className)
+        cn(
+          "flex items-center gap-2 px-3 py-2 rounded hover:bg-accent text-sm",
+          isActive && "bg-accent font-medium",
+          className,
+        )
       }
     >
       {definition.icon && createElement(definition.icon)}
@@ -1774,12 +2018,20 @@ export type MenuItemLinkProps = {
   className?: string;
 };
 
-export const MenuItemLink = ({ to, primaryText, leftIcon, className }: MenuItemLinkProps) => (
+export const MenuItemLink = ({
+  to,
+  primaryText,
+  leftIcon,
+  className,
+}: MenuItemLinkProps) => (
   <NavLink
     to={to}
     className={({ isActive }) =>
-      cn("flex items-center gap-2 px-3 py-2 rounded hover:bg-accent text-sm",
-        isActive && "bg-accent font-medium", className)
+      cn(
+        "flex items-center gap-2 px-3 py-2 rounded hover:bg-accent text-sm",
+        isActive && "bg-accent font-medium",
+        className,
+      )
     }
   >
     {leftIcon}
@@ -1822,7 +2074,9 @@ export type TopToolbarProps = {
 };
 
 export const TopToolbar = ({ children, className }: TopToolbarProps) => (
-  <div className={cn("flex items-center justify-end gap-2 mb-2", className)}>{children}</div>
+  <div className={cn("flex items-center justify-end gap-2 mb-2", className)}>
+    {children}
+  </div>
 );
 ```
 
@@ -1864,7 +2118,11 @@ export const Layout = (props: CoreLayoutProps) => {
         <ErrorBoundary
           onError={handleError}
           fallbackRender={({ error, resetErrorBoundary }) => (
-            <Error error={error} errorInfo={errorInfo} resetErrorBoundary={resetErrorBoundary} />
+            <Error
+              error={error}
+              errorInfo={errorInfo}
+              resetErrorBoundary={resetErrorBoundary}
+            />
           )}
         >
           <Suspense fallback={<Loading />}>
@@ -1889,6 +2147,7 @@ pnpm dev
 ```
 
 Open http://localhost:5173. Click through each demo resource (products, orders, customers, categories, reviews). Verify:
+
 - The header still renders with sidebar trigger, breadcrumb, locales/theme/refresh/user menu
 - The sidebar still renders the resource list and clicking each navigates
 - No console errors
@@ -1966,6 +2225,7 @@ Open `src/demo/products/ProductList.tsx`. Add `<FilterLiveSearch />` to the list
 - [ ] **Step 4: Verify the layout split still renders the demo identically**
 
 Run `pnpm dev`. Click through each demo resource. Check that:
+
 - Header shows: sidebar trigger, breadcrumb, locales menu, theme toggle, refresh, user menu
 - Sidebar shows all 5 demo resources with icons
 - Clicking a resource navigates to its list

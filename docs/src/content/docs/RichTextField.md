@@ -9,9 +9,9 @@ Even though the rendering path is safe, it is still good practice to sanitize th
 ## Usage
 
 ```tsx
-import { RichTextField } from '@/components/admin';
+import { RichTextField } from "@/components/admin";
 
-<RichTextField source="body" />
+<RichTextField source="body" />;
 ```
 
 To render the value as plain text with all markup removed, pass `stripTags`:
@@ -22,15 +22,15 @@ To render the value as plain text with all markup removed, pass `stripTags`:
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field containing the HTML |
-| `record` | Optional | `object` | Record from context | Explicit record |
-| `defaultValue` | Optional | `any` | - | Fallback value |
-| `empty` | Optional | `ReactNode` | - | Placeholder when value is null or empty |
-| `stripTags` | Optional | `boolean` | `false` | Strip all HTML and render plain text |
-| `purifyOptions` | Optional | `PurifyOptions` | `{}` | Options passed to DOMPurify |
-| `className` | Optional | `string` | - | Additional CSS classes |
+| Prop            | Required | Type            | Default             | Description                             |
+| --------------- | -------- | --------------- | ------------------- | --------------------------------------- |
+| `source`        | Required | `string`        | -                   | Field containing the HTML               |
+| `record`        | Optional | `object`        | Record from context | Explicit record                         |
+| `defaultValue`  | Optional | `any`           | -                   | Fallback value                          |
+| `empty`         | Optional | `ReactNode`     | -                   | Placeholder when value is null or empty |
+| `stripTags`     | Optional | `boolean`       | `false`             | Strip all HTML and render plain text    |
+| `purifyOptions` | Optional | `PurifyOptions` | `{}`                | Options passed to DOMPurify             |
+| `className`     | Optional | `string`        | -                   | Additional CSS classes                  |
 
 Remaining props are forwarded to the wrapping `<span>`.
 
@@ -57,7 +57,10 @@ Options forwarded to DOMPurify's `sanitize` call to tighten or loosen the allow-
 ```tsx
 <RichTextField
   source="body"
-  purifyOptions={{ ALLOWED_TAGS: ['p', 'strong', 'em', 'a'], ALLOWED_ATTR: ['href'] }}
+  purifyOptions={{
+    ALLOWED_TAGS: ["p", "strong", "em", "a"],
+    ALLOWED_ATTR: ["href"],
+  }}
 />
 ```
 

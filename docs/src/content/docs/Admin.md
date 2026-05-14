@@ -1,7 +1,5 @@
 ---
-
 title: Admin
-
 ---
 
 `<Admin>` is the root component of a `shadcn-admin-kit` application. It creates a series of context providers to allow its children to access the app configuration. It renders the main routes and layout. It delegates the rendering of the content area to its `<Resource>` children.
@@ -12,15 +10,15 @@ title: Admin
 
 ```tsx
 import { Admin } from "@/components/admin";
-import { Resource } from 'ra-core';
-import simpleRestProvider from 'ra-data-simple-rest';
+import { Resource } from "ra-core";
+import simpleRestProvider from "ra-data-simple-rest";
 
-import { PostList } from './posts';
+import { PostList } from "./posts";
 
 const App = () => (
-    <Admin dataProvider={simpleRestProvider('http://path.to.my.api')}>
-        <Resource name="posts" list={PostList} />
-    </Admin>
+  <Admin dataProvider={simpleRestProvider("http://path.to.my.api")}>
+    <Resource name="posts" list={PostList} />
+  </Admin>
 );
 
 export default App;
@@ -65,4 +63,3 @@ Here are all the props accepted by the component:
 | `title`               | Optional | `string`       | -                    | The error page title                                            |
 
 To learn more about these props, refer to [the `<CoreAdmin>` component documentation](https://marmelab.com/ra-core/coreadmin/) on the ra-core website.
-

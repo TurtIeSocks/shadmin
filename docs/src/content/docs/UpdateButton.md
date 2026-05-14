@@ -17,55 +17,63 @@ const PostEditActions = () => (
   </>
 );
 
-const PostEdit = () => (
-  <Edit actions={<PostEditActions />}>
-    ...
-  </Edit>
-);
+const PostEdit = () => <Edit actions={<PostEditActions />}>...</Edit>;
 ```
 
 Defaults to `mutationMode="undoable"` — the update fires immediately and a notification with an undo button is shown for a few seconds. Pass `mutationMode="pessimistic"` (or use `<UpdateWithConfirmButton>`) to ask the user to confirm before firing the mutation.
 
 ## Named exports
 
-| Export                      | Behavior                                                                      |
-| --------------------------- | ----------------------------------------------------------------------------- |
-| `UpdateButton`              | Dispatches to one of the variants below based on `mutationMode` (default: `undoable`) |
-| `UpdateWithUndoButton`      | Fires immediately, shows undo notification                                    |
-| `UpdateWithConfirmButton`   | Opens a confirmation dialog, fires on confirm                                 |
+| Export                    | Behavior                                                                              |
+| ------------------------- | ------------------------------------------------------------------------------------- |
+| `UpdateButton`            | Dispatches to one of the variants below based on `mutationMode` (default: `undoable`) |
+| `UpdateWithUndoButton`    | Fires immediately, shows undo notification                                            |
+| `UpdateWithConfirmButton` | Opens a confirmation dialog, fires on confirm                                         |
 
 ## Props
 
-| Prop                | Required | Type                                                                  | Default                 | Description                                          |
-| ------------------- | -------- | --------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------- |
-| `data`              | Required | `object`                                                              | -                       | Object passed to `dataProvider.update()`             |
-| `className`         | Optional | `string`                                                              | -                       | Additional classes                                   |
-| `confirmContent`    | Optional | `ReactNode`                                                           | i18n computed           | Body of the confirmation dialog (Confirm variant)    |
-| `confirmTitle`      | Optional | `ReactNode`                                                           | i18n computed           | Title of the confirmation dialog (Confirm variant)   |
-| `icon`              | Optional | `ReactNode`                                                           | RefreshCw icon          | Custom icon                                          |
-| `label`             | Optional | `string`                                                              | `ra.action.update`      | i18n key / label                                     |
-| `mutationMode`      | Optional | `"undoable" \| "optimistic" \| "pessimistic"`                         | `undoable`              | When to apply the mutation                           |
-| `mutationOptions`   | Optional | `UseUpdateOptions`                                                    | -                       | Forwarded to `useUpdate`                             |
-| `onClick`           | Optional | `(e: MouseEvent<HTMLButtonElement>) => void`                          | -                       | Additional click handler                             |
-| `redirect`          | Optional | `RedirectionSideEffect`                                               | -                       | Where to redirect after update                       |
-| `resource`          | Optional | `string`                                                              | From context            | Resource name                                        |
-| `successMessage`    | Optional | `string`                                                              | -                       | Custom success i18n key                              |
-| `variant`           | Optional | shadcn button variant                                                 | `outline`               | Button style                                         |
+| Prop              | Required | Type                                          | Default            | Description                                        |
+| ----------------- | -------- | --------------------------------------------- | ------------------ | -------------------------------------------------- |
+| `data`            | Required | `object`                                      | -                  | Object passed to `dataProvider.update()`           |
+| `className`       | Optional | `string`                                      | -                  | Additional classes                                 |
+| `confirmContent`  | Optional | `ReactNode`                                   | i18n computed      | Body of the confirmation dialog (Confirm variant)  |
+| `confirmTitle`    | Optional | `ReactNode`                                   | i18n computed      | Title of the confirmation dialog (Confirm variant) |
+| `icon`            | Optional | `ReactNode`                                   | RefreshCw icon     | Custom icon                                        |
+| `label`           | Optional | `string`                                      | `ra.action.update` | i18n key / label                                   |
+| `mutationMode`    | Optional | `"undoable" \| "optimistic" \| "pessimistic"` | `undoable`         | When to apply the mutation                         |
+| `mutationOptions` | Optional | `UseUpdateOptions`                            | -                  | Forwarded to `useUpdate`                           |
+| `onClick`         | Optional | `(e: MouseEvent<HTMLButtonElement>) => void`  | -                  | Additional click handler                           |
+| `redirect`        | Optional | `RedirectionSideEffect`                       | -                  | Where to redirect after update                     |
+| `resource`        | Optional | `string`                                      | From context       | Resource name                                      |
+| `successMessage`  | Optional | `string`                                      | -                  | Custom success i18n key                            |
+| `variant`         | Optional | shadcn button variant                         | `outline`          | Button style                                       |
 
 ## `mutationMode`
 
 ```tsx
-{/* Default: optimistic update with undo notification */}
-<UpdateButton label="Reset Views" data={{ views: 0 }} />
+{
+  /* Default: optimistic update with undo notification */
+}
+<UpdateButton label="Reset Views" data={{ views: 0 }} />;
 
-{/* Equivalent */}
-<UpdateWithUndoButton label="Reset Views" data={{ views: 0 }} />
+{
+  /* Equivalent */
+}
+<UpdateWithUndoButton label="Reset Views" data={{ views: 0 }} />;
 
-{/* Pessimistic with confirmation dialog */}
-<UpdateButton label="Reset Views" data={{ views: 0 }} mutationMode="pessimistic" />
+{
+  /* Pessimistic with confirmation dialog */
+}
+<UpdateButton
+  label="Reset Views"
+  data={{ views: 0 }}
+  mutationMode="pessimistic"
+/>;
 
-{/* Equivalent */}
-<UpdateWithConfirmButton label="Reset Views" data={{ views: 0 }} />
+{
+  /* Equivalent */
+}
+<UpdateWithConfirmButton label="Reset Views" data={{ views: 0 }} />;
 ```
 
 ## `label`

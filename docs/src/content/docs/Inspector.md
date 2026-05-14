@@ -20,9 +20,7 @@ import {
 import { Resource } from "ra-core";
 
 const MyLayout = ({ children }: { children: React.ReactNode }) => (
-  <Layout
-    appBarChildren={<InspectorButton />}
-  >
+  <Layout appBarChildren={<InspectorButton />}>
     {children}
     <Inspector />
   </Layout>
@@ -40,10 +38,7 @@ For the editor element of a `<Configurable>`, you can pass any React element. Th
 ```tsx
 const BookList = () => (
   <List>
-    <Configurable
-      preferenceKey="books.datatable"
-      editor={<FieldsSelector />}
-    >
+    <Configurable preferenceKey="books.datatable" editor={<FieldsSelector />}>
       <DataTable>
         <DataTable.Col source="title" />
         <DataTable.Col source="author" />
@@ -76,8 +71,8 @@ const AppBar = () => (
 );
 ```
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
+| Prop    | Required | Type     | Default                         | Description                              |
+| ------- | -------- | -------- | ------------------------------- | ---------------------------------------- |
 | `label` | Optional | `string` | `ra.configurable.configureMode` | Translation key for tooltip / aria-label |
 
 Additional props are forwarded to the underlying `<Button>`.
@@ -97,9 +92,9 @@ const MyLayout = ({ children }) => (
 );
 ```
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | - | Extra classes appended to the inspector card |
+| Prop        | Required | Type     | Default | Description                                  |
+| ----------- | -------- | -------- | ------- | -------------------------------------------- |
+| `className` | Optional | `string` | -       | Extra classes appended to the inspector card |
 
 The inspector panel renders in a fixed position at the top-right of the viewport. It auto-hides when edit mode is off.
 
@@ -127,13 +122,13 @@ const BookList = () => (
 );
 ```
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | The element to make configurable |
-| `editor` | Required | `ReactElement` | - | The editor element rendered inside `<Inspector>` when this configurable is selected. Receives `preferenceKey` via `cloneElement`. |
-| `preferenceKey` | Required | `string` | - | Identifies this configurable; all preferences live under `preferences.${preferenceKey}` |
-| `openButtonLabel` | Optional | `string` | `ra.configurable.customize` | Translation key for the open-editor button label |
-| `className` | Optional | `string` | - | Extra classes appended to the wrapper |
+| Prop              | Required | Type           | Default                     | Description                                                                                                                       |
+| ----------------- | -------- | -------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `children`        | Required | `ReactNode`    | -                           | The element to make configurable                                                                                                  |
+| `editor`          | Required | `ReactElement` | -                           | The editor element rendered inside `<Inspector>` when this configurable is selected. Receives `preferenceKey` via `cloneElement`. |
+| `preferenceKey`   | Required | `string`       | -                           | Identifies this configurable; all preferences live under `preferences.${preferenceKey}`                                           |
+| `openButtonLabel` | Optional | `string`       | `ra.configurable.customize` | Translation key for the open-editor button label                                                                                  |
+| `className`       | Optional | `string`       | -                           | Extra classes appended to the wrapper                                                                                             |
 
 When the `<PreferencesEditorContextProvider>` is not present in the tree, `<Configurable>` renders its children unchanged.
 
@@ -151,9 +146,9 @@ const ProductGrid = () => (
 );
 ```
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `name` | Optional | `string` | `"columns"` | Preference key for the array of selected indexes |
+| Prop            | Required | Type     | Default              | Description                                      |
+| --------------- | -------- | -------- | -------------------- | ------------------------------------------------ |
+| `name`          | Optional | `string` | `"columns"`          | Preference key for the array of selected indexes |
 | `availableName` | Optional | `string` | `"availableColumns"` | Preference key for the array of available fields |
 
 `<FieldsSelector>` reads its data from preferences. The component reading from this preference is expected to populate `preferences.${preferenceKey}.${availableName}` with an array of `{ index, source, label? }` entries on first render.

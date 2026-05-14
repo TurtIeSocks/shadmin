@@ -16,10 +16,10 @@ The bar only appears after the `timeout` has elapsed (default: 1 second). Until 
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `timeout` | Optional | `number` | `1000` | Delay in milliseconds before showing the bar. |
-| `className` | Optional | `string` | - | Extra CSS class applied to the bar's outer element. |
+| Prop        | Required | Type     | Default | Description                                         |
+| ----------- | -------- | -------- | ------- | --------------------------------------------------- |
+| `timeout`   | Optional | `number` | `1000`  | Delay in milliseconds before showing the bar.       |
+| `className` | Optional | `string` | -       | Extra CSS class applied to the bar's outer element. |
 
 The component also forwards any additional `div` props (e.g. `id`, `aria-*`) to the wrapping element.
 

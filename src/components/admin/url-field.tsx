@@ -32,9 +32,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *   </List>
  * );
  */
-const UrlFieldImpl = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+const UrlFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
   inProps: UrlFieldProps<RecordType>,
 ) => {
   const {
@@ -75,7 +73,8 @@ const UrlFieldImpl = <
 
   // When opening in a new tab, default to a secure rel value unless the
   // caller has explicitly provided their own.
-  const safeRel = target === "_blank" && rel == null ? "noopener noreferrer" : rel;
+  const safeRel =
+    target === "_blank" && rel == null ? "noopener noreferrer" : rel;
 
   return (
     <a
@@ -94,9 +93,7 @@ UrlFieldImpl.displayName = "UrlFieldImpl";
 
 export const UrlField = genericMemo(UrlFieldImpl);
 
-export interface UrlFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
+export interface UrlFieldProps<RecordType extends UnknownRecord = UnknownRecord>
   extends FieldProps<RecordType>, AnchorHTMLAttributes<HTMLAnchorElement> {}
 
 // useful to prevent click bubbling in a DataTable with rowClick

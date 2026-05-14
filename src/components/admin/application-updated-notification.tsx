@@ -59,9 +59,7 @@ export const ApplicationUpdatedNotification = (
       )}
     >
       <Sparkles className="w-5 h-5 text-primary shrink-0" aria-hidden="true" />
-      <p className="text-sm flex-1">
-        {translate(message, { _: message })}
-      </p>
+      <p className="text-sm flex-1">{translate(message, { _: message })}</p>
       <Button size="sm" onClick={handleReload}>
         {translate(buttonLabel, { _: buttonLabel })}
       </Button>

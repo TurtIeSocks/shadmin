@@ -85,12 +85,7 @@ Both filter patterns from `ra-ui-materialui` are supported:
 ### Top toolbar pattern
 
 ```tsx
-import {
-  List,
-  DataTable,
-  TextInput,
-  SelectInput,
-} from "@/components/admin";
+import { List, DataTable, TextInput, SelectInput } from "@/components/admin";
 
 const postFilters = [
   <TextInput source="q" label="Search" alwaysOn />,

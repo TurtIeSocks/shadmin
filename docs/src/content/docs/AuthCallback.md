@@ -10,15 +10,12 @@ Redirection target used by external authentication services (e.g. OAuth) after a
 
 ```tsx
 import { Admin } from "@/components/admin";
-import { authProvider } from './authProvider';
+import { authProvider } from "./authProvider";
 
 const App = () => (
-    <Admin
-        dataProvider={dataProvider}
-        authProvider={authProvider}
-    >
-        ...
-    </Admin>
+  <Admin dataProvider={dataProvider} authProvider={authProvider}>
+    ...
+  </Admin>
 );
 ```
 
@@ -26,15 +23,12 @@ If you need a custom callback screen (e.g. to display branding while the callbac
 
 ```tsx
 import { Admin } from "@/components/admin";
-import MyAuthCallbackPage from './MyAuthCallbackPage';
+import MyAuthCallbackPage from "./MyAuthCallbackPage";
 
 const App = () => (
-    <Admin
-        authCallbackPage={MyAuthCallbackPage}
-        authProvider={authProvider}
-    >
-        ...
-    </Admin>
+  <Admin authCallbackPage={MyAuthCallbackPage} authProvider={authProvider}>
+    ...
+  </Admin>
 );
 ```
 

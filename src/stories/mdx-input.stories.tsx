@@ -101,11 +101,7 @@ export const Basic = ({ theme }: { theme: "system" | "light" | "dark" }) => (
 );
 Object.assign(Basic, StoryArgs);
 
-export const Disabled = ({
-  theme,
-}: {
-  theme: "system" | "light" | "dark";
-}) => (
+export const Disabled = ({ theme }: { theme: "system" | "light" | "dark" }) => (
   <StoryWrapper theme={theme}>
     <MdxInput source="body" disabled />
     <FormValues />
@@ -113,11 +109,7 @@ export const Disabled = ({
 );
 Object.assign(Disabled, StoryArgs);
 
-export const ReadOnly = ({
-  theme,
-}: {
-  theme: "system" | "light" | "dark";
-}) => (
+export const ReadOnly = ({ theme }: { theme: "system" | "light" | "dark" }) => (
   <StoryWrapper theme={theme}>
     <MdxInput source="body" readOnly />
     <FormValues />
@@ -143,7 +135,11 @@ export const CustomLabel = ({
   theme: "system" | "light" | "dark";
 }) => (
   <StoryWrapper theme={theme}>
-    <MdxInput source="body" label="Article body" helperText="Markdown is supported." />
+    <MdxInput
+      source="body"
+      label="Article body"
+      helperText="Markdown is supported."
+    />
     <FormValues />
   </StoryWrapper>
 );

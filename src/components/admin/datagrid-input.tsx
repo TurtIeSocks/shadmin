@@ -7,11 +7,7 @@ import type {
   ListControllerResult,
   RaRecord,
 } from "ra-core";
-import {
-  ListContextProvider,
-  useChoicesContext,
-  useInput,
-} from "ra-core";
+import { ListContextProvider, useChoicesContext, useInput } from "ra-core";
 
 import { cn } from "@/lib/utils";
 import { DataTable } from "@/components/admin/data-table";
@@ -140,7 +136,11 @@ export const DatagridInput = <RecordType extends RaRecord = RaRecord>(
 
   return (
     <div
-      className={cn("ra-input", source ? `ra-input-${source}` : undefined, className)}
+      className={cn(
+        "ra-input",
+        source ? `ra-input-${source}` : undefined,
+        className,
+      )}
       data-slot="datagrid-input"
     >
       <ListContextProvider value={listContext as ListControllerResult}>

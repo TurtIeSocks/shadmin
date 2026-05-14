@@ -12,7 +12,7 @@ For full-page session-expired screens (used by the `<Admin>`'s `authenticationEr
 import { AuthError } from "@/components/admin/auth-error";
 
 const Unauthorized = () => (
-    <AuthError message="Your session has expired. Please sign in again." />
+  <AuthError message="Your session has expired. Please sign in again." />
 );
 ```
 
@@ -25,22 +25,19 @@ import { Admin } from "@/components/admin";
 import { AuthError } from "@/components/admin/auth-error";
 
 const App = () => (
-    <Admin
-        authProvider={authProvider}
-        authenticationError={AuthError}
-    >
-        ...
-    </Admin>
+  <Admin authProvider={authProvider} authenticationError={AuthError}>
+    ...
+  </Admin>
 );
 ```
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | - | Extra CSS class applied to the wrapping element. |
-| `title` | Optional | `string` | `ra.page.error` | i18n key or text used for the heading. |
-| `message` | Optional | `string` | `ra.message.auth_error` | i18n key or text used for the message body. |
+| Prop        | Required | Type     | Default                 | Description                                      |
+| ----------- | -------- | -------- | ----------------------- | ------------------------------------------------ |
+| `className` | Optional | `string` | -                       | Extra CSS class applied to the wrapping element. |
+| `title`     | Optional | `string` | `ra.page.error`         | i18n key or text used for the heading.           |
+| `message`   | Optional | `string` | `ra.message.auth_error` | i18n key or text used for the message body.      |
 
 ### `title`
 

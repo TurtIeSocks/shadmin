@@ -146,10 +146,7 @@ export const ListPagination = ({
 
   return (
     <div
-      className={cn(
-        "flex items-center justify-end space-x-2 gap-4",
-        className,
-      )}
+      className={cn("flex items-center justify-end space-x-2 gap-4", className)}
     >
       <div className="hidden md:flex items-center space-x-2">
         <p className="text-sm font-medium">
@@ -207,9 +204,7 @@ export const ListPagination = ({
               aria-label={previousLabel}
               aria-disabled={!hasPreviousPage || undefined}
               disabled={!hasPreviousPage}
-              onClick={
-                hasPreviousPage ? () => goToPage(page - 1) : undefined
-              }
+              onClick={hasPreviousPage ? () => goToPage(page - 1) : undefined}
               className={navButtonClass(false, !hasPreviousPage)}
             >
               <ChevronLeftIcon />

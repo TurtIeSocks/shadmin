@@ -24,9 +24,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </List>
  * );
  */
-export const TextField = <
-  RecordType extends UnknownRecord = UnknownRecord,
->({
+export const TextField = <RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,

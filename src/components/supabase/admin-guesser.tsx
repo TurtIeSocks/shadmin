@@ -7,10 +7,7 @@ import {
 } from "ra-core";
 import { Route } from "react-router";
 import { createClient } from "@supabase/supabase-js";
-import {
-  supabaseAuthProvider,
-  supabaseDataProvider,
-} from "ra-supabase-core";
+import { supabaseAuthProvider, supabaseDataProvider } from "ra-supabase-core";
 import { Admin } from "@/components/admin/admin";
 import { defaultSupabaseI18nProvider } from "./i18n";
 import { useCrudGuesser } from "./use-crud-guesser";
@@ -90,11 +87,7 @@ export const AdminGuesser = (props: AdminGuesserProps) => {
   );
 };
 
-const AdminGuesserResources = ({
-  children,
-}: {
-  children?: AdminChildren;
-}) => {
+const AdminGuesserResources = ({ children }: { children?: AdminChildren }) => {
   const inferred = useCrudGuesser();
   if (children) return <>{children}</>;
   return (

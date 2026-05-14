@@ -8,17 +8,38 @@
   "produces": ["application/json"],
   "paths": {
     "/companies": {
-      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "post": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "patch": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+      "get": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "patch": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      }
     },
     "/contacts": {
-      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "post": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "patch": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+      "get": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "patch": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      }
     },
     "/readonly_view": {
-      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+      "get": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      }
     }
   },
   "definitions": {

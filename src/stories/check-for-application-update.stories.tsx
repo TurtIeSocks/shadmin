@@ -30,10 +30,9 @@ const Wrapper = ({ children }: { children: ReactNode }) => (
 export const Basic = () => (
   <Wrapper>
     <div className="min-h-[200px] p-4 text-sm text-muted-foreground">
-      In a real app, mount{" "}
-      <code>{"<CheckForApplicationUpdate />"}</code> at the root of the layout.
-      It will poll <code>/index.html</code> every minute and surface a reload
-      banner when the hash of the response changes.
+      In a real app, mount <code>{"<CheckForApplicationUpdate />"}</code> at the
+      root of the layout. It will poll <code>/index.html</code> every minute and
+      surface a reload banner when the hash of the response changes.
     </div>
     {/* Disabled here to avoid real network polling inside Storybook. */}
     <CheckForApplicationUpdate disabled />

@@ -24,10 +24,10 @@ export const PostList = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `options` | Optional | `IntersectionObserverInit` | `{ threshold: 0 }` | Options forwarded to the underlying `IntersectionObserver` |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the wrapper |
+| Prop        | Required | Type                       | Default            | Description                                                |
+| ----------- | -------- | -------------------------- | ------------------ | ---------------------------------------------------------- |
+| `options`   | Optional | `IntersectionObserverInit` | `{ threshold: 0 }` | Options forwarded to the underlying `IntersectionObserver` |
+| `className` | Optional | `string`                   | -                  | Extra Tailwind classes appended to the wrapper             |
 
 ## `options`
 

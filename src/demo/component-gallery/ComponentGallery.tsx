@@ -96,7 +96,11 @@ const galleryComponents: GalleryComponent[] = [
   { name: "CheckboxGroupInput", family: "Inputs", docs: "CheckboxGroupInput" },
   { name: "ChipField", family: "Fields", docs: "ChipField" },
   { name: "CloneButton", family: "Buttons and actions", docs: "CloneButton" },
-  { name: "ColumnsButton", family: "Buttons and actions", docs: "ColumnsButton" },
+  {
+    name: "ColumnsButton",
+    family: "Buttons and actions",
+    docs: "ColumnsButton",
+  },
   { name: "Confirm", family: "Auth and feedback", docs: "Confirm" },
   { name: "Count", family: "Fields", docs: "Count" },
   { name: "Create", family: "Views", docs: "Create" },
@@ -136,7 +140,11 @@ const galleryComponents: GalleryComponent[] = [
   { name: "ImageField", family: "Fields", docs: "ImageField" },
   { name: "ImageInput", family: "Inputs", docs: "ImageInput" },
   { name: "InPlaceEditor", family: "Inputs", docs: "InPlaceEditor" },
-  { name: "InfiniteList", family: "Lists and references", docs: "InfiniteList" },
+  {
+    name: "InfiniteList",
+    family: "Lists and references",
+    docs: "InfiniteList",
+  },
   {
     name: "InfinitePagination",
     family: "Lists and references",
@@ -146,14 +154,26 @@ const galleryComponents: GalleryComponent[] = [
   { name: "KeyboardShortcut", family: "Layout", docs: "KeyboardShortcut" },
   { name: "Labeled", family: "Layout", docs: "Labeled" },
   { name: "Layout", family: "App shell", docs: "Layout" },
-  { name: "LinearProgress", family: "Auth and feedback", docs: "LinearProgress" },
+  {
+    name: "LinearProgress",
+    family: "Auth and feedback",
+    docs: "LinearProgress",
+  },
   { name: "Link", family: "Layout", docs: "Link" },
   { name: "List", family: "Views", docs: "List" },
   { name: "ListActions", family: "Lists and references", docs: "ListActions" },
   { name: "ListButton", family: "Buttons and actions", docs: "ListButton" },
   { name: "ListGuesser", family: "Views", docs: "ListGuesser" },
-  { name: "ListNoResults", family: "Lists and references", docs: "ListNoResults" },
-  { name: "ListPagination", family: "Lists and references", docs: "ListPagination" },
+  {
+    name: "ListNoResults",
+    family: "Lists and references",
+    docs: "ListNoResults",
+  },
+  {
+    name: "ListPagination",
+    family: "Lists and references",
+    docs: "ListPagination",
+  },
   { name: "ListToolbar", family: "Lists and references", docs: "ListToolbar" },
   { name: "Loading", family: "Auth and feedback", docs: "Loading" },
   {
@@ -165,20 +185,36 @@ const galleryComponents: GalleryComponent[] = [
   { name: "LocalesMenuButton", family: "App shell", docs: "LocalesMenuButton" },
   { name: "LoginForm", family: "Auth and feedback", docs: "LoginForm" },
   { name: "LoginPage", family: "Auth and feedback", docs: "LoginPage" },
-  { name: "LoginWithEmail", family: "Auth and feedback", docs: "LoginWithEmail" },
+  {
+    name: "LoginWithEmail",
+    family: "Auth and feedback",
+    docs: "LoginWithEmail",
+  },
   { name: "Logout", family: "Auth and feedback", docs: "Logout" },
   { name: "Menu", family: "App shell", docs: "Menu" },
   { name: "MenuItemLink", family: "App shell", docs: "MenuItemLink" },
   { name: "NotFound", family: "Auth and feedback", docs: "NotFound" },
   { name: "Notification", family: "Auth and feedback", docs: "Notification" },
-  { name: "NullableBooleanInput", family: "Inputs", docs: "NullableBooleanInput" },
+  {
+    name: "NullableBooleanInput",
+    family: "Inputs",
+    docs: "NullableBooleanInput",
+  },
   { name: "NumberField", family: "Fields", docs: "NumberField" },
   { name: "NumberInput", family: "Inputs", docs: "NumberInput" },
   { name: "Offline", family: "Auth and feedback", docs: "Offline" },
   { name: "PasswordInput", family: "Inputs", docs: "PasswordInput" },
   { name: "Placeholder", family: "Layout", docs: "Placeholder" },
-  { name: "PrevNextButtons", family: "Buttons and actions", docs: "PrevNextButtons" },
-  { name: "RadioButtonGroupInput", family: "Inputs", docs: "RadioButtonGroupInput" },
+  {
+    name: "PrevNextButtons",
+    family: "Buttons and actions",
+    docs: "PrevNextButtons",
+  },
+  {
+    name: "RadioButtonGroupInput",
+    family: "Inputs",
+    docs: "RadioButtonGroupInput",
+  },
   { name: "Ready", family: "Auth and feedback", docs: "Ready" },
   { name: "RecordField", family: "Fields", docs: "RecordField" },
   {
@@ -186,8 +222,16 @@ const galleryComponents: GalleryComponent[] = [
     family: "Lists and references",
     docs: "ReferenceArrayField",
   },
-  { name: "ReferenceArrayInput", family: "Inputs", docs: "ReferenceArrayInput" },
-  { name: "ReferenceField", family: "Lists and references", docs: "ReferenceField" },
+  {
+    name: "ReferenceArrayInput",
+    family: "Inputs",
+    docs: "ReferenceArrayInput",
+  },
+  {
+    name: "ReferenceField",
+    family: "Lists and references",
+    docs: "ReferenceField",
+  },
   { name: "ReferenceInput", family: "Inputs", docs: "ReferenceInput" },
   {
     name: "ReferenceManyCount",
@@ -204,26 +248,42 @@ const galleryComponents: GalleryComponent[] = [
     family: "Lists and references",
     docs: "ReferenceOneField",
   },
-  { name: "RefreshButton", family: "Buttons and actions", docs: "RefreshButton" },
+  {
+    name: "RefreshButton",
+    family: "Buttons and actions",
+    docs: "RefreshButton",
+  },
   {
     name: "RefreshIconButton",
     family: "Buttons and actions",
     docs: "RefreshIconButton",
   },
-  { name: "ResettableTextInput", family: "Inputs", docs: "ResettableTextInput" },
+  {
+    name: "ResettableTextInput",
+    family: "Inputs",
+    docs: "ResettableTextInput",
+  },
   { name: "ResourceMenuItem", family: "App shell", docs: "ResourceMenuItem" },
   { name: "RichTextField", family: "Fields", docs: "RichTextField" },
   { name: "SaveButton", family: "Buttons and actions", docs: "SaveButton" },
   { name: "SavedQueries", family: "Filters", docs: "SavedQueries" },
   { name: "SearchInput", family: "Inputs", docs: "SearchInput" },
-  { name: "SelectAllButton", family: "Buttons and actions", docs: "SelectAllButton" },
+  {
+    name: "SelectAllButton",
+    family: "Buttons and actions",
+    docs: "SelectAllButton",
+  },
   { name: "SelectArrayInput", family: "Inputs", docs: "SelectArrayInput" },
   { name: "SelectField", family: "Fields", docs: "SelectField" },
   { name: "SelectInput", family: "Inputs", docs: "SelectInput" },
   { name: "Show", family: "Views", docs: "Show" },
   { name: "ShowButton", family: "Buttons and actions", docs: "ShowButton" },
   { name: "ShowGuesser", family: "Views", docs: "Show" },
-  { name: "SidebarToggleButton", family: "App shell", docs: "SidebarToggleButton" },
+  {
+    name: "SidebarToggleButton",
+    family: "App shell",
+    docs: "SidebarToggleButton",
+  },
   { name: "SimpleForm", family: "Inputs", docs: "SimpleForm" },
   {
     name: "SimpleFormConfigurable",
@@ -232,7 +292,11 @@ const galleryComponents: GalleryComponent[] = [
   },
   { name: "SimpleFormIterator", family: "Inputs", docs: "SimpleFormIterator" },
   { name: "SimpleList", family: "Lists and references", docs: "SimpleList" },
-  { name: "SimpleListItem", family: "Lists and references", docs: "SimpleListItem" },
+  {
+    name: "SimpleListItem",
+    family: "Lists and references",
+    docs: "SimpleListItem",
+  },
   {
     name: "SimpleListLoading",
     family: "Lists and references",
@@ -284,14 +348,13 @@ const sampleRecord = {
   website: "https://example.com",
 };
 
-const groupedComponents = galleryComponents.reduce<Record<string, GalleryComponent[]>>(
-  (groups, component) => {
-    groups[component.family] ??= [];
-    groups[component.family].push(component);
-    return groups;
-  },
-  {},
-);
+const groupedComponents = galleryComponents.reduce<
+  Record<string, GalleryComponent[]>
+>((groups, component) => {
+  groups[component.family] ??= [];
+  groups[component.family].push(component);
+  return groups;
+}, {});
 
 export const ComponentGallery = () => (
   <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 py-6">
@@ -337,7 +400,9 @@ export const ComponentGallery = () => (
       <Card>
         <CardHeader>
           <CardTitle>Coverage</CardTitle>
-          <CardDescription>{galleryComponents.length} public entries</CardDescription>
+          <CardDescription>
+            {galleryComponents.length} public entries
+          </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-2">
           {Object.keys(groupedComponents).map((family) => (
@@ -406,7 +471,9 @@ export const ComponentGallery = () => (
       <Card>
         <CardHeader>
           <CardTitle>Actions and feedback</CardTitle>
-          <CardDescription>Common controls without data mutation.</CardDescription>
+          <CardDescription>
+            Common controls without data mutation.
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
           <TopToolbar>

@@ -7,22 +7,22 @@ Renders an array of scalar values as a horizontal list of shadcn [`<Badge>`](htt
 ## Usage
 
 ```tsx
-import { TextArrayField } from '@/components/admin';
+import { TextArrayField } from "@/components/admin";
 
 // record: { id: 123, genres: ['Fiction', 'Historical Fiction'] }
-<TextArrayField source="genres" />
+<TextArrayField source="genres" />;
 ```
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name |
-| `record` | Optional | `object` | Record from context | Explicit record |
-| `defaultValue` | Optional | `any` | - | Fallback value |
-| `empty` | Optional | `ReactNode` | - | Placeholder when value is missing or the array is empty |
-| `variant` | Optional | `"default" \| "outline" \| "secondary" \| "destructive"` | `"outline"` | Badge style |
-| `className` | Optional | `string` | - | Additional CSS classes |
+| Prop           | Required | Type                                                     | Default             | Description                                             |
+| -------------- | -------- | -------------------------------------------------------- | ------------------- | ------------------------------------------------------- |
+| `source`       | Required | `string`                                                 | -                   | Field name                                              |
+| `record`       | Optional | `object`                                                 | Record from context | Explicit record                                         |
+| `defaultValue` | Optional | `any`                                                    | -                   | Fallback value                                          |
+| `empty`        | Optional | `ReactNode`                                              | -                   | Placeholder when value is missing or the array is empty |
+| `variant`      | Optional | `"default" \| "outline" \| "secondary" \| "destructive"` | `"outline"`         | Badge style                                             |
+| `className`    | Optional | `string`                                                 | -                   | Additional CSS classes                                  |
 
 Remaining props are forwarded to the wrapping `<div>`.
 

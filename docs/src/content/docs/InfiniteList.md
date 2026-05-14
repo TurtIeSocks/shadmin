@@ -41,26 +41,26 @@ export const PostList = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Optional* | `ReactNode` | - | Component(s) that display the records |
-| `render` | Optional* | `(ctx) => ReactNode` | - | Alternate render function receiving the list context |
-| `actions` | Optional | `ReactNode` | default action bar | Custom actions area (right side of header) |
-| `debounce` | Optional | `number` | `500` | Debounce (ms) for filter & sort changes |
-| `disableAuthentication` | Optional | `boolean` | `false` | Skip auth check for this page |
-| `disableBreadcrumb` | Optional | `boolean` | `false` | Hide the default breadcrumb |
-| `disableSyncWithLocation` | Optional | `boolean` | `false` | Keep list params local (not in the URL) |
-| `exporter` | Optional | `false \| Exporter` | - | Custom export logic (set `false` to hide Export button) |
-| `filters` | Optional | `ReactElement[]` | - | Array of filter input elements (displayed inline) |
-| `filter` | Optional | `object` | - | Permanent filters always applied |
-| `filterDefaultValues` | Optional | `object` | - | Initial filter form values |
-| `pagination` | Optional | `ReactNode` | `<InfinitePagination />` | Custom pagination component |
-| `perPage` | Optional | `number` | `10` | Records per page |
-| `queryOptions` | Optional | `object` | - | Extra TanStack Query options |
-| `resource` | Optional | `string` | inferred | Resource name, defaults to the current `<ResourceContext>` |
-| `sort` | Optional | `{ field: string; order: 'ASC' \| 'DESC' }` | - | Initial sort |
-| `storeKey` | Optional | `string \| false` | derived | Storage key for persisted params; `false` disables persistence |
-| `title` | Optional | `string \| ReactNode \| false` | resource plural label | Page title |
+| Prop                      | Required   | Type                                        | Default                  | Description                                                    |
+| ------------------------- | ---------- | ------------------------------------------- | ------------------------ | -------------------------------------------------------------- |
+| `children`                | Optional\* | `ReactNode`                                 | -                        | Component(s) that display the records                          |
+| `render`                  | Optional\* | `(ctx) => ReactNode`                        | -                        | Alternate render function receiving the list context           |
+| `actions`                 | Optional   | `ReactNode`                                 | default action bar       | Custom actions area (right side of header)                     |
+| `debounce`                | Optional   | `number`                                    | `500`                    | Debounce (ms) for filter & sort changes                        |
+| `disableAuthentication`   | Optional   | `boolean`                                   | `false`                  | Skip auth check for this page                                  |
+| `disableBreadcrumb`       | Optional   | `boolean`                                   | `false`                  | Hide the default breadcrumb                                    |
+| `disableSyncWithLocation` | Optional   | `boolean`                                   | `false`                  | Keep list params local (not in the URL)                        |
+| `exporter`                | Optional   | `false \| Exporter`                         | -                        | Custom export logic (set `false` to hide Export button)        |
+| `filters`                 | Optional   | `ReactElement[]`                            | -                        | Array of filter input elements (displayed inline)              |
+| `filter`                  | Optional   | `object`                                    | -                        | Permanent filters always applied                               |
+| `filterDefaultValues`     | Optional   | `object`                                    | -                        | Initial filter form values                                     |
+| `pagination`              | Optional   | `ReactNode`                                 | `<InfinitePagination />` | Custom pagination component                                    |
+| `perPage`                 | Optional   | `number`                                    | `10`                     | Records per page                                               |
+| `queryOptions`            | Optional   | `object`                                    | -                        | Extra TanStack Query options                                   |
+| `resource`                | Optional   | `string`                                    | inferred                 | Resource name, defaults to the current `<ResourceContext>`     |
+| `sort`                    | Optional   | `{ field: string; order: 'ASC' \| 'DESC' }` | -                        | Initial sort                                                   |
+| `storeKey`                | Optional   | `string \| false`                           | derived                  | Storage key for persisted params; `false` disables persistence |
+| `title`                   | Optional   | `string \| ReactNode \| false`              | resource plural label    | Page title                                                     |
 
 `*` Provide either `children` or `render`.
 
@@ -73,7 +73,7 @@ import { InfiniteList, InfinitePagination } from "@/components/admin";
 
 <InfiniteList pagination={<InfinitePagination className="py-8" />}>
   {/* ... */}
-</InfiniteList>
+</InfiniteList>;
 ```
 
 ## When to choose `<InfiniteList>` vs `<List>`

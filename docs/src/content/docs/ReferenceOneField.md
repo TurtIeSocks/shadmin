@@ -9,30 +9,30 @@ The children are rendered inside a `RecordContext` populated with the referenced
 ## Usage
 
 ```tsx
-import { ReferenceOneField, TextField } from '@/components/admin';
+import { ReferenceOneField, TextField } from "@/components/admin";
 
 <ReferenceOneField reference="bios" target="author_id">
   <TextField source="body" />
-</ReferenceOneField>
+</ReferenceOneField>;
 ```
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `reference` | Required | `string` | - | Name of the related resource |
-| `target` | Required | `string` | - | Foreign key on the related record |
-| `source` | Optional | `string` | `"id"` | Field on the current record to match against `target` |
-| `sort` | Optional | `SortPayload` | - | Sort applied when fetching the related record |
-| `filter` | Optional | `object` | - | Filter applied when fetching the related record |
-| `link` | Optional | `LinkToType` | - | Link the rendered field to the related record |
-| `empty` | Optional | `ReactNode` | - | Rendered when no record is found |
-| `loading` | Optional | `ReactNode` | - | Rendered while the request is pending |
-| `error` | Optional | `ReactNode` | - | Rendered when the request fails |
-| `record` | Optional | `object` | Record from context | Explicit current record |
-| `queryOptions` | Optional | `UseQueryOptions` | - | Extra options forwarded to TanStack Query |
-| `render` | Optional | `(state) => ReactNode` | - | Custom render function. Receives the controller result |
-| `children` | Optional | `ReactNode` | - | Field components to render with the referenced record in context |
+| Prop           | Required | Type                   | Default             | Description                                                      |
+| -------------- | -------- | ---------------------- | ------------------- | ---------------------------------------------------------------- |
+| `reference`    | Required | `string`               | -                   | Name of the related resource                                     |
+| `target`       | Required | `string`               | -                   | Foreign key on the related record                                |
+| `source`       | Optional | `string`               | `"id"`              | Field on the current record to match against `target`            |
+| `sort`         | Optional | `SortPayload`          | -                   | Sort applied when fetching the related record                    |
+| `filter`       | Optional | `object`               | -                   | Filter applied when fetching the related record                  |
+| `link`         | Optional | `LinkToType`           | -                   | Link the rendered field to the related record                    |
+| `empty`        | Optional | `ReactNode`            | -                   | Rendered when no record is found                                 |
+| `loading`      | Optional | `ReactNode`            | -                   | Rendered while the request is pending                            |
+| `error`        | Optional | `ReactNode`            | -                   | Rendered when the request fails                                  |
+| `record`       | Optional | `object`               | Record from context | Explicit current record                                          |
+| `queryOptions` | Optional | `UseQueryOptions`      | -                   | Extra options forwarded to TanStack Query                        |
+| `render`       | Optional | `(state) => ReactNode` | -                   | Custom render function. Receives the controller result           |
+| `children`     | Optional | `ReactNode`            | -                   | Field components to render with the referenced record in context |
 
 ## `reference`
 

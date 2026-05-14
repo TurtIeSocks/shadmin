@@ -28,13 +28,13 @@ The form changes are debounced (500ms by default) before they are applied to the
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | Filter inputs |
-| `debounce` | Optional | `number \| false` | `500` | Debounce delay in milliseconds, or `false` to apply immediately |
-| `validate` | Optional | `ValidateForm` | - | Form validation callback |
-| `resource` | Optional | `string` | from context | Override the resource name used by inputs |
-| `formComponent` | Optional | `ComponentType` | `<form>` | Custom form wrapper component |
+| Prop            | Required | Type              | Default      | Description                                                     |
+| --------------- | -------- | ----------------- | ------------ | --------------------------------------------------------------- |
+| `children`      | Required | `ReactNode`       | -            | Filter inputs                                                   |
+| `debounce`      | Optional | `number \| false` | `500`        | Debounce delay in milliseconds, or `false` to apply immediately |
+| `validate`      | Optional | `ValidateForm`    | -            | Form validation callback                                        |
+| `resource`      | Optional | `string`          | from context | Override the resource name used by inputs                       |
+| `formComponent` | Optional | `ComponentType`   | `<form>`     | Custom form wrapper component                                   |
 
 ## `debounce`
 

@@ -26,19 +26,19 @@ The original `matchMedia` is restored when the component unmounts.
 ## Width Map
 
 | Breakpoint | Pixels |
-|------------|--------|
-| `xs` | `0` |
-| `sm` | `600` |
-| `md` | `900` |
-| `lg` | `1200` |
-| `xl` | `1536` |
+| ---------- | ------ |
+| `xs`       | `0`    |
+| `sm`       | `600`  |
+| `md`       | `900`  |
+| `lg`       | `1200` |
+| `xl`       | `1536` |
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `width` | Required | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | - | Breakpoint keyword to simulate. |
-| `children` | Required | `ReactNode` | - | Content to render inside the simulated viewport. |
+| Prop       | Required | Type                                   | Default | Description                                      |
+| ---------- | -------- | -------------------------------------- | ------- | ------------------------------------------------ |
+| `width`    | Required | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | -       | Breakpoint keyword to simulate.                  |
+| `children` | Required | `ReactNode`                            | -       | Content to render inside the simulated viewport. |
 
 ## Caveat
 

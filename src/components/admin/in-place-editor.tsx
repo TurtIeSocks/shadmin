@@ -96,7 +96,10 @@ export const InPlaceEditor = <
   const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   const [state, dispatch] = useReducer(
-    (_: InPlaceEditorState, action: InPlaceEditorAction): InPlaceEditorState => {
+    (
+      _: InPlaceEditorState,
+      action: InPlaceEditorAction,
+    ): InPlaceEditorState => {
       switch (action.type) {
         case "edit":
           return { state: "editing" };
@@ -273,10 +276,7 @@ export const InPlaceEditor = <
   };
 
   return (
-    <div
-      className={cn("inline-block", className)}
-      data-slot="in-place-editor"
-    >
+    <div className={cn("inline-block", className)} data-slot="in-place-editor">
       {renderContent()}
     </div>
   );

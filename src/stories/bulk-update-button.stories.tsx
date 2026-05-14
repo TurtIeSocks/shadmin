@@ -46,7 +46,9 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
         >
           <ResourceContextProvider value="posts">
             <ListContext.Provider
-              value={{ selectedIds: [1, 2], onUnselectItems: () => {} } as never}
+              value={
+                { selectedIds: [1, 2], onUnselectItems: () => {} } as never
+              }
             >
               {children}
             </ListContext.Provider>

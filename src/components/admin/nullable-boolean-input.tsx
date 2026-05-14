@@ -1,10 +1,11 @@
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext, useTranslate } from "ra-core";
 import {
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  useTranslate,
+} from "ra-core";
+import { FormError, FormField, FormLabel } from "@/components/admin/form";
 import {
   Select,
   SelectContent,

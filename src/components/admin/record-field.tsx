@@ -42,9 +42,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const RecordField = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+export const RecordField = <RecordType extends UnknownRecord = UnknownRecord>(
   props: RecordFieldProps<RecordType>,
 ) => {
   const {

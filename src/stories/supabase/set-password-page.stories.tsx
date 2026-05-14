@@ -24,7 +24,9 @@ const auth: AuthProvider = {
 };
 
 export const WithTokens = () => (
-  <MemoryRouter initialEntries={["/set-password#access_token=A&refresh_token=R"]}>
+  <MemoryRouter
+    initialEntries={["/set-password#access_token=A&refresh_token=R"]}
+  >
     <ThemeProvider>
       <CoreAdminContext authProvider={auth} i18nProvider={i18nProvider}>
         <SetPasswordPage />

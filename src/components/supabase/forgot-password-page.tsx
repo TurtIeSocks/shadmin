@@ -40,9 +40,12 @@ export const ForgotPasswordPage = ({
       title={translate("ra-supabase.reset_password.forgot_password", {
         _: "Forgot password?",
       })}
-      subtitle={translate("ra-supabase.reset_password.forgot_password_details", {
-        _: "Enter your email for instructions.",
-      })}
+      subtitle={translate(
+        "ra-supabase.reset_password.forgot_password_details",
+        {
+          _: "Enter your email for instructions.",
+        },
+      )}
       aside={aside}
     >
       {children}

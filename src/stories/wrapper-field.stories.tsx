@@ -1,11 +1,7 @@
 import React from "react";
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
 import { i18nProvider } from "@/lib/i18n-provider";
-import {
-  TextField,
-  ThemeProvider,
-  WrapperField,
-} from "@/components/admin";
+import { TextField, ThemeProvider, WrapperField } from "@/components/admin";
 
 export default {
   title: "Fields/WrapperField",
@@ -28,9 +24,7 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
 export const Basic = () => (
   <Wrapper>
     <WrapperField label="Name" source="last_name">
-      <TextField source="first_name" />
-      {" "}
-      <TextField source="last_name" />
+      <TextField source="first_name" /> <TextField source="last_name" />
     </WrapperField>
   </Wrapper>
 );

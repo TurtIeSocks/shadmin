@@ -58,16 +58,16 @@ Components using `<Show>` can be used as the `show` prop of a `<Resource>` compo
 
 ```jsx
 // in src/App.jsx
-import { Admin } from '@/copmponents/admin';
-import { Resource } from 'ra-core';
+import { Admin } from "@/copmponents/admin";
+import { Resource } from "ra-core";
 
-import { dataProvider } from './dataProvider';
-import { ProductShow } from './products';
+import { dataProvider } from "./dataProvider";
+import { ProductShow } from "./products";
 
 const App = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="products" show={ProductShow} />
-    </Admin>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="products" show={ProductShow} />
+  </Admin>
 );
 ```
 
@@ -95,19 +95,19 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 
 ## Props
 
-| Prop             | Required | Type              | Default | Description
-|------------------|----------|-------------------|---------|--------------------------------------------------------
-| `children`       | Optional&nbsp;* | `ReactNode`       |         | The components rendering the record fields
-| `render`       | Optional&nbsp;* | `(showContext) => ReactNode`       |         | A function rendering the record fields, receive the show context as its argument
-| `actions`        | Optional | `ReactElement`    |         | The actions to display in the toolbar
-| `className`      | Optional | `string`          |         | passed to the root component
-| `disableAuthentication` | Optional | `boolean` |         | Set to `true` to disable the authentication check
-| `disableBreadcrumb`  | Optional  | `boolean` | `false` | Set to `true` to define a custom breadcrumb for the page, instead of the default one
-| `emptyWhileLoading` | Optional | `boolean`     |         | Set to `true` to return `null` while the show is loading
-| `id`             | Optional | `string | number` |         | The record id. If not provided, it will be deduced from the URL
-| `queryOptions`   | Optional | `object`          |         | The options to pass to the `useQuery` hook
-| `resource`       | Optional | `string`          |         | The resource name, e.g. `posts`
-| `title`          | Optional | `string | ReactElement | false` |   | The title to display in the App Bar
+| Prop                    | Required         | Type                         | Default      | Description                                                                          |
+| ----------------------- | ---------------- | ---------------------------- | ------------ | ------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------- |
+| `children`              | Optional&nbsp;\* | `ReactNode`                  |              | The components rendering the record fields                                           |
+| `render`                | Optional&nbsp;\* | `(showContext) => ReactNode` |              | A function rendering the record fields, receive the show context as its argument     |
+| `actions`               | Optional         | `ReactElement`               |              | The actions to display in the toolbar                                                |
+| `className`             | Optional         | `string`                     |              | passed to the root component                                                         |
+| `disableAuthentication` | Optional         | `boolean`                    |              | Set to `true` to disable the authentication check                                    |
+| `disableBreadcrumb`     | Optional         | `boolean`                    | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
+| `emptyWhileLoading`     | Optional         | `boolean`                    |              | Set to `true` to return `null` while the show is loading                             |
+| `id`                    | Optional         | `string                      | number`      |                                                                                      | The record id. If not provided, it will be deduced from the URL |
+| `queryOptions`          | Optional         | `object`                     |              | The options to pass to the `useQuery` hook                                           |
+| `resource`              | Optional         | `string`                     |              | The resource name, e.g. `posts`                                                      |
+| `title`                 | Optional         | `string                      | ReactElement | false`                                                                               |                                                                 | The title to display in the App Bar |
 
 `*` You must provide either `children` or `render`.
 
@@ -115,12 +115,12 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 
 Shadcn Admin Kit offers [Realtime features](./RealtimeFeatures.md) to automatically refresh the data on screen when it has been changed by another user.
 
-If you want to subscribe to live updates the record, you can rely on the [`useSubscribeToRecord`](https://marmelab.com/ra-core/usesubscribetorecord/) hook. 
+If you want to subscribe to live updates the record, you can rely on the [`useSubscribeToRecord`](https://marmelab.com/ra-core/usesubscribetorecord/) hook.
 
 A sample use case would be to refresh the `<Show>` view when the record has been updated by another user.
 
 :::note
-This feature requires a valid [Enterprise Edition](https://marmelab.com/ra-enterprise/) subscription. 
+This feature requires a valid [Enterprise Edition](https://marmelab.com/ra-enterprise/) subscription.
 :::
 
 First, create a `<RecordLiveUpdate>` component that uses the `useSubscribeToRecord` hook to subscribe to updates on the current record. When an update is received, it calls the `refetch` function from the `ShowContext` to refresh the record.
@@ -128,39 +128,39 @@ First, create a `<RecordLiveUpdate>` component that uses the `useSubscribeToReco
 ```tsx
 // src/components/admin/record-live-update.tsx
 
-import { useSubscribeToRecord } from '@react-admin/ra-core-ee';
-import { Identifier, useShowContext } from 'ra-core';
-import { useCallback } from 'react';
+import { useSubscribeToRecord } from "@react-admin/ra-core-ee";
+import { Identifier, useShowContext } from "ra-core";
+import { useCallback } from "react";
 
 export const RecordLiveUpdate = (props: RecordLiveUpdateProps) => {
-    const { refetch } = useShowContext();
-    const handleUpdate = useCallback(() => {
-        refetch();
-    }, [refetch]);
+  const { refetch } = useShowContext();
+  const handleUpdate = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
-    useSubscribeToRecord(handleUpdate, props.resource, props.id);
+  useSubscribeToRecord(handleUpdate, props.resource, props.id);
 
-    return null;
+  return null;
 };
 
 type RecordLiveUpdateProps = {
-    resource?: string;
-    id?: Identifier;
+  resource?: string;
+  id?: Identifier;
 };
 ```
 
 Then, add the `<RecordLiveUpdate>` in your `<Show>` children:
 
 ```tsx
-import { TextField } from '@/components/admin/data-table';
-import { RecordLiveUpdate } from '@/components/admin/record-live-update';
-import { Show } from '@/components/admin/show';
+import { TextField } from "@/components/admin/data-table";
+import { RecordLiveUpdate } from "@/components/admin/record-live-update";
+import { Show } from "@/components/admin/show";
 
 const PostList = () => (
-    <Show>
-        <TextField source="title" />
-        <RecordLiveUpdate />
-    </Show>
+  <Show>
+    <TextField source="title" />
+    <RecordLiveUpdate />
+  </Show>
 );
 ```
 

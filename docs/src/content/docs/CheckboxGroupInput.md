@@ -9,13 +9,16 @@ Multi-select input rendered as a list (column or row) of checkboxes.
 In addition to the `source`, `<CheckboxGroupInput>` requires one prop: the `choices` listing the possible values.
 
 ```tsx
-import { CheckboxGroupInput } from '@/components/admin';
+import { CheckboxGroupInput } from "@/components/admin";
 
-<CheckboxGroupInput source="tags" choices={[
-  { id: "tech", name: "Tech" },
-  { id: "lifestyle", name: "Lifestyle" },
-  { id: "people", name: "People" },
-]} />
+<CheckboxGroupInput
+  source="tags"
+  choices={[
+    { id: "tech", name: "Tech" },
+    { id: "lifestyle", name: "Lifestyle" },
+    { id: "people", name: "People" },
+  ]}
+/>;
 ```
 
 By default, the possible choices are built from the `choices` prop, using:
@@ -35,23 +38,23 @@ const record = {
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required* | `string` | - | Field name (inferred in ReferenceArrayInput) |
-| `choices` | Required* | `Object[]` | - | List of items to display as checkboxes. Required if not inside a ReferenceArrayInput. |
-| `className` | Optional | `string` | - | Wrapper classes |
-| `defaultValue` | Optional | `any[]` | `[]` | The default value for the input |
-| `disabled` | Optional | `boolean` | `false` | If true, every checkbox is disabled |
-| `disableValue` | Optional | `string` | `disabled` | Field marking disabled choices |
-| `format` | Optional | `Function` | - | Callback taking the value from the form state, and returning the input value. |
-| `helperText` | Optional | `string` &#124; `ReactNode` | - | The helper text to display below the input |
-| `label` | Optional | `string` &#124; `ReactNode` &#124; `false` | Inferred | The label to display above the input |
-| `optionText` | Optional | `string` &#124; `Function` &#124; `Component` | `name` | Field name of the record to display as the option text, or function/component that renders it |
-| `optionValue` | Optional | `string` | `id` | Field name of the record containing the value to use as the form value |
-| `parse` | Optional | `Function` | - | Callback taking the value from the input, and returning the value to be stored in the form state |
-| `row` | Optional | `boolean` | `false` | Horizontal layout |
-| `translateChoice` | Optional | `boolean` | `true` | Whether the choices should be translated |
-| `validate` | Optional | `Function` &#124; `Function[]` | - | An array of validation functions or a single validation function |
+| Prop              | Required   | Type                                          | Default    | Description                                                                                      |
+| ----------------- | ---------- | --------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------ |
+| `source`          | Required\* | `string`                                      | -          | Field name (inferred in ReferenceArrayInput)                                                     |
+| `choices`         | Required\* | `Object[]`                                    | -          | List of items to display as checkboxes. Required if not inside a ReferenceArrayInput.            |
+| `className`       | Optional   | `string`                                      | -          | Wrapper classes                                                                                  |
+| `defaultValue`    | Optional   | `any[]`                                       | `[]`       | The default value for the input                                                                  |
+| `disabled`        | Optional   | `boolean`                                     | `false`    | If true, every checkbox is disabled                                                              |
+| `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                   |
+| `format`          | Optional   | `Function`                                    | -          | Callback taking the value from the form state, and returning the input value.                    |
+| `helperText`      | Optional   | `string` &#124; `ReactNode`                   | -          | The helper text to display below the input                                                       |
+| `label`           | Optional   | `string` &#124; `ReactNode` &#124; `false`    | Inferred   | The label to display above the input                                                             |
+| `optionText`      | Optional   | `string` &#124; `Function` &#124; `Component` | `name`     | Field name of the record to display as the option text, or function/component that renders it    |
+| `optionValue`     | Optional   | `string`                                      | `id`       | Field name of the record containing the value to use as the form value                           |
+| `parse`           | Optional   | `Function`                                    | -          | Callback taking the value from the input, and returning the value to be stored in the form state |
+| `row`             | Optional   | `boolean`                                     | `false`    | Horizontal layout                                                                                |
+| `translateChoice` | Optional   | `boolean`                                     | `true`     | Whether the choices should be translated                                                         |
+| `validate`        | Optional   | `Function` &#124; `Function[]`                | -          | An array of validation functions or a single validation function                                 |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
 
@@ -69,37 +72,37 @@ The list of choices must be an array of objects with at least two fields: one to
 
 ```jsx
 const choices = [
-    { id: 'tech', name: 'Tech' },
-    { id: 'lifestyle', name: 'Lifestyle' },
-    { id: 'people', name: 'People' },
+  { id: "tech", name: "Tech" },
+  { id: "lifestyle", name: "Lifestyle" },
+  { id: "people", name: "People" },
 ];
-<CheckboxGroupInput source="tags" choices={choices} />
+<CheckboxGroupInput source="tags" choices={choices} />;
 ```
 
 If the choices have different keys, use `optionText` and `optionValue`:
 
 ```jsx
 const choices = [
-    { _id: 'tech', label: 'Tech' },
-    { _id: 'lifestyle', label: 'Lifestyle' },
-    { _id: 'people', label: 'People' },
+  { _id: "tech", label: "Tech" },
+  { _id: "lifestyle", label: "Lifestyle" },
+  { _id: "people", label: "People" },
 ];
 
 <CheckboxGroupInput
-    source="tags"
-    choices={choices}
-    optionText="label"
-    optionValue="_id"
-/>
+  source="tags"
+  choices={choices}
+  optionText="label"
+  optionValue="_id"
+/>;
 ```
 
 The choices are translated by default, so you can use translation identifiers as choices:
 
 ```jsx
 const choices = [
-    { id: 'tech', name: 'myroot.tags.tech' },
-    { id: 'lifestyle', name: 'myroot.tags.lifestyle' },
-    { id: 'people', name: 'myroot.tags.people' },
+  { id: "tech", name: "myroot.tags.tech" },
+  { id: "lifestyle", name: "myroot.tags.lifestyle" },
+  { id: "people", name: "myroot.tags.people" },
 ];
 ```
 
@@ -109,7 +112,7 @@ To fetch the options from another resource, wrap `<CheckboxGroupInput>` in a [`<
 
 ```jsx
 <ReferenceArrayInput source="tag_ids" reference="tags">
-    <CheckboxGroupInput />
+  <CheckboxGroupInput />
 </ReferenceArrayInput>
 ```
 
@@ -119,11 +122,11 @@ You can disable some choices by setting a `disabled` field to `true` (or by pass
 
 ```jsx
 const choices = [
-    { id: 'tech', name: 'Tech' },
-    { id: 'lifestyle', name: 'Lifestyle' },
-    { id: 'people', name: 'People', disabled: true },
+  { id: "tech", name: "Tech" },
+  { id: "lifestyle", name: "Lifestyle" },
+  { id: "people", name: "People", disabled: true },
 ];
-<CheckboxGroupInput source="tags" choices={choices} />
+<CheckboxGroupInput source="tags" choices={choices} />;
 ```
 
 ## Alternatives

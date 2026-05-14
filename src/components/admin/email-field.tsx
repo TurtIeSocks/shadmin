@@ -11,9 +11,7 @@ import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
-const EmailFieldImpl = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+const EmailFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
   inProps: EmailFieldProps<RecordType>,
 ) => {
   const { className, empty, defaultValue, source, record, ...rest } = inProps;

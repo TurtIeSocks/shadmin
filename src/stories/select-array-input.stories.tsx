@@ -47,11 +47,7 @@ export const Basic = () => (
 
 export const Empty = () => (
   <Wrapper>
-    <SelectArrayInput
-      source="tags"
-      choices={tags}
-      placeholder="Pick tags..."
-    />
+    <SelectArrayInput source="tags" choices={tags} placeholder="Pick tags..." />
     <FormValues />
   </Wrapper>
 );

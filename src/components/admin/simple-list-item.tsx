@@ -1,9 +1,5 @@
 import type { Identifier, RaRecord } from "ra-core";
-import {
-  useCreatePath,
-  useRecordContext,
-  useResourceContext,
-} from "ra-core";
+import { useCreatePath, useRecordContext, useResourceContext } from "ra-core";
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";

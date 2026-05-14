@@ -17,10 +17,7 @@ import { ForgotPasswordPage } from "@/components/supabase";
 const App = () => (
   <Admin authProvider={authProvider}>
     <CustomRoutes noLayout>
-      <Route
-        path={ForgotPasswordPage.path}
-        element={<ForgotPasswordPage />}
-      />
+      <Route path={ForgotPasswordPage.path} element={<ForgotPasswordPage />} />
     </CustomRoutes>
   </Admin>
 );
@@ -28,7 +25,7 @@ const App = () => (
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `children` | `ReactNode` | Replace the inner form |
+| Prop        | Type        | Description                      |
+| ----------- | ----------- | -------------------------------- |
+| `children`  | `ReactNode` | Replace the inner form           |
 | `marketing` | `ReactNode` | Replace the left marketing panel |

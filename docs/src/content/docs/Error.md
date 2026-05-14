@@ -55,10 +55,8 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Error } from "@/components/admin/error";
 
 const MyComponent = ({ children }) => (
-    <ErrorBoundary FallbackComponent={Error} >
-        <div className="flex flex-1 flex-col px-4 ">
-            {props.children}
-        </div>
-    </ErrorBoundary>
+  <ErrorBoundary FallbackComponent={Error}>
+    <div className="flex flex-1 flex-col px-4 ">{props.children}</div>
+  </ErrorBoundary>
 );
 ```

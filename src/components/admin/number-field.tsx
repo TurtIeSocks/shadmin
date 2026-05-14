@@ -26,9 +26,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const NumberField = <
-  RecordType extends UnknownRecord = UnknownRecord,
->({
+export const NumberField = <RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,

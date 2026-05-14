@@ -19,25 +19,19 @@ const isElement = (value: unknown): value is React.ReactElement =>
 const DefaultIsSelected = (value: UnknownRecord, filters: UnknownRecord) =>
   matches(pickBy(value, (val) => typeof val !== "undefined"))(filters);
 
-const DefaultToggleFilter = (
-  value: UnknownRecord,
-  filters: UnknownRecord,
-) => {
+const DefaultToggleFilter = (value: UnknownRecord, filters: UnknownRecord) => {
   const isSelected = matches(
     pickBy(value, (val) => typeof val !== "undefined"),
   )(filters);
 
   if (isSelected) {
     const keysToRemove = Object.keys(value);
-    return Object.keys(filters).reduce(
-      (acc, key) => {
-        if (!keysToRemove.includes(key)) {
-          acc[key] = filters[key];
-        }
-        return acc;
-      },
-      {} as UnknownRecord,
-    );
+    return Object.keys(filters).reduce((acc, key) => {
+      if (!keysToRemove.includes(key)) {
+        acc[key] = filters[key];
+      }
+      return acc;
+    }, {} as UnknownRecord);
   }
 
   return { ...filters, ...value };
@@ -144,8 +138,10 @@ export const FilterListItem = memo((props: FilterListItemProps) => {
   );
 }, arePropsEqual);
 
-export interface FilterListItemProps
-  extends Omit<LiHTMLAttributes<HTMLLIElement>, "value" | "children"> {
+export interface FilterListItemProps extends Omit<
+  LiHTMLAttributes<HTMLLIElement>,
+  "value" | "children"
+> {
   label: ReactNode;
   value: UnknownRecord;
   icon?: ReactNode;

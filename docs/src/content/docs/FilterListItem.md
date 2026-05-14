@@ -15,7 +15,10 @@ import { FilterList, FilterListItem } from "@/components/admin";
 
 const FilterSidebar = () => (
   <Card className="p-4">
-    <FilterList label="Subscribed to newsletter" icon={<Mail className="size-4" />}>
+    <FilterList
+      label="Subscribed to newsletter"
+      icon={<Mail className="size-4" />}
+    >
       <FilterListItem label="Yes" value={{ has_newsletter: true }} />
       <FilterListItem label="No" value={{ has_newsletter: false }} />
     </FilterList>
@@ -59,14 +62,14 @@ const LastVisitedFilter = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `label` | Required | `ReactNode` | - | Text or React element displayed in the item; strings are translated |
-| `value` | Required | `object` | - | Filter values toggled on click |
-| `icon` | Optional | `ReactNode` | - | Icon displayed before the label |
-| `isSelected` | Optional | `(value, filters) => boolean` | shallow match | Custom selection predicate |
-| `toggleFilter` | Optional | `(value, filters) => object` | shallow toggle | Custom toggle function |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the root element |
+| Prop           | Required | Type                          | Default        | Description                                                         |
+| -------------- | -------- | ----------------------------- | -------------- | ------------------------------------------------------------------- |
+| `label`        | Required | `ReactNode`                   | -              | Text or React element displayed in the item; strings are translated |
+| `value`        | Required | `object`                      | -              | Filter values toggled on click                                      |
+| `icon`         | Optional | `ReactNode`                   | -              | Icon displayed before the label                                     |
+| `isSelected`   | Optional | `(value, filters) => boolean` | shallow match  | Custom selection predicate                                          |
+| `toggleFilter` | Optional | `(value, filters) => object`  | shallow toggle | Custom toggle function                                              |
+| `className`    | Optional | `string`                      | -              | Extra Tailwind classes appended to the root element                 |
 
 ## `isSelected`
 
@@ -85,9 +88,5 @@ By default, `<FilterListItem>` considers itself selected when every key/value pa
 The default toggle merges `value` into the current filters when activating and removes the same keys when deactivating. Override `toggleFilter` for non-trivial behavior:
 
 ```tsx
-<FilterListItem
-  label="Reset all"
-  value={{}}
-  toggleFilter={() => ({})}
-/>
+<FilterListItem label="Reset all" value={{}} toggleFilter={() => ({})} />
 ```

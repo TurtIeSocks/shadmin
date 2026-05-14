@@ -1,28 +1,27 @@
-import * as React from "react"
-import type { Editor } from "@tiptap/react"
-import type { FormatAction } from "../../types"
-import type { VariantProps } from "class-variance-authority"
-import type { toggleVariants } from "@/components/ui/toggle"
-import { cn } from "@/lib/utils"
-import { CaseSensitive, ChevronDown } from "lucide-react"
+import * as React from "react";
+import type { Editor } from "@tiptap/react";
+import type { FormatAction } from "../../types";
+import type { VariantProps } from "class-variance-authority";
+import type { toggleVariants } from "@/components/ui/toggle";
+import { cn } from "@/lib/utils";
+import { CaseSensitive, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { ToolbarButton } from "../toolbar-button"
-import { ShortcutKey } from "../shortcut-key"
+} from "@/components/ui/dropdown-menu";
+import { ToolbarButton } from "../toolbar-button";
+import { ShortcutKey } from "../shortcut-key";
 
-type Level = 1 | 2 | 3 | 4 | 5 | 6
-interface TextStyle
-  extends Omit<
-    FormatAction,
-    "value" | "icon" | "action" | "isActive" | "canExecute"
-  > {
-  element: keyof React.JSX.IntrinsicElements
-  level?: Level
-  className: string
+type Level = 1 | 2 | 3 | 4 | 5 | 6;
+interface TextStyle extends Omit<
+  FormatAction,
+  "value" | "icon" | "action" | "isActive" | "canExecute"
+> {
+  element: keyof React.JSX.IntrinsicElements;
+  level?: Level;
+  className: string;
 }
 
 const formatActions: TextStyle[] = [
@@ -74,11 +73,11 @@ const formatActions: TextStyle[] = [
     className: "m-0 grow text-sm font-normal",
     shortcuts: ["mod", "alt", "6"],
   },
-]
+];
 
 interface SectionOneProps extends VariantProps<typeof toggleVariants> {
-  editor: Editor
-  activeLevels?: Level[]
+  editor: Editor;
+  activeLevels?: Level[];
 }
 
 export const SectionOne: React.FC<SectionOneProps> = ({
@@ -90,21 +89,21 @@ export const SectionOne: React.FC<SectionOneProps> = ({
   const filteredActions = React.useMemo(
     () =>
       formatActions.filter(
-        (action) => !action.level || activeLevels.includes(action.level)
+        (action) => !action.level || activeLevels.includes(action.level),
       ),
-    [activeLevels]
-  )
+    [activeLevels],
+  );
 
   const handleStyleChange = React.useCallback(
     (level?: Level) => {
       if (level) {
-        editor.chain().focus().toggleHeading({ level }).run()
+        editor.chain().focus().toggleHeading({ level }).run();
       } else {
-        editor.chain().focus().setParagraph().run()
+        editor.chain().focus().setParagraph().run();
       }
     },
-    [editor]
-  )
+    [editor],
+  );
 
   return (
     <DropdownMenu>
@@ -144,9 +143,9 @@ export const SectionOne: React.FC<SectionOneProps> = ({
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
-SectionOne.displayName = "SectionOne"
+SectionOne.displayName = "SectionOne";
 
-export default SectionOne
+export default SectionOne;

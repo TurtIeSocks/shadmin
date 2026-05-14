@@ -73,7 +73,10 @@ import { AdminGuesser } from "@/components/supabase/admin-guesser";
 describe("<AdminGuesser />", () => {
   it("renders without crashing given instanceUrl and apiKey", async () => {
     const screen = render(
-      <AdminGuesser instanceUrl="http://localhost:54321" apiKey="sb_publishable_x" />,
+      <AdminGuesser
+        instanceUrl="http://localhost:54321"
+        apiKey="sb_publishable_x"
+      />,
     );
     // The fake checkAuth resolves successfully, so the admin renders
     // the full layout with a main landmark. Assert that it mounted.

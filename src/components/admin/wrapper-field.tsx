@@ -26,16 +26,15 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const WrapperField = <
-  RecordType extends UnknownRecord = UnknownRecord,
->({
+export const WrapperField = <RecordType extends UnknownRecord = UnknownRecord>({
   children,
 }: WrapperFieldProps<RecordType>) => <>{children}</>;
 
 WrapperField.displayName = "WrapperField";
 
-export interface WrapperFieldProps<RecordType extends UnknownRecord = UnknownRecord>
-  extends Omit<FieldProps<RecordType>, "source"> {
+export interface WrapperFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+> extends Omit<FieldProps<RecordType>, "source"> {
   source?: FieldProps<RecordType>["source"];
   /**
    * The label to display in the parent layout (e.g. `<SimpleShowLayout>` or `<DataTable.Col>`).

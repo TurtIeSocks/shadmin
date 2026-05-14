@@ -88,9 +88,7 @@ export const AutocompleteInput = (
       filterToQuery?: (searchText: string) => UnknownValue;
       translateChoice?: boolean;
       placeholder?: string;
-      inputText?:
-        | React.ReactNode
-        | ((option: UnknownValue) => React.ReactNode);
+      inputText?: React.ReactNode | ((option: UnknownValue) => React.ReactNode);
     } & Pick<PopoverPrimitive.PopoverProps, "modal">,
 ) => {
   const {

@@ -18,12 +18,12 @@ The banner is `position: fixed` near the bottom of the viewport, horizontally ce
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | - | Extra CSS class applied to the card. |
-| `message` | Optional | `string` | `ra.notification.application_update_available` | i18n key (or raw text) shown in the banner. |
-| `buttonLabel` | Optional | `string` | `ra.action.reload` | i18n key (or raw text) for the reload button. |
-| `onReload` | Optional | `() => void` | `window.location.reload()` | Click handler for the button. |
+| Prop          | Required | Type         | Default                                        | Description                                   |
+| ------------- | -------- | ------------ | ---------------------------------------------- | --------------------------------------------- |
+| `className`   | Optional | `string`     | -                                              | Extra CSS class applied to the card.          |
+| `message`     | Optional | `string`     | `ra.notification.application_update_available` | i18n key (or raw text) shown in the banner.   |
+| `buttonLabel` | Optional | `string`     | `ra.action.reload`                             | i18n key (or raw text) for the reload button. |
+| `onReload`    | Optional | `() => void` | `window.location.reload()`                     | Click handler for the button.                 |
 
 ## `message`
 

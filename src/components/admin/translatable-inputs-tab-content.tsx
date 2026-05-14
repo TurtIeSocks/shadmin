@@ -45,9 +45,7 @@ export const TranslatableInputsTabContent = (
     () => ({
       getSource: (source: string) => {
         if (!source) {
-          throw new Error(
-            "Children of TranslatableInputs must have a source",
-          );
+          throw new Error("Children of TranslatableInputs must have a source");
         }
         return parentSourceContext.getSource(`${source}.${locale}`);
       },

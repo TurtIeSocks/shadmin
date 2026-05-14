@@ -70,7 +70,9 @@ export const WithRenderProp = () => (
                   reference="bios"
                   target="author_id"
                   render={({ referenceRecord }) =>
-                    referenceRecord ? <em>{String(referenceRecord.body)}</em> : null
+                    referenceRecord ? (
+                      <em>{String(referenceRecord.body)}</em>
+                    ) : null
                   }
                 />
               </RecordField>
