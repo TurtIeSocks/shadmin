@@ -5,6 +5,7 @@ import {
   Basic,
   MultipleSteps,
   OptionalStep,
+  ServerErrorOnFirstStep,
   SubmitClosesDialog,
   WithValidation,
 } from "@/stories/wizard-form.stories";
@@ -163,5 +164,21 @@ describe("<WizardForm />", () => {
     await expect
       .element(screen.getByRole("dialog"))
       .not.toBeInTheDocument();
+  });
+
+  it("should jump back to the first step with an errored field after Save", async () => {
+    const { getByRole } = render(<ServerErrorOnFirstStep theme="system" />);
+    // Navigate to last step
+    await getByRole("textbox", { name: /name/i }).fill("Widget");
+    await getByRole("button", { name: /next/i }).click();
+    await getByRole("button", { name: /save/i }).click();
+    // Wizard returns to first step
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    expect((panels[0] as HTMLElement).style.display).not.toBe("none");
+    // The name input shows the server error
+    const invalid = dialog!.querySelector('[aria-invalid="true"]');
+    expect(invalid?.getAttribute("name")).toBe("name");
   });
 });

@@ -6,6 +6,7 @@ import {
   createContext,
   isValidElement,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -82,6 +83,43 @@ function useWizard() {
 const stepKeyFor = (index: number) => `wizard-step-${index}`;
 
 /**
+ * Watches react-hook-form errors. When errors appear, finds the lowest-index
+ * step whose form group contains an errored field and navigates there.
+ * No-op when no errors are present.
+ */
+function WizardErrorJumper() {
+  const form = useFormContext();
+  const formGroups = useFormGroups();
+  const { goTo, totalSteps } = useWizard();
+  const errors = form.formState.errors;
+  const errorFieldNames = Object.keys(errors ?? {});
+  // Use the joined key in the dep array so the effect only re-fires when the
+  // set of errored field names changes (not when their identity does on every
+  // render).
+  const errorKey = errorFieldNames.join(",");
+
+  useEffect(() => {
+    if (errorFieldNames.length === 0) return;
+    if (!formGroups) return;
+    for (let i = 0; i < totalSteps; i++) {
+      const groupFields = formGroups.getGroupFields(stepKeyFor(i)) ?? [];
+      const hasError = errorFieldNames.some((name) =>
+        groupFields.includes(name),
+      );
+      if (hasError) {
+        goTo(i);
+        return;
+      }
+    }
+    // errorFieldNames is recomputed each render; depending on `errorKey`
+    // (a string) avoids re-firing on stable error sets.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorKey, formGroups, totalSteps, goTo]);
+
+  return null;
+}
+
+/**
  * Modal multi-step form. Compose with `<WizardForm.Step>` children.
  *
  * @example
@@ -152,6 +190,7 @@ export function WizardForm(props: WizardFormProps) {
         </DialogHeader>
         <Form {...formProps}>
           <WizardContext.Provider value={ctx}>
+            <WizardErrorJumper />
             <div className="flex flex-col gap-4">
               {steps.map((step, index) => {
                 const stepKey = stepKeyFor(index);

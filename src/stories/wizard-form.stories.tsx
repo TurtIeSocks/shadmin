@@ -181,3 +181,29 @@ export const SubmitClosesDialog = ({
   );
 };
 Object.assign(SubmitClosesDialog, storyArgs);
+
+export const ServerErrorOnFirstStep = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <StoryWrapper theme={theme} record={{ id: 1 }}>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create"
+        onSubmit={() => ({ name: "Reserved name" })}
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="name" />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <TextInput source="price" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(ServerErrorOnFirstStep, storyArgs);
