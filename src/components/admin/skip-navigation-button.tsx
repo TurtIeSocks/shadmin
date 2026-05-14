@@ -42,7 +42,7 @@ export const SkipNavigationButton = (props: SkipNavigationButtonProps) => {
       type="button"
       onClick={skipToContent}
       className={cn(
-        "skip-nav-button fixed left-4 -top-24 z-[5000] focus:top-4",
+        "skip-nav-button fixed left-4 -top-24 z-5000 focus:top-4",
         "transition-[top,opacity] duration-200 ease-in focus:ease-out",
         "hover:opacity-80",
         className,

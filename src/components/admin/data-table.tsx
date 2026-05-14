@@ -505,7 +505,7 @@ const DataTableLoadingSkeleton = ({
               ) : null}
               {Array.from({ length: nbColumns }).map((_, colIndex) => (
                 <TableCell key={colIndex} className="py-2">
-                  <Skeleton className="h-4 w-full max-w-[12rem]" />
+                  <Skeleton className="h-4 w-full max-w-48" />
                 </TableCell>
               ))}
             </TableRow>

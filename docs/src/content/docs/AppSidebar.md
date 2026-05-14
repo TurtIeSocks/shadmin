@@ -38,10 +38,10 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <Link to="/">
-                <Armchair className="!size-5" />
+                <Armchair className="size-5!" />
                 <span className="text-base font-semibold">My Company</span>
               </Link>
             </SidebarMenuButton>

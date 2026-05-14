@@ -87,7 +87,7 @@ export function AdvancedCapabilities() {
             <img
               alt="Features screenshot"
               src={featuresScreenshot}
-              className="w-full rounded-xl shadow-xl ring-1 ring-white/10 md:-ml-4 lg:-ml-0 lg:-order-1"
+              className="w-full rounded-xl shadow-xl ring-1 ring-white/10 md:-ml-4 lg:ml-0 lg:-order-1"
             />
           </div>
         </div>

@@ -82,7 +82,7 @@ export function Backends() {
             <img
               alt="DataProvider Schema"
               src={DataProviderSchema}
-              className="w-full mx-auto max-w-112"
+              className="w-full mx-auto max-w-md"
             />
           </div>
         </div>
