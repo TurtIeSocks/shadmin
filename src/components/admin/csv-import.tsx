@@ -6,11 +6,16 @@ import {
   type ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { UploadIcon } from "lucide-react";
 import { useResourceContext, useTranslate } from "ra-core";
+import { useDropzone } from "react-dropzone";
+import Papa from "papaparse";
+import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -60,6 +65,83 @@ export const useCsvImport = () => {
   const ctx = useContext(CsvImportContext);
   if (!ctx) throw new Error("useCsvImport must be used inside <CsvImport>");
   return ctx;
+};
+
+const CsvImportUploadStep = () => {
+  const { parsedRows, setParsedRows, setHeaders } = useCsvImport();
+  const translate = useTranslate();
+  const form = useFormContext();
+  const [error, setError] = useState<string | null>(null);
+
+  // Keep a ref so the validate closure always reads the current row count
+  // without needing to re-register on every parse (avoids infinite effect loops).
+  const parsedRowsRef = useRef(parsedRows);
+  parsedRowsRef.current = parsedRows;
+
+  // Hidden RHF field for Next-gating. Wizard's per-step validate calls
+  // form.trigger(fieldNames). Register once; the validate fn reads via ref.
+  useEffect(() => {
+    form?.register?.("__csv_upload_gate", {
+      validate: () => parsedRowsRef.current.length > 0,
+    });
+    return () => {
+      form?.unregister?.("__csv_upload_gate");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form]);
+
+  const onDrop = useCallback(
+    (files: File[]) => {
+      const file = files[0];
+      if (!file) return;
+      setError(null);
+      Papa.parse<Record<string, unknown>>(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: (results) => {
+          if (results.errors.length > 0) {
+            setError(results.errors[0].message);
+            return;
+          }
+          setParsedRows(results.data);
+          setHeaders(results.meta.fields ?? []);
+        },
+        error: (err: Error) => setError(err.message),
+      });
+    },
+    [setParsedRows, setHeaders],
+  );
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { "text/csv": [".csv"] },
+    maxFiles: 1,
+  });
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div
+        {...getRootProps()}
+        className={`flex h-32 cursor-pointer items-center justify-center rounded-md border-2 border-dashed p-4 text-center text-sm ${
+          isDragActive ? "border-primary bg-accent" : "border-muted-foreground/30"
+        }`}
+      >
+        <input {...getInputProps()} data-testid="csv-file-input" />
+        {translate("ra.csv_import.drop_hint", {
+          _: "Drop a CSV file here or click to select",
+        })}
+      </div>
+      {parsedRows.length > 0 ? (
+        <div className="text-sm text-muted-foreground">
+          {translate("ra.csv_import.row_count", {
+            _: `${parsedRows.length} rows parsed`,
+            count: parsedRows.length,
+          })}
+        </div>
+      ) : null}
+      {error ? <div className="text-sm text-destructive">{error}</div> : null}
+    </div>
+  );
 };
 
 export const CsvImport = ({
@@ -129,7 +211,7 @@ export const CsvImport = ({
           onSubmit={() => {}}
         >
           <WizardForm.Step label={translate("ra.csv_import.step.upload", { _: "Upload" })}>
-            <div>Upload step (Task 2)</div>
+            <CsvImportUploadStep />
           </WizardForm.Step>
         </WizardForm>
       ) : null}

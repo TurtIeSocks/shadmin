@@ -45,3 +45,5 @@ export const Basic = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+export const UploadStep = Basic;
