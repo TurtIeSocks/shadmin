@@ -71,3 +71,16 @@ export const Hotkey = () => (
     <CommandMenu />
   </TestMemoryRouter>
 );
+
+export const AdminShorthand = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      commandMenu
+    >
+      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);

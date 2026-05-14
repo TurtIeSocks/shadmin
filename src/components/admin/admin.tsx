@@ -6,6 +6,7 @@ import {
   type CoreAdminProps,
   localStorageStore,
 } from "ra-core";
+import { cloneElement, isValidElement, useEffect, type ReactElement } from "react";
 import { i18nProvider as defaultI18nProvider } from "@/lib/i18n-provider";
 import { Layout } from "@/components/admin/layout";
 import { LoginPage } from "@/components/admin/login-page";
@@ -14,7 +15,7 @@ import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import type { AdminTheme } from "@/components/admin/theme-types";
 import { AuthCallback } from "@/components/admin/auth-callback";
-import { useEffect } from "react";
+import { CommandMenu } from "@/components/admin/command-menu";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
@@ -38,6 +39,12 @@ export interface AdminProps extends CoreAdminProps {
    * Falls back to `lightTheme` (or `theme`) if omitted.
    */
   darkTheme?: AdminTheme;
+  /**
+   * Mount the cmd+K command palette. Pass `true` for the default palette, or a
+   * `<CommandMenu>` element to customize. The palette's context provider wraps
+   * the admin tree, so any resource view can call `useRegisterCommand()`.
+   */
+  commandMenu?: boolean | ReactElement;
 }
 
 const defaultStore = localStorageStore();
@@ -168,6 +175,7 @@ export const Admin = (props: AdminProps) => {
     basename,
     catchAll = NotFound,
     children,
+    commandMenu,
     dashboard,
     dataProvider,
     disableTelemetry,
@@ -185,6 +193,39 @@ export const Admin = (props: AdminProps) => {
     darkTheme,
     title = "Shadcn Admin",
   } = props;
+
+  const adminUI = (
+    <AdminUI
+      accessDenied={accessDenied}
+      authCallbackPage={authCallbackPage}
+      authenticationError={authenticationError}
+      catchAll={catchAll}
+      dashboard={dashboard}
+      disableTelemetry={disableTelemetry}
+      error={error}
+      layout={layout}
+      loading={loading}
+      loginPage={loginPage}
+      ready={ready}
+      requireAuth={requireAuth}
+      theme={theme}
+      lightTheme={lightTheme}
+      darkTheme={darkTheme}
+      title={title}
+    >
+      {children}
+    </AdminUI>
+  );
+
+  const wrapped =
+    commandMenu === true ? (
+      <CommandMenu>{adminUI}</CommandMenu>
+    ) : isValidElement(commandMenu) ? (
+      cloneElement(commandMenu, undefined, adminUI)
+    ) : (
+      adminUI
+    );
+
   return (
     <AdminContext
       authProvider={authProvider}
@@ -194,26 +235,7 @@ export const Admin = (props: AdminProps) => {
       queryClient={queryClient}
       store={store}
     >
-      <AdminUI
-        accessDenied={accessDenied}
-        authCallbackPage={authCallbackPage}
-        authenticationError={authenticationError}
-        catchAll={catchAll}
-        dashboard={dashboard}
-        disableTelemetry={disableTelemetry}
-        error={error}
-        layout={layout}
-        loading={loading}
-        loginPage={loginPage}
-        ready={ready}
-        requireAuth={requireAuth}
-        theme={theme}
-        lightTheme={lightTheme}
-        darkTheme={darkTheme}
-        title={title}
-      >
-        {children}
-      </AdminUI>
+      {wrapped}
     </AdminContext>
   );
 };
