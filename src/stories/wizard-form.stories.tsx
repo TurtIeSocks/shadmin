@@ -146,3 +146,38 @@ export const OptionalStep = ({
   );
 };
 Object.assign(OptionalStep, storyArgs);
+
+export const SubmitClosesDialog = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  const [submitted, setSubmitted] = useState<Record<string, unknown> | null>(
+    null,
+  );
+  return (
+    <StoryWrapper theme={theme} record={{ id: 1 }}>
+      {submitted ? (
+        <div data-testid="submitted">{JSON.stringify(submitted)}</div>
+      ) : null}
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create"
+        onSubmit={(values: Record<string, unknown>) => {
+          setSubmitted(values);
+          setOpen(false);
+        }}
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="name" />
+        </WizardForm.Step>
+        <WizardForm.Step label="Done">
+          <TextInput source="notes" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(SubmitClosesDialog, storyArgs);

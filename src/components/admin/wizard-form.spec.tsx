@@ -5,6 +5,7 @@ import {
   Basic,
   MultipleSteps,
   OptionalStep,
+  SubmitClosesDialog,
   WithValidation,
 } from "@/stories/wizard-form.stories";
 
@@ -143,5 +144,21 @@ describe("<WizardForm />", () => {
     expect(dialog).toBeTruthy();
     const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
     expect((panels[1] as HTMLElement).style.display).not.toBe("none");
+  });
+
+  it("should call onSubmit with form values and close the dialog on Save", async () => {
+    const screen = render(<SubmitClosesDialog theme="system" />);
+    await screen.getByRole("textbox", { name: /name/i }).fill("Widget");
+    await screen.getByRole("button", { name: /next/i }).click();
+    await screen.getByRole("textbox", { name: /notes/i }).fill("Cool product");
+    await screen.getByRole("button", { name: /save/i }).click();
+    // The dialog closes; the submitted payload is rendered
+    await expect.element(screen.getByTestId("submitted")).toBeInTheDocument();
+    await expect
+      .element(screen.getByTestId("submitted"))
+      .toHaveTextContent("Widget");
+    await expect
+      .element(screen.getByTestId("submitted"))
+      .toHaveTextContent("Cool product");
   });
 });
