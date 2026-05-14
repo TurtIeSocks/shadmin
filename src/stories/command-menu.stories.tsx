@@ -58,3 +58,16 @@ export const Basic = () => (
     </CommandMenu>
   </TestMemoryRouter>
 );
+
+export const Hotkey = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+    <CommandMenu />
+  </TestMemoryRouter>
+);

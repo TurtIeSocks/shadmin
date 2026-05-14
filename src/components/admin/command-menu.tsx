@@ -5,6 +5,7 @@ import {
   type ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -51,6 +52,23 @@ interface CommandMenuContextValue {
 
 const CommandMenuContext = createContext<CommandMenuContextValue | null>(null);
 
+const DEFAULT_HOTKEYS = ["mod+k"];
+
+const matchesHotkey = (event: KeyboardEvent, binding: string) => {
+  const parts = binding.toLowerCase().split("+").map((p) => p.trim());
+  const key = parts[parts.length - 1];
+  const wantMod = parts.includes("mod");
+  const wantShift = parts.includes("shift");
+  const wantAlt = parts.includes("alt");
+  const modMatches = wantMod ? event.metaKey || event.ctrlKey : true;
+  return (
+    event.key.toLowerCase() === key &&
+    modMatches &&
+    event.shiftKey === wantShift &&
+    event.altKey === wantAlt
+  );
+};
+
 export const useCommandMenu = () => {
   const ctx = useContext(CommandMenuContext);
   if (!ctx) {
@@ -61,7 +79,10 @@ export const useCommandMenu = () => {
   return ctx;
 };
 
-export const CommandMenu = ({ children }: CommandMenuProps) => {
+export const CommandMenu = ({
+  hotkey = DEFAULT_HOTKEYS,
+  children,
+}: CommandMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [registeredCommands, setRegisteredCommands] = useState<CommandAction[]>(
     [],
@@ -93,6 +114,18 @@ export const CommandMenu = ({ children }: CommandMenuProps) => {
     }),
     [isOpen, open, close, toggle, registerCommand, unregisterCommand, registeredCommands],
   );
+
+  useEffect(() => {
+    if (hotkey === false || hotkey.length === 0) return;
+    const handler = (event: KeyboardEvent) => {
+      if (hotkey.some((b) => matchesHotkey(event, b))) {
+        event.preventDefault();
+        setIsOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [hotkey]);
 
   return (
     <CommandMenuContext.Provider value={value}>
