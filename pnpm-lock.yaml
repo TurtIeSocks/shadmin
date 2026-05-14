@@ -168,6 +168,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.2.1
         version: 4.2.1
+      '@types/diacritic':
+        specifier: ^0.0.0
+        version: 0.0.0
       '@types/lodash':
         specifier: ^4.17.24
         version: 4.17.24
@@ -3130,6 +3133,9 @@ packages:
 
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
+
+  '@types/diacritic@0.0.0':
+    resolution: {integrity: sha512-ESZ+4kgm1C+ZoxfpoKUQwuYrdh3jpFOU/ntFEaZcC595MURf9Deu063jhSL8qkOmHV/19EoEmH4Gp9cVsbcUAQ==}
 
   '@types/doctrine@0.0.9':
     resolution: {integrity: sha512-eOIHzCUSH7SMfonMG1LsC2f8vxBFtho6NGBznK41R84YzPuvSBzrhEps33IsQiOW9+VL6NQ9DbjQJznk/S4uRA==}
@@ -10351,6 +10357,8 @@ snapshots:
       '@types/ms': 2.1.0
 
   '@types/deep-eql@4.0.2': {}
+
+  '@types/diacritic@0.0.0': {}
 
   '@types/doctrine@0.0.9': {}
 

@@ -55,6 +55,7 @@
     "ra-i18n-polyglot": "^5.14.0",
     "ra-language-english": "^5.14.0",
     "ra-language-french": "^5.14.0",
+    "radix-ui": "latest",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",
@@ -65,8 +66,7 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.1",
-    "vaul": "^1.1.2",
-    "radix-ui": "latest"
+    "vaul": "^1.1.2"
   },
   "peerDependencies": {
     "@supabase/supabase-js": "^2.48.1",
@@ -93,6 +93,7 @@
     "@storybook/react-vite": "^10.2.12",
     "@supabase/supabase-js": "^2.105.4",
     "@tailwindcss/postcss": "^4.2.1",
+    "@types/diacritic": "^0.0.0",
     "@types/lodash": "^4.17.24",
     "@types/node": "^22.19.12",
     "@types/react": "^19.2.14",
