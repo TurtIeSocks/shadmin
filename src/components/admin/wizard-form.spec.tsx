@@ -160,5 +160,8 @@ describe("<WizardForm />", () => {
     await expect
       .element(screen.getByTestId("submitted"))
       .toHaveTextContent("Cool product");
+    await expect
+      .element(screen.getByRole("dialog"))
+      .not.toBeInTheDocument();
   });
 });
