@@ -89,21 +89,16 @@ export const AdminShorthand = () => (
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu
+      commandMenu={
+        <CommandMenu>
+          <LocationProbe />
+        </CommandMenu>
+      }
     >
       <Resource name="products" list={ListGuesser} show={ShowGuesser} />
     </Admin>
   </TestMemoryRouter>
 );
-
-const AutoOpenWithQuery = ({ query }: { query: string }) => {
-  const { open, setQuery } = useCommandMenu();
-  useEffect(() => {
-    open();
-    setQuery(query);
-  }, [open, setQuery, query]);
-  return null;
-};
 
 const LocationProbe = () => {
   const location = useLocation();
@@ -112,6 +107,15 @@ const LocationProbe = () => {
       {location.pathname}
     </span>
   );
+};
+
+const AutoOpenWithQuery = ({ query }: { query: string }) => {
+  const { open, setQuery } = useCommandMenu();
+  useEffect(() => {
+    open();
+    setQuery(query);
+  }, [open, setQuery, query]);
+  return null;
 };
 
 export const RecordSearch = () => (

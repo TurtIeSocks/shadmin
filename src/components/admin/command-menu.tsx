@@ -62,7 +62,6 @@ export interface CommandMenuProps {
   actions?: CommandAction[];
   placeholder?: string;
   searchDebounceMs?: number;
-  groups?: Array<"records" | "resources" | "actions">;
   /**
    * Optional children render inside the CommandMenu's context provider but
    * outside the dialog. Typically used for helper components that need to call
@@ -454,21 +453,24 @@ const Shell = ({
   onOpenChange: (open: boolean) => void;
   children: ReactNode;
 }) => {
+  const translate = useTranslate();
+  const title = translate("ra.command.title", { _: "Command menu" });
+  const description = translate("ra.command.aria_description", {
+    _: "Search or run a command",
+  });
   if (isMobile) {
     return (
       <Sheet open={isOpen} onOpenChange={onOpenChange}>
         <SheetContent side="bottom" className="h-[90vh] p-0">
-          <SheetTitle className="sr-only">Command menu</SheetTitle>
-          <SheetDescription className="sr-only">
-            Search or run a command
-          </SheetDescription>
+          <SheetTitle className="sr-only">{title}</SheetTitle>
+          <SheetDescription className="sr-only">{description}</SheetDescription>
           <Command>{children}</Command>
         </SheetContent>
       </Sheet>
     );
   }
   return (
-    <CommandDialog open={isOpen} onOpenChange={onOpenChange} title="Command menu">
+    <CommandDialog open={isOpen} onOpenChange={onOpenChange} title={title}>
       {children}
     </CommandDialog>
   );
@@ -506,6 +508,7 @@ export const CommandMenu = ({
   children,
 }: CommandMenuProps) => {
   const navigate = useNavigate();
+  const translate = useTranslate();
   const isMobile = useIsMobile();
   const { recents, remember } = useRecents(recentsLimit);
   const [isOpen, setIsOpen] = useState(false);
@@ -575,10 +578,15 @@ export const CommandMenu = ({
         <CommandInput
           value={query}
           onValueChange={setQuery}
-          placeholder={placeholder ?? "Search or run a command…"}
+          placeholder={
+            placeholder ??
+            translate("ra.command.placeholder", { _: "Search or run a command…" })
+          }
         />
         <CommandList>
-          <CommandEmpty>No results.</CommandEmpty>
+          <CommandEmpty>
+            {translate("ra.command.empty", { _: "No results." })}
+          </CommandEmpty>
           {!debouncedQuery && (
             <CommandMenuRecents
               recents={recents}

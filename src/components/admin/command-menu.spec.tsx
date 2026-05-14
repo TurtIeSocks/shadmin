@@ -51,6 +51,10 @@ describe("<CommandMenu />", () => {
     await productsItem.click();
     // dialog should close after selection
     await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
+    // navigation must have fired
+    await expect
+      .element(screen.getByTestId("cm-location"))
+      .toHaveTextContent("/products");
   });
 
   it("shows matched records and navigates to Show on select", async () => {
