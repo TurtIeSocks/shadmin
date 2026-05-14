@@ -87,3 +87,29 @@ export const Basic = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+export const Navigation = Basic;
+
+export const Agenda = () => (
+  <TestMemoryRouter initialEntries={["/events"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="events"
+        list={() => (
+          <List perPage={500}>
+            <CalendarList
+              startSource="start_at"
+              titleSource="title"
+              defaultView="agenda"
+            />
+          </List>
+        )}
+        recordRepresentation="title"
+      />
+    </Admin>
+  </TestMemoryRouter>
+);

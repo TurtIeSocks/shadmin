@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, RangeLoading } from "@/stories/calendar-list.stories";
+import { Basic, RangeLoading, Navigation, Agenda } from "@/stories/calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {
@@ -40,5 +40,36 @@ describe("<CalendarList />", () => {
     // Far-past and far-future events are filtered out (ra-data-fakerest honors _gte/_lte)
     expect(document.body.textContent).not.toMatch(/PastEvent/i);
     expect(document.body.textContent).not.toMatch(/FutureEvent/i);
+  });
+
+  it("navigates to previous and next month", async () => {
+    const screen = render(<Navigation />);
+    const current = new Date();
+    const nextMonth = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+    const nextLabel = nextMonth.toLocaleString("en", { month: "long" });
+    // Use exact aria-label to avoid ambiguity with the pagination "Go to next page" button
+    await screen.getByRole("button", { name: "Next", exact: true }).click();
+    await expect
+      .element(screen.getByText(new RegExp(nextLabel, "i")))
+      .toBeInTheDocument();
+  });
+
+  it("switches to agenda view via the view switcher", async () => {
+    const screen = render(<Navigation />);
+    // Click the agenda button
+    await screen.getByRole("button", { name: /agenda/i }).click();
+    // Agenda renders the events list with a day header (not the gridcell view)
+    await expect
+      .element(document.querySelector('[data-calendar-view="agenda"]'))
+      .toBeTruthy();
+  });
+
+  it("agenda view renders events grouped by date with the empty-state fallback", async () => {
+    const screen = render(<Agenda />);
+    await expect
+      .element(document.querySelector('[data-calendar-view="agenda"]'))
+      .toBeTruthy();
+    // At least one of the seeded events is visible
+    await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
   });
 });

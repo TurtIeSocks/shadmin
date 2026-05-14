@@ -2,20 +2,27 @@
 
 import {
   type ReactNode,
+  useCallback,
   useEffect,
   useMemo,
   useState,
 } from "react";
 import {
   addDays,
+  addMonths,
+  addWeeks,
+  endOfDay,
   endOfMonth,
   endOfWeek,
   format,
   isSameDay,
   isSameMonth,
   parseISO,
+  startOfDay,
   startOfMonth,
   startOfWeek,
+  subMonths,
+  subWeeks,
 } from "date-fns";
 import {
   type RaRecord,
@@ -77,13 +84,76 @@ const DefaultEvent = ({ title, color }: EventRendererProps) => (
   </div>
 );
 
-const DefaultHeader = ({ anchor }: HeaderRendererProps) => (
-  <div className="flex items-center justify-between border-b p-2">
-    <div className="text-sm font-medium">
-      {format(anchor, "MMMM yyyy")}
+const DefaultCalendarHeader = ({
+  range,
+  view,
+  anchor,
+  views,
+  onNavigate,
+  onViewChange,
+  translate,
+}: {
+  range: { start: Date; end: Date };
+  view: CalendarView;
+  anchor: Date;
+  views: CalendarView[];
+  onNavigate: (dir: "prev" | "next" | "today") => void;
+  onViewChange: (view: CalendarView) => void;
+  translate: (key: string, opts?: Record<string, unknown>) => string;
+}) => {
+  const label =
+    view === "month"
+      ? format(anchor, "MMMM yyyy")
+      : `${format(range.start, "MMM d")} – ${format(range.end, "MMM d, yyyy")}`;
+  return (
+    <div className="flex items-center justify-between border-b p-2">
+      <div className="flex items-center gap-1">
+        <button
+          type="button"
+          aria-label={translate("ra.calendar.previous", { _: "Previous" })}
+          onClick={() => onNavigate("prev")}
+          className="rounded-md px-2 py-1 text-sm hover:bg-accent"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          onClick={() => onNavigate("today")}
+          className="rounded-md px-2 py-1 text-sm hover:bg-accent"
+        >
+          {translate("ra.calendar.today", { _: "Today" })}
+        </button>
+        <button
+          type="button"
+          aria-label={translate("ra.calendar.next", { _: "Next" })}
+          onClick={() => onNavigate("next")}
+          className="rounded-md px-2 py-1 text-sm hover:bg-accent"
+        >
+          ›
+        </button>
+        <div className="ml-2 text-sm font-medium">{label}</div>
+      </div>
+      <div className="flex items-center gap-1">
+        {views.map((v) => (
+          <button
+            key={v}
+            type="button"
+            data-view-btn={v}
+            onClick={() => onViewChange(v)}
+            className={cn(
+              "rounded-md px-2 py-1 text-sm capitalize hover:bg-accent",
+              v === view && "bg-accent text-accent-foreground",
+            )}
+          >
+            {translate(`ra.calendar.view.${v}`, {
+              _: v.charAt(0).toUpperCase() + v.slice(1),
+            })}
+          </button>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const CalendarList = <R extends RaRecord = RaRecord>({
   startSource,
@@ -92,6 +162,7 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   colorSource,
   colorMap = {},
   defaultView = "month",
+  views,
   weekStartsOn = 0,
   eventRenderer,
   headerRenderer,
@@ -100,17 +171,47 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   const resource = useResourceContext();
   const getRepresentation = useGetRecordRepresentation(resource ?? "");
   const translate = useTranslate();
-  const [view] = useState<CalendarView>(defaultView);
-  const [anchor] = useState<Date>(new Date());
+  const [view, setView] = useState<CalendarView>(defaultView);
+  const [anchor, setAnchor] = useState<Date>(new Date());
 
   const range = useMemo(() => {
-    const monthStart = startOfMonth(anchor);
-    const monthEnd = endOfMonth(anchor);
+    if (view === "month") {
+      const monthStart = startOfMonth(anchor);
+      const monthEnd = endOfMonth(anchor);
+      return {
+        start: startOfWeek(monthStart, { weekStartsOn }),
+        end: endOfWeek(monthEnd, { weekStartsOn }),
+      };
+    }
+    if (view === "week") {
+      return {
+        start: startOfWeek(anchor, { weekStartsOn }),
+        end: endOfWeek(anchor, { weekStartsOn }),
+      };
+    }
+    // agenda: ±2 weeks around anchor
     return {
-      start: startOfWeek(monthStart, { weekStartsOn }),
-      end: endOfWeek(monthEnd, { weekStartsOn }),
+      start: startOfDay(addDays(anchor, -14)),
+      end: endOfDay(addDays(anchor, 14)),
     };
-  }, [anchor, weekStartsOn]);
+  }, [anchor, weekStartsOn, view]);
+
+  const onNavigate = useCallback(
+    (dir: "prev" | "next" | "today") => {
+      setAnchor((current) => {
+        if (dir === "today") return new Date();
+        const delta = dir === "prev" ? -1 : 1;
+        if (view === "month")
+          return delta > 0 ? addMonths(current, 1) : subMonths(current, 1);
+        if (view === "week")
+          return delta > 0 ? addWeeks(current, 1) : subWeeks(current, 1);
+        return addDays(current, delta * 14);
+      });
+    },
+    [view],
+  );
+
+  const onViewChange = useCallback((next: CalendarView) => setView(next), []);
 
   const startKey = `${startSource}_gte`;
   const endKey = `${startSource}_lte`;
@@ -123,11 +224,14 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
     if (current[startKey] === rangeStartISO && current[endKey] === rangeEndISO) {
       return;
     }
-    setFilters({
-      ...current,
-      [startKey]: rangeStartISO,
-      [endKey]: rangeEndISO,
-    }, undefined);
+    setFilters(
+      {
+        ...current,
+        [startKey]: rangeStartISO,
+        [endKey]: rangeEndISO,
+      },
+      undefined,
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeStartISO, rangeEndISO, startKey, endKey, setFilters]);
 
@@ -136,7 +240,10 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
       .map((record): CalendarEventInfo<R> | null => {
         const rawStart = record[startSource];
         if (!rawStart) return null;
-        const start = typeof rawStart === "string" ? parseISO(rawStart) : new Date(rawStart as number);
+        const start =
+          typeof rawStart === "string"
+            ? parseISO(rawStart)
+            : new Date(rawStart as number);
         if (Number.isNaN(start.getTime())) return null;
         const rawEnd = endSource ? record[endSource] : undefined;
         const end = rawEnd
@@ -155,25 +262,54 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   }, [data, startSource, endSource, titleSource, colorSource, colorMap, getRepresentation]);
 
   const RenderEvent = eventRenderer ?? DefaultEvent;
-  const RenderHeader = headerRenderer ?? DefaultHeader;
+  const resolvedViews = views ?? ["month", "week", "agenda"];
 
   return (
     <div className="flex h-full flex-col rounded-md border" data-slot="calendar-list">
-      <RenderHeader
-        range={range}
-        anchor={anchor}
-        view={view}
-        onNavigate={() => {}}
-        onViewChange={() => {}}
-      />
-      <CalendarMonthView
-        range={range}
-        anchor={anchor}
-        events={events}
-        weekStartsOn={weekStartsOn}
-        renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
-        emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
-      />
+      {headerRenderer ? (
+        headerRenderer({
+          range,
+          view,
+          anchor,
+          onNavigate,
+          onViewChange,
+        })
+      ) : (
+        <DefaultCalendarHeader
+          range={range}
+          view={view}
+          anchor={anchor}
+          views={resolvedViews}
+          onNavigate={onNavigate}
+          onViewChange={onViewChange}
+          translate={translate}
+        />
+      )}
+      {view === "month" ? (
+        <CalendarMonthView
+          range={range}
+          anchor={anchor}
+          events={events}
+          weekStartsOn={weekStartsOn}
+          renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+          emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
+        />
+      ) : view === "agenda" ? (
+        <CalendarAgendaView
+          events={events}
+          range={range}
+          emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
+          renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+        />
+      ) : (
+        // Week view — implemented in Task 4. For now render agenda as placeholder.
+        <CalendarAgendaView
+          events={events}
+          range={range}
+          emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
+          renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+        />
+      )}
     </div>
   );
 };
@@ -251,6 +387,68 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
           );
         })}
       </div>
+    </div>
+  );
+};
+
+interface CalendarAgendaViewProps<R extends RaRecord = RaRecord> {
+  events: CalendarEventInfo<R>[];
+  emptyLabel: string;
+  renderEvent: (props: EventRendererProps<R>) => ReactNode;
+  range: { start: Date; end: Date };
+}
+
+const CalendarAgendaView = <R extends RaRecord = RaRecord>({
+  events,
+  emptyLabel,
+  renderEvent: RenderEvent,
+  range,
+}: CalendarAgendaViewProps<R>) => {
+  const inRange = useMemo(
+    () =>
+      events
+        .filter((e) => e.start >= range.start && e.start <= range.end)
+        .sort((a, b) => a.start.getTime() - b.start.getTime()),
+    [events, range.start, range.end],
+  );
+
+  if (inRange.length === 0) {
+    return (
+      <div
+        className="flex flex-1 items-center justify-center p-8 text-sm text-muted-foreground"
+        data-calendar-view="agenda"
+      >
+        {emptyLabel}
+      </div>
+    );
+  }
+
+  const grouped = inRange.reduce<Record<string, CalendarEventInfo<R>[]>>(
+    (acc, e) => {
+      const key = format(e.start, "yyyy-MM-dd");
+      (acc[key] ??= []).push(e);
+      return acc;
+    },
+    {},
+  );
+
+  return (
+    <div
+      className="flex flex-1 flex-col gap-4 overflow-auto p-3"
+      data-calendar-view="agenda"
+    >
+      {Object.entries(grouped).map(([day, dayEvents]) => (
+        <div key={day} className="flex flex-col gap-1">
+          <div className="text-sm font-medium">
+            {format(parseISO(day + "T00:00:00"), "EEEE, MMMM d")}
+          </div>
+          <div className="flex flex-col gap-1 pl-2">
+            {dayEvents.map((e) => (
+              <RenderEvent key={String(e.record.id)} {...e} />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
