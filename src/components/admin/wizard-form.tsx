@@ -68,6 +68,7 @@ interface WizardContextValue {
   goNext: () => void;
   goBack: () => void;
   goTo: (index: number) => void;
+  stepFlags: Array<{ optional: boolean; validateOnNext: boolean }>;
 }
 
 const WizardContext = createContext<WizardContextValue | null>(null);
@@ -111,6 +112,15 @@ export function WizardForm(props: WizardFormProps) {
     [children],
   );
 
+  const stepFlags = useMemo(
+    () =>
+      steps.map((step) => ({
+        optional: Boolean(step.props.optional),
+        validateOnNext: step.props.validateOnNext !== false,
+      })),
+    [steps],
+  );
+
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = steps.length;
   const isFirst = currentStep === 0;
@@ -126,8 +136,9 @@ export function WizardForm(props: WizardFormProps) {
       goBack: () => setCurrentStep((i) => Math.max(i - 1, 0)),
       goTo: (index) =>
         setCurrentStep(Math.max(0, Math.min(index, totalSteps - 1))),
+      stepFlags,
     }),
-    [currentStep, totalSteps, isFirst, isLast],
+    [currentStep, totalSteps, isFirst, isLast, stepFlags],
   );
 
   return (
@@ -192,12 +203,18 @@ WizardForm.Step = WizardFormStep;
  */
 export function WizardToolbar() {
   const translate = useTranslate();
-  const { isFirst, isLast, goNext, goBack, currentStep } = useWizard();
+  const ctx = useWizard();
+  const { isFirst, isLast, goNext, goBack, currentStep } = ctx;
   const form = useFormContext();
   const formGroups = useFormGroups();
   const stepKey = stepKeyFor(currentStep);
 
   const handleNext = async () => {
+    const flags = ctx.stepFlags[currentStep];
+    if (!flags || flags.optional || !flags.validateOnNext) {
+      goNext();
+      return;
+    }
     // Validate just the fields registered in this step's group.
     // Falls back to validate-all if the group has no registered fields yet
     // (e.g., before children have mounted).

@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, MultipleSteps, WithValidation } from "@/stories/wizard-form.stories";
+import {
+  Basic,
+  MultipleSteps,
+  OptionalStep,
+  WithValidation,
+} from "@/stories/wizard-form.stories";
 
 describe("<WizardForm />", () => {
   it("should render the dialog when isOpen is true", async () => {
@@ -125,6 +130,15 @@ describe("<WizardForm />", () => {
     const nameInput = screen.getByRole("textbox", { name: /name/i });
     await nameInput.fill("Widget");
     await screen.getByRole("button", { name: /next/i }).click();
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    expect((panels[1] as HTMLElement).style.display).not.toBe("none");
+  });
+
+  it("should advance from an optional step even when its required field is empty", async () => {
+    const { getByRole } = render(<OptionalStep theme="system" />);
+    await getByRole("button", { name: /next/i }).click();
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
     const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');

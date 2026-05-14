@@ -120,3 +120,29 @@ export const WithValidation = ({
   );
 };
 Object.assign(WithValidation, storyArgs);
+
+export const OptionalStep = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <StoryWrapper theme={theme} record={{ id: 1 }}>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create a product"
+        onSubmit={() => {}}
+      >
+        <WizardForm.Step label="Identity" optional>
+          <TextInput source="name" validate={required()} />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <TextInput source="price" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(OptionalStep, storyArgs);
