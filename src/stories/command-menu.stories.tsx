@@ -6,6 +6,7 @@ import {
   memoryStore,
   Resource,
   TestMemoryRouter,
+  useStore,
 } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
@@ -207,6 +208,49 @@ export const PermissionDenied = () => (
     >
       <Resource name="products" list={ListGuesser} show={ShowGuesser} />
       <Resource name="orders" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+const SeedRecents = () => {
+  const [, setRecents] = useStore<
+    Array<{
+      type: "record" | "resource";
+      resource: string;
+      id?: number | string;
+      label: string;
+      path: string;
+    }>
+  >("command-menu.recents", []);
+  const { open } = useCommandMenu();
+  useEffect(() => {
+    setRecents([
+      {
+        type: "record",
+        resource: "products",
+        id: 1,
+        label: "Notebook",
+        path: "/products/1/show",
+      },
+    ]);
+    open();
+  }, [open, setRecents]);
+  return null;
+};
+
+export const Recents = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      commandMenu={
+        <CommandMenu>
+          <SeedRecents />
+        </CommandMenu>
+      }
+    >
+      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
     </Admin>
   </TestMemoryRouter>
 );

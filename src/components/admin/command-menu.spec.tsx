@@ -9,6 +9,7 @@ import {
   BuiltinActions,
   RegisteredCommand,
   PermissionDenied,
+  Recents,
 } from "@/stories/command-menu.stories";
 
 describe("<CommandMenu />", () => {
@@ -101,5 +102,13 @@ describe("<CommandMenu />", () => {
     await expect
       .element(screen.getByRole("option", { name: /^orders$/i }))
       .not.toBeInTheDocument();
+  });
+
+  it("shows recents in the empty state", async () => {
+    const screen = render(<Recents />);
+    // The empty state (no query) renders the recents group
+    await expect
+      .element(screen.getByRole("option", { name: /notebook/i }))
+      .toBeInTheDocument();
   });
 });

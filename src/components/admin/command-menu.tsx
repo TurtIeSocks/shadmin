@@ -19,6 +19,7 @@ import {
   useLogout,
   useRefresh,
   useResourceDefinitions,
+  useStore,
   useTranslate,
   type RaRecord,
 } from "ra-core";
@@ -132,6 +133,63 @@ const useDebouncedValue = <T,>(value: T, delay: number) => {
   return debounced;
 };
 
+interface RecentEntry {
+  type: "record" | "resource";
+  resource: string;
+  id?: number | string;
+  label: string;
+  path: string;
+}
+
+const RECENTS_KEY = "command-menu.recents";
+
+const useRecents = (limit: number) => {
+  const [recents, setRecents] = useStore<RecentEntry[]>(RECENTS_KEY, []);
+  const remember = useCallback(
+    (entry: RecentEntry) => {
+      setRecents((prev) => {
+        const filtered = prev.filter(
+          (e) =>
+            !(
+              e.type === entry.type &&
+              e.resource === entry.resource &&
+              e.id === entry.id
+            ),
+        );
+        return [entry, ...filtered].slice(0, limit);
+      });
+    },
+    [setRecents, limit],
+  );
+  return { recents, remember };
+};
+
+const CommandMenuRecents = ({
+  recents,
+  onSelect,
+}: {
+  recents: RecentEntry[];
+  onSelect: (entry: RecentEntry) => void;
+}) => {
+  const translate = useTranslate();
+  if (recents.length === 0) return null;
+  return (
+    <CommandGroup
+      heading={translate("ra.command.group.recents", { _: "Recent" })}
+    >
+      {recents.map((entry) => (
+        <CommandItem
+          key={`recent:${entry.type}:${entry.resource}:${entry.id ?? ""}`}
+          value={`recent:${entry.type}:${entry.resource}:${entry.id ?? ""}`}
+          onSelect={() => onSelect(entry)}
+        >
+          {entry.label}
+        </CommandItem>
+      ))}
+    </CommandGroup>
+  );
+};
+
 const ResourceItemGate = ({
   resource,
   children,
@@ -153,12 +211,14 @@ const CommandMenuResourceResults = ({
   searchField = "q",
   perPage,
   onSelect,
+  remember,
 }: {
   resource: string;
   query: string;
   searchField?: string;
   perPage: number;
   onSelect: () => void;
+  remember: (entry: RecentEntry) => void;
 }) => {
   const navigate = useNavigate();
   const getRepresentation = useGetRecordRepresentation(resource);
@@ -178,6 +238,13 @@ const CommandMenuResourceResults = ({
           key={`${resource}:${record.id}`}
           value={`record:${resource}:${record.id}:${String(getRepresentation(record))}`}
           onSelect={() => {
+            remember({
+              type: "record",
+              resource,
+              id: record.id,
+              label: String(getRepresentation(record)),
+              path: `/${resource}/${record.id}/show`,
+            });
             navigate(`/${resource}/${record.id}/show`);
             onSelect();
           }}
@@ -195,12 +262,14 @@ const CommandMenuRecords = ({
   searchFields,
   perResourceLimit,
   onSelect,
+  remember,
 }: {
   query: string;
   resources?: string[];
   searchFields?: Record<string, string>;
   perResourceLimit: number;
   onSelect: () => void;
+  remember: (entry: RecentEntry) => void;
 }) => {
   const definitions = useResourceDefinitions();
   const translate = useTranslate();
@@ -221,6 +290,7 @@ const CommandMenuRecords = ({
             searchField={searchFields?.[name] ?? "q"}
             perPage={perResourceLimit}
             onSelect={onSelect}
+            remember={remember}
           />
         </ResourceItemGate>
       ))}
@@ -231,9 +301,11 @@ const CommandMenuRecords = ({
 const CommandMenuResources = ({
   resources,
   onSelect,
+  remember,
 }: {
   resources?: string[];
   onSelect: () => void;
+  remember: (entry: RecentEntry) => void;
 }) => {
   const definitions = useResourceDefinitions();
   const getLabel = useGetResourceLabel();
@@ -252,6 +324,12 @@ const CommandMenuResources = ({
           <CommandItem
             value={`resource:${name}`}
             onSelect={() => {
+              remember({
+                type: "resource",
+                resource: name,
+                label: getLabel(name, 2),
+                path: `/${name}`,
+              });
               navigate(`/${name}`);
               onSelect();
             }}
@@ -360,12 +438,15 @@ export const CommandMenu = ({
   hotkey = DEFAULT_HOTKEYS,
   searchDebounceMs = 200,
   perResourceLimit = 5,
+  recentsLimit = 10,
   placeholder,
   resources,
   searchFields,
   actions,
   children,
 }: CommandMenuProps) => {
+  const navigate = useNavigate();
+  const { recents, remember } = useRecents(recentsLimit);
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebouncedValue(query, searchDebounceMs);
@@ -439,14 +520,28 @@ export const CommandMenu = ({
         />
         <CommandList>
           <CommandEmpty>No results.</CommandEmpty>
+          {!debouncedQuery && (
+            <CommandMenuRecents
+              recents={recents}
+              onSelect={(entry) => {
+                navigate(entry.path);
+                close();
+              }}
+            />
+          )}
           <CommandMenuRecords
             query={debouncedQuery}
             resources={resources}
             searchFields={searchFields}
             perResourceLimit={perResourceLimit}
             onSelect={close}
+            remember={remember}
           />
-          <CommandMenuResources resources={resources} onSelect={close} />
+          <CommandMenuResources
+            resources={resources}
+            onSelect={close}
+            remember={remember}
+          />
           <CommandMenuActions
             extra={actions}
             registered={registeredCommands}
