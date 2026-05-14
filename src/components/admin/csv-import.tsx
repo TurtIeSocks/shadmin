@@ -75,17 +75,16 @@ const CsvImportUploadStep = () => {
 
   // Keep a ref so the validate closure always reads the current row count
   // without needing to re-register on every parse (avoids infinite effect loops).
-  const parsedRowsRef = useRef(parsedRows);
-  parsedRowsRef.current = parsedRows;
+  const parsedRowsCountRef = useRef(parsedRows.length);
+  parsedRowsCountRef.current = parsedRows.length;
 
-  // Hidden RHF field for Next-gating. Wizard's per-step validate calls
-  // form.trigger(fieldNames). Register once; the validate fn reads via ref.
   useEffect(() => {
-    form?.register?.("__csv_upload_gate", {
-      validate: () => parsedRowsRef.current.length > 0,
+    if (!form) return;
+    form.register("__csv_upload_gate", {
+      validate: () => parsedRowsCountRef.current > 0,
     });
     return () => {
-      form?.unregister?.("__csv_upload_gate");
+      form.unregister("__csv_upload_gate");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form]);
