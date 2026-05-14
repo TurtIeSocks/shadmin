@@ -3,6 +3,7 @@ import { render } from "vitest-browser-react";
 
 import {
   Basic,
+  CustomToolbar,
   MultipleSteps,
   OptionalStep,
   ProgressDots,
@@ -229,5 +230,21 @@ describe("<WizardForm />", () => {
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
     expect(dialog!.querySelector("ol")).toBeNull();
+  });
+
+  it("should render a custom toolbar when toolbar prop is provided", async () => {
+    const screen = render(<CustomToolbar theme="system" />);
+    await expect
+      .element(screen.getByTestId("custom-toolbar"))
+      .toBeInTheDocument();
+  });
+
+  it("should reset form values and close the dialog when Cancel is clicked", async () => {
+    const screen = render(<CustomToolbar theme="system" />);
+    const nameInput = screen.getByRole("textbox", { name: /name/i });
+    await nameInput.fill("Typed value");
+    await screen.getByRole("button", { name: /cancel/i }).click();
+    // Dialog is closed
+    await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
   });
 });

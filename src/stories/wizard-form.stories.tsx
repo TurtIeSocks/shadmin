@@ -6,7 +6,7 @@ import {
   ResourceContextProvider,
 } from "ra-core";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { WizardForm } from "@/components/admin/wizard-form";
+import { WizardForm, WizardToolbar } from "@/components/admin/wizard-form";
 import { TextInput } from "@/components/admin/text-input";
 import { i18nProvider } from "@/lib/i18n-provider";
 import type { UnknownRecord } from "@/lib/unknown-types";
@@ -262,3 +262,34 @@ export const ProgressNone = ({
   );
 };
 Object.assign(ProgressNone, storyArgs);
+
+export const CustomToolbar = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <StoryWrapper theme={theme}>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create"
+        onSubmit={() => {}}
+        toolbar={
+          <div data-testid="custom-toolbar">
+            <WizardToolbar />
+          </div>
+        }
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="name" />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <TextInput source="price" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(CustomToolbar, storyArgs);

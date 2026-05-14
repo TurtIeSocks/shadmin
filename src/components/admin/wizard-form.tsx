@@ -30,7 +30,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CancelButton } from "@/components/admin/cancel-button";
 import { SaveButton } from "@/components/admin/save-button";
 import { cn } from "@/lib/utils";
 
@@ -70,6 +69,7 @@ interface WizardContextValue {
   goBack: () => void;
   goTo: (index: number) => void;
   stepFlags: Array<{ optional: boolean; validateOnNext: boolean }>;
+  onClose: () => void;
 }
 
 const WizardContext = createContext<WizardContextValue | null>(null);
@@ -254,8 +254,9 @@ export function WizardForm(props: WizardFormProps) {
       goTo: (index) =>
         setCurrentStep(Math.max(0, Math.min(index, totalSteps - 1))),
       stepFlags,
+      onClose,
     }),
-    [currentStep, totalSteps, isFirst, isLast, stepFlags],
+    [currentStep, totalSteps, isFirst, isLast, stepFlags, onClose],
   );
 
   return (
@@ -347,7 +348,16 @@ export function WizardToolbar() {
 
   return (
     <DialogFooter className="gap-2 sm:gap-2">
-      <CancelButton />
+      <Button
+        type="button"
+        variant="ghost"
+        onClick={() => {
+          form.reset();
+          ctx.onClose();
+        }}
+      >
+        {translate("ra.action.cancel", { _: "Cancel" })}
+      </Button>
       {!isFirst ? (
         <Button type="button" variant="outline" onClick={goBack}>
           <ArrowLeft className="mr-2 h-4 w-4" />
