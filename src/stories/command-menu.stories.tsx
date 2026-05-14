@@ -10,7 +10,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin, ListGuesser, ShowGuesser } from "@/components/admin";
-import { CommandMenu, useCommandMenu } from "@/components/admin/command-menu";
+import { CommandMenu, useCommandMenu, useRegisterCommand } from "@/components/admin/command-menu";
 
 const data = {
   products: [
@@ -143,6 +143,36 @@ export const BuiltinActions = () => (
       store={memoryStore()}
       commandMenu={
         <CommandMenu>
+          <AutoOpen />
+        </CommandMenu>
+      }
+    >
+      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+const RegisterDuplicateProduct = () => {
+  useRegisterCommand({
+    id: "demo.duplicate",
+    label: "Duplicate product",
+    group: "actions",
+    onSelect: () => {
+      /* no-op for demo */
+    },
+  });
+  return null;
+};
+
+export const RegisteredCommand = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      commandMenu={
+        <CommandMenu>
+          <RegisterDuplicateProduct />
           <AutoOpen />
         </CommandMenu>
       }

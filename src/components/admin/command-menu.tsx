@@ -106,6 +106,22 @@ export const useCommandMenu = () => {
   return ctx;
 };
 
+/**
+ * Registers a command action into the nearest `<CommandMenu>` on mount and
+ * removes it on unmount. The dep array is intentionally `[action.id]` so the
+ * hook does not re-register on every render when callers pass an inline object.
+ * Callers are responsible for stabilising dynamic data via `useMemo`/`useCallback`
+ * if the action payload (not just `id`) needs to stay fresh.
+ */
+export const useRegisterCommand = (action: CommandAction) => {
+  const { registerCommand, unregisterCommand } = useCommandMenu();
+  useEffect(() => {
+    registerCommand(action);
+    return () => unregisterCommand(action.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [action.id]);
+};
+
 const useDebouncedValue = <T,>(value: T, delay: number) => {
   const [debounced, setDebounced] = useState(value);
   useEffect(() => {

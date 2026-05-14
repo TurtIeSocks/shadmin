@@ -7,6 +7,7 @@ import {
   AdminShorthand,
   RecordSearch,
   BuiltinActions,
+  RegisteredCommand,
 } from "@/stories/command-menu.stories";
 
 describe("<CommandMenu />", () => {
@@ -80,6 +81,13 @@ describe("<CommandMenu />", () => {
       .toBeInTheDocument();
     await expect
       .element(screen.getByRole("option", { name: /logout/i }))
+      .toBeInTheDocument();
+  });
+
+  it("renders commands registered via useRegisterCommand", async () => {
+    const screen = render(<RegisteredCommand />);
+    await expect
+      .element(screen.getByRole("option", { name: /duplicate product/i }))
       .toBeInTheDocument();
   });
 });
