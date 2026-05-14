@@ -49,13 +49,15 @@ export const Basic = () => (
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
+      commandMenu={
+        <CommandMenu>
+          <AutoOpen />
+        </CommandMenu>
+      }
     >
       <Resource name="products" list={ListGuesser} show={ShowGuesser} />
       <Resource name="orders" list={ListGuesser} show={ShowGuesser} />
     </Admin>
-    <CommandMenu>
-      <AutoOpen />
-    </CommandMenu>
   </TestMemoryRouter>
 );
 
@@ -65,10 +67,10 @@ export const Hotkey = () => (
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
+      commandMenu
     >
       <Resource name="products" list={ListGuesser} show={ShowGuesser} />
     </Admin>
-    <CommandMenu />
   </TestMemoryRouter>
 );
 
