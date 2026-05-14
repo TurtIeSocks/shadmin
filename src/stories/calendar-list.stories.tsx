@@ -186,3 +186,35 @@ export const Interactions = () => {
     </TestMemoryRouter>
   );
 };
+
+export const Drag = () => {
+  const [lastDrop, setLastDrop] = useState<string | null>(null);
+  return (
+    <TestMemoryRouter initialEntries={["/events"]}>
+      <Admin
+        dataProvider={dataProvider}
+        i18nProvider={i18nProvider}
+        store={memoryStore()}
+      >
+        <Resource
+          name="events"
+          list={() => (
+            <div>
+              <List perPage={500}>
+                <CalendarList
+                  startSource="start_at"
+                  titleSource="title"
+                  onDrop={async (record, range) => {
+                    setLastDrop(`${record.id}@${range.start}`);
+                  }}
+                />
+              </List>
+              <div data-testid="last-drop">{lastDrop ?? ""}</div>
+            </div>
+          )}
+          recordRepresentation="title"
+        />
+      </Admin>
+    </TestMemoryRouter>
+  );
+};

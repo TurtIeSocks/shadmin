@@ -8,6 +8,12 @@ import {
   useMemo,
   useState,
 } from "react";
+import {
+  DndContext,
+  type DragEndEvent,
+  useDraggable,
+  useDroppable,
+} from "@dnd-kit/core";
 import { useNavigate } from "react-router";
 import {
   addDays,
@@ -168,6 +174,7 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   weekStartsOn = 0,
   onSelectEvent,
   onSelectSlot,
+  onDrop,
   eventRenderer,
   headerRenderer,
 }: CalendarListProps<R>) => {
@@ -282,6 +289,41 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   const RenderEvent = eventRenderer ?? DefaultEvent;
   const resolvedViews = views ?? ["month", "week", "agenda"];
 
+  const handleDragEnd = useCallback(
+    (ev: DragEndEvent) => {
+      if (!onDrop) return;
+      const eventId = ev.active.id;
+      const targetDay = ev.over?.id;
+      if (!targetDay || typeof targetDay !== "string") return;
+      const original = events.find((e) => String(e.record.id) === String(eventId));
+      if (!original) return;
+      const [y, m, d] = (targetDay as string).split("-").map(Number);
+      const newStart = new Date(original.start);
+      newStart.setFullYear(y, m - 1, d);
+      let newEnd: Date | undefined;
+      if (original.end) {
+        const durationMs = original.end.getTime() - original.start.getTime();
+        newEnd = new Date(newStart.getTime() + durationMs);
+      }
+      onDrop(original.record, {
+        start: newStart.toISOString(),
+        end: newEnd?.toISOString(),
+      });
+    },
+    [onDrop, events],
+  );
+
+  const monthViewProps = {
+    range,
+    anchor,
+    events,
+    weekStartsOn,
+    renderEvent: RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode,
+    emptyLabel: translate("ra.calendar.no_events", { _: "No events" }),
+    onSelectEvent: handleSelectEvent as (record: RaRecord) => void,
+    onSelectSlot,
+  };
+
   return (
     <div className="flex h-full flex-col rounded-md border" data-slot="calendar-list">
       {headerRenderer ? (
@@ -304,16 +346,13 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
         />
       )}
       {view === "month" ? (
-        <CalendarMonthView
-          range={range}
-          anchor={anchor}
-          events={events}
-          weekStartsOn={weekStartsOn}
-          renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
-          emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
-          onSelectEvent={handleSelectEvent as (record: RaRecord) => void}
-          onSelectSlot={onSelectSlot}
-        />
+        onDrop ? (
+          <DndContext onDragEnd={handleDragEnd}>
+            <CalendarMonthView {...monthViewProps} draggable />
+          </DndContext>
+        ) : (
+          <CalendarMonthView {...monthViewProps} />
+        )
       ) : view === "week" ? (
         <CalendarWeekView
           range={range}
@@ -343,9 +382,86 @@ interface CalendarMonthViewProps<R extends RaRecord = RaRecord> {
   weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   renderEvent: (props: EventRendererProps<R>) => ReactNode;
   emptyLabel: string;
+  draggable?: boolean;
   onSelectEvent?: (record: R) => void;
   onSelectSlot?: (slot: { startISO: string; endISO: string; allDay: boolean }) => void;
 }
+
+const DroppableDayCell = ({
+  day,
+  children,
+  isToday,
+  inMonth,
+  onSelectSlot,
+}: {
+  day: Date;
+  children: ReactNode;
+  isToday: boolean;
+  inMonth: boolean;
+  onSelectSlot?: CalendarListProps["onSelectSlot"];
+}) => {
+  const dayKey = format(day, "yyyy-MM-dd");
+  const { setNodeRef, isOver } = useDroppable({ id: dayKey });
+  return (
+    <div
+      ref={setNodeRef}
+      role="gridcell"
+      data-day={dayKey}
+      data-today={isToday || undefined}
+      data-over={isOver || undefined}
+      className={cn(
+        "min-h-24 border-b border-r p-1 text-xs",
+        !inMonth && "bg-muted/20 text-muted-foreground",
+        isToday && "bg-accent/50",
+        isOver && "bg-accent",
+      )}
+      onClick={(ev) => {
+        if (ev.target !== ev.currentTarget) return;
+        const slotStart = startOfDay(day);
+        const slotEnd = endOfDay(day);
+        onSelectSlot?.({
+          startISO: slotStart.toISOString(),
+          endISO: slotEnd.toISOString(),
+          allDay: true,
+        });
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+const DraggableEvent = <R extends RaRecord = RaRecord>({
+  event,
+  draggable,
+  renderEvent: RenderEvent,
+  onSelectEvent,
+}: {
+  event: CalendarEventInfo<R>;
+  draggable: boolean;
+  renderEvent: (props: EventRendererProps<R>) => ReactNode;
+  onSelectEvent?: (record: R) => void;
+}) => {
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+    id: String(event.record.id),
+    disabled: !draggable,
+  });
+  return (
+    <button
+      type="button"
+      ref={setNodeRef}
+      {...(draggable ? attributes : {})}
+      {...(draggable ? listeners : {})}
+      onClick={(ev) => {
+        ev.stopPropagation();
+        onSelectEvent?.(event.record);
+      }}
+      className={cn("block w-full text-left", isDragging && "opacity-50")}
+    >
+      <RenderEvent {...event} isDragging={isDragging} />
+    </button>
+  );
+};
 
 const CalendarMonthView = <R extends RaRecord = RaRecord>({
   range,
@@ -353,6 +469,7 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
   events,
   weekStartsOn,
   renderEvent: RenderEvent,
+  draggable = false,
   onSelectEvent,
   onSelectSlot,
 }: CalendarMonthViewProps<R>) => {
@@ -389,6 +506,39 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
           const dayEvents = events.filter((e) => isSameDay(e.start, day));
           const inMonth = isSameMonth(day, anchor);
           const isToday = isSameDay(day, today);
+          const cellContent = (
+            <>
+              <div className={cn("mb-1", isToday && "font-medium")}>
+                {format(day, "d")}
+              </div>
+              <div className="flex flex-col gap-0.5">
+                {dayEvents.map((e) => (
+                  <DraggableEvent
+                    key={String(e.record.id)}
+                    event={e}
+                    draggable={draggable}
+                    renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+                    onSelectEvent={onSelectEvent as ((record: RaRecord) => void) | undefined}
+                  />
+                ))}
+              </div>
+            </>
+          );
+
+          if (draggable) {
+            return (
+              <DroppableDayCell
+                key={day.toISOString()}
+                day={day}
+                isToday={isToday}
+                inMonth={inMonth}
+                onSelectSlot={onSelectSlot}
+              >
+                {cellContent}
+              </DroppableDayCell>
+            );
+          }
+
           return (
             <div
               key={day.toISOString()}
@@ -411,24 +561,7 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
                 });
               }}
             >
-              <div className={cn("mb-1", isToday && "font-medium")}>
-                {format(day, "d")}
-              </div>
-              <div className="flex flex-col gap-0.5">
-                {dayEvents.map((e) => (
-                  <button
-                    type="button"
-                    key={String(e.record.id)}
-                    onClick={(ev) => {
-                      ev.stopPropagation();
-                      onSelectEvent?.(e.record);
-                    }}
-                    className="block text-left"
-                  >
-                    <RenderEvent {...e} />
-                  </button>
-                ))}
-              </div>
+              {cellContent}
             </div>
           );
         })}

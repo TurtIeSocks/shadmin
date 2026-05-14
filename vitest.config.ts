@@ -8,6 +8,9 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  optimizeDeps: {
+    include: ["@dnd-kit/core"],
+  },
   test: {
     testTimeout: 2500,
     include: [

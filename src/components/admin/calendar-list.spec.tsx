@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, RangeLoading, Navigation, Agenda, Week, Interactions } from "@/stories/calendar-list.stories";
+import { Basic, RangeLoading, Navigation, Agenda, Week, Interactions, Drag } from "@/stories/calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {
@@ -91,5 +91,16 @@ describe("<CalendarList />", () => {
     await event.click();
     const probe = document.querySelector('[data-testid="selected-event"]');
     expect(probe?.textContent).toBe("1");
+  });
+
+  it("wraps month view in DndContext when onDrop is provided", async () => {
+    const screen = render(<Drag />);
+    // DndContext doesn't add a stable DOM marker by default. Verify events are
+    // wrapped as draggable by checking the draggable attribute / aria.
+    await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
+    const eventButton = screen.getByText(/standup/i).element().closest("button");
+    expect(eventButton).toBeTruthy();
+    // dnd-kit sets role="button" + aria-roledescription="draggable" on draggable nodes
+    expect(eventButton?.getAttribute("aria-roledescription") ?? "").toMatch(/draggable/i);
   });
 });
