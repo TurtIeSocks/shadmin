@@ -194,6 +194,7 @@ export const ServerErrorOnFirstStep = ({
         isOpen={open}
         onClose={() => setOpen(false)}
         title="Create"
+        // ra-core's <Form> treats a { field: message } return as a submission error
         onSubmit={() => ({ name: "Reserved name" })}
       >
         <WizardForm.Step label="Identity">

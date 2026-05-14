@@ -83,38 +83,40 @@ function useWizard() {
 const stepKeyFor = (index: number) => `wizard-step-${index}`;
 
 /**
- * Watches react-hook-form errors. When errors appear, finds the lowest-index
- * step whose form group contains an errored field and navigates there.
- * No-op when no errors are present.
+ * Watches react-hook-form errors. When a submission produces errors, finds the
+ * lowest-index step whose form group contains an errored field (or one of its
+ * children) and navigates there. No-op when no errors are present.
+ *
+ * This is a component, not a hook, because it must read FormContext, which is
+ * provided by <Form> below WizardForm.
  */
 function WizardErrorJumper() {
   const form = useFormContext();
   const formGroups = useFormGroups();
   const { goTo, totalSteps } = useWizard();
-  const errors = form.formState.errors;
-  const errorFieldNames = Object.keys(errors ?? {});
-  // Use the joined key in the dep array so the effect only re-fires when the
-  // set of errored field names changes (not when their identity does on every
-  // render).
-  const errorKey = errorFieldNames.join(",");
+  const submitCount = form.formState.submitCount;
 
   useEffect(() => {
-    if (errorFieldNames.length === 0) return;
+    if (submitCount === 0) return;
     if (!formGroups) return;
+    const errorFieldNames = Object.keys(form.formState.errors ?? {});
+    if (errorFieldNames.length === 0) return;
     for (let i = 0; i < totalSteps; i++) {
-      const groupFields = formGroups.getGroupFields(stepKeyFor(i)) ?? [];
-      const hasError = errorFieldNames.some((name) =>
-        groupFields.includes(name),
+      const groupFields = formGroups.getGroupFields(stepKeyFor(i));
+      const hasError = groupFields.some((field) =>
+        errorFieldNames.some(
+          (err) => field === err || field.startsWith(err + "."),
+        ),
       );
       if (hasError) {
         goTo(i);
         return;
       }
     }
-    // errorFieldNames is recomputed each render; depending on `errorKey`
-    // (a string) avoids re-firing on stable error sets.
+    // submitCount is the canonical "a submission happened" signal; errors are
+    // read imperatively inside so we don't need to track them as deps.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errorKey, formGroups, totalSteps, goTo]);
+  }, [submitCount, formGroups, totalSteps]);
 
   return null;
 }
