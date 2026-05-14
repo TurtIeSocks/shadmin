@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { type DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
@@ -152,3 +153,36 @@ export const Week = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+export const Interactions = () => {
+  const [selectedId, setSelectedId] = useState<number | string | null>(null);
+  const [slotISO, setSlotISO] = useState<string | null>(null);
+  return (
+    <TestMemoryRouter initialEntries={["/events"]}>
+      <Admin
+        dataProvider={dataProvider}
+        i18nProvider={i18nProvider}
+        store={memoryStore()}
+      >
+        <Resource
+          name="events"
+          list={() => (
+            <div>
+              <List perPage={500}>
+                <CalendarList
+                  startSource="start_at"
+                  titleSource="title"
+                  onSelectEvent={(record) => setSelectedId(record.id)}
+                  onSelectSlot={(slot) => setSlotISO(slot.startISO)}
+                />
+              </List>
+              <div data-testid="selected-event">{selectedId ?? ""}</div>
+              <div data-testid="selected-slot">{slotISO ?? ""}</div>
+            </div>
+          )}
+          recordRepresentation="title"
+        />
+      </Admin>
+    </TestMemoryRouter>
+  );
+};

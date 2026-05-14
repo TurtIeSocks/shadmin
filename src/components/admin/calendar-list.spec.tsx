@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, RangeLoading, Navigation, Agenda, Week } from "@/stories/calendar-list.stories";
+import { Basic, RangeLoading, Navigation, Agenda, Week, Interactions } from "@/stories/calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {
@@ -83,5 +83,13 @@ describe("<CalendarList />", () => {
     expect(dayHeaders.length).toBeGreaterThanOrEqual(7);
     // Events render
     await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
+  });
+
+  it("fires onSelectEvent when an event is clicked", async () => {
+    const screen = render(<Interactions />);
+    const event = screen.getByText(/standup/i);
+    await event.click();
+    const probe = document.querySelector('[data-testid="selected-event"]');
+    expect(probe?.textContent).toBe("1");
   });
 });

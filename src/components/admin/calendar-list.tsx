@@ -8,6 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { useNavigate } from "react-router";
 import {
   addDays,
   addMonths,
@@ -165,11 +166,27 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   defaultView = "month",
   views,
   weekStartsOn = 0,
+  onSelectEvent,
+  onSelectSlot,
   eventRenderer,
   headerRenderer,
 }: CalendarListProps<R>) => {
   const { data = [], filterValues = {}, setFilters } = useListContext<R>();
   const resource = useResourceContext();
+  const navigate = useNavigate();
+
+  const handleSelectEvent = useCallback(
+    (record: R) => {
+      if (onSelectEvent) {
+        onSelectEvent(record);
+        return;
+      }
+      if (resource) {
+        navigate(`/${resource}/${record.id}/show`);
+      }
+    },
+    [onSelectEvent, navigate, resource],
+  );
   const getRepresentation = useGetRecordRepresentation(resource ?? "");
   const translate = useTranslate();
   const [view, setView] = useState<CalendarView>(defaultView);
@@ -294,6 +311,8 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
           weekStartsOn={weekStartsOn}
           renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
           emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
+          onSelectEvent={handleSelectEvent as (record: RaRecord) => void}
+          onSelectSlot={onSelectSlot}
         />
       ) : view === "week" ? (
         <CalendarWeekView
@@ -301,6 +320,8 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
           events={events}
           weekStartsOn={weekStartsOn}
           renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+          onSelectEvent={handleSelectEvent as (record: RaRecord) => void}
+          onSelectSlot={onSelectSlot}
         />
       ) : (
         <CalendarAgendaView
@@ -308,6 +329,7 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
           range={range}
           emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
           renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+          onSelectEvent={handleSelectEvent as (record: RaRecord) => void}
         />
       )}
     </div>
@@ -321,6 +343,8 @@ interface CalendarMonthViewProps<R extends RaRecord = RaRecord> {
   weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   renderEvent: (props: EventRendererProps<R>) => ReactNode;
   emptyLabel: string;
+  onSelectEvent?: (record: R) => void;
+  onSelectSlot?: (slot: { startISO: string; endISO: string; allDay: boolean }) => void;
 }
 
 const CalendarMonthView = <R extends RaRecord = RaRecord>({
@@ -329,6 +353,8 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
   events,
   weekStartsOn,
   renderEvent: RenderEvent,
+  onSelectEvent,
+  onSelectSlot,
 }: CalendarMonthViewProps<R>) => {
   const days = useMemo(() => {
     const out: Date[] = [];
@@ -374,13 +400,33 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
                 !inMonth && "bg-muted/20 text-muted-foreground",
                 isToday && "bg-accent/50",
               )}
+              onClick={(ev) => {
+                if (ev.target !== ev.currentTarget) return;
+                const slotStart = startOfDay(day);
+                const slotEnd = endOfDay(day);
+                onSelectSlot?.({
+                  startISO: slotStart.toISOString(),
+                  endISO: slotEnd.toISOString(),
+                  allDay: true,
+                });
+              }}
             >
               <div className={cn("mb-1", isToday && "font-medium")}>
                 {format(day, "d")}
               </div>
               <div className="flex flex-col gap-0.5">
                 {dayEvents.map((e) => (
-                  <RenderEvent key={String(e.record.id)} {...e} />
+                  <button
+                    type="button"
+                    key={String(e.record.id)}
+                    onClick={(ev) => {
+                      ev.stopPropagation();
+                      onSelectEvent?.(e.record);
+                    }}
+                    className="block text-left"
+                  >
+                    <RenderEvent {...e} />
+                  </button>
                 ))}
               </div>
             </div>
@@ -396,6 +442,7 @@ interface CalendarAgendaViewProps<R extends RaRecord = RaRecord> {
   emptyLabel: string;
   renderEvent: (props: EventRendererProps<R>) => ReactNode;
   range: { start: Date; end: Date };
+  onSelectEvent?: (record: R) => void;
 }
 
 const CalendarAgendaView = <R extends RaRecord = RaRecord>({
@@ -403,6 +450,7 @@ const CalendarAgendaView = <R extends RaRecord = RaRecord>({
   emptyLabel,
   renderEvent: RenderEvent,
   range,
+  onSelectEvent,
 }: CalendarAgendaViewProps<R>) => {
   const inRange = useMemo(
     () =>
@@ -444,7 +492,14 @@ const CalendarAgendaView = <R extends RaRecord = RaRecord>({
           </div>
           <div className="flex flex-col gap-1 pl-2">
             {dayEvents.map((e) => (
-              <RenderEvent key={String(e.record.id)} {...e} />
+              <button
+                type="button"
+                key={String(e.record.id)}
+                onClick={() => onSelectEvent?.(e.record)}
+                className="block text-left"
+              >
+                <RenderEvent {...e} />
+              </button>
             ))}
           </div>
         </div>
@@ -458,6 +513,8 @@ interface CalendarWeekViewProps<R extends RaRecord = RaRecord> {
   events: CalendarEventInfo<R>[];
   weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   renderEvent: (props: EventRendererProps<R>) => ReactNode;
+  onSelectEvent?: (record: R) => void;
+  onSelectSlot?: (slot: { startISO: string; endISO: string; allDay: boolean }) => void;
 }
 
 const HOURS = Array.from({ length: 24 }, (_, i) => i);
@@ -466,6 +523,8 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
   range,
   events,
   renderEvent: RenderEvent,
+  onSelectEvent,
+  onSelectSlot,
 }: CalendarWeekViewProps<R>) => {
   const days = useMemo(() => {
     const out: Date[] = [];
@@ -517,9 +576,27 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
                   key={`${d.toISOString()}-${h}`}
                   className="min-h-10 border-b border-r p-0.5"
                   data-slot-start={cellStart.toISOString()}
+                  onClick={(ev) => {
+                    if (ev.target !== ev.currentTarget) return;
+                    onSelectSlot?.({
+                      startISO: cellStart.toISOString(),
+                      endISO: cellEnd.toISOString(),
+                      allDay: false,
+                    });
+                  }}
                 >
                   {slotEvents.map((e) => (
-                    <RenderEvent key={String(e.record.id)} {...e} />
+                    <button
+                      type="button"
+                      key={String(e.record.id)}
+                      onClick={(ev) => {
+                        ev.stopPropagation();
+                        onSelectEvent?.(e.record);
+                      }}
+                      className="block text-left"
+                    >
+                      <RenderEvent {...e} />
+                    </button>
                   ))}
                 </div>
               );
