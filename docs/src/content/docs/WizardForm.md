@@ -66,7 +66,7 @@ Inside a `<Create>` or `<Edit>` view, the `onSubmit` prop is optional — the wi
 | Prop | Required | Type | Default | Description |
 | --- | --- | --- | --- | --- |
 | `label` | Required | `string \| ReactElement` | - | Step label shown in the progress indicator. |
-| `description` | Optional | `string \| ReactElement` | - | Description rendered inside the step content (reserved; not yet wired in the default step renderer — pass it explicitly inside `children` for now). |
+| `description` | Optional | `string \| ReactElement` | - | Description rendered above the step's children. |
 | `optional` | Optional | `boolean` | `false` | Skip the validation gate when advancing past this step. |
 | `validateOnNext` | Optional | `boolean` | `true` | Validate the step's fields when Next is clicked. |
 | `className` | Optional | `string` | - | Class applied to the step's content container. |

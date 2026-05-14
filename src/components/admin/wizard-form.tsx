@@ -261,7 +261,10 @@ export function WizardForm(props: WizardFormProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className={cn("sm:max-w-2xl", className)}>
+      <DialogContent
+        className={cn("sm:max-w-2xl", className)}
+        aria-describedby={undefined}
+      >
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           {description ? (
@@ -292,7 +295,7 @@ export function WizardForm(props: WizardFormProps) {
 }
 
 export function WizardFormStep(props: WizardStepProps) {
-  const { className, children, __stepKey, __hidden } = props;
+  const { className, children, description, __stepKey, __hidden } = props;
   if (!__stepKey) {
     return (
       <div className={cn("flex flex-col gap-4", className)}>{children}</div>
@@ -307,6 +310,9 @@ export function WizardFormStep(props: WizardStepProps) {
         style={__hidden ? { display: "none" } : undefined}
         className={cn("flex flex-col gap-4", className)}
       >
+        {description ? (
+          <p className="text-sm text-muted-foreground">{description}</p>
+        ) : null}
         {children}
       </div>
     </FormGroupContextProvider>
@@ -363,12 +369,12 @@ export function WizardToolbar() {
       {!isFirst ? (
         <Button type="button" variant="outline" onClick={goBack}>
           <ArrowLeft className="mr-2 h-4 w-4" />
-          {translate("ra.action.back", { _: "Go Back" })}
+          {translate("ra.action.wizard_back", { _: "Back" })}
         </Button>
       ) : null}
       {!isLast ? (
         <Button type="button" onClick={handleNext}>
-          {translate("ra.action.next", { _: "Next" })}
+          {translate("ra.action.wizard_next", { _: "Next" })}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       ) : (
