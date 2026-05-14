@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, CommitStep, MapStep, PreviewStep, UploadStep } from "@/stories/csv-import.stories";
+import { Basic, CommitStep, CommitWithErrors, MapStep, PreviewStep, UploadStep } from "@/stories/csv-import.stories";
 
 describe("<CsvImport />", () => {
   it("renders an Import button", async () => {
@@ -65,6 +65,17 @@ describe("<CsvImport />", () => {
     await screen.getByRole("button", { name: /next/i }).click(); // preview → commit
     await expect
       .element(screen.getByText(/import complete/i))
+      .toBeInTheDocument();
+  });
+
+  it("shows the error download button after commit when errors exist", async () => {
+    const screen = render(<CommitWithErrors />);
+    await screen.getByRole("button", { name: /import/i }).click();
+    await screen.getByRole("button", { name: /next/i }).click();
+    await screen.getByRole("button", { name: /next/i }).click();
+    await screen.getByRole("button", { name: /next/i }).click();
+    await expect
+      .element(screen.getByRole("button", { name: /download error report/i }))
       .toBeInTheDocument();
   });
 });

@@ -336,6 +336,24 @@ const CsvImportCommitStep = () => {
   const [progress, setProgress] = useState({ current: 0, total: 0 });
   const [done, setDone] = useState(false);
 
+  const downloadErrors = useCallback(() => {
+    if (!ctx.report || ctx.report.errors.length === 0) return;
+    const csv = Papa.unparse(
+      ctx.report.errors.map((e) => ({
+        rowIndex: e.rowIndex,
+        reason: e.reason,
+        ...e.row,
+      })),
+    );
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "import-errors.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [ctx.report]);
+
   useEffect(() => {
     let cancelled = false;
     const run = async () => {
@@ -444,6 +462,13 @@ const CsvImportCommitStep = () => {
               total: ctx.report?.total ?? 0,
             })}
           </div>
+          {ctx.report && ctx.report.errors.length > 0 ? (
+            <Button variant="outline" size="sm" onClick={downloadErrors}>
+              {translate("ra.csv_import.download_errors", {
+                _: "Download error report",
+              })}
+            </Button>
+          ) : null}
         </div>
       )}
     </div>

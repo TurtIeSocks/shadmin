@@ -141,3 +141,30 @@ export const CommitStep = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+export const CommitWithErrors = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="products"
+        list={() => (
+          <div>
+            <CsvImport schema={ProductSchema}>
+              <SeedParsed
+                rows={[
+                  { Reference: "NB-001", "Product Name": "Notebook", price: "9.99" },
+                  { Reference: "", "Product Name": "Broken", price: "x" },
+                ]}
+                headers={["Reference", "Product Name", "price"]}
+              />
+            </CsvImport>
+          </div>
+        )}
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
