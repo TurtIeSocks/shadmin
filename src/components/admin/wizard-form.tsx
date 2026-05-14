@@ -10,7 +10,12 @@ import {
   useState,
 } from "react";
 import type { ReactElement, ReactNode } from "react";
-import { Form, FormGroupContextProvider, useTranslate } from "ra-core";
+import {
+  Form,
+  FormGroupContextProvider,
+  useFormGroups,
+  useTranslate,
+} from "ra-core";
 import type { FormProps } from "ra-core";
 import { useFormContext } from "react-hook-form";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -72,6 +77,8 @@ function useWizard() {
   if (!ctx) throw new Error("useWizard must be used inside <WizardForm>");
   return ctx;
 }
+
+const stepKeyFor = (index: number) => `wizard-step-${index}`;
 
 /**
  * Modal multi-step form. Compose with `<WizardForm.Step>` children.
@@ -136,7 +143,7 @@ export function WizardForm(props: WizardFormProps) {
           <WizardContext.Provider value={ctx}>
             <div className="flex flex-col gap-4">
               {steps.map((step, index) => {
-                const stepKey = `wizard-step-${index}`;
+                const stepKey = stepKeyFor(index);
                 return cloneElement(step, {
                   key: stepKey,
                   __stepIndex: index,
@@ -187,12 +194,14 @@ export function WizardToolbar() {
   const translate = useTranslate();
   const { isFirst, isLast, goNext, goBack, currentStep } = useWizard();
   const form = useFormContext();
-  const stepKey = `wizard-step-${currentStep}`;
+  const formGroups = useFormGroups();
+  const stepKey = stepKeyFor(currentStep);
 
   const handleNext = async () => {
-    // Validate just the fields registered in this step's panel.
-    // Falls back to validate-all when no fields are discoverable.
-    const fieldNames = getFieldNamesForStep(form, stepKey);
+    // Validate just the fields registered in this step's group.
+    // Falls back to validate-all if the group has no registered fields yet
+    // (e.g., before children have mounted).
+    const fieldNames = formGroups?.getGroupFields(stepKey) ?? [];
     const isValid =
       fieldNames.length > 0
         ? await form.trigger(fieldNames)
@@ -219,30 +228,4 @@ export function WizardToolbar() {
       )}
     </DialogFooter>
   );
-}
-
-/**
- * Returns the list of field names registered under the DOM element with
- * data-wizard-step={stepKey}. Used to scope react-hook-form's trigger() to
- * the current step only. Falls back to an empty array when nothing is
- * discoverable, in which case the caller validates all fields.
- */
-function getFieldNamesForStep(
-  form: ReturnType<typeof useFormContext>,
-  stepKey: string,
-): string[] {
-  if (typeof document === "undefined") return [];
-  const panel = document.querySelector(`[data-wizard-step="${stepKey}"]`);
-  if (!panel) return [];
-  const inputs = panel.querySelectorAll<HTMLElement>("[name]");
-  const names = new Set<string>();
-  inputs.forEach((el) => {
-    const name = el.getAttribute("name");
-    if (name) names.add(name);
-  });
-  // Intersect with react-hook-form's registered fields to avoid stray DOM nodes.
-  // form._fields is the internal field registry; cast through unknown since it's not in public types.
-  const registered =
-    (form as unknown as { _fields?: Record<string, unknown> })._fields ?? {};
-  return Array.from(names).filter((n) => n in registered);
 }
