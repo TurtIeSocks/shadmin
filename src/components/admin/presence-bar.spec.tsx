@@ -4,7 +4,7 @@ import { Basic } from "@/stories/presence-bar.stories";
 
 describe("<PresenceBar />", () => {
   it("renders avatars for other users subscribed to the topic", async () => {
-    const screen = render(<Basic />);
+    render(<Basic />);
     // Bob and Carol Diaz were seeded by SeedOtherUsers
     await expect
       .element(document.querySelector('[data-presence-user="bob"]'))
