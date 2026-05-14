@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, RangeLoading, Navigation, Agenda } from "@/stories/calendar-list.stories";
+import { Basic, RangeLoading, Navigation, Agenda, Week } from "@/stories/calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {
@@ -70,6 +70,18 @@ describe("<CalendarList />", () => {
       .element(document.querySelector('[data-calendar-view="agenda"]'))
       .toBeTruthy();
     // At least one of the seeded events is visible
+    await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
+  });
+
+  it("week view renders 7 day columns with hour rows", async () => {
+    const screen = render(<Week />);
+    await expect
+      .element(document.querySelector('[data-calendar-view="week"]'))
+      .toBeTruthy();
+    // 7 day headers
+    const dayHeaders = document.querySelectorAll('[data-day]');
+    expect(dayHeaders.length).toBeGreaterThanOrEqual(7);
+    // Events render
     await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
   });
 });

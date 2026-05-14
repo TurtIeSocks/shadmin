@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Fragment,
   type ReactNode,
   useCallback,
   useEffect,
@@ -294,15 +295,14 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
           renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
           emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
         />
-      ) : view === "agenda" ? (
-        <CalendarAgendaView
-          events={events}
+      ) : view === "week" ? (
+        <CalendarWeekView
           range={range}
-          emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
+          events={events}
+          weekStartsOn={weekStartsOn}
           renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
         />
       ) : (
-        // Week view — implemented in Task 4. For now render agenda as placeholder.
         <CalendarAgendaView
           events={events}
           range={range}
@@ -449,6 +449,84 @@ const CalendarAgendaView = <R extends RaRecord = RaRecord>({
           </div>
         </div>
       ))}
+    </div>
+  );
+};
+
+interface CalendarWeekViewProps<R extends RaRecord = RaRecord> {
+  range: { start: Date; end: Date };
+  events: CalendarEventInfo<R>[];
+  weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  renderEvent: (props: EventRendererProps<R>) => ReactNode;
+}
+
+const HOURS = Array.from({ length: 24 }, (_, i) => i);
+
+const CalendarWeekView = <R extends RaRecord = RaRecord>({
+  range,
+  events,
+  renderEvent: RenderEvent,
+}: CalendarWeekViewProps<R>) => {
+  const days = useMemo(() => {
+    const out: Date[] = [];
+    let cursor = range.start;
+    while (cursor <= range.end) {
+      out.push(cursor);
+      cursor = addDays(cursor, 1);
+    }
+    return out.slice(0, 7);
+  }, [range]);
+
+  const today = new Date();
+
+  return (
+    <div className="flex flex-1 flex-col overflow-auto" data-calendar-view="week">
+      <div className="grid grid-cols-[3rem_repeat(7,minmax(0,1fr))] border-b text-xs text-muted-foreground">
+        <div />
+        {days.map((d) => {
+          const isToday = isSameDay(d, today);
+          return (
+            <div
+              key={d.toISOString()}
+              className={cn("p-2 text-center", isToday && "font-medium text-foreground")}
+              data-day={format(d, "yyyy-MM-dd")}
+            >
+              <div>{format(d, "EEE")}</div>
+              <div className="text-sm">{format(d, "d")}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="grid flex-1 grid-cols-[3rem_repeat(7,minmax(0,1fr))]">
+        {HOURS.map((h) => (
+          <Fragment key={h}>
+            <div className="border-b border-r p-1 text-right text-xs text-muted-foreground">
+              {format(new Date(2000, 0, 1, h), "ha")}
+            </div>
+            {days.map((d) => {
+              const cellStart = new Date(d);
+              cellStart.setHours(h, 0, 0, 0);
+              const cellEnd = new Date(d);
+              cellEnd.setHours(h, 59, 59, 999);
+              const slotEvents = events.filter((e) => {
+                const eStart = e.start;
+                return eStart >= cellStart && eStart <= cellEnd;
+              });
+              return (
+                <div
+                  key={`${d.toISOString()}-${h}`}
+                  className="min-h-10 border-b border-r p-0.5"
+                  data-slot-start={cellStart.toISOString()}
+                >
+                  {slotEvents.map((e) => (
+                    <RenderEvent key={String(e.record.id)} {...e} />
+                  ))}
+                </div>
+              );
+            })}
+          </Fragment>
+        ))}
+      </div>
     </div>
   );
 };

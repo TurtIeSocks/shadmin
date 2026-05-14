@@ -113,3 +113,42 @@ export const Agenda = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+const todayAt = (h: number) => {
+  const d = new Date(today);
+  d.setHours(h, 0, 0, 0);
+  return d.toISOString();
+};
+
+const weekData = {
+  events: [
+    { id: 1, title: "Standup", start_at: todayAt(9) },
+    { id: 2, title: "Lunch", start_at: todayAt(12) },
+  ],
+};
+
+const weekDataProvider = fakeRestDataProvider(weekData) as DataProvider;
+
+export const Week = () => (
+  <TestMemoryRouter initialEntries={["/events"]}>
+    <Admin
+      dataProvider={weekDataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="events"
+        list={() => (
+          <List perPage={500}>
+            <CalendarList
+              startSource="start_at"
+              titleSource="title"
+              defaultView="week"
+            />
+          </List>
+        )}
+        recordRepresentation="title"
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
