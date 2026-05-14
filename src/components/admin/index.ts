@@ -169,4 +169,5 @@ export * from "./update-button";
 export * from "./url-field";
 export * from "./use-theme";
 export * from "./user-menu";
+export * from "./wizard-form";
 export * from "./wrapper-field";
