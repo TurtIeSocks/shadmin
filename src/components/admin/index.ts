@@ -176,5 +176,6 @@ export * from "./wrapper-field";
 export * from "./command-menu";
 export * from "./csv-import";
 export * from "./calendar-list";
+export * from "./kanban-board";
 export * from "./record-timeline";
 export * from "./presence-bar";
