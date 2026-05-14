@@ -7,6 +7,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { CommandDialog } from "@/components/ui/command";
@@ -54,6 +55,12 @@ const CommandMenuContext = createContext<CommandMenuContextValue | null>(null);
 
 const DEFAULT_HOTKEYS = ["mod+k"];
 
+/**
+ * Parses a `"mod+k"` style binding and checks whether the given keyboard event
+ * matches. `mod` matches `metaKey || ctrlKey`. Bindings without `"mod"` (e.g.
+ * `"f1"`) match the bare key regardless of modifier state — be aware of this
+ * when registering single-key bindings that overlap with modifier combinations.
+ */
 const matchesHotkey = (event: KeyboardEvent, binding: string) => {
   const parts = binding.toLowerCase().split("+").map((p) => p.trim());
   const key = parts[parts.length - 1];
@@ -115,17 +122,23 @@ export const CommandMenu = ({
     [isOpen, open, close, toggle, registerCommand, unregisterCommand, registeredCommands],
   );
 
+  const hotkeyRef = useRef(hotkey);
   useEffect(() => {
-    if (hotkey === false || hotkey.length === 0) return;
+    hotkeyRef.current = hotkey;
+  }, [hotkey]);
+
+  useEffect(() => {
     const handler = (event: KeyboardEvent) => {
-      if (hotkey.some((b) => matchesHotkey(event, b))) {
+      const current = hotkeyRef.current;
+      if (current === false || current.length === 0) return;
+      if (current.some((b) => matchesHotkey(event, b))) {
         event.preventDefault();
         setIsOpen((v) => !v);
       }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [hotkey]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- handler reads latest hotkey via ref
 
   return (
     <CommandMenuContext.Provider value={value}>

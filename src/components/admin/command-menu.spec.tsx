@@ -17,12 +17,14 @@ describe("<CommandMenu />", () => {
   });
 
   it("closes on escape", async () => {
-    render(<Hotkey />);
+    const screen = render(<Hotkey />);
     await userEvent.keyboard("{Meta>}k{/Meta}");
-    expect(document.querySelector('[role="dialog"]')).not.toBeNull();
+    await expect
+      .element(screen.getByRole("dialog"))
+      .toBeInTheDocument();
     await userEvent.keyboard("{Escape}");
-    // CommandDialog uses radix close behavior; await disappearance
-    await new Promise((r) => setTimeout(r, 50));
-    expect(document.querySelector('[role="dialog"]')).toBeNull();
+    await expect
+      .element(screen.getByRole("dialog"))
+      .not.toBeInTheDocument();
   });
 });
