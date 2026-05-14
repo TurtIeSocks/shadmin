@@ -149,6 +149,7 @@ export * from "./text-array-field";
 export * from "./text-array-input";
 export * from "./text-field";
 export * from "./text-input";
+export * from "./tree-list";
 export * from "./theme-mode-toggle";
 export * from "./theme-provider";
 export type { AdminTheme } from "./theme-types";
