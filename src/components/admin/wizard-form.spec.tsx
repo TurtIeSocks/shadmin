@@ -20,7 +20,9 @@ describe("<WizardForm />", () => {
 
   it("should mount all steps but hide inactive ones via display:none", async () => {
     render(<MultipleSteps theme="system" />);
-    const panels = document.body.querySelectorAll(
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll(
       '[role="group"][data-wizard-step]',
     );
     expect(panels.length).toBe(3);
@@ -32,7 +34,9 @@ describe("<WizardForm />", () => {
 
   it("should mark inactive step panels with aria-hidden", async () => {
     render(<MultipleSteps theme="system" />);
-    const panels = document.body.querySelectorAll(
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll(
       '[role="group"][data-wizard-step]',
     );
     expect(panels[0].getAttribute("aria-hidden")).not.toBe("true");
@@ -41,7 +45,9 @@ describe("<WizardForm />", () => {
 
   it("should keep inputs from non-active steps registered in the DOM", async () => {
     render(<MultipleSteps theme="system" />);
-    const inputs = document.body.querySelectorAll("input[name]");
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const inputs = dialog!.querySelectorAll("input[name]");
     // 3 source inputs: name, price, notes
     expect(inputs.length).toBeGreaterThanOrEqual(3);
   });
