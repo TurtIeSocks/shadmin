@@ -12,6 +12,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router";
 import {
+  useCanAccess,
   useGetList,
   useGetRecordRepresentation,
   useGetResourceLabel,
@@ -131,6 +132,21 @@ const useDebouncedValue = <T,>(value: T, delay: number) => {
   return debounced;
 };
 
+const ResourceItemGate = ({
+  resource,
+  children,
+}: {
+  resource: string;
+  children: ReactNode;
+}) => {
+  const { canAccess, isPending } = useCanAccess({
+    resource,
+    action: "list",
+  });
+  if (isPending || !canAccess) return null;
+  return <>{children}</>;
+};
+
 const CommandMenuResourceResults = ({
   resource,
   query,
@@ -198,14 +214,15 @@ const CommandMenuRecords = ({
       heading={translate("ra.command.group.records", { _: "Records" })}
     >
       {allowed.map((name) => (
-        <CommandMenuResourceResults
-          key={name}
-          resource={name}
-          query={query}
-          searchField={searchFields?.[name] ?? "q"}
-          perPage={perResourceLimit}
-          onSelect={onSelect}
-        />
+        <ResourceItemGate key={name} resource={name}>
+          <CommandMenuResourceResults
+            resource={name}
+            query={query}
+            searchField={searchFields?.[name] ?? "q"}
+            perPage={perResourceLimit}
+            onSelect={onSelect}
+          />
+        </ResourceItemGate>
       ))}
     </CommandGroup>
   );
@@ -231,16 +248,17 @@ const CommandMenuResources = ({
       heading={translate("ra.command.group.resources", { _: "Resources" })}
     >
       {allowed.map((name) => (
-        <CommandItem
-          key={name}
-          value={`resource:${name}`}
-          onSelect={() => {
-            navigate(`/${name}`);
-            onSelect();
-          }}
-        >
-          {getLabel(name, 2)}
-        </CommandItem>
+        <ResourceItemGate key={name} resource={name}>
+          <CommandItem
+            value={`resource:${name}`}
+            onSelect={() => {
+              navigate(`/${name}`);
+              onSelect();
+            }}
+          >
+            {getLabel(name, 2)}
+          </CommandItem>
+        </ResourceItemGate>
       ))}
     </CommandGroup>
   );

@@ -8,6 +8,7 @@ import {
   RecordSearch,
   BuiltinActions,
   RegisteredCommand,
+  PermissionDenied,
 } from "@/stories/command-menu.stories";
 
 describe("<CommandMenu />", () => {
@@ -89,5 +90,16 @@ describe("<CommandMenu />", () => {
     await expect
       .element(screen.getByRole("option", { name: /duplicate product/i }))
       .toBeInTheDocument();
+  });
+
+  it("hides resources the user cannot list", async () => {
+    const screen = render(<PermissionDenied />);
+    await expect
+      .element(screen.getByRole("option", { name: /products/i }))
+      .toBeInTheDocument();
+    // Orders is denied via canAccess — the option must not appear
+    await expect
+      .element(screen.getByRole("option", { name: /^orders$/i }))
+      .not.toBeInTheDocument();
   });
 });

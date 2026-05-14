@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 import {
+  type AuthProvider,
   type DataProvider,
   memoryStore,
   Resource,
@@ -178,6 +179,34 @@ export const RegisteredCommand = () => (
       }
     >
       <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+const restrictiveAuthProvider: AuthProvider = {
+  login: () => Promise.resolve(),
+  logout: () => Promise.resolve(),
+  checkError: () => Promise.resolve(),
+  checkAuth: () => Promise.resolve(),
+  getPermissions: () => Promise.resolve(),
+  canAccess: async ({ resource }) => resource !== "orders",
+};
+
+export const PermissionDenied = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      authProvider={restrictiveAuthProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      commandMenu={
+        <CommandMenu>
+          <AutoOpen />
+        </CommandMenu>
+      }
+    >
+      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+      <Resource name="orders" list={ListGuesser} show={ShowGuesser} />
     </Admin>
   </TestMemoryRouter>
 );
