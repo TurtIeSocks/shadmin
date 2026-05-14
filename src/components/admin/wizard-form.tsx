@@ -19,7 +19,7 @@ import {
 } from "ra-core";
 import type { FormProps } from "ra-core";
 import { useFormContext } from "react-hook-form";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, CircleX } from "lucide-react";
 
 import {
   Dialog,
@@ -351,11 +351,13 @@ export function WizardToolbar() {
       <Button
         type="button"
         variant="ghost"
+        className="cursor-pointer"
         onClick={() => {
           form.reset();
           ctx.onClose();
         }}
       >
+        <CircleX />
         {translate("ra.action.cancel", { _: "Cancel" })}
       </Button>
       {!isFirst ? (
