@@ -1,11 +1,28 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, UploadStep } from "@/stories/csv-import.stories";
+import { Basic, MapStep, UploadStep } from "@/stories/csv-import.stories";
 
 describe("<CsvImport />", () => {
   it("renders an Import button", async () => {
     const screen = render(<Basic />);
     await expect.element(screen.getByRole("button", { name: /import/i })).toBeInTheDocument();
+  });
+
+  it("auto-matches CSV headers to schema fields", async () => {
+    const screen = render(<MapStep />);
+    await screen.getByRole("button", { name: /import/i }).click();
+    // Advance from upload step to map step (Next button)
+    await screen.getByRole("button", { name: /next/i }).click();
+    // The "reference" field's select should have "Reference" auto-selected
+    const referenceSelect = document.querySelector(
+      '[data-csv-field="reference"]',
+    ) as HTMLSelectElement | null;
+    expect(referenceSelect?.value).toBe("Reference");
+    // "price" also auto-matches (exact case-insensitive)
+    const priceSelect = document.querySelector(
+      '[data-csv-field="price"]',
+    ) as HTMLSelectElement | null;
+    expect(priceSelect?.value).toBe("price");
   });
 
   it("parses an uploaded CSV file and shows row count", async () => {

@@ -67,6 +67,18 @@ export const useCsvImport = () => {
   return ctx;
 };
 
+const normalize = (s: string) => s.toLowerCase().replace(/[\s_-]+/g, "");
+
+const fuzzyMatch = (field: string, headers: string[]) => {
+  const target = normalize(field);
+  return (
+    headers.find((h) => normalize(h) === target) ??
+    headers.find((h) => normalize(h).includes(target)) ??
+    headers.find((h) => target.includes(normalize(h))) ??
+    null
+  );
+};
+
 const CsvImportUploadStep = () => {
   const { parsedRows, setParsedRows, setHeaders } = useCsvImport();
   const translate = useTranslate();
@@ -143,6 +155,85 @@ const CsvImportUploadStep = () => {
   );
 };
 
+const CsvImportMapStep = () => {
+  const { schema, headers, mapping, setMapping } = useCsvImport();
+  const translate = useTranslate();
+
+  const fields = useMemo(
+    () => (schema ? Object.keys(schema.shape) : []),
+    [schema],
+  );
+  const requiredFields = useMemo(
+    () =>
+      schema
+        ? Object.entries(schema.shape)
+            .filter(([, def]) => !(def as z.ZodTypeAny).isOptional())
+            .map(([k]) => k)
+        : [],
+    [schema],
+  );
+
+  // Auto-match on first render when mapping is empty
+  const headersKey = headers.join("|");
+  useEffect(() => {
+    if (Object.keys(mapping).length > 0 || fields.length === 0) return;
+    const next: Record<string, string> = {};
+    for (const field of fields) {
+      const match = fuzzyMatch(field, headers);
+      if (match) next[field] = match;
+    }
+    if (Object.keys(next).length > 0) setMapping(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [headersKey, fields.length]);
+
+  const hasUnmappedRequired = requiredFields.some((f) => !mapping[f]);
+
+  return (
+    <div className="flex flex-col gap-2">
+      {fields.map((field) => (
+        <div key={field} className="grid grid-cols-2 items-center gap-2">
+          <label
+            htmlFor={`csv-field-${field}`}
+            className={`text-sm ${
+              requiredFields.includes(field)
+                ? "font-medium"
+                : "text-muted-foreground"
+            }`}
+          >
+            {field}
+            {requiredFields.includes(field) ? (
+              <span className="text-destructive"> *</span>
+            ) : null}
+          </label>
+          <select
+            id={`csv-field-${field}`}
+            data-csv-field={field}
+            className="rounded-md border bg-background p-2 text-sm"
+            value={mapping[field] ?? ""}
+            onChange={(e) =>
+              setMapping({ ...mapping, [field]: e.target.value })
+            }
+          >
+            <option value="">—</option>
+            {headers.map((h) => (
+              <option key={h} value={h}>
+                {h}
+              </option>
+            ))}
+          </select>
+        </div>
+      ))}
+      {hasUnmappedRequired ? (
+        <div className="text-sm text-destructive">
+          {translate("ra.csv_import.required_unmapped", {
+            _: "Required fields are not mapped",
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
 export const CsvImport = ({
   schema,
   mapping: initialMapping = {},
@@ -211,6 +302,9 @@ export const CsvImport = ({
         >
           <WizardForm.Step label={translate("ra.csv_import.step.upload", { _: "Upload" })}>
             <CsvImportUploadStep />
+          </WizardForm.Step>
+          <WizardForm.Step label={translate("ra.csv_import.step.map", { _: "Map columns" })}>
+            <CsvImportMapStep />
           </WizardForm.Step>
         </WizardForm>
       ) : null}
