@@ -130,7 +130,7 @@ export const NullableBooleanInput = (props: NullableBooleanInputProps) => {
         <SelectTrigger className="w-full transition-all hover:bg-accent">
           <SelectValue />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent position="popper">
           <SelectItem value={NULL_OPTION}>
             {nullLabel
               ? translate(nullLabel, { _: nullLabel })
