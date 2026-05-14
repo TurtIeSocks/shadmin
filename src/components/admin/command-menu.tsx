@@ -25,6 +25,7 @@ import {
 } from "ra-core";
 import { useTheme } from "@/components/admin/use-theme";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -32,6 +33,13 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
 export interface CommandAction {
@@ -435,6 +443,37 @@ const CommandMenuActions = ({
   );
 };
 
+const Shell = ({
+  isMobile,
+  isOpen,
+  onOpenChange,
+  children,
+}: {
+  isMobile: boolean;
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  children: ReactNode;
+}) => {
+  if (isMobile) {
+    return (
+      <Sheet open={isOpen} onOpenChange={onOpenChange}>
+        <SheetContent side="bottom" className="h-[90vh] p-0">
+          <SheetTitle className="sr-only">Command menu</SheetTitle>
+          <SheetDescription className="sr-only">
+            Search or run a command
+          </SheetDescription>
+          <Command>{children}</Command>
+        </SheetContent>
+      </Sheet>
+    );
+  }
+  return (
+    <CommandDialog open={isOpen} onOpenChange={onOpenChange} title="Command menu">
+      {children}
+    </CommandDialog>
+  );
+};
+
 const CommandMenuFooter = () => {
   const translate = useTranslate();
   return (
@@ -467,6 +506,7 @@ export const CommandMenu = ({
   children,
 }: CommandMenuProps) => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const { recents, remember } = useRecents(recentsLimit);
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -481,6 +521,11 @@ export const CommandMenu = ({
     setQuery("");
   }, []);
   const toggle = useCallback(() => setIsOpen((v) => !v), []);
+
+  const handleOpenChange = useCallback((next: boolean) => {
+    setIsOpen(next);
+    if (!next) setQuery("");
+  }, []);
 
   const registerCommand = useCallback((action: CommandAction) => {
     setRegisteredCommands((prev) => [
@@ -526,14 +571,7 @@ export const CommandMenu = ({
 
   return (
     <CommandMenuContext.Provider value={value}>
-      <CommandDialog
-        open={isOpen}
-        onOpenChange={(next) => {
-          setIsOpen(next);
-          if (!next) setQuery("");
-        }}
-        title="Command menu"
-      >
+      <Shell isMobile={isMobile} isOpen={isOpen} onOpenChange={handleOpenChange}>
         <CommandInput
           value={query}
           onValueChange={setQuery}
@@ -570,7 +608,7 @@ export const CommandMenu = ({
           />
         </CommandList>
         <CommandMenuFooter />
-      </CommandDialog>
+      </Shell>
       {children}
     </CommandMenuContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
 import {
@@ -120,5 +120,17 @@ describe("<CommandMenu />", () => {
     await expect
       .element(screen.getByText(/select/i, { exact: false }))
       .toBeInTheDocument();
+  });
+
+  it("renders inside a sheet on mobile", async () => {
+    // Simulate small viewport before mount; useIsMobile reads window.innerWidth
+    vi.stubGlobal("innerWidth", 500);
+    window.dispatchEvent(new Event("resize"));
+    render(<Basic />);
+    // Sheet adds data-slot="sheet-content" — wait for it to mount
+    await expect
+      .poll(() => document.querySelector('[data-slot="sheet-content"]'))
+      .toBeTruthy();
+    vi.unstubAllGlobals();
   });
 });
