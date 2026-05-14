@@ -65,6 +65,33 @@ const SeedParsed = ({
   return null;
 };
 
+export const PreviewStep = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="products"
+        list={() => (
+          <div>
+            <CsvImport schema={ProductSchema}>
+              <SeedParsed
+                rows={[
+                  { Reference: "NB-001", "Product Name": "Notebook", price: "9.99" },
+                  { Reference: "", "Product Name": "Broken", price: "not-a-number" },
+                ]}
+                headers={["Reference", "Product Name", "price"]}
+              />
+            </CsvImport>
+          </div>
+        )}
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const MapStep = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
     <Admin

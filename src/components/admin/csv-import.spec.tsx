@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, MapStep, UploadStep } from "@/stories/csv-import.stories";
+import { Basic, MapStep, PreviewStep, UploadStep } from "@/stories/csv-import.stories";
 
 describe("<CsvImport />", () => {
   it("renders an Import button", async () => {
@@ -23,6 +23,21 @@ describe("<CsvImport />", () => {
       '[data-csv-field="price"]',
     ) as HTMLSelectElement | null;
     expect(priceSelect?.value).toBe("price");
+  });
+
+  it("validates rows against schema and shows valid/error counters", async () => {
+    const screen = render(<PreviewStep />);
+    await screen.getByRole("button", { name: /import/i }).click();
+    // Advance: upload → map
+    await screen.getByRole("button", { name: /next/i }).click();
+    // Advance: map → preview
+    await screen.getByRole("button", { name: /next/i }).click();
+    await expect
+      .element(screen.getByText(/1 valid/i))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/1 errors/i))
+      .toBeInTheDocument();
   });
 
   it("parses an uploaded CSV file and shows row count", async () => {

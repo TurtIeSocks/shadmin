@@ -79,6 +79,41 @@ const fuzzyMatch = (field: string, headers: string[]) => {
   );
 };
 
+type RowValidation =
+  | { ok: true; row: Record<string, unknown> }
+  | { ok: false; row: Record<string, unknown>; issues: string[] };
+
+const applyMapping = (
+  row: Record<string, unknown>,
+  mapping: Record<string, string>,
+) => {
+  const next: Record<string, unknown> = {};
+  for (const [field, header] of Object.entries(mapping)) {
+    if (header) next[field] = row[header];
+  }
+  return next;
+};
+
+const validateRows = (
+  rows: Array<Record<string, unknown>>,
+  mapping: Record<string, string>,
+  schema: z.ZodObject<z.ZodRawShape> | undefined,
+  transform: CsvImportProps["transform"],
+): RowValidation[] => {
+  return rows.map((row, idx) => {
+    let mapped = applyMapping(row, mapping);
+    if (transform) mapped = transform(mapped, idx);
+    if (!schema) return { ok: true, row: mapped };
+    const result = schema.safeParse(mapped);
+    if (result.success) return { ok: true, row: result.data };
+    return {
+      ok: false,
+      row: mapped,
+      issues: result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`),
+    };
+  });
+};
+
 const CsvImportUploadStep = () => {
   const { parsedRows, setParsedRows, setHeaders } = useCsvImport();
   const translate = useTranslate();
@@ -234,6 +269,59 @@ const CsvImportMapStep = () => {
   );
 };
 
+const CsvImportPreviewStep = () => {
+  const { parsedRows, mapping, schema, transform } = useCsvImport();
+  const translate = useTranslate();
+  const validations = useMemo(
+    () => validateRows(parsedRows, mapping, schema, transform),
+    [parsedRows, mapping, schema, transform],
+  );
+  const valid = validations.filter((v) => v.ok).length;
+  const errorCount = validations.length - valid;
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="text-sm text-muted-foreground">
+        {translate("ra.csv_import.counters", {
+          _: `${valid} valid · ${errorCount} errors · ${validations.length} total`,
+          valid,
+          errors: errorCount,
+          total: validations.length,
+        })}
+      </div>
+      <div className="max-h-96 overflow-auto rounded-md border">
+        <table className="w-full text-sm">
+          <thead className="bg-muted/40">
+            <tr>
+              <th className="p-2 text-left">#</th>
+              {Object.keys(mapping).map((f) => (
+                <th key={f} className="p-2 text-left">
+                  {f}
+                </th>
+              ))}
+              <th className="p-2 text-left">Errors</th>
+            </tr>
+          </thead>
+          <tbody>
+            {validations.slice(0, 50).map((v, idx) => (
+              <tr key={idx} className={v.ok ? "" : "bg-destructive/10"}>
+                <td className="p-2">{idx + 1}</td>
+                {Object.keys(mapping).map((f) => (
+                  <td key={f} className="p-2">
+                    {String(v.row[f] ?? "")}
+                  </td>
+                ))}
+                <td className="p-2 text-destructive">
+                  {v.ok ? "" : (v as Extract<RowValidation, { ok: false }>).issues.join("; ")}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
 export const CsvImport = ({
   schema,
   mapping: initialMapping = {},
@@ -305,6 +393,9 @@ export const CsvImport = ({
           </WizardForm.Step>
           <WizardForm.Step label={translate("ra.csv_import.step.map", { _: "Map columns" })}>
             <CsvImportMapStep />
+          </WizardForm.Step>
+          <WizardForm.Step label={translate("ra.csv_import.step.preview", { _: "Preview" })}>
+            <CsvImportPreviewStep />
           </WizardForm.Step>
         </WizardForm>
       ) : null}
