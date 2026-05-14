@@ -22,6 +22,8 @@
     "doc:build": "cd docs && pnpm run build"
   },
   "dependencies": {
+    "@base-ui/react": "^1.4.1",
+    "@hookform/resolvers": "^5.2.2",
     "@mdxeditor/editor": "^3.46.0",
     "@tailwindcss/vite": "^4.3.0",
     "@tanstack/react-query": "^5.83.0",
@@ -43,8 +45,10 @@
     "diacritic": "^0.0.2",
     "dompurify": "^3.4.2",
     "echarts": "^5.6.0",
+    "embla-carousel-react": "^8.6.0",
     "html-react-parser": "^6.1.0",
     "inflection": "^3.0.2",
+    "input-otp": "^1.4.2",
     "lodash": "^4.18.1",
     "lowlight": "^3.3.0",
     "lucide-react": "^0.506.0",
@@ -57,16 +61,20 @@
     "ra-language-french": "^5.14.0",
     "radix-ui": "latest",
     "react": "^19.0.0",
+    "react-day-picker": "^10.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",
     "react-hook-form": "^7.71.1",
     "react-medium-image-zoom": "^5.4.1",
+    "react-resizable-panels": "^4.11.1",
     "react-router": "^7.12.0",
     "react-shiki": "^0.7.4",
+    "recharts": "3.8.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.3.0",
-    "vaul": "^1.1.2"
+    "vaul": "^1.1.2",
+    "zod": "^4.4.3"
   },
   "peerDependencies": {
     "@supabase/supabase-js": "^2.48.1",
