@@ -32,7 +32,9 @@ const i18nProvider = polyglotI18nProvider(
 
 const AutoOpen = () => {
   const { open } = useCommandMenu();
-  useEffect(() => open(), [open]);
+  useEffect(() => {
+    open();
+  }, [open]);
   return null;
 };
 
