@@ -244,7 +244,10 @@ export const CommandMenu = ({
   );
 
   const open = useCallback(() => setIsOpen(true), []);
-  const close = useCallback(() => setIsOpen(false), []);
+  const close = useCallback(() => {
+    setIsOpen(false);
+    setQuery("");
+  }, []);
   const toggle = useCallback(() => setIsOpen((v) => !v), []);
 
   const registerCommand = useCallback((action: CommandAction) => {
@@ -291,7 +294,14 @@ export const CommandMenu = ({
 
   return (
     <CommandMenuContext.Provider value={value}>
-      <CommandDialog open={isOpen} onOpenChange={setIsOpen} title="Command menu">
+      <CommandDialog
+        open={isOpen}
+        onOpenChange={(next) => {
+          setIsOpen(next);
+          if (!next) setQuery("");
+        }}
+        title="Command menu"
+      >
         <CommandInput
           value={query}
           onValueChange={setQuery}

@@ -58,5 +58,8 @@ describe("<CommandMenu />", () => {
     await expect
       .element(screen.getByRole("dialog"))
       .not.toBeInTheDocument();
+    await expect
+      .element(screen.getByTestId("cm-location"))
+      .toHaveTextContent("/products/1/show");
   });
 });

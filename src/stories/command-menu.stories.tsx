@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router";
 import {
   type DataProvider,
   memoryStore,
@@ -91,11 +92,18 @@ const AutoOpenWithQuery = ({ query }: { query: string }) => {
   const { open, setQuery } = useCommandMenu();
   useEffect(() => {
     open();
-    setTimeout(() => {
-      setQuery(query);
-    }, 50);
+    setQuery(query);
   }, [open, setQuery, query]);
   return null;
+};
+
+const LocationProbe = () => {
+  const location = useLocation();
+  return (
+    <span data-testid="cm-location" hidden>
+      {location.pathname}
+    </span>
+  );
 };
 
 export const RecordSearch = () => (
@@ -107,6 +115,7 @@ export const RecordSearch = () => (
       commandMenu={
         <CommandMenu searchDebounceMs={50}>
           <AutoOpenWithQuery query="Notebook" />
+          <LocationProbe />
         </CommandMenu>
       }
     >
