@@ -104,7 +104,6 @@ function WizardProgress({
         "flex w-full items-center gap-2 text-sm text-muted-foreground",
         mode === "dots" && "justify-center",
       )}
-      role="list"
     >
       {labels.map((label, index) => {
         const active = index === currentStep;
@@ -122,13 +121,16 @@ function WizardProgress({
             )}
           >
             {mode === "dots" ? (
-              <span
-                className={cn(
-                  "size-2 rounded-full",
-                  active ? "bg-primary" : "bg-muted-foreground/40",
-                )}
-                aria-hidden="true"
-              />
+              <>
+                <span
+                  className={cn(
+                    "size-2 rounded-full",
+                    active ? "bg-primary" : "bg-muted-foreground/40",
+                  )}
+                  aria-hidden="true"
+                />
+                <span className="sr-only">{text}</span>
+              </>
             ) : (
               <>
                 <span

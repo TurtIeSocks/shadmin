@@ -220,12 +220,8 @@ describe("<WizardForm />", () => {
     expect(dialog).toBeTruthy();
     const listItems = dialog!.querySelectorAll("ol li");
     expect(listItems.length).toBe(2);
-    // In dots mode, the visible content is just an aria-hidden span (the dot);
-    // there is no numbered badge or label text.
-    const labelText = Array.from(listItems).some((li) =>
-      li.textContent?.includes("Identity"),
-    );
-    expect(labelText).toBe(false);
+    // In dots mode, no numbered badge (size-6) appears.
+    expect(dialog!.querySelector(".size-6")).toBeNull();
   });
 
   it("should not render a progress indicator when progress='none'", async () => {
