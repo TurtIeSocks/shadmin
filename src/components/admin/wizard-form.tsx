@@ -1,17 +1,30 @@
 "use client";
 
-import { Children, cloneElement, isValidElement, useMemo, useState } from "react";
+import {
+  Children,
+  cloneElement,
+  createContext,
+  isValidElement,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import type { ReactElement, ReactNode } from "react";
-import { Form, FormGroupContextProvider } from "ra-core";
+import { Form, FormGroupContextProvider, useTranslate } from "ra-core";
 import type { FormProps } from "ra-core";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { CancelButton } from "@/components/admin/cancel-button";
+import { SaveButton } from "@/components/admin/save-button";
 import { cn } from "@/lib/utils";
 
 export type WizardProgressMode = "steps" | "dots" | "none";
@@ -41,6 +54,24 @@ export interface WizardStepProps {
   __hidden?: boolean;
 }
 
+interface WizardContextValue {
+  currentStep: number;
+  totalSteps: number;
+  isFirst: boolean;
+  isLast: boolean;
+  goNext: () => void;
+  goBack: () => void;
+  goTo: (index: number) => void;
+}
+
+const WizardContext = createContext<WizardContextValue | null>(null);
+
+function useWizard() {
+  const ctx = useContext(WizardContext);
+  if (!ctx) throw new Error("useWizard must be used inside <WizardForm>");
+  return ctx;
+}
+
 /**
  * Modal multi-step form. Compose with `<WizardForm.Step>` children.
  *
@@ -59,8 +90,8 @@ export function WizardForm(props: WizardFormProps) {
     description,
     className,
     children,
+    toolbar,
     progress: _progress,
-    toolbar: _toolbar,
     ...formProps
   } = props;
 
@@ -72,7 +103,21 @@ export function WizardForm(props: WizardFormProps) {
     [children],
   );
 
-  const [currentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const totalSteps = steps.length;
+  const isFirst = currentStep === 0;
+  const isLast = currentStep === totalSteps - 1;
+
+  const ctx: WizardContextValue = {
+    currentStep,
+    totalSteps,
+    isFirst,
+    isLast,
+    goNext: () => setCurrentStep((i) => Math.min(i + 1, totalSteps - 1)),
+    goBack: () => setCurrentStep((i) => Math.max(i - 1, 0)),
+    goTo: (index) =>
+      setCurrentStep(Math.max(0, Math.min(index, totalSteps - 1))),
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -84,17 +129,20 @@ export function WizardForm(props: WizardFormProps) {
           ) : null}
         </DialogHeader>
         <Form {...formProps}>
-          <div className="flex flex-col gap-4">
-            {steps.map((step, index) => {
-              const stepKey = `wizard-step-${index}`;
-              return cloneElement(step, {
-                key: stepKey,
-                __stepIndex: index,
-                __stepKey: stepKey,
-                __hidden: index !== currentStep,
-              });
-            })}
-          </div>
+          <WizardContext.Provider value={ctx}>
+            <div className="flex flex-col gap-4">
+              {steps.map((step, index) => {
+                const stepKey = `wizard-step-${index}`;
+                return cloneElement(step, {
+                  key: stepKey,
+                  __stepIndex: index,
+                  __stepKey: stepKey,
+                  __hidden: index !== currentStep,
+                });
+              })}
+            </div>
+            {toolbar === false ? null : toolbar ?? <WizardToolbar />}
+          </WizardContext.Provider>
         </Form>
       </DialogContent>
     </Dialog>
@@ -126,3 +174,31 @@ export function WizardFormStep(props: WizardStepProps) {
 WizardFormStep.displayName = "WizardForm.Step";
 
 WizardForm.Step = WizardFormStep;
+
+/**
+ * Default toolbar for <WizardForm>.
+ * Renders Cancel / Back / Next / Save based on wizard position.
+ */
+export function WizardToolbar() {
+  const translate = useTranslate();
+  const { isFirst, isLast, goNext, goBack } = useWizard();
+  return (
+    <DialogFooter className="gap-2 sm:gap-2">
+      <CancelButton />
+      {!isFirst ? (
+        <Button type="button" variant="outline" onClick={goBack}>
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          {translate("ra.action.back", { _: "Back" })}
+        </Button>
+      ) : null}
+      {!isLast ? (
+        <Button type="button" onClick={goNext}>
+          {translate("ra.action.next", { _: "Next" })}
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
+      ) : (
+        <SaveButton />
+      )}
+    </DialogFooter>
+  );
+}

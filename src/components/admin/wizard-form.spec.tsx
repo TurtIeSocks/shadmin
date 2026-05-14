@@ -51,4 +51,54 @@ describe("<WizardForm />", () => {
     // 3 source inputs: name, price, notes
     expect(inputs.length).toBeGreaterThanOrEqual(3);
   });
+
+  it("should show only a Next button on the first step (no Back)", async () => {
+    const screen = render(<MultipleSteps theme="system" />);
+    await expect
+      .element(screen.getByRole("button", { name: /next/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("button", { name: /back/i }))
+      .not.toBeInTheDocument();
+  });
+
+  it("should advance to step 2 when Next is clicked", async () => {
+    const screen = render(<MultipleSteps theme="system" />);
+    await screen.getByRole("button", { name: /next/i }).click();
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    expect((panels[0] as HTMLElement).style.display).toBe("none");
+    expect((panels[1] as HTMLElement).style.display).not.toBe("none");
+  });
+
+  it("should show a Back button after advancing past the first step", async () => {
+    const screen = render(<MultipleSteps theme="system" />);
+    await screen.getByRole("button", { name: /next/i }).click();
+    await expect
+      .element(screen.getByRole("button", { name: /back/i }))
+      .toBeInTheDocument();
+  });
+
+  it("should retreat to step 1 when Back is clicked", async () => {
+    const screen = render(<MultipleSteps theme="system" />);
+    await screen.getByRole("button", { name: /next/i }).click();
+    await screen.getByRole("button", { name: /back/i }).click();
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    expect((panels[0] as HTMLElement).style.display).not.toBe("none");
+  });
+
+  it("should swap Next for Save on the last step", async () => {
+    const screen = render(<MultipleSteps theme="system" />);
+    await screen.getByRole("button", { name: /next/i }).click();
+    await screen.getByRole("button", { name: /next/i }).click();
+    await expect
+      .element(screen.getByRole("button", { name: /save/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("button", { name: /next/i }))
+      .not.toBeInTheDocument();
+  });
 });
