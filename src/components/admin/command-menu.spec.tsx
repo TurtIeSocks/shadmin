@@ -70,7 +70,16 @@ describe("<CommandMenu />", () => {
       .element(screen.getByRole("option", { name: /refresh data/i }))
       .toBeInTheDocument();
     await expect
+      .element(screen.getByRole("option", { name: /switch to light theme/i }))
+      .toBeInTheDocument();
+    await expect
       .element(screen.getByRole("option", { name: /switch to dark theme/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("option", { name: /use system theme/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("option", { name: /logout/i }))
       .toBeInTheDocument();
   });
 });

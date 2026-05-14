@@ -268,7 +268,7 @@ const useBuiltinActions = (): CommandAction[] => {
         onSelect: () => setTheme("system"),
       },
       {
-        id: "ra.auth.logout",
+        id: "ra.command.action.logout",
         label: translate("ra.auth.logout", { _: "Log out" }),
         group: "actions",
         onSelect: () => logout(),
@@ -289,8 +289,12 @@ const CommandMenuActions = ({
 }) => {
   const translate = useTranslate();
   const builtins = useBuiltinActions();
-  const visible = [...builtins, ...(extra ?? []), ...registered].filter(
-    (a) => !a.when || a.when(),
+  const visible = useMemo(
+    () =>
+      [...builtins, ...(extra ?? []), ...registered].filter(
+        (a) => !a.when || a.when(),
+      ),
+    [builtins, extra, registered],
   );
   if (visible.length === 0) return null;
   return (
@@ -303,8 +307,11 @@ const CommandMenuActions = ({
           value={`action:${action.id}`}
           keywords={action.keywords}
           onSelect={async () => {
-            await action.onSelect();
-            onSelect();
+            try {
+              await action.onSelect();
+            } finally {
+              onSelect();
+            }
           }}
         >
           {action.icon ? <action.icon className="size-4" /> : null}
