@@ -108,16 +108,19 @@ export function WizardForm(props: WizardFormProps) {
   const isFirst = currentStep === 0;
   const isLast = currentStep === totalSteps - 1;
 
-  const ctx: WizardContextValue = {
-    currentStep,
-    totalSteps,
-    isFirst,
-    isLast,
-    goNext: () => setCurrentStep((i) => Math.min(i + 1, totalSteps - 1)),
-    goBack: () => setCurrentStep((i) => Math.max(i - 1, 0)),
-    goTo: (index) =>
-      setCurrentStep(Math.max(0, Math.min(index, totalSteps - 1))),
-  };
+  const ctx = useMemo<WizardContextValue>(
+    () => ({
+      currentStep,
+      totalSteps,
+      isFirst,
+      isLast,
+      goNext: () => setCurrentStep((i) => Math.min(i + 1, totalSteps - 1)),
+      goBack: () => setCurrentStep((i) => Math.max(i - 1, 0)),
+      goTo: (index) =>
+        setCurrentStep(Math.max(0, Math.min(index, totalSteps - 1))),
+    }),
+    [currentStep, totalSteps, isFirst, isLast],
+  );
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -188,7 +191,7 @@ export function WizardToolbar() {
       {!isFirst ? (
         <Button type="button" variant="outline" onClick={goBack}>
           <ArrowLeft className="mr-2 h-4 w-4" />
-          {translate("ra.action.back", { _: "Back" })}
+          {translate("ra.action.back", { _: "Go Back" })}
         </Button>
       ) : null}
       {!isLast ? (
