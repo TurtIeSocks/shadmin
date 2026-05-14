@@ -208,3 +208,57 @@ export const ServerErrorOnFirstStep = ({
   );
 };
 Object.assign(ServerErrorOnFirstStep, storyArgs);
+
+export const ProgressDots = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <StoryWrapper theme={theme}>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create"
+        progress="dots"
+        onSubmit={() => {}}
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="name" />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <TextInput source="price" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(ProgressDots, storyArgs);
+
+export const ProgressNone = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <StoryWrapper theme={theme}>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create"
+        progress="none"
+        onSubmit={() => {}}
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="name" />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <TextInput source="price" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(ProgressNone, storyArgs);

@@ -83,6 +83,79 @@ function useWizard() {
 const stepKeyFor = (index: number) => `wizard-step-${index}`;
 
 /**
+ * Renders a horizontal list of step labels. Highlights the active step
+ * with aria-current="step". Pass mode="dots" for a compact indicator
+ * or mode="none" to hide entirely.
+ */
+function WizardProgress({
+  labels,
+  mode,
+}: {
+  labels: Array<string | ReactElement>;
+  mode: WizardProgressMode;
+}) {
+  const translate = useTranslate();
+  const { currentStep } = useWizard();
+  if (mode === "none") return null;
+
+  return (
+    <ol
+      className={cn(
+        "flex w-full items-center gap-2 text-sm text-muted-foreground",
+        mode === "dots" && "justify-center",
+      )}
+      role="list"
+    >
+      {labels.map((label, index) => {
+        const active = index === currentStep;
+        const text =
+          typeof label === "string"
+            ? translate(label, { _: label })
+            : label;
+        return (
+          <li
+            key={index}
+            aria-current={active ? "step" : undefined}
+            className={cn(
+              "flex items-center gap-2",
+              active && "text-foreground font-medium",
+            )}
+          >
+            {mode === "dots" ? (
+              <span
+                className={cn(
+                  "size-2 rounded-full",
+                  active ? "bg-primary" : "bg-muted-foreground/40",
+                )}
+                aria-hidden="true"
+              />
+            ) : (
+              <>
+                <span
+                  className={cn(
+                    "flex size-6 items-center justify-center rounded-full text-xs",
+                    active
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground",
+                  )}
+                  aria-hidden="true"
+                >
+                  {index + 1}
+                </span>
+                <span>{text}</span>
+              </>
+            )}
+            {index < labels.length - 1 && mode === "steps" ? (
+              <span className="h-px w-4 bg-border" aria-hidden="true" />
+            ) : null}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+/**
  * Watches react-hook-form errors. When a submission produces errors, finds the
  * lowest-index step whose form group contains an errored field (or one of its
  * children) and navigates there. No-op when no errors are present.
@@ -140,7 +213,7 @@ export function WizardForm(props: WizardFormProps) {
     className,
     children,
     toolbar,
-    progress: _progress,
+    progress = "steps",
     ...formProps
   } = props;
 
@@ -160,6 +233,8 @@ export function WizardForm(props: WizardFormProps) {
       })),
     [steps],
   );
+
+  const labels = useMemo(() => steps.map((s) => s.props.label), [steps]);
 
   const [currentStep, setCurrentStep] = useState(0);
   const totalSteps = steps.length;
@@ -193,6 +268,7 @@ export function WizardForm(props: WizardFormProps) {
         <Form {...formProps}>
           <WizardContext.Provider value={ctx}>
             <WizardErrorJumper />
+            <WizardProgress labels={labels} mode={progress} />
             <div className="flex flex-col gap-4">
               {steps.map((step, index) => {
                 const stepKey = stepKeyFor(index);

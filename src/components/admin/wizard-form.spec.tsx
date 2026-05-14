@@ -5,6 +5,8 @@ import {
   Basic,
   MultipleSteps,
   OptionalStep,
+  ProgressDots,
+  ProgressNone,
   ServerErrorOnFirstStep,
   SubmitClosesDialog,
   WithValidation,
@@ -180,5 +182,56 @@ describe("<WizardForm />", () => {
     // The name input shows the server error
     const invalid = dialog!.querySelector('[aria-invalid="true"]');
     expect(invalid?.getAttribute("name")).toBe("name");
+  });
+
+  it("should render the step labels in the progress indicator by default", async () => {
+    const screen = render(<MultipleSteps theme="system" />);
+    await expect
+      .element(screen.getByText("Identity"))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Pricing"))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Review"))
+      .toBeInTheDocument();
+  });
+
+  it("should mark the active progress step with aria-current", async () => {
+    render(<MultipleSteps theme="system" />);
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const current = dialog!.querySelector('[aria-current="step"]');
+    expect(current?.textContent).toContain("Identity");
+  });
+
+  it("should advance aria-current after Next is clicked", async () => {
+    const { getByRole } = render(<MultipleSteps theme="system" />);
+    await getByRole("button", { name: /next/i }).click();
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const current = dialog!.querySelector('[aria-current="step"]');
+    expect(current?.textContent).toContain("Pricing");
+  });
+
+  it("should render dot indicators when progress='dots'", async () => {
+    render(<ProgressDots theme="system" />);
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const listItems = dialog!.querySelectorAll("ol li");
+    expect(listItems.length).toBe(2);
+    // In dots mode, the visible content is just an aria-hidden span (the dot);
+    // there is no numbered badge or label text.
+    const labelText = Array.from(listItems).some((li) =>
+      li.textContent?.includes("Identity"),
+    );
+    expect(labelText).toBe(false);
+  });
+
+  it("should not render a progress indicator when progress='none'", async () => {
+    render(<ProgressNone theme="system" />);
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    expect(dialog!.querySelector("ol")).toBeNull();
   });
 });
