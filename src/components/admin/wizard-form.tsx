@@ -263,7 +263,9 @@ export function WizardForm(props: WizardFormProps) {
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent
         className={cn("sm:max-w-2xl", className)}
-        aria-describedby={undefined}
+        // Only opt out of radix's describedby auto-wire when no description is
+        // provided; otherwise let radix link DialogDescription via id.
+        {...(description ? {} : { "aria-describedby": undefined })}
       >
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
