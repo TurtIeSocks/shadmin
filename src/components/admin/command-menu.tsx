@@ -15,10 +15,13 @@ import {
   useGetList,
   useGetRecordRepresentation,
   useGetResourceLabel,
+  useLogout,
+  useRefresh,
   useResourceDefinitions,
   useTranslate,
   type RaRecord,
 } from "ra-core";
+import { useTheme } from "@/components/admin/use-theme";
 import {
   CommandDialog,
   CommandEmpty,
@@ -227,6 +230,91 @@ const CommandMenuResources = ({
   );
 };
 
+const useBuiltinActions = (): CommandAction[] => {
+  const logout = useLogout();
+  const refresh = useRefresh();
+  const [, setTheme] = useTheme();
+  const translate = useTranslate();
+  return useMemo(
+    () => [
+      {
+        id: "ra.command.action.refresh",
+        label: translate("ra.command.action.refresh", { _: "Refresh data" }),
+        group: "actions",
+        onSelect: () => refresh(),
+      },
+      {
+        id: "ra.command.action.theme_light",
+        label: translate("ra.command.action.theme_light", {
+          _: "Switch to light theme",
+        }),
+        group: "actions",
+        onSelect: () => setTheme("light"),
+      },
+      {
+        id: "ra.command.action.theme_dark",
+        label: translate("ra.command.action.theme_dark", {
+          _: "Switch to dark theme",
+        }),
+        group: "actions",
+        onSelect: () => setTheme("dark"),
+      },
+      {
+        id: "ra.command.action.theme_system",
+        label: translate("ra.command.action.theme_system", {
+          _: "Use system theme",
+        }),
+        group: "actions",
+        onSelect: () => setTheme("system"),
+      },
+      {
+        id: "ra.auth.logout",
+        label: translate("ra.auth.logout", { _: "Log out" }),
+        group: "actions",
+        onSelect: () => logout(),
+      },
+    ],
+    [logout, refresh, setTheme, translate],
+  );
+};
+
+const CommandMenuActions = ({
+  extra,
+  registered,
+  onSelect,
+}: {
+  extra?: CommandAction[];
+  registered: CommandAction[];
+  onSelect: () => void;
+}) => {
+  const translate = useTranslate();
+  const builtins = useBuiltinActions();
+  const visible = [...builtins, ...(extra ?? []), ...registered].filter(
+    (a) => !a.when || a.when(),
+  );
+  if (visible.length === 0) return null;
+  return (
+    <CommandGroup
+      heading={translate("ra.command.group.actions", { _: "Actions" })}
+    >
+      {visible.map((action) => (
+        <CommandItem
+          key={action.id}
+          value={`action:${action.id}`}
+          keywords={action.keywords}
+          onSelect={async () => {
+            await action.onSelect();
+            onSelect();
+          }}
+        >
+          {action.icon ? <action.icon className="size-4" /> : null}
+          {action.label}
+        </CommandItem>
+      ))}
+    </CommandGroup>
+  );
+};
+
 export const CommandMenu = ({
   hotkey = DEFAULT_HOTKEYS,
   searchDebounceMs = 200,
@@ -234,6 +322,7 @@ export const CommandMenu = ({
   placeholder,
   resources,
   searchFields,
+  actions,
   children,
 }: CommandMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -317,6 +406,11 @@ export const CommandMenu = ({
             onSelect={close}
           />
           <CommandMenuResources resources={resources} onSelect={close} />
+          <CommandMenuActions
+            extra={actions}
+            registered={registeredCommands}
+            onSelect={close}
+          />
         </CommandList>
       </CommandDialog>
       {children}

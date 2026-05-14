@@ -6,6 +6,7 @@ import {
   Hotkey,
   AdminShorthand,
   RecordSearch,
+  BuiltinActions,
 } from "@/stories/command-menu.stories";
 
 describe("<CommandMenu />", () => {
@@ -61,5 +62,15 @@ describe("<CommandMenu />", () => {
     await expect
       .element(screen.getByTestId("cm-location"))
       .toHaveTextContent("/products/1/show");
+  });
+
+  it("renders built-in actions: refresh, theme, logout", async () => {
+    const screen = render(<BuiltinActions />);
+    await expect
+      .element(screen.getByRole("option", { name: /refresh data/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("option", { name: /switch to dark theme/i }))
+      .toBeInTheDocument();
   });
 });

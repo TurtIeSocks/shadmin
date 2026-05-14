@@ -134,3 +134,20 @@ export const RecordSearch = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+export const BuiltinActions = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      commandMenu={
+        <CommandMenu>
+          <AutoOpen />
+        </CommandMenu>
+      }
+    >
+      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
