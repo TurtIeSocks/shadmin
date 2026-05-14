@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, MultipleSteps } from "@/stories/wizard-form.stories";
+import { Basic, MultipleSteps, WithValidation } from "@/stories/wizard-form.stories";
 
 describe("<WizardForm />", () => {
   it("should render the dialog when isOpen is true", async () => {
@@ -100,5 +100,34 @@ describe("<WizardForm />", () => {
     await expect
       .element(screen.getByRole("button", { name: /next/i }))
       .not.toBeInTheDocument();
+  });
+
+  it("should not advance to next step when current step has invalid required field", async () => {
+    const { getByRole } = render(<WithValidation theme="system" />);
+    await getByRole("button", { name: /next/i }).click();
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    expect((panels[0] as HTMLElement).style.display).not.toBe("none");
+  });
+
+  it("should mark required input as aria-invalid after a blocked Next", async () => {
+    const { getByRole } = render(<WithValidation theme="system" />);
+    await getByRole("button", { name: /next/i }).click();
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const invalid = dialog!.querySelector('[aria-invalid="true"]');
+    expect(invalid).toBeTruthy();
+  });
+
+  it("should advance when required field is filled", async () => {
+    const screen = render(<WithValidation theme="system" />);
+    const nameInput = screen.getByRole("textbox", { name: /name/i });
+    await nameInput.fill("Widget");
+    await screen.getByRole("button", { name: /next/i }).click();
+    const dialog = document.body.querySelector('[role="dialog"]');
+    expect(dialog).toBeTruthy();
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    expect((panels[1] as HTMLElement).style.display).not.toBe("none");
   });
 });

@@ -12,6 +12,7 @@ import {
 import type { ReactElement, ReactNode } from "react";
 import { Form, FormGroupContextProvider, useTranslate } from "ra-core";
 import type { FormProps } from "ra-core";
+import { useFormContext } from "react-hook-form";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import {
@@ -184,7 +185,21 @@ WizardForm.Step = WizardFormStep;
  */
 export function WizardToolbar() {
   const translate = useTranslate();
-  const { isFirst, isLast, goNext, goBack } = useWizard();
+  const { isFirst, isLast, goNext, goBack, currentStep } = useWizard();
+  const form = useFormContext();
+  const stepKey = `wizard-step-${currentStep}`;
+
+  const handleNext = async () => {
+    // Validate just the fields registered in this step's panel.
+    // Falls back to validate-all when no fields are discoverable.
+    const fieldNames = getFieldNamesForStep(form, stepKey);
+    const isValid =
+      fieldNames.length > 0
+        ? await form.trigger(fieldNames)
+        : await form.trigger();
+    if (isValid) goNext();
+  };
+
   return (
     <DialogFooter className="gap-2 sm:gap-2">
       <CancelButton />
@@ -195,7 +210,7 @@ export function WizardToolbar() {
         </Button>
       ) : null}
       {!isLast ? (
-        <Button type="button" onClick={goNext}>
+        <Button type="button" onClick={handleNext}>
           {translate("ra.action.next", { _: "Next" })}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
@@ -204,4 +219,30 @@ export function WizardToolbar() {
       )}
     </DialogFooter>
   );
+}
+
+/**
+ * Returns the list of field names registered under the DOM element with
+ * data-wizard-step={stepKey}. Used to scope react-hook-form's trigger() to
+ * the current step only. Falls back to an empty array when nothing is
+ * discoverable, in which case the caller validates all fields.
+ */
+function getFieldNamesForStep(
+  form: ReturnType<typeof useFormContext>,
+  stepKey: string,
+): string[] {
+  if (typeof document === "undefined") return [];
+  const panel = document.querySelector(`[data-wizard-step="${stepKey}"]`);
+  if (!panel) return [];
+  const inputs = panel.querySelectorAll<HTMLElement>("[name]");
+  const names = new Set<string>();
+  inputs.forEach((el) => {
+    const name = el.getAttribute("name");
+    if (name) names.add(name);
+  });
+  // Intersect with react-hook-form's registered fields to avoid stray DOM nodes.
+  // form._fields is the internal field registry; cast through unknown since it's not in public types.
+  const registered =
+    (form as unknown as { _fields?: Record<string, unknown> })._fields ?? {};
+  return Array.from(names).filter((n) => n in registered);
 }

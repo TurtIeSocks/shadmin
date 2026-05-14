@@ -2,6 +2,7 @@ import { type ReactNode, useState } from "react";
 import {
   CoreAdminContext,
   RecordContextProvider,
+  required,
   ResourceContextProvider,
 } from "ra-core";
 import { ThemeProvider } from "@/components/admin/theme-provider";
@@ -93,3 +94,29 @@ export const MultipleSteps = ({
   );
 };
 Object.assign(MultipleSteps, storyArgs);
+
+export const WithValidation = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <StoryWrapper theme={theme} record={{ id: 1 }}>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create a product"
+        onSubmit={() => {}}
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="name" validate={required()} />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <TextInput source="price" />
+        </WizardForm.Step>
+      </WizardForm>
+    </StoryWrapper>
+  );
+};
+Object.assign(WithValidation, storyArgs);
