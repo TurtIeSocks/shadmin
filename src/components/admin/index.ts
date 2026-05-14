@@ -1,4 +1,5 @@
 export * from "./access-denied";
+export * from "./assistant";
 export * from "./admin";
 export * from "./app-bar";
 export * from "./app-sidebar";
