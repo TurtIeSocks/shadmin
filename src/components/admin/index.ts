@@ -32,6 +32,7 @@ export * from "./configurable";
 export * from "./count";
 export * from "./create";
 export * from "./create-button";
+export * from "./dashboard-charts";
 export * from "./dashboard-menu-item";
 export * from "./data-table";
 export * from "./datagrid-input";
