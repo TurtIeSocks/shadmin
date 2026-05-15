@@ -3,7 +3,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
 
-import { LatLngField, LatLngInput } from "@/components/lat-lng-field";
+import { LatLngField, LatLngInput } from "@/components/leaflet";
 import { ThemeProvider, SimpleForm, Create } from "@/components/admin";
 
 export default { title: "Fields/LatLngField" };

@@ -1175,28 +1175,28 @@
       "dependencies": ["@mdxeditor/editor"]
     },
     {
-      "name": "admin-mapping",
+      "name": "leaflet-admin",
       "type": "registry:block",
-      "title": "AdminMapping",
+      "title": "LeafletAdmin",
       "description": "Optional Leaflet-based map fields and form inputs for Shadcn Admin Kit.",
       "registryDependencies": ["@shadcn-admin-kit/admin"],
       "dependencies": ["leaflet", "react-leaflet"],
       "devDependencies": ["@types/leaflet"],
       "files": [
         {
-          "path": "src/components/lat-lng-field/index.ts",
+          "path": "src/components/leaflet/index.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/components/lat-lng-field/lat-lng-field.tsx",
+          "path": "src/components/leaflet/lat-lng-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/lat-lng-field/lat-lng-input.tsx",
+          "path": "src/components/leaflet/lat-lng-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/lat-lng-field/shared.ts",
+          "path": "src/components/leaflet/shared.ts",
           "type": "registry:component"
         }
       ]

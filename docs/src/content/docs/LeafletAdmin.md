@@ -1,19 +1,19 @@
 ---
-title: "LatLngField"
+title: "LeafletAdmin"
 ---
 
 `<LatLngField>` and `<LatLngInput>` add Leaflet-based interactive maps to Show and Create/Edit views. `<LatLngField>` renders a read-only map at a fixed coordinate. `<LatLngInput>` renders a draggable marker that writes back to two React Hook Form fields.
 
-These components live in a separate registry block (`lat-lng-field`) to keep the optional Leaflet dependency out of the core admin install. Add the block with:
+These components live in a separate registry block (`leaflet`) to keep the optional Leaflet dependency out of the core admin install. Add the block with:
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/lat-lng-field.json
+npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/leaflet.json
 ```
 
 ## `<LatLngField>` Usage
 
 ```tsx
-import { LatLngField } from "@/components/lat-lng-field";
+import { LatLngField } from "@/components/leaflet";
 
 <Show>
   <SimpleShowLayout>
@@ -39,7 +39,7 @@ Reads `latSource` and `lngSource` from the current record context. Renders an em
 ## `<LatLngInput>` Usage
 
 ```tsx
-import { LatLngInput } from "@/components/lat-lng-field";
+import { LatLngInput } from "@/components/leaflet";
 
 <Create>
   <SimpleForm>

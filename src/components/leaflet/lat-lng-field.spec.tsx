@@ -5,7 +5,7 @@ import {
   Basic as LatLngFieldBasic,
   MissingCoordinates,
   BasicInput,
-} from "@/stories/lat-lng-field.stories";
+} from "@/stories/leaflet.stories";
 
 describe("<LatLngField />", () => {
   it("renders the map container with data-slot when coordinates exist", async () => {
