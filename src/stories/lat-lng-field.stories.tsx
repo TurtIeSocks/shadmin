@@ -3,15 +3,10 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
 
-import {
-  MapField,
-  MapInput,
-  ThemeProvider,
-  SimpleForm,
-  Create,
-} from "@/components/admin";
+import { LatLngField, LatLngInput } from "@/components/lat-lng-field";
+import { ThemeProvider, SimpleForm, Create } from "@/components/admin";
 
-export default { title: "Fields/MapField" };
+export default { title: "Fields/LatLngField" };
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 
@@ -60,21 +55,21 @@ const InputWrapper = ({ children }: React.PropsWithChildren) => (
 /** Shows a static Leaflet marker over Paris using coordinates from the record. */
 export const Basic = () => (
   <FieldWrapper>
-    <MapField latSource="lat" lngSource="lng" zoom={13} height={300} />
+    <LatLngField latSource="lat" lngSource="lng" zoom={13} height={300} />
   </FieldWrapper>
 );
 
 /** Returns null — both coordinate fields are missing from the record. */
 export const MissingCoordinates = () => (
   <MissingWrapper>
-    <MapField latSource="lat" lngSource="lng" />
+    <LatLngField latSource="lat" lngSource="lng" />
   </MissingWrapper>
 );
 
 /** Draggable marker input centred on Paris. Click or drag to update the form values. */
 export const BasicInput = () => (
   <InputWrapper>
-    <MapInput
+    <LatLngInput
       latSource="lat"
       lngSource="lng"
       defaultPosition={[48.85, 2.35]}

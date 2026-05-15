@@ -1,25 +1,31 @@
 ---
-title: "MapField"
+title: "LatLngField"
 ---
 
-`<MapField>` and `<MapInput>` add Leaflet-based interactive maps to Show and Create/Edit views. `<MapField>` renders a read-only map at a fixed coordinate. `<MapInput>` renders a draggable marker that writes back to two React Hook Form fields.
+`<LatLngField>` and `<LatLngInput>` add Leaflet-based interactive maps to Show and Create/Edit views. `<LatLngField>` renders a read-only map at a fixed coordinate. `<LatLngInput>` renders a draggable marker that writes back to two React Hook Form fields.
 
-## `<MapField>` Usage
+These components live in a separate registry block (`lat-lng-field`) to keep the optional Leaflet dependency out of the core admin install. Add the block with:
+
+```bash
+npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/lat-lng-field.json
+```
+
+## `<LatLngField>` Usage
 
 ```tsx
-import { MapField } from "@/components/admin";
+import { LatLngField } from "@/components/lat-lng-field";
 
 <Show>
   <SimpleShowLayout>
     <TextField source="name" />
-    <MapField latSource="lat" lngSource="lng" zoom={13} height={300} />
+    <LatLngField latSource="lat" lngSource="lng" zoom={13} height={300} />
   </SimpleShowLayout>
 </Show>
 ```
 
-Reads `latSource` and `lngSource` from the current record context. Returns `null` when either coordinate is missing.
+Reads `latSource` and `lngSource` from the current record context. Renders an empty-state panel when either coordinate is missing.
 
-## `<MapField>` Props
+## `<LatLngField>` Props
 
 | Prop          | Required | Type               | Default                       | Description                                   |
 | ------------- | -------- | ------------------ | ----------------------------- | --------------------------------------------- |
@@ -30,14 +36,14 @@ Reads `latSource` and `lngSource` from the current record context. Returns `null
 | `tileUrl`     | Optional | `string`           | OpenStreetMap tile URL        | Tile layer URL template.                      |
 | `attribution` | Optional | `string`           | OpenStreetMap attribution     | HTML attribution string shown on the map.     |
 
-## `<MapInput>` Usage
+## `<LatLngInput>` Usage
 
 ```tsx
-import { MapInput } from "@/components/admin";
+import { LatLngInput } from "@/components/lat-lng-field";
 
 <Create>
   <SimpleForm>
-    <MapInput
+    <LatLngInput
       latSource="lat"
       lngSource="lng"
       defaultPosition={[48.85, 2.35]}
@@ -51,7 +57,7 @@ import { MapInput } from "@/components/admin";
 
 Clicking anywhere on the map or dragging the marker updates the two RHF fields. Both `latSource` and `lngSource` must exist as fields in your form (add them as hidden inputs or populate them via `defaultValues` if needed).
 
-## `<MapInput>` Props
+## `<LatLngInput>` Props
 
 | Prop              | Required | Type               | Default                   | Description                                                            |
 | ----------------- | -------- | ------------------ | ------------------------- | ---------------------------------------------------------------------- |
@@ -69,6 +75,6 @@ Clicking anywhere on the map or dragging the marker updates the two RHF fields. 
 
 Both components accept a custom `tileUrl` for using a different tile provider (e.g. Mapbox, Stadia, CartoDB). The URL must follow the Leaflet tile template format: `https://{s}.example.com/{z}/{x}/{y}.png`.
 
-## Icon fix
+## Reserved names
 
-Leaflet's default marker icons reference bundled image paths that break in Vite/webpack builds. Both components automatically patch `L.Icon.Default` to use CDN-hosted icons from `unpkg.com/leaflet@1.9.4`.
+`PointField` / `PointInput` are reserved for a future component that operates on a GeoJSON `Point` shape rather than two scalar fields.

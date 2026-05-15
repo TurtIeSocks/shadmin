@@ -17,12 +17,14 @@
         "button",
         "card",
         "checkbox",
+        "collapsible",
         "command",
+        "dialog",
         "drawer",
         "dropdown-menu",
         "input",
+        "kbd",
         "label",
-        "navigation-menu",
         "pagination",
         "popover",
         "radio-group",
@@ -42,6 +44,7 @@
         "@tanstack/react-query",
         "class-variance-authority",
         "clsx",
+        "date-fns",
         "diacritic",
         "dompurify",
         "html-react-parser",
@@ -55,6 +58,7 @@
         "react-dropzone",
         "react-hook-form",
         "react-router",
+        "recharts",
         "tailwind-merge",
         "tw-animate-css"
       ],
@@ -93,7 +97,15 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/assistant.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/auth-callback.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/auth-error-screen.tsx",
           "type": "registry:component"
         },
         {
@@ -106,10 +118,6 @@
         },
         {
           "path": "src/components/admin/authentication-error.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/authentication.tsx",
           "type": "registry:component"
         },
         {
@@ -157,6 +165,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/calendar-list.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/cancel-button.tsx",
           "type": "registry:component"
         },
@@ -185,7 +197,15 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/command-menu.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/configurable.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/confirm.tsx",
           "type": "registry:component"
         },
         {
@@ -198,6 +218,10 @@
         },
         {
           "path": "src/components/admin/create.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/dashboard-charts.tsx",
           "type": "registry:component"
         },
         {
@@ -234,6 +258,10 @@
         },
         {
           "path": "src/components/admin/device-test-wrapper.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/diff-viewer.tsx",
           "type": "registry:component"
         },
         {
@@ -309,11 +337,27 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/form.tsx",
+          "path": "src/components/admin/form/form-item-context.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/use-form-field.ts",
           "type": "registry:component"
         },
         {
           "path": "src/components/admin/function-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/guesser-empty.tsx",
           "type": "registry:component"
         },
         {
@@ -322,6 +366,10 @@
         },
         {
           "path": "src/components/admin/house-theme.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/icon-button-with-tooltip.tsx",
           "type": "registry:component"
         },
         {
@@ -362,6 +410,10 @@
         },
         {
           "path": "src/components/admin/inspector.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/kanban-board.tsx",
           "type": "registry:component"
         },
         {
@@ -421,10 +473,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/loading-page.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/loading.tsx",
           "type": "registry:component"
         },
@@ -442,6 +490,10 @@
         },
         {
           "path": "src/components/admin/login-with-email.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/logout.tsx",
           "type": "registry:component"
         },
         {
@@ -481,11 +533,27 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/onboarding-tour.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/password-input.tsx",
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/permission-matrix.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/pivot-grid.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/placeholder.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/presence-bar.tsx",
           "type": "registry:component"
         },
         {
@@ -509,15 +577,15 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/record-timeline.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/reference-array-field.tsx",
           "type": "registry:component"
         },
         {
           "path": "src/components/admin/reference-array-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/reference-error.tsx",
           "type": "registry:component"
         },
         {
@@ -553,7 +621,15 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/resource-menu-item-group.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/resource-menu-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/resource.tsx",
           "type": "registry:component"
         },
         {
@@ -570,6 +646,10 @@
         },
         {
           "path": "src/components/admin/search-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/select-all-button.tsx",
           "type": "registry:component"
         },
         {
@@ -641,6 +721,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/spinner.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/tabbed-form.tsx",
           "type": "registry:component"
         },
@@ -686,6 +770,10 @@
         },
         {
           "path": "src/components/admin/time-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/title-portal-id.ts",
           "type": "registry:component"
         },
         {
@@ -741,6 +829,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/tree-list.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/update-button.tsx",
           "type": "registry:component"
         },
@@ -753,11 +845,11 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/use-themes-context.ts",
+          "path": "src/components/admin/user-menu.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/user-menu.tsx",
+          "path": "src/components/admin/wizard-form.tsx",
           "type": "registry:component"
         },
         {
@@ -765,11 +857,27 @@
           "type": "registry:component"
         },
         {
+          "path": "src/lib/are-ids-equal.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/field-types.ts",
           "type": "registry:lib"
         },
         {
-          "path": "src/lib/i18nProvider.ts",
+          "path": "src/lib/i18n-provider.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/notify-auth-error.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/sanitize-input-rest-props.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/unknown-types.ts",
           "type": "registry:lib"
         },
         {
@@ -799,6 +907,10 @@
         "tooltip"
       ],
       "files": [
+        {
+          "path": "src/components/rich-text-input/default-editor-options.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/components/rich-text-input/index.ts",
           "type": "registry:component"
@@ -1014,6 +1126,10 @@
         {
           "path": "src/components/rich-text-input/rich-text-input.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "src/components/rich-text-input/use-rich-text-input-editor.ts",
+          "type": "registry:component"
         }
       ],
       "dependencies": [
@@ -1057,6 +1173,56 @@
         }
       ],
       "dependencies": ["@mdxeditor/editor"]
+    },
+    {
+      "name": "lat-lng-field",
+      "type": "registry:block",
+      "title": "LatLngField",
+      "description": "Optional Leaflet-based map field (LatLngField) and form input (LatLngInput) for Shadcn Admin Kit. Reads/writes two scalar lat/lng record fields.",
+      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "dependencies": ["leaflet", "react-leaflet"],
+      "devDependencies": ["@types/leaflet"],
+      "files": [
+        {
+          "path": "src/components/lat-lng-field/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/lat-lng-field/lat-lng-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/lat-lng-field/lat-lng-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/lat-lng-field/shared.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "csv-import",
+      "type": "registry:block",
+      "title": "CsvImport",
+      "description": "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadcn Admin Kit. Validates rows against a zod schema and batches inserts via the data provider.",
+      "registryDependencies": [
+        "@shadcn-admin-kit/admin",
+        "button",
+        "progress"
+      ],
+      "dependencies": ["papaparse", "zod"],
+      "devDependencies": ["@types/papaparse"],
+      "files": [
+        {
+          "path": "src/components/csv-import/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/csv-import/csv-import.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "example-admin",

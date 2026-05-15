@@ -4,6 +4,12 @@ title: "CsvImport"
 
 `<CsvImport>` is a button + 4-step wizard that bulk-imports CSV data into a resource. The wizard guides users through Upload → Map → Preview → Commit, validates rows against a zod schema, batches inserts via `dataProvider.createMany` (with a `Promise.all`-of-`create` fallback), and produces a downloadable error report.
 
+`<CsvImport>` lives in a separate registry block (`csv-import`) to keep the optional `papaparse` and `zod` dependencies out of the core admin install. Add the block with:
+
+```bash
+npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/csv-import.json
+```
+
 ## Sample data
 
 Download [`products.csv`](/examples/products.csv) to try the importer with realistic data. The fields align with the `ProductSchema` used in the Storybook stories.
@@ -11,7 +17,8 @@ Download [`products.csv`](/examples/products.csv) to try the importer with reali
 ## Usage
 
 ```tsx
-import { List, ListActions, CsvImport } from "@/components/admin";
+import { List, ListActions } from "@/components/admin";
+import { CsvImport } from "@/components/csv-import";
 import { z } from "zod";
 
 const ProductImportSchema = z.object({
