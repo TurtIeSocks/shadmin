@@ -44,6 +44,11 @@ The library re-implements react-admin's UI layer using shadcn/ui components whil
 - **Reference components** (`reference-*.tsx`): Handle foreign key relationships (one-to-many, many-to-one).
 - Tests are co-located as `*.spec.tsx` files next to their components.
 - **Tests should import and render stories**: Spec files import story exports (e.g., `import { Basic, CustomLabel } from "@/stories/foo.stories"`) and render them directly, rather than setting up test wrappers from scratch. See `date-time-input.spec.tsx` or `edit-button.spec.tsx` for examples.
+- **Reuse the shared `StoryAdmin` test wrapper** (in `src/stories/_test-helpers.tsx` — create if missing) instead of duplicating the `TestMemoryRouter + Admin + fakeRestDataProvider + polyglotI18nProvider + memoryStore` boilerplate in every story file. ~25 lines of setup ✕ N stories is sub-stantial dead weight; one helper makes story files focus on the component being demoed.
+
+### Documentation generation
+
+- Component docs pages live in `docs/src/content/docs/{ComponentName}.md` and currently must be hand-written. Bespoke per-component docs are time-consuming; prefer adopting `typedoc` (or a similar JSDoc → MDX pipeline) so the Props table can be derived from the component's TypeScript types instead of restated by hand. Until that lands, the Usage → Props → per-prop section pattern is the project's authoring contract.
 
 ### Entry Point
 
