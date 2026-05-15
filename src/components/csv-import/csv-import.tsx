@@ -1,11 +1,9 @@
 "use client";
 
 import {
-  createContext,
   type ComponentType,
   type ReactNode,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -21,18 +19,20 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { WizardForm } from "@/components/admin/wizard-form";
-
-export interface ImportReport {
-  total: number;
-  created: number;
-  failed: number;
-  errors: Array<{ rowIndex: number; row: Record<string, unknown>; reason: string }>;
-}
+import {
+  CsvImportContext,
+  CsvImportContextValue,
+  ImportReport,
+  useCsvImport,
+} from "./use-csv-import";
 
 export interface CsvImportProps {
   schema?: z.ZodObject<z.ZodRawShape>;
   mapping?: Record<string, string>;
-  transform?: (row: Record<string, unknown>, index: number) => Record<string, unknown>;
+  transform?: (
+    row: Record<string, unknown>,
+    index: number,
+  ) => Record<string, unknown>;
   batchSize?: number;
   parsers?: Array<"csv">;
   label?: string;
@@ -42,31 +42,6 @@ export interface CsvImportProps {
   onError?: (error: Error) => void;
   children?: ReactNode;
 }
-
-interface CsvImportContextValue {
-  parsedRows: Array<Record<string, unknown>>;
-  setParsedRows: (rows: Array<Record<string, unknown>>) => void;
-  headers: string[];
-  setHeaders: (h: string[]) => void;
-  mapping: Record<string, string>;
-  setMapping: (m: Record<string, string>) => void;
-  report: ImportReport | null;
-  setReport: (r: ImportReport | null) => void;
-  schema?: z.ZodObject<z.ZodRawShape>;
-  transform?: CsvImportProps["transform"];
-  batchSize: number;
-  resource: string;
-  onComplete?: (r: ImportReport) => void;
-  onError?: (e: Error) => void;
-}
-
-const CsvImportContext = createContext<CsvImportContextValue | null>(null);
-
-export const useCsvImport = () => {
-  const ctx = useContext(CsvImportContext);
-  if (!ctx) throw new Error("useCsvImport must be used inside <CsvImport>");
-  return ctx;
-};
 
 const chunk = <T,>(arr: T[], size: number) => {
   const out: T[][] = [];
@@ -116,7 +91,9 @@ const validateRows = (
     return {
       ok: false,
       row: mapped,
-      issues: result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`),
+      issues: result.error.issues.map(
+        (i) => `${i.path.join(".")}: ${i.message}`,
+      ),
     };
   });
 };
@@ -124,7 +101,7 @@ const validateRows = (
 const CsvImportUploadStep = () => {
   const { parsedRows, setParsedRows, setHeaders } = useCsvImport();
   const translate = useTranslate();
-  const form = useFormContext();
+  const { register, unregister } = useFormContext();
   const [error, setError] = useState<string | null>(null);
 
   // Keep a ref so the validate closure always reads the current row count
@@ -133,15 +110,13 @@ const CsvImportUploadStep = () => {
   parsedRowsCountRef.current = parsedRows.length;
 
   useEffect(() => {
-    if (!form) return;
-    form.register("__csv_upload_gate", {
+    register("__csv_upload_gate", {
       validate: () => parsedRowsCountRef.current > 0,
     });
     return () => {
-      form.unregister("__csv_upload_gate");
+      unregister("__csv_upload_gate");
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form]);
+  }, [register, unregister]);
 
   const onDrop = useCallback(
     (files: File[]) => {
@@ -176,7 +151,9 @@ const CsvImportUploadStep = () => {
       <div
         {...getRootProps()}
         className={`flex h-32 cursor-pointer items-center justify-center rounded-md border-2 border-dashed p-4 text-center text-sm ${
-          isDragActive ? "border-primary bg-accent" : "border-muted-foreground/30"
+          isDragActive
+            ? "border-primary bg-accent"
+            : "border-muted-foreground/30"
         }`}
       >
         <input {...getInputProps()} data-testid="csv-file-input" />
@@ -318,7 +295,11 @@ const CsvImportPreviewStep = () => {
                   </td>
                 ))}
                 <td className="p-2 text-destructive">
-                  {v.ok ? "" : (v as Extract<RowValidation, { ok: false }>).issues.join("; ")}
+                  {v.ok
+                    ? ""
+                    : (v as Extract<RowValidation, { ok: false }>).issues.join(
+                        "; ",
+                      )}
                 </td>
               </tr>
             ))}
@@ -330,16 +311,27 @@ const CsvImportPreviewStep = () => {
 };
 
 const CsvImportCommitStep = () => {
-  const ctx = useCsvImport();
+  const {
+    report,
+    parsedRows,
+    mapping,
+    schema,
+    transform,
+    batchSize,
+    onComplete,
+    onError,
+    resource,
+    setReport,
+  } = useCsvImport();
   const translate = useTranslate();
   const dataProvider = useDataProvider();
   const [progress, setProgress] = useState({ current: 0, total: 0 });
   const [done, setDone] = useState(false);
 
   const downloadErrors = useCallback(() => {
-    if (!ctx.report || ctx.report.errors.length === 0) return;
+    if (!report || report.errors.length === 0) return;
     const csv = Papa.unparse(
-      ctx.report.errors.map((e) => ({
+      report.errors.map((e) => ({
         rowIndex: e.rowIndex,
         reason: e.reason,
         ...e.row,
@@ -352,17 +344,12 @@ const CsvImportCommitStep = () => {
     a.download = "import-errors.csv";
     a.click();
     URL.revokeObjectURL(url);
-  }, [ctx.report]);
+  }, [report]);
 
   useEffect(() => {
     let cancelled = false;
     const run = async () => {
-      const validations = validateRows(
-        ctx.parsedRows,
-        ctx.mapping,
-        ctx.schema,
-        ctx.transform,
-      );
+      const validations = validateRows(parsedRows, mapping, schema, transform);
       const validRows = validations
         .filter((v): v is Extract<RowValidation, { ok: true }> => v.ok)
         .map((v) => v.row);
@@ -372,32 +359,26 @@ const CsvImportCommitStep = () => {
           errors.push({
             rowIndex: idx,
             row: v.row,
-            reason: (v as Extract<RowValidation, { ok: false }>).issues.join("; "),
+            reason: (v as Extract<RowValidation, { ok: false }>).issues.join(
+              "; ",
+            ),
           });
         }
       });
-      const batches = chunk(validRows, ctx.batchSize);
+      const batches = chunk(validRows, batchSize);
       let created = 0;
+
       setProgress({ current: 0, total: validRows.length });
       try {
         for (const batch of batches) {
           if (cancelled) break;
-          const dp = dataProvider as unknown as {
-            createMany?: (
-              resource: string,
-              params: { data: Array<Record<string, unknown>> },
-            ) => Promise<{ data: Array<Record<string, unknown>> }>;
-            create: (
-              resource: string,
-              params: { data: Record<string, unknown> },
-            ) => Promise<{ data: Record<string, unknown> }>;
-          };
+          const dp = dataProvider;
           if (typeof dp.createMany === "function") {
-            const result = await dp.createMany(ctx.resource, { data: batch });
+            const result = await dp.createMany(resource, { data: batch });
             created += result.data?.length ?? batch.length;
           } else {
             const settled = await Promise.allSettled(
-              batch.map((row) => dp.create(ctx.resource, { data: row })),
+              batch.map((row) => dp.create(resource, { data: row })),
             );
             for (const s of settled) {
               if (s.status === "fulfilled") created += 1;
@@ -414,25 +395,36 @@ const CsvImportCommitStep = () => {
             total: p.total,
           }));
         }
+
         const report: ImportReport = {
-          total: ctx.parsedRows.length,
+          total: parsedRows.length,
           created,
           failed: errors.length,
           errors,
         };
-        ctx.setReport(report);
-        ctx.onComplete?.(report);
+        setReport(report);
+        onComplete?.(report);
         setDone(true);
       } catch (e) {
-        ctx.onError?.(e as Error);
+        onError?.(e as Error);
       }
     };
     run();
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [
+    batchSize,
+    dataProvider,
+    mapping,
+    onComplete,
+    onError,
+    parsedRows,
+    resource,
+    schema,
+    setReport,
+    transform,
+  ]);
 
   const percent =
     progress.total > 0 ? (progress.current / progress.total) * 100 : 0;
@@ -456,13 +448,13 @@ const CsvImportCommitStep = () => {
           </div>
           <div className="text-sm text-muted-foreground">
             {translate("ra.csv_import.counters", {
-              _: `${ctx.report?.created ?? 0} valid · ${ctx.report?.failed ?? 0} errors · ${ctx.report?.total ?? 0} total`,
-              valid: ctx.report?.created ?? 0,
-              errors: ctx.report?.failed ?? 0,
-              total: ctx.report?.total ?? 0,
+              _: `${report?.created ?? 0} valid · ${report?.failed ?? 0} errors · ${report?.total ?? 0} total`,
+              valid: report?.created ?? 0,
+              errors: report?.failed ?? 0,
+              total: report?.total ?? 0,
             })}
           </div>
-          {ctx.report && ctx.report.errors.length > 0 ? (
+          {report && report.errors.length > 0 ? (
             <Button variant="outline" size="sm" onClick={downloadErrors}>
               {translate("ra.csv_import.download_errors", {
                 _: "Download error report",
@@ -490,9 +482,12 @@ export const CsvImport = ({
   const resource = useResourceContext({ resource: resourceProp });
   const translate = useTranslate();
   const [open, setOpen] = useState(false);
-  const [parsedRows, setParsedRows] = useState<Array<Record<string, unknown>>>([]);
+  const [parsedRows, setParsedRows] = useState<Array<Record<string, unknown>>>(
+    [],
+  );
   const [headers, setHeaders] = useState<string[]>([]);
-  const [mapping, setMapping] = useState<Record<string, string>>(initialMapping);
+  const [mapping, setMapping] =
+    useState<Record<string, string>>(initialMapping);
   const [report, setReport] = useState<ImportReport | null>(null);
 
   const value = useMemo<CsvImportContextValue>(
@@ -512,7 +507,18 @@ export const CsvImport = ({
       onComplete,
       onError,
     }),
-    [parsedRows, headers, mapping, report, schema, transform, batchSize, resource, onComplete, onError],
+    [
+      parsedRows,
+      headers,
+      mapping,
+      report,
+      schema,
+      transform,
+      batchSize,
+      resource,
+      onComplete,
+      onError,
+    ],
   );
 
   const handleClose = useCallback(() => {
@@ -523,7 +529,8 @@ export const CsvImport = ({
     setReport(null);
   }, [initialMapping]);
 
-  const buttonLabel = label ?? translate("ra.csv_import.button", { _: "Import" });
+  const buttonLabel =
+    label ?? translate("ra.csv_import.button", { _: "Import" });
 
   return (
     <CsvImportContext.Provider value={value}>
@@ -541,16 +548,24 @@ export const CsvImport = ({
           })}
           onSubmit={() => {}}
         >
-          <WizardForm.Step label={translate("ra.csv_import.step.upload", { _: "Upload" })}>
+          <WizardForm.Step
+            label={translate("ra.csv_import.step.upload", { _: "Upload" })}
+          >
             <CsvImportUploadStep />
           </WizardForm.Step>
-          <WizardForm.Step label={translate("ra.csv_import.step.map", { _: "Map columns" })}>
+          <WizardForm.Step
+            label={translate("ra.csv_import.step.map", { _: "Map columns" })}
+          >
             <CsvImportMapStep />
           </WizardForm.Step>
-          <WizardForm.Step label={translate("ra.csv_import.step.preview", { _: "Preview" })}>
+          <WizardForm.Step
+            label={translate("ra.csv_import.step.preview", { _: "Preview" })}
+          >
             <CsvImportPreviewStep />
           </WizardForm.Step>
-          <WizardForm.Step label={translate("ra.csv_import.step.commit", { _: "Importing…" })}>
+          <WizardForm.Step
+            label={translate("ra.csv_import.step.commit", { _: "Importing…" })}
+          >
             <CsvImportCommitStep />
           </WizardForm.Step>
         </WizardForm>
