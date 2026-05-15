@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, CommitStep, CommitWithErrors, MapStep, PreviewStep, UploadStep } from "@/stories/csv-import.stories";
+import { Basic, CommitStep, CommitWithErrors, MapStep, PreviewStep } from "@/stories/csv-import.stories";
 
 describe("<CsvImport />", () => {
   it("renders an Import button", async () => {
@@ -41,7 +41,7 @@ describe("<CsvImport />", () => {
   });
 
   it("parses an uploaded CSV file and shows row count", async () => {
-    const screen = render(<UploadStep />);
+    const screen = render(<Basic />);
     await screen.getByRole("button", { name: /import/i }).click();
     await expect.element(screen.getByRole("dialog")).toBeInTheDocument();
     const csv = "reference,name,price\nNB-001,Notebook,9.99\nPN-002,Pencil,1.50\n";
@@ -58,21 +58,25 @@ describe("<CsvImport />", () => {
   });
 
   it("commits valid rows via dataProvider.create and shows complete", async () => {
+    // CommitStep story auto-advances to step 4 (commit), then we trigger commit
     const screen = render(<CommitStep />);
-    await screen.getByRole("button", { name: /import/i }).click();
-    await screen.getByRole("button", { name: /next/i }).click(); // upload → map
-    await screen.getByRole("button", { name: /next/i }).click(); // map → preview
-    await screen.getByRole("button", { name: /next/i }).click(); // preview → commit
+    // Wait for the auto-advance to open the dialog and reach the preview step
+    await expect
+      .element(screen.getByRole("dialog"))
+      .toBeInTheDocument();
+    // At this point AutoAdvanceTo has navigated past upload/map/preview; click Commit
+    await screen.getByRole("button", { name: /next/i }).click();
     await expect
       .element(screen.getByText(/import complete/i))
       .toBeInTheDocument();
   });
 
   it("shows the error download button after commit when errors exist", async () => {
+    // CommitWithErrors story auto-advances to step 4 (commit)
     const screen = render(<CommitWithErrors />);
-    await screen.getByRole("button", { name: /import/i }).click();
-    await screen.getByRole("button", { name: /next/i }).click();
-    await screen.getByRole("button", { name: /next/i }).click();
+    await expect
+      .element(screen.getByRole("dialog"))
+      .toBeInTheDocument();
     await screen.getByRole("button", { name: /next/i }).click();
     await expect
       .element(screen.getByRole("button", { name: /download error report/i }))

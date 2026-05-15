@@ -48,8 +48,6 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
-export const UploadStep = Basic;
-
 const SeedParsed = ({
   rows,
   headers,
@@ -64,6 +62,57 @@ const SeedParsed = ({
   }, [rows, headers, setParsedRows, setHeaders]);
   return null;
 };
+
+const AutoAdvanceTo = ({ targetStep }: { targetStep: number }) => {
+  useEffect(() => {
+    const tick = () => {
+      const triggers = Array.from(document.querySelectorAll("button"));
+      const trigger = triggers.find((b) => /import/i.test(b.textContent ?? ""));
+      if (trigger && !document.querySelector('[role="dialog"]')) {
+        trigger.click();
+      }
+      let stepsClicked = 0;
+      const clickNext = () => {
+        if (stepsClicked >= targetStep - 1) return;
+        const nextBtns = Array.from(document.querySelectorAll('[role="dialog"] button'));
+        const next = nextBtns.find((b) => /^next$/i.test(b.textContent?.trim() ?? ""));
+        if (next) {
+          (next as HTMLButtonElement).click();
+          stepsClicked += 1;
+          setTimeout(clickNext, 100);
+        }
+      };
+      setTimeout(clickNext, 100);
+    };
+    setTimeout(tick, 50);
+  }, [targetStep]);
+  return null;
+};
+
+export const MapStep = () => (
+  <TestMemoryRouter initialEntries={["/products"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="products"
+        list={() => (
+          <div>
+            <CsvImport schema={ProductSchema}>
+              <SeedParsed
+                rows={[{ Reference: "NB-001", "Product Name": "Notebook", price: "9.99" }]}
+                headers={["Reference", "Product Name", "price"]}
+              />
+              <AutoAdvanceTo targetStep={2} />
+            </CsvImport>
+          </div>
+        )}
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
 
 export const PreviewStep = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
@@ -84,30 +133,7 @@ export const PreviewStep = () => (
                 ]}
                 headers={["Reference", "Product Name", "price"]}
               />
-            </CsvImport>
-          </div>
-        )}
-      />
-    </Admin>
-  </TestMemoryRouter>
-);
-
-export const MapStep = () => (
-  <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
-      dataProvider={dataProvider}
-      i18nProvider={i18nProvider}
-      store={memoryStore()}
-    >
-      <Resource
-        name="products"
-        list={() => (
-          <div>
-            <CsvImport schema={ProductSchema}>
-              <SeedParsed
-                rows={[{ Reference: "NB-001", "Product Name": "Notebook", price: "9.99" }]}
-                headers={["Reference", "Product Name", "price"]}
-              />
+              <AutoAdvanceTo targetStep={3} />
             </CsvImport>
           </div>
         )}
@@ -134,6 +160,7 @@ export const CommitStep = () => (
                 ]}
                 headers={["Reference", "Product Name", "price"]}
               />
+              <AutoAdvanceTo targetStep={4} />
             </CsvImport>
           </div>
         )}
@@ -161,6 +188,7 @@ export const CommitWithErrors = () => (
                 ]}
                 headers={["Reference", "Product Name", "price"]}
               />
+              <AutoAdvanceTo targetStep={4} />
             </CsvImport>
           </div>
         )}
