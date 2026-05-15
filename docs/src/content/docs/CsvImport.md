@@ -4,6 +4,10 @@ title: "CsvImport"
 
 `<CsvImport>` is a button + 4-step wizard that bulk-imports CSV data into a resource. The wizard guides users through Upload → Map → Preview → Commit, validates rows against a zod schema, batches inserts via `dataProvider.createMany` (with a `Promise.all`-of-`create` fallback), and produces a downloadable error report.
 
+## Sample data
+
+Download [`products.csv`](/examples/products.csv) to try the importer with realistic data. The fields align with the `ProductSchema` used in the Storybook stories.
+
 ## Usage
 
 ```tsx
