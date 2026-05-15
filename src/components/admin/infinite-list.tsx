@@ -88,7 +88,8 @@ export const InfiniteList = <RecordType extends RaRecord = RaRecord>(
 };
 
 export interface InfiniteListProps<RecordType extends RaRecord = RaRecord>
-  extends InfiniteListBaseProps<RecordType>,
+  extends
+    InfiniteListBaseProps<RecordType>,
     InfiniteListViewProps<RecordType> {}
 
 /**

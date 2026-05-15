@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import type { ReactElement, ReactNode } from "react";
 import { Children, isValidElement, useState } from "react";
@@ -26,7 +26,10 @@ import { Labeled } from "./labeled";
  * Returns the URL path segment for a tab.
  * First tab = '' (no segment), subsequent = their index or a custom `path`.
  */
-function getShowTabPath(tab: ReactElement<ShowTabProps>, index: number): string {
+function getShowTabPath(
+  tab: ReactElement<ShowTabProps>,
+  index: number,
+): string {
   return tab.props.path != null
     ? tab.props.path
     : index > 0
@@ -206,7 +209,11 @@ function TabbedShowLayoutView({
             if (!field || !isValidElement(field)) return null;
             return (
               <>
-                <Labeled key={(field as ReactElement<{ source?: string }>).props.source}>
+                <Labeled
+                  key={
+                    (field as ReactElement<{ source?: string }>).props.source
+                  }
+                >
                   {field as ReactElement}
                 </Labeled>
                 {divider}

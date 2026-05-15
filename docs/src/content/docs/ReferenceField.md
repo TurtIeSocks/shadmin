@@ -22,17 +22,17 @@ For instance, let's consider a model where a `post` has one author from the `use
 In that case, use `<ReferenceField>` to display the post author's as follows:
 
 ```jsx {9}
-import { Show, ReferenceField, TextField, DateField } from '@/components/admin';
+import { Show, ReferenceField, TextField, DateField } from "@/components/admin";
 
 export const PostShow = () => (
-    <Show>
-        <div className="flex flex-col gap-4">
-            <TextField source="id" />
-            <TextField source="title" />
-            <DateField source="published_at" />
-            <ReferenceField source="user_id" reference="users" label="Author" />
-        </div>
-    </Show>
+  <Show>
+    <div className="flex flex-col gap-4">
+      <TextField source="id" />
+      <TextField source="title" />
+      <DateField source="published_at" />
+      <ReferenceField source="user_id" reference="users" label="Author" />
+    </div>
+  </Show>
 );
 ```
 
@@ -40,19 +40,19 @@ This component fetches a referenced record (`users` in this example) using the `
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Foreign key in current record |
-| `reference` | Required | `string` | - | Target resource name |
-| `children` | Optional | `ReactNode` | `<span>` representation | Custom child (can use context hooks) |
-| `empty` | Optional | `ReactNode` | - | Placeholder when no id / value |
-| `error` | Optional | `ReactNode` | - | Error element (set `false` to hide) |
-| `link` | Optional | `LinkToType` | `edit` | Link target or false / function |
-| `loading` | Optional | `ReactNode` | - | Element while loading (set `false` to hide) |
-| `queryOptions` | Optional | `UseQueryOptions` | - | TanStack Query options (meta, staleTime, etc.) |
-| `record` | Optional | `object` | Context record | Explicit record |
-| `render` | Optional | `(ctx)=>ReactNode` | - | Custom renderer receiving reference field context |
-| `translateChoice` | Optional | `boolean \| (record)=>string` | `true` | Translate referenced record representation |
+| Prop              | Required | Type                          | Default                 | Description                                       |
+| ----------------- | -------- | ----------------------------- | ----------------------- | ------------------------------------------------- |
+| `source`          | Required | `string`                      | -                       | Foreign key in current record                     |
+| `reference`       | Required | `string`                      | -                       | Target resource name                              |
+| `children`        | Optional | `ReactNode`                   | `<span>` representation | Custom child (can use context hooks)              |
+| `empty`           | Optional | `ReactNode`                   | -                       | Placeholder when no id / value                    |
+| `error`           | Optional | `ReactNode`                   | -                       | Error element (set `false` to hide)               |
+| `link`            | Optional | `LinkToType`                  | `edit`                  | Link target or false / function                   |
+| `loading`         | Optional | `ReactNode`                   | -                       | Element while loading (set `false` to hide)       |
+| `queryOptions`    | Optional | `UseQueryOptions`             | -                       | TanStack Query options (meta, staleTime, etc.)    |
+| `record`          | Optional | `object`                      | Context record          | Explicit record                                   |
+| `render`          | Optional | `(ctx)=>ReactNode`            | -                       | Custom renderer receiving reference field context |
+| `translateChoice` | Optional | `boolean \| (record)=>string` | `true`                  | Translate referenced record representation        |
 
 ## Record Representation
 
@@ -62,9 +62,9 @@ So it's a good idea to configure the `<Resource recordRepresentation>` to render
 
 ```jsx
 <Resource
-    name="users"
-    list={UserList}
-    recordRepresentation={(record) => `${record.first_name} ${record.last_name}`}
+  name="users"
+  list={UserList}
+  recordRepresentation={(record) => `${record.first_name} ${record.last_name}`}
 />
 ```
 
@@ -72,7 +72,7 @@ If you pass a child component, `<ReferenceField>` will render it instead of the 
 
 ```jsx
 <ReferenceField source="user_id" reference="users">
-    <TextField source="name" />
+  <TextField source="name" />
 </ReferenceField>
 ```
 
@@ -82,17 +82,17 @@ This allows to inline the render logic for the list of related records.
 
 ```jsx
 <ReferenceField
-    source="user_id"
-    reference="users"
-    render={({ error, isPending, referenceRecord }) => {
-        if (isPending) {
-            return <p>Loading...</p>;
-        }
-        if (error) {
-            return <p className="error">{error.message}</p>;
-        }
-        return <p>{referenceRecord.name}</p>;
-    }}
+  source="user_id"
+  reference="users"
+  render={({ error, isPending, referenceRecord }) => {
+    if (isPending) {
+      return <p>Loading...</p>;
+    }
+    if (error) {
+      return <p className="error">{error.message}</p>;
+    }
+    return <p>{referenceRecord.name}</p>;
+  }}
 />
 ```
 

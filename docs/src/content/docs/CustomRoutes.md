@@ -1,7 +1,5 @@
 ---
-
 title: CustomRoutes
-
 ---
 
 `<CustomRoutes>` lets you define custom pages in your shadcn-admin-kit application, using react-router `<Routes>` elements.
@@ -13,24 +11,24 @@ To register your own routes, pass one or several `<CustomRoutes>` elements as ch
 ```jsx
 // in src/App.js
 import { Admin } from "@/components/admin";
-import { Resource, CustomRoutes } from 'ra-core';
+import { Resource, CustomRoutes } from "ra-core";
 import { Route } from "react-router";
 
-import { dataProvider } from './dataProvider';
-import posts from './posts';
-import comments from './comments';
-import { Settings } from './Settings';
-import { Profile } from './Profile';
+import { dataProvider } from "./dataProvider";
+import posts from "./posts";
+import comments from "./comments";
+import { Settings } from "./Settings";
+import { Profile } from "./Profile";
 
 const App = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="posts" {...posts} />
-        <Resource name="comments" {...comments} />
-        <CustomRoutes>
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/profile" element={<Profile />} />
-        </CustomRoutes>
-    </Admin>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="posts" {...posts} />
+    <Resource name="comments" {...comments} />
+    <CustomRoutes>
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/profile" element={<Profile />} />
+    </CustomRoutes>
+  </Admin>
 );
 
 export default App;

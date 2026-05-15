@@ -93,7 +93,11 @@ export const ThreeTabs = ({
 Object.assign(ThreeTabs, storyArgs);
 
 /** Tab with a count badge — useful for related record counts. */
-export const WithCount = ({ theme }: { theme: "system" | "light" | "dark" }) => (
+export const WithCount = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => (
   <Wrapper theme={theme}>
     <TabbedShowLayout syncWithLocation={false}>
       <TabbedShowLayout.Tab label="Content">

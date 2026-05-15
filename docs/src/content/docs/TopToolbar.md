@@ -24,9 +24,7 @@ const PostListActions = () => (
 );
 
 export const PostList = () => (
-  <List actions={<PostListActions />}>
-    {/* ... */}
-  </List>
+  <List actions={<PostListActions />}>{/* ... */}</List>
 );
 ```
 
@@ -34,9 +32,9 @@ For the conventional Filter + Create + Export combo, use [`<ListActions>`](./Lis
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | — | Action buttons rendered horizontally with end alignment |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the root element |
+| Prop        | Required | Type        | Default | Description                                             |
+| ----------- | -------- | ----------- | ------- | ------------------------------------------------------- |
+| `children`  | Required | `ReactNode` | —       | Action buttons rendered horizontally with end alignment |
+| `className` | Optional | `string`    | —       | Extra Tailwind classes appended to the root element     |
 
 Additional props are forwarded to the underlying `<div>` element.

@@ -39,7 +39,12 @@ import {
   useTranslateLabel,
 } from "ra-core";
 import { useNavigate } from "react-router";
-import { ArrowDownAZ, ArrowUpZA, ChevronDown, ChevronRight } from "lucide-react";
+import {
+  ArrowDownAZ,
+  ArrowUpZA,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import get from "lodash/get";
 import { cn } from "@/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -397,9 +402,7 @@ export const DataTableRow = ({
   const canExpand =
     expandContext != null &&
     (!expandContext.isRowExpandable || expandContext.isRowExpandable(record));
-  const expandLabel = isExpanded
-    ? "Collapse row"
-    : "Expand row";
+  const expandLabel = isExpanded ? "Collapse row" : "Expand row";
 
   return (
     <TableRow
@@ -502,7 +505,7 @@ const DataTableLoadingSkeleton = ({
               ) : null}
               {Array.from({ length: nbColumns }).map((_, colIndex) => (
                 <TableCell key={colIndex} className="py-2">
-                  <Skeleton className="h-4 w-full max-w-[12rem]" />
+                  <Skeleton className="h-4 w-full max-w-48" />
                 </TableCell>
               ))}
             </TableRow>

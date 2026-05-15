@@ -19,7 +19,9 @@ const { mutateAsync, tokenValues } = vi.hoisted(() => ({
 
 vi.mock("ra-supabase-core", () => ({
   useSetPassword: () => [{} as never, { mutateAsync }],
-  useSupabaseAccessToken: ({ parameterName }: { parameterName?: string } = {}) =>
+  useSupabaseAccessToken: ({
+    parameterName,
+  }: { parameterName?: string } = {}) =>
     tokenValues[
       (parameterName ?? "access_token") as "access_token" | "refresh_token"
     ],
@@ -75,7 +77,9 @@ describe("<SetPasswordForm />", () => {
     tokenValues.refresh_token = "REFRESH";
     const screen = renderForm();
     await screen.getByLabelText("Password *", { exact: true }).fill("hunter2");
-    await screen.getByLabelText("Confirm password *", { exact: true }).fill("hunter3");
+    await screen
+      .getByLabelText("Confirm password *", { exact: true })
+      .fill("hunter3");
     await screen.getByRole("button", { name: /Save/ }).click();
     const errors = screen.getByText("Passwords do not match").elements();
     expect(errors).toHaveLength(2);
@@ -87,7 +91,9 @@ describe("<SetPasswordForm />", () => {
     mutateAsync.mockClear();
     const screen = renderForm();
     await screen.getByLabelText("Password *", { exact: true }).fill("hunter2");
-    await screen.getByLabelText("Confirm password *", { exact: true }).fill("hunter2");
+    await screen
+      .getByLabelText("Confirm password *", { exact: true })
+      .fill("hunter2");
     await screen.getByRole("button", { name: /Save/ }).click();
     expect(mutateAsync).toHaveBeenCalledWith({
       access_token: "ACCESS",

@@ -61,9 +61,7 @@ describe("RichTextField", () => {
       </RecordContextProvider>,
     );
 
-    await expect
-      .element(screen.getByText("Hello world"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Hello world")).toBeInTheDocument();
   });
 
   it("renders empty placeholder for null/empty values", async () => {

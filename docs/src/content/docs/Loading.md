@@ -13,20 +13,20 @@ The default Shadcn Admin Kit [`<Layout>`](./Layout.md) displays the Loading comp
 For example, if you [use code splitting to lazy load your resource views](./Resource.md#lazy-loading), the `<Loading>` component will be displayed while the component is being loaded:
 
 ```tsx
-import * as React from 'react';
+import * as React from "react";
 import { Admin } from "@/components/admin";
 import { Resource } from "ra-core";
 
-import { dataProvider } from './dataProvider';
+import { dataProvider } from "./dataProvider";
 
-const OrderList = React.lazy(() => import('./orders/OrderList'));
-const OrderEdit = React.lazy(() => import('./orders/OrderEdit'));
+const OrderList = React.lazy(() => import("./orders/OrderList"));
+const OrderEdit = React.lazy(() => import("./orders/OrderEdit"));
 
 const App = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="orders" list={OrderList} edit={OrderEdit} />
-        ...
-    </Admin>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="orders" list={OrderList} edit={OrderEdit} />
+    ...
+  </Admin>
 );
 ```
 
@@ -34,11 +34,11 @@ You can customize the loading component by editing the `@/components/admin/loadi
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `loadingPrimary` | | `string` | `ra.page.loading` | Main heading i18n key |
-| `loadingSecondary` | | `string` | `ra.message.loading` | Secondary text key |
-| `delay` | | `number` | `1000` | Delay before showing (ms) |
+| Prop               | Required | Type      | Default              | Description               |
+| ------------------ | -------- | --------- | -------------------- | ------------------------- |
+| `loadingPrimary`   |          | `string`  | `ra.page.loading`    | Main heading i18n key     |
+| `loadingSecondary` |          |  `string` | `ra.message.loading` | Secondary text key        |
+| `delay`            |          |  `number` | `1000`               | Delay before showing (ms) |
 
 ## Usage in Custom Components
 
@@ -50,9 +50,7 @@ import { Suspense } from "react";
 
 export const MyComponent = () => (
   <Suspense fallback={<Loading loadingPrimary="Loading data..." />}>
-    <div>
-      {/* Your component content that may take time to load */}
-    </div>
+    <div>{/* Your component content that may take time to load */}</div>
   </Suspense>
 );
 ```

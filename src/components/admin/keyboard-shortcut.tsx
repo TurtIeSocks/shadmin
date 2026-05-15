@@ -25,8 +25,7 @@ const KeyMap: Record<string, string> = {
   pagedown: "⇟",
 };
 
-export interface KeyboardShortcutProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface KeyboardShortcutProps extends React.HTMLAttributes<HTMLDivElement> {
   keyboardShortcut?: string;
 }
 

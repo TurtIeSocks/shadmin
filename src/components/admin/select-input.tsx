@@ -292,7 +292,7 @@ export const SelectInput = (props: SelectInputProps) => {
                 </button>
               ) : null}
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent position="popper">
               {finalChoices?.map((choice) => {
                 if (!choice) return null;
                 const value = getChoiceValue(choice);

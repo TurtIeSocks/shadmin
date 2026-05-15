@@ -74,9 +74,7 @@ export const AutocompleteArrayInput = (
       filterToQuery?: (searchText: string) => UnknownValue;
       translateChoice?: boolean;
       placeholder?: string;
-      inputText?:
-        | React.ReactNode
-        | ((option: UnknownValue) => React.ReactNode);
+      inputText?: React.ReactNode | ((option: UnknownValue) => React.ReactNode);
     },
 ) => {
   const {
@@ -128,7 +126,11 @@ export const AutocompleteArrayInput = (
   const debouncedSetFilters = useMemo(
     () =>
       debounce((filter: string) => {
-        setFiltersRef.current(filterToQueryRef.current(filter), undefined, true);
+        setFiltersRef.current(
+          filterToQueryRef.current(filter),
+          undefined,
+          true,
+        );
       }, debounceDelay),
     [debounceDelay],
   );
@@ -276,10 +278,7 @@ export const AutocompleteArrayInput = (
                               debouncedSetFilters.cancel();
                               setFilters(filterToQuery(""));
                             }
-                            field.onChange([
-                              ...values,
-                              getChoiceValue(choice),
-                            ]);
+                            field.onChange([...values, getChoiceValue(choice)]);
                           }}
                           className="cursor-pointer"
                         >

@@ -13,9 +13,9 @@ import { AuthLayout } from "@/components/admin/auth-layout";
 import { LoginForm } from "@/components/admin/login-form";
 
 export const LoginPage = () => (
-    <AuthLayout title="Sign in">
-        <LoginForm />
-    </AuthLayout>
+  <AuthLayout title="Sign in">
+    <LoginForm />
+  </AuthLayout>
 );
 ```
 
@@ -23,10 +23,10 @@ export const LoginPage = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `redirectTo` | Optional | `string` | - | Path the user is redirected to after a successful sign in. Defaults to ra-core's default redirect (`/`). |
-| `className` | Optional | `string` | - | Extra CSS class names applied to the `<Form>` element. |
+| Prop         | Required | Type     | Default | Description                                                                                              |
+| ------------ | -------- | -------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| `redirectTo` | Optional | `string` | -       | Path the user is redirected to after a successful sign in. Defaults to ra-core's default redirect (`/`). |
+| `className`  | Optional | `string` | -       | Extra CSS class names applied to the `<Form>` element.                                                   |
 
 ### `redirectTo`
 

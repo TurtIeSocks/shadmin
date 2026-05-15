@@ -22,10 +22,10 @@ export const PostShow = () => (
 
 `<Link>` forwards every prop of `react-router`'s [`<Link>`](https://reactrouter.com/start/declarative/navigating#link). The relevant extras are:
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `to` | Required | `To` | — | Destination URL (string or `{ pathname, search, hash }`) |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the default ones |
+| Prop        | Required | Type     | Default | Description                                              |
+| ----------- | -------- | -------- | ------- | -------------------------------------------------------- |
+| `to`        | Required | `To`     | —       | Destination URL (string or `{ pathname, search, hash }`) |
+| `className` | Optional | `string` | —       | Extra Tailwind classes appended to the default ones      |
 
 ## `className`
 

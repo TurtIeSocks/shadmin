@@ -1,9 +1,4 @@
-import {
-  DataProvider,
-  memoryStore,
-  Resource,
-  TestMemoryRouter,
-} from "ra-core";
+import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Star } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
@@ -28,8 +23,7 @@ const data = {
       product_id: 7,
       product_reference: "ABC-007",
       rating: 5,
-      comment:
-        "Absolutely love this product! Great quality and shipped fast.",
+      comment: "Absolutely love this product! Great quality and shipped fast.",
       date: "2025-12-04T10:15:00Z",
       status: "accepted",
     },
@@ -97,10 +91,7 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 const StarBadge = ({ rating }: { rating: number }) => (
   <span className="inline-flex items-center gap-1">
     {Array.from({ length: rating }).map((_, idx) => (
-      <Star
-        key={idx}
-        className="size-3.5 fill-yellow-400 text-yellow-400"
-      />
+      <Star key={idx} className="size-3.5 fill-yellow-400 text-yellow-400" />
     ))}
   </span>
 );

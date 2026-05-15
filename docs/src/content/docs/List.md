@@ -1,7 +1,5 @@
 ---
-
 title: "List"
-
 ---
 
 The `<List>` component is the root component for list pages. It fetches a list of records from the data provider (via `ra-core` hooks), puts them in a [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html), renders a default layout (breadcrumb, title, action buttons, inline filters, pagination), then renders its children (usually a [`<DataTable>`](./DataTable.md)).
@@ -17,31 +15,33 @@ Here is a minimal example to display a list of users with a [`<DataTable>`](./Da
 import { DataTable, List } from "@/components/admin";
 
 export const UserList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="name" />
-            <DataTable.Col source="username" />
-            <DataTable.Col source="email" />
-            <DataTable.Col source="address.street" />
-            <DataTable.Col source="phone" />
-            <DataTable.Col source="website" />
-            <DataTable.Col source="company.name" />
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="name" />
+      <DataTable.Col source="username" />
+      <DataTable.Col source="email" />
+      <DataTable.Col source="address.street" />
+      <DataTable.Col source="phone" />
+      <DataTable.Col source="website" />
+      <DataTable.Col source="company.name" />
+    </DataTable>
+  </List>
 );
 
 // in src/App.jsx
-import { Admin } from '@/components/admin';
-import { Resource } from 'ra-core';
-import jsonServerProvider from 'ra-data-json-server';
+import { Admin } from "@/components/admin";
+import { Resource } from "ra-core";
+import jsonServerProvider from "ra-data-json-server";
 
-import { UserList } from './users';
+import { UserList } from "./users";
 
 const App = () => (
-    <Admin dataProvider={jsonServerProvider('https://jsonplaceholder.typicode.com')}>
-        <Resource name="users" list={UserList} />
-    </Admin>
+  <Admin
+    dataProvider={jsonServerProvider("https://jsonplaceholder.typicode.com")}
+  >
+    <Resource name="users" list={UserList} />
+  </Admin>
 );
 
 export default App;
@@ -53,26 +53,26 @@ You can find more advanced examples of `<List>` usage in the [demo](https://marm
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Optional* | `ReactNode` | - | Component(s) that display the records (e.g. `<DataTable>`) |
-| `render` | Optional* | `(ctx) => ReactNode` | - | Alternate render function receiving the list context |
-| `actions` | Optional | `ReactNode` | default action bar | Custom actions area (right side of header) |
-| `debounce` | Optional | `number` | `500` | Debounce (ms) for filter & sort changes |
-| `disableAuthentication` | Optional | `boolean` | `false` | Skip auth check for this page |
-| `disableBreadcrumb`  | Optional | `boolean` | `false` | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
-| `disableSyncWithLocation` | Optional | `boolean` | `false` | Keep list params local (not in the URL) |
-| `exporter` | Optional | `false | (records, fetchRelated, dataProvider) => void` | - | Custom export logic (set `false` to hide Export button) |
-| `filters` | Optional | `ReactElement[]` | - | Array of filter input elements (displayed inline) |
-| `filter` | Optional | `object` | - | Permanent filters always applied |
-| `filterDefaultValues` | Optional | `object` | - | Initial filter form values |
-| `pagination` | Optional | `ReactNode` | `<ListPagination />` | Custom pagination component |
-| `perPage` | Optional | `number` | `10` | Records per page |
-| `queryOptions` | Optional | `object` | - | Extra TanStack Query options |
-| `resource` | Optional | `string` | inferred | Resource name, defaults to the current `<ResourceContext>` |
-| `sort` | Optional | `{ field: string; order: 'ASC'|'DESC' }` | - | Initial sort |
-| `storeKey` | Optional | `string | false` | derived | Storage key for persisted params; `false` disables persistence |
-| `title` | Optional | `string | ReactNode | false` | resource plural label | Page title |
+| Prop                      | Required   | Type                           | Default                                        | Description                                                                          |
+| ------------------------- | ---------- | ------------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------- | ---------- |
+| `children`                | Optional\* | `ReactNode`                    | -                                              | Component(s) that display the records (e.g. `<DataTable>`)                           |
+| `render`                  | Optional\* | `(ctx) => ReactNode`           | -                                              | Alternate render function receiving the list context                                 |
+| `actions`                 | Optional   | `ReactNode`                    | default action bar                             | Custom actions area (right side of header)                                           |
+| `debounce`                | Optional   | `number`                       | `500`                                          | Debounce (ms) for filter & sort changes                                              |
+| `disableAuthentication`   | Optional   | `boolean`                      | `false`                                        | Skip auth check for this page                                                        |
+| `disableBreadcrumb`       | Optional   | `boolean`                      | `false`                                        | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
+| `disableSyncWithLocation` | Optional   | `boolean`                      | `false`                                        | Keep list params local (not in the URL)                                              |
+| `exporter`                | Optional   | `false                         | (records, fetchRelated, dataProvider) => void` | -                                                                                    | Custom export logic (set `false` to hide Export button)        |
+| `filters`                 | Optional   | `ReactElement[]`               | -                                              | Array of filter input elements (displayed inline)                                    |
+| `filter`                  | Optional   | `object`                       | -                                              | Permanent filters always applied                                                     |
+| `filterDefaultValues`     | Optional   | `object`                       | -                                              | Initial filter form values                                                           |
+| `pagination`              | Optional   | `ReactNode`                    | `<ListPagination />`                           | Custom pagination component                                                          |
+| `perPage`                 | Optional   | `number`                       | `10`                                           | Records per page                                                                     |
+| `queryOptions`            | Optional   | `object`                       | -                                              | Extra TanStack Query options                                                         |
+| `resource`                | Optional   | `string`                       | inferred                                       | Resource name, defaults to the current `<ResourceContext>`                           |
+| `sort`                    | Optional   | `{ field: string; order: 'ASC' | 'DESC' }`                                      | -                                                                                    | Initial sort                                                   |
+| `storeKey`                | Optional   | `string                        | false`                                         | derived                                                                              | Storage key for persisted params; `false` disables persistence |
+| `title`                   | Optional   | `string                        | ReactNode                                      | false`                                                                               | resource plural label                                          | Page title |
 
 `*` Provide either `children` or `render`.
 
@@ -93,25 +93,25 @@ Alternatively to `children`, you can pass a `render` prop to `<List>`. It will r
 
 ```tsx
 const PostList = () => (
-    <List
-        render={({ isPending, error, data }) => {
-            if (isPending) {
-                return <div>Loading...</div>;
-            }
-            if (error) {
-                return <div>Error: {error.message}</div>;
-            }
-            return (
-                <ul>
-                    {data.map(post => (
-                        <li key={post.id}>
-                            <strong>{post.title}</strong> - {post.author}
-                        </li>
-                    ))}
-                </ul>
-            );
-        }}
-    />
+  <List
+    render={({ isPending, error, data }) => {
+      if (isPending) {
+        return <div>Loading...</div>;
+      }
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      }
+      return (
+        <ul>
+          {data.map((post) => (
+            <li key={post.id}>
+              <strong>{post.title}</strong> - {post.author}
+            </li>
+          ))}
+        </ul>
+      );
+    }}
+  />
 );
 ```
 
@@ -129,21 +129,22 @@ By default the page header shows a toolbar with 2 buttons:
 Provide an `actions` prop to completely replace that area:
 
 ```tsx
-import { List, CreateButton, ExportButton, ColumnsButton } from '@/components/admin';
+import {
+  List,
+  CreateButton,
+  ExportButton,
+  ColumnsButton,
+} from "@/components/admin";
 
 const MyActions = () => (
-    <div className="flex items-center gap-2">
-        <ColumnsButton />
-        <CreateButton />
-        <ExportButton />
-    </div>
+  <div className="flex items-center gap-2">
+    <ColumnsButton />
+    <CreateButton />
+    <ExportButton />
+  </div>
 );
 
-export const PostList = () => (
-    <List actions={<MyActions />}> 
-        ...
-    </List>
-);
+export const PostList = () => <List actions={<MyActions />}>...</List>;
 ```
 
 You can also build contextual actions using anything from the list context (`isPending`, `total`, `selectedIds`, etc.).
@@ -177,11 +178,7 @@ export const en = {
 You can also customize this title by specifying a custom `title` prop:
 
 ```tsx
-export const PostList = () => (
-    <List title="List of posts">
-        ...
-    </List>
-);
+export const PostList = () => <List title="List of posts">...</List>;
 ```
 
 The title can be a string, a React element, or `false` to disable the title.
@@ -196,26 +193,20 @@ The `pagination` prop allows to replace the default pagination controls by your 
 
 ```tsx
 // in src/MyPagination.js
-import { List, ListPagination } from '@/components/admin';
+import { List, ListPagination } from "@/components/admin";
 
-const PostPagination = () => <ListPagination rowsPerPageOptions={[10, 25, 50, 100]} />;
-
-export const PostList = () => (
-    <List pagination={<PostPagination />}>
-        ...
-    </List>
+const PostPagination = () => (
+  <ListPagination rowsPerPageOptions={[10, 25, 50, 100]} />
 );
+
+export const PostList = () => <List pagination={<PostPagination />}>...</List>;
 ```
 
 By default, the list paginates results by groups of 10. You can override this setting by specifying the `perPage` prop:
 
 ```tsx
 // in src/posts.js
-export const PostList = () => (
-    <List perPage={25}>
-        ...
-    </List>
-);
+export const PostList = () => <List perPage={25}>...</List>;
 ```
 
 :::note
@@ -242,13 +233,11 @@ Pass an object literal as the `sort` prop to determine the default `field` and `
 
 ```tsx
 export const PostList = () => (
-    <List sort={{ field: 'published_at', order: 'DESC' }}>
-        ...
-    </List>
+  <List sort={{ field: "published_at", order: "DESC" }}>...</List>
 );
 ```
 
-`sort` defines the *default* sort order ; users can change the sort order, e.g. by clicking on column headers when using a `<DataTable>`, or by selecting another option in the `<SortButton>`.
+`sort` defines the _default_ sort order ; users can change the sort order, e.g. by clicking on column headers when using a `<DataTable>`, or by selecting another option in the `<SortButton>`.
 
 ## Permanent Filter
 
@@ -256,14 +245,10 @@ You can choose to always filter the list, without letting the user disable this 
 
 ```tsx
 // in src/posts.js
-export const PostList = () => (
-    <List filter={{ is_published: true }}>
-        ...
-    </List>
-);
+export const PostList = () => <List filter={{ is_published: true }}>...</List>;
 ```
 
-The actual filter parameter sent to the data provider is the result of the combination of the *user* filters (the ones set through the `filters` component form), and the *permanent* filter. The user cannot override the permanent filters set by way of `filter`.
+The actual filter parameter sent to the data provider is the result of the combination of the _user_ filters (the ones set through the `filters` component form), and the _permanent_ filter. The user cannot override the permanent filters set by way of `filter`.
 
 ## Filter Button / Form Combo
 
@@ -276,15 +261,11 @@ You can add an array of filter Inputs to the List using the `filters` prop:
 
 ```tsx
 const postFilters = [
-    <SearchInput source="q" alwaysOn />,
-    <TextInput label="Title" source="title" defaultValue="Hello, World!" />,
+  <SearchInput source="q" alwaysOn />,
+  <TextInput label="Title" source="title" defaultValue="Hello, World!" />,
 ];
 
-export const PostList = () => (
-    <List filters={postFilters}>
-        ...
-    </List>
-);
+export const PostList = () => <List filters={postFilters}>...</List>;
 ```
 
 :::tip
@@ -300,15 +281,15 @@ Filter Inputs are regular inputs. `<List>` hides them all by default, except tho
 ```tsx
 // in src/posts.js
 const postFilters = [
-    <TextInput label="Search" source="q" alwaysOn />,
-    <BooleanInput source="is_published" alwaysOn />,
-    <TextInput source="title" defaultValue="Hello, World!" />,
+  <TextInput label="Search" source="q" alwaysOn />,
+  <BooleanInput source="is_published" alwaysOn />,
+  <TextInput source="title" defaultValue="Hello, World!" />,
 ];
 
 export const PostList = () => (
-    <List filters={postFilters} filterDefaultValues={{ is_published: true }}>
-        ...
-    </List>
+  <List filters={postFilters} filterDefaultValues={{ is_published: true }}>
+    ...
+  </List>
 );
 ```
 
@@ -369,36 +350,39 @@ const PostList = () => (
 
 :::
 
-In many cases, you'll need more than simple object manipulation. You'll need to *augment* your objects based on relationships. For instance, the export for comments should include the title of the related post - but the export only exposes a `post_id` by default. For that purpose, the exporter receives a `fetchRelatedRecords` function as the second parameter. It fetches related records using your `dataProvider.getMany()` method and returns a promise.
+In many cases, you'll need more than simple object manipulation. You'll need to _augment_ your objects based on relationships. For instance, the export for comments should include the title of the related post - but the export only exposes a `post_id` by default. For that purpose, the exporter receives a `fetchRelatedRecords` function as the second parameter. It fetches related records using your `dataProvider.getMany()` method and returns a promise.
 
 Here is an example for a Comments exporter, fetching related Posts:
 
 ```tsx
 // in CommentList.js
-import { List } from '@/components/admin';
-import { downloadCSV, type FetchRelatedRecords } from 'ra-core';
-import jsonExport from 'jsonexport/dist';
+import { List } from "@/components/admin";
+import { downloadCSV, type FetchRelatedRecords } from "ra-core";
+import jsonExport from "jsonexport/dist";
 
-const exporter = async (comments: Comments[], fetchRelatedRecords: FetchRelatedRecords) => {
-    // will call dataProvider.getMany('posts', { ids: records.map(record => record.post_id) }),
-    // ignoring duplicate and empty post_id
-    const posts = await fetchRelatedRecords<Post>(comments, 'post_id', 'posts')
-    const commentsWithPostTitle = comments.map(comment => ({
-            ...comment,
-            post_title: posts[comment.post_id].title,
-    }));
-    return jsonExport(commentsWithPostTitle, {
-        headers: ['id', 'post_id', 'post_title', 'body'],
-    }, (err, csv) => {
-        downloadCSV(csv, 'comments');
-    });
+const exporter = async (
+  comments: Comments[],
+  fetchRelatedRecords: FetchRelatedRecords,
+) => {
+  // will call dataProvider.getMany('posts', { ids: records.map(record => record.post_id) }),
+  // ignoring duplicate and empty post_id
+  const posts = await fetchRelatedRecords<Post>(comments, "post_id", "posts");
+  const commentsWithPostTitle = comments.map((comment) => ({
+    ...comment,
+    post_title: posts[comment.post_id].title,
+  }));
+  return jsonExport(
+    commentsWithPostTitle,
+    {
+      headers: ["id", "post_id", "post_title", "body"],
+    },
+    (err, csv) => {
+      downloadCSV(csv, "comments");
+    },
+  );
 };
 
-const CommentList = () => (
-    <List exporter={exporter}>
-        ...
-    </List>
-);
+const CommentList = () => <List exporter={exporter}>...</List>;
 ```
 
 :::tip
@@ -428,13 +412,9 @@ You may also remove the `<ExportButton>` by passing `false` to the `exporter` pr
 This can be useful e.g. to pass [a custom `meta`](https://marmelab.com/ra-core/actions/#meta-parameter) to the `dataProvider.getList()` call.
 
 ```tsx
-import { List } from '@/components/admin';
+import { List } from "@/components/admin";
 
-const PostList = () => (
-    <List queryOptions={{ meta: { foo: 'bar' } }}>
-        ...
-    </List>
-);
+const PostList = () => <List queryOptions={{ meta: { foo: "bar" } }}>...</List>;
 ```
 
 With this option, shadcn-admin-kit will call `dataProvider.getList()` on mount with the `meta: { foo: 'bar' }` option.
@@ -442,23 +422,19 @@ With this option, shadcn-admin-kit will call `dataProvider.getList()` on mount w
 You can also use the `queryOptions` prop to override the default error side effect. By default, when the `dataProvider.getList()` call fails, shadcn-admin-kit shows an error notification. Here is how to show a custom notification instead:
 
 ```tsx
-import { useNotify, useRedirect, List } from '@/components/admin';
+import { useNotify, useRedirect, List } from "@/components/admin";
 
 const PostList = () => {
-    const notify = useNotify();
-    const redirect = useRedirect();
+  const notify = useNotify();
+  const redirect = useRedirect();
 
-    const onError = (error) => {
-        notify(`Could not load list: ${error.message}`, { type: 'error' });
-        redirect('/dashboard');
-    };
+  const onError = (error) => {
+    notify(`Could not load list: ${error.message}`, { type: "error" });
+    redirect("/dashboard");
+  };
 
-    return (
-        <List queryOptions={{ onError }}>
-            ...
-        </List>
-    );
-}
+  return <List queryOptions={{ onError }}>...</List>;
+};
 ```
 
 The `onError` function receives the error from the dataProvider call (`dataProvider.getList()`), which is a JavaScript Error object (see [the dataProvider documentation for details](https://marmelab.com/ra-core/dataproviderwriting/#error-format)).
@@ -488,36 +464,42 @@ This is often used by APIs to return facets, aggregations, statistics, or other 
 //     },
 // }
 const Facets = () => {
-    const { isPending, error, meta } = useListContext();
-    if (isPending || error) return null;
-    return (
-        <div className="space-y-4 rounded-md border p-4 bg-background">
-            <div>
-                <h4 className="text-sm font-semibold tracking-wide text-foreground/80 mb-2">Genres</h4>
-                <ul className="space-y-1 text-sm">
-                    {meta.genres.map(facet => (
-                        <li key={facet.value}>
-                            <Link href="#" className="hover:underline">
-                                {facet.value} <span className="text-muted-foreground">({facet.count})</span>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div>
-                <h4 className="text-sm font-semibold tracking-wide text-foreground/80 mb-2">Century</h4>
-                <ul className="space-y-1 text-sm">
-                    {meta.centuries.map(facet => (
-                        <li key={facet.value}>
-                            <Link href="#" className="hover:underline">
-                                {facet.value} <span className="text-muted-foreground">({facet.count})</span>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    );
+  const { isPending, error, meta } = useListContext();
+  if (isPending || error) return null;
+  return (
+    <div className="space-y-4 rounded-md border p-4 bg-background">
+      <div>
+        <h4 className="text-sm font-semibold tracking-wide text-foreground/80 mb-2">
+          Genres
+        </h4>
+        <ul className="space-y-1 text-sm">
+          {meta.genres.map((facet) => (
+            <li key={facet.value}>
+              <Link href="#" className="hover:underline">
+                {facet.value}{" "}
+                <span className="text-muted-foreground">({facet.count})</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 className="text-sm font-semibold tracking-wide text-foreground/80 mb-2">
+          Century
+        </h4>
+        <ul className="space-y-1 text-sm">
+          {meta.centuries.map((facet) => (
+            <li key={facet.value}>
+              <Link href="#" className="hover:underline">
+                {facet.value}{" "}
+                <span className="text-muted-foreground">({facet.count})</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
 };
 ```
 
@@ -525,26 +507,23 @@ You might want to allow data to be fetched only when at least some filters have 
 
 ```tsx
 export const PostList = () => (
-    <List
-        filters={postFilter}
-        queryOptions={{
-            enabled: query => {
-                const listParams = query.queryKey[2] as GetListParams;
-                return listParams.filter.q?.length > 2;
-            }
-        }}
-        render={context =>
-            context.filterValues.q?.length > 2 ? (
-                <CardContentInner>
-                    Type a search term to fetch data
-                </CardContentInner>
-            ) : (
-                <Datagrid>
-                    {/* your fields */}
-                </Datagrid>
-            )
-        }
-    />)
+  <List
+    filters={postFilter}
+    queryOptions={{
+      enabled: (query) => {
+        const listParams = query.queryKey[2] as GetListParams;
+        return listParams.filter.q?.length > 2;
+      },
+    }}
+    render={(context) =>
+      context.filterValues.q?.length > 2 ? (
+        <CardContentInner>Type a search term to fetch data</CardContentInner>
+      ) : (
+        <Datagrid>{/* your fields */}</Datagrid>
+      )
+    }
+  />
+);
 ```
 
 :::note
@@ -563,54 +542,54 @@ In the example below, both lists `NewerBooks` and `OlderBooks` use the same reso
 
 ```tsx
 import {
-    Admin,
-    CustomRoutes,
-    Resource,
-    List,
-    DataTable,
-} from '@/components/admin';
-import { Route } from 'react-router';
+  Admin,
+  CustomRoutes,
+  Resource,
+  List,
+  DataTable,
+} from "@/components/admin";
+import { Route } from "react-router";
 
 const NewerBooks = () => (
-    <List
-        resource="books"
-        storeKey="newerBooks"
-        sort={{ field: 'year', order: 'DESC' }}
-    >
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="title" />
-            <DataTable.Col source="author" />
-            <DataTable.Col source="year" />
-        </DataTable>
-    </List>
+  <List
+    resource="books"
+    storeKey="newerBooks"
+    sort={{ field: "year", order: "DESC" }}
+  >
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
 );
 
 const OlderBooks = () => (
-    <List
-        resource="books"
-        storeKey="olderBooks"
-        sort={{ field: 'year', order: 'ASC' }}
-    >
-        <DataTable>
-            <DataTable source="id" />
-            <DataTable source="title" />
-            <DataTable source="author" />
-            <DataTable source="year" />
-        </DataTable>
-    </List>
+  <List
+    resource="books"
+    storeKey="olderBooks"
+    sort={{ field: "year", order: "ASC" }}
+  >
+    <DataTable>
+      <DataTable source="id" />
+      <DataTable source="title" />
+      <DataTable source="author" />
+      <DataTable source="year" />
+    </DataTable>
+  </List>
 );
 
 const Admin = () => {
-    return (
-        <Admin dataProvider={dataProvider}>
-            <CustomRoutes>
-                <Route path="/newerBooks" element={<NewerBooks />} />
-                <Route path="/olderBooks" element={<OlderBooks />} />
-            </CustomRoutes>
-            <Resource name="books" />
-        </Admin>
-    );
+  return (
+    <Admin dataProvider={dataProvider}>
+      <CustomRoutes>
+        <Route path="/newerBooks" element={<NewerBooks />} />
+        <Route path="/olderBooks" element={<OlderBooks />} />
+      </CustomRoutes>
+      <Resource name="books" />
+    </Admin>
+  );
 };
 ```
 
@@ -619,7 +598,7 @@ The `storeKey` is actually passed to the underlying `useListController` hook, wh
 :::
 
 ::note
-*Selection state* will remain linked to a resource-based key regardless of the specified `storeKey` string. This is a design choice because if row selection is not tied to a resource, then when a user deletes a record it may remain selected without any ability to unselect it. If you want to allow custom `storeKey`'s for managing selection state, you will have to implement your own `useListController` hook and pass a custom key to the `useRecordSelection` hook. You will then need to implement your own `DeleteButton` and `BulkDeleteButton` to manually unselect rows when deleting records. You can still opt out of all store interactions including selection if you set it to `false`.
+_Selection state_ will remain linked to a resource-based key regardless of the specified `storeKey` string. This is a design choice because if row selection is not tied to a resource, then when a user deletes a record it may remain selected without any ability to unselect it. If you want to allow custom `storeKey`'s for managing selection state, you will have to implement your own `useListController` hook and pass a custom key to the `useRecordSelection` hook. You will then need to implement your own `DeleteButton` and `BulkDeleteButton` to manually unselect rows when deleting records. You can still opt out of all store interactions including selection if you set it to `false`.
 :::
 
 ## Scaffolding a List page
@@ -628,15 +607,15 @@ You can use `<ListGuesser>` to quickly bootstrap a List view on top of an existi
 
 ```tsx
 // in src/App.js
-import { Admin, ListGuesser } from '@/components/admin';
-import { Resource } from 'ra-core';
-import { dataProvider } from './dataProvider';
+import { Admin, ListGuesser } from "@/components/admin";
+import { Resource } from "ra-core";
+import { dataProvider } from "./dataProvider";
 
 const App = () => (
-    <Admin dataProvider={dataProvider}>
-        {/* ... */}
-        <Resource name="posts" list={ListGuesser} />
-    </Admin>
+  <Admin dataProvider={dataProvider}>
+    {/* ... */}
+    <Resource name="posts" list={ListGuesser} />
+  </Admin>
 );
 ```
 
@@ -653,14 +632,14 @@ Shadcn Admin Kit offers [Realtime features](./RealtimeFeatures.md) to automatica
 If you want to subscribe to live updates on the list of records, add [the `<ListLiveUpdate>` component](https://marmelab.com/ra-core/listliveupdate/) in your `<List>` children.
 
 ```tsx {2,7}
-import { List } from '@/components/admin';
-import { ListLiveUpdate } from '@react-admin/ra-core-ee';
+import { List } from "@/components/admin";
+import { ListLiveUpdate } from "@react-admin/ra-core-ee";
 
 const PostList = () => (
-    <List>
-        ...
-       <ListLiveUpdate />
-    </List>
+  <List>
+    ...
+    <ListLiveUpdate />
+  </List>
 );
 ```
 
@@ -677,13 +656,9 @@ When there is no data, shadcn-admin-kit displays a special page inviting the use
 You can set the `empty` props value to `false` to disable the empty page and render the list layout instead.
 
 ```tsx
-import { List } from '@/components/admin';
+import { List } from "@/components/admin";
 
-const ProductList = () => (
-    <List empty={false}>
-        ...
-    </List>
-)
+const ProductList = () => <List empty={false}>...</List>;
 ```
 
 ## Controlled Mode
@@ -693,90 +668,90 @@ const ProductList = () => (
 In that case, use the [`resource`](#resource), [`sort`](#sort), [`filter`](#filter-permanent-filter), and [`perPage`](#perpage) props to set the list parameters.
 
 ```tsx
-import { List, DataTable, DateField } from '@/components/admin';
+import { List, DataTable, DateField } from "@/components/admin";
 
 const Dashboard = () => (
-    <div className="space-y-10">
-        <section>
-            <h2 className="text-lg font-semibold mb-3">Latest posts</h2>
-            <List 
-                resource="posts"
-                sort={{ field: 'published_at', order: 'DESC' }}
-                filter={{ is_published: true }}
-                perPage={10}
-            >
-                <DataTable bulkActionButtons={false} size="sm">
-                    <DataTable.Col source="title" />
-                    <DataTable.NumberCol source="views" />
-                    <DataTable.Col source="published_at" field={DateField} />
-                </DataTable>
-            </List>
-        </section>
-        <section>
-            <h2 className="text-lg font-semibold mb-3">Latest comments</h2>
-            <List
-                resource="comments"
-                sort={{ field: 'published_at', order: 'DESC' }}
-                perPage={10}
-            >
-                <DataTable bulkActionButtons={false} size="sm">
-                    <DataTable.Col source="author.name" />
-                    <DataTable.Col source="body" />
-                    <DataTable.Col source="published_at" field={DateField} />
-                </DataTable>
-            </List>
-        </section>
-    </div>
-)
+  <div className="space-y-10">
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest posts</h2>
+      <List
+        resource="posts"
+        sort={{ field: "published_at", order: "DESC" }}
+        filter={{ is_published: true }}
+        perPage={10}
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="title" />
+          <DataTable.NumberCol source="views" />
+          <DataTable.Col source="published_at" field={DateField} />
+        </DataTable>
+      </List>
+    </section>
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest comments</h2>
+      <List
+        resource="comments"
+        sort={{ field: "published_at", order: "DESC" }}
+        perPage={10}
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="author.name" />
+          <DataTable.Col source="body" />
+          <DataTable.Col source="published_at" field={DateField} />
+        </DataTable>
+      </List>
+    </section>
+  </div>
+);
 ```
 
 :::note
-If you need to set the list parameters to render a list of records *related to another record*, there are better components than `<List>` for that. Check out the following components, specialized in fetching and displaying a list of related records:
+If you need to set the list parameters to render a list of records _related to another record_, there are better components than `<List>` for that. Check out the following components, specialized in fetching and displaying a list of related records:
 
 - [`<ReferenceArrayField>`](./ReferenceArrayField.md),
 - [`<ReferenceManyField>`](./ReferenceManyField.md),
 
 :::
 
-If the `<List>` children allow to *modify* the list state (i.e. if they let users change the sort order, the filters, the selection, or the pagination), then you should also use the [`disableSyncWithLocation`](#disablesyncwithlocation) prop to prevent shadcn-admin-kit from changing the URL. This is the case e.g. if you use a `<DataTable>`, which lets users sort the list by clicking on column headers.
+If the `<List>` children allow to _modify_ the list state (i.e. if they let users change the sort order, the filters, the selection, or the pagination), then you should also use the [`disableSyncWithLocation`](#disablesyncwithlocation) prop to prevent shadcn-admin-kit from changing the URL. This is the case e.g. if you use a `<DataTable>`, which lets users sort the list by clicking on column headers.
 
 ```tsx
-import { List, DataTable, DateField } from '@/components/admin';
+import { List, DataTable, DateField } from "@/components/admin";
 
 const Dashboard = () => (
-    <div className="space-y-10">
-        <section>
-            <h2 className="text-lg font-semibold mb-3">Latest posts</h2>
-            <List 
-                resource="posts"
-                sort={{ field: 'published_at', order: 'DESC' }}
-                filter={{ is_published: true }}
-                perPage={10}
-                disableSyncWithLocation
-            >
-                <DataTable bulkActionButtons={false} size="sm">
-                    <DataTable.Col source="title" />
-                    <DataTable.NumberCol source="views" />
-                </DataTable>
-            </List>
-        </section>
-        <section>
-            <h2 className="text-lg font-semibold mb-3">Latest comments</h2>
-            <List
-                resource="comments"
-                sort={{ field: 'published_at', order: 'DESC' }}
-                perPage={10}
-                disableSyncWithLocation
-            >
-                <DataTable bulkActionButtons={false} size="sm">
-                    <DataTable.Col source="author.name" />
-                    <DataTable.Col source="body" />
-                    <DataTable.Col source="published_at" field={DateField} />
-                </DataTable>
-            </List>
-        </section>
-    </div>
-)
+  <div className="space-y-10">
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest posts</h2>
+      <List
+        resource="posts"
+        sort={{ field: "published_at", order: "DESC" }}
+        filter={{ is_published: true }}
+        perPage={10}
+        disableSyncWithLocation
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="title" />
+          <DataTable.NumberCol source="views" />
+        </DataTable>
+      </List>
+    </section>
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest comments</h2>
+      <List
+        resource="comments"
+        sort={{ field: "published_at", order: "DESC" }}
+        perPage={10}
+        disableSyncWithLocation
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="author.name" />
+          <DataTable.Col source="body" />
+          <DataTable.Col source="published_at" field={DateField} />
+        </DataTable>
+      </List>
+    </section>
+  </div>
+);
 ```
 
 :::note
@@ -788,37 +763,37 @@ If you render more than one `<DataTable>` for the same resource in the same page
 Besides fetching a list of records from the data provider, `<List>` renders the default list page layout (title, buttons, filters, a `<Card>`, pagination) and its children. If you need a custom list layout, you may prefer [the `<ListBase>` component](https://marmelab.com/ra-core/listbase/), which only renders its children in a [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html).
 
 ```tsx
-import { ListBase, WithListContext } from 'ra-core';
+import { ListBase, WithListContext } from "ra-core";
 
 const ProductList = () => (
-    <ListBase>
-        <div className="space-y-6">
-            <h2 className="text-xl font-semibold tracking-tight">All products</h2>
-            <WithListContext
-                render={({ isPending, data }) => (
-                    !isPending && (
-                        <ul className="space-y-2">
-                            {data.map(product => (
-                                <li
-                                    key={product.id}
-                                    className="rounded-md border p-3 bg-background"
-                                >
-                                    <span className="font-medium">{product.name}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    )
-                )}
-            />
-            <WithListContext
-                render={({ isPending, total }) => (
-                    !isPending && (
-                        <p className="text-sm text-muted-foreground">{total} results</p>
-                    )
-                )}
-            />
-        </div>
-    </ListBase>
+  <ListBase>
+    <div className="space-y-6">
+      <h2 className="text-xl font-semibold tracking-tight">All products</h2>
+      <WithListContext
+        render={({ isPending, data }) =>
+          !isPending && (
+            <ul className="space-y-2">
+              {data.map((product) => (
+                <li
+                  key={product.id}
+                  className="rounded-md border p-3 bg-background"
+                >
+                  <span className="font-medium">{product.name}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      />
+      <WithListContext
+        render={({ isPending, total }) =>
+          !isPending && (
+            <p className="text-sm text-muted-foreground">{total} results</p>
+          )
+        }
+      />
+    </div>
+  </ListBase>
 );
 ```
 
@@ -827,28 +802,28 @@ The previous example leverages [`<WithListContext>`](https://marmelab.com/ra-cor
 If you don't need the `ListContext`, you can use [the `useListController` hook](https://marmelab.com/ra-core/uselistcontroller/), which does the same data fetching as `<ListBase>` but lets you render the content.
 
 ```tsx
-import { useListController } from '@/components/admin';
-import { Card, CardContent, Container, Stack, Typography } from '@mui/material';
+import { useListController } from "@/components/admin";
+import { Card, CardContent, Container, Stack, Typography } from "@mui/material";
 
 const ProductList = () => {
-    const { isPending, data, total } = useListController();
-    return (
-        <Container>
-            <Typography variant="h4">All products</Typography>
-                {!isPending && (
-                    <Stack spacing={1}>
-                        {data.map(product => (
-                            <Card key={product.id}>
-                                <CardContent>
-                                    <Typography>{product.name}</Typography>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </Stack>
-                )}
-            {!isPending && <Typography>{total} results</Typography>}
-        </Container>
-    );
+  const { isPending, data, total } = useListController();
+  return (
+    <Container>
+      <Typography variant="h4">All products</Typography>
+      {!isPending && (
+        <Stack spacing={1}>
+          {data.map((product) => (
+            <Card key={product.id}>
+              <CardContent>
+                <Typography>{product.name}</Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Stack>
+      )}
+      {!isPending && <Typography>{total} results</Typography>}
+    </Container>
+  );
 };
 ```
 
@@ -856,22 +831,22 @@ const ProductList = () => {
 
 ## Access Control
 
-If your `authProvider` implements [Access Control](https://marmelab.com/ra-core/permissions/#access-control), `<List>`  will only render if the user can access the resource with the "list" action.
+If your `authProvider` implements [Access Control](https://marmelab.com/ra-core/permissions/#access-control), `<List>` will only render if the user can access the resource with the "list" action.
 
 For instance, to render the `<PostList>` page below:
 
 ```tsx
-import { List, DataTable } from '@/components/admin';
+import { List, DataTable } from "@/components/admin";
 
 // Resource name is "posts"
 const PostList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="title" />
-            <DataTable.Col source="author" />
-            <DataTable.Col source="published_at" />
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="published_at" />
+    </DataTable>
+  </List>
 );
 ```
 

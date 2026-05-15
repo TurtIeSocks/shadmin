@@ -45,11 +45,7 @@ export const LoadingInput = ({
 
   return (
     <div
-      className={cn(
-        "grid gap-2",
-        fullWidth ? "w-full" : undefined,
-        className,
-      )}
+      className={cn("grid gap-2", fullWidth ? "w-full" : undefined, className)}
       role="group"
       data-slot="loading-input"
     >

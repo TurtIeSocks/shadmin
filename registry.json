@@ -1037,9 +1037,7 @@
       "type": "registry:block",
       "title": "MdxEditor",
       "description": "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadcn Admin Kit, powered by MDXEditor.",
-      "registryDependencies": [
-        "@shadcn-admin-kit/admin"
-      ],
+      "registryDependencies": ["@shadcn-admin-kit/admin"],
       "files": [
         {
           "path": "src/components/mdx-editor/index.ts",
@@ -1058,17 +1056,13 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": [
-        "@mdxeditor/editor"
-      ]
+      "dependencies": ["@mdxeditor/editor"]
     },
     {
       "name": "example-admin",
       "type": "registry:block",
       "title": "Example Admin built with Shadcn Admin Kit",
-      "registryDependencies": [
-        "@shadcn-admin-kit/admin"
-      ],
+      "registryDependencies": ["@shadcn-admin-kit/admin"],
       "files": [
         {
           "path": "src/examples/example-admin.tsx",

@@ -11,22 +11,18 @@ Default empty state rendered by [`<List>`](./List.md) when the data provider ret
 ```tsx
 import { List, Empty } from "@/components/admin";
 
-export const PostList = () => (
-  <List empty={<Empty />}>
-    {/* ... */}
-  </List>
-);
+export const PostList = () => <List empty={<Empty />}>{/* ... */}</List>;
 ```
 
 `<Empty>` introspects the current resource via `useResourceContext()` and `useResourceDefinition()`. When the resource defines a `create` route, an invitation message and a [`<CreateButton>`](./CreateButton.md) are displayed.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `resource` | Optional | `string` | From context | Override the resource name |
-| `hasCreate` | Optional | `boolean` | From resource definition | Force showing/hiding the create call-to-action |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the root element |
+| Prop        | Required | Type      | Default                  | Description                                         |
+| ----------- | -------- | --------- | ------------------------ | --------------------------------------------------- |
+| `resource`  | Optional | `string`  | From context             | Override the resource name                          |
+| `hasCreate` | Optional | `boolean` | From resource definition | Force showing/hiding the create call-to-action      |
+| `className` | Optional | `string`  | —                        | Extra Tailwind classes appended to the root element |
 
 ## `resource`
 

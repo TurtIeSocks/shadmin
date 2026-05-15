@@ -10,8 +10,9 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export interface PrevNextButtonsProps<RecordType extends RaRecord = RaRecord>
-  extends UsePrevNextControllerProps<RecordType> {
+export interface PrevNextButtonsProps<
+  RecordType extends RaRecord = RaRecord,
+> extends UsePrevNextControllerProps<RecordType> {
   className?: string;
 }
 
@@ -53,10 +54,7 @@ export const PrevNextButtons = <RecordType extends RaRecord = RaRecord>(
     return (
       <div
         role="navigation"
-        className={cn(
-          "inline-flex items-center gap-2 min-h-[34px]",
-          className,
-        )}
+        className={cn("inline-flex items-center gap-2 min-h-[34px]", className)}
       >
         <div className="h-1 w-24 animate-pulse rounded bg-muted" />
       </div>

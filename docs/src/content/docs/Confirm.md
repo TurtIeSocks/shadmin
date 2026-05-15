@@ -14,7 +14,12 @@ For example, here is how to use it in a custom delete button with a confirmation
 
 ```tsx
 import { useState } from "react";
-import { useDelete, useRecordContext, useResourceContext, useRedirect } from "ra-core";
+import {
+  useDelete,
+  useRecordContext,
+  useResourceContext,
+  useRedirect,
+} from "ra-core";
 import { Button } from "@/components/ui/button";
 import { Confirm } from "@/components/admin/confirm";
 
@@ -58,16 +63,16 @@ const DeleteButton = () => {
 
 ## Props
 
-| Prop           | Required | Type                       | Default             | Description                |
-|----------------|----------|----------------------------|---------------------|----------------------------|
-| `isOpen`       | Required | `boolean`                  | `false`             | Whether dialog is shown    |
-| `onClose`      | Required | `() => void`               | -                   | Close handler              |
-| `onConfirm`    | Required | `(e) => void`              | -                   | Confirm handler            |
-| `title`        | Required | `ReactNode`                | -                   | Title (i18n key or node)   |
-| `content`      | Optional | `ReactNode`                | -                   | Body content               |
-| `cancel`       | Optional | `string`                   | `ra.action.cancel`  | i18n key for cancel button |
-| `confirm`      | Optional | `string`                   | `ra.action.confirm` | i18n key for confirm button|
-| `confirmColor` | Optional | `"primary"` \| `"warning"` | `primary`           | Style variant              |
-| `ConfirmIcon`  | Optional | `ComponentType`            | CheckCircle         | Icon for confirm           |
-| `CancelIcon`   | Optional | `ComponentType`            | AlertCircle         | Icon for cancel            |
-| `loading`      | Optional | `boolean`                  | -                   | Disable buttons while true |
+| Prop           | Required | Type                       | Default             | Description                 |
+| -------------- | -------- | -------------------------- | ------------------- | --------------------------- |
+| `isOpen`       | Required | `boolean`                  | `false`             | Whether dialog is shown     |
+| `onClose`      | Required | `() => void`               | -                   | Close handler               |
+| `onConfirm`    | Required | `(e) => void`              | -                   | Confirm handler             |
+| `title`        | Required | `ReactNode`                | -                   | Title (i18n key or node)    |
+| `content`      | Optional | `ReactNode`                | -                   | Body content                |
+| `cancel`       | Optional | `string`                   | `ra.action.cancel`  | i18n key for cancel button  |
+| `confirm`      | Optional | `string`                   | `ra.action.confirm` | i18n key for confirm button |
+| `confirmColor` | Optional | `"primary"` \| `"warning"` | `primary`           | Style variant               |
+| `ConfirmIcon`  | Optional | `ComponentType`            | CheckCircle         | Icon for confirm            |
+| `CancelIcon`   | Optional | `ComponentType`            | AlertCircle         | Icon for cancel             |
+| `loading`      | Optional | `boolean`                  | -                   | Disable buttons while true  |

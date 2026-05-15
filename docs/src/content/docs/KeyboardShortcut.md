@@ -22,29 +22,29 @@ The component renders nothing when `keyboardShortcut` is not provided, making it
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `keyboardShortcut` | Optional | `string` | - | Shortcut string (e.g. `"mod+k"`, `"shift+ctrl+a>b"`). Omit to render nothing. |
-| `className` | Optional | `string` | - | Extra CSS class names applied to the wrapping element. |
+| Prop               | Required | Type     | Default | Description                                                                   |
+| ------------------ | -------- | -------- | ------- | ----------------------------------------------------------------------------- |
+| `keyboardShortcut` | Optional | `string` | -       | Shortcut string (e.g. `"mod+k"`, `"shift+ctrl+a>b"`). Omit to render nothing. |
+| `className`        | Optional | `string` | -       | Extra CSS class names applied to the wrapping element.                        |
 
 The component also forwards any additional `div` props (e.g. `id`, `role`, `aria-*`) to the wrapping element.
 
 ## Key Mapping
 
-| Key | Symbol |
-|-----|--------|
-| `mod` / `meta` | `⌘` |
-| `ctrl` | `⌃` |
-| `shift` | `⇧` |
-| `alt` | `⌥` |
-| `enter` | `⏎` |
-| `esc` / `escape` | `⎋` |
-| `backspace` | `⌫` |
-| `delete` | `⌦` |
-| `tab` | `⇥` |
-| `space` | `␣` |
+| Key                              | Symbol |
+| -------------------------------- | ------ |
+| `mod` / `meta`                   | `⌘`    |
+| `ctrl`                           | `⌃`    |
+| `shift`                          | `⇧`    |
+| `alt`                            | `⌥`    |
+| `enter`                          | `⏎`    |
+| `esc` / `escape`                 | `⎋`    |
+| `backspace`                      | `⌫`    |
+| `delete`                         | `⌦`    |
+| `tab`                            | `⇥`    |
+| `space`                          | `␣`    |
 | `up` / `down` / `left` / `right` | `↑↓←→` |
-| `home` / `end` | `↖↘` |
-| `pageup` / `pagedown` | `⇞⇟` |
+| `home` / `end`                   | `↖↘`   |
+| `pageup` / `pagedown`            | `⇞⇟`   |
 
 Any other keys are displayed in uppercase.

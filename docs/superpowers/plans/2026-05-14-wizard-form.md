@@ -14,19 +14,20 @@
 
 ## File Structure
 
-| File | Responsibility |
-| --- | --- |
-| `src/components/admin/wizard-form.tsx` | `<WizardForm>`, `<WizardForm.Step>`, `WizardContext`, internal `WizardProgress` and `WizardToolbar`. One file because the pieces are tightly coupled and not exported individually. |
-| `src/components/admin/wizard-form.spec.tsx` | Component tests that import stories. |
-| `src/stories/wizard-form.stories.tsx` | Storybook + test fixtures (Basic, MultipleSteps, WithValidation, OptionalStep, CustomToolbar, InsideCreate, ProgressDots, ProgressNone, SubmissionError). |
-| `docs/src/content/docs/WizardForm.md` | Astro docs page. |
-| `src/components/admin/index.ts` | Add `export * from "./wizard-form";`. |
+| File                                        | Responsibility                                                                                                                                                                      |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/components/admin/wizard-form.tsx`      | `<WizardForm>`, `<WizardForm.Step>`, `WizardContext`, internal `WizardProgress` and `WizardToolbar`. One file because the pieces are tightly coupled and not exported individually. |
+| `src/components/admin/wizard-form.spec.tsx` | Component tests that import stories.                                                                                                                                                |
+| `src/stories/wizard-form.stories.tsx`       | Storybook + test fixtures (Basic, MultipleSteps, WithValidation, OptionalStep, CustomToolbar, InsideCreate, ProgressDots, ProgressNone, SubmissionError).                           |
+| `docs/src/content/docs/WizardForm.md`       | Astro docs page.                                                                                                                                                                    |
+| `src/components/admin/index.ts`             | Add `export * from "./wizard-form";`.                                                                                                                                               |
 
 ---
 
 ## Task 1: Scaffold component + first story + first test (renders empty dialog)
 
 **Files:**
+
 - Create: `src/components/admin/wizard-form.tsx`
 - Create: `src/components/admin/wizard-form.spec.tsx`
 - Create: `src/stories/wizard-form.stories.tsx`
@@ -44,9 +45,7 @@ import { Basic } from "@/stories/wizard-form.stories";
 describe("<WizardForm />", () => {
   it("should render the dialog when isOpen is true", async () => {
     const screen = render(<Basic theme="system" />);
-    await expect
-      .element(screen.getByRole("dialog"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByRole("dialog")).toBeInTheDocument();
   });
 
   it("should render the title in the dialog header", async () => {
@@ -156,8 +155,7 @@ import { cn } from "@/lib/utils";
 
 export type WizardProgressMode = "steps" | "dots" | "none";
 
-export interface WizardFormProps
-  extends Omit<FormProps, "children" | "id"> {
+export interface WizardFormProps extends Omit<FormProps, "children" | "id"> {
   isOpen: boolean;
   onClose: () => void;
   title: ReactNode;
@@ -226,9 +224,7 @@ export function WizardForm(props: WizardFormProps) {
 
 WizardForm.Step = function WizardFormStep(props: WizardStepProps) {
   const { className, children } = props;
-  return (
-    <div className={cn("flex flex-col gap-4", className)}>{children}</div>
-  );
+  return <div className={cn("flex flex-col gap-4", className)}>{children}</div>;
 };
 
 WizardForm.Step.displayName = "WizardForm.Step";
@@ -260,6 +256,7 @@ git commit -m "feat(wizard-form): scaffold component with single-step rendering"
 ## Task 2: Multiple steps, only first visible, all mounted
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx`
 - Modify: `src/stories/wizard-form.stories.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
@@ -326,7 +323,7 @@ it("should mark inactive step panels with aria-hidden", async () => {
 
 it("should keep inputs from non-active steps registered in the DOM", async () => {
   const { container } = render(<MultipleSteps theme="system" />);
-  const inputs = container.querySelectorAll('input[name]');
+  const inputs = container.querySelectorAll("input[name]");
   // 3 source inputs: name, price, notes
   expect(inputs.length).toBeGreaterThanOrEqual(3);
 });
@@ -349,7 +346,13 @@ In `src/components/admin/wizard-form.tsx`, add the FormGroupContextProvider impo
 "use client";
 
 import * as React from "react";
-import { Children, cloneElement, isValidElement, useMemo, useState } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useMemo,
+  useState,
+} from "react";
 import type { ReactElement, ReactNode } from "react";
 import { Form, FormGroupContextProvider } from "ra-core";
 import type { FormProps } from "ra-core";
@@ -365,8 +368,7 @@ import { cn } from "@/lib/utils";
 
 export type WizardProgressMode = "steps" | "dots" | "none";
 
-export interface WizardFormProps
-  extends Omit<FormProps, "children" | "id"> {
+export interface WizardFormProps extends Omit<FormProps, "children" | "id"> {
   isOpen: boolean;
   onClose: () => void;
   title: ReactNode;
@@ -439,16 +441,13 @@ export function WizardForm(props: WizardFormProps) {
 }
 
 WizardForm.Step = function WizardFormStep(props: WizardStepProps) {
-  const {
-    className,
-    children,
-    __stepKey,
-    __hidden,
-  } = props;
+  const { className, children, __stepKey, __hidden } = props;
 
   // Defensive: outside <WizardForm>, render naked.
   if (!__stepKey) {
-    return <div className={cn("flex flex-col gap-4", className)}>{children}</div>;
+    return (
+      <div className={cn("flex flex-col gap-4", className)}>{children}</div>
+    );
   }
 
   return (
@@ -495,6 +494,7 @@ git commit -m "feat(wizard-form): mount all steps, hide inactive via display:non
 ## Task 3: WizardContext + Next/Back navigation toolbar
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
 
@@ -593,8 +593,7 @@ import { cn } from "@/lib/utils";
 
 export type WizardProgressMode = "steps" | "dots" | "none";
 
-export interface WizardFormProps
-  extends Omit<FormProps, "children" | "id"> {
+export interface WizardFormProps extends Omit<FormProps, "children" | "id"> {
   isOpen: boolean;
   onClose: () => void;
   title: ReactNode;
@@ -694,7 +693,7 @@ export function WizardForm(props: WizardFormProps) {
                 });
               })}
             </div>
-            {toolbar === false ? null : toolbar ?? <WizardToolbar />}
+            {toolbar === false ? null : (toolbar ?? <WizardToolbar />)}
           </WizardContext.Provider>
         </Form>
       </DialogContent>
@@ -705,7 +704,9 @@ export function WizardForm(props: WizardFormProps) {
 WizardForm.Step = function WizardFormStep(props: WizardStepProps) {
   const { className, children, __stepKey, __hidden } = props;
   if (!__stepKey) {
-    return <div className={cn("flex flex-col gap-4", className)}>{children}</div>;
+    return (
+      <div className={cn("flex flex-col gap-4", className)}>{children}</div>
+    );
   }
   return (
     <FormGroupContextProvider name={__stepKey}>
@@ -777,6 +778,7 @@ git commit -m "feat(wizard-form): Next/Back navigation with WizardContext"
 ## Task 4: Per-step validation gates Next
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx`
 - Modify: `src/stories/wizard-form.stories.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
@@ -822,7 +824,11 @@ Object.assign(WithValidation, storyArgs);
 Add to `src/components/admin/wizard-form.spec.tsx`:
 
 ```tsx
-import { Basic, MultipleSteps, WithValidation } from "@/stories/wizard-form.stories";
+import {
+  Basic,
+  MultipleSteps,
+  WithValidation,
+} from "@/stories/wizard-form.stories";
 // (update existing import)
 
 it("should not advance to next step when current step has invalid required field", async () => {
@@ -879,9 +885,10 @@ export function WizardToolbar() {
     // (over-validates, but correct). If ra-core exposes the step's field names via
     // useFormGroup, prefer trigger(fieldNames). See spec § "Field-name discovery".
     const fieldNames = getFieldNamesForStep(form, stepKey);
-    const isValid = fieldNames.length > 0
-      ? await form.trigger(fieldNames)
-      : await form.trigger();
+    const isValid =
+      fieldNames.length > 0
+        ? await form.trigger(fieldNames)
+        : await form.trigger();
     if (isValid) goNext();
   };
 
@@ -926,9 +933,12 @@ function getFieldNamesForStep(
   });
   // Intersect with react-hook-form's registered fields to avoid stray DOM nodes.
   // form._fields is the internal field registry; cast through unknown since it's not in public types.
-  const registered = (form as unknown as {
-    _fields?: Record<string, unknown>;
-  })._fields ?? {};
+  const registered =
+    (
+      form as unknown as {
+        _fields?: Record<string, unknown>;
+      }
+    )._fields ?? {};
   return Array.from(names).filter((n) => n in registered);
 }
 ```
@@ -959,6 +969,7 @@ git commit -m "feat(wizard-form): gate Next on per-step validation"
 ## Task 5: Optional steps skip the validation gate
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx`
 - Modify: `src/stories/wizard-form.stories.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
@@ -1060,8 +1071,7 @@ const ctx: WizardContextValue = {
   isLast,
   goNext: () => setCurrentStep((i) => Math.min(i + 1, totalSteps - 1)),
   goBack: () => setCurrentStep((i) => Math.max(i - 1, 0)),
-  goTo: (index) =>
-    setCurrentStep(Math.max(0, Math.min(index, totalSteps - 1))),
+  goTo: (index) => setCurrentStep(Math.max(0, Math.min(index, totalSteps - 1))),
   stepFlags,
 };
 ```
@@ -1111,6 +1121,7 @@ git commit -m "feat(wizard-form): allow optional steps to skip validation"
 ## Task 6: Save calls onSubmit and the dialog closes
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx`
 - Modify: `src/stories/wizard-form.stories.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
@@ -1215,6 +1226,7 @@ git commit -m "test(wizard-form): verify Save submits and closes dialog"
 ## Task 7: Submission errors jump to first errored step
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx`
 - Modify: `src/stories/wizard-form.stories.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
@@ -1313,7 +1325,7 @@ return (
               });
             })}
           </div>
-          {toolbar === false ? null : toolbar ?? <WizardToolbar />}
+          {toolbar === false ? null : (toolbar ?? <WizardToolbar />)}
         </WizardContext.Provider>
       </Form>
     </DialogContent>
@@ -1333,10 +1345,7 @@ function WizardErrorJumper() {
   const form = useFormContext();
   const { goTo, totalSteps } = useWizard();
   const errors = form.formState.errors;
-  const errorFieldNames = useMemo(
-    () => Object.keys(errors ?? {}),
-    [errors],
-  );
+  const errorFieldNames = useMemo(() => Object.keys(errors ?? {}), [errors]);
 
   React.useEffect(() => {
     if (errorFieldNames.length === 0) return;
@@ -1380,6 +1389,7 @@ git commit -m "feat(wizard-form): jump to first errored step on submit failure"
 ## Task 8: Progress indicator
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx`
 - Modify: `src/stories/wizard-form.stories.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
@@ -1391,15 +1401,9 @@ Add to `src/components/admin/wizard-form.spec.tsx`:
 ```tsx
 it("should render the step labels in the progress indicator by default", async () => {
   const screen = render(<MultipleSteps theme="system" />);
-  await expect
-    .element(screen.getByText("Identity"))
-    .toBeInTheDocument();
-  await expect
-    .element(screen.getByText("Pricing"))
-    .toBeInTheDocument();
-  await expect
-    .element(screen.getByText("Review"))
-    .toBeInTheDocument();
+  await expect.element(screen.getByText("Identity")).toBeInTheDocument();
+  await expect.element(screen.getByText("Pricing")).toBeInTheDocument();
+  await expect.element(screen.getByText("Review")).toBeInTheDocument();
 });
 
 it("should mark the active progress step with aria-current", async () => {
@@ -1454,9 +1458,7 @@ function WizardProgress({
       {labels.map((label, index) => {
         const active = index === currentStep;
         const text =
-          typeof label === "string"
-            ? translate(label, { _: label })
-            : label;
+          typeof label === "string" ? translate(label, { _: label }) : label;
         return (
           <li
             key={index}
@@ -1626,8 +1628,7 @@ it("should render dot indicators when progress='dots'", async () => {
   const listItems = container.querySelectorAll("ol li");
   expect(listItems.length).toBe(2);
   // No numbered badges in dots mode
-  expect(container.querySelector("ol li span:not([aria-hidden])"))
-    .toBeNull();
+  expect(container.querySelector("ol li span:not([aria-hidden])")).toBeNull();
 });
 
 it("should not render a progress indicator when progress='none'", async () => {
@@ -1656,6 +1657,7 @@ git commit -m "feat(wizard-form): progress indicator with steps/dots/none modes"
 ## Task 9: Custom toolbar slot + cancel resets the form
 
 **Files:**
+
 - Modify: `src/components/admin/wizard-form.tsx` (export `WizardToolbar` and helpers)
 - Modify: `src/stories/wizard-form.stories.tsx`
 - Modify: `src/components/admin/wizard-form.spec.tsx`
@@ -1758,6 +1760,7 @@ git commit -m "test(wizard-form): custom toolbar slot accepts user-provided node
 ## Task 10: Export from index + lint pass
 
 **Files:**
+
 - Modify: `src/components/admin/index.ts`
 
 - [ ] **Step 1: Add the export**
@@ -1800,6 +1803,7 @@ git commit -m "feat(wizard-form): export from public component index"
 ## Task 11: Documentation page
 
 **Files:**
+
 - Create: `docs/src/content/docs/WizardForm.md`
 
 - [ ] **Step 1: Create the doc**
@@ -1855,31 +1859,31 @@ Inside a `<Create>` or `<Edit>` view, the `onSubmit` prop is optional — the wi
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| `isOpen` | Required | `boolean` | - | Controls dialog visibility. |
-| `onClose` | Required | `() => void` | - | Called when the dialog requests to close. |
-| `title` | Required | `ReactNode` | - | Dialog title. |
-| `description` | Optional | `ReactNode` | - | Dialog description rendered under the title. |
-| `children` | Required | `ReactNode` | - | One or more `<WizardForm.Step>` elements. |
-| `className` | Optional | `string` | - | Forwarded to `DialogContent`. |
-| `progress` | Optional | `"steps" \| "dots" \| "none"` | `"steps"` | Visual progress indicator style. |
-| `toolbar` | Optional | `ReactNode \| false` | `<WizardToolbar />` | Custom toolbar. `false` hides it. |
-| `defaultValues` | Optional | `object \| function` | - | Default values for the form (forwarded to `<Form>`). |
-| `onSubmit` | Optional | `function` | - | Submit handler. Required outside `<Create>`/`<Edit>`. |
-| `validate` | Optional | `function` | - | Form-level validation function. |
-| `record` | Optional | `object` | - | Initial record to populate the form. |
+| Prop            | Required | Type                          | Default             | Description                                           |
+| --------------- | -------- | ----------------------------- | ------------------- | ----------------------------------------------------- |
+| `isOpen`        | Required | `boolean`                     | -                   | Controls dialog visibility.                           |
+| `onClose`       | Required | `() => void`                  | -                   | Called when the dialog requests to close.             |
+| `title`         | Required | `ReactNode`                   | -                   | Dialog title.                                         |
+| `description`   | Optional | `ReactNode`                   | -                   | Dialog description rendered under the title.          |
+| `children`      | Required | `ReactNode`                   | -                   | One or more `<WizardForm.Step>` elements.             |
+| `className`     | Optional | `string`                      | -                   | Forwarded to `DialogContent`.                         |
+| `progress`      | Optional | `"steps" \| "dots" \| "none"` | `"steps"`           | Visual progress indicator style.                      |
+| `toolbar`       | Optional | `ReactNode \| false`          | `<WizardToolbar />` | Custom toolbar. `false` hides it.                     |
+| `defaultValues` | Optional | `object \| function`          | -                   | Default values for the form (forwarded to `<Form>`).  |
+| `onSubmit`      | Optional | `function`                    | -                   | Submit handler. Required outside `<Create>`/`<Edit>`. |
+| `validate`      | Optional | `function`                    | -                   | Form-level validation function.                       |
+| `record`        | Optional | `object`                      | -                   | Initial record to populate the form.                  |
 
 ## `<WizardForm.Step>` Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| `label` | Required | `string \| ReactElement` | - | Step label shown in the progress indicator. |
-| `description` | Optional | `string \| ReactElement` | - | Description rendered inside the step content. |
-| `optional` | Optional | `boolean` | `false` | Skip the validation gate when advancing past this step. |
-| `validateOnNext` | Optional | `boolean` | `true` | Validate the step's fields when Next is clicked. |
-| `className` | Optional | `string` | - | Class applied to the step's content container. |
-| `children` | Optional | `ReactNode` | - | Any admin inputs. |
+| Prop             | Required | Type                     | Default | Description                                             |
+| ---------------- | -------- | ------------------------ | ------- | ------------------------------------------------------- |
+| `label`          | Required | `string \| ReactElement` | -       | Step label shown in the progress indicator.             |
+| `description`    | Optional | `string \| ReactElement` | -       | Description rendered inside the step content.           |
+| `optional`       | Optional | `boolean`                | `false` | Skip the validation gate when advancing past this step. |
+| `validateOnNext` | Optional | `boolean`                | `true`  | Validate the step's fields when Next is clicked.        |
+| `className`      | Optional | `string`                 | -       | Class applied to the step's content container.          |
+| `children`       | Optional | `ReactNode`              | -       | Any admin inputs.                                       |
 
 ## `progress`
 

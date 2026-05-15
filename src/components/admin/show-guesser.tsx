@@ -34,13 +34,7 @@ import { ReferenceArrayField } from "@/components/admin/reference-array-field";
  * export const PostShow = () => <ShowGuesser enableLog />;
  */
 export const ShowGuesser = (props: ShowGuesserProps) => {
-  const {
-    disableAuthentication,
-    id,
-    queryOptions,
-    resource,
-    ...rest
-  } = props;
+  const { disableAuthentication, id, queryOptions, resource, ...rest } = props;
   return (
     <ShowBase
       disableAuthentication={disableAuthentication}
@@ -53,7 +47,9 @@ export const ShowGuesser = (props: ShowGuesserProps) => {
   );
 };
 
-const ShowViewGuesser = (props: Omit<ShowGuesserProps, ShowBaseControllerProps>) => {
+const ShowViewGuesser = (
+  props: Omit<ShowGuesserProps, ShowBaseControllerProps>,
+) => {
   const resource = useResourceContext();
 
   if (!resource) {

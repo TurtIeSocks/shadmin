@@ -22,7 +22,13 @@ For instance, if an `author` has many `books`, and each book resource exposes an
 `<ReferenceManyField>` can render the titles of all the books by a given author.
 
 ```jsx {9-14}
-import { Show, ReferenceManyField, DataTable, DateField, RecordField } from '@/components/admin';
+import {
+  Show,
+  ReferenceManyField,
+  DataTable,
+  DateField,
+  RecordField,
+} from "@/components/admin";
 
 const AuthorShow = () => (
   <Show>
@@ -47,46 +53,52 @@ const AuthorShow = () => (
 You can also use `<ReferenceManyField>` in a list, e.g. to display the authors of the comments related to each post in a list by matching `post.id` to `comment.post_id`:
 
 ```jsx {10-14}
-import { List, DataTable, BadgeField, ReferenceManyField, SingleFieldList } from '@/components/admin';
+import {
+  List,
+  DataTable,
+  BadgeField,
+  ReferenceManyField,
+  SingleFieldList,
+} from "@/components/admin";
 
 export const PostList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="title" />
-            <DataTable.Col label="Comments by">
-                <ReferenceManyField reference="comments" target="post_id">
-                    <SingleFieldList>
-                        <BadgeField source="author.name" />
-                    </SingleFieldList>
-                </ReferenceManyField>
-            </DataTable.Col>
-            <DataTable.Col>
-                <EditButton />
-            </DataTable.Col>
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col label="Comments by">
+        <ReferenceManyField reference="comments" target="post_id">
+          <SingleFieldList>
+            <BadgeField source="author.name" />
+          </SingleFieldList>
+        </ReferenceManyField>
+      </DataTable.Col>
+      <DataTable.Col>
+        <EditButton />
+      </DataTable.Col>
+    </DataTable>
+  </List>
 );
 ```
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `reference` | Required | `string` | - | Target resource |
-| `target` | Required | `string` | - | Foreign key in target referencing current record id |
-| `children` | Optional | `ReactNode` | - | List display components |
-| `debounce` | Optional | `number` | 500 | Debounce time in ms for filter changes |
-| `empty` | Optional | `ReactNode` | - | Placeholder when list empty |
-| `error` | Optional | `ReactNode` | - | Error element (set `false` to hide) |
-| `filter` | Optional | `object` | - | Permanent filters |
-| `loading` | Optional | `ReactNode` | - | Loading element (set `false` to hide) |
-| `page` | Optional | `number` | 1 | Initial page |
-| `pagination` | Optional | `ReactNode` | - | Pagination component |
-| `perPage` | Optional | `number` | - | Page size |
-| `render` | Optional | `(listCtx)=>ReactNode` | - | Custom pre-children renderer |
-| `sort` | Optional | `{ field: string; order: 'ASC' \| 'DESC' }` | - | Sort order |
-| `storeKey` | Optional | `string` | - | The key to use to store the records selection state |
+| Prop         | Required | Type                                        | Default | Description                                         |
+| ------------ | -------- | ------------------------------------------- | ------- | --------------------------------------------------- |
+| `reference`  | Required | `string`                                    | -       | Target resource                                     |
+| `target`     | Required | `string`                                    | -       | Foreign key in target referencing current record id |
+| `children`   | Optional | `ReactNode`                                 | -       | List display components                             |
+| `debounce`   | Optional | `number`                                    | 500     | Debounce time in ms for filter changes              |
+| `empty`      | Optional | `ReactNode`                                 | -       | Placeholder when list empty                         |
+| `error`      | Optional | `ReactNode`                                 | -       | Error element (set `false` to hide)                 |
+| `filter`     | Optional | `object`                                    | -       | Permanent filters                                   |
+| `loading`    | Optional | `ReactNode`                                 | -       | Loading element (set `false` to hide)               |
+| `page`       | Optional | `number`                                    | 1       | Initial page                                        |
+| `pagination` | Optional | `ReactNode`                                 | -       | Pagination component                                |
+| `perPage`    | Optional | `number`                                    | -       | Page size                                           |
+| `render`     | Optional | `(listCtx)=>ReactNode`                      | -       | Custom pre-children renderer                        |
+| `sort`       | Optional | `{ field: string; order: 'ASC' \| 'DESC' }` | -       | Sort order                                          |
+| `storeKey`   | Optional | `string`                                    | -       | The key to use to store the records selection state |
 
 ## Tips
 

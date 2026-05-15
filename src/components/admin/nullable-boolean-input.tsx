@@ -1,10 +1,11 @@
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext, useTranslate } from "ra-core";
 import {
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  useTranslate,
+} from "ra-core";
+import { FormError, FormField, FormLabel } from "@/components/admin/form";
 import {
   Select,
   SelectContent,
@@ -129,7 +130,7 @@ export const NullableBooleanInput = (props: NullableBooleanInputProps) => {
         <SelectTrigger className="w-full transition-all hover:bg-accent">
           <SelectValue />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent position="popper">
           <SelectItem value={NULL_OPTION}>
             {nullLabel
               ? translate(nullLabel, { _: nullLabel })

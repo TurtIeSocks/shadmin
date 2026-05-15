@@ -37,8 +37,8 @@ You can override the filter source and placeholder for use cases other than full
 
 `<FilterLiveSearch>` accepts the same props as [`<SearchInput>`](./SearchInput.md), and additionally:
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Optional | `string` | `q` | Name of the filter field bound to the input |
-| `placeholder` | Optional | `string` | "Search" | Placeholder text |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the wrapping input |
+| Prop          | Required | Type     | Default  | Description                                           |
+| ------------- | -------- | -------- | -------- | ----------------------------------------------------- |
+| `source`      | Optional | `string` | `q`      | Name of the filter field bound to the input           |
+| `placeholder` | Optional | `string` | "Search" | Placeholder text                                      |
+| `className`   | Optional | `string` | -        | Extra Tailwind classes appended to the wrapping input |

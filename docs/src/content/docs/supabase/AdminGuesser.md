@@ -34,14 +34,14 @@ export const App = () => (
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `instanceUrl` | `string` | **Required.** Your Supabase project URL |
-| `apiKey` | `string` | **Required.** Anon JWT or publishable key |
-| `dataProvider` | `DataProvider` | Override the default `supabaseDataProvider` |
-| `authProvider` | `AuthProvider` | Override the default `supabaseAuthProvider` |
-| `i18nProvider` | `I18nProvider` | Override the default English+Supabase polyglot provider |
-| `loginPage` | `ComponentType` | Override the default `<SupabaseLoginPage>` |
-| `children` | `ReactNode` | Explicit `<Resource>` elements (suppresses auto-detection) |
+| Prop           | Type            | Description                                                |
+| -------------- | --------------- | ---------------------------------------------------------- |
+| `instanceUrl`  | `string`        | **Required.** Your Supabase project URL                    |
+| `apiKey`       | `string`        | **Required.** Anon JWT or publishable key                  |
+| `dataProvider` | `DataProvider`  | Override the default `supabaseDataProvider`                |
+| `authProvider` | `AuthProvider`  | Override the default `supabaseAuthProvider`                |
+| `i18nProvider` | `I18nProvider`  | Override the default English+Supabase polyglot provider    |
+| `loginPage`    | `ComponentType` | Override the default `<SupabaseLoginPage>`                 |
+| `children`     | `ReactNode`     | Explicit `<Resource>` elements (suppresses auto-detection) |
 
 All other props from `<Admin>` are also accepted.

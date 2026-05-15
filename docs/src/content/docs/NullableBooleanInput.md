@@ -7,9 +7,9 @@ Dropdown select input for editing a boolean value that can also be `null`.
 ## Usage
 
 ```tsx
-import { NullableBooleanInput } from '@/components/admin';
+import { NullableBooleanInput } from "@/components/admin";
 
-<NullableBooleanInput source="is_published" />
+<NullableBooleanInput source="is_published" />;
 ```
 
 The select shows three options: a blank value (mapped to `null`), "Yes" (mapped to `true`), and "No" (mapped to `false`). The labels can be customized via the `nullLabel`, `trueLabel`, and `falseLabel` props.
@@ -18,20 +18,20 @@ The expected value for the form state is `null`, `true`, or `false`.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name |
-| `className` | Optional | `string` | - | Wrapper classes |
-| `defaultValue` | Optional | `boolean` &#124; `null` | - | Initial value |
-| `disabled` | Optional | `boolean` | - | Disable input |
-| `falseLabel` | Optional | `string` | `ra.boolean.false` | Translation key (or literal) for the false option |
-| `format` | Optional | `function` | - | Callback to convert the value from the form state into the string used by the select. |
-| `helperText` | Optional | `ReactNode` | - | Help text |
-| `label` | Optional | `string` &#124; `false` | Inferred | Custom / hide label |
-| `nullLabel` | Optional | `string` | `ra.boolean.null` | Translation key (or literal) for the null option |
-| `parse` | Optional | `function` | - | Callback to convert the string selection back into the boolean (or null) stored in the form state. |
-| `trueLabel` | Optional | `string` | `ra.boolean.true` | Translation key (or literal) for the true option |
-| `validate` | Optional | `Validator` &#124; `Validator[]` | - | Validation |
+| Prop           | Required | Type                             | Default            | Description                                                                                        |
+| -------------- | -------- | -------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------- |
+| `source`       | Required | `string`                         | -                  | Field name                                                                                         |
+| `className`    | Optional | `string`                         | -                  | Wrapper classes                                                                                    |
+| `defaultValue` | Optional | `boolean` &#124; `null`          | -                  | Initial value                                                                                      |
+| `disabled`     | Optional | `boolean`                        | -                  | Disable input                                                                                      |
+| `falseLabel`   | Optional | `string`                         | `ra.boolean.false` | Translation key (or literal) for the false option                                                  |
+| `format`       | Optional | `function`                       | -                  | Callback to convert the value from the form state into the string used by the select.              |
+| `helperText`   | Optional | `ReactNode`                      | -                  | Help text                                                                                          |
+| `label`        | Optional | `string` &#124; `false`          | Inferred           | Custom / hide label                                                                                |
+| `nullLabel`    | Optional | `string`                         | `ra.boolean.null`  | Translation key (or literal) for the null option                                                   |
+| `parse`        | Optional | `function`                       | -                  | Callback to convert the string selection back into the boolean (or null) stored in the form state. |
+| `trueLabel`    | Optional | `string`                         | `ra.boolean.true`  | Translation key (or literal) for the true option                                                   |
+| `validate`     | Optional | `Validator` &#124; `Validator[]` | -                  | Validation                                                                                         |
 
 ## `nullLabel`, `trueLabel`, `falseLabel`
 

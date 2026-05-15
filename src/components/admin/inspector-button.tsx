@@ -74,8 +74,10 @@ export const InspectorButton = forwardRef<
 
 InspectorButton.displayName = "InspectorButton";
 
-export interface InspectorButtonProps
-  extends Omit<ComponentProps<typeof Button>, "children"> {
+export interface InspectorButtonProps extends Omit<
+  ComponentProps<typeof Button>,
+  "children"
+> {
   /** Translation key for the tooltip and aria-label. */
   label?: string;
 }

@@ -44,10 +44,7 @@ const Wrapper = ({
 }: React.PropsWithChildren<{ authProvider?: AuthProvider }>) => (
   <MemoryRouter>
     <ThemeProvider>
-      <CoreAdminContext
-        authProvider={authProvider}
-        i18nProvider={i18nProvider}
-      >
+      <CoreAdminContext authProvider={authProvider} i18nProvider={i18nProvider}>
         {children}
       </CoreAdminContext>
     </ThemeProvider>

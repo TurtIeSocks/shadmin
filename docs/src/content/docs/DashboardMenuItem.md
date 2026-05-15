@@ -33,7 +33,7 @@ const CustomMenu = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the underlying menu button |
-| `onClick` | Optional | `() => void` | — | Invoked after navigation; the default sidebar uses it to close the mobile drawer |
+| Prop        | Required | Type         | Default | Description                                                                      |
+| ----------- | -------- | ------------ | ------- | -------------------------------------------------------------------------------- |
+| `className` | Optional | `string`     | —       | Extra Tailwind classes appended to the underlying menu button                    |
+| `onClick`   | Optional | `() => void` | —       | Invoked after navigation; the default sidebar uses it to close the mobile drawer |

@@ -23,11 +23,11 @@ The component returns `null` when the user does not have `list` access (checked 
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `name` | Required | `string` | — | Resource name registered via `<Resource name="…">` |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the menu button |
-| `onClick` | Optional | `() => void` | — | Invoked after navigation; the default sidebar uses it to close the mobile drawer |
+| Prop        | Required | Type         | Default | Description                                                                      |
+| ----------- | -------- | ------------ | ------- | -------------------------------------------------------------------------------- |
+| `name`      | Required | `string`     | —       | Resource name registered via `<Resource name="…">`                               |
+| `className` | Optional | `string`     | —       | Extra Tailwind classes appended to the menu button                               |
+| `onClick`   | Optional | `() => void` | —       | Invoked after navigation; the default sidebar uses it to close the mobile drawer |
 
 ## `name`
 

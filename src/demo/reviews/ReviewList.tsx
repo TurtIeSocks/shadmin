@@ -132,10 +132,7 @@ export const ReviewList = () => {
                 </h3>
               </SidebarHeader>
               <SidebarContent className="px-4 pt-1 pb-4">
-                <ReviewEdit
-                  id={match.params.id || 0}
-                  onCancel={handleClose}
-                />
+                <ReviewEdit id={match.params.id || 0} onCancel={handleClose} />
               </SidebarContent>
             </>
           )}

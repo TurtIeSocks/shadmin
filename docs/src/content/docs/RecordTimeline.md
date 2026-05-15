@@ -1,0 +1,64 @@
+---
+title: "RecordTimeline"
+---
+
+`<RecordTimeline>` renders a vertical activity feed for a record — creates, edits, comments, state transitions. Two data sources: an explicit `entries` prop, or `reference` + `target` props that read from an audit-log resource via ra-core's `<ReferenceManyFieldBase>`.
+
+## Usage with audit-log reference
+
+```tsx
+import { Show, SimpleShowLayout, TextField, RecordTimeline } from "@/components/admin";
+import { PlusIcon, EditIcon, TrashIcon } from "lucide-react";
+
+const ProductShow = () => (
+  <Show>
+    <SimpleShowLayout>
+      <TextField source="name" />
+      <RecordTimeline
+        reference="audit_logs"
+        target="record_id"
+        sort={{ field: "created_at", order: "DESC" }}
+        messageSource="message"
+        timestampSource="created_at"
+        userSource="user_name"
+        iconSource="event_type"
+        iconMap={{
+          created: PlusIcon,
+          updated: EditIcon,
+          deleted: TrashIcon,
+        }}
+      />
+    </SimpleShowLayout>
+  </Show>
+);
+```
+
+## Usage with explicit entries
+
+```tsx
+<RecordTimeline
+  entries={[
+    { id: 1, message: "Created", timestamp: "2026-05-15T10:00Z", user: "alice" },
+    { id: 2, message: "Updated price", timestamp: "2026-05-15T11:00Z", user: "bob" },
+  ]}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `entries` | `TimelineEntry[]` | — | Explicit data. Overrides reference data source when present. |
+| `reference` | `string` | — | Audit-log resource. Required unless `entries` is set. |
+| `target` | `string` | — | Foreign-key field linking entries to the parent record. |
+| `sort` | `{ field; order }` | `{ created_at, DESC }` | |
+| `messageSource` | `string` | `"message"` | Field with the event description. |
+| `timestampSource` | `string` | `"created_at"` | Field with the ISO timestamp. |
+| `userSource` | `string` | — | Field with the actor's display name. |
+| `iconSource` | `string` | — | Field that maps to an icon via `iconMap`. |
+| `iconMap` | `Record<string, ComponentType>` | `{}` | Mapping event-type → icon component. |
+| `emptyLabel` | `string` | translated `No activity yet` | Empty state. |
+
+## i18n
+
+- `ra.record_timeline.empty` — empty-state label.

@@ -10,7 +10,7 @@ export default {
 const record = {
   id: 1,
   title: "Hello world",
-  body: "<p>Hello <strong>world</strong>! Visit <a href=\"https://example.com\">our site</a>.</p>",
+  body: '<p>Hello <strong>world</strong>! Visit <a href="https://example.com">our site</a>.</p>',
   empty: "",
   malicious:
     "<p>Safe</p><img src=x onerror=\"alert('xss')\"><script>alert('xss')</script>",

@@ -12,21 +12,21 @@ Here is an example of a Post show page showing the list of tags for the current 
 
 ```tsx {13}
 import {
-    Show,
-    TextField,
-    ReferenceArrayField,
-    SingleFieldList
-} from '@/components/admin';
+  Show,
+  TextField,
+  ReferenceArrayField,
+  SingleFieldList,
+} from "@/components/admin";
 
 const PostShow = () => (
-    <Show>
-        <div className="flex flex-col gap-4">
-            <TextField source="title" />
-            <ReferenceArrayField label="Tags" reference="tags" source="tag_ids">
-                <SingleFieldList />
-            </ReferenceArrayField>
-        </div>
-    </Show>
+  <Show>
+    <div className="flex flex-col gap-4">
+      <TextField source="title" />
+      <ReferenceArrayField label="Tags" reference="tags" source="tag_ids">
+        <SingleFieldList />
+      </ReferenceArrayField>
+    </div>
+  </Show>
 );
 ```
 
@@ -44,8 +44,8 @@ You can customize the rendering by providing a `children` or `render` prop:
 
 ## Props
 
-| Prop        | Required | Type                                   | Default                                 | Description                                              |
-|-------------|----------|----------------------------------------|-----------------------------------------|----------------------------------------------------------|
-| `children`  | Optional | `ReactNode`                            | `<BadgeField>`| Content for each record |
-| `className` | Optional | `string`                               | -                                       | Extra classes on wrapper div                             |
-| `render`    | Optional | `(record, index) => ReactNode`         | -                                       | Custom render function per record |
+| Prop        | Required | Type                           | Default        | Description                       |
+| ----------- | -------- | ------------------------------ | -------------- | --------------------------------- |
+| `children`  | Optional | `ReactNode`                    | `<BadgeField>` | Content for each record           |
+| `className` | Optional | `string`                       | -              | Extra classes on wrapper div      |
+| `render`    | Optional | `(record, index) => ReactNode` | -              | Custom render function per record |

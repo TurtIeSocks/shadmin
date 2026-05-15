@@ -72,7 +72,9 @@ const SupabaseListGuesserView = (
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   if (!resource) {
-    throw new Error("SupabaseListGuesser must be used within a ResourceContext");
+    throw new Error(
+      "SupabaseListGuesser must be used within a ResourceContext",
+    );
   }
 
   React.useEffect(() => {
@@ -87,14 +89,14 @@ const SupabaseListGuesserView = (
       .filter((s) => def.properties?.[s].format !== "tsvector")
       .map((s) => {
         const prop = def.properties?.[s];
-        if (!prop) return new InferredElement(listFieldTypes.string, { source: s });
+        if (!prop)
+          return new InferredElement(listFieldTypes.string, { source: s });
         return inferElementFromType({
           name: s,
           types: listFieldTypes,
           description: prop.description,
           format: prop.format,
-          type:
-            typeof prop.type === "string" ? prop.type : "string",
+          type: typeof prop.type === "string" ? prop.type : "string",
           schema,
         });
       });

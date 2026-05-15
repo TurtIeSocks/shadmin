@@ -49,21 +49,19 @@ export const PostList = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `label` | Required | `string` | - | Section header label, translated through the i18n provider |
-| `icon` | Optional | `ReactNode` | - | Icon displayed before the label |
-| `children` | Required | `ReactNode` | - | `<FilterListItem>` elements or similar |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the root element |
+| Prop        | Required | Type        | Default | Description                                                |
+| ----------- | -------- | ----------- | ------- | ---------------------------------------------------------- |
+| `label`     | Required | `string`    | -       | Section header label, translated through the i18n provider |
+| `icon`      | Optional | `ReactNode` | -       | Icon displayed before the label                            |
+| `children`  | Required | `ReactNode` | -       | `<FilterListItem>` elements or similar                     |
+| `className` | Optional | `string`    | -       | Extra Tailwind classes appended to the root element        |
 
 ## `label`
 
 The `label` prop is required. It is passed through the i18n provider so you can use translation keys:
 
 ```tsx
-<FilterList label="resources.posts.filters.status">
-  ...
-</FilterList>
+<FilterList label="resources.posts.filters.status">...</FilterList>
 ```
 
 ## `icon`
@@ -75,5 +73,5 @@ import { Mail } from "lucide-react";
 
 <FilterList label="Newsletter" icon={<Mail className="size-4" />}>
   ...
-</FilterList>
+</FilterList>;
 ```

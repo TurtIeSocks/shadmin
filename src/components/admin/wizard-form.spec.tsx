@@ -16,9 +16,7 @@ import {
 describe("<WizardForm />", () => {
   it("should render the dialog when isOpen is true", async () => {
     const screen = render(<Basic theme="system" />);
-    await expect
-      .element(screen.getByRole("dialog"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByRole("dialog")).toBeInTheDocument();
   });
 
   it("should render the title in the dialog header", async () => {
@@ -32,9 +30,7 @@ describe("<WizardForm />", () => {
     render(<MultipleSteps theme="system" />);
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll(
-      '[role="group"][data-wizard-step]',
-    );
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
     expect(panels.length).toBe(3);
     // Only first panel is visible
     expect((panels[0] as HTMLElement).style.display).not.toBe("none");
@@ -46,9 +42,7 @@ describe("<WizardForm />", () => {
     render(<MultipleSteps theme="system" />);
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll(
-      '[role="group"][data-wizard-step]',
-    );
+    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
     expect(panels[0].getAttribute("aria-hidden")).not.toBe("true");
     expect(panels[1].getAttribute("aria-hidden")).toBe("true");
   });
@@ -164,9 +158,7 @@ describe("<WizardForm />", () => {
     await expect
       .element(screen.getByTestId("submitted"))
       .toHaveTextContent("Cool product");
-    await expect
-      .element(screen.getByRole("dialog"))
-      .not.toBeInTheDocument();
+    await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("should jump back to the first step with an errored field after Save", async () => {
@@ -187,15 +179,9 @@ describe("<WizardForm />", () => {
 
   it("should render the step labels in the progress indicator by default", async () => {
     const screen = render(<MultipleSteps theme="system" />);
-    await expect
-      .element(screen.getByText("Identity"))
-      .toBeInTheDocument();
-    await expect
-      .element(screen.getByText("Pricing"))
-      .toBeInTheDocument();
-    await expect
-      .element(screen.getByText("Review"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Identity")).toBeInTheDocument();
+    await expect.element(screen.getByText("Pricing")).toBeInTheDocument();
+    await expect.element(screen.getByText("Review")).toBeInTheDocument();
   });
 
   it("should mark the active progress step with aria-current", async () => {
@@ -256,8 +242,12 @@ describe("<WizardForm />", () => {
     // Cancel, then again immediately after — but the input unmounts on close,
     // so we instead check that the input has the typed value, then assert no
     // input with that value remains in the DOM after Cancel.
-    const dialog = document.body.querySelector('[role="dialog"]') as HTMLElement;
-    const nameBefore = dialog!.querySelector('input[name="name"]') as HTMLInputElement;
+    const dialog = document.body.querySelector(
+      '[role="dialog"]',
+    ) as HTMLElement;
+    const nameBefore = dialog!.querySelector(
+      'input[name="name"]',
+    ) as HTMLInputElement;
     expect(nameBefore.value).toBe("Typed value");
     await screen.getByRole("button", { name: /cancel/i }).click();
     // After cancel, the input is gone with the dialog.

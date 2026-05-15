@@ -17,7 +17,7 @@ import {
   <GithubButton />
   <GoogleButton />
   <SocialAuthButton provider="discord">Sign in with Discord</SocialAuthButton>
-</div>
+</div>;
 ```
 
 ## Provider buttons
@@ -26,9 +26,9 @@ import {
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop       | Type                   | Description                                 |
+| ---------- | ---------------------- | ------------------------------------------- |
 | `provider` | `SupabaseAuthProvider` | OAuth provider name (omit on named buttons) |
-| `redirect` | `string` | Optional redirect URL passed to `login()` |
+| `redirect` | `string`               | Optional redirect URL passed to `login()`   |
 
 All other `<Button>` props from shadcn/ui pass through.

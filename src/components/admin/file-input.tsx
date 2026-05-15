@@ -328,8 +328,7 @@ export const FileInputPreview = (props: FileInputPreviewProps) => {
 
   useEffect(() => {
     return () => {
-      const preview =
-        "rawFile" in file ? file.rawFile.preview : file.preview;
+      const preview = "rawFile" in file ? file.rawFile.preview : file.preview;
 
       if (preview) {
         window.URL.revokeObjectURL(preview);

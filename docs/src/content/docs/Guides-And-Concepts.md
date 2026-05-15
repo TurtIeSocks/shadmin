@@ -1,7 +1,5 @@
 ---
-
 title: Guides and Concepts
-
 ---
 
 Shadcn-Admin-Kit is based on [ra-core](https://marmelab.com/ra-core/), so the ra-core documentation applies, for the most part, to Shadcn-Admin-Kit as well.

@@ -17,9 +17,7 @@ describe("<DataTable />", () => {
       .poll(() => screen.getByRole("row").all().length, { timeout: 5000 })
       .toBeGreaterThan(1);
     // Sanity check a known cell from the fakerest data.
-    await expect
-      .element(screen.getByText("War and Peace"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("War and Peace")).toBeInTheDocument();
   });
 
   it("renders the default empty placeholder when data is empty", async () => {

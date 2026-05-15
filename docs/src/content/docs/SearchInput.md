@@ -9,11 +9,9 @@ Decorated `TextInput` with a search icon; no label.
 `<SearchInput>` is designed to be used as a search input in a [`<List filters>`](./List.md#filter-button--form-combo) form.
 
 ```tsx
-import { List, DataTable, SearchInput } from '@/components/admin';
+import { List, DataTable, SearchInput } from "@/components/admin";
 
-const postListFilters = [
-  <SearchInput source="q" alwaysOn />,
-];
+const postListFilters = [<SearchInput source="q" alwaysOn />];
 
 const PostList = () => (
   <List filters={postListFilters}>
@@ -34,12 +32,12 @@ By default, `<SearchInput>` uses the `q` source, which is a common convention fo
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | - | Wrapper classes |
-| `disabled` | Optional | `boolean` | `false` | Disable control |
-| `disableClearable` | Optional | `boolean` | `false` | Hide the clear button |
-| `helperText` | Optional | `string` &#124; `ReactNode` | `-` | Help text |
-| `label` | Optional | `string` &#124; `ReactNode` | `-` | Label text (not displayed by default) |
-| `source` | Optional | `string` | `q` | Field name |
-| `validate` | Optional | `Validator \| Validator[]` | `-` | Validation |
+| Prop               | Required | Type                        | Default | Description                           |
+| ------------------ | -------- | --------------------------- | ------- | ------------------------------------- |
+| `className`        | Optional | `string`                    | -       | Wrapper classes                       |
+| `disabled`         | Optional | `boolean`                   | `false` | Disable control                       |
+| `disableClearable` | Optional | `boolean`                   | `false` | Hide the clear button                 |
+| `helperText`       | Optional | `string` &#124; `ReactNode` | `-`     | Help text                             |
+| `label`            | Optional | `string` &#124; `ReactNode` | `-`     | Label text (not displayed by default) |
+| `source`           | Optional | `string`                    | `q`     | Field name                            |
+| `validate`         | Optional | `Validator \| Validator[]`  | `-`     | Validation                            |

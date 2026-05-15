@@ -40,12 +40,12 @@ When the user toggles edit mode (via the `<InspectorButton>` in the app bar), a 
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | The inputs (or any element with a `source` prop). |
-| `preferenceKey` | Optional | `string` | `${resource}.simpleForm` | Storage key for user preferences. |
-| `omit` | Optional | `string[]` | - | Sources hidden by default. Users can re-enable them from the inspector. |
-| ...rest | - | `SimpleFormProps` | - | All other props are forwarded to the underlying [`<SimpleForm>`](./SimpleForm.md). |
+| Prop            | Required | Type              | Default                  | Description                                                                        |
+| --------------- | -------- | ----------------- | ------------------------ | ---------------------------------------------------------------------------------- |
+| `children`      | Required | `ReactNode`       | -                        | The inputs (or any element with a `source` prop).                                  |
+| `preferenceKey` | Optional | `string`          | `${resource}.simpleForm` | Storage key for user preferences.                                                  |
+| `omit`          | Optional | `string[]`        | -                        | Sources hidden by default. Users can re-enable them from the inspector.            |
+| ...rest         | -        | `SimpleFormProps` | -                        | All other props are forwarded to the underlying [`<SimpleForm>`](./SimpleForm.md). |
 
 ## `preferenceKey`
 

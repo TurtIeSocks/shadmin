@@ -30,18 +30,18 @@ By default each row links to the edit page of the record. Pass `linkType="show"`
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `primaryText` | Optional | `(record, id) => ReactNode` | - | Main text for the row |
-| `secondaryText` | Optional | `(record, id) => ReactNode` | - | Subtext rendered under the primary text |
-| `tertiaryText` | Optional | `(record, id) => ReactNode` | - | Short label rendered next to the primary text (typically a date) |
-| `leftAvatar` | Optional | `(record, id) => ReactNode` | - | Element rendered as an avatar to the left of the text |
-| `leftIcon` | Optional | `(record, id) => ReactNode` | - | Icon rendered to the left of the text |
-| `rightIcon` | Optional | `(record, id) => ReactNode` | - | Icon rendered at the right of the row |
-| `linkType` | Optional | `"edit" \| "show" \| false` | `"edit"` | Where to link each row |
-| `empty` | Optional | `ReactNode` | `<ListNoResults />` | Element rendered when the list is empty |
-| `loading` | Optional | `ReactNode` | `<SimpleListLoading />` | Element rendered while the list is loading |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the root `<ul>` |
+| Prop            | Required | Type                        | Default                 | Description                                                      |
+| --------------- | -------- | --------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| `primaryText`   | Optional | `(record, id) => ReactNode` | -                       | Main text for the row                                            |
+| `secondaryText` | Optional | `(record, id) => ReactNode` | -                       | Subtext rendered under the primary text                          |
+| `tertiaryText`  | Optional | `(record, id) => ReactNode` | -                       | Short label rendered next to the primary text (typically a date) |
+| `leftAvatar`    | Optional | `(record, id) => ReactNode` | -                       | Element rendered as an avatar to the left of the text            |
+| `leftIcon`      | Optional | `(record, id) => ReactNode` | -                       | Icon rendered to the left of the text                            |
+| `rightIcon`     | Optional | `(record, id) => ReactNode` | -                       | Icon rendered at the right of the row                            |
+| `linkType`      | Optional | `"edit" \| "show" \| false` | `"edit"`                | Where to link each row                                           |
+| `empty`         | Optional | `ReactNode`                 | `<ListNoResults />`     | Element rendered when the list is empty                          |
+| `loading`       | Optional | `ReactNode`                 | `<SimpleListLoading />` | Element rendered while the list is loading                       |
+| `className`     | Optional | `string`                    | -                       | Extra Tailwind classes appended to the root `<ul>`               |
 
 ## `primaryText`, `secondaryText`, `tertiaryText`
 
@@ -77,7 +77,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
     </div>
   )}
   primaryText={(record) => record.title}
-/>
+/>;
 ```
 
 ## `linkType`
@@ -95,7 +95,10 @@ Where to link when the user clicks a row. Defaults to `"edit"`. Pass `"show"` to
 What to render when the list is empty. Defaults to [`<ListNoResults>`](./ListNoResults.md):
 
 ```tsx
-<SimpleList primaryText={(record) => record.title} empty={<div>No posts.</div>} />
+<SimpleList
+  primaryText={(record) => record.title}
+  empty={<div>No posts.</div>}
+/>
 ```
 
 ## `loading`

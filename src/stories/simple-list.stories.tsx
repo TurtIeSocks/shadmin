@@ -1,18 +1,8 @@
-import {
-  DataProvider,
-  memoryStore,
-  Resource,
-  TestMemoryRouter,
-} from "ra-core";
+import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { BookOpen, Star } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
-import {
-  Admin,
-  List,
-  ShowGuesser,
-  SimpleList,
-} from "@/components/admin";
+import { Admin, List, ShowGuesser, SimpleList } from "@/components/admin";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export default {

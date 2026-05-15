@@ -39,9 +39,7 @@ export const ListNoResults = (props: ListNoResultsProps) => {
     );
   }
   const hasActiveFilters =
-    !!filterValues &&
-    !!setFilters &&
-    Object.keys(filterValues).length > 0;
+    !!filterValues && !!setFilters && Object.keys(filterValues).length > 0;
   return (
     <div className={cn("py-6 px-4 text-sm text-muted-foreground", className)}>
       {hasActiveFilters ? (

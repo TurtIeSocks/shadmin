@@ -7,9 +7,9 @@ Toggle switch for boolean values, leveraging shadcn's [Switch](https://ui.shadcn
 ## Usage
 
 ```tsx
-import { BooleanInput } from '@/components/admin';
+import { BooleanInput } from "@/components/admin";
 
-<BooleanInput source="is_published" />
+<BooleanInput source="is_published" />;
 ```
 
 :::tip
@@ -18,17 +18,17 @@ This input doesn't let users set a `null` value - only `true` or `false`. Use th
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name |
-| `className` | Optional | `string` | - | Wrapper classes |
-| `defaultValue` | Optional | `boolean` | `false` | Initial value |
-| `disabled` | Optional | `boolean` | - | Disable control |
-| `format` | Optional | `function` | - | Callback to convert the value from the form state to a boolean. |
-| `helperText` | Optional | `ReactNode` | - | Help text |
-| `label` | Optional | `string` | Inferred | Label text |
-| `parse` | Optional | `function` | - | Callback to convert the value from a boolean to the form state. |
-| `validate` | Optional | `Validator \| Validator[]` | - | Validation |
+| Prop           | Required | Type                       | Default  | Description                                                     |
+| -------------- | -------- | -------------------------- | -------- | --------------------------------------------------------------- |
+| `source`       | Required | `string`                   | -        | Field name                                                      |
+| `className`    | Optional | `string`                   | -        | Wrapper classes                                                 |
+| `defaultValue` | Optional | `boolean`                  | `false`  | Initial value                                                   |
+| `disabled`     | Optional | `boolean`                  | -        | Disable control                                                 |
+| `format`       | Optional | `function`                 | -        | Callback to convert the value from the form state to a boolean. |
+| `helperText`   | Optional | `ReactNode`                | -        | Help text                                                       |
+| `label`        | Optional | `string`                   | Inferred | Label text                                                      |
+| `parse`        | Optional | `function`                 | -        | Callback to convert the value from a boolean to the form state. |
+| `validate`     | Optional | `Validator \| Validator[]` | -        | Validation                                                      |
 
 ## Format and Parse
 

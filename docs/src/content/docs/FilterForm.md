@@ -7,9 +7,9 @@ title: FilterForm
 ## Usage
 
 ```tsx
-import { FilterForm } from '@/components/admin';
+import { FilterForm } from "@/components/admin";
 
-<FilterForm filters={[<TextInput source="q" alwaysOn />]} />
+<FilterForm filters={[<TextInput source="q" alwaysOn />]} />;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,9 +18,9 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| filters | Optional | `ReactNode[]` | `[]` | Filter inputs to render. |
+| Prop    | Required | Type          | Default | Description              |
+| ------- | -------- | ------------- | ------- | ------------------------ |
+| filters | Optional | `ReactNode[]` | `[]`    | Filter inputs to render. |
 
 ## Behavior
 

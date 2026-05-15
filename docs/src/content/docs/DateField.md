@@ -7,9 +7,9 @@ Displays a date/time value using `Intl.DateTimeFormat`. Lets you control whether
 ## Usage
 
 ```tsx
-import { DateField } from '@/components/admin';
+import { DateField } from "@/components/admin";
 
-<DateField source="published_at" />
+<DateField source="published_at" />;
 ```
 
 The `locales` and `options` props are passed to `Intl.DateTimeFormat`. See [Date.toLocaleDateString() on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString) for details.
@@ -29,17 +29,17 @@ For date‑only strings (YYYY-MM-DD) it forces UTC to avoid timezone shift.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name |
-| `defaultValue` | Optional | `any` | - | Fallback when no value |
-| `empty` | Optional | `ReactNode` | - | Placeholder when no value |
-| `locales` | Optional | `Intl.LocalesArgument` | Browser locale | Locale(s) |
-| `options` | Optional | `Intl.DateTimeFormatOptions` | - | Formatting options |
-| `record` | Optional | `object` | Record from context | Explicit record |
-| `showDate` | Optional | `boolean` | `true` | Display date part |
-| `showTime` | Optional | `boolean` | `false` | Display time part |
-| `transform` | Optional | `(value)=>Date` | Parse Date/number/string | Transform raw value to Date |
+| Prop           | Required | Type                         | Default                  | Description                 |
+| -------------- | -------- | ---------------------------- | ------------------------ | --------------------------- |
+| `source`       | Required | `string`                     | -                        | Field name                  |
+| `defaultValue` | Optional | `any`                        | -                        | Fallback when no value      |
+| `empty`        | Optional | `ReactNode`                  | -                        | Placeholder when no value   |
+| `locales`      | Optional | `Intl.LocalesArgument`       | Browser locale           | Locale(s)                   |
+| `options`      | Optional | `Intl.DateTimeFormatOptions` | -                        | Formatting options          |
+| `record`       | Optional | `object`                     | Record from context      | Explicit record             |
+| `showDate`     | Optional | `boolean`                    | `true`                   | Display date part           |
+| `showTime`     | Optional | `boolean`                    | `false`                  | Display time part           |
+| `transform`    | Optional | `(value)=>Date`              | Parse Date/number/string | Transform raw value to Date |
 
 Remaining props are passed to the underlying `<span>` (e.g., `className`).
 

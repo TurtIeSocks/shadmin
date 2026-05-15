@@ -205,7 +205,7 @@ const HotspotSvg = () => {
           className="relative group/all pointer-events-none"
           opacity="1"
         >
-          <div className="absolute left-0 top-0 pointer-events-none opacity-0 duration-150 ease-in-out transition-opacity group-hover/all:opacity-100 group-hover/all:z-[3] bg-gray-0 bg-opacity-20 backdrop-blur-sm w-full h-full" />
+          <div className="absolute left-0 top-0 pointer-events-none opacity-0 duration-150 ease-in-out transition-opacity group-hover/all:opacity-100 group-hover/all:z-3 bg-gray-0 bg-opacity-20 backdrop-blur-sm w-full h-full" />
           <svg height="0" width="0">
             <defs>
               {Object.entries(HOTSPOTS).map(([key, hotspot]) => (
@@ -226,7 +226,7 @@ const HotspotSvg = () => {
             <Tooltip key={key}>
               <TooltipTrigger asChild>
                 <div
-                  className="absolute group/highlight pointer-events-none hover:z-[5]"
+                  className="absolute group/highlight pointer-events-none hover:z-5"
                   style={{
                     left: hotspot.x,
                     top: hotspot.y,
@@ -234,7 +234,7 @@ const HotspotSvg = () => {
                     height: hotspot.height,
                   }}
                 >
-                  <div className="z-[2] group-hover/highlight:drop-shadow-xl/25 pointer-events-auto transition-[filter] ease-in-out duration-200">
+                  <div className="z-2 group-hover/highlight:drop-shadow-xl/25 pointer-events-auto transition-[filter] ease-in-out duration-200">
                     <div
                       style={{
                         position: "absolute",
@@ -248,7 +248,7 @@ const HotspotSvg = () => {
                     />
                   </div>
                   <div
-                    className="z-[2] duration-200 ease-in-out transition-opacity opacity-100 group-hover/all:opacity-0 group-hover/highlight:opacity-0"
+                    className="z-2 duration-200 ease-in-out transition-opacity opacity-100 group-hover/all:opacity-0 group-hover/highlight:opacity-0"
                     style={{
                       position: "absolute",
                       left: -3,

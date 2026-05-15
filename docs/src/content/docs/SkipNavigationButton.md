@@ -24,10 +24,10 @@ On click (or Enter while focused), the button moves focus to the element with `i
 
 ## Props
 
-| Prop        | Required | Type     | Default                  | Description                          |
-| ----------- | -------- | -------- | ------------------------ | ------------------------------------ |
-| `className` | Optional | `string` | -                        | Additional classes                   |
-| `label`     | Optional | `string` | `ra.navigation.skip_nav` | i18n key / label                     |
+| Prop        | Required | Type     | Default                  | Description        |
+| ----------- | -------- | -------- | ------------------------ | ------------------ |
+| `className` | Optional | `string` | -                        | Additional classes |
+| `label`     | Optional | `string` | `ra.navigation.skip_nav` | i18n key / label   |
 
 ## `label`
 

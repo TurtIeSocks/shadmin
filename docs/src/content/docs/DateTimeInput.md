@@ -11,7 +11,7 @@ The appearance of `<DateTimeInput>` depends on the browser, and falls back to a 
 ## Usage
 
 ```jsx
-import { DateTimeInput } from '@/components/admin/date-time-input';
+import { DateTimeInput } from "@/components/admin/date-time-input";
 
 <DateTimeInput source="published_at" />;
 ```
@@ -62,9 +62,9 @@ form state value --> format --> form input value (string)
 
 ```tsx
 <DateTimeInput
-    source="publishedAt"
-    format={(value) => new Date(value).toISOString()}
-    parse={(value) => new Date(value)}
+  source="publishedAt"
+  format={(value) => new Date(value).toISOString()}
+  parse={(value) => new Date(value)}
 />
 ```
 
@@ -84,9 +84,9 @@ form input value (string) ---> parse ---> form state value
 
 ```tsx
 <DateTimeInput
-    source="publishedAt"
-    format={(value) => new Date(value).toISOString()}
-    parse={(value) => new Date(value)}
+  source="publishedAt"
+  format={(value) => new Date(value).toISOString()}
+  parse={(value) => new Date(value)}
 />
 ```
 
@@ -97,11 +97,11 @@ form input value (string) ---> parse ---> form state value
 To validate that a date is before or after a given date, use the `maxValue` and `minValue` validators with a date string.
 
 ```jsx
-import { minValue } from 'ra-core';
-import { DateTimeInput } from '@/components/admin/date-input';
+import { minValue } from "ra-core";
+import { DateTimeInput } from "@/components/admin/date-input";
 
 // requires dates after October 10th, 2022
-<DateTimeInput source="published" validate={minValue('2022-10-26')} />;
+<DateTimeInput source="published" validate={minValue("2022-10-26")} />;
 ```
 
 ## Internationalization

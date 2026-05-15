@@ -32,11 +32,11 @@ const App = () => (
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `children` | `ReactNode` | Replaces the form column entirely |
-| `disableEmailPassword` | `boolean` | Hide the email/password form |
-| `disableForgotPassword` | `boolean` | Hide the "Forgot password?" link |
-| `marketing` | `ReactNode` | Replace the left marketing panel |
-| `providers` | `SupabaseAuthProvider[]` | Social providers to expose as buttons |
-| `redirectTo` | `string` | Where to redirect after successful login |
+| Prop                    | Type                     | Description                              |
+| ----------------------- | ------------------------ | ---------------------------------------- |
+| `children`              | `ReactNode`              | Replaces the form column entirely        |
+| `disableEmailPassword`  | `boolean`                | Hide the email/password form             |
+| `disableForgotPassword` | `boolean`                | Hide the "Forgot password?" link         |
+| `marketing`             | `ReactNode`              | Replace the left marketing panel         |
+| `providers`             | `SupabaseAuthProvider[]` | Social providers to expose as buttons    |
+| `redirectTo`            | `string`                 | Where to redirect after successful login |

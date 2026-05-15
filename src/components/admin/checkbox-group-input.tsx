@@ -8,11 +8,7 @@ import {
   useInput,
 } from "ra-core";
 import { cn } from "@/lib/utils";
-import {
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { FormError, FormField, FormLabel } from "@/components/admin/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -190,7 +186,8 @@ export const CheckboxGroupInput = (inProps: CheckboxGroupInputProps) => {
 };
 
 export interface CheckboxGroupInputProps
-  extends Partial<InputProps>,
+  extends
+    Partial<InputProps>,
     ChoicesProps,
     Omit<
       React.HTMLAttributes<HTMLDivElement>,

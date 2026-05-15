@@ -35,8 +35,7 @@ import { cn } from "@/lib/utils";
 
 export type WizardProgressMode = "steps" | "dots" | "none";
 
-export interface WizardFormProps
-  extends Omit<FormProps, "children" | "id"> {
+export interface WizardFormProps extends Omit<FormProps, "children" | "id"> {
   isOpen: boolean;
   onClose: () => void;
   title: ReactNode;
@@ -108,9 +107,7 @@ function WizardProgress({
       {labels.map((label, index) => {
         const active = index === currentStep;
         const text =
-          typeof label === "string"
-            ? translate(label, { _: label })
-            : label;
+          typeof label === "string" ? translate(label, { _: label }) : label;
         return (
           <li
             key={index}
@@ -288,7 +285,7 @@ export function WizardForm(props: WizardFormProps) {
                 });
               })}
             </div>
-            {toolbar === false ? null : toolbar ?? <WizardToolbar />}
+            {toolbar === false ? null : (toolbar ?? <WizardToolbar />)}
           </WizardContext.Provider>
         </Form>
       </DialogContent>

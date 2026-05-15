@@ -33,10 +33,10 @@ To render custom content (for example, an inline note instead of the default top
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Optional | `ReactNode` | default banner | Content rendered while offline. Falls back to a built-in banner when omitted. |
-| `className` | Optional | `string` | - | Extra CSS class applied to the wrapping element. |
+| Prop        | Required | Type        | Default        | Description                                                                   |
+| ----------- | -------- | ----------- | -------------- | ----------------------------------------------------------------------------- |
+| `children`  | Optional | `ReactNode` | default banner | Content rendered while offline. Falls back to a built-in banner when omitted. |
+| `className` | Optional | `string`    | -              | Extra CSS class applied to the wrapping element.                              |
 
 ## `children`
 

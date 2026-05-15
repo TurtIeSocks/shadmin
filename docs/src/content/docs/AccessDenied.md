@@ -31,9 +31,9 @@ The text props accept either i18n keys or raw strings — `useTranslate()` is ca
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | - | Extra CSS class applied to the wrapping element. |
-| `icon` | Optional | `ReactNode` | `<Lock />` | Icon shown above the message. |
-| `textPrimary` | Optional | `string` | `ra.page.access_denied` | i18n key or text for the heading. |
-| `textSecondary` | Optional | `string` | `ra.message.access_denied` | i18n key or text for the body. |
+| Prop            | Required | Type        | Default                    | Description                                      |
+| --------------- | -------- | ----------- | -------------------------- | ------------------------------------------------ |
+| `className`     | Optional | `string`    | -                          | Extra CSS class applied to the wrapping element. |
+| `icon`          | Optional | `ReactNode` | `<Lock />`                 | Icon shown above the message.                    |
+| `textPrimary`   | Optional | `string`    | `ra.page.access_denied`    | i18n key or text for the heading.                |
+| `textSecondary` | Optional | `string`    | `ra.message.access_denied` | i18n key or text for the body.                   |

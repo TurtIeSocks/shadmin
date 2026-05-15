@@ -18,6 +18,10 @@ function TooltipProvider({
   )
 }
 
+// NOTE: We auto-wrap Tooltip in TooltipProvider, diverging from upstream
+// shadcn. This preserves backwards-compat for consumers (e.g. minimal-tiptap)
+// that mount <Tooltip> without an explicit provider. Do not remove without
+// auditing all consumers.
 function Tooltip({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Root>) {

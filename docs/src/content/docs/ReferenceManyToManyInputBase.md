@@ -1,5 +1,5 @@
 ---
-title: 'ReferenceManyToManyInputBase'
+title: "ReferenceManyToManyInputBase"
 ---
 
 This component allows adding or removing relationships between two resources sharing an associative table. The changes in the associative table are sent to the dataProvider _when the user submits the form_ so that they can cancel the changes before submission.
@@ -36,28 +36,25 @@ In this example, `bands.id` matches `performances.band_id`, and `performances.ve
 To let users edit the `venues` for given `band` in an `<AutocompleteArrayInput>`, wrap that input in a `<ReferenceManyToManyInputBase>` where you define the relationship via the `reference`, `through` and `using` props:
 
 ```tsx
-import { Edit } from '@/components/admin/edit';
-import { Form } from 'ra-core';
-import { AutocompleteInput } from '@/components/admin/autocomplete-input';
-import { TextInput } from '@/components/admin/text-input';
-import { ReferenceManyToManyInputBase } from '@react-admin/ra-core-ee';
+import { Edit } from "@/components/admin/edit";
+import { Form } from "ra-core";
+import { AutocompleteInput } from "@/components/admin/autocomplete-input";
+import { TextInput } from "@/components/admin/text-input";
+import { ReferenceManyToManyInputBase } from "@react-admin/ra-core-ee";
 
 export const BandEdit = () => (
-    <Edit mutationMode="optimistic">
-        <Form>
-            <TextInput source="name" />
-            <ReferenceManyToManyInputBase
-                reference="venues"
-                through="performances"
-                using="band_id,venue_id"
-            >
-                <AutocompleteArrayInput
-                    label="Performances"
-                    optionText="name"
-                />
-            </ReferenceManyToManyInputBase>
-        </Form>
-    </Edit>
+  <Edit mutationMode="optimistic">
+    <Form>
+      <TextInput source="name" />
+      <ReferenceManyToManyInputBase
+        reference="venues"
+        through="performances"
+        using="band_id,venue_id"
+      >
+        <AutocompleteArrayInput label="Performances" optionText="name" />
+      </ReferenceManyToManyInputBase>
+    </Form>
+  </Edit>
 );
 ```
 
@@ -76,27 +73,27 @@ If you need to edit the fields of the associative table (e.g. the `date` in `per
 You will need to let users select the related record (`venue` in the example above) via a `<ReferenceInputBase>`:
 
 ```tsx
-import { Form, ReferenceInputBase, required } from 'ra-core';
-import { AutocompleteInput } from '@/components/admin/autocomplete-input';
-import { Edit } from '@/components/admin/edit';
-import { SelectInput } from '@/components/admin/select-input';
-import { SimpleFormIterator } from '@/components/admin/simple-form-iterator';
-import { TextInput } from '@/components/admin/text-input';
-import { ReferenceManyInputBase } from '@react-admin/ra-core-ee';
+import { Form, ReferenceInputBase, required } from "ra-core";
+import { AutocompleteInput } from "@/components/admin/autocomplete-input";
+import { Edit } from "@/components/admin/edit";
+import { SelectInput } from "@/components/admin/select-input";
+import { SimpleFormIterator } from "@/components/admin/simple-form-iterator";
+import { TextInput } from "@/components/admin/text-input";
+import { ReferenceManyInputBase } from "@react-admin/ra-core-ee";
 
 const BandEdit = () => (
-    <Edit mutationMode="optimistic">
-        <Form>
-            <TextInput source="name" />
-            <ReferenceManyInputBase reference="performances" target="band_id">
-                <SimpleFormIterator inline disableReordering>
-                    <ReferenceInputBase reference="venues" source="venue_id">
-                        <SelectInput optionText="name" />
-                    </ReferenceInputBase>
-                </SimpleFormIterator>
-            </ReferenceManyInputBase>
-        </Form>
-    </Edit>
+  <Edit mutationMode="optimistic">
+    <Form>
+      <TextInput source="name" />
+      <ReferenceManyInputBase reference="performances" target="band_id">
+        <SimpleFormIterator inline disableReordering>
+          <ReferenceInputBase reference="venues" source="venue_id">
+            <SelectInput optionText="name" />
+          </ReferenceInputBase>
+        </SimpleFormIterator>
+      </ReferenceManyInputBase>
+    </Form>
+  </Edit>
 );
 ```
 
@@ -131,24 +128,24 @@ const BandEdit = () => (
 `<ReferenceManyToManyInputBase>` expects an _select_ component as child, i.e. a component working inside a `ChoiceContext`.
 
 ```tsx
-import { Form, ReferenceInputBase, required } from 'ra-core';
-import { AutocompleteArrayInput } from '@/components/admin/autocomplete-array-input';
-import { Edit } from '@/components/admin/edit';
-import { ReferenceManyToManyInputBase } from '@react-admin/ra-core-ee';
+import { Form, ReferenceInputBase, required } from "ra-core";
+import { AutocompleteArrayInput } from "@/components/admin/autocomplete-array-input";
+import { Edit } from "@/components/admin/edit";
+import { ReferenceManyToManyInputBase } from "@react-admin/ra-core-ee";
 
 const BandEdit = () => (
-    <Edit mutationMode="optimistic">
-        <Form>
-            <ReferenceManyToManyInputBase
-                reference="venues"
-                through="performances"
-                using="band_id,venue_id"
-                filter={{ date: '2018-08-31' }}
-            >
-                <AutocompleteArrayInput />
-            </ReferenceManyToManyInputBase>
-        </Form>
-    </Edit>
+  <Edit mutationMode="optimistic">
+    <Form>
+      <ReferenceManyToManyInputBase
+        reference="venues"
+        through="performances"
+        using="band_id,venue_id"
+        filter={{ date: "2018-08-31" }}
+      >
+        <AutocompleteArrayInput />
+      </ReferenceManyToManyInputBase>
+    </Form>
+  </Edit>
 );
 ```
 
@@ -158,12 +155,12 @@ You can filter the records of the associative table (e.g. `performances`) using 
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    filter={{ date: '2018-08-31' }}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  filter={{ date: "2018-08-31" }}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -175,12 +172,12 @@ You can filter the possible values of the reference table using the `filterChoic
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    filterChoice={{ location: 'New York' }}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  filterChoice={{ location: "New York" }}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -192,12 +189,12 @@ You can for instance use it to pass [a custom meta](https://marmelab.com/ra-core
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    mutationOptions={{ meta: { myParameter: 'value' } }}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  mutationOptions={{ meta: { myParameter: "value" } }}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -205,14 +202,14 @@ You can also use it to pass an `onError` function as follows:
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    mutationOptions={{
-        onError: (error, step, data) => console.warn({ error, step, data }),
-    }}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  mutationOptions={{
+    onError: (error, step, data) => console.warn({ error, step, data }),
+  }}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -222,12 +219,12 @@ By default, `<ReferenceManyToManyInputBase>` displays at most 25 entries from th
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    perPage={10}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  perPage={10}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -239,12 +236,12 @@ By default, Shadcn Admin Kit displays at most 25 possible values from the refere
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    perPageChoices={10}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  perPageChoices={10}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -256,12 +253,12 @@ You can for instance use it to pass [a custom meta](https://marmelab.com/ra-core
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    queryOptions={{ meta: { myParameter: 'value' } }}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  queryOptions={{ meta: { myParameter: "value" } }}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -273,12 +270,12 @@ For instance, if you want to display the venues of a given bands, through perfor
 
 ```tsx
 <ReferenceManyToManyInputBase
-    source="id"
-    reference="venues"
-    resource="bands"
-    through="performances"
+  source="id"
+  reference="venues"
+  resource="bands"
+  through="performances"
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -288,12 +285,12 @@ By default, `<ReferenceManyToManyInputBase>` orders the possible values by `id` 
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    sort={{ field: 'date', order: 'DESC' }}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  sort={{ field: "date", order: "DESC" }}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -303,12 +300,12 @@ By default, `<ReferenceManyToManyInputBase>` orders the possible values by `id` 
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
-    sortChoices={{ field: 'id', order: 'DESC' }}
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
+  sortChoices={{ field: "id", order: "DESC" }}
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -318,12 +315,12 @@ By default, `<ReferenceManyToManyInputBase>` uses the `id` field as target for t
 
 ```tsx
 <ReferenceManyToManyInputBase
-    source="_id"
-    reference="venues"
-    resource="bands"
-    through="performances"
+  source="_id"
+  reference="venues"
+  resource="bands"
+  through="performances"
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -333,7 +330,7 @@ You must specify the associative table name using the `through` prop.
 
 ```tsx
 <ReferenceManyToManyInputBase reference="venues" through="performances">
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -343,11 +340,11 @@ You can specify the columns to use in the associative using the `using` prop. Wh
 
 ```tsx
 <ReferenceManyToManyInputBase
-    reference="venues"
-    through="performances"
-    using="band_id,venue_id"
+  reference="venues"
+  through="performances"
+  using="band_id,venue_id"
 >
-    {/* ... */}
+  {/* ... */}
 </ReferenceManyToManyInputBase>
 ```
 
@@ -367,9 +364,9 @@ When rendered, `<ReferenceManyToManyInputBase>` fetches the `dataProvider` three
 For instance, if the user edits the band of id `123`, `<ReferenceManyToManyInputBase>` first issues the following query to the `dataProvider`:
 
 ```js
-dataProvider.getManyReference('venues', {
-    target: 'band_id',
-    id: 123,
+dataProvider.getManyReference("venues", {
+  target: "band_id",
+  id: 123,
 });
 ```
 
@@ -389,8 +386,8 @@ Let's say that the `dataProvider` returns the following response:
 Then, `<ReferenceManyToManyInputBase>` issues a second query to the `dataProvider`:
 
 ```js
-dataProvider.getMany('venues', {
-    ids: [732, 874, 756],
+dataProvider.getMany("venues", {
+  ids: [732, 874, 756],
 });
 ```
 
@@ -409,10 +406,10 @@ Which returns the following:
 That's enough to display the current value in the input. But to display venues suggestions, the component makes a final call:
 
 ```js
-dataProvider.getList('venues', {
-    sort: { field: 'id', order: 'DESC' },
-    pagination: { page: 1, perPage: 25 },
-    filter: {},
+dataProvider.getList("venues", {
+  sort: { field: "id", order: "DESC" },
+  pagination: { page: 1, perPage: 25 },
+  filter: {},
 });
 ```
 
@@ -435,15 +432,15 @@ When the user submits the form, the `save` function compares the value of the `<
 For instance, let's say that after displaying the venues 732 and 874 where bands 123 performs, the user removes venue 732, and adds venues 2 and 3. Upon submission, the `dataProvider` will detect removals and additions, and send the following queries:
 
 ```js
-dataProvider.delete('performances', {
-    id: 667,
-    previousData: { id: 667, band_id: 123, venue_id: 732 },
+dataProvider.delete("performances", {
+  id: 667,
+  previousData: { id: 667, band_id: 123, venue_id: 732 },
 });
-dataProvider.create('performances', {
-    data: { band_id: 123, venue_id: 2 },
+dataProvider.create("performances", {
+  data: { band_id: 123, venue_id: 2 },
 });
-dataProvider.create('performances', {
-    data: { band_id: 123, venue_id: 3 },
+dataProvider.create("performances", {
+  data: { band_id: 123, venue_id: 3 },
 });
 ```
 
@@ -456,49 +453,47 @@ To create your own translations, you can use the TypeScript types to see the str
 Here is an example of how to customize translations in your app:
 
 ```tsx
-import polyglotI18nProvider from 'ra-i18n-polyglot';
-import englishMessages from 'ra-language-english';
-import frenchMessages from 'ra-language-french';
+import polyglotI18nProvider from "ra-i18n-polyglot";
+import englishMessages from "ra-language-english";
+import frenchMessages from "ra-language-french";
 import {
-    raRelationshipsLanguageEnglish,
-    raRelationshipsLanguageFrench,
-    type RaRelationshipsTranslationMessages,
-} from '@react-admin/ra-core-ee';
+  raRelationshipsLanguageEnglish,
+  raRelationshipsLanguageFrench,
+  type RaRelationshipsTranslationMessages,
+} from "@react-admin/ra-core-ee";
 import {
-    CoreAdmin,
-    mergeTranslations,
-    type TranslationMessages as BaseTranslationMessages,
-} from 'ra-core';
+  CoreAdmin,
+  mergeTranslations,
+  type TranslationMessages as BaseTranslationMessages,
+} from "ra-core";
 
 /* TranslationMessages extends the default translation
  * Type from ra-core (BaseTranslationMessages)
  * and the ra-Relationships translation Type (RaRelationshipsTranslationMessages)
  */
 interface TranslationMessages
-    extends RaRelationshipsTranslationMessages,
-        BaseTranslationMessages {}
+  extends RaRelationshipsTranslationMessages, BaseTranslationMessages {}
 
 const customEnglishMessages: TranslationMessages = mergeTranslations(
-    englishMessages,
-    raRelationshipsLanguageEnglish,
-    {
-        'ra-relationships': {
-            referenceManyToManyInput: {
-                saveError:
-                    'Server error: your changes were not completely saved',
-            },
-        },
+  englishMessages,
+  raRelationshipsLanguageEnglish,
+  {
+    "ra-relationships": {
+      referenceManyToManyInput: {
+        saveError: "Server error: your changes were not completely saved",
+      },
     },
+  },
 );
 
 const i18nCustomProvider = polyglotI18nProvider((locale) => {
-    if (locale === 'fr') {
-        return mergeTranslations(frenchMessages, raRealTimeLanguageFrench);
-    }
-    return customEnglishMessages;
-}, 'en');
+  if (locale === "fr") {
+    return mergeTranslations(frenchMessages, raRealTimeLanguageFrench);
+  }
+  return customEnglishMessages;
+}, "en");
 
 export const MyApp = () => (
-    <CoreAdmin i18nProvider={i18nCustomProvider}>...</CoreAdmin>
+  <CoreAdmin i18nProvider={i18nCustomProvider}>...</CoreAdmin>
 );
 ```

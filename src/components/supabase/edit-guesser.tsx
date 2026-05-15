@@ -52,7 +52,9 @@ const SupabaseEditGuesserView = (
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   if (!resource) {
-    throw new Error("SupabaseEditGuesser must be used within a ResourceContext");
+    throw new Error(
+      "SupabaseEditGuesser must be used within a ResourceContext",
+    );
   }
 
   React.useEffect(() => {

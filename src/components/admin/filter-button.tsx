@@ -183,7 +183,9 @@ export const FilterButton = (props: FilterButtonProps) => {
         <DropdownMenuContent align="start" className="w-56">
           {allTogglableFilters
             .filter(
-              (filterElement): filterElement is React.ReactElement<FilterElementProps> =>
+              (
+                filterElement,
+              ): filterElement is React.ReactElement<FilterElementProps> =>
                 isValidElement(filterElement),
             )
             .map((filterElement, index: number) => (

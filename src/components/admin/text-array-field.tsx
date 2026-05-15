@@ -75,7 +75,9 @@ export const TextArrayField = <
 
 export interface TextArrayFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends FieldProps<RecordType>,
+>
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   variant?: BadgeProps["variant"];
 }

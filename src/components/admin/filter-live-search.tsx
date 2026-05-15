@@ -1,6 +1,9 @@
 import { memo } from "react";
 import { FilterLiveForm, useTranslate } from "ra-core";
-import { SearchInput, type SearchInputProps } from "@/components/admin/search-input";
+import {
+  SearchInput,
+  type SearchInputProps,
+} from "@/components/admin/search-input";
 
 /**
  * Form and search input for doing a full-text search filter from a sidebar.
@@ -35,7 +38,9 @@ export const FilterLiveSearch = memo((props: FilterLiveSearchProps) => {
   );
 });
 
-export interface FilterLiveSearchProps
-  extends Omit<SearchInputProps, "source"> {
+export interface FilterLiveSearchProps extends Omit<
+  SearchInputProps,
+  "source"
+> {
   source?: string;
 }

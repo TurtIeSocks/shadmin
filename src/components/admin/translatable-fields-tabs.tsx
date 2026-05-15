@@ -26,10 +26,7 @@ export const TranslatableFieldsTabs = (props: TranslatableFieldsTabsProps) => {
 
   return (
     <TabsList
-      className={cn(
-        "w-full justify-start rounded-b-none h-auto",
-        className,
-      )}
+      className={cn("w-full justify-start rounded-b-none h-auto", className)}
     >
       {locales.map((locale) => (
         <TranslatableFieldsTab

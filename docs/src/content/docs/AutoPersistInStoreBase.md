@@ -76,16 +76,16 @@ This notification component lets the user know that their previous unsaved chang
 Then, use the `<AutoPersistInStore>` component in your forms:
 
 ```tsx {8}
-import { Edit, SimpleForm, TextInput } from '@/components/admin';
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
 
 const PostEdit = () => (
-    <Edit>
-        <SimpleForm>
-            <TextInput source="title" />
-            <TextInput source="teaser" />
-            <AutoPersistInStore />
-        </SimpleForm>
-    </Edit>
+  <Edit>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="teaser" />
+      <AutoPersistInStore />
+    </SimpleForm>
+  </Edit>
 );
 ```
 
@@ -112,15 +112,17 @@ For example, if you are editing a `posts` resource with the ID `123`, the store 
 You can override this key by passing a custom function as the `getStoreKey` prop. It expects two parameters:
 
 - `resource`: The current resource.
-- `record`: The current record if you are in an [edit context](https://marmelab.com/ra-core/useeditcontext/).  
+- `record`: The current record if you are in an [edit context](https://marmelab.com/ra-core/useeditcontext/).
 
 ```tsx
-<AutoPersistInStoreBase 
-    getStoreKey={
-        (resource: ResourceContextValue, record: RaRecord<Identifier> | undefined) =>
-            `my-custom-persist-key-${resource}-${record && record.hasOwnProperty('id') ? record.id : 'create'}`
-    }
-    notification={<AutoPersistNotification />}
+<AutoPersistInStoreBase
+  getStoreKey={(
+    resource: ResourceContextValue,
+    record: RaRecord<Identifier> | undefined,
+  ) =>
+    `my-custom-persist-key-${resource}-${record && record.hasOwnProperty("id") ? record.id : "create"}`
+  }
+  notification={<AutoPersistNotification />}
 />
 ```
 
@@ -133,15 +135,15 @@ Storing many values in the `store` (especially with `localStorage`) may consume 
 **Note**: This feature is disabled when providing the `getStoreKey` prop.
 
 ```tsx
-<AutoPersistInStoreBase 
-    maxAge={10 * 60} // 10 minutes
-    notification={<AutoPersistNotification />}
+<AutoPersistInStoreBase
+  maxAge={10 * 60} // 10 minutes
+  notification={<AutoPersistNotification />}
 />
 ```
 
 ### `notification`
 
-When `<AutoPersistInStoreBase>` component applies the changes from the store to a form, react-admin informs users with a notification. 
+When `<AutoPersistInStoreBase>` component applies the changes from the store to a form, react-admin informs users with a notification.
 The notification element provided will be passed to the `notify` function of the [`useNotify` hook](https://marmelab.com/ra-core/usenotify/).
 
 ```tsx

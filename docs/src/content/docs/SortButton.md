@@ -33,11 +33,11 @@ This button lets users pick the sort field, then the sort direction (ASC/DESC).
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `fields` | Required | `string[]` | - | Whitelist of sortable field names |
-| `label` | Optional | `string` | `ra.action.sort` | i18n key |
-| `icon` | Optional | `ReactNode` | Sort icon | Custom icon |
+| Prop     | Required | Type        | Default          | Description                       |
+| -------- | -------- | ----------- | ---------------- | --------------------------------- |
+| `fields` | Required | `string[]`  | -                | Whitelist of sortable field names |
+| `label`  | Optional | `string`    | `ra.action.sort` | i18n key                          |
+| `icon`   | Optional | `ReactNode` | Sort icon        | Custom icon                       |
 
 Additional props are passed to the underlying `<button>` element (e.g., `className`).
 
@@ -49,18 +49,18 @@ You can customize the label for a specific resource by adding a `resources.{reso
 
 ```js
 const messages = {
-    resources: {
-        posts: {
-            action: {
-                sort_by: 'Sorted by %{field_lower_first} (%{order})',
-            },
-        },
+  resources: {
+    posts: {
+      action: {
+        sort_by: "Sorted by %{field_lower_first} (%{order})",
+      },
     },
+  },
 };
 ```
 
 You can also pass an alternative i18n key via the `label` prop, which is used as the fallback when no resource-specific key is found:
 
 ```tsx
-<SortButton fields={['title', 'published_at']} label="myapp.action.sort_by" />
+<SortButton fields={["title", "published_at"]} label="myapp.action.sort_by" />
 ```

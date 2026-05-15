@@ -1,10 +1,6 @@
 import { CoreAdminContext } from "ra-core";
 import { MemoryRouter } from "react-router";
-import {
-  ThemeProvider,
-  Title,
-  TitlePortal,
-} from "@/components/admin";
+import { ThemeProvider, Title, TitlePortal } from "@/components/admin";
 
 export default {
   title: "Layout/TitlePortal",

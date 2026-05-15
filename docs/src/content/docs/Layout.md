@@ -84,11 +84,7 @@ Instead of customizing the Layout, you can also provide your own layout componen
 import { Admin } from "react-admin";
 import { MyLayout } from "./layout";
 
-const App = () => (
-  <Admin layout={MyLayout} /* ... */>
-    {/* ... */}
-  </Admin>
-);
+const App = () => <Admin layout={MyLayout} /* ... */>{/* ... */}</Admin>;
 ```
 
 A custom layout can be of any shape, but must render its `children` (the main content of the page). For example, here is a minimal layout:

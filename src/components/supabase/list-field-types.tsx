@@ -38,7 +38,10 @@ ${children
   referenceArray: {
     component: (props: any) => (
       <DataTable.Col source={props.source}>
-        <ReferenceArrayField source={props.source} reference={props.reference} />
+        <ReferenceArrayField
+          source={props.source}
+          reference={props.reference}
+        />
       </DataTable.Col>
     ),
     representation: (props: any) =>

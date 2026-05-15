@@ -29,9 +29,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </List>
  * );
  */
-export const FunctionField = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+export const FunctionField = <RecordType extends UnknownRecord = UnknownRecord>(
   props: FunctionFieldProps<RecordType>,
 ) => {
   const { className, source = "", render, record: recordProp, ...rest } = props;
@@ -49,7 +47,9 @@ export const FunctionField = <
 
 export interface FunctionFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends Omit<FieldProps<RecordType>, "source">,
+>
+  extends
+    Omit<FieldProps<RecordType>, "source">,
     Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
   source?: string;
   render: (record: RecordType, source?: string) => ReactNode;

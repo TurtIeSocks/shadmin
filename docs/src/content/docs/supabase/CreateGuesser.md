@@ -10,13 +10,13 @@ Schema-aware drop-in `<Create>`. Identical to `SupabaseEditGuesser` but omits th
 import { Resource } from "ra-core";
 import { SupabaseCreateGuesser } from "@/components/supabase";
 
-<Resource name="companies" create={SupabaseCreateGuesser} />
+<Resource name="companies" create={SupabaseCreateGuesser} />;
 ```
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop        | Type      | Description                                       |
+| ----------- | --------- | ------------------------------------------------- |
 | `enableLog` | `boolean` | Default: `process.env.NODE_ENV === "development"` |
 
 All `<Create>` props are also accepted.

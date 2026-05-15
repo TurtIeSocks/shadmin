@@ -3,8 +3,7 @@ import { TriangleAlert } from "lucide-react";
 
 import { AuthErrorScreen } from "./auth-error-screen";
 
-export interface AuthenticationErrorProps
-  extends HTMLAttributes<HTMLDivElement> {
+export interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   icon?: ReactNode;
   textPrimary?: string;

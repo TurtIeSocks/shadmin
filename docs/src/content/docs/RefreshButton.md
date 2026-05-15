@@ -15,7 +15,7 @@ The default [`Layout`](./Layout.md) contains a `<RefreshButton>` in the top righ
 You can use it for your custom layouts:
 
 ```tsx
-import { RefreshButton } from '@/components/admin';
+import { RefreshButton } from "@/components/admin";
 
-<RefreshButton />
+<RefreshButton />;
 ```

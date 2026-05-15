@@ -33,8 +33,8 @@ const Dashboard = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
+| Prop        | Required | Type     | Default                     | Description                                          |
+| ----------- | -------- | -------- | --------------------------- | ---------------------------------------------------- |
 | `className` | Optional | `string` | `flex items-center min-w-0` | Extra Tailwind classes appended to the portal target |
 
 Additional props are forwarded to the underlying `<div>` element.

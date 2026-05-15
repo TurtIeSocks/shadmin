@@ -35,11 +35,11 @@ Strings are translated through the i18n provider; pass a React element to render
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `title` | Optional | `string \| ReactElement` | — | Title content. Strings are passed to the i18n provider. |
-| `defaultTitle` | Optional | `string \| ReactElement` | — | Fallback rendered when `title` is unset. |
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the rendered title element (string titles only). |
+| Prop           | Required | Type                     | Default | Description                                                                         |
+| -------------- | -------- | ------------------------ | ------- | ----------------------------------------------------------------------------------- |
+| `title`        | Optional | `string \| ReactElement` | —       | Title content. Strings are passed to the i18n provider.                             |
+| `defaultTitle` | Optional | `string \| ReactElement` | —       | Fallback rendered when `title` is unset.                                            |
+| `className`    | Optional | `string`                 | —       | Extra Tailwind classes appended to the rendered title element (string titles only). |
 
 ## `title`
 

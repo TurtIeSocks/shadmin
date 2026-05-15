@@ -24,10 +24,13 @@ export const Basket = () => {
     { enabled: !!record },
   );
   const productsById = products
-    ? products.reduce((acc, product) => {
-        acc[product.id] = product;
-        return acc;
-      }, {} as Record<number, Product>)
+    ? products.reduce(
+        (acc, product) => {
+          acc[product.id] = product;
+          return acc;
+        },
+        {} as Record<number, Product>,
+      )
     : {};
 
   if (isPending || !record || !products) return null;

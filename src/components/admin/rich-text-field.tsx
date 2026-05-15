@@ -22,9 +22,7 @@ const stripHtmlTags = (input: string): string => {
   return DOMPurify.sanitize(input, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
 };
 
-const RichTextFieldImpl = <
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+const RichTextFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
   inProps: RichTextFieldProps<RecordType>,
 ) => {
   const {
@@ -116,7 +114,9 @@ export type PurifyOptions = DOMPurifyConfig & {
 
 export interface RichTextFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends FieldProps<RecordType>,
+>
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
   stripTags?: boolean;
   purifyOptions?: PurifyOptions;

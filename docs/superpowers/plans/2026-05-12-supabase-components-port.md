@@ -14,59 +14,59 @@
 
 ## File map
 
-| File | Purpose | Status |
-|---|---|---|
-| `package.json` | Add peer deps | modify |
-| `src/components/admin/auth-layout.tsx` | Shared split-screen chrome | create |
-| `src/components/admin/login-page.tsx` | Refactor to consume AuthLayout | modify |
-| `src/components/admin/index.ts` | Export AuthLayout | modify |
-| `src/components/supabase/index.ts` | Public surface | create |
-| `src/components/supabase/icons.tsx` | 16 inline SVG provider icons | create |
-| `src/components/supabase/social-auth-button.tsx` | Base button + 16 provider buttons | create |
-| `src/components/supabase/social-auth-button.spec.tsx` | Tests | create |
-| `src/components/supabase/login-form.tsx` | Email/password + forgot link | create |
-| `src/components/supabase/login-form.spec.tsx` | Tests | create |
-| `src/components/supabase/login-page.tsx` | `SupabaseLoginPage` (social-aware) | create |
-| `src/components/supabase/login-page.spec.tsx` | Tests | create |
-| `src/components/supabase/forgot-password-form.tsx` | Form calling `useResetPassword` | create |
-| `src/components/supabase/forgot-password-form.spec.tsx` | Tests | create |
-| `src/components/supabase/forgot-password-page.tsx` | Page with `.path` | create |
-| `src/components/supabase/set-password-form.tsx` | Form calling `useSetPassword` | create |
-| `src/components/supabase/set-password-form.spec.tsx` | Tests | create |
-| `src/components/supabase/set-password-page.tsx` | Page with `.path` | create |
-| `src/components/supabase/inferred-element.ts` | Subclass adding `warning` | create |
-| `src/components/supabase/infer-element-from-type.ts` | Foreign-key aware type inference | create |
-| `src/components/supabase/infer-element-from-type.spec.ts` | Tests against fixture schema | create |
-| `src/components/supabase/edit-field-types.tsx` | `editFieldTypes` map | create |
-| `src/components/supabase/list-field-types.tsx` | `listFieldTypes` map | create |
-| `src/components/supabase/show-field-types.tsx` | `showFieldTypes` map | create |
-| `src/components/supabase/list-guesser.tsx` | `SupabaseListGuesser` | create |
-| `src/components/supabase/list-guesser.spec.tsx` | Tests | create |
-| `src/components/supabase/show-guesser.tsx` | `SupabaseShowGuesser` | create |
-| `src/components/supabase/show-guesser.spec.tsx` | Tests | create |
-| `src/components/supabase/edit-guesser.tsx` | `SupabaseEditGuesser` | create |
-| `src/components/supabase/edit-guesser.spec.tsx` | Tests | create |
-| `src/components/supabase/create-guesser.tsx` | `SupabaseCreateGuesser` | create |
-| `src/components/supabase/create-guesser.spec.tsx` | Tests | create |
-| `src/components/supabase/use-crud-guesser.tsx` | Hook auto-generating `<Resource>` defs | create |
-| `src/components/supabase/admin-guesser.tsx` | One-line umbrella component | create |
-| `src/components/supabase/admin-guesser.spec.tsx` | Tests | create |
-| `src/components/supabase/i18n/en.ts` | English keys | create |
-| `src/components/supabase/i18n/fr.ts` | French keys | create |
-| `src/components/supabase/i18n/index.ts` | `defaultSupabaseI18nProvider` helper | create |
-| `src/components/supabase/__fixtures__/example-schema.json` | Test fixture | create |
-| `src/components/supabase/__fixtures__/index.ts` | Re-export schema typed | create |
-| `src/stories/supabase/_mocks.ts` | Shared hook mocks for stories | create |
-| `src/stories/supabase/login-page.stories.tsx` | Stories | create |
-| `src/stories/supabase/forgot-password-page.stories.tsx` | Stories | create |
-| `src/stories/supabase/set-password-page.stories.tsx` | Stories | create |
-| `src/stories/supabase/social-auth-button.stories.tsx` | Stories | create |
-| `src/stories/supabase/list-guesser.stories.tsx` | Stories | create |
-| `src/stories/supabase/show-guesser.stories.tsx` | Stories | create |
-| `src/stories/supabase/edit-guesser.stories.tsx` | Stories | create |
-| `src/stories/supabase/create-guesser.stories.tsx` | Stories | create |
-| `src/stories/supabase/admin-guesser.stories.tsx` | Stories | create |
-| `docs/src/content/docs/supabase/*.md` | Documentation pages | create |
+| File                                                       | Purpose                                | Status |
+| ---------------------------------------------------------- | -------------------------------------- | ------ |
+| `package.json`                                             | Add peer deps                          | modify |
+| `src/components/admin/auth-layout.tsx`                     | Shared split-screen chrome             | create |
+| `src/components/admin/login-page.tsx`                      | Refactor to consume AuthLayout         | modify |
+| `src/components/admin/index.ts`                            | Export AuthLayout                      | modify |
+| `src/components/supabase/index.ts`                         | Public surface                         | create |
+| `src/components/supabase/icons.tsx`                        | 16 inline SVG provider icons           | create |
+| `src/components/supabase/social-auth-button.tsx`           | Base button + 16 provider buttons      | create |
+| `src/components/supabase/social-auth-button.spec.tsx`      | Tests                                  | create |
+| `src/components/supabase/login-form.tsx`                   | Email/password + forgot link           | create |
+| `src/components/supabase/login-form.spec.tsx`              | Tests                                  | create |
+| `src/components/supabase/login-page.tsx`                   | `SupabaseLoginPage` (social-aware)     | create |
+| `src/components/supabase/login-page.spec.tsx`              | Tests                                  | create |
+| `src/components/supabase/forgot-password-form.tsx`         | Form calling `useResetPassword`        | create |
+| `src/components/supabase/forgot-password-form.spec.tsx`    | Tests                                  | create |
+| `src/components/supabase/forgot-password-page.tsx`         | Page with `.path`                      | create |
+| `src/components/supabase/set-password-form.tsx`            | Form calling `useSetPassword`          | create |
+| `src/components/supabase/set-password-form.spec.tsx`       | Tests                                  | create |
+| `src/components/supabase/set-password-page.tsx`            | Page with `.path`                      | create |
+| `src/components/supabase/inferred-element.ts`              | Subclass adding `warning`              | create |
+| `src/components/supabase/infer-element-from-type.ts`       | Foreign-key aware type inference       | create |
+| `src/components/supabase/infer-element-from-type.spec.ts`  | Tests against fixture schema           | create |
+| `src/components/supabase/edit-field-types.tsx`             | `editFieldTypes` map                   | create |
+| `src/components/supabase/list-field-types.tsx`             | `listFieldTypes` map                   | create |
+| `src/components/supabase/show-field-types.tsx`             | `showFieldTypes` map                   | create |
+| `src/components/supabase/list-guesser.tsx`                 | `SupabaseListGuesser`                  | create |
+| `src/components/supabase/list-guesser.spec.tsx`            | Tests                                  | create |
+| `src/components/supabase/show-guesser.tsx`                 | `SupabaseShowGuesser`                  | create |
+| `src/components/supabase/show-guesser.spec.tsx`            | Tests                                  | create |
+| `src/components/supabase/edit-guesser.tsx`                 | `SupabaseEditGuesser`                  | create |
+| `src/components/supabase/edit-guesser.spec.tsx`            | Tests                                  | create |
+| `src/components/supabase/create-guesser.tsx`               | `SupabaseCreateGuesser`                | create |
+| `src/components/supabase/create-guesser.spec.tsx`          | Tests                                  | create |
+| `src/components/supabase/use-crud-guesser.tsx`             | Hook auto-generating `<Resource>` defs | create |
+| `src/components/supabase/admin-guesser.tsx`                | One-line umbrella component            | create |
+| `src/components/supabase/admin-guesser.spec.tsx`           | Tests                                  | create |
+| `src/components/supabase/i18n/en.ts`                       | English keys                           | create |
+| `src/components/supabase/i18n/fr.ts`                       | French keys                            | create |
+| `src/components/supabase/i18n/index.ts`                    | `defaultSupabaseI18nProvider` helper   | create |
+| `src/components/supabase/__fixtures__/example-schema.json` | Test fixture                           | create |
+| `src/components/supabase/__fixtures__/index.ts`            | Re-export schema typed                 | create |
+| `src/stories/supabase/_mocks.ts`                           | Shared hook mocks for stories          | create |
+| `src/stories/supabase/login-page.stories.tsx`              | Stories                                | create |
+| `src/stories/supabase/forgot-password-page.stories.tsx`    | Stories                                | create |
+| `src/stories/supabase/set-password-page.stories.tsx`       | Stories                                | create |
+| `src/stories/supabase/social-auth-button.stories.tsx`      | Stories                                | create |
+| `src/stories/supabase/list-guesser.stories.tsx`            | Stories                                | create |
+| `src/stories/supabase/show-guesser.stories.tsx`            | Stories                                | create |
+| `src/stories/supabase/edit-guesser.stories.tsx`            | Stories                                | create |
+| `src/stories/supabase/create-guesser.stories.tsx`          | Stories                                | create |
+| `src/stories/supabase/admin-guesser.stories.tsx`           | Stories                                | create |
+| `docs/src/content/docs/supabase/*.md`                      | Documentation pages                    | create |
 
 ---
 
@@ -85,6 +85,7 @@
 ## Task 1: Setup — package.json peer deps + supabase directory scaffold
 
 **Files:**
+
 - Modify: `package.json`
 - Create: `src/components/supabase/index.ts` (empty stub)
 - Create: `src/components/supabase/i18n/` (empty dir, populated next task)
@@ -109,6 +110,7 @@ Open `package.json`. Add a `peerDependencies` key (it does not exist yet — add
 Also install them as **devDependencies** so the kit can typecheck and test the new Supabase components in-tree:
 
 Run:
+
 ```bash
 pnpm add -D @supabase/supabase-js@^2.48.1 openapi-types@^12.1.3 ra-supabase-core@^3.5.2
 ```
@@ -140,6 +142,7 @@ git commit -m "Add Supabase peer dependencies and component directory stub"
 ## Task 2: i18n module — English + French + provider helper
 
 **Files:**
+
 - Create: `src/components/supabase/i18n/en.ts`
 - Create: `src/components/supabase/i18n/fr.ts`
 - Create: `src/components/supabase/i18n/index.ts`
@@ -265,6 +268,7 @@ git commit -m "Add Supabase i18n module (en/fr messages + default provider)"
 ## Task 3: Provider icons — 16 inline SVG components
 
 **Files:**
+
 - Create: `src/components/supabase/icons.tsx`
 
 **Source**: `/Users/rin/GitHub/ra-supabase/packages/ra-supabase-ui-materialui/src/icons.tsx`. The icons file copies SVG paths from Supabase's auth-ui repo. We replace the MUI `<SvgIcon>` wrapper with a plain `<svg>` accepting `React.SVGProps<SVGSVGElement>`.
@@ -305,10 +309,22 @@ const Svg = ({
 
 export const GoogleIcon = (props: IconProps) => (
   <Svg viewBox="0 0 48 48" {...props}>
-    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
-    <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
-    <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
-    <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+    <path
+      fill="#FFC107"
+      d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
+    />
+    <path
+      fill="#FF3D00"
+      d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
+    />
+    <path
+      fill="#4CAF50"
+      d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
+    />
+    <path
+      fill="#1976D2"
+      d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
+    />
   </Svg>
 );
 ```
@@ -332,6 +348,7 @@ Then add the remaining 15 icons. **Source paths to copy verbatim** from `/Users/
 - `WorkosIcon` — viewBox `0 0 512 512`, 2 paths (lines 374-391)
 
 **Important translations from MUI to plain SVG**:
+
 - `fillRule="evenodd"` in MUI becomes `fillRule="evenodd"` in React JSX (same — already camelCase)
 - `clipRule="evenodd"` is also already camelCase
 - For Bitbucket and Azure: the inline `<defs><linearGradient id="...">` works as-is in JSX. Keep `gradientUnits` / `gradientTransform` etc. spelled exactly as in the source (they're attribute-name strings, React forwards them).
@@ -354,6 +371,7 @@ git commit -m "Add inline SVG icons for 16 Supabase social auth providers"
 ## Task 4: Extract shared `AuthLayout` and refactor existing `LoginPage`
 
 **Files:**
+
 - Create: `src/components/admin/auth-layout.tsx`
 - Modify: `src/components/admin/login-page.tsx`
 - Modify: `src/components/admin/index.ts`
@@ -551,6 +569,7 @@ git commit -m "Extract AuthLayout from LoginPage for reuse by Supabase auth page
 ## Task 5: `SocialAuthButton` + 16 provider buttons
 
 **Files:**
+
 - Create: `src/components/supabase/social-auth-button.tsx`
 - Create: `src/components/supabase/social-auth-button.spec.tsx`
 - Create: `src/stories/supabase/social-auth-button.stories.tsx`
@@ -606,10 +625,7 @@ const Wrapper = ({
 }: React.PropsWithChildren<{ authProvider?: AuthProvider }>) => (
   <MemoryRouter>
     <ThemeProvider>
-      <CoreAdminContext
-        authProvider={authProvider}
-        i18nProvider={i18nProvider}
-      >
+      <CoreAdminContext authProvider={authProvider} i18nProvider={i18nProvider}>
         {children}
       </CoreAdminContext>
     </ThemeProvider>
@@ -909,6 +925,7 @@ git commit -m "Add SocialAuthButton with 16 Supabase OAuth provider variants"
 ## Task 6: `SupabaseLoginForm` (email + password + forgot link)
 
 **Files:**
+
 - Create: `src/components/supabase/login-form.tsx`
 - Create: `src/components/supabase/login-form.spec.tsx`
 
@@ -971,9 +988,7 @@ describe("<SupabaseLoginForm />", () => {
   it("calls authProvider.login with the submitted credentials", async () => {
     const login = vi.fn().mockResolvedValue(undefined);
     const screen = renderWith(<SupabaseLoginForm />, stubAuth(login));
-    await screen
-      .getByLabelText(/Email/)
-      .fill("janedoe@example.com");
+    await screen.getByLabelText(/Email/).fill("janedoe@example.com");
     await screen.getByLabelText(/Password/).fill("hunter2");
     await screen.getByRole("button", { name: /Sign in/ }).click();
     expect(login).toHaveBeenCalledWith(
@@ -1003,13 +1018,7 @@ Expected: FAIL — module not found.
 
 ```tsx
 import { useState } from "react";
-import {
-  Form,
-  required,
-  useLogin,
-  useNotify,
-  useTranslate,
-} from "ra-core";
+import { Form, required, useLogin, useNotify, useTranslate } from "ra-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
@@ -1128,6 +1137,7 @@ git commit -m "Add SupabaseLoginForm with email/password and forgot-password lin
 ## Task 7: `SupabaseLoginPage` (umbrella with optional social providers)
 
 **Files:**
+
 - Create: `src/components/supabase/login-page.tsx`
 - Create: `src/components/supabase/login-page.spec.tsx`
 - Create: `src/stories/supabase/login-page.stories.tsx`
@@ -1397,6 +1407,7 @@ git commit -m "Add SupabaseLoginPage with optional social auth providers"
 ## Task 8: `ForgotPasswordPage` + `ForgotPasswordForm`
 
 **Files:**
+
 - Create: `src/components/supabase/forgot-password-form.tsx`
 - Create: `src/components/supabase/forgot-password-form.spec.tsx`
 - Create: `src/components/supabase/forgot-password-page.tsx`
@@ -1471,10 +1482,7 @@ const i18nProvider = polyglotI18nProvider(
 // react-query mutation tuple; the form only uses the second element.
 const mutateAsync = vi.fn().mockResolvedValue(undefined);
 vi.mock("ra-supabase-core", () => ({
-  useResetPassword: () => [
-    {} as never,
-    { mutateAsync },
-  ],
+  useResetPassword: () => [{} as never, { mutateAsync }],
 }));
 
 const auth: AuthProvider = {
@@ -1678,6 +1686,7 @@ git commit -m "Add ForgotPasswordPage and ForgotPasswordForm for Supabase auth"
 ## Task 9: `SetPasswordPage` + `SetPasswordForm`
 
 **Files:**
+
 - Create: `src/components/supabase/set-password-form.tsx`
 - Create: `src/components/supabase/set-password-form.spec.tsx`
 - Create: `src/components/supabase/set-password-page.tsx`
@@ -1715,7 +1724,9 @@ const auth: AuthProvider = {
 };
 
 export const WithTokens = () => (
-  <MemoryRouter initialEntries={["/set-password#access_token=A&refresh_token=R"]}>
+  <MemoryRouter
+    initialEntries={["/set-password#access_token=A&refresh_token=R"]}
+  >
     <ThemeProvider>
       <CoreAdminContext authProvider={auth} i18nProvider={i18nProvider}>
         <SetPasswordPage />
@@ -1765,11 +1776,10 @@ const tokenValues: Record<string, string | undefined> = {
 };
 
 vi.mock("ra-supabase-core", () => ({
-  useSetPassword: () => [
-    {} as never,
-    { mutateAsync },
-  ],
-  useSupabaseAccessToken: ({ parameterName }: { parameterName?: string } = {}) =>
+  useSetPassword: () => [{} as never, { mutateAsync }],
+  useSupabaseAccessToken: ({
+    parameterName,
+  }: { parameterName?: string } = {}) =>
     tokenValues[parameterName ?? "access_token"],
 }));
 
@@ -1851,17 +1861,9 @@ Expected: FAIL.
 - [ ] **Step 4: Implement `src/components/supabase/set-password-form.tsx`**
 
 ```tsx
-import {
-  Form,
-  required,
-  useNotify,
-  useTranslate,
-} from "ra-core";
+import { Form, required, useNotify, useTranslate } from "ra-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
-import {
-  useSetPassword,
-  useSupabaseAccessToken,
-} from "ra-supabase-core";
+import { useSetPassword, useSupabaseAccessToken } from "ra-supabase-core";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 
@@ -1893,9 +1895,7 @@ export const SetPasswordForm = () => {
   if (!access_token || !refresh_token) {
     if (process.env.NODE_ENV === "development") {
       // eslint-disable-next-line no-console
-      console.error(
-        "Missing access_token or refresh_token for set password",
-      );
+      console.error("Missing access_token or refresh_token for set password");
     }
     return (
       <div className="text-center text-sm text-muted-foreground">
@@ -1955,11 +1955,7 @@ export const SetPasswordForm = () => {
           })}
         </h1>
       </div>
-      <Form
-        className="space-y-6"
-        onSubmit={handleSubmit}
-        validate={validate}
-      >
+      <Form className="space-y-6" onSubmit={handleSubmit} validate={validate}>
         <TextInput
           label={translate("ra.auth.password", { _: "Password" })}
           source="password"
@@ -2036,6 +2032,7 @@ git commit -m "Add SetPasswordPage and SetPasswordForm for Supabase auth"
 ## Task 10: Test fixture — example Supabase OpenAPI schema
 
 **Files:**
+
 - Create: `src/components/supabase/__fixtures__/example-schema.json`
 - Create: `src/components/supabase/__fixtures__/index.ts`
 
@@ -2056,17 +2053,38 @@ Create `src/components/supabase/__fixtures__/example-schema.json`:
   "produces": ["application/json"],
   "paths": {
     "/companies": {
-      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "post": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "patch": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+      "get": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "patch": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      }
     },
     "/contacts": {
-      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "post": { "parameters": [], "responses": { "200": { "description": "OK" } } },
-      "patch": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+      "get": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "post": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      },
+      "patch": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      }
     },
     "/readonly_view": {
-      "get": { "parameters": [], "responses": { "200": { "description": "OK" } } }
+      "get": {
+        "parameters": [],
+        "responses": { "200": { "description": "OK" } }
+      }
     }
   },
   "definitions": {
@@ -2140,6 +2158,7 @@ git commit -m "Add OpenAPI schema fixture for Supabase guesser tests"
 ## Task 11: `InferredElement` subclass
 
 **Files:**
+
 - Create: `src/components/supabase/inferred-element.ts`
 
 - [ ] **Step 1: Implement the subclass**
@@ -2197,6 +2216,7 @@ git commit -m "Add InferredElement subclass with warning support"
 ## Task 12: `inferElementFromType` — schema-driven field inference
 
 **Files:**
+
 - Create: `src/components/supabase/infer-element-from-type.ts`
 - Create: `src/components/supabase/infer-element-from-type.spec.ts`
 
@@ -2577,6 +2597,7 @@ git commit -m "Add inferElementFromType for Supabase OpenAPI-driven type inferen
 ## Task 13: Field-type maps (`editFieldTypes`, `listFieldTypes`, `showFieldTypes`)
 
 **Files:**
+
 - Create: `src/components/supabase/edit-field-types.tsx`
 - Create: `src/components/supabase/list-field-types.tsx`
 - Create: `src/components/supabase/show-field-types.tsx`
@@ -2686,13 +2707,11 @@ ${children
   },
   number: {
     component: (props: any) => <NumberInput {...props} />,
-    representation: (props: any) =>
-      `<NumberInput source="${props.source}" />`,
+    representation: (props: any) => `<NumberInput source="${props.source}" />`,
   },
   boolean: {
     component: (props: any) => <BooleanInput {...props} />,
-    representation: (props: any) =>
-      `<BooleanInput source="${props.source}" />`,
+    representation: (props: any) => `<BooleanInput source="${props.source}" />`,
   },
   date: {
     component: (props: any) => <DateInput {...props} />,
@@ -2758,7 +2777,10 @@ ${children
   referenceArray: {
     component: (props: any) => (
       <DataTable.Col source={props.source}>
-        <ReferenceArrayField source={props.source} reference={props.reference} />
+        <ReferenceArrayField
+          source={props.source}
+          reference={props.reference}
+        />
       </DataTable.Col>
     ),
     representation: (props: any) =>
@@ -2862,7 +2884,10 @@ ${children
   referenceArray: {
     component: (props: any) => (
       <RecordField source={props.source}>
-        <ReferenceArrayField source={props.source} reference={props.reference} />
+        <ReferenceArrayField
+          source={props.source}
+          reference={props.reference}
+        />
       </RecordField>
     ),
     representation: (props: any) =>
@@ -2938,6 +2963,7 @@ git commit -m "Add Supabase guesser field-type maps with PostgREST @ilike filter
 ## Task 14: `SupabaseListGuesser`
 
 **Files:**
+
 - Create: `src/components/supabase/list-guesser.tsx`
 - Create: `src/components/supabase/list-guesser.spec.tsx`
 - Create: `src/stories/supabase/list-guesser.stories.tsx`
@@ -3132,7 +3158,11 @@ import type { ReactNode } from "react";
 import { ListBase, useResourceContext } from "ra-core";
 import { useAPISchema } from "ra-supabase-core";
 import { capitalize, singularize } from "inflection";
-import { ListView, type ListProps, type ListViewProps } from "@/components/admin/list";
+import {
+  ListView,
+  type ListProps,
+  type ListViewProps,
+} from "@/components/admin/list";
 import { Loading } from "@/components/admin/loading";
 import { GuesserEmpty } from "@/components/admin/guesser-empty";
 import { InferredElement } from "./inferred-element";
@@ -3197,7 +3227,9 @@ const SupabaseListGuesserView = (
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   if (!resource) {
-    throw new Error("SupabaseListGuesser must be used within a ResourceContext");
+    throw new Error(
+      "SupabaseListGuesser must be used within a ResourceContext",
+    );
   }
 
   React.useEffect(() => {
@@ -3216,9 +3248,10 @@ const SupabaseListGuesserView = (
           types: listFieldTypes,
           description: def.properties?.[s].description,
           format: def.properties?.[s].format,
-          type: typeof def.properties?.[s].type === "string"
-            ? (def.properties?.[s].type as string)
-            : "string",
+          type:
+            typeof def.properties?.[s].type === "string"
+              ? (def.properties?.[s].type as string)
+              : "string",
           schema,
         }),
       );
@@ -3267,6 +3300,7 @@ git commit -m "Add SupabaseListGuesser with OpenAPI schema introspection"
 ## Task 15: `SupabaseShowGuesser`
 
 **Files:**
+
 - Create: `src/components/supabase/show-guesser.tsx`
 - Create: `src/components/supabase/show-guesser.spec.tsx`
 - Create: `src/stories/supabase/show-guesser.stories.tsx`
@@ -3450,7 +3484,11 @@ import type { ReactNode } from "react";
 import { ShowBase, useResourceContext } from "ra-core";
 import { useAPISchema } from "ra-supabase-core";
 import { capitalize, singularize } from "inflection";
-import { ShowView, type ShowProps, type ShowViewProps } from "@/components/admin/show";
+import {
+  ShowView,
+  type ShowProps,
+  type ShowViewProps,
+} from "@/components/admin/show";
 import { Loading } from "@/components/admin/loading";
 import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
@@ -3481,7 +3519,9 @@ const SupabaseShowGuesserView = (
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   if (!resource) {
-    throw new Error("SupabaseShowGuesser must be used within a ResourceContext");
+    throw new Error(
+      "SupabaseShowGuesser must be used within a ResourceContext",
+    );
   }
 
   React.useEffect(() => {
@@ -3500,9 +3540,10 @@ const SupabaseShowGuesserView = (
           types: showFieldTypes,
           description: def.properties?.[s].description,
           format: def.properties?.[s].format,
-          type: typeof def.properties?.[s].type === "string"
-            ? (def.properties?.[s].type as string)
-            : "string",
+          type:
+            typeof def.properties?.[s].type === "string"
+              ? (def.properties?.[s].type as string)
+              : "string",
           schema,
         }),
       );
@@ -3547,6 +3588,7 @@ git commit -m "Add SupabaseShowGuesser with OpenAPI schema introspection"
 ## Task 16: `SupabaseEditGuesser`
 
 **Files:**
+
 - Create: `src/components/supabase/edit-guesser.tsx`
 - Create: `src/components/supabase/edit-guesser.spec.tsx`
 - Create: `src/stories/supabase/edit-guesser.stories.tsx`
@@ -3763,7 +3805,9 @@ const SupabaseEditGuesserView = (
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   if (!resource) {
-    throw new Error("SupabaseEditGuesser must be used within a ResourceContext");
+    throw new Error(
+      "SupabaseEditGuesser must be used within a ResourceContext",
+    );
   }
 
   React.useEffect(() => {
@@ -3784,18 +3828,15 @@ const SupabaseEditGuesserView = (
           types: editFieldTypes,
           description: def.properties?.[s].description,
           format: def.properties?.[s].format,
-          type: typeof def.properties?.[s].type === "string"
-            ? (def.properties?.[s].type as string)
-            : "string",
+          type:
+            typeof def.properties?.[s].type === "string"
+              ? (def.properties?.[s].type as string)
+              : "string",
           requiredFields,
           schema,
         }),
       );
-    const form = new InferredElement(
-      editFieldTypes.form,
-      null,
-      inferredInputs,
-    );
+    const form = new InferredElement(editFieldTypes.form, null, inferredInputs);
     setChild(form.getElement());
 
     if (!enableLog) return;
@@ -3836,6 +3877,7 @@ git commit -m "Add SupabaseEditGuesser with OpenAPI schema introspection"
 ## Task 17: `SupabaseCreateGuesser`
 
 **Files:**
+
 - Create: `src/components/supabase/create-guesser.tsx`
 - Create: `src/components/supabase/create-guesser.spec.tsx`
 - Create: `src/stories/supabase/create-guesser.stories.tsx`
@@ -3974,7 +4016,9 @@ describe("<SupabaseCreateGuesser />", () => {
     await expect.element(screen.getByLabelText(/name/i)).toBeInTheDocument();
     await expect.element(screen.getByLabelText(/website/i)).toBeInTheDocument();
     // The 'id' column must NOT appear as an input
-    await expect.element(screen.getByLabelText(/^id$/i)).not.toBeInTheDocument();
+    await expect
+      .element(screen.getByLabelText(/^id$/i))
+      .not.toBeInTheDocument();
   });
 });
 ```
@@ -4034,7 +4078,9 @@ const SupabaseCreateGuesserView = (
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   if (!resource) {
-    throw new Error("SupabaseCreateGuesser must be used within a ResourceContext");
+    throw new Error(
+      "SupabaseCreateGuesser must be used within a ResourceContext",
+    );
   }
 
   React.useEffect(() => {
@@ -4055,18 +4101,15 @@ const SupabaseCreateGuesserView = (
           types: editFieldTypes,
           description: def.properties?.[s].description,
           format: def.properties?.[s].format,
-          type: typeof def.properties?.[s].type === "string"
-            ? (def.properties?.[s].type as string)
-            : "string",
+          type:
+            typeof def.properties?.[s].type === "string"
+              ? (def.properties?.[s].type as string)
+              : "string",
           requiredFields,
           schema,
         }),
       );
-    const form = new InferredElement(
-      editFieldTypes.form,
-      null,
-      inferredInputs,
-    );
+    const form = new InferredElement(editFieldTypes.form, null, inferredInputs);
     setChild(form.getElement());
 
     if (!enableLog) return;
@@ -4107,6 +4150,7 @@ git commit -m "Add SupabaseCreateGuesser with OpenAPI schema introspection"
 ## Task 18: `useCrudGuesser` hook
 
 **Files:**
+
 - Create: `src/components/supabase/use-crud-guesser.tsx`
 
 - [ ] **Step 1: Implement the hook**
@@ -4166,6 +4210,7 @@ git commit -m "Add useCrudGuesser hook for auto-generated Resource definitions"
 ## Task 19: `AdminGuesser` umbrella component
 
 **Files:**
+
 - Create: `src/components/supabase/admin-guesser.tsx`
 - Create: `src/components/supabase/admin-guesser.spec.tsx`
 - Create: `src/stories/supabase/admin-guesser.stories.tsx`
@@ -4228,7 +4273,10 @@ import { AdminGuesser } from "@/components/supabase/admin-guesser";
 describe("<AdminGuesser />", () => {
   it("renders without crashing given instanceUrl and apiKey", async () => {
     const screen = render(
-      <AdminGuesser instanceUrl="http://localhost:54321" apiKey="sb_publishable_x" />,
+      <AdminGuesser
+        instanceUrl="http://localhost:54321"
+        apiKey="sb_publishable_x"
+      />,
     );
     // The first paint shows either the sidebar nav (when authenticated) or the
     // login page (when not). We only assert that the document mounted — that
@@ -4251,17 +4299,10 @@ Expected: FAIL — module not found.
 ```tsx
 import * as React from "react";
 import { useMemo } from "react";
-import {
-  CustomRoutes,
-  Resource,
-  type CoreAdminProps,
-} from "ra-core";
+import { CustomRoutes, Resource, type CoreAdminProps } from "ra-core";
 import { Route } from "react-router";
 import { createClient } from "@supabase/supabase-js";
-import {
-  supabaseAuthProvider,
-  supabaseDataProvider,
-} from "ra-supabase-core";
+import { supabaseAuthProvider, supabaseDataProvider } from "ra-supabase-core";
 import { Admin } from "@/components/admin/admin";
 import { defaultSupabaseI18nProvider } from "./i18n";
 import { useCrudGuesser } from "./use-crud-guesser";
@@ -4413,6 +4454,7 @@ git commit -m "Add AdminGuesser umbrella component for one-line Supabase setup"
 ## Task 20: Public `index.ts` — export the full surface
 
 **Files:**
+
 - Modify: `src/components/supabase/index.ts`
 
 - [ ] **Step 1: Replace the stub with the full export surface**
@@ -4462,6 +4504,7 @@ git commit -m "Export full Supabase component surface from src/components/supaba
 ## Task 21: Documentation pages
 
 **Files:**
+
 - Create: `docs/src/content/docs/supabase/getting-started.md`
 - Create: `docs/src/content/docs/supabase/AdminGuesser.md`
 - Create: `docs/src/content/docs/supabase/LoginPage.md`
@@ -4478,7 +4521,7 @@ Match the kit's existing doc conventions: frontmatter `title`, intro paragraph, 
 
 - [ ] **Step 1: Create `docs/src/content/docs/supabase/getting-started.md`**
 
-```md
+````md
 ---
 title: "Supabase Integration"
 ---
@@ -4492,6 +4535,7 @@ Install the required peer dependencies:
 ```bash
 pnpm add @supabase/supabase-js ra-supabase-core openapi-types
 ```
+````
 
 ## Quick start
 
@@ -4516,7 +4560,8 @@ The `apiKey` accepts both the legacy anonymous JWT and the new publishable key f
 - Schema-aware `<SupabaseListGuesser>` / `<ShowGuesser>` / `<EditGuesser>` / `<CreateGuesser>` that infer references from foreign keys
 - 16 social auth provider buttons (Apple, Azure, Bitbucket, Discord, Facebook, GitHub, GitLab, Google, Keycloak, LinkedIn, Notion, Slack, Spotify, Twitch, Twitter, WorkOS)
 - English + French translations via `defaultSupabaseI18nProvider`
-```
+
+````
 
 - [ ] **Step 2: Create `docs/src/content/docs/supabase/AdminGuesser.md`**
 
@@ -4538,7 +4583,7 @@ export const App = () => (
     apiKey="sb_publishable_..."
   />
 );
-```
+````
 
 For an explicit Resource list, pass `<Resource>` children:
 
@@ -4557,18 +4602,19 @@ export const App = () => (
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `instanceUrl` | `string` | **Required.** Your Supabase project URL |
-| `apiKey` | `string` | **Required.** Anon JWT or publishable key |
-| `dataProvider` | `DataProvider` | Override the default `supabaseDataProvider` |
-| `authProvider` | `AuthProvider` | Override the default `supabaseAuthProvider` |
-| `i18nProvider` | `I18nProvider` | Override the default English+Supabase polyglot provider |
-| `loginPage` | `ComponentType` | Override the default `<SupabaseLoginPage>` |
-| `children` | `ReactNode` | Explicit `<Resource>` elements (suppresses auto-detection) |
+| Prop           | Type            | Description                                                |
+| -------------- | --------------- | ---------------------------------------------------------- |
+| `instanceUrl`  | `string`        | **Required.** Your Supabase project URL                    |
+| `apiKey`       | `string`        | **Required.** Anon JWT or publishable key                  |
+| `dataProvider` | `DataProvider`  | Override the default `supabaseDataProvider`                |
+| `authProvider` | `AuthProvider`  | Override the default `supabaseAuthProvider`                |
+| `i18nProvider` | `I18nProvider`  | Override the default English+Supabase polyglot provider    |
+| `loginPage`    | `ComponentType` | Override the default `<SupabaseLoginPage>`                 |
+| `children`     | `ReactNode`     | Explicit `<Resource>` elements (suppresses auto-detection) |
 
 All other props from `<Admin>` are also accepted.
-```
+
+````
 
 - [ ] **Step 3: Create `docs/src/content/docs/supabase/LoginPage.md`**
 
@@ -4590,7 +4636,7 @@ const App = () => (
     ...
   </Admin>
 );
-```
+````
 
 With social providers:
 
@@ -4607,15 +4653,16 @@ const App = () => (
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `children` | `ReactNode` | Replaces the form column entirely |
-| `disableEmailPassword` | `boolean` | Hide the email/password form |
-| `disableForgotPassword` | `boolean` | Hide the "Forgot password?" link |
-| `marketing` | `ReactNode` | Replace the left marketing panel |
-| `providers` | `SupabaseAuthProvider[]` | Social providers to expose as buttons |
-| `redirectTo` | `string` | Where to redirect after successful login |
-```
+| Prop                    | Type                     | Description                              |
+| ----------------------- | ------------------------ | ---------------------------------------- |
+| `children`              | `ReactNode`              | Replaces the form column entirely        |
+| `disableEmailPassword`  | `boolean`                | Hide the email/password form             |
+| `disableForgotPassword` | `boolean`                | Hide the "Forgot password?" link         |
+| `marketing`             | `ReactNode`              | Replace the left marketing panel         |
+| `providers`             | `SupabaseAuthProvider[]` | Social providers to expose as buttons    |
+| `redirectTo`            | `string`                 | Where to redirect after successful login |
+
+````
 
 - [ ] **Step 4: Create `docs/src/content/docs/supabase/ForgotPasswordPage.md`**
 
@@ -4646,15 +4693,16 @@ const App = () => (
     </CustomRoutes>
   </Admin>
 );
-```
+````
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `children` | `ReactNode` | Replace the inner form |
+| Prop        | Type        | Description                      |
+| ----------- | ----------- | -------------------------------- |
+| `children`  | `ReactNode` | Replace the inner form           |
 | `marketing` | `ReactNode` | Replace the left marketing panel |
-```
+
+````
 
 - [ ] **Step 5: Create `docs/src/content/docs/supabase/SetPasswordPage.md`**
 
@@ -4680,15 +4728,16 @@ const App = () => (
     </CustomRoutes>
   </Admin>
 );
-```
+````
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `children` | `ReactNode` | Replace the inner form |
+| Prop        | Type        | Description                      |
+| ----------- | ----------- | -------------------------------- |
+| `children`  | `ReactNode` | Replace the inner form           |
 | `marketing` | `ReactNode` | Replace the left marketing panel |
-```
+
+````
 
 - [ ] **Step 6: Create `docs/src/content/docs/supabase/SocialAuthButton.md`**
 
@@ -4713,7 +4762,7 @@ import {
   <GoogleButton />
   <SocialAuthButton provider="discord">Sign in with Discord</SocialAuthButton>
 </div>
-```
+````
 
 ## Provider buttons
 
@@ -4721,13 +4770,14 @@ import {
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop       | Type                   | Description                                 |
+| ---------- | ---------------------- | ------------------------------------------- |
 | `provider` | `SupabaseAuthProvider` | OAuth provider name (omit on named buttons) |
-| `redirect` | `string` | Optional redirect URL passed to `login()` |
+| `redirect` | `string`               | Optional redirect URL passed to `login()`   |
 
 All other `<Button>` props from shadcn/ui pass through.
-```
+
+````
 
 - [ ] **Step 7: Create `docs/src/content/docs/supabase/ListGuesser.md`**
 
@@ -4745,18 +4795,19 @@ import { Resource } from "ra-core";
 import { SupabaseListGuesser } from "@/components/supabase";
 
 <Resource name="companies" list={SupabaseListGuesser} />
-```
+````
 
 In development, the inferred `<List>` source is logged to the browser console so you can copy-paste it into a real `CompanyList.tsx` and customize further. Disable the logging with `enableLog={false}`.
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop        | Type      | Description                                       |
+| ----------- | --------- | ------------------------------------------------- |
 | `enableLog` | `boolean` | Default: `process.env.NODE_ENV === "development"` |
 
 All `<List>` props are also accepted.
-```
+
+````
 
 - [ ] **Step 8: Create `docs/src/content/docs/supabase/ShowGuesser.md`**
 
@@ -4774,16 +4825,17 @@ import { Resource } from "ra-core";
 import { SupabaseShowGuesser } from "@/components/supabase";
 
 <Resource name="companies" show={SupabaseShowGuesser} />
-```
+````
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop        | Type      | Description                                       |
+| ----------- | --------- | ------------------------------------------------- |
 | `enableLog` | `boolean` | Default: `process.env.NODE_ENV === "development"` |
 
 All `<Show>` props are also accepted.
-```
+
+````
 
 - [ ] **Step 9: Create `docs/src/content/docs/supabase/EditGuesser.md`**
 
@@ -4801,16 +4853,17 @@ import { Resource } from "ra-core";
 import { SupabaseEditGuesser } from "@/components/supabase";
 
 <Resource name="companies" edit={SupabaseEditGuesser} />
-```
+````
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop        | Type      | Description                                       |
+| ----------- | --------- | ------------------------------------------------- |
 | `enableLog` | `boolean` | Default: `process.env.NODE_ENV === "development"` |
 
 All `<Edit>` props are also accepted.
-```
+
+````
 
 - [ ] **Step 10: Create `docs/src/content/docs/supabase/CreateGuesser.md`**
 
@@ -4828,16 +4881,17 @@ import { Resource } from "ra-core";
 import { SupabaseCreateGuesser } from "@/components/supabase";
 
 <Resource name="companies" create={SupabaseCreateGuesser} />
-```
+````
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
+| Prop        | Type      | Description                                       |
+| ----------- | --------- | ------------------------------------------------- |
 | `enableLog` | `boolean` | Default: `process.env.NODE_ENV === "development"` |
 
 All `<Create>` props are also accepted.
-```
+
+````
 
 - [ ] **Step 11: Create `docs/src/content/docs/supabase/i18n.md`**
 
@@ -4869,7 +4923,7 @@ export const i18nProvider = polyglotI18nProvider(
   "en",
   [{ name: "en", value: "English" }, { name: "fr", value: "Français" }],
 );
-```
+````
 
 `<AdminGuesser>` uses `defaultSupabaseI18nProvider` (English-only with Supabase keys) by default.
 
@@ -4887,7 +4941,8 @@ export const i18nProvider = polyglotI18nProvider(
 - `ra-supabase.reset_password.forgot_password_details` — body text
 - `ra-supabase.set_password.new_password` — "Choose your password"
 - `ra-supabase.validation.password_mismatch` — validation error
-```
+
+````
 
 - [ ] **Step 12: Verify the Astro docs site builds**
 
@@ -4899,7 +4954,7 @@ Expected: PASS (Astro builds the site including the new pages).
 ```bash
 git add docs/src/content/docs/supabase
 git commit -m "Add documentation pages for Supabase components"
-```
+````
 
 ---
 
@@ -4924,6 +4979,7 @@ Expected: PASS.
 
 Run: `pnpm storybook`
 Verify each new story renders:
+
 - Supabase / LoginPage / Default, WithSocialProviders, SocialOnly, NoForgotPassword
 - Supabase / ForgotPasswordPage / Default
 - Supabase / SetPasswordPage / WithTokens, MissingTokens

@@ -7,9 +7,9 @@ Displays a value inside a styled shadcn [`<Badge>`](https://ui.shadcn.com/docs/c
 ## Usage
 
 ```tsx
-import { ChipField } from '@/components/admin';
+import { ChipField } from "@/components/admin";
 
-<ChipField source="category" />
+<ChipField source="category" />;
 ```
 
 You can change the badge style via the `variant` prop:
@@ -20,14 +20,14 @@ You can change the badge style via the `variant` prop:
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name |
-| `record` | Optional | `object` | Record from context | Explicit record |
-| `defaultValue` | Optional | `any` | - | Fallback value |
-| `empty` | Optional | `ReactNode` | - | Placeholder when value is null or empty |
-| `variant` | Optional | `"default" \| "outline" \| "secondary" \| "destructive"` | `"outline"` | Badge style |
-| `className` | Optional | `string` | - | Additional CSS classes |
+| Prop           | Required | Type                                                     | Default             | Description                             |
+| -------------- | -------- | -------------------------------------------------------- | ------------------- | --------------------------------------- |
+| `source`       | Required | `string`                                                 | -                   | Field name                              |
+| `record`       | Optional | `object`                                                 | Record from context | Explicit record                         |
+| `defaultValue` | Optional | `any`                                                    | -                   | Fallback value                          |
+| `empty`        | Optional | `ReactNode`                                              | -                   | Placeholder when value is null or empty |
+| `variant`      | Optional | `"default" \| "outline" \| "secondary" \| "destructive"` | `"outline"`         | Badge style                             |
+| `className`    | Optional | `string`                                                 | -                   | Additional CSS classes                  |
 
 Remaining props are forwarded to the underlying `<Badge>` component.
 

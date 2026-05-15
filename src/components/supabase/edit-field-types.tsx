@@ -98,13 +98,11 @@ ${children
   },
   number: {
     component: (props: any) => <NumberInput {...props} />,
-    representation: (props: any) =>
-      `<NumberInput source="${props.source}" />`,
+    representation: (props: any) => `<NumberInput source="${props.source}" />`,
   },
   boolean: {
     component: (props: any) => <BooleanInput {...props} />,
-    representation: (props: any) =>
-      `<BooleanInput source="${props.source}" />`,
+    representation: (props: any) => `<BooleanInput source="${props.source}" />`,
   },
   date: {
     component: (props: any) => <DateInput {...props} />,

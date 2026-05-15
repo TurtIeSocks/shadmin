@@ -7,9 +7,11 @@ title: Labeled
 ## Usage
 
 ```tsx
-import { Labeled } from '@/components/admin';
+import { Labeled } from "@/components/admin";
 
-<Labeled label="Title"><TextField source="title" /></Labeled>
+<Labeled label="Title">
+  <TextField source="title" />
+</Labeled>;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,8 +20,8 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
+| Prop  | Required | Type        | Default  | Description                        |
+| ----- | -------- | ----------- | -------- | ---------------------------------- |
 | label | Optional | `ReactNode` | inferred | Label shown above the child field. |
 
 ## Behavior

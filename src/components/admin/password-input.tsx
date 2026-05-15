@@ -29,8 +29,12 @@ export type PasswordInputProps = Omit<TextInputProps, "type" | "multiline"> & {
  * );
  */
 export const PasswordInput = (props: PasswordInputProps) => {
-  const { initiallyVisible = false, className, inputClassName, ...rest } =
-    props;
+  const {
+    initiallyVisible = false,
+    className,
+    inputClassName,
+    ...rest
+  } = props;
   const [visible, setVisible] = useState(initiallyVisible);
   const translate = useTranslate();
 

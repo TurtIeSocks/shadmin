@@ -20,11 +20,11 @@ The skeleton mirrors the layout of `<SimpleList>` so the page does not jump when
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `nbFakeLines` | Optional | `number` | `5` | Number of skeleton rows to render |
-| `hasLeftAvatarOrIcon` | Optional | `boolean` | `false` | Reserve a slot for a left avatar or icon |
-| `hasRightAvatarOrIcon` | Optional | `boolean` | `false` | Reserve a slot for a right avatar or icon |
-| `hasSecondaryText` | Optional | `boolean` | `false` | Render a secondary text placeholder |
-| `hasTertiaryText` | Optional | `boolean` | `false` | Render a tertiary text placeholder |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the root `<ul>` |
+| Prop                   | Required | Type      | Default | Description                                        |
+| ---------------------- | -------- | --------- | ------- | -------------------------------------------------- |
+| `nbFakeLines`          | Optional | `number`  | `5`     | Number of skeleton rows to render                  |
+| `hasLeftAvatarOrIcon`  | Optional | `boolean` | `false` | Reserve a slot for a left avatar or icon           |
+| `hasRightAvatarOrIcon` | Optional | `boolean` | `false` | Reserve a slot for a right avatar or icon          |
+| `hasSecondaryText`     | Optional | `boolean` | `false` | Render a secondary text placeholder                |
+| `hasTertiaryText`      | Optional | `boolean` | `false` | Render a tertiary text placeholder                 |
+| `className`            | Optional | `string`  | -       | Extra Tailwind classes appended to the root `<ul>` |

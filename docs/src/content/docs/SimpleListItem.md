@@ -22,14 +22,14 @@ Most applications won't reach for `<SimpleListItem>` directly — `<SimpleList>`
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | Content rendered inside the row |
-| `record` | Optional | `RaRecord` | From context | The record represented by this row |
-| `resource` | Optional | `string` | From context | The resource name used to build the link target |
-| `linkType` | Optional | `"edit" \| "show" \| false` | `"edit"` | Where to link the row |
-| `rowIndex` | Optional | `number` | - | Optional zero-based index of the row |
-| `className` | Optional | `string` | - | Extra Tailwind classes appended to the row element |
+| Prop        | Required | Type                        | Default      | Description                                        |
+| ----------- | -------- | --------------------------- | ------------ | -------------------------------------------------- |
+| `children`  | Required | `ReactNode`                 | -            | Content rendered inside the row                    |
+| `record`    | Optional | `RaRecord`                  | From context | The record represented by this row                 |
+| `resource`  | Optional | `string`                    | From context | The resource name used to build the link target    |
+| `linkType`  | Optional | `"edit" \| "show" \| false` | `"edit"`     | Where to link the row                              |
+| `rowIndex`  | Optional | `number`                    | -            | Optional zero-based index of the row               |
+| `className` | Optional | `string`                    | -            | Extra Tailwind classes appended to the row element |
 
 ## `linkType`
 

@@ -9,9 +9,14 @@ export default {
   title: "Layout/LoadingIndicator",
 };
 
-const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-  allowMissing: true,
-});
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  {
+    allowMissing: true,
+  },
+);
 
 const buildQueryClient = (loading: boolean) => {
   const client = new QueryClient({

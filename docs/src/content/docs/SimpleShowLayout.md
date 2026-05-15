@@ -7,9 +7,11 @@ title: SimpleShowLayout
 ## Usage
 
 ```tsx
-import { SimpleShowLayout } from '@/components/admin';
+import { SimpleShowLayout } from "@/components/admin";
 
-<SimpleShowLayout><TextField source="title" /></SimpleShowLayout>
+<SimpleShowLayout>
+  <TextField source="title" />
+</SimpleShowLayout>;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,9 +20,9 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| children | Optional | `ReactNode` | - | Fields to render with labels. |
+| Prop     | Required | Type        | Default | Description                   |
+| -------- | -------- | ----------- | ------- | ----------------------------- |
+| children | Optional | `ReactNode` | -       | Fields to render with labels. |
 
 ## Behavior
 

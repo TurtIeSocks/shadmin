@@ -23,7 +23,7 @@ const App = () => (
 
 ## Props
 
-| Prop | Type | Description |
-|---|---|---|
-| `children` | `ReactNode` | Replace the inner form |
+| Prop        | Type        | Description                      |
+| ----------- | ----------- | -------------------------------- |
+| `children`  | `ReactNode` | Replace the inner form           |
 | `marketing` | `ReactNode` | Replace the left marketing panel |

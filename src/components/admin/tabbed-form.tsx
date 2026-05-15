@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import type { FormProps } from "ra-core";

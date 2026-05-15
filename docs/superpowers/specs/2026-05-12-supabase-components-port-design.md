@@ -112,8 +112,8 @@ Extracted from the existing `LoginPage`'s chrome. Used by both the existing `Log
 
 ```ts
 type AuthLayoutProps = {
-  children: ReactNode;       // right-column content (form + extras)
-  marketing?: ReactNode;     // optional override for left panel
+  children: ReactNode; // right-column content (form + extras)
+  marketing?: ReactNode; // optional override for left panel
 };
 ```
 
@@ -134,20 +134,22 @@ type SupabaseLoginPageProps = {
   children?: ReactNode;
   disableEmailPassword?: boolean;
   disableForgotPassword?: boolean;
-  providers?: Provider[];    // from '@supabase/supabase-js'
-  marketing?: ReactNode;     // pass-through to AuthLayout
+  providers?: Provider[]; // from '@supabase/supabase-js'
+  marketing?: ReactNode; // pass-through to AuthLayout
 };
 
-SupabaseLoginPage.path = '/login';
+SupabaseLoginPage.path = "/login";
 ```
 
 Behavior:
+
 - Wraps `<AuthLayout marketing={marketing}>`
 - If `children` provided, renders them (full override)
 - Else: `<SupabaseLoginForm disableForgotPassword={disableForgotPassword} />` when email enabled, optional `<Separator />`, then social buttons stack for each entry in `providers`
 - `disableEmailPassword` hides the form entirely (social-only mode)
 
 `src/components/supabase/login-form.tsx`:
+
 - ra-core `<Form>` with email + password fields + submit
 - Submit logic copies the kit's existing `LoginPage` submit handler verbatim (loading state, error notification)
 - Renders a "Forgot password?" link below the form (translated, target `/forgot-password`) unless `disableForgotPassword`
@@ -155,10 +157,12 @@ Behavior:
 ### `ForgotPasswordPage` + `ForgotPasswordForm`
 
 `forgot-password-page.tsx`:
+
 - Wraps `<AuthLayout>` with `<ForgotPasswordForm />` as default child (override via `children`)
 - Exports static `ForgotPasswordPage.path = '/forgot-password'` for route registration
 
 `forgot-password-form.tsx`:
+
 - Translated title ("Forgot password?") + body ("Enter your email…")
 - ra-core `<Form>` with one required email field
 - Submit calls `useResetPassword()` from `ra-supabase-core`, notifies on error using the same error-shape handling as the kit's existing LoginPage
@@ -167,10 +171,12 @@ Behavior:
 ### `SetPasswordPage` + `SetPasswordForm`
 
 `set-password-page.tsx`:
+
 - Wraps `<AuthLayout>` with `<SetPasswordForm />` as default child
 - Exports static `SetPasswordPage.path = '/set-password'`
 
 `set-password-form.tsx`:
+
 - Reads `access_token` and `refresh_token` from the URL hash via `useSupabaseAccessToken({ parameterName: ... })` from ra-supabase-core
 - If either token missing: render translated error (`ra-supabase.auth.missing_tokens`) + `console.error` in dev mode
 - Otherwise: `<Form>` with `password` + `confirmPassword` (both required, both `<PasswordInput>` equivalents)
@@ -219,6 +225,7 @@ Each follows the ra-supabase structure: a `*Base` ra-core wrapper around a `*Gue
 **`inferred-element.ts`** — verbatim port. `class InferredElement extends CoreInferredElement` adds a `warning?: string` field with `getWarning()` accessor.
 
 **`infer-element-from-type.ts`** — verbatim logic. Detects:
+
 - `name === 'id'` → ID field
 - `description.startsWith('Note:\nThis is a Foreign Key to ...')` → `<ReferenceInput>` with autocomplete child, parsing the referenced resource name and inferring `optionText` from name/title/label/reference
 - `name.endsWith('_ids')` → `<ReferenceArrayInput>` with autocomplete array child
@@ -250,11 +257,12 @@ A parallel `showFieldTypes` and `listFieldTypes` map is needed for `ShowGuesser`
 ```ts
 type AdminGuesserProps = AdminProps & {
   instanceUrl: string;
-  apiKey: string;    // legacy anon key OR new sb_publishable_* key
+  apiKey: string; // legacy anon key OR new sb_publishable_* key
 };
 ```
 
 Behavior:
+
 - Memoizes `createClient(instanceUrl, apiKey)`
 - Defaults `dataProvider` to `supabaseDataProvider({ instanceUrl, apiKey, supabaseClient })`
 - Defaults `authProvider` to `supabaseAuthProvider(supabaseClient, {})`
@@ -272,22 +280,24 @@ Two language files mirroring `ra-supabase-language-english` / `-french`:
 ```ts
 // src/components/supabase/i18n/en.ts
 export default {
-  'ra-supabase': {
+  "ra-supabase": {
     auth: {
-      forgot_password: 'Forgot password?',
-      back_to_login: 'Back to login page',
-      sign_in_with: 'Sign in with %{provider}',
-      missing_tokens: 'Could not find tokens to set your password. Please use the link you received by email.',
+      forgot_password: "Forgot password?",
+      back_to_login: "Back to login page",
+      sign_in_with: "Sign in with %{provider}",
+      missing_tokens:
+        "Could not find tokens to set your password. Please use the link you received by email.",
     },
     reset_password: {
-      forgot_password: 'Forgot password?',
-      forgot_password_details: 'Enter your email to receive a reset password link.',
+      forgot_password: "Forgot password?",
+      forgot_password_details:
+        "Enter your email to receive a reset password link.",
     },
     set_password: {
-      new_password: 'Choose your password',
+      new_password: "Choose your password",
     },
     validation: {
-      password_mismatch: 'Passwords do not match',
+      password_mismatch: "Passwords do not match",
     },
   },
 };
@@ -298,7 +308,7 @@ export default {
 All `translate()` calls in the components use the `_:` fallback form so the strings work even without these files loaded:
 
 ```ts
-translate('ra-supabase.auth.forgot_password', { _: 'Forgot password?' });
+translate("ra-supabase.auth.forgot_password", { _: "Forgot password?" });
 ```
 
 `src/components/supabase/i18n/index.ts` exports a `defaultSupabaseI18nProvider` helper that polyglot-merges these keys with the kit's existing `defaultI18nProvider`. Used by `AdminGuesser` when no `i18nProvider` is passed.
@@ -314,6 +324,7 @@ Per `CLAUDE.md`:
 Hook mocks via `vi.mock('ra-supabase-core', ...)` at the top of each spec file, factored into a shared `src/components/supabase/_test-utils.tsx` for reuse.
 
 Per-component coverage:
+
 - **LoginPage / LoginForm**: form renders, submit calls mocked `useLogin` with `{ email, password }`
 - **ForgotPasswordForm**: mock `useResetPassword`, submit asserts `mutateAsync({ email })` called; error path renders notification
 - **SetPasswordForm (with tokens)**: mock `useSupabaseAccessToken` → tokens, mock `useSetPassword`, mismatched passwords show validation error, matched passwords call `setPassword({ access_token, refresh_token, password })`
@@ -335,6 +346,7 @@ Guesser stories: drive `useAPISchema` mock with the fixture schema; show inferre
 Each public component gets a Markdown page in `docs/src/content/docs/supabase/` following the kit's Usage → Props → per-prop sections pattern.
 
 Additionally:
+
 - `docs/src/content/docs/supabase/getting-started.md` — peer-dep install instructions, minimal `<AdminGuesser instanceUrl={...} apiKey={...} />` example, link to upstream `ra-supabase-core` docs for advanced data/auth provider configuration
 - `docs/src/content/docs/supabase/i18n.md` — how to merge the supplied translations, list of all `ra-supabase.*` keys
 - Astro nav config gets a new "Supabase" section

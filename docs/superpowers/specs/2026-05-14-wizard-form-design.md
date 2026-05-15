@@ -62,28 +62,28 @@ Inside `<Create>` or `<Edit>`, `onSubmit` is optional — the wizard reads
 
 ### `<WizardForm>`
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `isOpen` | `boolean` | — | Controls dialog visibility. Required. |
-| `onClose` | `() => void` | — | Called when the dialog requests to close. Required. |
-| `title` | `ReactNode` | — | Dialog title. Required. |
-| `description` | `ReactNode` | `undefined` | Dialog description shown under the title. |
-| `className` | `string` | `undefined` | Forwarded to `DialogContent`. |
-| `progress` | `"steps" \| "dots" \| "none"` | `"steps"` | Visual progress indicator style. |
-| `toolbar` | `ReactNode \| false` | default toolbar | Custom toolbar. `false` hides it. |
-| `children` | `ReactNode` | — | One or more `<WizardForm.Step>` elements. |
-| ...`FormProps` | from ra-core | — | `onSubmit`, `defaultValues`, `record`, `validate`, `resolver`, `disableInvalidFormNotification`, etc. |
+| Prop           | Type                          | Default         | Description                                                                                           |
+| -------------- | ----------------------------- | --------------- | ----------------------------------------------------------------------------------------------------- |
+| `isOpen`       | `boolean`                     | —               | Controls dialog visibility. Required.                                                                 |
+| `onClose`      | `() => void`                  | —               | Called when the dialog requests to close. Required.                                                   |
+| `title`        | `ReactNode`                   | —               | Dialog title. Required.                                                                               |
+| `description`  | `ReactNode`                   | `undefined`     | Dialog description shown under the title.                                                             |
+| `className`    | `string`                      | `undefined`     | Forwarded to `DialogContent`.                                                                         |
+| `progress`     | `"steps" \| "dots" \| "none"` | `"steps"`       | Visual progress indicator style.                                                                      |
+| `toolbar`      | `ReactNode \| false`          | default toolbar | Custom toolbar. `false` hides it.                                                                     |
+| `children`     | `ReactNode`                   | —               | One or more `<WizardForm.Step>` elements.                                                             |
+| ...`FormProps` | from ra-core                  | —               | `onSubmit`, `defaultValues`, `record`, `validate`, `resolver`, `disableInvalidFormNotification`, etc. |
 
 ### `<WizardForm.Step>`
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `label` | `string \| ReactElement` | — | Shown in the progress indicator. Required. |
-| `description` | `string \| ReactElement` | `undefined` | Sub-header rendered inside the step content. |
-| `optional` | `boolean` | `false` | Skip the validation gate when advancing. |
-| `validateOnNext` | `boolean` | `true` | Run RHF `trigger()` for this step's fields before advancing. |
-| `className` | `string` | `undefined` | Container class for step content. |
-| `children` | `ReactNode` | — | Any admin inputs. |
+| Prop             | Type                     | Default     | Description                                                  |
+| ---------------- | ------------------------ | ----------- | ------------------------------------------------------------ |
+| `label`          | `string \| ReactElement` | —           | Shown in the progress indicator. Required.                   |
+| `description`    | `string \| ReactElement` | `undefined` | Sub-header rendered inside the step content.                 |
+| `optional`       | `boolean`                | `false`     | Skip the validation gate when advancing.                     |
+| `validateOnNext` | `boolean`                | `true`      | Run RHF `trigger()` for this step's fields before advancing. |
+| `className`      | `string`                 | `undefined` | Container class for step content.                            |
+| `children`       | `ReactNode`              | —           | Any admin inputs.                                            |
 
 ## Architecture
 
@@ -217,17 +217,17 @@ Plus updates:
 
 Following the kit convention: spec files import story exports and render them.
 
-| Test | What it verifies |
-| --- | --- |
-| Basic flow | Renders, Next advances, Back retreats, Save submits, dialog closes |
-| Per-step validation gate | Invalid required field blocks Next; fixing it allows Next |
-| Optional step | Next bypasses validation when `optional` is set |
-| Steps stay registered | Values entered on step 1 persist after navigating to step 3 and back |
+| Test                        | What it verifies                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| Basic flow                  | Renders, Next advances, Back retreats, Save submits, dialog closes                   |
+| Per-step validation gate    | Invalid required field blocks Next; fixing it allows Next                            |
+| Optional step               | Next bypasses validation when `optional` is set                                      |
+| Steps stay registered       | Values entered on step 1 persist after navigating to step 3 and back                 |
 | Submission errors jump back | Server-side or async validation errors on a prior step force the wizard to that step |
-| Inside `<Create>` | Save calls `dataProvider.create` and closes |
-| Cancel resets | Open, type, cancel, reopen → fields are empty |
-| Custom toolbar | `toolbar` prop replaces default Cancel / Back / Next / Save row |
-| Keyboard | Escape closes; Tab order keeps focus inside the dialog; Enter on Next advances |
+| Inside `<Create>`           | Save calls `dataProvider.create` and closes                                          |
+| Cancel resets               | Open, type, cancel, reopen → fields are empty                                        |
+| Custom toolbar              | `toolbar` prop replaces default Cancel / Back / Next / Save row                      |
+| Keyboard                    | Escape closes; Tab order keeps focus inside the dialog; Enter on Next advances       |
 
 Browser tests run under Vitest + Playwright (kit standard).
 

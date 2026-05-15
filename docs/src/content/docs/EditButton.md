@@ -9,7 +9,7 @@ Link button to the edit page of the current record.
 Use it inside a `RecordContext`, for example in the actions of a `<Show>` view, or in the rows of a `<DataTable>`.
 
 ```tsx {9}
-import { DataTable, EditButton } from '@/components/admin';
+import { DataTable, EditButton } from "@/components/admin";
 
 const PostList = () => (
   <DataTable>
@@ -30,9 +30,9 @@ In a `<DataTable>`, you can replace a column with an `<EditButton>` by using the
 
 ```tsx
 <DataTable rowClick="edit">
-    <DataTable.Col source="title" />
-    <DataTable.Col source="author" />
-    <DataTable.Col source="published_at" />
+  <DataTable.Col source="title" />
+  <DataTable.Col source="author" />
+  <DataTable.Col source="published_at" />
 </DataTable>
 ```
 
@@ -40,11 +40,11 @@ In a `<DataTable>`, you can replace a column with an `<EditButton>` by using the
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `label` | Optional | `string` | `ra.action.edit` | i18n key / label |
-| `record` | Optional | `RaRecord` | From context | Record used for id |
-| `resource` | Optional | `string` | From context | Resource name |
+| Prop       | Required | Type       | Default          | Description        |
+| ---------- | -------- | ---------- | ---------------- | ------------------ |
+| `label`    | Optional | `string`   | `ra.action.edit` | i18n key / label   |
+| `record`   | Optional | `RaRecord` | From context     | Record used for id |
+| `resource` | Optional | `string`   | From context     | Resource name      |
 
 ## `label`
 
@@ -54,13 +54,13 @@ You can customize the label for a specific resource by adding a `resources.{reso
 
 ```js
 const messages = {
-    resources: {
-        posts: {
-            action: {
-                edit: 'Modify %{recordRepresentation}',
-            },
-        },
+  resources: {
+    posts: {
+      action: {
+        edit: "Modify %{recordRepresentation}",
+      },
     },
+  },
 };
 ```
 

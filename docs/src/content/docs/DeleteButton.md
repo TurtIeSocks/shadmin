@@ -7,13 +7,9 @@ Lets the user delete the current record.
 ## Usage
 
 ```tsx {4}
-import { DeleteButton, Edit } from '@/components/admin';
+import { DeleteButton, Edit } from "@/components/admin";
 
-const PostEdit = () => (
-    <Edit actions={<DeleteButton />}>
-        ...
-    </Edit>
-);
+const PostEdit = () => <Edit actions={<DeleteButton />}>...</Edit>;
 ```
 
 By default, it reads the resource from `ResourceContext` and record from `RecordContext`.
@@ -24,11 +20,11 @@ Upon success, the button redirects to the list view, and notifies the user with 
 
 `<DeleteButton>` ships with two named variants for callers who want a specific behavior without setting `mutationMode`:
 
-| Export                     | Behavior                                                         |
-| -------------------------- | ---------------------------------------------------------------- |
-| `DeleteButton`             | Dispatches based on `mutationMode` (default: `undoable`)         |
-| `DeleteWithUndoButton`     | Fires immediately, shows undo notification                       |
-| `DeleteWithConfirmButton`  | Opens a confirmation dialog, fires on confirm                    |
+| Export                    | Behavior                                                 |
+| ------------------------- | -------------------------------------------------------- |
+| `DeleteButton`            | Dispatches based on `mutationMode` (default: `undoable`) |
+| `DeleteWithUndoButton`    | Fires immediately, shows undo notification               |
+| `DeleteWithConfirmButton` | Opens a confirmation dialog, fires on confirm            |
 
 ```tsx
 import { DeleteWithConfirmButton, DeleteWithUndoButton } from '@/components/admin';
@@ -42,16 +38,16 @@ import { DeleteWithConfirmButton, DeleteWithUndoButton } from '@/components/admi
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | destructive styles | Additional classes |
-| `label` | Optional | `string` | i18n computed | i18n key / custom label (includes record name) |
-| `mutationMode` | Optional | `"undoable" \| "optimistic" \| "pessimistic"` | `undoable` | When to apply the mutation |
-| `mutationOptions` | Optional | `UseDeleteOptions` | - | Mutation options (onSuccess, etc.) |
-| `redirect` | Optional | `RedirectionSideEffect` | `list` | Where to redirect after delete |
-| `size` | Optional | `"default" \| "sm" \| "lg" \| "icon"` | - | Size variant |
-| `successMessage` | Optional | `string` | - | Custom success i18n key |
-| `variant` | Optional | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `outline` | Button style |
+| Prop              | Required | Type                                                                          | Default            | Description                                    |
+| ----------------- | -------- | ----------------------------------------------------------------------------- | ------------------ | ---------------------------------------------- |
+| `className`       | Optional | `string`                                                                      | destructive styles | Additional classes                             |
+| `label`           | Optional | `string`                                                                      | i18n computed      | i18n key / custom label (includes record name) |
+| `mutationMode`    | Optional | `"undoable" \| "optimistic" \| "pessimistic"`                                 | `undoable`         | When to apply the mutation                     |
+| `mutationOptions` | Optional | `UseDeleteOptions`                                                            | -                  | Mutation options (onSuccess, etc.)             |
+| `redirect`        | Optional | `RedirectionSideEffect`                                                       | `list`             | Where to redirect after delete                 |
+| `size`            | Optional | `"default" \| "sm" \| "lg" \| "icon"`                                         | -                  | Size variant                                   |
+| `successMessage`  | Optional | `string`                                                                      | -                  | Custom success i18n key                        |
+| `variant`         | Optional | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `outline`          | Button style                                   |
 
 ## `label`
 
@@ -61,13 +57,13 @@ You can customize the label for a specific resource by adding a `resources.{reso
 
 ```js
 const messages = {
-    resources: {
-        posts: {
-            action: {
-                delete: 'Remove %{recordRepresentation}',
-            },
-        },
+  resources: {
+    posts: {
+      action: {
+        delete: "Remove %{recordRepresentation}",
+      },
     },
+  },
 };
 ```
 

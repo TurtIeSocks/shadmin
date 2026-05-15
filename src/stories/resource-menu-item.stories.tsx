@@ -54,7 +54,12 @@ const Wrapper = ({ children }: { children?: React.ReactNode }) => (
         </SidebarProvider>
       )}
     >
-      <Resource name="posts" icon={Book} list={ListGuesser} show={ShowGuesser} />
+      <Resource
+        name="posts"
+        icon={Book}
+        list={ListGuesser}
+        show={ShowGuesser}
+      />
       <Resource
         name="comments"
         icon={MessageCircle}

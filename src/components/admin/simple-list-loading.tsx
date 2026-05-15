@@ -49,10 +49,7 @@ export const SimpleListLoading = ({
 }: SimpleListLoadingProps) => (
   <ul className={cn("flex flex-col", className)}>
     {Array.from({ length: nbFakeLines }).map((_, key) => (
-      <li
-        key={key}
-        className="flex items-center gap-3 px-3 py-2"
-      >
+      <li key={key} className="flex items-center gap-3 px-3 py-2">
         {hasLeftAvatarOrIcon && (
           <Skeleton className="size-10 shrink-0 rounded-full" />
         )}

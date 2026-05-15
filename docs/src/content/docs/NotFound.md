@@ -7,9 +7,9 @@ title: NotFound
 ## Usage
 
 ```tsx
-import { NotFound } from '@/components/admin';
+import { NotFound } from "@/components/admin";
 
-<Admin catchAll={NotFound}>...</Admin>
+<Admin catchAll={NotFound}>...</Admin>;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,8 +18,8 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
+| Prop     | Required | Type        | Default         | Description              |
+| -------- | -------- | ----------- | --------------- | ------------------------ |
 | children | Optional | `ReactNode` | default message | Custom fallback content. |
 
 ## Behavior

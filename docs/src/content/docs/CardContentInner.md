@@ -23,7 +23,7 @@ The first child receives top padding and the last child receives bottom padding 
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | The content to render inside the block. |
-| `className` | Optional | `string` | - | Extra CSS class applied to the wrapping `div`. |
+| Prop        | Required | Type        | Default | Description                                    |
+| ----------- | -------- | ----------- | ------- | ---------------------------------------------- |
+| `children`  | Required | `ReactNode` | -       | The content to render inside the block.        |
+| `className` | Optional | `string`    | -       | Extra CSS class applied to the wrapping `div`. |

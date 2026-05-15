@@ -112,10 +112,7 @@ export const SimpleFormConfigurable = ({
  *
  * @internal
  */
-const SimpleFormWithPreferences = ({
-  children,
-  ...props
-}: SimpleFormProps) => {
+const SimpleFormWithPreferences = ({ children, ...props }: SimpleFormProps) => {
   const [availableInputs = []] = usePreference<SelectableField[]>(
     "availableInputs",
     [],

@@ -7,9 +7,9 @@ title: FieldsSelector
 ## Usage
 
 ```tsx
-import { FieldsSelector } from '@/components/admin';
+import { FieldsSelector } from "@/components/admin";
 
-<FieldsSelector fields={[{ source: "title", label: "Title" }]} />
+<FieldsSelector fields={[{ source: "title", label: "Title" }]} />;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,9 +18,9 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| fields | Optional | `FieldToggle[]` | `[]` | Field definitions exposed to the selector. |
+| Prop   | Required | Type            | Default | Description                                |
+| ------ | -------- | --------------- | ------- | ------------------------------------------ |
+| fields | Optional | `FieldToggle[]` | `[]`    | Field definitions exposed to the selector. |
 
 ## Behavior
 

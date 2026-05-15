@@ -189,10 +189,7 @@ const LogoutQueueReset = ({ resetQueue }: { resetQueue: () => void }) => {
   const { authenticated } = useAuthState(undefined, false);
   const wasAuthenticatedRef = useRef<boolean | undefined>(undefined);
   useEffect(() => {
-    if (
-      wasAuthenticatedRef.current === true &&
-      authenticated === false
-    ) {
+    if (wasAuthenticatedRef.current === true && authenticated === false) {
       resetQueue();
     }
     wasAuthenticatedRef.current = authenticated;

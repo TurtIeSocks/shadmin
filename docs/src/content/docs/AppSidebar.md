@@ -38,19 +38,17 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <Link to="/">
-                <Armchair className="!size-5"/>
+                <Armchair className="size-5!" />
                 <span className="text-base font-semibold">My Company</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
-        {/* Menu items */}
-      </SidebarContent>
+      <SidebarContent>{/* Menu items */}</SidebarContent>
       <SidebarFooter />
     </Sidebar>
   );
@@ -74,9 +72,7 @@ export function AppSidebar() {
   };
   return (
     <Sidebar variant="floating" collapsible="icon">
-      <SidebarHeader>
-        {/* App name and logo */}
-      </SidebarHeader>
+      <SidebarHeader>{/* App name and logo */}</SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -122,9 +118,7 @@ export function AppSidebar() {
   };
   return (
     <Sidebar variant="floating" collapsible="icon">
-      <SidebarHeader>
-        {/* App name and logo */}
-      </SidebarHeader>
+      <SidebarHeader>{/* App name and logo */}</SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -141,14 +135,14 @@ export function AppSidebar() {
                     onClick={handleClick}
                   />
                 ))}
-                <SidebarMenuItem>
-                  <SidebarMenuButton asChild>
-                    <Link to="/settings">
-                      <Settings />
-                      <span>Settings</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/settings">
+                    <Settings />
+                    <span>Settings</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

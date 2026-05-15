@@ -7,7 +7,7 @@ Displays the textual value of a field inside a `<span>`.
 ## Usage
 
 ```tsx {8}
-import { List, DataTable, TextField } from '@/components/admin';
+import { List, DataTable, TextField } from "@/components/admin";
 
 export const UserList = () => (
   <List>
@@ -25,12 +25,12 @@ If the value is `null` or `undefined`, it renders nothing unless you provide the
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `source` | Required | `string` | - | Field name in the record |
-| `defaultValue` | Optional | `any` | - | Fallback when record has no value for `source` |
-| `empty` | Optional | `ReactNode` | - | Placeholder when value is `null`/`undefined` |
-| `record` | Optional | `object` | Record from context | Record to read (overrides context) |
+| Prop           | Required | Type        | Default             | Description                                    |
+| -------------- | -------- | ----------- | ------------------- | ---------------------------------------------- |
+| `source`       | Required | `string`    | -                   | Field name in the record                       |
+| `defaultValue` | Optional | `any`       | -                   | Fallback when record has no value for `source` |
+| `empty`        | Optional | `ReactNode` | -                   | Placeholder when value is `null`/`undefined`   |
+| `record`       | Optional | `object`    | Record from context | Record to read (overrides context)             |
 
 Remaining props are passed to the underlying `<span>` element (e.g., `className`).
 

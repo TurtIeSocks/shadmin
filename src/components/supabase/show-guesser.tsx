@@ -40,7 +40,9 @@ const SupabaseShowGuesserView = (
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   if (!resource) {
-    throw new Error("SupabaseShowGuesser must be used within a ResourceContext");
+    throw new Error(
+      "SupabaseShowGuesser must be used within a ResourceContext",
+    );
   }
 
   React.useEffect(() => {

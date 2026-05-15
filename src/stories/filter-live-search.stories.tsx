@@ -1,9 +1,4 @@
-import {
-  DataProvider,
-  memoryStore,
-  Resource,
-  TestMemoryRouter,
-} from "ra-core";
+import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { i18nProvider } from "@/lib/i18n-provider";
 import {

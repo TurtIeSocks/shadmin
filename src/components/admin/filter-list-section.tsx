@@ -44,8 +44,10 @@ export const FilterListSection = (props: FilterListSectionProps) => {
   );
 };
 
-export interface FilterListSectionProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+export interface FilterListSectionProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "children"
+> {
   label: string;
   icon?: ReactNode;
   children: ReactNode;

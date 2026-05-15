@@ -36,9 +36,7 @@ describe("<MdxInput />", () => {
   it("should render with a custom label", async () => {
     const screen = render(<CustomLabel theme="system" />);
 
-    await expect
-      .element(screen.getByText("Article body"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Article body")).toBeInTheDocument();
     await expect
       .element(screen.getByText("Markdown is supported."))
       .toBeInTheDocument();

@@ -1,7 +1,5 @@
 ---
-
 title: Data Fetching & Data Providers
-
 ---
 
 In a shadcn-admin-kit app, you don’t write API calls using `fetch` or axios. Instead, you communicate with your API through an object called the `dataProvider`.
@@ -39,17 +37,17 @@ Then, initialize the provider with the REST backend URL, and pass it as the `<Ad
 ```jsx
 // in src/App.js
 import { Admin } from "@/components/admin";
-import { Resource } from 'ra-core';
-import simpleRestProvider from 'ra-data-simple-rest';
+import { Resource } from "ra-core";
+import simpleRestProvider from "ra-data-simple-rest";
 
-import { PostList } from './posts';
+import { PostList } from "./posts";
 
-const dataProvider = simpleRestProvider('http://path.to.my.api/');
+const dataProvider = simpleRestProvider("http://path.to.my.api/");
 
 const App = () => (
-    <Admin dataProvider={dataProvider}>
-        <Resource name="posts" list={PostList} />
-    </Admin>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="posts" list={PostList} />
+  </Admin>
 );
 
 export default App;
@@ -167,30 +165,30 @@ A data provider must implement the following methods:
 
 ```jsx
 const dataProvider = {
-    // get a list of records based on sort, filter, and pagination
-    getList:    (resource, params) => Promise,
-    // get a single record by id
-    getOne:     (resource, params) => Promise, 
-    // get a list of records based on an array of ids
-    getMany:    (resource, params) => Promise, 
-    // get the records referenced to another record, e.g. comments for a post
-    getManyReference: (resource, params) => Promise, 
-    // create a record
-    create:     (resource, params) => Promise, 
-    // update a record based on a patch
-    update:     (resource, params) => Promise, 
-    // update a list of records based on an array of ids and a common patch
-    updateMany: (resource, params) => Promise, 
-    // delete a record by id
-    delete:     (resource, params) => Promise, 
-    // delete a list of records based on an array of ids
-    deleteMany: (resource, params) => Promise, 
-}
+  // get a list of records based on sort, filter, and pagination
+  getList: (resource, params) => Promise,
+  // get a single record by id
+  getOne: (resource, params) => Promise,
+  // get a list of records based on an array of ids
+  getMany: (resource, params) => Promise,
+  // get the records referenced to another record, e.g. comments for a post
+  getManyReference: (resource, params) => Promise,
+  // create a record
+  create: (resource, params) => Promise,
+  // update a record based on a patch
+  update: (resource, params) => Promise,
+  // update a list of records based on an array of ids and a common patch
+  updateMany: (resource, params) => Promise,
+  // delete a record by id
+  delete: (resource, params) => Promise,
+  // delete a list of records based on an array of ids
+  deleteMany: (resource, params) => Promise,
+};
 ```
 
-To call the data provider, shadcn-admin-kit combines a *method* (e.g. `getOne`), a *resource* (e.g. ‘posts’) and a set of parameters.
+To call the data provider, shadcn-admin-kit combines a _method_ (e.g. `getOne`), a _resource_ (e.g. ‘posts’) and a set of parameters.
 
-**Tip**: In comparison, HTTP requests require a *verb* (e.g. ‘GET’), an *url* (e.g. ‘<http://myapi.com/posts’>), a list of *headers* (like Content-Type) and a *body*.
+**Tip**: In comparison, HTTP requests require a _verb_ (e.g. ‘GET’), an _url_ (e.g. ‘<http://myapi.com/posts’>), a list of _headers_ (like Content-Type) and a _body_.
 
 To learn more about writing a Data Provider, refer to the [Data Provider Writing documentation](https://marmelab.com/ra-core/dataproviderwriting/).
 
@@ -215,22 +213,22 @@ const { isPending, error, data } = useGetOne(resource, { id });
 For instance, here is how to fetch one User record on mount using the useGetOne hook:
 
 ```jsx
-import { useGetOne } from 'ra-core';
-import { Loading, Error } from './MyComponents';
+import { useGetOne } from "ra-core";
+import { Loading, Error } from "./MyComponents";
 
 const UserProfile = ({ userId }) => {
-    const { isPending, error, data: user } = useGetOne('users', { id: userId });
+  const { isPending, error, data: user } = useGetOne("users", { id: userId });
 
-    if (isPending) return <Loading />;
-    if (error) return <Error />;
-    if (!user) return null;
+  if (isPending) return <Loading />;
+  if (error) return <Error />;
+  if (!user) return null;
 
-    return (
-        <ul>
-            <li>Name: {user.name}</li>
-            <li>Email: {user.email}</li>
-        </ul>
-    )
+  return (
+    <ul>
+      <li>Name: {user.name}</li>
+      <li>Email: {user.email}</li>
+    </ul>
+  );
 };
 ```
 
@@ -247,23 +245,31 @@ Mutation hooks are:
 Their input signature is the same as the related dataProvider method, e.g.:
 
 ```jsx
-const [update, { isPending, error, data }] = useUpdate(resource, { id, data, previousData });
+const [update, { isPending, error, data }] = useUpdate(resource, {
+  id,
+  data,
+  previousData,
+});
 // calls dataProvider.update(resource, { id, data, previousData })
 ```
 
 For instance, here is a button that updates a comment record when clicked, using the useUpdate hook:
 
 ```jsx
-import { useUpdate, useRecordContext } from 'ra-core';
+import { useUpdate, useRecordContext } from "ra-core";
 
 const ApproveButton = () => {
-    const record = useRecordContext();
-    const [approve, { isPending }] = useUpdate('comments', {
-        id: record.id,
-        data: { isApproved: true },
-        previousData: record
-    });
-    return <button onClick={() => approve()} disabled={isPending}>Approve</button>;
+  const record = useRecordContext();
+  const [approve, { isPending }] = useUpdate("comments", {
+    id: record.id,
+    data: { isApproved: true },
+    previousData: record,
+  });
+  return (
+    <button onClick={() => approve()} disabled={isPending}>
+      Approve
+    </button>
+  );
 };
 ```
 

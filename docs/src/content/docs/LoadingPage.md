@@ -16,8 +16,8 @@ const App = () => <LoadingPage />;
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `loadingPrimary` | Optional | `string` | `ra.page.loading` | Main heading i18n key. |
-| `loadingSecondary` | Optional | `string` | `ra.message.loading` | Secondary text key. |
-| `delay` | Optional | `number` | `1000` | Delay before showing the spinner (ms). |
+| Prop               | Required | Type     | Default              | Description                            |
+| ------------------ | -------- | -------- | -------------------- | -------------------------------------- |
+| `loadingPrimary`   | Optional | `string` | `ra.page.loading`    | Main heading i18n key.                 |
+| `loadingSecondary` | Optional | `string` | `ra.message.loading` | Secondary text key.                    |
+| `delay`            | Optional | `number` | `1000`               | Delay before showing the spinner (ms). |

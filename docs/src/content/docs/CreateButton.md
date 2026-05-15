@@ -9,17 +9,19 @@ Navigates to the create page for the curren resource.
 Use the button without form when in a ResourceContext (e.g., inside a `<List>`):
 
 ```tsx {6}
-import { CreateButton, List, ExportButton } from '@/components/admin';
+import { CreateButton, List, ExportButton } from "@/components/admin";
 
 const PostList = () => (
-    <List
-        actions={<>
-            <CreateButton />
-            <ExportButton />
-        </>}
-    >
-        ...
-    </List>
+  <List
+    actions={
+      <>
+        <CreateButton />
+        <ExportButton />
+      </>
+    }
+  >
+    ...
+  </List>
 );
 ```
 
@@ -27,10 +29,10 @@ Clicking on the button navigates to the `create` route of the current resource (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `label` | Optional | `string` | `ra.action.create` | i18n key / custom label |
-| `resource` | Optional | `string` | From context | Target resource for create route |
+| Prop       | Required | Type     | Default            | Description                      |
+| ---------- | -------- | -------- | ------------------ | -------------------------------- |
+| `label`    | Optional | `string` | `ra.action.create` | i18n key / custom label          |
+| `resource` | Optional | `string` | From context       | Target resource for create route |
 
 ## `label`
 
@@ -40,13 +42,13 @@ You can customize the label for a specific resource by adding a `resources.{reso
 
 ```js
 const messages = {
-    resources: {
-        posts: {
-            action: {
-                create: 'New %{name}',
-            },
-        },
+  resources: {
+    posts: {
+      action: {
+        create: "New %{name}",
+      },
     },
+  },
 };
 ```
 

@@ -53,7 +53,9 @@ function FormLabel({
   );
 }
 
-function FormControl({ ...props }: React.ComponentProps<typeof SlotPrimitive.Slot>) {
+function FormControl({
+  ...props
+}: React.ComponentProps<typeof SlotPrimitive.Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
 
@@ -105,11 +107,4 @@ const FormError = ({ className, ...props }: React.ComponentProps<"p">) => {
   );
 };
 
-export {
-  Form,
-  FormField,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormError,
-};
+export { Form, FormField, FormLabel, FormControl, FormDescription, FormError };

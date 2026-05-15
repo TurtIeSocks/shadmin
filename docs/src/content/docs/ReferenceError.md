@@ -21,7 +21,7 @@ const BrokenLookup = () => (
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `error` | Required | `Error` | - | Error to display below the input. |
-| `label` | Optional | `ReactNode` | - | Optional label rendered above the input. |
+| Prop    | Required | Type        | Default | Description                              |
+| ------- | -------- | ----------- | ------- | ---------------------------------------- |
+| `error` | Required | `Error`     | -       | Error to display below the input.        |
+| `label` | Optional | `ReactNode` | -       | Optional label rendered above the input. |

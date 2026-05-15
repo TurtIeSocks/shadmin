@@ -7,23 +7,23 @@ Renders a value computed from the current record using a custom render function.
 ## Usage
 
 ```tsx
-import { FunctionField } from '@/components/admin';
+import { FunctionField } from "@/components/admin";
 
 <FunctionField
   source="last_name"
   render={(record) => `${record.first_name} ${record.last_name}`}
-/>
+/>;
 ```
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `render` | Required | `(record, source?) => ReactNode` | - | Render function called with the current record |
-| `source` | Optional | `string` | `""` | Field name (used for sortable headers) |
-| `record` | Optional | `object` | Record from context | Explicit record |
-| `label` | Optional | `string` | - | Label, used by layout containers |
-| `className` | Optional | `string` | - | Additional CSS classes |
+| Prop        | Required | Type                             | Default             | Description                                    |
+| ----------- | -------- | -------------------------------- | ------------------- | ---------------------------------------------- |
+| `render`    | Required | `(record, source?) => ReactNode` | -                   | Render function called with the current record |
+| `source`    | Optional | `string`                         | `""`                | Field name (used for sortable headers)         |
+| `record`    | Optional | `object`                         | Record from context | Explicit record                                |
+| `label`     | Optional | `string`                         | -                   | Label, used by layout containers               |
+| `className` | Optional | `string`                         | -                   | Additional CSS classes                         |
 
 Remaining props are forwarded to the wrapping `<span>`.
 
@@ -32,7 +32,9 @@ Remaining props are forwarded to the wrapping `<span>`.
 A function that receives the record (and optionally the `source`) and returns a `ReactNode`. When no record is in context, `FunctionField` returns `null`.
 
 ```tsx
-<FunctionField render={(record) => `${record.first_name} ${record.last_name}`} />
+<FunctionField
+  render={(record) => `${record.first_name} ${record.last_name}`}
+/>
 ```
 
 ## `source`
@@ -40,5 +42,8 @@ A function that receives the record (and optionally the `source`) and returns a 
 Optional, but recommended when the field is sortable. It is used by parents such as `<DataTable.Col>` to decide whether the column header is clickable.
 
 ```tsx
-<FunctionField source="last_name" render={(r) => `${r.first_name} ${r.last_name}`} />
+<FunctionField
+  source="last_name"
+  render={(r) => `${r.first_name} ${r.last_name}`}
+/>
 ```

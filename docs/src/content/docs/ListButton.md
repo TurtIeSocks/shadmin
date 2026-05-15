@@ -11,24 +11,20 @@ Commonly used to navigate back to the list from an `<Edit>` or `<Show>` view:
 ```tsx {4}
 import { Edit, ListButton } from "@/components/admin";
 
-const PostEdit = () => (
-  <Edit actions={<ListButton />}>
-    ...
-  </Edit>
-);
+const PostEdit = () => <Edit actions={<ListButton />}>...</Edit>;
 ```
 
 Reads the resource from `ResourceContext` by default. If the current user does not have list access (per `authProvider.canAccess`), the button renders nothing.
 
 ## Props
 
-| Prop          | Required | Type        | Default          | Description                              |
-| ------------- | -------- | ----------- | ---------------- | ---------------------------------------- |
-| `className`   | Optional | `string`    | -                | Additional classes                       |
-| `icon`        | Optional | `ReactNode` | List icon        | Custom icon element                      |
-| `label`       | Optional | `string`    | `ra.action.list` | i18n key / label                         |
-| `resource`    | Optional | `string`    | From context     | Resource name                            |
-| `scrollToTop` | Optional | `boolean`   | `true`           | Whether the list page scrolls to top     |
+| Prop          | Required | Type        | Default          | Description                          |
+| ------------- | -------- | ----------- | ---------------- | ------------------------------------ |
+| `className`   | Optional | `string`    | -                | Additional classes                   |
+| `icon`        | Optional | `ReactNode` | List icon        | Custom icon element                  |
+| `label`       | Optional | `string`    | `ra.action.list` | i18n key / label                     |
+| `resource`    | Optional | `string`    | From context     | Resource name                        |
+| `scrollToTop` | Optional | `boolean`   | `true`           | Whether the list page scrolls to top |
 
 ## `label`
 

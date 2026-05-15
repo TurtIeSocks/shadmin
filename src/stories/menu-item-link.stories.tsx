@@ -60,11 +60,7 @@ const SidebarWrapper = ({ children }: React.PropsWithChildren) => (
 
 export const Basic = () => (
   <SidebarWrapper>
-    <MenuItemLink
-      to="/posts"
-      primaryText="Posts"
-      leftIcon={<Book />}
-    />
+    <MenuItemLink to="/posts" primaryText="Posts" leftIcon={<Book />} />
   </SidebarWrapper>
 );
 

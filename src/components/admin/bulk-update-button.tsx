@@ -21,9 +21,9 @@ export interface BulkUpdateWithUndoButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > extends Omit<
-    UseBulkUpdateControllerParams<RecordType, MutationOptionsError>,
-    "mutationMode"
-  > {
+  UseBulkUpdateControllerParams<RecordType, MutationOptionsError>,
+  "mutationMode"
+> {
   className?: string;
   data: Partial<RecordType>;
   icon?: React.ReactNode;

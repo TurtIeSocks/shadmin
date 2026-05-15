@@ -20,21 +20,26 @@ It leverages shadcn/ui's [Table](https://ui.shadcn.com/docs/components/table) co
 Use `<DataTable>` inside a `ListContext` (e.g., as a descendent of [`<List>`](./List.md) or [`<ReferenceManyField>`](./ReferenceManyField.md)). Define the table columns with its children using `<DataTable.Col>` components:
 
 ```tsx
-import { List, DataTable, ReferenceField, EditButton } from '@/components/admin';
+import {
+  List,
+  DataTable,
+  ReferenceField,
+  EditButton,
+} from "@/components/admin";
 
 export const PostList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col label="User">
-                <ReferenceField source="user_id" reference="users" />
-            </DataTable.Col>
-            <DataTable.Col source="title" />
-            <DataTable.Col>
-                <EditButton />
-            </DataTable.Col>
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col label="User">
+        <ReferenceField source="user_id" reference="users" />
+      </DataTable.Col>
+      <DataTable.Col source="title" />
+      <DataTable.Col>
+        <EditButton />
+      </DataTable.Col>
+    </DataTable>
+  </List>
 );
 ```
 
@@ -46,18 +51,18 @@ It also accepts additional props to configure the behavior of that specific colu
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Required | `ReactNode` | - | Column definitions (`DataTable.Col` / custom) |
-| `bulkActionButtons` | Optional | `ReactNode \| false` | Bulk Delete and Export | Custom bulk action buttons or disable with `false` |
-| `bulkActionsToolbar` | Optional | `ReactNode` | - | Full custom toolbar (overrides default) |
-| `className` | Optional | `string` | - | Wrapper classes |
-| `empty` | Optional | Element | `<Empty>` | The component to render when the list is empty. |
-| `hiddenColumns`| Optional | Array | `[]`| The list of columns to hide by default (to be used with `ColumnsButton`) . |
-| `isRowSelectable` | Optional | Function | `() => true` | A function that returns whether a row is selectable. |
-| `rowClassName` | Optional | `(record) => string` | - | Dynamic row classes |
-| `rowClick` | Optional | mixed | `show` | The action to trigger when the user clicks on a row. |
-| `storeKey` | Optional | `string` | `<resource>.datatable` | Persistence key for column state |
+| Prop                 | Required | Type                 | Default                | Description                                                                |
+| -------------------- | -------- | -------------------- | ---------------------- | -------------------------------------------------------------------------- |
+| `children`           | Required | `ReactNode`          | -                      | Column definitions (`DataTable.Col` / custom)                              |
+| `bulkActionButtons`  | Optional | `ReactNode \| false` | Bulk Delete and Export | Custom bulk action buttons or disable with `false`                         |
+| `bulkActionsToolbar` | Optional | `ReactNode`          | -                      | Full custom toolbar (overrides default)                                    |
+| `className`          | Optional | `string`             | -                      | Wrapper classes                                                            |
+| `empty`              | Optional | Element              | `<Empty>`              | The component to render when the list is empty.                            |
+| `hiddenColumns`      | Optional | Array                | `[]`                   | The list of columns to hide by default (to be used with `ColumnsButton`) . |
+| `isRowSelectable`    | Optional | Function             | `() => true`           | A function that returns whether a row is selectable.                       |
+| `rowClassName`       | Optional | `(record) => string` | -                      | Dynamic row classes                                                        |
+| `rowClick`           | Optional | mixed                | `show`                 | The action to trigger when the user clicks on a row.                       |
+| `storeKey`           | Optional | `string`             | `<resource>.datatable` | Persistence key for column state                                           |
 
 ## Cell Rendering
 
@@ -73,7 +78,7 @@ For non-numeric values, use `<DataTable.Col>`. It lets you define how the data r
 
 ```tsx
 <DataTable.Col source="lastName">
-    <TextField source="firstName" />{" "}<TextField source="lastName" />
+  <TextField source="firstName" /> <TextField source="lastName" />
 </DataTable.Col>
 ```
 
@@ -87,9 +92,9 @@ For non-numeric values, use `<DataTable.Col>`. It lets you define how the data r
 
 ```tsx
 <DataTable.Col
-    label="Name"
-    source="lastName"
-    render={(record) => `${record.firstName} ${record.lastName}`}
+  label="Name"
+  source="lastName"
+  render={(record) => `${record.firstName} ${record.lastName}`}
 />
 ```
 
@@ -97,26 +102,29 @@ Even when using `children`, `field`, or `render`, you can still pass a `source` 
 
 `<DataTable.Col>` accepts the following additional props:
 
-| Prop | Required | Type | Description |
-|------|----------|------|-------------|
-| `headerClassName` | Optional | `string` | Extra header cell classes |
-| `cellClassName` | Optional | `string` | Extra body cell classes |
-| `conditionalClassName` | Optional | `(record) => string` | Adds per-row class |
-| `disableSort` | Optional | `boolean` | Disable sorting on this column |
-| `sortByOrder` | Optional | `"ASC"\|"DESC"` | Initial sort order when first clicked |
-| `label` | Optional | `ReactNode` | Header label (i18n key or node) |
+| Prop                   | Required | Type                 | Description                           |
+| ---------------------- | -------- | -------------------- | ------------------------------------- |
+| `headerClassName`      | Optional | `string`             | Extra header cell classes             |
+| `cellClassName`        | Optional | `string`             | Extra body cell classes               |
+| `conditionalClassName` | Optional | `(record) => string` | Adds per-row class                    |
+| `disableSort`          | Optional | `boolean`            | Disable sorting on this column        |
+| `sortByOrder`          | Optional | `"ASC"\|"DESC"`      | Initial sort order when first clicked |
+| `label`                | Optional | `ReactNode`          | Header label (i18n key or node)       |
 
 For numeric values, prefer `<DataTable.NumberCol>`. It is right-aligned and uses `<NumberField>` to format the value. You can pass an `options` prop to configure the number format.
 
 ```tsx
-<DataTable.NumberCol source="amount" options={{ style: 'currency', currency: 'USD' }} />
+<DataTable.NumberCol
+  source="amount"
+  options={{ style: "currency", currency: "USD" }}
+/>
 ```
 
 `<DataTable.NumberCol>` accepts the following props, in addition to those of `<DataTable.Col>`:
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `locales` | `string \| string[]` | Intl locales |
+| Prop      | Type                       | Description    |
+| --------- | -------------------------- | -------------- |
+| `locales` | `string \| string[]`       | Intl locales   |
 | `options` | `Intl.NumberFormatOptions` | Format options |
 
 ## Bulk Actions
@@ -126,36 +134,37 @@ Bulk action buttons appear when users select one or several rows. Clicking on a 
 You can disable this feature by setting the `bulkActionButtons` prop to `false`:
 
 ```tsx
-import { DataTable, List } from '@/components/admin';
+import { DataTable, List } from "@/components/admin";
 
 export const PostList = () => (
-    <List>
-        <DataTable bulkActionButtons={false}>
-            ...
-        </DataTable>
-    </List>
+  <List>
+    <DataTable bulkActionButtons={false}>...</DataTable>
+  </List>
 );
 ```
 
 By default, all DataTables have a two bulk action buttons: bulk export and bulk delete. You can add other bulk action buttons by passing a custom element as the `<DataTable bulkActionButtons>` prop:
 
 ```tsx
-import { List, DataTable, BulkDeleteButton, BulkExportButton } from '@/components/admin';
+import {
+  List,
+  DataTable,
+  BulkDeleteButton,
+  BulkExportButton,
+} from "@/components/admin";
 
 const PostBulkActionButtons = () => (
-    <>
-        <ResetViewsButton />
-        <BulkDeleteButton />
-        <BulkExportButton />
-    </>
+  <>
+    <ResetViewsButton />
+    <BulkDeleteButton />
+    <BulkExportButton />
+  </>
 );
 
 export const PostList = () => (
-    <List>
-        <DataTable bulkActionButtons={<PostBulkActionButtons />}>
-            ...
-        </DataTable>
-    </List>
+  <List>
+    <DataTable bulkActionButtons={<PostBulkActionButtons />}>...</DataTable>
+  </List>
 );
 ```
 
@@ -175,44 +184,44 @@ Here is an example leveraging the `useUpdateMany` hook, which sets the `views` p
 
 ```tsx
 import {
-    useListContext,
-    useUpdateMany,
-    useRefresh,
-    useNotify,
-    useUnselectAll,
-} from 'ra-core';
-import { Button } from '@/components/admin';
-import { EyeOff } from 'lucide-react';
+  useListContext,
+  useUpdateMany,
+  useRefresh,
+  useNotify,
+  useUnselectAll,
+} from "ra-core";
+import { Button } from "@/components/admin";
+import { EyeOff } from "lucide-react";
 
 const ResetViewsButton = () => {
-    const { selectedIds } = useListContext();
-    const refresh = useRefresh();
-    const notify = useNotify();
-    const unselectAll = useUnselectAll('posts');
-    const [updateMany, { isPending }] = useUpdateMany();
-    const handleClick = () => {
-        updateMany(
-            'posts',
-            { ids: selectedIds, data: { views: 0 } },
-            {
-                onSuccess: () => {
-                    notify('Posts updated', { undoable: true });
-                    unselectAll();
-                },
-                onError: () => {
-                    notify('Error: posts not updated', { type: 'error' });
-                    refresh();
-                },
-                mutationMode: 'undoable',
-            }
-        );
-    }
-
-    return (
-        <Button onClick={handleClick} disabled={isPending}>
-            <EyeOff /> Reset views
-        </Button>
+  const { selectedIds } = useListContext();
+  const refresh = useRefresh();
+  const notify = useNotify();
+  const unselectAll = useUnselectAll("posts");
+  const [updateMany, { isPending }] = useUpdateMany();
+  const handleClick = () => {
+    updateMany(
+      "posts",
+      { ids: selectedIds, data: { views: 0 } },
+      {
+        onSuccess: () => {
+          notify("Posts updated", { undoable: true });
+          unselectAll();
+        },
+        onError: () => {
+          notify("Error: posts not updated", { type: "error" });
+          refresh();
+        },
+        mutationMode: "undoable",
+      },
     );
+  };
+
+  return (
+    <Button onClick={handleClick} disabled={isPending}>
+      <EyeOff /> Reset views
+    </Button>
+  );
 };
 ```
 
@@ -228,13 +237,13 @@ It is possible to disable sorting for a specific `<DataTable.Col>` by passing a 
 
 ```tsx {4}
 export const PostList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="id" sortable={false} />
-            <DataTable.Col source="title" />
-            <DataTable.Col source="body" />
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" sortable={false} />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="body" />
+    </DataTable>
+  </List>
 );
 ```
 
@@ -244,9 +253,9 @@ For example, the following column displays the full name of a contact and is sor
 
 ```tsx {3}
 <DataTable.Col
-    label="Name"
-    source="lastName"
-    render={record => `${record.firstName} ${record.lastName}`}
+  label="Name"
+  source="lastName"
+  render={(record) => `${record.firstName} ${record.lastName}`}
 />
 ```
 
@@ -254,16 +263,16 @@ An action column should not be sortable, so you don't need to specify a `source`
 
 ```tsx
 <DataTable.Col>
-    <EditButton />
-    <DeleteButton />
+  <EditButton />
+  <DeleteButton />
 </DataTable.Col>
 ```
 
 You can also use a different `source` for the column and its child. This is very useful for reference fields, where users expect the column to be sortable by the reference (e.g., `author.name`) rather than the foreign key (e.g., `author_id`):
 
 ```tsx
-<DataTable.Col source="authors(name)" label="Author" >
-    <ReferenceField source="author_id" reference="authors" />
+<DataTable.Col source="authors(name)" label="Author">
+  <ReferenceField source="author_id" reference="authors" />
 </DataTable.Col>
 ```
 
@@ -274,7 +283,7 @@ Support for sorting by related fields depends on the data provider.
 By default, when the user clicks on a column header, the list becomes sorted in ascending order. You change this behavior by setting the `sortByOrder` prop to `"DESC"` in a `<DataTable.Col>` element:
 
 ```tsx
-<DataTable.Col source="published_at" sortByOrder="DESC"/>
+<DataTable.Col source="published_at" sortByOrder="DESC" />
 ```
 
 ## Hiding or Reordering Columns
@@ -282,23 +291,23 @@ By default, when the user clicks on a column header, the list becomes sorted in 
 You can let end users customize the fields displayed in the `<DataTable>` by using the [`<ColumnsButton>`](./ColumnsButton.md) in the `<List actions>`. When users click on this button, they can show / hide columns and reorder them.
 
 ```tsx
-import { ColumnsButton, List, DataTable } from '@/components/admin';
+import { ColumnsButton, List, DataTable } from "@/components/admin";
 
 const PostListActions = () => (
-    <div className="flex items-center gap-2">
-        <ColumnsButton />
-    </div>
-)
+  <div className="flex items-center gap-2">
+    <ColumnsButton />
+  </div>
+);
 
 const PostList = () => (
-    <List actions={<PostListActions />}>
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="title" />
-            <DataTable.Col source="author" />
-            <DataTable.Col source="year" />
-        </DataTable>
-    </List>
+  <List actions={<PostListActions />}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
 );
 ```
 
@@ -306,14 +315,14 @@ By default, `<DataTable>` renders all `<DataTable.Col>` children. But you can al
 
 ```tsx
 const PostList = () => (
-    <List actions={<PostListActions />}>
-        <DataTable hiddenColumns={['id', 'author']}>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="title" />
-            <DataTable.Col source="author" />
-            <DataTable.Col source="year" />
-        </DataTable>
-    </List>
+  <List actions={<PostListActions />}>
+    <DataTable hiddenColumns={["id", "author"]}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
 );
 ```
 
@@ -321,11 +330,9 @@ If you render more than one `<DataTable>` in the same page, you must pass a uniq
 
 ```tsx
 const PostList = () => (
-    <List>
-        <DataTable storeKey="posts.DataTable">
-            ...
-        </DataTable>
-    </List>
+  <List>
+    <DataTable storeKey="posts.DataTable">...</DataTable>
+  </List>
 );
 ```
 
@@ -333,17 +340,15 @@ If you include a [`<ColumnsButton>`](./ColumnsButton.md) in a page that has more
 
 ```tsx
 const PostListActions = () => (
-    <TopToolbar>
-        <ColumnsButton storeKey="posts.DataTable" />
-    </TopToolbar>
+  <TopToolbar>
+    <ColumnsButton storeKey="posts.DataTable" />
+  </TopToolbar>
 );
 
 const PostList = () => (
-    <List actions={<PostListActions />}>
-        <DataTable storeKey="posts.DataTable">
-            ...
-        </DataTable>
-    </List>
+  <List actions={<PostListActions />}>
+    <DataTable storeKey="posts.DataTable">...</DataTable>
+  </List>
 );
 ```
 
@@ -352,39 +357,39 @@ const PostList = () => (
 You can change the style of a row based on the record values by using the `rowClassName` prop. This prop is a function that takes the current record as an argument and returns a string.
 
 ```tsx
-import { DataTable, List } from '@/components/admin';
+import { DataTable, List } from "@/components/admin";
 
 export const PostList = () => (
-    <List>
-        <DataTable
-            rowClassName={(record) =>
-                record.is_published ? 'bg-white' : 'bg-gray-50'
-            }
-        >
-            ...
-        </DataTable>
-    </List>
+  <List>
+    <DataTable
+      rowClassName={(record) =>
+        record.is_published ? "bg-white" : "bg-gray-50"
+      }
+    >
+      ...
+    </DataTable>
+  </List>
 );
 ```
 
 You can also change the style of a specific cell based on the record values by using the `conditionalClassName` prop of `<DataTable.Col>`. This prop is a function that takes the current record as an argument and returns a string.
 
 ```tsx
-import { DataTable, List } from '@/components/admin';
+import { DataTable, List } from "@/components/admin";
 
 export const PostList = () => (
-    <List>
-        <DataTable>
-            <DataTable.Col source="id" />
-            <DataTable.Col source="title" />
-            <DataTable.Col
-                source="views"
-                conditionalClassName={(record) =>
-                    record.views > 1000 ? 'font-bold' : ''
-                }
-            />
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col
+        source="views"
+        conditionalClassName={(record) =>
+          record.views > 1000 ? "font-bold" : ""
+        }
+      />
+    </DataTable>
+  </List>
 );
 ```
 
@@ -393,42 +398,42 @@ export const PostList = () => (
 If you need to hide some columns based on a set of permissions, wrap these columns with `<CanAccess>`.
 
 ```tsx
-import { CanAccess } from 'ra-core';
+import { CanAccess } from "ra-core";
 
 const ProductList = () => (
-    <List>
-        <DataTable>
-            <CanAccess action="read" resource="products.thumbnail">
-                <DataTable.Col source="thumbnail" field={ImageField} />
-            </CanAccess>
-            <CanAccess action="read" resource="products.reference">
-                <DataTable.Col source="reference" />
-            </CanAccess>
-            <CanAccess action="read" resource="products.category_id">
-                <DataTable.Col source="category_id">
-                    <ReferenceField source="category_id" reference="categories" />
-                </DataTable.Col>
-            </CanAccess>
-            <CanAccess action="read" resource="products.width">
-                <DataTable.NumberCol source="width" />
-            </CanAccess>
-            <CanAccess action="read" resource="products.height">
-                <DataTable.NumberCol source="height" />
-            </CanAccess>
-            <CanAccess action="read" resource="products.price">
-                <DataTable.NumberCol source="price" />
-            </CanAccess>
-            <CanAccess action="read" resource="products.description">
-                <DataTable.Col source="description" />
-            </CanAccess>
-            <CanAccess action="read" resource="products.stock">
-                <DataTable.NumberCol source="stock" />
-            </CanAccess>
-            <CanAccess action="read" resource="products.sales">
-                <DataTable.NumberCol source="sales" />
-            </CanAccess>
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <CanAccess action="read" resource="products.thumbnail">
+        <DataTable.Col source="thumbnail" field={ImageField} />
+      </CanAccess>
+      <CanAccess action="read" resource="products.reference">
+        <DataTable.Col source="reference" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.category_id">
+        <DataTable.Col source="category_id">
+          <ReferenceField source="category_id" reference="categories" />
+        </DataTable.Col>
+      </CanAccess>
+      <CanAccess action="read" resource="products.width">
+        <DataTable.NumberCol source="width" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.height">
+        <DataTable.NumberCol source="height" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.price">
+        <DataTable.NumberCol source="price" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.description">
+        <DataTable.Col source="description" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.stock">
+        <DataTable.NumberCol source="stock" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.sales">
+        <DataTable.NumberCol source="sales" />
+      </CanAccess>
+    </DataTable>
+  </List>
 );
 ```
 
@@ -439,49 +444,49 @@ const ProductList = () => (
 The most convenient way to benefit from this capability is to alias column components for your resource:
 
 ```tsx
-import { List, DataTable, ReferenceField } from '@/components/admin';
-import { type Review } from '../types';
+import { List, DataTable, ReferenceField } from "@/components/admin";
+import { type Review } from "../types";
 
 const Column = DataTable.Col<Review>;
 
 const ReviewList = () => (
-    <List>
-        <DataTable>
-            <Column source="date" field={DateField} />
-            <Column source="customer_id">
-                <ReferenceField source="customer_id" reference="customers"/>
-            </Column>
-            <Column source="product_id">
-                <ReferenceField source="product_id" reference="products" />
-            </Column>
-            <Column source="rating" field={StarRatingField} />
-            <Column
-                source="comment"
-                render={record => record.comment.substr(0, 10) + '...'}
-            />
-            <Column source="status" />
-        </DataTable>
-    </List>
+  <List>
+    <DataTable>
+      <Column source="date" field={DateField} />
+      <Column source="customer_id">
+        <ReferenceField source="customer_id" reference="customers" />
+      </Column>
+      <Column source="product_id">
+        <ReferenceField source="product_id" reference="products" />
+      </Column>
+      <Column source="rating" field={StarRatingField} />
+      <Column
+        source="comment"
+        render={(record) => record.comment.substr(0, 10) + "..."}
+      />
+      <Column source="status" />
+    </DataTable>
+  </List>
 );
 ```
 
 `<DataTable>` is also a generic component. You can pass a type parameter to get autocompletion and type safety for its props.
 
 ```tsx
-import { List, DataTable } from '@/components/admin';
-import { type Review } from '../types';
+import { List, DataTable } from "@/components/admin";
+import { type Review } from "../types";
 
 const ReviewList = () => (
-    <List>
-        <DataTable<Review>
-            // TypeScript knows that record type is Review
-            rowSx={record => ({
-                backgroundColor: record.status === 'approved' ? 'green' : 'red',
-            })}
-        >
-            ...
-        </DataTable>
-    </List>
+  <List>
+    <DataTable<Review>
+      // TypeScript knows that record type is Review
+      rowSx={(record) => ({
+        backgroundColor: record.status === "approved" ? "green" : "red",
+      })}
+    >
+      ...
+    </DataTable>
+  </List>
 );
 ```
 
@@ -489,67 +494,67 @@ const ReviewList = () => (
 
 For advanced use cases, `<DataTable>`'s internal building blocks are exported individually so you can assemble a fully custom layout while reusing the standard cells, headers, and selection logic.
 
-| Export | Role |
-|--------|------|
-| [`DataTableRoot`](#) | Wrapper element with the standard rounded border. |
-| [`DataTableHead`](#) | Header row, renders column headers and a "select all" checkbox when bulk actions are enabled. |
-| [`DataTableBody`](#) | Body, renders one `<DataTableRow>` per record in the current page. |
-| [`DataTableRow`](#) | A single row. Wires up row click navigation and renders a `<SelectRowCheckbox>` when bulk actions are enabled. |
-| [`DataTableHeadCell`](#) | A header cell. Renders the column label and sort button. |
-| [`DataTableCell`](#) | A body cell. Renders the column value via `children`, `render`, `field`, or `source`. |
-| [`DataTableEmpty`](#) | Default placeholder shown when there are no records. |
-| [`DataTableLoading`](#) | Skeleton placeholder shown while data is loading. Waits 1 second before appearing to avoid flashes on fast loads. |
-| [`SelectPageCheckbox`](#) | Checkbox in the header that selects/deselects all rows on the current page. |
-| [`SelectRowCheckbox`](#) | Checkbox in a row that selects/deselects that row. |
+| Export                    | Role                                                                                                              |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [`DataTableRoot`](#)      | Wrapper element with the standard rounded border.                                                                 |
+| [`DataTableHead`](#)      | Header row, renders column headers and a "select all" checkbox when bulk actions are enabled.                     |
+| [`DataTableBody`](#)      | Body, renders one `<DataTableRow>` per record in the current page.                                                |
+| [`DataTableRow`](#)       | A single row. Wires up row click navigation and renders a `<SelectRowCheckbox>` when bulk actions are enabled.    |
+| [`DataTableHeadCell`](#)  | A header cell. Renders the column label and sort button.                                                          |
+| [`DataTableCell`](#)      | A body cell. Renders the column value via `children`, `render`, `field`, or `source`.                             |
+| [`DataTableEmpty`](#)     | Default placeholder shown when there are no records.                                                              |
+| [`DataTableLoading`](#)   | Skeleton placeholder shown while data is loading. Waits 1 second before appearing to avoid flashes on fast loads. |
+| [`SelectPageCheckbox`](#) | Checkbox in the header that selects/deselects all rows on the current page.                                       |
+| [`SelectRowCheckbox`](#)  | Checkbox in a row that selects/deselects that row.                                                                |
 
 Here is a small example showing how to assemble a custom layout using these granular exports:
 
 ```tsx
 import {
-    DataTableBody,
-    DataTableColumn,
-    DataTableHead,
-    DataTableRoot,
-    List,
-} from '@/components/admin';
-import { DataTableRenderContext } from 'ra-core';
-import { Table } from '@/components/ui/table';
+  DataTableBody,
+  DataTableColumn,
+  DataTableHead,
+  DataTableRoot,
+  List,
+} from "@/components/admin";
+import { DataTableRenderContext } from "ra-core";
+import { Table } from "@/components/ui/table";
 
 const columns = (
-    <>
-        <DataTableColumn source="id" />
-        <DataTableColumn source="title" />
-        <DataTableColumn label="Author" source="author.name" />
-        <DataTableColumn source="year" />
-    </>
+  <>
+    <DataTableColumn source="id" />
+    <DataTableColumn source="title" />
+    <DataTableColumn label="Author" source="author.name" />
+    <DataTableColumn source="year" />
+  </>
 );
 
 const CustomDataTable = () => (
-    <DataTableRoot>
-        <Table>
-            <DataTableRenderContext.Provider value="header">
-                <DataTableHead>{columns}</DataTableHead>
-            </DataTableRenderContext.Provider>
-            <DataTableRenderContext.Provider value="data">
-                <DataTableBody>{columns}</DataTableBody>
-            </DataTableRenderContext.Provider>
-        </Table>
-    </DataTableRoot>
+  <DataTableRoot>
+    <Table>
+      <DataTableRenderContext.Provider value="header">
+        <DataTableHead>{columns}</DataTableHead>
+      </DataTableRenderContext.Provider>
+      <DataTableRenderContext.Provider value="data">
+        <DataTableBody>{columns}</DataTableBody>
+      </DataTableRenderContext.Provider>
+    </Table>
+  </DataTableRoot>
 );
 
 const BookList = () => (
-    <List>
-        <CustomDataTable />
-    </List>
+  <List>
+    <CustomDataTable />
+  </List>
 );
 ```
 
 `<DataTableLoading>` can be used to provide a custom skeleton screen while data is loading:
 
 ```tsx
-import { DataTableLoading } from '@/components/admin';
+import { DataTableLoading } from "@/components/admin";
 
 const MyLoadingState = () => (
-    <DataTableLoading nbChildren={4} nbFakeLines={5} hasBulkActions />
+  <DataTableLoading nbChildren={4} nbFakeLines={5} hasBulkActions />
 );
 ```

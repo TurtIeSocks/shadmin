@@ -115,20 +115,10 @@ export const FieldsSelector = ({
         ))}
       </ul>
       <div className="mt-2 flex justify-between">
-        <Button
-          type="button"
-          size="sm"
-          variant="ghost"
-          onClick={handleHideAll}
-        >
+        <Button type="button" size="sm" variant="ghost" onClick={handleHideAll}>
           {translate("ra.configurable.inspector.hideAll", { _: "Hide All" })}
         </Button>
-        <Button
-          type="button"
-          size="sm"
-          variant="ghost"
-          onClick={handleShowAll}
-        >
+        <Button type="button" size="sm" variant="ghost" onClick={handleShowAll}>
           {translate("ra.configurable.inspector.showAll", { _: "Show All" })}
         </Button>
       </div>

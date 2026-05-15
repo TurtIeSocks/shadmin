@@ -23,9 +23,9 @@ Under the hood, it uses ra-core's `useLoading` hook which subscribes to the TanS
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `className` | Optional | `string` | — | Extra Tailwind classes appended to the spinner element |
+| Prop        | Required | Type     | Default | Description                                            |
+| ----------- | -------- | -------- | ------- | ------------------------------------------------------ |
+| `className` | Optional | `string` | —       | Extra Tailwind classes appended to the spinner element |
 
 ## `className`
 

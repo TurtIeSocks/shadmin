@@ -81,11 +81,7 @@ dialog whose position is persisted in the store; that complexity is intentionall
 behaviour upstream, you'll need to provide it yourself by overriding the `<Inspector>` component.
 
 ```tsx
-import {
-  Admin,
-  Inspector,
-  InspectorButton,
-} from "@/components/admin";
+import { Admin, Inspector, InspectorButton } from "@/components/admin";
 
 <Admin dataProvider={dataProvider}>
   <Inspector />

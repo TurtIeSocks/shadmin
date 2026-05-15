@@ -1,5 +1,5 @@
 ---
-title: 'Soft Delete'
+title: "Soft Delete"
 ---
 
 Shadcn Admin Kit provides hooks and components to let users "delete" records without actually removing them from your database.
@@ -72,54 +72,54 @@ Here is the full `SoftDeleteDataProvider` interface:
 
 ```tsx
 const dataProviderWithSoftDelete: SoftDeleteDataProvider = {
-    ...dataProvider,
+  ...dataProvider,
 
-    softDelete: (resource, params: SoftDeleteParams): SoftDeleteResult => {
-        const { id, authorId } = params;
-        // ...
-        return { data: deletedRecord };
-    },
-    softDeleteMany: (
-        resource,
-        params: SoftDeleteManyParams,
-    ): SoftDeleteManyResult => {
-        const { ids, authorId } = params;
-        // ...
-        return { data: deletedRecords };
-    },
+  softDelete: (resource, params: SoftDeleteParams): SoftDeleteResult => {
+    const { id, authorId } = params;
+    // ...
+    return { data: deletedRecord };
+  },
+  softDeleteMany: (
+    resource,
+    params: SoftDeleteManyParams,
+  ): SoftDeleteManyResult => {
+    const { ids, authorId } = params;
+    // ...
+    return { data: deletedRecords };
+  },
 
-    getOneDeleted: (params: GetOneDeletedParams): GetOneDeletedResult => {
-        const { id } = params;
-        // ...
-        return { data: deletedRecord };
-    },
-    getListDeleted: (params: GetListDeletedParams): GetListDeletedResult => {
-        const { filter, sort, pagination } = params;
-        // ...
-        return { data: deletedRecords, total: deletedRecords.length };
-    },
+  getOneDeleted: (params: GetOneDeletedParams): GetOneDeletedResult => {
+    const { id } = params;
+    // ...
+    return { data: deletedRecord };
+  },
+  getListDeleted: (params: GetListDeletedParams): GetListDeletedResult => {
+    const { filter, sort, pagination } = params;
+    // ...
+    return { data: deletedRecords, total: deletedRecords.length };
+  },
 
-    restoreOne: (params: RestoreOneParams): RestoreOneResult => {
-        const { id } = params;
-        // ...
-        return { data: deletedRecord };
-    },
-    restoreMany: (params: RestoreManyParams): RestoreManyResult => {
-        const { ids } = params;
-        // ...
-        return { data: deletedRecords };
-    },
+  restoreOne: (params: RestoreOneParams): RestoreOneResult => {
+    const { id } = params;
+    // ...
+    return { data: deletedRecord };
+  },
+  restoreMany: (params: RestoreManyParams): RestoreManyResult => {
+    const { ids } = params;
+    // ...
+    return { data: deletedRecords };
+  },
 
-    hardDelete: (params: HardDeleteParams): HardDeleteResult => {
-        const { id } = params;
-        // ...
-        return { data: deletedRecordId };
-    },
-    hardDeleteMany: (params: HardDeleteManyParams): HardDeleteManyResult => {
-        const { ids } = params;
-        // ...
-        return { data: deletedRecordsIds };
-    },
+  hardDelete: (params: HardDeleteParams): HardDeleteResult => {
+    const { id } = params;
+    // ...
+    return { data: deletedRecordId };
+  },
+  hardDeleteMany: (params: HardDeleteManyParams): HardDeleteManyResult => {
+    const { ids } = params;
+    // ...
+    return { data: deletedRecordsIds };
+  },
 };
 ```
 
@@ -135,8 +135,8 @@ Once your provider has all soft-delete methods, pass it to the [`<Admin>`](./Adm
 
 ```tsx
 // in src/App.tsx
-import { Admin } from '@/components/admin/admin';
-import { dataProvider } from './dataProvider';
+import { Admin } from "@/components/admin/admin";
+import { dataProvider } from "./dataProvider";
 
 const App = () => <Admin dataProvider={dataProvider}>{/* ... */}</Admin>;
 ```
@@ -174,38 +174,38 @@ Here is an example of a deleted record:
 
 - [`addSoftDeleteBasedOnResource`](https://marmelab.com/ra-core/addsoftdeletebasedonresource/) stores the deleted records for all resources in a single resource. This resource is named `deleted_records` by default.
 
-    With this builder, all deleted records disappear from their original resource when soft-deleted, and are recreated in the `deleted_records` resource.
+  With this builder, all deleted records disappear from their original resource when soft-deleted, and are recreated in the `deleted_records` resource.
 
 ```tsx
 // in src/dataProvider.ts
-import { addSoftDeleteBasedOnResource } from '@react-admin/ra-core-ee';
-import baseDataProvider from './baseDataProvider';
+import { addSoftDeleteBasedOnResource } from "@react-admin/ra-core-ee";
+import baseDataProvider from "./baseDataProvider";
 
 export const dataProvider = addSoftDeleteBasedOnResource(baseDataProvider, {
-    deletedRecordsResourceName: 'deleted_records',
+  deletedRecordsResourceName: "deleted_records",
 });
 ```
 
 - [`addSoftDeleteInPlace`](https://marmelab.com/ra-core/addsoftdeleteinplace/) keeps the deleted records in the same resource, but marks them as deleted.
 
-    With this builder, all deleted records remain in their original resource when soft-deleted, but are marked with the `deleted_at` and `deleted_by` fields. The query methods (`getList`, `getOne`, etc.) automatically filter out deleted records.
+  With this builder, all deleted records remain in their original resource when soft-deleted, but are marked with the `deleted_at` and `deleted_by` fields. The query methods (`getList`, `getOne`, etc.) automatically filter out deleted records.
 
-    You'll need to pass a configuration object with all soft deletable resources as key so that `getListDeleted` knows where to look for deleted records.
+  You'll need to pass a configuration object with all soft deletable resources as key so that `getListDeleted` knows where to look for deleted records.
 
 ```tsx
 // in src/dataProvider.ts
-import { addSoftDeleteInPlace } from '@react-admin/ra-core-ee';
-import baseDataProvider from './baseDataProvider';
+import { addSoftDeleteInPlace } from "@react-admin/ra-core-ee";
+import baseDataProvider from "./baseDataProvider";
 
 export const dataProvider = addSoftDeleteInPlace(baseDataProvider, {
-    posts: {},
-    comments: {
-        deletedAtFieldName: 'deletion_date',
-    },
-    accounts: {
-        deletedAtFieldName: 'disabled_at',
-        deletedByFieldName: 'disabled_by',
-    },
+  posts: {},
+  comments: {
+    deletedAtFieldName: "deletion_date",
+  },
+  accounts: {
+    deletedAtFieldName: "disabled_at",
+    deletedByFieldName: "disabled_by",
+  },
 });
 ```
 
@@ -215,7 +215,7 @@ When using `addSoftDeleteInPlace`, avoid calling `getListDeleted` without a `res
 
 You can also write your own implementation. Feel free to look at these builders source code for inspiration. You can find it under your `node_modules` folder, e.g. at `node_modules/@react-admin/ra-core-ee/src/soft-delete/dataProvider/addSoftDeleteBasedOnResource.ts`.
 
-### Query and Mutation Hooks 
+### Query and Mutation Hooks
 
 Each data provider verb has its own hook so you can use them in custom components:
 
@@ -234,12 +234,12 @@ The [`<BulkSoftDeleteButton>`](./BulkDeleteButton.md#soft-delete) has to create 
 
 ```tsx
 const dataProviderWithCreateMany = {
-    ...dataProvider,
-    createMany: (resource, params: CreateManyParams): CreateManyResult => {
-        const { data } = params; // data is an array of records.
-        // ...
-        return { data: createdRecords };
-    },
+  ...dataProvider,
+  createMany: (resource, params: CreateManyParams): CreateManyResult => {
+    const { data } = params; // data is an array of records.
+    // ...
+    return { data: createdRecords };
+  },
 };
 ```
 
@@ -430,11 +430,7 @@ Here is an example implementation of a `SoftDeleteButton` component using the [`
 import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { useSoftDeleteWithUndoController } from "@react-admin/ra-core-ee";
-import {
-  type RaRecord,
-  useRecordContext,
-  useResourceContext,
-} from "ra-core";
+import { type RaRecord, useRecordContext, useResourceContext } from "ra-core";
 
 export function SoftDeleteButton(props: SoftDeleteButtonProps) {
   const resource = useResourceContext(props);
@@ -466,14 +462,10 @@ type SoftDeleteButtonProps = {
 You can then replace `DeleteButton` with `SoftDeleteButton` in your edit views:
 
 ```tsx
-import { Edit } from '@/components/admin';
-import { SoftDeleteButton } from './SoftDeleteButton';
+import { Edit } from "@/components/admin";
+import { SoftDeleteButton } from "./SoftDeleteButton";
 
-const PostEdit = () => (
-    <Edit actions={<SoftDeleteButton />}>
-        ...
-    </Edit>
-);
+const PostEdit = () => <Edit actions={<SoftDeleteButton />}>...</Edit>;
 ```
 
 ## Restore Button
@@ -607,8 +599,7 @@ import { Button } from "@/components/ui/button";
 import { useBulkRestoreWithUndoController } from "@react-admin/ra-core-ee";
 
 export function BulkRestoreButton() {
-  const { isPending, handleBulkRestore } =
-    useBulkRestoreWithUndoController({});
+  const { isPending, handleBulkRestore } = useBulkRestoreWithUndoController({});
 
   return (
     <Button
@@ -644,7 +635,7 @@ export function BulkDeletePermanentlyButton() {
       disabled={isPending}
       size="sm"
     >
-        Delete Permanently
+      Delete Permanently
     </Button>
   );
 }

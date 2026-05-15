@@ -31,13 +31,7 @@ import { cn } from "@/lib/utils";
 export const TranslatableFieldsTabContent = (
   props: TranslatableFieldsTabContentProps,
 ) => {
-  const {
-    children,
-    groupKey = "",
-    locale,
-    record,
-    className,
-  } = props;
+  const { children, groupKey = "", locale, record, className } = props;
   const { getRecordForLocale } = useTranslatableContext();
   const addLabel = Children.count(children) > 1;
 
@@ -85,7 +79,8 @@ export const TranslatableFieldsTabContent = (
       <RecordContextProvider value={recordForLocale}>
         <SourceContextProvider value={sourceContext}>
           {Children.map(children, (field) =>
-            field && isValidElement<{ source?: string; label?: string }>(field) ? (
+            field &&
+            isValidElement<{ source?: string; label?: string }>(field) ? (
               <div>
                 {addLabel ? (
                   <Label className="mb-1 block text-xs text-muted-foreground">

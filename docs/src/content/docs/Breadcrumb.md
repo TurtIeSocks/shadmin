@@ -52,15 +52,17 @@ To add a breadcrumb to a custom page component, simply use the `<Breadcrumb>` co
 import { Breadcrumb } from "@/components/admin";
 
 const SettingsPage = () => (
-    <>
-        <Breadcrumb>
-            <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
-            <Breadcrumb.PageItem>Settings</Breadcrumb.PageItem>
-        </Breadcrumb>
-        <h1>Settings</h1>
-        ...
-    </>
-)
+  <>
+    <Breadcrumb>
+      <Breadcrumb.Item>
+        <Link to="/">Home</Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.PageItem>Settings</Breadcrumb.PageItem>
+    </Breadcrumb>
+    <h1>Settings</h1>
+    ...
+  </>
+);
 ```
 
 ## Custom Layout
@@ -69,13 +71,13 @@ If your application defines a custom [`<Admin layout>`](./Admin.md) component, m
 
 ```tsx
 const MyLayout = ({ children }: { children: ReactNode }) => (
-    <div>
-        <header>
-            <div id="breadcrumb" />
-            ...
-        </header>
-        <main>{children}</main>
-        <footer>...</footer>
-    </div>
+  <div>
+    <header>
+      <div id="breadcrumb" />
+      ...
+    </header>
+    <main>{children}</main>
+    <footer>...</footer>
+  </div>
 );
 ```

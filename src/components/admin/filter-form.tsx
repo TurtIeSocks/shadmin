@@ -56,7 +56,9 @@ export const FilterFormBase = (props: FilterFormBaseProps) => {
     if (!filters) return;
     filters
       .filter(
-        (filterElement): filterElement is React.ReactElement<FilterElementProps> =>
+        (
+          filterElement,
+        ): filterElement is React.ReactElement<FilterElementProps> =>
           isValidElement(filterElement),
       )
       .forEach((filter) => {
@@ -73,7 +75,9 @@ export const FilterFormBase = (props: FilterFormBaseProps) => {
     const values = filterValues;
     return filters
       .filter(
-        (filterElement): filterElement is React.ReactElement<FilterElementProps> =>
+        (
+          filterElement,
+        ): filterElement is React.ReactElement<FilterElementProps> =>
           isValidElement(filterElement),
       )
       .filter((filterElement) => {

@@ -7,9 +7,9 @@ title: SavedQueries
 ## Usage
 
 ```tsx
-import { SavedQueries } from '@/components/admin';
+import { SavedQueries } from "@/components/admin";
 
-<SavedQueries />
+<SavedQueries />;
 ```
 
 Before: teams had to infer this component from surrounding CRUD examples.
@@ -18,9 +18,9 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-| --- | --- | --- | --- | --- |
-| className | Optional | `string` | - | Extra classes for the query list. |
+| Prop      | Required | Type     | Default | Description                       |
+| --------- | -------- | -------- | ------- | --------------------------------- |
+| className | Optional | `string` | -       | Extra classes for the query list. |
 
 ## Behavior
 

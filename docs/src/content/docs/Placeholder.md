@@ -16,7 +16,7 @@ The component ships with a single non-breaking space as default child to give it
 
 ## Props
 
-| Prop | Required | Type | Default | Description |
-|------|----------|------|---------|-------------|
-| `children` | Optional | `ReactNode` | `" "` (nbsp) | Optional content inside the placeholder. |
-| `className` | Optional | `string` | - | Extra CSS class applied to the wrapping span. |
+| Prop        | Required | Type        | Default      | Description                                   |
+| ----------- | -------- | ----------- | ------------ | --------------------------------------------- |
+| `children`  | Optional | `ReactNode` | `" "` (nbsp) | Optional content inside the placeholder.      |
+| `className` | Optional | `string`    | -            | Extra CSS class applied to the wrapping span. |
