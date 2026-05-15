@@ -13,15 +13,13 @@ import {
 import { useFormContext } from "react-hook-form";
 import { useRecordContext } from "ra-core";
 
-// Fix Leaflet default icon paths for vite/webpack bundlers
-// (Leaflet ships icons via CSS but the image URLs are wrong by default in bundled builds)
-const iconRetinaUrl =
-  "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png";
-const iconUrl =
-  "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png";
-const shadowUrl =
-  "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png";
-L.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
+const MarkerIcon = L.divIcon({
+  className: "shadcn-leaflet-marker",
+  html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" fill="hsl(217 91% 60%)" stroke="white" stroke-width="2"><path d="M12 0C5.4 0 0 5.4 0 12c0 8 12 20 12 20s12-12 12-20C24 5.4 18.6 0 12 0z"/><circle cx="12" cy="12" r="4" fill="white" stroke="none"/></svg>`,
+  iconSize: [24, 32],
+  iconAnchor: [12, 32],
+  popupAnchor: [0, -32],
+});
 
 const DEFAULT_TILE_URL =
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -62,7 +60,17 @@ export const MapField = ({
   const record = useRecordContext();
   const lat = record?.[latSource] as number | undefined;
   const lng = record?.[lngSource] as number | undefined;
-  if (lat === undefined || lng === undefined) return null;
+  if (lat === undefined || lng === undefined) {
+    return (
+      <div
+        style={{ height, width: "100%" }}
+        className="flex items-center justify-center rounded-md border bg-muted/30 text-sm text-muted-foreground"
+        data-slot="map-field-empty"
+      >
+        No coordinates available
+      </div>
+    );
+  }
   return (
     <div style={{ height, width: "100%" }} data-slot="map-field" data-testid="map-field">
       <MapContainer
@@ -72,7 +80,7 @@ export const MapField = ({
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer url={tileUrl} attribution={attribution} />
-        <Marker position={[lat, lng]} />
+        <Marker position={[lat, lng]} icon={MarkerIcon} />
       </MapContainer>
     </div>
   );
@@ -104,6 +112,7 @@ const DraggableMarker = ({
   return (
     <Marker
       position={position}
+      icon={MarkerIcon}
       draggable
       ref={markerRef}
       eventHandlers={{

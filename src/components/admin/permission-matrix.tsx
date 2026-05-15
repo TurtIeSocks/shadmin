@@ -121,6 +121,7 @@ export const PermissionMatrix = ({
                       {actions.map((a) => (
                         <td key={a} className="p-2 text-center">
                           <Checkbox
+                            className="rounded-sm"
                             checked={isChecked(role.id, resource.id, a)}
                             disabled={readOnly}
                             onCheckedChange={() =>
@@ -139,7 +140,7 @@ export const PermissionMatrix = ({
                             toggleAll(role.id, resource.id, allOn)
                           }
                           aria-label={`${role.id} all ${resource.id}`}
-                          className={cn(allOn && "border-primary")}
+                          className={cn("rounded-sm", allOn && "border-primary")}
                           data-all={`${role.id}.${resource.id}`}
                         />
                       </td>
