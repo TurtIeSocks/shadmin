@@ -184,3 +184,4 @@ export * from "./kanban-board";
 export * from "./record-timeline";
 export * from "./presence-bar";
 export * from "./permission-matrix";
+export * from "./pivot-grid";
