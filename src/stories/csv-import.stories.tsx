@@ -3,8 +3,8 @@ import { type DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-c
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
-import { Admin, CsvImport } from "@/components/admin";
-import { useCsvImport } from "@/components/admin/csv-import";
+import { Admin } from "@/components/admin";
+import { CsvImport, useCsvImport } from "@/components/csv-import";
 import { z } from "zod";
 
 const data = {

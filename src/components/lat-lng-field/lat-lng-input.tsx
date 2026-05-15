@@ -2,91 +2,16 @@
 
 import { type ReactNode, useEffect, useRef } from "react";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  useMap,
-  useMapEvents,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from "react-leaflet";
 import { useFormContext } from "react-hook-form";
-import { useRecordContext } from "ra-core";
 
-const MarkerIcon = L.divIcon({
-  className: "shadcn-leaflet-marker",
-  html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" fill="hsl(217 91% 60%)" stroke="white" stroke-width="2"><path d="M12 0C5.4 0 0 5.4 0 12c0 8 12 20 12 20s12-12 12-20C24 5.4 18.6 0 12 0z"/><circle cx="12" cy="12" r="4" fill="white" stroke="none"/></svg>`,
-  iconSize: [24, 32],
-  iconAnchor: [12, 32],
-  popupAnchor: [0, -32],
-});
+import {
+  DEFAULT_ATTRIBUTION,
+  DEFAULT_TILE_URL,
+  MarkerIcon,
+} from "./shared";
 
-const DEFAULT_TILE_URL =
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-const DEFAULT_ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-
-export interface MapFieldProps {
-  latSource: string;
-  lngSource: string;
-  zoom?: number;
-  height?: number | string;
-  tileUrl?: string;
-  attribution?: string;
-}
-
-/**
- * Displays a Leaflet map with a marker at the lat/lng position read from the current record.
- *
- * Reads two numeric fields from the record context (`latSource` and `lngSource`) and renders
- * an interactive (non-editable) tile map. Returns null when either coordinate is missing.
- *
- * @example
- * <Show>
- *   <SimpleShowLayout>
- *     <TextField source="name" />
- *     <MapField latSource="lat" lngSource="lng" zoom={13} height={300} />
- *   </SimpleShowLayout>
- * </Show>
- */
-export const MapField = ({
-  latSource,
-  lngSource,
-  zoom = 13,
-  height = 300,
-  tileUrl = DEFAULT_TILE_URL,
-  attribution = DEFAULT_ATTRIBUTION,
-}: MapFieldProps) => {
-  const record = useRecordContext();
-  const lat = record?.[latSource] as number | undefined;
-  const lng = record?.[lngSource] as number | undefined;
-  if (lat === undefined || lng === undefined) {
-    return (
-      <div
-        style={{ height, width: "100%" }}
-        className="flex items-center justify-center rounded-md border bg-muted/30 text-sm text-muted-foreground"
-        data-slot="map-field-empty"
-      >
-        No coordinates available
-      </div>
-    );
-  }
-  return (
-    <div style={{ height, width: "100%" }} data-slot="map-field" data-testid="map-field">
-      <MapContainer
-        center={[lat, lng]}
-        zoom={zoom}
-        scrollWheelZoom={false}
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer url={tileUrl} attribution={attribution} />
-        <Marker position={[lat, lng]} icon={MarkerIcon} />
-      </MapContainer>
-    </div>
-  );
-};
-
-export interface MapInputProps {
+export interface LatLngInputProps {
   latSource: string;
   lngSource: string;
   defaultPosition?: [number, number];
@@ -135,7 +60,7 @@ const RecenterOnChange = ({ position }: { position: [number, number] }) => {
 };
 
 /**
- * Map form input. Renders a draggable Leaflet marker; clicking the map or dragging the marker
+ * Lat/lng map form input. Renders a draggable Leaflet marker; clicking the map or dragging the marker
  * updates two React Hook Form fields (`latSource` and `lngSource`) via `setValue`.
  *
  * Must be rendered inside a React Hook Form context (e.g. `<SimpleForm>`, `<Form>`).
@@ -143,7 +68,7 @@ const RecenterOnChange = ({ position }: { position: [number, number] }) => {
  * @example
  * <Create>
  *   <SimpleForm>
- *     <MapInput
+ *     <LatLngInput
  *       latSource="lat"
  *       lngSource="lng"
  *       defaultPosition={[48.85, 2.35]}
@@ -154,7 +79,7 @@ const RecenterOnChange = ({ position }: { position: [number, number] }) => {
  *   </SimpleForm>
  * </Create>
  */
-export const MapInput = ({
+export const LatLngInput = ({
   latSource,
   lngSource,
   defaultPosition = [0, 0],
@@ -164,7 +89,7 @@ export const MapInput = ({
   attribution = DEFAULT_ATTRIBUTION,
   label,
   helperText,
-}: MapInputProps) => {
+}: LatLngInputProps) => {
   const form = useFormContext();
   const latValue = form?.watch(latSource) as number | undefined;
   const lngValue = form?.watch(lngSource) as number | undefined;
@@ -177,10 +102,12 @@ export const MapInput = ({
   };
 
   return (
-    <div className="flex flex-col gap-1" data-slot="map-input" data-testid="map-input">
-      {label ? (
-        <label className="text-sm font-medium">{label}</label>
-      ) : null}
+    <div
+      className="flex flex-col gap-1"
+      data-slot="lat-lng-input"
+      data-testid="lat-lng-input"
+    >
+      {label ? <label className="text-sm font-medium">{label}</label> : null}
       <div
         style={{ height, width: "100%" }}
         className="overflow-hidden rounded-md border"
