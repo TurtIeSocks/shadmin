@@ -354,6 +354,7 @@ export function WizardToolbar() {
   return (
     <DialogFooter className="gap-2 sm:gap-2">
       <Button
+        name="cancel"
         type="button"
         variant="ghost"
         className="cursor-pointer"
@@ -366,13 +367,13 @@ export function WizardToolbar() {
         {translate("ra.action.cancel", { _: "Cancel" })}
       </Button>
       {!isFirst ? (
-        <Button type="button" variant="outline" onClick={goBack}>
+        <Button name="back" type="button" variant="outline" onClick={goBack}>
           <ArrowLeft className="mr-2 h-4 w-4" />
           {translate("ra.action.wizard_back", { _: "Back" })}
         </Button>
       ) : null}
       {!isLast ? (
-        <Button type="button" onClick={handleNext}>
+        <Button name="next" type="button" onClick={handleNext}>
           {translate("ra.action.wizard_next", { _: "Next" })}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
