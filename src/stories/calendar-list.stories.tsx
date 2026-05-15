@@ -209,7 +209,9 @@ export const Drag = () => {
                   }}
                 />
               </List>
-              <div data-testid="last-drop">{lastDrop ?? ""}</div>
+              <div className="rounded-md bg-muted/40 p-3 text-sm font-mono" data-testid="last-drop">
+                {lastDrop ? `Drop fired: ${lastDrop}` : "Drop an event to see the new date here"}
+              </div>
             </div>
           )}
           recordRepresentation="title"

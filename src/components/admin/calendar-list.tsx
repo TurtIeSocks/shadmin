@@ -10,6 +10,7 @@ import {
 } from "react";
 import {
   DndContext,
+  DragOverlay,
   type DragEndEvent,
   useDraggable,
   useDroppable,
@@ -286,6 +287,12 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
       .filter((e): e is CalendarEventInfo<R> => e !== null);
   }, [data, startSource, endSource, titleSource, colorSource, colorMap, getRepresentation]);
 
+  const [activeEventId, setActiveEventId] = useState<string | null>(null);
+  const activeEvent = useMemo(
+    () => (activeEventId ? events.find((e) => String(e.record.id) === activeEventId) ?? null : null),
+    [activeEventId, events],
+  );
+
   const RenderEvent = eventRenderer ?? DefaultEvent;
   const resolvedViews = views ?? ["month", "week", "agenda"];
 
@@ -347,8 +354,22 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
       )}
       {view === "month" ? (
         onDrop ? (
-          <DndContext onDragEnd={handleDragEnd}>
+          <DndContext
+            onDragStart={(ev) => setActiveEventId(String(ev.active.id))}
+            onDragEnd={(ev) => {
+              setActiveEventId(null);
+              handleDragEnd(ev);
+            }}
+            onDragCancel={() => setActiveEventId(null)}
+          >
             <CalendarMonthView {...monthViewProps} draggable />
+            <DragOverlay>
+              {activeEvent ? (
+                <div className="rounded-sm border bg-background px-2 py-1 text-xs shadow-lg opacity-90 ring-2 ring-primary">
+                  {activeEvent.title}
+                </div>
+              ) : null}
+            </DragOverlay>
           </DndContext>
         ) : (
           <CalendarMonthView {...monthViewProps} />

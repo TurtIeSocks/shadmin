@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import {
   DndContext,
+  DragOverlay,
   type DragEndEvent,
   useDraggable,
   useDroppable,
@@ -258,6 +259,12 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
   const [update] = useUpdate<R>();
   const getRepresentation = useGetRecordRepresentation(resource);
 
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const activeRecord = useMemo(
+    () => (activeId ? data.find((r) => String(r.id) === activeId) ?? null : null),
+    [activeId, data],
+  );
+
   // Stable title resolver used by DefaultCard
   const getTitle = useCallback(
     (record: R): string => String(getRepresentation(record)),
@@ -324,7 +331,14 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
   );
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext
+      onDragStart={(ev) => setActiveId(String(ev.active.id))}
+      onDragEnd={(ev) => {
+        setActiveId(null);
+        handleDragEnd(ev);
+      }}
+      onDragCancel={() => setActiveId(null)}
+    >
       <div
         className="flex gap-4 overflow-x-auto p-4"
         data-slot="kanban-board"
@@ -365,6 +379,22 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
           );
         })}
       </div>
+      <DragOverlay>
+        {activeRecord ? (
+          <div className="rounded-md border bg-background p-3 shadow-lg opacity-90 ring-2 ring-primary">
+            <div className="text-sm font-medium">
+              {titleSource
+                ? String(activeRecord[titleSource] ?? "")
+                : String(getRepresentation(activeRecord))}
+            </div>
+            {descriptionSource ? (
+              <div className="text-xs text-muted-foreground">
+                {String(activeRecord[descriptionSource] ?? "")}
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+      </DragOverlay>
     </DndContext>
   );
 };

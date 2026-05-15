@@ -79,19 +79,26 @@ export const Count = () => (
 );
 
 export const ExplicitData = () => (
-  <TestMemoryRouter initialEntries={["/"]}>
+  <TestMemoryRouter initialEntries={["/explicit"]}>
     <Admin
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
     >
-      <PivotGrid
-        data={orders}
-        rowField="region"
-        columnField="status"
-        valueField="amount"
-        aggregator="avg"
-        formatter={(v) => `$${v.toFixed(2)}`}
+      <Resource
+        name="explicit"
+        list={() => (
+          <div className="p-4">
+            <PivotGrid
+              data={orders}
+              rowField="region"
+              columnField="status"
+              valueField="amount"
+              aggregator="avg"
+              formatter={(v) => `$${v.toFixed(2)}`}
+            />
+          </div>
+        )}
       />
     </Admin>
   </TestMemoryRouter>
