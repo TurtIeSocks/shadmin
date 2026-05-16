@@ -14,3 +14,9 @@ export const DEFAULT_TILE_URL =
 
 export const DEFAULT_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+export type LatLngTuple = [number, number];
+export type GeoJsonCoord = [number, number]; // [lng, lat]
+
+export const latLngToCoord = (ll: LatLngTuple): GeoJsonCoord => [ll[1], ll[0]];
+export const coordToLatLng = (c: GeoJsonCoord): LatLngTuple => [c[1], c[0]];
