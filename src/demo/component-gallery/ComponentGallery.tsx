@@ -157,6 +157,7 @@ const galleryComponents: GalleryComponent[] = [
     docs: "InfinitePagination",
   },
   { name: "Inspector", family: "Inspector", docs: "Inspector" },
+  { name: "JobMonitor", family: "Views", docs: "JobMonitor" },
   { name: "KeyboardShortcut", family: "Layout", docs: "KeyboardShortcut" },
   { name: "Labeled", family: "Layout", docs: "Labeled" },
   { name: "Layout", family: "App shell", docs: "Layout" },

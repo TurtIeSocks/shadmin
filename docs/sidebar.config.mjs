@@ -245,6 +245,7 @@ export const sidebar = [
       "dual-approval-button",
       "i18n-key-editor",
       "in-place-editor",
+      "job-monitor",
       "kanban-board",
       "layout-builder",
       "onboarding-tour",
