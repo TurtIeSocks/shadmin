@@ -22,6 +22,9 @@ export interface OsmPresetDef {
 }
 
 export const OSM_PRESETS = {
+  // ────────────────────────────────────────────────────────────────────────
+  // Curated presets — hand-tuned subsets of well-known OSM keys.
+  // ────────────────────────────────────────────────────────────────────────
   water: {
     filters: [
       { key: "natural", values: ["water", "bay", "strait"] },
@@ -43,6 +46,48 @@ export const OSM_PRESETS = {
     ],
     bufferLinesMeters: 15,
     elementTypes: ["way"],
+  },
+
+  // ────────────────────────────────────────────────────────────────────────
+  // Category presets — broad catch-alls matching ANY value of an OSM
+  // top-level key. Polygon-emitting categories need no buffer; line-likely
+  // categories (highway, waterway, railway, barrier, power) ship a small
+  // default radius so the polygon-only set operations have geometry to work
+  // with. highway/railway narrow elementTypes to ["way"] to skip relation
+  // clutter.
+  // ────────────────────────────────────────────────────────────────────────
+  natural: { filters: [{ key: "natural", any: true }] },
+  building: { filters: [{ key: "building", any: true }] },
+  landuse: { filters: [{ key: "landuse", any: true }] },
+  amenity: { filters: [{ key: "amenity", any: true }] },
+  leisure: { filters: [{ key: "leisure", any: true }] },
+  highway: {
+    filters: [{ key: "highway", any: true }],
+    bufferLinesMeters: 5,
+    elementTypes: ["way"],
+  },
+  waterway: {
+    filters: [{ key: "waterway", any: true }],
+    bufferLinesMeters: 5,
+  },
+  railway: {
+    filters: [{ key: "railway", any: true }],
+    bufferLinesMeters: 5,
+    elementTypes: ["way"],
+  },
+  boundary: { filters: [{ key: "boundary", any: true }] },
+  place: { filters: [{ key: "place", any: true }] },
+  man_made: { filters: [{ key: "man_made", any: true }] },
+  shop: { filters: [{ key: "shop", any: true }] },
+  tourism: { filters: [{ key: "tourism", any: true }] },
+  barrier: {
+    filters: [{ key: "barrier", any: true }],
+    bufferLinesMeters: 3,
+  },
+  historic: { filters: [{ key: "historic", any: true }] },
+  power: {
+    filters: [{ key: "power", any: true }],
+    bufferLinesMeters: 3,
   },
 } as const satisfies Record<string, OsmPresetDef>;
 

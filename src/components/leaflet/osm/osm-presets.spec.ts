@@ -92,3 +92,40 @@ describe("buildOverpassQueryFromSources", () => {
     expect(q.trim().endsWith("out geom;")).toBe(true);
   });
 });
+
+describe("category presets", () => {
+  const CATEGORIES = [
+    "natural",
+    "building",
+    "landuse",
+    "amenity",
+    "leisure",
+    "highway",
+    "waterway",
+    "railway",
+    "boundary",
+    "place",
+    "man_made",
+    "shop",
+    "tourism",
+    "barrier",
+    "historic",
+    "power",
+  ] as const;
+
+  for (const cat of CATEGORIES) {
+    it(`preset "${cat}" emits a query with at least one element clause`, () => {
+      const q = buildOverpassQueryFromSources({ presets: [cat] }, [0, 0, 1, 1]);
+      expect(q).toContain(`["${cat}"]`);
+    });
+  }
+
+  it("composes a curated preset with a category preset", () => {
+    const q = buildOverpassQueryFromSources(
+      { presets: ["water", "amenity"] },
+      [0, 0, 1, 1],
+    );
+    expect(q).toContain(`["amenity"]`);
+    expect(q).toContain(`["natural"~"^(water|bay|strait)$"]`);
+  });
+});

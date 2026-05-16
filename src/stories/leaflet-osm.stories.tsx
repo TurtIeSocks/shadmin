@@ -120,3 +120,35 @@ export const PresetsAndTagsTogether = () => (
     />
   </StoryAdmin>
 );
+
+export const SubtractAllAmenities = () => (
+  <StoryAdmin mode="form" record={{ area: parisPolygon }}>
+    <PolygonInput
+      source="area"
+      label="Coverage (all amenities)"
+      defaultCenter={[48.87, 2.35]}
+      height={500}
+    />
+    <OsmFeatureSubtract
+      source="area"
+      presets={["amenity"]}
+      label="Subtract all amenities"
+    />
+  </StoryAdmin>
+);
+
+export const AddAllLeisure = () => (
+  <StoryAdmin mode="form" record={{ area: parisPolygon }}>
+    <PolygonInput
+      source="area"
+      label="Coverage (all leisure)"
+      defaultCenter={[48.87, 2.35]}
+      height={500}
+    />
+    <OsmFeatureAdd
+      source="area"
+      presets={["leisure"]}
+      label="Add all leisure areas"
+    />
+  </StoryAdmin>
+);

@@ -2,7 +2,7 @@
 title: "OsmFeatureSubtract"
 ---
 
-Form button that subtracts OSM features matching one or more typed presets (`water`, `buildings`, `forest`, `roads`) and/or raw OSM tags (e.g. `natural=water`, `building=*`) from the polygon stored at a form field. Useful for trimming service areas to land, excluding building footprints, removing forested patches, or carving out major roads.
+Form button that subtracts OSM features matching one or more typed presets (curated subsets like `water`, `buildings`, `forest`, `roads`, plus per-key category catch-alls like `amenity`, `leisure`, `natural`) and/or raw OSM tags (e.g. `natural=water`, `building=*`) from the polygon stored at a form field. Useful for trimming service areas to land, excluding building footprints, removing forested patches, or carving out major roads.
 
 ## Usage
 
@@ -54,14 +54,16 @@ On click, fetches OSM features matching the configured sources within the curren
 
 The named presets currently shipped are:
 
-| Preset       | OSM tags matched                                                                                            | Notes                                                |
-| ------------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| `water`      | `natural=water,bay,strait` and any `waterway`                                                                | Polygons (lakes, bays) + waterways.                  |
-| `buildings`  | `building=*`                                                                                                | All building footprints.                             |
-| `forest`     | `natural=wood,forest` and `landuse=forest`                                                                  | Wooded patches.                                      |
-| `roads`      | `highway=motorway,trunk,primary,secondary`                                                                  | Buffered to 15 m polygons before set ops.            |
+| Preset | Matches | Notes |
+| --- | --- | --- |
+| `water` | `natural=water/bay/strait`, `waterway=*` | Curated water bodies. |
+| `buildings` | `building=*` | All buildings. |
+| `forest` | `natural=wood/forest`, `landuse=forest` | Curated forest cover. |
+| `roads` | `highway=motorway/trunk/primary/secondary` | Major roads, buffered 15 m. |
+| `natural` / `building` / `landuse` / `amenity` / `leisure` / `boundary` / `place` / `man_made` / `shop` / `tourism` / `historic` | `<key>=*` | Category-wide catch-alls (polygon-typed features only). |
+| `highway` / `waterway` / `railway` / `barrier` / `power` | `<key>=*` | Category-wide catch-alls; line features buffered 3-5 m. |
 
-Pass multiple presets in one call to merge the masks (e.g. `["water", "roads"]`).
+Pass multiple presets in one call to merge the masks (e.g. `["water", "roads"]`). Curated presets target useful subsets; the per-key category presets are broader catch-alls.
 
 ### `tags`
 

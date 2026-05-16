@@ -1,17 +1,21 @@
 import type { OsmTagFilter } from "./osm-presets";
 
 /**
- * Curated typed union of well-known OSM tags in `key=value` form.
- * Source: https://wiki.openstreetmap.org/wiki/Map_features
+ * Curated typed unions of well-known OSM tags in `key=value` form, partitioned
+ * by OSM top-level key (one sub-union per category). Source:
+ * https://wiki.openstreetmap.org/wiki/Map_features
  *
  * Use `*` as the value for "any value of this key" (e.g. `"building=*"`).
  *
- * The union is intentionally not exhaustive — OSM defines thousands of tags.
+ * The unions are intentionally not exhaustive — OSM defines thousands of tags.
  * Use the {@link OsmTagInput} escape hatch when the union is outdated:
  *   const tags: OsmTagInput[] = ["natural=water", "custom_key=foo"];
  */
-export type KnownOsmTag =
-  // natural
+
+// ──────────────────────────────────────────────────────────────────────────
+// natural
+// ──────────────────────────────────────────────────────────────────────────
+export type NaturalTag =
   | "natural=water"
   | "natural=wood"
   | "natural=forest"
@@ -50,9 +54,12 @@ export type KnownOsmTag =
   | "natural=stone"
   | "natural=reef"
   | "natural=cape"
-  | "natural=isthmus"
+  | "natural=isthmus";
 
-  // building (covers the main categories from OSM wiki)
+// ──────────────────────────────────────────────────────────────────────────
+// building
+// ──────────────────────────────────────────────────────────────────────────
+export type BuildingTag =
   | "building=*"
   | "building=yes"
   | "building=apartments"
@@ -105,9 +112,12 @@ export type KnownOsmTag =
   | "building=farm_auxiliary"
   | "building=stable"
   | "building=transformer_tower"
-  | "building=water_tower"
+  | "building=water_tower";
 
-  // landuse
+// ──────────────────────────────────────────────────────────────────────────
+// landuse
+// ──────────────────────────────────────────────────────────────────────────
+export type LandUseTag =
   | "landuse=residential"
   | "landuse=commercial"
   | "landuse=retail"
@@ -135,9 +145,12 @@ export type KnownOsmTag =
   | "landuse=port"
   | "landuse=basin"
   | "landuse=reservoir"
-  | "landuse=railway"
+  | "landuse=railway";
 
-  // amenity
+// ──────────────────────────────────────────────────────────────────────────
+// amenity
+// ──────────────────────────────────────────────────────────────────────────
+export type AmenityTag =
   | "amenity=bar"
   | "amenity=restaurant"
   | "amenity=cafe"
@@ -209,9 +222,12 @@ export type KnownOsmTag =
   | "amenity=shelter"
   | "amenity=waste_basket"
   | "amenity=waste_disposal"
-  | "amenity=recycling"
+  | "amenity=recycling";
 
-  // leisure
+// ──────────────────────────────────────────────────────────────────────────
+// leisure
+// ──────────────────────────────────────────────────────────────────────────
+export type LeisureTag =
   | "leisure=park"
   | "leisure=playground"
   | "leisure=pitch"
@@ -231,9 +247,12 @@ export type KnownOsmTag =
   | "leisure=escape_game"
   | "leisure=ice_rink"
   | "leisure=common"
-  | "leisure=resort"
+  | "leisure=resort";
 
-  // highway
+// ──────────────────────────────────────────────────────────────────────────
+// highway
+// ──────────────────────────────────────────────────────────────────────────
+export type HighwayTag =
   | "highway=motorway"
   | "highway=trunk"
   | "highway=primary"
@@ -255,9 +274,12 @@ export type KnownOsmTag =
   | "highway=path"
   | "highway=bridleway"
   | "highway=steps"
-  | "highway=construction"
+  | "highway=construction";
 
-  // waterway
+// ──────────────────────────────────────────────────────────────────────────
+// waterway
+// ──────────────────────────────────────────────────────────────────────────
+export type WaterwayTag =
   | "waterway=river"
   | "waterway=stream"
   | "waterway=tidal_channel"
@@ -270,9 +292,12 @@ export type KnownOsmTag =
   | "waterway=weir"
   | "waterway=dam"
   | "waterway=waterfall"
-  | "waterway=lock_gate"
+  | "waterway=lock_gate";
 
-  // railway
+// ──────────────────────────────────────────────────────────────────────────
+// railway
+// ──────────────────────────────────────────────────────────────────────────
+export type RailwayTag =
   | "railway=rail"
   | "railway=subway"
   | "railway=tram"
@@ -287,9 +312,12 @@ export type KnownOsmTag =
   | "railway=station"
   | "railway=halt"
   | "railway=tram_stop"
-  | "railway=subway_entrance"
+  | "railway=subway_entrance";
 
-  // boundary
+// ──────────────────────────────────────────────────────────────────────────
+// boundary
+// ──────────────────────────────────────────────────────────────────────────
+export type BoundaryTag =
   | "boundary=administrative"
   | "boundary=protected_area"
   | "boundary=national_park"
@@ -299,9 +327,12 @@ export type KnownOsmTag =
   | "boundary=forest"
   | "boundary=historic"
   | "boundary=religious"
-  | "boundary=aboriginal_lands"
+  | "boundary=aboriginal_lands";
 
-  // place
+// ──────────────────────────────────────────────────────────────────────────
+// place
+// ──────────────────────────────────────────────────────────────────────────
+export type PlaceTag =
   | "place=continent"
   | "place=country"
   | "place=state"
@@ -324,9 +355,12 @@ export type KnownOsmTag =
   | "place=islet"
   | "place=ocean"
   | "place=sea"
-  | "place=archipelago"
+  | "place=archipelago";
 
-  // man_made (commonly-mapped subset)
+// ──────────────────────────────────────────────────────────────────────────
+// man_made (commonly-mapped subset)
+// ──────────────────────────────────────────────────────────────────────────
+export type ManMadeTag =
   | "man_made=bridge"
   | "man_made=chimney"
   | "man_made=communications_tower"
@@ -352,9 +386,12 @@ export type KnownOsmTag =
   | "man_made=water_well"
   | "man_made=water_works"
   | "man_made=windmill"
-  | "man_made=works"
+  | "man_made=works";
 
-  // shop (top-level subset)
+// ──────────────────────────────────────────────────────────────────────────
+// shop (top-level subset)
+// ──────────────────────────────────────────────────────────────────────────
+export type ShopTag =
   | "shop=supermarket"
   | "shop=convenience"
   | "shop=bakery"
@@ -386,9 +423,12 @@ export type KnownOsmTag =
   | "shop=pet"
   | "shop=art"
   | "shop=mall"
-  | "shop=department_store"
+  | "shop=department_store";
 
-  // tourism
+// ──────────────────────────────────────────────────────────────────────────
+// tourism
+// ──────────────────────────────────────────────────────────────────────────
+export type TourismTag =
   | "tourism=hotel"
   | "tourism=motel"
   | "tourism=guest_house"
@@ -409,9 +449,12 @@ export type KnownOsmTag =
   | "tourism=picnic_site"
   | "tourism=theme_park"
   | "tourism=zoo"
-  | "tourism=aquarium"
+  | "tourism=aquarium";
 
-  // barrier
+// ──────────────────────────────────────────────────────────────────────────
+// barrier
+// ──────────────────────────────────────────────────────────────────────────
+export type BarrierTag =
   | "barrier=fence"
   | "barrier=wall"
   | "barrier=hedge"
@@ -429,9 +472,12 @@ export type KnownOsmTag =
   | "barrier=handrail"
   | "barrier=cycle_barrier"
   | "barrier=rope"
-  | "barrier=log"
+  | "barrier=log";
 
-  // historic
+// ──────────────────────────────────────────────────────────────────────────
+// historic
+// ──────────────────────────────────────────────────────────────────────────
+export type HistoricTag =
   | "historic=monument"
   | "historic=memorial"
   | "historic=castle"
@@ -442,9 +488,12 @@ export type KnownOsmTag =
   | "historic=tomb"
   | "historic=wayside_cross"
   | "historic=wayside_shrine"
-  | "historic=boundary_stone"
+  | "historic=boundary_stone";
 
-  // power
+// ──────────────────────────────────────────────────────────────────────────
+// power
+// ──────────────────────────────────────────────────────────────────────────
+export type PowerTag =
   | "power=line"
   | "power=minor_line"
   | "power=tower"
@@ -453,6 +502,29 @@ export type KnownOsmTag =
   | "power=generator"
   | "power=plant"
   | "power=transformer";
+
+/**
+ * Union of all category sub-unions. Preserved as the flat type consumers
+ * previously imported — derived from the category types rather than
+ * hand-rolled, so the two never drift.
+ */
+export type KnownOsmTag =
+  | NaturalTag
+  | BuildingTag
+  | LandUseTag
+  | AmenityTag
+  | LeisureTag
+  | HighwayTag
+  | WaterwayTag
+  | RailwayTag
+  | BoundaryTag
+  | PlaceTag
+  | ManMadeTag
+  | ShopTag
+  | TourismTag
+  | BarrierTag
+  | HistoricTag
+  | PowerTag;
 
 /**
  * Tag input type for `tags` props. Accepts the typed union for autocomplete,

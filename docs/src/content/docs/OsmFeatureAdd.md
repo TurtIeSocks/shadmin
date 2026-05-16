@@ -2,7 +2,7 @@
 title: "OsmFeatureAdd"
 ---
 
-Form button that unions OSM features matching one or more typed presets (`water`, `buildings`, `forest`, `roads`) and/or raw OSM tags (e.g. `leisure=park`) onto the polygon stored at a form field. Useful for extending a coverage region to include neighboring forest patches, lakes, or other features that the user wants part of the final area.
+Form button that unions OSM features matching one or more typed presets (curated subsets like `water`, `buildings`, `forest`, `roads`, plus per-key category catch-alls like `amenity`, `leisure`, `natural`) and/or raw OSM tags (e.g. `leisure=park`) onto the polygon stored at a form field. Useful for extending a coverage region to include neighboring forest patches, lakes, or other features that the user wants part of the final area.
 
 ## Usage
 
