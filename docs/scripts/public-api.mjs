@@ -127,6 +127,72 @@ export async function getPublicApi() {
   });
 }
 
+/**
+ * Convert a kebab-case slug to PascalCase.
+ * `access-denied` → `AccessDenied`, `lat-lng-field` → `LatLngField`.
+ * @param {string} slug
+ */
+function slugToPascal(slug) {
+  return slug
+    .split("-")
+    .map((w) => (w.length ? w[0].toUpperCase() + w.slice(1) : ""))
+    .join("");
+}
+
+/**
+ * Subset of {@link getPublicApi} narrowed to *React components*: deduped by
+ * slug, one entry per component file, filtered to entries whose source file
+ * exports either (a) a binding whose name equals the slug's PascalCase form,
+ * or (b) a `<PascalSlug>Props` interface/type alias. The aim is to filter out
+ * helper-only files (constants, hooks, type-only modules) so the doc-existence
+ * check has one entry per documented React component rather than per named
+ * export.
+ *
+ * Returns ~215-230 components (vs ~650 raw named exports). Each item carries
+ * `componentName` (PascalCase from slug) — that's also the name the typedoc
+ * splitter writes prop JSON for, so the doc check can look up
+ * `props/<componentName>.json` directly.
+ *
+ * @returns {Promise<Array<{
+ *   componentName: string,
+ *   slug: string,
+ *   sourceDir: string,
+ *   sourceFile: string,
+ *   hasPropsExport: boolean,
+ *   hasComponentExport: boolean,
+ * }>>}
+ */
+export async function getPublicComponents() {
+  const items = await getPublicApi();
+  /** @type {Map<string, Array<typeof items[number]>>} */
+  const bySlug = new Map();
+  for (const it of items) {
+    const arr = bySlug.get(it.slug);
+    if (arr) arr.push(it);
+    else bySlug.set(it.slug, [it]);
+  }
+
+  /** @type {Array<{ componentName: string, slug: string, sourceDir: string, sourceFile: string, hasPropsExport: boolean, hasComponentExport: boolean }>} */
+  const components = [];
+  for (const [slug, entries] of bySlug) {
+    const pascal = slugToPascal(slug);
+    const componentEntry = entries.find((e) => e.name === pascal);
+    const propsEntry = entries.find((e) => e.name === `${pascal}Props`);
+    if (!componentEntry && !propsEntry) continue;
+    const ref = componentEntry ?? propsEntry;
+    if (!ref) continue;
+    components.push({
+      componentName: pascal,
+      slug,
+      sourceDir: ref.sourceDir,
+      sourceFile: ref.sourceFile,
+      hasPropsExport: Boolean(propsEntry),
+      hasComponentExport: Boolean(componentEntry),
+    });
+  }
+  return components;
+}
+
 // CLI invocation: print as JSON for ad-hoc inspection
 if (import.meta.url === `file://${process.argv[1]}`) {
   const items = await getPublicApi();

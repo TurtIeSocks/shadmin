@@ -1,0 +1,17 @@
+{
+  "name": "Link",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "ref",
+      "type": "Ref<HTMLAnchorElement>",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

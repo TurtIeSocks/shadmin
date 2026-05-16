@@ -1,0 +1,53 @@
+{
+  "name": "DataTable",
+  "props": [
+    {
+      "name": "bulkActionButtons",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "bulkActionsToolbar",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "expand",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": "Element rendered as the expand panel under each row. Receives the row's\nrecord through `RecordContext`. When provided, a chevron toggle column\nis added at the start of every row."
+    },
+    {
+      "name": "expandSingle",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When true, expanding a row collapses any previously-expanded one so\nonly a single row is expanded at a time. Defaults to `false`."
+    },
+    {
+      "name": "isRowExpandable",
+      "type": "(record: RecordType) => boolean",
+      "optional": true,
+      "comment": "Predicate that decides whether a given record can be expanded. When it\nreturns `false`, the chevron toggle is hidden for that row."
+    },
+    {
+      "name": "rowClassName",
+      "type": "(record: RecordType) => string | undefined",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

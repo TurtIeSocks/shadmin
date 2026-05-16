@@ -1,0 +1,29 @@
+{
+  "name": "RichTextField",
+  "props": [
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "The component to display when the field value is empty. Defaults to empty string."
+    },
+    {
+      "name": "emptyText",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "purifyOptions",
+      "type": "PurifyOptions",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "stripTags",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

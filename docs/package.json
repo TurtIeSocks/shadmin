@@ -10,7 +10,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "check-sidebar": "node scripts/check-sidebar.mjs",
-    "public-api": "node scripts/public-api.mjs"
+    "check-docs": "node scripts/check-docs.mjs",
+    "public-api": "node scripts/public-api.mjs",
+    "docs:gen-props": "typedoc && node scripts/split-typedoc.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "typedoc": "^0.28.19"
   }
 }

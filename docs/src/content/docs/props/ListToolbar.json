@@ -1,0 +1,23 @@
+{
+  "name": "ListToolbar",
+  "props": [
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "filters",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>> | ReactNode[]",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

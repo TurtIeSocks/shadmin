@@ -1,0 +1,11 @@
+{
+  "name": "Error",
+  "props": [
+    {
+      "name": "errorInfo",
+      "type": "ErrorInfo",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

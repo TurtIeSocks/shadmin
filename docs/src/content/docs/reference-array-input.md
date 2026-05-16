@@ -46,8 +46,8 @@ const PostEdit = () => (
 ```js
 {
     id: 1234,
-    title: "Lorem Ipsum",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Introduction",
+    body: "An overview of the design system.",
     tag_ids: [1, 23, 4]
 }
 ```

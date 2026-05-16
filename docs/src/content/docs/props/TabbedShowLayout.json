@@ -1,0 +1,35 @@
+{
+  "name": "TabbedShowLayout",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "divider",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Optional divider element rendered between each field in a tab."
+    },
+    {
+      "name": "record",
+      "type": "RaRecord<Identifier>",
+      "optional": true,
+      "comment": "Explicit record to display (falls back to RecordContext)."
+    },
+    {
+      "name": "syncWithLocation",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When true (default), tab changes update the URL."
+    }
+  ]
+}

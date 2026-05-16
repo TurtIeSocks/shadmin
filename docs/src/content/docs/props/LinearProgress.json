@@ -1,0 +1,11 @@
+{
+  "name": "LinearProgress",
+  "props": [
+    {
+      "name": "timeout",
+      "type": "number",
+      "optional": true,
+      "comment": "Delay in milliseconds before showing the progress bar."
+    }
+  ]
+}

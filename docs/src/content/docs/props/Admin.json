@@ -1,0 +1,29 @@
+{
+  "name": "Admin",
+  "props": [
+    {
+      "name": "commandMenu",
+      "type": "boolean | ReactElement<CommandMenuProps, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": "Mount the cmd+K command palette. Pass `true` for the default palette, or a\n`<CommandMenu>` element to customize. The palette's context provider wraps\nthe admin tree, so any resource view can call `useRegisterCommand()`."
+    },
+    {
+      "name": "darkTheme",
+      "type": "AdminTheme",
+      "optional": true,
+      "comment": "The theme applied in dark mode.\n\nFalls back to `lightTheme` (or `theme`) if omitted."
+    },
+    {
+      "name": "lightTheme",
+      "type": "AdminTheme",
+      "optional": true,
+      "comment": "The theme applied in light mode."
+    },
+    {
+      "name": "theme",
+      "type": "AdminTheme",
+      "optional": true,
+      "comment": "Convenience alias for `lightTheme`. Use this when you only want to pass\none named theme — its `light` and `dark` variable maps cover both modes."
+    }
+  ]
+}

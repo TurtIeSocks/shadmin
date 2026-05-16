@@ -1,0 +1,11 @@
+{
+  "name": "UserMenu",
+  "props": [
+    {
+      "name": "children",
+      "type": "React.ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

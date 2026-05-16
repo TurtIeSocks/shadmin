@@ -1,0 +1,53 @@
+{
+  "name": "TrendChart",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "color",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "data",
+      "type": "Record<string, unknown>[]",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "xField",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "yField",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

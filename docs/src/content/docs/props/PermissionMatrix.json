@@ -1,0 +1,41 @@
+{
+  "name": "PermissionMatrix",
+  "props": [
+    {
+      "name": "actions",
+      "type": "string[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onChange",
+      "type": "(next: PermissionsState) => void",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resources",
+      "type": "string | Identified[]",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "roles",
+      "type": "string | Identified[]",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "value",
+      "type": "PermissionsState",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

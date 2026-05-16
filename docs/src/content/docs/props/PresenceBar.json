@@ -1,0 +1,47 @@
+{
+  "name": "PresenceBar",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "currentUser",
+      "type": "PresenceUser",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "heartbeatMs",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "maxAvatars",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "staleMs",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "topic",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "transport",
+      "type": "PresenceTransport",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

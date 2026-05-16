@@ -1,0 +1,17 @@
+{
+  "name": "DashboardMenuItem",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "Extra CSS class appended to the underlying menu button."
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "optional": true,
+      "comment": "Click handler invoked after the default navigation. Useful to close the\nmobile drawer or trigger side effects."
+    }
+  ]
+}

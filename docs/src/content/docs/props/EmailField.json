@@ -1,0 +1,11 @@
+{
+  "name": "EmailField",
+  "props": [
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "The component to display when the field value is empty. Defaults to empty string."
+    }
+  ]
+}

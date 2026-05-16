@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# typedoc dump (per-component JSON under src/content/docs/props IS committed)
+public-api.typedoc.json
+
 # dependencies
 node_modules/
 

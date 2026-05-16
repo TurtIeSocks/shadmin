@@ -1,0 +1,29 @@
+{
+  "name": "ListNoResults",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "filterValues",
+      "type": "UnknownRecord",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "setFilters",
+      "type": "(filters: UnknownRecord, displayedFilters: UnknownRecord) => void",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

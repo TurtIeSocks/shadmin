@@ -2,6 +2,8 @@
 title: "Error"
 ---
 
+import PropsTable from "../../components/PropsTable.astro";
+
 App-wide error component. It displays the error message and a back button. In development, it also shows the component stack trace.
 
 ![Error](./images/error.jpg)
@@ -59,4 +61,18 @@ const MyComponent = ({ children }) => (
     <div className="flex flex-1 flex-col px-4 ">{props.children}</div>
   </ErrorBoundary>
 );
+```
+
+## Props
+
+`<Error>` extends [`FallbackProps`](https://github.com/bvaughn/react-error-boundary#fallback-props) (`error` plus `resetErrorBoundary`), and adds the following:
+
+<PropsTable name="Error" />
+
+## `errorInfo`
+
+Optional React [`ErrorInfo`](https://react.dev/reference/react/Component#componentdidcatch) object surfaced by the error boundary. When present in development, the component stack trace from `errorInfo.componentStack` is displayed alongside the error message to help locate the failing component.
+
+```tsx
+<Error error={error} errorInfo={errorInfo} resetErrorBoundary={reset} />
 ```

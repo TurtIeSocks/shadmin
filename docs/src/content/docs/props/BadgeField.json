@@ -1,0 +1,23 @@
+{
+  "name": "BadgeField",
+  "props": [
+    {
+      "name": "asChild",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "The component to display when the field value is empty. Defaults to empty string."
+    },
+    {
+      "name": "variant",
+      "type": "\"default\" | \"secondary\" | \"destructive\" | \"outline\"",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

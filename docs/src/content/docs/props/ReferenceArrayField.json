@@ -1,0 +1,95 @@
+{
+  "name": "ReferenceArrayField",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "error",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "filter",
+      "type": "FilterPayload",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "loading",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "page",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "pagination",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "perPage",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "queryOptions",
+      "type": "Omit<UseQueryOptions<ReferenceRecordType[], Error, ReferenceRecordType[], readonly unknown[]>, \"queryFn\" | \"queryKey\">",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "reference",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "render",
+      "type": "(props: ListControllerResult<ReferenceRecordType>) => ReactElement",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "sort",
+      "type": "SortPayload",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "source",
+      "type": "NoInfer<HintedString<ExtractRecordPaths<RecordType>>>",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

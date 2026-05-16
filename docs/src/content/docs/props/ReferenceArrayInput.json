@@ -1,0 +1,11 @@
+{
+  "name": "ReferenceArrayInput",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

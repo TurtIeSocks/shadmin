@@ -1,0 +1,35 @@
+{
+  "name": "MenuItemLink",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "Extra CSS class appended to the underlying `<SidebarMenuButton>`."
+    },
+    {
+      "name": "leftIcon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Icon rendered before `primaryText`. Pass a `lucide-react` icon (or any\nReactNode) sized to match other sidebar items."
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "optional": true,
+      "comment": "Click handler invoked after the default navigation. The default\n`<AppSidebar>` uses this to close the mobile drawer."
+    },
+    {
+      "name": "primaryText",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": "The text rendered alongside `leftIcon`. Strings are not auto-translated;\npass a `<Translate>` element to localize."
+    },
+    {
+      "name": "to",
+      "type": "string",
+      "optional": false,
+      "comment": "Target path for the link. Compared against the current location to\nderive the active state."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "NumberField",
+  "props": [
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "The component to display when the field value is empty. Defaults to empty string."
+    },
+    {
+      "name": "locales",
+      "type": "string | string[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "options",
+      "type": "object",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "transform",
+      "type": "(value: unknown) => unknown",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

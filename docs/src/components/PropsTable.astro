@@ -1,0 +1,89 @@
+---
+/**
+ * Renders the props of a component as a table, sourced from the per-component
+ * JSON files written by `pnpm docs:gen-props` (typedoc → split-typedoc.mjs).
+ *
+ * Usage in an MDX page:
+ *   import PropsTable from "../../components/PropsTable.astro";
+ *   <PropsTable name="AccessDenied" />
+ *
+ * If no JSON file exists for `name`, an empty table is rendered with a
+ * fallback notice so the build does not crash on unknown component names —
+ * authoring should still rely on `pnpm check-docs` to catch typos.
+ *
+ * Uses `import.meta.glob({ eager: true })` so Vite bundles every props JSON
+ * into the prerendered HTML at build time; a runtime `readFileSync` would
+ * fail because Astro relocates `import.meta.url` into `dist/.prerender/`
+ * during SSG and the JSON files are not copied there.
+ */
+interface Prop {
+  name: string;
+  type: string;
+  optional: boolean;
+  comment: string;
+}
+
+interface PropsEntry {
+  name: string;
+  props: Prop[];
+}
+
+export interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+
+const propModules = import.meta.glob<PropsEntry>(
+  "../content/docs/props/*.json",
+  { eager: true, import: "default" },
+);
+
+/** Map filename (without extension) → loaded JSON. */
+const byComponent = new Map<string, PropsEntry>(
+  Object.entries(propModules).map(([path, mod]) => {
+    const file = path.split("/").pop() ?? "";
+    return [file.replace(/\.json$/, ""), mod];
+  }),
+);
+
+const entry: PropsEntry = byComponent.get(name) ?? { name, props: [] };
+const missing = !byComponent.has(name);
+---
+
+{
+  entry.props.length === 0 ? (
+    <p>
+      <em>
+        {missing
+          ? `No prop metadata for "${name}". Run \`pnpm docs:gen-props\` to regenerate.`
+          : "This component takes no props."}
+      </em>
+    </p>
+  ) : (
+    <table>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entry.props.map((p) => (
+          <tr>
+            <td>
+              <code>{p.name}</code>
+            </td>
+            <td>
+              <code>{p.type}</code>
+            </td>
+            <td>{p.optional ? "—" : "Yes"}</td>
+            <td>{p.comment}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}

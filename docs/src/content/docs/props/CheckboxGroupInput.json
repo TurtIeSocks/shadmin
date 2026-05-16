@@ -1,0 +1,11 @@
+{
+  "name": "CheckboxGroupInput",
+  "props": [
+    {
+      "name": "row",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

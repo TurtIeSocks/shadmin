@@ -1,0 +1,11 @@
+{
+  "name": "Resource",
+  "props": [
+    {
+      "name": "group",
+      "type": "string",
+      "optional": true,
+      "comment": "Sidebar group label used by the default `<Menu>`.\n\nResources with the same group are rendered together under a labeled\nsection. Resources without a group are rendered last without a label."
+    }
+  ]
+}

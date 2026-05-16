@@ -1,0 +1,11 @@
+{
+  "name": "ReferenceInput",
+  "props": [
+    {
+      "name": "validate",
+      "type": "undefined",
+      "optional": true,
+      "comment": "Call validate on the child component instead"
+    }
+  ]
+}

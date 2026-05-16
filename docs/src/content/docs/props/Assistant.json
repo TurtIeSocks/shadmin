@@ -1,0 +1,35 @@
+{
+  "name": "Assistant",
+  "props": [
+    {
+      "name": "placement",
+      "type": "\"bottom-right\" | \"bottom-left\" | \"sidebar\"",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "tools",
+      "type": "Record<string, ToolDefinition>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "transport",
+      "type": "AssistantTransport",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "triggerLabel",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "welcomeMessage",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

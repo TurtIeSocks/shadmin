@@ -1,0 +1,17 @@
+{
+  "name": "RemoveSavedQueryDialog",
+  "props": [
+    {
+      "name": "onClose",
+      "type": "() => void",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "name": "SimpleFormIterator",
+  "props": [
+    {
+      "name": "addButton",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>> | ReactElement<unknown, string | JSXElementConstructor<any>>[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disableAdd",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disableClear",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disableRemove",
+      "type": "boolean | SimpleFormIteratorDisableRemoveFunction",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disableReordering",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "getItemLabel",
+      "type": "boolean | GetItemLabelFunc",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "inline",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "meta",
+      "type": "{ error?: unknown; submitFailed?: boolean }",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "record",
+      "type": "RaRecord<Identifier>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "removeButton",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "reOrderButtons",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}
