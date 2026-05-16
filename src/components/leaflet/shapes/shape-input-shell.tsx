@@ -16,7 +16,10 @@ export interface ShapeInputShellProps extends BaseInputProps {
 type ShellInnerProps = Pick<
   ShapeInputShellProps,
   "source" | "shape" | "multi" | "collection" | "snappable" | "snapDistance" | "pathOptions"
->;
+> & {
+  disabled?: boolean;
+  validate?: (geom: GeoJSON.Geometry) => string | undefined;
+};
 
 export const ShapeInputShell = ({
   source,
@@ -33,7 +36,20 @@ export const ShapeInputShell = ({
   snapDistance = 20,
   label,
   helperText,
+  disabled = false,
+  validate,
 }: ShapeInputShellProps) => {
+  const validators = Array.isArray(validate) ? validate : validate ? [validate] : [];
+  const combinedValidator = validators.length
+    ? (g: GeoJSON.Geometry) => {
+        for (const v of validators) {
+          const err = v(g);
+          if (err) return err;
+        }
+        return undefined;
+      }
+    : undefined;
+
   return (
     <div className="flex flex-col gap-1" data-slot="shape-input">
       {label ? <label className="text-sm font-medium">{label}</label> : null}
@@ -44,6 +60,11 @@ export const ShapeInputShell = ({
         tileUrl={tileUrl}
         attribution={attribution}
         testId={`${shape.toLowerCase()}-input`}
+        className={
+          disabled
+            ? "overflow-hidden rounded-md border pointer-events-none opacity-60"
+            : undefined
+        }
       >
         <ShellInner
           source={source}
@@ -53,6 +74,8 @@ export const ShapeInputShell = ({
           snappable={snappable}
           snapDistance={snapDistance}
           pathOptions={pathOptions}
+          disabled={disabled}
+          validate={combinedValidator}
         />
       </BaseMap>
       {helperText ? <div className="text-xs text-muted-foreground">{helperText}</div> : null}
@@ -68,6 +91,8 @@ const ShellInner = ({
   snappable,
   snapDistance,
   pathOptions,
+  disabled,
+  validate,
 }: ShellInnerProps) => {
   const geomanShape = geojsonTypeToGeomanShape(shape);
   const { geomanProps } = useGeomanRHF({
@@ -75,8 +100,10 @@ const ShellInner = ({
     shape,
     multi,
     collection,
+    validate,
     pathOptions,
   });
+  if (disabled) return null;
   return (
     <>
       <GeomanControl

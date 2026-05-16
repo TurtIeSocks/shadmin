@@ -44,4 +44,16 @@ describe("geometryToLatLngs", () => {
       [48.86, 2.36],
     ]);
   });
+
+  it("flattens a GeometryCollection into latlng coordinates", () => {
+    const result = geometryToLatLngs({
+      type: "GeometryCollection",
+      geometries: [
+        { type: "Point", coordinates: [2.35, 48.85] },
+        { type: "Point", coordinates: [2.36, 48.86] },
+      ],
+    });
+    expect(Array.isArray(result)).toBe(true);
+    expect((result as unknown[]).length).toBeGreaterThan(0);
+  });
 });

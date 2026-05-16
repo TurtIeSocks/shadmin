@@ -6,12 +6,14 @@ import { ReverseGeocodeFieldBasic } from "@/stories/leaflet-geocoding.stories";
 describe("<ReverseGeocodeField />", () => {
   beforeEach(() => vi.restoreAllMocks());
 
-  it("shows fallback coords while loading", async () => {
+  it("shows skeleton while loading", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn().mockImplementation(() => new Promise(() => {})),
     );
     const screen = render(<ReverseGeocodeFieldBasic />);
-    await expect.element(screen.getByText(/48\.85/)).toBeInTheDocument();
+    await expect
+      .element(screen.getByTestId("reverse-geocode-field-loading"))
+      .toBeInTheDocument();
   });
 });

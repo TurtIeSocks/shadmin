@@ -39,10 +39,18 @@ export const BaseMap = ({
   </div>
 );
 
-export const FitBoundsOnMount = ({ bounds }: { bounds: L.LatLngBoundsExpression | null }) => {
+export const FitBoundsOnMount = ({
+  bounds,
+  padding = [20, 20],
+  maxZoom = 18,
+}: {
+  bounds: L.LatLngBoundsExpression | null;
+  padding?: L.PointTuple;
+  maxZoom?: number;
+}) => {
   const map = useMap();
   useEffect(() => {
-    if (bounds) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 18 });
-  }, [bounds, map]);
+    if (bounds) map.fitBounds(bounds, { padding, maxZoom });
+  }, [bounds, map, padding, maxZoom]);
   return null;
 };

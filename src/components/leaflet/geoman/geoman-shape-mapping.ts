@@ -27,7 +27,12 @@ export const layerToGeometry = (layer: L.Layer): GeoJSON.Geometry | null => {
 
 export const geometryToLatLngs = (
   geom: GeoJSON.Geometry,
-): L.LatLngExpression | L.LatLngExpression[] | L.LatLngExpression[][] | L.LatLngExpression[][][] => {
+):
+  | L.LatLngExpression
+  | L.LatLngExpression[]
+  | L.LatLngExpression[][]
+  | L.LatLngExpression[][][]
+  | unknown[] => {
   switch (geom.type) {
     case "Point":
       return [geom.coordinates[1], geom.coordinates[0]];
@@ -43,6 +48,11 @@ export const geometryToLatLngs = (
       return geom.coordinates.map((poly) =>
         poly.map((ring) => ring.map((c) => [c[1], c[0]] as L.LatLngTuple)),
       );
+    case "GeometryCollection":
+      // Lossy: returns a flat-ish array of latlng nodes from each sub-geometry.
+      // Callers using this for rendering should branch on GeometryCollection
+      // explicitly instead of relying on a single nested shape.
+      return geom.geometries.flatMap((g) => geometryToLatLngs(g) as unknown);
     default:
       return [];
   }

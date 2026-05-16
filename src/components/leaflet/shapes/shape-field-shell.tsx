@@ -11,16 +11,26 @@ import type { BaseFieldProps } from "../types";
 
 export interface ShapeFieldShellProps extends BaseFieldProps {
   testId?: string;
+  fitBoundsPadding?: L.PointTuple;
+  fitBoundsMaxZoom?: number;
 }
 
-const FitToData = ({ geom }: { geom: GeoJSON.Geometry }) => {
+const FitToData = ({
+  geom,
+  padding,
+  maxZoom,
+}: {
+  geom: GeoJSON.Geometry;
+  padding?: L.PointTuple;
+  maxZoom?: number;
+}) => {
   useMap();
   const bounds = useMemo(() => {
     const layer = L.geoJSON(geom);
     const b = layer.getBounds();
     return b.isValid() ? b : null;
   }, [geom]);
-  return <FitBoundsOnMount bounds={bounds} />;
+  return <FitBoundsOnMount bounds={bounds} padding={padding} maxZoom={maxZoom} />;
 };
 
 export const ShapeFieldShell = ({
@@ -33,6 +43,8 @@ export const ShapeFieldShell = ({
   pathOptions = { color: "#3388ff" },
   markerIcon = MarkerIcon,
   fitBounds = true,
+  fitBoundsPadding,
+  fitBoundsMaxZoom,
   emptyText = "No geometry available",
   testId,
 }: ShapeFieldShellProps) => {
@@ -65,7 +77,9 @@ export const ShapeFieldShell = ({
         style={() => pathOptions}
         pointToLayer={(_f, latlng) => L.marker(latlng, { icon: markerIcon })}
       />
-      {fitBounds ? <FitToData geom={geom} /> : null}
+      {fitBounds ? (
+        <FitToData geom={geom} padding={fitBoundsPadding} maxZoom={fitBoundsMaxZoom} />
+      ) : null}
     </BaseMap>
   );
 };
