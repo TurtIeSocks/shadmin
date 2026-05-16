@@ -16,14 +16,22 @@ import { GeometryCollectionInput } from "@/components/leaflet";
 </Create>
 ```
 
-In v1 the Geoman toolbar shows all draw buttons. Filtering via `allowedShapes` is reserved for v2.
+The Geoman toolbar exposes draw buttons for each shape in `allowedShapes` (defaults to `["Point", "LineString", "Polygon"]`). Restrict the list to limit what can be drawn into the collection.
+
+```tsx
+<GeometryCollectionInput
+  source="geom"
+  allowedShapes={["Polygon"]}
+  label="Polygons-only collection"
+/>
+```
 
 ## Props
 
 | Prop            | Required | Type                         | Default                | Description                                              |
 | --------------- | -------- | ---------------------------- | ---------------------- | -------------------------------------------------------- |
 | `source`        | Required | `string`                     | -                      | RHF field to write the geometry to.                      |
-| `allowedShapes` | Optional | `ShapeKind[]`                | -                      | Reserved for v2 toolbar filter. Ignored in v1.           |
+| `allowedShapes` | Optional | `ShapeKind[]`                | `["Point","LineString","Polygon"]` | Draw-button filter — only listed shapes appear in the toolbar. |
 | `zoom`          | Optional | `number`                     | `13`                   | Initial zoom level.                                      |
 | `defaultCenter` | Optional | `[number, number]`           | `[0, 0]`               | Initial map center `[lat, lng]`.                         |
 | `height`        | Optional | `number \| string`           | `300`                  | Height of the map container.                             |

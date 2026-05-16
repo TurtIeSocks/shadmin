@@ -2,7 +2,9 @@
 title: "BBoxInput"
 ---
 
-Form input for drawing an axis-aligned bounding box. In v1 the value is persisted as a `GeoJSON.Polygon` rectangle; a Polygon → `[w, s, e, n]` round-trip is planned for v2.
+Form input for drawing an axis-aligned bounding box. The drawn rectangle is converted on save to a `GeoJSON.BBox` tuple (`[west, south, east, north]`), and existing bbox values are hydrated back into a rectangle layer for editing.
+
+Pass `aspectRatio` to lock the stored bbox to a given `width / height` ratio. The drawn rectangle is resized around its centre before persistence — the on-screen layer keeps the freely-drawn extent until next hydration.
 
 ## Usage
 
@@ -21,7 +23,8 @@ import { BBoxInput } from "@/components/leaflet";
 | Prop             | Required | Type                         | Default                | Description                                            |
 | ---------------- | -------- | ---------------------------- | ---------------------- | ------------------------------------------------------ |
 | `source`         | Required | `string`                     | -                      | RHF field to write the geometry to.                    |
-| `minBBoxArea_m2` | Optional | `number`                     | -                      | Reserved (validator hook). Not enforced in v1.         |
+| `minBBoxArea_m2` | Optional | `number`                     | -                      | Reserved (validator hook). Not enforced yet.           |
+| `aspectRatio`    | Optional | `number`                     | -                      | Lock stored bbox to `width / height = ratio`.          |
 | `zoom`           | Optional | `number`                     | `13`                   | Initial zoom level.                                    |
 | `defaultCenter`  | Optional | `[number, number]`           | `[0, 0]`               | Initial map center `[lat, lng]`.                       |
 | `height`         | Optional | `number \| string`           | `300`                  | Height of the map container.                           |
