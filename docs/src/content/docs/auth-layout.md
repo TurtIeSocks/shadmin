@@ -1,0 +1,65 @@
+---
+title: "AuthLayout"
+---
+
+Page shell for custom authentication flows — login, signup, password reset, magic-link, etc. Provides a two-column layout with a dark gradient testimonial sidebar on the left and a flexible form area on the right. Mounts the [`<Notification>`](./notification) toaster at the root so error and info messages triggered by `useNotify()` are displayed.
+
+## Usage
+
+Compose `<AuthLayout>` with any form component to build a custom auth page:
+
+```tsx
+import { AuthLayout } from "@/components/admin/auth-layout";
+import { LoginForm } from "@/components/admin/login-form";
+
+export const MyLoginPage = () => (
+  <AuthLayout title="Sign in" subtitle="Welcome back to Acme Inc.">
+    <LoginForm />
+  </AuthLayout>
+);
+```
+
+It is the same shell used by the default [`<LoginPage>`](./login-page), and is intentionally minimal — you control what is rendered in the right pane through `children`.
+
+## Props
+
+| Prop        | Required | Type        | Default | Description                                            |
+| ----------- | -------- | ----------- | ------- | ------------------------------------------------------ |
+| `children`  | Required | `ReactNode` | -       | Content rendered in the right pane — typically a form. |
+| `title`     | Optional | `ReactNode` | -       | Heading shown above the right-pane content.            |
+| `subtitle`  | Optional | `ReactNode` | -       | Subtitle shown below the heading.                      |
+| `className` | Optional | `string`    | -       | Extra CSS class applied to the root wrapper.           |
+
+### `children`
+
+The content rendered in the right pane. Usually a form component such as [`<LoginForm>`](./login-form) or [`<LoginWithEmail>`](./login-with-email).
+
+```tsx
+<AuthLayout>
+  <SignupForm />
+</AuthLayout>
+```
+
+### `title`
+
+Optional heading rendered above the children. When omitted, the heading block is not rendered.
+
+```tsx
+<AuthLayout title="Create your account">
+  <SignupForm />
+</AuthLayout>
+```
+
+### `subtitle`
+
+Optional subtitle rendered just below `title`. Use it for a helper message or to display test credentials.
+
+```tsx
+<AuthLayout title="Sign in" subtitle="Use your work email">
+  <LoginForm />
+</AuthLayout>
+```
+
+### `className`
+
+Extra Tailwind class names appended to the root wrapper.

@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check-sidebar": "node scripts/check-sidebar.mjs"
+    "check-sidebar": "node scripts/check-sidebar.mjs",
+    "public-api": "node scripts/public-api.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",

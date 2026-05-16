@@ -10,7 +10,7 @@ In this tutorial, you will learn to create a web application with `shadcn-admin-
 
 ## Setting Up
 
-Follow the [installation instructions](./Install.md) to install `shadcn-admin-kit` in your project with Next.js, Vite.js, Remix, Tanstack Start, or any other framework of your choice.
+Follow the [installation instructions](./install) to install `shadcn-admin-kit` in your project with Next.js, Vite.js, Remix, Tanstack Start, or any other framework of your choice.
 
 You should end up with a welcome screen like this:
 
@@ -18,7 +18,7 @@ You should end up with a welcome screen like this:
 
 ## Using an API as the Data Source
 
-`shadcn-admin-kit` apps are single-page applications (SPA) that run in the browser and fetch data from an API. Since there is no single standard for data exchanges between systems, `shadcn-admin-kit` uses an adapter to communicate with your API—this adapter is called a [Data Provider](./DataProviders.md).
+`shadcn-admin-kit` apps are single-page applications (SPA) that run in the browser and fetch data from an API. Since there is no single standard for data exchanges between systems, `shadcn-admin-kit` uses an adapter to communicate with your API—this adapter is called a [Data Provider](./data-providers).
 
 For this tutorial, we'll use [JSONPlaceholder](https://jsonplaceholder.typicode.com/), a fake REST API designed for prototyping and testing. Here is a sample response:
 
@@ -54,7 +54,7 @@ curl https://jsonplaceholder.typicode.com/users/2
 
 _JSONPlaceholder_ provides endpoints for users, posts, and comments. The admin app we'll build will allow you to Create, Retrieve, Update, and Delete (CRUD) these resources.
 
-We'll use a third-party package, `ra-data-json-server` to map the JSONPlaceholder API to the `shadcn-admin-kit` CRUD API. There are [dozens of data provider packages](./DataProviders.md#supported-data-provider-backends) for various APIs and databases. You can also create your own if necessary. For now, let's make sure the app connects to JSONPlaceholder.
+We'll use a third-party package, `ra-data-json-server` to map the JSONPlaceholder API to the `shadcn-admin-kit` CRUD API. There are [dozens of data provider packages](./data-providers.md#supported-data-provider-backends) for various APIs and databases. You can also create your own if necessary. For now, let's make sure the app connects to JSONPlaceholder.
 
 ```shell
 npm install ra-data-json-server
@@ -183,7 +183,7 @@ export function App() {
 
 Let's add a list of users.
 
-The `<Admin>` component expects one or more [`<Resource>`](./Resource.md) child components. Each resource maps a name to an API endpoint. To add a resource named `users`, edit the `App.tsx` file as follows:
+The `<Admin>` component expects one or more [`<Resource>`](./resource) child components. Each resource maps a name to an API endpoint. To add a resource named `users`, edit the `App.tsx` file as follows:
 
 <Tabs>
   <TabItem label="Next">
@@ -471,7 +471,7 @@ export const UserList = () => (
 );
 ```
 
-The root component, [`<List>`](./List.md), reads the query parameters, fetches data from the API, and places the data in a React context. It also provides callbacks for filtering, pagination, and sorting, allowing child components to access and modify the list parameters. `<List>` performs many tasks, but its syntax remains straightforward:
+The root component, [`<List>`](./list), reads the query parameters, fetches data from the API, and places the data in a React context. It also provides callbacks for filtering, pagination, and sorting, allowing child components to access and modify the list parameters. `<List>` performs many tasks, but its syntax remains straightforward:
 
 ```tsx
 <List>
@@ -481,7 +481,7 @@ The root component, [`<List>`](./List.md), reads the query parameters, fetches d
 
 This demonstrates the goal of `shadcn-admin-kit`: helping developers build sophisticated applications with simple syntax.
 
-In most frameworks, "simple" often implies limited capabilities, making it challenging to extend beyond basic features. `shadcn-admin-kit` addresses this through _composition_. `<List>` handles data fetching, while rendering is delegated to its child—in this case, [`<DataTable>`](./DataTable.md). Essentially, the code composes the functionalities of `<List>` and `<DataTable>` functionalities.
+In most frameworks, "simple" often implies limited capabilities, making it challenging to extend beyond basic features. `shadcn-admin-kit` addresses this through _composition_. `<List>` handles data fetching, while rendering is delegated to its child—in this case, [`<DataTable>`](./data-table). Essentially, the code composes the functionalities of `<List>` and `<DataTable>` functionalities.
 
 ## Selecting Columns
 
@@ -508,7 +508,7 @@ In `shadcn-admin-kit`, most configuration is done through components. Instead of
 
 ## Writing A Custom Field
 
-The columns are rendered by the [`<DataTable.Col>`](./DataTable.md#datatablecol) component. By default, it renders the value as a simple string. You can customize how each column is rendered by passing a custom React component as [the `field` prop](./DataTable.md#field).
+The columns are rendered by the [`<DataTable.Col>`](./data-table.md#datatablecol) component. By default, it renders the value as a simple string. You can customize how each column is rendered by passing a custom React component as [the `field` prop](./data-table.md#field).
 
 Field components can read the `record` fetched from the API (e.g. `{ "id": 2, "name": "Ervin Howell", "website": "anastasia.net", ... }`) using a custom context, and use the `source` prop (e.g. `website`) to get the value they should display (e.g. "anastasia.net").
 
@@ -587,7 +587,7 @@ const App = () => (
 
 ![Guessed posts list](./images/posts-list-guesser.png)
 
-The `ListGuesser` suggests using a [`<ReferenceField>`](./ReferenceField.md) for the `userId` field.
+The `ListGuesser` suggests using a [`<ReferenceField>`](./reference-field) for the `userId` field.
 Let's play with this new field by creating the `PostList` component based on the code dumped by the guesser:
 
 ```tsx
@@ -719,7 +719,7 @@ Now that the `users` resource has a `show` view, the `ReferenceField` in the `us
 
 ## Adding Editing Capabilities
 
-An admin interface isn't just about displaying remote data; it should also allow editing records. `shadcn-admin-kit` provides an [`<Edit>`](./Edit.md) component for this purpose. Let's use the `<EditGuesser>` to help bootstrap it.
+An admin interface isn't just about displaying remote data; it should also allow editing records. `shadcn-admin-kit` provides an [`<Edit>`](./edit) component for this purpose. Let's use the `<EditGuesser>` to help bootstrap it.
 
 ```diff lang="tsx"
 // App.tsx
@@ -822,13 +822,13 @@ export const PostEdit = () => (
 );
 ```
 
-If you've understood the `<List>` component, the `<Edit>` component will be no surprise. It's responsible for fetching the record and displaying the page title. It passes the record down to the [`<SimpleForm>`](./SimpleForm.md) component, which is responsible for the form layout, default values, and validation. Just like `<DataTable>`, `<SimpleForm>` uses its children to determine the form inputs to display. It expects [_input components_](./DataEdition.mdx#inputs) as children. `<TextInput>` and `<ReferenceInput>` are such inputs.
+If you've understood the `<List>` component, the `<Edit>` component will be no surprise. It's responsible for fetching the record and displaying the page title. It passes the record down to the [`<SimpleForm>`](./simple-form) component, which is responsible for the form layout, default values, and validation. Just like `<DataTable>`, `<SimpleForm>` uses its children to determine the form inputs to display. It expects [_input components_](./DataEdition.mdx#inputs) as children. `<TextInput>` and `<ReferenceInput>` are such inputs.
 
 The `<ReferenceInput>` takes the same props as the `<ReferenceField>` (used earlier in the `<PostList>` page). `<ReferenceInput>` uses these props to fetch the API for possible references related to the current record (in this case, possible `users` for the current `post`). It then creates a context with the possible choices and renders an `<AutocompleteInput>`, which is responsible for displaying the choices and letting the user select one.
 
 ## Adding Creation Capabilities
 
-Let's allow users to create posts, too. Copy the `<PostEdit>` component into a `<PostCreate>`, and replace `<Edit>` with [`<Create>`](./Create.md):
+Let's allow users to create posts, too. Copy the `<PostEdit>` component into a `<PostCreate>`, and replace `<Edit>` with [`<Create>`](./create):
 
 ```diff lang="tsx"
 // posts.tsx
@@ -1037,7 +1037,7 @@ const App = () => (
 
 Most admin apps require authentication. `shadcn-admin-kit` can check user credentials before displaying a page and redirect to a login page when the REST API returns a 403 error code.
 
-`shadcn-admin-kit` makes no assumption about your authentication strategy (basic auth, OAuth, custom route, etc.), but gives you the ability to add the auth logic at the right place - using [the `authProvider` object](./Security.md).
+`shadcn-admin-kit` makes no assumption about your authentication strategy (basic auth, OAuth, custom route, etc.), but gives you the ability to add the auth logic at the right place - using [the `authProvider` object](./security).
 
 For this tutorial, since there is no public authentication API, we can use a fake authentication provider that accepts every login request and stores the `username` in `localStorage`. Each page change will require that `localStorage` contains a `username` item.
 
@@ -1099,7 +1099,7 @@ Once the app reloads, it's now behind a login form that accepts everyone.
 
 ## Connecting To A Real API
 
-Here is the elephant in the room of this tutorial. In real-world projects, the dialect of your API (REST? GraphQL? Something else?) won't match the JSONPlaceholder dialect. [Writing a Data Provider](./DataProviders.md#writing-a-data-provider) is probably the first thing you'll have to do to make `shadcn-admin-kit` work, unless your API backend is already supported ([see the list here](./DataProviders.md#supported-data-provider-backends)). Depending on your API, this can require a few hours of additional work.
+Here is the elephant in the room of this tutorial. In real-world projects, the dialect of your API (REST? GraphQL? Something else?) won't match the JSONPlaceholder dialect. [Writing a Data Provider](./data-providers.md#writing-a-data-provider) is probably the first thing you'll have to do to make `shadcn-admin-kit` work, unless your API backend is already supported ([see the list here](./data-providers.md#supported-data-provider-backends)). Depending on your API, this can require a few hours of additional work.
 
 `shadcn-admin-kit` delegates every data query to a Data Provider object, which acts as an adapter to your API. This makes `shadcn-admin-kit` capable of mapping any API dialect, using endpoints from several domains, etc.
 

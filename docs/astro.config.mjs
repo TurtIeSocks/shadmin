@@ -13,6 +13,7 @@ import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { sidebar } from "./sidebar.config.mjs";
+import { legacyRedirects } from "./legacy-redirects.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -85,6 +86,7 @@ export default defineConfig({
   },
   redirects: {
     "/": "/shadcn-admin-kit/docs/install",
+    ...legacyRedirects,
   },
   vite: {
     // We are loading type for vite v7 but expecting type for vite v6

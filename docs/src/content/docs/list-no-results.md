@@ -1,0 +1,48 @@
+---
+title: "ListNoResults"
+---
+
+Default placeholder rendered by [`<List>`](./list) when filters yield zero results.
+
+## Usage
+
+`<ListNoResults>` reads from the current `<ListContext>` to detect whether filters are active. When they are, it shows a "Clear filters" link that resets the filter values to an empty object:
+
+```tsx
+import { List, ListNoResults } from "@/components/admin";
+
+export const PostList = () => (
+  <List empty={<ListNoResults />}>{/* ... */}</List>
+);
+```
+
+When no filters are active, `<ListNoResults>` falls back to a simple translated message ("No results found.").
+
+## Props
+
+| Prop           | Required | Type       | Default            | Description                                         |
+| -------------- | -------- | ---------- | ------------------ | --------------------------------------------------- |
+| `resource`     | Optional | `string`   | From context       | Override the resource name                          |
+| `filterValues` | Optional | `object`   | From `ListContext` | Override the active filter values                   |
+| `setFilters`   | Optional | `function` | From `ListContext` | Override the function used to reset filters         |
+| `className`    | Optional | `string`   | —                  | Extra Tailwind classes appended to the root element |
+
+## Translation Messages
+
+`<ListNoResults>` uses the following translation keys:
+
+- `ra.navigation.no_filtered_results` (interpolated with `name` / `resource`)
+- `ra.navigation.no_results` (interpolated with `name` / `resource`)
+- `ra.navigation.clear_filters`
+
+```js
+const messages = {
+  ra: {
+    navigation: {
+      no_filtered_results: "No posts match the current filters.",
+      no_results: "No posts found.",
+      clear_filters: "Reset filters",
+    },
+  },
+};
+```
