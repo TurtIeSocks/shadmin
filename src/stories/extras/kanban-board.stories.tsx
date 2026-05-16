@@ -17,11 +17,11 @@ const COLUMNS = [
 
 const data = {
   tasks: [
-    { id: 1, title: "Extras/KanbanBoard", status: "done", description: "Figma screens for v2" },
-    { id: 2, title: "Extras/KanbanBoard", status: "doing", description: "Connect to REST endpoints" },
-    { id: 3, title: "Extras/KanbanBoard", status: "todo", description: "Unit + integration coverage" },
-    { id: 4, title: "Extras/KanbanBoard", status: "doing", description: "Vercel preview environment" },
-    { id: 5, title: "Extras/KanbanBoard", status: "todo", description: "Code review for feature branch" },
+    { id: 1, title: "Design mockup", status: "done", description: "Figma screens for v2" },
+    { id: 2, title: "Wire up API", status: "doing", description: "Connect to REST endpoints" },
+    { id: 3, title: "Write tests", status: "todo", description: "Unit + integration coverage" },
+    { id: 4, title: "Deploy preview", status: "doing", description: "Vercel preview environment" },
+    { id: 5, title: "Review PR", status: "todo", description: "Code review for feature branch" },
   ],
 };
 

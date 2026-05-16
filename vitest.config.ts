@@ -16,6 +16,7 @@ export default defineConfig({
     include: [
       "src/components/admin/**/*.spec.{ts,tsx}",
       "src/components/csv-import/**/*.spec.{ts,tsx}",
+      "src/components/extras/**/*.spec.{ts,tsx}",
       "src/components/leaflet/**/*.spec.{ts,tsx}",
       "src/components/mdx-editor/**/*.spec.{ts,tsx}",
       "src/components/rich-text-input/**/*.spec.{ts,tsx}",

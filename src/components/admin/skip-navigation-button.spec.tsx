@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Default } from "@/stories/admin/skip-navigation-button.stories";
+import {
+  CustomLabel,
+  Default,
+} from "@/stories/admin/skip-navigation-button.stories";
 
 describe("<SkipNavigationButton />", () => {
   it("renders the default skip-to-content button label", async () => {
@@ -11,9 +14,10 @@ describe("<SkipNavigationButton />", () => {
       .toBeInTheDocument();
   });
 
-  // NOTE: CustomLabel story passes a literal "Jump to content" as `label`,
-  // which the component routes through `translate(label, { _: "Skip to content" })`.
-  // Polyglot returns the `_` fallback when the literal is not a registered key,
-  // so the rendered label is still "Skip to content". Skipping the custom-label
-  // assertion until the component preserves user-supplied literal labels.
+  it("preserves a user-supplied literal label", async () => {
+    const screen = render(<CustomLabel />);
+    await expect
+      .element(screen.getByRole("button", { name: /jump to content/i }))
+      .toBeInTheDocument();
+  });
 });

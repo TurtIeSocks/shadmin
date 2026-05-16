@@ -66,17 +66,17 @@ export const Basic = () => (
       steps={[
         {
           target: '[data-tour="sidebar"]',
-          title: "Extras/OnboardingTour",
+          title: "Resources",
           content: "Click any item to navigate.",
         },
         {
           target: '[data-tour="search"]',
-          title: "Extras/OnboardingTour",
+          title: "Quick search",
           content: "Press cmd+K to open the palette.",
         },
         {
           target: '[data-tour="theme"]',
-          title: "Extras/OnboardingTour",
+          title: "Theme switcher",
           content: "Switch between light and dark.",
         },
       ]}
@@ -92,12 +92,12 @@ export const CustomPlacement = () => (
       steps={[
         {
           target: '[data-tour="sidebar"]',
-          title: "Extras/OnboardingTour",
+          title: "Top placement",
           content: "Tooltip appears above the target.",
         },
         {
           target: '[data-tour="search"]',
-          title: "Extras/OnboardingTour",
+          title: "Right placement",
           content: "This one uses right placement.",
           placement: "right",
         },

@@ -48,7 +48,16 @@ for (const item of documented) {
   }
   const expectedGroup = lookup.get(item.slug);
   if (expectedGroup) {
-    const titleMatch = body.match(/title:\s*['"]([^'"]+)['"]/);
+    // Scope to the `export default {…}` block so seed records that happen
+    // to have a `title` field (e.g. fake calendar events) don't get
+    // mistaken for the Storybook default-export title. Handles both
+    // single-line (`export default { title: "X" };`) and multi-line forms.
+    const defaultExportBlock = body.match(
+      /export default \{[\s\S]*?\}/,
+    )?.[0];
+    const titleMatch = defaultExportBlock?.match(
+      /title:\s*['"]([^'"]+)['"]/,
+    );
     if (!titleMatch || !titleMatch[1].startsWith(`${expectedGroup}/`)) {
       failures.push(
         `${item.componentName} (${item.sourceDir}/${item.slug}): title prefix doesn't match sidebar group '${expectedGroup}'`,

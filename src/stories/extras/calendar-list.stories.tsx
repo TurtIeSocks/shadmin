@@ -17,9 +17,9 @@ const addDaysLocal = (d: Date, n: number) => {
 
 const data = {
   events: [
-    { id: 1, title: "Extras/CalendarList", start_at: iso(today), status: "open" },
-    { id: 2, title: "Extras/CalendarList", start_at: iso(addDaysLocal(today, 1)), status: "confirmed" },
-    { id: 3, title: "Extras/CalendarList", start_at: iso(addDaysLocal(today, -1)), status: "open" },
+    { id: 1, title: "Standup", start_at: iso(today), status: "open" },
+    { id: 2, title: "Demo", start_at: iso(addDaysLocal(today, 1)), status: "confirmed" },
+    { id: 3, title: "Retro", start_at: iso(addDaysLocal(today, -1)), status: "open" },
   ],
 };
 
@@ -41,9 +41,9 @@ farFuture.setFullYear(farFuture.getFullYear() + 1);
 
 const rangeData = {
   events: [
-    { id: 1, title: "Extras/CalendarList", start_at: iso(today) },
-    { id: 2, title: "Extras/CalendarList", start_at: iso(farPast) },
-    { id: 3, title: "Extras/CalendarList", start_at: iso(farFuture) },
+    { id: 1, title: "Standup", start_at: iso(today) },
+    { id: 2, title: "PastEvent", start_at: iso(farPast) },
+    { id: 3, title: "FutureEvent", start_at: iso(farFuture) },
   ],
 };
 
@@ -123,8 +123,8 @@ const todayAt = (h: number) => {
 
 const weekData = {
   events: [
-    { id: 1, title: "Extras/CalendarList", start_at: todayAt(9) },
-    { id: 2, title: "Extras/CalendarList", start_at: todayAt(12) },
+    { id: 1, title: "Standup", start_at: todayAt(9) },
+    { id: 2, title: "Lunch", start_at: todayAt(12) },
   ],
 };
 

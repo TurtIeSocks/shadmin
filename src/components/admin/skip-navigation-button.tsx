@@ -3,6 +3,7 @@ import { useTranslate } from "ra-core";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { resolveLabel } from "@/lib/resolve-label";
 
 export type SkipNavigationButtonProps = Omit<
   React.ComponentProps<typeof Button>,
@@ -35,7 +36,7 @@ export type SkipNavigationButtonProps = Omit<
 export const SkipNavigationButton = (props: SkipNavigationButtonProps) => {
   const { label = "ra.navigation.skip_nav", className, ...rest } = props;
   const translate = useTranslate();
-  const translatedLabel = translate(label, { _: "Skip to content" });
+  const translatedLabel = resolveLabel(label, translate, "Skip to content");
 
   return (
     <Button

@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Default } from "@/stories/admin/refresh-icon-button.stories";
+import {
+  CustomLabel,
+  Default,
+} from "@/stories/admin/refresh-icon-button.stories";
 import { RefreshIconButton } from "@/components/admin/refresh-icon-button";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { CoreAdminContext, memoryStore } from "ra-core";
@@ -15,6 +18,13 @@ describe("<RefreshIconButton />", () => {
     const screen = render(<Default />);
     await expect
       .element(screen.getByRole("button", { name: /refresh/i }))
+      .toBeInTheDocument();
+  });
+
+  it("preserves a user-supplied literal label", async () => {
+    const screen = render(<CustomLabel />);
+    await expect
+      .element(screen.getByRole("button", { name: /reload data/i }))
       .toBeInTheDocument();
   });
 

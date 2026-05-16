@@ -10,6 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import { resolveLabel } from "@/lib/resolve-label";
 
 export type RefreshIconButtonProps = {
   className?: string;
@@ -45,9 +46,7 @@ export const RefreshIconButton = (props: RefreshIconButtonProps) => {
   } = props;
   const refresh = useRefresh();
   const translate = useTranslate();
-  const translatedLabel = label
-    ? translate(label, { _: "Refresh" })
-    : "Refresh";
+  const translatedLabel = resolveLabel(label, translate, "Refresh");
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
