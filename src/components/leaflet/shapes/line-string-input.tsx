@@ -1,15 +1,31 @@
 "use client";
+import { useEffect } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
 
 import { ShapeInputShell, type ShapeInputShellProps } from "./shape-input-shell";
+import { snapToRoadsOnce } from "../osm/use-osm-snap-to-roads";
 
 export interface LineStringInputProps extends Omit<ShapeInputShellProps, "shape" | "multi"> {
-  /**
-   * Snap drawn points to road networks. Phase 4 Task 4.6 wires this up.
-   * For now, the prop is accepted but inert.
-   */
   snapToRoads?: boolean;
 }
 
-export const LineStringInput = ({ snapToRoads: _snapToRoads, ...rest }: LineStringInputProps) => (
-  <ShapeInputShell {...rest} shape="LineString" multi={false} />
-);
+export const LineStringInput = ({ snapToRoads, source, ...rest }: LineStringInputProps) => {
+  const form = useFormContext();
+  const value = useWatch({ name: source }) as GeoJSON.LineString | null | undefined;
+
+  useEffect(() => {
+    if (!snapToRoads || !value || value.coordinates.length < 2) return;
+    let cancelled = false;
+    snapToRoadsOnce(value).then((snapped) => {
+      if (!cancelled && snapped) {
+        form.setValue(source, snapped, { shouldDirty: true });
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snapToRoads, source]);
+
+  return <ShapeInputShell {...rest} source={source} shape="LineString" multi={false} />;
+};
