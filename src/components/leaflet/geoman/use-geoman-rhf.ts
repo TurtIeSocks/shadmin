@@ -55,24 +55,49 @@ export const useGeomanRHF = ({
   const featureGroupRef = useRef<L.FeatureGroup | null>(null);
   const value = useWatch({ name: source }) as unknown;
   const hydrated = useRef(false);
+  // Tracks the most recent value this hook wrote into the form. Used to dedup
+  // the echo `useWatch` fires after our own `setValue`, so the hydration effect
+  // only rebuilds the layer when the form value changes from outside the hook.
+  const lastWrittenValue = useRef<unknown>(undefined);
 
   // useMap is safe because this hook is only called inside a MapContainer subtree.
   const map = useMap();
 
-  // Initialize the feature group + hydrate from initial form value.
+  // Initialize the feature group + hydrate from form value. Runs on first
+  // mount and on every subsequent external change to `value` (i.e. any update
+  // not caused by our own `persist()` write).
   useEffect(() => {
     if (!featureGroupRef.current) {
       featureGroupRef.current = L.featureGroup().addTo(map);
     }
-    if (!hydrated.current && value) {
+    const group = featureGroupRef.current;
+    const buildLayer = () => {
+      if (value == null) return null;
       const geom = valueParse
         ? valueParse(value)
         : ((value as GeoJSON.Geometry | null | undefined) ?? null);
-      if (!geom) return;
-      const layer = geometryToLayer(geom, pathOptions, markerIcon);
-      featureGroupRef.current?.addLayer(layer);
+      if (!geom) return null;
+      return geometryToLayer(geom, pathOptions, markerIcon);
+    };
+
+    if (!hydrated.current) {
+      const layer = buildLayer();
+      if (layer) group.addLayer(layer);
+      lastWrittenValue.current = value;
       hydrated.current = true;
+      return;
     }
+
+    // Subsequent runs: skip if this is just the echo of our own write.
+    if (JSON.stringify(value) === JSON.stringify(lastWrittenValue.current)) {
+      return;
+    }
+
+    // External change — rebuild the layer from scratch.
+    group.clearLayers();
+    const layer = buildLayer();
+    if (layer) group.addLayer(layer);
+    lastWrittenValue.current = value;
   }, [map, value, pathOptions, markerIcon, valueParse]);
 
   const persist = useCallback(() => {
@@ -82,9 +107,11 @@ export const useGeomanRHF = ({
     const write = (geom: GeoJSON.Geometry | null) => {
       const stored = valueTransform && geom ? valueTransform(geom) : geom;
       form.setValue(source, stored, { shouldDirty: true });
+      lastWrittenValue.current = stored;
     };
     if (layers.length === 0) {
       form.setValue(source, null, { shouldDirty: true });
+      lastWrittenValue.current = null;
       return;
     }
     if (collection) {
