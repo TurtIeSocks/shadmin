@@ -3,6 +3,7 @@ export * from "./admin";
 export * from "./app-bar";
 export * from "./app-sidebar";
 export * from "./application-updated-notification";
+export * from "./approval-queue";
 export * from "./array-field";
 export * from "./array-input";
 export * from "./auth-callback";
