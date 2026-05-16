@@ -5,6 +5,7 @@ import {
   SimpleForm,
   TextInput,
 } from "@/components/admin";
+import { DurationInput } from "@/components/extras/duration-input";
 import { required } from "ra-core";
 
 const STATUS_CHOICES = [
@@ -35,6 +36,7 @@ export const PlanningEdit = () => (
         validate={required()}
       />
       <DateInput source="dueDate" validate={required()} />
+      <DurationInput source="estimated_duration_minutes" units={["m", "h"]} />
       <TextInput source="assignee" validate={required()} />
     </SimpleForm>
   </Edit>

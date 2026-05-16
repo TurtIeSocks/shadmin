@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { RecordContextProvider, type RaRecord } from "ra-core";
 import {
   CalendarList,
   KanbanBoard,
   List,
   type KanbanColumnDef,
 } from "@/components/admin";
+import { DurationField } from "@/components/extras/duration-field";
 import { Button } from "@/components/ui/button";
 
 const COLUMNS: KanbanColumnDef[] = [
@@ -37,6 +39,25 @@ export const PlanningList = () => {
           columns={COLUMNS}
           titleSource="title"
           descriptionSource="description"
+          cardRenderer={(record: RaRecord) => (
+            <RecordContextProvider value={record}>
+              <div className="flex flex-col gap-1">
+                <div className="text-sm font-medium leading-none">
+                  {String(record.title ?? "")}
+                </div>
+                {record.description && (
+                  <div className="text-xs text-muted-foreground truncate">
+                    {String(record.description)}
+                  </div>
+                )}
+                {record.estimated_duration_minutes && (
+                  <div className="text-xs text-muted-foreground">
+                    <DurationField source="estimated_duration_minutes" />
+                  </div>
+                )}
+              </div>
+            </RecordContextProvider>
+          )}
         />
       ) : (
         <CalendarList startSource="dueDate" titleSource="title" />
