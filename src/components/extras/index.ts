@@ -31,6 +31,7 @@ export * from "./rating-input";
 export * from "./record-timeline";
 export * from "./status-transition-button";
 export * from "./subscription-plan-field";
+export * from "./subscription-plan-picker";
 export * from "./tree-list";
 export * from "./usage-meter-field";
 export * from "./wizard-form";
