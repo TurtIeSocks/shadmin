@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 
-import { GeomanControl } from "@/components/leaflet";
+import { GeomanControl, GeomanEvents } from "@/components/leaflet";
 import { ThemeProvider } from "@/components/admin";
 import {
   DEFAULT_ATTRIBUTION,
@@ -43,3 +43,14 @@ export const PolygonOnly = () => (
     />
   </Wrapper>
 );
+
+export const WithEvents = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <Wrapper>
+      <GeomanControl position="topleft" />
+      <GeomanEvents onCreate={() => setCount((c) => c + 1)} />
+      <div data-testid="create-count">{count}</div>
+    </Wrapper>
+  );
+};
