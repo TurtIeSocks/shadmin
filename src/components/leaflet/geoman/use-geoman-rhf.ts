@@ -1,0 +1,163 @@
+"use client";
+
+import { useCallback, useEffect, useRef } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
+import { useMap } from "react-leaflet";
+import L from "leaflet";
+
+import type { ShapeKind } from "../types";
+import { geometryToLayer, layerToGeometry } from "./geoman-shape-mapping";
+
+export interface UseGeomanRHFOptions {
+  source: string;
+  shape: ShapeKind;
+  multi: boolean;
+  collection?: boolean;
+  validate?: (geom: GeoJSON.Geometry) => string | undefined;
+  pathOptions?: L.PathOptions;
+  markerIcon?: L.Icon | L.DivIcon;
+}
+
+export interface UseGeomanRHFReturn {
+  featureGroupRef: React.MutableRefObject<L.FeatureGroup | null>;
+  geomanProps: {
+    onCreate: (layer: L.Layer) => void;
+    onUpdate: (layer: L.Layer) => void;
+    onRemove: (layer: L.Layer) => void;
+    onCut: (newLayer: L.Layer, originalLayer: L.Layer) => void;
+  };
+}
+
+export const useGeomanRHF = ({
+  source,
+  shape,
+  multi,
+  collection,
+  validate,
+  pathOptions,
+  markerIcon,
+}: UseGeomanRHFOptions): UseGeomanRHFReturn => {
+  const form = useFormContext();
+  const featureGroupRef = useRef<L.FeatureGroup | null>(null);
+  const value = useWatch({ name: source }) as GeoJSON.Geometry | null | undefined;
+  const hydrated = useRef(false);
+
+  // useMap is safe because this hook is only called inside a MapContainer subtree.
+  const map = useMap();
+
+  // Initialize the feature group + hydrate from initial form value.
+  useEffect(() => {
+    if (!featureGroupRef.current) {
+      featureGroupRef.current = L.featureGroup().addTo(map);
+    }
+    if (!hydrated.current && value) {
+      const layer = geometryToLayer(value, pathOptions, markerIcon);
+      featureGroupRef.current?.addLayer(layer);
+      hydrated.current = true;
+    }
+  }, [map, value, pathOptions, markerIcon]);
+
+  const persist = useCallback(() => {
+    const group = featureGroupRef.current;
+    if (!group) return;
+    const layers = group.getLayers();
+    if (layers.length === 0) {
+      form.setValue(source, null, { shouldDirty: true });
+      return;
+    }
+    if (collection) {
+      const geometries = layers
+        .map((l) => layerToGeometry(l))
+        .filter((g): g is GeoJSON.Geometry => g !== null);
+      form.setValue(source, { type: "GeometryCollection", geometries }, { shouldDirty: true });
+      return;
+    }
+    if (multi) {
+      // Combine into Multi* geometry of the configured shape kind.
+      const geometries = layers
+        .map((l) => layerToGeometry(l))
+        .filter((g): g is GeoJSON.Geometry => g !== null);
+      const combined = combineMulti(shape, geometries);
+      if (validate && combined && validate(combined)) {
+        // Validation failed — leave previous value untouched.
+        return;
+      }
+      form.setValue(source, combined, { shouldDirty: true });
+      return;
+    }
+    // Single feature — use the first/most-recent layer.
+    const geom = layerToGeometry(layers[layers.length - 1]);
+    if (validate && geom && validate(geom)) return;
+    form.setValue(source, geom, { shouldDirty: true });
+  }, [collection, multi, shape, source, form, validate]);
+
+  const handleCreate = useCallback(
+    (layer: L.Layer) => {
+      const group = featureGroupRef.current;
+      if (!group) return;
+      // Remove from the map (Geoman adds it there) and move into our group.
+      map.removeLayer(layer);
+      if (!multi && !collection) {
+        // Replace existing layer.
+        group.clearLayers();
+      }
+      group.addLayer(layer);
+      persist();
+    },
+    [collection, map, multi, persist],
+  );
+
+  const handleUpdate = useCallback(() => persist(), [persist]);
+  const handleRemove = useCallback(() => persist(), [persist]);
+  const handleCut = useCallback(
+    (newLayer: L.Layer, originalLayer: L.Layer) => {
+      const group = featureGroupRef.current;
+      if (!group) return;
+      map.removeLayer(newLayer);
+      group.removeLayer(originalLayer);
+      group.addLayer(newLayer);
+      persist();
+    },
+    [map, persist],
+  );
+
+  return {
+    featureGroupRef,
+    geomanProps: {
+      onCreate: handleCreate,
+      onUpdate: handleUpdate,
+      onRemove: handleRemove,
+      onCut: handleCut,
+    },
+  };
+};
+
+const combineMulti = (shape: ShapeKind, geoms: GeoJSON.Geometry[]): GeoJSON.Geometry | null => {
+  if (geoms.length === 0) return null;
+  switch (shape) {
+    case "MultiPoint":
+      return {
+        type: "MultiPoint",
+        coordinates: geoms
+          .filter((g): g is GeoJSON.Point => g.type === "Point")
+          .map((g) => g.coordinates),
+      };
+    case "MultiLineString":
+      return {
+        type: "MultiLineString",
+        coordinates: geoms
+          .filter((g): g is GeoJSON.LineString => g.type === "LineString")
+          .map((g) => g.coordinates),
+      };
+    case "MultiPolygon":
+      return {
+        type: "MultiPolygon",
+        coordinates: geoms
+          .filter((g): g is GeoJSON.Polygon => g.type === "Polygon")
+          .map((g) => g.coordinates),
+      };
+    default:
+      // Single-shape kind with multi:true — keep the most recent only.
+      return geoms[geoms.length - 1];
+  }
+};
