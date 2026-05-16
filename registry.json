@@ -1178,27 +1178,64 @@
       "name": "leaflet-admin",
       "type": "registry:block",
       "title": "LeafletAdmin",
-      "description": "Optional Leaflet-based map fields and form inputs for Shadcn Admin Kit.",
+      "description": "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadcn Admin Kit.",
       "registryDependencies": ["@shadcn-admin-kit/admin"],
-      "dependencies": ["leaflet", "react-leaflet"],
+      "dependencies": [
+        "leaflet",
+        "react-leaflet",
+        "@geoman-io/leaflet-geoman-free",
+        "@turf/area",
+        "@turf/bbox",
+        "@turf/difference",
+        "@turf/union",
+        "@turf/helpers",
+        "osmtogeojson"
+      ],
       "devDependencies": ["@types/leaflet"],
       "files": [
-        {
-          "path": "src/components/leaflet/index.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/lat-lng-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/lat-lng-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/shared.ts",
-          "type": "registry:component"
-        }
+        { "path": "src/components/leaflet/index.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/shared.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/shared-map.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/types.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/lat-lng-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/lat-lng-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/geojson-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/geojson-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/geoman/geoman-control.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/geoman/geoman-events.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/geoman/geoman-shape-mapping.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/geoman/use-geoman-rhf.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/geoman/shape-constraints.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/shape-field-shell.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/shape-input-shell.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/point-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/point-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/multi-point-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/multi-point-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/line-string-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/line-string-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/multi-line-string-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/multi-line-string-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/polygon-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/polygon-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/multi-polygon-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/multi-polygon-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/geometry-collection-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/geometry-collection-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/bbox-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/shapes/bbox-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/osm/overpass-client.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/osm/use-overpass.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/osm/geometry-ops.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/osm/use-osm-water-mask.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/osm/osm-water-clip-button.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/osm/use-osm-snap-to-roads.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/geocoding/nominatim-client.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/geocoding/use-geocode.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/geocoding/use-reverse-geocode.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/geocoding/geocoding-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/geocoding/reverse-geocode-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/geocoding/map-with-search.tsx", "type": "registry:component" }
       ]
     },
     {
