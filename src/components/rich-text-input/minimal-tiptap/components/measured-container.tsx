@@ -7,11 +7,13 @@ interface MeasuredContainerProps<T extends React.ElementType> {
   children?: React.ReactNode;
 }
 
+const EMPTY_STYLE: React.CSSProperties = {};
+
 export const MeasuredContainer = <T extends React.ElementType>({
   as: Component,
   name,
   children,
-  style = {},
+  style = EMPTY_STYLE,
   ...props
 }: MeasuredContainerProps<T> & React.ComponentProps<T>) => {
   const innerRef = React.useRef<HTMLElement>(null);

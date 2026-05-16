@@ -189,7 +189,7 @@ const ProductReview = () => {
           reference="customers"
           link={false}
           render={({ referenceRecord }) => (
-            <Avatar className="w-10 h-10">
+            <Avatar className="size-10">
               <AvatarImage src={referenceRecord?.avatar} />
               <AvatarFallback>
                 {referenceRecord?.first_name?.charAt(0)}

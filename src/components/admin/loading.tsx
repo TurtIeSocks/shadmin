@@ -26,7 +26,7 @@ export const Loading = (props: LoadingProps) => {
       {...rest}
     >
       <div className="text-center font-sans text-muted-foreground py-1">
-        <Spinner size="large" className="w-9 h-9" />
+        <Spinner size="large" className="size-9" />
         <h5 className="mt-3 text-2xl text-secondary-foreground">
           <Translate i18nKey={loadingPrimary}>{loadingPrimary}</Translate>
         </h5>

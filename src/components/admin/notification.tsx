@@ -78,9 +78,17 @@ export const Notification = (props: ToasterProps) => {
       return confirmationMessage;
     };
 
+    let beforeunloadAttached = false;
     if (undoable) {
       window.addEventListener("beforeunload", beforeunload);
+      beforeunloadAttached = true;
     }
+    const detachBeforeunload = () => {
+      if (beforeunloadAttached) {
+        window.removeEventListener("beforeunload", beforeunload);
+        beforeunloadAttached = false;
+      }
+    };
 
     // Only consume a mutation for undoable notifications, and only once.
     // Captured here so handleUndo and handleExited share the same instance.
@@ -93,9 +101,7 @@ export const Notification = (props: ToasterProps) => {
         mutation({ isUndo: false });
       }
       undoRef.current = false;
-      if (undoable) {
-        window.removeEventListener("beforeunload", beforeunload);
-      }
+      detachBeforeunload();
       setCurrentNotification(undefined);
     };
 
@@ -104,7 +110,7 @@ export const Notification = (props: ToasterProps) => {
       if (mutation) {
         mutation({ isUndo: true });
       }
-      window.removeEventListener("beforeunload", beforeunload);
+      detachBeforeunload();
       // Sonner doesn't fire onDismiss when the action button is clicked, so
       // release the queue slot here. handleExited won't fire for this toast.
       setCurrentNotification(undefined);
@@ -147,6 +153,13 @@ export const Notification = (props: ToasterProps) => {
     }
 
     toast[type](finalMessage, toastOptions);
+
+    return () => {
+      if (beforeunloadAttached) {
+        window.removeEventListener("beforeunload", beforeunload);
+        beforeunloadAttached = false;
+      }
+    };
   }, [
     notifications.length,
     currentNotification,

@@ -53,13 +53,13 @@ export function UserMenu({ children }: UserMenuProps) {
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
-            className="relative h-8 w-8 ml-2 rounded-full"
+            className="relative size-8 ml-2 rounded-full"
             aria-label={
               identity?.fullName ||
               translate("ra.auth.user_menu", { _: "User menu" })
             }
           >
-            <Avatar className="h-8 w-8">
+            <Avatar className="size-8">
               <AvatarImage src={identity?.avatar} alt={identity?.fullName} />
               <AvatarFallback>{identity?.fullName?.charAt(0)}</AvatarFallback>
             </Avatar>
@@ -67,7 +67,7 @@ export function UserMenu({ children }: UserMenuProps) {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
-            <div className="flex flex-col space-y-1">
+            <div className="flex flex-col gap-y-1">
               <p className="text-sm font-medium leading-none">
                 {identity?.fullName}
               </p>

@@ -74,7 +74,7 @@ export const Breadcrumb = ({ children, ref }: BreadcrumbProps) => {
               <BreadcrumbItem>
                 <Drawer open={open} onOpenChange={setOpen}>
                   <DrawerTrigger aria-label="Toggle Menu">
-                    <BreadcrumbEllipsis className="h-4 w-4" />
+                    <BreadcrumbEllipsis className="size-4" />
                   </DrawerTrigger>
                   <DrawerContent>
                     <DrawerHeader className="text-left">

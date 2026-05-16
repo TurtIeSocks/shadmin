@@ -31,6 +31,8 @@ export interface RecordTimelineProps {
   emptyLabel?: string;
 }
 
+const EMPTY_ICON_MAP: Record<string, ComponentType<{ className?: string }>> = {};
+
 const TimelineList = ({
   items,
   emptyLabel,
@@ -108,7 +110,7 @@ export const RecordTimeline = ({
   timestampSource = "created_at",
   userSource,
   iconSource,
-  iconMap = {},
+  iconMap = EMPTY_ICON_MAP,
   emptyLabel,
 }: RecordTimelineProps) => {
   const translate = useTranslate();

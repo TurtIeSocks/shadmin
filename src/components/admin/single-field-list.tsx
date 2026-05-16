@@ -53,7 +53,7 @@ export const SingleFieldList = <RecordType = UnknownValue,>({
   return (
     <div className={cn("flex gap-2", className)}>
       {data?.map((record, index) => (
-        <RecordContextProvider key={index} value={record}>
+        <RecordContextProvider key={record.id ?? index} value={record}>
           {render ? render(record, index) : children || <DefaultChildren />}
         </RecordContextProvider>
       ))}

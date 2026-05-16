@@ -83,22 +83,23 @@ Basic.argTypes = {
   },
 };
 
-export const CustomChildren = ({ online }: { online: boolean }) => {
-  const Inner = () => {
-    useForceOnline(online);
-    return (
-      <Wrapper>
-        <Offline className="rounded-md border border-destructive/40 bg-destructive/5 p-4 text-destructive text-sm">
-          Working from cache — changes will sync once you reconnect.
-        </Offline>
-        <div className="p-4 text-sm text-muted-foreground">
-          The custom content is only rendered when offline.
-        </div>
-      </Wrapper>
-    );
-  };
-  return <Inner />;
+const CustomChildrenInner = ({ online }: { online: boolean }) => {
+  useForceOnline(online);
+  return (
+    <Wrapper>
+      <Offline className="rounded-md border border-destructive/40 bg-destructive/5 p-4 text-destructive text-sm">
+        Working from cache — changes will sync once you reconnect.
+      </Offline>
+      <div className="p-4 text-sm text-muted-foreground">
+        The custom content is only rendered when offline.
+      </div>
+    </Wrapper>
+  );
 };
+
+export const CustomChildren = ({ online }: { online: boolean }) => (
+  <CustomChildrenInner online={online} />
+);
 
 CustomChildren.args = {
   online: false,

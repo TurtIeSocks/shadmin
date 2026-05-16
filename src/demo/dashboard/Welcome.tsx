@@ -23,7 +23,7 @@ const Welcome = () => {
             })}
             href="https://marmelab.com/shadcn-admin-kit/"
           >
-            <House className="mr-2 h-4 w-4" />
+            <House className="mr-2 size-4" />
             {translate("pos.dashboard.welcome.ra_button")}
           </a>
           <a
@@ -32,7 +32,7 @@ const Welcome = () => {
             })}
             href="https://github.com/marmelab/shadcn-admin-kit/tree/main/src/demo"
           >
-            <Code className="mr-2 h-4 w-4" />
+            <Code className="mr-2 size-4" />
             {translate("pos.dashboard.welcome.demo_button")}
           </a>
         </div>

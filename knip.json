@@ -1,0 +1,35 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/main.tsx",
+    "src/components/admin/**/*.{ts,tsx}!",
+    "src/components/extras/**/*.{ts,tsx}!",
+    "src/components/leaflet/**/*.{ts,tsx}!",
+    "src/components/supabase/**/*.{ts,tsx}!",
+    "src/components/csv-import/**/*.{ts,tsx}!",
+    "src/components/rich-text-input/**/*.{ts,tsx}!",
+    "src/components/ui/**/*.{ts,tsx}!",
+    "src/components/**/*.spec.{ts,tsx}",
+    "src/stories/**/*.stories.{ts,tsx}",
+    "src/demo/**/*.{ts,tsx}",
+    "src/examples/**/*.{ts,tsx}",
+    "src/lib/**/*.{ts,tsx}!",
+    "website/src/**/*.{ts,tsx}",
+    "scripts/**/*.{js,mjs}"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "website/src/**/*.{ts,tsx}",
+    "scripts/**/*.{js,mjs}"
+  ],
+  "ignore": [
+    "public/**",
+    "docs/**",
+    "**/*.d.ts",
+    ".claude/**"
+  ],
+  "ignoreDependencies": [
+    "@types/*"
+  ],
+  "ignoreExportsUsedInFile": true
+}

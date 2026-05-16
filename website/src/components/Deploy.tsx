@@ -63,9 +63,9 @@ export function Deploy() {
             </div>
             <div className="rounded-lg shadow-lg p-6 border border-border lg:-order-1 bg-primary/1">
               <div className="flex items-center mb-4">
-                <div className="w-3 h-3 rounded-full bg-destructive mr-2"></div>
-                <div className="w-3 h-3 rounded-full bg-amber-500 mr-2"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <div className="size-3 rounded-full bg-destructive mr-2"></div>
+                <div className="size-3 rounded-full bg-amber-500 mr-2"></div>
+                <div className="size-3 rounded-full bg-green-500"></div>
                 <div className="ml-4 text-sm text-muted-foreground">
                   Terminal
                 </div>

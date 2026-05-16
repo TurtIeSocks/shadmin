@@ -24,7 +24,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *     source="avatar_url"
  *     className="[&_img]:w-8 [&_img]:h-8 [&_img]:rounded-full"
  *     empty={
- *         <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+ *         <div className="size-8 rounded-full bg-gray-200 flex items-center justify-center">
  *           👤
  *         </div>
  *     }
@@ -72,7 +72,7 @@ export const ImageField = <RecordType extends UnknownRecord = UnknownRecord>(
             const srcValue = src ? get(file, src, title) : title;
 
             return (
-              <li key={index}>
+              <li key={srcValue ?? index}>
                 <img
                   alt={fileTitleValue}
                   title={fileTitleValue}

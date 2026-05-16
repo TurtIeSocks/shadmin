@@ -262,7 +262,11 @@ export const FileInput = (props: FileInputProps) => {
         <div className="previews flex flex-col gap-1">
           {files.map((file, index: number) => (
             <FileInputPreview
-              key={index}
+              key={
+                (file as { rawFile?: File })?.rawFile?.name ??
+                (file as { src?: string })?.src ??
+                index
+              }
               file={file}
               onRemove={onRemove(file)}
               removeIcon={removeIcon}
@@ -342,12 +346,12 @@ export const FileInputPreview = (props: FileInputPreviewProps) => {
         type="button"
         variant="ghost"
         size="icon"
-        className="h-6 w-6 rounded-full shadow-sm cursor-pointer"
+        className="size-6 rounded-full shadow-sm cursor-pointer"
         onClick={onRemove}
         aria-label={translate("ra.action.delete")}
         title={translate("ra.action.delete")}
       >
-        <RemoveIcon className="h-4 w-4" />
+        <RemoveIcon className="size-4" />
       </Button>
       {children}
     </div>

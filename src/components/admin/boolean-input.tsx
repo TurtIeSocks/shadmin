@@ -78,7 +78,7 @@ export const BooleanInput = (props: BooleanInputProps) => {
 
   return (
     <FormField className={className} id={id} name={field.name}>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-x-2">
         <Switch
           id={id}
           checked={Boolean(field.value)}

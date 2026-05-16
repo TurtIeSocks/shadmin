@@ -78,7 +78,7 @@ export const FileField = <RecordType extends UnknownRecord = UnknownRecord>(
           const srcValue = src ? get(file, src, title) : title;
 
           return (
-            <li key={index}>
+            <li key={srcValue ?? index}>
               <a
                 href={srcValue}
                 title={fileTitleValue}

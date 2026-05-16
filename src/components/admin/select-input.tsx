@@ -288,7 +288,7 @@ export const SelectInput = (props: SelectInputProps) => {
                   className="p-0 ml-auto pointer-events-auto hover:bg-transparent text-muted-foreground opacity-50 hover:opacity-100"
                   onClick={handleReset}
                 >
-                  <X className="h-4 w-4" />
+                  <X className="size-4" />
                 </button>
               ) : null}
             </SelectTrigger>

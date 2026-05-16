@@ -467,9 +467,11 @@ const CsvImportCommitStep = () => {
   );
 };
 
+const EMPTY_MAPPING: Record<string, string> = {};
+
 export const CsvImport = ({
   schema,
-  mapping: initialMapping = {},
+  mapping: initialMapping = EMPTY_MAPPING,
   transform,
   batchSize = 100,
   label,

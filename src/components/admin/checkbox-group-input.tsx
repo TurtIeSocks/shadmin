@@ -157,7 +157,7 @@ export const CheckboxGroupInput = (inProps: CheckboxGroupInputProps) => {
           const choiceId = `${id}-${choiceValue}`;
 
           return (
-            <div key={choiceValue} className="flex items-center space-x-2">
+            <div key={choiceValue} className="flex items-center gap-x-2">
               <Checkbox
                 id={choiceId}
                 checked={value.includes(choiceValue)}

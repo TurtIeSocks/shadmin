@@ -35,8 +35,9 @@ const ListActions = () => {
 };
 
 const filters = [
-  <TextInput source="q" placeholder="Search" label={false} alwaysOn />,
+  <TextInput key="q" source="q" placeholder="Search" label={false} alwaysOn />,
   <ReferenceInput
+    key="customer_id"
     source="customer_id"
     reference="customers"
     sort={{ field: "last_name", order: "ASC" }}

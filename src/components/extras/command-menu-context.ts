@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, type ReactNode } from "react";
+import { createContext, use, useEffect, type ReactNode } from "react";
 
 export interface CommandAction {
   id: string;
@@ -39,7 +39,7 @@ export const CommandMenuContext = createContext<CommandMenuContextValue | null>(
 );
 
 export const useCommandMenu = () => {
-  const ctx = useContext(CommandMenuContext);
+  const ctx = use(CommandMenuContext);
   if (!ctx) {
     throw new Error(
       "useCommandMenu() must be used inside <CommandMenu>. Mount <CommandMenu /> at the Admin shell first.",

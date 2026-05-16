@@ -73,9 +73,9 @@ const dataProvider = fakeRestDataProvider(data);
 const Wrapper = ({
   defaultDataProvider = dataProvider,
   filters = [
-    <SearchInput source="q" alwaysOn />,
-    <NumberInput source="year" />,
-    <SelectInput source="author.name" choices={authorsChoices} />,
+    <SearchInput key="q" source="q" alwaysOn />,
+    <NumberInput key="year" source="year" />,
+    <SelectInput key="author.name" source="author.name" choices={authorsChoices} />,
   ],
 }: {
   defaultDataProvider?: DataProvider;

@@ -115,7 +115,7 @@ const SortButtonComponent = (props: SortButtonProps) => {
           <Button variant="outline" size="sm" className="h-9" {...rest}>
             {icon}
             <span className="ml-2">{buttonLabel}</span>
-            <ChevronDown className="ml-2 h-4 w-4" />
+            <ChevronDown className="ml-2 size-4" />
           </Button>
         </DropdownMenuTrigger>
       )}
@@ -138,7 +138,7 @@ const SortButtonComponent = (props: SortButtonProps) => {
   );
 };
 
-const defaultIcon = <ArrowUpDown className="h-4 w-4" />;
+const defaultIcon = <ArrowUpDown className="size-4" />;
 
 const inverseOrder = (sort: string) => (sort === "ASC" ? "DESC" : "ASC");
 

@@ -116,13 +116,13 @@ export const SaveButton = <RecordType extends RaRecord = RaRecord>(
       )}
       {...rest}
     >
-      {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : icon}
+      {isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : icon}
       {displayedLabel}
     </Button>
   );
 };
 
-const defaultIcon = <Save className="h-4 w-4" />;
+const defaultIcon = <Save className="size-4" />;
 
 interface Props<
   RecordType extends RaRecord = RaRecord,

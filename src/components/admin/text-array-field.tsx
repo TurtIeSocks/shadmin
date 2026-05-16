@@ -65,7 +65,7 @@ export const TextArrayField = <
       {...sanitizeFieldRestProps(rest)}
     >
       {(data as ReactNode[]).map((item, index) => (
-        <Badge key={index} variant={variant}>
+        <Badge key={`${String(item)}-${index}`} variant={variant}>
           {item != null && typeof item !== "string" ? String(item) : item}
         </Badge>
       ))}

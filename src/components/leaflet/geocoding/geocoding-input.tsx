@@ -85,7 +85,7 @@ export const GeocodingInput = ({
             ) : (
               <CommandGroup>
                 {results.map((r, i) => (
-                  <CommandItem key={i} onSelect={() => onSelect(r)}>
+                  <CommandItem key={r.displayName ?? i} onSelect={() => onSelect(r)}>
                     <div className="flex flex-col">
                       <span>{r.displayName}</span>
                       {r.type ? (

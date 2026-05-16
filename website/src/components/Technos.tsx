@@ -71,7 +71,7 @@ export function Technos() {
                     src={techno.logo}
                     width={64}
                     height={64}
-                    className="h-14 w-14"
+                    className="size-14"
                   />
                   <p className="text-primary-foreground/80">{techno.name}</p>
                 </div>

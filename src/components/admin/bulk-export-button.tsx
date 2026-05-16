@@ -75,7 +75,7 @@ export const BulkExportButton = <T extends RaRecord>({
   );
 };
 
-const defaultIcon = <Download className="h-4 w-4" />;
+const defaultIcon = <Download className="size-4" />;
 
 export type BulkExportButtonProps<T extends RaRecord> =
   UseBulkExportOptions<T> & {

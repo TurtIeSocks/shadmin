@@ -25,9 +25,11 @@ export interface AssistantProps {
   welcomeMessage?: string;
 }
 
+const EMPTY_TOOLS: Record<string, ToolDefinition> = {};
+
 export const Assistant = ({
   transport,
-  tools = {},
+  tools = EMPTY_TOOLS,
   placement = "bottom-right",
   triggerLabel,
   welcomeMessage,

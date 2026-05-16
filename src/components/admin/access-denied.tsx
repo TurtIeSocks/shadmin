@@ -17,7 +17,7 @@ export interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/accessdenied/ AccessDenied documentation}
  */
 export const AccessDenied = ({
-  icon = <Lock className="w-32 h-32" />,
+  icon = <Lock className="size-32" />,
   textPrimary = "ra.page.access_denied",
   textSecondary = "ra.message.access_denied",
   ...rest

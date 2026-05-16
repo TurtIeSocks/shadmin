@@ -184,11 +184,11 @@ export const ColumnsSelector = ({ children }: ColumnsSelectorProps) => {
             })}
             className="pr-8"
           />
-          <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+          <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
           {columnFilter && (
             <button
               onClick={() => setColumnFilter("")}
-              className="absolute right-8 top-2 h-4 w-4 text-muted-foreground"
+              className="absolute right-8 top-2 size-4 text-muted-foreground"
               aria-label="Clear"
             >
               ×
@@ -197,11 +197,11 @@ export const ColumnsSelector = ({ children }: ColumnsSelectorProps) => {
         </div>
       )}
       <ul className="max-h-[50vh] p-1 overflow-auto">
-        {paddedColumnRanks.map((position, index) => (
-          <DataTableColumnRankContext.Provider value={position} key={index}>
+        {paddedColumnRanks.map((position) => (
+          <DataTableColumnRankContext.Provider value={position} key={position}>
             <DataTableColumnFilterContext.Provider
               value={columnFilter}
-              key={index}
+              key={position}
             >
               {childrenArray[position]}
             </DataTableColumnFilterContext.Provider>

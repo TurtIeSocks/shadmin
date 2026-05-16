@@ -119,6 +119,7 @@ export const FieldToggle = (props: FieldToggleProps) => {
     <li
       key={source}
       role="option"
+      aria-selected={selected}
       draggable={onMove ? "true" : undefined}
       onDrag={onMove ? handleDrag : undefined}
       onDragStart={onMove ? handleDragStart : undefined}
@@ -145,7 +146,7 @@ export const FieldToggle = (props: FieldToggleProps) => {
         </span>
       </label>
       {onMove && (
-        <GripVertical className="cursor-move dragIcon w-4 h-4 text-muted-foreground" />
+        <GripVertical className="cursor-move dragIcon size-4 text-muted-foreground" />
       )}
     </li>
   );

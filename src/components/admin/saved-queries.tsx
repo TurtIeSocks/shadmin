@@ -211,10 +211,10 @@ export const AddSavedQueryIconButton = ({
           _: "Save current query...",
         })}
         onClick={() => setOpen(true)}
-        className={cn("h-8 w-8", className)}
+        className={cn("size-8", className)}
         {...rest}
       >
-        <PlusCircle className="h-4 w-4" />
+        <PlusCircle className="size-4" />
       </Button>
       <AddSavedQueryDialog open={open} onClose={() => setOpen(false)} />
     </>
@@ -245,10 +245,10 @@ export const RemoveSavedQueryIconButton = ({
           _: "Remove saved query",
         })}
         onClick={() => setOpen(true)}
-        className={cn("h-8 w-8", className)}
+        className={cn("size-8", className)}
         {...rest}
       >
-        <MinusCircle className="h-4 w-4" />
+        <MinusCircle className="size-4" />
       </Button>
       <RemoveSavedQueryDialog open={open} onClose={() => setOpen(false)} />
     </>

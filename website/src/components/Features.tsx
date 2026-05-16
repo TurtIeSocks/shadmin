@@ -86,7 +86,7 @@ export function Features() {
                     <span className="inline-flex items-center justify-center rounded-xl p-2">
                       <feature.icon
                         aria-hidden="true"
-                        className="h-8 w-8 text-black"
+                        className="size-8 text-black"
                       />
                     </span>
                   </div>

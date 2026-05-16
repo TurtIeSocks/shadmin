@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 import { z } from "zod";
 
 export const CsvImportContext = createContext<CsvImportContextValue | null>(
@@ -39,7 +39,7 @@ export type CsvTransform = (
 ) => Record<string, unknown>;
 
 export const useCsvImport = () => {
-  const ctx = useContext(CsvImportContext);
+  const ctx = use(CsvImportContext);
   if (!ctx) throw new Error("useCsvImport must be used inside <CsvImport>");
   return ctx;
 };

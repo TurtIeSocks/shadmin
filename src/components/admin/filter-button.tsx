@@ -176,7 +176,7 @@ export const FilterButton = (props: FilterButtonProps) => {
             size={size}
             aria-haspopup="true"
           >
-            <Filter className="h-4 w-4" />
+            <Filter className="size-4" />
             {translate("ra.action.add_filter")}
           </Button>
         </DropdownMenuTrigger>
@@ -202,7 +202,7 @@ export const FilterButton = (props: FilterButtonProps) => {
           {(hasFilterValues || validSavedQueries.length > 0) && (
             <DropdownMenuSeparator />
           )}
-          {validSavedQueries.map((savedQuery: SavedQuery, index: number) =>
+          {validSavedQueries.map((savedQuery: SavedQuery) =>
             isEqual(savedQuery.value, {
               filter: filterValues,
               sort,
@@ -211,9 +211,9 @@ export const FilterButton = (props: FilterButtonProps) => {
             }) ? (
               <DropdownMenuItem
                 onClick={showRemoveSavedQueryDialog}
-                key={index}
+                key={savedQuery.label}
               >
-                <BookmarkMinus className="h-4 w-4 mr-2" />
+                <BookmarkMinus className="size-4 mr-2" />
                 {translate("ra.saved_queries.remove_label_with_name", {
                   _: 'Remove query "%{name}"',
                   name: savedQuery.label,
@@ -236,16 +236,16 @@ export const FilterButton = (props: FilterButtonProps) => {
                   });
                   setOpen(false);
                 }}
-                key={index}
+                key={savedQuery.label}
               >
-                <Bookmark className="h-4 w-4 mr-2" />
+                <Bookmark className="size-4 mr-2" />
                 {savedQuery.label}
               </DropdownMenuItem>
             ),
           )}
           {hasFilterValues && !hasSavedCurrentQuery && !disableSaveQuery && (
             <DropdownMenuItem onClick={showAddSavedQueryDialog}>
-              <BookmarkPlus className="h-4 w-4 mr-2" />
+              <BookmarkPlus className="size-4 mr-2" />
               {translate("ra.saved_queries.new_label", {
                 _: "Save current query...",
               })}
@@ -258,7 +258,7 @@ export const FilterButton = (props: FilterButtonProps) => {
                 setOpen(false);
               }}
             >
-              <X className="h-4 w-4 mr-2" />
+              <X className="size-4 mr-2" />
               {translate("ra.action.remove_all_filters", {
                 _: "Remove all filters",
               })}
@@ -303,11 +303,8 @@ export interface FilterButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterbutton/ FilterButton documentation}
  */
-export const FilterButtonMenuItem = React.forwardRef<
-  HTMLDivElement,
-  FilterButtonMenuItemProps
->((props, ref) => {
-  const { filter, onShow, onHide, displayed } = props;
+export const FilterButtonMenuItem = (props: FilterButtonMenuItemProps) => {
+  const { filter, onShow, onHide, displayed, ref } = props;
   const resource = useResourceContext(props);
   const handleShow = useCallback(() => {
     onShow({
@@ -336,8 +333,8 @@ export const FilterButtonMenuItem = React.forwardRef<
       role="menuitemcheckbox"
       aria-checked={displayed}
     >
-      <div className="flex items-center justify-center w-4 h-4 mr-2">
-        {displayed && <Check className="h-3 w-3" />}
+      <div className="flex items-center justify-center size-4 mr-2">
+        {displayed && <Check className="size-3" />}
       </div>
       <div>
         <FieldTitle
@@ -348,7 +345,7 @@ export const FilterButtonMenuItem = React.forwardRef<
       </div>
     </div>
   );
-});
+};
 
 export interface FilterButtonMenuItemProps {
   filter: React.ReactElement<FilterElementProps>;
@@ -358,4 +355,5 @@ export interface FilterButtonMenuItemProps {
   onHide: (params: { source: string }) => void;
   resource?: string;
   autoFocus?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
 }

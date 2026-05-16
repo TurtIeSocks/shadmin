@@ -52,13 +52,14 @@ export const useOsmFeatures = (
     const polygons: GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>[] = [];
     for (const feat of fc.features) {
       if (!feat.geometry) continue;
-      if (feat.geometry.type === "Polygon" || feat.geometry.type === "MultiPolygon") {
+      const geomType = feat.geometry.type;
+      if (geomType === "Polygon" || geomType === "MultiPolygon") {
         polygons.push(feat as GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>);
         continue;
       }
       // Buffer line features only when a preset declares a bufferLinesMeters.
       // Raw-tag features do not get auto-buffered — presets are the way to express buffering.
-      if (feat.geometry.type === "LineString" || feat.geometry.type === "MultiLineString") {
+      if (geomType === "LineString" || geomType === "MultiLineString") {
         const presetForFeature = findPresetForFeature(feat, presets);
         const bufferMeters = presetForFeature?.bufferLinesMeters;
         if (!bufferMeters) continue;
@@ -81,6 +82,11 @@ export const useOsmFeatures = (
   return { ...result, data: featureCollection };
 };
 
+// Cache Set per `values` array reference so repeated lookups across many features
+// don't rebuild the Set each call. Preset arrays are module-level constants so the
+// reference is stable for the lifetime of the process.
+const filterValuesCache = new WeakMap<readonly string[], Set<string>>();
+
 /**
  * Best-effort: identify which preset a feature came from so we know whether to
  * buffer it. Matches the first preset whose filters accept the feature's tags.
@@ -97,7 +103,15 @@ function findPresetForFeature(
       if (v == null) continue;
       if ("any" in f && f.any) return preset;
       if ("value" in f && v === f.value) return preset;
-      if ("values" in f && (f.values as string[]).includes(v)) return preset;
+      if ("values" in f) {
+        const valueSet = (f as { values: readonly string[] }).values;
+        const set = filterValuesCache.get(valueSet) ?? (() => {
+          const s = new Set(valueSet);
+          filterValuesCache.set(valueSet, s);
+          return s;
+        })();
+        if (set.has(v)) return preset;
+      }
     }
   }
   return null;

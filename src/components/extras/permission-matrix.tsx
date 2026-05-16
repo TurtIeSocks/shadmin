@@ -23,6 +23,7 @@ export interface PermissionMatrixProps {
 }
 
 const DEFAULT_ACTIONS = ["list", "show", "create", "edit", "delete"];
+const EMPTY_PERMISSIONS: PermissionsState = {};
 
 const normalize = (item: string | Identified): Identified =>
   typeof item === "string" ? { id: item, label: item } : item;
@@ -33,7 +34,7 @@ export const PermissionMatrix = ({
   roles,
   resources,
   actions = DEFAULT_ACTIONS,
-  value = {},
+  value = EMPTY_PERMISSIONS,
   onChange,
   readOnly = false,
 }: PermissionMatrixProps) => {

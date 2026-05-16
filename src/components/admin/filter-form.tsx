@@ -182,12 +182,12 @@ export const FilterFormInput = (inProps: FilterFormInputProps) => {
           type="button"
           variant="ghost"
           size="sm"
-          className="hide-filter h-9 w-9 cursor-pointer mt-auto"
+          className="hide-filter size-9 cursor-pointer mt-auto"
           onClick={handleHide}
           data-key={filterElement.props.source}
           title={translate("ra.action.remove_filter")}
         >
-          <MinusCircle className="h-4 w-4" />
+          <MinusCircle className="size-4" />
         </Button>
       )}
     </div>

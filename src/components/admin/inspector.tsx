@@ -62,22 +62,22 @@ export const Inspector = ({ className }: InspectorProps = {}) => {
               type="button"
               variant="ghost"
               size="icon"
-              className="h-7 w-7"
+              className="size-7"
               aria-label={translate("ra.action.remove", { _: "Remove" })}
               onClick={handleReset}
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="size-4" />
             </Button>
           )}
           <Button
             type="button"
             variant="ghost"
             size="icon"
-            className="h-7 w-7"
+            className="size-7"
             aria-label={translate("ra.action.close", { _: "Close" })}
             onClick={disable}
           >
-            <X className="h-4 w-4" />
+            <X className="size-4" />
           </Button>
         </div>
       </div>

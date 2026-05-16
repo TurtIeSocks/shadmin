@@ -7,7 +7,7 @@ export const FullNameField = () => {
   return (
     <div className="flex items-center gap-1">
       {record ? (
-        <Avatar className="w-6 h-6 mr-1">
+        <Avatar className="size-6 mr-1">
           <AvatarImage src={record.avatar} />
           <AvatarFallback>
             {record.first_name?.charAt(0)}

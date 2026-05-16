@@ -65,10 +65,10 @@ export function Why() {
               {features.map((feature) => (
                 <div key={feature.name} className="relative pl-16">
                   <dt className="text-xl font-semibold leading-7 text-gray-900">
-                    <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-black">
+                    <div className="absolute left-0 top-0 flex size-10 items-center justify-center rounded-lg bg-black">
                       <feature.icon
                         aria-hidden="true"
-                        className="h-6 w-6 text-white"
+                        className="size-6 text-white"
                       />
                     </div>
                     {feature.name}

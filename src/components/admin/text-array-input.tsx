@@ -151,7 +151,7 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
                   <span className="sr-only">
                     {translate("ra.action.remove", { _: "Remove" })}
                   </span>
-                  <X className="h-3 w-3" />
+                  <X className="size-3" />
                 </button>
               </Badge>
             ))}

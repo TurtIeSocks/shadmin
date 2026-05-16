@@ -58,7 +58,7 @@ export const Empty = () => (
       source="avatarUrl"
       empty={
         <div
-          className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center"
+          className="size-8 rounded-full bg-gray-200 flex items-center justify-center"
           aria-label="no avatar"
         >
           👤

@@ -49,36 +49,34 @@ export const Default = () => (
  * subscribe to (e.g., `isDirty`, `dirtyFields`). This is required for React Hook Form's
  * Proxy-based subscription system to work correctly.
  */
-export const DisabledWhenPristine = () => {
-  const CustomToolbar = () => {
-    const { isDirty, dirtyFields } = useFormState();
-    // Use both isDirty and dirtyFields for robustness across React Hook Form versions
-    // This ensures proper Proxy subscription and handles edge cases
-    const isFormDirty = isDirty || Object.keys(dirtyFields).length > 0;
-    return (
-      <div className="space-y-2">
-        <SaveButton disabled={!isFormDirty} />
-        <p className="text-sm text-muted-foreground">
-          Button is {isFormDirty ? "enabled" : "disabled"} - isDirty:{" "}
-          {String(isDirty)}, dirtyFields: {JSON.stringify(dirtyFields)}
-        </p>
-      </div>
-    );
-  };
-
+const DisabledWhenPristineToolbar = () => {
+  const { isDirty, dirtyFields } = useFormState();
+  // Use both isDirty and dirtyFields for robustness across React Hook Form versions
+  // This ensures proper Proxy subscription and handles edge cases
+  const isFormDirty = isDirty || Object.keys(dirtyFields).length > 0;
   return (
-    <Wrapper>
-      <TextInput source="title" />
-      <div className="mt-4">
-        <CustomToolbar />
-      </div>
-      <p className="mt-4 text-sm text-muted-foreground">
-        This SaveButton is disabled when the form is pristine. Change the input
-        value to enable it.
+    <div className="space-y-2">
+      <SaveButton disabled={!isFormDirty} />
+      <p className="text-sm text-muted-foreground">
+        Button is {isFormDirty ? "enabled" : "disabled"} - isDirty:{" "}
+        {String(isDirty)}, dirtyFields: {JSON.stringify(dirtyFields)}
       </p>
-    </Wrapper>
+    </div>
   );
 };
+
+export const DisabledWhenPristine = () => (
+  <Wrapper>
+    <TextInput source="title" />
+    <div className="mt-4">
+      <DisabledWhenPristineToolbar />
+    </div>
+    <p className="mt-4 text-sm text-muted-foreground">
+      This SaveButton is disabled when the form is pristine. Change the input
+      value to enable it.
+    </p>
+  </Wrapper>
+);
 
 /**
  * Custom disabled logic using useFormState() hook.
@@ -92,34 +90,32 @@ export const DisabledWhenPristine = () => {
  *
  * @see https://react-hook-form.com/docs/useformstate
  */
-export const CustomDisabledLogic = () => {
-  const CustomToolbar = () => {
-    const { isDirty, isValid, dirtyFields } = useFormState();
-    return (
-      <div className="space-y-2">
-        <SaveButton disabled={!isDirty || !isValid} />
-        <p className="text-sm text-muted-foreground">
-          Button is {isDirty && isValid ? "enabled" : "disabled"} - isDirty:{" "}
-          {String(isDirty)}, isValid: {String(isValid)}, dirtyFields:{" "}
-          {JSON.stringify(dirtyFields)}
-        </p>
-      </div>
-    );
-  };
-
+const CustomDisabledLogicToolbar = () => {
+  const { isDirty, isValid, dirtyFields } = useFormState();
   return (
-    <Wrapper>
-      <TextInput source="title" />
-      <div className="mt-4">
-        <CustomToolbar />
-      </div>
-      <p className="mt-4 text-sm text-muted-foreground">
-        This SaveButton uses custom logic: disabled when form is pristine OR
-        invalid.
+    <div className="space-y-2">
+      <SaveButton disabled={!isDirty || !isValid} />
+      <p className="text-sm text-muted-foreground">
+        Button is {isDirty && isValid ? "enabled" : "disabled"} - isDirty:{" "}
+        {String(isDirty)}, isValid: {String(isValid)}, dirtyFields:{" "}
+        {JSON.stringify(dirtyFields)}
       </p>
-    </Wrapper>
+    </div>
   );
 };
+
+export const CustomDisabledLogic = () => (
+  <Wrapper>
+    <TextInput source="title" />
+    <div className="mt-4">
+      <CustomDisabledLogicToolbar />
+    </div>
+    <p className="mt-4 text-sm text-muted-foreground">
+      This SaveButton uses custom logic: disabled when form is pristine OR
+      invalid.
+    </p>
+  </Wrapper>
+);
 
 /**
  * Example showing a button that's always disabled.

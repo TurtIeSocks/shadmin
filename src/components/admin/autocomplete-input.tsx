@@ -153,6 +153,7 @@ export const AutocompleteInput = (
   useEffect(() => () => debouncedSetFilters.cancel(), [debouncedSetFilters]);
 
   const [open, setOpen] = React.useState(false);
+  const listboxId = React.useId();
   const selectedChoice = allChoices.find((choice) =>
     areIdsEqual(getChoiceValue(choice), field.value),
   );
@@ -254,6 +255,7 @@ export const AutocompleteInput = (
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
+                aria-controls={listboxId}
                 className="w-full justify-between h-auto py-1.75 font-normal"
               >
                 {selectedChoice ? (
@@ -261,7 +263,7 @@ export const AutocompleteInput = (
                 ) : (
                   <span className="text-muted-foreground">{placeholder}</span>
                 )}
-                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full max-w-(--radix-popover-trigger-width) p-0">
@@ -282,7 +284,7 @@ export const AutocompleteInput = (
                     }
                   }}
                 />
-                <CommandList ref={listRef}>
+                <CommandList id={listboxId} ref={listRef}>
                   <CommandEmpty>No matching item found.</CommandEmpty>
                   <CommandGroup>
                     {finalChoices.map((choice) => {
@@ -315,7 +317,7 @@ export const AutocompleteInput = (
                         >
                           <Check
                             className={cn(
-                              "mr-2 h-4 w-4",
+                              "mr-2 size-4",
                               areIdsEqual(field.value, getChoiceValue(choice))
                                 ? "opacity-100"
                                 : "opacity-0",

@@ -65,6 +65,7 @@ const SeedParsed = ({
 
 const AutoAdvanceTo = ({ targetStep }: { targetStep: number }) => {
   useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
     const tick = () => {
       const triggers = Array.from(document.querySelectorAll("button"));
       const trigger = triggers.find((b) => /import/i.test(b.textContent ?? ""));
@@ -79,12 +80,15 @@ const AutoAdvanceTo = ({ targetStep }: { targetStep: number }) => {
         if (next) {
           (next as HTMLButtonElement).click();
           stepsClicked += 1;
-          setTimeout(clickNext, 100);
+          timers.push(setTimeout(clickNext, 100));
         }
       };
-      setTimeout(clickNext, 100);
+      timers.push(setTimeout(clickNext, 100));
     };
-    setTimeout(tick, 50);
+    timers.push(setTimeout(tick, 50));
+    return () => {
+      timers.forEach((t) => clearTimeout(t));
+    };
   }, [targetStep]);
   return null;
 };

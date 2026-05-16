@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { use } from "react";
 
 import { ThemeProviderContext, type Theme } from "./theme-context";
 
@@ -11,7 +11,7 @@ import { ThemeProviderContext, type Theme } from "./theme-context";
  * const [mode, setMode] = useTheme();
  */
 export const useTheme = (): [Theme, (theme: Theme) => void] => {
-  const context = useContext(ThemeProviderContext);
+  const context = use(ThemeProviderContext);
 
   if (context === undefined)
     throw new Error("useTheme must be used within a ThemeProvider");

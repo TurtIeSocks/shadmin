@@ -32,8 +32,9 @@ import { useIsMobile } from "../../hooks/use-mobile";
 import type { Review } from "../types";
 
 const filters = [
-  <TextInput source="q" placeholder="Search" label={false} alwaysOn />,
+  <TextInput key="q" source="q" placeholder="Search" label={false} alwaysOn />,
   <ReferenceInput
+    key="customer_id"
     source="customer_id"
     reference="customers"
     sort={{ field: "last_name", order: "ASC" }}
@@ -42,6 +43,7 @@ const filters = [
     <AutocompleteInput placeholder="Filter by customer" label={false} />
   </ReferenceInput>,
   <ReferenceInput
+    key="product_id"
     source="product_id"
     reference="products"
     sort={{ field: "name", order: "ASC" }}
@@ -50,6 +52,7 @@ const filters = [
     <AutocompleteInput placeholder="Filter by product" label={false} />
   </ReferenceInput>,
   <AutocompleteInput
+    key="status"
     source="status"
     placeholder="Filter by status"
     choices={[
@@ -61,7 +64,7 @@ const filters = [
       <>
         <span
           className={cn(
-            "h-2 w-2 rounded-full",
+            "size-2 rounded-full",
             choice.id === "accepted"
               ? "bg-green-400 dark:bg-green-800"
               : choice.id === "rejected"
@@ -127,7 +130,7 @@ export const ReviewList = () => {
                     onClick={handleClose}
                     className="cursor-pointer"
                   >
-                    <X className="h-4 w-4" />
+                    <X className="size-4" />
                   </Button>
                 </h3>
               </SidebarHeader>

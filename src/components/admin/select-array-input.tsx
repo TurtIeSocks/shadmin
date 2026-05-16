@@ -82,6 +82,7 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
   } = props;
   const translate = useTranslate();
   const [open, setOpen] = React.useState(false);
+  const listboxId = React.useId();
 
   const {
     allChoices,
@@ -207,6 +208,7 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
             variant="outline"
             role="combobox"
             aria-expanded={open}
+            aria-controls={listboxId}
             disabled={disabled || readOnly}
             className={cn(
               "w-full justify-between font-normal hover:bg-accent min-h-9 h-auto py-1.5",
@@ -240,10 +242,10 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
                     _: "Clear value",
                   })}
                 >
-                  <X className="h-4 w-4" />
+                  <X className="size-4" />
                 </span>
               ) : null}
-              <ChevronDown className="h-4 w-4 opacity-50" aria-hidden="true" />
+              <ChevronDown className="size-4 opacity-50" aria-hidden="true" />
             </div>
           </Button>
         </PopoverTrigger>
@@ -251,7 +253,7 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
           className="p-0 w-(--radix-popover-trigger-width)"
           align="start"
         >
-          <div className="flex flex-col max-h-64 overflow-auto py-1">
+          <div id={listboxId} role="listbox" aria-multiselectable="true" className="flex flex-col max-h-64 overflow-auto py-1">
             {choicesArr.length === 0 ? (
               <p className="px-3 py-2 text-sm text-muted-foreground">
                 {translate("ra.navigation.no_results", { _: "No results" })}

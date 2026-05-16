@@ -63,7 +63,7 @@ export const PrevNextButtons = <RecordType extends RaRecord = RaRecord>(
   if (error) {
     return (
       <AlertCircle
-        className="h-4 w-4 text-destructive"
+        className="size-4 text-destructive"
         aria-label={translate("ra.notification.http_error", { _: "Error" })}
       />
     );

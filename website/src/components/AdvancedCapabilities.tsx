@@ -63,7 +63,7 @@ export function AdvancedCapabilities() {
                       <dt className="font-bold">
                         <Check
                           aria-hidden="true"
-                          className="absolute left-1 top-1 h-5 w-5 text-white"
+                          className="absolute left-1 top-1 size-5 text-white"
                         />
                         {feature.name}
                       </dt>

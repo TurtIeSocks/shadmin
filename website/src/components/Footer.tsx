@@ -26,7 +26,7 @@ export function Footer() {
               className="text-gray-700 hover:text-gray-900"
             >
               <span className="sr-only">{item.name}</span>
-              <item.icon aria-hidden="true" className="h-6 w-6" />
+              <item.icon aria-hidden="true" className="size-6" />
             </a>
           ))}
         </div>

@@ -81,6 +81,7 @@ export interface CalendarListProps<R extends RaRecord = RaRecord> {
 }
 
 const defaultColors = "bg-primary text-primary-foreground";
+const EMPTY_COLOR_MAP: Record<string, string> = {};
 
 const DefaultEvent = ({ title, color }: EventRendererProps) => (
   <div
@@ -169,7 +170,7 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   endSource,
   titleSource,
   colorSource,
-  colorMap = {},
+  colorMap = EMPTY_COLOR_MAP,
   defaultView = "month",
   views,
   weekStartsOn = 0,

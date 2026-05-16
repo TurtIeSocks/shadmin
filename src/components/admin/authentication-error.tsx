@@ -18,7 +18,7 @@ export interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement>
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/authenticationerror/ AuthenticationError documentation}
  */
 export const AuthenticationError = ({
-  icon = <TriangleAlert className="w-32 h-32" />,
+  icon = <TriangleAlert className="size-32" />,
   textPrimary = "ra.page.authentication_error",
   textSecondary = "ra.message.authentication_error",
   ...rest

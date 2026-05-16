@@ -18,6 +18,9 @@ export interface DiffViewerProps {
   mode?: DiffMode;
 }
 
+const EMPTY_LABELS: Record<string, string> = {};
+const EMPTY_FORMATTERS: Record<string, (value: unknown) => ReactNode> = {};
+
 const isMissing = (v: unknown) => v === undefined || v === null;
 
 const computeStatus = (before: unknown, after: unknown): DiffStatus => {
@@ -54,8 +57,8 @@ export const DiffViewer = ({
   before,
   after,
   fields,
-  labels = {},
-  formatters = {},
+  labels = EMPTY_LABELS,
+  formatters = EMPTY_FORMATTERS,
   mode = "side-by-side",
 }: DiffViewerProps) => {
   const translate = useTranslate();

@@ -31,6 +31,8 @@ interface TreeNode<R extends RaRecord> {
   children: TreeNode<R>[];
 }
 
+const EMPTY_ICON_MAP: Record<string, ComponentType<{ className?: string }>> = {};
+
 const buildTree = <R extends RaRecord>(
   records: R[],
   parentSource: string,
@@ -133,7 +135,7 @@ export const TreeList = <R extends RaRecord = RaRecord>({
   parentSource,
   titleSource,
   iconSource,
-  iconMap = {},
+  iconMap = EMPTY_ICON_MAP,
   defaultExpanded = false,
   onSelect,
   emptyLabel,

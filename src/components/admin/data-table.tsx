@@ -5,7 +5,7 @@ import {
   createElement,
   isValidElement,
   useCallback,
-  useContext,
+  use,
   useMemo,
   useState,
 } from "react";
@@ -89,7 +89,7 @@ interface DataTableExpandContextValue<RecordType extends RaRecord = RaRecord> {
 const DataTableExpandContext =
   createContext<DataTableExpandContextValue | null>(null);
 
-const useDataTableExpandContext = () => useContext(DataTableExpandContext);
+const useDataTableExpandContext = () => use(DataTableExpandContext);
 
 /**
  * A powerful data table with sorting, selection, and column customization.
@@ -425,7 +425,7 @@ export const DataTableRow = ({
               type="button"
               variant="ghost"
               size="icon"
-              className="h-7 w-7"
+              className="size-7"
               onClick={(event) => {
                 event.stopPropagation();
                 expandContext.toggleExpand(record.id);
@@ -434,9 +434,9 @@ export const DataTableRow = ({
               aria-expanded={isExpanded}
             >
               {isExpanded ? (
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className="size-4" />
               ) : (
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="size-4" />
               )}
             </Button>
           ) : null}
@@ -643,9 +643,9 @@ export function DataTableHeadCell<
                 )}
                 {sort.field === source ? (
                   sort.order === "ASC" ? (
-                    <ArrowDownAZ className="ml-2 h-6 w-6" />
+                    <ArrowDownAZ className="ml-2 size-6" />
                   ) : (
-                    <ArrowUpZA className="ml-2 h-6 w-6" />
+                    <ArrowUpZA className="ml-2 size-6" />
                   )
                 ) : null}
                 {headerClassName?.includes("text-right") ? (

@@ -126,7 +126,7 @@ export const Confirm = (props: ConfirmProps) => {
             onClick={onClose}
             className="gap-1"
           >
-            <CancelIcon className="h-5 w-5" />
+            <CancelIcon className="size-5" />
             {translate(cancel, { _: cancel })}
           </Button>
           <Button
@@ -135,7 +135,7 @@ export const Confirm = (props: ConfirmProps) => {
             className="gap-1"
             variant={confirmColor === "warning" ? "destructive" : "default"}
           >
-            <ConfirmIcon className="h-5 w-5" />
+            <ConfirmIcon className="size-5" />
             {translate(confirm, { _: confirm })}
           </Button>
         </DialogFooter>

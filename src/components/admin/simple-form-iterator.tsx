@@ -173,11 +173,7 @@ export interface SimpleFormIteratorProps extends Partial<UseFieldArrayReturn> {
  *
  * // Typically used internally by SimpleFormIterator
  */
-export const SimpleFormIteratorItem = React.forwardRef(
-  (
-    props: SimpleFormIteratorItemProps,
-    ref: React.ForwardedRef<HTMLLIElement>,
-  ) => {
+export const SimpleFormIteratorItem = (props: SimpleFormIteratorItemProps) => {
     const {
       children,
       disabled,
@@ -186,6 +182,7 @@ export const SimpleFormIteratorItem = React.forwardRef(
       getItemLabel,
       index,
       inline,
+      ref,
       removeButton = defaultRemoveItemButton,
       reOrderButtons = defaultReOrderButtons,
     } = props;
@@ -245,8 +242,7 @@ export const SimpleFormIteratorItem = React.forwardRef(
         </li>
       </SimpleFormIteratorItemBase>
     );
-  },
-);
+};
 
 export interface SimpleFormIteratorItemProps extends SimpleFormIteratorItemBaseProps {
   disabled?: boolean;
@@ -256,6 +252,7 @@ export interface SimpleFormIteratorItemProps extends SimpleFormIteratorItemBaseP
   inline?: boolean;
   removeButton?: ReactElement;
   reOrderButtons?: ReactElement;
+  ref?: React.Ref<HTMLLIElement>;
 }
 
 /**
@@ -291,7 +288,7 @@ export const AddItemButton = (props: React.ComponentProps<"button">) => {
             className={cn("button-add", `button-add-${source}`, className)}
             {...rest}
           >
-            <PlusCircle className="h-5 w-5" />
+            <PlusCircle className="size-5" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>{translate("ra.action.add")}</TooltipContent>
@@ -332,14 +329,14 @@ export const ReOrderButtons = ({ className }: { className?: string }) => {
         onClick={() => reOrder(index - 1)}
         disabled={index <= 0}
       >
-        <ArrowUpCircle className="h-4 w-4" />
+        <ArrowUpCircle className="size-4" />
       </IconButtonWithTooltip>
       <IconButtonWithTooltip
         label="ra.action.move_down"
         onClick={() => reOrder(index + 1)}
         disabled={total == null || index >= total - 1}
       >
-        <ArrowDownCircle className="h-4 w-4" />
+        <ArrowDownCircle className="size-4" />
       </IconButtonWithTooltip>
     </span>
   );
@@ -404,7 +401,7 @@ export const ClearArrayButton = (props: React.ComponentProps<"button">) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button type="button" variant="ghost" size="icon" {...props}>
-            <Trash className="h-5 w-5 text-red-500" />
+            <Trash className="size-5 text-red-500" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>
@@ -452,7 +449,7 @@ export const RemoveItemButton = (props: React.ComponentProps<"button">) => {
             )}
             {...rest}
           >
-            <XCircle className="h-5 w-5 text-red-500" />
+            <XCircle className="size-5 text-red-500" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>{translate("ra.action.remove")}</TooltipContent>

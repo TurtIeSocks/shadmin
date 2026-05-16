@@ -226,7 +226,7 @@ export const AutocompleteArrayInput = (
                         _: "Remove",
                       })}
                     </span>
-                    <X className="h-3 w-3" />
+                    <X className="size-3" />
                   </button>
                 </Badge>
               ))}

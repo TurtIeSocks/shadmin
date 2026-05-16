@@ -71,7 +71,7 @@ export const Offline = (props: OfflineProps) => {
         className,
       )}
     >
-      <WifiOff className="w-4 h-4 shrink-0" aria-hidden="true" />
+      <WifiOff className="size-4 shrink-0" aria-hidden="true" />
       <span>
         {translate("ra.notification.offline", { _: "You are offline" })}
       </span>

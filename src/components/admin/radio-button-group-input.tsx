@@ -156,7 +156,7 @@ export const RadioButtonGroupInput = (inProps: RadioButtonGroupInputProps) => {
             const isDisabled = disabled || readOnly || getDisableValue(choice);
 
             return (
-              <div key={stringValue} className="flex items-center space-x-2">
+              <div key={stringValue} className="flex items-center gap-x-2">
                 <RadioGroupItem
                   value={stringValue}
                   id={`${id}-${stringValue}`}

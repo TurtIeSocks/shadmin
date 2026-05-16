@@ -1,4 +1,4 @@
-import { forwardRef, type ComponentProps, type MouseEventHandler } from "react";
+import { type ComponentProps, type MouseEventHandler, type Ref } from "react";
 import { useTranslate, usePreferencesEditor } from "ra-core";
 import { Settings } from "lucide-react";
 
@@ -31,10 +31,11 @@ import {
  *   </header>
  * );
  */
-export const InspectorButton = forwardRef<
-  HTMLButtonElement,
-  InspectorButtonProps
->(({ label = "ra.configurable.configureMode", ...props }, ref) => {
+export const InspectorButton = ({
+  label = "ra.configurable.configureMode",
+  ref,
+  ...props
+}: InspectorButtonProps) => {
   const { enable, disable, setPreferenceKey, isEnabled } =
     usePreferencesEditor();
   const translate = useTranslate();
@@ -64,15 +65,13 @@ export const InspectorButton = forwardRef<
           {...props}
           onClick={handleClick}
         >
-          <Settings className="h-4 w-4" />
+          <Settings className="size-4" />
         </Button>
       </TooltipTrigger>
       <TooltipContent>{translatedLabel}</TooltipContent>
     </Tooltip>
   );
-});
-
-InspectorButton.displayName = "InspectorButton";
+};
 
 export interface InspectorButtonProps extends Omit<
   ComponentProps<typeof Button>,
@@ -80,4 +79,5 @@ export interface InspectorButtonProps extends Omit<
 > {
   /** Translation key for the tooltip and aria-label. */
   label?: string;
+  ref?: Ref<HTMLButtonElement>;
 }

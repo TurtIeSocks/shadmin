@@ -50,7 +50,7 @@ export const ReviewEdit = ({
           <>
             <span
               className={cn(
-                "h-2 w-2 rounded-full",
+                "size-2 rounded-full",
                 choice.id === "accepted"
                   ? "bg-green-400 dark:bg-green-800"
                   : choice.id === "rejected"

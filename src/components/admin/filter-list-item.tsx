@@ -130,7 +130,7 @@ export const FilterListItem = memo((props: FilterListItemProps) => {
             }}
             tabIndex={-1}
           >
-            <CircleX className="h-3 w-3" />
+            <CircleX className="size-3" />
           </Button>
         )}
       </button>

@@ -5,7 +5,7 @@ import {
   cloneElement,
   createContext,
   isValidElement,
-  useContext,
+  use,
   useEffect,
   useMemo,
   useState,
@@ -74,7 +74,7 @@ interface WizardContextValue {
 const WizardContext = createContext<WizardContextValue | null>(null);
 
 function useWizard() {
-  const ctx = useContext(WizardContext);
+  const ctx = use(WizardContext);
   if (!ctx) throw new Error("useWizard must be used inside <WizardForm>");
   return ctx;
 }
@@ -110,7 +110,7 @@ function WizardProgress({
           typeof label === "string" ? translate(label, { _: label }) : label;
         return (
           <li
-            key={index}
+            key={typeof label === "string" ? label : index}
             aria-current={active ? "step" : undefined}
             className={cn(
               "flex items-center gap-2",
@@ -368,14 +368,14 @@ export function WizardToolbar() {
       </Button>
       {!isFirst ? (
         <Button name="back" type="button" variant="outline" onClick={goBack}>
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="mr-2 size-4" />
           {translate("ra.action.wizard_back", { _: "Back" })}
         </Button>
       ) : null}
       {!isLast ? (
         <Button name="next" type="button" onClick={handleNext}>
           {translate("ra.action.wizard_next", { _: "Next" })}
-          <ArrowRight className="ml-2 h-4 w-4" />
+          <ArrowRight className="ml-2 size-4" />
         </Button>
       ) : (
         <SaveButton />

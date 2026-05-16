@@ -122,11 +122,11 @@ export const Configurable = (props: ConfigurableProps) => {
             title={translate(openButtonLabel, { _: "Customize" })}
             onClick={handleOpenEditor}
             className={cn(
-              "absolute -top-3 -right-3 z-10 h-6 w-6 rounded-full",
+              "absolute -top-3 -right-3 z-10 size-6 rounded-full",
               "bg-amber-500 text-amber-50 hover:bg-amber-500/90 hover:text-amber-50 shadow-sm",
             )}
           >
-            <Settings className="h-3.5 w-3.5" />
+            <Settings className="size-3.5" />
           </Button>
         )}
       </span>
