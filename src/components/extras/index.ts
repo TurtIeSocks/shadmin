@@ -16,6 +16,7 @@ export * from "./currency-field";
 export * from "./currency-input";
 export * from "./dashboard-charts";
 export * from "./diff-viewer";
+export * from "./dual-approval-button";
 export * from "./duration-field";
 export * from "./duration-input";
 export * from "./filter-live-form";
