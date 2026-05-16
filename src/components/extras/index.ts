@@ -35,4 +35,5 @@ export * from "./subscription-plan-picker";
 export * from "./tree-list";
 export * from "./usage-meter-field";
 export * from "./webhook-endpoint-field";
+export * from "./webhook-endpoint-input";
 export * from "./wizard-form";
