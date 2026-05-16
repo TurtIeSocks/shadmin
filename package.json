@@ -49,6 +49,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "cronstrue": "^3.14.0",
     "data-generator-retail": "^5.13.0",
     "date-fns": "^4.1.0",
     "diacritic": "^0.0.2",
