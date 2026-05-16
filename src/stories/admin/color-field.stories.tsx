@@ -20,3 +20,15 @@ export const Empty = () => (
     <ColorField source="color" empty="No color" />
   </StoryAdmin>
 );
+
+export const NoLabel = () => (
+  <StoryAdmin record={{ color: "#10b981" }}>
+    <ColorField source="color" showLabel={false} />
+  </StoryAdmin>
+);
+
+export const Named = () => (
+  <StoryAdmin record={{ color: "tomato" }}>
+    <ColorField source="color" />
+  </StoryAdmin>
+);

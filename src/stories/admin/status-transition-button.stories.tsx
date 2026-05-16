@@ -1,7 +1,7 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
 import { StatusTransitionButton } from "@/components/admin";
 
-export default { title: "Data Edition/StatusTransitionButton" };
+export default { title: "Extras/StatusTransitionButton" };
 
 const TRANSITIONS = {
   draft: ["review", "archived"],
@@ -10,7 +10,7 @@ const TRANSITIONS = {
   archived: [],
 };
 
-export const Draft = () => (
+export const Basic = () => (
   <StoryAdmin record={{ id: 1, title: "Post", status: "draft" }}>
     <StatusTransitionButton source="status" transitions={TRANSITIONS} />
   </StoryAdmin>

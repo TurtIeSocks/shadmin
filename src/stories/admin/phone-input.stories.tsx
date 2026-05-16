@@ -26,3 +26,9 @@ export const Disabled = () => (
     <PhoneInput source="phone" disabled />
   </StoryAdmin>
 );
+
+export const NoLabel = () => (
+  <StoryAdmin mode="form" record={{ phone: "+14155552671" }}>
+    <PhoneInput source="phone" label={false} />
+  </StoryAdmin>
+);

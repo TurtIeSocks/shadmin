@@ -20,3 +20,15 @@ export const Disabled = () => (
     <DurationInput source="duration" disabled />
   </StoryAdmin>
 );
+
+export const SecondsOnly = () => (
+  <StoryAdmin mode="form" record={{ duration: "PT30S" }}>
+    <DurationInput source="duration" units={["s"]} />
+  </StoryAdmin>
+);
+
+export const EmptyForm = () => (
+  <StoryAdmin mode="form" record={{ duration: null }}>
+    <DurationInput source="duration" />
+  </StoryAdmin>
+);

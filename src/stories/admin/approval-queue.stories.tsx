@@ -30,7 +30,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => (
   </ThemeProvider>
 );
 
-export default { title: "Workflow/ApprovalQueue" };
+export default { title: "Extras/ApprovalQueue" };
 
 export const Basic = () => (
   <Wrapper>

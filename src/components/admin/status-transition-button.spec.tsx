@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
 import {
-  Draft,
+  Basic,
   Published,
   TerminalState,
   WithGuard,
@@ -10,12 +10,12 @@ import {
 
 describe("<StatusTransitionButton />", () => {
   it("renders a button labelled with the current status", async () => {
-    const screen = render(<Draft />);
+    const screen = render(<Basic />);
     await expect.element(screen.getByText(/draft/i)).toBeInTheDocument();
   });
 
   it("lists allowed transitions in the dropdown for the current state", async () => {
-    const screen = render(<Draft />);
+    const screen = render(<Basic />);
     await screen.getByRole("button", { name: /draft/i }).click();
     await expect.element(screen.getByRole("menuitem", { name: /review/i })).toBeInTheDocument();
     await expect.element(screen.getByRole("menuitem", { name: /archived/i })).toBeInTheDocument();

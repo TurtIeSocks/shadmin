@@ -18,7 +18,7 @@ import {
   ThemeProvider,
 } from "@/components/admin";
 
-export default { title: "Data Edition/BulkEditDrawer" };
+export default { title: "Extras/BulkEditDrawer" };
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 

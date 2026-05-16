@@ -26,3 +26,9 @@ export const Empty = () => (
     <CronField source="schedule" empty="No schedule" />
   </StoryAdmin>
 );
+
+export const EveryHour = () => (
+  <StoryAdmin record={{ schedule: "0 * * * *" }}>
+    <CronField source="schedule" />
+  </StoryAdmin>
+);

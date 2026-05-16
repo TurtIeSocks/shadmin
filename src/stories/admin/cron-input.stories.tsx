@@ -20,3 +20,15 @@ export const Empty = () => (
     <CronInput source="schedule" />
   </StoryAdmin>
 );
+
+export const FifteenMinutes = () => (
+  <StoryAdmin mode="form" record={{ schedule: "*/15 * * * *" }}>
+    <CronInput source="schedule" />
+  </StoryAdmin>
+);
+
+export const Invalid = () => (
+  <StoryAdmin mode="form" record={{ schedule: "not-a-cron" }}>
+    <CronInput source="schedule" />
+  </StoryAdmin>
+);

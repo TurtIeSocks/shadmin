@@ -26,3 +26,9 @@ export const Empty = () => (
     <PhoneField source="phone" empty="—" />
   </StoryAdmin>
 );
+
+export const Unparseable = () => (
+  <StoryAdmin record={{ phone: "not-a-number" }}>
+    <PhoneField source="phone" />
+  </StoryAdmin>
+);

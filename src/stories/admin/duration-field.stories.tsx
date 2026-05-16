@@ -26,3 +26,9 @@ export const Empty = () => (
     <DurationField source="duration" empty="—" />
   </StoryAdmin>
 );
+
+export const Seconds = () => (
+  <StoryAdmin record={{ duration: "PT12S" }}>
+    <DurationField source="duration" />
+  </StoryAdmin>
+);

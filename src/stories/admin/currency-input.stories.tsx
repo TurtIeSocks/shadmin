@@ -26,3 +26,9 @@ export const Disabled = () => (
     <CurrencyInput source="price" currency="USD" disabled />
   </StoryAdmin>
 );
+
+export const Yen = () => (
+  <StoryAdmin mode="form" record={{ price: 12000 }}>
+    <CurrencyInput source="price" currency="JPY" displayLocale="ja-JP" />
+  </StoryAdmin>
+);
