@@ -1,0 +1,30 @@
+---
+title: "PhoneField"
+---
+
+Displays an E.164 phone number as a formatted label, optionally wrapped in a
+`tel:` link.
+
+## Usage
+
+```tsx
+import { PhoneField } from '@/components/admin';
+
+<PhoneField source="phone" />
+<PhoneField source="phone" displayFormat="international" />
+<PhoneField source="phone" link={false} />
+```
+
+## Props
+
+| Prop            | Required | Type                                | Default      | Description |
+| --------------- | -------- | ----------------------------------- | ------------ | ----------- |
+| `source`        | Required | `string`                            | -            | Record field to read |
+| `displayFormat` | Optional | `"national" \| "international"`     | `"national"` | Format style |
+| `link`          | Optional | `boolean`                           | `true`       | Wrap value in a `tel:` link |
+| `empty`         | Optional | `ReactNode`                         | -            | Fallback when value is `null` |
+| `className`     | Optional | `string`                            | -            | CSS class |
+
+## Storage format
+
+E.164 strings (e.g. `+14155552671`). Unparseable values render as raw strings.
