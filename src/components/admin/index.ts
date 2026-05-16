@@ -26,6 +26,7 @@ export * from "./check-for-application-update";
 export * from "./checkbox-group-input";
 export * from "./chip-field";
 export * from "./clone-button";
+export * from "./color-field";
 export * from "./columns-button";
 export * from "./configurable";
 export * from "./count";
