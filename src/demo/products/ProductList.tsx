@@ -1,12 +1,20 @@
 import type { ReactNode } from "react";
 import {
+  AutocompleteInput,
+  BulkActionsToolbar,
+  BulkDeleteButton,
   FilterLiveSearch,
   List,
   ListPagination,
+  NumberInput,
+  ReferenceInput,
   TextField,
   ToggleFilterButton,
 } from "@/components/admin";
+import { BulkEditDrawer } from "@/components/extras/bulk-edit-drawer";
 import { CurrencyField } from "@/components/extras/currency-field";
+import { CurrencyInput } from "@/components/extras/currency-input";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   RecordContextProvider,
   useGetList,
@@ -17,6 +25,7 @@ import {
 import { Link } from "react-router";
 import { DollarSign, ChartNoAxesColumn, Bookmark } from "lucide-react";
 import { humanize } from "inflection";
+import { cn } from "@/lib/utils";
 import type { Product, Category } from "@/demo/types";
 
 export const ProductList = () => {
@@ -35,6 +44,16 @@ export const ProductList = () => {
         <SidebarFilters />
         <ImageGrid />
       </div>
+      <BulkActionsToolbar>
+        <BulkEditDrawer label="Bulk edit" title="Edit selected products">
+          <CurrencyInput source="price" currency="USD" />
+          <NumberInput source="stock" />
+          <ReferenceInput source="category_id" reference="categories">
+            <AutocompleteInput label="Category" />
+          </ReferenceInput>
+        </BulkEditDrawer>
+        <BulkDeleteButton />
+      </BulkActionsToolbar>
     </List>
   );
 };
@@ -57,29 +76,52 @@ const ImageGrid = () => {
 
 const ImageThumbnail = () => {
   const product = useRecordContext<Product>();
+  const { selectedIds, onToggleItem } = useListContext<Product>();
   if (!product) return null;
+  const isSelected = selectedIds?.includes(product.id) ?? false;
   return (
-    <Link to={`/products/${product.id}`}>
-      <div className="image-container overflow-hidden">
-        <img
-          src={product.thumbnail || product.image}
-          alt={product.description}
-          className="w-full h-32 object-cover mb-1 transition-transform duration-300 ease-in-out hover:scale-125"
+    <div className="relative">
+      <div
+        className="absolute top-2 left-2 z-10"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onToggleItem(product.id);
+        }}
+      >
+        <Checkbox
+          checked={isSelected}
+          aria-label={`Select ${product.reference}`}
+          className="bg-white/90 border-zinc-400"
         />
       </div>
-      <div className="flex flex-row gap-1 items-center justify-between">
-        <TextField source="reference" className="text-lg font-bold" />
-        <CurrencyField
-          source="price"
-          currency="USD"
-          className="text-sm font-semibold"
+      <Link to={`/products/${product.id}`}>
+        <div
+          className={cn(
+            "image-container overflow-hidden",
+            isSelected && "ring-2 ring-primary rounded-sm",
+          )}
+        >
+          <img
+            src={product.thumbnail || product.image}
+            alt={product.description}
+            className="w-full h-32 object-cover mb-1 transition-transform duration-300 ease-in-out hover:scale-125"
+          />
+        </div>
+        <div className="flex flex-row gap-1 items-center justify-between">
+          <TextField source="reference" className="text-lg font-bold" />
+          <CurrencyField
+            source="price"
+            currency="USD"
+            className="text-sm font-semibold"
+          />
+        </div>
+        <TextField
+          source="description"
+          className="block text-sm text-gray-600 truncate"
         />
-      </div>
-      <TextField
-        source="description"
-        className="block text-sm text-gray-600 truncate"
-      />
-    </Link>
+      </Link>
+    </div>
   );
 };
 
