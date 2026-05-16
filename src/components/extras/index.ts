@@ -9,6 +9,7 @@ export * from "./color-field";
 export * from "./color-input";
 export * from "./command-menu";
 export * from "./command-menu-context";
+export * from "./comments-thread";
 export * from "./cron-field";
 export * from "./cron-input";
 export * from "./currency-field";
