@@ -110,6 +110,11 @@ const galleryComponents: GalleryComponent[] = [
     family: "App shell",
     docs: "DashboardMenuItem",
   },
+  {
+    name: "DataProviderDevtools",
+    family: "Inspector",
+    docs: "DataProviderDevtools",
+  },
   { name: "DataTable", family: "Lists and references", docs: "DataTable" },
   { name: "DatagridInput", family: "Inputs", docs: "DatagridInput" },
   { name: "DateField", family: "Fields", docs: "DateField" },
