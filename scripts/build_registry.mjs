@@ -12,7 +12,7 @@ const registryItemSchema = "https://ui.shadcn.com/schema/registry-item.json";
 
 // The shadcn registry builder currently OOMs on this large, highly-connected block.
 // Build it manually from the declared file list while still using shadcn for the rest.
-const manualBuildItems = new Set(["rich-text-input"]);
+const manualBuildItems = new Set(["rich-text-input", "leaflet-admin"]);
 
 const dedupeBy = (items, keySelector) => {
   const seen = new Set();
