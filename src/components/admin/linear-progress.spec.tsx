@@ -5,7 +5,7 @@ import { NoDelay } from "@/stories/admin/linear-progress.stories";
 
 describe("<LinearProgress />", () => {
   it("renders the progress bar immediately when timeout is 0", async () => {
-    const screen = render(<NoDelay theme="system" />);
+    render(<NoDelay theme="system" />);
     // The progress bar uses a w-40 h-1 bar — assert the wrapping element shows
     // up. Its className includes "animate-pulse" once the timeout passes.
     await expect

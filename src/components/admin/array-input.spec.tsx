@@ -338,7 +338,7 @@ describe("ArrayInput", () => {
   });
 
   it("renders the Basic story", async () => {
-    const screen = render(<BasicStory />);
+    const screen = render(<BasicStory theme="system" />);
     await expect.element(screen.container).toBeInTheDocument();
   });
 });

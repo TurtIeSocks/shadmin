@@ -15,7 +15,7 @@ describe("<Placeholder />", () => {
   });
 
   it("renders the Basic story", async () => {
-    const screen = render(<Basic />);
+    const screen = render(<Basic theme="system" />);
     const node = screen.container.querySelector("span");
     expect(node).not.toBeNull();
   });
