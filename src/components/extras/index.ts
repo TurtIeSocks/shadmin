@@ -1,4 +1,5 @@
 export * from "./api-key-field";
+export * from "./api-key-input";
 export * from "./approval-queue";
 export * from "./assistant";
 export * from "./assistant-transport";
