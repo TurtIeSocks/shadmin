@@ -32,9 +32,8 @@ temp
 *storybook.log
 storybook-static
 
-# Vitest
-
-**/__screenshots__/*
+# vitest-browser-react Playwright provider snapshot artifacts
+**/__screenshots__/
 
 .claude/settings.local.json
 .claude/worktrees/
