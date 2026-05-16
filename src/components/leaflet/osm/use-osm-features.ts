@@ -29,8 +29,18 @@ export const useOsmFeatures = (
   sources: OsmFeatureSources,
   opts: UseOsmFeaturesOptions = {},
 ) => {
-  const presets = sources.presets ?? [];
-  const tags = sources.tags ?? [];
+  const presetsKey = sources.presets?.join("|") ?? "";
+  const tagsKey = sources.tags?.join("|") ?? "";
+  const presets = useMemo<ReadonlyArray<OsmPresetName>>(
+    () => sources.presets ?? [],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [presetsKey],
+  );
+  const tags = useMemo<ReadonlyArray<OsmTagInput>>(
+    () => sources.tags ?? [],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [tagsKey],
+  );
   const hasSources = presets.length + tags.length > 0;
   const query =
     bbox && hasSources ? buildOverpassQueryFromSources(sources, bbox) : null;
