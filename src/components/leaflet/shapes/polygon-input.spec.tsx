@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { PolygonFieldBasic, PolygonInputBasic } from "@/stories/leaflet-shapes.stories";
+import { PolygonFieldBasic, PolygonInputBasic } from "@/stories/leaflet/leaflet-shapes.stories";
 
 const findAsync = async (container: HTMLElement, selector: string): Promise<Element | null> => {
   let el: Element | null = null;

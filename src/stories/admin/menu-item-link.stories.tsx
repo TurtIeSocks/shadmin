@@ -1,0 +1,83 @@
+import { Book, Home, Settings } from "lucide-react";
+import { Resource, TestMemoryRouter } from "ra-core";
+import polyglotI18nProvider from "ra-i18n-polyglot";
+import defaultMessages from "ra-language-english";
+import fakeRestDataProvider from "ra-data-fakerest";
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+} from "@/components/ui/sidebar";
+import {
+  Admin,
+  ListGuesser,
+  MenuItemLink,
+  ShowGuesser,
+} from "@/components/admin";
+
+export default {
+  title: "UI & Layout/MenuItemLink",
+};
+
+const data = {
+  posts: [{ id: 1, title: "UI & Layout/MenuItemLink" }],
+};
+const dataProvider = fakeRestDataProvider(data);
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  { allowMissing: true },
+);
+
+const SidebarWrapper = ({ children }: React.PropsWithChildren) => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      layout={({ children: layoutChildren }) => (
+        <SidebarProvider>
+          <Sidebar variant="floating">
+            <SidebarContent>
+              <SidebarGroup>
+                <SidebarGroupContent>
+                  <SidebarMenu>{children}</SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            </SidebarContent>
+          </Sidebar>
+          <main className="flex-1 p-4">{layoutChildren}</main>
+        </SidebarProvider>
+      )}
+    >
+      <Resource name="posts" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+export const Basic = () => (
+  <SidebarWrapper>
+    <MenuItemLink to="/posts" primaryText="Posts" leftIcon={<Book />} />
+  </SidebarWrapper>
+);
+
+export const Multiple = () => (
+  <SidebarWrapper>
+    <MenuItemLink to="/" primaryText="Home" leftIcon={<Home />} />
+    <MenuItemLink to="/posts" primaryText="Posts" leftIcon={<Book />} />
+    <MenuItemLink
+      to="/settings"
+      primaryText="Settings"
+      leftIcon={<Settings />}
+    />
+  </SidebarWrapper>
+);
+
+export const NoIcon = () => (
+  <SidebarWrapper>
+    <MenuItemLink to="/posts" primaryText="Posts" />
+  </SidebarWrapper>
+);

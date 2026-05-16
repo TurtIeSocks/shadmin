@@ -8,7 +8,7 @@ import {
   ExternalChanges,
   ReadOnly,
   Validation,
-} from "@/stories/mdx-input.stories";
+} from "@/stories/mdx-editor/mdx-input.stories";
 
 const getEditorElement = (container: HTMLElement) =>
   container.querySelector(".mdxeditor [contenteditable]");

@@ -44,3 +44,5 @@ export const MissingTokens = () => (
     </ThemeProvider>
   </MemoryRouter>
 );
+
+export const Basic = WithTokens;

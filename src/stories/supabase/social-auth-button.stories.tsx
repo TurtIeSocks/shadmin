@@ -68,3 +68,5 @@ export const CustomProvider = () => (
     <SocialAuthButton provider="apple">Custom Apple label</SocialAuthButton>
   </Wrapper>
 );
+
+export const Basic = Github;

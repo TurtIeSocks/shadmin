@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/bulk-delete-button.stories";
+} from "@/stories/admin/bulk-delete-button.stories";
 
 describe("<BulkDeleteButton />", () => {
   it("should render with the default label", async () => {

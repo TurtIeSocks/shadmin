@@ -10,7 +10,7 @@ import {
   RegisteredCommand,
   PermissionDenied,
   Recents,
-} from "@/stories/command-menu.stories";
+} from "@/stories/extras/command-menu.stories";
 
 describe("<CommandMenu />", () => {
   it("renders the command dialog when opened", async () => {

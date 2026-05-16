@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/app-sidebar.stories";
+import { Basic } from "@/stories/admin/app-sidebar.stories";
 
 describe("<AppSidebar />", () => {
   it("renders the Basic story", () => {

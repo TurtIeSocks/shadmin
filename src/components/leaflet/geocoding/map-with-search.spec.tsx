@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { MapWithSearchBasic } from "@/stories/leaflet-geocoding.stories";
+import { MapWithSearchBasic } from "@/stories/leaflet/leaflet-geocoding.stories";
 
 describe("<MapWithSearch />", () => {
   it("renders both the map and the geocoding input", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/locales-menu-button.stories";
+import { Basic } from "@/stories/admin/locales-menu-button.stories";
 
 describe("<LocalesMenuButton />", () => {
   it("renders the Basic story", () => {

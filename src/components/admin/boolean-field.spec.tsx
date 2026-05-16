@@ -7,7 +7,7 @@ import {
   Empty,
   LooseValue,
   NoFalseIcon,
-} from "@/stories/boolean-field.stories";
+} from "@/stories/admin/boolean-field.stories";
 
 describe("<BooleanField />", () => {
   it("should render an icon for a true value", async () => {

@@ -18,7 +18,7 @@ import {
   Basic,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/bulk-export-button.stories";
+} from "@/stories/admin/bulk-export-button.stories";
 
 type TestRecord = {
   id: number;

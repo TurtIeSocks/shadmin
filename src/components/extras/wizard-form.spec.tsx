@@ -11,7 +11,7 @@ import {
   ServerErrorOnFirstStep,
   SubmitClosesDialog,
   WithValidation,
-} from "@/stories/wizard-form.stories";
+} from "@/stories/extras/wizard-form.stories";
 
 describe("<WizardForm />", () => {
   it("should render the dialog when isOpen is true", async () => {

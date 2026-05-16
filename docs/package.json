@@ -11,6 +11,7 @@
     "astro": "astro",
     "check-sidebar": "node scripts/check-sidebar.mjs",
     "check-docs": "node scripts/check-docs.mjs",
+    "check-stories": "node scripts/check-stories.mjs",
     "public-api": "node scripts/public-api.mjs",
     "docs:gen-props": "typedoc && node scripts/split-typedoc.mjs"
   },

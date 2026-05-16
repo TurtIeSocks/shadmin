@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { SideBySide, Inline } from "@/stories/diff-viewer.stories";
+import { SideBySide, Inline } from "@/stories/extras/diff-viewer.stories";
 
 describe("<DiffViewer />", () => {
   it("renders side-by-side mode with correct diff statuses", async () => {

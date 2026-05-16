@@ -12,7 +12,7 @@ import {
   WithFormat,
   WithParse,
   WithFormatAndParse,
-} from "@/stories/text-array-input.stories";
+} from "@/stories/admin/text-array-input.stories";
 
 describe("<TextArrayInput />", () => {
   it("should render existing values as badges", async () => {

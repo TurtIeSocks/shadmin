@@ -3,7 +3,7 @@ import { render } from "vitest-browser-react";
 import {
   GeoJsonInputBasic,
   GeoJsonInputRestricted,
-} from "@/stories/leaflet-shapes.stories";
+} from "@/stories/leaflet/leaflet-shapes.stories";
 
 const findAsync = async (
   container: Element,

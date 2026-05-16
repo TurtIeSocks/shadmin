@@ -6,7 +6,7 @@ import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin, PivotGrid } from "@/components/admin";
 import { List } from "@/components/admin/list";
-import { Basic, Count } from "@/stories/pivot-grid.stories";
+import { Basic, Count } from "@/stories/extras/pivot-grid.stories";
 
 const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
   allowMissing: true,

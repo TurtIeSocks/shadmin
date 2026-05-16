@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/select-field.stories";
+import { Basic } from "@/stories/admin/select-field.stories";
 
 describe("<SelectField />", () => {
   it("renders the Basic story", () => {

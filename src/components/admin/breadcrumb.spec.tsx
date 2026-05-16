@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Default } from "@/stories/breadcrumb.stories";
+import { Default } from "@/stories/admin/breadcrumb.stories";
 
 describe("<Breadcrumb />", () => {
   it("renders the Default story", () => {

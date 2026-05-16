@@ -6,7 +6,7 @@ import {
   ThreeTabs,
   WithValidation,
   NoToolbar,
-} from "@/stories/tabbed-form.stories";
+} from "@/stories/admin/tabbed-form.stories";
 
 describe("<TabbedForm />", () => {
   it("should render tab headers", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Empty } from "@/stories/title-portal.stories";
+import { Empty } from "@/stories/admin/title-portal.stories";
 
 describe("<TitlePortal />", () => {
   it("renders the Empty story", () => {

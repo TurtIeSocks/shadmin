@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic as FilterListBasic } from "@/stories/filter-list.stories";
-import { Basic as FilterListItemBasic } from "@/stories/filter-list-item.stories";
-import { Basic as FilterListSectionBasic } from "@/stories/filter-list-section.stories";
-import { Basic as FilterLiveFormBasic } from "@/stories/filter-live-form.stories";
-import { Basic as FilterLiveSearchBasic } from "@/stories/filter-live-search.stories";
+import { Basic as FilterListBasic } from "@/stories/admin/filter-list.stories";
+import { Basic as FilterListItemBasic } from "@/stories/admin/filter-list-item.stories";
+import { Basic as FilterListSectionBasic } from "@/stories/admin/filter-list-section.stories";
+import { Basic as FilterLiveFormBasic } from "@/stories/admin/filter-live-form.stories";
+import { Basic as FilterLiveSearchBasic } from "@/stories/admin/filter-live-search.stories";
 
 describe("<FilterList /> family", () => {
   it("renders FilterList with its items", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/select-all-button.stories";
+import { Basic } from "@/stories/admin/select-all-button.stories";
 
 describe("<SelectAllButton />", () => {
   it("renders the Basic story", () => {

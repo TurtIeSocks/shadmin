@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithSimpleList } from "@/stories/infinite-list.stories";
+import { Basic, WithSimpleList } from "@/stories/admin/infinite-list.stories";
 
 describe("<InfiniteList />", () => {
   it("renders the first page of records", async () => {

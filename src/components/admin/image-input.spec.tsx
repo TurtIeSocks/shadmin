@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/image-input.stories";
+import { Basic } from "@/stories/admin/image-input.stories";
 
 describe("<ImageInput />", () => {
   it("renders the Basic story", () => {

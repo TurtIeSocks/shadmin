@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/dashboard-menu-item.stories";
+import { Basic } from "@/stories/admin/dashboard-menu-item.stories";
 
 describe("<DashboardMenuItem />", () => {
   it("renders the Basic story", () => {

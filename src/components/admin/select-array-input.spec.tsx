@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/select-array-input.stories";
+import { Basic } from "@/stories/admin/select-array-input.stories";
 
 describe("<SelectArrayInput />", () => {
   it("renders the Basic story", () => {

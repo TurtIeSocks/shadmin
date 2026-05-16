@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/list-pagination.stories";
+import { Basic } from "@/stories/admin/list-pagination.stories";
 
 describe("<ListPagination />", () => {
   it("renders the Basic story", () => {

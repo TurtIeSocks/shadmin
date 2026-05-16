@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/edit-button.stories";
+} from "@/stories/admin/edit-button.stories";
 
 describe("<EditButton />", () => {
   it("should render with the default label", async () => {

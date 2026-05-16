@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/nullable-boolean-input.stories";
+import { Basic } from "@/stories/admin/nullable-boolean-input.stories";
 
 describe("<NullableBooleanInput />", () => {
   it("renders the Basic story", () => {

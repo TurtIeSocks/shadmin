@@ -5,7 +5,7 @@ import { useWatch } from "react-hook-form";
 
 import { SimplifyInput } from "@/components/leaflet";
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { SimplifyInputBasic } from "@/stories/leaflet-shapes.stories";
+import { SimplifyInputBasic } from "@/stories/leaflet/leaflet-shapes.stories";
 
 interface ErrBoundaryState {
   err: Error | null;

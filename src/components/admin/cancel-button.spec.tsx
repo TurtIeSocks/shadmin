@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/cancel-button.stories";
+import { Basic } from "@/stories/admin/cancel-button.stories";
 
 describe("<CancelButton />", () => {
   it("renders the Basic story", () => {

@@ -6,7 +6,7 @@ import {
   Empty,
   RowClickFalse,
   BulkActionButtons,
-} from "@/stories/data-table.stories";
+} from "@/stories/admin/data-table.stories";
 
 describe("<DataTable />", () => {
   it("renders the column headers and data rows once data resolves", async () => {

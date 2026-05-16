@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form";
 
 import { FeatureInput } from "@/components/leaflet";
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { FeatureFieldBasic, FeatureInputBasic } from "@/stories/leaflet-shapes.stories";
+import { FeatureFieldBasic, FeatureInputBasic } from "@/stories/leaflet/leaflet-shapes.stories";
 
 const findAsync = async (
   container: HTMLElement,

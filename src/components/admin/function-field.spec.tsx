@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/function-field.stories";
+import { Basic } from "@/stories/admin/function-field.stories";
 
 describe("<FunctionField />", () => {
   it("renders the Basic story", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, RangeLoading, Navigation, Agenda, Week, Interactions, Drag } from "@/stories/calendar-list.stories";
+import { Basic, RangeLoading, Navigation, Agenda, Week, Interactions, Drag } from "@/stories/extras/calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {

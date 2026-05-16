@@ -11,7 +11,7 @@ import {
   NoLabel,
   Disabled,
   ReadOnly,
-} from "@/stories/date-input.stories";
+} from "@/stories/admin/date-input.stories";
 
 describe("<DateInput />", () => {
   it("should render a date input", async () => {

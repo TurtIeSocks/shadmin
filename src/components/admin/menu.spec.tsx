@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Default, Grouped } from "@/stories/menu.stories";
+import { Default, Grouped } from "@/stories/admin/menu.stories";
 
 describe("<Menu />", () => {
   it("renders the Default story", () => {

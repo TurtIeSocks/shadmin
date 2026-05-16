@@ -8,7 +8,7 @@ import {
   FeatureCollectionFieldBasic,
   FeatureCollectionInputBasic,
   FeatureCollectionInputSeeded,
-} from "@/stories/leaflet-shapes.stories";
+} from "@/stories/leaflet/leaflet-shapes.stories";
 
 const findAsync = async (
   container: HTMLElement,

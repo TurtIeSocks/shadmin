@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/login-page.stories";
+import { Basic } from "@/stories/admin/login-page.stories";
 
 describe("<LoginPage />", () => {
   it("renders the Basic story", () => {

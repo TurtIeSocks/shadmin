@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { ExplicitEntries, FromReference } from "@/stories/record-timeline.stories";
+import { ExplicitEntries, FromReference } from "@/stories/extras/record-timeline.stories";
 
 describe("<RecordTimeline />", () => {
   it("renders entries from the entries prop", async () => {

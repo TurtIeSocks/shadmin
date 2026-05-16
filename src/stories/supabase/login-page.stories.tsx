@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/admin";
 import { SupabaseLoginPage } from "@/components/supabase/login-page";
 import { raSupabaseEnglishMessages } from "@/components/supabase/i18n/en";
 
-export default { title: "Supabase/LoginPage" };
+export default { title: "UI & Layout/LoginPage" };
 
 const i18nProvider = polyglotI18nProvider(
   () => ({ ...defaultMessages, ...raSupabaseEnglishMessages }),

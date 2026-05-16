@@ -32,3 +32,5 @@ export const Default = () => (
     </ThemeProvider>
   </MemoryRouter>
 );
+
+export const Basic = Default;

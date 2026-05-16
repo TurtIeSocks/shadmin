@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/export-button.stories";
+} from "@/stories/admin/export-button.stories";
 
 describe("<ExportButton />", () => {
   it("should render with the default label", async () => {

@@ -6,7 +6,7 @@ import {
   CommitWithErrors,
   MapStep,
   PreviewStep,
-} from "@/stories/csv-import.stories";
+} from "@/stories/csv-import/csv-import.stories";
 
 describe(
   "<CsvImport />",

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/simple-form-configurable.stories";
+import { Basic } from "@/stories/admin/simple-form-configurable.stories";
 
 describe("<SimpleFormConfigurable />", () => {
   it("renders the Basic story", () => {

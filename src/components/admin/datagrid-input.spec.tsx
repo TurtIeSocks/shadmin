@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/datagrid-input.stories";
+import { Basic } from "@/stories/admin/datagrid-input.stories";
 
 describe("<DatagridInput />", () => {
   it("renders the Basic story", () => {

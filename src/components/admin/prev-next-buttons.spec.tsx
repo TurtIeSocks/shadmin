@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Default } from "@/stories/prev-next-buttons.stories";
+import { Default } from "@/stories/admin/prev-next-buttons.stories";
 
 describe("<PrevNextButtons />", () => {
   it("renders the Default story", () => {

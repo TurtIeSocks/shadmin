@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/device-test-wrapper.stories";
+import { Basic } from "@/stories/admin/device-test-wrapper.stories";
 
 describe("<DeviceTestWrapper />", () => {
   it("renders the Basic story", () => {

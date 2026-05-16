@@ -1,0 +1,258 @@
+import {
+  DataProvider,
+  memoryStore,
+  Resource,
+  TestMemoryRouter,
+  useListContext,
+} from "ra-core";
+import fakeRestDataProvider from "ra-data-fakerest";
+import {
+  Admin,
+  BulkDeleteButton,
+  CreateButton,
+  DataTable,
+  DataTableBody,
+  DataTableColumn,
+  DataTableHead,
+  DataTableLoading,
+  DataTableRoot,
+  EditButton,
+  List,
+  ShowGuesser,
+} from "@/components/admin";
+import { i18nProvider } from "@/lib/i18n-provider";
+import { BulkExportButton } from "@/components/admin/bulk-export-button";
+import { Button } from "@/components/ui/button";
+import { Table } from "@/components/ui/table";
+import { DataTableRenderContext } from "ra-core";
+
+export default {
+  title: "Data Display/DataTable",
+  parameters: {
+    docs: {
+      codePanel: true,
+    },
+  },
+};
+
+const data = {
+  books: [
+    {
+      id: 1,
+      title: "Data Display/DataTable",
+      author: { name: "Leo Tolstoy" },
+      year: 1869,
+    },
+    {
+      id: 2,
+      title: "Data Display/DataTable",
+      author: { name: "Jane Austen" },
+      year: 1813,
+    },
+    {
+      id: 3,
+      title: "Data Display/DataTable",
+      author: { name: "Oscar Wilde" },
+      year: 1890,
+    },
+    {
+      id: 4,
+      title: "Data Display/DataTable",
+      author: { name: "Antoine de Saint-Exupéry" },
+      year: 1943,
+    },
+    {
+      id: 5,
+      title: "Data Display/DataTable",
+      author: { name: "Paulo Coelho" },
+      year: 1988,
+    },
+    {
+      id: 6,
+      title: "Data Display/DataTable",
+      author: { name: "Gustave Flaubert" },
+      year: 1857,
+    },
+    {
+      id: 7,
+      title: "Data Display/DataTable",
+      author: { name: "J. R. R. Tolkien" },
+      year: 1954,
+    },
+  ],
+};
+
+const dataProvider = fakeRestDataProvider(data);
+
+const Wrapper = ({
+  children,
+  defaultDataProvider = dataProvider,
+  actions = false,
+}: {
+  children: React.ReactNode;
+  defaultDataProvider?: DataProvider;
+  actions?: React.ReactElement | false;
+}) => (
+  <TestMemoryRouter initialEntries={["/books"]}>
+    <Admin
+      dataProvider={defaultDataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="books"
+        list={
+          <List
+            perPage={5}
+            actions={actions}
+            sort={{ field: "id", order: "ASC" }}
+          >
+            {children}
+          </List>
+        }
+        show={ShowGuesser}
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+export const Basic = () => (
+  <Wrapper>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col label="Author" source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </Wrapper>
+);
+
+const CustomEmpty = () => <div>No books found</div>;
+
+export const Empty = () => (
+  <Wrapper>
+    <h1>Default</h1>
+    <DataTable data={[]} total={0}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+    <h1>Custom</h1>
+    <DataTable data={[]} total={0} empty={<CustomEmpty />}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </Wrapper>
+);
+
+export const RowClickFalse = () => (
+  <Wrapper>
+    <DataTable rowClick={false}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </Wrapper>
+);
+
+const SelectAllButton = () => {
+  const { selectedIds, onSelectAll, total } = useListContext();
+  return (
+    <Button
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelectAll();
+      }}
+      disabled={selectedIds.length === total}
+    >
+      Select All
+    </Button>
+  );
+};
+
+const CustomBulkActionButtons = () => (
+  <>
+    <SelectAllButton />
+    <BulkExportButton />
+    <BulkDeleteButton />
+  </>
+);
+
+export const BulkActionButtons = () => (
+  <Wrapper>
+    <div className="flex flex-col gap-4">
+      <div>
+        <h1>Custom</h1>
+        <DataTable bulkActionButtons={<CustomBulkActionButtons />}>
+          <DataTable.Col source="id" />
+          <DataTable.Col source="title" />
+          <DataTable.Col source="author.name" />
+          <DataTable.Col source="year" />
+        </DataTable>
+      </div>
+
+      <div>
+        <h1>Disabled</h1>
+        <DataTable bulkActionButtons={false}>
+          <DataTable.Col source="id" />
+          <DataTable.Col source="title" />
+          <DataTable.Col source="author.name" />
+          <DataTable.Col source="year" />
+        </DataTable>
+      </div>
+    </div>
+  </Wrapper>
+);
+
+export const HeaderButton = () => (
+  <Wrapper>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col label="Author" source="author.name" disableSort />
+      <DataTable.Col source="year" />
+      <DataTable.Col label={<CreateButton />}>
+        <EditButton />
+      </DataTable.Col>
+    </DataTable>
+  </Wrapper>
+);
+
+export const Loading = () => (
+  <DataTableLoading nbChildren={4} nbFakeLines={5} hasBulkActions />
+);
+
+const columns = (
+  <>
+    <DataTableColumn source="id" />
+    <DataTableColumn source="title" />
+    <DataTableColumn label="Author" source="author.name" />
+    <DataTableColumn source="year" />
+  </>
+);
+
+export const ComposedCustom = () => (
+  <Wrapper>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col label="Author" source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+    <h2 className="mt-6">Composed from granular exports</h2>
+    <DataTableRoot>
+      <Table>
+        <DataTableRenderContext.Provider value="header">
+          <DataTableHead>{columns}</DataTableHead>
+        </DataTableRenderContext.Provider>
+        <DataTableRenderContext.Provider value="data">
+          <DataTableBody>{columns}</DataTableBody>
+        </DataTableRenderContext.Provider>
+      </Table>
+    </DataTableRoot>
+  </Wrapper>
+);

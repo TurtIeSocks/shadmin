@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/create-button.stories";
+} from "@/stories/admin/create-button.stories";
 
 describe("<CreateButton />", () => {
   it("should render with the default label", async () => {
