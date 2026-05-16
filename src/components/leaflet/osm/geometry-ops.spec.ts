@@ -6,6 +6,7 @@ import {
   areaM2,
   polygonToBBox,
   bboxToPolygon,
+  aspectLockedBBox,
 } from "./geometry-ops";
 
 const square = (xmin: number, ymin: number, xmax: number, ymax: number): GeoJSON.Polygon => ({
@@ -98,5 +99,35 @@ describe("bboxToPolygon", () => {
     expect(bboxToPolygon([1, 2, 3])).toBeNull();
     expect(bboxToPolygon("nope")).toBeNull();
     expect(bboxToPolygon(null)).toBeNull();
+  });
+});
+
+describe("aspectLockedBBox", () => {
+  it("returns the bbox unchanged when it already matches the ratio", () => {
+    const transform = aspectLockedBBox(2);
+    const result = transform({
+      type: "Polygon",
+      coordinates: [[[0, 0], [4, 0], [4, 2], [0, 2], [0, 0]]],
+    });
+    expect(result).toEqual([0, 0, 4, 2]);
+  });
+
+  it("widens a too-tall bbox to match the ratio, centred", () => {
+    const transform = aspectLockedBBox(2);
+    // Input is 1×1 → too tall for ratio=2; needs to become 2×1, centred on 0.5,0.5
+    const result = transform({
+      type: "Polygon",
+      coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]],
+    });
+    expect(result).not.toBeNull();
+    const [w, s, e, n] = result!;
+    expect(e - w).toBeCloseTo(2);
+    expect(n - s).toBeCloseTo(1);
+    expect((w + e) / 2).toBeCloseTo(0.5);
+    expect((s + n) / 2).toBeCloseTo(0.5);
+  });
+
+  it("returns null for non-Polygon", () => {
+    expect(aspectLockedBBox(1)({ type: "Point", coordinates: [0, 0] })).toBeNull();
   });
 });

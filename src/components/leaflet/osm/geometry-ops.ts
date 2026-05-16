@@ -55,3 +55,31 @@ export const bboxToPolygon = (bb: unknown): GeoJSON.Polygon | null => {
     ],
   };
 };
+
+/**
+ * Build a value-transform that locks a Polygon's bounding box to a given
+ * width/height aspect ratio, centred on the original polygon's bbox centre.
+ */
+export const aspectLockedBBox =
+  (ratio: number): ((geom: GeoJSON.Geometry) => GeoJSON.BBox | null) =>
+  (geom) => {
+    const bb = polygonToBBox(geom);
+    if (!bb) return null;
+    const [w, s, e, n] = bb;
+    const width = e - w;
+    const height = n - s;
+    if (width === 0 || height === 0) return bb;
+    const currentRatio = width / height;
+    if (Math.abs(currentRatio - ratio) < 1e-9) return bb;
+    const centerX = (w + e) / 2;
+    const centerY = (s + n) / 2;
+    // Lock by choosing the larger dimension and computing the other from the ratio
+    const newWidth = Math.max(width, height * ratio);
+    const newHeight = newWidth / ratio;
+    return [
+      centerX - newWidth / 2,
+      centerY - newHeight / 2,
+      centerX + newWidth / 2,
+      centerY + newHeight / 2,
+    ];
+  };

@@ -149,6 +149,17 @@ export const GeometryCollectionInputBasic = () => (
   </StoryAdmin>
 );
 
+export const GeometryCollectionInputPolygonOnly = () => (
+  <StoryAdmin mode="form" record={{ geom: null }}>
+    <GeometryCollectionInput
+      source="geom"
+      allowedShapes={["Polygon"]}
+      label="Polygons only collection"
+      defaultCenter={[48.85, 2.35]}
+    />
+  </StoryAdmin>
+);
+
 export const BBoxFieldBasic = () => (
   <StoryAdmin record={{ id: 1, bb: bbox }}>
     <BBoxField source="bb" />

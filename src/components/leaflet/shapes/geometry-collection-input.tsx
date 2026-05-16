@@ -1,19 +1,18 @@
 "use client";
 
-import { ShapeInputShell, type ShapeInputShellProps } from "./shape-input-shell";
+import { GeoJsonInput, type GeoJsonInputProps } from "../geojson-input";
 import type { ShapeKind } from "../types";
 
 export interface GeometryCollectionInputProps
-  extends Omit<ShapeInputShellProps, "shape" | "multi" | "collection"> {
+  extends Omit<GeoJsonInputProps, "shapes" | "collection"> {
   allowedShapes?: ShapeKind[];
 }
 
+const DEFAULT_ALLOWED: ShapeKind[] = ["Point", "LineString", "Polygon"];
+
 export const GeometryCollectionInput = ({
-  allowedShapes: _allowedShapes,
+  allowedShapes = DEFAULT_ALLOWED,
   ...rest
 }: GeometryCollectionInputProps) => (
-  // For collections we anchor `shape` to "Point" but the shell honours `collection: true`
-  // to write GeometryCollection values. allowedShapes is forwarded to the toolbar in v2;
-  // for v1 the toolbar shows all draw buttons.
-  <ShapeInputShell {...rest} shape="Point" multi={true} collection />
+  <GeoJsonInput {...rest} shapes={allowedShapes} collection />
 );
