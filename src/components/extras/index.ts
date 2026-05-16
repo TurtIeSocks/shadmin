@@ -39,6 +39,7 @@ export * from "./schema-driven-view";
 export * from "./status-transition-button";
 export * from "./subscription-plan-field";
 export * from "./subscription-plan-picker";
+export * from "./theme-studio";
 export * from "./tree-list";
 export * from "./usage-meter-field";
 export * from "./webhook-endpoint-field";

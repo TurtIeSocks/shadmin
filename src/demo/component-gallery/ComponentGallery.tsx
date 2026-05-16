@@ -343,6 +343,7 @@ const galleryComponents: GalleryComponent[] = [
   { name: "TextField", family: "Fields", docs: "TextField" },
   { name: "TextInput", family: "Inputs", docs: "TextInput" },
   { name: "ThemeModeToggle", family: "App shell", docs: "ThemeModeToggle" },
+  { name: "ThemeStudio", family: "App shell", docs: "ThemeStudio" },
   { name: "TimeInput", family: "Inputs", docs: "TimeInput" },
   { name: "Title", family: "Layout", docs: "Title" },
   { name: "TitlePortal", family: "Layout", docs: "TitlePortal" },
