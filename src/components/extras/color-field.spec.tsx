@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Empty, Oklch } from "@/stories/admin/color-field.stories";
+import { Basic, Empty, Oklch } from "@/stories/extras/color-field.stories";
 
 describe("<ColorField />", () => {
   it("renders a chip whose background matches the hex value", async () => {

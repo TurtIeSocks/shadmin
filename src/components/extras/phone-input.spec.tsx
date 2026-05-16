@@ -6,7 +6,7 @@ import {
   DefaultCountryUS,
   Disabled,
   RestrictedCountries,
-} from "@/stories/admin/phone-input.stories";
+} from "@/stories/extras/phone-input.stories";
 
 describe("<PhoneInput />", () => {
   it("renders a tel input with the value formatted for the country", async () => {

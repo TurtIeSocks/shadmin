@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Disabled, Empty } from "@/stories/admin/cron-input.stories";
+import { Basic, Disabled, Empty } from "@/stories/extras/cron-input.stories";
 
 describe("<CronInput />", () => {
   it("renders a text input bound to source with human-phrase preview", async () => {

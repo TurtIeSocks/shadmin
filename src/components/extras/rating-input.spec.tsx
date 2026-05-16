@@ -7,7 +7,7 @@ import {
   HalfStep,
   Max10,
   NoLabel,
-} from "@/stories/admin/rating-input.stories";
+} from "@/stories/extras/rating-input.stories";
 
 describe("<RatingInput />", () => {
   it("renders five radio inputs labelled by source", async () => {

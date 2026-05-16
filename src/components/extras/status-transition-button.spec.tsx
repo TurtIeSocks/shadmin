@@ -6,7 +6,7 @@ import {
   Published,
   TerminalState,
   WithGuard,
-} from "@/stories/admin/status-transition-button.stories";
+} from "@/stories/extras/status-transition-button.stories";
 
 describe("<StatusTransitionButton />", () => {
   it("renders a button labelled with the current status", async () => {

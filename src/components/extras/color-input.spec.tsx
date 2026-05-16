@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   WithSwatches,
-} from "@/stories/admin/color-input.stories";
+} from "@/stories/extras/color-input.stories";
 
 describe("<ColorInput />", () => {
   it("renders a color input bound to source", async () => {

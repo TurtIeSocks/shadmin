@@ -6,7 +6,7 @@ import {
   Empty,
   International,
   NoLink,
-} from "@/stories/admin/phone-field.stories";
+} from "@/stories/extras/phone-field.stories";
 
 describe("<PhoneField />", () => {
   it("renders a tel: link with national format for a US number", async () => {
