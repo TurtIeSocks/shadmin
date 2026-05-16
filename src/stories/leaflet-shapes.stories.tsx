@@ -145,7 +145,12 @@ export const GeometryCollectionFieldBasic = () => (
 
 export const GeometryCollectionInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <GeometryCollectionInput source="geom" label="Mixed shapes" defaultCenter={[48.85, 2.35]} />
+    <GeometryCollectionInput
+      source="geom"
+      label="Mixed shapes"
+      defaultCenter={[48.85, 2.35]}
+      height={500}
+    />
   </StoryAdmin>
 );
 
@@ -192,7 +197,12 @@ export const GeoJsonFieldEmpty = () => (
 
 export const GeoJsonInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <GeoJsonInput source="geom" label="Any geometry" defaultCenter={[48.85, 2.35]} />
+    <GeoJsonInput
+      source="geom"
+      label="Any geometry"
+      defaultCenter={[48.85, 2.35]}
+      height={500}
+    />
   </StoryAdmin>
 );
 

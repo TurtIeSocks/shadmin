@@ -1,5 +1,5 @@
 ---
-title: "GeoJsonField"
+title: "GeoJSONField"
 ---
 
 Polymorphic read-only Leaflet field that renders any GeoJSON geometry (Point, LineString, Polygon, Multi\*, or GeometryCollection) stored at a record field.

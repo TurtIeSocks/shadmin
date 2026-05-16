@@ -1,5 +1,5 @@
 ---
-title: "GeoJsonInput"
+title: "GeoJSONInput"
 ---
 
 Polymorphic form input for drawing any GeoJSON geometry. Renders a Geoman toolbar with one button per allowed shape kind. Defaults to allowing Point, LineString, and Polygon.
