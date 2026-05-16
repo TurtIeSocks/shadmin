@@ -6,6 +6,7 @@ import { tasksSeed } from "./planning";
 import { reportsSeed } from "./analytics";
 import { documentsSeed } from "./workspace";
 import { onboardingsSeed } from "./onboarding";
+import { subscriptionsSeed } from "./subscriptions";
 
 const generated = generateData();
 
@@ -45,6 +46,7 @@ const data = {
   reports: reportsSeed,
   documents: documentsSeed,
   onboardings: onboardingsSeed,
+  subscriptions: subscriptionsSeed,
 };
 
 export const dataProvider = fakeRestDataProvider(data, true, 500);
