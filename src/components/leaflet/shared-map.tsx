@@ -13,6 +13,8 @@ export interface BaseMapWrapperProps extends BaseMapProps {
   className?: string;
 }
 
+const MAP_STYLE: React.CSSProperties = { height: "100%", width: "100%" };
+
 export const BaseMap = ({
   zoom = 13,
   defaultCenter = [0, 0],
@@ -24,15 +26,11 @@ export const BaseMap = ({
   className,
 }: BaseMapWrapperProps) => (
   <div
-    style={{ height, width: "100%" }}
-    className={className ?? "overflow-hidden rounded-md border"}
+    style={{ height }}
+    className={className ?? "overflow-hidden rounded-md border w-full"}
     data-testid={testId}
   >
-    <MapContainer
-      center={defaultCenter}
-      zoom={zoom}
-      style={{ height: "100%", width: "100%" }}
-    >
+    <MapContainer center={defaultCenter} zoom={zoom} style={MAP_STYLE}>
       <TileLayer url={tileUrl} attribution={attribution} />
       {children}
     </MapContainer>
