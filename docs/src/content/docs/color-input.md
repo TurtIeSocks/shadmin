@@ -1,0 +1,34 @@
+---
+title: "ColorInput"
+---
+
+Color picker input backed by the native `<input type="color">` element.
+Stores a hex color string. Supports optional preset swatches.
+
+## Usage
+
+```tsx
+import { ColorInput } from '@/components/admin';
+
+<ColorInput source="color" />
+<ColorInput source="color" swatches={["#ef4444", "#3b82f6", "#10b981"]} />
+<ColorInput source="color" disabled />
+```
+
+## Props
+
+| Prop         | Required | Type                       | Default | Description |
+| ------------ | -------- | -------------------------- | ------- | ----------- |
+| `source`     | Required | `string`                   | -       | Form field name |
+| `swatches`   | Optional | `readonly string[]`        | -       | Preset hex strings rendered as buttons |
+| `label`      | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide |
+| `helperText` | Optional | `ReactNode`                | -       | Helper text below the input |
+| `disabled`   | Optional | `boolean`                  | `false` | Disable input + swatches |
+| `defaultValue` | Optional | `string`                 | -       | Initial color value |
+| `validate`   | Optional | `Validator \| Validator[]` | -       | Validation |
+| `className`  | Optional | `string`                   | -       | CSS class on the wrapping `<FormField>` |
+
+## Storage format
+
+The native `<input type="color">` element only emits 6-digit lowercase hex
+(e.g. `#3b82f6`).
