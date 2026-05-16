@@ -25,3 +25,4 @@ export * from "./shapes/bbox-field";
 export * from "./shapes/bbox-input";
 export * from "./geojson-field";
 export * from "./geojson-input";
+export * from "./osm/osm-water-clip-button";
