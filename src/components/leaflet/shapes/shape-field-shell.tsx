@@ -20,7 +20,7 @@ const FitToData = ({
   padding,
   maxZoom,
 }: {
-  geom: GeoJSON.Geometry;
+  geom: GeoJSON.GeoJsonObject;
   padding?: L.PointTuple;
   maxZoom?: number;
 }) => {
@@ -49,7 +49,7 @@ export const ShapeFieldShell = ({
   testId,
 }: ShapeFieldShellProps) => {
   const record = useRecordContext();
-  const geom = record?.[source] as GeoJSON.Geometry | null | undefined;
+  const geom = record?.[source] as GeoJSON.GeoJsonObject | null | undefined;
 
   if (!geom) {
     return (

@@ -13,15 +13,24 @@ export interface UseGeomanRHFOptions {
   shape: ShapeKind;
   multi: boolean;
   collection?: boolean;
+  /**
+   * When true, persist as a `GeoJSON.FeatureCollection` of every drawn layer,
+   * preserving per-feature `properties` from the previous form value by index.
+   * Overrides `collection` / `multi` for the persistence and hydration branches.
+   */
+  featureCollection?: boolean;
   validate?: (geom: GeoJSON.Geometry) => string | undefined;
   pathOptions?: L.PathOptions;
   markerIcon?: L.Icon | L.DivIcon;
   /**
    * Optional converter that transforms the drawn `GeoJSON.Geometry` into the
    * shape stored in the form value. Used by `BBoxInput` to persist
-   * `[w, s, e, n]` instead of a `Polygon`. Defaults to identity.
+   * `[w, s, e, n]` instead of a `Polygon`, and by `FeatureInput` to wrap the
+   * geometry in a `GeoJSON.Feature` while preserving its `properties`. The
+   * `prev` arg holds the current form value (read via `form.getValues`),
+   * letting transforms preserve fields like `Feature.properties`.
    */
-  valueTransform?: (geom: GeoJSON.Geometry) => unknown;
+  valueTransform?: (geom: GeoJSON.Geometry, prev: unknown) => unknown;
   /**
    * Optional inverse of `valueTransform`: parses the stored value back into a
    * `GeoJSON.Geometry` for hydration. Return `null` for malformed input.
@@ -46,6 +55,7 @@ export const useGeomanRHF = ({
   shape,
   multi,
   collection,
+  featureCollection,
   validate,
   pathOptions,
   markerIcon,
@@ -68,6 +78,17 @@ export const useGeomanRHF = ({
   useEffect(() => {
     const group = featureGroupRef.current;
     if (!group) return;
+
+    const addFCLayers = () => {
+      const fc = value as GeoJSON.FeatureCollection | null | undefined;
+      if (!fc || fc.type !== "FeatureCollection") return;
+      fc.features?.forEach((feat) => {
+        if (!feat?.geometry) return;
+        const layer = geometryToLayer(feat.geometry, pathOptions, markerIcon);
+        group.addLayer(layer);
+      });
+    };
+
     const buildLayer = () => {
       if (value == null) return null;
       const geom = valueParse
@@ -78,8 +99,12 @@ export const useGeomanRHF = ({
     };
 
     if (!hydrated.current) {
-      const layer = buildLayer();
-      if (layer) group.addLayer(layer);
+      if (featureCollection) {
+        addFCLayers();
+      } else {
+        const layer = buildLayer();
+        if (layer) group.addLayer(layer);
+      }
       lastWrittenValue.current = value;
       hydrated.current = true;
       return;
@@ -90,22 +115,57 @@ export const useGeomanRHF = ({
       return;
     }
 
-    // External change — rebuild the layer from scratch.
+    // External change — rebuild the layer(s) from scratch.
     group.clearLayers();
-    const layer = buildLayer();
-    if (layer) group.addLayer(layer);
+    if (featureCollection) {
+      addFCLayers();
+    } else {
+      const layer = buildLayer();
+      if (layer) group.addLayer(layer);
+    }
     lastWrittenValue.current = value;
-  }, [value, pathOptions, markerIcon, valueParse]);
+  }, [value, pathOptions, markerIcon, valueParse, featureCollection]);
 
   const persist = useCallback(() => {
     const group = featureGroupRef.current;
     if (!group) return;
     const layers = group.getLayers();
+    // Snapshot the current form value so `valueTransform` can carry forward
+    // fields like `Feature.properties` that aren't derivable from the drawn
+    // geometry alone. Read via `getValues` (not the watched `value`) so we
+    // get the latest committed value at persist time, not a stale render.
+    const prev = form.getValues(source);
     const write = (geom: GeoJSON.Geometry | null) => {
-      const stored = valueTransform && geom ? valueTransform(geom) : geom;
+      const stored = valueTransform && geom ? valueTransform(geom, prev) : geom;
       form.setValue(source, stored, { shouldDirty: true });
       lastWrittenValue.current = stored;
     };
+    if (featureCollection) {
+      // FeatureCollection mode: emit one Feature per layer. Preserve
+      // properties from the previous form value by index — best-effort, since
+      // layer order can shift when the user removes a feature.
+      const prevFC = (prev as GeoJSON.FeatureCollection | null | undefined)
+        ?.type === "FeatureCollection"
+        ? (prev as GeoJSON.FeatureCollection)
+        : null;
+      const features: GeoJSON.Feature[] = [];
+      layers.forEach((l, i) => {
+        const geometry = layerToGeometry(l);
+        if (!geometry) return;
+        features.push({
+          type: "Feature",
+          geometry,
+          properties: prevFC?.features?.[i]?.properties ?? {},
+        });
+      });
+      const fc: GeoJSON.FeatureCollection = {
+        type: "FeatureCollection",
+        features,
+      };
+      form.setValue(source, fc, { shouldDirty: true });
+      lastWrittenValue.current = fc;
+      return;
+    }
     if (layers.length === 0) {
       form.setValue(source, null, { shouldDirty: true });
       lastWrittenValue.current = null;
@@ -135,7 +195,7 @@ export const useGeomanRHF = ({
     const geom = layerToGeometry(layers[layers.length - 1]);
     if (validate && geom && validate(geom)) return;
     write(geom);
-  }, [collection, multi, shape, source, form, validate, valueTransform]);
+  }, [collection, featureCollection, multi, shape, source, form, validate, valueTransform]);
 
   const handleCreate = useCallback<PM.CreateEventHandler>(
     (e) => {
@@ -144,7 +204,8 @@ export const useGeomanRHF = ({
       // The drawn layer is already added to the FeatureGroup by the package
       // (via globalOptions.layerGroup). For single-feature shapes, remove all
       // OTHER layers so the new draw replaces the previous geometry.
-      if (!multi && !collection) {
+      // FeatureCollection mode keeps every drawn layer (one Feature each).
+      if (!multi && !collection && !featureCollection) {
         const newLayer = e.layer as L.Layer;
         group.eachLayer((l) => {
           if (l !== newLayer) group.removeLayer(l);
@@ -152,7 +213,7 @@ export const useGeomanRHF = ({
       }
       persist();
     },
-    [collection, multi, persist],
+    [collection, featureCollection, multi, persist],
   );
 
   const handleUpdate = useCallback<PM.UpdateEventHandler>(() => persist(), [persist]);

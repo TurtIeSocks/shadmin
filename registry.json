@@ -1179,7 +1179,7 @@
       "type": "registry:block",
       "title": "LeafletAdmin",
       "description": "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadcn Admin Kit.",
-      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "registryDependencies": ["@shadcn-admin-kit/admin", "slider", "toggle", "toggle-group"],
       "dependencies": [
         "leaflet",
         "react-leaflet",
@@ -1189,6 +1189,7 @@
         "@turf/bbox",
         "@turf/buffer",
         "@turf/difference",
+        "@turf/simplify",
         "@turf/union",
         "@turf/helpers",
         "osmtogeojson"
@@ -1203,6 +1204,11 @@
         { "path": "src/components/leaflet/lat-lng-input.tsx", "type": "registry:component" },
         { "path": "src/components/leaflet/geojson-field.tsx", "type": "registry:component" },
         { "path": "src/components/leaflet/geojson-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/simplify-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/feature-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/feature-input.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/feature-collection-field.tsx", "type": "registry:component" },
+        { "path": "src/components/leaflet/feature-collection-input.tsx", "type": "registry:component" },
         { "path": "src/components/leaflet/geoman/geoman-shape-mapping.ts", "type": "registry:component" },
         { "path": "src/components/leaflet/geoman/use-geoman-rhf.ts", "type": "registry:component" },
         { "path": "src/components/leaflet/geoman/shape-constraints.ts", "type": "registry:component" },

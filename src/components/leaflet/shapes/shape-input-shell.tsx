@@ -22,9 +22,11 @@ export interface ShapeInputShellProps extends BaseInputProps {
   geomanShapes?: GeomanShape[];
   /**
    * Optional converter that transforms the drawn `GeoJSON.Geometry` into the
-   * shape stored in the form value. Forwarded to `useGeomanRHF`.
+   * shape stored in the form value. The second arg `prev` holds the current
+   * form value at persist time, letting transforms carry forward fields like
+   * `Feature.properties` across edits. Forwarded to `useGeomanRHF`.
    */
-  valueTransform?: (geom: GeoJSON.Geometry) => unknown;
+  valueTransform?: (geom: GeoJSON.Geometry, prev: unknown) => unknown;
   /**
    * Optional inverse of `valueTransform` used during hydration. Forwarded to
    * `useGeomanRHF`.

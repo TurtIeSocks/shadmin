@@ -26,6 +26,9 @@ npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/leaflet-admin.json
 - [`<GeometryCollectionField>`](./GeometryCollectionField) / [`<GeometryCollectionInput>`](./GeometryCollectionInput)
 - [`<BBoxField>`](./BBoxField) / [`<BBoxInput>`](./BBoxInput)
 - [`<GeoJsonField>`](./GeoJsonField) / [`<GeoJsonInput>`](./GeoJsonInput) — polymorphic
+- [`<FeatureField>`](./FeatureField) / [`<FeatureInput>`](./FeatureInput) — `GeoJSON.Feature` with preserved `properties`
+- [`<FeatureCollectionField>`](./FeatureCollectionField) / [`<FeatureCollectionInput>`](./FeatureCollectionInput) — multi-feature collections
+- [`<SimplifyInput>`](./SimplifyInput) — turf-driven geometry simplification with tolerance slider
 
 ### Drawing & editing primitives (Geoman)
 
