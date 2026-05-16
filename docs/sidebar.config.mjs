@@ -246,6 +246,8 @@ export const sidebar = [
       "presence-bar",
       "record-timeline",
       "status-transition-button",
+      "subscription-plan-field",
+      "subscription-plan-picker",
       "tree-list",
       "wizard-form",
     ],

@@ -40,11 +40,7 @@ export const SubscriptionPlanPicker = (props: SubscriptionPlanPickerProps) => {
     disabled,
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);

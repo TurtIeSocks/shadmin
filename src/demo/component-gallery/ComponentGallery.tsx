@@ -314,6 +314,16 @@ const galleryComponents: GalleryComponent[] = [
     docs: "SkipNavigationButton",
   },
   { name: "SortButton", family: "Buttons and actions", docs: "SortButton" },
+  {
+    name: "SubscriptionPlanField",
+    family: "Fields",
+    docs: "SubscriptionPlanField",
+  },
+  {
+    name: "SubscriptionPlanPicker",
+    family: "Inputs",
+    docs: "SubscriptionPlanPicker",
+  },
   { name: "TabbedForm", family: "Inputs", docs: "TabbedForm" },
   { name: "TabbedShowLayout", family: "Views", docs: "TabbedShowLayout" },
   { name: "TextArrayField", family: "Fields", docs: "TextArrayField" },
