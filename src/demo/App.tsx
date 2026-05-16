@@ -9,6 +9,7 @@ import { orders } from "./orders";
 import { customers } from "./customers";
 import { reviews } from "./reviews";
 import { places } from "./map";
+import { planning } from "./planning";
 import { Dashboard } from "./dashboard/Dashboard";
 import { InspectorLayout } from "./InspectorLayout";
 import { componentGallery } from "./component-gallery";
@@ -29,6 +30,7 @@ function App() {
       <Resource {...customers} group="Sales" />
       <Resource {...reviews} group="Content" />
       <Resource {...places} group="Map" />
+      <Resource {...planning} group="Planning" />
       <Resource {...componentGallery} />
     </Admin>
   );
