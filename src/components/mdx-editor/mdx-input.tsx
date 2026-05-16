@@ -14,7 +14,10 @@ import {
   FormLabel,
 } from "@/components/admin/form";
 import { InputHelperText } from "@/components/admin/input-helper-text";
+import { useTheme } from "@/components/admin/use-theme";
+import { cn } from "@/lib/utils";
 import { defaultInputPlugins } from "./default-plugins";
+import "./mdx-editor-dark.css";
 
 type LimitedMDXEditorProps = Omit<
   MDXEditorProps,
@@ -80,6 +83,20 @@ export const MdxInput = (props: MdxInputProps) => {
     typeof field.value === "string" ? field.value : "",
   );
 
+  const [theme] = useTheme();
+  const isDark =
+    theme === "dark" ||
+    (theme === "system" &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const themedMdxProps = React.useMemo(
+    () => ({
+      ...mdxProps,
+      className: cn(mdxProps?.className, isDark && "mdxeditor-dark"),
+    }),
+    [mdxProps, isDark],
+  );
+
   // Sync external value changes (e.g. resetField, setValue) into the editor.
   React.useEffect(() => {
     if (!editorRef.current) return;
@@ -109,7 +126,7 @@ export const MdxInput = (props: MdxInputProps) => {
             editorRef={editorRef}
             initialMarkdown={initialMarkdownRef.current}
             readOnly={isReadOnly}
-            mdxProps={mdxProps}
+            mdxProps={themedMdxProps}
             onChange={field.onChange}
             onBlur={field.onBlur}
           />

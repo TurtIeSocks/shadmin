@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Empty } from "@/stories/mdx-editor/mdx-field.stories";
+import { Basic, Dark, Empty } from "@/stories/mdx-editor/mdx-field.stories";
 
 const getEditorElement = (container: HTMLElement) =>
   container.querySelector(".mdxeditor [contenteditable]");
@@ -27,5 +27,21 @@ describe("<MdxField />", () => {
     await expect
       .element(editor as HTMLElement)
       .toHaveTextContent("No content yet");
+  });
+
+  it("should apply mdxeditor-dark class when theme is dark", async () => {
+    const screen = render(<Dark />);
+    await new Promise((r) => setTimeout(r, 100));
+    const editor = screen.container.querySelector(".mdxeditor");
+    expect(editor).not.toBeNull();
+    expect(editor?.classList.contains("mdxeditor-dark")).toBe(true);
+  });
+
+  it("should not apply mdxeditor-dark class when theme is light", async () => {
+    const screen = render(<Basic />);
+    await new Promise((r) => setTimeout(r, 100));
+    const editor = screen.container.querySelector(".mdxeditor");
+    expect(editor).not.toBeNull();
+    expect(editor?.classList.contains("mdxeditor-dark")).toBe(false);
   });
 });

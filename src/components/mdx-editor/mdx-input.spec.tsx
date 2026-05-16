@@ -82,4 +82,20 @@ describe("<MdxInput />", () => {
       .element(editor as HTMLElement)
       .toHaveTextContent("Value changed externally.");
   });
+
+  it("should apply mdxeditor-dark class when theme is dark", async () => {
+    const screen = render(<Basic theme="dark" />);
+    await new Promise((r) => setTimeout(r, 100));
+    const editor = screen.container.querySelector(".mdxeditor");
+    expect(editor).not.toBeNull();
+    expect(editor?.classList.contains("mdxeditor-dark")).toBe(true);
+  });
+
+  it("should not apply mdxeditor-dark class when theme is light", async () => {
+    const screen = render(<Basic theme="light" />);
+    await new Promise((r) => setTimeout(r, 100));
+    const editor = screen.container.querySelector(".mdxeditor");
+    expect(editor).not.toBeNull();
+    expect(editor?.classList.contains("mdxeditor-dark")).toBe(false);
+  });
 });

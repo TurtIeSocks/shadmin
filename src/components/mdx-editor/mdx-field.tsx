@@ -6,9 +6,12 @@ import {
 } from "@mdxeditor/editor";
 import { useFieldValue, useTranslate } from "ra-core";
 
+import { useTheme } from "@/components/admin/use-theme";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
+import { cn } from "@/lib/utils";
 import { defaultFieldPlugins } from "./default-plugins";
+import "./mdx-editor-dark.css";
 
 export interface MdxFieldProps<RecordType extends UnknownRecord = UnknownRecord>
   extends
@@ -46,11 +49,19 @@ export const MdxField = <RecordType extends UnknownRecord = UnknownRecord>(
     source,
     record,
     plugins = defaultFieldPlugins,
+    className,
     ...rest
   } = props;
   const ref = React.useRef<MDXEditorMethods>(null);
   const translate = useTranslate();
   const value = useFieldValue({ source, record });
+
+  const [theme] = useTheme();
+  const isDark =
+    theme === "dark" ||
+    (theme === "system" &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   const fallback = empty ?? emptyText;
   const markdown: string =
@@ -81,6 +92,7 @@ export const MdxField = <RecordType extends UnknownRecord = UnknownRecord>(
       plugins={plugins}
       markdown={markdown}
       {...rest}
+      className={cn(className, isDark && "mdxeditor-dark")}
     />
   );
 };
