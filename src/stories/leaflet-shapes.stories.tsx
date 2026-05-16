@@ -15,6 +15,7 @@ import {
   GeometryCollectionInput,
   BBoxField,
   BBoxInput,
+  GeoJsonField,
 } from "@/components/leaflet";
 import { StoryAdmin } from "./_test-helpers";
 
@@ -156,5 +157,23 @@ export const BBoxFieldBasic = () => (
 export const BBoxInputBasic = () => (
   <StoryAdmin mode="form" record={{ bb: null }}>
     <BBoxInput source="bb" label="Area of interest" defaultCenter={[48.85, 2.35]} />
+  </StoryAdmin>
+);
+
+export const GeoJsonFieldPoint = () => (
+  <StoryAdmin record={{ id: 1, geom: point }}>
+    <GeoJsonField source="geom" />
+  </StoryAdmin>
+);
+
+export const GeoJsonFieldPolygon = () => (
+  <StoryAdmin record={{ id: 1, geom: polygon }}>
+    <GeoJsonField source="geom" />
+  </StoryAdmin>
+);
+
+export const GeoJsonFieldEmpty = () => (
+  <StoryAdmin record={{ id: 1, geom: null }}>
+    <GeoJsonField source="geom" />
   </StoryAdmin>
 );

@@ -23,3 +23,4 @@ export * from "./shapes/geometry-collection-field";
 export * from "./shapes/geometry-collection-input";
 export * from "./shapes/bbox-field";
 export * from "./shapes/bbox-input";
+export * from "./geojson-field";
