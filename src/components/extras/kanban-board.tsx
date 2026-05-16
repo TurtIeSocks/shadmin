@@ -379,7 +379,7 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
           );
         })}
       </div>
-      <DragOverlay>
+      <DragOverlay dropAnimation={null}>
         {activeRecord ? (
           <div className="rounded-md border bg-background p-3 shadow-lg opacity-90 ring-2 ring-primary">
             <div className="text-sm font-medium">
