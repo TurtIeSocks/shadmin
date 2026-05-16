@@ -17,6 +17,7 @@ export * from "./boolean-field";
 export * from "./boolean-input";
 export * from "./bulk-actions-toolbar";
 export * from "./bulk-delete-button";
+export * from "./bulk-edit-drawer";
 export * from "./bulk-export-button";
 export * from "./breadcrumb";
 export * from "./bulk-update-button";
