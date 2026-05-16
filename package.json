@@ -56,7 +56,6 @@
     "date-fns": "^4.1.0",
     "diacritic": "^0.0.2",
     "dompurify": "^3.4.2",
-    "echarts": "^5.6.0",
     "embla-carousel-react": "^8.6.0",
     "html-react-parser": "^6.1.0",
     "inflection": "^3.0.2",

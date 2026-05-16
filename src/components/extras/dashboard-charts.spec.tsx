@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { DollarSignIcon } from "lucide-react";
 import { Basic, Loading } from "@/stories/extras/dashboard-charts.stories";
@@ -104,6 +104,50 @@ describe("<TrendChart>", () => {
 
     const svg = container.querySelector("svg");
     expect(svg).toBeTruthy();
+  });
+});
+
+describe("TrendChart extended API", () => {
+  const data = [
+    { x: 1, y: 10 },
+    { x: 2, y: 20 },
+  ];
+
+  it("renders gradient defs when area=true", async () => {
+    const { container } = render(
+      <div style={{ width: 400, height: 250 }}>
+        <TrendChart data={data} xField="x" yField="y" area bare />
+      </div>,
+    );
+    await new Promise((r) => setTimeout(r, 100));
+    const gradient = container.querySelector("linearGradient");
+    expect(gradient).not.toBeNull();
+  });
+
+  it("applies xTickFormatter", async () => {
+    const xTickFormatter = vi.fn((v: unknown) => `T${v}`);
+    render(
+      <div style={{ width: 600, height: 300 }}>
+        <TrendChart
+          data={data}
+          xField="x"
+          yField="y"
+          xTickFormatter={xTickFormatter}
+          bare
+        />
+      </div>,
+    );
+    await new Promise((r) => setTimeout(r, 200));
+    expect(xTickFormatter).toHaveBeenCalled();
+  });
+
+  it("skips Card wrapper when bare=true", async () => {
+    const { container } = render(
+      <div style={{ width: 400, height: 250 }}>
+        <TrendChart data={data} xField="x" yField="y" bare />
+      </div>,
+    );
+    expect(container.querySelector('[data-slot="trend-chart"]')).toBeNull();
   });
 });
 
