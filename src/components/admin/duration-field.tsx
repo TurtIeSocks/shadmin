@@ -7,6 +7,7 @@ import {
 import { formatDuration } from "date-fns";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
+import { compactDuration, parseIsoDuration } from "./duration-utils";
 
 /**
  * Displays an ISO-8601 duration string as a compact ("2h 30m") or relative
@@ -48,7 +49,7 @@ export const DurationField = <RecordType extends UnknownRecord = UnknownRecord>(
   const text =
     displayFormat === "relative"
       ? formatDuration(parsed)
-      : compactFormat(parsed);
+      : compactDuration(parsed);
 
   return (
     <span {...sanitizeFieldRestProps(rest)} className={className}>
@@ -56,40 +57,6 @@ export const DurationField = <RecordType extends UnknownRecord = UnknownRecord>(
     </span>
   );
 };
-
-const ISO_RE =
-  /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/;
-
-export function parseIsoDuration(s: string): null | {
-  days?: number;
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
-} {
-  const m = s.match(ISO_RE);
-  if (!m) return null;
-  const [, d, h, mn, sc] = m;
-  const out: Record<string, number> = {};
-  if (d) out.days = +d;
-  if (h) out.hours = +h;
-  if (mn) out.minutes = +mn;
-  if (sc) out.seconds = +sc;
-  return out as never;
-}
-
-function compactFormat(p: {
-  days?: number;
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
-}): string {
-  const parts: string[] = [];
-  if (p.days) parts.push(`${p.days}d`);
-  if (p.hours) parts.push(`${p.hours}h`);
-  if (p.minutes) parts.push(`${p.minutes}m`);
-  if (p.seconds) parts.push(`${p.seconds}s`);
-  return parts.join(" ") || "0m";
-}
 
 export interface DurationFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,

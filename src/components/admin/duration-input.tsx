@@ -5,7 +5,7 @@ import { FieldTitle, useInput, useResourceContext } from "ra-core";
 import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
-import { parseIsoDuration } from "./duration-field";
+import { parseIsoDuration } from "./duration-utils";
 import { cn } from "@/lib/utils";
 
 type Unit = "d" | "h" | "m" | "s";
