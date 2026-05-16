@@ -2,7 +2,7 @@
 title: "OsmFeatureAdd"
 ---
 
-Form button that unions OSM features matching one or more typed presets (`water`, `buildings`, `forest`, `roads`) onto the polygon stored at a form field. Useful for extending a coverage region to include neighboring forest patches, lakes, or other features that the user wants part of the final area.
+Form button that unions OSM features matching one or more typed presets (`water`, `buildings`, `forest`, `roads`) and/or raw OSM tags (e.g. `leisure=park`) onto the polygon stored at a form field. Useful for extending a coverage region to include neighboring forest patches, lakes, or other features that the user wants part of the final area.
 
 ## Usage
 
@@ -15,20 +15,43 @@ import { OsmFeatureAdd, PolygonInput } from "@/components/leaflet";
 </SimpleForm>;
 ```
 
-On click, fetches OSM features matching the configured presets within the current bbox via Overpass and unions them with the form value. Shows a notification with the added area in km². Line features (e.g. roads) are buffered to polygons before the set operation when the preset specifies `bufferLinesMeters`.
+For finer-grained filtering, pass raw OSM tags via the `tags` prop:
+
+```tsx
+<OsmFeatureAdd
+  source="area"
+  tags={["leisure=park", "leisure=nature_reserve"]}
+  label="Add parks + reserves"
+/>
+```
+
+Presets and tags can be combined in the same call.
+
+On click, fetches OSM features matching the configured sources within the current bbox via Overpass and unions them with the form value. Shows a notification with the added area in km². Line features (e.g. roads) are buffered to polygons before the set operation when the preset specifies `bufferLinesMeters`. Raw-tag line features are not auto-buffered.
 
 ## Props
 
-| Prop       | Required | Type                                | Default                  | Description                                                            |
-| ---------- | -------- | ----------------------------------- | ------------------------ | ---------------------------------------------------------------------- |
-| `source`   | Required | `string`                            | -                        | RHF field holding a `Polygon` or `MultiPolygon`.                       |
-| `presets`  | Required | `ReadonlyArray<OsmPresetName>`      | -                        | Typed OSM presets to union in (e.g. `["forest"]`).                     |
-| `label`    | Optional | `string`                            | `"Add OSM features"`     | Button label.                                                          |
-| `endpoint` | Optional | `string`                            | Overpass public endpoint | Override the Overpass endpoint URL.                                    |
+| Prop       | Required             | Type                                | Default                  | Description                                                            |
+| ---------- | -------------------- | ----------------------------------- | ------------------------ | ---------------------------------------------------------------------- |
+| `source`   | Required             | `string`                            | -                        | RHF field holding a `Polygon` or `MultiPolygon`.                       |
+| `presets`  | Optional<sup>1</sup> | `ReadonlyArray<OsmPresetName>`      | -                        | Typed OSM presets to union in (e.g. `["forest"]`).                     |
+| `tags`     | Optional<sup>1</sup> | `ReadonlyArray<OsmTagInput>`        | -                        | Raw OSM tags in `"key=value"` or `"key=*"` form.                       |
+| `label`    | Optional             | `string`                            | `"Add OSM features"`     | Button label.                                                          |
+| `endpoint` | Optional             | `string`                            | Overpass public endpoint | Override the Overpass endpoint URL.                                    |
+
+<sup>1</sup> At least one of `presets` or `tags` must be non-empty. If both are empty, the button click is a no-op with a warning notification.
 
 ### `presets`
 
 See [`OsmFeatureSubtract`](./OsmFeatureSubtract) for the full preset table.
+
+### `tags`
+
+A `ReadonlyArray<OsmTagInput>` of raw OSM tags in `"key=value"` form. Use `*` as the value for "any value of this key", e.g. `"building=*"`. `OsmTagInput` is `KnownOsmTag | (string & {})` — autocomplete for ~350 well-known tags from the [OSM Map Features wiki](https://wiki.openstreetmap.org/wiki/Map_features) plus an escape hatch for any other string.
+
+```tsx
+<OsmFeatureAdd source="area" tags={["leisure=park"]} />
+```
 
 ### `source`
 

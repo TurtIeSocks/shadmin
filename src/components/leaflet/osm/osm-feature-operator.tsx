@@ -9,13 +9,15 @@ import { Button } from "@/components/ui/button";
 
 import { useOsmFeatures } from "./use-osm-features";
 import { type OsmPresetName } from "./osm-presets";
+import type { OsmTagInput } from "./osm-tag-catalog";
 import { bboxOf, subtract, unionAll, areaM2 } from "./geometry-ops";
 
 export type OsmFeatureMode = "subtract" | "add";
 
 export interface OsmFeatureOperatorProps {
   source: string;
-  presets: ReadonlyArray<OsmPresetName>;
+  presets?: ReadonlyArray<OsmPresetName>;
+  tags?: ReadonlyArray<OsmTagInput>;
   mode: OsmFeatureMode;
   label?: string;
   icon?: React.ComponentType<{ className?: string }>;
@@ -25,6 +27,7 @@ export interface OsmFeatureOperatorProps {
 export const OsmFeatureOperator = ({
   source,
   presets,
+  tags,
   mode,
   label,
   icon: Icon,
@@ -38,9 +41,15 @@ export const OsmFeatureOperator = ({
     | GeoJSON.MultiPolygon
     | null;
   const [bbox, setBbox] = useState<GeoJSON.BBox | null>(null);
-  const osm = useOsmFeatures(bbox, presets, { endpoint });
+  const osm = useOsmFeatures(bbox, { presets, tags }, { endpoint });
+
+  const hasSources = (presets?.length ?? 0) + (tags?.length ?? 0) > 0;
 
   const handleClick = () => {
+    if (!hasSources) {
+      notify("No OSM presets or tags configured", { type: "warning" });
+      return;
+    }
     if (!value) {
       notify("No polygon to operate on", { type: "warning" });
       return;

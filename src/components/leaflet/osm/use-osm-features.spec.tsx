@@ -17,15 +17,31 @@ describe("useOsmFeatures", () => {
   it("is disabled when bbox is null", () => {
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);
-    const { result } = renderHook(() => useOsmFeatures(null, ["water"]), { wrapper });
+    const { result } = renderHook(
+      () => useOsmFeatures(null, { presets: ["water"] }),
+      { wrapper },
+    );
     expect(result.current.data).toBeNull();
     expect(fetchSpy).not.toHaveBeenCalled();
   });
 
-  it("is disabled when presets is empty", () => {
+  it("is disabled when both presets and tags are empty", () => {
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);
-    const { result } = renderHook(() => useOsmFeatures(PARIS_BBOX, []), { wrapper });
+    const { result } = renderHook(
+      () => useOsmFeatures(PARIS_BBOX, { presets: [], tags: [] }),
+      { wrapper },
+    );
+    expect(result.current.data).toBeNull();
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it("is disabled when the sources object is empty", () => {
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+    const { result } = renderHook(() => useOsmFeatures(PARIS_BBOX, {}), {
+      wrapper,
+    });
     expect(result.current.data).toBeNull();
     expect(fetchSpy).not.toHaveBeenCalled();
   });
@@ -54,7 +70,7 @@ describe("useOsmFeatures", () => {
     });
     vi.stubGlobal("fetch", fetchSpy);
     const { result } = renderHook(
-      () => useOsmFeatures(PARIS_BBOX, ["water"]),
+      () => useOsmFeatures(PARIS_BBOX, { presets: ["water"] }),
       { wrapper },
     );
     await vi.waitFor(() => expect(result.current.data).not.toBeNull());
@@ -94,7 +110,7 @@ describe("useOsmFeatures", () => {
     });
     vi.stubGlobal("fetch", fetchSpy);
     const { result } = renderHook(
-      () => useOsmFeatures(PARIS_BBOX, ["roads"]),
+      () => useOsmFeatures(PARIS_BBOX, { presets: ["roads"] }),
       { wrapper },
     );
     await vi.waitFor(() => expect(result.current.data).not.toBeNull());
@@ -103,5 +119,40 @@ describe("useOsmFeatures", () => {
     expect(["Polygon", "MultiPolygon"]).toContain(
       result.current.data?.features[0].geometry.type,
     );
+  });
+
+  it("fires an Overpass query for raw tags and parses polygons", async () => {
+    const fetchSpy = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      statusText: "OK",
+      json: async () => ({
+        elements: [
+          {
+            type: "way",
+            id: 7,
+            nodes: [1, 2, 3, 1],
+            tags: { leisure: "park" },
+            geometry: [
+              { lat: 0, lon: 0 },
+              { lat: 1, lon: 0 },
+              { lat: 1, lon: 1 },
+              { lat: 0, lon: 0 },
+            ],
+          },
+        ],
+      }),
+    });
+    vi.stubGlobal("fetch", fetchSpy);
+    const { result } = renderHook(
+      () => useOsmFeatures(PARIS_BBOX, { tags: ["leisure=park"] }),
+      { wrapper },
+    );
+    await vi.waitFor(() => expect(result.current.data).not.toBeNull());
+    expect(fetchSpy).toHaveBeenCalledOnce();
+    const [, init] = fetchSpy.mock.calls[0] as [string, RequestInit];
+    const body = decodeURIComponent(String(init.body));
+    expect(body).toContain('"leisure"="park"');
+    expect(result.current.data?.features.length).toBeGreaterThan(0);
   });
 });

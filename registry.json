@@ -1229,6 +1229,7 @@
         { "path": "src/components/leaflet/osm/use-overpass.ts", "type": "registry:component" },
         { "path": "src/components/leaflet/osm/geometry-ops.ts", "type": "registry:component" },
         { "path": "src/components/leaflet/osm/osm-presets.ts", "type": "registry:component" },
+        { "path": "src/components/leaflet/osm/osm-tag-catalog.ts", "type": "registry:component" },
         { "path": "src/components/leaflet/osm/use-osm-features.ts", "type": "registry:component" },
         { "path": "src/components/leaflet/osm/osm-feature-operator.tsx", "type": "registry:component" },
         { "path": "src/components/leaflet/osm/osm-feature-subtract.tsx", "type": "registry:component" },

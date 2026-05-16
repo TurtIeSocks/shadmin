@@ -9,8 +9,9 @@ import {
   OSM_PRESETS,
   type OsmPresetDef,
   type OsmPresetName,
-  buildOverpassQuery,
+  buildOverpassQueryFromSources,
 } from "./osm-presets";
+import type { OsmTagInput } from "./osm-tag-catalog";
 
 export interface UseOsmFeaturesOptions {
   endpoint?: string;
@@ -18,12 +19,21 @@ export interface UseOsmFeaturesOptions {
   staleTime?: number;
 }
 
+export interface OsmFeatureSources {
+  presets?: ReadonlyArray<OsmPresetName>;
+  tags?: ReadonlyArray<OsmTagInput>;
+}
+
 export const useOsmFeatures = (
   bbox: GeoJSON.BBox | null,
-  presets: ReadonlyArray<OsmPresetName>,
+  sources: OsmFeatureSources,
   opts: UseOsmFeaturesOptions = {},
 ) => {
-  const query = bbox && presets.length ? buildOverpassQuery(presets, bbox) : null;
+  const presets = sources.presets ?? [];
+  const tags = sources.tags ?? [];
+  const hasSources = presets.length + tags.length > 0;
+  const query =
+    bbox && hasSources ? buildOverpassQueryFromSources(sources, bbox) : null;
   const result = useOverpass(query, opts);
 
   const featureCollection = useMemo<GeoJSON.FeatureCollection<GeoJSON.Polygon | GeoJSON.MultiPolygon> | null>(() => {
@@ -36,7 +46,8 @@ export const useOsmFeatures = (
         polygons.push(feat as GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>);
         continue;
       }
-      // Buffer line features if a preset asked for it
+      // Buffer line features only when a preset declares a bufferLinesMeters.
+      // Raw-tag features do not get auto-buffered — presets are the way to express buffering.
       if (feat.geometry.type === "LineString" || feat.geometry.type === "MultiLineString") {
         const presetForFeature = findPresetForFeature(feat, presets);
         const bufferMeters = presetForFeature?.bufferLinesMeters;

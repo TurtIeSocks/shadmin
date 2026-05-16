@@ -71,3 +71,52 @@ export const AddForests = () => (
     <OsmFeatureAdd source="area" presets={["forest"]} label="Add forest patches" />
   </StoryAdmin>
 );
+
+export const SubtractByTags = () => (
+  <StoryAdmin mode="form" record={{ area: parisPolygon }}>
+    <PolygonInput
+      source="area"
+      label="Service area (tag-driven subtract)"
+      defaultCenter={[48.87, 2.35]}
+      height={500}
+    />
+    <OsmFeatureSubtract
+      source="area"
+      tags={["natural=water", "building=*"]}
+      label="Subtract water + buildings"
+    />
+  </StoryAdmin>
+);
+
+export const AddByTags = () => (
+  <StoryAdmin mode="form" record={{ area: parisPolygon }}>
+    <PolygonInput
+      source="area"
+      label="Coverage (tag-driven add)"
+      defaultCenter={[48.87, 2.35]}
+      height={500}
+    />
+    <OsmFeatureAdd
+      source="area"
+      tags={["leisure=park", "leisure=nature_reserve"]}
+      label="Add parks + reserves"
+    />
+  </StoryAdmin>
+);
+
+export const PresetsAndTagsTogether = () => (
+  <StoryAdmin mode="form" record={{ area: parisPolygon }}>
+    <PolygonInput
+      source="area"
+      label="Hybrid filter"
+      defaultCenter={[48.87, 2.35]}
+      height={500}
+    />
+    <OsmFeatureSubtract
+      source="area"
+      presets={["water"]}
+      tags={["amenity=parking"]}
+      label="Subtract water (preset) + parking (tag)"
+    />
+  </StoryAdmin>
+);

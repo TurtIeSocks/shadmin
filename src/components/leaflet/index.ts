@@ -26,6 +26,7 @@ export * from "./shapes/bbox-input";
 export * from "./geojson-field";
 export * from "./geojson-input";
 export * from "./osm/osm-presets";
+export * from "./osm/osm-tag-catalog";
 export * from "./osm/use-osm-features";
 export * from "./osm/osm-feature-subtract";
 export * from "./osm/osm-feature-add";
