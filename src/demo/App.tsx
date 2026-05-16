@@ -11,6 +11,7 @@ import { reviews } from "./reviews";
 import { places } from "./map";
 import { planning } from "./planning";
 import { reports } from "./analytics";
+import { documents } from "./workspace";
 import { Dashboard } from "./dashboard/Dashboard";
 import { InspectorLayout } from "./InspectorLayout";
 import { componentGallery } from "./component-gallery";
@@ -33,6 +34,7 @@ function App() {
       <Resource {...places} group="Map" />
       <Resource {...planning} group="Planning" />
       <Resource {...reports} group="Analytics" />
+      <Resource {...documents} group="Workspace" />
       <Resource {...componentGallery} />
     </Admin>
   );
