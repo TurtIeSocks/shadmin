@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { useMap } from "react-leaflet";
-import L from "leaflet";
+import type L from "leaflet";
+import type { PM } from "leaflet";
 
 import type { ShapeKind } from "../types";
 import { geometryToLayer, layerToGeometry } from "./geoman-shape-mapping";
@@ -32,11 +32,12 @@ export interface UseGeomanRHFOptions {
 
 export interface UseGeomanRHFReturn {
   featureGroupRef: React.MutableRefObject<L.FeatureGroup | null>;
-  geomanProps: {
-    onCreate: (layer: L.Layer) => void;
-    onUpdate: (layer: L.Layer) => void;
-    onRemove: (layer: L.Layer) => void;
-    onCut: (newLayer: L.Layer, originalLayer: L.Layer) => void;
+  geomanControlsProps: {
+    onCreate: PM.CreateEventHandler;
+    onUpdate: PM.UpdateEventHandler;
+    onLayerRemove: PM.RemoveEventHandler;
+    onMapCut: PM.CutEventHandler;
+    onLayerCut: PM.CutEventHandler;
   };
 }
 
@@ -60,17 +61,13 @@ export const useGeomanRHF = ({
   // only rebuilds the layer when the form value changes from outside the hook.
   const lastWrittenValue = useRef<unknown>(undefined);
 
-  // useMap is safe because this hook is only called inside a MapContainer subtree.
-  const map = useMap();
-
-  // Initialize the feature group + hydrate from form value. Runs on first
-  // mount and on every subsequent external change to `value` (i.e. any update
-  // not caused by our own `persist()` write).
+  // Hydration / re-hydration effect: runs when the form value differs from
+  // what we last wrote. The featureGroupRef is populated by the caller via
+  // <FeatureGroup ref={...}>; this effect polls for it on first mount and
+  // rebuilds layers on every external change to `value` thereafter.
   useEffect(() => {
-    if (!featureGroupRef.current) {
-      featureGroupRef.current = L.featureGroup().addTo(map);
-    }
     const group = featureGroupRef.current;
+    if (!group) return;
     const buildLayer = () => {
       if (value == null) return null;
       const geom = valueParse
@@ -98,7 +95,7 @@ export const useGeomanRHF = ({
     const layer = buildLayer();
     if (layer) group.addLayer(layer);
     lastWrittenValue.current = value;
-  }, [map, value, pathOptions, markerIcon, valueParse]);
+  }, [value, pathOptions, markerIcon, valueParse]);
 
   const persist = useCallback(() => {
     const group = featureGroupRef.current;
@@ -140,43 +137,45 @@ export const useGeomanRHF = ({
     write(geom);
   }, [collection, multi, shape, source, form, validate, valueTransform]);
 
-  const handleCreate = useCallback(
-    (layer: L.Layer) => {
+  const handleCreate = useCallback<PM.CreateEventHandler>(
+    (e) => {
       const group = featureGroupRef.current;
       if (!group) return;
-      // Remove from the map (Geoman adds it there) and move into our group.
-      map.removeLayer(layer);
+      // The drawn layer is already added to the FeatureGroup by the package
+      // (via globalOptions.layerGroup). For single-feature shapes, remove all
+      // OTHER layers so the new draw replaces the previous geometry.
       if (!multi && !collection) {
-        // Replace existing layer.
-        group.clearLayers();
+        const newLayer = e.layer as L.Layer;
+        group.eachLayer((l) => {
+          if (l !== newLayer) group.removeLayer(l);
+        });
       }
-      group.addLayer(layer);
       persist();
     },
-    [collection, map, multi, persist],
+    [collection, multi, persist],
   );
 
-  const handleUpdate = useCallback(() => persist(), [persist]);
-  const handleRemove = useCallback(() => persist(), [persist]);
-  const handleCut = useCallback(
-    (newLayer: L.Layer, originalLayer: L.Layer) => {
-      const group = featureGroupRef.current;
-      if (!group) return;
-      map.removeLayer(newLayer);
-      group.removeLayer(originalLayer);
-      group.addLayer(newLayer);
-      persist();
-    },
-    [map, persist],
+  const handleUpdate = useCallback<PM.UpdateEventHandler>(() => persist(), [persist]);
+  const handleLayerRemove = useCallback<PM.RemoveEventHandler>(
+    () => persist(),
+    [persist],
   );
+  // The package separates `pm:cut` on the map (onMapCut) from `pm:cut` on the
+  // source layer (onLayerCut). The map-level event fires once per cut operation
+  // and is the one we use to persist. The layer-level event would fire again
+  // for the cut layer; ignoring it avoids the dedup hack the in-house
+  // GeomanEvents needed.
+  const handleMapCut = useCallback<PM.CutEventHandler>(() => persist(), [persist]);
+  const handleLayerCut = useCallback<PM.CutEventHandler>(() => undefined, []);
 
   return {
     featureGroupRef,
-    geomanProps: {
+    geomanControlsProps: {
       onCreate: handleCreate,
       onUpdate: handleUpdate,
-      onRemove: handleRemove,
-      onCut: handleCut,
+      onLayerRemove: handleLayerRemove,
+      onMapCut: handleMapCut,
+      onLayerCut: handleLayerCut,
     },
   };
 };

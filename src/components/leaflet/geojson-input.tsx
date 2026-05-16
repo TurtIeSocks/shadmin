@@ -1,10 +1,12 @@
 "use client";
 
 import type * as L from "leaflet";
+import type { PM } from "leaflet";
+import { FeatureGroup } from "react-leaflet";
+import { GeomanControls } from "react-leaflet-geoman-v2";
+import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
 
 import { BaseMap } from "./shared-map";
-import { GeomanControl } from "./geoman/geoman-control";
-import { GeomanEvents } from "./geoman/geoman-events";
 import { useGeomanRHF } from "./geoman/use-geoman-rhf";
 import type { BaseInputProps, GeomanShape, ShapeKind } from "./types";
 
@@ -105,27 +107,40 @@ const GeoJsonInner = ({
   // Sentinel shape: combineMulti falls through to "keep most recent" when
   // shape isn't a Multi* type. When `collection` is true, the hook writes
   // a GeometryCollection regardless of shape.
-  const { geomanProps } = useGeomanRHF({
+  const { featureGroupRef, geomanControlsProps } = useGeomanRHF({
     source,
     shape: "GeometryCollection",
     multi: true,
     collection,
     pathOptions,
   });
+  const toolbarOptions: PM.ToolbarOptions = {
+    position: "topleft",
+    drawMarker: shapes.includes("Marker"),
+    drawCircleMarker: shapes.includes("CircleMarker"),
+    drawPolyline: shapes.includes("Line"),
+    drawRectangle: shapes.includes("Rectangle"),
+    drawPolygon: shapes.includes("Polygon"),
+    drawCircle: shapes.includes("Circle"),
+    drawText: shapes.includes("Text"),
+    editMode: true,
+    dragMode: true,
+    cutPolygon: shapes.includes("Polygon"),
+    removalMode: true,
+    rotateMode: false,
+  };
+  const globalOptions: PM.GlobalOptions = {
+    snappable,
+    snapDistance,
+    pathOptions,
+  };
   return (
-    <>
-      <GeomanControl
-        position="topleft"
-        shapes={shapes}
-        edit
-        drag
-        remove
-        cut={shapes.includes("Polygon")}
-        snappable={snappable}
-        snapDistance={snapDistance}
-        pathOptions={pathOptions}
+    <FeatureGroup ref={featureGroupRef}>
+      <GeomanControls
+        options={toolbarOptions}
+        globalOptions={globalOptions}
+        {...geomanControlsProps}
       />
-      <GeomanEvents {...geomanProps} />
-    </>
+    </FeatureGroup>
   );
 };

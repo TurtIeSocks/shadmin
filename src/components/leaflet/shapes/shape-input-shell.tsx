@@ -1,8 +1,11 @@
 "use client";
 
+import { FeatureGroup } from "react-leaflet";
+import { GeomanControls } from "react-leaflet-geoman-v2";
+import type { PM } from "leaflet";
+import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
+
 import { BaseMap } from "../shared-map";
-import { GeomanControl } from "../geoman/geoman-control";
-import { GeomanEvents } from "../geoman/geoman-events";
 import { useGeomanRHF } from "../geoman/use-geoman-rhf";
 import { geojsonTypeToGeomanShape } from "../geoman/geoman-shape-mapping";
 import type { BaseInputProps, GeomanShape, ShapeKind } from "../types";
@@ -128,9 +131,7 @@ const ShellInner = ({
   valueTransform,
   valueParse,
 }: ShellInnerProps) => {
-  const geomanShape = geojsonTypeToGeomanShape(shape);
-  const shapes = geomanShapes ?? [geomanShape];
-  const { geomanProps } = useGeomanRHF({
+  const { featureGroupRef, geomanControlsProps } = useGeomanRHF({
     source,
     shape,
     multi,
@@ -140,21 +141,35 @@ const ShellInner = ({
     valueTransform,
     valueParse,
   });
+  const drawShapes = geomanShapes ?? [geojsonTypeToGeomanShape(shape)];
+  const toolbarOptions: PM.ToolbarOptions = {
+    position: "topleft",
+    drawMarker: drawShapes.includes("Marker"),
+    drawCircleMarker: drawShapes.includes("CircleMarker"),
+    drawPolyline: drawShapes.includes("Line"),
+    drawRectangle: drawShapes.includes("Rectangle"),
+    drawPolygon: drawShapes.includes("Polygon"),
+    drawCircle: drawShapes.includes("Circle"),
+    drawText: drawShapes.includes("Text"),
+    editMode: true,
+    dragMode: true,
+    cutPolygon: drawShapes.some((s) => s === "Polygon" || s === "Rectangle" || s === "Circle"),
+    removalMode: true,
+    rotateMode: false,
+  };
+  const globalOptions: PM.GlobalOptions = {
+    snappable,
+    snapDistance,
+    pathOptions,
+  };
   if (disabled) return null;
   return (
-    <>
-      <GeomanControl
-        position="topleft"
-        shapes={shapes}
-        edit
-        drag
-        remove
-        cut={shapes.some((s) => s === "Polygon" || s === "Rectangle" || s === "Circle")}
-        snappable={snappable}
-        snapDistance={snapDistance}
-        pathOptions={pathOptions}
+    <FeatureGroup ref={featureGroupRef}>
+      <GeomanControls
+        options={toolbarOptions}
+        globalOptions={globalOptions}
+        {...geomanControlsProps}
       />
-      <GeomanEvents {...geomanProps} />
-    </>
+    </FeatureGroup>
   );
 };

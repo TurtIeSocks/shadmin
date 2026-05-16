@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { useFormContext, useWatch } from "react-hook-form";
 import { render } from "vitest-browser-react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { FeatureGroup, MapContainer, TileLayer } from "react-leaflet";
+import { GeomanControls } from "react-leaflet-geoman-v2";
 import type L from "leaflet";
 
-import { GeomanControl, GeomanEvents, useGeomanRHF } from "@/components/leaflet";
+import { useGeomanRHF } from "@/components/leaflet";
 import { StoryAdmin } from "@/stories/_test-helpers";
 import { DEFAULT_TILE_URL } from "@/components/leaflet/shared";
 
@@ -19,7 +20,7 @@ interface MapBridgeProps {
 }
 
 const MapBridge = ({ box }: MapBridgeProps) => {
-  const { geomanProps, featureGroupRef } = useGeomanRHF({
+  const { geomanControlsProps, featureGroupRef } = useGeomanRHF({
     source: "geom",
     shape: "Point",
     multi: false,
@@ -28,8 +29,20 @@ const MapBridge = ({ box }: MapBridgeProps) => {
   return (
     <>
       <TileLayer url={DEFAULT_TILE_URL} />
-      <GeomanControl shapes={["Marker"]} />
-      <GeomanEvents {...geomanProps} />
+      <FeatureGroup ref={featureGroupRef}>
+        <GeomanControls
+          options={{
+            drawMarker: true,
+            drawCircleMarker: false,
+            drawPolyline: false,
+            drawRectangle: false,
+            drawPolygon: false,
+            drawCircle: false,
+            drawText: false,
+          }}
+          {...geomanControlsProps}
+        />
+      </FeatureGroup>
     </>
   );
 };
@@ -101,8 +114,8 @@ describe("useGeomanRHF", () => {
         <Harness box={box} />
       </StoryAdmin>,
     );
-    // Wait for the MapBridge to mount and the hydration effect to attach the
-    // feature group to the map. Layer count starts at 0 (record.geom is null).
+    // Wait for the MapBridge to mount and the FeatureGroup ref to attach.
+    // Layer count starts at 0 (record.geom is null).
     await expect
       .poll(() => box.ref?.current?.getLayers().length ?? -1)
       .toBe(0);

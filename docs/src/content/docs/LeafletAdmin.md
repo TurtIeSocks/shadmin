@@ -29,9 +29,7 @@ npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/leaflet-admin.json
 
 ### Drawing & editing primitives (Geoman)
 
-- [`<GeomanControl>`](./GeomanControl)
-- [`<GeomanEvents>`](./GeomanEvents)
-- [`useGeomanRHF`](./UseGeomanRHF)
+- [`useGeomanRHF`](./UseGeomanRHF) — bridges Geoman draw/edit events to a React Hook Form field. Compose with `<FeatureGroup>` + `<GeomanControls>` from [`react-leaflet-geoman-v2`](https://www.npmjs.com/package/react-leaflet-geoman-v2).
 
 ### OSM utilities
 
