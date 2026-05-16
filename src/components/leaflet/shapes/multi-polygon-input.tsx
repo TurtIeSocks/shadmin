@@ -2,7 +2,8 @@
 
 import { ShapeInputShell, type ShapeInputShellProps } from "./shape-input-shell";
 
-export interface MultiPolygonInputProps extends Omit<ShapeInputShellProps, "shape" | "multi"> {
+export interface MultiPolygonInputProps
+  extends Omit<ShapeInputShellProps, "shape" | "multi" | "geomanShapes"> {
   allowSelfIntersection?: boolean;
   minVertices?: number;
   maxVertices?: number;
@@ -13,4 +14,11 @@ export const MultiPolygonInput = ({
   minVertices: _minVertices,
   maxVertices: _maxVertices,
   ...rest
-}: MultiPolygonInputProps) => <ShapeInputShell {...rest} shape="MultiPolygon" multi={true} />;
+}: MultiPolygonInputProps) => (
+  <ShapeInputShell
+    {...rest}
+    shape="MultiPolygon"
+    multi={true}
+    geomanShapes={["Polygon", "Rectangle", "Circle"]}
+  />
+);

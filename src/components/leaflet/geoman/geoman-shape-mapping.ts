@@ -14,6 +14,14 @@ const TYPE_TO_GEOMAN: Record<ShapeKind, GeomanShape> = {
 export const geojsonTypeToGeomanShape = (t: ShapeKind): GeomanShape => TYPE_TO_GEOMAN[t];
 
 export const layerToGeometry = (layer: L.Layer): GeoJSON.Geometry | null => {
+  // L.Circle: approximate as a polygon ring (64 vertices around center).
+  // GeoJSON has no Circle type and the default `toGeoJSON()` for L.Circle
+  // returns a Point, which would lose the radius information.
+  if (layer instanceof L.Circle) {
+    const center = layer.getLatLng();
+    const radiusM = layer.getRadius();
+    return circleToPolygon(center.lat, center.lng, radiusM, 64);
+  }
   const gj = (layer as L.Layer & { toGeoJSON?: () => GeoJSON.Feature }).toGeoJSON?.();
   if (!gj) return null;
   if (gj.type === "Feature") return gj.geometry ?? null;
@@ -23,6 +31,29 @@ export const layerToGeometry = (layer: L.Layer): GeoJSON.Geometry | null => {
     return features[0].geometry;
   }
   return gj as unknown as GeoJSON.Geometry;
+};
+
+/**
+ * Build a closed Polygon ring approximating a geodesic circle. Uses an
+ * equirectangular projection at the circle's latitude — accurate enough for
+ * radii up to a few hundred km away from the poles.
+ */
+const circleToPolygon = (
+  lat: number,
+  lng: number,
+  radiusM: number,
+  steps: number,
+): GeoJSON.Polygon => {
+  const earthRadiusM = 6378137;
+  const dLat = (radiusM / earthRadiusM) * (180 / Math.PI);
+  const dLng = dLat / Math.cos((lat * Math.PI) / 180);
+  const ring: GeoJSON.Position[] = [];
+  for (let i = 0; i <= steps; i++) {
+    const angle = (i / steps) * 2 * Math.PI;
+    ring.push([lng + dLng * Math.cos(angle), lat + dLat * Math.sin(angle)]);
+  }
+  // Force-close: the last point already equals the first due to i = steps.
+  return { type: "Polygon", coordinates: [ring] };
 };
 
 export const geometryToLatLngs = (

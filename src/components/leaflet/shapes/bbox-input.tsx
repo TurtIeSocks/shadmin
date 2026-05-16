@@ -25,6 +25,7 @@ export const BBoxInput = ({
     {...rest}
     shape="Polygon"
     multi={false}
+    geomanShapes={["Rectangle"]}
     valueTransform={aspectRatio ? aspectLockedBBox(aspectRatio) : polygonToBBox}
     valueParse={bboxToPolygon}
   />

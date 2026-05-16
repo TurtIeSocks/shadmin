@@ -5,12 +5,18 @@ import { GeomanControl } from "../geoman/geoman-control";
 import { GeomanEvents } from "../geoman/geoman-events";
 import { useGeomanRHF } from "../geoman/use-geoman-rhf";
 import { geojsonTypeToGeomanShape } from "../geoman/geoman-shape-mapping";
-import type { BaseInputProps, ShapeKind } from "../types";
+import type { BaseInputProps, GeomanShape, ShapeKind } from "../types";
 
 export interface ShapeInputShellProps extends BaseInputProps {
   shape: ShapeKind;
   multi: boolean;
   collection?: boolean;
+  /**
+   * Override the toolbar draw buttons. When omitted, derived from `shape`.
+   * Use when a single GeoJSON output type (e.g. Polygon) can be produced by
+   * multiple draw modes (Polygon, Rectangle, Circle).
+   */
+  geomanShapes?: GeomanShape[];
   /**
    * Optional converter that transforms the drawn `GeoJSON.Geometry` into the
    * shape stored in the form value. Forwarded to `useGeomanRHF`.
@@ -29,6 +35,7 @@ type ShellInnerProps = Pick<
   | "shape"
   | "multi"
   | "collection"
+  | "geomanShapes"
   | "snappable"
   | "snapDistance"
   | "pathOptions"
@@ -44,6 +51,7 @@ export const ShapeInputShell = ({
   shape,
   multi,
   collection,
+  geomanShapes,
   zoom = 13,
   defaultCenter = [0, 0],
   height = 300,
@@ -91,6 +99,7 @@ export const ShapeInputShell = ({
           shape={shape}
           multi={multi}
           collection={collection}
+          geomanShapes={geomanShapes}
           snappable={snappable}
           snapDistance={snapDistance}
           pathOptions={pathOptions}
@@ -110,6 +119,7 @@ const ShellInner = ({
   shape,
   multi,
   collection,
+  geomanShapes,
   snappable,
   snapDistance,
   pathOptions,
@@ -119,6 +129,7 @@ const ShellInner = ({
   valueParse,
 }: ShellInnerProps) => {
   const geomanShape = geojsonTypeToGeomanShape(shape);
+  const shapes = geomanShapes ?? [geomanShape];
   const { geomanProps } = useGeomanRHF({
     source,
     shape,
@@ -134,11 +145,11 @@ const ShellInner = ({
     <>
       <GeomanControl
         position="topleft"
-        shapes={[geomanShape]}
+        shapes={shapes}
         edit
         drag
         remove
-        cut={geomanShape === "Polygon"}
+        cut={shapes.some((s) => s === "Polygon" || s === "Rectangle" || s === "Circle")}
         snappable={snappable}
         snapDistance={snapDistance}
         pathOptions={pathOptions}

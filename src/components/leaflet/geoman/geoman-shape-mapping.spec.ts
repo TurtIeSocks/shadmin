@@ -28,6 +28,22 @@ describe("layerToGeometry", () => {
     const g = layerToGeometry(p);
     expect(g).toMatchObject({ type: "Polygon" });
   });
+
+  it("converts an L.Circle to a Polygon ring approximation (64 segments + closing point)", () => {
+    const c = L.circle([48.85, 2.35], { radius: 1000 });
+    const g = layerToGeometry(c);
+    expect(g).not.toBeNull();
+    expect(g!.type).toBe("Polygon");
+    const poly = g as GeoJSON.Polygon;
+    expect(poly.coordinates).toHaveLength(1);
+    // 64 segments around the perimeter + one closing point that equals the
+    // first vertex.
+    expect(poly.coordinates[0]).toHaveLength(65);
+    const first = poly.coordinates[0][0];
+    const last = poly.coordinates[0][64];
+    expect(last[0]).toBeCloseTo(first[0], 10);
+    expect(last[1]).toBeCloseTo(first[1], 10);
+  });
 });
 
 describe("geometryToLatLngs", () => {
