@@ -10,6 +10,7 @@ import { subscriptionsSeed } from "./subscriptions";
 import { apiKeysSeed } from "./api-keys";
 import { webhooksSeed } from "./webhooks";
 import { scheduledJobsSeed } from "./scheduled-jobs";
+import { approvalsSeed } from "./approvals";
 
 const generated = generateData();
 
@@ -53,6 +54,7 @@ const data = {
   api_keys: apiKeysSeed,
   webhooks: webhooksSeed,
   scheduled_jobs: scheduledJobsSeed,
+  approvals: approvalsSeed,
 };
 
 export const dataProvider = fakeRestDataProvider(data, true, 500);

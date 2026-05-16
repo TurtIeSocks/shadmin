@@ -17,6 +17,7 @@ import { subscriptions } from "./subscriptions";
 import { apiKeys } from "./api-keys";
 import { webhooks } from "./webhooks";
 import { scheduledJobs } from "./scheduled-jobs";
+import { approvals } from "./approvals";
 import { Dashboard } from "./dashboard/Dashboard";
 import { InspectorLayout } from "./InspectorLayout";
 import { componentGallery } from "./component-gallery";
@@ -45,6 +46,7 @@ function App() {
       <Resource {...apiKeys} group="SaaS" />
       <Resource {...webhooks} group="SaaS" />
       <Resource {...scheduledJobs} group="Workflow" />
+      <Resource {...approvals} group="Workflow" />
       <Resource {...componentGallery} />
     </Admin>
   );
