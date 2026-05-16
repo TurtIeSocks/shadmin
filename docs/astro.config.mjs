@@ -12,6 +12,7 @@ import rehypeAstroRelativeMarkdownLinks from "astro-rehype-relative-markdown-lin
 import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { sidebar } from "./sidebar.config.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -62,142 +63,7 @@ export default defineConfig({
           content: `window.addEventListener('load', () => document.querySelector('.site-title').href = 'https://marmelab.com/shadcn-admin-kit/')`,
         },
       ],
-      sidebar: [
-        {
-          label: "Getting Started",
-          items: [
-            "install",
-            "quick-start-guide",
-            "guides-and-concepts",
-            "migrating-from-ra-ui-materialui",
-            "changelog",
-          ],
-        },
-        {
-          label: "Application configuration",
-          items: [
-            "admin",
-            "resource",
-            "customroutes",
-            "dataproviders",
-            "security",
-            "translation",
-          ],
-        },
-        {
-          label: "Page components",
-          items: ["list", "edit", "show", "create"],
-        },
-        {
-          label: "Data Display",
-          items: [
-            "datadisplay",
-            "arrayfield",
-            "badgefield",
-            "booleanfield",
-            "bulkactionstoolbar",
-            "columnsbutton",
-            "count",
-            "datatable",
-            "datefield",
-            "emailfield",
-            "exportbutton",
-            "filefield",
-            "filterbutton",
-            "filterlist",
-            "filterlistitem",
-            "filterlistsection",
-            "filterliveform",
-            "filterlivesearch",
-            "imagefield",
-            "listpagination",
-            "numberfield",
-            "recordfield",
-            "referencearrayfield",
-            "referencefield",
-            "referencemanycount",
-            "referencemanyfield",
-            enterpriseEntry("ReferenceManyToManyFieldBase"),
-            "selectfield",
-            "singlefieldlist",
-            "sortbutton",
-            "textfield",
-            "togglefilterbutton",
-            "translatablefields",
-            "urlfield",
-          ],
-        },
-        {
-          label: "Data Edition",
-          items: [
-            "dataedition",
-            "arrayinput",
-            "autocompletearrayinput",
-            "autocompleteinput",
-            enterpriseEntry("AutoPersistInStoreBase"),
-            "booleaninput",
-            "bulkdeletebutton",
-            "bulkexportbutton",
-            "cancelbutton",
-            "createbutton",
-            "dateinput",
-            "datetimeinput",
-            "deletebutton",
-            "editbutton",
-            "fileinput",
-            "numberinput",
-            "radiobuttongroupinput",
-            "referencearrayinput",
-            "referenceinput",
-            enterpriseEntry("ReferenceManyInputBase"),
-            enterpriseEntry("ReferenceManyToManyInputBase"),
-            enterpriseEntry("ReferenceOneInputBase"),
-            "richtextinput",
-            "savebutton",
-            "searchinput",
-            "selectinput",
-            "showbutton",
-            "simpleform",
-            "simpleformconfigurable",
-            "tabbedform",
-            "textarrayinput",
-            "textinput",
-            "translatableinputs",
-          ],
-        },
-        {
-          label: "UI & Layout",
-          items: [
-            "appsidebar",
-            "authcallback",
-            "autherror",
-            "authlayout",
-            "breadcrumb",
-            "confirm",
-            "error",
-            "inspector",
-            "layout",
-            "loading",
-            "localesmenubutton",
-            "loginform",
-            "loginpage",
-            "loginwithemail",
-            "notification",
-            "ready",
-            "refreshbutton",
-            "thememodetoggle",
-            "usermenu",
-          ],
-        },
-        {
-          label: "Misc",
-          items: [
-            enterpriseEntry("RealtimeFeatures", "Real-time"),
-            enterpriseEntry("SoftDeleteFeatures", "Soft Delete"),
-            "mcp",
-          ],
-        },
-      ],
+      sidebar,
     }),
     expressiveCode({
       plugins: [pluginFullscreen(), pluginCollapsibleSections()],
@@ -231,37 +97,3 @@ export default defineConfig({
     assets: "astro-assets",
   },
 });
-
-/**
- * @param {string} name
- * @param {string | undefined} label
- * @returns {any}
- */
-function enterpriseEntry(name, label = undefined) {
-  return {
-    link: `${name.toLowerCase()}/`,
-    label: label ?? name,
-    attrs: { class: "enterprise" },
-    badge: {
-      text: "React Admin Enterprise",
-      variant: "default",
-    },
-  };
-}
-
-/**
- * @param {string} name
- * @param {string | undefined} label
- * @returns {any}
- */
-function raCoreEntry(name, label = undefined) {
-  return {
-    link: `https://marmelab.com/ra-core/${name.toLowerCase()}/`,
-    label: label ?? name,
-    attrs: { class: "ra-core", target: "_blank", rel: "noreferrer" },
-    badge: {
-      text: "RA Core",
-      variant: "default",
-    },
-  };
-}

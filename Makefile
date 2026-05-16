@@ -64,7 +64,10 @@ typecheck: ## Run TypeScript type checking
 doc: ## launch doc web server
 	@cd docs && pnpm run dev
 
-build-doc: ## Build the doc website
+check-doc: ## Check the doc sidebar has no orphan pages
+	@cd docs && pnpm run check-sidebar
+
+build-doc: check-doc ## Build the doc website
 	rm -rf ./public/docs
 	pnpm run doc:build
 	mv ./docs/dist ./public/docs
