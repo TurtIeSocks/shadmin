@@ -1,4 +1,5 @@
 import { GeocodingInput } from "@/components/leaflet/geocoding/geocoding-input";
+import { ReverseGeocodeField } from "@/components/leaflet/geocoding/reverse-geocode-field";
 
 import { StoryAdmin } from "./_test-helpers";
 
@@ -12,5 +13,11 @@ export const GeocodingInputBasic = () => (
       lngSource="lng"
       placeholder="Type an address…"
     />
+  </StoryAdmin>
+);
+
+export const ReverseGeocodeFieldBasic = () => (
+  <StoryAdmin record={{ id: 1, lat: 48.85, lng: 2.35 }}>
+    <ReverseGeocodeField latSource="lat" lngSource="lng" />
   </StoryAdmin>
 );
