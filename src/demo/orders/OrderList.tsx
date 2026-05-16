@@ -10,6 +10,7 @@ import {
   ReferenceInput,
   AutocompleteInput,
 } from "@/components/admin";
+import { CurrencyField } from "@/components/extras/currency-field";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
@@ -137,10 +138,13 @@ const OrdersTable = ({ storeKey }: { storeKey: string }) => (
       label="resources.orders.fields.nb_items"
       className="hidden md:table-cell"
     />
-    <DataTable.NumberCol
+    <DataTable.Col
       source="total"
-      options={{ style: "currency", currency: "USD" }}
-    />
+      headerClassName="text-right"
+      cellClassName="text-right"
+    >
+      <CurrencyField source="total" currency="USD" />
+    </DataTable.Col>
     <DataTable.Col
       label="resources.orders.fields.address"
       className="hidden md:table-cell"

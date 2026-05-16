@@ -3,10 +3,10 @@ import {
   FilterLiveSearch,
   List,
   ListPagination,
-  NumberField,
   TextField,
   ToggleFilterButton,
 } from "@/components/admin";
+import { CurrencyField } from "@/components/extras/currency-field";
 import {
   RecordContextProvider,
   useGetList,
@@ -69,12 +69,9 @@ const ImageThumbnail = () => {
       </div>
       <div className="flex flex-row gap-1 items-center justify-between">
         <TextField source="reference" className="text-lg font-bold" />
-        <NumberField
+        <CurrencyField
           source="price"
-          options={{
-            style: "currency",
-            currency: "USD",
-          }}
+          currency="USD"
           className="text-sm font-semibold"
         />
       </div>

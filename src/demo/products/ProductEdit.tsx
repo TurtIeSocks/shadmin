@@ -11,6 +11,7 @@ import {
   TextInput,
   TranslatableInputs,
 } from "@/components/admin";
+import { CurrencyInput } from "@/components/extras/currency-input";
 import {
   RecordContextProvider,
   required,
@@ -88,9 +89,9 @@ export const ProductEdit = () => {
                 type="number"
                 className="[&>input]:bg-white"
               />
-              <TextInput
+              <CurrencyInput
                 source="price"
-                type="number"
+                currency="USD"
                 className="[&>input]:bg-white"
               />
               <TextInput
