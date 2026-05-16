@@ -245,6 +245,7 @@ export const sidebar = [
       "pivot-grid",
       "presence-bar",
       "record-timeline",
+      "schema-driven-view",
       "status-transition-button",
       "subscription-plan-field",
       "subscription-plan-picker",
