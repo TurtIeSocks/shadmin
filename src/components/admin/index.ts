@@ -154,6 +154,7 @@ export * from "./simple-show-layout";
 export * from "./single-field-list";
 export * from "./skip-navigation-button";
 export * from "./sort-button";
+export * from "./status-transition-button";
 export * from "./tabbed-form";
 export * from "./tabbed-show-layout";
 export * from "./text-array-field";
