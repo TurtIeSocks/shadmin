@@ -106,6 +106,7 @@ export * from "./number-input";
 export * from "./offline";
 export * from "./password-input";
 export * from "./phone-field";
+export * from "./phone-input";
 export * from "./placeholder";
 export * from "./prev-next-buttons";
 export * from "./radiant-theme";
