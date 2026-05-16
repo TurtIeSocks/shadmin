@@ -111,6 +111,7 @@ export * from "./placeholder";
 export * from "./prev-next-buttons";
 export * from "./radiant-theme";
 export * from "./radio-button-group-input";
+export * from "./rating-field";
 export * from "./ready";
 export * from "./record-field";
 export * from "./reference-array-field";
