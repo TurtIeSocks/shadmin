@@ -14,6 +14,7 @@ import { reports } from "./analytics";
 import { documents } from "./workspace";
 import { onboarding } from "./onboarding";
 import { subscriptions } from "./subscriptions";
+import { apiKeys } from "./api-keys";
 import { Dashboard } from "./dashboard/Dashboard";
 import { InspectorLayout } from "./InspectorLayout";
 import { componentGallery } from "./component-gallery";
@@ -39,6 +40,7 @@ function App() {
       <Resource {...documents} group="Workspace" />
       <Resource {...onboarding} group="System" />
       <Resource {...subscriptions} group="SaaS" />
+      <Resource {...apiKeys} group="SaaS" />
       <Resource {...componentGallery} />
     </Admin>
   );
