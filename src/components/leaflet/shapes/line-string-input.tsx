@@ -17,15 +17,20 @@ export const LineStringInput = ({ snapToRoads, source, ...rest }: LineStringInpu
     if (!snapToRoads || !value || value.coordinates.length < 2) return;
     let cancelled = false;
     snapToRoadsOnce(value).then((snapped) => {
-      if (!cancelled && snapped) {
-        form.setValue(source, snapped, { shouldDirty: true });
+      if (cancelled || !snapped) return;
+      // Idempotency guard: if already snapped, skip the write to avoid an effect loop.
+      if (
+        JSON.stringify(snapped.coordinates) ===
+        JSON.stringify(value.coordinates)
+      ) {
+        return;
       }
+      form.setValue(source, snapped, { shouldDirty: true });
     });
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [snapToRoads, source]);
+  }, [snapToRoads, source, value, form]);
 
   return <ShapeInputShell {...rest} source={source} shape="LineString" multi={false} />;
 };

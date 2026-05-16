@@ -37,7 +37,11 @@ export const GeomanEvents = ({
       const evt = e as { layer: Layer; shape: GeomanShape };
       evt.layer.on(
         "pm:update" as unknown as keyof L.LeafletEventHandlerFnMap,
-        () => onUpdate?.(evt.layer),
+        () => {
+          // Dedup: pm:cut fires pm:update on the cut layer within the same tick.
+          if (cutInProgress.current) return;
+          onUpdate?.(evt.layer);
+        },
       );
       evt.layer.on(
         "pm:remove" as unknown as keyof L.LeafletEventHandlerFnMap,

@@ -52,12 +52,17 @@ export const OsmWaterClipButton = ({
       value,
       filtered as GeoJSON.FeatureCollection<GeoJSON.Polygon>,
     );
-    const removedArea = result ? areaM2(value) - areaM2(result) : areaM2(value);
-    form.setValue(source, result ?? null, { shouldDirty: true });
-    notify(
-      `Removed ${Math.round(removedArea / 1000) / 1000} km² of water`,
-      { type: "success" },
-    );
+    if (result === null) {
+      form.setValue(source, null, { shouldDirty: true });
+      notify("Polygon entirely covered by water; cleared", { type: "warning" });
+    } else {
+      const removedArea = areaM2(value) - areaM2(result);
+      form.setValue(source, result, { shouldDirty: true });
+      notify(
+        `Removed ${Math.round(removedArea / 1000) / 1000} km² of water`,
+        { type: "success" },
+      );
+    }
     setBbox(null);
   }, [water.data, bbox, value, source, form, notify]);
 

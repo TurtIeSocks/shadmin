@@ -28,7 +28,12 @@ export const useGeocode = (query: string, opts: UseGeocodeOptions = {}) => {
   }, [query, debounceMs]);
 
   return useQuery<GeocodeResult[]>({
-    queryKey: ["geocode", debounced, opts.countryCodes, opts.viewBox],
+    queryKey: [
+      "geocode",
+      debounced,
+      opts.countryCodes?.join(",") ?? null,
+      opts.viewBox?.join(",") ?? null,
+    ],
     queryFn: () => provider.search(debounced, opts),
     enabled: (opts.enabled ?? true) && debounced.length >= minChars,
     staleTime: 5 * 60 * 1000,
