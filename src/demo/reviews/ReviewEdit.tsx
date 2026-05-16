@@ -5,12 +5,12 @@ import {
   SimpleForm,
   TextInput,
 } from "@/components/admin";
+import { RatingField } from "@/components/extras/rating-field";
 
 import { EditBase } from "ra-core";
 import { cn } from "@/lib/utils";
 
 import { FullNameField } from "../customers/FullNameField";
-import { StarRatingField } from "./StarRatingField";
 
 export const ReviewEdit = ({
   id,
@@ -36,7 +36,7 @@ export const ReviewEdit = ({
           render={(record) => new Date(record.date).toLocaleDateString()}
         />
         <RecordField source="rating">
-          <StarRatingField />
+          <RatingField source="rating" max={5} />
         </RecordField>
       </div>
       <AutocompleteInput
