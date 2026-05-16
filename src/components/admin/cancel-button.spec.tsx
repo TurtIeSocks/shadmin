@@ -1,12 +1,28 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/cancel-button.stories";
+import { Basic, Disabled } from "@/stories/admin/cancel-button.stories";
 
 describe("<CancelButton />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders a Cancel button", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByRole("button", { name: /cancel/i }))
+      .toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("respects the disabled prop", async () => {
+    const screen = render(<Disabled />);
+    await expect
+      .element(screen.getByRole("button", { name: /cancel/i }))
+      .toBeDisabled();
+  });
+
+  it("does not throw when clicked", async () => {
+    const screen = render(<Basic />);
+    const button = screen.getByRole("button", { name: /cancel/i });
+    // Should not throw; navigate(-1) is a no-op when there is no history.
+    await button.click();
+    await expect.element(button).toBeInTheDocument();
   });
 });

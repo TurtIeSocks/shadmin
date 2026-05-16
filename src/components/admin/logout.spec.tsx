@@ -4,9 +4,11 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/logout.stories";
 
 describe("<Logout />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
-
-    expect(true).toBe(true);
+  it("exposes a logout menu item once the dropdown is opened", async () => {
+    const screen = render(<Basic />);
+    await screen.getByRole("button", { name: /open menu/i }).click();
+    await expect
+      .element(screen.getByRole("menuitem", { name: /logout/i }))
+      .toBeInTheDocument();
   });
 });

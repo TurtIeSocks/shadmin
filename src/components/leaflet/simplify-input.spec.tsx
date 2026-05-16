@@ -5,7 +5,7 @@ import { useWatch } from "react-hook-form";
 
 import { SimplifyInput } from "@/components/leaflet";
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { SimplifyInputBasic } from "@/stories/leaflet/leaflet-shapes.stories";
+import { Basic } from "@/stories/leaflet/simplify-input.stories";
 
 interface ErrBoundaryState {
   err: Error | null;
@@ -27,12 +27,8 @@ class ErrBoundary extends Component<{ children: ReactNode }, ErrBoundaryState> {
 const ValueProbe = ({ source }: { source: string }) => {
   const value = useWatch({ name: source }) as GeoJSON.Polygon | null;
   const vertexCount =
-    value?.type === "Polygon"
-      ? value.coordinates[0]?.length ?? 0
-      : 0;
-  return (
-    <pre data-testid="vertex-count">{String(vertexCount)}</pre>
-  );
+    value?.type === "Polygon" ? value.coordinates[0]?.length ?? 0 : 0;
+  return <pre data-testid="vertex-count">{String(vertexCount)}</pre>;
 };
 
 const ringWithN = (n: number): GeoJSON.Polygon => {
@@ -51,7 +47,7 @@ const ringWithN = (n: number): GeoJSON.Polygon => {
 
 describe("<SimplifyInput />", () => {
   it("renders the label, slider, and quality toggle", async () => {
-    const screen = render(<SimplifyInputBasic />);
+    const screen = render(<Basic />);
     await expect.element(screen.getByText("Simplify")).toBeInTheDocument();
     await expect
       .element(screen.getByTestId("simplify-tolerance-slider"))
@@ -97,9 +93,8 @@ describe("<SimplifyInput />", () => {
         <ValueProbe source="area" />
       </StoryAdmin>,
     );
-    // tolerance=0 is a no-op for Douglas-Peucker — count should match
-    // the original ring (which has 20 unique vertices + the closing duplicate
-    // = 21 entries in coordinates[0]).
+    // tolerance=0 is a no-op for Douglas-Peucker — count should match the
+    // original ring (20 unique vertices + the closing duplicate = 21 entries).
     const probe = await screen.getByTestId("vertex-count");
     await expect.poll(() => probe.element().textContent).toBe("21");
   });

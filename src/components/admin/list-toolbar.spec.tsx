@@ -4,9 +4,13 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/list-toolbar.stories";
 
 describe("<ListToolbar />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
-
-    expect(true).toBe(true);
+  it("renders the filter form input alongside the export action", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByLabelText("Search").first())
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("button", { name: /export/i }))
+      .toBeInTheDocument();
   });
 });

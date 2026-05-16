@@ -1,12 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/function-field.stories";
+import { Basic, Formatted } from "@/stories/admin/function-field.stories";
 
 describe("<FunctionField />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders the value returned by the render prop", async () => {
+    const screen = render(<Basic />);
+    await expect.element(screen.getByText("John Doe")).toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("supports rendering a formatted value", async () => {
+    const screen = render(<Formatted />);
+    await expect.element(screen.getByText("1,234 views")).toBeInTheDocument();
   });
 });

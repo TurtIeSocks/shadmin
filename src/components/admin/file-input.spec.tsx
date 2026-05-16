@@ -4,9 +4,17 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/file-input.stories";
 
 describe("<FileInput />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders the file input with the humanized field label", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByText(/attachments/i).first())
+      .toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("renders the existing files from the record", async () => {
+    const screen = render(<Basic />);
+    // FileField renders an <a> for each file in the array.
+    const links = screen.getByRole("link");
+    expect(links.all().length).toBeGreaterThanOrEqual(2);
   });
 });

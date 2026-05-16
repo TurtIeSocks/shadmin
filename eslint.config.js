@@ -6,9 +6,10 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
+import noTautologicalExpect from "./eslint-rules/no-tautological-expect.js";
 
 export default tseslint.config(
-  { ignores: ["dist", "docs/.astro/**"] },
+  { ignores: ["dist", "docs/.astro/**", "eslint-rules/__tests__/**"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
@@ -35,4 +36,17 @@ export default tseslint.config(
     },
   },
   storybook.configs["flat/recommended"],
+  {
+    files: ["src/**/*.spec.{ts,tsx}"],
+    plugins: {
+      "local-rules": {
+        rules: {
+          "no-tautological-expect": noTautologicalExpect,
+        },
+      },
+    },
+    rules: {
+      "local-rules/no-tautological-expect": "error",
+    },
+  },
 );

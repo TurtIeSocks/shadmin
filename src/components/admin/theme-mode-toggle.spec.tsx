@@ -4,9 +4,24 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/theme-mode-toggle.stories";
 
 describe("<ThemeModeToggle />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders the theme toggle button", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByRole("button", { name: /toggle theme/i }))
+      .toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("exposes light / dark / system options when opened", async () => {
+    const screen = render(<Basic />);
+    await screen.getByRole("button", { name: /toggle theme/i }).click();
+    await expect
+      .element(screen.getByRole("menuitem", { name: "Light" }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: "Dark" }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: "System" }))
+      .toBeInTheDocument();
   });
 });

@@ -14,7 +14,9 @@ vi.mock("@supabase/supabase-js", () => ({
   })),
 }));
 
-// Mock ra-supabase-core so we don't need a real Supabase instance.
+// Mock ra-supabase-core so we don't need a real Supabase instance. The guesser
+// introspects the project's OpenAPI schema at runtime, so a static example
+// schema fixture stands in for that response.
 const fakeAuth = {
   login: async () => {},
   logout: async () => {},
@@ -68,18 +70,14 @@ vi.mock("ra-supabase-core", () => ({
   useRedirectIfAuthenticated: () => {},
 }));
 
-import { AdminGuesser } from "@/components/supabase/admin-guesser";
+import { Basic } from "@/stories/supabase/admin-guesser.stories";
 
 describe("<AdminGuesser />", () => {
-  it("renders without crashing given instanceUrl and apiKey", async () => {
-    const screen = render(
-      <AdminGuesser
-        instanceUrl="http://localhost:54321"
-        apiKey="sb_publishable_x"
-      />,
-    );
-    // The fake checkAuth resolves successfully, so the admin renders
-    // the full layout with a main landmark. Assert that it mounted.
+  it("renders the admin layout for the Basic story", async () => {
+    const screen = render(<Basic />);
+    // With the mocked schema and authProvider, the guesser resolves checkAuth
+    // and renders the full Admin layout. Only the static wrapper is asserted —
+    // the actual Resource list is data-driven and out of scope here.
     await expect.element(screen.getByRole("main")).toBeInTheDocument();
   });
 });

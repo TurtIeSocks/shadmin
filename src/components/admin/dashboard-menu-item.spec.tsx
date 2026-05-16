@@ -4,9 +4,10 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/dashboard-menu-item.stories";
 
 describe("<DashboardMenuItem />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
-
-    expect(true).toBe(true);
+  it("renders a link to the dashboard with the translated label", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByRole("link", { name: /dashboard/i }))
+      .toBeInTheDocument();
   });
 });

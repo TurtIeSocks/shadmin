@@ -12,6 +12,8 @@
     "check-sidebar": "node scripts/check-sidebar.mjs",
     "check-docs": "node scripts/check-docs.mjs",
     "check-stories": "node scripts/check-stories.mjs",
+    "check-specs": "node scripts/check-specs.mjs",
+    "check-coverage": "node scripts/check-coverage.mjs",
     "public-api": "node scripts/public-api.mjs",
     "docs:gen-props": "typedoc && node scripts/split-typedoc.mjs"
   },

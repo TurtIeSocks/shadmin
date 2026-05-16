@@ -1,12 +1,31 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/image-input.stories";
+import {
+  Basic,
+  WithLabel,
+  WithHelperText,
+} from "@/stories/admin/image-input.stories";
 
 describe("<ImageInput />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders the image input with the humanized field label", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByText(/picture/i).first())
+      .toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("uses an explicit label when provided", async () => {
+    const screen = render(<WithLabel />);
+    await expect
+      .element(screen.getByText(/product photos/i))
+      .toBeInTheDocument();
+  });
+
+  it("renders helper text when provided", async () => {
+    const screen = render(<WithHelperText />);
+    await expect
+      .element(screen.getByText(/jpg or png, up to 5mb each/i))
+      .toBeInTheDocument();
   });
 });

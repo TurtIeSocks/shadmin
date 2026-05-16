@@ -4,9 +4,15 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/refresh-button.stories";
 
 describe("<RefreshButton />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders an accessible refresh button", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByRole("button", { name: /refresh/i }))
+      .toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("clicking the refresh button does not throw", async () => {
+    const screen = render(<Basic />);
+    await screen.getByRole("button", { name: /refresh/i }).click();
   });
 });

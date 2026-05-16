@@ -1,12 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/layout.stories";
+import { Basic, ErrorState } from "@/stories/admin/layout.stories";
 
 describe("<Layout />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders the children inside the layout", async () => {
+    const screen = render(<Basic />);
+    await expect.element(screen.getByText("Content")).toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("renders the error fallback when a child throws", async () => {
+    const screen = render(<ErrorState />);
+    await expect.element(screen.getByRole("alert")).toBeInTheDocument();
   });
 });

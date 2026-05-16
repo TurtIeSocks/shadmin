@@ -4,9 +4,10 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/device-test-wrapper.stories";
 
 describe("<DeviceTestWrapper />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic theme="system" width="md" />);
-
-    expect(true).toBe(true);
+  it("renders its children at the requested simulated width", async () => {
+    const screen = render(<Basic theme="system" width="md" />);
+    await expect
+      .element(screen.getByText(/simulated width/i))
+      .toBeInTheDocument();
   });
 });

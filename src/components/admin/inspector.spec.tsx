@@ -4,9 +4,13 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/inspector.stories";
 
 describe("<Inspector />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
-
-    expect(true).toBe(true);
+  it("renders the configurable content but not the inspector panel by default", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByText("Edit me from the inspector").first())
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("dialog"))
+      .not.toBeInTheDocument();
   });
 });

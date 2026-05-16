@@ -8,6 +8,7 @@ import { render } from "vitest-browser-react";
 import { FormProvider, useForm } from "react-hook-form";
 import { ArrayInput } from "./array-input";
 import { useContext, useEffect } from "react";
+import { Basic as BasicStory } from "@/stories/admin/array-input.stories";
 
 function TestChild({ source }: { source: string }) {
   const arrayContext = useContext(ArrayInputContext);
@@ -334,5 +335,10 @@ describe("ArrayInput", () => {
     );
 
     await expect.element(screen.getByTestId("test-child")).toBeInTheDocument();
+  });
+
+  it("renders the Basic story", async () => {
+    const screen = render(<BasicStory />);
+    await expect.element(screen.container).toBeInTheDocument();
   });
 });

@@ -67,7 +67,10 @@ doc: ## launch doc web server
 check-doc: ## Check the doc sidebar has no orphan pages
 	@cd docs && pnpm run check-sidebar
 
-build-doc: check-doc ## Build the doc website
+check-coverage: ## Run every docs/stories/specs/demo coverage check
+	@cd docs && pnpm run check-coverage
+
+build-doc: check-coverage ## Build the doc website
 	rm -rf ./public/docs
 	pnpm run doc:build
 	mv ./docs/dist ./public/docs

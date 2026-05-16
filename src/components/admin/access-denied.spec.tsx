@@ -1,12 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/access-denied.stories";
+import { Basic, CustomText } from "@/stories/admin/access-denied.stories";
 
 describe("<AccessDenied />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders the default access-denied message", async () => {
+    const screen = render(<Basic />);
+    await expect
+      .element(screen.getByText(/access denied/i))
+      .toBeInTheDocument();
+  });
 
-    expect(true).toBe(true);
+  it("renders custom primary text", async () => {
+    const screen = render(<CustomText />);
+    await expect
+      .element(screen.getByText("Not allowed"))
+      .toBeInTheDocument();
   });
 });

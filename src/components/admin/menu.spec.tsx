@@ -4,10 +4,14 @@ import { render } from "vitest-browser-react";
 import { Default, Grouped } from "@/stories/admin/menu.stories";
 
 describe("<Menu />", () => {
-  it("renders the Default story", () => {
-    render(<Default />);
-
-    expect(true).toBe(true);
+  it("renders a link to each registered resource", async () => {
+    const screen = render(<Default />);
+    await expect
+      .element(screen.getByRole("link", { name: /Posts/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("link", { name: /Comments/i }))
+      .toBeInTheDocument();
   });
 
   it("renders grouped resources before ungrouped resources", async () => {

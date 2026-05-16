@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { ArrayField } from "./array-field";
 
+import { Basic, Empty } from "@/stories/admin/array-field.stories";
+
 const TEST_RECORD = {
   id: "record-1",
   values: [{ id: "value-1" }, { id: "value-2" }, { id: "value-3" }],
@@ -63,5 +65,19 @@ describe("ArrayField", () => {
 
     await expect.element(screen.getByRole("list")).toBeInTheDocument();
     await expect.element(screen.getByRole("listitem")).not.toBeInTheDocument();
+  });
+
+  it("renders each child field for every array item (story)", async () => {
+    const screen = render(<Basic />);
+    // The story renders BadgeFields from the `tags` array (Sci-Fi, Comedy, British)
+    await expect.element(screen.getByText("Sci-Fi")).toBeInTheDocument();
+    await expect.element(screen.getByText("Comedy")).toBeInTheDocument();
+    await expect.element(screen.getByText("British")).toBeInTheDocument();
+  });
+
+  it("renders nothing for the children when the array is empty (story)", async () => {
+    const screen = render(<Empty />);
+    // No badges should render
+    await expect.element(screen.getByText("Sci-Fi")).not.toBeInTheDocument();
   });
 });

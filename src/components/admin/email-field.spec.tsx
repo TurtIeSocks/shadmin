@@ -1,12 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/email-field.stories";
+import { Basic, Empty } from "@/stories/admin/email-field.stories";
 
 describe("<EmailField />", () => {
-  it("renders the Basic story", () => {
-    render(<Basic />);
+  it("renders an anchor with the mailto: href and the email as text", async () => {
+    const screen = render(<Basic />);
+    const link = screen.getByRole("link", { name: "john.doe@example.org" });
+    await expect.element(link).toBeInTheDocument();
+    await expect
+      .element(link)
+      .toHaveAttribute("href", "mailto:john.doe@example.org");
+  });
 
-    expect(true).toBe(true);
+  it("renders the empty placeholder when the email is missing", async () => {
+    const screen = render(<Empty />);
+    await expect.element(screen.getByText("—")).toBeInTheDocument();
   });
 });
