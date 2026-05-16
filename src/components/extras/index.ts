@@ -22,6 +22,7 @@ export * from "./dual-approval-button";
 export * from "./duration-field";
 export * from "./duration-input";
 export * from "./filter-live-form";
+export * from "./i18n-key-editor";
 export * from "./in-place-editor";
 export * from "./kanban-board";
 export * from "./onboarding-tour";

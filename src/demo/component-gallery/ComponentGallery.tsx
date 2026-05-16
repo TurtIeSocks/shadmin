@@ -142,6 +142,7 @@ const galleryComponents: GalleryComponent[] = [
   { name: "FunctionField", family: "Fields", docs: "FunctionField" },
   { name: "GuesserEmpty", family: "Views", docs: "ListGuesser" },
   { name: "HideOnScroll", family: "Layout", docs: "HideOnScroll" },
+  { name: "I18nKeyEditor", family: "App shell", docs: "I18nKeyEditor" },
   { name: "ImageField", family: "Fields", docs: "ImageField" },
   { name: "ImageInput", family: "Inputs", docs: "ImageInput" },
   { name: "InPlaceEditor", family: "Inputs", docs: "InPlaceEditor" },
