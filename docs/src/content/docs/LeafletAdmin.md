@@ -1,80 +1,45 @@
 ---
-title: "LeafletAdmin"
+title: "Leaflet"
 ---
 
-`<LatLngField>` and `<LatLngInput>` add Leaflet-based interactive maps to Show and Create/Edit views. `<LatLngField>` renders a read-only map at a fixed coordinate. `<LatLngInput>` renders a draggable marker that writes back to two React Hook Form fields.
-
-These components live in a separate registry block (`leaflet`) to keep the optional Leaflet dependency out of the core admin install. Add the block with:
+The `leaflet-admin` block provides Leaflet-based components for displaying and editing geographic data.
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/leaflet.json
+npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/leaflet-admin.json
 ```
 
-## `<LatLngField>` Usage
+## Components
 
-```tsx
-import { LatLngField } from "@/components/leaflet";
+### Lat/Lng (coordinate pair fields)
 
-<Show>
-  <SimpleShowLayout>
-    <TextField source="name" />
-    <LatLngField latSource="lat" lngSource="lng" zoom={13} height={300} />
-  </SimpleShowLayout>
-</Show>
-```
+- [`<LatLngField>`](./LatLngField) — read-only map marker
+- [`<LatLngInput>`](./LatLngInput) — draggable marker input
 
-Reads `latSource` and `lngSource` from the current record context. Renders an empty-state panel when either coordinate is missing.
+### GeoJSON shape Fields & Inputs
 
-## `<LatLngField>` Props
+- [`<PointField>`](./PointField) / [`<PointInput>`](./PointInput)
+- [`<MultiPointField>`](./MultiPointField) / [`<MultiPointInput>`](./MultiPointInput)
+- [`<LineStringField>`](./LineStringField) / [`<LineStringInput>`](./LineStringInput)
+- [`<MultiLineStringField>`](./MultiLineStringField) / [`<MultiLineStringInput>`](./MultiLineStringInput)
+- [`<PolygonField>`](./PolygonField) / [`<PolygonInput>`](./PolygonInput)
+- [`<MultiPolygonField>`](./MultiPolygonField) / [`<MultiPolygonInput>`](./MultiPolygonInput)
+- [`<GeometryCollectionField>`](./GeometryCollectionField) / [`<GeometryCollectionInput>`](./GeometryCollectionInput)
+- [`<BBoxField>`](./BBoxField) / [`<BBoxInput>`](./BBoxInput)
+- [`<GeoJsonField>`](./GeoJsonField) / [`<GeoJsonInput>`](./GeoJsonInput) — polymorphic
 
-| Prop          | Required | Type               | Default                       | Description                                   |
-| ------------- | -------- | ------------------ | ----------------------------- | --------------------------------------------- |
-| `latSource`   | Required | `string`           | -                             | Record field name for the latitude value.     |
-| `lngSource`   | Required | `string`           | -                             | Record field name for the longitude value.    |
-| `zoom`        | Optional | `number`           | `13`                          | Initial zoom level.                           |
-| `height`      | Optional | `number \| string` | `300`                         | Height of the map container (px or CSS unit). |
-| `tileUrl`     | Optional | `string`           | OpenStreetMap tile URL        | Tile layer URL template.                      |
-| `attribution` | Optional | `string`           | OpenStreetMap attribution     | HTML attribution string shown on the map.     |
+### Drawing & editing primitives (Geoman)
 
-## `<LatLngInput>` Usage
+- [`<GeomanControl>`](./GeomanControl)
+- [`<GeomanEvents>`](./GeomanEvents)
+- [`useGeomanRHF`](./UseGeomanRHF)
 
-```tsx
-import { LatLngInput } from "@/components/leaflet";
+### OSM utilities
 
-<Create>
-  <SimpleForm>
-    <LatLngInput
-      latSource="lat"
-      lngSource="lng"
-      defaultPosition={[48.85, 2.35]}
-      height={300}
-      label="Location"
-      helperText="Click or drag the marker to set a location."
-    />
-  </SimpleForm>
-</Create>
-```
+- [`<OsmWaterClipButton>`](./OsmWaterClipButton)
+- [`useOverpass` / `useOsmWaterMask` / `useOsmSnapToRoads`](./LeafletOsm)
 
-Clicking anywhere on the map or dragging the marker updates the two RHF fields. Both `latSource` and `lngSource` must exist as fields in your form (add them as hidden inputs or populate them via `defaultValues` if needed).
+### Geocoding
 
-## `<LatLngInput>` Props
-
-| Prop              | Required | Type               | Default                   | Description                                                            |
-| ----------------- | -------- | ------------------ | ------------------------- | ---------------------------------------------------------------------- |
-| `latSource`       | Required | `string`           | -                         | RHF field name for latitude.                                           |
-| `lngSource`       | Required | `string`           | -                         | RHF field name for longitude.                                          |
-| `defaultPosition` | Optional | `[number, number]` | `[0, 0]`                  | Initial map center `[lat, lng]` when no form value is present.         |
-| `zoom`            | Optional | `number`           | `13`                      | Initial zoom level.                                                    |
-| `height`          | Optional | `number \| string` | `300`                     | Height of the map container (px or CSS unit).                          |
-| `tileUrl`         | Optional | `string`           | OpenStreetMap tile URL    | Tile layer URL template.                                               |
-| `attribution`     | Optional | `string`           | OpenStreetMap attribution | HTML attribution string.                                               |
-| `label`           | Optional | `ReactNode`        | -                         | Label rendered above the map.                                          |
-| `helperText`      | Optional | `ReactNode`        | -                         | Helper text rendered below the map.                                    |
-
-## `tileUrl`
-
-Both components accept a custom `tileUrl` for using a different tile provider (e.g. Mapbox, Stadia, CartoDB). The URL must follow the Leaflet tile template format: `https://{s}.example.com/{z}/{x}/{y}.png`.
-
-## Reserved names
-
-`PointField` / `PointInput` are reserved for a future component that operates on a GeoJSON `Point` shape rather than two scalar fields.
+- [`<GeocodingInput>`](./GeocodingInput)
+- [`<ReverseGeocodeField>`](./ReverseGeocodeField)
+- [`<MapWithSearch>`](./MapWithSearch)
