@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { subtract, unionAll, bboxOf, areaM2 } from "./geometry-ops";
+import {
+  subtract,
+  unionAll,
+  bboxOf,
+  areaM2,
+  polygonToBBox,
+  bboxToPolygon,
+} from "./geometry-ops";
 
 const square = (xmin: number, ymin: number, xmax: number, ymax: number): GeoJSON.Polygon => ({
   type: "Polygon",
@@ -53,5 +60,43 @@ describe("unionAll", () => {
     };
     const result = unionAll(fc);
     expect(result).not.toBeNull();
+  });
+});
+
+describe("polygonToBBox", () => {
+  it("converts a Polygon to its bounding box [w,s,e,n]", () => {
+    const result = polygonToBBox({
+      type: "Polygon",
+      coordinates: [
+        [
+          [2, 48],
+          [3, 48],
+          [3, 49],
+          [2, 49],
+          [2, 48],
+        ],
+      ],
+    });
+    expect(result).toEqual([2, 48, 3, 49]);
+  });
+
+  it("returns null for non-Polygon input", () => {
+    expect(polygonToBBox({ type: "Point", coordinates: [0, 0] })).toBeNull();
+  });
+});
+
+describe("bboxToPolygon", () => {
+  it("converts [w,s,e,n] to a closed Polygon ring", () => {
+    const result = bboxToPolygon([2, 48, 3, 49]);
+    expect(result?.type).toBe("Polygon");
+    expect(result?.coordinates[0]).toHaveLength(5);
+    expect(result?.coordinates[0][0]).toEqual([2, 48]);
+    expect(result?.coordinates[0][4]).toEqual([2, 48]);
+  });
+
+  it("returns null for malformed input", () => {
+    expect(bboxToPolygon([1, 2, 3])).toBeNull();
+    expect(bboxToPolygon("nope")).toBeNull();
+    expect(bboxToPolygon(null)).toBeNull();
   });
 });

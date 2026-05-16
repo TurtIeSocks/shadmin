@@ -31,3 +31,27 @@ export const bboxOf = (geom: GeoJSON.Geometry): GeoJSON.BBox => {
 
 export const areaM2 = (geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): number =>
   area(feature(geom));
+
+export const polygonToBBox = (geom: GeoJSON.Geometry): GeoJSON.BBox | null => {
+  if (geom.type !== "Polygon") return null;
+  return bboxOf(geom);
+};
+
+export const bboxToPolygon = (bb: unknown): GeoJSON.Polygon | null => {
+  if (!Array.isArray(bb) || bb.length !== 4 || !bb.every((n) => typeof n === "number")) {
+    return null;
+  }
+  const [w, s, e, n] = bb as GeoJSON.BBox;
+  return {
+    type: "Polygon",
+    coordinates: [
+      [
+        [w, s],
+        [e, s],
+        [e, n],
+        [w, n],
+        [w, s],
+      ],
+    ],
+  };
+};

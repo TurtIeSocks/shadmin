@@ -16,6 +16,18 @@ export interface UseGeomanRHFOptions {
   validate?: (geom: GeoJSON.Geometry) => string | undefined;
   pathOptions?: L.PathOptions;
   markerIcon?: L.Icon | L.DivIcon;
+  /**
+   * Optional converter that transforms the drawn `GeoJSON.Geometry` into the
+   * shape stored in the form value. Used by `BBoxInput` to persist
+   * `[w, s, e, n]` instead of a `Polygon`. Defaults to identity.
+   */
+  valueTransform?: (geom: GeoJSON.Geometry) => unknown;
+  /**
+   * Optional inverse of `valueTransform`: parses the stored value back into a
+   * `GeoJSON.Geometry` for hydration. Return `null` for malformed input.
+   * Defaults to an identity-with-type-check.
+   */
+  valueParse?: (stored: unknown) => GeoJSON.Geometry | null;
 }
 
 export interface UseGeomanRHFReturn {
@@ -36,10 +48,12 @@ export const useGeomanRHF = ({
   validate,
   pathOptions,
   markerIcon,
+  valueTransform,
+  valueParse,
 }: UseGeomanRHFOptions): UseGeomanRHFReturn => {
   const form = useFormContext();
   const featureGroupRef = useRef<L.FeatureGroup | null>(null);
-  const value = useWatch({ name: source }) as GeoJSON.Geometry | null | undefined;
+  const value = useWatch({ name: source }) as unknown;
   const hydrated = useRef(false);
 
   // useMap is safe because this hook is only called inside a MapContainer subtree.
@@ -51,16 +65,24 @@ export const useGeomanRHF = ({
       featureGroupRef.current = L.featureGroup().addTo(map);
     }
     if (!hydrated.current && value) {
-      const layer = geometryToLayer(value, pathOptions, markerIcon);
+      const geom = valueParse
+        ? valueParse(value)
+        : ((value as GeoJSON.Geometry | null | undefined) ?? null);
+      if (!geom) return;
+      const layer = geometryToLayer(geom, pathOptions, markerIcon);
       featureGroupRef.current?.addLayer(layer);
       hydrated.current = true;
     }
-  }, [map, value, pathOptions, markerIcon]);
+  }, [map, value, pathOptions, markerIcon, valueParse]);
 
   const persist = useCallback(() => {
     const group = featureGroupRef.current;
     if (!group) return;
     const layers = group.getLayers();
+    const write = (geom: GeoJSON.Geometry | null) => {
+      const stored = valueTransform && geom ? valueTransform(geom) : geom;
+      form.setValue(source, stored, { shouldDirty: true });
+    };
     if (layers.length === 0) {
       form.setValue(source, null, { shouldDirty: true });
       return;
@@ -69,7 +91,7 @@ export const useGeomanRHF = ({
       const geometries = layers
         .map((l) => layerToGeometry(l))
         .filter((g): g is GeoJSON.Geometry => g !== null);
-      form.setValue(source, { type: "GeometryCollection", geometries }, { shouldDirty: true });
+      write({ type: "GeometryCollection", geometries });
       return;
     }
     if (multi) {
@@ -82,14 +104,14 @@ export const useGeomanRHF = ({
         // Validation failed — leave previous value untouched.
         return;
       }
-      form.setValue(source, combined, { shouldDirty: true });
+      write(combined);
       return;
     }
     // Single feature — use the first/most-recent layer.
     const geom = layerToGeometry(layers[layers.length - 1]);
     if (validate && geom && validate(geom)) return;
-    form.setValue(source, geom, { shouldDirty: true });
-  }, [collection, multi, shape, source, form, validate]);
+    write(geom);
+  }, [collection, multi, shape, source, form, validate, valueTransform]);
 
   const handleCreate = useCallback(
     (layer: L.Layer) => {

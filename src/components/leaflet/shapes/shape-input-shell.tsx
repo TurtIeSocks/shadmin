@@ -11,11 +11,29 @@ export interface ShapeInputShellProps extends BaseInputProps {
   shape: ShapeKind;
   multi: boolean;
   collection?: boolean;
+  /**
+   * Optional converter that transforms the drawn `GeoJSON.Geometry` into the
+   * shape stored in the form value. Forwarded to `useGeomanRHF`.
+   */
+  valueTransform?: (geom: GeoJSON.Geometry) => unknown;
+  /**
+   * Optional inverse of `valueTransform` used during hydration. Forwarded to
+   * `useGeomanRHF`.
+   */
+  valueParse?: (stored: unknown) => GeoJSON.Geometry | null;
 }
 
 type ShellInnerProps = Pick<
   ShapeInputShellProps,
-  "source" | "shape" | "multi" | "collection" | "snappable" | "snapDistance" | "pathOptions"
+  | "source"
+  | "shape"
+  | "multi"
+  | "collection"
+  | "snappable"
+  | "snapDistance"
+  | "pathOptions"
+  | "valueTransform"
+  | "valueParse"
 > & {
   disabled?: boolean;
   validate?: (geom: GeoJSON.Geometry) => string | undefined;
@@ -38,6 +56,8 @@ export const ShapeInputShell = ({
   helperText,
   disabled = false,
   validate,
+  valueTransform,
+  valueParse,
 }: ShapeInputShellProps) => {
   const validators = Array.isArray(validate) ? validate : validate ? [validate] : [];
   const combinedValidator = validators.length
@@ -76,6 +96,8 @@ export const ShapeInputShell = ({
           pathOptions={pathOptions}
           disabled={disabled}
           validate={combinedValidator}
+          valueTransform={valueTransform}
+          valueParse={valueParse}
         />
       </BaseMap>
       {helperText ? <div className="text-xs text-muted-foreground">{helperText}</div> : null}
@@ -93,6 +115,8 @@ const ShellInner = ({
   pathOptions,
   disabled,
   validate,
+  valueTransform,
+  valueParse,
 }: ShellInnerProps) => {
   const geomanShape = geojsonTypeToGeomanShape(shape);
   const { geomanProps } = useGeomanRHF({
@@ -102,6 +126,8 @@ const ShellInner = ({
     collection,
     validate,
     pathOptions,
+    valueTransform,
+    valueParse,
   });
   if (disabled) return null;
   return (
