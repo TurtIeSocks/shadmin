@@ -274,6 +274,11 @@ const galleryComponents: GalleryComponent[] = [
   { name: "RichTextField", family: "Fields", docs: "RichTextField" },
   { name: "SaveButton", family: "Buttons and actions", docs: "SaveButton" },
   { name: "SavedQueries", family: "Filters", docs: "SavedQueries" },
+  {
+    name: "SchemaDrivenView",
+    family: "Views",
+    docs: "SchemaDrivenView",
+  },
   { name: "SearchInput", family: "Inputs", docs: "SearchInput" },
   {
     name: "SelectAllButton",

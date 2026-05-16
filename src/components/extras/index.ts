@@ -35,6 +35,7 @@ export * from "./presence-bar";
 export * from "./rating-field";
 export * from "./rating-input";
 export * from "./record-timeline";
+export * from "./schema-driven-view";
 export * from "./status-transition-button";
 export * from "./subscription-plan-field";
 export * from "./subscription-plan-picker";
