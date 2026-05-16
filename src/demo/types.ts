@@ -38,10 +38,16 @@ export interface ApiKey {
 
 export interface Webhook {
   id: number;
-  url: string;
-  event_types: string[];
+  endpoint: {
+    url: string;
+    secret: string;
+    eventTypes: string[];
+    lastDelivery?: {
+      status: "ok" | "failed" | "pending";
+      at: string;
+    };
+  };
   status: "active" | "paused" | "failing";
-  last_triggered: string | null;
   failure_count: number;
 }
 

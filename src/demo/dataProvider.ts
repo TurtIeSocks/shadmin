@@ -8,6 +8,7 @@ import { documentsSeed } from "./workspace";
 import { onboardingsSeed } from "./onboarding";
 import { subscriptionsSeed } from "./subscriptions";
 import { apiKeysSeed } from "./api-keys";
+import { webhooksSeed } from "./webhooks";
 
 const generated = generateData();
 
@@ -49,6 +50,7 @@ const data = {
   onboardings: onboardingsSeed,
   subscriptions: subscriptionsSeed,
   api_keys: apiKeysSeed,
+  webhooks: webhooksSeed,
 };
 
 export const dataProvider = fakeRestDataProvider(data, true, 500);
