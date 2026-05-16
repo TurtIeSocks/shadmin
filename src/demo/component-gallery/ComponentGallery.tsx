@@ -160,6 +160,7 @@ const galleryComponents: GalleryComponent[] = [
   { name: "KeyboardShortcut", family: "Layout", docs: "KeyboardShortcut" },
   { name: "Labeled", family: "Layout", docs: "Labeled" },
   { name: "Layout", family: "App shell", docs: "Layout" },
+  { name: "LayoutBuilder", family: "Layout", docs: "LayoutBuilder" },
   {
     name: "LinearProgress",
     family: "Auth and feedback",

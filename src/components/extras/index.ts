@@ -25,6 +25,7 @@ export * from "./filter-live-form";
 export * from "./i18n-key-editor";
 export * from "./in-place-editor";
 export * from "./kanban-board";
+export * from "./layout-builder";
 export * from "./onboarding-tour";
 export * from "./permission-matrix";
 export * from "./phone-field";
