@@ -34,4 +34,5 @@ export * from "./subscription-plan-field";
 export * from "./subscription-plan-picker";
 export * from "./tree-list";
 export * from "./usage-meter-field";
+export * from "./webhook-endpoint-field";
 export * from "./wizard-form";
