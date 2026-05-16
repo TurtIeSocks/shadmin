@@ -74,3 +74,17 @@ export interface Approval {
   status: "pending" | "approved" | "rejected";
   created_at: string;
 }
+
+// CommentsThread reads via useGetList with sort field "createdAt" and renders
+// authorId/authorName/body/resolvedAt — so this record matches the
+// CommentsThread Comment interface (camelCase) and adds an order_id link field
+// consumed via target="order_id".
+export interface OrderComment {
+  id: number;
+  order_id: number;
+  authorId: string;
+  authorName: string;
+  body: string;
+  createdAt: string;
+  resolvedAt: string | null;
+}
