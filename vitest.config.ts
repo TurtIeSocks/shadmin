@@ -19,6 +19,7 @@ export default defineConfig({
       "src/components/extras/**/*.spec.{ts,tsx}",
       "src/components/leaflet/**/*.spec.{ts,tsx}",
       "src/components/mdx-editor/**/*.spec.{ts,tsx}",
+      "src/components/monaco/**/*.spec.{ts,tsx}",
       "src/components/rich-text-input/**/*.spec.{ts,tsx}",
       "src/components/supabase/**/*.spec.{ts,tsx}",
       "src/{hooks,lib,stories}/**/*.spec.{ts,tsx}",
