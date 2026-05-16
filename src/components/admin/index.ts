@@ -45,6 +45,7 @@ export * from "./default-theme";
 export * from "./delete-button";
 export * from "./device-test-wrapper";
 export * from "./duration-field";
+export * from "./duration-input";
 
 export * from "./edit";
 export * from "./edit-button";
