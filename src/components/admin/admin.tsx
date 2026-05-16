@@ -15,7 +15,7 @@ import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import type { AdminTheme } from "@/components/admin/theme-types";
 import { AuthCallback } from "@/components/admin/auth-callback";
-import { CommandMenu, type CommandMenuProps } from "@/components/admin/command-menu";
+import { CommandMenu, type CommandMenuProps } from "@/components/extras/command-menu";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.

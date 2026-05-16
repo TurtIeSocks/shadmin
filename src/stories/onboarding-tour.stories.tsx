@@ -2,7 +2,7 @@ import { CoreAdminContext, memoryStore } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { OnboardingTour } from "@/components/admin/onboarding-tour";
+import { OnboardingTour } from "@/components/extras/onboarding-tour";
 
 export default {
   title: "Navigation/OnboardingTour",

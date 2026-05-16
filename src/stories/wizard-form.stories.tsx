@@ -6,7 +6,7 @@ import {
   ResourceContextProvider,
 } from "ra-core";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { WizardForm, WizardToolbar } from "@/components/admin/wizard-form";
+import { WizardForm, WizardToolbar } from "@/components/extras/wizard-form";
 import { TextInput } from "@/components/admin/text-input";
 import { i18nProvider } from "@/lib/i18n-provider";
 import type { UnknownRecord } from "@/lib/unknown-types";

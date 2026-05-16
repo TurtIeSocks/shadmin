@@ -12,13 +12,13 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin, ListGuesser, ShowGuesser } from "@/components/admin";
+import { CommandMenu } from "@/components/extras/command-menu";
 import {
-  CommandMenu,
   useCommandMenu,
   useRegisterCommand,
   RECENTS_KEY,
   type RecentEntry,
-} from "@/components/admin/command-menu";
+} from "@/components/extras/command-menu-context";
 
 const data = {
   products: [

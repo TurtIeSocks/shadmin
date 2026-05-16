@@ -18,7 +18,7 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { WizardForm } from "@/components/admin/wizard-form";
+import { WizardForm } from "@/components/extras/wizard-form";
 import {
   CsvImportContext,
   CsvImportContextValue,

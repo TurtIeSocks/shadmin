@@ -84,7 +84,10 @@ export const PivotGrid = ({
 }: PivotGridProps) => {
   const translate = useTranslate();
   const listData = useListData();
-  const data = dataProp ?? listData ?? [];
+  const data = useMemo(
+    () => dataProp ?? listData ?? [],
+    [dataProp, listData],
+  );
 
   const { grid, rowKeys, colKeys } = useMemo(
     () => collect(data, rowField, columnField, valueField),

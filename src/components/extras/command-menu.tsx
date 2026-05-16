@@ -1,10 +1,8 @@
 "use client";
 
 import {
-  createContext,
   type ReactNode,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -41,17 +39,13 @@ import {
 } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
-
-export interface CommandAction {
-  id: string;
-  label: ReactNode;
-  icon?: React.ComponentType<{ className?: string }>;
-  group?: "resources" | "records" | "actions" | string;
-  keywords?: string[];
-  shortcut?: string;
-  when?: () => boolean;
-  onSelect: () => void | Promise<void>;
-}
+import {
+  CommandMenuContext,
+  RECENTS_KEY,
+  type CommandAction,
+  type CommandMenuContextValue,
+  type RecentEntry,
+} from "./command-menu-context";
 
 export interface CommandMenuProps {
   hotkey?: string[] | false;
@@ -69,19 +63,6 @@ export interface CommandMenuProps {
    */
   children?: ReactNode;
 }
-
-interface CommandMenuContextValue {
-  isOpen: boolean;
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-  setQuery: (query: string) => void;
-  registerCommand: (action: CommandAction) => void;
-  unregisterCommand: (id: string) => void;
-  registeredCommands: CommandAction[];
-}
-
-const CommandMenuContext = createContext<CommandMenuContextValue | null>(null);
 
 const DEFAULT_HOTKEYS = ["mod+k"];
 
@@ -106,32 +87,6 @@ const matchesHotkey = (event: KeyboardEvent, binding: string) => {
   );
 };
 
-export const useCommandMenu = () => {
-  const ctx = useContext(CommandMenuContext);
-  if (!ctx) {
-    throw new Error(
-      "useCommandMenu() must be used inside <CommandMenu>. Mount <CommandMenu /> at the Admin shell first.",
-    );
-  }
-  return ctx;
-};
-
-/**
- * Registers a command action into the nearest `<CommandMenu>` on mount and
- * removes it on unmount. The dep array is intentionally `[action.id]` so the
- * hook does not re-register on every render when callers pass an inline object.
- * Callers are responsible for stabilising dynamic data via `useMemo`/`useCallback`
- * if the action payload (not just `id`) needs to stay fresh.
- */
-export const useRegisterCommand = (action: CommandAction) => {
-  const { registerCommand, unregisterCommand } = useCommandMenu();
-  useEffect(() => {
-    registerCommand(action);
-    return () => unregisterCommand(action.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [action.id]);
-};
-
 const useDebouncedValue = <T,>(value: T, delay: number) => {
   const [debounced, setDebounced] = useState(value);
   useEffect(() => {
@@ -140,16 +95,6 @@ const useDebouncedValue = <T,>(value: T, delay: number) => {
   }, [value, delay]);
   return debounced;
 };
-
-export interface RecentEntry {
-  type: "record" | "resource";
-  resource: string;
-  id?: number | string;
-  label: string;
-  path: string;
-}
-
-export const RECENTS_KEY = "command-menu.recents";
 
 const useRecents = (limit: number) => {
   const [recents, setRecents] = useStore<RecentEntry[]>(RECENTS_KEY, []);

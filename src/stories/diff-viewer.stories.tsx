@@ -2,7 +2,7 @@ import React from "react";
 import { CoreAdminContext } from "ra-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { DiffViewer } from "@/components/admin/diff-viewer";
+import { DiffViewer } from "@/components/extras/diff-viewer";
 
 export default {
   title: "Display/DiffViewer",

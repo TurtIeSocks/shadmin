@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { Lock } from "lucide-react";
 
-import { AuthErrorScreen } from "./auth-error-screen";
+import { AuthErrorScreen } from "../extras/auth-error-screen";
 
 export interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
