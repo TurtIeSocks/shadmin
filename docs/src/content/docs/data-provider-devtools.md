@@ -1,0 +1,41 @@
+---
+title: "DataProviderDevtools"
+---
+
+Floating panel that wraps the surrounding `<DataProviderContext>` and logs
+every data-provider call. Drop in the tree wherever you want call-tracking to
+start; consumers below it automatically use the tracked instance.
+
+## Usage
+
+```tsx
+import { Admin, DataProviderDevtools, Resource } from '@/components/admin';
+
+const App = () => (
+  <Admin dataProvider={myDataProvider}>
+    <DataProviderDevtools>
+      <Resource name="posts" {...} />
+    </DataProviderDevtools>
+  </Admin>
+);
+```
+
+## Props
+
+| Prop               | Required | Type        | Default          | Description |
+| ------------------ | -------- | ----------- | ---------------- | ----------- |
+| `children`         | Required | `ReactNode` | -                | Tree to track |
+| `defaultOpen`      | Optional | `boolean`   | `true`           | Panel open at mount |
+| `maxLogs`          | Optional | `number`    | `50`             | Retained logs |
+| `keyboardShortcut` | Optional | `string`    | `"ctrl+shift+d"` | Toggle key chord |
+
+## `useDataProviderDevtools()`
+
+Reads the captured logs from inside the provider. Returns `{ logs, clear }` or
+`null` when called outside a `<DataProviderDevtools>`.
+
+## Limitations
+
+- Cache hit/miss is not surfaced in v1 (would require TanStack Query plumbing).
+- The provider only tracks descendants of `<DataProviderDevtools>` — calls
+  made above the wrapper aren't captured.
