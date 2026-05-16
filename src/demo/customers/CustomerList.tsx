@@ -1,4 +1,5 @@
 import { useRecordContext, Translate } from "ra-core";
+import { z } from "zod";
 import {
   BooleanField,
   ColumnsButton,
@@ -7,10 +8,12 @@ import {
   FilterList,
   FilterListItem,
   FilterLiveSearch,
+  InPlaceEditor,
   List,
   ListPagination,
   CreateButton,
 } from "@/components/admin";
+import { CsvImport } from "@/components/csv-import";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Clock, DollarSign, Mail, Users } from "lucide-react";
@@ -34,6 +37,12 @@ const smallDateTimeFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: "short",
 });
 
+const CustomerImportSchema = z.object({
+  first_name: z.string().min(1),
+  last_name: z.string().min(1),
+  email: z.string().email(),
+});
+
 export const CustomerList = () => {
   const isMobile = useIsMobile();
 
@@ -45,6 +54,7 @@ export const CustomerList = () => {
       actions={
         <div className="flex items-center gap-2">
           <CreateButton />
+          <CsvImport schema={CustomerImportSchema} />
           <ColumnsButton />
           <ExportButton />
         </div>
@@ -84,6 +94,13 @@ export const CustomerList = () => {
                   : dateTimeFormatter.format(new Date(record.last_seen))
               }
             />
+            <DataTable.Col
+              source="email"
+              label="resources.customers.fields.email"
+              className="hidden lg:table-cell"
+            >
+              <InPlaceEditor source="email" />
+            </DataTable.Col>
             <DataTable.Col
               source="has_newsletter"
               className="hidden md:table-cell"

@@ -2,11 +2,14 @@ import {
   AutocompleteInput,
   Edit,
   FormToolbar,
+  ImageField,
+  ImageInput,
   ReferenceField,
   ReferenceInput,
   ReferenceManyField,
   TabbedForm,
   TextInput,
+  TranslatableInputs,
 } from "@/components/admin";
 import {
   RecordContextProvider,
@@ -56,6 +59,9 @@ export const ProductEdit = () => {
                 validate={required()}
                 className="[&>input]:bg-white"
               />
+              <ImageInput source="picture" accept={{ "image/*": [] }}>
+                <ImageField source="src" title="title" />
+              </ImageInput>
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-4 mb-2">
@@ -100,13 +106,14 @@ export const ProductEdit = () => {
               <Translate i18nKey="resources.products.tabs.description" />
             </h3>
             <div className="border rounded-sm p-4 bg-secondary flex-1 ">
-              <TextInput
-                source="description"
-                label={false}
-                multiline
-                validate={required()}
-                className="[&>textarea]:bg-white"
-              />
+              <TranslatableInputs locales={["en", "fr"]} defaultLocale="en">
+                <TextInput
+                  source="description"
+                  label={false}
+                  multiline
+                  className="[&>textarea]:bg-white"
+                />
+              </TranslatableInputs>
             </div>
           </div>
         </TabbedForm.Tab>

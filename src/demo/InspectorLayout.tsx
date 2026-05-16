@@ -7,13 +7,14 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { UserMenu } from "@/components/admin/user-menu";
 import { ThemeModeToggle } from "@/components/admin/theme-mode-toggle";
 import { Notification } from "@/components/admin/notification";
-import { AppSidebar } from "@/components/admin/app-sidebar";
+import { DemoSidebar } from "./DemoSidebar";
 import { RefreshButton } from "@/components/admin/refresh-button";
 import { LocalesMenuButton } from "@/components/admin/locales-menu-button";
 import { Error } from "@/components/admin/error";
 import { Loading } from "@/components/admin/loading";
 import { InspectorButton } from "@/components/admin/inspector-button";
 import { Inspector } from "@/components/admin/inspector";
+import { CommandMenu } from "@/components/extras/command-menu";
 
 /**
  * Demo layout that exposes the Inspector / Configurable system.
@@ -38,7 +39,7 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
   };
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <DemoSidebar />
       <main
         className={cn(
           "ml-auto w-full max-w-full",
@@ -76,6 +77,7 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
       </main>
       <Notification />
       <Inspector />
+      <CommandMenu />
     </SidebarProvider>
   );
 };

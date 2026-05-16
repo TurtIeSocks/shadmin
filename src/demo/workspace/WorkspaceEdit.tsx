@@ -7,6 +7,8 @@ import {
   SimpleForm,
   TextInput,
 } from "@/components/admin";
+import { MdxInput } from "@/components/mdx-editor";
+import "@mdxeditor/editor/style.css";
 import type {
   DocumentPermission,
   WorkspaceDocument,
@@ -114,7 +116,7 @@ export const WorkspaceEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput source="title" validate={required()} />
-      <TextInput source="body" multiline rows={10} />
+      <MdxInput source="body" />
       <PermissionMatrixInput source="permissions" />
     </SimpleForm>
   </Edit>

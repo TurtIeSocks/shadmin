@@ -10,6 +10,8 @@ import {
   Show,
   SimpleShowLayout,
 } from "@/components/admin";
+import { MdxField } from "@/components/mdx-editor";
+import "@mdxeditor/editor/style.css";
 import type { WorkspaceDocument } from "./documents-seed";
 
 /**
@@ -82,9 +84,9 @@ const DocumentBody = () => {
   const record = useRecordContext<WorkspaceDocument>();
   if (!record) return null;
   return (
-    <pre className="rounded-md border bg-muted/40 p-3 text-sm whitespace-pre-wrap font-sans">
-      {record.body}
-    </pre>
+    <div className="rounded-md border bg-muted/40 p-3 text-sm">
+      <MdxField source="body" />
+    </div>
   );
 };
 

@@ -4,6 +4,9 @@ import {
   TextInput,
   ReferenceInput,
   AutocompleteInput,
+  ImageInput,
+  ImageField,
+  TranslatableInputs,
 } from "@/components/admin";
 import { required } from "ra-core";
 
@@ -20,6 +23,12 @@ export const ProductCreate = () => (
       </div>
       <TextInput source="price" type="number" />
       <TextInput source="stock" label="Stock" type="number" />
+      <ImageInput source="picture" accept={{ "image/*": [] }}>
+        <ImageField source="src" title="title" />
+      </ImageInput>
+      <TranslatableInputs locales={["en", "fr"]} defaultLocale="en">
+        <TextInput source="description" multiline />
+      </TranslatableInputs>
     </SimpleForm>
   </Create>
 );
