@@ -5,6 +5,7 @@ import { placesSeed } from "./map";
 import { tasksSeed } from "./planning";
 import { reportsSeed } from "./analytics";
 import { documentsSeed } from "./workspace";
+import { onboardingsSeed } from "./onboarding";
 
 const data = {
   ...generateData(),
@@ -12,6 +13,7 @@ const data = {
   tasks: tasksSeed,
   reports: reportsSeed,
   documents: documentsSeed,
+  onboardings: onboardingsSeed,
 };
 
 export const dataProvider = fakeRestDataProvider(data, true, 500);

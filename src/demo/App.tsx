@@ -12,6 +12,7 @@ import { places } from "./map";
 import { planning } from "./planning";
 import { reports } from "./analytics";
 import { documents } from "./workspace";
+import { onboarding } from "./onboarding";
 import { Dashboard } from "./dashboard/Dashboard";
 import { InspectorLayout } from "./InspectorLayout";
 import { componentGallery } from "./component-gallery";
@@ -35,6 +36,7 @@ function App() {
       <Resource {...planning} group="Planning" />
       <Resource {...reports} group="Analytics" />
       <Resource {...documents} group="Workspace" />
+      <Resource {...onboarding} group="System" />
       <Resource {...componentGallery} />
     </Admin>
   );
