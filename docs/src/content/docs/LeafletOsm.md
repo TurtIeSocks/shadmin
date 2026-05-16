@@ -2,7 +2,7 @@
 title: "Leaflet OSM utilities"
 ---
 
-Hooks and pure helpers for querying OpenStreetMap data and performing geometric operations. Used by `<OsmWaterClipButton>` and `<LineStringInput snapToRoads>`, and available for custom workflows.
+Hooks and pure helpers for querying OpenStreetMap data and performing geometric operations. Used by `<OsmFeatureSubtract>`, `<OsmFeatureAdd>`, and `<LineStringInput snapToRoads>`, and available for custom workflows.
 
 ## `useOverpass`
 
@@ -24,19 +24,30 @@ const { data } = useOverpass(
 | `enabled`    | `boolean`           | `true`                                   | React Query `enabled` flag.       |
 | `staleTime`  | `number`            | `3600000` (1 h)                          | React Query `staleTime`.          |
 
-## `useOsmWaterMask`
+## `useOsmFeatures` + `OSM_PRESETS`
 
-Wraps `useOverpass` with a query that fetches water features (`natural=water`, `waterway=riverbank`) for a given bbox, and returns a parsed GeoJSON `FeatureCollection` (via `osmtogeojson`).
+Wraps `useOverpass` with a typed-preset query builder. Pass a bbox and a list of preset names; returns a parsed GeoJSON `FeatureCollection` of polygons (line features are buffered when the preset declares `bufferLinesMeters`).
 
 ```ts
-import { useOsmWaterMask } from "@/components/leaflet";
+import { useOsmFeatures } from "@/components/leaflet";
 
-const { data } = useOsmWaterMask([2.3, 48.85, 2.4, 48.9]);
+const { data } = useOsmFeatures([2.3, 48.85, 2.4, 48.9], ["water", "roads"]);
 ```
 
-| Param  | Type                  | Description                                          |
-| ------ | --------------------- | ---------------------------------------------------- |
-| `bbox` | `GeoJSON.BBox \| null` | `[w, s, e, n]`. Pass `null` to disable the query.    |
+### Bundled presets (`OSM_PRESETS`)
+
+| Preset       | OSM tags matched                                                                                            | Notes                                                |
+| ------------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `water`      | `natural=water,bay,strait` and any `waterway`                                                                | Polygons (lakes, bays) + waterways.                  |
+| `buildings`  | `building=*`                                                                                                | All building footprints.                             |
+| `forest`     | `natural=wood,forest` and `landuse=forest`                                                                  | Wooded patches.                                      |
+| `roads`      | `highway=motorway,trunk,primary,secondary`                                                                  | Buffered to 15 m polygons before set ops.            |
+
+| Param      | Type                              | Description                                                  |
+| ---------- | --------------------------------- | ------------------------------------------------------------ |
+| `bbox`     | `GeoJSON.BBox \| null`            | `[w, s, e, n]`. Pass `null` to disable the query.            |
+| `presets`  | `ReadonlyArray<OsmPresetName>`    | One or more preset names from `OSM_PRESETS`.                 |
+| `opts`     | `{ endpoint?, enabled?, staleTime? }` | Optional overrides forwarded to `useOverpass`.           |
 
 ## `snapToRoadsOnce`
 

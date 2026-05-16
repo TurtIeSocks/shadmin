@@ -35,8 +35,9 @@ npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/leaflet-admin.json
 
 ### OSM utilities
 
-- [`<OsmWaterClipButton>`](./OsmWaterClipButton)
-- [`useOverpass` / `useOsmWaterMask` / `useOsmSnapToRoads`](./LeafletOsm)
+- [`<OsmFeatureSubtract>`](./OsmFeatureSubtract)
+- [`<OsmFeatureAdd>`](./OsmFeatureAdd)
+- [`useOverpass` / `useOsmFeatures` / `useOsmSnapToRoads`](./LeafletOsm)
 
 ### Geocoding
 

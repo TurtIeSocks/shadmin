@@ -41,6 +41,7 @@
     "@tiptap/starter-kit": "^3.20.0",
     "@turf/area": "^7.3.5",
     "@turf/bbox": "^7.3.5",
+    "@turf/buffer": "^7.3.5",
     "@turf/difference": "^7.3.5",
     "@turf/helpers": "^7.3.5",
     "@turf/union": "^7.3.5",
