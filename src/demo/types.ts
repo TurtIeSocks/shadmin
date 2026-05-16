@@ -4,7 +4,9 @@ export type ThemeName = "light" | "dark";
 
 export type Category = DataGenerator.Category;
 export type Product = DataGenerator.Product;
-export type Customer = DataGenerator.Customer;
+export type Customer = DataGenerator.Customer & {
+  phone?: string;
+};
 export type Order = DataGenerator.Order;
 export type Invoice = DataGenerator.Invoice;
 export type Review = DataGenerator.Review;
