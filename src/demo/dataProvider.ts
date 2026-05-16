@@ -18,9 +18,28 @@ const customersWithPhone = generated.customers.map((customer) => {
   return { ...customer, phone: `+1${national}` };
 });
 
+// Seed deterministic hex colors for categories from a fixed palette so the
+// demo's ColorField/ColorInput have realistic values without adding a faker
+// dependency. Cycles via modulo to keep assignments stable across reloads.
+const CATEGORY_COLORS = [
+  "#3b82f6",
+  "#10b981",
+  "#f59e0b",
+  "#ef4444",
+  "#8b5cf6",
+  "#ec4899",
+  "#14b8a6",
+  "#f97316",
+];
+const categoriesWithColor = generated.categories.map((category, i) => ({
+  ...category,
+  color: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
+}));
+
 const data = {
   ...generated,
   customers: customersWithPhone,
+  categories: categoriesWithColor,
   places: placesSeed,
   tasks: tasksSeed,
   reports: reportsSeed,

@@ -1,19 +1,21 @@
-import { List, TreeList } from "@/components/admin";
+import { DataTable, List } from "@/components/admin";
+import { ColorField } from "@/components/extras/color-field";
 
 /**
- * Categories list rendered as a hierarchical tree.
+ * Categories list rendered as a simple table with a color swatch column.
  *
- * The retail demo dataset's categories are flat (no `parent_id`), so the tree
- * collapses to a single level — but this exercises `<TreeList>` end-to-end and
- * acts as a copy/paste starting point for projects whose category schemas DO
- * include `parent_id`.
+ * The retail demo dataset's categories are flat, so a table view is the
+ * natural display. The leading column shows the seeded brand color via
+ * `<ColorField>`, demonstrating the extras color picker round-trip
+ * (edit -> seed -> list display).
  */
 export const CategoryList = () => (
-  <List pagination={false} perPage={50} actions={false}>
-    <TreeList
-      parentSource="parent_id"
-      titleSource="name"
-      defaultExpanded
-    />
+  <List pagination={false} perPage={50}>
+    <DataTable>
+      <DataTable.Col source="color" label="Color">
+        <ColorField source="color" showLabel={false} />
+      </DataTable.Col>
+      <DataTable.Col source="name" />
+    </DataTable>
   </List>
 );

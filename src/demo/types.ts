@@ -2,7 +2,9 @@ import * as DataGenerator from "data-generator-retail";
 
 export type ThemeName = "light" | "dark";
 
-export type Category = DataGenerator.Category;
+export type Category = DataGenerator.Category & {
+  color: string;
+};
 export type Product = DataGenerator.Product;
 export type Customer = DataGenerator.Customer & {
   phone?: string;
