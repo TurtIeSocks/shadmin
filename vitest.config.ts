@@ -38,5 +38,6 @@ export default defineConfig({
       ],
     },
     globalSetup: "./vitest.global-setup.ts",
+    setupFiles: ["./vitest.browser-setup.ts"],
   },
 });
