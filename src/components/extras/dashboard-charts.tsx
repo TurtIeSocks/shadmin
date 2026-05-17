@@ -1,8 +1,10 @@
 "use client";
 
-import { type ComponentType, type ReactElement, type ReactNode } from "react";
+import { type ComponentType, type ReactElement, type ReactNode, useId } from "react";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import {
+  Area,
+  AreaChart as RechartsArea,
   Bar,
   BarChart as RechartsBar,
   CartesianGrid,
@@ -91,27 +93,38 @@ interface ChartShellProps {
   height: number;
   className?: string;
   slot: string;
+  bare?: boolean;
   children: ReactNode;
 }
 
-const ChartShell = ({ title, loading, height, className, slot, children }: ChartShellProps) => (
-  <Card className={className} data-slot={slot}>
-    {title ? (
-      <CardHeader>
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-      </CardHeader>
-    ) : null}
-    <CardContent style={{ height }}>
-      {loading ? (
-        <Skeleton className="h-full w-full" />
-      ) : (
-        <ResponsiveContainer width="100%" height="100%" minHeight={height}>
-          {children as ReactElement<unknown>}
-        </ResponsiveContainer>
-      )}
-    </CardContent>
-  </Card>
-);
+const ChartShell = ({
+  title,
+  loading,
+  height,
+  className,
+  slot,
+  bare,
+  children,
+}: ChartShellProps) => {
+  const inner = loading ? (
+    <Skeleton className="h-full w-full" />
+  ) : (
+    <ResponsiveContainer width="100%" height="100%" minHeight={height}>
+      {children as ReactElement<unknown>}
+    </ResponsiveContainer>
+  );
+  if (bare) return <div style={{ height }}>{inner}</div>;
+  return (
+    <Card className={className} data-slot={slot}>
+      {title ? (
+        <CardHeader>
+          <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        </CardHeader>
+      ) : null}
+      <CardContent style={{ height }}>{inner}</CardContent>
+    </Card>
+  );
+};
 
 // ---------- TrendChart ----------
 
@@ -124,6 +137,12 @@ export interface TrendChartProps {
   height?: number;
   loading?: boolean;
   className?: string;
+  area?: boolean;
+  smooth?: boolean;
+  bare?: boolean;
+  xTickFormatter?: (value: unknown) => string;
+  yTickFormatter?: (value: unknown) => string;
+  tooltipFormatter?: (value: unknown, name: string) => [ReactNode, ReactNode];
 }
 
 export const TrendChart = ({
@@ -135,21 +154,54 @@ export const TrendChart = ({
   height = 200,
   loading,
   className,
-}: TrendChartProps) => (
-  <ChartShell
-    title={title}
-    loading={loading}
-    height={height}
-    className={className}
-    slot="trend-chart"
-  >
+  area = false,
+  smooth = false,
+  bare = false,
+  xTickFormatter,
+  yTickFormatter,
+  tooltipFormatter,
+}: TrendChartProps) => {
+  const gradientId = `trendChartGradient-${useId().replace(/:/g, "")}`;
+  const curveType = smooth ? "monotone" : "linear";
+  // Adapter: recharts v3 Tooltip formatter has a wider signature; pass only
+  // the (value, name) pair through to the friendlier public prop.
+  const rechartsTooltipFormatter = tooltipFormatter
+    ? ((value: unknown, name: unknown) =>
+        tooltipFormatter(value, (name ?? "") as string))
+    : undefined;
+
+  const inner = area ? (
+    <RechartsArea data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="5%" stopColor={color} stopOpacity={0.8} />
+          <stop offset="95%" stopColor={color} stopOpacity={0} />
+        </linearGradient>
+      </defs>
+      <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+      <XAxis dataKey={xField} className="text-xs" tickFormatter={xTickFormatter} />
+      <YAxis className="text-xs" tickFormatter={yTickFormatter} />
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <Tooltip formatter={rechartsTooltipFormatter as any} />
+      <Area
+        type={curveType}
+        dataKey={yField}
+        stroke={color}
+        strokeWidth={2}
+        fill={`url(#${gradientId})`}
+        dot={false}
+        activeDot={{ r: 4 }}
+      />
+    </RechartsArea>
+  ) : (
     <RechartsLine data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
       <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-      <XAxis dataKey={xField} className="text-xs" />
-      <YAxis className="text-xs" />
-      <Tooltip />
+      <XAxis dataKey={xField} className="text-xs" tickFormatter={xTickFormatter} />
+      <YAxis className="text-xs" tickFormatter={yTickFormatter} />
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <Tooltip formatter={rechartsTooltipFormatter as any} />
       <Line
-        type="monotone"
+        type={curveType}
         dataKey={yField}
         stroke={color}
         strokeWidth={2}
@@ -157,8 +209,21 @@ export const TrendChart = ({
         activeDot={{ r: 4 }}
       />
     </RechartsLine>
-  </ChartShell>
-);
+  );
+
+  return (
+    <ChartShell
+      title={title}
+      loading={loading}
+      height={height}
+      className={className}
+      slot="trend-chart"
+      bare={bare}
+    >
+      {inner}
+    </ChartShell>
+  );
+};
 
 // ---------- BarChart ----------
 

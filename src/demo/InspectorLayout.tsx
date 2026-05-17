@@ -15,6 +15,9 @@ import { Loading } from "@/components/admin/loading";
 import { InspectorButton } from "@/components/admin/inspector-button";
 import { Inspector } from "@/components/admin/inspector";
 import { CommandMenu } from "@/components/extras/command-menu";
+import { DataProviderDevtools } from "@/components/extras/data-provider-devtools";
+import { LayoutBuilderButton, ThemeStudioButton } from "./admin-tools-drawer";
+import { I18nKeyEditorButton } from "./i18n-tools-menu";
 
 /**
  * Demo layout that exposes the Inspector / Configurable system.
@@ -38,46 +41,54 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
     setErrorInfo(info);
   };
   return (
-    <SidebarProvider>
-      <DemoSidebar />
-      <main
-        className={cn(
-          "ml-auto w-full max-w-full",
-          "peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)]",
-          "peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))]",
-          "sm:transition-[width] sm:duration-200 sm:ease-linear",
-          "flex h-svh flex-col",
-          "group-data-[scroll-locked=1]/body:h-full",
-          "has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh",
-        )}
-      >
-        <header className="flex h-16 md:h-12 shrink-0 items-center gap-2 px-4">
-          <SidebarTrigger className="scale-125 sm:scale-100" />
-          <div className="flex-1 flex items-center" id="breadcrumb" />
-          <LocalesMenuButton />
-          <InspectorButton />
-          <ThemeModeToggle />
-          <RefreshButton />
-          <UserMenu />
-        </header>
-        <ErrorBoundary
-          onError={handleError}
-          fallbackRender={({ error, resetErrorBoundary }) => (
-            <Error
-              error={error}
-              errorInfo={errorInfo}
-              resetErrorBoundary={resetErrorBoundary}
-            />
+    <DataProviderDevtools
+      defaultOpen={false}
+      keyboardShortcut="ctrl+shift+d"
+    >
+      <SidebarProvider>
+        <DemoSidebar />
+        <main
+          className={cn(
+            "ml-auto w-full max-w-full",
+            "peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)]",
+            "peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))]",
+            "sm:transition-[width] sm:duration-200 sm:ease-linear",
+            "flex h-svh flex-col",
+            "group-data-[scroll-locked=1]/body:h-full",
+            "has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh",
           )}
         >
-          <Suspense fallback={<Loading />}>
-            <div className="flex flex-1 flex-col px-4 ">{props.children}</div>
-          </Suspense>
-        </ErrorBoundary>
-      </main>
-      <Notification />
-      <Inspector />
-      <CommandMenu />
-    </SidebarProvider>
+          <header className="flex h-16 md:h-12 shrink-0 items-center gap-2 px-4">
+            <SidebarTrigger className="scale-125 sm:scale-100" />
+            <div className="flex-1 flex items-center" id="breadcrumb" />
+            <LocalesMenuButton />
+            <I18nKeyEditorButton />
+            <InspectorButton />
+            <ThemeStudioButton />
+            <LayoutBuilderButton />
+            <ThemeModeToggle />
+            <RefreshButton />
+            <UserMenu />
+          </header>
+          <ErrorBoundary
+            onError={handleError}
+            fallbackRender={({ error, resetErrorBoundary }) => (
+              <Error
+                error={error}
+                errorInfo={errorInfo}
+                resetErrorBoundary={resetErrorBoundary}
+              />
+            )}
+          >
+            <Suspense fallback={<Loading />}>
+              <div className="flex flex-1 flex-col px-4 ">{props.children}</div>
+            </Suspense>
+          </ErrorBoundary>
+        </main>
+        <Notification />
+        <Inspector />
+        <CommandMenu />
+      </SidebarProvider>
+    </DataProviderDevtools>
   );
 };

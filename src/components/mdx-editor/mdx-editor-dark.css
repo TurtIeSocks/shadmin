@@ -1,0 +1,13 @@
+.mdxeditor.mdxeditor-dark,
+.mdxeditor.mdxeditor-dark .mdxeditor-toolbar,
+.mdxeditor.mdxeditor-dark .mdxeditor-popup-container {
+  --mdxeditor-bg-color: var(--background);
+  --mdxeditor-text-color: var(--foreground);
+  --mdxeditor-toolbar-bg-color: var(--card);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+.mdxeditor.mdxeditor-dark [contenteditable="true"] {
+  color: var(--foreground) !important;
+  caret-color: var(--foreground);
+}

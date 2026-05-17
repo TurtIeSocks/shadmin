@@ -12,6 +12,8 @@ import {
   TranslatableInputs,
 } from "@/components/admin";
 import { MonacoJsonInput } from "@/components/monaco";
+import { CurrencyInput } from "@/components/extras/currency-input";
+import { RatingField } from "@/components/extras/rating-field";
 import {
   RecordContextProvider,
   required,
@@ -22,7 +24,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Product, Review, Customer } from "@/demo/types";
 import { Link } from "react-router";
-import { StarRatingField, StarArray } from "../reviews/StarRatingField";
 
 export const ProductEdit = () => {
   return (
@@ -89,9 +90,9 @@ export const ProductEdit = () => {
                 type="number"
                 className="[&>input]:bg-white"
               />
-              <TextInput
+              <CurrencyInput
                 source="price"
-                type="number"
+                currency="USD"
                 className="[&>input]:bg-white"
               />
               <TextInput
@@ -175,16 +176,19 @@ const ProductReviews = () => (
                 : 0}
             </div>
             <div className="flex flex-row justify-center">
-              <StarArray
-                rating={
-                  data && data.length > 0
-                    ? data?.reduce(
-                        (total, review) => total + review.rating,
-                        0,
-                      ) / data?.length
-                    : 0
-                }
-                size="large"
+              <RatingField
+                source="rating"
+                max={5}
+                allowHalf
+                record={{
+                  rating:
+                    data && data.length > 0
+                      ? data?.reduce(
+                          (total, review) => total + review.rating,
+                          0,
+                        ) / data?.length
+                      : 0,
+                }}
               />
             </div>
             <p className="text-muted-foreground text-sm">
@@ -233,7 +237,7 @@ const ProductReview = () => {
             reference="customers"
             link={false}
           />
-          <StarRatingField size="small" />
+          <RatingField source="rating" max={5} />
         </div>
         <div className="flex-1" />
         <span className="text-xs text-muted-foreground">

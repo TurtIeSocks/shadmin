@@ -8,6 +8,7 @@ import {
   ImageField,
   TranslatableInputs,
 } from "@/components/admin";
+import { CurrencyInput } from "@/components/extras/currency-input";
 import { required } from "ra-core";
 
 export const ProductCreate = () => (
@@ -21,7 +22,7 @@ export const ProductCreate = () => (
         <TextInput source="width" type="number" />
         <TextInput source="height" type="number" />
       </div>
-      <TextInput source="price" type="number" />
+      <CurrencyInput source="price" currency="USD" />
       <TextInput source="stock" label="Stock" type="number" />
       <ImageInput source="picture" accept={{ "image/*": [] }}>
         <ImageField source="src" title="title" />

@@ -1,15 +1,19 @@
 import { useListContext } from "ra-core";
 import {
+  BulkDeleteButton,
   ColumnsButton,
   DataTable,
   ExportButton,
   List,
   ReferenceField,
   Count,
+  SelectInput,
   TextInput,
   ReferenceInput,
   AutocompleteInput,
 } from "@/components/admin";
+import { BulkEditDrawer } from "@/components/extras/bulk-edit-drawer";
+import { CurrencyField } from "@/components/extras/currency-field";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
@@ -116,8 +120,23 @@ const TabbedDataTable = () => {
   );
 };
 
+const ORDER_STATUS_CHOICES = [
+  { id: "ordered", name: "Ordered" },
+  { id: "delivered", name: "Delivered" },
+  { id: "cancelled", name: "Cancelled" },
+];
+
+const OrderBulkActions = () => (
+  <>
+    <BulkEditDrawer label="Edit status" title="Edit selected orders">
+      <SelectInput source="status" choices={ORDER_STATUS_CHOICES} />
+    </BulkEditDrawer>
+    <BulkDeleteButton />
+  </>
+);
+
 const OrdersTable = ({ storeKey }: { storeKey: string }) => (
-  <DataTable storeKey={storeKey}>
+  <DataTable storeKey={storeKey} bulkActionButtons={<OrderBulkActions />}>
     <DataTable.Col
       source="date"
       render={(record) => new Date(record.date).toLocaleString()}
@@ -137,10 +156,13 @@ const OrdersTable = ({ storeKey }: { storeKey: string }) => (
       label="resources.orders.fields.nb_items"
       className="hidden md:table-cell"
     />
-    <DataTable.NumberCol
+    <DataTable.Col
       source="total"
-      options={{ style: "currency", currency: "USD" }}
-    />
+      headerClassName="text-right"
+      cellClassName="text-right"
+    >
+      <CurrencyField source="total" currency="USD" />
+    </DataTable.Col>
     <DataTable.Col
       label="resources.orders.fields.address"
       className="hidden md:table-cell"

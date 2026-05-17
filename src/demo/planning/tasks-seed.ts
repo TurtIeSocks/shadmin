@@ -20,9 +20,25 @@ export type Task = {
   dueDate: string;
   assignee: string;
   priority: "low" | "medium" | "high";
+  /**
+   * Stored as an ISO-8601 duration string (e.g. `PT2H30M`) so the
+   * `<DurationField>` and `<DurationInput>` components can parse/render it.
+   * Name keeps the `_minutes` suffix per the source-of-truth plan, even
+   * though the on-the-wire value is an ISO string.
+   */
+  estimated_duration_minutes?: string;
 };
 
-export const tasksSeed: Task[] = [
+/** Encode a minute count as an ISO-8601 duration string. */
+const minutesToIso = (totalMinutes: number): string => {
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  const hPart = h > 0 ? `${h}H` : "";
+  const mPart = m > 0 ? `${m}M` : "";
+  return hPart || mPart ? `PT${hPart}${mPart}` : "";
+};
+
+const rawSeed: Omit<Task, "estimated_duration_minutes">[] = [
   {
     id: 1,
     title: "Migrate auth provider to OIDC",
@@ -141,3 +157,8 @@ export const tasksSeed: Task[] = [
     priority: "medium",
   },
 ];
+
+export const tasksSeed: Task[] = rawSeed.map((task, i) => ({
+  ...task,
+  estimated_duration_minutes: minutesToIso(30 + ((i * 17) % 480)),
+}));

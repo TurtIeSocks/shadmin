@@ -1,9 +1,11 @@
 import { Link } from "react-router";
-import { Shell } from "lucide-react";
+import { DatabaseIcon, Shell } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -43,19 +45,43 @@ export const DemoSidebar = () => (
         <DashboardMenuItem />
       </SidebarMenu>
       <ResourceMenuItemGroup
-        label="Sales"
-        resources={["orders", "customers"]}
-      />
-      <ResourceMenuItemGroup
         label="Catalog"
         resources={["products", "categories"]}
       />
-      <ResourceMenuItemGroup label="Content" resources={["reviews"]} />
-      <ResourceMenuItemGroup label="Map" resources={["places"]} />
-      <ResourceMenuItemGroup label="Planning" resources={["tasks"]} />
-      <ResourceMenuItemGroup label="Analytics" resources={["reports"]} />
-      <ResourceMenuItemGroup label="Workspace" resources={["documents"]} />
-      <ResourceMenuItemGroup label="System" resources={["onboardings"]} />
+      <SidebarGroup>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild tooltip="Products (schema)">
+                <Link to="/products/schema-view">
+                  <DatabaseIcon className="size-4" />
+                  <span>Products (schema)</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+      <ResourceMenuItemGroup
+        label="Sales"
+        resources={["orders", "customers", "reviews", "segments"]}
+      />
+      <ResourceMenuItemGroup
+        label="SaaS"
+        resources={["subscriptions", "api_keys", "webhooks"]}
+      />
+      <ResourceMenuItemGroup
+        label="Workflow"
+        resources={["approvals", "scheduled_jobs"]}
+      />
+      <ResourceMenuItemGroup
+        label="Analytics"
+        resources={["reports", "tasks", "places"]}
+      />
+      <ResourceMenuItemGroup
+        label="Setup"
+        resources={["onboardings", "documents"]}
+      />
       <ResourceMenuItemGroup resources={["component_gallery"]} />
     </SidebarContent>
     <SidebarFooter />

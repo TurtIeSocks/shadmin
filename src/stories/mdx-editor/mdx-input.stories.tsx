@@ -33,7 +33,7 @@ const StoryWrapper = ({
   defaultValues?: Record<string, unknown>;
   toolbar?: ReactNode;
 }) => (
-  <ThemeProvider defaultTheme={theme}>
+  <ThemeProvider defaultTheme={theme} storageKey={`mdx-input-story-${theme}`}>
     <CoreAdminContext i18nProvider={i18nProvider}>
       <RecordContextProvider value={defaultValues ?? record}>
         <SimpleForm toolbar={toolbar}>{children}</SimpleForm>
@@ -157,3 +157,9 @@ export const ExternalChanges = ({
   </StoryWrapper>
 );
 Object.assign(ExternalChanges, StoryArgs);
+
+export const Dark = () => (
+  <div className="dark bg-background p-4">
+    <Basic theme="dark" />
+  </div>
+);

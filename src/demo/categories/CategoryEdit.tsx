@@ -4,6 +4,7 @@ import {
   SimpleForm,
   TextInput,
 } from "@/components/admin";
+import { ColorInput } from "@/components/extras/color-input";
 import { required, Translate } from "ra-core";
 import { Link } from "react-router";
 
@@ -12,6 +13,7 @@ export const CategoryEdit = () => (
     <div className="flex flex-col lg:flex-row items-start justify-between">
       <SimpleForm>
         <TextInput source="name" label="Name" validate={required()} />
+        <ColorInput source="color" />
       </SimpleForm>
 
       <ReferenceManyField

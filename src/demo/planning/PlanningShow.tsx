@@ -4,6 +4,7 @@ import {
   Show,
   TextField,
 } from "@/components/admin";
+import { DurationField } from "@/components/extras/duration-field";
 
 export const PlanningShow = () => (
   <Show>
@@ -22,6 +23,9 @@ export const PlanningShow = () => (
       </RecordField>
       <RecordField source="dueDate">
         <DateField source="dueDate" />
+      </RecordField>
+      <RecordField source="estimated_duration_minutes" label="Estimated duration">
+        <DurationField source="estimated_duration_minutes" />
       </RecordField>
       <RecordField source="description" className="sm:col-span-2">
         <TextField source="description" />

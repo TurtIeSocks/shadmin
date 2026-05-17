@@ -17,8 +17,11 @@ export default {
   title: "MDX Editor/MdxField",
 };
 
-const Wrapper = ({ children }: React.PropsWithChildren) => (
-  <ThemeProvider>
+const Wrapper = ({
+  children,
+  theme = "system",
+}: React.PropsWithChildren<{ theme?: "light" | "dark" | "system" }>) => (
+  <ThemeProvider defaultTheme={theme} storageKey={`mdx-field-story-${theme}`}>
     <CoreAdminContext i18nProvider={i18nProvider}>
       <RecordContextProvider value={record}>{children}</RecordContextProvider>
     </CoreAdminContext>
@@ -35,4 +38,12 @@ export const Empty = () => (
   <Wrapper>
     <MdxField source="empty" empty="No content yet" />
   </Wrapper>
+);
+
+export const Dark = () => (
+  <div className="dark bg-background p-4">
+    <Wrapper theme="dark">
+      <MdxField source="body" />
+    </Wrapper>
+  </div>
 );

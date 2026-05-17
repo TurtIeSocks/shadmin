@@ -23,8 +23,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
+import { RatingField } from "@/components/extras/rating-field";
 import { FullNameField } from "../customers/FullNameField";
-import { StarRatingField } from "./StarRatingField";
 import { ReviewEdit } from "./ReviewEdit";
 import { BulkApproveButton } from "./BulkApproveButton";
 import { BulkRejectButton } from "./BulkRejectButton";
@@ -168,7 +168,7 @@ const ReviewListMobile = () => {
                   <FullNameField />
                 </ReferenceField>
                 <div className="my-1 flex gap-2">
-                  <StarRatingField /> on{" "}
+                  <RatingField source="rating" max={5} /> on{" "}
                   <ReferenceField
                     source="product_id"
                     reference="products"
@@ -257,10 +257,9 @@ const ReviewListDesktop = ({ selectedRow }: { selectedRow?: number }) => {
       >
         <ReferenceField source="product_id" reference="products" link={false} />
       </DataTable.Col>
-      <DataTable.Col
-        source="rating"
-        render={() => <StarRatingField size="small" />}
-      />
+      <DataTable.Col source="rating">
+        <RatingField source="rating" max={5} />
+      </DataTable.Col>
       <DataTable.Col
         source="comment"
         cellClassName="max-w-[18em] overflow-hidden text-ellipsis whitespace-nowrap"

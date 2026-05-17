@@ -1,15 +1,16 @@
 import {
-  AutocompleteInput,
   BooleanInput,
   Edit,
   RecordField,
   ReferenceField,
   SimpleForm,
 } from "@/components/admin";
+import { StatusTransitionButton } from "@/components/extras/status-transition-button";
 import { RecordRepresentation } from "ra-core";
 import { Link } from "react-router";
 import { Basket } from "./Basket";
 import { Totals } from "./Totals";
+import { ORDER_TRANSITIONS } from "./order-transitions";
 import type { Order } from "../types";
 
 export const OrderEdit = () => (
@@ -25,15 +26,12 @@ export const OrderEdit = () => (
             />
             <RecordField source="reference" className="flex-1 md:text-sm" />
           </div>
-          <AutocompleteInput
-            source="status"
-            choices={[
-              { id: "ordered", name: "Ordered" },
-              { id: "delivered", name: "Delivered" },
-              { id: "cancelled", name: "Cancelled" },
-            ]}
-            className="mb-4"
-          />
+          <div className="mb-4">
+            <StatusTransitionButton
+              source="status"
+              transitions={ORDER_TRANSITIONS}
+            />
+          </div>
           <BooleanInput source="returned" />
         </div>
         <div className="flex-1">
