@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useGetList, Translate } from "ra-core";
 import { subDays, startOfDay } from "date-fns";
 import { Breadcrumb, BreadcrumbPage } from "@/components/admin";
+import { JobMonitor } from "@/components/extras/job-monitor";
 
 import Welcome from "./Welcome";
 import MonthlyRevenue from "./MonthlyRevenue";
@@ -91,10 +92,13 @@ export const Dashboard = () => {
             <PendingOrders orders={pendingOrders} />
           </div>
         </div>
-        <div className="md:basis-1/2">
+        <div className="flex flex-col gap-4 md:basis-1/2">
           <div className="flex flex-col md:flex-row gap-4">
             <PendingReviews />
             <NewCustomers />
+          </div>
+          <div>
+            <JobMonitor resource="scheduled_jobs" pollInterval={5000} />
           </div>
         </div>
       </div>
