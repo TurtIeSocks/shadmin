@@ -1,9 +1,12 @@
 import { Admin, defaultTheme, Resource } from "@/components/admin";
+import { CustomRoutes } from "ra-core";
+import { Route } from "react-router";
 
 import { dataProvider } from "./dataProvider";
 import { authProvider } from "./authProvider";
 import { i18nProvider } from "./i18nProvider";
 import { products } from "./products";
+import { ProductSchemaList } from "./products/ProductSchemaList";
 import { categories } from "./categories";
 import { orders } from "./orders";
 import { customers } from "./customers";
@@ -48,6 +51,9 @@ function App() {
       <Resource {...scheduledJobs} group="Workflow" />
       <Resource {...approvals} group="Workflow" />
       <Resource {...componentGallery} />
+      <CustomRoutes>
+        <Route path="/products/schema-view" element={<ProductSchemaList />} />
+      </CustomRoutes>
     </Admin>
   );
 }

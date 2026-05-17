@@ -1,9 +1,11 @@
 import { Link } from "react-router";
-import { Shell } from "lucide-react";
+import { DatabaseIcon, Shell } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -46,6 +48,20 @@ export const DemoSidebar = () => (
         label="Catalog"
         resources={["products", "categories"]}
       />
+      <SidebarGroup>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild tooltip="Products (schema)">
+                <Link to="/products/schema-view">
+                  <DatabaseIcon className="size-4" />
+                  <span>Products (schema)</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
       <ResourceMenuItemGroup
         label="Sales"
         resources={["orders", "customers", "reviews", "segments"]}
