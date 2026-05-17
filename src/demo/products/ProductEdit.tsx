@@ -11,6 +11,7 @@ import {
   TextInput,
   TranslatableInputs,
 } from "@/components/admin";
+import { MonacoJsonInput } from "@/components/monaco";
 import {
   RecordContextProvider,
   required,
@@ -114,6 +115,27 @@ export const ProductEdit = () => {
                   className="[&>textarea]:bg-white"
                 />
               </TranslatableInputs>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-4 mt-2">
+            <h3 className="min-w-32 text-sm font-semibold">Metadata</h3>
+            <div className="border rounded-sm p-4 bg-secondary flex-1">
+              <MonacoJsonInput
+                source="metadata"
+                label="Metadata"
+                helperText="Free-form JSON for product metadata."
+                autoHeight
+                minHeight={120}
+                maxHeight={400}
+                schema={{
+                  type: "object",
+                  properties: {
+                    sku: { type: "string" },
+                    weight_grams: { type: "number" },
+                  },
+                  additionalProperties: true,
+                }}
+              />
             </div>
           </div>
         </TabbedForm.Tab>
