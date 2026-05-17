@@ -24,14 +24,14 @@ browser provider, Storybook 9.
 
 ## File structure
 
-| File | Responsibility | Status |
-| --- | --- | --- |
-| `src/components/admin/command-menu.tsx` | Root component, context, sub-components, hooks | **Create** |
-| `src/components/admin/command-menu.spec.tsx` | Vitest browser tests importing stories | **Create** |
-| `src/stories/command-menu.stories.tsx` | Storybook stories driving demos + tests | **Create** |
-| `docs/src/content/docs/CommandMenu.md` | Public documentation page | **Create** |
-| `src/components/admin/index.ts` | Public re-export | **Modify** (add `export * from "./command-menu"`) |
-| `src/components/admin/admin.tsx` | `commandMenu?: boolean \| ReactElement` prop on `<Admin>` | **Modify** |
+| File                                         | Responsibility                                            | Status                                            |
+| -------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------- |
+| `src/components/admin/command-menu.tsx`      | Root component, context, sub-components, hooks            | **Create**                                        |
+| `src/components/admin/command-menu.spec.tsx` | Vitest browser tests importing stories                    | **Create**                                        |
+| `src/stories/command-menu.stories.tsx`       | Storybook stories driving demos + tests                   | **Create**                                        |
+| `docs/src/content/docs/CommandMenu.md`       | Public documentation page                                 | **Create**                                        |
+| `src/components/admin/index.ts`              | Public re-export                                          | **Modify** (add `export * from "./command-menu"`) |
+| `src/components/admin/admin.tsx`             | `commandMenu?: boolean \| ReactElement` prop on `<Admin>` | **Modify**                                        |
 
 All sub-components (`CommandMenuRecents`, `CommandMenuResources`,
 `CommandMenuRecords`, `CommandMenuActions`, `CommandMenuFooter`) live inside
@@ -43,6 +43,7 @@ All sub-components (`CommandMenuRecents`, `CommandMenuResources`,
 ### Task 1: Scaffold component, context, types, first story, smoke spec
 
 **Files:**
+
 - Create: `src/components/admin/command-menu.tsx`
 - Create: `src/components/admin/command-menu.spec.tsx`
 - Create: `src/stories/command-menu.stories.tsx`
@@ -170,12 +171,24 @@ export const CommandMenu = ({ children }: CommandMenuProps) => {
       unregisterCommand,
       registeredCommands,
     }),
-    [isOpen, open, close, toggle, registerCommand, unregisterCommand, registeredCommands],
+    [
+      isOpen,
+      open,
+      close,
+      toggle,
+      registerCommand,
+      unregisterCommand,
+      registeredCommands,
+    ],
   );
 
   return (
     <CommandMenuContext.Provider value={value}>
-      <CommandDialog open={isOpen} onOpenChange={setIsOpen} title="Command menu">
+      <CommandDialog
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        title="Command menu"
+      >
         {/* Sub-components added in later tasks */}
       </CommandDialog>
       {children}
@@ -278,6 +291,7 @@ git commit -m "feat(command-menu): scaffold component, context, and Basic story"
 ### Task 2: Hotkey binding (cmd+k opens, esc closes)
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 - Modify: `src/stories/command-menu.stories.tsx` (add `Hotkey` story without `AutoOpen`)
@@ -343,7 +357,10 @@ import { useEffect } from "react";
 const DEFAULT_HOTKEYS = ["mod+k"];
 
 const matchesHotkey = (event: KeyboardEvent, binding: string) => {
-  const parts = binding.toLowerCase().split("+").map((p) => p.trim());
+  const parts = binding
+    .toLowerCase()
+    .split("+")
+    .map((p) => p.trim());
   const key = parts[parts.length - 1];
   const wantMod = parts.includes("mod");
   const wantShift = parts.includes("shift");
@@ -399,6 +416,7 @@ git commit -m "feat(command-menu): bind cmd+k hotkey to open/close palette"
 ### Task 3: Resources group — list resources, navigate on select
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 
@@ -431,7 +449,11 @@ In `command-menu.tsx`, add imports and a `<CommandMenuResources>` sub-component,
 
 ```tsx
 import { useNavigate } from "react-router";
-import { useResourceDefinitions, useGetResourceLabel, useTranslate } from "ra-core";
+import {
+  useResourceDefinitions,
+  useGetResourceLabel,
+  useTranslate,
+} from "ra-core";
 import {
   CommandEmpty,
   CommandGroup,
@@ -480,18 +502,13 @@ Update `CommandMenu`'s JSX to render `<CommandInput>`, `<CommandList>`, `<Comman
 
 ```tsx
 <CommandDialog open={isOpen} onOpenChange={setIsOpen} title="Command menu">
-  <CommandInput
-    placeholder={props.placeholder ?? "Search or run a command…"}
-  />
+  <CommandInput placeholder={props.placeholder ?? "Search or run a command…"} />
   <CommandList>
     <CommandEmpty>
       {/* translation key wired in Task 12 */}
       No results.
     </CommandEmpty>
-    <CommandMenuResources
-      resources={props.resources}
-      onSelect={close}
-    />
+    <CommandMenuResources resources={props.resources} onSelect={close} />
   </CommandList>
 </CommandDialog>
 ```
@@ -515,6 +532,7 @@ git commit -m "feat(command-menu): render resources group with navigation"
 ### Task 4: Records group — debounced per-resource search + navigate to Show
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 - Modify: `src/stories/command-menu.stories.tsx`
@@ -599,11 +617,7 @@ In `command-menu.tsx`, add a `useDebouncedValue` helper and `<CommandMenuRecords
 
 ```tsx
 import { useEffect, useState } from "react";
-import {
-  useGetList,
-  useGetRecordRepresentation,
-  type RaRecord,
-} from "ra-core";
+import { useGetList, useGetRecordRepresentation, type RaRecord } from "ra-core";
 
 const useDebouncedValue = <T,>(value: T, delay: number) => {
   const [debounced, setDebounced] = useState(value);
@@ -710,7 +724,11 @@ export const CommandMenu = ({
 
   return (
     <CommandMenuContext.Provider value={value}>
-      <CommandDialog open={isOpen} onOpenChange={setIsOpen} title="Command menu">
+      <CommandDialog
+        open={isOpen}
+        onOpenChange={setIsOpen}
+        title="Command menu"
+      >
         <CommandInput
           value={query}
           onValueChange={setQuery}
@@ -753,6 +771,7 @@ git commit -m "feat(command-menu): per-resource record search with debounce"
 ### Task 5: Built-in actions (logout, refresh, theme)
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 - Modify: `src/stories/command-menu.stories.tsx`
@@ -927,6 +946,7 @@ git commit -m "feat(command-menu): render built-in actions (refresh, theme, logo
 ### Task 6: `useRegisterCommand` for context-aware actions
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 - Modify: `src/stories/command-menu.stories.tsx`
@@ -1027,6 +1047,7 @@ git commit -m "feat(command-menu): useRegisterCommand for context-aware actions"
 ### Task 7: Permission filtering (skip resources with `canList === false`)
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 - Modify: `src/stories/command-menu.stories.tsx`
@@ -1136,6 +1157,7 @@ git commit -m "feat(command-menu): hide resources lacking list permission"
 ### Task 8: Recents — persist selections in store, surface in empty state
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 - Modify: `src/stories/command-menu.stories.tsx`
@@ -1305,6 +1327,7 @@ git commit -m "feat(command-menu): track recents in ra-core store, surface in em
 ### Task 9: Footer with `<Kbd>` keyboard hints
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 
@@ -1343,7 +1366,9 @@ const CommandMenuFooter = () => {
     <div className="flex items-center justify-end gap-3 border-t px-3 py-2 text-xs text-muted-foreground">
       <KbdGroup>
         <Kbd>↑↓</Kbd>
-        <span>{translate("ra.command.footer.navigate", { _: "Navigate" })}</span>
+        <span>
+          {translate("ra.command.footer.navigate", { _: "Navigate" })}
+        </span>
       </KbdGroup>
       <KbdGroup>
         <Kbd>↵</Kbd>
@@ -1379,6 +1404,7 @@ git commit -m "feat(command-menu): footer with keyboard hints via <Kbd>"
 ### Task 10: Mobile sheet rendering
 
 **Files:**
+
 - Modify: `src/components/admin/command-menu.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 
@@ -1417,7 +1443,12 @@ Expected: FAIL — palette always uses `<CommandDialog>`.
 In `command-menu.tsx`:
 
 ```tsx
-import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import { Command } from "@/components/ui/command";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -1477,6 +1508,7 @@ git commit -m "feat(command-menu): render inside <Sheet> on mobile viewports"
 ### Task 11: `<Admin commandMenu>` shorthand
 
 **Files:**
+
 - Modify: `src/components/admin/admin.tsx`
 - Modify: `src/components/admin/command-menu.spec.tsx`
 - Modify: `src/stories/command-menu.stories.tsx`
@@ -1631,6 +1663,7 @@ git commit -m "feat(admin): accept commandMenu prop for shorthand palette mounti
 ### Task 12: Documentation page
 
 **Files:**
+
 - Create: `docs/src/content/docs/CommandMenu.md`
 
 - [ ] **Step 1: Write the documentation**
@@ -1687,16 +1720,16 @@ const App = () => (
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `hotkey` | `string[] \| false` | `["mod+k"]` | Hotkey bindings. `false` disables hotkey opening. |
-| `resources` | `string[]` | all permitted | Resource allowlist. |
-| `searchFields` | `Record<string, string>` | `{}` | Override the search field name per resource (defaults to `q`). |
-| `perResourceLimit` | `number` | `5` | Max records returned per resource per query. |
-| `recentsLimit` | `number` | `10` | Max recents tracked in the empty state. |
-| `actions` | `CommandAction[]` | `[]` | Extra static actions. |
-| `placeholder` | `string` | translated | Input placeholder text. |
-| `searchDebounceMs` | `number` | `200` | Debounce in ms before queries fire. |
+| Prop               | Type                     | Default       | Description                                                    |
+| ------------------ | ------------------------ | ------------- | -------------------------------------------------------------- |
+| `hotkey`           | `string[] \| false`      | `["mod+k"]`   | Hotkey bindings. `false` disables hotkey opening.              |
+| `resources`        | `string[]`               | all permitted | Resource allowlist.                                            |
+| `searchFields`     | `Record<string, string>` | `{}`          | Override the search field name per resource (defaults to `q`). |
+| `perResourceLimit` | `number`                 | `5`           | Max records returned per resource per query.                   |
+| `recentsLimit`     | `number`                 | `10`          | Max recents tracked in the empty state.                        |
+| `actions`          | `CommandAction[]`        | `[]`          | Extra static actions.                                          |
+| `placeholder`      | `string`                 | translated    | Input placeholder text.                                        |
+| `searchDebounceMs` | `number`                 | `200`         | Debounce in ms before queries fire.                            |
 
 ## `useCommandMenu`
 

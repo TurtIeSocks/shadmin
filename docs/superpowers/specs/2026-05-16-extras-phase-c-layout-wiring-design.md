@@ -19,11 +19,18 @@ Wire 7 remaining extras components into cross-cutting locations: the admin shell
 
 **File:** `src/demo/orders/OrderShow.tsx`
 **Change:** Wrap existing show layout in a 2-column flex with a right sidebar containing:
+
 ```tsx
 <aside className="w-80 border-l p-4">
-  <CommentsThread reference="order_comments" target="order_id" allowMentions mentionResource="users" />
+  <CommentsThread
+    reference="order_comments"
+    target="order_id"
+    allowMentions
+    mentionResource="users"
+  />
 </aside>
 ```
+
 **Data:** Add `order_comments` resource seed (no full CRUD UI — only consumed by CommentsThread).
 Type: `{ id, order_id, user_id, body, created_at, resolved }`.
 Seed: 1-3 comments per order (random subset).
@@ -33,6 +40,7 @@ Seed: 1-3 comments per order (random subset).
 **Investigate first:** `src/demo/planning/` — what resource does this folder ship? Likely tasks or events with `estimated_duration` fields. If no duration field exists in seed data, add `duration_minutes` to the relevant type.
 
 **Files:** whichever Edit/Show/List view shows duration. Add:
+
 - Edit: `<DurationInput source="estimated_duration_minutes" units={['m', 'h', 'd']} />`
 - Show/List: `<DurationField source="estimated_duration_minutes" />`
 
@@ -41,6 +49,7 @@ Seed: 1-3 comments per order (random subset).
 ### 3. `BulkEditDrawer` → ProductList + OrderList bulk action
 
 **Files:**
+
 - `src/demo/products/ProductList.tsx`: add a bulk action button "Bulk edit" that opens `<BulkEditDrawer fields={['price','stock','category_id']} side="right" />`.
 - `src/demo/orders/OrderList.tsx`: bulk action button "Bulk edit status" → `<BulkEditDrawer fields={['status']} side="right" />`.
 

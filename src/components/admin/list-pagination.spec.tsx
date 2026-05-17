@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  FewItems,
-} from "@/stories/admin/list-pagination.stories";
+import { Basic, FewItems } from "@/stories/admin/list-pagination.stories";
 
 describe("<ListPagination />", () => {
   it("renders the page-range info for the current page", async () => {
@@ -21,7 +18,8 @@ describe("<ListPagination />", () => {
     const screen = render(<Basic />);
     await expect
       .poll(
-        () => screen.getByRole("button", { name: /previous/i }).elements().length,
+        () =>
+          screen.getByRole("button", { name: /previous/i }).elements().length,
         { timeout: 5000 },
       )
       .toBeGreaterThan(0);

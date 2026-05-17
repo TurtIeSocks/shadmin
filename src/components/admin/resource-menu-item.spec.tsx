@@ -16,8 +16,6 @@ describe("<ResourceMenuItem />", () => {
 
   it("renders nothing for an unknown resource", async () => {
     const screen = render(<UnknownResource />);
-    await expect
-      .element(screen.getByRole("link"))
-      .not.toBeInTheDocument();
+    await expect.element(screen.getByRole("link")).not.toBeInTheDocument();
   });
 });

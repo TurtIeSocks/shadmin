@@ -15,23 +15,27 @@
 Because Tier 3 components are heterogeneous (mix of field+input pairs, threaded UI, action buttons), the following calls were made without per-question Q&A:
 
 ### SubscriptionPlanField / SubscriptionPlanPicker
+
 1. `<SubscriptionPlanPicker>` renders a card grid with one card per plan; users single-select via the wrapping `<RadioGroup>` semantics. Multi-tier upgrade flow (with proration math, etc.) is out of scope.
 2. Plans are passed via a `plans` prop array (`{ id, name, price, currency, interval, features }`). No fetched-plans variant in v1.
 3. `<SubscriptionPlanField>` renders a compact badge with current plan name + price; click-through to the picker is a follow-up.
 
 ### ApiKeyField / ApiKeyInput
+
 4. `<ApiKeyField>` masks all but the last 4 characters by default (`maskedFormat="last4"`). Reveal-on-click toggles the masked/full state per session (not persisted).
 5. Clipboard copy via the browser Clipboard API (`navigator.clipboard.writeText`). No fallback for non-secure-context.
 6. `<ApiKeyInput>` is a single-purpose rotation control: a single `Rotate` button that fires `onRotate(record)`. No new-key generation flow in v1 (that's a server-driven mutation; the input only triggers the rotation).
 7. `lastUsedSource` renders relative time via `Intl.RelativeTimeFormat`; "never" when null.
 
 ### WebhookEndpointInput / WebhookEndpointField
+
 8. Storage shape = composite `{ url, secret, eventTypes, lastDelivery?: { status, at } }`. Top-level `source` reads this object from the record.
 9. Event-type multi-select via shadcn `<Checkbox>` group (not popover combobox in v1). Compact for small event lists.
 10. Test-ping button fires the supplied `onTestPing(url, secret)` async callback. No retry/backoff UI.
 11. `<WebhookEndpointField>` renders URL + status badge ("OK" / "Failed" / "Pending"). Secret is never displayed in the field.
 
 ### CommentsThread
+
 12. Reads `comments` sub-resource via `useGetList({ resource: commentResource, filter: { [parentSource]: parentId } })`. Caller is responsible for the dataProvider matching this convention.
 13. Comment shape: `{ id, authorId, authorName?, body, createdAt, resolvedAt?, parentId }`. Flat list (no nested replies) in v1. Threading deferred.
 14. `@mentions` rendered as plain text in v1 (no autocomplete during typing, no styled chips). Body is plain text via `<Textarea>`.
@@ -39,6 +43,7 @@ Because Tier 3 components are heterogeneous (mix of field+input pairs, threaded 
 16. Optional `resolvable` prop adds a "Mark resolved" toggle per comment.
 
 ### DualApprovalButton
+
 17. Approver tracking via record field `approverSource` (default `"approvers"`, a `string[]` of user ids).
 18. Threshold via `required` prop (default 2). When `approvers.length >= required`, the record's status becomes `approved`.
 19. Self-approval blocking: if the current user's id is already in `approvers`, the button is disabled with a tooltip "You already approved".
@@ -46,6 +51,7 @@ Because Tier 3 components are heterogeneous (mix of field+input pairs, threaded 
 21. Rejection path is out of scope for v1 (use `<ApprovalQueue>` for reject + reason). DualApproval is for the positive flow only.
 
 ### General
+
 22. All seven components live in `src/components/extras/` and are exported from `src/components/extras/index.ts`.
 23. Sidebar group for all = `Extras` (consistent with the existing higher-order components like `<ApprovalQueue>`, `<BulkEditDrawer>`).
 24. Story titles use the `Extras/<ComponentName>` prefix.
@@ -55,42 +61,42 @@ Because Tier 3 components are heterogeneous (mix of field+input pairs, threaded 
 
 ## File structure
 
-| File | Responsibility | Status |
-| --- | --- | --- |
-| `src/components/extras/subscription-plan-field.tsx` | Plan badge field | **Create** |
-| `src/components/extras/subscription-plan-picker.tsx` | Plan picker card grid | **Create** |
-| `src/components/extras/subscription-plan-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/extras/subscription-plan-picker.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/subscription-plan-field.stories.tsx` | Stories | **Create** |
-| `src/stories/extras/subscription-plan-picker.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/subscription-plan-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/subscription-plan-picker.md` | Doc page | **Create** |
-| `src/components/extras/api-key-field.tsx` | Masked API-key display | **Create** |
-| `src/components/extras/api-key-input.tsx` | API-key rotation control | **Create** |
-| `src/components/extras/api-key-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/extras/api-key-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/api-key-field.stories.tsx` | Stories | **Create** |
-| `src/stories/extras/api-key-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/api-key-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/api-key-input.md` | Doc page | **Create** |
-| `src/components/extras/webhook-endpoint-field.tsx` | Webhook URL + status display | **Create** |
-| `src/components/extras/webhook-endpoint-input.tsx` | Webhook composite input | **Create** |
-| `src/components/extras/webhook-endpoint-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/extras/webhook-endpoint-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/webhook-endpoint-field.stories.tsx` | Stories | **Create** |
-| `src/stories/extras/webhook-endpoint-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/webhook-endpoint-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/webhook-endpoint-input.md` | Doc page | **Create** |
-| `src/components/extras/comments-thread.tsx` | Threaded comments view | **Create** |
-| `src/components/extras/comments-thread.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/comments-thread.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/comments-thread.md` | Doc page | **Create** |
-| `src/components/extras/dual-approval-button.tsx` | 4-eyes approval button | **Create** |
-| `src/components/extras/dual-approval-button.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/dual-approval-button.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/dual-approval-button.md` | Doc page | **Create** |
-| `src/components/extras/index.ts` | Re-export 9 new exports | **Modify** |
-| `docs/sidebar.config.mjs` | Add 9 entries under Extras | **Modify** |
+| File                                                      | Responsibility               | Status     |
+| --------------------------------------------------------- | ---------------------------- | ---------- |
+| `src/components/extras/subscription-plan-field.tsx`       | Plan badge field             | **Create** |
+| `src/components/extras/subscription-plan-picker.tsx`      | Plan picker card grid        | **Create** |
+| `src/components/extras/subscription-plan-field.spec.tsx`  | Browser tests                | **Create** |
+| `src/components/extras/subscription-plan-picker.spec.tsx` | Browser tests                | **Create** |
+| `src/stories/extras/subscription-plan-field.stories.tsx`  | Stories                      | **Create** |
+| `src/stories/extras/subscription-plan-picker.stories.tsx` | Stories                      | **Create** |
+| `docs/src/content/docs/subscription-plan-field.md`        | Doc page                     | **Create** |
+| `docs/src/content/docs/subscription-plan-picker.md`       | Doc page                     | **Create** |
+| `src/components/extras/api-key-field.tsx`                 | Masked API-key display       | **Create** |
+| `src/components/extras/api-key-input.tsx`                 | API-key rotation control     | **Create** |
+| `src/components/extras/api-key-field.spec.tsx`            | Browser tests                | **Create** |
+| `src/components/extras/api-key-input.spec.tsx`            | Browser tests                | **Create** |
+| `src/stories/extras/api-key-field.stories.tsx`            | Stories                      | **Create** |
+| `src/stories/extras/api-key-input.stories.tsx`            | Stories                      | **Create** |
+| `docs/src/content/docs/api-key-field.md`                  | Doc page                     | **Create** |
+| `docs/src/content/docs/api-key-input.md`                  | Doc page                     | **Create** |
+| `src/components/extras/webhook-endpoint-field.tsx`        | Webhook URL + status display | **Create** |
+| `src/components/extras/webhook-endpoint-input.tsx`        | Webhook composite input      | **Create** |
+| `src/components/extras/webhook-endpoint-field.spec.tsx`   | Browser tests                | **Create** |
+| `src/components/extras/webhook-endpoint-input.spec.tsx`   | Browser tests                | **Create** |
+| `src/stories/extras/webhook-endpoint-field.stories.tsx`   | Stories                      | **Create** |
+| `src/stories/extras/webhook-endpoint-input.stories.tsx`   | Stories                      | **Create** |
+| `docs/src/content/docs/webhook-endpoint-field.md`         | Doc page                     | **Create** |
+| `docs/src/content/docs/webhook-endpoint-input.md`         | Doc page                     | **Create** |
+| `src/components/extras/comments-thread.tsx`               | Threaded comments view       | **Create** |
+| `src/components/extras/comments-thread.spec.tsx`          | Browser tests                | **Create** |
+| `src/stories/extras/comments-thread.stories.tsx`          | Stories                      | **Create** |
+| `docs/src/content/docs/comments-thread.md`                | Doc page                     | **Create** |
+| `src/components/extras/dual-approval-button.tsx`          | 4-eyes approval button       | **Create** |
+| `src/components/extras/dual-approval-button.spec.tsx`     | Browser tests                | **Create** |
+| `src/stories/extras/dual-approval-button.stories.tsx`     | Stories                      | **Create** |
+| `docs/src/content/docs/dual-approval-button.md`           | Doc page                     | **Create** |
+| `src/components/extras/index.ts`                          | Re-export 9 new exports      | **Modify** |
+| `docs/sidebar.config.mjs`                                 | Add 9 entries under Extras   | **Modify** |
 
 ---
 
@@ -241,7 +247,11 @@ export const SubscriptionPlanField = <
   }).format(plan.price);
 
   return (
-    <Badge variant="secondary" className={className} {...sanitizeFieldRestProps(rest)}>
+    <Badge
+      variant="secondary"
+      className={className}
+      {...sanitizeFieldRestProps(rest)}
+    >
       <span className="font-medium">{plan.name}</span>
       <span className="ml-2 text-xs text-muted-foreground">
         {formatted}/{plan.interval}
@@ -253,7 +263,8 @@ export const SubscriptionPlanField = <
 export interface SubscriptionPlanFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
   /** Available plans to look up by id. */
   plans: readonly SubscriptionPlan[];
@@ -393,7 +404,12 @@ import type { InputProps } from "ra-core";
 import { FieldTitle, useInput, useResourceContext } from "ra-core";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import type { SubscriptionPlan } from "./subscription-plan-field";
 import { cn } from "@/lib/utils";
@@ -418,11 +434,7 @@ export const SubscriptionPlanPicker = (props: SubscriptionPlanPickerProps) => {
     disabled,
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -568,24 +580,24 @@ Displays the user's current subscription plan as a compact badge.
 ## Usage
 
 ```tsx
-import { SubscriptionPlanField } from '@/components/admin';
+import { SubscriptionPlanField } from "@/components/admin";
 
 const PLANS = [
   { id: "free", name: "Free", price: 0, currency: "USD", interval: "month" },
   { id: "pro", name: "Pro", price: 29, currency: "USD", interval: "month" },
 ];
 
-<SubscriptionPlanField source="planId" plans={PLANS} />
+<SubscriptionPlanField source="planId" plans={PLANS} />;
 ```
 
 ## Props
 
-| Prop      | Required | Type                          | Default | Description |
-| --------- | -------- | ----------------------------- | ------- | ----------- |
-| `source`  | Required | `string`                      | -       | Record field for the plan id |
-| `plans`   | Required | `readonly SubscriptionPlan[]` | -       | Available plans |
-| `empty`   | Optional | `ReactNode`                   | -       | Fallback when planId is unknown |
-| `className` | Optional | `string`                    | -       | CSS class |
+| Prop        | Required | Type                          | Default | Description                     |
+| ----------- | -------- | ----------------------------- | ------- | ------------------------------- |
+| `source`    | Required | `string`                      | -       | Record field for the plan id    |
+| `plans`     | Required | `readonly SubscriptionPlan[]` | -       | Available plans                 |
+| `empty`     | Optional | `ReactNode`                   | -       | Fallback when planId is unknown |
+| `className` | Optional | `string`                      | -       | CSS class                       |
 
 ## `SubscriptionPlan` shape
 
@@ -614,21 +626,25 @@ writes the plan id to the form field.
 ## Usage
 
 ```tsx
-import { SubscriptionPlanPicker } from '@/components/admin';
+import { SubscriptionPlanPicker } from "@/components/admin";
 
-<SubscriptionPlanPicker source="planId" plans={PLANS} recommendedPlanId="pro" />
+<SubscriptionPlanPicker
+  source="planId"
+  plans={PLANS}
+  recommendedPlanId="pro"
+/>;
 ```
 
 ## Props
 
-| Prop               | Required | Type                          | Default | Description |
-| ------------------ | -------- | ----------------------------- | ------- | ----------- |
-| `source`           | Required | `string`                      | -       | Form field |
-| `plans`            | Required | `readonly SubscriptionPlan[]` | -       | Plan options |
-| `recommendedPlanId`| Optional | `string`                      | -       | Highlights one card |
-| `disabled`         | Optional | `boolean`                     | `false` | Disable all cards |
-| `label`            | Optional | `string \| false`             | Inferred | Custom label |
-| `helperText`       | Optional | `ReactNode`                   | -       | Helper text |
+| Prop                | Required | Type                          | Default  | Description         |
+| ------------------- | -------- | ----------------------------- | -------- | ------------------- |
+| `source`            | Required | `string`                      | -        | Form field          |
+| `plans`             | Required | `readonly SubscriptionPlan[]` | -        | Plan options        |
+| `recommendedPlanId` | Optional | `string`                      | -        | Highlights one card |
+| `disabled`          | Optional | `boolean`                     | `false`  | Disable all cards   |
+| `label`             | Optional | `string \| false`             | Inferred | Custom label        |
+| `helperText`        | Optional | `ReactNode`                   | -        | Helper text         |
 
 ## Single-select behavior
 
@@ -716,7 +732,9 @@ import {
 describe("<ApiKeyField />", () => {
   it("masks the key by default showing only the last 4 characters", async () => {
     const screen = render(<Basic />);
-    const masked = screen.container.querySelector("[data-api-key]") as HTMLElement;
+    const masked = screen.container.querySelector(
+      "[data-api-key]",
+    ) as HTMLElement;
     expect(masked.textContent ?? "").toMatch(/^[•*]+.{4}$/);
   });
 
@@ -726,11 +744,7 @@ describe("<ApiKeyField />", () => {
       "[data-api-key-reveal]",
     ) as HTMLButtonElement;
     reveal.click();
-    await expect
-      .element(
-        screen.getByText("sk_live_***"),
-      )
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("sk_live_***")).toBeInTheDocument();
   });
 
   it("renders scope badges when scopesSource is set", async () => {
@@ -826,10 +840,7 @@ export const ApiKeyField = <RecordType extends UnknownRecord = UnknownRecord>({
       className={cn("inline-flex flex-col gap-1", className)}
     >
       <span className="inline-flex items-center gap-2">
-        <span
-          data-api-key
-          className="font-mono text-sm"
-        >
+        <span data-api-key className="font-mono text-sm">
           {revealed ? key : masked}
         </span>
         <Button
@@ -840,7 +851,11 @@ export const ApiKeyField = <RecordType extends UnknownRecord = UnknownRecord>({
           onClick={() => setRevealed((v) => !v)}
           aria-label={revealed ? "Hide API key" : "Reveal API key"}
         >
-          {revealed ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          {revealed ? (
+            <EyeOff className="h-4 w-4" />
+          ) : (
+            <Eye className="h-4 w-4" />
+          )}
         </Button>
         <Button
           type="button"
@@ -885,15 +900,15 @@ function formatRelative(iso: string | null | undefined): string {
   if (absSeconds < 60) return rtf.format(Math.round(delta), "second");
   if (absSeconds < 3600) return rtf.format(Math.round(delta / 60), "minute");
   if (absSeconds < 86400) return rtf.format(Math.round(delta / 3600), "hour");
-  if (absSeconds < 86400 * 30) return rtf.format(Math.round(delta / 86400), "day");
+  if (absSeconds < 86400 * 30)
+    return rtf.format(Math.round(delta / 86400), "day");
   return rtf.format(Math.round(delta / (86400 * 30)), "month");
 }
 
 export interface ApiKeyFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** Record field with scope strings. Renders chips when set. */
   scopesSource?: string;
   /** Record field with ISO last-used timestamp. */
@@ -957,10 +972,7 @@ export const Disabled = () => (
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-} from "@/stories/extras/api-key-input.stories";
+import { Basic, Disabled } from "@/stories/extras/api-key-input.stories";
 
 describe("<ApiKeyInput />", () => {
   it("renders a rotate button labelled with the source name", async () => {
@@ -998,11 +1010,7 @@ describe("<ApiKeyInput />", () => {
 ```tsx
 // src/components/extras/api-key-input.tsx
 import { useState } from "react";
-import {
-  useRecordContext,
-  useResourceContext,
-  useUpdate,
-} from "ra-core";
+import { useRecordContext, useResourceContext, useUpdate } from "ra-core";
 import type { RaRecord } from "ra-core";
 import { Button } from "@/components/ui/button";
 import {
@@ -1137,13 +1145,13 @@ import { ApiKeyField } from '@/components/admin';
 
 ## Props
 
-| Prop             | Required | Type                    | Default   | Description |
-| ---------------- | -------- | ----------------------- | --------- | ----------- |
-| `source`         | Required | `string`                | -         | Record field with the key |
-| `scopesSource`   | Optional | `string`                | -         | Sibling field with scope strings |
-| `lastUsedSource` | Optional | `string`                | -         | Sibling field with ISO timestamp |
-| `maskedFormat`   | Optional | `"last4" \| "full"`     | `"last4"` | Masking strategy |
-| `className`      | Optional | `string`                | -         | CSS class |
+| Prop             | Required | Type                | Default   | Description                      |
+| ---------------- | -------- | ------------------- | --------- | -------------------------------- |
+| `source`         | Required | `string`            | -         | Record field with the key        |
+| `scopesSource`   | Optional | `string`            | -         | Sibling field with scope strings |
+| `lastUsedSource` | Optional | `string`            | -         | Sibling field with ISO timestamp |
+| `maskedFormat`   | Optional | `"last4" \| "full"` | `"last4"` | Masking strategy                 |
+| `className`      | Optional | `string`            | -         | CSS class                        |
 
 ## Reveal
 
@@ -1176,12 +1184,12 @@ import { ApiKeyInput } from '@/components/admin';
 
 ## Props
 
-| Prop       | Required | Type                                | Default | Description |
-| ---------- | -------- | ----------------------------------- | ------- | ----------- |
-| `source`   | Required | `string`                            | -       | Record field |
-| `resource` | Optional | `string`                            | Context | Override resource |
+| Prop       | Required | Type                                | Default | Description          |
+| ---------- | -------- | ----------------------------------- | ------- | -------------------- |
+| `source`   | Required | `string`                            | -       | Record field         |
+| `resource` | Optional | `string`                            | Context | Override resource    |
 | `onRotate` | Optional | `(record) => Promise<void> \| void` | -       | Custom rotation hook |
-| `disabled` | Optional | `boolean`                           | `false` | Disable button |
+| `disabled` | Optional | `boolean`                           | `false` | Disable button       |
 
 ## Default rotation behavior
 
@@ -1280,19 +1288,25 @@ describe("<WebhookEndpointField />", () => {
     await expect
       .element(screen.getByText("https://example.com/webhook"))
       .toBeInTheDocument();
-    const badge = screen.container.querySelector("[data-webhook-status]") as HTMLElement;
+    const badge = screen.container.querySelector(
+      "[data-webhook-status]",
+    ) as HTMLElement;
     expect(badge.getAttribute("data-status")).toBe("ok");
   });
 
   it("flags failed status when lastDelivery.status is 'failed'", async () => {
     const screen = render(<Failed />);
-    const badge = screen.container.querySelector("[data-webhook-status]") as HTMLElement;
+    const badge = screen.container.querySelector(
+      "[data-webhook-status]",
+    ) as HTMLElement;
     expect(badge.getAttribute("data-status")).toBe("failed");
   });
 
   it("falls back to pending when lastDelivery is undefined", async () => {
     const screen = render(<Pending />);
-    const badge = screen.container.querySelector("[data-webhook-status]") as HTMLElement;
+    const badge = screen.container.querySelector(
+      "[data-webhook-status]",
+    ) as HTMLElement;
     expect(badge.getAttribute("data-status")).toBe("pending");
   });
 
@@ -1374,8 +1388,7 @@ export const WebhookEndpointField = <
 export interface WebhookEndpointFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {}
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {}
 ```
 
 - [ ] **Step 4** — append export to `extras/index.ts`.
@@ -1506,7 +1519,12 @@ describe("<WebhookEndpointInput />", () => {
 import { useState } from "react";
 import type { InputProps } from "ra-core";
 import { FieldTitle, useInput, useResourceContext } from "ra-core";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -1536,11 +1554,7 @@ export const WebhookEndpointInput = (props: WebhookEndpointInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -1676,9 +1690,9 @@ secret is never rendered.
 ## Usage
 
 ```tsx
-import { WebhookEndpointField } from '@/components/admin';
+import { WebhookEndpointField } from "@/components/admin";
 
-<WebhookEndpointField source="endpoint" />
+<WebhookEndpointField source="endpoint" />;
 ```
 
 ## Storage shape
@@ -1694,11 +1708,11 @@ interface WebhookEndpoint {
 
 ## Status badge
 
-| Status     | Color  | Source |
-| ---------- | ------ | ------ |
-| `ok`       | green  | `lastDelivery.status === "ok"` |
-| `failed`   | red    | `lastDelivery.status === "failed"` |
-| `pending`  | muted  | `lastDelivery` is missing or `status === "pending"` |
+| Status    | Color | Source                                              |
+| --------- | ----- | --------------------------------------------------- |
+| `ok`      | green | `lastDelivery.status === "ok"`                      |
+| `failed`  | red   | `lastDelivery.status === "failed"`                  |
+| `pending` | muted | `lastDelivery` is missing or `status === "pending"` |
 ````
 
 - [ ] **Step 2** — write `webhook-endpoint-input.md`:
@@ -1730,14 +1744,14 @@ const EVENT_TYPES = ["order.created", "order.updated", "user.created"];
 
 ## Props
 
-| Prop         | Required | Type                                                | Default | Description |
-| ------------ | -------- | --------------------------------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                                            | -       | Form field |
-| `eventTypes` | Required | `readonly string[]`                                 | -       | Selectable events |
-| `onTestPing` | Optional | `(url, secret) => Promise<void> \| void`            | -       | Test-ping handler |
-| `disabled`   | Optional | `boolean`                                           | `false` | Disable inputs |
-| `label`      | Optional | `string \| false`                                   | Inferred | Custom label |
-| `helperText` | Optional | `ReactNode`                                         | -       | Helper text |
+| Prop         | Required | Type                                     | Default  | Description       |
+| ------------ | -------- | ---------------------------------------- | -------- | ----------------- |
+| `source`     | Required | `string`                                 | -        | Form field        |
+| `eventTypes` | Required | `readonly string[]`                      | -        | Selectable events |
+| `onTestPing` | Optional | `(url, secret) => Promise<void> \| void` | -        | Test-ping handler |
+| `disabled`   | Optional | `boolean`                                | `false`  | Disable inputs    |
+| `label`      | Optional | `string \| false`                        | Inferred | Custom label      |
+| `helperText` | Optional | `ReactNode`                              | -        | Helper text       |
 
 ## Storage shape
 
@@ -1764,7 +1778,12 @@ Record-attached threaded discussion. Reads `comments` sub-resource via `useGetLi
 - [ ] **Step 1** — create:
 
 ```tsx
-import { CoreAdminContext, RecordContextProvider, TestMemoryRouter, memoryStore } from "ra-core";
+import {
+  CoreAdminContext,
+  RecordContextProvider,
+  TestMemoryRouter,
+  memoryStore,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
@@ -1868,12 +1887,16 @@ import {
 describe("<CommentsThread />", () => {
   it("renders one card per comment matching the parent", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByText("Looks good to me.")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Looks good to me."))
+      .toBeInTheDocument();
     await expect
       .element(screen.getByText("Let's also bump the version."))
       .toBeInTheDocument();
     // Unrelated comment with parentId=99 should NOT render
-    expect(screen.container.textContent ?? "").not.toContain("Unrelated comment");
+    expect(screen.container.textContent ?? "").not.toContain(
+      "Unrelated comment",
+    );
   });
 
   it("renders the author name on each card", async () => {
@@ -1994,14 +2017,13 @@ export const CommentsThread = (props: CommentsThreadProps) => {
         </Card>
       ) : (
         comments.map((c) => (
-          <Card
-            key={c.id}
-            className={cn(c.resolvedAt && "opacity-60")}
-          >
+          <Card key={c.id} className={cn(c.resolvedAt && "opacity-60")}>
             <CardContent className="flex flex-col gap-2 p-4">
               <div className="flex items-start justify-between">
                 <div className="flex flex-col">
-                  <span className="font-medium">{c.authorName ?? c.authorId}</span>
+                  <span className="font-medium">
+                    {c.authorName ?? c.authorId}
+                  </span>
                   <span className="text-xs text-muted-foreground">
                     {new Date(c.createdAt).toLocaleString()}
                   </span>
@@ -2089,7 +2111,7 @@ comment plus a new-comment textarea.
 ## Usage
 
 ```tsx
-import { CommentsThread, Show } from '@/components/admin';
+import { CommentsThread, Show } from "@/components/admin";
 
 const PostShow = () => (
   <Show>
@@ -2107,18 +2129,18 @@ interface Comment {
   authorId: string;
   authorName?: string;
   body: string;
-  createdAt: string;     // ISO timestamp
+  createdAt: string; // ISO timestamp
   resolvedAt?: string | null;
 }
 ```
 
 ## Props
 
-| Prop         | Required | Type     | Default | Description |
-| ------------ | -------- | -------- | ------- | ----------- |
-| `reference`  | Required | `string` | -       | Comments sub-resource name |
-| `target`     | Required | `string` | -       | Field on comment that holds parent id |
-| `resolvable` | Optional | `boolean`| `false` | Show "Mark resolved" button per comment |
+| Prop         | Required | Type      | Default | Description                             |
+| ------------ | -------- | --------- | ------- | --------------------------------------- |
+| `reference`  | Required | `string`  | -       | Comments sub-resource name              |
+| `target`     | Required | `string`  | -       | Field on comment that holds parent id   |
+| `resolvable` | Optional | `boolean` | `false` | Show "Mark resolved" button per comment |
 
 ## Required parent context
 
@@ -2145,7 +2167,12 @@ git commit -m "docs(comments-thread): add documentation"
 - [ ] **Step 1** — create:
 
 ```tsx
-import { CoreAdminContext, RecordContextProvider, TestMemoryRouter, memoryStore } from "ra-core";
+import {
+  CoreAdminContext,
+  RecordContextProvider,
+  TestMemoryRouter,
+  memoryStore,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
@@ -2240,7 +2267,9 @@ import {
 describe("<DualApprovalButton />", () => {
   it("renders an enabled approve button with 0/2 count", async () => {
     const screen = render(<Basic />);
-    const btn = screen.container.querySelector("[data-dual-approve]") as HTMLButtonElement;
+    const btn = screen.container.querySelector(
+      "[data-dual-approve]",
+    ) as HTMLButtonElement;
     // wait for identity to resolve before asserting state
     await expect.element(screen.getByText(/0 of 2/i)).toBeInTheDocument();
     expect(btn.disabled).toBe(false);
@@ -2253,14 +2282,20 @@ describe("<DualApprovalButton />", () => {
 
   it("disables the button when the current user already approved", async () => {
     const screen = render(<SelfApprovalBlocked />);
-    await expect.element(screen.getByText(/already approved/i)).toBeInTheDocument();
-    const btn = screen.container.querySelector("[data-dual-approve]") as HTMLButtonElement;
+    await expect
+      .element(screen.getByText(/already approved/i))
+      .toBeInTheDocument();
+    const btn = screen.container.querySelector(
+      "[data-dual-approve]",
+    ) as HTMLButtonElement;
     expect(btn.disabled).toBe(true);
   });
 
   it("renders a 'Fully approved' badge when the threshold is met", async () => {
     const screen = render(<ThresholdReached />);
-    await expect.element(screen.getByText(/fully approved/i)).toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/fully approved/i))
+      .toBeInTheDocument();
   });
 });
 ```
@@ -2402,7 +2437,7 @@ user's id to an approver array on the record; once the count reaches
 ## Usage
 
 ```tsx
-import { DualApprovalButton, Show, RecordField } from '@/components/admin';
+import { DualApprovalButton, Show, RecordField } from "@/components/admin";
 
 const ExpenseShow = () => (
   <Show>
@@ -2414,12 +2449,12 @@ const ExpenseShow = () => (
 
 ## Props
 
-| Prop             | Required | Type     | Default       | Description |
-| ---------------- | -------- | -------- | ------------- | ----------- |
-| `required`       | Optional | `number` | `2`           | Approvers needed |
-| `approverSource` | Optional | `string` | `"approvers"` | Field for the approver id array |
+| Prop             | Required | Type     | Default       | Description                                |
+| ---------------- | -------- | -------- | ------------- | ------------------------------------------ |
+| `required`       | Optional | `number` | `2`           | Approvers needed                           |
+| `approverSource` | Optional | `string` | `"approvers"` | Field for the approver id array            |
 | `statusSource`   | Optional | `string` | `"status"`    | Field flipped to `"approved"` on threshold |
-| `resource`       | Optional | `string` | Context       | Override resource |
+| `resource`       | Optional | `string` | Context       | Override resource                          |
 
 ## Record shape
 
@@ -2526,6 +2561,7 @@ git log main..HEAD --oneline
 Plan saved at `docs/superpowers/plans/2026-05-16-tier-3-saas-domain-components.md`.
 
 The seven components map to **five subagent dispatches**:
+
 1. SubscriptionPlanField + SubscriptionPlanPicker (Task 1.1 → 1.5)
 2. ApiKeyField + ApiKeyInput (Task 2.1 → 2.5)
 3. WebhookEndpointField + WebhookEndpointInput (Task 3.1 → 3.5)

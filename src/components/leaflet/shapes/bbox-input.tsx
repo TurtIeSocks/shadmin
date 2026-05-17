@@ -1,10 +1,19 @@
 "use client";
 
-import { ShapeInputShell, type ShapeInputShellProps } from "./shape-input-shell";
-import { polygonToBBox, bboxToPolygon, aspectLockedBBox } from "../osm/geometry-ops";
+import {
+  ShapeInputShell,
+  type ShapeInputShellProps,
+} from "./shape-input-shell";
+import {
+  polygonToBBox,
+  bboxToPolygon,
+  aspectLockedBBox,
+} from "../osm/geometry-ops";
 
-export interface BBoxInputProps
-  extends Omit<ShapeInputShellProps, "shape" | "multi" | "valueTransform" | "valueParse"> {
+export interface BBoxInputProps extends Omit<
+  ShapeInputShellProps,
+  "shape" | "multi" | "valueTransform" | "valueParse"
+> {
   minBBoxArea_m2?: number;
   /**
    * Lock the stored bbox to width/height = ratio. The drawn rectangle is

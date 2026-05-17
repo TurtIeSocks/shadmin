@@ -23,19 +23,19 @@ Debounces user input (default 300 ms) and only queries after `minChars` characte
 
 ## Props
 
-| Prop            | Required | Type                                  | Default                       | Description                                                                  |
-| --------------- | -------- | ------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------- |
-| `source`        | Required | `string`                              | -                             | RHF field name for the chosen address (display name).                        |
-| `latSource`     | Optional | `string`                              | -                             | RHF field name to populate with `result.lat`.                                |
-| `lngSource`     | Optional | `string`                              | -                             | RHF field name to populate with `result.lng`.                                |
-| `bboxSource`    | Optional | `string`                              | -                             | RHF field name to populate with `result.bbox` when provided.                 |
-| `placeholder`   | Optional | `string`                              | `"Search address or place…"` | Combobox input placeholder.                                                  |
-| `label`         | Optional | `string`                              | -                             | Label rendered above the combobox.                                           |
-| `provider`      | Optional | `GeocodingProvider`                   | `nominatimProvider`           | Custom provider (`search`/`reverse` interface).                              |
-| `minChars`      | Optional | `number`                              | `3`                           | Minimum characters before querying.                                          |
-| `debounceMs`    | Optional | `number`                              | `300`                         | Debounce window in ms.                                                       |
-| `enabled`       | Optional | `boolean`                             | `true`                        | React Query `enabled` flag.                                                  |
-| `endpoint`      | Optional | `string`                              | Nominatim                     | Provider endpoint override.                                                  |
-| `countryCodes`  | Optional | `string[]`                            | -                             | Restrict results to ISO 3166-1 alpha-2 country codes.                        |
-| `viewBox`       | Optional | `[number, number, number, number]`    | -                             | Bias results to this bbox (`[minLon, minLat, maxLon, maxLat]`).              |
-| `limit`         | Optional | `number`                              | `10`                          | Max results per query.                                                       |
+| Prop           | Required | Type                               | Default                      | Description                                                     |
+| -------------- | -------- | ---------------------------------- | ---------------------------- | --------------------------------------------------------------- |
+| `source`       | Required | `string`                           | -                            | RHF field name for the chosen address (display name).           |
+| `latSource`    | Optional | `string`                           | -                            | RHF field name to populate with `result.lat`.                   |
+| `lngSource`    | Optional | `string`                           | -                            | RHF field name to populate with `result.lng`.                   |
+| `bboxSource`   | Optional | `string`                           | -                            | RHF field name to populate with `result.bbox` when provided.    |
+| `placeholder`  | Optional | `string`                           | `"Search address or place…"` | Combobox input placeholder.                                     |
+| `label`        | Optional | `string`                           | -                            | Label rendered above the combobox.                              |
+| `provider`     | Optional | `GeocodingProvider`                | `nominatimProvider`          | Custom provider (`search`/`reverse` interface).                 |
+| `minChars`     | Optional | `number`                           | `3`                          | Minimum characters before querying.                             |
+| `debounceMs`   | Optional | `number`                           | `300`                        | Debounce window in ms.                                          |
+| `enabled`      | Optional | `boolean`                          | `true`                       | React Query `enabled` flag.                                     |
+| `endpoint`     | Optional | `string`                           | Nominatim                    | Provider endpoint override.                                     |
+| `countryCodes` | Optional | `string[]`                         | -                            | Restrict results to ISO 3166-1 alpha-2 country codes.           |
+| `viewBox`      | Optional | `[number, number, number, number]` | -                            | Bias results to this bbox (`[minLon, minLat, maxLon, maxLat]`). |
+| `limit`        | Optional | `number`                           | `10`                         | Max results per query.                                          |

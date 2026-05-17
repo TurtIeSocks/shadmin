@@ -1,10 +1,10 @@
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
-  useCallback,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { FieldTitle, composeValidators, useInput, useResourceContext } from "ra-core";
+  FieldTitle,
+  composeValidators,
+  useInput,
+  useResourceContext,
+} from "ra-core";
 import { useFormContext } from "react-hook-form";
 import Editor, { type Monaco, loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
@@ -58,8 +58,9 @@ const MonacoJsonInputInner = (props: MonacoJsonInputProps) => {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [monacoApi, setMonacoApi] = useState<Monaco | null>(null);
-  const [instance, setInstance] =
-    useState<editor.IStandaloneCodeEditor | null>(null);
+  const [instance, setInstance] = useState<editor.IStandaloneCodeEditor | null>(
+    null,
+  );
   const [model, setModel] = useState<editor.ITextModel | null>(null);
 
   // Owned by the component so the validate fn (created below, before
@@ -125,7 +126,12 @@ const MonacoJsonInputInner = (props: MonacoJsonInputProps) => {
     enabled: shape === "object",
   });
 
-  const measuredHeight = useAutoHeight(instance, autoHeight, Number(minHeight) || 120, Number(maxHeight) || 600);
+  const measuredHeight = useAutoHeight(
+    instance,
+    autoHeight,
+    Number(minHeight) || 120,
+    Number(maxHeight) || 600,
+  );
   const effectiveHeight = autoHeight ? measuredHeight : height;
 
   const handleEditorMount = useCallback(

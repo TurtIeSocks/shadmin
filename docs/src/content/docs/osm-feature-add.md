@@ -11,7 +11,11 @@ import { OsmFeatureAdd, PolygonInput } from "@/components/leaflet";
 
 <SimpleForm>
   <PolygonInput source="area" label="Coverage" defaultCenter={[48.87, 2.35]} />
-  <OsmFeatureAdd source="area" presets={["forest"]} label="Add forest patches" />
+  <OsmFeatureAdd
+    source="area"
+    presets={["forest"]}
+    label="Add forest patches"
+  />
 </SimpleForm>;
 ```
 
@@ -31,13 +35,13 @@ On click, fetches OSM features matching the configured sources within the curren
 
 ## Props
 
-| Prop       | Required             | Type                                | Default                  | Description                                                            |
-| ---------- | -------------------- | ----------------------------------- | ------------------------ | ---------------------------------------------------------------------- |
-| `source`   | Required             | `string`                            | -                        | RHF field holding a `Polygon` or `MultiPolygon`.                       |
-| `presets`  | Optional<sup>1</sup> | `ReadonlyArray<OsmPresetName>`      | -                        | Typed OSM presets to union in (e.g. `["forest"]`).                     |
-| `tags`     | Optional<sup>1</sup> | `ReadonlyArray<OsmTagInput>`        | -                        | Raw OSM tags in `"key=value"` or `"key=*"` form.                       |
-| `label`    | Optional             | `string`                            | `"Add OSM features"`     | Button label.                                                          |
-| `endpoint` | Optional             | `string`                            | Overpass public endpoint | Override the Overpass endpoint URL.                                    |
+| Prop       | Required             | Type                           | Default                  | Description                                        |
+| ---------- | -------------------- | ------------------------------ | ------------------------ | -------------------------------------------------- |
+| `source`   | Required             | `string`                       | -                        | RHF field holding a `Polygon` or `MultiPolygon`.   |
+| `presets`  | Optional<sup>1</sup> | `ReadonlyArray<OsmPresetName>` | -                        | Typed OSM presets to union in (e.g. `["forest"]`). |
+| `tags`     | Optional<sup>1</sup> | `ReadonlyArray<OsmTagInput>`   | -                        | Raw OSM tags in `"key=value"` or `"key=*"` form.   |
+| `label`    | Optional             | `string`                       | `"Add OSM features"`     | Button label.                                      |
+| `endpoint` | Optional             | `string`                       | Overpass public endpoint | Override the Overpass endpoint URL.                |
 
 <sup>1</sup> At least one of `presets` or `tags` must be non-empty. If both are empty, the button click is a no-op with a warning notification.
 

@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  WithValidation,
-} from "@/stories/admin/reference-input.stories";
+import { Basic, WithValidation } from "@/stories/admin/reference-input.stories";
 
 describe("<ReferenceInput />", () => {
   it("renders the autocomplete combobox for the reference field", async () => {

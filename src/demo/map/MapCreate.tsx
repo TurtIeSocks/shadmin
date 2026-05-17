@@ -1,14 +1,5 @@
-import {
-  Create,
-  SelectInput,
-  SimpleForm,
-  TextInput,
-} from "@/components/admin";
-import {
-  GeocodingInput,
-  LatLngInput,
-  PointInput,
-} from "@/components/leaflet";
+import { Create, SelectInput, SimpleForm, TextInput } from "@/components/admin";
+import { GeocodingInput, LatLngInput, PointInput } from "@/components/leaflet";
 import { required } from "ra-core";
 
 const NYC_CENTER: [number, number] = [40.74, -73.99];

@@ -105,18 +105,18 @@ All shape fields share:
 
 Common props:
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `source` | `string` | — | Record field path. Value must be a GeoJSON `Geometry` of the matching `type` (or `null`). |
-| `zoom` | `number` | `13` | Initial zoom when geometry's bounds can't be computed (point case). |
-| `height` | `number \| string` | `300` | Map container height. |
-| `tileUrl` | `string` | `DEFAULT_TILE_URL` | |
-| `attribution` | `string` | `DEFAULT_ATTRIBUTION` | |
-| `pathOptions` | `L.PathOptions` | `{ color: "#3388ff" }` | Style for vector shapes (ignored by Point/MultiPoint). |
-| `markerIcon` | `L.Icon \| L.DivIcon` | `MarkerIcon` | Point / MultiPoint only. |
-| `fitBounds` | `boolean` | `true` | Auto-fit to layer bounds. Falls back to `defaultCenter` + `zoom` for empty. |
-| `defaultCenter` | `[number, number]` | `[0, 0]` | Used when geometry missing AND `fitBounds` can't compute. |
-| `emptyText` | `ReactNode` | `"No geometry available"` | Empty state. |
+| Prop            | Type                  | Default                   | Notes                                                                                     |
+| --------------- | --------------------- | ------------------------- | ----------------------------------------------------------------------------------------- |
+| `source`        | `string`              | —                         | Record field path. Value must be a GeoJSON `Geometry` of the matching `type` (or `null`). |
+| `zoom`          | `number`              | `13`                      | Initial zoom when geometry's bounds can't be computed (point case).                       |
+| `height`        | `number \| string`    | `300`                     | Map container height.                                                                     |
+| `tileUrl`       | `string`              | `DEFAULT_TILE_URL`        |                                                                                           |
+| `attribution`   | `string`              | `DEFAULT_ATTRIBUTION`     |                                                                                           |
+| `pathOptions`   | `L.PathOptions`       | `{ color: "#3388ff" }`    | Style for vector shapes (ignored by Point/MultiPoint).                                    |
+| `markerIcon`    | `L.Icon \| L.DivIcon` | `MarkerIcon`              | Point / MultiPoint only.                                                                  |
+| `fitBounds`     | `boolean`             | `true`                    | Auto-fit to layer bounds. Falls back to `defaultCenter` + `zoom` for empty.               |
+| `defaultCenter` | `[number, number]`    | `[0, 0]`                  | Used when geometry missing AND `fitBounds` can't compute.                                 |
+| `emptyText`     | `ReactNode`           | `"No geometry available"` | Empty state.                                                                              |
 
 Empty-state rendering matches existing `LatLngField`: bordered muted panel with `emptyText`.
 
@@ -130,30 +130,30 @@ Empty-state rendering matches existing `LatLngField`: bordered muted panel with 
 
 Common Input props (all shape inputs):
 
-| Prop | Type | Default | Notes |
-|---|---|---|---|
-| `source` | `string` | — | RHF field path. Stores `Geometry` or `null`. |
-| `label` | `ReactNode` | — | |
-| `helperText` | `ReactNode` | — | |
-| `validate` | `Validator \| Validator[]` | — | ra-core validators. |
-| `disabled` | `boolean` | `false` | |
-| `defaultCenter` | `[number, number]` | `[0, 0]` | Map center when no value. |
-| `defaultZoom` | `number` | `13` | |
-| `height` | `number \| string` | `300` | |
-| `tileUrl` / `attribution` | `string` | OSM defaults | |
-| `pathOptions` | `L.PathOptions` | — | Drawn-shape styling. |
-| `snappable` | `boolean` | `true` | Geoman snap-while-drawing. |
-| `snapDistance` | `number` | `20` | Pixels. |
+| Prop                      | Type                       | Default      | Notes                                        |
+| ------------------------- | -------------------------- | ------------ | -------------------------------------------- |
+| `source`                  | `string`                   | —            | RHF field path. Stores `Geometry` or `null`. |
+| `label`                   | `ReactNode`                | —            |                                              |
+| `helperText`              | `ReactNode`                | —            |                                              |
+| `validate`                | `Validator \| Validator[]` | —            | ra-core validators.                          |
+| `disabled`                | `boolean`                  | `false`      |                                              |
+| `defaultCenter`           | `[number, number]`         | `[0, 0]`     | Map center when no value.                    |
+| `defaultZoom`             | `number`                   | `13`         |                                              |
+| `height`                  | `number \| string`         | `300`        |                                              |
+| `tileUrl` / `attribution` | `string`                   | OSM defaults |                                              |
+| `pathOptions`             | `L.PathOptions`            | —            | Drawn-shape styling.                         |
+| `snappable`               | `boolean`                  | `true`       | Geoman snap-while-drawing.                   |
+| `snapDistance`            | `number`                   | `20`         | Pixels.                                      |
 
 Per-shape extras:
 
-| Shape | Extra Props |
-|---|---|
-| `PolygonInput`, `MultiPolygonInput` | `allowSelfIntersection?: boolean = false`, `minVertices?: number = 3`, `maxVertices?: number`, `minArea_m2?: number` |
-| `LineStringInput`, `MultiLineStringInput` | `minVertices?: number = 2`, `maxVertices?: number`, `snapToRoads?: boolean = false` |
-| `PointInput`, `MultiPointInput` | `markerIcon?: L.Icon \| L.DivIcon` |
-| `BBoxInput` | `minBBoxArea_m2?: number`. (Note: `aspectRatio` ratio-lock-while-dragging is *not* a Geoman free feature; deferred — would need a custom Geoman mode wrapper or post-draw resize hook. Tracked in Open Considerations.) |
-| `GeometryCollectionInput` | `allowedShapes?: Array<GeoJSON.Geometry["type"]> = ["Point","LineString","Polygon"]`. Buttons for shapes not in this list are hidden from the Geoman toolbar. |
+| Shape                                     | Extra Props                                                                                                                                                                                                             |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PolygonInput`, `MultiPolygonInput`       | `allowSelfIntersection?: boolean = false`, `minVertices?: number = 3`, `maxVertices?: number`, `minArea_m2?: number`                                                                                                    |
+| `LineStringInput`, `MultiLineStringInput` | `minVertices?: number = 2`, `maxVertices?: number`, `snapToRoads?: boolean = false`                                                                                                                                     |
+| `PointInput`, `MultiPointInput`           | `markerIcon?: L.Icon \| L.DivIcon`                                                                                                                                                                                      |
+| `BBoxInput`                               | `minBBoxArea_m2?: number`. (Note: `aspectRatio` ratio-lock-while-dragging is _not_ a Geoman free feature; deferred — would need a custom Geoman mode wrapper or post-draw resize hook. Tracked in Open Considerations.) |
+| `GeometryCollectionInput`                 | `allowedShapes?: Array<GeoJSON.Geometry["type"]> = ["Point","LineString","Polygon"]`. Buttons for shapes not in this list are hidden from the Geoman toolbar.                                                           |
 
 ### Behavior
 
@@ -209,11 +209,11 @@ For columns whose geometry type varies between records (or for one-input-fits-al
 
 ### Props (in addition to the shared Field/Input props above)
 
-| Prop | Type | Default | Applies to |
-|---|---|---|---|
-| `shapes` | `Array<GeoJSON.Geometry["type"]>` | `["Point","LineString","Polygon"]` | Input |
-| `collection` | `boolean` | `false` | Input — `true` ⇒ writes `GeometryCollection`. |
-| `pathOptionsByType` | `Record<Geometry["type"], L.PathOptions>` | — | Field (override style per shape). |
+| Prop                | Type                                      | Default                            | Applies to                                    |
+| ------------------- | ----------------------------------------- | ---------------------------------- | --------------------------------------------- |
+| `shapes`            | `Array<GeoJSON.Geometry["type"]>`         | `["Point","LineString","Polygon"]` | Input                                         |
+| `collection`        | `boolean`                                 | `false`                            | Input — `true` ⇒ writes `GeometryCollection`. |
+| `pathOptionsByType` | `Record<Geometry["type"], L.PathOptions>` | —                                  | Field (override style per shape).             |
 
 ---
 
@@ -247,17 +247,17 @@ Built with `createControlComponent` from `@react-leaflet/core` (per geoman skill
 
 Props:
 
-| Prop | Type | Default |
-|---|---|---|
-| `position` | `L.ControlPosition` | `"topleft"` |
-| `shapes` | `Array<DrawableShape>` | `["Marker","Polyline","Polygon","Rectangle","Circle"]` |
-| `edit` / `drag` / `remove` / `cut` / `rotate` | `boolean` | `true`, `true`, `true`, `true`, `false` |
-| `oneBlock` | `boolean` | `false` |
-| `snappable` | `boolean` | `true` |
-| `snapDistance` | `number` | `20` |
-| `allowSelfIntersection` | `boolean` | `true` |
-| `pathOptions` | `L.PathOptions` | — |
-| `lang` | `string` | — (passes to `map.pm.setLang`) |
+| Prop                                          | Type                   | Default                                                |
+| --------------------------------------------- | ---------------------- | ------------------------------------------------------ |
+| `position`                                    | `L.ControlPosition`    | `"topleft"`                                            |
+| `shapes`                                      | `Array<DrawableShape>` | `["Marker","Polyline","Polygon","Rectangle","Circle"]` |
+| `edit` / `drag` / `remove` / `cut` / `rotate` | `boolean`              | `true`, `true`, `true`, `true`, `false`                |
+| `oneBlock`                                    | `boolean`              | `false`                                                |
+| `snappable`                                   | `boolean`              | `true`                                                 |
+| `snapDistance`                                | `number`               | `20`                                                   |
+| `allowSelfIntersection`                       | `boolean`              | `true`                                                 |
+| `pathOptions`                                 | `L.PathOptions`        | —                                                      |
+| `lang`                                        | `string`               | — (passes to `map.pm.setLang`)                         |
 
 `DrawableShape = "Marker" | "CircleMarker" | "Polyline" | "Rectangle" | "Polygon" | "Circle" | "Text"`.
 
@@ -268,7 +268,9 @@ Props:
   onCreate={(layer, shape) => persist(layer.toGeoJSON())}
   onUpdate={(layer) => persist(layer.toGeoJSON())}
   onRemove={(layer) => unpersist(layer)}
-  onCut={(newLayer, originalLayer) => { /* deduplication baked-in */ }}
+  onCut={(newLayer, originalLayer) => {
+    /* deduplication baked-in */
+  }}
 />
 ```
 
@@ -280,10 +282,10 @@ Powers all per-shape `*Input` components. Encapsulates:
 
 ```ts
 function useGeomanRHF<T extends GeoJSON.Geometry>(opts: {
-  source: string;                        // RHF field
-  shape: GeoJSON.Geometry["type"];       // strict shape for this hook instance
-  multi: boolean;                        // append vs replace
-  collection?: boolean;                  // for GeometryCollection
+  source: string; // RHF field
+  shape: GeoJSON.Geometry["type"]; // strict shape for this hook instance
+  multi: boolean; // append vs replace
+  collection?: boolean; // for GeometryCollection
   validate?: (geom: T) => string | undefined;
   pathOptions?: L.PathOptions;
 }): {
@@ -327,11 +329,14 @@ Returns an `error: string | undefined` that surfaces via RHF.
 ### `overpass-client.ts`
 
 ```ts
-export async function queryOverpass(query: string, opts?: {
-  endpoint?: string;       // default https://overpass-api.de/api/interpreter
-  timeoutMs?: number;      // default 30_000
-  signal?: AbortSignal;
-}): Promise<OverpassJson>;
+export async function queryOverpass(
+  query: string,
+  opts?: {
+    endpoint?: string; // default https://overpass-api.de/api/interpreter
+    timeoutMs?: number; // default 30_000
+    signal?: AbortSignal;
+  },
+): Promise<OverpassJson>;
 ```
 
 Polite default headers (`User-Agent: shadcn-admin-kit-leaflet/0.x`), normalized errors (`OverpassRateLimitError`, `OverpassTimeoutError`).
@@ -344,7 +349,7 @@ const { data, isLoading, error } = useOverpass(
    (way["natural"="water"](${bboxStr});
     relation["natural"="water"](${bboxStr}););
    out geom;`,
-  { enabled: bbox != null }
+  { enabled: bbox != null },
 );
 ```
 
@@ -359,10 +364,14 @@ Higher-level: takes a bbox, returns `FeatureCollection<Polygon>` of water featur
 Thin turf wrappers (selective imports keep bundle small):
 
 ```ts
-export function subtract(input: GeoJSON.Polygon | GeoJSON.MultiPolygon, mask: GeoJSON.FeatureCollection<GeoJSON.Polygon>):
-  GeoJSON.Polygon | GeoJSON.MultiPolygon | null;
+export function subtract(
+  input: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+  mask: GeoJSON.FeatureCollection<GeoJSON.Polygon>,
+): GeoJSON.Polygon | GeoJSON.MultiPolygon | null;
 
-export function unionAll(features: GeoJSON.FeatureCollection<GeoJSON.Polygon>): GeoJSON.Polygon | GeoJSON.MultiPolygon | null;
+export function unionAll(
+  features: GeoJSON.FeatureCollection<GeoJSON.Polygon>,
+): GeoJSON.Polygon | GeoJSON.MultiPolygon | null;
 
 export function bboxOf(geom: GeoJSON.Geometry): GeoJSON.BBox;
 
@@ -381,6 +390,7 @@ export function areaM2(geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): number;
 ```
 
 Button reads polygon from `source` via `useWatch`. On click:
+
 1. Compute bbox via `bboxOf`.
 2. Call `useOsmWaterMask(bbox)`.
 3. `subtract(polygon, waterMask)`.
@@ -402,7 +412,11 @@ Wraps OSRM's `/match/v1/{profile}/{coordinates}` endpoint. Returns road-snapped 
 ```ts
 export interface GeocodingProvider {
   search(query: string, opts?: SearchOpts): Promise<GeocodeResult[]>;
-  reverse(lat: number, lng: number, opts?: ReverseOpts): Promise<GeocodeResult | null>;
+  reverse(
+    lat: number,
+    lng: number,
+    opts?: ReverseOpts,
+  ): Promise<GeocodeResult | null>;
 }
 
 export interface GeocodeResult {
@@ -410,8 +424,8 @@ export interface GeocodeResult {
   lat: number;
   lng: number;
   bbox?: GeoJSON.BBox;
-  type?: string;            // "city" | "street" | "poi" | …
-  raw: unknown;             // provider-specific payload
+  type?: string; // "city" | "street" | "poi" | …
+  raw: unknown; // provider-specific payload
 }
 ```
 
@@ -427,6 +441,7 @@ Ship `nominatimProvider`. Document factory pattern for Mapbox / Pelias / Photon 
 ### `useGeocode(query, opts)` / `useReverseGeocode({lat, lng}, opts)`
 
 React Query hooks:
+
 - `useGeocode`: debounced (300ms default) query, `enabled: query.length >= 3`, `staleTime: 5min`.
 - `useReverseGeocode`: queryKey rounds coords to 5 decimals (~1m) to share cache across small movements.
 
@@ -434,12 +449,12 @@ React Query hooks:
 
 ```tsx
 <GeocodingInput
-  source="address"            // writes displayName
-  latSource="lat"             // optional: writes lat
-  lngSource="lng"             // optional: writes lng
-  bboxSource="bbox"           // optional: writes bbox
+  source="address" // writes displayName
+  latSource="lat" // optional: writes lat
+  lngSource="lng" // optional: writes lng
+  bboxSource="bbox" // optional: writes bbox
   countryCodes={["us", "ca"]}
-  viewBox={[-125, 24, -66, 49]}  // bias results
+  viewBox={[-125, 24, -66, 49]} // bias results
   minChars={3}
   debounceMs={300}
   placeholder="Search address or place…"
@@ -479,6 +494,7 @@ Reads coords from record context. Shows skeleton while loading, formatted addres
 ```
 
 Composes `LatLngInput` + `GeocodingInput` (rendered inside the map's `topright` Leaflet Control corner). Two-way sync:
+
 - Type address → result selected → map flies to coords, marker moves, lat/lng + address updated.
 - Drag marker → reverse-geocode → address text field updates.
 
@@ -496,15 +512,15 @@ This is the "standard address picker" so users don't need to compose three thing
 
 Adds to `dependencies`:
 
-| Package | Approx size (gzip) | Used by |
-|---|---|---|
-| `@geoman-io/leaflet-geoman-free` | ~50kb | All Input components, GeomanControl |
-| `@turf/area` | ~3kb | Validators, OsmWaterClipButton toast |
-| `@turf/bbox` | ~2kb | OSM utilities |
-| `@turf/difference` | ~5kb | OsmWaterClipButton, geometry-ops.subtract |
-| `@turf/union` | ~4kb | geometry-ops.unionAll |
-| `@turf/helpers` | ~2kb | Construct features for turf input |
-| `osmtogeojson` | ~25kb | use-osm-water-mask |
+| Package                          | Approx size (gzip) | Used by                                   |
+| -------------------------------- | ------------------ | ----------------------------------------- |
+| `@geoman-io/leaflet-geoman-free` | ~50kb              | All Input components, GeomanControl       |
+| `@turf/area`                     | ~3kb               | Validators, OsmWaterClipButton toast      |
+| `@turf/bbox`                     | ~2kb               | OSM utilities                             |
+| `@turf/difference`               | ~5kb               | OsmWaterClipButton, geometry-ops.subtract |
+| `@turf/union`                    | ~4kb               | geometry-ops.unionAll                     |
+| `@turf/helpers`                  | ~2kb               | Construct features for turf input         |
+| `osmtogeojson`                   | ~25kb              | use-osm-water-mask                        |
 
 Total: ~90kb gzipped added to the **leaflet block only** (block is opt-in via shadcn registry — not part of core install).
 
@@ -517,6 +533,7 @@ No new peer deps. `@tanstack/react-query`, `leaflet`, `react-leaflet`, `react-ho
 ### Per-shape tests
 
 Each shape pair gets:
+
 - `*-field.spec.tsx` — renders story, asserts `data-testid="*-field"` present, asserts empty-state for missing value.
 - `*-input.spec.tsx` — renders story, asserts toolbar present, simulates draw via Geoman API (programmatic `map.pm.enableDraw` + synthetic events; Geoman skill ref shows the pattern), asserts RHF value updated.
 
@@ -554,6 +571,7 @@ One per shape pair + one per geoman/osm/geocoding component. All share `_test-he
 Per AGENTS.md: every component gets a doc page in `docs/src/content/docs/`. Following the existing `LeafletAdmin.md` pattern:
 
 Option A — single doc page per component (matches existing one-doc-per-component convention):
+
 - `PointField.md`, `PointInput.md`, … (16 files for shape pairs)
 - `GeoJsonField.md`, `GeoJsonInput.md`
 - `GeomanControl.md`, `GeomanEvents.md`
@@ -562,6 +580,7 @@ Option A — single doc page per component (matches existing one-doc-per-compone
 - `GeocodingInput.md`, `ReverseGeocodeField.md`, `MapWithSearch.md`
 
 Option B — grouped pages by category (4 pages):
+
 - `LeafletShapeFields.md` — all per-shape field pairs in one page
 - `LeafletDrawing.md` — Geoman primitives + GeoJsonInput
 - `LeafletOsm.md` — Overpass utilities + water clip

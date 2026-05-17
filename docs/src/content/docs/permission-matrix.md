@@ -30,14 +30,14 @@ const PermissionsEditor = () => {
 
 ## Props
 
-| Prop        | Required | Type                                    | Default                                              | Description                                             |
-| ----------- | -------- | --------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------- |
-| `roles`     | Required | `Array<string \| { id; label }>`        | —                                                    | Role identifiers or labeled objects.                    |
-| `resources` | Required | `Array<string \| { id; label }>`        | —                                                    | Resource identifiers or labeled objects.                |
-| `actions`   | Optional | `string[]`                              | `["list", "show", "create", "edit", "delete"]`       | Action names displayed as column headers.               |
-| `value`     | Optional | `PermissionsState`                      | `{}`                                                 | Current permissions state (controlled).                 |
-| `onChange`  | Required | `(next: PermissionsState) => void`      | —                                                    | Called with the new state after any cell is toggled.    |
-| `readOnly`  | Optional | `boolean`                               | `false`                                              | Disables all checkboxes.                                |
+| Prop        | Required | Type                               | Default                                        | Description                                          |
+| ----------- | -------- | ---------------------------------- | ---------------------------------------------- | ---------------------------------------------------- |
+| `roles`     | Required | `Array<string \| { id; label }>`   | —                                              | Role identifiers or labeled objects.                 |
+| `resources` | Required | `Array<string \| { id; label }>`   | —                                              | Resource identifiers or labeled objects.             |
+| `actions`   | Optional | `string[]`                         | `["list", "show", "create", "edit", "delete"]` | Action names displayed as column headers.            |
+| `value`     | Optional | `PermissionsState`                 | `{}`                                           | Current permissions state (controlled).              |
+| `onChange`  | Required | `(next: PermissionsState) => void` | —                                              | Called with the new state after any cell is toggled. |
+| `readOnly`  | Optional | `boolean`                          | `false`                                        | Disables all checkboxes.                             |
 
 ## Permissions state shape
 

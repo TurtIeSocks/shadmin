@@ -11,6 +11,8 @@ describe("<MultiPointInput />", () => {
     // For `MultiPoint` that's `multipoint-input` (lowercase, no separators).
     const wrapper = await screen.getByTestId("multipoint-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

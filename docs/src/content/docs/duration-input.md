@@ -16,16 +16,16 @@ import { DurationInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default               | Description |
-| ------------ | -------- | -------------------------- | --------------------- | ----------- |
-| `source`     | Required | `string`                   | -                     | Form field name |
-| `units`      | Optional | `("d"\|"h"\|"m"\|"s")[]`   | `["d","h","m","s"]`   | Which units to expose |
-| `label`      | Optional | `string \| false`          | Inferred              | Custom label |
-| `helperText` | Optional | `ReactNode`                | -                     | Helper text |
-| `disabled`   | Optional | `boolean`                  | `false`               | Disable all unit inputs |
-| `defaultValue` | Optional | `string`                 | -                     | Initial ISO duration |
-| `validate`   | Optional | `Validator \| Validator[]` | -                     | Validation |
-| `className`  | Optional | `string`                   | -                     | CSS class on wrapping `<div>` |
+| Prop           | Required | Type                       | Default             | Description                   |
+| -------------- | -------- | -------------------------- | ------------------- | ----------------------------- |
+| `source`       | Required | `string`                   | -                   | Form field name               |
+| `units`        | Optional | `("d"\|"h"\|"m"\|"s")[]`   | `["d","h","m","s"]` | Which units to expose         |
+| `label`        | Optional | `string \| false`          | Inferred            | Custom label                  |
+| `helperText`   | Optional | `ReactNode`                | -                   | Helper text                   |
+| `disabled`     | Optional | `boolean`                  | `false`             | Disable all unit inputs       |
+| `defaultValue` | Optional | `string`                   | -                   | Initial ISO duration          |
+| `validate`     | Optional | `Validator \| Validator[]` | -                   | Validation                    |
+| `className`    | Optional | `string`                   | -                   | CSS class on wrapping `<div>` |
 
 ## Storage format
 

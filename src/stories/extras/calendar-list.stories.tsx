@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { type DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
+import {
+  type DataProvider,
+  memoryStore,
+  Resource,
+  TestMemoryRouter,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
@@ -18,15 +23,30 @@ const addDaysLocal = (d: Date, n: number) => {
 const data = {
   events: [
     { id: 1, title: "Standup", start_at: iso(today), status: "open" },
-    { id: 2, title: "Demo", start_at: iso(addDaysLocal(today, 1)), status: "confirmed" },
-    { id: 3, title: "Retro", start_at: iso(addDaysLocal(today, -1)), status: "open" },
+    {
+      id: 2,
+      title: "Demo",
+      start_at: iso(addDaysLocal(today, 1)),
+      status: "confirmed",
+    },
+    {
+      id: 3,
+      title: "Retro",
+      start_at: iso(addDaysLocal(today, -1)),
+      status: "open",
+    },
   ],
 };
 
 const dataProvider = fakeRestDataProvider(data) as DataProvider;
-const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-  allowMissing: true,
-});
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  {
+    allowMissing: true,
+  },
+);
 
 export default {
   title: "Extras/CalendarList",
@@ -209,8 +229,13 @@ export const Drag = () => {
                   }}
                 />
               </List>
-              <div className="rounded-md bg-muted/40 p-3 text-sm font-mono" data-testid="last-drop">
-                {lastDrop ? `Drop fired: ${lastDrop}` : "Drop an event to see the new date here"}
+              <div
+                className="rounded-md bg-muted/40 p-3 text-sm font-mono"
+                data-testid="last-drop"
+              >
+                {lastDrop
+                  ? `Drop fired: ${lastDrop}`
+                  : "Drop an event to see the new date here"}
               </div>
             </div>
           )}

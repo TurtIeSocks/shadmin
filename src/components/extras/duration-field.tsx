@@ -1,9 +1,5 @@
 import type { HTMLAttributes } from "react";
-import {
-  sanitizeFieldRestProps,
-  useFieldValue,
-  useTranslate,
-} from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import { formatDuration } from "date-fns";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
@@ -22,7 +18,9 @@ import { compactDuration, parseIsoDuration } from "./duration-utils";
  * <DurationField source="duration" displayFormat="relative" />
  * <DurationField source="duration" empty="—" />
  */
-export const DurationField = <RecordType extends UnknownRecord = UnknownRecord>({
+export const DurationField = <
+  RecordType extends UnknownRecord = UnknownRecord,
+>({
   defaultValue,
   source,
   record,
@@ -61,8 +59,7 @@ export const DurationField = <RecordType extends UnknownRecord = UnknownRecord>(
 export interface DurationFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** 'compact' renders `2h 30m`; 'relative' renders `2 hours 30 minutes`. */
   displayFormat?: "compact" | "relative";
 }

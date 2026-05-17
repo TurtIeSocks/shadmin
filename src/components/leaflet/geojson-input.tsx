@@ -59,7 +59,9 @@ export const GeoJsonInput = ({
   label,
   helperText,
 }: GeoJsonInputProps) => {
-  const geomanShapes = Array.from(new Set(shapes.map((s) => SHAPE_TO_GEOMAN[s])));
+  const geomanShapes = Array.from(
+    new Set(shapes.map((s) => SHAPE_TO_GEOMAN[s])),
+  );
   return (
     <div className="flex flex-col gap-1" data-slot="geojson-input">
       {label ? <label className="text-sm font-medium">{label}</label> : null}

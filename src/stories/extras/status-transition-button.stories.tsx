@@ -29,7 +29,9 @@ export const TerminalState = () => (
 );
 
 export const WithGuard = () => (
-  <StoryAdmin record={{ id: 1, title: "Post", status: "review", missingFields: true }}>
+  <StoryAdmin
+    record={{ id: 1, title: "Post", status: "review", missingFields: true }}
+  >
     <StatusTransitionButton
       source="status"
       transitions={TRANSITIONS}

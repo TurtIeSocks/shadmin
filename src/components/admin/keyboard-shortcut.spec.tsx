@@ -5,9 +5,7 @@ import { Basic, Sequence } from "@/stories/admin/keyboard-shortcut.stories";
 
 describe("<KeyboardShortcut />", () => {
   it("renders mapped keys as kbd glyphs", async () => {
-    const screen = render(
-      <Basic theme="system" keyboardShortcut="mod+k" />,
-    );
+    const screen = render(<Basic theme="system" keyboardShortcut="mod+k" />);
     await expect.element(screen.getByText("⌘")).toBeInTheDocument();
     await expect.element(screen.getByText("K")).toBeInTheDocument();
   });

@@ -10,7 +10,7 @@ Each card has approve + reject buttons. On click, writes
 ## Usage
 
 ```tsx
-import { ApprovalQueue, List } from '@/components/admin';
+import { ApprovalQueue, List } from "@/components/admin";
 
 const ExpenseApprovals = () => (
   <List resource="expenses" filter={{ status: "pending" }}>
@@ -21,16 +21,16 @@ const ExpenseApprovals = () => (
 
 ## Props
 
-| Prop              | Required | Type                          | Default            | Description |
-| ----------------- | -------- | ----------------------------- | ------------------ | ----------- |
-| `titleSource`     | Optional | `string`                      | `"title"`          | Field for the row heading |
-| `subtitleSource`  | Optional | `string`                      | -                  | Optional secondary text |
-| `statusSource`    | Optional | `string`                      | `"status"`         | Field written on decision |
-| `approverSource`  | Optional | `string`                      | `"approverId"`     | Field receiving the current user id |
-| `noteSource`      | Optional | `string`                      | `"approverNote"`   | Field receiving the reason note |
-| `decidedAtSource` | Optional | `string`                      | `"decidedAt"`      | Field receiving the ISO timestamp |
-| `requireReason`   | Optional | `boolean`                     | `false`            | Block reject (and approve) without a reason |
-| `rowExtra`        | Optional | `(record) => ReactNode`       | -                  | Custom slot between header and action row |
+| Prop              | Required | Type                    | Default          | Description                                 |
+| ----------------- | -------- | ----------------------- | ---------------- | ------------------------------------------- |
+| `titleSource`     | Optional | `string`                | `"title"`        | Field for the row heading                   |
+| `subtitleSource`  | Optional | `string`                | -                | Optional secondary text                     |
+| `statusSource`    | Optional | `string`                | `"status"`       | Field written on decision                   |
+| `approverSource`  | Optional | `string`                | `"approverId"`   | Field receiving the current user id         |
+| `noteSource`      | Optional | `string`                | `"approverNote"` | Field receiving the reason note             |
+| `decidedAtSource` | Optional | `string`                | `"decidedAt"`    | Field receiving the ISO timestamp           |
+| `requireReason`   | Optional | `boolean`               | `false`          | Block reject (and approve) without a reason |
+| `rowExtra`        | Optional | `(record) => ReactNode` | -                | Custom slot between header and action row   |
 
 ## Required parent context
 

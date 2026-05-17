@@ -1,35 +1,30 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
-import { Basic, CustomPlacement } from "@/stories/extras/onboarding-tour.stories";
+import {
+  Basic,
+  CustomPlacement,
+} from "@/stories/extras/onboarding-tour.stories";
 
 describe("<OnboardingTour />", () => {
   it("should render the tour when not yet completed", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByText("Resources"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Resources")).toBeInTheDocument();
   });
 
   it("should advance to the next step when Next is clicked", async () => {
     const screen = render(<Basic />);
     // First step should show "Resources"
-    await expect
-      .element(screen.getByText("Resources"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Resources")).toBeInTheDocument();
     // Click Next
     const nextBtn = screen.getByRole("button", { name: "Next" });
     await userEvent.click(nextBtn);
     // Second step should show "Quick search"
-    await expect
-      .element(screen.getByText("Quick search"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Quick search")).toBeInTheDocument();
   });
 
   it("should close and mark completion when Skip is clicked", async () => {
-    const screen = render(
-      <Basic />
-    );
+    const screen = render(<Basic />);
     // Tour card should be present
     const skipBtn = screen.getByRole("button", { name: "Skip" });
     await expect.element(skipBtn).toBeInTheDocument();

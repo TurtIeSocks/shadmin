@@ -31,7 +31,9 @@ describe("snapToRoadsOnce", () => {
         [2.36, 48.86],
       ],
     });
-    expect((globalThis.fetch as ReturnType<typeof vi.fn>).mock.calls[0][0]).toContain("/match/v1/driving/");
+    expect(
+      (globalThis.fetch as ReturnType<typeof vi.fn>).mock.calls[0][0],
+    ).toContain("/match/v1/driving/");
     expect(result?.type).toBe("LineString");
   });
 });

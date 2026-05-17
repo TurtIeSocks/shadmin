@@ -1,6 +1,11 @@
 "use client";
 
-import { type ComponentType, type ReactElement, type ReactNode, useId } from "react";
+import {
+  type ComponentType,
+  type ReactElement,
+  type ReactNode,
+  useId,
+} from "react";
 import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import {
   Area,
@@ -166,12 +171,15 @@ export const TrendChart = ({
   // Adapter: recharts v3 Tooltip formatter has a wider signature; pass only
   // the (value, name) pair through to the friendlier public prop.
   const rechartsTooltipFormatter = tooltipFormatter
-    ? ((value: unknown, name: unknown) =>
-        tooltipFormatter(value, (name ?? "") as string))
+    ? (value: unknown, name: unknown) =>
+        tooltipFormatter(value, (name ?? "") as string)
     : undefined;
 
   const inner = area ? (
-    <RechartsArea data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+    <RechartsArea
+      data={data}
+      margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+    >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="5%" stopColor={color} stopOpacity={0.8} />
@@ -179,7 +187,11 @@ export const TrendChart = ({
         </linearGradient>
       </defs>
       <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-      <XAxis dataKey={xField} className="text-xs" tickFormatter={xTickFormatter} />
+      <XAxis
+        dataKey={xField}
+        className="text-xs"
+        tickFormatter={xTickFormatter}
+      />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Tooltip formatter={rechartsTooltipFormatter as any} />
@@ -194,9 +206,16 @@ export const TrendChart = ({
       />
     </RechartsArea>
   ) : (
-    <RechartsLine data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+    <RechartsLine
+      data={data}
+      margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+    >
       <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-      <XAxis dataKey={xField} className="text-xs" tickFormatter={xTickFormatter} />
+      <XAxis
+        dataKey={xField}
+        className="text-xs"
+        tickFormatter={xTickFormatter}
+      />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Tooltip formatter={rechartsTooltipFormatter as any} />
@@ -255,7 +274,10 @@ export const BarChart = ({
     className={className}
     slot="bar-chart"
   >
-    <RechartsBar data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+    <RechartsBar
+      data={data}
+      margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+    >
       <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
       <XAxis dataKey={xField} className="text-xs" />
       <YAxis className="text-xs" />

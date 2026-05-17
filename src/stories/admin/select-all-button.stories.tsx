@@ -30,9 +30,14 @@ const Wrapper = ({
 }>) => (
   <ThemeProvider>
     <CoreAdminContext
-      i18nProvider={polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-        allowMissing: true,
-      })}
+      i18nProvider={polyglotI18nProvider(
+        () => defaultMessages,
+        "en",
+        undefined,
+        {
+          allowMissing: true,
+        },
+      )}
       store={memoryStore()}
     >
       <ResourceContextProvider value="posts">
@@ -42,7 +47,9 @@ const Wrapper = ({
               selectedIds,
               onSelect: () => {},
               onSelectAll: () => {},
-              data: Array.from({ length: total }).map((_, i) => ({ id: i + 1 })),
+              data: Array.from({ length: total }).map((_, i) => ({
+                id: i + 1,
+              })),
               total,
             } as never
           }

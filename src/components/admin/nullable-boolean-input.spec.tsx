@@ -10,9 +10,7 @@ import {
 describe("<NullableBooleanInput />", () => {
   it("renders the select trigger with the humanized field label", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByText(/is published/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/is published/i)).toBeInTheDocument();
     await expect.element(screen.getByRole("combobox")).toBeInTheDocument();
   });
 
@@ -23,8 +21,6 @@ describe("<NullableBooleanInput />", () => {
 
   it("renders the explicit label when provided", async () => {
     const screen = render(<Label />);
-    await expect
-      .element(screen.getByText(/published\?/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/published\?/i)).toBeInTheDocument();
   });
 });

@@ -62,5 +62,5 @@ export const WebhookEndpointField = <
 
 export interface WebhookEndpointFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {}
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {}

@@ -24,7 +24,7 @@ import { JobMonitor } from '@/components/admin';
 interface JobRecord {
   id: string | number;
   type?: string;
-  status: 'queued' | 'running' | 'failed' | 'done' | 'cancelled';
+  status: "queued" | "running" | "failed" | "done" | "cancelled";
   payload?: unknown;
   attempts?: number;
   lastError?: string | null;
@@ -35,17 +35,17 @@ interface JobRecord {
 
 ## Props
 
-| Prop             | Required | Type             | Default                                  | Description |
-| ---------------- | -------- | ---------------- | ---------------------------------------- | ----------- |
-| `resource`       | Optional | `string`         | Context                                  | Override resource |
-| `pollInterval`   | Optional | `number`         | `5000`                                   | Polling interval in ms (`0` = disabled) |
-| `tabs`           | Optional | `JobStatus[]`    | `["running","queued","failed","done"]`   | Tab order |
-| `statusSource`   | Optional | `string`         | `"status"`                               | Record field name |
-| `typeSource`     | Optional | `string`         | `"type"`                                 | Record field name |
-| `payloadSource`  | Optional | `string`         | `"payload"`                              | Record field name |
-| `errorSource`    | Optional | `string`         | `"lastError"`                            | Record field name |
-| `attemptsSource` | Optional | `string`         | `"attempts"`                             | Record field name |
-| `actions`        | Optional | `boolean`        | `true`                                   | Show retry/cancel buttons |
+| Prop             | Required | Type          | Default                                | Description                             |
+| ---------------- | -------- | ------------- | -------------------------------------- | --------------------------------------- |
+| `resource`       | Optional | `string`      | Context                                | Override resource                       |
+| `pollInterval`   | Optional | `number`      | `5000`                                 | Polling interval in ms (`0` = disabled) |
+| `tabs`           | Optional | `JobStatus[]` | `["running","queued","failed","done"]` | Tab order                               |
+| `statusSource`   | Optional | `string`      | `"status"`                             | Record field name                       |
+| `typeSource`     | Optional | `string`      | `"type"`                               | Record field name                       |
+| `payloadSource`  | Optional | `string`      | `"payload"`                            | Record field name                       |
+| `errorSource`    | Optional | `string`      | `"lastError"`                          | Record field name                       |
+| `attemptsSource` | Optional | `string`      | `"attempts"`                           | Record field name                       |
+| `actions`        | Optional | `boolean`     | `true`                                 | Show retry/cancel buttons               |
 
 ## Actions
 

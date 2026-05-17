@@ -105,7 +105,9 @@ export const DiffViewer = ({
             <div
               className={cn(
                 "rounded-sm px-2 py-1",
-                statusClasses[row.status === "added" ? "unchanged" : row.status],
+                statusClasses[
+                  row.status === "added" ? "unchanged" : row.status
+                ],
               )}
             >
               {row.beforeRendered}
@@ -143,25 +145,36 @@ export const DiffViewer = ({
         >
           <span className="font-medium">{row.label}:</span>
           {row.status === "added" ? (
-            <span className={cn("rounded-sm px-1.5 underline", statusClasses.added)}>
+            <span
+              className={cn("rounded-sm px-1.5 underline", statusClasses.added)}
+            >
               {row.afterRendered}
             </span>
           ) : row.status === "removed" ? (
             <span
-              className={cn("rounded-sm px-1.5 line-through", statusClasses.removed)}
+              className={cn(
+                "rounded-sm px-1.5 line-through",
+                statusClasses.removed,
+              )}
             >
               {row.beforeRendered}
             </span>
           ) : row.status === "changed" ? (
             <>
               <span
-                className={cn("rounded-sm px-1.5 line-through", statusClasses.removed)}
+                className={cn(
+                  "rounded-sm px-1.5 line-through",
+                  statusClasses.removed,
+                )}
               >
                 {row.beforeRendered}
               </span>
               <ArrowRightIcon className="size-3 text-muted-foreground" />
               <span
-                className={cn("rounded-sm px-1.5 underline", statusClasses.added)}
+                className={cn(
+                  "rounded-sm px-1.5 underline",
+                  statusClasses.added,
+                )}
               >
                 {row.afterRendered}
               </span>

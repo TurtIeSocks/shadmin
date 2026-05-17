@@ -11,7 +11,10 @@ const ValueProbe = () => {
   return <pre data-testid="bb-value">{JSON.stringify(value ?? null)}</pre>;
 };
 
-const findAsync = async (container: HTMLElement, selector: string): Promise<Element | null> => {
+const findAsync = async (
+  container: HTMLElement,
+  selector: string,
+): Promise<Element | null> => {
   let el: Element | null = null;
   for (let i = 0; i < 50 && !el; i++) {
     el = container.querySelector(selector);
@@ -28,7 +31,9 @@ describe("<BBoxInput />", () => {
       </StoryAdmin>,
     );
     await expect.element(screen.getByText("Area")).toBeInTheDocument();
-    await expect.element(screen.getByTestId("polygon-input")).toBeInTheDocument();
+    await expect
+      .element(screen.getByTestId("polygon-input"))
+      .toBeInTheDocument();
   });
 
   it("exposes ONLY the rectangle draw button (no polygon button)", async () => {
@@ -41,9 +46,7 @@ describe("<BBoxInput />", () => {
     expect(rectBtn).not.toBeNull();
     // The "draw polygon" toolbar button must NOT be present — bbox is locked
     // to Rectangle so the stored value can be a 4-element [w,s,e,n] tuple.
-    const polyBtn = screen.container.querySelector(
-      "[title*='draw polygon' i]",
-    );
+    const polyBtn = screen.container.querySelector("[title*='draw polygon' i]");
     expect(polyBtn).toBeNull();
   });
 

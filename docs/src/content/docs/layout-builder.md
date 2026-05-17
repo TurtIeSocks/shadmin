@@ -9,23 +9,23 @@ Drag-drop reorder UI for a resource's list columns. Persists the order to
 ## Usage
 
 ```tsx
-import { LayoutBuilder } from '@/components/admin';
+import { LayoutBuilder } from "@/components/admin";
 
 <LayoutBuilder
   availableFields={["id", "title", "author"]}
   mode="list-columns"
-/>
+/>;
 ```
 
 ## Props
 
-| Prop              | Required | Type                                              | Default                              | Description |
-| ----------------- | -------- | ------------------------------------------------- | ------------------------------------ | ----------- |
-| `availableFields` | Required | `readonly string[]`                               | -                                    | All fields the resource exposes |
-| `mode`            | Optional | `"list-columns" \| "show-layout" \| "edit-form"`  | `"list-columns"`                     | Layout target (v1 ships list-columns only) |
-| `defaultOrder`    | Optional | `readonly string[]`                               | `availableFields`                    | Initial order |
-| `storeKey`        | Optional | `string`                                          | `` `layout.<resource>.<mode>` ``     | Override persistence key |
-| `resource`        | Optional | `string`                                          | Context                              | Override resource |
+| Prop              | Required | Type                                             | Default                          | Description                                |
+| ----------------- | -------- | ------------------------------------------------ | -------------------------------- | ------------------------------------------ |
+| `availableFields` | Required | `readonly string[]`                              | -                                | All fields the resource exposes            |
+| `mode`            | Optional | `"list-columns" \| "show-layout" \| "edit-form"` | `"list-columns"`                 | Layout target (v1 ships list-columns only) |
+| `defaultOrder`    | Optional | `readonly string[]`                              | `availableFields`                | Initial order                              |
+| `storeKey`        | Optional | `string`                                         | `` `layout.<resource>.<mode>` `` | Override persistence key                   |
+| `resource`        | Optional | `string`                                         | Context                          | Override resource                          |
 
 ## Persistence
 

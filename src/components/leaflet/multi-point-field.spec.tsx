@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  EmptyValue,
-} from "@/stories/leaflet/multi-point-field.stories";
+import { Basic, EmptyValue } from "@/stories/leaflet/multi-point-field.stories";
 
 const findAsync = async (
   container: Element,
@@ -22,7 +19,10 @@ describe("<MultiPointField />", () => {
   it("renders multiple markers from a MultiPoint geometry", async () => {
     const screen = render(<Basic />);
     expect(screen.container.querySelector(".leaflet-container")).not.toBeNull();
-    const marker = await findAsync(screen.container, ".leaflet-marker-pane > *");
+    const marker = await findAsync(
+      screen.container,
+      ".leaflet-marker-pane > *",
+    );
     expect(marker).not.toBeNull();
   });
 

@@ -22,12 +22,12 @@ const App = () => (
 
 ## Props
 
-| Prop               | Required | Type        | Default          | Description |
-| ------------------ | -------- | ----------- | ---------------- | ----------- |
-| `children`         | Required | `ReactNode` | -                | Tree to track |
+| Prop               | Required | Type        | Default          | Description         |
+| ------------------ | -------- | ----------- | ---------------- | ------------------- |
+| `children`         | Required | `ReactNode` | -                | Tree to track       |
 | `defaultOpen`      | Optional | `boolean`   | `true`           | Panel open at mount |
-| `maxLogs`          | Optional | `number`    | `50`             | Retained logs |
-| `keyboardShortcut` | Optional | `string`    | `"ctrl+shift+d"` | Toggle key chord |
+| `maxLogs`          | Optional | `number`    | `50`             | Retained logs       |
+| `keyboardShortcut` | Optional | `string`    | `"ctrl+shift+d"` | Toggle key chord    |
 
 ## `useDataProviderDevtools()`
 

@@ -35,7 +35,7 @@ A no-op transport that simply echoes the user's last message. Use it for demos, 
 ```tsx
 import { Assistant, echoTransport } from "@/components/admin";
 
-<Assistant transport={echoTransport} />
+<Assistant transport={echoTransport} />;
 ```
 
 ## Writing a real transport
@@ -92,13 +92,13 @@ const openaiTransport: AssistantTransport = {
 
 ## Props
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `transport` | `AssistantTransport` | required |
-| `tools` | `Record<string, ToolDefinition>` | `{}` |
-| `placement` | `"bottom-right" \| "bottom-left" \| "sidebar"` | `"bottom-right"` |
-| `triggerLabel` | `string` | translated `Ask` |
-| `welcomeMessage` | `string` | translated |
+| Prop             | Type                                           | Default          |
+| ---------------- | ---------------------------------------------- | ---------------- |
+| `transport`      | `AssistantTransport`                           | required         |
+| `tools`          | `Record<string, ToolDefinition>`               | `{}`             |
+| `placement`      | `"bottom-right" \| "bottom-left" \| "sidebar"` | `"bottom-right"` |
+| `triggerLabel`   | `string`                                       | translated `Ask` |
+| `welcomeMessage` | `string`                                       | translated       |
 
 ## Tool definitions
 
@@ -122,9 +122,9 @@ Controls where the floating trigger button and chat panel appear:
 
 ## i18n
 
-| Key | Default |
-| --- | --- |
-| `ra.assistant.trigger` | `Ask` |
-| `ra.assistant.welcome` | `Hi! Ask me anything.` |
-| `ra.assistant.thinking` | `Thinking…` |
-| `ra.assistant.placeholder` | `Ask…` |
+| Key                        | Default                |
+| -------------------------- | ---------------------- |
+| `ra.assistant.trigger`     | `Ask`                  |
+| `ra.assistant.welcome`     | `Hi! Ask me anything.` |
+| `ra.assistant.thinking`    | `Thinking…`            |
+| `ra.assistant.placeholder` | `Ask…`                 |

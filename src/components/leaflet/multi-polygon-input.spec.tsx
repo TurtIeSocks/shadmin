@@ -10,6 +10,8 @@ describe("<MultiPolygonInput />", () => {
     // `shape-input-shell` testId pattern for `MultiPolygon` is `multipolygon-input`.
     const wrapper = await screen.getByTestId("multipolygon-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

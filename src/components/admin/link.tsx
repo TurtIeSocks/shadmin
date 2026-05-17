@@ -28,10 +28,7 @@ export interface LinkProps extends RouterLinkProps {
 export const Link = ({ className, ref, ...rest }: LinkProps) => (
   <RouterLink
     ref={ref}
-    className={cn(
-      "text-primary underline-offset-4 hover:underline",
-      className,
-    )}
+    className={cn("text-primary underline-offset-4 hover:underline", className)}
     {...rest}
   />
 );

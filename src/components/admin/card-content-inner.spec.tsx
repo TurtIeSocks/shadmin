@@ -6,14 +6,10 @@ import { Basic } from "@/stories/admin/card-content-inner.stories";
 describe("<CardContentInner />", () => {
   it("renders the section headings stacked inside a single card", async () => {
     const screen = render(<Basic theme="system" />);
-    await expect
-      .element(screen.getByText("First section"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("First section")).toBeInTheDocument();
     await expect
       .element(screen.getByText("Second section"))
       .toBeInTheDocument();
-    await expect
-      .element(screen.getByText("Third section"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Third section")).toBeInTheDocument();
   });
 });

@@ -45,28 +45,28 @@ const App = () => (
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `hotkey` | `string[] \| false` | `["mod+k"]` | Hotkey bindings. `false` disables hotkey opening. |
-| `resources` | `string[]` | all permitted | Resource allowlist. Resources the user cannot list (`useCanAccess`) are filtered automatically. |
-| `searchFields` | `Record<string, string>` | `{}` | Override the search field name per resource (defaults to `q`). |
-| `perResourceLimit` | `number` | `5` | Max records returned per resource per query. |
-| `recentsLimit` | `number` | `10` | Max recents tracked in the empty state. |
-| `actions` | `CommandAction[]` | `[]` | Extra static actions appended to the built-ins. |
-| `placeholder` | `string` | translated | Input placeholder text. |
-| `searchDebounceMs` | `number` | `200` | Debounce in ms before queries fire. |
+| Prop               | Type                     | Default       | Description                                                                                     |
+| ------------------ | ------------------------ | ------------- | ----------------------------------------------------------------------------------------------- |
+| `hotkey`           | `string[] \| false`      | `["mod+k"]`   | Hotkey bindings. `false` disables hotkey opening.                                               |
+| `resources`        | `string[]`               | all permitted | Resource allowlist. Resources the user cannot list (`useCanAccess`) are filtered automatically. |
+| `searchFields`     | `Record<string, string>` | `{}`          | Override the search field name per resource (defaults to `q`).                                  |
+| `perResourceLimit` | `number`                 | `5`           | Max records returned per resource per query.                                                    |
+| `recentsLimit`     | `number`                 | `10`          | Max recents tracked in the empty state.                                                         |
+| `actions`          | `CommandAction[]`        | `[]`          | Extra static actions appended to the built-ins.                                                 |
+| `placeholder`      | `string`                 | translated    | Input placeholder text.                                                                         |
+| `searchDebounceMs` | `number`                 | `200`         | Debounce in ms before queries fire.                                                             |
 
 ### `CommandAction`
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | Stable identifier (used as React key, `unregister` handle, and cmdk value prefix). |
-| `label` | `ReactNode` | Visible label. |
-| `icon` | `ComponentType` | Optional Lucide-compatible icon. |
-| `group` | `string` | Group bucket (`"actions"` for the actions list; custom groups render after defaults). |
-| `keywords` | `string[]` | Extra search keywords for cmdk's fuzzy filter. |
-| `when` | `() => boolean` | Optional visibility predicate. |
-| `onSelect` | `() => void \| Promise<void>` | Action handler. The dialog closes after `onSelect` resolves. |
+| Field      | Type                          | Description                                                                           |
+| ---------- | ----------------------------- | ------------------------------------------------------------------------------------- |
+| `id`       | `string`                      | Stable identifier (used as React key, `unregister` handle, and cmdk value prefix).    |
+| `label`    | `ReactNode`                   | Visible label.                                                                        |
+| `icon`     | `ComponentType`               | Optional Lucide-compatible icon.                                                      |
+| `group`    | `string`                      | Group bucket (`"actions"` for the actions list; custom groups render after defaults). |
+| `keywords` | `string[]`                    | Extra search keywords for cmdk's fuzzy filter.                                        |
+| `when`     | `() => boolean`               | Optional visibility predicate.                                                        |
+| `onSelect` | `() => void \| Promise<void>` | Action handler. The dialog closes after `onSelect` resolves.                          |
 
 ## Result groups
 

@@ -36,7 +36,9 @@ export const MonacoJsonInput = (props: MonacoJsonInputProps) => (
   <Suspense
     fallback={
       <MonacoSkeleton
-        height={props.autoHeight ? (props.minHeight ?? 120) : (props.height ?? 300)}
+        height={
+          props.autoHeight ? (props.minHeight ?? 120) : (props.height ?? 300)
+        }
       />
     }
   >

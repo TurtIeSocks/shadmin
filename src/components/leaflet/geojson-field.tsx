@@ -2,9 +2,15 @@
 
 import type * as L from "leaflet";
 
-import { ShapeFieldShell, type ShapeFieldShellProps } from "./shapes/shape-field-shell";
+import {
+  ShapeFieldShell,
+  type ShapeFieldShellProps,
+} from "./shapes/shape-field-shell";
 
-export interface GeoJsonFieldProps extends Omit<ShapeFieldShellProps, "pathOptions"> {
+export interface GeoJsonFieldProps extends Omit<
+  ShapeFieldShellProps,
+  "pathOptions"
+> {
   /**
    * Per-geometry-type path styling. Reserved for v2; v1 falls back to
    * `pathOptions` for every shape.
@@ -23,4 +29,6 @@ export const GeoJsonField = ({
   pathOptionsByType: _pathOptionsByType,
   pathOptions,
   ...rest
-}: GeoJsonFieldProps) => <ShapeFieldShell {...rest} pathOptions={pathOptions} />;
+}: GeoJsonFieldProps) => (
+  <ShapeFieldShell {...rest} pathOptions={pathOptions} />
+);

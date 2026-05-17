@@ -10,12 +10,16 @@ import {
 describe("<CommentsThread />", () => {
   it("renders one card per comment matching the parent", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByText("Looks good to me.")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Looks good to me."))
+      .toBeInTheDocument();
     await expect
       .element(screen.getByText("Let's also bump the version."))
       .toBeInTheDocument();
     // Unrelated comment with parentId=99 should NOT render
-    expect(screen.container.textContent ?? "").not.toContain("Unrelated comment");
+    expect(screen.container.textContent ?? "").not.toContain(
+      "Unrelated comment",
+    );
   });
 
   it("renders the author name on each card", async () => {

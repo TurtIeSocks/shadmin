@@ -9,7 +9,7 @@ fires `useUpdate` on selection.
 ## Usage
 
 ```tsx
-import { StatusTransitionButton } from '@/components/admin';
+import { StatusTransitionButton } from "@/components/admin";
 
 const TRANSITIONS = {
   draft: ["review", "archived"],
@@ -18,8 +18,10 @@ const TRANSITIONS = {
   archived: [],
 };
 
-<StatusTransitionButton source="status" transitions={TRANSITIONS} />
-{/* With guards */}
+<StatusTransitionButton source="status" transitions={TRANSITIONS} />;
+{
+  /* With guards */
+}
 <StatusTransitionButton
   source="status"
   transitions={TRANSITIONS}
@@ -27,19 +29,19 @@ const TRANSITIONS = {
     "review->published": (record) => record.requiredFields != null,
   }}
   confirm
-/>
+/>;
 ```
 
 ## Props
 
-| Prop           | Required | Type                                                | Default     | Description |
-| -------------- | -------- | --------------------------------------------------- | ----------- | ----------- |
-| `transitions`  | Required | `Record<string, readonly string[]>`                 | -           | Allowed transitions per state |
-| `source`       | Optional | `string`                                            | `"status"`  | Record field holding the state |
-| `guards`       | Optional | `Record<string, (record) => boolean>`               | -           | `${from}->${to}` predicates |
-| `resource`     | Optional | `string`                                            | Context     | Override resource |
-| `confirm`      | Optional | `boolean`                                           | `false`     | Native confirm before update |
-| `onTransition` | Optional | `(from, to, record) => void`                        | -           | Side-effect callback |
+| Prop           | Required | Type                                  | Default    | Description                    |
+| -------------- | -------- | ------------------------------------- | ---------- | ------------------------------ |
+| `transitions`  | Required | `Record<string, readonly string[]>`   | -          | Allowed transitions per state  |
+| `source`       | Optional | `string`                              | `"status"` | Record field holding the state |
+| `guards`       | Optional | `Record<string, (record) => boolean>` | -          | `${from}->${to}` predicates    |
+| `resource`     | Optional | `string`                              | Context    | Override resource              |
+| `confirm`      | Optional | `boolean`                             | `false`    | Native confirm before update   |
+| `onTransition` | Optional | `(from, to, record) => void`          | -          | Side-effect callback           |
 
 ## Terminal states
 

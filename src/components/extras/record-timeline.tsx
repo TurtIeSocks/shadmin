@@ -31,7 +31,10 @@ export interface RecordTimelineProps {
   emptyLabel?: string;
 }
 
-const EMPTY_ICON_MAP: Record<string, ComponentType<{ className?: string }>> = {};
+const EMPTY_ICON_MAP: Record<
+  string,
+  ComponentType<{ className?: string }>
+> = {};
 
 const TimelineList = ({
   items,

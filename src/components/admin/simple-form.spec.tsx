@@ -10,9 +10,7 @@ import {
 describe("<SimpleForm />", () => {
   it("renders every declared input plus the default Save button", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByLabelText(/^title$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^title$/i)).toBeInTheDocument();
     await expect.element(screen.getByLabelText(/^body$/i)).toBeInTheDocument();
     await expect
       .element(screen.getByLabelText(/^published$/i))
@@ -24,9 +22,7 @@ describe("<SimpleForm />", () => {
 
   it("omits the default toolbar when toolbar={false}", async () => {
     const screen = render(<NoToolbar />);
-    await expect
-      .element(screen.getByLabelText(/^title$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^title$/i)).toBeInTheDocument();
     await expect
       .element(screen.getByRole("button", { name: /^save$/i }))
       .not.toBeInTheDocument();

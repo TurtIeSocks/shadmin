@@ -32,7 +32,9 @@ describe("nominatimProvider.search", () => {
   });
 
   it("does NOT send a User-Agent header (browser forbids it)", async () => {
-    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => [] });
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue({ ok: true, json: async () => [] });
     vi.stubGlobal("fetch", fetchMock);
     await nominatimProvider.search("anywhere");
     const [, init] = fetchMock.mock.calls[0];
@@ -66,7 +68,9 @@ describe("nominatimProvider.search", () => {
   });
 
   it("forwards limit / countrycodes / viewbox options to the request URL", async () => {
-    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => [] });
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue({ ok: true, json: async () => [] });
     vi.stubGlobal("fetch", fetchMock);
     await nominatimProvider.search("foo", {
       limit: 5,
@@ -81,9 +85,13 @@ describe("nominatimProvider.search", () => {
   });
 
   it("uses a custom endpoint when provided", async () => {
-    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => [] });
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue({ ok: true, json: async () => [] });
     vi.stubGlobal("fetch", fetchMock);
-    await nominatimProvider.search("foo", { endpoint: "https://geo.example.com" });
+    await nominatimProvider.search("foo", {
+      endpoint: "https://geo.example.com",
+    });
     const [url] = fetchMock.mock.calls[0];
     expect(String(url)).toContain("geo.example.com");
   });
@@ -91,7 +99,9 @@ describe("nominatimProvider.search", () => {
   it("throws on non-ok response", async () => {
     vi.stubGlobal(
       "fetch",
-      vi.fn().mockResolvedValue({ ok: false, status: 500, json: async () => ({}) }),
+      vi
+        .fn()
+        .mockResolvedValue({ ok: false, status: 500, json: async () => ({}) }),
     );
     await expect(nominatimProvider.search("boom")).rejects.toThrow(/500/);
   });
@@ -103,7 +113,11 @@ describe("nominatimProvider.reverse", () => {
   it("hits the reverse endpoint", async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
-      json: async () => ({ display_name: "5 Rue de Rivoli", lat: "48.85", lon: "2.35" }),
+      json: async () => ({
+        display_name: "5 Rue de Rivoli",
+        lat: "48.85",
+        lon: "2.35",
+      }),
     });
     vi.stubGlobal("fetch", fetchMock);
     const r = await nominatimProvider.reverse(48.85, 2.35);
@@ -119,7 +133,10 @@ describe("nominatimProvider.reverse", () => {
   });
 
   it("returns null on non-ok response", async () => {
-    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, status: 404 }));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({ ok: false, status: 404 }),
+    );
     const r = await nominatimProvider.reverse(0, 0);
     expect(r).toBeNull();
   });
@@ -143,7 +160,9 @@ describe("nominatimProvider polite rate limit", () => {
   beforeEach(() => vi.restoreAllMocks());
 
   it("waits at least ~1s between sequential calls", async () => {
-    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => [] });
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue({ ok: true, json: async () => [] });
     vi.stubGlobal("fetch", fetchMock);
     // First call primes lastCallAt.
     await nominatimProvider.search("a");

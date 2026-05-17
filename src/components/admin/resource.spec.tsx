@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  MultipleResources,
-} from "@/stories/admin/resource.stories";
+import { Basic, MultipleResources } from "@/stories/admin/resource.stories";
 
 describe("<Resource />", () => {
   it("mounts the list view at the resource's route", async () => {

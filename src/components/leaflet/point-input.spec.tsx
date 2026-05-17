@@ -9,6 +9,8 @@ describe("<PointInput />", () => {
     await expect.element(screen.getByText("Pick a point")).toBeInTheDocument();
     const wrapper = await screen.getByTestId("point-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

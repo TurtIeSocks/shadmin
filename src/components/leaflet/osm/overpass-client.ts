@@ -26,7 +26,10 @@ export async function queryOverpass(
 ): Promise<OverpassResponse> {
   const endpoint = opts.endpoint ?? DEFAULT_ENDPOINT;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), opts.timeoutMs ?? 30_000);
+  const timeout = setTimeout(
+    () => controller.abort(),
+    opts.timeoutMs ?? 30_000,
+  );
   try {
     const res = await fetch(endpoint, {
       method: "POST",
@@ -37,9 +40,13 @@ export async function queryOverpass(
       signal: opts.signal ?? controller.signal,
     });
     if (!res.ok) {
-      if (res.status === 429) throw new OverpassRateLimitError(`Rate limited: ${res.statusText}`);
-      if (res.status === 504) throw new OverpassTimeoutError(`Server timeout: ${res.statusText}`);
-      throw new OverpassError(`Overpass error ${res.status}: ${res.statusText}`);
+      if (res.status === 429)
+        throw new OverpassRateLimitError(`Rate limited: ${res.statusText}`);
+      if (res.status === 504)
+        throw new OverpassTimeoutError(`Server timeout: ${res.statusText}`);
+      throw new OverpassError(
+        `Overpass error ${res.status}: ${res.statusText}`,
+      );
     }
     return (await res.json()) as OverpassResponse;
   } finally {

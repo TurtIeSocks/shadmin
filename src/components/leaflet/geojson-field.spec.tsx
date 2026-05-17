@@ -26,7 +26,10 @@ describe("<GeoJsonField />", () => {
 
   it("renders a Point", async () => {
     const screen = render(<GeoJsonFieldPoint />);
-    const marker = await findAsync(screen.container, ".leaflet-marker-pane > *");
+    const marker = await findAsync(
+      screen.container,
+      ".leaflet-marker-pane > *",
+    );
     expect(marker).not.toBeNull();
   });
 

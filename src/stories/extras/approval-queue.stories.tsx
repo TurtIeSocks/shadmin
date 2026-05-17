@@ -1,4 +1,9 @@
-import { CoreAdminContext, ListBase, TestMemoryRouter, memoryStore } from "ra-core";
+import {
+  CoreAdminContext,
+  ListBase,
+  TestMemoryRouter,
+  memoryStore,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
@@ -8,9 +13,27 @@ const i18nProvider = polyglotI18nProvider(() => englishMessages);
 
 const records = {
   expenses: [
-    { id: 1, title: "Conference travel", amount: 1200, status: "pending", requester: "alice" },
-    { id: 2, title: "Software license", amount: 450, status: "pending", requester: "bob" },
-    { id: 3, title: "Office supplies", amount: 89, status: "approved", requester: "carol" },
+    {
+      id: 1,
+      title: "Conference travel",
+      amount: 1200,
+      status: "pending",
+      requester: "alice",
+    },
+    {
+      id: 2,
+      title: "Software license",
+      amount: 450,
+      status: "pending",
+      requester: "bob",
+    },
+    {
+      id: 3,
+      title: "Office supplies",
+      amount: 89,
+      status: "approved",
+      requester: "carol",
+    },
   ],
 };
 

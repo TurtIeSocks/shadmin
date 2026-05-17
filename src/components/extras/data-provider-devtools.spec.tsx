@@ -10,7 +10,9 @@ import {
 describe("<DataProviderDevtools />", () => {
   it("renders the floating panel by default with logged calls", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByText(/data provider/i)).toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/data provider/i))
+      .toBeInTheDocument();
     // Both calls should appear once the effect fires
     await expect.element(screen.getByText(/getList/i)).toBeInTheDocument();
     await expect.element(screen.getByText(/getOne/i)).toBeInTheDocument();

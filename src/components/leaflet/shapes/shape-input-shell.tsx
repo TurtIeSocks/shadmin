@@ -72,7 +72,11 @@ export const ShapeInputShell = ({
   valueTransform,
   valueParse,
 }: ShapeInputShellProps) => {
-  const validators = Array.isArray(validate) ? validate : validate ? [validate] : [];
+  const validators = Array.isArray(validate)
+    ? validate
+    : validate
+      ? [validate]
+      : [];
   const combinedValidator = validators.length
     ? (g: GeoJSON.Geometry) => {
         for (const v of validators) {
@@ -114,7 +118,9 @@ export const ShapeInputShell = ({
           valueParse={valueParse}
         />
       </BaseMap>
-      {helperText ? <div className="text-xs text-muted-foreground">{helperText}</div> : null}
+      {helperText ? (
+        <div className="text-xs text-muted-foreground">{helperText}</div>
+      ) : null}
     </div>
   );
 };
@@ -155,7 +161,9 @@ const ShellInner = ({
     drawText: drawShapes.includes("Text"),
     editMode: true,
     dragMode: true,
-    cutPolygon: drawShapes.some((s) => s === "Polygon" || s === "Rectangle" || s === "Circle"),
+    cutPolygon: drawShapes.some(
+      (s) => s === "Polygon" || s === "Rectangle" || s === "Circle",
+    ),
     removalMode: true,
     rotateMode: false,
   };

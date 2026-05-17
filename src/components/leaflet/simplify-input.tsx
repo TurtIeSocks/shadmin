@@ -145,7 +145,9 @@ export const SimplifyInput = ({
             key={JSON.stringify(previewGeom)}
             data={previewGeom as GeoJSON.GeoJsonObject}
             style={() => pathOptions}
-            pointToLayer={(_f, latlng) => L.marker(latlng, { icon: MarkerIcon })}
+            pointToLayer={(_f, latlng) =>
+              L.marker(latlng, { icon: MarkerIcon })
+            }
           />
           <FitBoundsOnMount bounds={bounds} />
         </BaseMap>

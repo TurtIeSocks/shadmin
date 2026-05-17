@@ -28,7 +28,10 @@ export interface PresenceState {
 }
 
 export interface PresenceTransport {
-  subscribe: (topic: string, handler: (state: PresenceState) => void) => () => void;
+  subscribe: (
+    topic: string,
+    handler: (state: PresenceState) => void,
+  ) => () => void;
   publish: (topic: string, state: PresenceState) => void;
 }
 
@@ -101,13 +104,16 @@ export const PresenceBar = ({
       return {
         id: String(identity.id),
         name: String(identity.fullName ?? identity.id),
-        avatar: typeof identity.avatar === "string" ? identity.avatar : undefined,
+        avatar:
+          typeof identity.avatar === "string" ? identity.avatar : undefined,
       };
     }
     return null;
   }, [currentUserProp, identity]);
 
-  const [otherUsers, setOtherUsers] = useState<Record<string, PresenceState>>({});
+  const [otherUsers, setOtherUsers] = useState<Record<string, PresenceState>>(
+    {},
+  );
 
   // Heartbeat: publish own presence on a timer
   useEffect(() => {
@@ -132,24 +138,30 @@ export const PresenceBar = ({
 
   // Drop stale users on a periodic sweep
   useEffect(() => {
-    const id = window.setInterval(() => {
-      const now = Date.now();
-      setOtherUsers((prev) => {
-        const next = { ...prev };
-        let changed = false;
-        for (const [uid, state] of Object.entries(prev)) {
-          if (now - state.timestamp > staleMs) {
-            delete next[uid];
-            changed = true;
+    const id = window.setInterval(
+      () => {
+        const now = Date.now();
+        setOtherUsers((prev) => {
+          const next = { ...prev };
+          let changed = false;
+          for (const [uid, state] of Object.entries(prev)) {
+            if (now - state.timestamp > staleMs) {
+              delete next[uid];
+              changed = true;
+            }
           }
-        }
-        return changed ? next : prev;
-      });
-    }, Math.min(staleMs / 2, 5000));
+          return changed ? next : prev;
+        });
+      },
+      Math.min(staleMs / 2, 5000),
+    );
     return () => window.clearInterval(id);
   }, [staleMs]);
 
-  const users = useMemo(() => Object.values(otherUsers).map((s) => s.user), [otherUsers]);
+  const users = useMemo(
+    () => Object.values(otherUsers).map((s) => s.user),
+    [otherUsers],
+  );
 
   if (users.length === 0) return null;
 
@@ -157,7 +169,10 @@ export const PresenceBar = ({
   const hiddenCount = users.length - visible.length;
 
   return (
-    <AvatarGroup className={cn("inline-flex", className)} data-slot="presence-bar">
+    <AvatarGroup
+      className={cn("inline-flex", className)}
+      data-slot="presence-bar"
+    >
       {visible.map((u) => (
         <Avatar key={u.id} size="sm" data-presence-user={u.id}>
           {u.avatar ? <AvatarImage src={u.avatar} alt={u.name} /> : null}

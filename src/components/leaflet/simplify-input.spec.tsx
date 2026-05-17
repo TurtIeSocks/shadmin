@@ -27,7 +27,7 @@ class ErrBoundary extends Component<{ children: ReactNode }, ErrBoundaryState> {
 const ValueProbe = ({ source }: { source: string }) => {
   const value = useWatch({ name: source }) as GeoJSON.Polygon | null;
   const vertexCount =
-    value?.type === "Polygon" ? value.coordinates[0]?.length ?? 0 : 0;
+    value?.type === "Polygon" ? (value.coordinates[0]?.length ?? 0) : 0;
   return <pre data-testid="vertex-count">{String(vertexCount)}</pre>;
 };
 
@@ -39,7 +39,10 @@ const ringWithN = (n: number): GeoJSON.Polygon => {
   for (let i = 0; i < n; i++) {
     const a = (i / n) * 2 * Math.PI;
     const jitter = 0.001 * (i % 2 === 0 ? 1 : -1);
-    ring.push([cx + (r + jitter) * Math.cos(a), cy + (r + jitter) * Math.sin(a)]);
+    ring.push([
+      cx + (r + jitter) * Math.cos(a),
+      cy + (r + jitter) * Math.sin(a),
+    ]);
   }
   ring.push(ring[0]);
   return { type: "Polygon", coordinates: [ring] };

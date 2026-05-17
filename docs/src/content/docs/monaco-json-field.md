@@ -23,16 +23,16 @@ const ProductShow = () => (
 
 ## Props
 
-| Prop            | Required | Type                                          | Default | Description                                            |
-| --------------- | -------- | --------------------------------------------- | ------- | ------------------------------------------------------ |
-| `source`        | Required | `string`                                      | -       | Field name                                             |
-| `autoHeight`    | Optional | `boolean`                                     | `true`  | Fit container to content height                        |
-| `height`        | Optional | `number \| string`                            | `200`   | Fixed height (when `autoHeight=false`)                 |
-| `maxHeight`     | Optional | `number \| string`                            | `400`   | Upper bound for `autoHeight`                           |
-| `className`     | Optional | `string`                                      | -       | Classes on the wrapper                                 |
-| `monacoOptions` | Optional | `editor.IStandaloneEditorConstructionOptions` | -       | Escape hatch — merged into Monaco's options            |
-| `record`        | Optional | `object`                                      | Context | Record to read from (defaults to RecordContext)        |
-| `defaultValue`  | Optional | `unknown`                                     | -       | Fallback when the field is missing from the record     |
+| Prop            | Required | Type                                          | Default | Description                                        |
+| --------------- | -------- | --------------------------------------------- | ------- | -------------------------------------------------- |
+| `source`        | Required | `string`                                      | -       | Field name                                         |
+| `autoHeight`    | Optional | `boolean`                                     | `true`  | Fit container to content height                    |
+| `height`        | Optional | `number \| string`                            | `200`   | Fixed height (when `autoHeight=false`)             |
+| `maxHeight`     | Optional | `number \| string`                            | `400`   | Upper bound for `autoHeight`                       |
+| `className`     | Optional | `string`                                      | -       | Classes on the wrapper                             |
+| `monacoOptions` | Optional | `editor.IStandaloneEditorConstructionOptions` | -       | Escape hatch — merged into Monaco's options        |
+| `record`        | Optional | `object`                                      | Context | Record to read from (defaults to RecordContext)    |
+| `defaultValue`  | Optional | `unknown`                                     | -       | Fallback when the field is missing from the record |
 
 ## Tips
 

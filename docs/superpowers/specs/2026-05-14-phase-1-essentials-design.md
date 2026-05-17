@@ -92,30 +92,30 @@ const ProductShowActions = () => {
 
 #### `<CommandMenu>`
 
-| Prop                | Type                                  | Default                       | Description                                                                  |
-| ------------------- | ------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------- |
-| `hotkey`            | `string[] \| false`                   | `["mod+k"]`                   | Hotkey bindings (mousetrap syntax). `false` opts out entirely.               |
-| `resources`         | `string[]`                            | all permitted                 | Resource allowlist. Defaults to every resource the user can `list`.          |
-| `searchFields`      | `Record<string, string>`              | `{}`                          | Per-resource override of the search field name. Defaults to `q`.             |
-| `perResourceLimit`  | `number`                              | `5`                           | Max records returned per resource per keystroke.                             |
-| `recentsLimit`      | `number`                              | `10`                          | Max recents tracked in the empty state.                                      |
-| `actions`           | `CommandAction[]`                     | `[]`                          | Extra static actions to register.                                            |
-| `placeholder`       | `string`                              | translated `Search…`          | Input placeholder.                                                           |
-| `searchDebounceMs`  | `number`                              | `200`                         | Debounce before firing per-resource queries.                                 |
-| `groups`            | `Array<"resources" \| "records" \| "actions">` | `["records", "resources", "actions"]` | Order/visibility of result groups.                                 |
+| Prop               | Type                                           | Default                               | Description                                                         |
+| ------------------ | ---------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------- |
+| `hotkey`           | `string[] \| false`                            | `["mod+k"]`                           | Hotkey bindings (mousetrap syntax). `false` opts out entirely.      |
+| `resources`        | `string[]`                                     | all permitted                         | Resource allowlist. Defaults to every resource the user can `list`. |
+| `searchFields`     | `Record<string, string>`                       | `{}`                                  | Per-resource override of the search field name. Defaults to `q`.    |
+| `perResourceLimit` | `number`                                       | `5`                                   | Max records returned per resource per keystroke.                    |
+| `recentsLimit`     | `number`                                       | `10`                                  | Max recents tracked in the empty state.                             |
+| `actions`          | `CommandAction[]`                              | `[]`                                  | Extra static actions to register.                                   |
+| `placeholder`      | `string`                                       | translated `Search…`                  | Input placeholder.                                                  |
+| `searchDebounceMs` | `number`                                       | `200`                                 | Debounce before firing per-resource queries.                        |
+| `groups`           | `Array<"resources" \| "records" \| "actions">` | `["records", "resources", "actions"]` | Order/visibility of result groups.                                  |
 
 #### `CommandAction`
 
-| Field      | Type                                | Description                                        |
-| ---------- | ----------------------------------- | -------------------------------------------------- |
-| `id`       | `string`                            | Stable identifier for dedup + unregister.          |
-| `label`    | `string \| ReactNode`               | Visible label.                                     |
-| `icon`     | `ComponentType`                     | Lucide-compatible icon component.                  |
+| Field      | Type                                              | Description                                        |
+| ---------- | ------------------------------------------------- | -------------------------------------------------- |
+| `id`       | `string`                                          | Stable identifier for dedup + unregister.          |
+| `label`    | `string \| ReactNode`                             | Visible label.                                     |
+| `icon`     | `ComponentType`                                   | Lucide-compatible icon component.                  |
 | `group`    | `"resources" \| "records" \| "actions" \| string` | Group bucket. Custom groups render after defaults. |
-| `keywords` | `string[]`                          | Extra search keywords beyond `label`.              |
-| `shortcut` | `string`                            | Display hint (e.g. `mod+l`). Does not bind itself. |
-| `when`     | `() => boolean`                     | Visibility predicate.                              |
-| `onSelect` | `() => void \| Promise<void>`       | Action handler. Closes the palette on resolve.     |
+| `keywords` | `string[]`                                        | Extra search keywords beyond `label`.              |
+| `shortcut` | `string`                                          | Display hint (e.g. `mod+l`). Does not bind itself. |
+| `when`     | `() => boolean`                                   | Visibility predicate.                              |
+| `onSelect` | `() => void \| Promise<void>`                     | Action handler. Closes the palette on resolve.     |
 
 ### Result groups
 
@@ -127,6 +127,7 @@ const ProductShowActions = () => {
 3. **Actions** — registered actions (built-in + consumer + via `useRegisterCommand`).
 
 Built-in actions:
+
 - `command-menu.logout` — calls `useLogout()`.
 - `command-menu.theme-light` / `theme-dark` / `theme-system` — calls `useTheme().setTheme()`.
 - `command-menu.locale-*` — one per available locale, when more than one is registered.
@@ -175,21 +176,21 @@ All keys live under the `ra.command.*` namespace (extending ra-core's existing `
 and use the inline-default pattern: `translate("ra.command.placeholder", { _: "Search…" })`.
 No central English bundle — the fallback is inline at each call site.
 
-| Key                                | Default                          |
-| ---------------------------------- | -------------------------------- |
-| `ra.command.placeholder`           | `Search or run a command…`       |
-| `ra.command.empty`                 | `No results.`                    |
-| `ra.command.group.records`         | `Records`                        |
-| `ra.command.group.resources`       | `Resources`                      |
-| `ra.command.group.actions`         | `Actions`                        |
-| `ra.command.group.recents`         | `Recent`                         |
-| `ra.command.action.refresh`        | `Refresh data`                   |
-| `ra.command.action.theme_light`    | `Switch to light theme`          |
-| `ra.command.action.theme_dark`     | `Switch to dark theme`           |
-| `ra.command.action.theme_system`   | `Use system theme`               |
-| `ra.command.footer.navigate`       | `Navigate`                       |
-| `ra.command.footer.select`         | `Select`                         |
-| `ra.command.footer.close`          | `Close`                          |
+| Key                              | Default                    |
+| -------------------------------- | -------------------------- |
+| `ra.command.placeholder`         | `Search or run a command…` |
+| `ra.command.empty`               | `No results.`              |
+| `ra.command.group.records`       | `Records`                  |
+| `ra.command.group.resources`     | `Resources`                |
+| `ra.command.group.actions`       | `Actions`                  |
+| `ra.command.group.recents`       | `Recent`                   |
+| `ra.command.action.refresh`      | `Refresh data`             |
+| `ra.command.action.theme_light`  | `Switch to light theme`    |
+| `ra.command.action.theme_dark`   | `Switch to dark theme`     |
+| `ra.command.action.theme_system` | `Use system theme`         |
+| `ra.command.footer.navigate`     | `Navigate`                 |
+| `ra.command.footer.select`       | `Select`                   |
+| `ra.command.footer.close`        | `Close`                    |
 
 The logout action reuses ra-core's existing `ra.auth.logout` key.
 
@@ -241,10 +242,15 @@ const EventList = () => (
       colorMap={{ open: "blue", confirmed: "green", cancelled: "red" }}
       defaultView="month"
       views={["month", "week", "agenda"]}
-      onSelectSlot={(slot) => navigate(`/events/create?start_at=${slot.startISO}`)}
+      onSelectSlot={(slot) =>
+        navigate(`/events/create?start_at=${slot.startISO}`)
+      }
       onSelectEvent={(record) => navigate(`/events/${record.id}/show`)}
       onDrop={async (record, { start, end }) => {
-        await update("events", { id: record.id, data: { start_at: start, end_at: end } });
+        await update("events", {
+          id: record.id,
+          data: { start_at: start, end_at: end },
+        });
       }}
     />
   </List>
@@ -253,21 +259,21 @@ const EventList = () => (
 
 ### Props
 
-| Prop             | Type                                                      | Default             | Description                                                                |
-| ---------------- | --------------------------------------------------------- | ------------------- | -------------------------------------------------------------------------- |
-| `startSource`    | `string`                                                  | —                   | Required. Field name holding the start timestamp (ISO 8601).               |
-| `endSource`      | `string`                                                  | `undefined`         | Optional. If omitted, events render as point-events at `startSource`.      |
-| `titleSource`    | `string`                                                  | `recordRepresentation` | Field rendered as event label.                                          |
-| `colorSource`    | `string`                                                  | `undefined`         | Field whose value drives event color via `colorMap`.                       |
-| `colorMap`       | `Record<string, string>`                                  | `{}`                | Mapping from `colorSource` values to a Tailwind class string (e.g. `"bg-blue-500 text-white"`). Applied to the event badge. |
-| `defaultView`    | `"month" \| "week" \| "agenda"`                           | `"month"`           | View shown on mount.                                                       |
-| `views`          | `Array<"month" \| "week" \| "agenda">`                    | all three           | Available views in the header switcher.                                    |
-| `weekStartsOn`   | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`                         | `0` (Sun)           | First day of the week. Passed through to date-fns.                         |
-| `onSelectEvent`  | `(record) => void`                                        | open Show           | Click handler for an event. Default navigates to `/{resource}/{id}/show`.  |
-| `onSelectSlot`   | `(slot: { startISO; endISO; allDay }) => void`            | `undefined`         | Click handler for an empty slot (month day cell or week time slot).        |
-| `onDrop`         | `(record, { start: ISO; end?: ISO }) => Promise<void>`    | `undefined`         | Drop handler. When provided, events become draggable.                      |
-| `eventRenderer`  | `(props: { record; title; start; end?; color?; isDragging }) => ReactNode` | default badge       | Custom event card override.                                                |
-| `headerRenderer` | `(props: { range; view; onNavigate; onViewChange }) => ReactNode`          | default header      | Custom toolbar override.                                                   |
+| Prop             | Type                                                                       | Default                | Description                                                                                                                 |
+| ---------------- | -------------------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `startSource`    | `string`                                                                   | —                      | Required. Field name holding the start timestamp (ISO 8601).                                                                |
+| `endSource`      | `string`                                                                   | `undefined`            | Optional. If omitted, events render as point-events at `startSource`.                                                       |
+| `titleSource`    | `string`                                                                   | `recordRepresentation` | Field rendered as event label.                                                                                              |
+| `colorSource`    | `string`                                                                   | `undefined`            | Field whose value drives event color via `colorMap`.                                                                        |
+| `colorMap`       | `Record<string, string>`                                                   | `{}`                   | Mapping from `colorSource` values to a Tailwind class string (e.g. `"bg-blue-500 text-white"`). Applied to the event badge. |
+| `defaultView`    | `"month" \| "week" \| "agenda"`                                            | `"month"`              | View shown on mount.                                                                                                        |
+| `views`          | `Array<"month" \| "week" \| "agenda">`                                     | all three              | Available views in the header switcher.                                                                                     |
+| `weekStartsOn`   | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`                                          | `0` (Sun)              | First day of the week. Passed through to date-fns.                                                                          |
+| `onSelectEvent`  | `(record) => void`                                                         | open Show              | Click handler for an event. Default navigates to `/{resource}/{id}/show`.                                                   |
+| `onSelectSlot`   | `(slot: { startISO; endISO; allDay }) => void`                             | `undefined`            | Click handler for an empty slot (month day cell or week time slot).                                                         |
+| `onDrop`         | `(record, { start: ISO; end?: ISO }) => Promise<void>`                     | `undefined`            | Drop handler. When provided, events become draggable.                                                                       |
+| `eventRenderer`  | `(props: { record; title; start; end?; color?; isDragging }) => ReactNode` | default badge          | Custom event card override.                                                                                                 |
+| `headerRenderer` | `(props: { range; view; onNavigate; onViewChange }) => ReactNode`          | default header         | Custom toolbar override.                                                                                                    |
 
 ### Range loading
 
@@ -332,16 +338,16 @@ ra-core `<List>` wrapper.
 
 Under `ra.calendar.*` namespace, inline-default pattern (no central bundle).
 
-| Key                               | Default            |
-| --------------------------------- | ------------------ |
-| `ra.calendar.view.month`          | `Month`            |
-| `ra.calendar.view.week`           | `Week`             |
-| `ra.calendar.view.agenda`         | `Agenda`           |
-| `ra.calendar.today`               | `Today`            |
-| `ra.calendar.previous`            | `Previous`         |
-| `ra.calendar.next`                | `Next`             |
-| `ra.calendar.no_events`           | `No events`        |
-| `ra.calendar.showing`             | `Showing %{range}` |
+| Key                       | Default            |
+| ------------------------- | ------------------ |
+| `ra.calendar.view.month`  | `Month`            |
+| `ra.calendar.view.week`   | `Week`             |
+| `ra.calendar.view.agenda` | `Agenda`           |
+| `ra.calendar.today`       | `Today`            |
+| `ra.calendar.previous`    | `Previous`         |
+| `ra.calendar.next`        | `Next`             |
+| `ra.calendar.no_events`   | `No events`        |
+| `ra.calendar.showing`     | `Showing %{range}` |
 
 ### Test plan
 
@@ -413,18 +419,18 @@ const ProductList = () => (
 
 ### Props
 
-| Prop          | Type                                          | Default                | Description                                                                  |
-| ------------- | --------------------------------------------- | ---------------------- | ---------------------------------------------------------------------------- |
-| `schema`      | `z.ZodObject<any>`                            | `undefined`            | Zod schema used for per-row validation in the preview step.                  |
-| `mapping`     | `Record<string, string>`                      | `{}`                   | Preset mapping `{ resourceField: csvHeader }`. User can override in step 2.  |
-| `transform`   | `(row, index) => object`                      | identity               | Row-level transformation applied after mapping, before validation.           |
-| `batchSize`   | `number`                                      | `100`                  | Rows per `createMany` call. Falls back to sequential `create` if unsupported.|
-| `parsers`     | `Array<"csv">`                                | `["csv"]`              | Allowed parsers. (Future: `"xlsx"` opt-in lazy-load. Out of scope v1.)       |
-| `label`       | `string`                                      | translated `Import`    | Trigger button label.                                                        |
-| `icon`        | `ComponentType`                               | `UploadIcon`           | Trigger button icon.                                                         |
-| `resource`    | `string`                                      | from context           | Override the target resource (rarely needed).                                |
-| `onComplete`  | `(report: ImportReport) => void`              | `undefined`            | Callback after commit step finishes (or is cancelled).                       |
-| `onError`     | `(error: Error) => void`                      | toast                  | Callback when commit fails irrecoverably.                                    |
+| Prop         | Type                             | Default             | Description                                                                   |
+| ------------ | -------------------------------- | ------------------- | ----------------------------------------------------------------------------- |
+| `schema`     | `z.ZodObject<any>`               | `undefined`         | Zod schema used for per-row validation in the preview step.                   |
+| `mapping`    | `Record<string, string>`         | `{}`                | Preset mapping `{ resourceField: csvHeader }`. User can override in step 2.   |
+| `transform`  | `(row, index) => object`         | identity            | Row-level transformation applied after mapping, before validation.            |
+| `batchSize`  | `number`                         | `100`               | Rows per `createMany` call. Falls back to sequential `create` if unsupported. |
+| `parsers`    | `Array<"csv">`                   | `["csv"]`           | Allowed parsers. (Future: `"xlsx"` opt-in lazy-load. Out of scope v1.)        |
+| `label`      | `string`                         | translated `Import` | Trigger button label.                                                         |
+| `icon`       | `ComponentType`                  | `UploadIcon`        | Trigger button icon.                                                          |
+| `resource`   | `string`                         | from context        | Override the target resource (rarely needed).                                 |
+| `onComplete` | `(report: ImportReport) => void` | `undefined`         | Callback after commit step finishes (or is cancelled).                        |
+| `onError`    | `(error: Error) => void`         | toast               | Callback when commit fails irrecoverably.                                     |
 
 #### `ImportReport`
 
@@ -433,7 +439,11 @@ interface ImportReport {
   total: number;
   created: number;
   failed: number;
-  errors: Array<{ rowIndex: number; row: Record<string, unknown>; reason: string }>;
+  errors: Array<{
+    rowIndex: number;
+    row: Record<string, unknown>;
+    reason: string;
+  }>;
 }
 ```
 
@@ -503,22 +513,22 @@ visually inspect.
 
 Under `ra.csv_import.*` namespace, inline-default pattern (no central bundle).
 
-| Key                                  | Default                                |
-| ------------------------------------ | -------------------------------------- |
-| `ra.csv_import.button`               | `Import`                               |
-| `ra.csv_import.title`                | `Import %{resource}`                   |
-| `ra.csv_import.step.upload`          | `Upload`                               |
-| `ra.csv_import.step.map`             | `Map columns`                          |
-| `ra.csv_import.step.preview`         | `Preview`                              |
-| `ra.csv_import.step.commit`          | `Importing…`                           |
-| `ra.csv_import.drop_hint`            | `Drop a CSV file here or click to select` |
-| `ra.csv_import.row_count`            | `%{count} rows parsed`                 |
-| `ra.csv_import.required_unmapped`    | `Required fields are not mapped`       |
-| `ra.csv_import.counters`             | `%{valid} valid · %{errors} errors · %{total} total` |
-| `ra.csv_import.commit`               | `Import %{count} rows`                 |
-| `ra.csv_import.progress`             | `Importing %{current} of %{total}`     |
-| `ra.csv_import.complete`             | `Import complete`                      |
-| `ra.csv_import.download_errors`      | `Download error report`                |
+| Key                               | Default                                              |
+| --------------------------------- | ---------------------------------------------------- |
+| `ra.csv_import.button`            | `Import`                                             |
+| `ra.csv_import.title`             | `Import %{resource}`                                 |
+| `ra.csv_import.step.upload`       | `Upload`                                             |
+| `ra.csv_import.step.map`          | `Map columns`                                        |
+| `ra.csv_import.step.preview`      | `Preview`                                            |
+| `ra.csv_import.step.commit`       | `Importing…`                                         |
+| `ra.csv_import.drop_hint`         | `Drop a CSV file here or click to select`            |
+| `ra.csv_import.row_count`         | `%{count} rows parsed`                               |
+| `ra.csv_import.required_unmapped` | `Required fields are not mapped`                     |
+| `ra.csv_import.counters`          | `%{valid} valid · %{errors} errors · %{total} total` |
+| `ra.csv_import.commit`            | `Import %{count} rows`                               |
+| `ra.csv_import.progress`          | `Importing %{current} of %{total}`                   |
+| `ra.csv_import.complete`          | `Import complete`                                    |
+| `ra.csv_import.download_errors`   | `Download error report`                              |
 
 ### Test plan
 
@@ -589,11 +599,11 @@ to `true`; passing an element overrides the default.
 
 To add during implementation:
 
-| Package          | Used by         | Why                                                              |
-| ---------------- | --------------- | ---------------------------------------------------------------- |
-| `@dnd-kit/core`  | CalendarList    | Drag-and-drop in month/week views.                               |
-| `papaparse`      | CsvImport       | CSV parse + unparse (errors download).                           |
-| `@types/papaparse` | CsvImport     | TS types.                                                        |
+| Package            | Used by      | Why                                    |
+| ------------------ | ------------ | -------------------------------------- |
+| `@dnd-kit/core`    | CalendarList | Drag-and-drop in month/week views.     |
+| `papaparse`        | CsvImport    | CSV parse + unparse (errors download). |
+| `@types/papaparse` | CsvImport    | TS types.                              |
 
 `zod`, `react-day-picker`, `recharts` are already added by the shadcn refresh; this
 phase uses `zod` and consumes `react-day-picker` indirectly via `ui/calendar.tsx`

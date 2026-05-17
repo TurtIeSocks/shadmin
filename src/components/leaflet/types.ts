@@ -43,5 +43,7 @@ export interface BaseInputProps extends BaseMapProps {
   pathOptions?: L.PathOptions;
   snappable?: boolean;
   snapDistance?: number;
-  validate?: ((v: unknown) => string | undefined) | Array<(v: unknown) => string | undefined>;
+  validate?:
+    | ((v: unknown) => string | undefined)
+    | Array<(v: unknown) => string | undefined>;
 }

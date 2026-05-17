@@ -14,14 +14,14 @@
 
 ## File structure
 
-| File | Responsibility | Status |
-| --- | --- | --- |
-| `package.json` | Add `papaparse` + `@types/papaparse` deps | **Modify** |
-| `src/components/admin/csv-import.tsx` | Component + context + 4 step components | **Create** |
-| `src/components/admin/csv-import.spec.tsx` | Browser tests importing stories | **Create** |
-| `src/stories/csv-import.stories.tsx` | Storybook stories | **Create** |
-| `docs/src/content/docs/CsvImport.md` | Docs page | **Create** |
-| `src/components/admin/index.ts` | Public re-export | **Modify** |
+| File                                       | Responsibility                            | Status     |
+| ------------------------------------------ | ----------------------------------------- | ---------- |
+| `package.json`                             | Add `papaparse` + `@types/papaparse` deps | **Modify** |
+| `src/components/admin/csv-import.tsx`      | Component + context + 4 step components   | **Create** |
+| `src/components/admin/csv-import.spec.tsx` | Browser tests importing stories           | **Create** |
+| `src/stories/csv-import.stories.tsx`       | Storybook stories                         | **Create** |
+| `docs/src/content/docs/CsvImport.md`       | Docs page                                 | **Create** |
+| `src/components/admin/index.ts`            | Public re-export                          | **Modify** |
 
 All sub-components (`CsvImportUploadStep`, `CsvImportMapStep`, `CsvImportPreviewStep`, `CsvImportCommitStep`, `CsvImportContext`) live inside `csv-import.tsx`.
 
@@ -30,6 +30,7 @@ All sub-components (`CsvImportUploadStep`, `CsvImportMapStep`, `CsvImportPreview
 ### Task 1: Add deps + scaffold component + Import button trigger + smoke spec
 
 **Files:**
+
 - Modify: `package.json` (add `papaparse`, `@types/papaparse`)
 - Create: `src/components/admin/csv-import.tsx`
 - Create: `src/components/admin/csv-import.spec.tsx`
@@ -52,7 +53,9 @@ import { Basic } from "@/stories/csv-import.stories";
 describe("<CsvImport />", () => {
   it("renders an Import button", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByRole("button", { name: /import/i })).toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("button", { name: /import/i }))
+      .toBeInTheDocument();
   });
 });
 ```
@@ -84,13 +87,20 @@ export interface ImportReport {
   total: number;
   created: number;
   failed: number;
-  errors: Array<{ rowIndex: number; row: Record<string, unknown>; reason: string }>;
+  errors: Array<{
+    rowIndex: number;
+    row: Record<string, unknown>;
+    reason: string;
+  }>;
 }
 
 export interface CsvImportProps {
   schema?: z.ZodObject<z.ZodRawShape>;
   mapping?: Record<string, string>;
-  transform?: (row: Record<string, unknown>, index: number) => Record<string, unknown>;
+  transform?: (
+    row: Record<string, unknown>,
+    index: number,
+  ) => Record<string, unknown>;
   batchSize?: number;
   parsers?: Array<"csv">;
   label?: string;
@@ -139,9 +149,12 @@ export const CsvImport = ({
   const resource = useResourceContext({ resource: resourceProp });
   const translate = useTranslate();
   const [open, setOpen] = useState(false);
-  const [parsedRows, setParsedRows] = useState<Array<Record<string, unknown>>>([]);
+  const [parsedRows, setParsedRows] = useState<Array<Record<string, unknown>>>(
+    [],
+  );
   const [headers, setHeaders] = useState<string[]>([]);
-  const [mapping, setMapping] = useState<Record<string, string>>(initialMapping);
+  const [mapping, setMapping] =
+    useState<Record<string, string>>(initialMapping);
   const [report, setReport] = useState<ImportReport | null>(null);
 
   const value = useMemo<CsvImportContextValue>(
@@ -161,7 +174,18 @@ export const CsvImport = ({
       onComplete,
       onError,
     }),
-    [parsedRows, headers, mapping, report, schema, transform, batchSize, resource, onComplete, onError],
+    [
+      parsedRows,
+      headers,
+      mapping,
+      report,
+      schema,
+      transform,
+      batchSize,
+      resource,
+      onComplete,
+      onError,
+    ],
   );
 
   const handleClose = useCallback(() => {
@@ -172,7 +196,8 @@ export const CsvImport = ({
     setReport(null);
   }, [initialMapping]);
 
-  const buttonLabel = label ?? translate("ra.csv_import.button", { _: "Import" });
+  const buttonLabel =
+    label ?? translate("ra.csv_import.button", { _: "Import" });
 
   return (
     <CsvImportContext.Provider value={value}>
@@ -191,7 +216,9 @@ export const CsvImport = ({
           })}
           onSubmit={() => {}}
         >
-          <WizardForm.Step label={translate("ra.csv_import.step.upload", { _: "Upload" })}>
+          <WizardForm.Step
+            label={translate("ra.csv_import.step.upload", { _: "Upload" })}
+          >
             <div>Upload step (Task 2)</div>
           </WizardForm.Step>
         </WizardForm>
@@ -208,7 +235,12 @@ export { useCsvImport };
 `src/stories/csv-import.stories.tsx`:
 
 ```tsx
-import { type DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
+import {
+  type DataProvider,
+  memoryStore,
+  Resource,
+  TestMemoryRouter,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
@@ -216,15 +248,18 @@ import { Admin, CsvImport, ListGuesser } from "@/components/admin";
 import { z } from "zod";
 
 const data = {
-  products: [
-    { id: 1, name: "Notebook", reference: "NB-001", price: 9.99 },
-  ],
+  products: [{ id: 1, name: "Notebook", reference: "NB-001", price: 9.99 }],
 };
 
 const dataProvider = fakeRestDataProvider(data) as DataProvider;
-const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-  allowMissing: true,
-});
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  {
+    allowMissing: true,
+  },
+);
 
 const ProductSchema = z.object({
   reference: z.string().min(1),
@@ -285,6 +320,7 @@ git commit -m "feat(csv-import): scaffold component, context, Import button, dep
 ### Task 2: Upload step — react-dropzone + PapaParse + Next-gating
 
 **Files:**
+
 - Modify: `src/components/admin/csv-import.tsx`
 - Modify: `src/components/admin/csv-import.spec.tsx`
 - Modify: `src/stories/csv-import.stories.tsx`
@@ -299,14 +335,15 @@ it("parses an uploaded CSV file and enables Next", async () => {
   await screen.getByRole("button", { name: /import/i }).click();
   const dialog = screen.getByRole("dialog");
   await expect.element(dialog).toBeInTheDocument();
-  const csv = "reference,name,price\nNB-001,Notebook,9.99\nPN-002,Pencil,1.50\n";
+  const csv =
+    "reference,name,price\nNB-001,Notebook,9.99\nPN-002,Pencil,1.50\n";
   const file = new File([csv], "products.csv", { type: "text/csv" });
-  const input = document.querySelector('input[type="file"]') as HTMLInputElement;
+  const input = document.querySelector(
+    'input[type="file"]',
+  ) as HTMLInputElement;
   expect(input).toBeTruthy();
   await fireFileChange(input, file);
-  await expect
-    .element(screen.getByText(/2 rows parsed/i))
-    .toBeInTheDocument();
+  await expect.element(screen.getByText(/2 rows parsed/i)).toBeInTheDocument();
 });
 
 const fireFileChange = (input: HTMLInputElement, file: File) => {
@@ -387,7 +424,9 @@ const CsvImportUploadStep = () => {
       <div
         {...getRootProps()}
         className={`flex h-32 cursor-pointer items-center justify-center rounded-md border-2 border-dashed p-4 text-center text-sm ${
-          isDragActive ? "border-primary bg-accent" : "border-muted-foreground/30"
+          isDragActive
+            ? "border-primary bg-accent"
+            : "border-muted-foreground/30"
         }`}
       >
         <input {...getInputProps()} />
@@ -433,6 +472,7 @@ git commit -m "feat(csv-import): upload step with dropzone + papaparse"
 ### Task 3: Map step — column-to-field mapping with auto-match
 
 **Files:**
+
 - Modify: `src/components/admin/csv-import.tsx`
 - Modify: `src/components/admin/csv-import.spec.tsx`
 - Modify: `src/stories/csv-import.stories.tsx`
@@ -440,7 +480,13 @@ git commit -m "feat(csv-import): upload step with dropzone + papaparse"
 - [ ] **Step 1: Add `MapStep` story w/ pre-populated parsed data**
 
 ```tsx
-const SeedParsed = ({ rows, headers }: { rows: Array<Record<string, unknown>>; headers: string[] }) => {
+const SeedParsed = ({
+  rows,
+  headers,
+}: {
+  rows: Array<Record<string, unknown>>;
+  headers: string[];
+}) => {
   const { setParsedRows, setHeaders } = useCsvImport();
   React.useEffect(() => {
     setParsedRows(rows);
@@ -462,7 +508,13 @@ export const MapStep = () => (
           <div>
             <CsvImport schema={ProductSchema}>
               <SeedParsed
-                rows={[{ Reference: "NB-001", "Product Name": "Notebook", price: "9.99" }]}
+                rows={[
+                  {
+                    Reference: "NB-001",
+                    "Product Name": "Notebook",
+                    price: "9.99",
+                  },
+                ]}
                 headers={["Reference", "Product Name", "price"]}
               />
             </CsvImport>
@@ -487,9 +539,7 @@ it("auto-matches headers to schema fields case-insensitive fuzzy", async () => {
   // Navigate to map step (click Next)
   await screen.getByRole("button", { name: /next/i }).click();
   // Resource field "reference" should be mapped to CSV header "Reference"
-  await expect
-    .element(screen.getByText(/reference/i))
-    .toBeInTheDocument();
+  await expect.element(screen.getByText(/reference/i)).toBeInTheDocument();
   // Verify a Select shows "Reference" selected for the reference row
   const referenceSelect = document.querySelector(
     '[data-csv-field="reference"]',
@@ -557,7 +607,9 @@ const CsvImportMapStep = () => {
             data-csv-field={field}
             className="rounded-md border bg-background p-2 text-sm"
             value={mapping[field] ?? ""}
-            onChange={(e) => setMapping({ ...mapping, [field]: e.target.value })}
+            onChange={(e) =>
+              setMapping({ ...mapping, [field]: e.target.value })
+            }
           >
             <option value="">—</option>
             {headers.map((h) => (
@@ -593,6 +645,7 @@ git add ... && git commit -m "feat(csv-import): map step with fuzzy auto-match"
 ### Task 4: Preview step — zod validation + counters + Commit button
 
 **Files:**
+
 - Modify: `src/components/admin/csv-import.tsx`
 - Modify: `src/components/admin/csv-import.spec.tsx`
 - Modify: `src/stories/csv-import.stories.tsx`
@@ -610,12 +663,8 @@ it("validates rows against schema and shows error counter", async () => {
   await screen.getByRole("button", { name: /next/i }).click();
   await screen.getByRole("button", { name: /next/i }).click();
   // Now in preview step
-  await expect
-    .element(screen.getByText(/1 valid/i))
-    .toBeInTheDocument();
-  await expect
-    .element(screen.getByText(/1 errors/i))
-    .toBeInTheDocument();
+  await expect.element(screen.getByText(/1 valid/i)).toBeInTheDocument();
+  await expect.element(screen.getByText(/1 errors/i)).toBeInTheDocument();
 });
 ```
 
@@ -654,7 +703,9 @@ const validateRows = (
     return {
       ok: false,
       row: mapped,
-      issues: result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`),
+      issues: result.error.issues.map(
+        (i) => `${i.path.join(".")}: ${i.message}`,
+      ),
     };
   });
 };
@@ -722,6 +773,7 @@ Wire as third `<WizardForm.Step>`.
 ### Task 5: Commit step — batched createMany + progress + error report
 
 **Files:**
+
 - Modify: `src/components/admin/csv-import.tsx`
 - Modify: `src/components/admin/csv-import.spec.tsx`
 - Modify: `src/stories/csv-import.stories.tsx`
@@ -780,7 +832,9 @@ const CsvImportCommitStep = () => {
         .map((x) => ({
           rowIndex: x.idx,
           row: x.v.row,
-          reason: (x.v as Extract<RowValidation, { ok: false }>).issues.join("; "),
+          reason: (x.v as Extract<RowValidation, { ok: false }>).issues.join(
+            "; ",
+          ),
         }));
       const batches = chunk(validRows, ctx.batchSize);
       let created = 0;
@@ -788,7 +842,10 @@ const CsvImportCommitStep = () => {
       try {
         for (const batch of batches) {
           if (cancelled) break;
-          if (typeof (dataProvider as Record<string, unknown>).createMany === "function") {
+          if (
+            typeof (dataProvider as Record<string, unknown>).createMany ===
+            "function"
+          ) {
             const result = await (
               dataProvider as unknown as {
                 createMany: (
@@ -841,7 +898,8 @@ const CsvImportCommitStep = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const percent = progress.total > 0 ? (progress.current / progress.total) * 100 : 0;
+  const percent =
+    progress.total > 0 ? (progress.current / progress.total) * 100 : 0;
   return (
     <div className="flex flex-col gap-3">
       {!done ? (
@@ -884,6 +942,7 @@ Wire as fourth `<WizardForm.Step>`.
 ### Task 6: Error CSV download
 
 **Files:**
+
 - Modify: `src/components/admin/csv-import.tsx`
 - Modify: `src/components/admin/csv-import.spec.tsx`
 
@@ -917,6 +976,7 @@ Render button conditionally: `{report.errors.length > 0 ? <Button>...</Button> :
 ### Task 7: Documentation page
 
 **Files:**
+
 - Create: `docs/src/content/docs/CsvImport.md`
 
 Write a focused docs page covering usage, props table, ImportReport shape, schema requirement, and a complete example.

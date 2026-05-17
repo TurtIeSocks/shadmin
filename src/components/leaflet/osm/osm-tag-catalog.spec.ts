@@ -20,7 +20,10 @@ void _highway;
 
 describe("tagToFilter", () => {
   it("converts a key=value tag", () => {
-    expect(tagToFilter("natural=water")).toEqual({ key: "natural", value: "water" });
+    expect(tagToFilter("natural=water")).toEqual({
+      key: "natural",
+      value: "water",
+    });
   });
   it("converts a key=* wildcard to any-mode filter", () => {
     expect(tagToFilter("building=*")).toEqual({ key: "building", any: true });

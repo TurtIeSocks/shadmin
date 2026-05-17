@@ -11,11 +11,7 @@ import { List, TreeList, Resource } from "@/components/admin";
 
 const CategoryList = () => (
   <List perPage={1000}>
-    <TreeList
-      parentSource="parent_id"
-      titleSource="name"
-      defaultExpanded
-    />
+    <TreeList parentSource="parent_id" titleSource="name" defaultExpanded />
   </List>
 );
 ```
@@ -24,15 +20,15 @@ Use `perPage={1000}` (or higher) on the parent `<List>` so the entire tree fits 
 
 ## Props
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `parentSource` | `string` | required |
-| `titleSource` | `string` | recordRepresentation |
-| `iconSource` | `string` | — |
-| `iconMap` | `Record<string, ComponentType>` | `{}` |
-| `defaultExpanded` | `boolean` | `false` |
-| `onSelect` | `(record) => void` | navigate to `/{resource}/{id}/show` |
-| `emptyLabel` | `string` | translated `No items` |
+| Prop              | Type                            | Default                             |
+| ----------------- | ------------------------------- | ----------------------------------- |
+| `parentSource`    | `string`                        | required                            |
+| `titleSource`     | `string`                        | recordRepresentation                |
+| `iconSource`      | `string`                        | —                                   |
+| `iconMap`         | `Record<string, ComponentType>` | `{}`                                |
+| `defaultExpanded` | `boolean`                       | `false`                             |
+| `onSelect`        | `(record) => void`              | navigate to `/{resource}/{id}/show` |
+| `emptyLabel`      | `string`                        | translated `No items`               |
 
 ## `parentSource`
 
@@ -53,7 +49,7 @@ import { FolderIcon, FileIcon } from "lucide-react";
   parentSource="parent_id"
   iconSource="type"
   iconMap={{ folder: FolderIcon, file: FileIcon }}
-/>
+/>;
 ```
 
 ## `defaultExpanded`

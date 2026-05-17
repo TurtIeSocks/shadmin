@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Default,
-  WithConfirm,
-} from "@/stories/admin/update-button.stories";
+import { Default, WithConfirm } from "@/stories/admin/update-button.stories";
 
 describe("<UpdateButton />", () => {
   it("renders the labeled update button", async () => {

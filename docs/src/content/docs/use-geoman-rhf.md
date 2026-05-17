@@ -42,21 +42,21 @@ Must be called inside a React Hook Form context. The `<FeatureGroup>` is supplie
 
 ## Options
 
-| Option        | Required | Type                                        | Default | Description                                                                                                       |
-| ------------- | -------- | ------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| `source`      | Required | `string`                                    | -       | RHF field name to read/write.                                                                                     |
-| `shape`       | Required | `ShapeKind`                                 | -       | The GeoJSON shape kind to write (`Point`, `LineString`, `Polygon`, `Multi*`, `GeometryCollection`).               |
-| `multi`       | Required | `boolean`                                   | -       | When true, combines drawn layers into a `Multi*` geometry of the configured `shape` kind.                         |
-| `collection`  | Optional | `boolean`                                   | `false` | When true, writes a `GeometryCollection` of every drawn layer regardless of `shape`.                              |
-| `validate`    | Optional | `(geom: GeoJSON.Geometry) => string \| undefined` | - | Optional pre-write validator; if it returns a message, the previous value is preserved.                           |
-| `pathOptions` | Optional | `L.PathOptions`                             | -       | Style options used when re-hydrating an existing value from the form.                                             |
-| `markerIcon`  | Optional | `L.Icon \| L.DivIcon`                       | -       | Icon used when re-hydrating point geometries.                                                                     |
-| `valueTransform` | Optional | `(geom: GeoJSON.Geometry) => unknown`    | -       | Converter that maps the drawn `GeoJSON.Geometry` into the value persisted in the form (e.g. `[w,s,e,n]` for BBox). |
-| `valueParse`  | Optional | `(stored: unknown) => GeoJSON.Geometry \| null` | - | Inverse of `valueTransform` used during hydration. Return `null` for malformed input.                              |
+| Option           | Required | Type                                              | Default | Description                                                                                                        |
+| ---------------- | -------- | ------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `source`         | Required | `string`                                          | -       | RHF field name to read/write.                                                                                      |
+| `shape`          | Required | `ShapeKind`                                       | -       | The GeoJSON shape kind to write (`Point`, `LineString`, `Polygon`, `Multi*`, `GeometryCollection`).                |
+| `multi`          | Required | `boolean`                                         | -       | When true, combines drawn layers into a `Multi*` geometry of the configured `shape` kind.                          |
+| `collection`     | Optional | `boolean`                                         | `false` | When true, writes a `GeometryCollection` of every drawn layer regardless of `shape`.                               |
+| `validate`       | Optional | `(geom: GeoJSON.Geometry) => string \| undefined` | -       | Optional pre-write validator; if it returns a message, the previous value is preserved.                            |
+| `pathOptions`    | Optional | `L.PathOptions`                                   | -       | Style options used when re-hydrating an existing value from the form.                                              |
+| `markerIcon`     | Optional | `L.Icon \| L.DivIcon`                             | -       | Icon used when re-hydrating point geometries.                                                                      |
+| `valueTransform` | Optional | `(geom: GeoJSON.Geometry) => unknown`             | -       | Converter that maps the drawn `GeoJSON.Geometry` into the value persisted in the form (e.g. `[w,s,e,n]` for BBox). |
+| `valueParse`     | Optional | `(stored: unknown) => GeoJSON.Geometry \| null`   | -       | Inverse of `valueTransform` used during hydration. Return `null` for malformed input.                              |
 
 ## Returns
 
-| Key                   | Type                                                              | Description                                                                                                       |
-| --------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `featureGroupRef`     | `React.MutableRefObject<L.FeatureGroup \| null>`                  | Attach this to the wrapping `<FeatureGroup ref={...}>`. The hook reads from and writes to that feature group.     |
-| `geomanControlsProps` | `{ onCreate, onUpdate, onLayerRemove, onMapCut, onLayerCut }`     | Handlers to spread onto `<GeomanControls>` from `react-leaflet-geoman-v2`.                                        |
+| Key                   | Type                                                          | Description                                                                                                   |
+| --------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `featureGroupRef`     | `React.MutableRefObject<L.FeatureGroup \| null>`              | Attach this to the wrapping `<FeatureGroup ref={...}>`. The hook reads from and writes to that feature group. |
+| `geomanControlsProps` | `{ onCreate, onUpdate, onLayerRemove, onMapCut, onLayerCut }` | Handlers to spread onto `<GeomanControls>` from `react-leaflet-geoman-v2`.                                    |

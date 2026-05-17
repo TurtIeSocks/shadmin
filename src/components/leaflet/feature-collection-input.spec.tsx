@@ -22,10 +22,14 @@ const findAsync = async (
 describe("<FeatureCollectionInput />", () => {
   it("renders the labeled map input with a Leaflet container and default tools", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByText("Feature collection")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Feature collection"))
+      .toBeInTheDocument();
     const wrapper = await screen.getByTestId("feature-collection-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
     // Default allowedShapes = ["Point", "LineString", "Polygon"] → marker, line,
     // and polygon draw buttons should mount on the Geoman toolbar.
     const polyBtn = await findAsync(screen.container, "[title*='polygon' i]");

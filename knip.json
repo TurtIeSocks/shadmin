@@ -22,14 +22,7 @@
     "website/src/**/*.{ts,tsx}",
     "scripts/**/*.{js,mjs}"
   ],
-  "ignore": [
-    "public/**",
-    "docs/**",
-    "**/*.d.ts",
-    ".claude/**"
-  ],
-  "ignoreDependencies": [
-    "@types/*"
-  ],
+  "ignore": ["public/**", "docs/**", "**/*.d.ts", ".claude/**"],
+  "ignoreDependencies": ["@types/*"],
   "ignoreExportsUsedInFile": true
 }

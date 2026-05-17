@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  EmptyValue,
-} from "@/stories/leaflet/point-field.stories";
+import { Basic, EmptyValue } from "@/stories/leaflet/point-field.stories";
 
 const findAsync = async (
   container: Element,
@@ -22,7 +19,10 @@ describe("<PointField />", () => {
   it("renders a Leaflet map and plots the point as a marker", async () => {
     const screen = render(<Basic />);
     expect(screen.container.querySelector(".leaflet-container")).not.toBeNull();
-    const marker = await findAsync(screen.container, ".leaflet-marker-pane > *");
+    const marker = await findAsync(
+      screen.container,
+      ".leaflet-marker-pane > *",
+    );
     expect(marker).not.toBeNull();
   });
 

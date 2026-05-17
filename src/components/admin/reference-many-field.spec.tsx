@@ -8,7 +8,9 @@ describe("<ReferenceManyField />", () => {
     const screen = render(<Basic />);
     // 3 books for Jane Doe (id=1): Hello, World, Foo
     await expect
-      .poll(() => screen.getByText("Hello").elements().length, { timeout: 5000 })
+      .poll(() => screen.getByText("Hello").elements().length, {
+        timeout: 5000,
+      })
       .toBeGreaterThan(0);
     await expect.element(screen.getByText("World")).toBeInTheDocument();
     await expect.element(screen.getByText("Foo")).toBeInTheDocument();
@@ -18,7 +20,9 @@ describe("<ReferenceManyField />", () => {
     const screen = render(<WithSort />);
     // The sorted story still includes all 3 books.
     await expect
-      .poll(() => screen.getByText("Hello").elements().length, { timeout: 5000 })
+      .poll(() => screen.getByText("Hello").elements().length, {
+        timeout: 5000,
+      })
       .toBeGreaterThan(0);
     await expect.element(screen.getByText("2022")).toBeInTheDocument();
   });

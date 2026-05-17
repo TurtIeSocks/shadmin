@@ -10,6 +10,8 @@ describe("<LineStringInput />", () => {
     // `shape-input-shell` testId pattern for `LineString` is `linestring-input`.
     const wrapper = await screen.getByTestId("linestring-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

@@ -13,7 +13,7 @@ import { DiffViewer } from "@/components/admin";
   before={{ name: "Notebook", price: 9.99, stock: 12 }}
   after={{ name: "Notebook Pro", price: 14.99, stock: 12 }}
   mode="side-by-side"
-/>
+/>;
 ```
 
 ## Modes
@@ -23,23 +23,23 @@ import { DiffViewer } from "@/components/admin";
 
 ## Diff statuses
 
-| Status | When | Visual |
-| --- | --- | --- |
-| `unchanged` | Both values are strictly (or JSON) equal | Neutral background |
-| `added` | Field missing in `before`, present in `after` | Emerald |
-| `removed` | Field present in `before`, missing in `after` | Rose |
-| `changed` | Both present, values differ | Amber |
+| Status      | When                                          | Visual             |
+| ----------- | --------------------------------------------- | ------------------ |
+| `unchanged` | Both values are strictly (or JSON) equal      | Neutral background |
+| `added`     | Field missing in `before`, present in `after` | Emerald            |
+| `removed`   | Field present in `before`, missing in `after` | Rose               |
+| `changed`   | Both present, values differ                   | Amber              |
 
 ## Props
 
-| Prop | Type | Default |
-| --- | --- | --- |
-| `before` | `Record<string, unknown>` | — |
-| `after` | `Record<string, unknown>` | — |
-| `fields` | `string[]` | all keys (union of before + after) |
-| `labels` | `Record<string, string>` | `{}` |
-| `formatters` | `Record<string, (v) => ReactNode>` | `{}` |
-| `mode` | `"inline" \| "side-by-side"` | `"side-by-side"` |
+| Prop         | Type                               | Default                            |
+| ------------ | ---------------------------------- | ---------------------------------- |
+| `before`     | `Record<string, unknown>`          | —                                  |
+| `after`      | `Record<string, unknown>`          | —                                  |
+| `fields`     | `string[]`                         | all keys (union of before + after) |
+| `labels`     | `Record<string, string>`           | `{}`                               |
+| `formatters` | `Record<string, (v) => ReactNode>` | `{}`                               |
+| `mode`       | `"inline" \| "side-by-side"`       | `"side-by-side"`                   |
 
 ## Custom formatters
 
@@ -49,7 +49,7 @@ Use `formatters` for non-string values:
 <DiffViewer
   before={{ tags: ["a", "b"] }}
   after={{ tags: ["a", "c"] }}
-  formatters={{ tags: (v) => Array.isArray(v) ? v.join(", ") : "—" }}
+  formatters={{ tags: (v) => (Array.isArray(v) ? v.join(", ") : "—") }}
 />
 ```
 
@@ -58,11 +58,7 @@ Use `formatters` for non-string values:
 By default, `<DiffViewer>` shows the union of all keys from `before` and `after`. Pass an explicit `fields` array to control order and subset:
 
 ```tsx
-<DiffViewer
-  before={before}
-  after={after}
-  fields={["name", "price"]}
-/>
+<DiffViewer before={before} after={after} fields={["name", "price"]} />
 ```
 
 ## `labels`
@@ -79,8 +75,8 @@ Override the display label for any field:
 
 ## i18n
 
-| Key | Default |
-| --- | --- |
-| `ra.diff_viewer.field` | Field |
-| `ra.diff_viewer.before` | Before |
-| `ra.diff_viewer.after` | After |
+| Key                     | Default |
+| ----------------------- | ------- |
+| `ra.diff_viewer.field`  | Field   |
+| `ra.diff_viewer.before` | Before  |
+| `ra.diff_viewer.after`  | After   |

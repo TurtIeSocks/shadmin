@@ -7,7 +7,9 @@ describe("<FilterListItem />", () => {
   it("renders the label of each filter item in the sidebar", async () => {
     const screen = render(<Basic />);
     await expect
-      .poll(() => screen.getByText("Novel").elements().length, { timeout: 5000 })
+      .poll(() => screen.getByText("Novel").elements().length, {
+        timeout: 5000,
+      })
       .toBeGreaterThan(0);
     await expect.element(screen.getByText("Tale")).toBeInTheDocument();
   });

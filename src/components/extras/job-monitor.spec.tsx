@@ -34,12 +34,8 @@ describe("<JobMonitor />", () => {
 
   it("hides action buttons when actions=false", async () => {
     const screen = render(<HideActions />);
-    expect(
-      screen.container.querySelector("[data-job-retry]"),
-    ).toBeNull();
-    expect(
-      screen.container.querySelector("[data-job-cancel]"),
-    ).toBeNull();
+    expect(screen.container.querySelector("[data-job-retry]")).toBeNull();
+    expect(screen.container.querySelector("[data-job-cancel]")).toBeNull();
   });
 
   it("renders retry button on failed rows", async () => {
@@ -47,7 +43,9 @@ describe("<JobMonitor />", () => {
     // Radix Tabs require a real pointer click; use vitest-browser-react's
     // role-based locator + awaited click instead of a sync HTMLElement.click().
     await screen.getByRole("tab", { name: /failed/i }).click();
-    await expect.element(screen.getByText("sync-inventory")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("sync-inventory"))
+      .toBeInTheDocument();
     const retry = screen.container.querySelector("[data-job-retry]");
     expect(retry).toBeTruthy();
   });
@@ -55,8 +53,6 @@ describe("<JobMonitor />", () => {
   it("renders the lastError line on failed rows", async () => {
     const screen = render(<Basic />);
     await screen.getByRole("tab", { name: /failed/i }).click();
-    await expect
-      .element(screen.getByText(/ETIMEDOUT/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/ETIMEDOUT/i)).toBeInTheDocument();
   });
 });

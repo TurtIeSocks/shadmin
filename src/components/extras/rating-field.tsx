@@ -107,8 +107,7 @@ const Star = ({ kind }: { kind: "filled" | "half" | "empty" }) => {
 export interface RatingFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** Total stars rendered (filled + outlined). Default 5. */
   max?: number;
   /** Allow half-star granularity when value is between integers. */

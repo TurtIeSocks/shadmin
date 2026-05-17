@@ -19,13 +19,17 @@ describe("<LatLngInput />", () => {
 
   it("renders the label when provided", async () => {
     const screen = render(<WithLabel />);
-    await expect.element(screen.getByText("Office location")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Office location"))
+      .toBeInTheDocument();
   });
 
   it("falls back to defaultPosition when the record has null coordinates", async () => {
     const screen = render(<EmptyValue />);
     await expect.element(screen.getByText("Pick a point")).toBeInTheDocument();
     const container = await screen.getByTestId("lat-lng-input");
-    expect(container.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      container.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

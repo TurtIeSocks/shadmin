@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MessageCircleIcon, SendIcon, XIcon } from "lucide-react";
 import { useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
@@ -123,8 +117,7 @@ export const Assistant = ({
     [messages, declarations, transport, tools, streaming],
   );
 
-  const label =
-    triggerLabel ?? translate("ra.assistant.trigger", { _: "Ask" });
+  const label = triggerLabel ?? translate("ra.assistant.trigger", { _: "Ask" });
   const welcome =
     welcomeMessage ??
     translate("ra.assistant.welcome", { _: "Hi! Ask me anything." });

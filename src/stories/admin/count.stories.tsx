@@ -1,4 +1,8 @@
-import { CoreAdminContext, ResourceContextProvider, TestMemoryRouter } from "ra-core";
+import {
+  CoreAdminContext,
+  ResourceContextProvider,
+  TestMemoryRouter,
+} from "ra-core";
 import fakeRestProvider from "ra-data-fakerest";
 import { Count, ThemeProvider } from "@/components/admin";
 import { i18nProvider } from "@/lib/i18n-provider";
@@ -21,7 +25,9 @@ const Wrapper = ({ children }: PropsWithChildren) => (
   <ThemeProvider>
     <TestMemoryRouter>
       <CoreAdminContext dataProvider={dataProvider} i18nProvider={i18nProvider}>
-        <ResourceContextProvider value="posts">{children}</ResourceContextProvider>
+        <ResourceContextProvider value="posts">
+          {children}
+        </ResourceContextProvider>
       </CoreAdminContext>
     </TestMemoryRouter>
   </ThemeProvider>

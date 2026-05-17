@@ -1,9 +1,14 @@
 "use client";
 
-import { ShapeInputShell, type ShapeInputShellProps } from "./shape-input-shell";
+import {
+  ShapeInputShell,
+  type ShapeInputShellProps,
+} from "./shape-input-shell";
 
-export interface PolygonInputProps
-  extends Omit<ShapeInputShellProps, "shape" | "multi" | "geomanShapes"> {
+export interface PolygonInputProps extends Omit<
+  ShapeInputShellProps,
+  "shape" | "multi" | "geomanShapes"
+> {
   allowSelfIntersection?: boolean;
   minVertices?: number;
   maxVertices?: number;
@@ -19,5 +24,10 @@ export const PolygonInput = ({
   minArea_m2: _minArea_m2,
   ...rest
 }: PolygonInputProps) => (
-  <ShapeInputShell {...rest} shape="Polygon" multi={false} geomanShapes={[...POLYGON_TOOLS]} />
+  <ShapeInputShell
+    {...rest}
+    shape="Polygon"
+    multi={false}
+    geomanShapes={[...POLYGON_TOOLS]}
+  />
 );

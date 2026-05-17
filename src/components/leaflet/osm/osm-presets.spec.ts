@@ -21,7 +21,10 @@ describe("buildOverpassQueryFromSources", () => {
   });
 
   it("emits a single 'any' filter for the buildings preset", () => {
-    const q = buildOverpassQueryFromSources({ presets: ["buildings"] }, PARIS_BBOX);
+    const q = buildOverpassQueryFromSources(
+      { presets: ["buildings"] },
+      PARIS_BBOX,
+    );
     expect(q).toMatch(/way\["building"\]/);
     expect(q).toMatch(/relation\["building"\]/);
     expect(q).not.toMatch(/building"=/); // no exact-value form

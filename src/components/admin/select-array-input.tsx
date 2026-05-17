@@ -253,7 +253,12 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
           className="p-0 w-(--radix-popover-trigger-width)"
           align="start"
         >
-          <div id={listboxId} role="listbox" aria-multiselectable="true" className="flex flex-col max-h-64 overflow-auto py-1">
+          <div
+            id={listboxId}
+            role="listbox"
+            aria-multiselectable="true"
+            className="flex flex-col max-h-64 overflow-auto py-1"
+          >
             {choicesArr.length === 0 ? (
               <p className="px-3 py-2 text-sm text-muted-foreground">
                 {translate("ra.navigation.no_results", { _: "No results" })}

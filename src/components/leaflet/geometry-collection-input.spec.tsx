@@ -11,6 +11,8 @@ describe("<GeometryCollectionInput />", () => {
     // map wrapper under `data-testid="geojson-input"`.
     const wrapper = await screen.getByTestId("geojson-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

@@ -74,6 +74,7 @@ eslint.config.js (or .eslintrc.*)        # Load custom rule (Phase 4)
 ### Task 0.5.1: Add `__screenshots__/` to `.gitignore`
 
 **Files:**
+
 - Modify: `.gitignore`
 
 - [ ] **Step 1: Verify nothing currently tracked**
@@ -129,6 +130,7 @@ the path was not in .gitignore — a stray git add . could regress."
 ### Task 1.1: Build `public-api.mjs` shared module
 
 **Files:**
+
 - Create: `docs/scripts/public-api.mjs`
 
 - [ ] **Step 1: Write failing usage script first**
@@ -144,12 +146,15 @@ console.log(`Total: ${items.length}`);
 console.log("First 3:", items.slice(0, 3));
 const access = items.find((i) => i.name === "AccessDenied");
 if (!access) throw new Error("AccessDenied not found");
-if (access.sourceDir !== "admin") throw new Error(`bad sourceDir: ${access.sourceDir}`);
-if (access.slug !== "access-denied") throw new Error(`bad slug: ${access.slug}`);
+if (access.sourceDir !== "admin")
+  throw new Error(`bad sourceDir: ${access.sourceDir}`);
+if (access.slug !== "access-denied")
+  throw new Error(`bad slug: ${access.slug}`);
 console.log("OK");
 ```
 
 Run:
+
 ```bash
 cd docs && node scripts/test-public-api.mjs
 ```
@@ -290,6 +295,7 @@ Don't commit yet — bundled with Phase 1 commit at end.
 ### Task 1.2: Generate kebab-case doc rename map
 
 **Files:**
+
 - Create: `docs/scripts/generate-rename-map.mjs` (temp; delete after use)
 
 - [ ] **Step 1: Write rename-map generator**
@@ -352,6 +358,7 @@ console.error(`Total renames: ${renames.length}`);
 ```
 
 Run:
+
 ```bash
 cd docs && node scripts/generate-rename-map.mjs > /tmp/rename-map.json
 wc -l /tmp/rename-map.json
@@ -400,6 +407,7 @@ Expected: empty.
 ### Task 1.4: Update sidebar slugs + sidebar special groups
 
 **Files:**
+
 - Modify: `docs/sidebar.config.mjs`
 
 - [ ] **Step 1: Bulk-rewrite slug strings from old flat to new kebab**
@@ -483,6 +491,7 @@ Expected: PASS — all slugs kebab; all files match.
 ### Task 1.5: Rewrite internal links in doc bodies
 
 **Files:**
+
 - Create: `docs/scripts/rewrite-doc-links.mjs`
 - Modify: every `docs/src/content/docs/**/*.{md,mdx}` body
 
@@ -490,7 +499,7 @@ Expected: PASS — all slugs kebab; all files match.
 
 Create `docs/scripts/rewrite-doc-links.mjs`:
 
-```js
+````js
 import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -538,7 +547,10 @@ function walk(dir) {
         return `](./${newStem}${slash})`;
       });
     }
-    const out = stripped.replace(/__CODEBLOCK_(\d+)__/g, (_, i) => blocks[Number(i)]);
+    const out = stripped.replace(
+      /__CODEBLOCK_(\d+)__/g,
+      (_, i) => blocks[Number(i)],
+    );
     if (out !== src) {
       writeFileSync(full, out);
       filesChanged++;
@@ -549,7 +561,7 @@ function walk(dir) {
 
 walk(contentRoot);
 console.log(`Rewrote ${totalReplacements} links across ${filesChanged} files.`);
-```
+````
 
 - [ ] **Step 2: Run rewriter**
 
@@ -568,6 +580,7 @@ Expected: empty.
 ### Task 1.6: Generate Astro redirects
 
 **Files:**
+
 - Create: `docs/scripts/generate-redirects.mjs`
 - Create: `docs/legacy-redirects.mjs` (output)
 - Modify: `docs/astro.config.mjs`
@@ -676,6 +689,7 @@ rm /tmp/rename-map.json
 ### Task 2.1: Add typedoc dependency + config
 
 **Files:**
+
 - Modify: `docs/package.json` (devDeps + scripts)
 - Create: `docs/typedoc.json`
 
@@ -727,6 +741,7 @@ Expected: produces `docs/public-api.typedoc.json` (~1-5MB). Should not error.
 ### Task 2.2: Build per-component props JSON splitter
 
 **Files:**
+
 - Create: `docs/scripts/split-typedoc.mjs`
 - Create: `docs/src/content/docs/props/.gitkeep`
 
@@ -743,7 +758,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const propsDir = resolve(__dirname, "../src/content/docs/props");
 mkdirSync(propsDir, { recursive: true });
 
-const doc = JSON.parse(readFileSync(resolve(__dirname, "../public-api.typedoc.json"), "utf-8"));
+const doc = JSON.parse(
+  readFileSync(resolve(__dirname, "../public-api.typedoc.json"), "utf-8"),
+);
 
 function* walk(node) {
   if (node.kind === 256 && /Props$/.test(node.name)) {
@@ -791,6 +808,7 @@ Edit `docs/package.json`:
 ### Task 2.3: Build `<PropsTable>` Astro component
 
 **Files:**
+
 - Create: `docs/src/components/PropsTable.astro`
 
 - [ ] **Step 1: Implement component**
@@ -865,13 +883,14 @@ Open the page in browser, verify the prop table renders.
 ### Task 2.4: Implement `check-docs.mjs`
 
 **Files:**
+
 - Create: `docs/scripts/check-docs.mjs`
 
 - [ ] **Step 1: Write the check script**
 
 Create `docs/scripts/check-docs.mjs`:
 
-```js
+````js
 #!/usr/bin/env node
 import { readFileSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -890,10 +909,16 @@ const failures = [];
 for (const item of items) {
   const docPath = resolve(contentRoot, `${item.slug}.md`);
   const docPathMdx = resolve(contentRoot, `${item.slug}.mdx`);
-  const path = existsSync(docPath) ? docPath : existsSync(docPathMdx) ? docPathMdx : null;
+  const path = existsSync(docPath)
+    ? docPath
+    : existsSync(docPathMdx)
+      ? docPathMdx
+      : null;
 
   if (!path) {
-    failures.push(`${item.name}: missing doc page (expected ${item.slug}.md or .mdx)`);
+    failures.push(
+      `${item.name}: missing doc page (expected ${item.slug}.md or .mdx)`,
+    );
     continue;
   }
 
@@ -909,8 +934,14 @@ for (const item of items) {
     propCount = JSON.parse(readFileSync(propsPath, "utf-8")).props.length;
   }
 
-  if (propCount > 0 && !/^## Props/m.test(body) && !body.includes("<PropsTable")) {
-    failures.push(`${item.name}: has ${propCount} props but no '## Props' or <PropsTable>`);
+  if (
+    propCount > 0 &&
+    !/^## Props/m.test(body) &&
+    !body.includes("<PropsTable")
+  ) {
+    failures.push(
+      `${item.name}: has ${propCount} props but no '## Props' or <PropsTable>`,
+    );
   }
 
   if (!/```[a-z]*\n/.test(body)) {
@@ -930,7 +961,7 @@ if (failures.length) {
   process.exit(1);
 }
 console.log(`OK: ${items.length} doc pages pass checks.`);
-```
+````
 
 - [ ] **Step 2: Add to package.json**
 
@@ -950,6 +981,7 @@ Expected: prints failure list (many failures expected — placeholder pages, mis
 ### Task 2.5: Backfill gaps (iterate)
 
 **This task is dispatched to subagents — one subagent per docs-sidebar group, mirroring Phase 4's pattern.** Each subagent receives:
+
 - Group name + component list
 - Check-docs failure list filtered to that group
 - Doc page template
@@ -984,6 +1016,7 @@ import { <ComponentName> } from "@/components/admin";
 <per-prop section: when/why to use; default value; gotchas>
 
 ` ` `tsx
+
 <minimal example showing this prop in action>
 ` ` `
 ```
@@ -991,6 +1024,7 @@ import { <ComponentName> } from "@/components/admin";
 (In the actual doc file, remove the spaces inside the triple-backtick fences.)
 
 Per-component variants:
+
 - Zero-prop component → omit `## Props` and per-prop sections; ≥ 1 code block still required.
 - Single-prop component → `<PropsTable>` + 1 per-prop section.
 - Complex component → `<PropsTable>` + per-prop sections for non-obvious props (skip props that are pass-through from a well-known base).
@@ -998,6 +1032,7 @@ Per-component variants:
 - [ ] **Step 1: Triage failures by group**
 
 Run:
+
 ```bash
 sort /tmp/check-docs-report.txt
 ```
@@ -1053,6 +1088,7 @@ identified by the script."
 ### Task 3.1: Build group lookup from sidebar
 
 **Files:**
+
 - Create: `docs/scripts/component-to-group.mjs`
 
 - [ ] **Step 1: Implement lookup module**
@@ -1086,6 +1122,7 @@ export function buildGroupLookup() {
 ### Task 3.2: Reorg stories into subdirs
 
 **Files:**
+
 - Move: `src/stories/*.stories.tsx` → `src/stories/<sourceDir>/`
 - Modify: `src/components/<dir>/*.spec.tsx` imports
 
@@ -1141,7 +1178,15 @@ import { join, resolve } from "node:path";
 
 const repoRoot = resolve(import.meta.dirname, "../..");
 
-const COMPONENT_DIRS = ["admin", "extras", "leaflet", "supabase", "csv-import", "mdx-editor", "rich-text-input"];
+const COMPONENT_DIRS = [
+  "admin",
+  "extras",
+  "leaflet",
+  "supabase",
+  "csv-import",
+  "mdx-editor",
+  "rich-text-input",
+];
 
 const slugToDir = {};
 for (const d of COMPONENT_DIRS) {
@@ -1214,6 +1259,7 @@ Expected: PASS (import path now resolves).
 ### Task 3.3: Update Storybook `title:` to match docs sidebar groups
 
 **Files:**
+
 - Modify: every `src/stories/<dir>/*.stories.tsx`
 
 - [ ] **Step 1: Implement title rewriter**
@@ -1247,7 +1293,10 @@ for (const f of walk(resolve(repoRoot, "src/stories"))) {
     skipped++;
     continue;
   }
-  const pascal = slug.split("-").map((p) => p[0].toUpperCase() + p.slice(1)).join("");
+  const pascal = slug
+    .split("-")
+    .map((p) => p[0].toUpperCase() + p.slice(1))
+    .join("");
   const newTitle = `${group}/${pascal}`;
   let src = readFileSync(f, "utf-8");
   const orig = src;
@@ -1257,7 +1306,9 @@ for (const f of walk(resolve(repoRoot, "src/stories"))) {
     changed++;
   }
 }
-console.log(`Updated titles in ${changed} stories; skipped ${skipped} (no sidebar entry)`);
+console.log(
+  `Updated titles in ${changed} stories; skipped ${skipped} (no sidebar entry)`,
+);
 ```
 
 Run:
@@ -1270,6 +1321,7 @@ node docs/scripts/rewrite-story-titles.mjs
 ### Task 3.4: Replace 38 placeholder stories using `CoverageStory`
 
 **Files:**
+
 - Modify: every `src/stories/<dir>/*.stories.tsx` that imports `CoverageStory`
 
 - [ ] **Step 1: List placeholders**
@@ -1286,11 +1338,12 @@ Expected: ~38 files.
 Subagent prompt template:
 
 > "Replace placeholder stories in src/stories/<dir>/ for the <group> group. Files to fix: <list>. Each currently imports CoverageStory and renders the ComponentGallery instead of the actual component. Rewrite each so it:
-> 1. Uses StoryAdmin from src/stories/_test-helpers.tsx as the wrapper (or a thinner ad-hoc wrapper if StoryAdmin's Create+SimpleForm is wrong shape for the component — auth pages are typical exceptions).
+>
+> 1. Uses StoryAdmin from src/stories/\_test-helpers.tsx as the wrapper (or a thinner ad-hoc wrapper if StoryAdmin's Create+SimpleForm is wrong shape for the component — auth pages are typical exceptions).
 > 2. Sets default.title to '<group>/<ComponentName>'.
 > 3. Exports `Basic` showing the component with sensible props.
 > 4. Adds 1–3 variant stories if the component has multiple prop combos worth seeing rendered (Disabled, Loading, CustomLabel, etc.). Skip variants for atoms with no props.
-> Reference: docs/superpowers/plans/2026-05-16-repo-cleanup.md Task 3.4. Verify with `pnpm vitest run --browser.headless src/components/<dir>/<one-renamed>.spec.tsx`."
+>    Reference: docs/superpowers/plans/2026-05-16-repo-cleanup.md Task 3.4. Verify with `pnpm vitest run --browser.headless src/components/<dir>/<one-renamed>.spec.tsx`."
 
 - [ ] **Step 3: Verify**
 
@@ -1303,6 +1356,7 @@ Expected: `0`.
 ### Task 3.5: Fill missing stories
 
 **Files:**
+
 - Create: any `src/stories/<dir>/<slug>.stories.tsx` not yet present
 
 - [ ] **Step 1: List missing**
@@ -1317,8 +1371,12 @@ import { getPublicApi } from "./public-api.mjs";
 const repoRoot = resolve(import.meta.dirname, "../..");
 const items = await getPublicApi();
 for (const i of items) {
-  const p = resolve(repoRoot, `src/stories/${i.sourceDir}/${i.slug}.stories.tsx`);
-  if (!existsSync(p)) console.log(`src/stories/${i.sourceDir}/${i.slug}.stories.tsx`);
+  const p = resolve(
+    repoRoot,
+    `src/stories/${i.sourceDir}/${i.slug}.stories.tsx`,
+  );
+  if (!existsSync(p))
+    console.log(`src/stories/${i.sourceDir}/${i.slug}.stories.tsx`);
 }
 ```
 
@@ -1335,6 +1393,7 @@ Reuse template from Task 3.4 plus: "Create new story files for the listed compon
 ### Task 3.6: Implement `check-stories.mjs`
 
 **Files:**
+
 - Create: `docs/scripts/check-stories.mjs`
 
 - [ ] **Step 1: Write the check**
@@ -1357,7 +1416,10 @@ const items = await getPublicApi();
 const failures = [];
 
 for (const item of items) {
-  const storyPath = resolve(repoRoot, `src/stories/${item.sourceDir}/${item.slug}.stories.tsx`);
+  const storyPath = resolve(
+    repoRoot,
+    `src/stories/${item.sourceDir}/${item.slug}.stories.tsx`,
+  );
   if (!existsSync(storyPath)) {
     failures.push(`${item.name}: missing story file at ${storyPath}`);
     continue;
@@ -1377,7 +1439,9 @@ for (const item of items) {
   if (expectedGroup) {
     const titleMatch = body.match(/title:\s*['"]([^'"]+)['"]/);
     if (!titleMatch || !titleMatch[1].startsWith(`${expectedGroup}/`)) {
-      failures.push(`${item.name}: title prefix doesn't match sidebar group '${expectedGroup}'`);
+      failures.push(
+        `${item.name}: title prefix doesn't match sidebar group '${expectedGroup}'`,
+      );
     }
   }
 }
@@ -1453,6 +1517,7 @@ stories using the shared StoryAdmin wrapper. Adds check-stories.mjs guard."
 ### Task 4.1: Build custom ESLint rule
 
 **Files:**
+
 - Create: `eslint-rules/no-tautological-expect.js`
 - Create: `eslint-rules/__tests__/no-tautological-expect.test.js`
 - Modify: `eslint.config.js`
@@ -1511,10 +1576,12 @@ export default {
   meta: {
     type: "problem",
     docs: {
-      description: "Disallow tautological expect calls like expect(true).toBe(true)",
+      description:
+        "Disallow tautological expect calls like expect(true).toBe(true)",
     },
     messages: {
-      tautological: "Tautological expect: assertion compares a value with itself.",
+      tautological:
+        "Tautological expect: assertion compares a value with itself.",
     },
     schema: [],
   },
@@ -1589,6 +1656,7 @@ Expected: prints 119 violations.
 ### Task 4.2: Implement `check-specs.mjs`
 
 **Files:**
+
 - Create: `docs/scripts/check-specs.mjs`
 
 - [ ] **Step 1: Write check**
@@ -1609,17 +1677,24 @@ const items = await getPublicApi();
 const failures = [];
 
 for (const item of items) {
-  const specPath = resolve(repoRoot, `src/components/${item.sourceDir}/${item.slug}.spec.tsx`);
+  const specPath = resolve(
+    repoRoot,
+    `src/components/${item.sourceDir}/${item.slug}.spec.tsx`,
+  );
   if (!existsSync(specPath)) {
     failures.push(`${item.name}: missing spec file`);
     continue;
   }
   const body = readFileSync(specPath, "utf-8");
   if (body.includes("expect(true).toBe(true)")) {
-    failures.push(`${item.name}: contains tautological expect(true).toBe(true)`);
+    failures.push(
+      `${item.name}: contains tautological expect(true).toBe(true)`,
+    );
   }
   if (!body.includes(`@/stories/${item.sourceDir}/${item.slug}.stories`)) {
-    failures.push(`${item.name}: does not import from corresponding stories file`);
+    failures.push(
+      `${item.name}: does not import from corresponding stories file`,
+    );
   }
 }
 
@@ -1640,6 +1715,7 @@ Add to package.json:
 ### Task 4.3: Build `check-coverage.mjs` orchestrator
 
 **Files:**
+
 - Create: `docs/scripts/check-coverage.mjs`
 - Modify: `Makefile`
 
@@ -1711,7 +1787,9 @@ import { Basic, Disabled /* etc */ } from "@/stories/<dir>/<slug>.stories";
 describe("<ComponentName />", () => {
   it("renders the Basic story", async () => {
     const { getByRole } = render(<Basic />);
-    await expect.element(getByRole("button", { name: /<label>/i })).toBeInTheDocument();
+    await expect
+      .element(getByRole("button", { name: /<label>/i }))
+      .toBeInTheDocument();
   });
 
   it("calls onClick when activated", async () => {
@@ -1738,7 +1816,9 @@ import { Basic } from "@/stories/<dir>/<slug>.stories";
 describe("<ComponentName />", () => {
   it("renders the Basic story", async () => {
     const { getByText } = render(<Basic />);
-    await waitFor(() => expect.element(getByText(/<expected loaded data>/i)).toBeInTheDocument());
+    await waitFor(() =>
+      expect.element(getByText(/<expected loaded data>/i)).toBeInTheDocument(),
+    );
   });
 
   it("issues a getMany call to the dataProvider", async () => {
@@ -1750,6 +1830,7 @@ describe("<ComponentName />", () => {
 ```
 
 **Hybrid TDD discipline:**
+
 - Atom: write the assertion that matches the story's visible output. Direct.
 - Behavioral / reference: per superpowers:test-driven-development — write failing assertion first, run, confirm fail (means assertion is meaningful), then verify it passes against existing implementation. If it doesn't pass, the existing implementation is buggy — flag in subagent report rather than fix in this phase.
 
@@ -1876,6 +1957,7 @@ cannot regress. Wires check-specs.mjs into check-coverage."
 ### Task 5.1: Implement `check-demo-coverage.mjs`
 
 **Files:**
+
 - Create: `docs/scripts/check-demo-coverage.mjs`
 
 - [ ] **Step 1: Write the check**
@@ -1976,6 +2058,7 @@ const <resource>Seed = [
 **One commit:** `feat(demo): add /map resource for Leaflet stack`
 
 **Files (new):**
+
 - `src/demo/map/index.ts`
 - `src/demo/map/MapList.tsx`
 - `src/demo/map/MapShow.tsx`
@@ -1983,12 +2066,14 @@ const <resource>Seed = [
 - `src/demo/map/MapCreate.tsx`
 
 **Files (modify):**
+
 - `src/demo/App.tsx` (register resource + wrap with `<LeafletAdmin>` + `<LeafletOsm>`)
 - `src/demo/dataProvider.ts` (seed)
 
 **Components to exercise:** LeafletAdmin, LeafletOsm, MapWithSearch, GeocodingInput, ReverseGeocodeField, Point Field+Input, MultiPoint Field+Input, LineString Field+Input, MultiLineString Field+Input, Polygon Field+Input, MultiPolygon Field+Input, GeometryCollection Field+Input, Feature Field+Input, FeatureCollection Field+Input, GeoJson Field+Input, BBox Field+Input, LatLng Field+Input, OsmFeatureAdd, OsmFeatureSubtract, SimplifyInput, useGeomanRHF.
 
 **Domain:** "Points of Interest" — record shape:
+
 ```ts
 {
   id: number,
@@ -2046,8 +2131,14 @@ Create `src/demo/map/MapShow.tsx`:
 
 ```tsx
 import {
-  BBoxField, MapWithSearch, PolygonField, PointField,
-  ReverseGeocodeField, Show, SimpleShowLayout, TextField,
+  BBoxField,
+  MapWithSearch,
+  PolygonField,
+  PointField,
+  ReverseGeocodeField,
+  Show,
+  SimpleShowLayout,
+  TextField,
 } from "@/components/admin";
 
 export const MapShow = () => (
@@ -2069,9 +2160,16 @@ Create `src/demo/map/MapEdit.tsx`:
 
 ```tsx
 import {
-  BBoxInput, Edit, GeocodingInput, OsmFeatureAdd,
-  OsmFeatureSubtract, PointInput, PolygonInput, SimpleForm,
-  SimplifyInput, TextInput,
+  BBoxInput,
+  Edit,
+  GeocodingInput,
+  OsmFeatureAdd,
+  OsmFeatureSubtract,
+  PointInput,
+  PolygonInput,
+  SimpleForm,
+  SimplifyInput,
+  TextInput,
 } from "@/components/admin";
 
 export const MapEdit = () => (
@@ -2094,8 +2192,12 @@ Create `src/demo/map/MapCreate.tsx`:
 
 ```tsx
 import {
-  Create, GeocodingInput, PointInput, PolygonInput,
-  SimpleForm, TextInput,
+  Create,
+  GeocodingInput,
+  PointInput,
+  PolygonInput,
+  SimpleForm,
+  TextInput,
 } from "@/components/admin";
 
 export const MapCreate = () => (
@@ -2129,7 +2231,13 @@ import { LeafletAdmin, LeafletOsm, Resource } from "@/components/admin";
 import * as map from "@/demo/map";
 
 // Wrap the Admin's children with leaflet providers, or use <LeafletAdmin> as the top-level
-<Resource name="places" list={map.List} show={map.Show} edit={map.Edit} create={map.Create} />
+<Resource
+  name="places"
+  list={map.List}
+  show={map.Show}
+  edit={map.Edit}
+  create={map.Create}
+/>;
 ```
 
 - [ ] **Step 4: Verify in dev server**
@@ -2157,6 +2265,7 @@ Input + GeocodingInput + SimplifyInput + OsmFeatureAdd/Subtract)."
 **One commit:** `feat(demo): add /planning resource for kanban + calendar`
 
 **Files (new):**
+
 - `src/demo/planning/index.ts`
 - `src/demo/planning/PlanningList.tsx` — uses `<KanbanBoard>` + `<CalendarList>` (toggleable view)
 - `src/demo/planning/PlanningShow.tsx`
@@ -2196,10 +2305,24 @@ export const PlanningList = () => {
   return (
     <List resource="tasks">
       <div className="mb-4 flex gap-2">
-        <Button onClick={() => setView("kanban")} variant={view === "kanban" ? "default" : "outline"}>Kanban</Button>
-        <Button onClick={() => setView("calendar")} variant={view === "calendar" ? "default" : "outline"}>Calendar</Button>
+        <Button
+          onClick={() => setView("kanban")}
+          variant={view === "kanban" ? "default" : "outline"}
+        >
+          Kanban
+        </Button>
+        <Button
+          onClick={() => setView("calendar")}
+          variant={view === "calendar" ? "default" : "outline"}
+        >
+          Calendar
+        </Button>
       </div>
-      {view === "kanban" ? <KanbanBoard groupBy="status" /> : <CalendarList dateField="dueDate" />}
+      {view === "kanban" ? (
+        <KanbanBoard groupBy="status" />
+      ) : (
+        <CalendarList dateField="dueDate" />
+      )}
     </List>
   );
 };
@@ -2211,7 +2334,11 @@ Standard CRUD using TextInput, SelectInput, DateInput. Reuse `tasks` resource. E
 
 ```tsx
 import {
-  DateInput, Edit, SelectInput, SimpleForm, TextInput,
+  DateInput,
+  Edit,
+  SelectInput,
+  SimpleForm,
+  TextInput,
 } from "@/components/admin";
 
 export const PlanningEdit = () => (
@@ -2303,7 +2430,11 @@ export const AnalyticsList = () => (
 
 ```tsx
 import {
-  DiffViewer, RecordTimeline, Show, SimpleShowLayout, TextField,
+  DiffViewer,
+  RecordTimeline,
+  Show,
+  SimpleShowLayout,
+  TextField,
 } from "@/components/admin";
 
 export const AnalyticsShow = () => (
@@ -2312,10 +2443,7 @@ export const AnalyticsShow = () => (
       <TextField source="name" />
       <TextField source="region" />
       <RecordTimeline source="timeline" />
-      <DiffViewer
-        before="previousSnapshot"
-        after="snapshot"
-      />
+      <DiffViewer before="previousSnapshot" after="snapshot" />
     </SimpleShowLayout>
   </Show>
 );
@@ -2373,7 +2501,11 @@ documents,
 
 ```tsx
 import {
-  Assistant, PresenceBar, Show, SimpleShowLayout, TextField,
+  Assistant,
+  PresenceBar,
+  Show,
+  SimpleShowLayout,
+  TextField,
 } from "@/components/admin";
 
 export const WorkspaceShow = () => (
@@ -2392,7 +2524,10 @@ export const WorkspaceShow = () => (
 
 ```tsx
 import {
-  Edit, PermissionMatrix, SimpleForm, TextInput,
+  Edit,
+  PermissionMatrix,
+  SimpleForm,
+  TextInput,
 } from "@/components/admin";
 
 export const WorkspaceEdit = () => (
@@ -2443,9 +2578,7 @@ onboardings,
 `OnboardingCreate.tsx`:
 
 ```tsx
-import {
-  Create, SimpleForm, TextInput, WizardForm,
-} from "@/components/admin";
+import { Create, SimpleForm, TextInput, WizardForm } from "@/components/admin";
 
 export const OnboardingCreate = () => (
   <Create resource="onboardings">
@@ -2464,14 +2597,20 @@ export const OnboardingCreate = () => (
 
 ```tsx
 import {
-  OnboardingTour, Show, SimpleShowLayout, TextField,
+  OnboardingTour,
+  Show,
+  SimpleShowLayout,
+  TextField,
 } from "@/components/admin";
 
 export const OnboardingShow = () => (
   <Show resource="onboardings">
     <OnboardingTour
       steps={[
-        { target: '[data-tour="welcome"]', content: "Welcome to the dashboard" },
+        {
+          target: '[data-tour="welcome"]',
+          content: "Welcome to the dashboard",
+        },
         { target: '[data-tour="nav"]', content: "Browse resources here" },
       ]}
     />
@@ -2500,6 +2639,7 @@ on Show) via an 'Onboardings' resource."
 **One commit:** `feat(demo): wire CommandMenu, InPlaceEditor, ImageInput, TranslatableInputs, CsvImport, TreeList into existing resources`
 
 **Files (modify):**
+
 - `src/demo/App.tsx` — add `<CommandMenu>` inside AppBar.
 - `src/demo/customers/CustomerShow.tsx` — wrap a TextField in `<InPlaceEditor>`.
 - `src/demo/products/ProductCreate.tsx` — add `<ImageInput>` for picture, `<TranslatableInputs locales={["en","fr"]}>` for description.
@@ -2518,7 +2658,7 @@ import { CommandMenu } from "@/components/admin";
 <AppBar>
   <CommandMenu />
   {/* existing AppBar contents */}
-</AppBar>
+</AppBar>;
 ```
 
 Example for InPlaceEditor in `src/demo/customers/CustomerShow.tsx`:
@@ -2529,7 +2669,7 @@ import { InPlaceEditor, TextField, TextInput } from "@/components/admin";
 <InPlaceEditor>
   <TextField source="name" />
   <TextInput source="name" />
-</InPlaceEditor>
+</InPlaceEditor>;
 ```
 
 Example for ImageInput + TranslatableInputs in `src/demo/products/ProductCreate.tsx`:
@@ -2553,12 +2693,9 @@ Example for CsvImport bulk action in `src/demo/customers/CustomerList.tsx`:
 ```tsx
 import { CsvImport, List, DataTable } from "@/components/admin";
 
-<List
-  resource="customers"
-  actions={<CsvImport resource="customers" />}
->
+<List resource="customers" actions={<CsvImport resource="customers" />}>
   <DataTable>{/* cols */}</DataTable>
-</List>
+</List>;
 ```
 
 Example for TreeList in `src/demo/categories/CategoryList.tsx`:
@@ -2636,6 +2773,7 @@ make doc         # in parallel terminal
 - [ ] **Step 3: Push branches per phase to separate PRs**
 
 Per spec: one PR per phase. Push:
+
 - `chore/ignore-screenshots` (Phase 0.5)
 - `refactor/docs-kebab-case` (Phase 1)
 - `docs/audit-typedoc` (Phase 2)

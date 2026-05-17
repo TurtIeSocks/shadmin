@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  EmptyValue,
-} from "@/stories/leaflet/feature-field.stories";
+import { Basic, EmptyValue } from "@/stories/leaflet/feature-field.stories";
 
 const findAsync = async (
   container: Element,

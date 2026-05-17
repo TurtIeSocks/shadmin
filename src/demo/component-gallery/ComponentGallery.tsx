@@ -369,17 +369,33 @@ const galleryComponents: GalleryComponent[] = [
   { name: "CronInput", family: "Inputs", docs: "CronInput" },
   { name: "CurrencyField", family: "Fields", docs: "CurrencyField" },
   { name: "CurrencyInput", family: "Inputs", docs: "CurrencyInput" },
-  { name: "DualApprovalButton", family: "Buttons and actions", docs: "DualApprovalButton" },
+  {
+    name: "DualApprovalButton",
+    family: "Buttons and actions",
+    docs: "DualApprovalButton",
+  },
   { name: "DurationField", family: "Fields", docs: "DurationField" },
   { name: "DurationInput", family: "Inputs", docs: "DurationInput" },
   { name: "PhoneField", family: "Fields", docs: "PhoneField" },
   { name: "PhoneInput", family: "Inputs", docs: "PhoneInput" },
   { name: "RatingField", family: "Fields", docs: "RatingField" },
   { name: "RatingInput", family: "Inputs", docs: "RatingInput" },
-  { name: "StatusTransitionButton", family: "Buttons and actions", docs: "StatusTransitionButton" },
+  {
+    name: "StatusTransitionButton",
+    family: "Buttons and actions",
+    docs: "StatusTransitionButton",
+  },
   { name: "UsageMeterField", family: "Fields", docs: "UsageMeterField" },
-  { name: "WebhookEndpointField", family: "Fields", docs: "WebhookEndpointField" },
-  { name: "WebhookEndpointInput", family: "Inputs", docs: "WebhookEndpointInput" },
+  {
+    name: "WebhookEndpointField",
+    family: "Fields",
+    docs: "WebhookEndpointField",
+  },
+  {
+    name: "WebhookEndpointInput",
+    family: "Inputs",
+    docs: "WebhookEndpointInput",
+  },
 ];
 
 const sampleRecord = {

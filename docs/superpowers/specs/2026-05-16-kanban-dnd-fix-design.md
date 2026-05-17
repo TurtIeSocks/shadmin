@@ -16,11 +16,11 @@ Eliminate the visual "spring back" when dragging a kanban card from column A to 
 
 `src/components/extras/kanban-board.tsx`:
 
-| Line | Code | Issue |
-|---|---|---|
-| 117-146 | `DraggableCard` uses `useDraggable` | No `transform` applied to DOM node; card stays in source slot during drag |
-| 306-331 | `handleDragEnd` | Calls ra-core `update()` with `mutationMode: "optimistic"` — fire-and-forget |
-| 382-397 | `<DragOverlay>` | Default `dropAnimation` animates clone back to source slot on drop |
+| Line    | Code                                | Issue                                                                        |
+| ------- | ----------------------------------- | ---------------------------------------------------------------------------- |
+| 117-146 | `DraggableCard` uses `useDraggable` | No `transform` applied to DOM node; card stays in source slot during drag    |
+| 306-331 | `handleDragEnd`                     | Calls ra-core `update()` with `mutationMode: "optimistic"` — fire-and-forget |
+| 382-397 | `<DragOverlay>`                     | Default `dropAnimation` animates clone back to source slot on drop           |
 
 **Root cause:** `<DragOverlay>` default drop animation tweens the clone from cursor position back to source card's origin before the optimistic update places the real card in the destination column. Visible as "spring back".
 
@@ -37,10 +37,11 @@ import { DragOverlay, defaultDropAnimationSideEffects } from "@dnd-kit/core";
 
 <DragOverlay dropAnimation={null}>
   {activeCard ? <DraggableCardContent card={activeCard} /> : null}
-</DragOverlay>
+</DragOverlay>;
 ```
 
 Setting `dropAnimation={null}` disables the back-snap tween. On drop:
+
 1. Clone disappears instantly.
 2. Same React render cycle: `setActiveId(null)` + optimistic `update()` mutation cascades through `useGetList` cache.
 3. Card reappears in destination column.
@@ -50,19 +51,26 @@ Setting `dropAnimation={null}` disables the back-snap tween. On drop:
 Verify ra-core's `mutationMode: "optimistic"` updates the TanStack Query cache synchronously inside `update()` (so the next render shows new column membership). If not, add a transient local state mirror keyed by card ID that overrides the cache during the gap. Pattern:
 
 ```tsx
-const [pendingMoves, setPendingMoves] = React.useState<Record<string, string>>({});
+const [pendingMoves, setPendingMoves] = React.useState<Record<string, string>>(
+  {},
+);
 
 const handleDragEnd = (event: DragEndEvent) => {
   // ... existing logic ...
   setPendingMoves((prev) => ({ ...prev, [draggedId]: newColumnId }));
-  update("cards", { id: draggedId, data: { column: newColumnId } }, {
-    mutationMode: "optimistic",
-    onSettled: () => setPendingMoves((prev) => {
-      const next = { ...prev };
-      delete next[draggedId];
-      return next;
-    }),
-  });
+  update(
+    "cards",
+    { id: draggedId, data: { column: newColumnId } },
+    {
+      mutationMode: "optimistic",
+      onSettled: () =>
+        setPendingMoves((prev) => {
+          const next = { ...prev };
+          delete next[draggedId];
+          return next;
+        }),
+    },
+  );
 };
 
 const cardsByColumn = React.useMemo(

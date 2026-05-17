@@ -16,7 +16,7 @@ import {
   List,
   NumberInput,
   SelectInput,
-} from '@/components/admin';
+} from "@/components/admin";
 
 const BulkEditCategories = () => (
   <BulkEditDrawer label="Bulk edit">
@@ -36,14 +36,14 @@ export const ProductList = () => (
 
 ## Props
 
-| Prop        | Required | Type                                                   | Default            | Description |
-| ----------- | -------- | ------------------------------------------------------ | ------------------ | ----------- |
-| `children`  | Required | `ReactNode`                                            | -                  | Form inputs rendered inside the sheet |
-| `label`     | Optional | `ReactNode`                                            | `"Edit selected"` | Trigger button label |
-| `title`     | Optional | `ReactNode`                                            | `label`            | Sheet header title |
-| `disabled`  | Optional | `boolean`                                              | `false`            | Disable trigger |
-| `side`      | Optional | `"right" \| "bottom" \| "left" \| "top"`               | `"right"`          | Sheet side |
-| `onSuccess` | Optional | `(diff, ids) => void`                                  | -                  | Callback after `useUpdateMany` resolves |
+| Prop        | Required | Type                                     | Default           | Description                             |
+| ----------- | -------- | ---------------------------------------- | ----------------- | --------------------------------------- |
+| `children`  | Required | `ReactNode`                              | -                 | Form inputs rendered inside the sheet   |
+| `label`     | Optional | `ReactNode`                              | `"Edit selected"` | Trigger button label                    |
+| `title`     | Optional | `ReactNode`                              | `label`           | Sheet header title                      |
+| `disabled`  | Optional | `boolean`                                | `false`           | Disable trigger                         |
+| `side`      | Optional | `"right" \| "bottom" \| "left" \| "top"` | `"right"`         | Sheet side                              |
+| `onSuccess` | Optional | `(diff, ids) => void`                    | -                 | Callback after `useUpdateMany` resolves |
 
 ## Touched-field semantics
 

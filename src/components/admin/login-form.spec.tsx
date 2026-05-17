@@ -6,9 +6,7 @@ import { Basic } from "@/stories/admin/login-form.stories";
 describe("<LoginForm />", () => {
   it("renders the email and password fields with a sign-in button", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByLabelText(/email/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/email/i)).toBeInTheDocument();
     await expect
       .element(screen.getByLabelText(/password/i))
       .toBeInTheDocument();

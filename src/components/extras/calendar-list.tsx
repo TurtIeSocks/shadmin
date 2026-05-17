@@ -74,8 +74,15 @@ export interface CalendarListProps<R extends RaRecord = RaRecord> {
   views?: CalendarView[];
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   onSelectEvent?: (record: R) => void;
-  onSelectSlot?: (slot: { startISO: string; endISO: string; allDay: boolean }) => void;
-  onDrop?: (record: R, range: { start: string; end?: string }) => Promise<void> | void;
+  onSelectSlot?: (slot: {
+    startISO: string;
+    endISO: string;
+    allDay: boolean;
+  }) => void;
+  onDrop?: (
+    record: R,
+    range: { start: string; end?: string },
+  ) => Promise<void> | void;
   eventRenderer?: (props: EventRendererProps<R>) => ReactNode;
   headerRenderer?: (props: HeaderRendererProps) => ReactNode;
 }
@@ -248,7 +255,10 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
   useEffect(() => {
     if (!setFilters) return;
     const current = filterValues as Record<string, unknown>;
-    if (current[startKey] === rangeStartISO && current[endKey] === rangeEndISO) {
+    if (
+      current[startKey] === rangeStartISO &&
+      current[endKey] === rangeEndISO
+    ) {
       return;
     }
     setFilters(
@@ -286,11 +296,22 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
         return { record, start, end, title, color };
       })
       .filter((e): e is CalendarEventInfo<R> => e !== null);
-  }, [data, startSource, endSource, titleSource, colorSource, colorMap, getRepresentation]);
+  }, [
+    data,
+    startSource,
+    endSource,
+    titleSource,
+    colorSource,
+    colorMap,
+    getRepresentation,
+  ]);
 
   const [activeEventId, setActiveEventId] = useState<string | null>(null);
   const activeEvent = useMemo(
-    () => (activeEventId ? events.find((e) => String(e.record.id) === activeEventId) ?? null : null),
+    () =>
+      activeEventId
+        ? (events.find((e) => String(e.record.id) === activeEventId) ?? null)
+        : null,
     [activeEventId, events],
   );
 
@@ -303,7 +324,9 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
       const eventId = ev.active.id;
       const targetDay = ev.over?.id;
       if (!targetDay || typeof targetDay !== "string") return;
-      const original = events.find((e) => String(e.record.id) === String(eventId));
+      const original = events.find(
+        (e) => String(e.record.id) === String(eventId),
+      );
       if (!original) return;
       const [y, m, d] = (targetDay as string).split("-").map(Number);
       const newStart = new Date(original.start);
@@ -326,14 +349,19 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
     anchor,
     events,
     weekStartsOn,
-    renderEvent: RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode,
+    renderEvent: RenderEvent as (
+      props: EventRendererProps<RaRecord>,
+    ) => ReactNode,
     emptyLabel: translate("ra.calendar.no_events", { _: "No events" }),
     onSelectEvent: handleSelectEvent as (record: RaRecord) => void,
     onSelectSlot,
   };
 
   return (
-    <div className="flex h-full flex-col rounded-md border" data-slot="calendar-list">
+    <div
+      className="flex h-full flex-col rounded-md border"
+      data-slot="calendar-list"
+    >
       {headerRenderer ? (
         headerRenderer({
           range,
@@ -380,7 +408,9 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
           range={range}
           events={events}
           weekStartsOn={weekStartsOn}
-          renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+          renderEvent={
+            RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode
+          }
           onSelectEvent={handleSelectEvent as (record: RaRecord) => void}
           onSelectSlot={onSelectSlot}
         />
@@ -389,7 +419,9 @@ export const CalendarList = <R extends RaRecord = RaRecord>({
           events={events}
           range={range}
           emptyLabel={translate("ra.calendar.no_events", { _: "No events" })}
-          renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
+          renderEvent={
+            RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode
+          }
           onSelectEvent={handleSelectEvent as (record: RaRecord) => void}
         />
       )}
@@ -406,7 +438,11 @@ interface CalendarMonthViewProps<R extends RaRecord = RaRecord> {
   emptyLabel: string;
   draggable?: boolean;
   onSelectEvent?: (record: R) => void;
-  onSelectSlot?: (slot: { startISO: string; endISO: string; allDay: boolean }) => void;
+  onSelectSlot?: (slot: {
+    startISO: string;
+    endISO: string;
+    allDay: boolean;
+  }) => void;
 }
 
 const DroppableDayCell = ({
@@ -515,7 +551,11 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
   const today = new Date();
 
   return (
-    <div className="flex flex-1 flex-col" role="grid" data-calendar-view="month">
+    <div
+      className="flex flex-1 flex-col"
+      role="grid"
+      data-calendar-view="month"
+    >
       <div className="grid grid-cols-7 border-b text-xs text-muted-foreground">
         {weekdayLabels.map((label) => (
           <div key={label} className="p-2 text-center">
@@ -539,8 +579,14 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
                     key={String(e.record.id)}
                     event={e}
                     draggable={draggable}
-                    renderEvent={RenderEvent as (props: EventRendererProps<RaRecord>) => ReactNode}
-                    onSelectEvent={onSelectEvent as ((record: RaRecord) => void) | undefined}
+                    renderEvent={
+                      RenderEvent as (
+                        props: EventRendererProps<RaRecord>,
+                      ) => ReactNode
+                    }
+                    onSelectEvent={
+                      onSelectEvent as ((record: RaRecord) => void) | undefined
+                    }
                   />
                 ))}
               </div>
@@ -669,7 +715,11 @@ interface CalendarWeekViewProps<R extends RaRecord = RaRecord> {
   weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   renderEvent: (props: EventRendererProps<R>) => ReactNode;
   onSelectEvent?: (record: R) => void;
-  onSelectSlot?: (slot: { startISO: string; endISO: string; allDay: boolean }) => void;
+  onSelectSlot?: (slot: {
+    startISO: string;
+    endISO: string;
+    allDay: boolean;
+  }) => void;
 }
 
 const HOURS = Array.from({ length: 24 }, (_, i) => i);
@@ -694,7 +744,10 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
   const today = new Date();
 
   return (
-    <div className="flex flex-1 flex-col overflow-auto" data-calendar-view="week">
+    <div
+      className="flex flex-1 flex-col overflow-auto"
+      data-calendar-view="week"
+    >
       <div className="grid grid-cols-[3rem_repeat(7,minmax(0,1fr))] border-b text-xs text-muted-foreground">
         <div />
         {days.map((d) => {
@@ -702,7 +755,10 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
           return (
             <div
               key={d.toISOString()}
-              className={cn("p-2 text-center", isToday && "font-medium text-foreground")}
+              className={cn(
+                "p-2 text-center",
+                isToday && "font-medium text-foreground",
+              )}
               data-day={format(d, "yyyy-MM-dd")}
             >
               <div>{format(d, "EEE")}</div>

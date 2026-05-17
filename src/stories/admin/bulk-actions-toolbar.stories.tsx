@@ -43,9 +43,14 @@ const Wrapper = ({
     <ThemeProvider>
       <CoreAdminContext
         dataProvider={dataProvider}
-        i18nProvider={polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-          allowMissing: true,
-        })}
+        i18nProvider={polyglotI18nProvider(
+          () => defaultMessages,
+          "en",
+          undefined,
+          {
+            allowMissing: true,
+          },
+        )}
         store={memoryStore()}
       >
         <ResourceDefinitionContextProvider

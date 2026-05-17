@@ -18,16 +18,12 @@ describe("<BooleanInput />", () => {
 
   it("respects the disabled prop", async () => {
     const screen = render(<Disabled />);
-    await expect
-      .element(screen.getByLabelText(/is published/i))
-      .toBeDisabled();
+    await expect.element(screen.getByLabelText(/is published/i)).toBeDisabled();
   });
 
   it("disables the switch in readOnly mode", async () => {
     const screen = render(<ReadOnly />);
-    await expect
-      .element(screen.getByLabelText(/is published/i))
-      .toBeDisabled();
+    await expect.element(screen.getByLabelText(/is published/i)).toBeDisabled();
   });
 
   it("renders the explicit label when provided", async () => {

@@ -20,13 +20,13 @@ import { ApiKeyField } from '@/components/admin';
 
 ## Props
 
-| Prop             | Required | Type                    | Default   | Description |
-| ---------------- | -------- | ----------------------- | --------- | ----------- |
-| `source`         | Required | `string`                | -         | Record field with the key |
-| `scopesSource`   | Optional | `string`                | -         | Sibling field with scope strings |
-| `lastUsedSource` | Optional | `string`                | -         | Sibling field with ISO timestamp |
-| `maskedFormat`   | Optional | `"last4" \| "full"`     | `"last4"` | Masking strategy |
-| `className`      | Optional | `string`                | -         | CSS class |
+| Prop             | Required | Type                | Default   | Description                      |
+| ---------------- | -------- | ------------------- | --------- | -------------------------------- |
+| `source`         | Required | `string`            | -         | Record field with the key        |
+| `scopesSource`   | Optional | `string`            | -         | Sibling field with scope strings |
+| `lastUsedSource` | Optional | `string`            | -         | Sibling field with ISO timestamp |
+| `maskedFormat`   | Optional | `"last4" \| "full"` | `"last4"` | Masking strategy                 |
+| `className`      | Optional | `string`            | -         | CSS class                        |
 
 ## Reveal
 

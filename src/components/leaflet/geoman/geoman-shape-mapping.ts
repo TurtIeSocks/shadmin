@@ -11,7 +11,8 @@ const TYPE_TO_GEOMAN: Record<ShapeKind, GeomanShape> = {
   GeometryCollection: "Marker",
 };
 
-export const geojsonTypeToGeomanShape = (t: ShapeKind): GeomanShape => TYPE_TO_GEOMAN[t];
+export const geojsonTypeToGeomanShape = (t: ShapeKind): GeomanShape =>
+  TYPE_TO_GEOMAN[t];
 
 export const layerToGeometry = (layer: L.Layer): GeoJSON.Geometry | null => {
   // L.Circle: approximate as a polygon ring (64 vertices around center).
@@ -22,7 +23,9 @@ export const layerToGeometry = (layer: L.Layer): GeoJSON.Geometry | null => {
     const radiusM = layer.getRadius();
     return circleToPolygon(center.lat, center.lng, radiusM, 64);
   }
-  const gj = (layer as L.Layer & { toGeoJSON?: () => GeoJSON.Feature }).toGeoJSON?.();
+  const gj = (
+    layer as L.Layer & { toGeoJSON?: () => GeoJSON.Feature }
+  ).toGeoJSON?.();
   if (!gj) return null;
   if (gj.type === "Feature") return gj.geometry ?? null;
   if (gj.type === "FeatureCollection") {
@@ -72,9 +75,13 @@ export const geometryToLatLngs = (
     case "LineString":
       return geom.coordinates.map((c) => [c[1], c[0]] as L.LatLngTuple);
     case "MultiLineString":
-      return geom.coordinates.map((line) => line.map((c) => [c[1], c[0]] as L.LatLngTuple));
+      return geom.coordinates.map((line) =>
+        line.map((c) => [c[1], c[0]] as L.LatLngTuple),
+      );
     case "Polygon":
-      return geom.coordinates.map((ring) => ring.map((c) => [c[1], c[0]] as L.LatLngTuple));
+      return geom.coordinates.map((ring) =>
+        ring.map((c) => [c[1], c[0]] as L.LatLngTuple),
+      );
     case "MultiPolygon":
       return geom.coordinates.map((poly) =>
         poly.map((ring) => ring.map((c) => [c[1], c[0]] as L.LatLngTuple)),

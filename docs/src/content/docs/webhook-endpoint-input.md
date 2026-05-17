@@ -24,14 +24,14 @@ const EVENT_TYPES = ["order.created", "order.updated", "user.created"];
 
 ## Props
 
-| Prop         | Required | Type                                                | Default | Description |
-| ------------ | -------- | --------------------------------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                                            | -       | Form field |
-| `eventTypes` | Required | `readonly string[]`                                 | -       | Selectable events |
-| `onTestPing` | Optional | `(url, secret) => Promise<void> \| void`            | -       | Test-ping handler |
-| `disabled`   | Optional | `boolean`                                           | `false` | Disable inputs |
-| `label`      | Optional | `string \| false`                                   | Inferred | Custom label |
-| `helperText` | Optional | `ReactNode`                                         | -       | Helper text |
+| Prop         | Required | Type                                     | Default  | Description       |
+| ------------ | -------- | ---------------------------------------- | -------- | ----------------- |
+| `source`     | Required | `string`                                 | -        | Form field        |
+| `eventTypes` | Required | `readonly string[]`                      | -        | Selectable events |
+| `onTestPing` | Optional | `(url, secret) => Promise<void> \| void` | -        | Test-ping handler |
+| `disabled`   | Optional | `boolean`                                | `false`  | Disable inputs    |
+| `label`      | Optional | `string \| false`                        | Inferred | Custom label      |
+| `helperText` | Optional | `ReactNode`                              | -        | Helper text       |
 
 ## Storage shape
 

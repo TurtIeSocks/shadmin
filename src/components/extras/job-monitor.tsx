@@ -8,21 +8,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, RotateCcw, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type JobStatus =
-  | "queued"
-  | "running"
-  | "failed"
-  | "done"
-  | "cancelled";
+export type JobStatus = "queued" | "running" | "failed" | "done" | "cancelled";
 
 export interface JobRecord extends RaRecord {
   type?: string;

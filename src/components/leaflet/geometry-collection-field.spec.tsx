@@ -26,7 +26,10 @@ describe("<GeometryCollectionField />", () => {
     // and the marker pane have content.
     const path = await findAsync(screen.container, "path.leaflet-interactive");
     expect(path).not.toBeNull();
-    const marker = await findAsync(screen.container, ".leaflet-marker-pane > *");
+    const marker = await findAsync(
+      screen.container,
+      ".leaflet-marker-pane > *",
+    );
     expect(marker).not.toBeNull();
   });
 

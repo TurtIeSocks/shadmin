@@ -8,42 +8,42 @@ All 13 features from the 5-phase next-level admin roadmap shipped on a single lo
 
 ## Phase 1 — Essentials
 
-| Component | Tests | Files |
-| --- | --- | --- |
-| `<CommandMenu>` | 12 | [src/components/admin/command-menu.tsx](../../src/components/admin/command-menu.tsx) |
-| `<CsvImport>` | 6 | [src/components/admin/csv-import.tsx](../../src/components/admin/csv-import.tsx) |
-| `<CalendarList>` | 10 | [src/components/admin/calendar-list.tsx](../../src/components/admin/calendar-list.tsx) |
+| Component        | Tests | Files                                                                                  |
+| ---------------- | ----- | -------------------------------------------------------------------------------------- |
+| `<CommandMenu>`  | 12    | [src/components/admin/command-menu.tsx](../../src/components/admin/command-menu.tsx)   |
+| `<CsvImport>`    | 6     | [src/components/admin/csv-import.tsx](../../src/components/admin/csv-import.tsx)       |
+| `<CalendarList>` | 10    | [src/components/admin/calendar-list.tsx](../../src/components/admin/calendar-list.tsx) |
 
 ## Phase 2 — Record Keepers
 
-| Component | Tests | Files |
-| --- | --- | --- |
-| `<RecordTimeline>` | 2 | [src/components/admin/record-timeline.tsx](../../src/components/admin/record-timeline.tsx) |
-| `<DiffViewer>` | 4 | [src/components/admin/diff-viewer.tsx](../../src/components/admin/diff-viewer.tsx) |
-| `<PresenceBar>` | 1 | [src/components/admin/presence-bar.tsx](../../src/components/admin/presence-bar.tsx) |
+| Component          | Tests | Files                                                                                      |
+| ------------------ | ----- | ------------------------------------------------------------------------------------------ |
+| `<RecordTimeline>` | 2     | [src/components/admin/record-timeline.tsx](../../src/components/admin/record-timeline.tsx) |
+| `<DiffViewer>`     | 4     | [src/components/admin/diff-viewer.tsx](../../src/components/admin/diff-viewer.tsx)         |
+| `<PresenceBar>`    | 1     | [src/components/admin/presence-bar.tsx](../../src/components/admin/presence-bar.tsx)       |
 
 ## Phase 3 — Goodies
 
-| Component | Tests | Files |
-| --- | --- | --- |
-| `<KanbanBoard>` | 6 | [src/components/admin/kanban-board.tsx](../../src/components/admin/kanban-board.tsx) |
-| `<TreeList>` | 2 | [src/components/admin/tree-list.tsx](../../src/components/admin/tree-list.tsx) |
-| `<MapField>` + `<MapInput>` | 5 | [src/components/admin/map-field.tsx](../../src/components/admin/map-field.tsx) |
+| Component                   | Tests | Files                                                                                |
+| --------------------------- | ----- | ------------------------------------------------------------------------------------ |
+| `<KanbanBoard>`             | 6     | [src/components/admin/kanban-board.tsx](../../src/components/admin/kanban-board.tsx) |
+| `<TreeList>`                | 2     | [src/components/admin/tree-list.tsx](../../src/components/admin/tree-list.tsx)       |
+| `<MapField>` + `<MapInput>` | 5     | [src/components/admin/map-field.tsx](../../src/components/admin/map-field.tsx)       |
 
 ## Phase 4 — Nice to Haves
 
-| Component | Tests | Files |
-| --- | --- | --- |
-| `<Assistant>` | 1 | [src/components/admin/assistant.tsx](../../src/components/admin/assistant.tsx) |
-| `<PermissionMatrix>` | 4 | [src/components/admin/permission-matrix.tsx](../../src/components/admin/permission-matrix.tsx) |
-| `<OnboardingTour>` | 6 | [src/components/admin/onboarding-tour.tsx](../../src/components/admin/onboarding-tour.tsx) |
-| `<PivotGrid>` | 5 | [src/components/admin/pivot-grid.tsx](../../src/components/admin/pivot-grid.tsx) |
+| Component            | Tests | Files                                                                                          |
+| -------------------- | ----- | ---------------------------------------------------------------------------------------------- |
+| `<Assistant>`        | 1     | [src/components/admin/assistant.tsx](../../src/components/admin/assistant.tsx)                 |
+| `<PermissionMatrix>` | 4     | [src/components/admin/permission-matrix.tsx](../../src/components/admin/permission-matrix.tsx) |
+| `<OnboardingTour>`   | 6     | [src/components/admin/onboarding-tour.tsx](../../src/components/admin/onboarding-tour.tsx)     |
+| `<PivotGrid>`        | 5     | [src/components/admin/pivot-grid.tsx](../../src/components/admin/pivot-grid.tsx)               |
 
 ## Phase 5 — Data Guru
 
-| Component | Tests | Files |
-| --- | --- | --- |
-| `<MetricCard>`, `<TrendChart>`, `<BarChart>`, `<DonutChart>` | 8 | [src/components/admin/dashboard-charts.tsx](../../src/components/admin/dashboard-charts.tsx) |
+| Component                                                    | Tests | Files                                                                                        |
+| ------------------------------------------------------------ | ----- | -------------------------------------------------------------------------------------------- |
+| `<MetricCard>`, `<TrendChart>`, `<BarChart>`, `<DonutChart>` | 8     | [src/components/admin/dashboard-charts.tsx](../../src/components/admin/dashboard-charts.tsx) |
 
 ## Deps added across the session
 
@@ -61,13 +61,13 @@ Plus from the initial shadcn refresh: `zod`, `recharts`, `react-day-picker`, `re
 
 ## Spec/plan docs
 
-| Doc | Coverage |
-| --- | --- |
-| `docs/superpowers/specs/2026-05-14-phase-1-essentials-design.md` | CommandMenu + CsvImport + CalendarList |
+| Doc                                                                  | Coverage                                  |
+| -------------------------------------------------------------------- | ----------------------------------------- |
+| `docs/superpowers/specs/2026-05-14-phase-1-essentials-design.md`     | CommandMenu + CsvImport + CalendarList    |
 | `docs/superpowers/specs/2026-05-15-phase-2-record-keepers-design.md` | RecordTimeline + DiffViewer + PresenceBar |
-| `docs/superpowers/plans/2026-05-14-command-menu.md` | CommandMenu task plan |
-| `docs/superpowers/plans/2026-05-15-csv-import.md` | CsvImport task plan |
-| `docs/superpowers/plans/2026-05-15-calendar-list.md` | CalendarList task plan |
+| `docs/superpowers/plans/2026-05-14-command-menu.md`                  | CommandMenu task plan                     |
+| `docs/superpowers/plans/2026-05-15-csv-import.md`                    | CsvImport task plan                       |
+| `docs/superpowers/plans/2026-05-15-calendar-list.md`                 | CalendarList task plan                    |
 
 Phases 3-5 specs are condensed inline into the dispatch prompts rather than persisted as separate docs, to save tokens during the autonomous build phase.
 

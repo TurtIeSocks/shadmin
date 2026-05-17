@@ -17,8 +17,12 @@ describe("<StatusTransitionButton />", () => {
   it("lists allowed transitions in the dropdown for the current state", async () => {
     const screen = render(<Basic />);
     await screen.getByRole("button", { name: /draft/i }).click();
-    await expect.element(screen.getByRole("menuitem", { name: /review/i })).toBeInTheDocument();
-    await expect.element(screen.getByRole("menuitem", { name: /archived/i })).toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: /review/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: /archived/i }))
+      .toBeInTheDocument();
   });
 
   it("only shows the single allowed transition from 'published'", async () => {
@@ -30,7 +34,9 @@ describe("<StatusTransitionButton />", () => {
 
   it("disables the trigger when there are no allowed transitions", async () => {
     const screen = render(<TerminalState />);
-    const trigger = screen.container.querySelector("[data-status-trigger]") as HTMLButtonElement;
+    const trigger = screen.container.querySelector(
+      "[data-status-trigger]",
+    ) as HTMLButtonElement;
     expect(trigger.disabled).toBe(true);
   });
 
@@ -40,6 +46,8 @@ describe("<StatusTransitionButton />", () => {
     // 'review' allows ['published', 'draft']; guard blocks 'published'
     const items = document.querySelectorAll("[role='menuitem']");
     expect(items.length).toBe(1);
-    await expect.element(screen.getByRole("menuitem", { name: /draft/i })).toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: /draft/i }))
+      .toBeInTheDocument();
   });
 });

@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import { type DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
+import {
+  type DataProvider,
+  memoryStore,
+  Resource,
+  TestMemoryRouter,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
@@ -8,15 +13,18 @@ import { CsvImport, useCsvImport } from "@/components/csv-import";
 import { z } from "zod";
 
 const data = {
-  products: [
-    { id: 1, name: "Notebook", reference: "NB-001", price: 9.99 },
-  ],
+  products: [{ id: 1, name: "Notebook", reference: "NB-001", price: 9.99 }],
 };
 
 const dataProvider = fakeRestDataProvider(data) as DataProvider;
-const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-  allowMissing: true,
-});
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  {
+    allowMissing: true,
+  },
+);
 
 const ProductSchema = z.object({
   reference: z.string().min(1),
@@ -75,8 +83,12 @@ const AutoAdvanceTo = ({ targetStep }: { targetStep: number }) => {
       let stepsClicked = 0;
       const clickNext = () => {
         if (stepsClicked >= targetStep - 1) return;
-        const nextBtns = Array.from(document.querySelectorAll('[role="dialog"] button'));
-        const next = nextBtns.find((b) => /^next$/i.test(b.textContent?.trim() ?? ""));
+        const nextBtns = Array.from(
+          document.querySelectorAll('[role="dialog"] button'),
+        );
+        const next = nextBtns.find((b) =>
+          /^next$/i.test(b.textContent?.trim() ?? ""),
+        );
         if (next) {
           (next as HTMLButtonElement).click();
           stepsClicked += 1;
@@ -106,7 +118,13 @@ export const MapStep = () => (
           <div>
             <CsvImport schema={ProductSchema}>
               <SeedParsed
-                rows={[{ Reference: "NB-001", "Product Name": "Notebook", price: "9.99" }]}
+                rows={[
+                  {
+                    Reference: "NB-001",
+                    "Product Name": "Notebook",
+                    price: "9.99",
+                  },
+                ]}
                 headers={["Reference", "Product Name", "price"]}
               />
               <AutoAdvanceTo targetStep={2} />
@@ -132,8 +150,16 @@ export const PreviewStep = () => (
             <CsvImport schema={ProductSchema}>
               <SeedParsed
                 rows={[
-                  { Reference: "NB-001", "Product Name": "Notebook", price: "9.99" },
-                  { Reference: "", "Product Name": "Broken", price: "not-a-number" },
+                  {
+                    Reference: "NB-001",
+                    "Product Name": "Notebook",
+                    price: "9.99",
+                  },
+                  {
+                    Reference: "",
+                    "Product Name": "Broken",
+                    price: "not-a-number",
+                  },
                 ]}
                 headers={["Reference", "Product Name", "price"]}
               />
@@ -160,7 +186,11 @@ export const CommitStep = () => (
             <CsvImport schema={ProductSchema}>
               <SeedParsed
                 rows={[
-                  { Reference: "NB-001", "Product Name": "Notebook", price: "9.99" },
+                  {
+                    Reference: "NB-001",
+                    "Product Name": "Notebook",
+                    price: "9.99",
+                  },
                 ]}
                 headers={["Reference", "Product Name", "price"]}
               />
@@ -187,7 +217,11 @@ export const CommitWithErrors = () => (
             <CsvImport schema={ProductSchema}>
               <SeedParsed
                 rows={[
-                  { Reference: "NB-001", "Product Name": "Notebook", price: "9.99" },
+                  {
+                    Reference: "NB-001",
+                    "Product Name": "Notebook",
+                    price: "9.99",
+                  },
                   { Reference: "", "Product Name": "Broken", price: "x" },
                 ]}
                 headers={["Reference", "Product Name", "price"]}

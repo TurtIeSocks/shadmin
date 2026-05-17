@@ -23,9 +23,7 @@ describe("<ApiKeyField />", () => {
       "[data-api-key-reveal]",
     ) as HTMLButtonElement;
     reveal.click();
-    await expect
-      .element(screen.getByText("sk_live_***"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("sk_live_***")).toBeInTheDocument();
   });
 
   it("renders scope badges when scopesSource is set", async () => {

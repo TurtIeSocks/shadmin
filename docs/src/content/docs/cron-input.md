@@ -16,15 +16,15 @@ import { CronInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default | Description |
-| ------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                   | -       | Form field name |
-| `label`      | Optional | `string \| false`          | Inferred | Custom label |
-| `helperText` | Optional | `ReactNode`                | -       | Helper text |
-| `disabled`   | Optional | `boolean`                  | `false` | Disable input |
-| `defaultValue` | Optional | `string`                 | -       | Initial cron expression |
-| `validate`   | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`  | Optional | `string`                   | -       | CSS class on wrapper |
+| Prop           | Required | Type                       | Default  | Description             |
+| -------------- | -------- | -------------------------- | -------- | ----------------------- |
+| `source`       | Required | `string`                   | -        | Form field name         |
+| `label`        | Optional | `string \| false`          | Inferred | Custom label            |
+| `helperText`   | Optional | `ReactNode`                | -        | Helper text             |
+| `disabled`     | Optional | `boolean`                  | `false`  | Disable input           |
+| `defaultValue` | Optional | `string`                   | -        | Initial cron expression |
+| `validate`     | Optional | `Validator \| Validator[]` | -        | Validation              |
+| `className`    | Optional | `string`                   | -        | CSS class on wrapper    |
 
 ## Dependency
 

@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  WithHelperText,
-} from "@/stories/admin/loading-input.stories";
+import { Basic, WithHelperText } from "@/stories/admin/loading-input.stories";
 
 describe("<LoadingInput />", () => {
   it("renders a disabled, aria-busy placeholder input with the label", async () => {

@@ -52,7 +52,9 @@ export const FeatureCollectionInput = ({
   label,
   helperText,
 }: FeatureCollectionInputProps) => {
-  const geomanShapes = Array.from(new Set(allowedShapes.map((s) => SHAPE_TO_GEOMAN[s])));
+  const geomanShapes = Array.from(
+    new Set(allowedShapes.map((s) => SHAPE_TO_GEOMAN[s])),
+  );
   return (
     <div className="flex flex-col gap-1" data-slot="feature-collection-input">
       {label ? <label className="text-sm font-medium">{label}</label> : null}
@@ -72,7 +74,9 @@ export const FeatureCollectionInput = ({
           pathOptions={pathOptions}
         />
       </BaseMap>
-      {helperText ? <div className="text-xs text-muted-foreground">{helperText}</div> : null}
+      {helperText ? (
+        <div className="text-xs text-muted-foreground">{helperText}</div>
+      ) : null}
     </div>
   );
 };
@@ -85,7 +89,13 @@ interface InnerProps {
   pathOptions?: L.PathOptions;
 }
 
-const Inner = ({ source, shapes, snappable, snapDistance, pathOptions }: InnerProps) => {
+const Inner = ({
+  source,
+  shapes,
+  snappable,
+  snapDistance,
+  pathOptions,
+}: InnerProps) => {
   // Shape kind doesn't matter for FC mode — `featureCollection: true` overrides
   // multi/collection branches in the hook.
   const { featureGroupRef, geomanControlsProps } = useGeomanRHF({

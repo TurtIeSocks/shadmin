@@ -11,12 +11,8 @@ describe("<SimpleList />", () => {
       .poll(() => screen.getByRole("listitem").all().length, { timeout: 5000 })
       .toBeGreaterThan(0);
     // primaryText returns record.title; secondaryText returns record.author.
-    await expect
-      .element(screen.getByText("Leo Tolstoy"))
-      .toBeInTheDocument();
-    await expect
-      .element(screen.getByText("Jane Austen"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Leo Tolstoy")).toBeInTheDocument();
+    await expect.element(screen.getByText("Jane Austen")).toBeInTheDocument();
   });
 
   it("renders the tertiary text slot when configured", async () => {

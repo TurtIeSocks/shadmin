@@ -20,7 +20,7 @@ import { LatLngInput } from "@/components/leaflet";
       helperText="Click or drag the marker to set a location."
     />
   </SimpleForm>
-</Create>
+</Create>;
 ```
 
 Both `latSource` and `lngSource` must exist as fields in your form (add them as hidden inputs or populate them via `defaultValues` if needed).

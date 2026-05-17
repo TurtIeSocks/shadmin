@@ -1,5 +1,15 @@
-import { DollarSignIcon, ShoppingCartIcon, TrendingUpIcon, UsersIcon } from "lucide-react";
-import { BarChart, DonutChart, MetricCard, TrendChart } from "@/components/admin";
+import {
+  DollarSignIcon,
+  ShoppingCartIcon,
+  TrendingUpIcon,
+  UsersIcon,
+} from "lucide-react";
+import {
+  BarChart,
+  DonutChart,
+  MetricCard,
+  TrendChart,
+} from "@/components/admin";
 
 export default { title: "Extras/DashboardCharts" };
 

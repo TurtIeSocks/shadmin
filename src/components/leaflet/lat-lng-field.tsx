@@ -3,11 +3,7 @@
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useRecordContext } from "ra-core";
 
-import {
-  DEFAULT_ATTRIBUTION,
-  DEFAULT_TILE_URL,
-  MarkerIcon,
-} from "./shared";
+import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "./shared";
 
 export interface LatLngFieldProps {
   latSource: string;

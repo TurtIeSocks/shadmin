@@ -30,11 +30,7 @@ export const CronInput = (props: CronInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -65,10 +61,7 @@ export const CronInput = (props: CronInputProps) => {
             placeholder="* * * * *"
             className="font-mono"
           />
-          <span
-            data-cron-preview
-            className="text-xs text-muted-foreground"
-          >
+          <span data-cron-preview className="text-xs text-muted-foreground">
             {preview ?? (exprRaw && !preview ? "Invalid cron" : "")}
           </span>
         </div>
@@ -80,7 +73,8 @@ export const CronInput = (props: CronInputProps) => {
 };
 
 export interface CronInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   disabled?: boolean;
 }

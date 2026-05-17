@@ -19,8 +19,6 @@ describe("<Assistant />", () => {
     await userEvent.type(input, "Hello");
     await userEvent.keyboard("{Enter}");
     // Wait for echoed reply
-    await expect
-      .element(screen.getByText(/Echo: Hello/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/Echo: Hello/i)).toBeInTheDocument();
   });
 });

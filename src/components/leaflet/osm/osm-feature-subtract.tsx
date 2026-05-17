@@ -1,6 +1,9 @@
 "use client";
 import { Eraser } from "lucide-react";
-import { OsmFeatureOperator, type OsmFeatureOperatorProps } from "./osm-feature-operator";
+import {
+  OsmFeatureOperator,
+  type OsmFeatureOperatorProps,
+} from "./osm-feature-operator";
 
 export type OsmFeatureSubtractProps = Omit<
   OsmFeatureOperatorProps,

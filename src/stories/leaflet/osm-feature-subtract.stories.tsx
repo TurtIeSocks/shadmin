@@ -28,7 +28,11 @@ export const Basic = () => (
       defaultCenter={[48.87, 2.35]}
       height={500}
     />
-    <OsmFeatureSubtract source="area" presets={["water"]} label="Subtract water" />
+    <OsmFeatureSubtract
+      source="area"
+      presets={["water"]}
+      label="Subtract water"
+    />
   </StoryAdmin>
 );
 

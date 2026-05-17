@@ -9,9 +9,7 @@ describe("<LoginPage />", () => {
     await expect
       .element(screen.getByRole("heading", { name: "Sign in" }))
       .toBeInTheDocument();
-    await expect
-      .element(screen.getByLabelText(/email/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/email/i)).toBeInTheDocument();
     await expect
       .element(screen.getByLabelText(/password/i))
       .toBeInTheDocument();

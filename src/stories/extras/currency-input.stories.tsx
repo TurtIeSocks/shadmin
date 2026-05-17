@@ -10,7 +10,10 @@ export const Basic = () => (
 );
 
 export const AllowCurrencyChange = () => (
-  <StoryAdmin mode="form" record={{ price: { amount: 1234.5, currency: "EUR" } }}>
+  <StoryAdmin
+    mode="form"
+    record={{ price: { amount: 1234.5, currency: "EUR" } }}
+  >
     <CurrencyInput source="price" currencies={["USD", "EUR", "JPY", "GBP"]} />
   </StoryAdmin>
 );

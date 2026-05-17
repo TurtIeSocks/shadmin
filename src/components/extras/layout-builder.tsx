@@ -16,12 +16,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export interface LayoutBuilderProps {
@@ -96,10 +91,7 @@ export const LayoutBuilder = ({
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
         >
-          <SortableContext
-            items={items}
-            strategy={verticalListSortingStrategy}
-          >
+          <SortableContext items={items} strategy={verticalListSortingStrategy}>
             <ul className="flex flex-col gap-1">
               {items.map((field) => (
                 <Row key={field} id={field} />

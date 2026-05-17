@@ -1,9 +1,14 @@
 "use client";
 
-import { ShapeInputShell, type ShapeInputShellProps } from "./shape-input-shell";
+import {
+  ShapeInputShell,
+  type ShapeInputShellProps,
+} from "./shape-input-shell";
 
-export interface MultiPolygonInputProps
-  extends Omit<ShapeInputShellProps, "shape" | "multi" | "geomanShapes"> {
+export interface MultiPolygonInputProps extends Omit<
+  ShapeInputShellProps,
+  "shape" | "multi" | "geomanShapes"
+> {
   allowSelfIntersection?: boolean;
   minVertices?: number;
   maxVertices?: number;

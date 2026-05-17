@@ -14,11 +14,11 @@ Make the MDX editor (`@mdxeditor/editor@^3.46`) readable in dark mode. Current s
 
 ## Diagnosis
 
-| File:Line | Issue |
-|---|---|
-| `src/components/mdx-editor/mdx-input.tsx:141` | `<MDXEditor>` receives no className that activates dark theme |
-| `src/components/mdx-editor/mdx-field.tsx:78` | Same |
-| `src/components/admin/theme-provider.tsx:92` | App theme adds `.dark` to `<html>` — not inherited by MDXEditor's internal CSS |
+| File:Line                                     | Issue                                                                          |
+| --------------------------------------------- | ------------------------------------------------------------------------------ |
+| `src/components/mdx-editor/mdx-input.tsx:141` | `<MDXEditor>` receives no className that activates dark theme                  |
+| `src/components/mdx-editor/mdx-field.tsx:78`  | Same                                                                           |
+| `src/components/admin/theme-provider.tsx:92`  | App theme adds `.dark` to `<html>` — not inherited by MDXEditor's internal CSS |
 
 `@mdxeditor/editor` activates dark theme via `.mdxeditor-dark` class on the editor root container.
 
@@ -51,6 +51,7 @@ const isDark =
 ### 3. Verify library CSS coverage
 
 After install, verify `node_modules/@mdxeditor/editor/dist/style.css` contains `.mdxeditor-dark` selectors. If absent or incomplete:
+
 - Write `src/components/mdx-editor/mdx-editor-dark.css` mapping the editor's CSS variables (`--mdxeditor-bg-color`, `--mdxeditor-text-color`, etc.) to project tokens (`var(--background)`, `var(--foreground)`).
 - Import that CSS at the top of `mdx-input.tsx` after the library CSS.
 

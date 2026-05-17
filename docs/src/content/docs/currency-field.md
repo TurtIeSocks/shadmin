@@ -16,15 +16,15 @@ import { CurrencyField } from '@/components/admin';
 
 ## Props
 
-| Prop                 | Required | Type                      | Default | Description |
-| -------------------- | -------- | ------------------------- | ------- | ----------- |
-| `source`             | Required | `string`                  | -       | Record field to read |
-| `currency`           | Optional*| `string`                  | -       | ISO-4217 code (required for plain-number storage) |
-| `displayLocale`      | Optional | `string`                  | App locale | Override formatting locale |
-| `storeAsMinorUnits`  | Optional | `boolean`                 | `false` | Divide by 100 before formatting |
-| `options`            | Optional | `Intl.NumberFormatOptions`| -       | Extra `Intl.NumberFormat` options |
-| `empty`              | Optional | `ReactNode`               | -       | Fallback when value is `null` |
-| `className`          | Optional | `string`                  | -       | CSS class on `<span>` |
+| Prop                | Required   | Type                       | Default    | Description                                       |
+| ------------------- | ---------- | -------------------------- | ---------- | ------------------------------------------------- |
+| `source`            | Required   | `string`                   | -          | Record field to read                              |
+| `currency`          | Optional\* | `string`                   | -          | ISO-4217 code (required for plain-number storage) |
+| `displayLocale`     | Optional   | `string`                   | App locale | Override formatting locale                        |
+| `storeAsMinorUnits` | Optional   | `boolean`                  | `false`    | Divide by 100 before formatting                   |
+| `options`           | Optional   | `Intl.NumberFormatOptions` | -          | Extra `Intl.NumberFormat` options                 |
+| `empty`             | Optional   | `ReactNode`                | -          | Fallback when value is `null`                     |
+| `className`         | Optional   | `string`                   | -          | CSS class on `<span>`                             |
 
 \* `currency` is required when the source holds a plain number; not required when the source holds `{ amount, currency }`.
 

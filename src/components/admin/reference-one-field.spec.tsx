@@ -13,9 +13,8 @@ describe("<ReferenceOneField />", () => {
     await expect
       .poll(
         () =>
-          screen
-            .getByText(/Irish novelist, short story writer/i)
-            .elements().length,
+          screen.getByText(/Irish novelist, short story writer/i).elements()
+            .length,
         { timeout: 5000 },
       )
       .toBeGreaterThan(0);
@@ -26,9 +25,8 @@ describe("<ReferenceOneField />", () => {
     await expect
       .poll(
         () =>
-          screen
-            .getByText(/Irish novelist, short story writer/i)
-            .elements().length,
+          screen.getByText(/Irish novelist, short story writer/i).elements()
+            .length,
         { timeout: 5000 },
       )
       .toBeGreaterThan(0);

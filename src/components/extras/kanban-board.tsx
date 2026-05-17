@@ -93,7 +93,9 @@ const DefaultCard = <R extends RaRecord = RaRecord>({
     <div className="flex flex-col gap-1">
       <div className="text-sm font-medium leading-none">{title}</div>
       {description && (
-        <div className="text-xs text-muted-foreground truncate">{description}</div>
+        <div className="text-xs text-muted-foreground truncate">
+          {description}
+        </div>
       )}
     </div>
   );
@@ -169,10 +171,7 @@ const DroppableColumn = ({
 
   return (
     <div
-      className={cn(
-        "flex flex-col gap-2 min-w-64 flex-1",
-        className,
-      )}
+      className={cn("flex flex-col gap-2 min-w-64 flex-1", className)}
       data-kanban-column={columnId}
     >
       {/* Column header */}
@@ -261,7 +260,8 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
 
   const [activeId, setActiveId] = useState<string | null>(null);
   const activeRecord = useMemo(
-    () => (activeId ? data.find((r) => String(r.id) === activeId) ?? null : null),
+    () =>
+      activeId ? (data.find((r) => String(r.id) === activeId) ?? null) : null,
     [activeId, data],
   );
 
@@ -286,10 +286,7 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
   );
 
   // Group records into columns; ignore records with unrecognized groupBy values
-  const columnIds = useMemo(
-    () => new Set(columns.map((c) => c.id)),
-    [columns],
-  );
+  const columnIds = useMemo(() => new Set(columns.map((c) => c.id)), [columns]);
 
   const buckets = useMemo(() => {
     const map = new Map<string, R[]>(columns.map((c) => [c.id, []]));
@@ -339,10 +336,7 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
       }}
       onDragCancel={() => setActiveId(null)}
     >
-      <div
-        className="flex gap-4 overflow-x-auto p-4"
-        data-slot="kanban-board"
-      >
+      <div className="flex gap-4 overflow-x-auto p-4" data-slot="kanban-board">
         {columns.map((col) => {
           const records = buckets.get(col.id) ?? [];
           return (

@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { type DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
+import {
+  type DataProvider,
+  memoryStore,
+  Resource,
+  TestMemoryRouter,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
@@ -8,9 +13,14 @@ import { Admin, PivotGrid } from "@/components/admin";
 import { List } from "@/components/admin/list";
 import { Basic, Count } from "@/stories/extras/pivot-grid.stories";
 
-const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-  allowMissing: true,
-});
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  {
+    allowMissing: true,
+  },
+);
 
 describe("<PivotGrid />", () => {
   it("renders cells with correct aggregated values for sum aggregator", async () => {
@@ -27,7 +37,9 @@ describe("<PivotGrid />", () => {
     expect(southShipped?.textContent?.trim()).toBe("450");
 
     // East + delivered = 400
-    const eastDelivered = document.querySelector('[data-cell="East::delivered"]');
+    const eastDelivered = document.querySelector(
+      '[data-cell="East::delivered"]',
+    );
     expect(eastDelivered?.textContent?.trim()).toBe("400");
   });
 
@@ -55,7 +67,11 @@ describe("<PivotGrid />", () => {
     const dp = fakeRestDataProvider({ items: [] }) as DataProvider;
     const screen = render(
       <TestMemoryRouter initialEntries={["/items"]}>
-        <Admin dataProvider={dp} i18nProvider={i18nProvider} store={memoryStore()}>
+        <Admin
+          dataProvider={dp}
+          i18nProvider={i18nProvider}
+          store={memoryStore()}
+        >
           <Resource
             name="items"
             list={() => (
@@ -75,9 +91,7 @@ describe("<PivotGrid />", () => {
       </TestMemoryRouter>,
     );
 
-    await expect
-      .element(screen.getByText("Nothing here"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Nothing here")).toBeInTheDocument();
 
     const emptySlot = document.querySelector('[data-slot="pivot-grid-empty"]');
     expect(emptySlot).toBeTruthy();
@@ -106,7 +120,11 @@ describe("<PivotGrid />", () => {
 
     const screen = render(
       <TestMemoryRouter initialEntries={["/orders"]}>
-        <Admin dataProvider={dp} i18nProvider={i18nProvider} store={memoryStore()}>
+        <Admin
+          dataProvider={dp}
+          i18nProvider={i18nProvider}
+          store={memoryStore()}
+        >
           <Resource
             name="orders"
             list={() => (

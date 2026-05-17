@@ -10,22 +10,18 @@ describe("<FilterLiveSearch />", () => {
   it("renders a search input with the default placeholder", async () => {
     const screen = render(<Basic />);
     await expect
-      .poll(
-        () =>
-          screen.getByPlaceholder("Search").elements().length,
-        { timeout: 5000 },
-      )
+      .poll(() => screen.getByPlaceholder("Search").elements().length, {
+        timeout: 5000,
+      })
       .toBeGreaterThan(0);
   });
 
   it("renders the custom placeholder when provided", async () => {
     const screen = render(<CustomSource />);
     await expect
-      .poll(
-        () =>
-          screen.getByPlaceholder("Search title").elements().length,
-        { timeout: 5000 },
-      )
+      .poll(() => screen.getByPlaceholder("Search title").elements().length, {
+        timeout: 5000,
+      })
       .toBeGreaterThan(0);
   });
 

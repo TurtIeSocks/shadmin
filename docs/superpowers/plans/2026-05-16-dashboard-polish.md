@@ -9,6 +9,7 @@
 **Tech Stack:** React 19, ra-core, recharts, @dnd-kit/core, @mdxeditor/editor, Vitest + Playwright browser provider.
 
 **Related specs:**
+
 - [order-chart-trendchart](../specs/2026-05-16-order-chart-trendchart-design.md)
 - [kanban-dnd-fix](../specs/2026-05-16-kanban-dnd-fix-design.md)
 - [mdx-dark-mode](../specs/2026-05-16-mdx-dark-mode-design.md)
@@ -18,6 +19,7 @@
 ## Task 1: Extend TrendChart API + swap OrderChart impl
 
 **Files:**
+
 - Modify: `src/components/extras/dashboard-charts.tsx`
 - Modify: `src/components/extras/dashboard-charts.spec.tsx`
 - Modify: `src/demo/dashboard/OrderChart.tsx`
@@ -33,11 +35,14 @@ import { render } from "vitest-browser-react";
 import { TrendChart } from "./dashboard-charts";
 
 describe("TrendChart extended API", () => {
-  const data = [{ x: 1, y: 10 }, { x: 2, y: 20 }];
+  const data = [
+    { x: 1, y: 10 },
+    { x: 2, y: 20 },
+  ];
 
   it("renders gradient defs when area=true", async () => {
     const { container } = render(
-      <TrendChart data={data} xField="x" yField="y" area bare />
+      <TrendChart data={data} xField="x" yField="y" area bare />,
     );
     const gradient = container.querySelector("linearGradient");
     expect(gradient).not.toBeNull();
@@ -45,7 +50,13 @@ describe("TrendChart extended API", () => {
 
   it("applies xTickFormatter", async () => {
     const { container } = render(
-      <TrendChart data={data} xField="x" yField="y" xTickFormatter={(v) => `T${v}`} bare />
+      <TrendChart
+        data={data}
+        xField="x"
+        yField="y"
+        xTickFormatter={(v) => `T${v}`}
+        bare
+      />,
     );
     await new Promise((r) => setTimeout(r, 100));
     const ticks = container.querySelectorAll(".recharts-xAxis text");
@@ -54,7 +65,9 @@ describe("TrendChart extended API", () => {
   });
 
   it("skips Card wrapper when bare=true", async () => {
-    const { container } = render(<TrendChart data={data} xField="x" yField="y" bare />);
+    const { container } = render(
+      <TrendChart data={data} xField="x" yField="y" bare />,
+    );
     expect(container.querySelector('[data-slot="trend-chart"]')).toBeNull();
   });
 });
@@ -65,6 +78,7 @@ describe("TrendChart extended API", () => {
 ```bash
 pnpm vitest run --browser.headless src/components/extras/dashboard-charts.spec.tsx
 ```
+
 Expected: 3 new tests FAIL (props not recognized / Card wrapper still present).
 
 - [ ] **Step 3: Extend `TrendChart` in `dashboard-charts.tsx`**
@@ -85,7 +99,15 @@ interface ChartShellProps {
   children: ReactNode;
 }
 
-const ChartShell = ({ title, loading, height, className, slot, bare, children }: ChartShellProps) => {
+const ChartShell = ({
+  title,
+  loading,
+  height,
+  className,
+  slot,
+  bare,
+  children,
+}: ChartShellProps) => {
   const inner = loading ? (
     <Skeleton className="h-full w-full" />
   ) : (
@@ -143,7 +165,10 @@ export const TrendChart = ({
   const curveType = smooth ? "monotone" : "linear";
 
   const inner = area ? (
-    <RechartsArea data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+    <RechartsArea
+      data={data}
+      margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+    >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="5%" stopColor={color} stopOpacity={0.8} />
@@ -151,7 +176,11 @@ export const TrendChart = ({
         </linearGradient>
       </defs>
       <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-      <XAxis dataKey={xField} className="text-xs" tickFormatter={xTickFormatter} />
+      <XAxis
+        dataKey={xField}
+        className="text-xs"
+        tickFormatter={xTickFormatter}
+      />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
       <Tooltip formatter={tooltipFormatter} />
       <Area
@@ -165,9 +194,16 @@ export const TrendChart = ({
       />
     </RechartsArea>
   ) : (
-    <RechartsLine data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+    <RechartsLine
+      data={data}
+      margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+    >
       <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-      <XAxis dataKey={xField} className="text-xs" tickFormatter={xTickFormatter} />
+      <XAxis
+        dataKey={xField}
+        className="text-xs"
+        tickFormatter={xTickFormatter}
+      />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
       <Tooltip formatter={tooltipFormatter} />
       <Line
@@ -182,7 +218,14 @@ export const TrendChart = ({
   );
 
   return (
-    <ChartShell title={title} loading={loading} height={height} className={className} slot="trend-chart" bare={bare}>
+    <ChartShell
+      title={title}
+      loading={loading}
+      height={height}
+      className={className}
+      slot="trend-chart"
+      bare={bare}
+    >
       {inner}
     </ChartShell>
   );
@@ -194,6 +237,7 @@ export const TrendChart = ({
 ```bash
 pnpm vitest run --browser.headless src/components/extras/dashboard-charts.spec.tsx
 ```
+
 Expected: all tests PASS.
 
 - [ ] **Step 5: Refactor OrderChart to use TrendChart**
@@ -251,7 +295,10 @@ const OrderChart = ({ orders }: { orders?: Order[] }) => {
           bare
           xTickFormatter={(v) => new Date(v as number).toLocaleDateString()}
           yTickFormatter={(v) => `$${v}`}
-          tooltipFormatter={(v) => [currencyFormatter.format(v as number), "Revenue"]}
+          tooltipFormatter={(v) => [
+            currencyFormatter.format(v as number),
+            "Revenue",
+          ]}
         />
       </CardContent>
     </Card>
@@ -290,6 +337,7 @@ EOF
 ## Task 2: Kanban DnD spring-back fix
 
 **Files:**
+
 - Modify: `src/components/extras/kanban-board.tsx` (line ~382 `<DragOverlay>`)
 - Modify: `src/components/extras/kanban-board.spec.tsx`
 
@@ -363,6 +411,7 @@ EOF
 ## Task 3: MDX editor dark mode
 
 **Files:**
+
 - Modify: `src/components/mdx-editor/mdx-input.tsx`
 - Modify: `src/components/mdx-editor/mdx-field.tsx`
 - Modify: `src/components/mdx-editor/mdx-input.spec.tsx`
@@ -398,7 +447,7 @@ it("applies mdxeditor-dark class when theme=dark", async () => {
   const { container } = render(
     <ThemeProvider defaultTheme="dark">
       {/* existing wrapper + MdxInput render */}
-    </ThemeProvider>
+    </ThemeProvider>,
   );
   await new Promise((r) => setTimeout(r, 100));
   const editor = container.querySelector(".mdxeditor");

@@ -25,9 +25,11 @@ describe("<PrevNextButtons />", () => {
     await expect
       .poll(
         () =>
-          (screen.getByRole("button", { name: /previous/i }).element() as
-            | HTMLButtonElement
-            | null)?.disabled,
+          (
+            screen
+              .getByRole("button", { name: /previous/i })
+              .element() as HTMLButtonElement | null
+          )?.disabled,
         { timeout: 2000 },
       )
       .toBe(true);
@@ -38,9 +40,11 @@ describe("<PrevNextButtons />", () => {
     await expect
       .poll(
         () =>
-          (screen.getByRole("button", { name: /next/i }).element() as
-            | HTMLButtonElement
-            | null)?.disabled,
+          (
+            screen
+              .getByRole("button", { name: /next/i })
+              .element() as HTMLButtonElement | null
+          )?.disabled,
         { timeout: 2000 },
       )
       .toBe(true);

@@ -22,13 +22,13 @@ import { UsageMeterField } from '@/components/admin';
 
 ## Props
 
-| Prop          | Required | Type                                     | Default                           | Description |
-| ------------- | -------- | ---------------------------------------- | --------------------------------- | ----------- |
-| `source`      | Required | `string`                                 | -                                 | Record field for the used value |
-| `limitSource` | Optional | `string`                                 | -                                 | Sibling field for the limit value |
-| `unit`        | Optional | `string`                                 | -                                 | Display unit (e.g. "GB") |
-| `thresholds`  | Optional | `{ warning: number; critical: number }`  | `{ warning: 0.8, critical: 1.0 }` | Ratio cutoffs for color state |
-| `className`   | Optional | `string`                                 | -                                 | CSS class on the wrapping `<span>` |
+| Prop          | Required | Type                                    | Default                           | Description                        |
+| ------------- | -------- | --------------------------------------- | --------------------------------- | ---------------------------------- |
+| `source`      | Required | `string`                                | -                                 | Record field for the used value    |
+| `limitSource` | Optional | `string`                                | -                                 | Sibling field for the limit value  |
+| `unit`        | Optional | `string`                                | -                                 | Display unit (e.g. "GB")           |
+| `thresholds`  | Optional | `{ warning: number; critical: number }` | `{ warning: 0.8, critical: 1.0 }` | Ratio cutoffs for color state      |
+| `className`   | Optional | `string`                                | -                                 | CSS class on the wrapping `<span>` |
 
 ## States
 

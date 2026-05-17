@@ -1,6 +1,9 @@
 "use client";
 
-import { ShapeFieldShell, type ShapeFieldShellProps } from "./shapes/shape-field-shell";
+import {
+  ShapeFieldShell,
+  type ShapeFieldShellProps,
+} from "./shapes/shape-field-shell";
 
 /**
  * Read-only Leaflet map that renders a `GeoJSON.FeatureCollection` stored at

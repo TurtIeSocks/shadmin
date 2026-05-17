@@ -18,22 +18,22 @@ import { DollarSignIcon } from "lucide-react";
   delta={0.12}
   format={(v) => `$${v.toLocaleString()}`}
   icon={DollarSignIcon}
-/>
+/>;
 ```
 
 The delta sign determines color: positive values use emerald, negative values use rose, zero uses muted.
 
 ### Props
 
-| Prop        | Required | Type                               | Default | Description                                              |
-| ----------- | -------- | ---------------------------------- | ------- | -------------------------------------------------------- |
-| `label`     | Required | `string`                           | -       | Small uppercase label above the value.                   |
-| `value`     | Required | `number \| string`                 | -       | Main displayed value.                                    |
-| `delta`     | Optional | `number`                           | -       | Fractional change (e.g., `0.12` = +12%). Adds arrow + colored percentage. |
-| `format`    | Optional | `(value: number) => ReactNode`     | -       | Custom formatter applied when `value` is a number.       |
-| `icon`      | Optional | `ComponentType<{ className? }>`    | -       | Lucide or any icon component rendered in the top-right.  |
-| `loading`   | Optional | `boolean`                          | `false` | Render skeleton instead of content.                      |
-| `className` | Optional | `string`                           | -       | Forwarded to the outer `<Card>`.                         |
+| Prop        | Required | Type                            | Default | Description                                                               |
+| ----------- | -------- | ------------------------------- | ------- | ------------------------------------------------------------------------- |
+| `label`     | Required | `string`                        | -       | Small uppercase label above the value.                                    |
+| `value`     | Required | `number \| string`              | -       | Main displayed value.                                                     |
+| `delta`     | Optional | `number`                        | -       | Fractional change (e.g., `0.12` = +12%). Adds arrow + colored percentage. |
+| `format`    | Optional | `(value: number) => ReactNode`  | -       | Custom formatter applied when `value` is a number.                        |
+| `icon`      | Optional | `ComponentType<{ className? }>` | -       | Lucide or any icon component rendered in the top-right.                   |
+| `loading`   | Optional | `boolean`                       | `false` | Render skeleton instead of content.                                       |
+| `className` | Optional | `string`                        | -       | Forwarded to the outer `<Card>`.                                          |
 
 ## `<TrendChart>`
 
@@ -53,21 +53,21 @@ import { TrendChart } from "@/components/admin";
   title="Monthly Revenue"
   height={220}
   color="hsl(217 91% 60%)"
-/>
+/>;
 ```
 
 ### Props
 
-| Prop        | Required | Type                             | Default          | Description                                   |
-| ----------- | -------- | -------------------------------- | ---------------- | --------------------------------------------- |
-| `data`      | Required | `Array<Record<string, unknown>>` | -                | Data array.                                   |
-| `xField`    | Required | `string`                         | -                | Key for the X axis.                           |
-| `yField`    | Required | `string`                         | -                | Key for the Y axis / line value.              |
-| `title`     | Optional | `ReactNode`                      | -                | Card title rendered in the header.            |
-| `color`     | Optional | `string`                         | `var(--primary)` | CSS color for the line stroke.                |
-| `height`    | Optional | `number`                         | `200`            | Card content height in pixels.                |
-| `loading`   | Optional | `boolean`                        | `false`          | Render skeleton instead of chart.             |
-| `className` | Optional | `string`                         | -                | Forwarded to the outer `<Card>`.              |
+| Prop        | Required | Type                             | Default          | Description                        |
+| ----------- | -------- | -------------------------------- | ---------------- | ---------------------------------- |
+| `data`      | Required | `Array<Record<string, unknown>>` | -                | Data array.                        |
+| `xField`    | Required | `string`                         | -                | Key for the X axis.                |
+| `yField`    | Required | `string`                         | -                | Key for the Y axis / line value.   |
+| `title`     | Optional | `ReactNode`                      | -                | Card title rendered in the header. |
+| `color`     | Optional | `string`                         | `var(--primary)` | CSS color for the line stroke.     |
+| `height`    | Optional | `number`                         | `200`            | Card content height in pixels.     |
+| `loading`   | Optional | `boolean`                        | `false`          | Render skeleton instead of chart.  |
+| `className` | Optional | `string`                         | -                | Forwarded to the outer `<Card>`.   |
 
 ## `<BarChart>`
 
@@ -85,21 +85,21 @@ import { BarChart } from "@/components/admin";
   yField="count"
   title="Orders by Category"
   height={220}
-/>
+/>;
 ```
 
 ### Props
 
-| Prop        | Required | Type                             | Default          | Description                                   |
-| ----------- | -------- | -------------------------------- | ---------------- | --------------------------------------------- |
-| `data`      | Required | `Array<Record<string, unknown>>` | -                | Data array.                                   |
-| `xField`    | Required | `string`                         | -                | Key for the X axis categories.                |
-| `yField`    | Required | `string`                         | -                | Key for bar height values.                    |
-| `title`     | Optional | `ReactNode`                      | -                | Card title rendered in the header.            |
-| `color`     | Optional | `string`                         | `var(--primary)` | CSS fill color for bars.                      |
-| `height`    | Optional | `number`                         | `200`            | Card content height in pixels.                |
-| `loading`   | Optional | `boolean`                        | `false`          | Render skeleton instead of chart.             |
-| `className` | Optional | `string`                         | -                | Forwarded to the outer `<Card>`.              |
+| Prop        | Required | Type                             | Default          | Description                        |
+| ----------- | -------- | -------------------------------- | ---------------- | ---------------------------------- |
+| `data`      | Required | `Array<Record<string, unknown>>` | -                | Data array.                        |
+| `xField`    | Required | `string`                         | -                | Key for the X axis categories.     |
+| `yField`    | Required | `string`                         | -                | Key for bar height values.         |
+| `title`     | Optional | `ReactNode`                      | -                | Card title rendered in the header. |
+| `color`     | Optional | `string`                         | `var(--primary)` | CSS fill color for bars.           |
+| `height`    | Optional | `number`                         | `200`            | Card content height in pixels.     |
+| `loading`   | Optional | `boolean`                        | `false`          | Render skeleton instead of chart.  |
+| `className` | Optional | `string`                         | -                | Forwarded to the outer `<Card>`.   |
 
 ## `<DonutChart>`
 
@@ -118,21 +118,21 @@ import { DonutChart } from "@/components/admin";
   valueField="value"
   title="Ticket Status"
   height={220}
-/>
+/>;
 ```
 
 ### Props
 
-| Prop          | Required | Type                             | Default               | Description                                          |
-| ------------- | -------- | -------------------------------- | --------------------- | ---------------------------------------------------- |
-| `data`        | Required | `Array<Record<string, unknown>>` | -                     | Data array.                                          |
-| `labelField`  | Required | `string`                         | -                     | Key used as the segment name (shown in tooltip).     |
-| `valueField`  | Required | `string`                         | -                     | Key for segment numeric value.                       |
-| `title`       | Optional | `ReactNode`                      | -                     | Card title rendered in the header.                   |
-| `colors`      | Optional | `string[]`                       | 5 CSS variable colors | Array of CSS color strings, cycled by index.         |
-| `height`      | Optional | `number`                         | `200`                 | Card content height in pixels.                       |
-| `loading`     | Optional | `boolean`                        | `false`               | Render skeleton instead of chart.                    |
-| `className`   | Optional | `string`                         | -                     | Forwarded to the outer `<Card>`.                     |
+| Prop         | Required | Type                             | Default               | Description                                      |
+| ------------ | -------- | -------------------------------- | --------------------- | ------------------------------------------------ |
+| `data`       | Required | `Array<Record<string, unknown>>` | -                     | Data array.                                      |
+| `labelField` | Required | `string`                         | -                     | Key used as the segment name (shown in tooltip). |
+| `valueField` | Required | `string`                         | -                     | Key for segment numeric value.                   |
+| `title`      | Optional | `ReactNode`                      | -                     | Card title rendered in the header.               |
+| `colors`     | Optional | `string[]`                       | 5 CSS variable colors | Array of CSS color strings, cycled by index.     |
+| `height`     | Optional | `number`                         | `200`                 | Card content height in pixels.                   |
+| `loading`    | Optional | `boolean`                        | `false`               | Render skeleton instead of chart.                |
+| `className`  | Optional | `string`                         | -                     | Forwarded to the outer `<Card>`.                 |
 
 ## `loading`
 

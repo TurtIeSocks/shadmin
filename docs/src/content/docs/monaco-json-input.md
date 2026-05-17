@@ -41,25 +41,25 @@ const ProductEdit = () => (
 
 ## Props
 
-| Prop               | Required | Type                                                | Default | Description                                                            |
-| ------------------ | -------- | --------------------------------------------------- | ------- | ---------------------------------------------------------------------- |
-| `source`           | Required | `string`                                            | -       | Field name                                                             |
-| `schema`           | Optional | `object`                                            | -       | JSON Schema; editor content is validated against this schema           |
-| `schemaUri`        | Optional | `string`                                            | -       | Remote schema URL (Monaco fetches it)                                  |
-| `allowComments`    | Optional | `boolean`                                           | `false` | Allow JSONC syntax (comments + trailing commas)                        |
-| `autoHeight`       | Optional | `boolean`                                           | `false` | Grow the editor with content                                           |
-| `height`           | Optional | `number \| string`                                  | `300`   | Fixed height (only when `autoHeight=false`)                            |
-| `minHeight`        | Optional | `number \| string`                                  | `120`   | Lower bound for `autoHeight`                                           |
-| `maxHeight`        | Optional | `number \| string`                                  | `600`   | Upper bound for `autoHeight`                                           |
-| `showFormatButton` | Optional | `boolean`                                           | `true`  | Show a "Format" button overlay                                         |
-| `readOnly`         | Optional | `boolean`                                           | `false` | Disable editing                                                        |
-| `className`        | Optional | `string`                                            | -       | Classes on the wrapping `<FormField>`                                  |
-| `editorClassName`  | Optional | `string`                                            | -       | Classes on the editor's bordered wrapper                               |
-| `monacoOptions`    | Optional | `editor.IStandaloneEditorConstructionOptions`       | -       | Escape hatch — merged into Monaco's options                            |
-| `validate`         | Optional | `Validator \| Validator[]`                          | -       | Composed AFTER the built-in schema validator                           |
-| `label`            | Optional | `string \| false`                                   | Inferred| Custom or hidden label                                                 |
-| `helperText`       | Optional | `ReactNode`                                         | -       | Help text under the editor                                             |
-| `defaultValue`     | Optional | `unknown`                                           | -       | Default value if the record's field is undefined                       |
+| Prop               | Required | Type                                          | Default  | Description                                                  |
+| ------------------ | -------- | --------------------------------------------- | -------- | ------------------------------------------------------------ |
+| `source`           | Required | `string`                                      | -        | Field name                                                   |
+| `schema`           | Optional | `object`                                      | -        | JSON Schema; editor content is validated against this schema |
+| `schemaUri`        | Optional | `string`                                      | -        | Remote schema URL (Monaco fetches it)                        |
+| `allowComments`    | Optional | `boolean`                                     | `false`  | Allow JSONC syntax (comments + trailing commas)              |
+| `autoHeight`       | Optional | `boolean`                                     | `false`  | Grow the editor with content                                 |
+| `height`           | Optional | `number \| string`                            | `300`    | Fixed height (only when `autoHeight=false`)                  |
+| `minHeight`        | Optional | `number \| string`                            | `120`    | Lower bound for `autoHeight`                                 |
+| `maxHeight`        | Optional | `number \| string`                            | `600`    | Upper bound for `autoHeight`                                 |
+| `showFormatButton` | Optional | `boolean`                                     | `true`   | Show a "Format" button overlay                               |
+| `readOnly`         | Optional | `boolean`                                     | `false`  | Disable editing                                              |
+| `className`        | Optional | `string`                                      | -        | Classes on the wrapping `<FormField>`                        |
+| `editorClassName`  | Optional | `string`                                      | -        | Classes on the editor's bordered wrapper                     |
+| `monacoOptions`    | Optional | `editor.IStandaloneEditorConstructionOptions` | -        | Escape hatch — merged into Monaco's options                  |
+| `validate`         | Optional | `Validator \| Validator[]`                    | -        | Composed AFTER the built-in schema validator                 |
+| `label`            | Optional | `string \| false`                             | Inferred | Custom or hidden label                                       |
+| `helperText`       | Optional | `ReactNode`                                   | -        | Help text under the editor                                   |
+| `defaultValue`     | Optional | `unknown`                                     | -        | Default value if the record's field is undefined             |
 
 ## Schema validation
 

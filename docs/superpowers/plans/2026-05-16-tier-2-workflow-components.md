@@ -31,36 +31,36 @@ Because Tier 2 components are heterogeneous (not the symmetric field+input pairs
 
 ## File structure
 
-| File | Responsibility | Status |
-| --- | --- | --- |
-| `package.json` | Add `cronstrue` dep (for `<CronField>` / `<CronInput>`) | **Modify** |
-| `src/components/admin/usage-meter-field.tsx` | Quota/limit bar field | **Create** |
-| `src/components/admin/usage-meter-field.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/usage-meter-field.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/usage-meter-field.md` | Doc page | **Create** |
-| `src/components/admin/status-transition-button.tsx` | FSM-aware status change button | **Create** |
-| `src/components/admin/status-transition-button.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/status-transition-button.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/status-transition-button.md` | Doc page | **Create** |
-| `src/components/admin/cron-utils.ts` | Cron string parsing helpers + types | **Create** |
-| `src/components/admin/cron-field.tsx` | Human-readable cron preview | **Create** |
-| `src/components/admin/cron-input.tsx` | Cron expression editor | **Create** |
-| `src/components/admin/cron-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/admin/cron-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/cron-field.stories.tsx` | Stories | **Create** |
-| `src/stories/admin/cron-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/cron-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/cron-input.md` | Doc page | **Create** |
-| `src/components/admin/bulk-edit-drawer.tsx` | Multi-record side-panel form | **Create** |
-| `src/components/admin/bulk-edit-drawer.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/bulk-edit-drawer.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/bulk-edit-drawer.md` | Doc page | **Create** |
-| `src/components/admin/approval-queue.tsx` | Pending-approval inbox view | **Create** |
-| `src/components/admin/approval-queue.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/approval-queue.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/approval-queue.md` | Doc page | **Create** |
-| `docs/sidebar.config.mjs` | Sidebar entries for the 5 new doc pages (8 docs total, 2 per pair for cron + 1 each for others = 7) | **Modify** |
-| `src/components/admin/index.ts` | Re-export 7 new exports (UsageMeterField, StatusTransitionButton, CronField, CronInput, BulkEditDrawer, ApprovalQueue + types) | **Modify** |
+| File                                                     | Responsibility                                                                                                                 | Status     |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| `package.json`                                           | Add `cronstrue` dep (for `<CronField>` / `<CronInput>`)                                                                        | **Modify** |
+| `src/components/admin/usage-meter-field.tsx`             | Quota/limit bar field                                                                                                          | **Create** |
+| `src/components/admin/usage-meter-field.spec.tsx`        | Browser tests                                                                                                                  | **Create** |
+| `src/stories/admin/usage-meter-field.stories.tsx`        | Stories                                                                                                                        | **Create** |
+| `docs/src/content/docs/usage-meter-field.md`             | Doc page                                                                                                                       | **Create** |
+| `src/components/admin/status-transition-button.tsx`      | FSM-aware status change button                                                                                                 | **Create** |
+| `src/components/admin/status-transition-button.spec.tsx` | Browser tests                                                                                                                  | **Create** |
+| `src/stories/admin/status-transition-button.stories.tsx` | Stories                                                                                                                        | **Create** |
+| `docs/src/content/docs/status-transition-button.md`      | Doc page                                                                                                                       | **Create** |
+| `src/components/admin/cron-utils.ts`                     | Cron string parsing helpers + types                                                                                            | **Create** |
+| `src/components/admin/cron-field.tsx`                    | Human-readable cron preview                                                                                                    | **Create** |
+| `src/components/admin/cron-input.tsx`                    | Cron expression editor                                                                                                         | **Create** |
+| `src/components/admin/cron-field.spec.tsx`               | Browser tests                                                                                                                  | **Create** |
+| `src/components/admin/cron-input.spec.tsx`               | Browser tests                                                                                                                  | **Create** |
+| `src/stories/admin/cron-field.stories.tsx`               | Stories                                                                                                                        | **Create** |
+| `src/stories/admin/cron-input.stories.tsx`               | Stories                                                                                                                        | **Create** |
+| `docs/src/content/docs/cron-field.md`                    | Doc page                                                                                                                       | **Create** |
+| `docs/src/content/docs/cron-input.md`                    | Doc page                                                                                                                       | **Create** |
+| `src/components/admin/bulk-edit-drawer.tsx`              | Multi-record side-panel form                                                                                                   | **Create** |
+| `src/components/admin/bulk-edit-drawer.spec.tsx`         | Browser tests                                                                                                                  | **Create** |
+| `src/stories/admin/bulk-edit-drawer.stories.tsx`         | Stories                                                                                                                        | **Create** |
+| `docs/src/content/docs/bulk-edit-drawer.md`              | Doc page                                                                                                                       | **Create** |
+| `src/components/admin/approval-queue.tsx`                | Pending-approval inbox view                                                                                                    | **Create** |
+| `src/components/admin/approval-queue.spec.tsx`           | Browser tests                                                                                                                  | **Create** |
+| `src/stories/admin/approval-queue.stories.tsx`           | Stories                                                                                                                        | **Create** |
+| `docs/src/content/docs/approval-queue.md`                | Doc page                                                                                                                       | **Create** |
+| `docs/sidebar.config.mjs`                                | Sidebar entries for the 5 new doc pages (8 docs total, 2 per pair for cron + 1 each for others = 7)                            | **Modify** |
+| `src/components/admin/index.ts`                          | Re-export 7 new exports (UsageMeterField, StatusTransitionButton, CronField, CronInput, BulkEditDrawer, ApprovalQueue + types) | **Modify** |
 
 ---
 
@@ -151,26 +151,34 @@ describe("<UsageMeterField />", () => {
   it("renders a progress bar with used/limit text in default state", async () => {
     const screen = render(<Basic />);
     await expect.element(screen.getByText("45 / 100 GB")).toBeInTheDocument();
-    const bar = screen.container.querySelector("[data-usage-meter]") as HTMLElement;
+    const bar = screen.container.querySelector(
+      "[data-usage-meter]",
+    ) as HTMLElement;
     expect(bar.getAttribute("data-state")).toBe("ok");
   });
 
   it("flags warning state at >=80% by default", async () => {
     const screen = render(<Warning />);
-    const bar = screen.container.querySelector("[data-usage-meter]") as HTMLElement;
+    const bar = screen.container.querySelector(
+      "[data-usage-meter]",
+    ) as HTMLElement;
     expect(bar.getAttribute("data-state")).toBe("warning");
   });
 
   it("flags critical state at >=100% by default", async () => {
     const screen = render(<Critical />);
-    const bar = screen.container.querySelector("[data-usage-meter]") as HTMLElement;
+    const bar = screen.container.querySelector(
+      "[data-usage-meter]",
+    ) as HTMLElement;
     expect(bar.getAttribute("data-state")).toBe("critical");
   });
 
   it("respects custom thresholds", async () => {
     const screen = render(<CustomThresholds />);
     // 60% with warning=50%, critical=75% → warning state
-    const bar = screen.container.querySelector("[data-usage-meter]") as HTMLElement;
+    const bar = screen.container.querySelector(
+      "[data-usage-meter]",
+    ) as HTMLElement;
     expect(bar.getAttribute("data-state")).toBe("warning");
   });
 
@@ -231,9 +239,7 @@ export const UsageMeterField = <
     | undefined;
   const ctx = useRecordContext<RecordType>({ record });
   const limit =
-    limitSource && ctx
-      ? (ctx[limitSource] as number | undefined)
-      : undefined;
+    limitSource && ctx ? (ctx[limitSource] as number | undefined) : undefined;
 
   if (used == null) return null;
 
@@ -285,7 +291,8 @@ const DEFAULT_THRESHOLDS = { warning: 0.8, critical: 1.0 };
 export interface UsageMeterFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
   /** Sibling record field holding the limit/quota. Bar is only shown when set. */
   limitSource?: string;
@@ -342,13 +349,13 @@ import { UsageMeterField } from '@/components/admin';
 
 ## Props
 
-| Prop          | Required | Type                                     | Default                           | Description |
-| ------------- | -------- | ---------------------------------------- | --------------------------------- | ----------- |
-| `source`      | Required | `string`                                 | -                                 | Record field for the used value |
-| `limitSource` | Optional | `string`                                 | -                                 | Sibling field for the limit value |
-| `unit`        | Optional | `string`                                 | -                                 | Display unit (e.g. "GB") |
-| `thresholds`  | Optional | `{ warning: number; critical: number }`  | `{ warning: 0.8, critical: 1.0 }` | Ratio cutoffs for color state |
-| `className`   | Optional | `string`                                 | -                                 | CSS class on the wrapping `<span>` |
+| Prop          | Required | Type                                    | Default                           | Description                        |
+| ------------- | -------- | --------------------------------------- | --------------------------------- | ---------------------------------- |
+| `source`      | Required | `string`                                | -                                 | Record field for the used value    |
+| `limitSource` | Optional | `string`                                | -                                 | Sibling field for the limit value  |
+| `unit`        | Optional | `string`                                | -                                 | Display unit (e.g. "GB")           |
+| `thresholds`  | Optional | `{ warning: number; critical: number }` | `{ warning: 0.8, critical: 1.0 }` | Ratio cutoffs for color state      |
+| `className`   | Optional | `string`                                | -                                 | CSS class on the wrapping `<span>` |
 
 ## States
 
@@ -410,7 +417,9 @@ export const TerminalState = () => (
 );
 
 export const WithGuard = () => (
-  <StoryAdmin record={{ id: 1, title: "Post", status: "review", missingFields: true }}>
+  <StoryAdmin
+    record={{ id: 1, title: "Post", status: "review", missingFields: true }}
+  >
     <StatusTransitionButton
       source="status"
       transitions={TRANSITIONS}
@@ -447,15 +456,23 @@ describe("<StatusTransitionButton />", () => {
 
   it("lists allowed transitions in the dropdown for the current state", async () => {
     const screen = render(<Draft />);
-    const trigger = screen.container.querySelector("[data-status-trigger]") as HTMLButtonElement;
+    const trigger = screen.container.querySelector(
+      "[data-status-trigger]",
+    ) as HTMLButtonElement;
     trigger.click();
-    await expect.element(screen.getByRole("menuitem", { name: /review/i })).toBeInTheDocument();
-    await expect.element(screen.getByRole("menuitem", { name: /archived/i })).toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: /review/i }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: /archived/i }))
+      .toBeInTheDocument();
   });
 
   it("only shows the single allowed transition from 'published'", async () => {
     const screen = render(<Published />);
-    const trigger = screen.container.querySelector("[data-status-trigger]") as HTMLButtonElement;
+    const trigger = screen.container.querySelector(
+      "[data-status-trigger]",
+    ) as HTMLButtonElement;
     trigger.click();
     const items = screen.container.querySelectorAll("[role='menuitem']");
     expect(items.length).toBe(1);
@@ -463,18 +480,24 @@ describe("<StatusTransitionButton />", () => {
 
   it("disables the trigger when there are no allowed transitions", async () => {
     const screen = render(<TerminalState />);
-    const trigger = screen.container.querySelector("[data-status-trigger]") as HTMLButtonElement;
+    const trigger = screen.container.querySelector(
+      "[data-status-trigger]",
+    ) as HTMLButtonElement;
     expect(trigger.disabled).toBe(true);
   });
 
   it("filters transitions blocked by a guard predicate", async () => {
     const screen = render(<WithGuard />);
-    const trigger = screen.container.querySelector("[data-status-trigger]") as HTMLButtonElement;
+    const trigger = screen.container.querySelector(
+      "[data-status-trigger]",
+    ) as HTMLButtonElement;
     trigger.click();
     // 'review' allows ['published', 'draft']; guard blocks 'published'
     const items = screen.container.querySelectorAll("[role='menuitem']");
     expect(items.length).toBe(1);
-    await expect.element(screen.getByRole("menuitem", { name: /draft/i })).toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("menuitem", { name: /draft/i }))
+      .toBeInTheDocument();
   });
 });
 ```
@@ -612,7 +635,7 @@ fires `useUpdate` on selection.
 ## Usage
 
 ```tsx
-import { StatusTransitionButton } from '@/components/admin';
+import { StatusTransitionButton } from "@/components/admin";
 
 const TRANSITIONS = {
   draft: ["review", "archived"],
@@ -621,8 +644,10 @@ const TRANSITIONS = {
   archived: [],
 };
 
-<StatusTransitionButton source="status" transitions={TRANSITIONS} />
-{/* With guards */}
+<StatusTransitionButton source="status" transitions={TRANSITIONS} />;
+{
+  /* With guards */
+}
 <StatusTransitionButton
   source="status"
   transitions={TRANSITIONS}
@@ -630,19 +655,19 @@ const TRANSITIONS = {
     "review->published": (record) => record.requiredFields != null,
   }}
   confirm
-/>
+/>;
 ```
 
 ## Props
 
-| Prop           | Required | Type                                                | Default     | Description |
-| -------------- | -------- | --------------------------------------------------- | ----------- | ----------- |
-| `transitions`  | Required | `Record<string, readonly string[]>`                 | -           | Allowed transitions per state |
-| `source`       | Optional | `string`                                            | `"status"`  | Record field holding the state |
-| `guards`       | Optional | `Record<string, (record) => boolean>`               | -           | `${from}->${to}` predicates |
-| `resource`     | Optional | `string`                                            | Context     | Override resource |
-| `confirm`      | Optional | `boolean`                                           | `false`     | Native confirm before update |
-| `onTransition` | Optional | `(from, to, record) => void`                        | -           | Side-effect callback |
+| Prop           | Required | Type                                  | Default    | Description                    |
+| -------------- | -------- | ------------------------------------- | ---------- | ------------------------------ |
+| `transitions`  | Required | `Record<string, readonly string[]>`   | -          | Allowed transitions per state  |
+| `source`       | Optional | `string`                              | `"status"` | Record field holding the state |
+| `guards`       | Optional | `Record<string, (record) => boolean>` | -          | `${from}->${to}` predicates    |
+| `resource`     | Optional | `string`                              | Context    | Override resource              |
+| `confirm`      | Optional | `boolean`                             | `false`    | Native confirm before update   |
+| `onTransition` | Optional | `(from, to, record) => void`          | -          | Side-effect callback           |
 
 ## Terminal states
 
@@ -774,7 +799,12 @@ export const Empty = () => (
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Empty, ExprOnly, Invalid } from "@/stories/admin/cron-field.stories";
+import {
+  Basic,
+  Empty,
+  ExprOnly,
+  Invalid,
+} from "@/stories/admin/cron-field.stories";
 
 describe("<CronField />", () => {
   it("renders a human phrase for a valid expression", async () => {
@@ -785,9 +815,7 @@ describe("<CronField />", () => {
 
   it("shows the raw expression in monospace when showExpression", async () => {
     const screen = render(<ExprOnly />);
-    await expect
-      .element(screen.getByText("*/15 * * * *"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("*/15 * * * *")).toBeInTheDocument();
   });
 
   it("renders the raw value when the cron is unparseable", async () => {
@@ -809,11 +837,7 @@ describe("<CronField />", () => {
 ```tsx
 // src/components/admin/cron-field.tsx
 import type { HTMLAttributes } from "react";
-import {
-  sanitizeFieldRestProps,
-  useFieldValue,
-  useTranslate,
-} from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { describeCron } from "./cron-utils";
@@ -878,8 +902,7 @@ export const CronField = <RecordType extends UnknownRecord = UnknownRecord>({
 export interface CronFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** When true, render the raw cron expression below the human phrase. */
   showExpression?: boolean;
 }
@@ -941,7 +964,9 @@ import { Basic, Disabled, Empty } from "@/stories/admin/cron-input.stories";
 describe("<CronInput />", () => {
   it("renders a text input bound to source with human-phrase preview", async () => {
     const screen = render(<Basic />);
-    const input = screen.container.querySelector("input[type='text']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='text']",
+    ) as HTMLInputElement;
     expect(input).toBeTruthy();
     expect(input.value).toBe("0 9 * * 1-5");
     await expect.element(screen.getByText(/09:00/i)).toBeInTheDocument();
@@ -949,13 +974,17 @@ describe("<CronInput />", () => {
 
   it("disables the input when disabled prop is set", async () => {
     const screen = render(<Disabled />);
-    const input = screen.container.querySelector("input[type='text']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='text']",
+    ) as HTMLInputElement;
     expect(input.disabled).toBe(true);
   });
 
   it("renders an empty preview slot when value is empty", async () => {
     const screen = render(<Empty />);
-    const preview = screen.container.querySelector("[data-cron-preview]") as HTMLElement;
+    const preview = screen.container.querySelector(
+      "[data-cron-preview]",
+    ) as HTMLElement;
     expect(preview).toBeTruthy();
     expect(preview.textContent ?? "").toBe("");
   });
@@ -971,7 +1000,12 @@ describe("<CronInput />", () => {
 import type * as React from "react";
 import type { InputProps } from "ra-core";
 import { FieldTitle, useInput, useResourceContext } from "ra-core";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { describeCron } from "./cron-utils";
@@ -995,11 +1029,7 @@ export const CronInput = (props: CronInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -1030,10 +1060,7 @@ export const CronInput = (props: CronInputProps) => {
             placeholder="* * * * *"
             className="font-mono"
           />
-          <span
-            data-cron-preview
-            className="text-xs text-muted-foreground"
-          >
+          <span data-cron-preview className="text-xs text-muted-foreground">
             {preview ?? (exprRaw && !preview ? "Invalid cron" : "")}
           </span>
         </div>
@@ -1045,7 +1072,8 @@ export const CronInput = (props: CronInputProps) => {
 };
 
 export interface CronInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   disabled?: boolean;
 }
@@ -1087,12 +1115,12 @@ import { CronField } from '@/components/admin';
 
 ## Props
 
-| Prop             | Required | Type        | Default | Description |
-| ---------------- | -------- | ----------- | ------- | ----------- |
-| `source`         | Required | `string`    | -       | Record field to read |
+| Prop             | Required | Type        | Default | Description                               |
+| ---------------- | -------- | ----------- | ------- | ----------------------------------------- |
+| `source`         | Required | `string`    | -       | Record field to read                      |
 | `showExpression` | Optional | `boolean`   | `false` | Show the raw cron string below the phrase |
-| `empty`          | Optional | `ReactNode` | -       | Fallback when value is `null`/empty |
-| `className`      | Optional | `string`    | -       | CSS class on `<span>` |
+| `empty`          | Optional | `ReactNode` | -       | Fallback when value is `null`/empty       |
+| `className`      | Optional | `string`    | -       | CSS class on `<span>`                     |
 
 ## Storage format
 
@@ -1122,15 +1150,15 @@ import { CronInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default | Description |
-| ------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                   | -       | Form field name |
-| `label`      | Optional | `string \| false`          | Inferred | Custom label |
-| `helperText` | Optional | `ReactNode`                | -       | Helper text |
-| `disabled`   | Optional | `boolean`                  | `false` | Disable input |
-| `defaultValue` | Optional | `string`                 | -       | Initial cron expression |
-| `validate`   | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`  | Optional | `string`                   | -       | CSS class on wrapper |
+| Prop           | Required | Type                       | Default  | Description             |
+| -------------- | -------- | -------------------------- | -------- | ----------------------- |
+| `source`       | Required | `string`                   | -        | Form field name         |
+| `label`        | Optional | `string \| false`          | Inferred | Custom label            |
+| `helperText`   | Optional | `ReactNode`                | -        | Helper text             |
+| `disabled`     | Optional | `boolean`                  | `false`  | Disable input           |
+| `defaultValue` | Optional | `string`                   | -        | Initial cron expression |
+| `validate`     | Optional | `Validator \| Validator[]` | -        | Validation              |
+| `className`    | Optional | `string`                   | -        | CSS class on wrapper    |
 
 ## Dependency
 
@@ -1200,21 +1228,23 @@ describe("<BulkEditDrawer />", () => {
 
   it("disables the trigger when disabled prop is set", async () => {
     const screen = render(<Disabled />);
-    const button = screen.container.querySelector("[data-bulk-edit-trigger]") as HTMLButtonElement;
+    const button = screen.container.querySelector(
+      "[data-bulk-edit-trigger]",
+    ) as HTMLButtonElement;
     expect(button.disabled).toBe(true);
   });
 
   it("opens a sheet containing the form children on click", async () => {
     const screen = render(<Basic />);
-    const button = screen.container.querySelector("[data-bulk-edit-trigger]") as HTMLButtonElement;
+    const button = screen.container.querySelector(
+      "[data-bulk-edit-trigger]",
+    ) as HTMLButtonElement;
     button.click();
     // Sheet renders into a portal; query the document for the form fields
     await expect
       .element(screen.getByLabelText(/^category$/i))
       .toBeInTheDocument();
-    await expect
-      .element(screen.getByLabelText(/^price$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^price$/i)).toBeInTheDocument();
   });
 });
 ```
@@ -1228,11 +1258,7 @@ describe("<BulkEditDrawer />", () => {
 import { Children, useState } from "react";
 import type { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import {
-  useListContext,
-  useResourceContext,
-  useUpdateMany,
-} from "ra-core";
+import { useListContext, useResourceContext, useUpdateMany } from "ra-core";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -1273,7 +1299,10 @@ export const BulkEditDrawer = (props: BulkEditDrawerProps) => {
   const handleSubmit = form.handleSubmit(async (values) => {
     const dirty = form.formState.dirtyFields;
     const diff = Object.fromEntries(
-      Object.keys(dirty).map((k) => [k, (values as Record<string, unknown>)[k]]),
+      Object.keys(dirty).map((k) => [
+        k,
+        (values as Record<string, unknown>)[k],
+      ]),
     );
     if (Object.keys(diff).length === 0) {
       setOpen(false);
@@ -1342,7 +1371,10 @@ export interface BulkEditDrawerProps {
   /** Sheet side. Default `"right"`. */
   side?: "right" | "bottom" | "left" | "top";
   /** Side-effect after successful updateMany. */
-  onSuccess?: (diff: Record<string, unknown>, ids: readonly (string | number)[]) => void;
+  onSuccess?: (
+    diff: Record<string, unknown>,
+    ids: readonly (string | number)[],
+  ) => void;
 }
 ```
 
@@ -1381,7 +1413,7 @@ import {
   List,
   NumberInput,
   SelectInput,
-} from '@/components/admin';
+} from "@/components/admin";
 
 const BulkEditCategories = () => (
   <BulkEditDrawer label="Bulk edit">
@@ -1401,14 +1433,14 @@ export const ProductList = () => (
 
 ## Props
 
-| Prop        | Required | Type                                                   | Default            | Description |
-| ----------- | -------- | ------------------------------------------------------ | ------------------ | ----------- |
-| `children`  | Required | `ReactNode`                                            | -                  | Form inputs rendered inside the sheet |
-| `label`     | Optional | `ReactNode`                                            | `"Edit selected"` | Trigger button label |
-| `title`     | Optional | `ReactNode`                                            | `label`            | Sheet header title |
-| `disabled`  | Optional | `boolean`                                              | `false`            | Disable trigger |
-| `side`      | Optional | `"right" \| "bottom" \| "left" \| "top"`               | `"right"`          | Sheet side |
-| `onSuccess` | Optional | `(diff, ids) => void`                                  | -                  | Callback after `useUpdateMany` resolves |
+| Prop        | Required | Type                                     | Default           | Description                             |
+| ----------- | -------- | ---------------------------------------- | ----------------- | --------------------------------------- |
+| `children`  | Required | `ReactNode`                              | -                 | Form inputs rendered inside the sheet   |
+| `label`     | Optional | `ReactNode`                              | `"Edit selected"` | Trigger button label                    |
+| `title`     | Optional | `ReactNode`                              | `label`           | Sheet header title                      |
+| `disabled`  | Optional | `boolean`                                | `false`           | Disable trigger                         |
+| `side`      | Optional | `"right" \| "bottom" \| "left" \| "top"` | `"right"`         | Sheet side                              |
+| `onSuccess` | Optional | `(diff, ids) => void`                    | -                 | Callback after `useUpdateMany` resolves |
 
 ## Touched-field semantics
 
@@ -1437,7 +1469,13 @@ Pending-approval inbox view. Reads `?status=pending` records via `useListContext
 - [ ] **Step 1** — create:
 
 ```tsx
-import { Admin, CoreAdminContext, ListBase, TestMemoryRouter, memoryStore } from "ra-core";
+import {
+  Admin,
+  CoreAdminContext,
+  ListBase,
+  TestMemoryRouter,
+  memoryStore,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
@@ -1447,9 +1485,27 @@ const i18nProvider = polyglotI18nProvider(() => englishMessages);
 
 const records = {
   expenses: [
-    { id: 1, title: "Conference travel", amount: 1200, status: "pending", requester: "alice" },
-    { id: 2, title: "Software license", amount: 450, status: "pending", requester: "bob" },
-    { id: 3, title: "Office supplies", amount: 89, status: "approved", requester: "carol" },
+    {
+      id: 1,
+      title: "Conference travel",
+      amount: 1200,
+      status: "pending",
+      requester: "alice",
+    },
+    {
+      id: 2,
+      title: "Software license",
+      amount: 450,
+      status: "pending",
+      requester: "bob",
+    },
+    {
+      id: 3,
+      title: "Office supplies",
+      amount: 89,
+      status: "approved",
+      requester: "carol",
+    },
   ],
 };
 
@@ -1499,23 +1555,33 @@ import { Basic, RequireReason } from "@/stories/admin/approval-queue.stories";
 describe("<ApprovalQueue />", () => {
   it("renders one row per pending record", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByText("Conference travel")).toBeInTheDocument();
-    await expect.element(screen.getByText("Software license")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Conference travel"))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Software license"))
+      .toBeInTheDocument();
     // Approved record should be filtered out
     expect(screen.container.textContent ?? "").not.toContain("Office supplies");
   });
 
   it("renders approve + reject buttons per row", async () => {
     const screen = render(<Basic />);
-    const approveButtons = screen.container.querySelectorAll("[data-approve-button]");
-    const rejectButtons = screen.container.querySelectorAll("[data-reject-button]");
+    const approveButtons = screen.container.querySelectorAll(
+      "[data-approve-button]",
+    );
+    const rejectButtons = screen.container.querySelectorAll(
+      "[data-reject-button]",
+    );
     expect(approveButtons.length).toBe(2);
     expect(rejectButtons.length).toBe(2);
   });
 
   it("shows a reason textarea when requireReason is set and reject is clicked", async () => {
     const screen = render(<RequireReason />);
-    const rejectBtn = screen.container.querySelector("[data-reject-button]") as HTMLButtonElement;
+    const rejectBtn = screen.container.querySelector(
+      "[data-reject-button]",
+    ) as HTMLButtonElement;
     rejectBtn.click();
     await expect.element(screen.getByLabelText(/reason/i)).toBeInTheDocument();
   });
@@ -1671,7 +1737,9 @@ const ApprovalRow = (props: ApprovalRowInternalProps) => {
       <CardContent className="flex flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-col">
-            <span className="font-medium">{String(record[titleSource] ?? "")}</span>
+            <span className="font-medium">
+              {String(record[titleSource] ?? "")}
+            </span>
             {subtitleSource && (
               <span className="text-sm text-muted-foreground">
                 {String(record[subtitleSource] ?? "")}
@@ -1785,7 +1853,7 @@ Each card has approve + reject buttons. On click, writes
 ## Usage
 
 ```tsx
-import { ApprovalQueue, List } from '@/components/admin';
+import { ApprovalQueue, List } from "@/components/admin";
 
 const ExpenseApprovals = () => (
   <List resource="expenses" filter={{ status: "pending" }}>
@@ -1796,16 +1864,16 @@ const ExpenseApprovals = () => (
 
 ## Props
 
-| Prop              | Required | Type                          | Default            | Description |
-| ----------------- | -------- | ----------------------------- | ------------------ | ----------- |
-| `titleSource`     | Optional | `string`                      | `"title"`          | Field for the row heading |
-| `subtitleSource`  | Optional | `string`                      | -                  | Optional secondary text |
-| `statusSource`    | Optional | `string`                      | `"status"`         | Field written on decision |
-| `approverSource`  | Optional | `string`                      | `"approverId"`     | Field receiving the current user id |
-| `noteSource`      | Optional | `string`                      | `"approverNote"`   | Field receiving the reason note |
-| `decidedAtSource` | Optional | `string`                      | `"decidedAt"`      | Field receiving the ISO timestamp |
-| `requireReason`   | Optional | `boolean`                     | `false`            | Block reject (and approve) without a reason |
-| `rowExtra`        | Optional | `(record) => ReactNode`       | -                  | Custom slot between header and action row |
+| Prop              | Required | Type                    | Default          | Description                                 |
+| ----------------- | -------- | ----------------------- | ---------------- | ------------------------------------------- |
+| `titleSource`     | Optional | `string`                | `"title"`        | Field for the row heading                   |
+| `subtitleSource`  | Optional | `string`                | -                | Optional secondary text                     |
+| `statusSource`    | Optional | `string`                | `"status"`       | Field written on decision                   |
+| `approverSource`  | Optional | `string`                | `"approverId"`   | Field receiving the current user id         |
+| `noteSource`      | Optional | `string`                | `"approverNote"` | Field receiving the reason note             |
+| `decidedAtSource` | Optional | `string`                | `"decidedAt"`    | Field receiving the ISO timestamp           |
+| `requireReason`   | Optional | `boolean`               | `false`          | Block reject (and approve) without a reason |
+| `rowExtra`        | Optional | `(record) => ReactNode` | -                | Custom slot between header and action row   |
 
 ## Required parent context
 

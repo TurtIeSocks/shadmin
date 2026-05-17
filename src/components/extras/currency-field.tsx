@@ -15,7 +15,9 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * `{ amount: number, currency: string }` object. When `storeAsMinorUnits` is
  * true, the numeric value is divided by 100 before formatting (cents → dollars).
  */
-export const CurrencyField = <RecordType extends UnknownRecord = UnknownRecord>({
+export const CurrencyField = <
+  RecordType extends UnknownRecord = UnknownRecord,
+>({
   defaultValue,
   source,
   record,
@@ -75,8 +77,7 @@ function normalizeCurrencyValue(
 export interface CurrencyFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** ISO-4217 currency code (e.g. 'USD'). Required when value is a plain number. */
   currency?: string;
   /** Override the user's app locale. */

@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  type ReactNode,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import { type ReactNode, useEffect, useLayoutEffect, useState } from "react";
 import { useStore, useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
 
@@ -124,7 +119,10 @@ export const OnboardingTour = ({
   const isFirst = stepIdx === 0;
 
   return (
-    <div data-slot="onboarding-tour" className="fixed inset-0 z-[100] pointer-events-none">
+    <div
+      data-slot="onboarding-tour"
+      className="fixed inset-0 z-[100] pointer-events-none"
+    >
       {/* Spotlight overlay */}
       {rect ? (
         <>

@@ -28,13 +28,9 @@ describe("<CommandMenu />", () => {
   it("closes on escape", async () => {
     const screen = render(<Hotkey />);
     await userEvent.keyboard("{Meta>}k{/Meta}");
-    await expect
-      .element(screen.getByRole("dialog"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByRole("dialog")).toBeInTheDocument();
     await userEvent.keyboard("{Escape}");
-    await expect
-      .element(screen.getByRole("dialog"))
-      .not.toBeInTheDocument();
+    await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("auto-mounts via <Admin commandMenu>", async () => {
@@ -63,9 +59,7 @@ describe("<CommandMenu />", () => {
     const result = screen.getByRole("option", { name: /notebook/i });
     await expect.element(result).toBeInTheDocument();
     await result.click();
-    await expect
-      .element(screen.getByRole("dialog"))
-      .not.toBeInTheDocument();
+    await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
     await expect
       .element(screen.getByTestId("cm-location"))
       .toHaveTextContent("/products/1/show");

@@ -24,14 +24,14 @@ const ProductList = () => (
 
 ## Props
 
-| Prop           | Required | Type                  | Default | Description                                            |
-| -------------- | -------- | --------------------- | ------- | ------------------------------------------------------ |
-| `source`       | Required | `string`              | -       | Field name                                             |
-| `indent`       | Optional | `number`              | `2`     | Indent passed to `JSON.stringify`                      |
-| `empty`        | Optional | `ReactNode`           | -       | Rendered when the value is `null` or `undefined`       |
-| `className`    | Optional | `string`              | -       | Classes appended to the `<pre>`                        |
-| `record`       | Optional | `object`              | Context | Record to read from (defaults to RecordContext)        |
-| `defaultValue` | Optional | `unknown`             | -       | Fallback when the field is missing from the record     |
+| Prop           | Required | Type        | Default | Description                                        |
+| -------------- | -------- | ----------- | ------- | -------------------------------------------------- |
+| `source`       | Required | `string`    | -       | Field name                                         |
+| `indent`       | Optional | `number`    | `2`     | Indent passed to `JSON.stringify`                  |
+| `empty`        | Optional | `ReactNode` | -       | Rendered when the value is `null` or `undefined`   |
+| `className`    | Optional | `string`    | -       | Classes appended to the `<pre>`                    |
+| `record`       | Optional | `object`    | Context | Record to read from (defaults to RecordContext)    |
+| `defaultValue` | Optional | `unknown`   | -       | Fallback when the field is missing from the record |
 
 ## Behavior
 

@@ -22,7 +22,11 @@ export interface ReverseOptions {
 
 export interface GeocodingProvider {
   search(query: string, opts?: SearchOptions): Promise<GeocodeResult[]>;
-  reverse(lat: number, lng: number, opts?: ReverseOptions): Promise<GeocodeResult | null>;
+  reverse(
+    lat: number,
+    lng: number,
+    opts?: ReverseOptions,
+  ): Promise<GeocodeResult | null>;
 }
 
 const DEFAULT_ENDPOINT = "https://nominatim.openstreetmap.org";

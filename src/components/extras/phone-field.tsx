@@ -1,9 +1,5 @@
 import type { HTMLAttributes } from "react";
-import {
-  sanitizeFieldRestProps,
-  useFieldValue,
-  useTranslate,
-} from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import { parsePhoneNumber } from "libphonenumber-js";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
@@ -69,11 +65,7 @@ export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
   }
 
   return (
-    <a
-      {...sanitizeFieldRestProps(rest)}
-      href={href}
-      className={className}
-    >
+    <a {...sanitizeFieldRestProps(rest)} href={href} className={className}>
       {formatted}
     </a>
   );
@@ -82,7 +74,8 @@ export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
 export interface PhoneFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLAnchorElement>, "href"> {
   /** 'national' renders `(415) 555-2671`; 'international' renders `+1 415 555 2671`. */
   displayFormat?: "national" | "international";

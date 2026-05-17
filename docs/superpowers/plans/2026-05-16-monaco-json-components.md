@@ -18,7 +18,7 @@
 - **Single-spec runner:** `pnpm vitest run --browser.headless <path>` per AGENTS.md.
 - **Full verification:** `make lint && make typecheck && make test` (parallel-safe per global rules — main thread should batch them in one Bash message).
 - **Co-located specs:** `*.spec.tsx` next to component; specs import stories per AGENTS.md.
-- **Story wrapper:** Use `StoryAdmin` from [src/stories/_test-helpers.tsx](../../../src/stories/_test-helpers.tsx). Pass `mode="form"` for inputs, `mode="field"` for fields.
+- **Story wrapper:** Use `StoryAdmin` from [src/stories/\_test-helpers.tsx](../../../src/stories/_test-helpers.tsx). Pass `mode="form"` for inputs, `mode="field"` for fields.
 - **Commit per task:** Each task ends with a `git add` + `git commit` step. Commits are small and atomic.
 
 ---
@@ -67,11 +67,13 @@ package.json                            # add 2 deps
 ## Task 1: Add Monaco dependencies
 
 **Files:**
+
 - Modify: `package.json`
 
 - [ ] **Step 1: Install deps**
 
 Run:
+
 ```bash
 pnpm add @monaco-editor/react@^4.6.0 monaco-editor@^0.52.0
 ```
@@ -81,6 +83,7 @@ Expected: both added to `dependencies` in `package.json`; lockfile updated.
 - [ ] **Step 2: Verify install**
 
 Run:
+
 ```bash
 pnpm list @monaco-editor/react monaco-editor
 ```
@@ -99,6 +102,7 @@ git commit -m "chore: add @monaco-editor/react and monaco-editor"
 ## Task 2: Pure helper — `detect-value-shape.ts` (TDD)
 
 **Files:**
+
 - Create: `src/components/monaco/internal/detect-value-shape.ts`
 - Test: `src/components/monaco/internal/detect-value-shape.spec.ts`
 
@@ -204,6 +208,7 @@ describe("fromEditorText", () => {
 - [ ] **Step 2: Verify the test fails**
 
 Run:
+
 ```bash
 pnpm vitest run --browser.headless src/components/monaco/internal/detect-value-shape.spec.ts
 ```
@@ -260,6 +265,7 @@ export function fromEditorText(
 - [ ] **Step 4: Verify the test passes**
 
 Run:
+
 ```bash
 pnpm vitest run --browser.headless src/components/monaco/internal/detect-value-shape.spec.ts
 ```
@@ -278,6 +284,7 @@ git commit -m "feat(monaco): add value-shape detection helpers"
 ## Task 3: Internal types
 
 **Files:**
+
 - Create: `src/components/monaco/internal/types.ts`
 
 - [ ] **Step 1: Create the types file**
@@ -323,6 +330,7 @@ export type JsonFieldProps = FieldProps &
 - [ ] **Step 2: Verify typecheck**
 
 Run:
+
 ```bash
 pnpm typecheck
 ```
@@ -341,6 +349,7 @@ git commit -m "feat(monaco): add shared prop types"
 ## Task 4: `JsonField` component + story + spec
 
 **Files:**
+
 - Create: `src/components/monaco/json-field.tsx`
 - Create: `src/stories/monaco/json-field.stories.tsx`
 - Create: `src/components/monaco/json-field.spec.tsx`
@@ -441,6 +450,7 @@ describe("<JsonField />", () => {
 - [ ] **Step 3: Verify the spec fails**
 
 Run:
+
 ```bash
 pnpm vitest run --browser.headless src/components/monaco/json-field.spec.tsx
 ```
@@ -517,6 +527,7 @@ export const JsonField = ({
 - [ ] **Step 5: Verify the spec passes**
 
 Run:
+
 ```bash
 pnpm vitest run --browser.headless src/components/monaco/json-field.spec.tsx
 ```
@@ -535,6 +546,7 @@ git commit -m "feat(monaco): add JsonField (lightweight pre-based formatter)"
 ## Task 5: Monaco skeleton + theme/layout/auto-height hooks
 
 **Files:**
+
 - Create: `src/components/monaco/internal/monaco-skeleton.tsx`
 - Create: `src/components/monaco/internal/use-monaco-theme.ts`
 - Create: `src/components/monaco/internal/use-monaco-layout.ts`
@@ -557,10 +569,7 @@ export const MonacoSkeleton = ({
   className?: string;
 }) => (
   <div
-    className={cn(
-      "rounded-md border bg-muted/30 animate-pulse",
-      className,
-    )}
+    className={cn("rounded-md border bg-muted/30 animate-pulse", className)}
     style={{ height: typeof height === "number" ? `${height}px` : height }}
     aria-busy="true"
     aria-label="Loading editor"
@@ -674,6 +683,7 @@ export function useAutoHeight(
 - [ ] **Step 5: Verify typecheck**
 
 Run:
+
 ```bash
 pnpm typecheck
 ```
@@ -692,6 +702,7 @@ git commit -m "feat(monaco): add skeleton + theme/layout/auto-height hooks"
 ## Task 6: Schema + markers hooks
 
 **Files:**
+
 - Create: `src/components/monaco/internal/use-json-schema.ts`
 - Create: `src/components/monaco/internal/use-monaco-markers.ts`
 
@@ -821,6 +832,7 @@ export function useMonacoMarkers({
 - [ ] **Step 3: Verify typecheck**
 
 Run:
+
 ```bash
 pnpm typecheck
 ```
@@ -839,6 +851,7 @@ git commit -m "feat(monaco): add schema + markers hooks"
 ## Task 7: `MonacoJsonInput` — lazy wrapper + inner
 
 **Files:**
+
 - Create: `src/components/monaco/monaco-json-input.tsx`
 - Create: `src/components/monaco/monaco-json-input-lazy.tsx`
 
@@ -885,7 +898,9 @@ export const MonacoJsonInput = (props: MonacoJsonInputProps) => (
   <Suspense
     fallback={
       <MonacoSkeleton
-        height={props.autoHeight ? (props.minHeight ?? 120) : (props.height ?? 300)}
+        height={
+          props.autoHeight ? (props.minHeight ?? 120) : (props.height ?? 300)
+        }
       />
     }
   >
@@ -901,14 +916,13 @@ export type { MonacoJsonInputProps };
 Create `src/components/monaco/monaco-json-input-lazy.tsx`:
 
 ```tsx
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { FieldTitle, composeValidators, useInput, useResourceContext } from "ra-core";
+  FieldTitle,
+  composeValidators,
+  useInput,
+  useResourceContext,
+} from "ra-core";
 import { useFormContext } from "react-hook-form";
 import Editor, { type Monaco, loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
@@ -962,8 +976,9 @@ const MonacoJsonInputInner = (props: MonacoJsonInputProps) => {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [monacoApi, setMonacoApi] = useState<Monaco | null>(null);
-  const [instance, setInstance] =
-    useState<editor.IStandaloneCodeEditor | null>(null);
+  const [instance, setInstance] = useState<editor.IStandaloneCodeEditor | null>(
+    null,
+  );
   const [model, setModel] = useState<editor.ITextModel | null>(null);
 
   // Owned by the component so the validate fn (created below, before
@@ -1029,7 +1044,12 @@ const MonacoJsonInputInner = (props: MonacoJsonInputProps) => {
     enabled: shape === "object",
   });
 
-  const measuredHeight = useAutoHeight(instance, autoHeight, Number(minHeight) || 120, Number(maxHeight) || 600);
+  const measuredHeight = useAutoHeight(
+    instance,
+    autoHeight,
+    Number(minHeight) || 120,
+    Number(maxHeight) || 600,
+  );
   const effectiveHeight = autoHeight ? measuredHeight : height;
 
   const handleEditorMount = useCallback(
@@ -1125,6 +1145,7 @@ export default MonacoJsonInputInner;
 - [ ] **Step 3: Verify typecheck**
 
 Run:
+
 ```bash
 pnpm typecheck
 ```
@@ -1143,6 +1164,7 @@ git commit -m "feat(monaco): add MonacoJsonInput (lazy wrapper + inner)"
 ## Task 8: `MonacoJsonInput` story + spec
 
 **Files:**
+
 - Create: `src/stories/monaco/monaco-json-input.stories.tsx`
 - Create: `src/components/monaco/monaco-json-input.spec.tsx`
 
@@ -1169,9 +1191,7 @@ const stringRecord = {
 
 const FormValues = () => {
   const values = useWatch();
-  return (
-    <pre data-testid="form-values">{JSON.stringify(values, null, 2)}</pre>
-  );
+  return <pre data-testid="form-values">{JSON.stringify(values, null, 2)}</pre>;
 };
 
 export const Basic = () => (
@@ -1272,8 +1292,9 @@ const waitForEditorText = async (
 describe("<MonacoJsonInput />", () => {
   it("renders an object value as pretty JSON in the editor", async () => {
     const screen = render(<Basic />);
-    await waitForEditorText(screen.container, (text) =>
-      text.includes('"sku"') && text.includes("ABC-123"),
+    await waitForEditorText(
+      screen.container,
+      (text) => text.includes('"sku"') && text.includes("ABC-123"),
     );
   });
 
@@ -1297,9 +1318,7 @@ describe("<MonacoJsonInput />", () => {
     // the value violates the schema. The Basic record satisfies it,
     // so we expect no error here.
     await new Promise((r) => setTimeout(r, 300));
-    const error = screen.container.querySelector(
-      "[data-slot='form-message']",
-    );
+    const error = screen.container.querySelector("[data-slot='form-message']");
     expect(error).toBeNull();
   });
 });
@@ -1308,6 +1327,7 @@ describe("<MonacoJsonInput />", () => {
 - [ ] **Step 3: Run the spec**
 
 Run:
+
 ```bash
 pnpm vitest run --browser.headless src/components/monaco/monaco-json-input.spec.tsx
 ```
@@ -1328,6 +1348,7 @@ git commit -m "test(monaco): add MonacoJsonInput story + spec"
 ## Task 9: `MonacoJsonField` — lazy wrapper + inner + story + spec
 
 **Files:**
+
 - Create: `src/components/monaco/monaco-json-field.tsx`
 - Create: `src/components/monaco/monaco-json-field-lazy.tsx`
 - Create: `src/stories/monaco/monaco-json-field.stories.tsx`
@@ -1410,8 +1431,9 @@ const MonacoJsonFieldInner = ({
 }: MonacoJsonFieldProps) => {
   const value = useFieldValue({ defaultValue, source, record });
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [instance, setInstance] =
-    useState<editor.IStandaloneCodeEditor | null>(null);
+  const [instance, setInstance] = useState<editor.IStandaloneCodeEditor | null>(
+    null,
+  );
 
   const text =
     typeof value === "string" ? value : JSON.stringify(value ?? null, null, 2);
@@ -1511,10 +1533,7 @@ Create `src/components/monaco/monaco-json-field.spec.tsx`:
 ```tsx
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import {
-  Basic,
-  FixedHeight,
-} from "@/stories/monaco/monaco-json-field.stories";
+import { Basic, FixedHeight } from "@/stories/monaco/monaco-json-field.stories";
 
 const waitForEditorText = async (
   container: HTMLElement,
@@ -1556,6 +1575,7 @@ describe("<MonacoJsonField />", () => {
 - [ ] **Step 5: Run the spec**
 
 Run:
+
 ```bash
 pnpm vitest run --browser.headless src/components/monaco/monaco-json-field.spec.tsx
 ```
@@ -1574,6 +1594,7 @@ git commit -m "feat(monaco): add MonacoJsonField (lazy viewer)"
 ## Task 10: `index.ts` barrel
 
 **Files:**
+
 - Create: `src/components/monaco/index.ts`
 
 - [ ] **Step 1: Create the barrel**
@@ -1594,6 +1615,7 @@ export type {
 - [ ] **Step 2: Verify typecheck**
 
 Run:
+
 ```bash
 pnpm typecheck
 ```
@@ -1612,12 +1634,14 @@ git commit -m "feat(monaco): add public barrel"
 ## Task 11: Demo wiring — products edit gets a `MonacoJsonInput`
 
 **Files:**
+
 - Modify: `src/demo/products/products-edit.tsx`
 - Modify (likely): `src/demo/data.json` or wherever fake products live, to add a `metadata` field. Inspect first.
 
 - [ ] **Step 1: Inspect existing products edit + fake data**
 
 Run:
+
 ```bash
 cat src/demo/products/products-edit.tsx
 ls src/demo/products/
@@ -1648,7 +1672,7 @@ import { MonacoJsonInput } from "@/components/monaco";
     },
     additionalProperties: true,
   }}
-/>
+/>;
 ```
 
 If the existing demo data has no `metadata` field, add one to the fake data source so the input has a value to render on first load.
@@ -1656,6 +1680,7 @@ If the existing demo data has no `metadata` field, add one to the fake data sour
 - [ ] **Step 3: Manual smoke test**
 
 Run `pnpm dev`, navigate to the products edit page, verify:
+
 - Skeleton flashes briefly (Monaco loading)
 - Editor renders pretty JSON
 - Theme toggle (light/dark) updates the editor theme
@@ -1674,6 +1699,7 @@ git commit -m "demo(products): edit page uses MonacoJsonInput for metadata"
 ## Task 12: Documentation pages
 
 **Files:**
+
 - Create: `docs/src/content/docs/monaco-json-input.md`
 - Create: `docs/src/content/docs/monaco-json-field.md`
 - Create: `docs/src/content/docs/json-field.md`
@@ -1727,25 +1753,25 @@ const ProductEdit = () => (
 
 ## Props
 
-| Prop               | Required | Type                                                | Default | Description                                                            |
-| ------------------ | -------- | --------------------------------------------------- | ------- | ---------------------------------------------------------------------- |
-| `source`           | Required | `string`                                            | -       | Field name                                                             |
-| `schema`           | Optional | `object`                                            | -       | JSON Schema; editor content is validated against this schema           |
-| `schemaUri`        | Optional | `string`                                            | -       | Remote schema URL (Monaco fetches it)                                  |
-| `allowComments`    | Optional | `boolean`                                           | `false` | Allow JSONC syntax (comments + trailing commas)                        |
-| `autoHeight`       | Optional | `boolean`                                           | `false` | Grow the editor with content                                           |
-| `height`           | Optional | `number \| string`                                  | `300`   | Fixed height (only when `autoHeight=false`)                            |
-| `minHeight`        | Optional | `number \| string`                                  | `120`   | Lower bound for `autoHeight`                                           |
-| `maxHeight`        | Optional | `number \| string`                                  | `600`   | Upper bound for `autoHeight`                                           |
-| `showFormatButton` | Optional | `boolean`                                           | `true`  | Show a "Format" button overlay                                         |
-| `readOnly`         | Optional | `boolean`                                           | `false` | Disable editing                                                        |
-| `className`        | Optional | `string`                                            | -       | Classes on the wrapping `<FormField>`                                  |
-| `editorClassName`  | Optional | `string`                                            | -       | Classes on the editor's bordered wrapper                               |
-| `monacoOptions`    | Optional | `editor.IStandaloneEditorConstructionOptions`       | -       | Escape hatch — merged into Monaco's options                            |
-| `validate`         | Optional | `Validator \| Validator[]`                          | -       | Composed AFTER the built-in schema validator                           |
-| `label`            | Optional | `string \| false`                                   | Inferred| Custom or hidden label                                                 |
-| `helperText`       | Optional | `ReactNode`                                         | -       | Help text under the editor                                             |
-| `defaultValue`     | Optional | `unknown`                                           | -       | Default value if the record's field is undefined                       |
+| Prop               | Required | Type                                          | Default  | Description                                                  |
+| ------------------ | -------- | --------------------------------------------- | -------- | ------------------------------------------------------------ |
+| `source`           | Required | `string`                                      | -        | Field name                                                   |
+| `schema`           | Optional | `object`                                      | -        | JSON Schema; editor content is validated against this schema |
+| `schemaUri`        | Optional | `string`                                      | -        | Remote schema URL (Monaco fetches it)                        |
+| `allowComments`    | Optional | `boolean`                                     | `false`  | Allow JSONC syntax (comments + trailing commas)              |
+| `autoHeight`       | Optional | `boolean`                                     | `false`  | Grow the editor with content                                 |
+| `height`           | Optional | `number \| string`                            | `300`    | Fixed height (only when `autoHeight=false`)                  |
+| `minHeight`        | Optional | `number \| string`                            | `120`    | Lower bound for `autoHeight`                                 |
+| `maxHeight`        | Optional | `number \| string`                            | `600`    | Upper bound for `autoHeight`                                 |
+| `showFormatButton` | Optional | `boolean`                                     | `true`   | Show a "Format" button overlay                               |
+| `readOnly`         | Optional | `boolean`                                     | `false`  | Disable editing                                              |
+| `className`        | Optional | `string`                                      | -        | Classes on the wrapping `<FormField>`                        |
+| `editorClassName`  | Optional | `string`                                      | -        | Classes on the editor's bordered wrapper                     |
+| `monacoOptions`    | Optional | `editor.IStandaloneEditorConstructionOptions` | -        | Escape hatch — merged into Monaco's options                  |
+| `validate`         | Optional | `Validator \| Validator[]`                    | -        | Composed AFTER the built-in schema validator                 |
+| `label`            | Optional | `string \| false`                             | Inferred | Custom or hidden label                                       |
+| `helperText`       | Optional | `ReactNode`                                   | -        | Help text under the editor                                   |
+| `defaultValue`     | Optional | `unknown`                                     | -        | Default value if the record's field is undefined             |
 
 ## Schema validation
 
@@ -1798,16 +1824,16 @@ const ProductShow = () => (
 
 ## Props
 
-| Prop            | Required | Type                                          | Default | Description                                            |
-| --------------- | -------- | --------------------------------------------- | ------- | ------------------------------------------------------ |
-| `source`        | Required | `string`                                      | -       | Field name                                             |
-| `autoHeight`    | Optional | `boolean`                                     | `true`  | Fit container to content height                        |
-| `height`        | Optional | `number \| string`                            | `200`   | Fixed height (when `autoHeight=false`)                 |
-| `maxHeight`     | Optional | `number \| string`                            | `400`   | Upper bound for `autoHeight`                           |
-| `className`     | Optional | `string`                                      | -       | Classes on the wrapper                                 |
-| `monacoOptions` | Optional | `editor.IStandaloneEditorConstructionOptions` | -       | Escape hatch — merged into Monaco's options            |
-| `record`        | Optional | `object`                                      | Context | Record to read from (defaults to RecordContext)        |
-| `defaultValue`  | Optional | `unknown`                                     | -       | Fallback when the field is missing from the record     |
+| Prop            | Required | Type                                          | Default | Description                                        |
+| --------------- | -------- | --------------------------------------------- | ------- | -------------------------------------------------- |
+| `source`        | Required | `string`                                      | -       | Field name                                         |
+| `autoHeight`    | Optional | `boolean`                                     | `true`  | Fit container to content height                    |
+| `height`        | Optional | `number \| string`                            | `200`   | Fixed height (when `autoHeight=false`)             |
+| `maxHeight`     | Optional | `number \| string`                            | `400`   | Upper bound for `autoHeight`                       |
+| `className`     | Optional | `string`                                      | -       | Classes on the wrapper                             |
+| `monacoOptions` | Optional | `editor.IStandaloneEditorConstructionOptions` | -       | Escape hatch — merged into Monaco's options        |
+| `record`        | Optional | `object`                                      | Context | Record to read from (defaults to RecordContext)    |
+| `defaultValue`  | Optional | `unknown`                                     | -       | Fallback when the field is missing from the record |
 
 ## Tips
 
@@ -1846,14 +1872,14 @@ const ProductList = () => (
 
 ## Props
 
-| Prop           | Required | Type                  | Default | Description                                            |
-| -------------- | -------- | --------------------- | ------- | ------------------------------------------------------ |
-| `source`       | Required | `string`              | -       | Field name                                             |
-| `indent`       | Optional | `number`              | `2`     | Indent passed to `JSON.stringify`                      |
-| `empty`        | Optional | `ReactNode`           | -       | Rendered when the value is `null` or `undefined`       |
-| `className`    | Optional | `string`              | -       | Classes appended to the `<pre>`                        |
-| `record`       | Optional | `object`              | Context | Record to read from (defaults to RecordContext)        |
-| `defaultValue` | Optional | `unknown`             | -       | Fallback when the field is missing from the record     |
+| Prop           | Required | Type        | Default | Description                                        |
+| -------------- | -------- | ----------- | ------- | -------------------------------------------------- |
+| `source`       | Required | `string`    | -       | Field name                                         |
+| `indent`       | Optional | `number`    | `2`     | Indent passed to `JSON.stringify`                  |
+| `empty`        | Optional | `ReactNode` | -       | Rendered when the value is `null` or `undefined`   |
+| `className`    | Optional | `string`    | -       | Classes appended to the `<pre>`                    |
+| `record`       | Optional | `object`    | Context | Record to read from (defaults to RecordContext)    |
+| `defaultValue` | Optional | `unknown`   | -       | Fallback when the field is missing from the record |
 
 ## Behavior
 
@@ -1869,6 +1895,7 @@ No syntax highlighting in v1. If you need highlighting, use [`<MonacoJsonField>`
 Modify `docs/sidebar.config.mjs`. Find the "Data Display" group's `items` array and insert `"json-field"` and `"monaco-json-field"` alphabetically (next to `"jsonl-field"` if present, otherwise place by alphabetical order). Find the "Data Edition" group's `items` array and insert `"monaco-json-input"` in alphabetical position.
 
 Run to verify ordering:
+
 ```bash
 grep -n "json\|monaco" docs/sidebar.config.mjs
 ```
@@ -1878,6 +1905,7 @@ Expected: three new entries appear in the output.
 - [ ] **Step 5: Verify docs build**
 
 Run:
+
 ```bash
 cd docs && pnpm install && pnpm run build
 ```
@@ -1901,6 +1929,7 @@ Run lint, typecheck, and the full test suite. These are independent — batch th
 - [ ] **Step 1: Run lint + typecheck + full tests (parallel)**
 
 Run in parallel (three Bash calls in one message):
+
 ```bash
 make lint
 make typecheck
@@ -1908,6 +1937,7 @@ make test
 ```
 
 Expected:
+
 - `make lint` — clean (no new errors in Monaco files).
 - `make typecheck` — clean.
 - `make test` — all specs pass, including the new four spec files.
@@ -1923,6 +1953,7 @@ If a Monaco spec fails on `.view-line` selector, inspect the DOM in browser mode
 - [ ] **Step 3: Final commit (if any fixes)**
 
 If Step 2 required fixes:
+
 ```bash
 git add -A
 git commit -m "fix(monaco): address lint/typecheck/test failures"

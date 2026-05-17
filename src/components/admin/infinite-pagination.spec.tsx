@@ -7,7 +7,9 @@ describe("<InfinitePagination />", () => {
   it("displays the first page of records", async () => {
     const screen = render(<Basic />);
     await expect
-      .poll(() => screen.getByText("Book #1").elements().length, { timeout: 5000 })
+      .poll(() => screen.getByText("Book #1").elements().length, {
+        timeout: 5000,
+      })
       .toBeGreaterThan(0);
   });
 

@@ -24,21 +24,25 @@ const computeSummary = (data: Report[]) => {
     return { quarter, revenue };
   }).filter((row) => row.revenue > 0);
 
-  const byRegion = ["EU", "US", "APAC"].map((region) => {
-    const items = data.filter((r) => r.region === region);
-    return {
-      region,
-      revenue: items.reduce((acc, r) => acc + r.revenue, 0),
-    };
-  }).filter((row) => row.revenue > 0);
+  const byRegion = ["EU", "US", "APAC"]
+    .map((region) => {
+      const items = data.filter((r) => r.region === region);
+      return {
+        region,
+        revenue: items.reduce((acc, r) => acc + r.revenue, 0),
+      };
+    })
+    .filter((row) => row.revenue > 0);
 
-  const customerSplit = ["EU", "US", "APAC"].map((region) => {
-    const items = data.filter((r) => r.region === region);
-    return {
-      region,
-      customers: items.reduce((acc, r) => acc + r.customers, 0),
-    };
-  }).filter((row) => row.customers > 0);
+  const customerSplit = ["EU", "US", "APAC"]
+    .map((region) => {
+      const items = data.filter((r) => r.region === region);
+      return {
+        region,
+        customers: items.reduce((acc, r) => acc + r.customers, 0),
+      };
+    })
+    .filter((row) => row.customers > 0);
 
   return { totalRevenue, totalCustomers, byQuarter, byRegion, customerSplit };
 };

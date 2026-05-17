@@ -546,7 +546,9 @@ export type OsmTagInput = KnownOsmTag | (string & {});
 export function tagToFilter(tag: string): OsmTagFilter {
   const eq = tag.indexOf("=");
   if (eq < 0) {
-    throw new Error(`Invalid OSM tag: "${tag}". Expected "key=value" or "key=*".`);
+    throw new Error(
+      `Invalid OSM tag: "${tag}". Expected "key=value" or "key=*".`,
+    );
   }
   const key = tag.slice(0, eq);
   const value = tag.slice(eq + 1);
@@ -555,7 +557,9 @@ export function tagToFilter(tag: string): OsmTagFilter {
   }
   if (value === "*") return { key, any: true };
   if (!value) {
-    throw new Error(`Invalid OSM tag: "${tag}". Empty value (use "${key}=*" for any).`);
+    throw new Error(
+      `Invalid OSM tag: "${tag}". Empty value (use "${key}=*" for any).`,
+    );
   }
   return { key, value };
 }

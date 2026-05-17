@@ -10,6 +10,8 @@ describe("<PolygonInput />", () => {
     // `shape-input-shell` testId pattern for `Polygon` is `polygon-input`.
     const wrapper = await screen.getByTestId("polygon-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

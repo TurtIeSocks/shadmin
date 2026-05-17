@@ -9,14 +9,26 @@ export default {
   parameters: { docs: { codePanel: true } },
 };
 
-const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-  allowMissing: true,
-});
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  {
+    allowMissing: true,
+  },
+);
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => (
   <ThemeProvider defaultTheme="system">
     <CoreAdminContext i18nProvider={i18nProvider} store={memoryStore()}>
-      <div style={{ width: "600px", height: "400px", position: "relative", padding: "2rem" }}>
+      <div
+        style={{
+          width: "600px",
+          height: "400px",
+          position: "relative",
+          padding: "2rem",
+        }}
+      >
         {/* Tour targets */}
         <div
           data-tour="sidebar"

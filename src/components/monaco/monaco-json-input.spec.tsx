@@ -32,8 +32,9 @@ describe("<MonacoJsonInput />", () => {
     "renders an object value as pretty JSON in the editor",
     async () => {
       const screen = render(<Basic />);
-      await waitForEditorText(screen.container, (text) =>
-        text.includes('"sku"') && text.includes("ABC-123"),
+      await waitForEditorText(
+        screen.container,
+        (text) => text.includes('"sku"') && text.includes("ABC-123"),
       );
     },
     MONACO_TIMEOUT,
@@ -59,7 +60,9 @@ describe("<MonacoJsonInput />", () => {
     "surfaces a schema validation error when the JSON violates the schema",
     async () => {
       const screen = render(<WithSchema />);
-      await waitForEditorText(screen.container, (text) => text.includes('"sku"'));
+      await waitForEditorText(screen.container, (text) =>
+        text.includes('"sku"'),
+      );
 
       // Wait for marker-driven validation to surface a form error when
       // the value violates the schema. The Basic record satisfies it,

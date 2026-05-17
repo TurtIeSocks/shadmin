@@ -2,7 +2,11 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { queryOverpass, type OverpassOptions, type OverpassResponse } from "./overpass-client";
+import {
+  queryOverpass,
+  type OverpassOptions,
+  type OverpassResponse,
+} from "./overpass-client";
 
 export const useOverpass = (
   query: string | null,

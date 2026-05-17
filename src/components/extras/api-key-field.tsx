@@ -134,8 +134,8 @@ function formatRelative(iso: string | null | undefined): string {
 
 export interface ApiKeyFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** Record field with scope strings. Renders chips when set. */
   scopesSource?: string;
   /** Record field with ISO last-used timestamp. */

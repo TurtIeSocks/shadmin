@@ -1,13 +1,29 @@
 import { useEffect } from "react";
-import { type DataProvider, memoryStore, RecordContextProvider, Resource, TestMemoryRouter } from "ra-core";
+import {
+  type DataProvider,
+  memoryStore,
+  RecordContextProvider,
+  Resource,
+  TestMemoryRouter,
+} from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
-import { Admin, PresenceBar, type PresenceTransport, type PresenceState } from "@/components/admin";
+import {
+  Admin,
+  PresenceBar,
+  type PresenceTransport,
+  type PresenceState,
+} from "@/components/admin";
 
-const i18nProvider = polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-  allowMissing: true,
-});
+const i18nProvider = polyglotI18nProvider(
+  () => defaultMessages,
+  "en",
+  undefined,
+  {
+    allowMissing: true,
+  },
+);
 
 // In-memory transport for tests/storybook — bypasses BroadcastChannel
 class InMemoryTransport {
@@ -15,7 +31,9 @@ class InMemoryTransport {
   subscribe = (topic: string, handler: (s: PresenceState) => void) => {
     (this.channels[topic] ??= []).push(handler);
     return () => {
-      this.channels[topic] = (this.channels[topic] ?? []).filter((h) => h !== handler);
+      this.channels[topic] = (this.channels[topic] ?? []).filter(
+        (h) => h !== handler,
+      );
     };
   };
   publish = (topic: string, state: PresenceState) => {
@@ -47,7 +65,9 @@ export default {
 export const Basic = () => (
   <TestMemoryRouter initialEntries={["/products/1/show"]}>
     <Admin
-      dataProvider={fakeRestDataProvider({ products: [{ id: 1 }] }) as DataProvider}
+      dataProvider={
+        fakeRestDataProvider({ products: [{ id: 1 }] }) as DataProvider
+      }
       i18nProvider={i18nProvider}
       store={memoryStore()}
     >

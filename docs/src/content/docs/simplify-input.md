@@ -20,29 +20,29 @@ import { SimplifyInput } from "@/components/leaflet";
       defaultCenter={[48.85, 2.35]}
     />
   </SimpleForm>
-</Edit>
+</Edit>;
 ```
 
 The `source` value must be a `GeoJSON.Geometry`, `GeoJSON.Feature`, `GeoJSON.FeatureCollection`, or `null`. Anything else throws.
 
 ## Props
 
-| Prop            | Required | Type                       | Default                | Description                                            |
-| --------------- | -------- | -------------------------- | ---------------------- | ------------------------------------------------------ |
-| `source`        | Required | `string`                   | -                      | RHF field that holds the GeoJSON value.                |
-| `tolerance`     | Optional | `number`                   | `0.01`                 | Initial slider value (Douglas-Peucker tolerance).      |
-| `minTolerance`  | Optional | `number`                   | `0`                    | Minimum slider value.                                  |
-| `maxTolerance`  | Optional | `number`                   | `0.05`                 | Maximum slider value.                                  |
-| `step`          | Optional | `number`                   | `0.001`                | Slider step.                                           |
-| `quality`       | Optional | `"Default" \| "High"`      | `"Default"`            | `"High"` maps to `simplify`'s `highQuality: true`.     |
-| `zoom`          | Optional | `number`                   | `13`                   | Initial zoom level.                                    |
-| `defaultCenter` | Optional | `[number, number]`         | `[0, 0]`               | Initial map center `[lat, lng]`.                       |
-| `height`        | Optional | `number \| string`         | `400`                  | Height of the map container.                           |
-| `tileUrl`       | Optional | `string`                   | OpenStreetMap tile URL | Tile layer URL template.                               |
-| `attribution`   | Optional | `string`                   | OSM attribution        | Tile attribution string.                               |
-| `pathOptions`   | Optional | `L.PathOptions`            | `{ color: "#3388ff" }` | Vector styling for the preview layer.                  |
-| `label`         | Optional | `ReactNode`                | -                      | Label rendered above the map.                          |
-| `helperText`    | Optional | `ReactNode`                | -                      | Helper text rendered below the controls.               |
+| Prop            | Required | Type                  | Default                | Description                                        |
+| --------------- | -------- | --------------------- | ---------------------- | -------------------------------------------------- |
+| `source`        | Required | `string`              | -                      | RHF field that holds the GeoJSON value.            |
+| `tolerance`     | Optional | `number`              | `0.01`                 | Initial slider value (Douglas-Peucker tolerance).  |
+| `minTolerance`  | Optional | `number`              | `0`                    | Minimum slider value.                              |
+| `maxTolerance`  | Optional | `number`              | `0.05`                 | Maximum slider value.                              |
+| `step`          | Optional | `number`              | `0.001`                | Slider step.                                       |
+| `quality`       | Optional | `"Default" \| "High"` | `"Default"`            | `"High"` maps to `simplify`'s `highQuality: true`. |
+| `zoom`          | Optional | `number`              | `13`                   | Initial zoom level.                                |
+| `defaultCenter` | Optional | `[number, number]`    | `[0, 0]`               | Initial map center `[lat, lng]`.                   |
+| `height`        | Optional | `number \| string`    | `400`                  | Height of the map container.                       |
+| `tileUrl`       | Optional | `string`              | OpenStreetMap tile URL | Tile layer URL template.                           |
+| `attribution`   | Optional | `string`              | OSM attribution        | Tile attribution string.                           |
+| `pathOptions`   | Optional | `L.PathOptions`       | `{ color: "#3388ff" }` | Vector styling for the preview layer.              |
+| `label`         | Optional | `ReactNode`           | -                      | Label rendered above the map.                      |
+| `helperText`    | Optional | `ReactNode`           | -                      | Helper text rendered below the controls.           |
 
 ## `tolerance`
 

@@ -144,10 +144,11 @@ export const useGeomanRHF = ({
       // FeatureCollection mode: emit one Feature per layer. Preserve
       // properties from the previous form value by index — best-effort, since
       // layer order can shift when the user removes a feature.
-      const prevFC = (prev as GeoJSON.FeatureCollection | null | undefined)
-        ?.type === "FeatureCollection"
-        ? (prev as GeoJSON.FeatureCollection)
-        : null;
+      const prevFC =
+        (prev as GeoJSON.FeatureCollection | null | undefined)?.type ===
+        "FeatureCollection"
+          ? (prev as GeoJSON.FeatureCollection)
+          : null;
       const features: GeoJSON.Feature[] = [];
       layers.forEach((l, i) => {
         const geometry = layerToGeometry(l);
@@ -195,7 +196,16 @@ export const useGeomanRHF = ({
     const geom = layerToGeometry(layers[layers.length - 1]);
     if (validate && geom && validate(geom)) return;
     write(geom);
-  }, [collection, featureCollection, multi, shape, source, form, validate, valueTransform]);
+  }, [
+    collection,
+    featureCollection,
+    multi,
+    shape,
+    source,
+    form,
+    validate,
+    valueTransform,
+  ]);
 
   const handleCreate = useCallback<PM.CreateEventHandler>(
     (e) => {
@@ -216,7 +226,10 @@ export const useGeomanRHF = ({
     [collection, featureCollection, multi, persist],
   );
 
-  const handleUpdate = useCallback<PM.UpdateEventHandler>(() => persist(), [persist]);
+  const handleUpdate = useCallback<PM.UpdateEventHandler>(
+    () => persist(),
+    [persist],
+  );
   const handleLayerRemove = useCallback<PM.RemoveEventHandler>(
     () => persist(),
     [persist],
@@ -226,7 +239,10 @@ export const useGeomanRHF = ({
   // and is the one we use to persist. The layer-level event would fire again
   // for the cut layer; ignoring it avoids the dedup hack the in-house
   // GeomanEvents needed.
-  const handleMapCut = useCallback<PM.CutEventHandler>(() => persist(), [persist]);
+  const handleMapCut = useCallback<PM.CutEventHandler>(
+    () => persist(),
+    [persist],
+  );
   const handleLayerCut = useCallback<PM.CutEventHandler>(() => undefined, []);
 
   return {
@@ -241,7 +257,10 @@ export const useGeomanRHF = ({
   };
 };
 
-const combineMulti = (shape: ShapeKind, geoms: GeoJSON.Geometry[]): GeoJSON.Geometry | null => {
+const combineMulti = (
+  shape: ShapeKind,
+  geoms: GeoJSON.Geometry[],
+): GeoJSON.Geometry | null => {
   if (geoms.length === 0) return null;
   switch (shape) {
     case "MultiPoint":

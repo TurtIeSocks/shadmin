@@ -1,10 +1,15 @@
 "use client";
 
-import { ShapeInputShell, type ShapeInputShellProps } from "./shapes/shape-input-shell";
+import {
+  ShapeInputShell,
+  type ShapeInputShellProps,
+} from "./shapes/shape-input-shell";
 import type { ShapeKind } from "./types";
 
-export interface FeatureInputProps
-  extends Omit<ShapeInputShellProps, "shape" | "multi" | "collection" | "valueTransform" | "valueParse"> {
+export interface FeatureInputProps extends Omit<
+  ShapeInputShellProps,
+  "shape" | "multi" | "collection" | "valueTransform" | "valueParse"
+> {
   /** Default geometry type when the user starts drawing. Defaults to `"Polygon"`. */
   shape?: Exclude<ShapeKind, "GeometryCollection">;
 }
@@ -14,7 +19,10 @@ export interface FeatureInputProps
  * but persists `{ type: "Feature", geometry, properties }`, preserving
  * `properties` across edits.
  */
-export const FeatureInput = ({ shape = "Polygon", ...rest }: FeatureInputProps) => (
+export const FeatureInput = ({
+  shape = "Polygon",
+  ...rest
+}: FeatureInputProps) => (
   <ShapeInputShell
     {...rest}
     shape={shape}

@@ -15,6 +15,7 @@
 ## Task A1: CurrencyInput / CurrencyField in products + orders
 
 **Files:**
+
 - Modify: `src/demo/products/ProductEdit.tsx`
 - Modify: `src/demo/products/ProductList.tsx` (only if NumberField price present)
 - Modify: `src/demo/orders/OrderShow.tsx` (only if NumberField total present)
@@ -34,7 +35,7 @@ Note each occurrence.
 import { CurrencyInput } from "@/components/extras/currency-input";
 // or via @/components/extras/index
 
-<CurrencyInput source="price" currency="USD" />
+<CurrencyInput source="price" currency="USD" />;
 ```
 
 Replace `<NumberInput source="price" .../>` accordingly.
@@ -44,7 +45,7 @@ Replace `<NumberInput source="price" .../>` accordingly.
 ```tsx
 import { CurrencyField } from "@/components/extras/currency-field";
 
-<CurrencyField source="price" currency="USD" />
+<CurrencyField source="price" currency="USD" />;
 ```
 
 - [ ] **Step 4: Same for orders total in OrderShow + OrderList**
@@ -84,6 +85,7 @@ EOF
 ## Task A2: PhoneInput / PhoneField in customers
 
 **Files:**
+
 - Modify: `src/demo/types.ts`
 - Modify: `src/demo/dataProvider.ts`
 - Modify: `src/demo/customers/CustomerEdit.tsx`
@@ -111,7 +113,10 @@ If `faker` not imported, add: `import { faker } from "@faker-js/faker";`. If cus
 ```ts
 import { faker } from "@faker-js/faker";
 import users from "./users.json";
-const customers = users.map((u) => ({ ...u, phone: faker.phone.number({ style: "international" }) }));
+const customers = users.map((u) => ({
+  ...u,
+  phone: faker.phone.number({ style: "international" }),
+}));
 ```
 
 - [ ] **Step 3: Add PhoneInput to CustomerEdit**
@@ -121,7 +126,7 @@ In `src/demo/customers/CustomerEdit.tsx`, import + add input:
 ```tsx
 import { PhoneInput } from "@/components/extras/phone-input";
 
-<PhoneInput source="phone" defaultCountry="US" />
+<PhoneInput source="phone" defaultCountry="US" />;
 ```
 
 Place after the email field.
@@ -131,7 +136,7 @@ Place after the email field.
 ```tsx
 import { PhoneField } from "@/components/extras/phone-field";
 
-<PhoneField source="phone" />
+<PhoneField source="phone" />;
 ```
 
 - [ ] **Step 5: Typecheck + lint**
@@ -165,6 +170,7 @@ EOF
 ## Task A3: ColorInput / ColorField in categories
 
 **Files:**
+
 - Modify: `src/demo/types.ts`
 - Modify: `src/demo/dataProvider.ts`
 - Modify: `src/demo/categories/CategoryEdit.tsx`
@@ -179,8 +185,20 @@ color: string;
 - [ ] **Step 2: Seed categories with palette colors**
 
 ```ts
-const CATEGORY_COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#14b8a6", "#f97316"];
-const categories = baseCategories.map((c, i) => ({ ...c, color: CATEGORY_COLORS[i % CATEGORY_COLORS.length] }));
+const CATEGORY_COLORS = [
+  "#3b82f6",
+  "#10b981",
+  "#f59e0b",
+  "#ef4444",
+  "#8b5cf6",
+  "#ec4899",
+  "#14b8a6",
+  "#f97316",
+];
+const categories = baseCategories.map((c, i) => ({
+  ...c,
+  color: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
+}));
 ```
 
 - [ ] **Step 3: Add ColorInput to CategoryEdit**
@@ -188,7 +206,7 @@ const categories = baseCategories.map((c, i) => ({ ...c, color: CATEGORY_COLORS[
 ```tsx
 import { ColorInput } from "@/components/extras/color-input";
 
-<ColorInput source="color" format="hex" />
+<ColorInput source="color" format="hex" />;
 ```
 
 After the `name` field.
@@ -198,7 +216,7 @@ After the `name` field.
 ```tsx
 import { ColorField } from "@/components/extras/color-field";
 
-<ColorField source="color" />
+<ColorField source="color" />;
 ```
 
 Place as the first column.
@@ -234,6 +252,7 @@ EOF
 ## Task A4: RatingInput / RatingField in reviews
 
 **Files:**
+
 - Modify: `src/demo/reviews/ReviewEdit.tsx`
 - Modify: `src/demo/reviews/ReviewList.tsx`
 - Modify: `src/demo/reviews/ReviewShow.tsx` (if exists)
@@ -253,7 +272,7 @@ Currently: `products/ProductEdit.tsx:24,214`, `dashboard/PendingReviews.tsx` (co
 ```tsx
 import { RatingInput } from "@/components/extras/rating-input";
 
-<RatingInput source="rating" max={5} allowHalf />
+<RatingInput source="rating" max={5} allowHalf />;
 ```
 
 - [ ] **Step 3: Replace in ReviewList**
@@ -261,7 +280,7 @@ import { RatingInput } from "@/components/extras/rating-input";
 ```tsx
 import { RatingField } from "@/components/extras/rating-field";
 
-<RatingField source="rating" max={5} />
+<RatingField source="rating" max={5} />;
 ```
 
 Remove `import { StarRatingField } from "./StarRatingField";` if no other usage in this file.
@@ -271,7 +290,7 @@ Remove `import { StarRatingField } from "./StarRatingField";` if no other usage 
 ```tsx
 import { RatingField } from "@/components/extras/rating-field";
 
-<RatingField source="rating" max={5} />
+<RatingField source="rating" max={5} />;
 ```
 
 Remove `import { StarRatingField, StarArray } from "../reviews/StarRatingField";` if `StarArray` also unused (grep first).
@@ -315,6 +334,7 @@ EOF
 ## Task A5: StatusTransitionButton in orders
 
 **Files:**
+
 - Create: `src/demo/orders/order-transitions.ts`
 - Modify: `src/demo/orders/OrderEdit.tsx`
 - Modify: `src/demo/orders/OrderShow.tsx`
@@ -337,7 +357,7 @@ export const ORDER_TRANSITIONS: Record<string, readonly string[]> = {
 import { StatusTransitionButton } from "@/components/extras/status-transition-button";
 import { ORDER_TRANSITIONS } from "./order-transitions";
 
-<StatusTransitionButton source="status" transitions={ORDER_TRANSITIONS} />
+<StatusTransitionButton source="status" transitions={ORDER_TRANSITIONS} />;
 ```
 
 Replace the existing `<AutocompleteInput source="status" choices=...>` block.

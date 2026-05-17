@@ -16,9 +16,7 @@ const stringRecord = {
 
 const FormValues = () => {
   const values = useWatch();
-  return (
-    <pre data-testid="form-values">{JSON.stringify(values, null, 2)}</pre>
-  );
+  return <pre data-testid="form-values">{JSON.stringify(values, null, 2)}</pre>;
 };
 
 export const Basic = () => (

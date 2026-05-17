@@ -51,17 +51,17 @@ const ProductList = () => (
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `schema` | `z.ZodObject` | — | Zod schema used for per-row validation in the Preview step. Without one, rows are imported as-is. |
-| `mapping` | `Record<string, string>` | `{}` | Preset header-to-field mapping. Users can override in step 2. |
-| `transform` | `(row, index) => object` | identity | Row-level transformation applied after mapping, before validation. |
-| `batchSize` | `number` | `100` | Rows per `createMany` call. Falls back to sequential `create` if the provider doesn't implement it. |
-| `label` | `string` | translated `Import` | Button label. |
-| `icon` | `ComponentType` | `UploadIcon` | Button icon. |
-| `resource` | `string` | from context | Override the target resource. |
-| `onComplete` | `(report: ImportReport) => void` | — | Fired after the commit step finishes. |
-| `onError` | `(error: Error) => void` | toast | Fired when commit raises irrecoverably. |
+| Prop         | Type                             | Default             | Description                                                                                         |
+| ------------ | -------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------- |
+| `schema`     | `z.ZodObject`                    | —                   | Zod schema used for per-row validation in the Preview step. Without one, rows are imported as-is.   |
+| `mapping`    | `Record<string, string>`         | `{}`                | Preset header-to-field mapping. Users can override in step 2.                                       |
+| `transform`  | `(row, index) => object`         | identity            | Row-level transformation applied after mapping, before validation.                                  |
+| `batchSize`  | `number`                         | `100`               | Rows per `createMany` call. Falls back to sequential `create` if the provider doesn't implement it. |
+| `label`      | `string`                         | translated `Import` | Button label.                                                                                       |
+| `icon`       | `ComponentType`                  | `UploadIcon`        | Button icon.                                                                                        |
+| `resource`   | `string`                         | from context        | Override the target resource.                                                                       |
+| `onComplete` | `(report: ImportReport) => void` | —                   | Fired after the commit step finishes.                                                               |
+| `onError`    | `(error: Error) => void`         | toast               | Fired when commit raises irrecoverably.                                                             |
 
 ## `ImportReport`
 
@@ -70,7 +70,11 @@ interface ImportReport {
   total: number;
   created: number;
   failed: number;
-  errors: Array<{ rowIndex: number; row: Record<string, unknown>; reason: string }>;
+  errors: Array<{
+    rowIndex: number;
+    row: Record<string, unknown>;
+    reason: string;
+  }>;
 }
 ```
 

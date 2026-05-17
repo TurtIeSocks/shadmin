@@ -16,16 +16,16 @@ import { RatingField } from '@/components/admin';
 
 ## Props
 
-| Prop          | Required | Type                              | Default | Description |
-| ------------- | -------- | --------------------------------- | ------- | ----------- |
-| `source`      | Required | `string`                          | -       | Record field to read |
-| `max`         | Optional | `number`                          | `5`     | Total stars rendered |
-| `allowHalf`   | Optional | `boolean`                         | `false` | Render half-stars for fractional values |
-| `countSource` | Optional | `string`                          | -       | Sibling field rendered as `(N)` next to the stars |
-| `empty`       | Optional | `ReactNode`                       | -       | Fallback when value is `null`/`undefined` |
-| `className`   | Optional | `string`                          | -       | CSS class on the wrapping `<span>` |
-| `defaultValue`| Optional | `number`                          | -       | Default when no record value exists |
-| `record`      | Optional | `RecordType`                      | -       | Record to read instead of `useRecordContext()` |
+| Prop           | Required | Type         | Default | Description                                       |
+| -------------- | -------- | ------------ | ------- | ------------------------------------------------- |
+| `source`       | Required | `string`     | -       | Record field to read                              |
+| `max`          | Optional | `number`     | `5`     | Total stars rendered                              |
+| `allowHalf`    | Optional | `boolean`    | `false` | Render half-stars for fractional values           |
+| `countSource`  | Optional | `string`     | -       | Sibling field rendered as `(N)` next to the stars |
+| `empty`        | Optional | `ReactNode`  | -       | Fallback when value is `null`/`undefined`         |
+| `className`    | Optional | `string`     | -       | CSS class on the wrapping `<span>`                |
+| `defaultValue` | Optional | `number`     | -       | Default when no record value exists               |
+| `record`       | Optional | `RecordType` | -       | Record to read instead of `useRecordContext()`    |
 
 ## `max`
 

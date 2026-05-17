@@ -1,8 +1,18 @@
 import type * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useLocaleState, useResourceContext } from "ra-core";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FieldTitle,
+  useInput,
+  useLocaleState,
+  useResourceContext,
+} from "ra-core";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -31,11 +41,7 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   const [appLocale] = useLocaleState();
   const locale = displayLocale ?? appLocale;
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -44,12 +50,17 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   const composite = isComposite
     ? (field.value as { amount: number; currency: string } | null)
     : null;
-  const fixedAmount = isComposite ? composite?.amount : (field.value as number | null);
+  const fixedAmount = isComposite
+    ? composite?.amount
+    : (field.value as number | null);
   const currentCurrency = isComposite ? composite?.currency : currency;
 
-  const majorAmount = fixedAmount != null
-    ? storeAsMinorUnits ? fixedAmount / 100 : fixedAmount
-    : "";
+  const majorAmount =
+    fixedAmount != null
+      ? storeAsMinorUnits
+        ? fixedAmount / 100
+        : fixedAmount
+      : "";
 
   const [displayValue, setDisplayValue] = useState<string>(String(majorAmount));
   const hasFocus = useRef(false);
@@ -61,7 +72,11 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplayValue(e.target.value);
     const parsed = e.target.valueAsNumber;
-    const next = Number.isNaN(parsed) ? null : (storeAsMinorUnits ? Math.round(parsed * 100) : parsed);
+    const next = Number.isNaN(parsed)
+      ? null
+      : storeAsMinorUnits
+        ? Math.round(parsed * 100)
+        : parsed;
     if (isComposite) {
       field.onChange({
         amount: next ?? 0,
@@ -81,7 +96,10 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   };
 
   const currencySymbol = currentCurrency
-    ? new Intl.NumberFormat(locale, { style: "currency", currency: currentCurrency })
+    ? new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: currentCurrency,
+      })
         .formatToParts(0)
         .find((p) => p.type === "currency")?.value
     : "";
@@ -140,8 +158,12 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
 };
 
 export interface CurrencyInputProps
-  extends InputProps,
-    Omit<React.ComponentProps<"input">, "defaultValue" | "onBlur" | "onChange" | "type" | "step"> {
+  extends
+    InputProps,
+    Omit<
+      React.ComponentProps<"input">,
+      "defaultValue" | "onBlur" | "onChange" | "type" | "step"
+    > {
   /** ISO-4217 currency code when storage is a plain number. */
   currency?: string;
   /** Provide to enable currency selection; stores composite { amount, currency }. */

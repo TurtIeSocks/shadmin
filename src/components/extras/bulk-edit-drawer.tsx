@@ -1,11 +1,7 @@
 import { Children, useState } from "react";
 import type { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import {
-  useListContext,
-  useResourceContext,
-  useUpdateMany,
-} from "ra-core";
+import { useListContext, useResourceContext, useUpdateMany } from "ra-core";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -97,8 +93,8 @@ export const BulkEditDrawer = (props: BulkEditDrawerProps) => {
           <SheetTitle>{title}</SheetTitle>
           <SheetDescription>
             Apply changes to {selectedIds?.length ?? 0} selected record
-            {selectedIds?.length === 1 ? "" : "s"}. Only fields you change
-            will be updated.
+            {selectedIds?.length === 1 ? "" : "s"}. Only fields you change will
+            be updated.
           </SheetDescription>
         </SheetHeader>
         <FormProvider {...form}>

@@ -39,26 +39,36 @@ Or with explicit data:
 ```tsx
 <RecordTimeline
   entries={[
-    { id: 1, message: "Created", timestamp: "2026-05-15T10:00:00Z", user: "alice" },
-    { id: 2, message: "Updated price", timestamp: "2026-05-15T11:00:00Z", user: "bob" },
+    {
+      id: 1,
+      message: "Created",
+      timestamp: "2026-05-15T10:00:00Z",
+      user: "alice",
+    },
+    {
+      id: 2,
+      message: "Updated price",
+      timestamp: "2026-05-15T11:00:00Z",
+      user: "bob",
+    },
   ]}
 />
 ```
 
 ### Props
 
-| Prop | Type | Default | Notes |
-| --- | --- | --- | --- |
-| `reference` | `string` | — | Audit-log resource name. Required unless `entries` provided. |
-| `target` | `string` | — | Foreign-key field linking audit entries to records. |
-| `sort` | `{ field; order }` | `{ created_at, DESC }` | |
-| `messageSource` | `string` | `"message"` | Field with the event description. |
-| `timestampSource` | `string` | `"created_at"` | Field with ISO timestamp. |
-| `userSource` | `string` | `undefined` | Field with the actor's display name. |
-| `iconSource` | `string` | `undefined` | Field whose value selects an icon via `iconMap`. |
-| `iconMap` | `Record<string, ComponentType>` | `{}` | Mapping event-type → icon. |
-| `entries` | `TimelineEntry[]` | `undefined` | Override data source entirely. |
-| `emptyLabel` | `string` | translated | Empty state. |
+| Prop              | Type                            | Default                | Notes                                                        |
+| ----------------- | ------------------------------- | ---------------------- | ------------------------------------------------------------ |
+| `reference`       | `string`                        | —                      | Audit-log resource name. Required unless `entries` provided. |
+| `target`          | `string`                        | —                      | Foreign-key field linking audit entries to records.          |
+| `sort`            | `{ field; order }`              | `{ created_at, DESC }` |                                                              |
+| `messageSource`   | `string`                        | `"message"`            | Field with the event description.                            |
+| `timestampSource` | `string`                        | `"created_at"`         | Field with ISO timestamp.                                    |
+| `userSource`      | `string`                        | `undefined`            | Field with the actor's display name.                         |
+| `iconSource`      | `string`                        | `undefined`            | Field whose value selects an icon via `iconMap`.             |
+| `iconMap`         | `Record<string, ComponentType>` | `{}`                   | Mapping event-type → icon.                                   |
+| `entries`         | `TimelineEntry[]`               | `undefined`            | Override data source entirely.                               |
+| `emptyLabel`      | `string`                        | translated             | Empty state.                                                 |
 
 ### Implementation outline
 
@@ -95,14 +105,14 @@ Compare two revisions of a record side-by-side. Shows added/removed/changed fiel
 
 ### Props
 
-| Prop | Type | Default | Notes |
-| --- | --- | --- | --- |
-| `before` | `Record<string, unknown>` | — | Required. The earlier version. |
-| `after` | `Record<string, unknown>` | — | Required. The current version. |
-| `fields` | `string[]` | all keys | Subset of fields to diff. |
-| `labels` | `Record<string, string>` | `{}` | Map field name → display label. |
-| `formatters` | `Record<string, (v) => ReactNode>` | `{}` | Per-field value renderer. |
-| `mode` | `"inline" \| "side-by-side"` | `"side-by-side"` | Layout. |
+| Prop         | Type                               | Default          | Notes                           |
+| ------------ | ---------------------------------- | ---------------- | ------------------------------- |
+| `before`     | `Record<string, unknown>`          | —                | Required. The earlier version.  |
+| `after`      | `Record<string, unknown>`          | —                | Required. The current version.  |
+| `fields`     | `string[]`                         | all keys         | Subset of fields to diff.       |
+| `labels`     | `Record<string, string>`           | `{}`             | Map field name → display label. |
+| `formatters` | `Record<string, (v) => ReactNode>` | `{}`             | Per-field value renderer.       |
+| `mode`       | `"inline" \| "side-by-side"`       | `"side-by-side"` | Layout.                         |
 
 ### Implementation outline
 
@@ -129,24 +139,26 @@ Show "who else is viewing/editing this record right now" as a stack of avatars i
 ### Public API
 
 ```tsx
-<Show actions={
-  <ShowActions>
-    <PresenceBar />
-  </ShowActions>
-}>
+<Show
+  actions={
+    <ShowActions>
+      <PresenceBar />
+    </ShowActions>
+  }
+>
   ...
 </Show>
 ```
 
 ### Props
 
-| Prop | Type | Default | Notes |
-| --- | --- | --- | --- |
-| `topic` | `string` | `presence/{resource}/{id}` | Pub/sub topic. |
-| `currentUser` | `{ id; name; avatar? }` | from `useGetIdentity()` | Who I am. |
-| `maxAvatars` | `number` | `5` | How many to show before collapsing to "+N more". |
-| `heartbeatMs` | `number` | `15000` | How often to broadcast presence. |
-| `staleMs` | `number` | `30000` | After this many ms without heartbeat, drop from list. |
+| Prop          | Type                    | Default                    | Notes                                                 |
+| ------------- | ----------------------- | -------------------------- | ----------------------------------------------------- |
+| `topic`       | `string`                | `presence/{resource}/{id}` | Pub/sub topic.                                        |
+| `currentUser` | `{ id; name; avatar? }` | from `useGetIdentity()`    | Who I am.                                             |
+| `maxAvatars`  | `number`                | `5`                        | How many to show before collapsing to "+N more".      |
+| `heartbeatMs` | `number`                | `15000`                    | How often to broadcast presence.                      |
+| `staleMs`     | `number`                | `30000`                    | After this many ms without heartbeat, drop from list. |
 
 ### Implementation outline
 

@@ -9,7 +9,7 @@ comment plus a new-comment textarea.
 ## Usage
 
 ```tsx
-import { CommentsThread, Show } from '@/components/admin';
+import { CommentsThread, Show } from "@/components/admin";
 
 const PostShow = () => (
   <Show>
@@ -27,18 +27,18 @@ interface Comment {
   authorId: string;
   authorName?: string;
   body: string;
-  createdAt: string;     // ISO timestamp
+  createdAt: string; // ISO timestamp
   resolvedAt?: string | null;
 }
 ```
 
 ## Props
 
-| Prop         | Required | Type     | Default | Description |
-| ------------ | -------- | -------- | ------- | ----------- |
-| `reference`  | Required | `string` | -       | Comments sub-resource name |
-| `target`     | Required | `string` | -       | Field on comment that holds parent id |
-| `resolvable` | Optional | `boolean`| `false` | Show "Mark resolved" button per comment |
+| Prop         | Required | Type      | Default | Description                             |
+| ------------ | -------- | --------- | ------- | --------------------------------------- |
+| `reference`  | Required | `string`  | -       | Comments sub-resource name              |
+| `target`     | Required | `string`  | -       | Field on comment that holds parent id   |
+| `resolvable` | Optional | `boolean` | `false` | Show "Mark resolved" button per comment |
 
 ## Required parent context
 

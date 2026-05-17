@@ -19,7 +19,9 @@ describe("<ColumnsButton />", () => {
     await trigger.click();
     // Once open, the column toggle popover should expose a Reset shortcut.
     await expect
-      .poll(() => screen.getByText("Reset").elements().length, { timeout: 2000 })
+      .poll(() => screen.getByText("Reset").elements().length, {
+        timeout: 2000,
+      })
       .toBeGreaterThan(0);
   });
 });

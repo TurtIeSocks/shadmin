@@ -44,11 +44,7 @@ export const ColorInput = (props: ColorInputProps) => {
   // Strip `onChange` / `onBlur` from the props passed to `useInput` so the
   // user's handlers aren't invoked twice (once by ra-core's `useInput`
   // wiring and once by our handlers below).
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -100,7 +96,8 @@ export const ColorInput = (props: ColorInputProps) => {
 };
 
 export interface ColorInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<
       React.ComponentProps<"input">,
       "defaultValue" | "onBlur" | "onChange" | "type"

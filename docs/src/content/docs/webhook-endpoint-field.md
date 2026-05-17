@@ -8,9 +8,9 @@ secret is never rendered.
 ## Usage
 
 ```tsx
-import { WebhookEndpointField } from '@/components/admin';
+import { WebhookEndpointField } from "@/components/admin";
 
-<WebhookEndpointField source="endpoint" />
+<WebhookEndpointField source="endpoint" />;
 ```
 
 ## Storage shape
@@ -26,8 +26,8 @@ interface WebhookEndpoint {
 
 ## Status badge
 
-| Status     | Color  | Source |
-| ---------- | ------ | ------ |
-| `ok`       | green  | `lastDelivery.status === "ok"` |
-| `failed`   | red    | `lastDelivery.status === "failed"` |
-| `pending`  | muted  | `lastDelivery` is missing or `status === "pending"` |
+| Status    | Color | Source                                              |
+| --------- | ----- | --------------------------------------------------- |
+| `ok`      | green | `lastDelivery.status === "ok"`                      |
+| `failed`  | red   | `lastDelivery.status === "failed"`                  |
+| `pending` | muted | `lastDelivery` is missing or `status === "pending"` |

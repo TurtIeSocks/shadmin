@@ -26,10 +26,10 @@ import { MapWithSearch } from "@/components/leaflet";
 
 ## Props
 
-| Prop            | Required | Type               | Default | Description                                                       |
-| --------------- | -------- | ------------------ | ------- | ----------------------------------------------------------------- |
-| `latSource`     | Required | `string`           | -       | RHF field name for latitude.                                      |
-| `lngSource`     | Required | `string`           | -       | RHF field name for longitude.                                     |
-| `addressSource` | Required | `string`           | -       | RHF field name for the human-readable address (display name).     |
-| `height`        | Optional | `number \| string` | `400`   | Height of the map container.                                      |
-| `defaultZoom`   | Optional | `number`           | `13`    | Initial zoom level.                                               |
+| Prop            | Required | Type               | Default | Description                                                   |
+| --------------- | -------- | ------------------ | ------- | ------------------------------------------------------------- |
+| `latSource`     | Required | `string`           | -       | RHF field name for latitude.                                  |
+| `lngSource`     | Required | `string`           | -       | RHF field name for longitude.                                 |
+| `addressSource` | Required | `string`           | -       | RHF field name for the human-readable address (display name). |
+| `height`        | Optional | `number \| string` | `400`   | Height of the map container.                                  |
+| `defaultZoom`   | Optional | `number`           | `13`    | Initial zoom level.                                           |

@@ -8,8 +8,6 @@ describe("<InPlaceEditor />", () => {
     const screen = render(<Basic />);
     // The Basic story binds InPlaceEditor to `source="title"`, so its initial
     // reading state must surface the record's title.
-    await expect
-      .element(screen.getByText("Hello world"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Hello world")).toBeInTheDocument();
   });
 });

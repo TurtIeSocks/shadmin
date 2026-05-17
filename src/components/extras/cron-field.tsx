@@ -1,9 +1,5 @@
 import type { HTMLAttributes } from "react";
-import {
-  sanitizeFieldRestProps,
-  useFieldValue,
-  useTranslate,
-} from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { describeCron } from "./cron-utils";
@@ -68,8 +64,7 @@ export const CronField = <RecordType extends UnknownRecord = UnknownRecord>({
 export interface CronFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** When true, render the raw cron expression below the human phrase. */
   showExpression?: boolean;
 }

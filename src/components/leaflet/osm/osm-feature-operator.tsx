@@ -99,7 +99,11 @@ export const OsmFeatureOperator = ({
       const combined: GeoJSON.FeatureCollection<GeoJSON.Polygon> = {
         type: "FeatureCollection",
         features: [
-          { type: "Feature", geometry: value as GeoJSON.Polygon, properties: {} },
+          {
+            type: "Feature",
+            geometry: value as GeoJSON.Polygon,
+            properties: {},
+          },
           ...polygonMask.features,
         ],
       };
@@ -122,7 +126,12 @@ export const OsmFeatureOperator = ({
   }, [osm.data, bbox, value, mode, source, form, notify, translate]);
 
   return (
-    <Button type="button" onClick={handleClick} disabled={osm.isLoading} variant="outline">
+    <Button
+      type="button"
+      onClick={handleClick}
+      disabled={osm.isLoading}
+      variant="outline"
+    >
       {osm.isLoading ? (
         <Loader2 className="mr-2 size-4 animate-spin" />
       ) : Icon ? (

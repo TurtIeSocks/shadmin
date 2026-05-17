@@ -11,7 +11,10 @@ const buildJaggedRing = (cx = 2.35, cy = 48.85, r = 0.02): GeoJSON.Polygon => {
   for (let i = 0; i < N; i++) {
     const a = (i / N) * 2 * Math.PI;
     const jitter = 0.001 * (i % 2 === 0 ? 1 : -1);
-    ring.push([cx + (r + jitter) * Math.cos(a), cy + (r + jitter) * Math.sin(a)]);
+    ring.push([
+      cx + (r + jitter) * Math.cos(a),
+      cy + (r + jitter) * Math.sin(a),
+    ]);
   }
   ring.push(ring[0]); // close
   return { type: "Polygon", coordinates: [ring] };

@@ -24,8 +24,6 @@ describe("<Title />", () => {
 
   it("renders a React element title as-is", async () => {
     const screen = render(<ReactElementTitle />);
-    await expect
-      .element(screen.getByText("world!"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("world!")).toBeInTheDocument();
   });
 });

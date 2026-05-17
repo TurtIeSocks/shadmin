@@ -1,4 +1,8 @@
-import { OsmFeatureSubtract, OsmFeatureAdd, PolygonInput } from "@/components/leaflet";
+import {
+  OsmFeatureSubtract,
+  OsmFeatureAdd,
+  PolygonInput,
+} from "@/components/leaflet";
 import { StoryAdmin } from "@/stories/_test-helpers";
 
 export default { title: "Map (Leaflet)/LeafletOsm" };
@@ -24,7 +28,11 @@ export const SubtractWater = () => (
       defaultCenter={[48.87, 2.35]}
       height={500}
     />
-    <OsmFeatureSubtract source="area" presets={["water"]} label="Subtract water" />
+    <OsmFeatureSubtract
+      source="area"
+      presets={["water"]}
+      label="Subtract water"
+    />
   </StoryAdmin>
 );
 
@@ -68,7 +76,11 @@ export const AddForests = () => (
       defaultCenter={[48.87, 2.35]}
       height={500}
     />
-    <OsmFeatureAdd source="area" presets={["forest"]} label="Add forest patches" />
+    <OsmFeatureAdd
+      source="area"
+      presets={["forest"]}
+      label="Add forest patches"
+    />
   </StoryAdmin>
 );
 

@@ -6,9 +6,7 @@ import { Basic, NoFilters } from "@/stories/admin/filter-form.stories";
 describe("<FilterForm />", () => {
   it("renders the always-on Search filter field", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByLabelText(/search/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/search/i)).toBeInTheDocument();
   });
 
   it("renders no filter inputs when the list has no filters configured", async () => {

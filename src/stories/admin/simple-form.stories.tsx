@@ -37,9 +37,14 @@ const Wrapper = ({
 }: React.PropsWithChildren<{ record?: Record<string, unknown> }>) => (
   <ThemeProvider>
     <CoreAdminContext
-      i18nProvider={polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-        allowMissing: true,
-      })}
+      i18nProvider={polyglotI18nProvider(
+        () => defaultMessages,
+        "en",
+        undefined,
+        {
+          allowMissing: true,
+        },
+      )}
       store={memoryStore()}
     >
       <ResourceContextProvider value="posts">

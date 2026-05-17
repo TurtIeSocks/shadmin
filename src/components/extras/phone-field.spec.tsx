@@ -13,12 +13,16 @@ describe("<PhoneField />", () => {
     const screen = render(<Basic />);
     const link = screen.container.querySelector("a") as HTMLAnchorElement;
     expect(link.href).toBe("tel:+14155552671");
-    await expect.element(screen.getByText(/415.*555.*2671/)).toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/415.*555.*2671/))
+      .toBeInTheDocument();
   });
 
   it("renders international format when displayFormat='international'", async () => {
     const screen = render(<International />);
-    await expect.element(screen.getByText(/\+44 20 7123 4567/)).toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/\+44 20 7123 4567/))
+      .toBeInTheDocument();
   });
 
   it("renders a plain <span> when link=false", async () => {

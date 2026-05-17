@@ -69,19 +69,67 @@ export const WithInitialState = ({
 }) => {
   const [value, setValue] = useState<PermissionsState>({
     admin: {
-      products: { list: true, show: true, create: true, edit: true, delete: true },
-      orders: { list: true, show: true, create: false, edit: true, delete: false },
+      products: {
+        list: true,
+        show: true,
+        create: true,
+        edit: true,
+        delete: true,
+      },
+      orders: {
+        list: true,
+        show: true,
+        create: false,
+        edit: true,
+        delete: false,
+      },
       users: { list: true, show: true, create: true, edit: true, delete: true },
     },
     editor: {
-      products: { list: true, show: true, create: true, edit: true, delete: false },
-      orders: { list: true, show: true, create: false, edit: false, delete: false },
-      users: { list: true, show: false, create: false, edit: false, delete: false },
+      products: {
+        list: true,
+        show: true,
+        create: true,
+        edit: true,
+        delete: false,
+      },
+      orders: {
+        list: true,
+        show: true,
+        create: false,
+        edit: false,
+        delete: false,
+      },
+      users: {
+        list: true,
+        show: false,
+        create: false,
+        edit: false,
+        delete: false,
+      },
     },
     viewer: {
-      products: { list: true, show: true, create: false, edit: false, delete: false },
-      orders: { list: true, show: true, create: false, edit: false, delete: false },
-      users: { list: false, show: false, create: false, edit: false, delete: false },
+      products: {
+        list: true,
+        show: true,
+        create: false,
+        edit: false,
+        delete: false,
+      },
+      orders: {
+        list: true,
+        show: true,
+        create: false,
+        edit: false,
+        delete: false,
+      },
+      users: {
+        list: false,
+        show: false,
+        create: false,
+        edit: false,
+        delete: false,
+      },
     },
   });
   return (
@@ -106,14 +154,16 @@ export const WithInitialState = ({
 };
 Object.assign(WithInitialState, storyArgs);
 
-export const ReadOnly = ({
-  theme,
-}: {
-  theme: "system" | "light" | "dark";
-}) => {
+export const ReadOnly = ({ theme }: { theme: "system" | "light" | "dark" }) => {
   const value: PermissionsState = {
     admin: {
-      products: { list: true, show: true, create: true, edit: true, delete: true },
+      products: {
+        list: true,
+        show: true,
+        create: true,
+        edit: true,
+        delete: true,
+      },
     },
   };
   return (
@@ -167,11 +217,7 @@ export const CustomLabels = ({
 };
 Object.assign(CustomLabels, storyArgs);
 
-export const NoRoles = ({
-  theme,
-}: {
-  theme: "system" | "light" | "dark";
-}) => {
+export const NoRoles = ({ theme }: { theme: "system" | "light" | "dark" }) => {
   return (
     <StoryWrapper theme={theme}>
       <div className="p-4">

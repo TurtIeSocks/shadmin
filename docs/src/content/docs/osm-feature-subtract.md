@@ -10,8 +10,16 @@ Form button that subtracts OSM features matching one or more typed presets (cura
 import { OsmFeatureSubtract, PolygonInput } from "@/components/leaflet";
 
 <SimpleForm>
-  <PolygonInput source="area" label="Service area" defaultCenter={[48.87, 2.35]} />
-  <OsmFeatureSubtract source="area" presets={["water"]} label="Subtract water" />
+  <PolygonInput
+    source="area"
+    label="Service area"
+    defaultCenter={[48.87, 2.35]}
+  />
+  <OsmFeatureSubtract
+    source="area"
+    presets={["water"]}
+    label="Subtract water"
+  />
 </SimpleForm>;
 ```
 
@@ -40,13 +48,13 @@ On click, fetches OSM features matching the configured sources within the curren
 
 ## Props
 
-| Prop       | Required             | Type                                | Default                       | Description                                                            |
-| ---------- | -------------------- | ----------------------------------- | ----------------------------- | ---------------------------------------------------------------------- |
-| `source`   | Required             | `string`                            | -                             | RHF field holding a `Polygon` or `MultiPolygon`.                       |
-| `presets`  | Optional<sup>1</sup> | `ReadonlyArray<OsmPresetName>`      | -                             | Typed OSM presets to subtract (e.g. `["water", "roads"]`).             |
-| `tags`     | Optional<sup>1</sup> | `ReadonlyArray<OsmTagInput>`        | -                             | Raw OSM tags in `"key=value"` or `"key=*"` form.                       |
-| `label`    | Optional             | `string`                            | `"Subtract OSM features"`     | Button label.                                                          |
-| `endpoint` | Optional             | `string`                            | Overpass public endpoint      | Override the Overpass endpoint URL.                                    |
+| Prop       | Required             | Type                           | Default                   | Description                                                |
+| ---------- | -------------------- | ------------------------------ | ------------------------- | ---------------------------------------------------------- |
+| `source`   | Required             | `string`                       | -                         | RHF field holding a `Polygon` or `MultiPolygon`.           |
+| `presets`  | Optional<sup>1</sup> | `ReadonlyArray<OsmPresetName>` | -                         | Typed OSM presets to subtract (e.g. `["water", "roads"]`). |
+| `tags`     | Optional<sup>1</sup> | `ReadonlyArray<OsmTagInput>`   | -                         | Raw OSM tags in `"key=value"` or `"key=*"` form.           |
+| `label`    | Optional             | `string`                       | `"Subtract OSM features"` | Button label.                                              |
+| `endpoint` | Optional             | `string`                       | Overpass public endpoint  | Override the Overpass endpoint URL.                        |
 
 <sup>1</sup> At least one of `presets` or `tags` must be non-empty. If both are empty, the button click is a no-op with a warning notification.
 
@@ -54,14 +62,14 @@ On click, fetches OSM features matching the configured sources within the curren
 
 The named presets currently shipped are:
 
-| Preset | Matches | Notes |
-| --- | --- | --- |
-| `water` | `natural=water/bay/strait`, `waterway=*` | Curated water bodies. |
-| `buildings` | `building=*` | All buildings. |
-| `forest` | `natural=wood/forest`, `landuse=forest` | Curated forest cover. |
-| `roads` | `highway=motorway/trunk/primary/secondary` | Major roads, buffered 15 m. |
-| `natural` / `building` / `landuse` / `amenity` / `leisure` / `boundary` / `place` / `man_made` / `shop` / `tourism` / `historic` | `<key>=*` | Category-wide catch-alls (polygon-typed features only). |
-| `highway` / `waterway` / `railway` / `barrier` / `power` | `<key>=*` | Category-wide catch-alls; line features buffered 3-5 m. |
+| Preset                                                                                                                           | Matches                                    | Notes                                                   |
+| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------- |
+| `water`                                                                                                                          | `natural=water/bay/strait`, `waterway=*`   | Curated water bodies.                                   |
+| `buildings`                                                                                                                      | `building=*`                               | All buildings.                                          |
+| `forest`                                                                                                                         | `natural=wood/forest`, `landuse=forest`    | Curated forest cover.                                   |
+| `roads`                                                                                                                          | `highway=motorway/trunk/primary/secondary` | Major roads, buffered 15 m.                             |
+| `natural` / `building` / `landuse` / `amenity` / `leisure` / `boundary` / `place` / `man_made` / `shop` / `tourism` / `historic` | `<key>=*`                                  | Category-wide catch-alls (polygon-typed features only). |
+| `highway` / `waterway` / `railway` / `barrier` / `power`                                                                         | `<key>=*`                                  | Category-wide catch-alls; line features buffered 3-5 m. |
 
 Pass multiple presets in one call to merge the masks (e.g. `["water", "roads"]`). Curated presets target useful subsets; the per-key category presets are broader catch-alls.
 

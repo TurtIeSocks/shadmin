@@ -9,8 +9,6 @@ describe("<Inspector />", () => {
     await expect
       .element(screen.getByText("Edit me from the inspector").first())
       .toBeInTheDocument();
-    await expect
-      .element(screen.getByRole("dialog"))
-      .not.toBeInTheDocument();
+    await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
   });
 });

@@ -8,7 +8,7 @@
 
 **Root cause:** `<CsvImportCommitStep>`'s `useEffect` runs once on mount (deps `[]`). Because `<WizardForm>` mounts all 4 steps simultaneously and hides inactive ones via `display:none`, the commit step's effect fires the moment the dialog opens — before the user has uploaded anything. With `parsedRows=[]` at that point, the import logic completes immediately with a zero report and `setDone(true)`. Subsequent navigation to step 4 just shows the already-complete (empty) report.
 
-The seeded test stories (`CommitStep`, `CommitWithErrors`) don't expose the bug because `<SeedParsed>` populates `parsedRows` *before* the dialog opens, so when the commit step mounts the effect runs with valid data.
+The seeded test stories (`CommitStep`, `CommitWithErrors`) don't expose the bug because `<SeedParsed>` populates `parsedRows` _before_ the dialog opens, so when the commit step mounts the effect runs with valid data.
 
 **Fix sketch (that should work but resisted multiple attempts in one short session):**
 

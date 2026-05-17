@@ -50,11 +50,7 @@ export const PhoneInput = (props: PhoneInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -153,7 +149,8 @@ function formatNational(value: string, country: CountryCode): string {
 }
 
 export interface PhoneInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   defaultCountry?: CountryCode;
   allowedCountries?: readonly CountryCode[];

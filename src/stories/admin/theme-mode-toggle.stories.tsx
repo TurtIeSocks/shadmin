@@ -21,9 +21,14 @@ const Wrapper = ({
 }: React.PropsWithChildren<{ defaultTheme?: "system" | "light" | "dark" }>) => (
   <ThemeProvider defaultTheme={defaultTheme}>
     <CoreAdminContext
-      i18nProvider={polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-        allowMissing: true,
-      })}
+      i18nProvider={polyglotI18nProvider(
+        () => defaultMessages,
+        "en",
+        undefined,
+        {
+          allowMissing: true,
+        },
+      )}
       store={memoryStore()}
     >
       {children}

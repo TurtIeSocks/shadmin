@@ -19,7 +19,11 @@ export default {
   title: "Extras/InPlaceEditor",
 };
 
-const record = { id: 1, title: "Hello world", description: "A short description" };
+const record = {
+  id: 1,
+  title: "Hello world",
+  description: "A short description",
+};
 
 const dataProvider = fakeRestDataProvider({ posts: [record] });
 

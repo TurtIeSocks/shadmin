@@ -19,9 +19,7 @@ describe("<DiffViewer />", () => {
     // "category" added (missing in before)
     const catRow = document.querySelector('[data-field="category"]');
     expect(catRow?.getAttribute("data-status")).toBe("added");
-    await expect
-      .element(screen.getByText(/notebook pro/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/notebook pro/i)).toBeInTheDocument();
   });
 
   it("renders inline mode with strikethrough and underline cues", async () => {
@@ -46,9 +44,10 @@ describe("<DiffViewer />", () => {
   it("shows arrow icons in side-by-side mode", async () => {
     const screen = render(<SideBySide />);
     // The header and each row have an arrow; there should be multiple SVGs
-    const container = screen.getByText("Before").element().closest(
-      '[data-slot="diff-viewer"]',
-    );
+    const container = screen
+      .getByText("Before")
+      .element()
+      .closest('[data-slot="diff-viewer"]');
     const svgs = container?.querySelectorAll("svg");
     expect(svgs?.length).toBeGreaterThan(0);
   });

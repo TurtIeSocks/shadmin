@@ -134,7 +134,9 @@ const ApprovalRow = (props: ApprovalRowInternalProps) => {
       <CardContent className="flex flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-col">
-            <span className="font-medium">{String(record[titleSource] ?? "")}</span>
+            <span className="font-medium">
+              {String(record[titleSource] ?? "")}
+            </span>
             {subtitleSource && (
               <span className="text-sm text-muted-foreground">
                 {String(record[subtitleSource] ?? "")}

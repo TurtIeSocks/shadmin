@@ -20,6 +20,7 @@ Add 5 new fake resources to the demo app, each one hosting extras components tha
 **Folder:** `src/demo/subscriptions/`
 **Files:** `SubscriptionList.tsx`, `SubscriptionEdit.tsx`, `SubscriptionShow.tsx`, `index.ts`
 **Type (in `src/demo/types.ts`):**
+
 ```ts
 export interface Subscription {
   id: number;
@@ -27,19 +28,40 @@ export interface Subscription {
   plan: "free" | "starter" | "pro" | "enterprise";
   status: "active" | "trialing" | "past_due" | "canceled";
   start_date: string;
-  usage: { api_calls: { used: number; limit: number }; storage_mb: { used: number; limit: number } };
+  usage: {
+    api_calls: { used: number; limit: number };
+    storage_mb: { used: number; limit: number };
+  };
 }
 ```
+
 **Seed:** 30 subscriptions, half active/half trialing, varied plans and usage.
 **Plans data (constant in `subscriptions/plans.ts`):**
+
 ```ts
 export const PLANS = [
-  { id: "free", name: "Free", price: 0, features: ["1 user", "100 API calls/month"] },
-  { id: "starter", name: "Starter", price: 29, features: ["5 users", "10k API calls/month"] },
-  { id: "pro", name: "Pro", price: 99, features: ["unlimited users", "1M API calls/month"] },
+  {
+    id: "free",
+    name: "Free",
+    price: 0,
+    features: ["1 user", "100 API calls/month"],
+  },
+  {
+    id: "starter",
+    name: "Starter",
+    price: 29,
+    features: ["5 users", "10k API calls/month"],
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    price: 99,
+    features: ["unlimited users", "1M API calls/month"],
+  },
   { id: "enterprise", name: "Enterprise", price: 999, features: ["custom"] },
 ];
 ```
+
 **Edit view:** `<SubscriptionPlanPicker source="plan" plans={PLANS} />`, `<UsageMeterField source="usage.api_calls" label="API calls" />`, `<UsageMeterField source="usage.storage_mb" unit="MB" />`.
 **List view:** plan badge via `<SubscriptionPlanField source="plan" plans={PLANS} />`, status, customer reference.
 
@@ -48,17 +70,19 @@ export const PLANS = [
 **Folder:** `src/demo/api-keys/`
 **Files:** `ApiKeyList.tsx`, `ApiKeyCreate.tsx`, `ApiKeyShow.tsx`, `index.ts`
 **Type:**
+
 ```ts
 export interface ApiKey {
   id: number;
   name: string;
-  key: string;  // full key shown once at creation
-  key_truncated: string;  // "sk_...abc" for list/show
+  key: string; // full key shown once at creation
+  key_truncated: string; // "sk_...abc" for list/show
   scopes: string[];
   created_at: string;
   last_used: string | null;
 }
 ```
+
 **Seed:** 12 keys across 3 customers, varied scopes.
 **Create view:** `<TextInput source="name" />` + `<TextInput source="scopes" />`; `<ApiKeyInput source="key" />` shown post-create.
 **Show view:** `<ApiKeyField source="key_truncated" />`, list of scopes, last-used timestamp.
@@ -69,6 +93,7 @@ export interface ApiKey {
 **Folder:** `src/demo/webhooks/`
 **Files:** `WebhookList.tsx`, `WebhookEdit.tsx`, `WebhookCreate.tsx`, `WebhookShow.tsx`, `index.ts`
 **Type:**
+
 ```ts
 export interface Webhook {
   id: number;
@@ -79,10 +104,20 @@ export interface Webhook {
   failure_count: number;
 }
 ```
+
 **Event types constant (`webhooks/event-types.ts`):**
+
 ```ts
-export const EVENT_TYPES = ["order.created", "order.paid", "order.shipped", "customer.created", "subscription.updated", "subscription.canceled"];
+export const EVENT_TYPES = [
+  "order.created",
+  "order.paid",
+  "order.shipped",
+  "customer.created",
+  "subscription.updated",
+  "subscription.canceled",
+];
 ```
+
 **Seed:** 8 webhooks, varied status.
 **Edit view:** `<WebhookEndpointInput source="url" eventTypes={EVENT_TYPES} source="event_types" />`.
 **List view:** `<WebhookEndpointField source="url" statusSource="status" lastTriggeredSource="last_triggered" />`.
@@ -92,11 +127,12 @@ export const EVENT_TYPES = ["order.created", "order.paid", "order.shipped", "cus
 **Folder:** `src/demo/scheduled-jobs/`
 **Files:** `ScheduledJobList.tsx`, `ScheduledJobEdit.tsx`, `ScheduledJobCreate.tsx`, `ScheduledJobShow.tsx`, `index.ts`
 **Type:**
+
 ```ts
 export interface ScheduledJob {
   id: number;
   name: string;
-  cron: string;  // "0 */4 * * *"
+  cron: string; // "0 */4 * * *"
   description: string;
   status: "running" | "idle" | "failed" | "disabled";
   last_run: string | null;
@@ -104,6 +140,7 @@ export interface ScheduledJob {
   last_duration_ms: number | null;
 }
 ```
+
 **Seed:** 6 jobs (e.g., "Daily revenue report", "Cleanup expired sessions", "Send weekly digest").
 **Edit view:** `<CronInput source="cron" previewNextRuns={3} />`, `<TextInput source="name" />`, `<TextInput multiline source="description" />`.
 **List view:** `<CronField source="cron" />` (humanized), status badge, last_run timestamp.
@@ -113,6 +150,7 @@ export interface ScheduledJob {
 **Folder:** `src/demo/approvals/`
 **Files:** `ApprovalQueueList.tsx` (uses `<ApprovalQueue>`), `ApprovalShow.tsx`, `index.ts`
 **Type:**
+
 ```ts
 export interface Approval {
   id: number;
@@ -127,6 +165,7 @@ export interface Approval {
   created_at: string;
 }
 ```
+
 **Seed:** 15 approvals, mix of types and statuses.
 **List route:** `<ApprovalQueue resource="approvals" filter={{ status: "pending" }} requireReason />`.
 **Show view:** `<DualApprovalButton source="approved_by_1" secondSource="approved_by_2" requiredApprovers={2} />`.
@@ -138,6 +177,7 @@ export interface Approval {
 ### `src/demo/App.tsx`
 
 Add 5 `<Resource>` entries:
+
 ```tsx
 <Resource name="subscriptions" list={SubscriptionList} edit={SubscriptionEdit} show={SubscriptionShow} icon={CreditCardIcon} />
 <Resource name="api_keys" list={ApiKeyList} create={ApiKeyCreate} show={ApiKeyShow} icon={KeyIcon} />
@@ -149,10 +189,11 @@ Add 5 `<Resource>` entries:
 ### `src/demo/DemoSidebar.tsx`
 
 Restructure into grouped sections (decision made under "I trust your judgement"):
+
 - **Catalog:** Products, Categories
 - **Sales:** Orders, Customers, Reviews, Segments
-- **SaaS:** Subscriptions, API Keys, Webhooks  *(new group)*
-- **Workflow:** Approvals, Scheduled Jobs  *(new group)*
+- **SaaS:** Subscriptions, API Keys, Webhooks _(new group)_
+- **Workflow:** Approvals, Scheduled Jobs _(new group)_
 - **Analytics:** existing Analytics, Planning, Map
 - **Setup:** Onboarding, Workspace
 

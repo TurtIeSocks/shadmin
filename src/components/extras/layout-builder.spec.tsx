@@ -19,13 +19,7 @@ describe("<LayoutBuilder />", () => {
     const rows = Array.from(
       screen.container.querySelectorAll("[data-layout-row]"),
     ).map((r) => r.getAttribute("data-field"));
-    expect(rows).toEqual([
-      "title",
-      "id",
-      "author",
-      "publishedAt",
-      "views",
-    ]);
+    expect(rows).toEqual(["title", "id", "author", "publishedAt", "views"]);
   });
 
   it("respects custom storeKey", async () => {

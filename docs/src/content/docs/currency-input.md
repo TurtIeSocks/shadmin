@@ -17,19 +17,19 @@ import { CurrencyInput } from '@/components/admin';
 
 ## Props
 
-| Prop                 | Required | Type                       | Default | Description |
-| -------------------- | -------- | -------------------------- | ------- | ----------- |
-| `source`             | Required | `string`                   | -       | Form field name |
-| `currency`           | Optional | `string`                   | -       | ISO-4217 code (single-currency mode) |
-| `currencies`         | Optional | `readonly string[]`        | -       | Enable currency selector; stores composite |
-| `displayLocale`      | Optional | `string`                   | App locale | Override locale for symbol/step |
-| `storeAsMinorUnits`  | Optional | `boolean`                  | `false` | Store integer cents |
-| `label`              | Optional | `string \| false`          | Inferred | Custom label, `false` to hide |
-| `helperText`         | Optional | `ReactNode`                | -       | Helper text |
-| `disabled`           | Optional | `boolean`                  | `false` | Disable input + currency selector |
-| `defaultValue`       | Optional | `number \| { amount, currency }` | - | Initial value |
-| `validate`           | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`          | Optional | `string`                   | -       | CSS class on the row |
+| Prop                | Required | Type                             | Default    | Description                                |
+| ------------------- | -------- | -------------------------------- | ---------- | ------------------------------------------ |
+| `source`            | Required | `string`                         | -          | Form field name                            |
+| `currency`          | Optional | `string`                         | -          | ISO-4217 code (single-currency mode)       |
+| `currencies`        | Optional | `readonly string[]`              | -          | Enable currency selector; stores composite |
+| `displayLocale`     | Optional | `string`                         | App locale | Override locale for symbol/step            |
+| `storeAsMinorUnits` | Optional | `boolean`                        | `false`    | Store integer cents                        |
+| `label`             | Optional | `string \| false`                | Inferred   | Custom label, `false` to hide              |
+| `helperText`        | Optional | `ReactNode`                      | -          | Helper text                                |
+| `disabled`          | Optional | `boolean`                        | `false`    | Disable input + currency selector          |
+| `defaultValue`      | Optional | `number \| { amount, currency }` | -          | Initial value                              |
+| `validate`          | Optional | `Validator \| Validator[]`       | -          | Validation                                 |
+| `className`         | Optional | `string`                         | -          | CSS class on the row                       |
 
 ## Single- vs multi-currency
 

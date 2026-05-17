@@ -26,8 +26,10 @@ import {
   SocialAuthButton,
 } from "@/components/supabase";
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "https://<your-project>.supabase.co";
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "<your-anon-key>";
+const SUPABASE_URL =
+  import.meta.env.VITE_SUPABASE_URL ?? "https://<your-project>.supabase.co";
+const SUPABASE_ANON_KEY =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ?? "<your-anon-key>";
 
 /**
  * Custom aside slot for the auth pages — illustrates how to embed

@@ -14,14 +14,14 @@
 
 ## File structure
 
-| File | Responsibility | Status |
-| --- | --- | --- |
-| `package.json` | Add `@dnd-kit/core` dep | **Modify** |
-| `src/components/admin/calendar-list.tsx` | Component + sub-components | **Create** |
-| `src/components/admin/calendar-list.spec.tsx` | Browser tests | **Create** |
-| `src/stories/calendar-list.stories.tsx` | Storybook stories | **Create** |
-| `docs/src/content/docs/CalendarList.md` | Docs page | **Create** |
-| `src/components/admin/index.ts` | Public re-export | **Modify** |
+| File                                          | Responsibility             | Status     |
+| --------------------------------------------- | -------------------------- | ---------- |
+| `package.json`                                | Add `@dnd-kit/core` dep    | **Modify** |
+| `src/components/admin/calendar-list.tsx`      | Component + sub-components | **Create** |
+| `src/components/admin/calendar-list.spec.tsx` | Browser tests              | **Create** |
+| `src/stories/calendar-list.stories.tsx`       | Storybook stories          | **Create** |
+| `docs/src/content/docs/CalendarList.md`       | Docs page                  | **Create** |
+| `src/components/admin/index.ts`               | Public re-export           | **Modify** |
 
 ---
 
@@ -44,7 +44,7 @@
 
 ### Task 2: Range loading via filter injection
 
-- [ ] When the visible range changes (mount, prev/next/today, view switch), call `setFilters({...filterValues, [\`${startSource}_gte\`]: rangeStart.toISOString(), [\`${startSource}_lte\`]: rangeEnd.toISOString()})`.
+- [ ] When the visible range changes (mount, prev/next/today, view switch), call `setFilters({...filterValues, [\`${startSource}_gte\`]: rangeStart.toISOString(), [\`${startSource}\_lte\`]: rangeEnd.toISOString()})`.
 - [ ] Story story `RangeLoading` with a fakerest provider that has records both inside and outside the visible range. Test asserts only in-range records render.
 - [ ] Verify, commit `feat(calendar-list): range loading via filter injection`.
 

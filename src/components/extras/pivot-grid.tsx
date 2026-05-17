@@ -20,7 +20,10 @@ interface PivotBucket {
   values: number[];
 }
 
-const aggregate = (bucket: PivotBucket, aggregator: PivotAggregator): number => {
+const aggregate = (
+  bucket: PivotBucket,
+  aggregator: PivotAggregator,
+): number => {
   const { values } = bucket;
   if (values.length === 0) return 0;
   switch (aggregator) {
@@ -78,16 +81,12 @@ export const PivotGrid = ({
   columnField,
   valueField,
   aggregator = "count",
-  formatter = (v: number) =>
-    Number.isInteger(v) ? String(v) : v.toFixed(2),
+  formatter = (v: number) => (Number.isInteger(v) ? String(v) : v.toFixed(2)),
   emptyLabel,
 }: PivotGridProps) => {
   const translate = useTranslate();
   const listData = useListData();
-  const data = useMemo(
-    () => dataProp ?? listData ?? [],
-    [dataProp, listData],
-  );
+  const data = useMemo(() => dataProp ?? listData ?? [], [dataProp, listData]);
 
   const { grid, rowKeys, colKeys } = useMemo(
     () => collect(data, rowField, columnField, valueField),

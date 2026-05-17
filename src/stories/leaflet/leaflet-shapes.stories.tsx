@@ -58,7 +58,11 @@ export const PointFieldBasic = () => (
 
 export const PointInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <PointInput source="geom" label="Pick a point" defaultCenter={[48.85, 2.35]} />
+    <PointInput
+      source="geom"
+      label="Pick a point"
+      defaultCenter={[48.85, 2.35]}
+    />
   </StoryAdmin>
 );
 
@@ -70,7 +74,11 @@ export const PolygonFieldBasic = () => (
 
 export const PolygonInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <PolygonInput source="geom" label="Service area" defaultCenter={[48.85, 2.35]} />
+    <PolygonInput
+      source="geom"
+      label="Service area"
+      defaultCenter={[48.85, 2.35]}
+    />
   </StoryAdmin>
 );
 
@@ -82,7 +90,11 @@ export const LineStringFieldBasic = () => (
 
 export const LineStringInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <LineStringInput source="geom" label="Route" defaultCenter={[48.85, 2.35]} />
+    <LineStringInput
+      source="geom"
+      label="Route"
+      defaultCenter={[48.85, 2.35]}
+    />
   </StoryAdmin>
 );
 
@@ -90,7 +102,10 @@ export const MultiPointFieldBasic = () => (
   <StoryAdmin
     record={{
       id: 1,
-      geom: { type: "MultiPoint", coordinates: [point.coordinates, [2.36, 48.86]] },
+      geom: {
+        type: "MultiPoint",
+        coordinates: [point.coordinates, [2.36, 48.86]],
+      },
     }}
   >
     <MultiPointField source="geom" />
@@ -99,7 +114,11 @@ export const MultiPointFieldBasic = () => (
 
 export const MultiPointInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <MultiPointInput source="geom" label="Bus stops" defaultCenter={[48.85, 2.35]} />
+    <MultiPointInput
+      source="geom"
+      label="Bus stops"
+      defaultCenter={[48.85, 2.35]}
+    />
   </StoryAdmin>
 );
 
@@ -116,7 +135,11 @@ export const MultiPolygonFieldBasic = () => (
 
 export const MultiPolygonInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <MultiPolygonInput source="geom" label="Territories" defaultCenter={[48.85, 2.35]} />
+    <MultiPolygonInput
+      source="geom"
+      label="Territories"
+      defaultCenter={[48.85, 2.35]}
+    />
   </StoryAdmin>
 );
 
@@ -133,7 +156,11 @@ export const MultiLineStringFieldBasic = () => (
 
 export const MultiLineStringInputBasic = () => (
   <StoryAdmin mode="form" record={{ geom: null }}>
-    <MultiLineStringInput source="geom" label="Routes" defaultCenter={[48.85, 2.35]} />
+    <MultiLineStringInput
+      source="geom"
+      label="Routes"
+      defaultCenter={[48.85, 2.35]}
+    />
   </StoryAdmin>
 );
 
@@ -178,7 +205,11 @@ export const BBoxFieldBasic = () => (
 
 export const BBoxInputBasic = () => (
   <StoryAdmin mode="form" record={{ bb: null }}>
-    <BBoxInput source="bb" label="Area of interest" defaultCenter={[48.85, 2.35]} />
+    <BBoxInput
+      source="bb"
+      label="Area of interest"
+      defaultCenter={[48.85, 2.35]}
+    />
   </StoryAdmin>
 );
 
@@ -234,7 +265,10 @@ const buildJaggedRing = (): GeoJSON.Polygon => {
     const a = (i / N) * 2 * Math.PI;
     // Slight per-vertex jitter so Douglas-Peucker has real work to do.
     const jitter = 0.001 * (i % 2 === 0 ? 1 : -1);
-    ring.push([cx + (r + jitter) * Math.cos(a), cy + (r + jitter) * Math.sin(a)]);
+    ring.push([
+      cx + (r + jitter) * Math.cos(a),
+      cy + (r + jitter) * Math.sin(a),
+    ]);
   }
   ring.push(ring[0]); // close
   return { type: "Polygon", coordinates: [ring] };

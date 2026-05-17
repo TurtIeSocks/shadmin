@@ -24,7 +24,11 @@ export const OrderShow = () => (
         </SimpleShowLayout>
       </div>
       <aside className="w-80 border-l pl-6">
-        <CommentsThread reference="order_comments" target="order_id" resolvable />
+        <CommentsThread
+          reference="order_comments"
+          target="order_id"
+          resolvable
+        />
       </aside>
     </div>
   </Show>

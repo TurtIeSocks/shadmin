@@ -6,16 +6,12 @@ import { Basic, CustomChildren } from "@/stories/admin/offline.stories";
 describe("<Offline />", () => {
   it("renders the offline banner when navigator is offline", async () => {
     const screen = render(<Basic online={false} />);
-    await expect
-      .element(screen.getByRole("status"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByRole("status")).toBeInTheDocument();
   });
 
   it("renders nothing when navigator is online", async () => {
     const screen = render(<Basic online={true} />);
-    await expect
-      .element(screen.getByRole("status"))
-      .not.toBeInTheDocument();
+    await expect.element(screen.getByRole("status")).not.toBeInTheDocument();
   });
 
   it("renders custom offline children when provided", async () => {

@@ -11,6 +11,7 @@
 Replace echarts in `src/demo/dashboard/OrderChart.tsx` with the project-internal `<TrendChart>` from `src/components/extras/dashboard-charts.tsx`. Extend `TrendChart`'s public API so OrderChart loses no visual fidelity (smooth monotone curve, area gradient fill, formatted axis ticks + tooltip).
 
 This serves two purposes:
+
 1. Drop the heavy `echarts` dependency from the demo if no other consumer remains.
 2. Dogfood the internal charting primitive, exposing its API gaps and growing it in service of a real use case.
 
@@ -113,7 +114,10 @@ const OrderChart = ({ orders }: { orders?: Order[] }) => {
           smooth
           xTickFormatter={(v) => new Date(v as number).toLocaleDateString()}
           yTickFormatter={(v) => `$${v}`}
-          tooltipFormatter={(v) => [currencyFormatter.format(v as number), "Revenue"]}
+          tooltipFormatter={(v) => [
+            currencyFormatter.format(v as number),
+            "Revenue",
+          ]}
         />
       </CardContent>
     </Card>

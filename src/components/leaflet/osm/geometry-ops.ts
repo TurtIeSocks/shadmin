@@ -11,7 +11,9 @@ export const subtract = (
   if (mask.features.length === 0) return input;
   const merged = unionAll(mask as GeoJSON.FeatureCollection<GeoJSON.Polygon>);
   if (!merged) return input;
-  const result = difference(featureCollection([feature(input), feature(merged)]));
+  const result = difference(
+    featureCollection([feature(input), feature(merged)]),
+  );
   return result?.geometry ?? null;
 };
 
@@ -38,7 +40,11 @@ export const polygonToBBox = (geom: GeoJSON.Geometry): GeoJSON.BBox | null => {
 };
 
 export const bboxToPolygon = (bb: unknown): GeoJSON.Polygon | null => {
-  if (!Array.isArray(bb) || bb.length !== 4 || !bb.every((n) => typeof n === "number")) {
+  if (
+    !Array.isArray(bb) ||
+    bb.length !== 4 ||
+    !bb.every((n) => typeof n === "number")
+  ) {
     return null;
   }
   const [w, s, e, n] = bb as GeoJSON.BBox;

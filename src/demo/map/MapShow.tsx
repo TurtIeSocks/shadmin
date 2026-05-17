@@ -1,8 +1,4 @@
-import {
-  RecordField,
-  Show,
-  TabbedShowLayout,
-} from "@/components/admin";
+import { RecordField, Show, TabbedShowLayout } from "@/components/admin";
 import {
   BBoxField,
   FeatureCollectionField,

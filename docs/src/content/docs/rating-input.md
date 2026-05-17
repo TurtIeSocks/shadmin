@@ -16,17 +16,17 @@ import { RatingInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default | Description |
-| ------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                   | -       | Form field name |
-| `max`        | Optional | `number`                   | `5`     | Total stars rendered |
-| `allowHalf`  | Optional | `boolean`                  | `false` | Allow half-step selection |
-| `label`      | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide |
-| `helperText` | Optional | `ReactNode`                | -       | Helper text below the input |
-| `disabled`   | Optional | `boolean`                  | `false` | Disable input |
-| `defaultValue` | Optional | `number`                 | -       | Initial value |
-| `validate`   | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`  | Optional | `string`                   | -       | CSS class on the radiogroup |
+| Prop           | Required | Type                       | Default  | Description                      |
+| -------------- | -------- | -------------------------- | -------- | -------------------------------- |
+| `source`       | Required | `string`                   | -        | Form field name                  |
+| `max`          | Optional | `number`                   | `5`      | Total stars rendered             |
+| `allowHalf`    | Optional | `boolean`                  | `false`  | Allow half-step selection        |
+| `label`        | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide |
+| `helperText`   | Optional | `ReactNode`                | -        | Helper text below the input      |
+| `disabled`     | Optional | `boolean`                  | `false`  | Disable input                    |
+| `defaultValue` | Optional | `number`                   | -        | Initial value                    |
+| `validate`     | Optional | `Validator \| Validator[]` | -        | Validation                       |
+| `className`    | Optional | `string`                   | -        | CSS class on the radiogroup      |
 
 ## Keyboard
 

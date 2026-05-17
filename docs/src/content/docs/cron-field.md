@@ -17,12 +17,12 @@ import { CronField } from '@/components/admin';
 
 ## Props
 
-| Prop             | Required | Type        | Default | Description |
-| ---------------- | -------- | ----------- | ------- | ----------- |
-| `source`         | Required | `string`    | -       | Record field to read |
+| Prop             | Required | Type        | Default | Description                               |
+| ---------------- | -------- | ----------- | ------- | ----------------------------------------- |
+| `source`         | Required | `string`    | -       | Record field to read                      |
 | `showExpression` | Optional | `boolean`   | `false` | Show the raw cron string below the phrase |
-| `empty`          | Optional | `ReactNode` | -       | Fallback when value is `null`/empty |
-| `className`      | Optional | `string`    | -       | CSS class on `<span>` |
+| `empty`          | Optional | `ReactNode` | -       | Fallback when value is `null`/empty       |
+| `className`      | Optional | `string`    | -       | CSS class on `<span>`                     |
 
 ## Storage format
 

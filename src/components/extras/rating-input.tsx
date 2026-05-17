@@ -105,7 +105,8 @@ const Star = ({ filled, half }: { filled: boolean; half: boolean }) => (
 );
 
 export interface RatingInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   max?: number;
   allowHalf?: boolean;

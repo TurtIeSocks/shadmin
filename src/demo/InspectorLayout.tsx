@@ -41,10 +41,7 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
     setErrorInfo(info);
   };
   return (
-    <DataProviderDevtools
-      defaultOpen={false}
-      keyboardShortcut="ctrl+shift+d"
-    >
+    <DataProviderDevtools defaultOpen={false} keyboardShortcut="ctrl+shift+d">
       <SidebarProvider>
         <DemoSidebar />
         <main

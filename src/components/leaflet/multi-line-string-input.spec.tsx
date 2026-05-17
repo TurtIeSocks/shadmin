@@ -10,6 +10,8 @@ describe("<MultiLineStringInput />", () => {
     // `shape-input-shell` testId pattern for `MultiLineString` is `multilinestring-input`.
     const wrapper = await screen.getByTestId("multilinestring-input");
     await expect.element(wrapper).toBeInTheDocument();
-    expect(wrapper.element().querySelector(".leaflet-container")).not.toBeNull();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

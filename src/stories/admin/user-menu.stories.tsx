@@ -37,9 +37,14 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
     <ThemeProvider>
       <CoreAdminContext
         authProvider={authProvider}
-        i18nProvider={polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-          allowMissing: true,
-        })}
+        i18nProvider={polyglotI18nProvider(
+          () => defaultMessages,
+          "en",
+          undefined,
+          {
+            allowMissing: true,
+          },
+        )}
         store={memoryStore()}
       >
         <div className="p-8 flex justify-end">{children}</div>

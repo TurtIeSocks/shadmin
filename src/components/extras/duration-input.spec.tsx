@@ -25,6 +25,8 @@ describe("<DurationInput />", () => {
   it("disables all unit inputs when disabled prop is set", async () => {
     const screen = render(<Disabled />);
     const inputs = screen.container.querySelectorAll("input[type='number']");
-    Array.from(inputs).forEach((i) => expect((i as HTMLInputElement).disabled).toBe(true));
+    Array.from(inputs).forEach((i) =>
+      expect((i as HTMLInputElement).disabled).toBe(true),
+    );
   });
 });

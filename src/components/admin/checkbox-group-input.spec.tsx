@@ -11,9 +11,7 @@ import {
 describe("<CheckboxGroupInput />", () => {
   it("renders one checkbox per choice", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByLabelText(/^tech$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^tech$/i)).toBeInTheDocument();
     await expect
       .element(screen.getByLabelText(/^lifestyle$/i))
       .toBeInTheDocument();
@@ -32,9 +30,7 @@ describe("<CheckboxGroupInput />", () => {
   it("disables every choice when disabled is set", async () => {
     const screen = render(<Disabled />);
     await expect.element(screen.getByLabelText(/^tech$/i)).toBeDisabled();
-    await expect
-      .element(screen.getByLabelText(/^lifestyle$/i))
-      .toBeDisabled();
+    await expect.element(screen.getByLabelText(/^lifestyle$/i)).toBeDisabled();
   });
 
   it("renders the explicit label when provided", async () => {

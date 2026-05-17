@@ -24,15 +24,15 @@
 
 ## File structure
 
-| File | Status |
-| --- | --- |
-| `src/components/extras/job-monitor.tsx` | **Create** |
-| `src/components/extras/job-monitor.spec.tsx` | **Create** |
-| `src/stories/extras/job-monitor.stories.tsx` | **Create** |
-| `docs/src/content/docs/job-monitor.md` | **Create** |
-| `src/components/extras/index.ts` | **Modify** (append export in alpha order between `i18n-key-editor` and `in-place-editor`) |
-| `src/demo/component-gallery/ComponentGallery.tsx` | **Modify** (append `{ name: "JobMonitor", family: "Views", docs: "JobMonitor" }` in alpha position) |
-| `docs/sidebar.config.mjs` | **Modify** (append `"job-monitor"` in alpha position under Extras between `in-place-editor` and `kanban-board`) |
+| File                                              | Status                                                                                                          |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `src/components/extras/job-monitor.tsx`           | **Create**                                                                                                      |
+| `src/components/extras/job-monitor.spec.tsx`      | **Create**                                                                                                      |
+| `src/stories/extras/job-monitor.stories.tsx`      | **Create**                                                                                                      |
+| `docs/src/content/docs/job-monitor.md`            | **Create**                                                                                                      |
+| `src/components/extras/index.ts`                  | **Modify** (append export in alpha order between `i18n-key-editor` and `in-place-editor`)                       |
+| `src/demo/component-gallery/ComponentGallery.tsx` | **Modify** (append `{ name: "JobMonitor", family: "Views", docs: "JobMonitor" }` in alpha position)             |
+| `docs/sidebar.config.mjs`                         | **Modify** (append `"job-monitor"` in alpha position under Extras between `in-place-editor` and `kanban-board`) |
 
 ---
 
@@ -184,12 +184,8 @@ describe("<JobMonitor />", () => {
 
   it("hides action buttons when actions=false", async () => {
     const screen = render(<HideActions />);
-    expect(
-      screen.container.querySelector("[data-job-retry]"),
-    ).toBeNull();
-    expect(
-      screen.container.querySelector("[data-job-cancel]"),
-    ).toBeNull();
+    expect(screen.container.querySelector("[data-job-retry]")).toBeNull();
+    expect(screen.container.querySelector("[data-job-cancel]")).toBeNull();
   });
 
   it("renders retry button on failed rows", async () => {
@@ -198,7 +194,9 @@ describe("<JobMonitor />", () => {
       screen.container.querySelectorAll("[role='tab']"),
     ).find((t) => /failed/i.test(t.textContent ?? "")) as HTMLElement;
     failedTab.click();
-    await expect.element(screen.getByText("sync-inventory")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("sync-inventory"))
+      .toBeInTheDocument();
     const retry = screen.container.querySelector("[data-job-retry]");
     expect(retry).toBeTruthy();
   });
@@ -209,9 +207,7 @@ describe("<JobMonitor />", () => {
       screen.container.querySelectorAll("[role='tab']"),
     ).find((t) => /failed/i.test(t.textContent ?? "")) as HTMLElement;
     failedTab.click();
-    await expect
-      .element(screen.getByText(/ETIMEDOUT/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/ETIMEDOUT/i)).toBeInTheDocument();
   });
 });
 ```
@@ -232,21 +228,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, RotateCcw, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type JobStatus =
-  | "queued"
-  | "running"
-  | "failed"
-  | "done"
-  | "cancelled";
+export type JobStatus = "queued" | "running" | "failed" | "done" | "cancelled";
 
 export interface JobRecord extends RaRecord {
   type?: string;
@@ -538,7 +524,7 @@ import { JobMonitor } from '@/components/admin';
 interface JobRecord {
   id: string | number;
   type?: string;
-  status: 'queued' | 'running' | 'failed' | 'done' | 'cancelled';
+  status: "queued" | "running" | "failed" | "done" | "cancelled";
   payload?: unknown;
   attempts?: number;
   lastError?: string | null;
@@ -549,17 +535,17 @@ interface JobRecord {
 
 ## Props
 
-| Prop             | Required | Type             | Default                                  | Description |
-| ---------------- | -------- | ---------------- | ---------------------------------------- | ----------- |
-| `resource`       | Optional | `string`         | Context                                  | Override resource |
-| `pollInterval`   | Optional | `number`         | `5000`                                   | Polling interval in ms (`0` = disabled) |
-| `tabs`           | Optional | `JobStatus[]`    | `["running","queued","failed","done"]`   | Tab order |
-| `statusSource`   | Optional | `string`         | `"status"`                               | Record field name |
-| `typeSource`     | Optional | `string`         | `"type"`                                 | Record field name |
-| `payloadSource`  | Optional | `string`         | `"payload"`                              | Record field name |
-| `errorSource`    | Optional | `string`         | `"lastError"`                            | Record field name |
-| `attemptsSource` | Optional | `string`         | `"attempts"`                             | Record field name |
-| `actions`        | Optional | `boolean`        | `true`                                   | Show retry/cancel buttons |
+| Prop             | Required | Type          | Default                                | Description                             |
+| ---------------- | -------- | ------------- | -------------------------------------- | --------------------------------------- |
+| `resource`       | Optional | `string`      | Context                                | Override resource                       |
+| `pollInterval`   | Optional | `number`      | `5000`                                 | Polling interval in ms (`0` = disabled) |
+| `tabs`           | Optional | `JobStatus[]` | `["running","queued","failed","done"]` | Tab order                               |
+| `statusSource`   | Optional | `string`      | `"status"`                             | Record field name                       |
+| `typeSource`     | Optional | `string`      | `"type"`                               | Record field name                       |
+| `payloadSource`  | Optional | `string`      | `"payload"`                            | Record field name                       |
+| `errorSource`    | Optional | `string`      | `"lastError"`                          | Record field name                       |
+| `attemptsSource` | Optional | `string`      | `"attempts"`                           | Record field name                       |
+| `actions`        | Optional | `boolean`     | `true`                                 | Show retry/cancel buttons               |
 
 ## Actions
 

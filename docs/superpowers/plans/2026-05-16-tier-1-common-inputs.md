@@ -14,50 +14,50 @@
 
 ## File structure
 
-| File | Responsibility | Status |
-| --- | --- | --- |
-| `package.json` | Add `libphonenumber-js` dep | **Modify** (Phone task only) |
-| `src/components/admin/rating-field.tsx` | Star rating display field | **Create** |
-| `src/components/admin/rating-input.tsx` | Star rating input | **Create** |
-| `src/components/admin/rating-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/admin/rating-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/rating-field.stories.tsx` | Stories | **Create** |
-| `src/stories/admin/rating-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/rating-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/rating-input.md` | Doc page | **Create** |
-| `src/components/admin/color-field.tsx` | Hex/oklch/rgb color display | **Create** |
-| `src/components/admin/color-input.tsx` | Color picker input | **Create** |
-| `src/components/admin/color-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/admin/color-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/color-field.stories.tsx` | Stories | **Create** |
-| `src/stories/admin/color-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/color-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/color-input.md` | Doc page | **Create** |
-| `src/components/admin/currency-field.tsx` | Locale-aware money display | **Create** |
-| `src/components/admin/currency-input.tsx` | Locale-aware money input | **Create** |
-| `src/components/admin/currency-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/admin/currency-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/currency-field.stories.tsx` | Stories | **Create** |
-| `src/stories/admin/currency-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/currency-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/currency-input.md` | Doc page | **Create** |
-| `src/components/admin/duration-field.tsx` | ISO-8601 duration display | **Create** |
-| `src/components/admin/duration-input.tsx` | ISO-8601 duration input | **Create** |
-| `src/components/admin/duration-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/admin/duration-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/duration-field.stories.tsx` | Stories | **Create** |
-| `src/stories/admin/duration-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/duration-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/duration-input.md` | Doc page | **Create** |
-| `src/components/admin/phone-field.tsx` | E.164 phone display | **Create** |
-| `src/components/admin/phone-input.tsx` | Phone input w/ country selector | **Create** |
-| `src/components/admin/phone-field.spec.tsx` | Browser tests | **Create** |
-| `src/components/admin/phone-input.spec.tsx` | Browser tests | **Create** |
-| `src/stories/admin/phone-field.stories.tsx` | Stories | **Create** |
-| `src/stories/admin/phone-input.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/phone-field.md` | Doc page | **Create** |
-| `docs/src/content/docs/phone-input.md` | Doc page | **Create** |
-| `src/components/admin/index.ts` | Re-export the 10 new components | **Modify** |
+| File                                           | Responsibility                  | Status                       |
+| ---------------------------------------------- | ------------------------------- | ---------------------------- |
+| `package.json`                                 | Add `libphonenumber-js` dep     | **Modify** (Phone task only) |
+| `src/components/admin/rating-field.tsx`        | Star rating display field       | **Create**                   |
+| `src/components/admin/rating-input.tsx`        | Star rating input               | **Create**                   |
+| `src/components/admin/rating-field.spec.tsx`   | Browser tests                   | **Create**                   |
+| `src/components/admin/rating-input.spec.tsx`   | Browser tests                   | **Create**                   |
+| `src/stories/admin/rating-field.stories.tsx`   | Stories                         | **Create**                   |
+| `src/stories/admin/rating-input.stories.tsx`   | Stories                         | **Create**                   |
+| `docs/src/content/docs/rating-field.md`        | Doc page                        | **Create**                   |
+| `docs/src/content/docs/rating-input.md`        | Doc page                        | **Create**                   |
+| `src/components/admin/color-field.tsx`         | Hex/oklch/rgb color display     | **Create**                   |
+| `src/components/admin/color-input.tsx`         | Color picker input              | **Create**                   |
+| `src/components/admin/color-field.spec.tsx`    | Browser tests                   | **Create**                   |
+| `src/components/admin/color-input.spec.tsx`    | Browser tests                   | **Create**                   |
+| `src/stories/admin/color-field.stories.tsx`    | Stories                         | **Create**                   |
+| `src/stories/admin/color-input.stories.tsx`    | Stories                         | **Create**                   |
+| `docs/src/content/docs/color-field.md`         | Doc page                        | **Create**                   |
+| `docs/src/content/docs/color-input.md`         | Doc page                        | **Create**                   |
+| `src/components/admin/currency-field.tsx`      | Locale-aware money display      | **Create**                   |
+| `src/components/admin/currency-input.tsx`      | Locale-aware money input        | **Create**                   |
+| `src/components/admin/currency-field.spec.tsx` | Browser tests                   | **Create**                   |
+| `src/components/admin/currency-input.spec.tsx` | Browser tests                   | **Create**                   |
+| `src/stories/admin/currency-field.stories.tsx` | Stories                         | **Create**                   |
+| `src/stories/admin/currency-input.stories.tsx` | Stories                         | **Create**                   |
+| `docs/src/content/docs/currency-field.md`      | Doc page                        | **Create**                   |
+| `docs/src/content/docs/currency-input.md`      | Doc page                        | **Create**                   |
+| `src/components/admin/duration-field.tsx`      | ISO-8601 duration display       | **Create**                   |
+| `src/components/admin/duration-input.tsx`      | ISO-8601 duration input         | **Create**                   |
+| `src/components/admin/duration-field.spec.tsx` | Browser tests                   | **Create**                   |
+| `src/components/admin/duration-input.spec.tsx` | Browser tests                   | **Create**                   |
+| `src/stories/admin/duration-field.stories.tsx` | Stories                         | **Create**                   |
+| `src/stories/admin/duration-input.stories.tsx` | Stories                         | **Create**                   |
+| `docs/src/content/docs/duration-field.md`      | Doc page                        | **Create**                   |
+| `docs/src/content/docs/duration-input.md`      | Doc page                        | **Create**                   |
+| `src/components/admin/phone-field.tsx`         | E.164 phone display             | **Create**                   |
+| `src/components/admin/phone-input.tsx`         | Phone input w/ country selector | **Create**                   |
+| `src/components/admin/phone-field.spec.tsx`    | Browser tests                   | **Create**                   |
+| `src/components/admin/phone-input.spec.tsx`    | Browser tests                   | **Create**                   |
+| `src/stories/admin/phone-field.stories.tsx`    | Stories                         | **Create**                   |
+| `src/stories/admin/phone-input.stories.tsx`    | Stories                         | **Create**                   |
+| `docs/src/content/docs/phone-field.md`         | Doc page                        | **Create**                   |
+| `docs/src/content/docs/phone-input.md`         | Doc page                        | **Create**                   |
+| `src/components/admin/index.ts`                | Re-export the 10 new components | **Modify**                   |
 
 ---
 
@@ -129,7 +129,11 @@ export const Disabled = () => (
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Disabled, HalfStep } from "@/stories/admin/rating-input.stories";
+import {
+  Basic,
+  Disabled,
+  HalfStep,
+} from "@/stories/admin/rating-input.stories";
 
 describe("<RatingInput />", () => {
   it("renders five stars labelled by the source", async () => {
@@ -157,9 +161,9 @@ One-line description.
 
 ## Props
 
-| Prop      | Required | Type             | Default  | Description |
-| --------- | -------- | ---------------- | -------- | ----------- |
-| `source`  | Required | `string`         | -        | Field name  |
+| Prop     | Required | Type     | Default | Description |
+| -------- | -------- | -------- | ------- | ----------- |
+| `source` | Required | `string` | -       | Field name  |
 
 ## (prop)
 
@@ -187,6 +191,7 @@ Star rating display + input. Five tasks total. Each task ends with lint + typech
 ### Task 1.1: Story file for `<RatingField>`
 
 **Files:**
+
 - Create: `src/stories/admin/rating-field.stories.tsx`
 
 - [ ] **Step 1** — create the story file:
@@ -235,6 +240,7 @@ export const Empty = () => (
 ### Task 1.2: Implement `<RatingField>` + its spec
 
 **Files:**
+
 - Create: `src/components/admin/rating-field.tsx`
 - Create: `src/components/admin/rating-field.spec.tsx`
 
@@ -415,8 +421,7 @@ const Star = ({ kind }: { kind: "filled" | "half" | "empty" }) => {
 export interface RatingFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** Total stars rendered (filled + outlined). Default 5. */
   max?: number;
   /** Allow half-star granularity when value is between integers. */
@@ -459,6 +464,7 @@ git commit -m "feat(rating-field): add RatingField component + story + spec"
 ### Task 1.3: Story file for `<RatingInput>`
 
 **Files:**
+
 - Create: `src/stories/admin/rating-input.stories.tsx`
 
 - [ ] **Step 1** — create the story file:
@@ -505,6 +511,7 @@ export const NoLabel = () => (
 ### Task 1.4: Implement `<RatingInput>` + its spec
 
 **Files:**
+
 - Create: `src/components/admin/rating-input.tsx`
 - Create: `src/components/admin/rating-input.spec.tsx`
 
@@ -674,8 +681,7 @@ const Star = ({ filled, half }: { filled: boolean; half: boolean }) => (
 );
 
 export interface RatingInputProps
-  extends InputProps,
-    Omit<React.ComponentProps<"div">, "defaultValue"> {
+  extends InputProps, Omit<React.ComponentProps<"div">, "defaultValue"> {
   max?: number;
   allowHalf?: boolean;
   disabled?: boolean;
@@ -709,6 +715,7 @@ git commit -m "feat(rating-input): add RatingInput component + story + spec"
 ### Task 1.5: Doc pages for `<RatingField>` + `<RatingInput>`
 
 **Files:**
+
 - Create: `docs/src/content/docs/rating-field.md`
 - Create: `docs/src/content/docs/rating-input.md`
 
@@ -733,16 +740,16 @@ import { RatingField } from '@/components/admin';
 
 ## Props
 
-| Prop          | Required | Type                              | Default | Description |
-| ------------- | -------- | --------------------------------- | ------- | ----------- |
-| `source`      | Required | `string`                          | -       | Record field to read |
-| `max`         | Optional | `number`                          | `5`     | Total stars rendered |
-| `allowHalf`   | Optional | `boolean`                         | `false` | Render half-stars for fractional values |
-| `countSource` | Optional | `string`                          | -       | Sibling field rendered as `(N)` next to the stars |
-| `empty`       | Optional | `ReactNode`                       | -       | Fallback when value is `null`/`undefined` |
-| `className`   | Optional | `string`                          | -       | CSS class on the wrapping `<span>` |
-| `defaultValue`| Optional | `number`                          | -       | Default when no record value exists |
-| `record`      | Optional | `RecordType`                      | -       | Record to read instead of `useRecordContext()` |
+| Prop           | Required | Type         | Default | Description                                       |
+| -------------- | -------- | ------------ | ------- | ------------------------------------------------- |
+| `source`       | Required | `string`     | -       | Record field to read                              |
+| `max`          | Optional | `number`     | `5`     | Total stars rendered                              |
+| `allowHalf`    | Optional | `boolean`    | `false` | Render half-stars for fractional values           |
+| `countSource`  | Optional | `string`     | -       | Sibling field rendered as `(N)` next to the stars |
+| `empty`        | Optional | `ReactNode`  | -       | Fallback when value is `null`/`undefined`         |
+| `className`    | Optional | `string`     | -       | CSS class on the wrapping `<span>`                |
+| `defaultValue` | Optional | `number`     | -       | Default when no record value exists               |
+| `record`       | Optional | `RecordType` | -       | Record to read instead of `useRecordContext()`    |
 
 ## `max`
 
@@ -781,17 +788,17 @@ import { RatingInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default | Description |
-| ------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                   | -       | Form field name |
-| `max`        | Optional | `number`                   | `5`     | Total stars rendered |
-| `allowHalf`  | Optional | `boolean`                  | `false` | Allow half-step selection |
-| `label`      | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide |
-| `helperText` | Optional | `ReactNode`                | -       | Helper text below the input |
-| `disabled`   | Optional | `boolean`                  | `false` | Disable input |
-| `defaultValue` | Optional | `number`                 | -       | Initial value |
-| `validate`   | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`  | Optional | `string`                   | -       | CSS class on the radiogroup |
+| Prop           | Required | Type                       | Default  | Description                      |
+| -------------- | -------- | -------------------------- | -------- | -------------------------------- |
+| `source`       | Required | `string`                   | -        | Form field name                  |
+| `max`          | Optional | `number`                   | `5`      | Total stars rendered             |
+| `allowHalf`    | Optional | `boolean`                  | `false`  | Allow half-step selection        |
+| `label`        | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide |
+| `helperText`   | Optional | `ReactNode`                | -        | Helper text below the input      |
+| `disabled`     | Optional | `boolean`                  | `false`  | Disable input                    |
+| `defaultValue` | Optional | `number`                   | -        | Initial value                    |
+| `validate`     | Optional | `Validator \| Validator[]` | -        | Validation                       |
+| `className`    | Optional | `string`                   | -        | CSS class on the radiogroup      |
 
 ## Keyboard
 
@@ -858,7 +865,9 @@ import { Basic, Empty, Oklch } from "@/stories/admin/color-field.stories";
 describe("<ColorField />", () => {
   it("renders a chip whose background matches the hex value", async () => {
     const screen = render(<Basic />);
-    const chip = screen.container.querySelector("[data-color-chip]") as HTMLElement;
+    const chip = screen.container.querySelector(
+      "[data-color-chip]",
+    ) as HTMLElement;
     expect(chip).toBeTruthy();
     expect(chip.style.backgroundColor).toBe("rgb(59, 130, 246)");
     await expect.element(screen.getByText("#3b82f6")).toBeInTheDocument();
@@ -887,11 +896,7 @@ pnpm vitest run --browser.headless src/components/admin/color-field.spec.tsx
 ```tsx
 // src/components/admin/color-field.tsx
 import type { HTMLAttributes } from "react";
-import {
-  sanitizeFieldRestProps,
-  useFieldValue,
-  useTranslate,
-} from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
@@ -935,9 +940,7 @@ export const ColorField = <RecordType extends UnknownRecord = UnknownRecord>({
         style={{ backgroundColor: colorString }}
         aria-hidden
       />
-      {showLabel && (
-        <span className="font-mono text-sm">{colorString}</span>
-      )}
+      {showLabel && <span className="font-mono text-sm">{colorString}</span>}
     </span>
   );
 };
@@ -945,8 +948,7 @@ export const ColorField = <RecordType extends UnknownRecord = UnknownRecord>({
 export interface ColorFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** When false, hides the textual color value next to the chip. */
   showLabel?: boolean;
 }
@@ -989,7 +991,14 @@ export const WithSwatches = () => (
   <StoryAdmin mode="form" record={{ color: "#3b82f6" }}>
     <ColorInput
       source="color"
-      swatches={["#ef4444", "#f97316", "#eab308", "#10b981", "#3b82f6", "#8b5cf6"]}
+      swatches={[
+        "#ef4444",
+        "#f97316",
+        "#eab308",
+        "#10b981",
+        "#3b82f6",
+        "#8b5cf6",
+      ]}
     />
   </StoryAdmin>
 );
@@ -1011,12 +1020,18 @@ export const Disabled = () => (
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Disabled, WithSwatches } from "@/stories/admin/color-input.stories";
+import {
+  Basic,
+  Disabled,
+  WithSwatches,
+} from "@/stories/admin/color-input.stories";
 
 describe("<ColorInput />", () => {
   it("renders a color input bound to source", async () => {
     const screen = render(<Basic />);
-    const input = screen.container.querySelector("input[type='color']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='color']",
+    ) as HTMLInputElement;
     expect(input).toBeTruthy();
     expect(input.value).toBe("#3b82f6");
     await expect.element(screen.getByText(/^color$/i)).toBeInTheDocument();
@@ -1030,7 +1045,9 @@ describe("<ColorInput />", () => {
 
   it("respects the disabled prop", async () => {
     const screen = render(<Disabled />);
-    const input = screen.container.querySelector("input[type='color']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='color']",
+    ) as HTMLInputElement;
     expect(input.disabled).toBe(true);
   });
 });
@@ -1045,7 +1062,12 @@ describe("<ColorInput />", () => {
 import type * as React from "react";
 import type { InputProps } from "ra-core";
 import { FieldTitle, useInput, useResourceContext } from "ra-core";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -1066,11 +1088,7 @@ export const ColorInput = (props: ColorInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -1122,8 +1140,12 @@ export const ColorInput = (props: ColorInputProps) => {
 };
 
 export interface ColorInputProps
-  extends InputProps,
-    Omit<React.ComponentProps<"input">, "defaultValue" | "onBlur" | "onChange" | "type"> {
+  extends
+    InputProps,
+    Omit<
+      React.ComponentProps<"input">,
+      "defaultValue" | "onBlur" | "onChange" | "type"
+    > {
   swatches?: readonly string[];
 }
 ```
@@ -1163,12 +1185,12 @@ import { ColorField } from '@/components/admin';
 
 ## Props
 
-| Prop          | Required | Type        | Default | Description |
-| ------------- | -------- | ----------- | ------- | ----------- |
-| `source`      | Required | `string`    | -       | Record field to read |
-| `showLabel`   | Optional | `boolean`   | `true`  | Show the color string next to the chip |
-| `empty`       | Optional | `ReactNode` | -       | Fallback when value is `null`/empty |
-| `className`   | Optional | `string`    | -       | CSS class on the wrapping `<span>` |
+| Prop        | Required | Type        | Default | Description                            |
+| ----------- | -------- | ----------- | ------- | -------------------------------------- |
+| `source`    | Required | `string`    | -       | Record field to read                   |
+| `showLabel` | Optional | `boolean`   | `true`  | Show the color string next to the chip |
+| `empty`     | Optional | `ReactNode` | -       | Fallback when value is `null`/empty    |
+| `className` | Optional | `string`    | -       | CSS class on the wrapping `<span>`     |
 
 ## Accepted formats
 
@@ -1198,16 +1220,16 @@ import { ColorInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default | Description |
-| ------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                   | -       | Form field name |
-| `swatches`   | Optional | `readonly string[]`        | -       | Preset hex strings rendered as buttons |
-| `label`      | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide |
-| `helperText` | Optional | `ReactNode`                | -       | Helper text below the input |
-| `disabled`   | Optional | `boolean`                  | `false` | Disable input + swatches |
-| `defaultValue` | Optional | `string`                 | -       | Initial color value |
-| `validate`   | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`  | Optional | `string`                   | -       | CSS class on the wrapping `<FormField>` |
+| Prop           | Required | Type                       | Default  | Description                             |
+| -------------- | -------- | -------------------------- | -------- | --------------------------------------- |
+| `source`       | Required | `string`                   | -        | Form field name                         |
+| `swatches`     | Optional | `readonly string[]`        | -        | Preset hex strings rendered as buttons  |
+| `label`        | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide        |
+| `helperText`   | Optional | `ReactNode`                | -        | Helper text below the input             |
+| `disabled`     | Optional | `boolean`                  | `false`  | Disable input + swatches                |
+| `defaultValue` | Optional | `string`                   | -        | Initial color value                     |
+| `validate`     | Optional | `Validator \| Validator[]` | -        | Validation                              |
+| `className`    | Optional | `string`                   | -        | CSS class on the wrapping `<FormField>` |
 
 ## Storage format
 
@@ -1340,7 +1362,9 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * `{ amount: number, currency: string }` object. When `storeAsMinorUnits` is
  * true, the numeric value is divided by 100 before formatting (cents → dollars).
  */
-export const CurrencyField = <RecordType extends UnknownRecord = UnknownRecord>({
+export const CurrencyField = <
+  RecordType extends UnknownRecord = UnknownRecord,
+>({
   defaultValue,
   source,
   record,
@@ -1400,8 +1424,7 @@ function normalizeCurrencyValue(
 export interface CurrencyFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** ISO-4217 currency code (e.g. 'USD'). Required when value is a plain number. */
   currency?: string;
   /** Override the user's app locale. */
@@ -1442,7 +1465,10 @@ export const Basic = () => (
 );
 
 export const AllowCurrencyChange = () => (
-  <StoryAdmin mode="form" record={{ price: { amount: 1234.5, currency: "EUR" } }}>
+  <StoryAdmin
+    mode="form"
+    record={{ price: { amount: 1234.5, currency: "EUR" } }}
+  >
     <CurrencyInput source="price" currencies={["USD", "EUR", "JPY", "GBP"]} />
   </StoryAdmin>
 );
@@ -1480,7 +1506,9 @@ import {
 describe("<CurrencyInput />", () => {
   it("renders a number input with the USD symbol", async () => {
     const screen = render(<Basic />);
-    const input = screen.container.querySelector("input[type='number']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='number']",
+    ) as HTMLInputElement;
     expect(input).toBeTruthy();
     expect(input.value).toBe("1234.5");
     await expect.element(screen.getByText("$")).toBeInTheDocument();
@@ -1488,20 +1516,26 @@ describe("<CurrencyInput />", () => {
 
   it("renders a currency selector when currencies array is set", async () => {
     const screen = render(<AllowCurrencyChange />);
-    const select = screen.container.querySelector("select[data-currency-select]") as HTMLSelectElement;
+    const select = screen.container.querySelector(
+      "select[data-currency-select]",
+    ) as HTMLSelectElement;
     expect(select).toBeTruthy();
     expect(select.value).toBe("EUR");
   });
 
   it("displays a divided major value when storeAsMinorUnits=true", async () => {
     const screen = render(<MinorUnits />);
-    const input = screen.container.querySelector("input[type='number']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='number']",
+    ) as HTMLInputElement;
     expect(input.value).toBe("123.45");
   });
 
   it("respects the disabled prop", async () => {
     const screen = render(<Disabled />);
-    const input = screen.container.querySelector("input[type='number']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='number']",
+    ) as HTMLInputElement;
     expect(input.disabled).toBe(true);
   });
 });
@@ -1516,8 +1550,18 @@ describe("<CurrencyInput />", () => {
 import type * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useLocaleState, useResourceContext } from "ra-core";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FieldTitle,
+  useInput,
+  useLocaleState,
+  useResourceContext,
+} from "ra-core";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -1546,11 +1590,7 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   const [appLocale] = useLocaleState();
   const locale = displayLocale ?? appLocale;
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -1559,12 +1599,17 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   const composite = isComposite
     ? (field.value as { amount: number; currency: string } | null)
     : null;
-  const fixedAmount = isComposite ? composite?.amount : (field.value as number | null);
+  const fixedAmount = isComposite
+    ? composite?.amount
+    : (field.value as number | null);
   const currentCurrency = isComposite ? composite?.currency : currency;
 
-  const majorAmount = fixedAmount != null
-    ? storeAsMinorUnits ? fixedAmount / 100 : fixedAmount
-    : "";
+  const majorAmount =
+    fixedAmount != null
+      ? storeAsMinorUnits
+        ? fixedAmount / 100
+        : fixedAmount
+      : "";
 
   const [displayValue, setDisplayValue] = useState<string>(String(majorAmount));
   const hasFocus = useRef(false);
@@ -1576,7 +1621,11 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDisplayValue(e.target.value);
     const parsed = e.target.valueAsNumber;
-    const next = Number.isNaN(parsed) ? null : (storeAsMinorUnits ? Math.round(parsed * 100) : parsed);
+    const next = Number.isNaN(parsed)
+      ? null
+      : storeAsMinorUnits
+        ? Math.round(parsed * 100)
+        : parsed;
     if (isComposite) {
       field.onChange({
         amount: next ?? 0,
@@ -1596,7 +1645,10 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   };
 
   const currencySymbol = currentCurrency
-    ? new Intl.NumberFormat(locale, { style: "currency", currency: currentCurrency })
+    ? new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: currentCurrency,
+      })
         .formatToParts(0)
         .find((p) => p.type === "currency")?.value
     : "";
@@ -1655,8 +1707,12 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
 };
 
 export interface CurrencyInputProps
-  extends InputProps,
-    Omit<React.ComponentProps<"input">, "defaultValue" | "onBlur" | "onChange" | "type" | "step"> {
+  extends
+    InputProps,
+    Omit<
+      React.ComponentProps<"input">,
+      "defaultValue" | "onBlur" | "onChange" | "type" | "step"
+    > {
   /** ISO-4217 currency code when storage is a plain number. */
   currency?: string;
   /** Provide to enable currency selection; stores composite { amount, currency }. */
@@ -1703,15 +1759,15 @@ import { CurrencyField } from '@/components/admin';
 
 ## Props
 
-| Prop                 | Required | Type                      | Default | Description |
-| -------------------- | -------- | ------------------------- | ------- | ----------- |
-| `source`             | Required | `string`                  | -       | Record field to read |
-| `currency`           | Optional*| `string`                  | -       | ISO-4217 code (required for plain-number storage) |
-| `displayLocale`      | Optional | `string`                  | App locale | Override formatting locale |
-| `storeAsMinorUnits`  | Optional | `boolean`                 | `false` | Divide by 100 before formatting |
-| `options`            | Optional | `Intl.NumberFormatOptions`| -       | Extra `Intl.NumberFormat` options |
-| `empty`              | Optional | `ReactNode`               | -       | Fallback when value is `null` |
-| `className`          | Optional | `string`                  | -       | CSS class on `<span>` |
+| Prop                | Required   | Type                       | Default    | Description                                       |
+| ------------------- | ---------- | -------------------------- | ---------- | ------------------------------------------------- |
+| `source`            | Required   | `string`                   | -          | Record field to read                              |
+| `currency`          | Optional\* | `string`                   | -          | ISO-4217 code (required for plain-number storage) |
+| `displayLocale`     | Optional   | `string`                   | App locale | Override formatting locale                        |
+| `storeAsMinorUnits` | Optional   | `boolean`                  | `false`    | Divide by 100 before formatting                   |
+| `options`           | Optional   | `Intl.NumberFormatOptions` | -          | Extra `Intl.NumberFormat` options                 |
+| `empty`             | Optional   | `ReactNode`                | -          | Fallback when value is `null`                     |
+| `className`         | Optional   | `string`                   | -          | CSS class on `<span>`                             |
 
 \* `currency` is required when the source holds a plain number; not required when the source holds `{ amount, currency }`.
 
@@ -1744,19 +1800,19 @@ import { CurrencyInput } from '@/components/admin';
 
 ## Props
 
-| Prop                 | Required | Type                       | Default | Description |
-| -------------------- | -------- | -------------------------- | ------- | ----------- |
-| `source`             | Required | `string`                   | -       | Form field name |
-| `currency`           | Optional | `string`                   | -       | ISO-4217 code (single-currency mode) |
-| `currencies`         | Optional | `readonly string[]`        | -       | Enable currency selector; stores composite |
-| `displayLocale`      | Optional | `string`                   | App locale | Override locale for symbol/step |
-| `storeAsMinorUnits`  | Optional | `boolean`                  | `false` | Store integer cents |
-| `label`              | Optional | `string \| false`          | Inferred | Custom label, `false` to hide |
-| `helperText`         | Optional | `ReactNode`                | -       | Helper text |
-| `disabled`           | Optional | `boolean`                  | `false` | Disable input + currency selector |
-| `defaultValue`       | Optional | `number \| { amount, currency }` | - | Initial value |
-| `validate`           | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`          | Optional | `string`                   | -       | CSS class on the row |
+| Prop                | Required | Type                             | Default    | Description                                |
+| ------------------- | -------- | -------------------------------- | ---------- | ------------------------------------------ |
+| `source`            | Required | `string`                         | -          | Form field name                            |
+| `currency`          | Optional | `string`                         | -          | ISO-4217 code (single-currency mode)       |
+| `currencies`        | Optional | `readonly string[]`              | -          | Enable currency selector; stores composite |
+| `displayLocale`     | Optional | `string`                         | App locale | Override locale for symbol/step            |
+| `storeAsMinorUnits` | Optional | `boolean`                        | `false`    | Store integer cents                        |
+| `label`             | Optional | `string \| false`                | Inferred   | Custom label, `false` to hide              |
+| `helperText`        | Optional | `ReactNode`                      | -          | Helper text                                |
+| `disabled`          | Optional | `boolean`                        | `false`    | Disable input + currency selector          |
+| `defaultValue`      | Optional | `number \| { amount, currency }` | -          | Initial value                              |
+| `validate`          | Optional | `Validator \| Validator[]`       | -          | Validation                                 |
+| `className`         | Optional | `string`                         | -          | CSS class on the row                       |
 
 ## Single- vs multi-currency
 
@@ -1862,11 +1918,7 @@ describe("<DurationField />", () => {
 ```tsx
 // src/components/admin/duration-field.tsx
 import type { HTMLAttributes } from "react";
-import {
-  sanitizeFieldRestProps,
-  useFieldValue,
-  useTranslate,
-} from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import { formatDuration } from "date-fns";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
@@ -1875,7 +1927,9 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * Displays an ISO-8601 duration string as a compact ("2h 30m") or relative
  * ("2 hours 30 minutes") human-readable value.
  */
-export const DurationField = <RecordType extends UnknownRecord = UnknownRecord>({
+export const DurationField = <
+  RecordType extends UnknownRecord = UnknownRecord,
+>({
   defaultValue,
   source,
   record,
@@ -1911,8 +1965,7 @@ export const DurationField = <RecordType extends UnknownRecord = UnknownRecord>(
   );
 };
 
-const ISO_RE =
-  /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/;
+const ISO_RE = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/;
 
 export function parseIsoDuration(s: string): null | {
   days?: number;
@@ -1948,8 +2001,7 @@ function compactFormat(p: {
 export interface DurationFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
-    HTMLAttributes<HTMLSpanElement> {
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
   /** 'compact' renders `2h 30m`; 'relative' renders `2 hours 30 minutes`. */
   displayFormat?: "compact" | "relative";
 }
@@ -2030,7 +2082,9 @@ describe("<DurationInput />", () => {
   it("disables all unit inputs when disabled prop is set", async () => {
     const screen = render(<Disabled />);
     const inputs = screen.container.querySelectorAll("input[type='number']");
-    Array.from(inputs).forEach((i) => expect((i as HTMLInputElement).disabled).toBe(true));
+    Array.from(inputs).forEach((i) =>
+      expect((i as HTMLInputElement).disabled).toBe(true),
+    );
   });
 });
 ```
@@ -2045,7 +2099,12 @@ import type * as React from "react";
 import { useEffect, useState } from "react";
 import type { InputProps } from "ra-core";
 import { FieldTitle, useInput, useResourceContext } from "ra-core";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { parseIsoDuration } from "./duration-field";
@@ -2075,11 +2134,7 @@ export const DurationInput = (props: DurationInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -2108,9 +2163,10 @@ export const DurationInput = (props: DurationInputProps) => {
       (next.h ? `${+next.h}H` : "") +
       (next.m ? `${+next.m}M` : "") +
       (next.s ? `${+next.s}S` : "");
-    const out = dayPart || timeParts
-      ? `P${dayPart}${timeParts ? `T${timeParts}` : ""}`
-      : "";
+    const out =
+      dayPart || timeParts
+        ? `P${dayPart}${timeParts ? `T${timeParts}` : ""}`
+        : "";
     field.onChange(out || null);
   };
 
@@ -2129,7 +2185,10 @@ export const DurationInput = (props: DurationInputProps) => {
       <FormControl>
         <div className={cn("flex items-end gap-2", className)} {...rest}>
           {units.map((u) => (
-            <label key={u} className="flex flex-col items-center text-xs text-muted-foreground">
+            <label
+              key={u}
+              className="flex flex-col items-center text-xs text-muted-foreground"
+            >
               <Input
                 type="number"
                 min={0}
@@ -2156,7 +2215,8 @@ export const DurationInput = (props: DurationInputProps) => {
 };
 
 export interface DurationInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   /** Which units to expose. Default `["d","h","m","s"]`. */
   units?: readonly Unit[];
@@ -2199,12 +2259,12 @@ import { DurationField } from '@/components/admin';
 
 ## Props
 
-| Prop            | Required | Type                          | Default     | Description |
-| --------------- | -------- | ----------------------------- | ----------- | ----------- |
-| `source`        | Required | `string`                      | -           | Record field to read |
-| `displayFormat` | Optional | `"compact" \| "relative"`     | `"compact"` | Render style |
-| `empty`         | Optional | `ReactNode`                   | -           | Fallback when value is `null` |
-| `className`     | Optional | `string`                      | -           | CSS class on `<span>` |
+| Prop            | Required | Type                      | Default     | Description                   |
+| --------------- | -------- | ------------------------- | ----------- | ----------------------------- |
+| `source`        | Required | `string`                  | -           | Record field to read          |
+| `displayFormat` | Optional | `"compact" \| "relative"` | `"compact"` | Render style                  |
+| `empty`         | Optional | `ReactNode`               | -           | Fallback when value is `null` |
+| `className`     | Optional | `string`                  | -           | CSS class on `<span>`         |
 
 ## Storage format
 
@@ -2233,16 +2293,16 @@ import { DurationInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default               | Description |
-| ------------ | -------- | -------------------------- | --------------------- | ----------- |
-| `source`     | Required | `string`                   | -                     | Form field name |
-| `units`      | Optional | `("d"\|"h"\|"m"\|"s")[]`   | `["d","h","m","s"]`   | Which units to expose |
-| `label`      | Optional | `string \| false`          | Inferred              | Custom label |
-| `helperText` | Optional | `ReactNode`                | -                     | Helper text |
-| `disabled`   | Optional | `boolean`                  | `false`               | Disable all unit inputs |
-| `defaultValue` | Optional | `string`                 | -                     | Initial ISO duration |
-| `validate`   | Optional | `Validator \| Validator[]` | -                     | Validation |
-| `className`  | Optional | `string`                   | -                     | CSS class on wrapping `<div>` |
+| Prop           | Required | Type                       | Default             | Description                   |
+| -------------- | -------- | -------------------------- | ------------------- | ----------------------------- |
+| `source`       | Required | `string`                   | -                   | Form field name               |
+| `units`        | Optional | `("d"\|"h"\|"m"\|"s")[]`   | `["d","h","m","s"]` | Which units to expose         |
+| `label`        | Optional | `string \| false`          | Inferred            | Custom label                  |
+| `helperText`   | Optional | `ReactNode`                | -                   | Helper text                   |
+| `disabled`     | Optional | `boolean`                  | `false`             | Disable all unit inputs       |
+| `defaultValue` | Optional | `string`                   | -                   | Initial ISO duration          |
+| `validate`     | Optional | `Validator \| Validator[]` | -                   | Validation                    |
+| `className`    | Optional | `string`                   | -                   | CSS class on wrapping `<div>` |
 
 ## Storage format
 
@@ -2351,7 +2411,9 @@ describe("<PhoneField />", () => {
 
   it("renders international format when displayFormat='international'", async () => {
     const screen = render(<International />);
-    await expect.element(screen.getByText(/\+44 20 7123 4567/)).toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/\+44 20 7123 4567/))
+      .toBeInTheDocument();
   });
 
   it("renders a plain <span> when link=false", async () => {
@@ -2373,11 +2435,7 @@ describe("<PhoneField />", () => {
 ```tsx
 // src/components/admin/phone-field.tsx
 import type { HTMLAttributes } from "react";
-import {
-  sanitizeFieldRestProps,
-  useFieldValue,
-  useTranslate,
-} from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import { parsePhoneNumber } from "libphonenumber-js";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
@@ -2412,9 +2470,10 @@ export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
   let href = `tel:${value}`;
   try {
     const parsed = parsePhoneNumber(String(value));
-    formatted = displayFormat === "international"
-      ? parsed.formatInternational()
-      : parsed.formatNational();
+    formatted =
+      displayFormat === "international"
+        ? parsed.formatInternational()
+        : parsed.formatNational();
     href = parsed.getURI();
   } catch {
     // fall through: render raw
@@ -2429,11 +2488,7 @@ export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
   }
 
   return (
-    <a
-      {...sanitizeFieldRestProps(rest)}
-      href={href}
-      className={className}
-    >
+    <a {...sanitizeFieldRestProps(rest)} href={href} className={className}>
       {formatted}
     </a>
   );
@@ -2442,7 +2497,8 @@ export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
 export interface PhoneFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLAnchorElement>, "href"> {
   /** 'national' renders `(415) 555-2671`; 'international' renders `+1 415 555 2671`. */
   displayFormat?: "national" | "international";
@@ -2518,28 +2574,38 @@ import {
 describe("<PhoneInput />", () => {
   it("renders a tel input with the value formatted for the country", async () => {
     const screen = render(<Basic />);
-    const input = screen.container.querySelector("input[type='tel']") as HTMLInputElement;
+    const input = screen.container.querySelector(
+      "input[type='tel']",
+    ) as HTMLInputElement;
     expect(input).toBeTruthy();
     expect(input.value.replace(/\D/g, "")).toContain("4155552671");
   });
 
   it("renders a country selector with all countries by default", async () => {
     const screen = render(<DefaultCountryUS />);
-    const select = screen.container.querySelector("select[data-country-select]") as HTMLSelectElement;
+    const select = screen.container.querySelector(
+      "select[data-country-select]",
+    ) as HTMLSelectElement;
     expect(select).toBeTruthy();
     expect(select.value).toBe("US");
   });
 
   it("limits country options when allowedCountries is set", async () => {
     const screen = render(<RestrictedCountries />);
-    const select = screen.container.querySelector("select[data-country-select]") as HTMLSelectElement;
+    const select = screen.container.querySelector(
+      "select[data-country-select]",
+    ) as HTMLSelectElement;
     expect(select.options.length).toBe(3);
   });
 
   it("disables both country and number inputs when disabled prop is set", async () => {
     const screen = render(<Disabled />);
-    const select = screen.container.querySelector("select[data-country-select]") as HTMLSelectElement;
-    const input = screen.container.querySelector("input[type='tel']") as HTMLInputElement;
+    const select = screen.container.querySelector(
+      "select[data-country-select]",
+    ) as HTMLSelectElement;
+    const input = screen.container.querySelector(
+      "input[type='tel']",
+    ) as HTMLInputElement;
     expect(select.disabled).toBe(true);
     expect(input.disabled).toBe(true);
   });
@@ -2563,7 +2629,12 @@ import {
   parsePhoneNumber,
   type CountryCode,
 } from "libphonenumber-js";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -2586,11 +2657,7 @@ export const PhoneInput = (props: PhoneInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -2689,7 +2756,8 @@ function formatNational(value: string, country: CountryCode): string {
 }
 
 export interface PhoneInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   defaultCountry?: CountryCode;
   allowedCountries?: readonly CountryCode[];
@@ -2733,13 +2801,13 @@ import { PhoneField } from '@/components/admin';
 
 ## Props
 
-| Prop            | Required | Type                                | Default      | Description |
-| --------------- | -------- | ----------------------------------- | ------------ | ----------- |
-| `source`        | Required | `string`                            | -            | Record field to read |
-| `displayFormat` | Optional | `"national" \| "international"`     | `"national"` | Format style |
-| `link`          | Optional | `boolean`                           | `true`       | Wrap value in a `tel:` link |
-| `empty`         | Optional | `ReactNode`                         | -            | Fallback when value is `null` |
-| `className`     | Optional | `string`                            | -            | CSS class |
+| Prop            | Required | Type                            | Default      | Description                   |
+| --------------- | -------- | ------------------------------- | ------------ | ----------------------------- |
+| `source`        | Required | `string`                        | -            | Record field to read          |
+| `displayFormat` | Optional | `"national" \| "international"` | `"national"` | Format style                  |
+| `link`          | Optional | `boolean`                       | `true`       | Wrap value in a `tel:` link   |
+| `empty`         | Optional | `ReactNode`                     | -            | Fallback when value is `null` |
+| `className`     | Optional | `string`                        | -            | CSS class                     |
 
 ## Storage format
 
@@ -2768,17 +2836,17 @@ import { PhoneInput } from '@/components/admin';
 
 ## Props
 
-| Prop               | Required | Type                       | Default | Description |
-| ------------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`           | Required | `string`                   | -       | Form field name |
-| `defaultCountry`   | Optional | `CountryCode`              | `"US"`  | Country used when value is empty |
-| `allowedCountries` | Optional | `readonly CountryCode[]`   | All     | Restrict selectable countries |
-| `label`            | Optional | `string \| false`          | Inferred | Custom label, `false` to hide |
-| `helperText`       | Optional | `ReactNode`                | -       | Helper text |
-| `disabled`         | Optional | `boolean`                  | `false` | Disable both controls |
-| `defaultValue`     | Optional | `string`                   | -       | Initial E.164 value |
-| `validate`         | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`        | Optional | `string`                   | -       | CSS class |
+| Prop               | Required | Type                       | Default  | Description                      |
+| ------------------ | -------- | -------------------------- | -------- | -------------------------------- |
+| `source`           | Required | `string`                   | -        | Form field name                  |
+| `defaultCountry`   | Optional | `CountryCode`              | `"US"`   | Country used when value is empty |
+| `allowedCountries` | Optional | `readonly CountryCode[]`   | All      | Restrict selectable countries    |
+| `label`            | Optional | `string \| false`          | Inferred | Custom label, `false` to hide    |
+| `helperText`       | Optional | `ReactNode`                | -        | Helper text                      |
+| `disabled`         | Optional | `boolean`                  | `false`  | Disable both controls            |
+| `defaultValue`     | Optional | `string`                   | -        | Initial E.164 value              |
+| `validate`         | Optional | `Validator \| Validator[]` | -        | Validation                       |
+| `className`        | Optional | `string`                   | -        | CSS class                        |
 
 ## Storage format
 

@@ -1,6 +1,9 @@
 "use client";
 
-import { ShapeFieldShell, type ShapeFieldShellProps } from "./shape-field-shell";
+import {
+  ShapeFieldShell,
+  type ShapeFieldShellProps,
+} from "./shape-field-shell";
 
 export type MultiLineStringFieldProps = ShapeFieldShellProps;
 

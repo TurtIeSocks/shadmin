@@ -212,7 +212,10 @@ function parseShortcut(s: string): {
   meta: boolean;
   key: string;
 } {
-  const parts = s.toLowerCase().split("+").map((p) => p.trim());
+  const parts = s
+    .toLowerCase()
+    .split("+")
+    .map((p) => p.trim());
   return {
     ctrl: parts.includes("ctrl"),
     shift: parts.includes("shift"),

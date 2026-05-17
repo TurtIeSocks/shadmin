@@ -28,7 +28,10 @@ export const SubscriptionEdit = () => (
         ]}
       />
       <Labeled label="API calls">
-        <UsageMeterField source="api_calls_used" limitSource="api_calls_limit" />
+        <UsageMeterField
+          source="api_calls_used"
+          limitSource="api_calls_limit"
+        />
       </Labeled>
       <Labeled label="Storage">
         <UsageMeterField

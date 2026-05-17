@@ -17,16 +17,16 @@ import { ColorInput } from '@/components/admin';
 
 ## Props
 
-| Prop         | Required | Type                       | Default | Description |
-| ------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`     | Required | `string`                   | -       | Form field name |
-| `swatches`   | Optional | `readonly string[]`        | -       | Preset hex strings rendered as buttons |
-| `label`      | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide |
-| `helperText` | Optional | `ReactNode`                | -       | Helper text below the input |
-| `disabled`   | Optional | `boolean`                  | `false` | Disable input + swatches |
-| `defaultValue` | Optional | `string`                 | -       | Initial color value |
-| `validate`   | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`  | Optional | `string`                   | -       | CSS class on the wrapping `<FormField>` |
+| Prop           | Required | Type                       | Default  | Description                             |
+| -------------- | -------- | -------------------------- | -------- | --------------------------------------- |
+| `source`       | Required | `string`                   | -        | Form field name                         |
+| `swatches`     | Optional | `readonly string[]`        | -        | Preset hex strings rendered as buttons  |
+| `label`        | Optional | `string \| false`          | Inferred | Custom label, or `false` to hide        |
+| `helperText`   | Optional | `ReactNode`                | -        | Helper text below the input             |
+| `disabled`     | Optional | `boolean`                  | `false`  | Disable input + swatches                |
+| `defaultValue` | Optional | `string`                   | -        | Initial color value                     |
+| `validate`     | Optional | `Validator \| Validator[]` | -        | Validation                              |
+| `className`    | Optional | `string`                   | -        | CSS class on the wrapping `<FormField>` |
 
 ## Storage format
 

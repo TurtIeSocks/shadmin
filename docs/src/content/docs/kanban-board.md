@@ -29,24 +29,24 @@ Each column receives records whose `groupBy` field matches the column's `id`. Re
 
 ## Props
 
-| Prop                | Required | Type                               | Default                   | Description                                                                                              |
-| ------------------- | -------- | ---------------------------------- | ------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `groupBy`           | Required | `string`                           | —                         | Field name whose enum value buckets records into columns.                                                |
-| `columns`           | Required | `Array<{ id; label; className? }>` | —                         | Column definitions in display order.                                                                     |
-| `titleSource`       | Optional | `string`                           | `recordRepresentation`    | Field used as the card title. Falls back to the resource's `recordRepresentation` when omitted.          |
-| `descriptionSource` | Optional | `string`                           | —                         | Optional secondary line rendered below the title.                                                        |
-| `cardRenderer`      | Optional | `(record) => ReactNode`            | Default card              | Fully custom card. When provided, `titleSource` and `descriptionSource` are ignored.                     |
-| `onCardClick`       | Optional | `(record) => void`                 | Navigate to show page     | Click handler for cards. Defaults to `navigate("/<resource>/<id>/show")`.                                |
+| Prop                | Required | Type                               | Default                | Description                                                                                     |
+| ------------------- | -------- | ---------------------------------- | ---------------------- | ----------------------------------------------------------------------------------------------- |
+| `groupBy`           | Required | `string`                           | —                      | Field name whose enum value buckets records into columns.                                       |
+| `columns`           | Required | `Array<{ id; label; className? }>` | —                      | Column definitions in display order.                                                            |
+| `titleSource`       | Optional | `string`                           | `recordRepresentation` | Field used as the card title. Falls back to the resource's `recordRepresentation` when omitted. |
+| `descriptionSource` | Optional | `string`                           | —                      | Optional secondary line rendered below the title.                                               |
+| `cardRenderer`      | Optional | `(record) => ReactNode`            | Default card           | Fully custom card. When provided, `titleSource` and `descriptionSource` are ignored.            |
+| `onCardClick`       | Optional | `(record) => void`                 | Navigate to show page  | Click handler for cards. Defaults to `navigate("/<resource>/<id>/show")`.                       |
 
 ## `columns`
 
 Each entry in `columns` is an object with:
 
-| Key         | Type     | Required | Description                                               |
-| ----------- | -------- | -------- | --------------------------------------------------------- |
-| `id`        | `string` | Yes      | Must match the enum value stored in the `groupBy` field.  |
-| `label`     | `string` | Yes      | Human-readable column header.                             |
-| `className` | `string` | No       | Extra CSS classes applied to the column wrapper element.  |
+| Key         | Type     | Required | Description                                              |
+| ----------- | -------- | -------- | -------------------------------------------------------- |
+| `id`        | `string` | Yes      | Must match the enum value stored in the `groupBy` field. |
+| `label`     | `string` | Yes      | Human-readable column header.                            |
+| `className` | `string` | No       | Extra CSS classes applied to the column wrapper element. |
 
 ## `cardRenderer`
 
@@ -72,11 +72,15 @@ The board wraps all columns in a single `@dnd-kit/core` `<DndContext>`. Each car
 On a successful drop the component calls:
 
 ```ts
-update(resource, {
-  id: record.id,
-  data: { [groupBy]: targetColumnId },
-  previousData: record,
-}, { mutationMode: "optimistic" });
+update(
+  resource,
+  {
+    id: record.id,
+    data: { [groupBy]: targetColumnId },
+    previousData: record,
+  },
+  { mutationMode: "optimistic" },
+);
 ```
 
 ## Optimistic update

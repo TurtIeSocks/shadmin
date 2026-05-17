@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomTitle,
-  NoActions,
-} from "@/stories/admin/edit.stories";
+import { Basic, CustomTitle, NoActions } from "@/stories/admin/edit.stories";
 
 describe("<Edit />", () => {
   it("loads the record into the form fields", async () => {
@@ -20,16 +16,12 @@ describe("<Edit />", () => {
 
   it("renders the explicit title when provided", async () => {
     const screen = render(<CustomTitle />);
-    await expect
-      .element(screen.getByText("Editing post"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Editing post")).toBeInTheDocument();
   });
 
   it("does not render the default action buttons when actions={false}", async () => {
     const screen = render(<NoActions />);
-    await expect
-      .element(screen.getByLabelText(/^title$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^title$/i)).toBeInTheDocument();
     // Default actions include a Show link — it should not appear when
     // actions={false}.
     await expect

@@ -30,7 +30,9 @@ const FitToData = ({
     const b = layer.getBounds();
     return b.isValid() ? b : null;
   }, [geom]);
-  return <FitBoundsOnMount bounds={bounds} padding={padding} maxZoom={maxZoom} />;
+  return (
+    <FitBoundsOnMount bounds={bounds} padding={padding} maxZoom={maxZoom} />
+  );
 };
 
 export const ShapeFieldShell = ({
@@ -78,7 +80,11 @@ export const ShapeFieldShell = ({
         pointToLayer={(_f, latlng) => L.marker(latlng, { icon: markerIcon })}
       />
       {fitBounds ? (
-        <FitToData geom={geom} padding={fitBoundsPadding} maxZoom={fitBoundsMaxZoom} />
+        <FitToData
+          geom={geom}
+          padding={fitBoundsPadding}
+          maxZoom={fitBoundsMaxZoom}
+        />
       ) : null}
     </BaseMap>
   );

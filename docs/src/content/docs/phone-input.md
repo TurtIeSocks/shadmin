@@ -17,17 +17,17 @@ import { PhoneInput } from '@/components/admin';
 
 ## Props
 
-| Prop               | Required | Type                       | Default | Description |
-| ------------------ | -------- | -------------------------- | ------- | ----------- |
-| `source`           | Required | `string`                   | -       | Form field name |
-| `defaultCountry`   | Optional | `CountryCode`              | `"US"`  | Country used when value is empty |
-| `allowedCountries` | Optional | `readonly CountryCode[]`   | All     | Restrict selectable countries |
-| `label`            | Optional | `string \| false`          | Inferred | Custom label, `false` to hide |
-| `helperText`       | Optional | `ReactNode`                | -       | Helper text |
-| `disabled`         | Optional | `boolean`                  | `false` | Disable both controls |
-| `defaultValue`     | Optional | `string`                   | -       | Initial E.164 value |
-| `validate`         | Optional | `Validator \| Validator[]` | -       | Validation |
-| `className`        | Optional | `string`                   | -       | CSS class |
+| Prop               | Required | Type                       | Default  | Description                      |
+| ------------------ | -------- | -------------------------- | -------- | -------------------------------- |
+| `source`           | Required | `string`                   | -        | Form field name                  |
+| `defaultCountry`   | Optional | `CountryCode`              | `"US"`   | Country used when value is empty |
+| `allowedCountries` | Optional | `readonly CountryCode[]`   | All      | Restrict selectable countries    |
+| `label`            | Optional | `string \| false`          | Inferred | Custom label, `false` to hide    |
+| `helperText`       | Optional | `ReactNode`                | -        | Helper text                      |
+| `disabled`         | Optional | `boolean`                  | `false`  | Disable both controls            |
+| `defaultValue`     | Optional | `string`                   | -        | Initial E.164 value              |
+| `validate`         | Optional | `Validator \| Validator[]` | -        | Validation                       |
+| `className`        | Optional | `string`                   | -        | CSS class                        |
 
 ## Storage format
 

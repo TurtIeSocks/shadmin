@@ -8,11 +8,7 @@ describe("<FilterLiveForm />", () => {
     const screen = render(<Basic />);
     // The sidebar exposes two filter inputs; each input gets the source as its
     // accessible label.
-    await expect
-      .element(screen.getByLabelText(/title/i))
-      .toBeInTheDocument();
-    await expect
-      .element(screen.getByLabelText(/author/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/title/i)).toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/author/i)).toBeInTheDocument();
   });
 });

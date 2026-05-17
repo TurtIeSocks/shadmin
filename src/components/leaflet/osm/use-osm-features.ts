@@ -46,15 +46,20 @@ export const useOsmFeatures = (
     bbox && hasSources ? buildOverpassQueryFromSources(sources, bbox) : null;
   const result = useOverpass(query, opts);
 
-  const featureCollection = useMemo<GeoJSON.FeatureCollection<GeoJSON.Polygon | GeoJSON.MultiPolygon> | null>(() => {
+  const featureCollection = useMemo<GeoJSON.FeatureCollection<
+    GeoJSON.Polygon | GeoJSON.MultiPolygon
+  > | null>(() => {
     if (!result.data) return null;
     const fc = osmtogeojson(result.data) as GeoJSON.FeatureCollection;
-    const polygons: GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>[] = [];
+    const polygons: GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>[] =
+      [];
     for (const feat of fc.features) {
       if (!feat.geometry) continue;
       const geomType = feat.geometry.type;
       if (geomType === "Polygon" || geomType === "MultiPolygon") {
-        polygons.push(feat as GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>);
+        polygons.push(
+          feat as GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>,
+        );
         continue;
       }
       // Buffer line features only when a preset declares a bufferLinesMeters.
@@ -70,9 +75,12 @@ export const useOsmFeatures = (
         );
         if (
           buffered?.geometry &&
-          (buffered.geometry.type === "Polygon" || buffered.geometry.type === "MultiPolygon")
+          (buffered.geometry.type === "Polygon" ||
+            buffered.geometry.type === "MultiPolygon")
         ) {
-          polygons.push(buffered as GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>);
+          polygons.push(
+            buffered as GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>,
+          );
         }
       }
     }
@@ -105,11 +113,13 @@ function findPresetForFeature(
       if ("value" in f && v === f.value) return preset;
       if ("values" in f) {
         const valueSet = (f as { values: readonly string[] }).values;
-        const set = filterValuesCache.get(valueSet) ?? (() => {
-          const s = new Set(valueSet);
-          filterValuesCache.set(valueSet, s);
-          return s;
-        })();
+        const set =
+          filterValuesCache.get(valueSet) ??
+          (() => {
+            const s = new Set(valueSet);
+            filterValuesCache.set(valueSet, s);
+            return s;
+          })();
         if (set.has(v)) return preset;
       }
     }

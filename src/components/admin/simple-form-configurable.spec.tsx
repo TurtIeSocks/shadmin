@@ -9,9 +9,7 @@ import {
 describe("<SimpleFormConfigurable />", () => {
   it("renders every declared input plus the Save button", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByLabelText(/^title$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^title$/i)).toBeInTheDocument();
     await expect
       .element(screen.getByLabelText(/^author$/i))
       .toBeInTheDocument();
@@ -26,13 +24,10 @@ describe("<SimpleFormConfigurable />", () => {
     // omit=["id"] → no Id input after the omit preference has been
     // propagated to the inputs preference (happens after a re-render).
     await expect
-      .poll(
-        () => screen.getByLabelText(/^id$/i).query() != null,
-        { timeout: 2000 },
-      )
+      .poll(() => screen.getByLabelText(/^id$/i).query() != null, {
+        timeout: 2000,
+      })
       .toBe(false);
-    await expect
-      .element(screen.getByLabelText(/^title$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^title$/i)).toBeInTheDocument();
   });
 });

@@ -7,7 +7,12 @@ title: "RecordTimeline"
 ## Usage with audit-log reference
 
 ```tsx
-import { Show, SimpleShowLayout, TextField, RecordTimeline } from "@/components/admin";
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  RecordTimeline,
+} from "@/components/admin";
 import { PlusIcon, EditIcon, TrashIcon } from "lucide-react";
 
 const ProductShow = () => (
@@ -38,26 +43,36 @@ const ProductShow = () => (
 ```tsx
 <RecordTimeline
   entries={[
-    { id: 1, message: "Created", timestamp: "2026-05-15T10:00Z", user: "alice" },
-    { id: 2, message: "Updated price", timestamp: "2026-05-15T11:00Z", user: "bob" },
+    {
+      id: 1,
+      message: "Created",
+      timestamp: "2026-05-15T10:00Z",
+      user: "alice",
+    },
+    {
+      id: 2,
+      message: "Updated price",
+      timestamp: "2026-05-15T11:00Z",
+      user: "bob",
+    },
   ]}
 />
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `entries` | `TimelineEntry[]` | — | Explicit data. Overrides reference data source when present. |
-| `reference` | `string` | — | Audit-log resource. Required unless `entries` is set. |
-| `target` | `string` | — | Foreign-key field linking entries to the parent record. |
-| `sort` | `{ field; order }` | `{ created_at, DESC }` | |
-| `messageSource` | `string` | `"message"` | Field with the event description. |
-| `timestampSource` | `string` | `"created_at"` | Field with the ISO timestamp. |
-| `userSource` | `string` | — | Field with the actor's display name. |
-| `iconSource` | `string` | — | Field that maps to an icon via `iconMap`. |
-| `iconMap` | `Record<string, ComponentType>` | `{}` | Mapping event-type → icon component. |
-| `emptyLabel` | `string` | translated `No activity yet` | Empty state. |
+| Prop              | Type                            | Default                      | Description                                                  |
+| ----------------- | ------------------------------- | ---------------------------- | ------------------------------------------------------------ |
+| `entries`         | `TimelineEntry[]`               | —                            | Explicit data. Overrides reference data source when present. |
+| `reference`       | `string`                        | —                            | Audit-log resource. Required unless `entries` is set.        |
+| `target`          | `string`                        | —                            | Foreign-key field linking entries to the parent record.      |
+| `sort`            | `{ field; order }`              | `{ created_at, DESC }`       |                                                              |
+| `messageSource`   | `string`                        | `"message"`                  | Field with the event description.                            |
+| `timestampSource` | `string`                        | `"created_at"`               | Field with the ISO timestamp.                                |
+| `userSource`      | `string`                        | —                            | Field with the actor's display name.                         |
+| `iconSource`      | `string`                        | —                            | Field that maps to an icon via `iconMap`.                    |
+| `iconMap`         | `Record<string, ComponentType>` | `{}`                         | Mapping event-type → icon component.                         |
+| `emptyLabel`      | `string`                        | translated `No activity yet` | Empty state.                                                 |
 
 ## i18n
 

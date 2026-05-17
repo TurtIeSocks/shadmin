@@ -9,9 +9,22 @@ import {
   aspectLockedBBox,
 } from "./geometry-ops";
 
-const square = (xmin: number, ymin: number, xmax: number, ymax: number): GeoJSON.Polygon => ({
+const square = (
+  xmin: number,
+  ymin: number,
+  xmax: number,
+  ymax: number,
+): GeoJSON.Polygon => ({
   type: "Polygon",
-  coordinates: [[[xmin, ymin], [xmax, ymin], [xmax, ymax], [xmin, ymax], [xmin, ymin]]],
+  coordinates: [
+    [
+      [xmin, ymin],
+      [xmax, ymin],
+      [xmax, ymax],
+      [xmin, ymax],
+      [xmin, ymin],
+    ],
+  ],
 });
 
 describe("subtract", () => {
@@ -107,7 +120,15 @@ describe("aspectLockedBBox", () => {
     const transform = aspectLockedBBox(2);
     const result = transform({
       type: "Polygon",
-      coordinates: [[[0, 0], [4, 0], [4, 2], [0, 2], [0, 0]]],
+      coordinates: [
+        [
+          [0, 0],
+          [4, 0],
+          [4, 2],
+          [0, 2],
+          [0, 0],
+        ],
+      ],
     });
     expect(result).toEqual([0, 0, 4, 2]);
   });
@@ -117,7 +138,15 @@ describe("aspectLockedBBox", () => {
     // Input is 1×1 → too tall for ratio=2; needs to become 2×1, centred on 0.5,0.5
     const result = transform({
       type: "Polygon",
-      coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]],
+      coordinates: [
+        [
+          [0, 0],
+          [1, 0],
+          [1, 1],
+          [0, 1],
+          [0, 0],
+        ],
+      ],
     });
     expect(result).not.toBeNull();
     const [w, s, e, n] = result!;
@@ -128,6 +157,8 @@ describe("aspectLockedBBox", () => {
   });
 
   it("returns null for non-Polygon", () => {
-    expect(aspectLockedBBox(1)({ type: "Point", coordinates: [0, 0] })).toBeNull();
+    expect(
+      aspectLockedBBox(1)({ type: "Point", coordinates: [0, 0] }),
+    ).toBeNull();
   });
 });

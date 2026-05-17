@@ -36,7 +36,9 @@ export const StoryAdmin = ({
             </SimpleForm>
           </Create>
         ) : (
-          <RecordContextProvider value={record}>{children}</RecordContextProvider>
+          <RecordContextProvider value={record}>
+            {children}
+          </RecordContextProvider>
         )}
       </CoreAdminContext>
     </TestMemoryRouter>

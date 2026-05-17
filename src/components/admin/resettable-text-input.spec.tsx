@@ -12,9 +12,7 @@ import {
 describe("<ResettableTextInput />", () => {
   it("renders a text input with the humanized field label", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByLabelText(/^title$/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByLabelText(/^title$/i)).toBeInTheDocument();
   });
 
   it("shows a clear button when the field has a value", async () => {

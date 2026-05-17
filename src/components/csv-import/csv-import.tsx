@@ -536,7 +536,12 @@ export const CsvImport = ({
 
   return (
     <CsvImportContext.Provider value={value}>
-      <Button name="import" variant="outline" size="sm" onClick={() => setOpen(true)}>
+      <Button
+        name="import"
+        variant="outline"
+        size="sm"
+        onClick={() => setOpen(true)}
+      >
         <Icon className="size-4" />
         {buttonLabel}
       </Button>

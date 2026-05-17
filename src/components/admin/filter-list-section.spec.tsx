@@ -7,7 +7,9 @@ describe("<FilterListSection />", () => {
   it("renders the section's label", async () => {
     const screen = render(<Basic />);
     await expect
-      .poll(() => screen.getByText("Title").elements().length, { timeout: 5000 })
+      .poll(() => screen.getByText("Title").elements().length, {
+        timeout: 5000,
+      })
       .toBeGreaterThan(0);
   });
 

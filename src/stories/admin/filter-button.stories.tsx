@@ -75,7 +75,11 @@ const Wrapper = ({
   filters = [
     <SearchInput key="q" source="q" alwaysOn />,
     <NumberInput key="year" source="year" />,
-    <SelectInput key="author.name" source="author.name" choices={authorsChoices} />,
+    <SelectInput
+      key="author.name"
+      source="author.name"
+      choices={authorsChoices}
+    />,
   ],
 }: {
   defaultDataProvider?: DataProvider;

@@ -39,15 +39,15 @@ import { PivotGrid } from "@/components/admin";
 
 ## Props
 
-| Prop          | Required | Type                                            | Default                | Description                                                                    |
-| ------------- | -------- | ----------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------ |
-| `rowField`    | Required | `string`                                        | —                      | Record field whose distinct values become the row headers.                     |
-| `columnField` | Required | `string`                                        | —                      | Record field whose distinct values become the column headers.                  |
-| `data`        | Optional | `Record<string, unknown>[]`                     | from `useListContext`  | Explicit data array. If omitted, data is read from the enclosing `<List>`.    |
-| `valueField`  | Optional | `string`                                        | —                      | Numeric field to aggregate. If absent the aggregator is always `"count"`.     |
-| `aggregator`  | Optional | `"count" \| "sum" \| "avg" \| "min" \| "max"`  | `"count"`              | How to combine values for each (row, column) cell.                             |
-| `formatter`   | Optional | `(value: number) => ReactNode`                  | integer or `.toFixed(2)` | Formats each cell value. Defaults to integer string or two-decimal float.    |
-| `emptyLabel`  | Optional | `string`                                        | `"No data"` (i18n)    | Message shown when there are no rows or columns to display.                   |
+| Prop          | Required | Type                                          | Default                  | Description                                                                |
+| ------------- | -------- | --------------------------------------------- | ------------------------ | -------------------------------------------------------------------------- |
+| `rowField`    | Required | `string`                                      | —                        | Record field whose distinct values become the row headers.                 |
+| `columnField` | Required | `string`                                      | —                        | Record field whose distinct values become the column headers.              |
+| `data`        | Optional | `Record<string, unknown>[]`                   | from `useListContext`    | Explicit data array. If omitted, data is read from the enclosing `<List>`. |
+| `valueField`  | Optional | `string`                                      | —                        | Numeric field to aggregate. If absent the aggregator is always `"count"`.  |
+| `aggregator`  | Optional | `"count" \| "sum" \| "avg" \| "min" \| "max"` | `"count"`                | How to combine values for each (row, column) cell.                         |
+| `formatter`   | Optional | `(value: number) => ReactNode`                | integer or `.toFixed(2)` | Formats each cell value. Defaults to integer string or two-decimal float.  |
+| `emptyLabel`  | Optional | `string`                                      | `"No data"` (i18n)       | Message shown when there are no rows or columns to display.                |
 
 ## `aggregator`
 
@@ -83,7 +83,12 @@ Supply a custom `formatter` to control cell rendering — useful for currency, p
   columnField="status"
   valueField="amount"
   aggregator="sum"
-  formatter={(v) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(v)}
+  formatter={(v) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(v)
+  }
 />
 ```
 

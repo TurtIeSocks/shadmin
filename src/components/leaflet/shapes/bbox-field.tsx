@@ -3,7 +3,10 @@
 import { useMemo } from "react";
 import { RecordContextProvider, useRecordContext } from "ra-core";
 
-import { ShapeFieldShell, type ShapeFieldShellProps } from "./shape-field-shell";
+import {
+  ShapeFieldShell,
+  type ShapeFieldShellProps,
+} from "./shape-field-shell";
 
 export type BBoxFieldProps = ShapeFieldShellProps;
 

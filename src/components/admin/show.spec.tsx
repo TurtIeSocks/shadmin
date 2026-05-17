@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomTitle,
-  NoActions,
-} from "@/stories/admin/show.stories";
+import { Basic, CustomTitle, NoActions } from "@/stories/admin/show.stories";
 
 describe("<Show />", () => {
   it("renders the record's fields once loaded", async () => {
@@ -21,9 +17,7 @@ describe("<Show />", () => {
 
   it("renders the explicit title when provided", async () => {
     const screen = render(<CustomTitle />);
-    await expect
-      .element(screen.getByText("Post details"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Post details")).toBeInTheDocument();
   });
 
   it("does not render the default action buttons when actions={false}", async () => {

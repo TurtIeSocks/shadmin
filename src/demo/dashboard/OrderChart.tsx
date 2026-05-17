@@ -48,7 +48,10 @@ const OrderChart = ({ orders }: { orders?: Order[] }) => {
           bare
           xTickFormatter={(v) => new Date(v as number).toLocaleDateString()}
           yTickFormatter={(v) => `$${v}`}
-          tooltipFormatter={(v) => [currencyFormatter.format(v as number), "Revenue"]}
+          tooltipFormatter={(v) => [
+            currencyFormatter.format(v as number),
+            "Revenue",
+          ]}
         />
       </CardContent>
     </Card>

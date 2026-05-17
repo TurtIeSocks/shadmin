@@ -18,6 +18,8 @@ describe("<ShapeInputShell />", () => {
       </StoryAdmin>,
     );
     await expect.element(screen.getByText("Service area")).toBeInTheDocument();
-    await expect.element(screen.getByText("Click points to draw")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("Click points to draw"))
+      .toBeInTheDocument();
   });
 });

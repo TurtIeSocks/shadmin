@@ -62,8 +62,8 @@ export const I18nKeyEditorButton = () => {
         <DialogHeader>
           <DialogTitle>UI Translation Editor</DialogTitle>
           <DialogDescription>
-            Captures missing translation keys translated inside this dialog
-            and surfaces them in a floating panel where you can edit + export.
+            Captures missing translation keys translated inside this dialog and
+            surfaces them in a floating panel where you can edit + export.
           </DialogDescription>
         </DialogHeader>
         <I18nKeyEditor baseProvider={i18nProvider}>

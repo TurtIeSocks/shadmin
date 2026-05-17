@@ -72,26 +72,26 @@ App-facing import path: `import { MonacoJsonInput } from "@/components/monaco"`.
 ```ts
 type MonacoJsonInputProps = InputProps & {
   // Schema validation (editor content is validated against the schema)
-  schema?: object;                      // JSON Schema object, registered with Monaco
-  schemaUri?: string;                   // remote schema URL, Monaco fetches
-  allowComments?: boolean;              // default false (strict JSON)
+  schema?: object; // JSON Schema object, registered with Monaco
+  schemaUri?: string; // remote schema URL, Monaco fetches
+  allowComments?: boolean; // default false (strict JSON)
 
   // Sizing
-  autoHeight?: boolean;                 // default false
-  height?: number | string;             // default 300, used when autoHeight=false
-  minHeight?: number | string;          // default 120, autoHeight=true only
-  maxHeight?: number | string;          // default 600, autoHeight=true only
+  autoHeight?: boolean; // default false
+  height?: number | string; // default 300, used when autoHeight=false
+  minHeight?: number | string; // default 120, autoHeight=true only
+  maxHeight?: number | string; // default 600, autoHeight=true only
 
   // UX
-  showFormatButton?: boolean;           // default true
-  readOnly?: boolean;                   // default false
+  showFormatButton?: boolean; // default true
+  readOnly?: boolean; // default false
 
   // Styling
-  className?: string;                   // → FormField container
-  editorClassName?: string;             // → editor wrapper div
+  className?: string; // → FormField container
+  editorClassName?: string; // → editor wrapper div
 
   // Escape hatch
-  monacoOptions?: editor.IStandaloneEditorConstructionOptions;  // merged last
+  monacoOptions?: editor.IStandaloneEditorConstructionOptions; // merged last
 };
 ```
 
@@ -101,9 +101,9 @@ Inherits from ra-core `InputProps`: `source`, `label`, `helperText`, `validate`,
 
 ```ts
 type MonacoJsonFieldProps = FieldProps & {
-  height?: number | string;             // default 200
-  autoHeight?: boolean;                 // default true
-  maxHeight?: number | string;          // default 400
+  height?: number | string; // default 200
+  autoHeight?: boolean; // default true
+  maxHeight?: number | string; // default 400
   className?: string;
   monacoOptions?: editor.IStandaloneEditorConstructionOptions;
 };
@@ -112,10 +112,11 @@ type MonacoJsonFieldProps = FieldProps & {
 ### `JsonField`
 
 ```ts
-type JsonFieldProps = FieldProps & HTMLAttributes<HTMLPreElement> & {
-  indent?: number;                      // default 2
-  empty?: ReactNode;                    // mirrors TextField.empty
-};
+type JsonFieldProps = FieldProps &
+  HTMLAttributes<HTMLPreElement> & {
+    indent?: number; // default 2
+    empty?: ReactNode; // mirrors TextField.empty
+  };
 ```
 
 Renders `<pre className={cn("font-mono text-sm whitespace-pre-wrap", className)}>{JSON.stringify(value, null, indent)}</pre>`. No syntax highlighting in v1.
@@ -130,25 +131,39 @@ Renders `<pre className={cn("font-mono text-sm whitespace-pre-wrap", className)}
 
 ```ts
 // internal/detect-value-shape.ts
-type ValueShape = 'string' | 'object';
+type ValueShape = "string" | "object";
 
 export function detectValueShape(value: unknown): ValueShape | null {
   if (value === undefined) return null;
-  if (typeof value === 'string') return 'string';
-  return 'object';                                // includes null, arrays, objects
+  if (typeof value === "string") return "string";
+  return "object"; // includes null, arrays, objects
 }
 
-export function toEditorText(value: unknown, shape: ValueShape, indent = 2): string {
-  if (shape === 'string') return typeof value === 'string' ? value : '';
-  if (value === undefined) return '';
-  try { return JSON.stringify(value, null, indent); } catch { return ''; }
+export function toEditorText(
+  value: unknown,
+  shape: ValueShape,
+  indent = 2,
+): string {
+  if (shape === "string") return typeof value === "string" ? value : "";
+  if (value === undefined) return "";
+  try {
+    return JSON.stringify(value, null, indent);
+  } catch {
+    return "";
+  }
 }
 
-export function fromEditorText(text: string, shape: ValueShape): { value: unknown; parseError: Error | null } {
-  if (shape === 'string') return { value: text, parseError: null };
-  if (text.trim() === '') return { value: null, parseError: null };
-  try { return { value: JSON.parse(text), parseError: null }; }
-  catch (e) { return { value: undefined, parseError: e as Error }; }
+export function fromEditorText(
+  text: string,
+  shape: ValueShape,
+): { value: unknown; parseError: Error | null } {
+  if (shape === "string") return { value: text, parseError: null };
+  if (text.trim() === "") return { value: null, parseError: null };
+  try {
+    return { value: JSON.parse(text), parseError: null };
+  } catch (e) {
+    return { value: undefined, parseError: e as Error };
+  }
 }
 ```
 
@@ -159,15 +174,21 @@ const { id, field } = useInput({ ...props, validate: composedValidate });
 const shapeRef = useRef<ValueShape | null>(null);
 
 if (shapeRef.current === null) shapeRef.current = detectValueShape(field.value);
-const shape = shapeRef.current ?? 'object';
+const shape = shapeRef.current ?? "object";
 
-const editorText = useMemo(() => toEditorText(field.value, shape), [field.value, shape]);
+const editorText = useMemo(
+  () => toEditorText(field.value, shape),
+  [field.value, shape],
+);
 
-const onEditorChange = useCallback((nextText: string) => {
-  const { value, parseError } = fromEditorText(nextText, shape);
-  if (parseError) return;                        // don't commit invalid JSON in object mode
-  field.onChange(value);
-}, [field, shape]);
+const onEditorChange = useCallback(
+  (nextText: string) => {
+    const { value, parseError } = fromEditorText(nextText, shape);
+    if (parseError) return; // don't commit invalid JSON in object mode
+    field.onChange(value);
+  },
+  [field, shape],
+);
 ```
 
 **Rationale for not-commit-on-parse-error in object mode:** committing `undefined` mid-typing would clobber the record before the user finishes editing. The Monaco marker shows the syntax error, and the validate integration (below) blocks form submit. Last known-good value stays in `field.value`.
@@ -184,25 +205,35 @@ Monaco's `jsonDefaults.setDiagnosticsOptions` is **global**. To support multiple
 
 ```ts
 // internal/use-json-schema.ts
-export function useJsonSchema({ monaco, modelUri, schema, schemaUri, allowComments }: Args) {
+export function useJsonSchema({
+  monaco,
+  modelUri,
+  schema,
+  schemaUri,
+  allowComments,
+}: Args) {
   useEffect(() => {
     if (!monaco) return;
     const current = monaco.languages.json.jsonDefaults.diagnosticsOptions;
-    const others = (current.schemas ?? []).filter(s => !s.fileMatch?.includes(modelUri));
+    const others = (current.schemas ?? []).filter(
+      (s) => !s.fileMatch?.includes(modelUri),
+    );
     const next = [...others];
-    if (schema) next.push({ uri: `inline://${modelUri}`, fileMatch: [modelUri], schema });
+    if (schema)
+      next.push({ uri: `inline://${modelUri}`, fileMatch: [modelUri], schema });
     else if (schemaUri) next.push({ uri: schemaUri, fileMatch: [modelUri] });
 
     monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
       validate: true,
       allowComments: !!allowComments,
-      trailingCommas: allowComments ? 'ignore' : 'error',
+      trailingCommas: allowComments ? "ignore" : "error",
       schemas: next,
     });
 
     return () => {
-      const remaining = (monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas ?? [])
-        .filter(s => !s.fileMatch?.includes(modelUri));
+      const remaining = (
+        monaco.languages.json.jsonDefaults.diagnosticsOptions.schemas ?? []
+      ).filter((s) => !s.fileMatch?.includes(modelUri));
       monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
         ...monaco.languages.json.jsonDefaults.diagnosticsOptions,
         schemas: remaining,
@@ -215,8 +246,9 @@ export function useJsonSchema({ monaco, modelUri, schema, schemaUri, allowCommen
 Model URI pattern: `inmemory://monaco-json-input/${id}.json` (id from `useInput()`). Editor model created with:
 
 ```ts
-const model = monaco.editor.getModel(monaco.Uri.parse(modelUri))
-  ?? monaco.editor.createModel(initialText, 'json', monaco.Uri.parse(modelUri));
+const model =
+  monaco.editor.getModel(monaco.Uri.parse(modelUri)) ??
+  monaco.editor.createModel(initialText, "json", monaco.Uri.parse(modelUri));
 ```
 
 ### Markers → ra-core `validate`
@@ -225,30 +257,33 @@ const model = monaco.editor.getModel(monaco.Uri.parse(modelUri))
 const markersRef = useRef<editor.IMarker[]>([]);
 
 const monacoValidate = useCallback(() => {
-  const errors = markersRef.current.filter(m => m.severity >= 8 /* Error */);
+  const errors = markersRef.current.filter((m) => m.severity >= 8 /* Error */);
   if (errors.length === 0) return undefined;
   return errors[0].message;
 }, []);
 
 const composedValidate = useMemo(
   () => composeValidators(monacoValidate, ...arrayize(props.validate)),
-  [props.validate]
+  [props.validate],
 );
 
 const { id, field } = useInput({ ...props, validate: composedValidate });
 const { trigger } = useFormContext();
 
-const onMarkersChange = useCallback((markers: editor.IMarker[]) => {
-  markersRef.current = markers;
-  trigger(field.name);                            // re-run validate now markers updated
-}, [field.name, trigger]);
+const onMarkersChange = useCallback(
+  (markers: editor.IMarker[]) => {
+    markersRef.current = markers;
+    trigger(field.name); // re-run validate now markers updated
+  },
+  [field.name, trigger],
+);
 ```
 
 Wired via:
 
 ```ts
-monaco.editor.onDidChangeMarkers(resources => {
-  if (resources.some(r => r.toString() === model.uri.toString())) {
+monaco.editor.onDidChangeMarkers((resources) => {
+  if (resources.some((r) => r.toString() === model.uri.toString())) {
     onMarkersChange(monaco.editor.getModelMarkers({ resource: model.uri }));
   }
 });
@@ -272,11 +307,11 @@ In string mode, no schema validation runs (text is opaque). `validate` only invo
 
 ```tsx
 // monaco-json-input.tsx (public, no Monaco import)
-import { lazy, Suspense } from 'react';
-import { MonacoSkeleton } from './internal/monaco-skeleton';
-import type { MonacoJsonInputProps } from './internal/types';
+import { lazy, Suspense } from "react";
+import { MonacoSkeleton } from "./internal/monaco-skeleton";
+import type { MonacoJsonInputProps } from "./internal/types";
 
-const LazyInner = lazy(() => import('./monaco-json-input-lazy'));
+const LazyInner = lazy(() => import("./monaco-json-input-lazy"));
 
 export const MonacoJsonInput = (props: MonacoJsonInputProps) => (
   <Suspense fallback={<MonacoSkeleton height={props.height ?? 300} />}>
@@ -289,7 +324,9 @@ export type { MonacoJsonInputProps };
 
 ```tsx
 // monaco-json-input-lazy.tsx
-const MonacoJsonInputInner = (props: MonacoJsonInputProps) => { /* real component */ };
+const MonacoJsonInputInner = (props: MonacoJsonInputProps) => {
+  /* real component */
+};
 export default MonacoJsonInputInner;
 ```
 
@@ -302,7 +339,7 @@ Same split for `MonacoJsonField`. `JsonField` is not lazy.
 export const MonacoSkeleton = ({ height }: { height: number | string }) => (
   <div
     className="rounded-md border bg-muted/30 animate-pulse"
-    style={{ height: typeof height === 'number' ? `${height}px` : height }}
+    style={{ height: typeof height === "number" ? `${height}px` : height }}
     aria-busy="true"
     aria-label="Loading editor"
   />
@@ -323,9 +360,9 @@ App pages wrapped in their own `lazy()` boundaries (e.g. `lazy(() => import('./p
 
 ```ts
 // internal/use-monaco-theme.ts
-export function useMonacoTheme(): 'vs' | 'vs-dark' {
-  const [mode] = useTheme();                      // project hook
-  return mode === 'dark' ? 'vs-dark' : 'vs';
+export function useMonacoTheme(): "vs" | "vs-dark" {
+  const [mode] = useTheme(); // project hook
+  return mode === "dark" ? "vs-dark" : "vs";
 }
 ```
 
@@ -344,7 +381,12 @@ export function useMonacoLayout(
   instance: editor.IStandaloneCodeEditor | null,
 ) {
   useEffect(() => {
-    if (!instance || !containerRef.current || typeof ResizeObserver === 'undefined') return;
+    if (
+      !instance ||
+      !containerRef.current ||
+      typeof ResizeObserver === "undefined"
+    )
+      return;
     const observer = new ResizeObserver(() => instance.layout());
     observer.observe(containerRef.current);
     return () => observer.disconnect();
@@ -366,7 +408,10 @@ export function useAutoHeight(
   useEffect(() => {
     if (!instance || !enabled) return;
     const update = () => {
-      const next = Math.max(minHeight, Math.min(maxHeight, instance.getContentHeight()));
+      const next = Math.max(
+        minHeight,
+        Math.min(maxHeight, instance.getContentHeight()),
+      );
       setHeight(next);
       instance.layout();
     };
@@ -451,8 +496,8 @@ New entries in `package.json`:
 
 ```ts
 // monaco-json-input-lazy.tsx (top of file)
-import * as monaco from 'monaco-editor';
-import { loader } from '@monaco-editor/react';
+import * as monaco from "monaco-editor";
+import { loader } from "@monaco-editor/react";
 loader.config({ monaco });
 ```
 

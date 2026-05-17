@@ -1,9 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import {
-  Basic,
-  FixedHeight,
-} from "@/stories/monaco/monaco-json-field.stories";
+import { Basic, FixedHeight } from "@/stories/monaco/monaco-json-field.stories";
 
 const waitForEditorText = async (
   container: HTMLElement,
@@ -46,7 +43,9 @@ describe("<MonacoJsonField />", () => {
       await waitForEditorText(screen.container, (text) =>
         text.includes('"theme"'),
       );
-      const wrapper = screen.container.querySelector("[style*='height: 300px']");
+      const wrapper = screen.container.querySelector(
+        "[style*='height: 300px']",
+      );
       expect(wrapper).not.toBeNull();
     },
     MONACO_TIMEOUT,

@@ -16,12 +16,12 @@ import { ColorField } from '@/components/admin';
 
 ## Props
 
-| Prop          | Required | Type        | Default | Description |
-| ------------- | -------- | ----------- | ------- | ----------- |
-| `source`      | Required | `string`    | -       | Record field to read |
-| `showLabel`   | Optional | `boolean`   | `true`  | Show the color string next to the chip |
-| `empty`       | Optional | `ReactNode` | -       | Fallback when value is `null`/empty |
-| `className`   | Optional | `string`    | -       | CSS class on the wrapping `<span>` |
+| Prop        | Required | Type        | Default | Description                            |
+| ----------- | -------- | ----------- | ------- | -------------------------------------- |
+| `source`    | Required | `string`    | -       | Record field to read                   |
+| `showLabel` | Optional | `boolean`   | `true`  | Show the color string next to the chip |
+| `empty`     | Optional | `ReactNode` | -       | Fallback when value is `null`/empty    |
+| `className` | Optional | `string`    | -       | CSS class on the wrapping `<span>`     |
 
 ## Accepted formats
 

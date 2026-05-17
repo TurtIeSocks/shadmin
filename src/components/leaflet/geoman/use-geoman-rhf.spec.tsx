@@ -116,17 +116,13 @@ describe("useGeomanRHF", () => {
     );
     // Wait for the MapBridge to mount and the FeatureGroup ref to attach.
     // Layer count starts at 0 (record.geom is null).
-    await expect
-      .poll(() => box.ref?.current?.getLayers().length ?? -1)
-      .toBe(0);
+    await expect.poll(() => box.ref?.current?.getLayers().length ?? -1).toBe(0);
 
     await screen.getByTestId("seed").click();
 
     // After an external setValue, the layer should be rebuilt — exactly one
     // layer matching the seeded geometry, not zero (no update) and not two
     // (double-hydration).
-    await expect
-      .poll(() => box.ref?.current?.getLayers().length ?? 0)
-      .toBe(1);
+    await expect.poll(() => box.ref?.current?.getLayers().length ?? 0).toBe(1);
   });
 });

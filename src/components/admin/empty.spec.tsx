@@ -10,9 +10,7 @@ import {
 describe("<Empty />", () => {
   it("renders the default empty-state message and a create link", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByText(/no posts yet/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/no posts yet/i)).toBeInTheDocument();
     await expect
       .element(screen.getByRole("link", { name: /create/i }))
       .toBeInTheDocument();
@@ -20,9 +18,7 @@ describe("<Empty />", () => {
 
   it("hides the create link when the resource has no create route", async () => {
     const screen = render(<WithoutCreate />);
-    await expect
-      .element(screen.getByText(/no posts yet/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/no posts yet/i)).toBeInTheDocument();
     await expect
       .element(screen.getByRole("link", { name: /create/i }))
       .not.toBeInTheDocument();

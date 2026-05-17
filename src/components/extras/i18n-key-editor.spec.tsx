@@ -45,8 +45,6 @@ describe("<I18nKeyEditor />", () => {
   it("hides the Export button when showExport=false", async () => {
     const screen = render(<NoExport />);
     await expect.element(screen.getByText(/missing keys/i)).toBeInTheDocument();
-    expect(
-      screen.container.querySelector("[data-i18n-export]"),
-    ).toBeNull();
+    expect(screen.container.querySelector("[data-i18n-export]")).toBeNull();
   });
 });

@@ -20,12 +20,12 @@ import { ApiKeyInput } from '@/components/admin';
 
 ## Props
 
-| Prop       | Required | Type                                | Default | Description |
-| ---------- | -------- | ----------------------------------- | ------- | ----------- |
-| `source`   | Required | `string`                            | -       | Record field |
-| `resource` | Optional | `string`                            | Context | Override resource |
+| Prop       | Required | Type                                | Default | Description          |
+| ---------- | -------- | ----------------------------------- | ------- | -------------------- |
+| `source`   | Required | `string`                            | -       | Record field         |
+| `resource` | Optional | `string`                            | Context | Override resource    |
 | `onRotate` | Optional | `(record) => Promise<void> \| void` | -       | Custom rotation hook |
-| `disabled` | Optional | `boolean`                           | `false` | Disable button |
+| `disabled` | Optional | `boolean`                           | `false` | Disable button       |
 
 ## Default rotation behavior
 

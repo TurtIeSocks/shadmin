@@ -2,7 +2,12 @@ import type * as React from "react";
 import { useEffect, useState } from "react";
 import type { InputProps } from "ra-core";
 import { FieldTitle, useInput, useResourceContext } from "ra-core";
-import { FormControl, FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FormControl,
+  FormError,
+  FormField,
+  FormLabel,
+} from "@/components/admin/form";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { parseIsoDuration } from "./duration-utils";
@@ -45,11 +50,7 @@ export const DurationInput = (props: DurationInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
@@ -78,9 +79,10 @@ export const DurationInput = (props: DurationInputProps) => {
       (next.h ? `${+next.h}H` : "") +
       (next.m ? `${+next.m}M` : "") +
       (next.s ? `${+next.s}S` : "");
-    const out = dayPart || timeParts
-      ? `P${dayPart}${timeParts ? `T${timeParts}` : ""}`
-      : "";
+    const out =
+      dayPart || timeParts
+        ? `P${dayPart}${timeParts ? `T${timeParts}` : ""}`
+        : "";
     field.onChange(out || null);
   };
 
@@ -99,7 +101,10 @@ export const DurationInput = (props: DurationInputProps) => {
       <FormControl>
         <div className={cn("flex items-end gap-2", className)} {...rest}>
           {units.map((u) => (
-            <label key={u} className="flex flex-col items-center text-xs text-muted-foreground">
+            <label
+              key={u}
+              className="flex flex-col items-center text-xs text-muted-foreground"
+            >
               <Input
                 type="number"
                 min={0}
@@ -126,7 +131,8 @@ export const DurationInput = (props: DurationInputProps) => {
 };
 
 export interface DurationInputProps
-  extends InputProps,
+  extends
+    InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   /** Which units to expose. Default `["d","h","m","s"]`. */
   units?: readonly Unit[];

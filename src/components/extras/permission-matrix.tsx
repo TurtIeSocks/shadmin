@@ -141,7 +141,10 @@ export const PermissionMatrix = ({
                             toggleAll(role.id, resource.id, allOn)
                           }
                           aria-label={`${role.id} all ${resource.id}`}
-                          className={cn("rounded-sm", allOn && "border-primary")}
+                          className={cn(
+                            "rounded-sm",
+                            allOn && "border-primary",
+                          )}
                           data-all={`${role.id}.${resource.id}`}
                         />
                       </td>

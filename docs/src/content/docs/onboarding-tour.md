@@ -43,21 +43,21 @@ Place `<OnboardingTour>` anywhere in the tree that has access to the ra-core con
 
 ## Props
 
-| Prop        | Required | Type                                             | Default  | Description                                                         |
-| ----------- | -------- | ------------------------------------------------ | -------- | ------------------------------------------------------------------- |
-| `id`        | Required | `string`                                         | —        | Store key suffix. Tours with the same `id` share completion state.  |
-| `steps`     | Required | `TourStep[]`                                     | —        | Ordered list of coachmark steps.                                    |
-| `autoStart` | Optional | `boolean`                                        | `true`   | Start automatically on mount if not yet completed.                  |
-| `onComplete`| Optional | `() => void`                                     | —        | Called when the user finishes or skips the tour.                    |
-| `placement` | Optional | `"auto" \| "top" \| "bottom" \| "left" \| "right"` | `"auto"` | Default tooltip placement for all steps. Step-level placement overrides this. |
+| Prop         | Required | Type                                               | Default  | Description                                                                   |
+| ------------ | -------- | -------------------------------------------------- | -------- | ----------------------------------------------------------------------------- |
+| `id`         | Required | `string`                                           | —        | Store key suffix. Tours with the same `id` share completion state.            |
+| `steps`      | Required | `TourStep[]`                                       | —        | Ordered list of coachmark steps.                                              |
+| `autoStart`  | Optional | `boolean`                                          | `true`   | Start automatically on mount if not yet completed.                            |
+| `onComplete` | Optional | `() => void`                                       | —        | Called when the user finishes or skips the tour.                              |
+| `placement`  | Optional | `"auto" \| "top" \| "bottom" \| "left" \| "right"` | `"auto"` | Default tooltip placement for all steps. Step-level placement overrides this. |
 
 ## `TourStep`
 
 ```ts
 interface TourStep {
-  target: string;        // CSS selector for the element to highlight
-  title?: ReactNode;     // Optional heading shown above the content
-  content: ReactNode;    // Main body text or JSX
+  target: string; // CSS selector for the element to highlight
+  title?: ReactNode; // Optional heading shown above the content
+  content: ReactNode; // Main body text or JSX
   placement?: "top" | "bottom" | "left" | "right"; // Overrides component-level placement
 }
 ```
@@ -72,7 +72,10 @@ To reset the tour for testing, clear the store entry:
 import { useStore } from "ra-core";
 
 const ResetButton = () => {
-  const [, setCompleted] = useStore("tour.dashboard-first-run.completed", false);
+  const [, setCompleted] = useStore(
+    "tour.dashboard-first-run.completed",
+    false,
+  );
   return <button onClick={() => setCompleted(false)}>Reset tour</button>;
 };
 ```
@@ -87,7 +90,11 @@ When `placement` is `"auto"` (the default), individual steps without a `placemen
   placement="top"
   steps={[
     { target: ".foo", content: "Appears above .foo" },
-    { target: ".bar", content: "Appears to the right of .bar", placement: "right" },
+    {
+      target: ".bar",
+      content: "Appears to the right of .bar",
+      placement: "right",
+    },
   ]}
 />
 ```

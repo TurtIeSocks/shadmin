@@ -14,7 +14,7 @@ import { LatLngField } from "@/components/leaflet";
     <TextField source="name" />
     <LatLngField latSource="lat" lngSource="lng" zoom={13} height={300} />
   </SimpleShowLayout>
-</Show>
+</Show>;
 ```
 
 ## Props

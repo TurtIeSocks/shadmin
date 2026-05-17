@@ -18,6 +18,7 @@ Replace 5 raw form primitives in the existing demo resources (products, customer
 ### 1. `CurrencyInput` / `CurrencyField` → products price + order total
 
 **Files:**
+
 - `src/demo/products/ProductEdit.tsx` (~line 92): `<NumberInput source="price" />` → `<CurrencyInput source="price" currency="USD" />`.
 - `src/demo/products/ProductList.tsx`: if a `<NumberField source="price">` appears in the table, replace with `<CurrencyField source="price" currency="USD" />`.
 - `src/demo/orders/OrderShow.tsx` / `OrderList.tsx`: if `<NumberField source="total">` appears, replace with `<CurrencyField source="total" currency="USD" />`.
@@ -27,6 +28,7 @@ Replace 5 raw form primitives in the existing demo resources (products, customer
 ### 2. `PhoneInput` / `PhoneField` → customers
 
 **Files:**
+
 - `src/demo/types.ts`: add `phone?: string` to `Customer` interface.
 - `src/demo/dataProvider.ts` (or wherever customer seed lives): generate phone numbers via fakerest's faker (`faker.phone.number()` or similar). Format E.164.
 - `src/demo/customers/CustomerEdit.tsx`: add `<PhoneInput source="phone" defaultCountry="US" />` after the email field.
@@ -36,6 +38,7 @@ Replace 5 raw form primitives in the existing demo resources (products, customer
 ### 3. `ColorInput` / `ColorField` → categories
 
 **Files:**
+
 - `src/demo/types.ts`: add `color: string` to `Category` interface (hex format `#RRGGBB`).
 - `src/demo/dataProvider.ts` / category seed: assign each category a color (palette from `var(--chart-1)`..`var(--chart-5)` or random hex).
 - `src/demo/categories/CategoryEdit.tsx`: add `<ColorInput source="color" format="hex" />` after `name`.
@@ -45,6 +48,7 @@ Replace 5 raw form primitives in the existing demo resources (products, customer
 ### 4. `RatingInput` / `RatingField` → reviews
 
 **Files:**
+
 - `src/demo/reviews/ReviewEdit.tsx` (~line 38): replace `StarRatingField` or `NumberInput rating` with `<RatingInput source="rating" max={5} allowHalf />`.
 - `src/demo/reviews/ReviewList.tsx`: replace `StarRatingField` with `<RatingField source="rating" max={5} />`.
 - `src/demo/reviews/ReviewShow.tsx`: same.
@@ -53,6 +57,7 @@ Replace 5 raw form primitives in the existing demo resources (products, customer
 ### 5. `StatusTransitionButton` → orders status
 
 **Files:**
+
 - `src/demo/orders/OrderEdit.tsx` (~line 28): replace `<AutocompleteInput source="status" choices=[...]>` with `<StatusTransitionButton source="status" transitions={ORDER_TRANSITIONS} />`.
 - New constant `ORDER_TRANSITIONS` in `src/demo/orders/order-transitions.ts`:
   ```ts

@@ -28,7 +28,11 @@ export const Basic = () => (
       defaultCenter={[48.87, 2.35]}
       height={500}
     />
-    <OsmFeatureAdd source="area" presets={["forest"]} label="Add forest patches" />
+    <OsmFeatureAdd
+      source="area"
+      presets={["forest"]}
+      label="Add forest patches"
+    />
   </StoryAdmin>
 );
 

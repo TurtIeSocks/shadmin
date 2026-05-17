@@ -13,8 +13,6 @@ describe("<AccessDenied />", () => {
 
   it("renders custom primary text", async () => {
     const screen = render(<CustomText />);
-    await expect
-      .element(screen.getByText("Not allowed"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("Not allowed")).toBeInTheDocument();
   });
 });

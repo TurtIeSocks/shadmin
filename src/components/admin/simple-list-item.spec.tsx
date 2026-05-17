@@ -10,9 +10,7 @@ import {
 describe("<SimpleListItem />", () => {
   it("renders the item's children", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByText("War and Peace"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("War and Peace")).toBeInTheDocument();
     await expect.element(screen.getByText("Leo Tolstoy")).toBeInTheDocument();
   });
 

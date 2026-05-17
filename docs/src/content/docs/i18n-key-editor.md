@@ -9,13 +9,10 @@ the clipboard.
 ## Usage
 
 ```tsx
-import { Admin, I18nKeyEditor, Resource } from '@/components/admin';
+import { Admin, I18nKeyEditor, Resource } from "@/components/admin";
 
 const App = () => (
-  <Admin
-    dataProvider={myDataProvider}
-    i18nProvider={myI18n}
-  >
+  <Admin dataProvider={myDataProvider} i18nProvider={myI18n}>
     <I18nKeyEditor baseProvider={myI18n}>
       <Resource name="posts" />
     </I18nKeyEditor>
@@ -25,12 +22,12 @@ const App = () => (
 
 ## Props
 
-| Prop          | Required | Type           | Default | Description |
-| ------------- | -------- | -------------- | ------- | ----------- |
-| `children`    | Required | `ReactNode`    | -       | Tree to track |
-| `baseProvider`| Required | `I18nProvider` | -       | Original provider |
-| `defaultOpen` | Optional | `boolean`      | `true`  | Panel state at mount |
-| `showExport`  | Optional | `boolean`      | `true`  | Show Export button |
+| Prop           | Required | Type           | Default | Description          |
+| -------------- | -------- | -------------- | ------- | -------------------- |
+| `children`     | Required | `ReactNode`    | -       | Tree to track        |
+| `baseProvider` | Required | `I18nProvider` | -       | Original provider    |
+| `defaultOpen`  | Optional | `boolean`      | `true`  | Panel state at mount |
+| `showExport`   | Optional | `boolean`      | `true`  | Show Export button   |
 
 ## Detection mechanism
 

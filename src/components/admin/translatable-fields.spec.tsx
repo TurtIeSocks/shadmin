@@ -16,8 +16,14 @@ describe("<TranslatableFields />", () => {
   it("renders a tab per supplied locale", async () => {
     const screen = render(<Basic theme="system" />);
     // Tabs render the locale code (en, fr, tlh)
-    await expect.element(screen.getByRole("tab", { name: "en" })).toBeInTheDocument();
-    await expect.element(screen.getByRole("tab", { name: "fr" })).toBeInTheDocument();
-    await expect.element(screen.getByRole("tab", { name: "tlh" })).toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("tab", { name: "en" }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("tab", { name: "fr" }))
+      .toBeInTheDocument();
+    await expect
+      .element(screen.getByRole("tab", { name: "tlh" }))
+      .toBeInTheDocument();
   });
 });

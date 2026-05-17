@@ -73,7 +73,10 @@ const DEFAULT_HOTKEYS = ["mod+k"];
  * when registering single-key bindings that overlap with modifier combinations.
  */
 const matchesHotkey = (event: KeyboardEvent, binding: string) => {
-  const parts = binding.toLowerCase().split("+").map((p) => p.trim());
+  const parts = binding
+    .toLowerCase()
+    .split("+")
+    .map((p) => p.trim());
   const key = parts[parts.length - 1];
   const wantMod = parts.includes("mod");
   const wantShift = parts.includes("shift");
@@ -427,7 +430,9 @@ const CommandMenuFooter = () => {
     <div className="flex items-center justify-end gap-3 border-t px-3 py-2 text-xs text-muted-foreground">
       <KbdGroup>
         <Kbd>↑↓</Kbd>
-        <span>{translate("ra.command.footer.navigate", { _: "Navigate" })}</span>
+        <span>
+          {translate("ra.command.footer.navigate", { _: "Navigate" })}
+        </span>
       </KbdGroup>
       <KbdGroup>
         <Kbd>↵</Kbd>
@@ -496,7 +501,16 @@ export const CommandMenu = ({
       unregisterCommand,
       registeredCommands,
     }),
-    [isOpen, open, close, toggle, setQuery, registerCommand, unregisterCommand, registeredCommands],
+    [
+      isOpen,
+      open,
+      close,
+      toggle,
+      setQuery,
+      registerCommand,
+      unregisterCommand,
+      registeredCommands,
+    ],
   );
 
   const hotkeyRef = useRef(hotkey);
@@ -519,13 +533,19 @@ export const CommandMenu = ({
 
   return (
     <CommandMenuContext.Provider value={value}>
-      <Shell isMobile={isMobile} isOpen={isOpen} onOpenChange={handleOpenChange}>
+      <Shell
+        isMobile={isMobile}
+        isOpen={isOpen}
+        onOpenChange={handleOpenChange}
+      >
         <CommandInput
           value={query}
           onValueChange={setQuery}
           placeholder={
             placeholder ??
-            translate("ra.command.placeholder", { _: "Search or run a command…" })
+            translate("ra.command.placeholder", {
+              _: "Search or run a command…",
+            })
           }
         />
         <CommandList>

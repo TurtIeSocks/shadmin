@@ -3,7 +3,8 @@ title: "SchemaDrivenView"
 ---
 
 Generates a List/Edit/Show view from a flat JSON Schema. Maps property `type`
-+ `format` + `enum` to admin field / input components.
+
+- `format` + `enum` to admin field / input components.
 
 ## Usage
 
@@ -28,22 +29,22 @@ const SCHEMA = {
 
 ## Props
 
-| Prop        | Required | Type                          | Default | Description |
-| ----------- | -------- | ----------------------------- | ------- | ----------- |
-| `schema`    | Required | `JsonSchema`                  | -       | Flat object schema |
-| `mode`      | Required | `"list" \| "edit" \| "show"`  | -       | View kind |
-| `overrides` | Optional | `Record<string, ReactNode>`   | -       | Property-key → custom rendering |
+| Prop        | Required | Type                         | Default | Description                     |
+| ----------- | -------- | ---------------------------- | ------- | ------------------------------- |
+| `schema`    | Required | `JsonSchema`                 | -       | Flat object schema              |
+| `mode`      | Required | `"list" \| "edit" \| "show"` | -       | View kind                       |
+| `overrides` | Optional | `Record<string, ReactNode>`  | -       | Property-key → custom rendering |
 
 ## Mapping table
 
-| Property                          | Show field        | Edit input    |
-| --------------------------------- | ----------------- | ------------- |
-| `type: 'string'`                  | `TextField`       | `TextInput`   |
-| `type: 'string', format: 'email'` | `EmailField`      | `TextInput`   |
-| `type: 'string', format: 'date'`  | `DateField`       | `DateInput`   |
-| `type: 'number' \| 'integer'`     | `NumberField`     | `NumberInput` |
-| `type: 'boolean'`                 | `BooleanField`    | `BooleanInput`|
-| `enum: [...]`                     | `SelectField`     | `SelectInput` |
+| Property                          | Show field     | Edit input     |
+| --------------------------------- | -------------- | -------------- |
+| `type: 'string'`                  | `TextField`    | `TextInput`    |
+| `type: 'string', format: 'email'` | `EmailField`   | `TextInput`    |
+| `type: 'string', format: 'date'`  | `DateField`    | `DateInput`    |
+| `type: 'number' \| 'integer'`     | `NumberField`  | `NumberInput`  |
+| `type: 'boolean'`                 | `BooleanField` | `BooleanInput` |
+| `enum: [...]`                     | `SelectField`  | `SelectInput`  |
 
 ## Limitations
 

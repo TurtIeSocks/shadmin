@@ -15,6 +15,7 @@
 ## Task B0: Sidebar restructuring + types
 
 **Files:**
+
 - Modify: `src/demo/types.ts`
 - Modify: `src/demo/DemoSidebar.tsx`
 
@@ -113,6 +114,7 @@ EOF
 ## Task B1: subscriptions resource
 
 **Files:**
+
 - Create: `src/demo/subscriptions/plans.ts`
 - Create: `src/demo/subscriptions/SubscriptionList.tsx`
 - Create: `src/demo/subscriptions/SubscriptionEdit.tsx`
@@ -126,9 +128,24 @@ EOF
 
 ```ts
 export const PLANS = [
-  { id: "free", name: "Free", price: 0, features: ["1 user", "100 API calls/month", "100 MB storage"] },
-  { id: "starter", name: "Starter", price: 29, features: ["5 users", "10k API calls/month", "10 GB storage"] },
-  { id: "pro", name: "Pro", price: 99, features: ["unlimited users", "1M API calls/month", "100 GB storage"] },
+  {
+    id: "free",
+    name: "Free",
+    price: 0,
+    features: ["1 user", "100 API calls/month", "100 MB storage"],
+  },
+  {
+    id: "starter",
+    name: "Starter",
+    price: 29,
+    features: ["5 users", "10k API calls/month", "10 GB storage"],
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    price: 99,
+    features: ["unlimited users", "1M API calls/month", "100 GB storage"],
+  },
   { id: "enterprise", name: "Enterprise", price: 999, features: ["custom"] },
 ];
 ```
@@ -141,22 +158,45 @@ import { PLANS } from "./plans";
 
 const PLAN_IDS = PLANS.map((p) => p.id) as Subscription["plan"][];
 
-export const subscriptionsSeed: Subscription[] = Array.from({ length: 30 }, (_, i) => {
-  const plan = PLAN_IDS[i % PLAN_IDS.length];
-  const apiLimit = plan === "free" ? 100 : plan === "starter" ? 10000 : plan === "pro" ? 1_000_000 : 10_000_000;
-  const storageLimit = plan === "free" ? 100 : plan === "starter" ? 10240 : plan === "pro" ? 102400 : 1024000;
-  return {
-    id: i + 1,
-    customer_id: (i % 10) + 1,
-    plan,
-    status: i % 7 === 0 ? "trialing" : i % 13 === 0 ? "past_due" : "active",
-    start_date: new Date(Date.now() - i * 86400000).toISOString(),
-    usage: {
-      api_calls: { used: Math.floor(apiLimit * (0.1 + (i % 9) / 10)), limit: apiLimit },
-      storage_mb: { used: Math.floor(storageLimit * (0.05 + (i % 7) / 12)), limit: storageLimit },
-    },
-  };
-});
+export const subscriptionsSeed: Subscription[] = Array.from(
+  { length: 30 },
+  (_, i) => {
+    const plan = PLAN_IDS[i % PLAN_IDS.length];
+    const apiLimit =
+      plan === "free"
+        ? 100
+        : plan === "starter"
+          ? 10000
+          : plan === "pro"
+            ? 1_000_000
+            : 10_000_000;
+    const storageLimit =
+      plan === "free"
+        ? 100
+        : plan === "starter"
+          ? 10240
+          : plan === "pro"
+            ? 102400
+            : 1024000;
+    return {
+      id: i + 1,
+      customer_id: (i % 10) + 1,
+      plan,
+      status: i % 7 === 0 ? "trialing" : i % 13 === 0 ? "past_due" : "active",
+      start_date: new Date(Date.now() - i * 86400000).toISOString(),
+      usage: {
+        api_calls: {
+          used: Math.floor(apiLimit * (0.1 + (i % 9) / 10)),
+          limit: apiLimit,
+        },
+        storage_mb: {
+          used: Math.floor(storageLimit * (0.05 + (i % 7) / 12)),
+          limit: storageLimit,
+        },
+      },
+    };
+  },
+);
 ```
 
 - [ ] **Step 3: SubscriptionList.tsx**
@@ -186,7 +226,12 @@ export const SubscriptionList = () => (
 - [ ] **Step 4: SubscriptionEdit.tsx**
 
 ```tsx
-import { Edit, SimpleForm, ReferenceInput, SelectInput } from "@/components/admin";
+import {
+  Edit,
+  SimpleForm,
+  ReferenceInput,
+  SelectInput,
+} from "@/components/admin";
 import { SubscriptionPlanPicker } from "@/components/extras/subscription-plan-picker";
 import { UsageMeterField } from "@/components/extras/usage-meter-field";
 import { PLANS } from "./plans";
@@ -195,7 +240,11 @@ export const SubscriptionEdit = () => (
   <Edit>
     <SimpleForm>
       <ReferenceInput source="customer_id" reference="customers" />
-      <SubscriptionPlanPicker source="plan" plans={PLANS} recommendedPlanId="pro" />
+      <SubscriptionPlanPicker
+        source="plan"
+        plans={PLANS}
+        recommendedPlanId="pro"
+      />
       <SelectInput
         source="status"
         choices={[
@@ -205,8 +254,17 @@ export const SubscriptionEdit = () => (
           { id: "canceled", name: "Canceled" },
         ]}
       />
-      <UsageMeterField source="usage.api_calls.used" limitSource="usage.api_calls.limit" label="API calls" />
-      <UsageMeterField source="usage.storage_mb.used" limitSource="usage.storage_mb.limit" unit="MB" label="Storage" />
+      <UsageMeterField
+        source="usage.api_calls.used"
+        limitSource="usage.api_calls.limit"
+        label="API calls"
+      />
+      <UsageMeterField
+        source="usage.storage_mb.used"
+        limitSource="usage.storage_mb.limit"
+        unit="MB"
+        label="Storage"
+      />
     </SimpleForm>
   </Edit>
 );
@@ -217,7 +275,13 @@ export const SubscriptionEdit = () => (
 `SubscriptionShow.tsx`:
 
 ```tsx
-import { Show, SimpleShowLayout, TextField, DateField, ReferenceField } from "@/components/admin";
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  DateField,
+  ReferenceField,
+} from "@/components/admin";
 import { SubscriptionPlanField } from "@/components/extras/subscription-plan-field";
 import { UsageMeterField } from "@/components/extras/usage-meter-field";
 import { PLANS } from "./plans";
@@ -229,8 +293,17 @@ export const SubscriptionShow = () => (
       <SubscriptionPlanField source="plan" plans={PLANS} />
       <TextField source="status" />
       <DateField source="start_date" />
-      <UsageMeterField source="usage.api_calls.used" limitSource="usage.api_calls.limit" label="API calls" />
-      <UsageMeterField source="usage.storage_mb.used" limitSource="usage.storage_mb.limit" unit="MB" label="Storage" />
+      <UsageMeterField
+        source="usage.api_calls.used"
+        limitSource="usage.api_calls.limit"
+        label="API calls"
+      />
+      <UsageMeterField
+        source="usage.storage_mb.used"
+        limitSource="usage.storage_mb.limit"
+        unit="MB"
+        label="Storage"
+      />
     </SimpleShowLayout>
   </Show>
 );
@@ -258,9 +331,19 @@ subscriptions: subscriptionsSeed,
 
 ```tsx
 import { CreditCardIcon } from "lucide-react";
-import { SubscriptionList, SubscriptionEdit, SubscriptionShow } from "./subscriptions";
+import {
+  SubscriptionList,
+  SubscriptionEdit,
+  SubscriptionShow,
+} from "./subscriptions";
 
-<Resource name="subscriptions" list={SubscriptionList} edit={SubscriptionEdit} show={SubscriptionShow} icon={CreditCardIcon} />
+<Resource
+  name="subscriptions"
+  list={SubscriptionList}
+  edit={SubscriptionEdit}
+  show={SubscriptionShow}
+  icon={CreditCardIcon}
+/>;
 ```
 
 - [ ] **Step 8: Typecheck + lint**
@@ -294,6 +377,7 @@ EOF
 ## Task B2: api_keys resource
 
 **Files:**
+
 - Create: `src/demo/api-keys/seed.ts`
 - Create: `src/demo/api-keys/ApiKeyList.tsx`
 - Create: `src/demo/api-keys/ApiKeyCreate.tsx`
@@ -307,7 +391,13 @@ EOF
 ```ts
 import type { ApiKey } from "../types";
 
-const SCOPES = ["read:orders", "write:orders", "read:customers", "write:customers", "admin"];
+const SCOPES = [
+  "read:orders",
+  "write:orders",
+  "read:customers",
+  "write:customers",
+  "admin",
+];
 
 export const apiKeysSeed: ApiKey[] = Array.from({ length: 12 }, (_, i) => {
   const fullKey = `sk_test_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;
@@ -318,7 +408,8 @@ export const apiKeysSeed: ApiKey[] = Array.from({ length: 12 }, (_, i) => {
     key_truncated: `${fullKey.slice(0, 10)}...${fullKey.slice(-4)}`,
     scopes: SCOPES.slice(0, (i % 3) + 1),
     created_at: new Date(Date.now() - i * 86400000 * 7).toISOString(),
-    last_used: i % 4 === 0 ? null : new Date(Date.now() - i * 86400000).toISOString(),
+    last_used:
+      i % 4 === 0 ? null : new Date(Date.now() - i * 86400000).toISOString(),
   };
 });
 ```
@@ -326,7 +417,12 @@ export const apiKeysSeed: ApiKey[] = Array.from({ length: 12 }, (_, i) => {
 - [ ] **Step 2: ApiKeyCreate.tsx**
 
 ```tsx
-import { Create, SimpleForm, TextInput, SelectArrayInput } from "@/components/admin";
+import {
+  Create,
+  SimpleForm,
+  TextInput,
+  SelectArrayInput,
+} from "@/components/admin";
 
 const SCOPE_CHOICES = [
   { id: "read:orders", name: "Read orders" },
@@ -369,7 +465,12 @@ export const ApiKeyList = () => (
 - [ ] **Step 4: ApiKeyShow.tsx**
 
 ```tsx
-import { Show, SimpleShowLayout, TextField, DateField } from "@/components/admin";
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  DateField,
+} from "@/components/admin";
 import { ApiKeyField } from "@/components/extras/api-key-field";
 import { ApiKeyInput } from "@/components/extras/api-key-input";
 
@@ -407,7 +508,13 @@ api_keys: apiKeysSeed,
 import { KeyIcon } from "lucide-react";
 import { ApiKeyList, ApiKeyCreate, ApiKeyShow } from "./api-keys";
 
-<Resource name="api_keys" list={ApiKeyList} create={ApiKeyCreate} show={ApiKeyShow} icon={KeyIcon} />
+<Resource
+  name="api_keys"
+  list={ApiKeyList}
+  create={ApiKeyCreate}
+  show={ApiKeyShow}
+  icon={KeyIcon}
+/>;
 ```
 
 - [ ] **Step 7: Typecheck + lint + browser smoke**
@@ -433,6 +540,7 @@ EOF
 ## Task B3: webhooks resource
 
 **Files:**
+
 - Create: `src/demo/webhooks/event-types.ts`
 - Create: `src/demo/webhooks/seed.ts`
 - Create: `src/demo/webhooks/WebhookList.tsx`
@@ -466,7 +574,8 @@ export const webhooksSeed: Webhook[] = Array.from({ length: 8 }, (_, i) => ({
   url: `https://api.example${i + 1}.com/webhooks/inbound`,
   event_types: EVENT_TYPES.slice(0, (i % 4) + 1),
   status: i % 5 === 0 ? "failing" : i % 7 === 0 ? "paused" : "active",
-  last_triggered: i % 3 === 0 ? null : new Date(Date.now() - i * 3600000).toISOString(),
+  last_triggered:
+    i % 3 === 0 ? null : new Date(Date.now() - i * 3600000).toISOString(),
   failure_count: i % 5 === 0 ? 12 : 0,
 }));
 ```
@@ -482,7 +591,11 @@ import { EVENT_TYPES } from "./event-types";
 export const WebhookCreate = () => (
   <Create>
     <SimpleForm>
-      <WebhookEndpointInput source="url" eventTypes={EVENT_TYPES} eventSource="event_types" />
+      <WebhookEndpointInput
+        source="url"
+        eventTypes={EVENT_TYPES}
+        eventSource="event_types"
+      />
     </SimpleForm>
   </Create>
 );
@@ -497,7 +610,11 @@ import { EVENT_TYPES } from "./event-types";
 export const WebhookEdit = () => (
   <Edit>
     <SimpleForm>
-      <WebhookEndpointInput source="url" eventTypes={EVENT_TYPES} eventSource="event_types" />
+      <WebhookEndpointInput
+        source="url"
+        eventTypes={EVENT_TYPES}
+        eventSource="event_types"
+      />
     </SimpleForm>
   </Edit>
 );
@@ -530,7 +647,12 @@ export const WebhookList = () => (
 
 ```tsx
 // WebhookShow.tsx
-import { Show, SimpleShowLayout, TextField, DateField } from "@/components/admin";
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  DateField,
+} from "@/components/admin";
 import { WebhookEndpointField } from "@/components/extras/webhook-endpoint-field";
 
 export const WebhookShow = () => (
@@ -569,9 +691,21 @@ webhooks: webhooksSeed,
 ```tsx
 // App.tsx
 import { WebhookIcon } from "lucide-react";
-import { WebhookList, WebhookCreate, WebhookEdit, WebhookShow } from "./webhooks";
+import {
+  WebhookList,
+  WebhookCreate,
+  WebhookEdit,
+  WebhookShow,
+} from "./webhooks";
 
-<Resource name="webhooks" list={WebhookList} create={WebhookCreate} edit={WebhookEdit} show={WebhookShow} icon={WebhookIcon} />
+<Resource
+  name="webhooks"
+  list={WebhookList}
+  create={WebhookCreate}
+  edit={WebhookEdit}
+  show={WebhookShow}
+  icon={WebhookIcon}
+/>;
 ```
 
 - [ ] **Step 7: Typecheck + lint + browser smoke**
@@ -593,6 +727,7 @@ EOF
 ## Task B4: scheduled_jobs resource
 
 **Files:**
+
 - Create: `src/demo/scheduled-jobs/seed.ts`
 - Create: `src/demo/scheduled-jobs/ScheduledJobList.tsx`
 - Create: `src/demo/scheduled-jobs/ScheduledJobCreate.tsx`
@@ -607,12 +742,66 @@ EOF
 import type { ScheduledJob } from "../types";
 
 export const scheduledJobsSeed: ScheduledJob[] = [
-  { id: 1, name: "Daily revenue report", cron: "0 0 * * *", description: "Aggregate yesterday's orders, email summary", status: "running", last_run: new Date(Date.now() - 3600000).toISOString(), next_run: new Date(Date.now() + 82800000).toISOString(), last_duration_ms: 14523 },
-  { id: 2, name: "Cleanup expired sessions", cron: "*/15 * * * *", description: "Delete sessions older than 24h", status: "idle", last_run: new Date(Date.now() - 900000).toISOString(), next_run: new Date(Date.now() + 900000).toISOString(), last_duration_ms: 342 },
-  { id: 3, name: "Send weekly digest", cron: "0 9 * * MON", description: "Email weekly performance to admins", status: "idle", last_run: new Date(Date.now() - 86400000 * 3).toISOString(), next_run: new Date(Date.now() + 86400000 * 4).toISOString(), last_duration_ms: 8912 },
-  { id: 4, name: "Reindex search", cron: "0 */6 * * *", description: "Rebuild product search index", status: "failed", last_run: new Date(Date.now() - 21600000).toISOString(), next_run: new Date(Date.now() + 21600000).toISOString(), last_duration_ms: 0 },
-  { id: 5, name: "Sync inventory", cron: "0 2 * * *", description: "Pull inventory from warehouse API", status: "idle", last_run: new Date(Date.now() - 79200000).toISOString(), next_run: new Date(Date.now() + 7200000).toISOString(), last_duration_ms: 24123 },
-  { id: 6, name: "Trial expiry warnings", cron: "0 10 * * *", description: "Email customers with trials expiring in 3 days", status: "disabled", last_run: null, next_run: null, last_duration_ms: null },
+  {
+    id: 1,
+    name: "Daily revenue report",
+    cron: "0 0 * * *",
+    description: "Aggregate yesterday's orders, email summary",
+    status: "running",
+    last_run: new Date(Date.now() - 3600000).toISOString(),
+    next_run: new Date(Date.now() + 82800000).toISOString(),
+    last_duration_ms: 14523,
+  },
+  {
+    id: 2,
+    name: "Cleanup expired sessions",
+    cron: "*/15 * * * *",
+    description: "Delete sessions older than 24h",
+    status: "idle",
+    last_run: new Date(Date.now() - 900000).toISOString(),
+    next_run: new Date(Date.now() + 900000).toISOString(),
+    last_duration_ms: 342,
+  },
+  {
+    id: 3,
+    name: "Send weekly digest",
+    cron: "0 9 * * MON",
+    description: "Email weekly performance to admins",
+    status: "idle",
+    last_run: new Date(Date.now() - 86400000 * 3).toISOString(),
+    next_run: new Date(Date.now() + 86400000 * 4).toISOString(),
+    last_duration_ms: 8912,
+  },
+  {
+    id: 4,
+    name: "Reindex search",
+    cron: "0 */6 * * *",
+    description: "Rebuild product search index",
+    status: "failed",
+    last_run: new Date(Date.now() - 21600000).toISOString(),
+    next_run: new Date(Date.now() + 21600000).toISOString(),
+    last_duration_ms: 0,
+  },
+  {
+    id: 5,
+    name: "Sync inventory",
+    cron: "0 2 * * *",
+    description: "Pull inventory from warehouse API",
+    status: "idle",
+    last_run: new Date(Date.now() - 79200000).toISOString(),
+    next_run: new Date(Date.now() + 7200000).toISOString(),
+    last_duration_ms: 24123,
+  },
+  {
+    id: 6,
+    name: "Trial expiry warnings",
+    cron: "0 10 * * *",
+    description: "Email customers with trials expiring in 3 days",
+    status: "disabled",
+    last_run: null,
+    next_run: null,
+    last_duration_ms: null,
+  },
 ];
 ```
 
@@ -684,7 +873,13 @@ export const ScheduledJobList = () => (
 
 ```tsx
 // ScheduledJobShow.tsx
-import { Show, SimpleShowLayout, TextField, DateField, NumberField } from "@/components/admin";
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  DateField,
+  NumberField,
+} from "@/components/admin";
 import { CronField } from "@/components/extras/cron-field";
 
 export const ScheduledJobShow = () => (
@@ -719,9 +914,21 @@ scheduled_jobs: scheduledJobsSeed,
 
 ```tsx
 import { ClockIcon } from "lucide-react";
-import { ScheduledJobList, ScheduledJobCreate, ScheduledJobEdit, ScheduledJobShow } from "./scheduled-jobs";
+import {
+  ScheduledJobList,
+  ScheduledJobCreate,
+  ScheduledJobEdit,
+  ScheduledJobShow,
+} from "./scheduled-jobs";
 
-<Resource name="scheduled_jobs" list={ScheduledJobList} create={ScheduledJobCreate} edit={ScheduledJobEdit} show={ScheduledJobShow} icon={ClockIcon} />
+<Resource
+  name="scheduled_jobs"
+  list={ScheduledJobList}
+  create={ScheduledJobCreate}
+  edit={ScheduledJobEdit}
+  show={ScheduledJobShow}
+  icon={ClockIcon}
+/>;
 ```
 
 - [ ] **Step 6: Typecheck + lint + browser smoke**
@@ -743,6 +950,7 @@ EOF
 ## Task B5: approvals resource
 
 **Files:**
+
 - Create: `src/demo/approvals/seed.ts`
 - Create: `src/demo/approvals/ApprovalQueueList.tsx`
 - Create: `src/demo/approvals/ApprovalShow.tsx`
@@ -792,7 +1000,13 @@ export const ApprovalQueueList = () => (
 - [ ] **Step 3: ApprovalShow.tsx**
 
 ```tsx
-import { Show, SimpleShowLayout, TextField, DateField, ReferenceField } from "@/components/admin";
+import {
+  Show,
+  SimpleShowLayout,
+  TextField,
+  DateField,
+  ReferenceField,
+} from "@/components/admin";
 import { DualApprovalButton } from "@/components/extras/dual-approval-button";
 
 export const ApprovalShow = () => (
@@ -833,7 +1047,12 @@ approvals: approvalsSeed,
 import { CheckCircleIcon } from "lucide-react";
 import { ApprovalQueueList, ApprovalShow } from "./approvals";
 
-<Resource name="approvals" list={ApprovalQueueList} show={ApprovalShow} icon={CheckCircleIcon} />
+<Resource
+  name="approvals"
+  list={ApprovalQueueList}
+  show={ApprovalShow}
+  icon={CheckCircleIcon}
+/>;
 ```
 
 - [ ] **Step 6: Typecheck + lint + browser smoke**

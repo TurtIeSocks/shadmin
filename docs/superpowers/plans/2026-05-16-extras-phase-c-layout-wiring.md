@@ -15,6 +15,7 @@
 ## Task C1: CommentsThread in OrderShow sidebar
 
 **Files:**
+
 - Modify: `src/demo/types.ts`
 - Create: `src/demo/orders/comments-seed.ts`
 - Modify: `src/demo/dataProvider.ts`
@@ -47,14 +48,17 @@ const SAMPLES = [
   "Backorder for SKU-A12 expected next week",
 ];
 
-export const orderCommentsSeed: OrderComment[] = Array.from({ length: 30 }, (_, i) => ({
-  id: i + 1,
-  order_id: (i % 15) + 1,
-  user_id: (i % 5) + 1,
-  body: SAMPLES[i % SAMPLES.length],
-  created_at: new Date(Date.now() - i * 3600000).toISOString(),
-  resolved: i % 6 === 0,
-}));
+export const orderCommentsSeed: OrderComment[] = Array.from(
+  { length: 30 },
+  (_, i) => ({
+    id: i + 1,
+    order_id: (i % 15) + 1,
+    user_id: (i % 5) + 1,
+    body: SAMPLES[i % SAMPLES.length],
+    created_at: new Date(Date.now() - i * 3600000).toISOString(),
+    resolved: i % 6 === 0,
+  }),
+);
 ```
 
 - [ ] **Step 3: Wire seed into dataProvider**
@@ -78,9 +82,7 @@ export const OrderShow = () => (
   <Show>
     <div className="flex gap-6">
       <div className="flex-1">
-        <SimpleShowLayout>
-          {/* existing fields */}
-        </SimpleShowLayout>
+        <SimpleShowLayout>{/* existing fields */}</SimpleShowLayout>
       </div>
       <aside className="w-80 border-l pl-6">
         <CommentsThread
@@ -121,6 +123,7 @@ EOF
 ## Task C2: DurationInput/Field in planning tasks
 
 **Files:**
+
 - Modify: `src/demo/planning/tasks-seed.ts`
 - Modify: `src/demo/planning/PlanningEdit.tsx`
 - Modify: `src/demo/planning/PlanningShow.tsx`
@@ -151,7 +154,7 @@ In seed array entries, sprinkle durations: `estimated_duration_minutes: 30 + (i 
 ```tsx
 import { DurationInput } from "@/components/extras/duration-input";
 
-<DurationInput source="estimated_duration_minutes" units={["m", "h"]} />
+<DurationInput source="estimated_duration_minutes" units={["m", "h"]} />;
 ```
 
 After the `dueDate` field.
@@ -161,7 +164,7 @@ After the `dueDate` field.
 ```tsx
 import { DurationField } from "@/components/extras/duration-field";
 
-<DurationField source="estimated_duration_minutes" />
+<DurationField source="estimated_duration_minutes" />;
 ```
 
 - [ ] **Step 4: Typecheck + lint + browser smoke**
@@ -189,6 +192,7 @@ EOF
 ## Task C3: BulkEditDrawer in ProductList + OrderList
 
 **Files:**
+
 - Modify: `src/demo/products/ProductList.tsx`
 - Modify: `src/demo/orders/OrderList.tsx`
 
@@ -199,10 +203,7 @@ In `ProductList.tsx`, locate the existing bulk-action area (likely a `<BulkActio
 ```tsx
 import { BulkEditDrawer } from "@/components/extras/bulk-edit-drawer";
 
-<BulkEditDrawer
-  fields={["price", "stock", "category_id"]}
-  side="right"
-/>
+<BulkEditDrawer fields={["price", "stock", "category_id"]} side="right" />;
 ```
 
 Place alongside the existing bulk-delete button.
@@ -239,6 +240,7 @@ EOF
 ## Task C4: DataProviderDevtools wired into admin shell
 
 **Files:**
+
 - Modify: `src/demo/App.tsx` (wrap dataProvider with devtools proxy)
 - Modify: `src/demo/InspectorLayout.tsx` (or App.tsx if InspectorLayout isn't universal) — render the `<DataProviderDevtools>` panel
 
@@ -290,6 +292,7 @@ EOF
 ## Task C5: ThemeStudio in admin shell
 
 **Files:**
+
 - Modify: `src/demo/InspectorLayout.tsx` (or whatever wraps the admin header)
 - Possibly create: `src/demo/admin-tools-drawer.tsx`
 
@@ -306,7 +309,12 @@ Create `src/demo/admin-tools-drawer.tsx`:
 ```tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { ThemeStudio } from "@/components/extras/theme-studio";
 import { PaletteIcon } from "lucide-react";
 
@@ -322,7 +330,9 @@ export const ThemeStudioButton = () => {
       <SheetContent side="right" className="w-[600px]">
         <SheetTitle>Theme Studio</SheetTitle>
         <ThemeStudio
-          onExport={(tokens) => localStorage.setItem("demo:theme-tokens", JSON.stringify(tokens))}
+          onExport={(tokens) =>
+            localStorage.setItem("demo:theme-tokens", JSON.stringify(tokens))
+          }
         />
       </SheetContent>
     </Sheet>
@@ -335,7 +345,7 @@ Wire into `InspectorLayout.tsx` header area:
 ```tsx
 import { ThemeStudioButton } from "./admin-tools-drawer";
 // inside header JSX:
-<ThemeStudioButton />
+<ThemeStudioButton />;
 ```
 
 - [ ] **Step 3: Typecheck + lint + browser smoke**
@@ -357,6 +367,7 @@ EOF
 ## Task C6: LayoutBuilder in admin shell
 
 **Files:**
+
 - Modify: `src/demo/admin-tools-drawer.tsx` (extend with second button)
 - Modify: `src/demo/InspectorLayout.tsx`
 
@@ -378,7 +389,9 @@ export const LayoutBuilderButton = () => {
       <SheetContent side="right" className="w-[600px]">
         <SheetTitle>Layout Builder</SheetTitle>
         <LayoutBuilder
-          onExport={(layout) => localStorage.setItem("demo:layout", JSON.stringify(layout))}
+          onExport={(layout) =>
+            localStorage.setItem("demo:layout", JSON.stringify(layout))
+          }
         />
       </SheetContent>
     </Sheet>
@@ -411,6 +424,7 @@ EOF
 ## Task C7: I18nKeyEditor in language selector
 
 **Files:**
+
 - Investigate: `src/components/admin/locales-menu-button.tsx` (or wherever language switcher lives in demo)
 - Modify: that file (or create wrapper in `src/demo/`)
 
@@ -427,7 +441,12 @@ If `locales-menu-button.tsx` is library code (`src/components/admin/`), DO NOT m
 ```tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { I18nKeyEditor } from "@/components/extras/i18n-key-editor";
 import { LanguagesIcon } from "lucide-react";
 
@@ -454,7 +473,7 @@ Wire into `InspectorLayout.tsx` next to the existing language switcher:
 ```tsx
 import { I18nKeyEditorButton } from "./i18n-tools-menu";
 // inside header JSX:
-<I18nKeyEditorButton />
+<I18nKeyEditorButton />;
 ```
 
 - [ ] **Step 3: Typecheck + lint + browser smoke**
@@ -482,6 +501,7 @@ EOF
 ## Task C8: JobMonitor dashboard widget
 
 **Files:**
+
 - Modify: `src/demo/dashboard/Dashboard.tsx`
 
 - [ ] **Step 1: Add JobMonitor card to dashboard**
@@ -493,11 +513,13 @@ import { JobMonitor } from "@/components/extras/job-monitor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 <Card>
-  <CardHeader><CardTitle>Scheduled jobs</CardTitle></CardHeader>
+  <CardHeader>
+    <CardTitle>Scheduled jobs</CardTitle>
+  </CardHeader>
   <CardContent>
     <JobMonitor resource="scheduled_jobs" pollInterval={5000} />
   </CardContent>
-</Card>
+</Card>;
 ```
 
 Place in the dashboard grid alongside `OrderChart`, `NewCustomers`, etc.
@@ -527,6 +549,7 @@ EOF
 ## Task C9: SchemaDrivenView as alt list view for products
 
 **Files:**
+
 - Create: `src/demo/products/product-schema.ts`
 - Create: `src/demo/products/ProductSchemaList.tsx`
 - Modify: `src/demo/App.tsx` (add custom route `/products/schema-view`)
@@ -540,7 +563,12 @@ export const PRODUCT_SCHEMA = {
   fields: [
     { source: "id", type: "number", label: "ID" },
     { source: "reference", type: "string", label: "Ref" },
-    { source: "category_id", type: "reference", reference: "categories", label: "Category" },
+    {
+      source: "category_id",
+      type: "reference",
+      reference: "categories",
+      label: "Category",
+    },
     { source: "price", type: "currency", currency: "USD", label: "Price" },
     { source: "stock", type: "number", label: "Stock" },
     { source: "rating", type: "rating", max: 5, label: "Rating" },
@@ -572,7 +600,7 @@ import { ProductSchemaList } from "./products/ProductSchemaList";
 
 <CustomRoutes>
   <Route path="/products/schema-view" element={<ProductSchemaList />} />
-</CustomRoutes>
+</CustomRoutes>;
 ```
 
 - [ ] **Step 4: Add sidebar link**

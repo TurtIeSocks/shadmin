@@ -6,7 +6,12 @@ import {
   type CoreAdminProps,
   localStorageStore,
 } from "ra-core";
-import { cloneElement, isValidElement, useEffect, type ReactElement } from "react";
+import {
+  cloneElement,
+  isValidElement,
+  useEffect,
+  type ReactElement,
+} from "react";
 import { i18nProvider as defaultI18nProvider } from "@/lib/i18n-provider";
 import { Layout } from "@/components/admin/layout";
 import { LoginPage } from "@/components/admin/login-page";
@@ -15,7 +20,10 @@ import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import type { AdminTheme } from "@/components/admin/theme-types";
 import { AuthCallback } from "@/components/admin/auth-callback";
-import { CommandMenu, type CommandMenuProps } from "@/components/extras/command-menu";
+import {
+  CommandMenu,
+  type CommandMenuProps,
+} from "@/components/extras/command-menu";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.

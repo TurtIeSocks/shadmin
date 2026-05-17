@@ -16,12 +16,12 @@ import { DurationField } from '@/components/admin';
 
 ## Props
 
-| Prop            | Required | Type                          | Default     | Description |
-| --------------- | -------- | ----------------------------- | ----------- | ----------- |
-| `source`        | Required | `string`                      | -           | Record field to read |
-| `displayFormat` | Optional | `"compact" \| "relative"`     | `"compact"` | Render style |
-| `empty`         | Optional | `ReactNode`                   | -           | Fallback when value is `null` |
-| `className`     | Optional | `string`                      | -           | CSS class on `<span>` |
+| Prop            | Required | Type                      | Default     | Description                   |
+| --------------- | -------- | ------------------------- | ----------- | ----------------------------- |
+| `source`        | Required | `string`                  | -           | Record field to read          |
+| `displayFormat` | Optional | `"compact" \| "relative"` | `"compact"` | Render style                  |
+| `empty`         | Optional | `ReactNode`               | -           | Fallback when value is `null` |
+| `className`     | Optional | `string`                  | -           | CSS class on `<span>`         |
 
 ## Storage format
 

@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithDataTable } from "@/stories/admin/reference-array-field.stories";
+import {
+  Basic,
+  WithDataTable,
+} from "@/stories/admin/reference-array-field.stories";
 
 describe("<ReferenceArrayField />", () => {
   it("renders a list of referenced records", async () => {

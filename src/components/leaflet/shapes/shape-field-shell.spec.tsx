@@ -3,7 +3,10 @@ import { render } from "vitest-browser-react";
 import { ShapeFieldShell } from "@/components/leaflet/shapes/shape-field-shell";
 import { StoryAdmin } from "@/stories/_test-helpers";
 
-const point = { type: "Point", coordinates: [2.35, 48.85] } satisfies GeoJSON.Geometry;
+const point = {
+  type: "Point",
+  coordinates: [2.35, 48.85],
+} satisfies GeoJSON.Geometry;
 
 describe("<ShapeFieldShell />", () => {
   it("renders empty state when value missing", async () => {

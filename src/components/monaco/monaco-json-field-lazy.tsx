@@ -24,8 +24,9 @@ const MonacoJsonFieldInner = ({
 }: MonacoJsonFieldProps) => {
   const value = useFieldValue({ defaultValue, source, record });
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [instance, setInstance] =
-    useState<editor.IStandaloneCodeEditor | null>(null);
+  const [instance, setInstance] = useState<editor.IStandaloneCodeEditor | null>(
+    null,
+  );
 
   const text =
     typeof value === "string" ? value : JSON.stringify(value ?? null, null, 2);

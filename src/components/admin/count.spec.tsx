@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  WithFilter,
-  AsLink,
-} from "@/stories/admin/count.stories";
+import { Basic, WithFilter, AsLink } from "@/stories/admin/count.stories";
 
 describe("<Count />", () => {
   it("renders the total number of records for the resource", async () => {

@@ -22,7 +22,9 @@ const EventList = () => (
         cancelled: "bg-rose-500 text-white",
       }}
       defaultView="month"
-      onSelectSlot={(slot) => navigate(`/events/create?start_at=${slot.startISO}`)}
+      onSelectSlot={(slot) =>
+        navigate(`/events/create?start_at=${slot.startISO}`)
+      }
       onDrop={async (record, { start, end }) => {
         await update("events", {
           id: record.id,
@@ -38,21 +40,21 @@ Press the prev/next/today buttons in the header to shift the visible range. The 
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `startSource` | `string` | — | Required. Field name holding the start timestamp (ISO 8601). |
-| `endSource` | `string` | `undefined` | If omitted, events render as point-events at `startSource`. |
-| `titleSource` | `string` | `recordRepresentation` | Field rendered as event label. |
-| `colorSource` | `string` | `undefined` | Field whose value drives event color via `colorMap`. |
-| `colorMap` | `Record<string, string>` | `{}` | Mapping from `colorSource` values to a Tailwind class string. |
-| `defaultView` | `"month" \| "week" \| "agenda"` | `"month"` | View shown on mount. |
-| `views` | `Array<"month" \| "week" \| "agenda">` | all three | Available views in the switcher. |
-| `weekStartsOn` | `0..6` | `0` (Sun) | First day of the week. |
-| `onSelectEvent` | `(record) => void` | open Show | Click handler for an event. Default navigates to `/{resource}/{id}/show`. |
-| `onSelectSlot` | `(slot) => void` | `undefined` | Click handler for an empty day or hour cell. |
-| `onDrop` | `(record, { start, end? }) => Promise<void> \| void` | `undefined` | When provided, events become draggable. Drop fires this with new ISO timestamps. |
-| `eventRenderer` | `(props) => ReactNode` | default badge | Custom event card. |
-| `headerRenderer` | `(props) => ReactNode` | default header | Custom toolbar. |
+| Prop             | Type                                                 | Default                | Description                                                                      |
+| ---------------- | ---------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------- |
+| `startSource`    | `string`                                             | —                      | Required. Field name holding the start timestamp (ISO 8601).                     |
+| `endSource`      | `string`                                             | `undefined`            | If omitted, events render as point-events at `startSource`.                      |
+| `titleSource`    | `string`                                             | `recordRepresentation` | Field rendered as event label.                                                   |
+| `colorSource`    | `string`                                             | `undefined`            | Field whose value drives event color via `colorMap`.                             |
+| `colorMap`       | `Record<string, string>`                             | `{}`                   | Mapping from `colorSource` values to a Tailwind class string.                    |
+| `defaultView`    | `"month" \| "week" \| "agenda"`                      | `"month"`              | View shown on mount.                                                             |
+| `views`          | `Array<"month" \| "week" \| "agenda">`               | all three              | Available views in the switcher.                                                 |
+| `weekStartsOn`   | `0..6`                                               | `0` (Sun)              | First day of the week.                                                           |
+| `onSelectEvent`  | `(record) => void`                                   | open Show              | Click handler for an event. Default navigates to `/{resource}/{id}/show`.        |
+| `onSelectSlot`   | `(slot) => void`                                     | `undefined`            | Click handler for an empty day or hour cell.                                     |
+| `onDrop`         | `(record, { start, end? }) => Promise<void> \| void` | `undefined`            | When provided, events become draggable. Drop fires this with new ISO timestamps. |
+| `eventRenderer`  | `(props) => ReactNode`                               | default badge          | Custom event card.                                                               |
+| `headerRenderer` | `(props) => ReactNode`                               | default header         | Custom toolbar.                                                                  |
 
 ## Range loading
 
@@ -77,9 +79,13 @@ const [update] = useUpdate();
 <CalendarList
   startSource="start_at"
   onDrop={(record, range) =>
-    update("events", { id: record.id, data: { start_at: range.start, end_at: range.end } }, { mutationMode: "optimistic" })
+    update(
+      "events",
+      { id: record.id, data: { start_at: range.start, end_at: range.end } },
+      { mutationMode: "optimistic" },
+    )
   }
-/>
+/>;
 ```
 
 Week and agenda views are not draggable in v1.

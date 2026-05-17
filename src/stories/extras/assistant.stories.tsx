@@ -1,4 +1,9 @@
-import { type AssistantTransport, Admin, Assistant, echoTransport } from "@/components/admin";
+import {
+  type AssistantTransport,
+  Admin,
+  Assistant,
+  echoTransport,
+} from "@/components/admin";
 import {
   type DataProvider,
   memoryStore,
@@ -47,7 +52,11 @@ const mockToolTransport: AssistantTransport = {
       yield { type: "text", delta: ch };
       await new Promise((r) => setTimeout(r, 5));
     }
-    yield { type: "tool-call", toolName: "setFilter", args: { status: "open" } };
+    yield {
+      type: "tool-call",
+      toolName: "setFilter",
+      args: { status: "open" },
+    };
     yield { type: "done" };
   },
 };

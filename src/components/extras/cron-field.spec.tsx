@@ -17,9 +17,7 @@ describe("<CronField />", () => {
 
   it("shows the raw expression in monospace when showExpression", async () => {
     const screen = render(<ExprOnly />);
-    await expect
-      .element(screen.getByText("*/15 * * * *"))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText("*/15 * * * *")).toBeInTheDocument();
   });
 
   it("renders the raw value when the cron is unparseable", async () => {

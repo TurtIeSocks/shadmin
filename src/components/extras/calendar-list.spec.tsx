@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, RangeLoading, Navigation, Agenda, Week, Interactions, Drag } from "@/stories/extras/calendar-list.stories";
+import {
+  Basic,
+  RangeLoading,
+  Navigation,
+  Agenda,
+  Week,
+  Interactions,
+  Drag,
+} from "@/stories/extras/calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {
@@ -22,15 +30,9 @@ describe("<CalendarList />", () => {
 
   it("renders seeded events in their day cells", async () => {
     const screen = render(<Basic />);
-    await expect
-      .element(screen.getByText(/standup/i))
-      .toBeInTheDocument();
-    await expect
-      .element(screen.getByText(/demo/i))
-      .toBeInTheDocument();
-    await expect
-      .element(screen.getByText(/retro/i))
-      .toBeInTheDocument();
+    await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
+    await expect.element(screen.getByText(/demo/i)).toBeInTheDocument();
+    await expect.element(screen.getByText(/retro/i)).toBeInTheDocument();
   });
 
   it("filters records to the visible month range via _gte/_lte filters", async () => {
@@ -45,7 +47,11 @@ describe("<CalendarList />", () => {
   it("navigates to previous and next month", async () => {
     const screen = render(<Navigation />);
     const current = new Date();
-    const nextMonth = new Date(current.getFullYear(), current.getMonth() + 1, 1);
+    const nextMonth = new Date(
+      current.getFullYear(),
+      current.getMonth() + 1,
+      1,
+    );
     const nextLabel = nextMonth.toLocaleString("en", { month: "long" });
     // Use exact aria-label to avoid ambiguity with the pagination "Go to next page" button
     await screen.getByRole("button", { name: "Next", exact: true }).click();
@@ -79,7 +85,7 @@ describe("<CalendarList />", () => {
       .element(document.querySelector('[data-calendar-view="week"]'))
       .toBeTruthy();
     // 7 day headers
-    const dayHeaders = document.querySelectorAll('[data-day]');
+    const dayHeaders = document.querySelectorAll("[data-day]");
     expect(dayHeaders.length).toBeGreaterThanOrEqual(7);
     // Events render
     await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
@@ -98,9 +104,14 @@ describe("<CalendarList />", () => {
     // DndContext doesn't add a stable DOM marker by default. Verify events are
     // wrapped as draggable by checking the draggable attribute / aria.
     await expect.element(screen.getByText(/standup/i)).toBeInTheDocument();
-    const eventButton = screen.getByText(/standup/i).element().closest("button");
+    const eventButton = screen
+      .getByText(/standup/i)
+      .element()
+      .closest("button");
     expect(eventButton).toBeTruthy();
     // dnd-kit sets role="button" + aria-roledescription="draggable" on draggable nodes
-    expect(eventButton?.getAttribute("aria-roledescription") ?? "").toMatch(/draggable/i);
+    expect(eventButton?.getAttribute("aria-roledescription") ?? "").toMatch(
+      /draggable/i,
+    );
   });
 });

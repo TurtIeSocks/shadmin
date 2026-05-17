@@ -26,20 +26,23 @@ When no `topic` is set, it derives the topic from the resource + record id: `pre
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `topic` | `string` | derived from record context | Pub/sub channel name. |
-| `currentUser` | `{ id; name; avatar? }` | from `useGetIdentity()` | Who I am. |
-| `maxAvatars` | `number` | `5` | Cap before showing `+N more`. |
-| `heartbeatMs` | `number` | `15000` | How often to re-broadcast presence. |
-| `staleMs` | `number` | `30000` | Drop users without a heartbeat after this many ms. |
-| `transport` | `PresenceTransport` | BroadcastChannel | Plug in a custom transport. |
+| Prop          | Type                    | Default                     | Description                                        |
+| ------------- | ----------------------- | --------------------------- | -------------------------------------------------- |
+| `topic`       | `string`                | derived from record context | Pub/sub channel name.                              |
+| `currentUser` | `{ id; name; avatar? }` | from `useGetIdentity()`     | Who I am.                                          |
+| `maxAvatars`  | `number`                | `5`                         | Cap before showing `+N more`.                      |
+| `heartbeatMs` | `number`                | `15000`                     | How often to re-broadcast presence.                |
+| `staleMs`     | `number`                | `30000`                     | Drop users without a heartbeat after this many ms. |
+| `transport`   | `PresenceTransport`     | BroadcastChannel            | Plug in a custom transport.                        |
 
 ## Custom transport
 
 ```ts
 interface PresenceTransport {
-  subscribe: (topic: string, handler: (state: PresenceState) => void) => () => void;
+  subscribe: (
+    topic: string,
+    handler: (state: PresenceState) => void,
+  ) => () => void;
   publish: (topic: string, state: PresenceState) => void;
 }
 

@@ -42,8 +42,7 @@ const SnapshotDiff = () => {
       labels={{ revenue: "Revenue", customers: "Customers" }}
       formatters={{
         revenue: currency,
-        customers: (v) =>
-          typeof v === "number" ? v.toLocaleString() : "—",
+        customers: (v) => (typeof v === "number" ? v.toLocaleString() : "—"),
       }}
     />
   );

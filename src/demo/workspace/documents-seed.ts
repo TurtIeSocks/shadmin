@@ -28,11 +28,31 @@ export interface WorkspaceDocument {
   permissions: DocumentPermission[];
 }
 
-const alice: DocumentCollaborator = { id: "alice", name: "Alice Nguyen", color: "#f97316" };
-const bob: DocumentCollaborator = { id: "bob", name: "Bob Rivera", color: "#3b82f6" };
-const carol: DocumentCollaborator = { id: "carol", name: "Carol Diaz", color: "#a855f7" };
-const dan: DocumentCollaborator = { id: "dan", name: "Dan Park", color: "#10b981" };
-const eve: DocumentCollaborator = { id: "eve", name: "Eve Martin", color: "#ef4444" };
+const alice: DocumentCollaborator = {
+  id: "alice",
+  name: "Alice Nguyen",
+  color: "#f97316",
+};
+const bob: DocumentCollaborator = {
+  id: "bob",
+  name: "Bob Rivera",
+  color: "#3b82f6",
+};
+const carol: DocumentCollaborator = {
+  id: "carol",
+  name: "Carol Diaz",
+  color: "#a855f7",
+};
+const dan: DocumentCollaborator = {
+  id: "dan",
+  name: "Dan Park",
+  color: "#10b981",
+};
+const eve: DocumentCollaborator = {
+  id: "eve",
+  name: "Eve Martin",
+  color: "#ef4444",
+};
 
 export const documentsSeed: WorkspaceDocument[] = [
   {

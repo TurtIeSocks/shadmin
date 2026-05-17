@@ -8,10 +8,7 @@ export const MonacoSkeleton = ({
   className?: string;
 }) => (
   <div
-    className={cn(
-      "rounded-md border bg-muted/30 animate-pulse",
-      className,
-    )}
+    className={cn("rounded-md border bg-muted/30 animate-pulse", className)}
     style={{ height: typeof height === "number" ? `${height}px` : height }}
     aria-busy="true"
     aria-label="Loading editor"

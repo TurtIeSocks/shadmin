@@ -9,10 +9,7 @@ import {
 } from "@/components/admin";
 import { MdxInput } from "@/components/mdx-editor";
 import "@mdxeditor/editor/style.css";
-import type {
-  DocumentPermission,
-  WorkspaceDocument,
-} from "./documents-seed";
+import type { DocumentPermission, WorkspaceDocument } from "./documents-seed";
 
 const DOCUMENT_RESOURCE_KEY = "document";
 const ACTIONS = ["read", "write", "share"] as const;

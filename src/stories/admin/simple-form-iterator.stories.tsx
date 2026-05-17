@@ -9,9 +9,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 
 import { SimpleForm } from "@/components/admin/simple-form";
-import {
-  SimpleFormIterator,
-} from "@/components/admin/simple-form-iterator";
+import { SimpleFormIterator } from "@/components/admin/simple-form-iterator";
 import { ArrayInput } from "@/components/admin/array-input";
 import { TextInput } from "@/components/admin/text-input";
 import { NumberInput } from "@/components/admin/number-input";
@@ -41,9 +39,14 @@ const Wrapper = ({
 }: React.PropsWithChildren<{ record?: Record<string, unknown> }>) => (
   <ThemeProvider>
     <CoreAdminContext
-      i18nProvider={polyglotI18nProvider(() => defaultMessages, "en", undefined, {
-        allowMissing: true,
-      })}
+      i18nProvider={polyglotI18nProvider(
+        () => defaultMessages,
+        "en",
+        undefined,
+        {
+          allowMissing: true,
+        },
+      )}
       store={memoryStore()}
     >
       <ResourceContextProvider value="posts">

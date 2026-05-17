@@ -25,9 +25,7 @@ export default {
         if (
           node.callee.type !== "MemberExpression" ||
           node.callee.property.type !== "Identifier" ||
-          !/^(toBe|toEqual|toStrictEqual)$/.test(
-            node.callee.property.name,
-          ) ||
+          !/^(toBe|toEqual|toStrictEqual)$/.test(node.callee.property.name) ||
           node.callee.object.type !== "CallExpression" ||
           node.callee.object.callee.type !== "Identifier" ||
           node.callee.object.callee.name !== "expect"

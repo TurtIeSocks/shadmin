@@ -2,7 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { DollarSignIcon } from "lucide-react";
 import { Basic, Loading } from "@/stories/extras/dashboard-charts.stories";
-import { BarChart, DonutChart, MetricCard, TrendChart } from "@/components/admin";
+import {
+  BarChart,
+  DonutChart,
+  MetricCard,
+  TrendChart,
+} from "@/components/admin";
 
 const trendData = [
   { date: "2026-01", revenue: 1000 },

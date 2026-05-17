@@ -15,18 +15,21 @@
 T4 components are the heaviest in the spec; the spec itself called Tier 4 a "separate epic". Shipping minimum-viable v1 versions here with explicit cuts:
 
 ### General
+
 1. All five live in `src/components/extras/`. Sidebar group = `Extras`. Story title prefix = `Extras/<ComponentName>`.
 2. Stories MUST have `export const Basic` and be ≥30 lines per `check-stories.mjs`.
 3. Specs cover controller logic + visible outputs. Drag-drop, real proxy wrapping, and runtime i18n interception are tested via observable side effects (state changes, classNames, rendered counts), not raw DOM events.
 4. No new runtime deps (re-use `@dnd-kit/core` already in for kanban-board).
 
 ### DataProviderDevtools
+
 5. Wraps `useDataProvider()` via a custom hook + provider component. NOT a global proxy at `<Admin>` level — that would require user-side wiring changes. Instead, `<DataProviderDevtools>` is dropped in the tree and exposes a `useTrackedDataProvider` hook (or shadowing context override) that consumers must opt into.
 6. Floating panel toggleable via keyboard shortcut (default `Ctrl+Shift+D`).
 7. Logs last 50 calls. Filter by method (`getList`, `getOne`, `update`, etc.). No persistence (in-memory).
 8. v1 doesn't capture cache hit/miss (would require TanStack Query plumbing).
 
 ### SchemaDrivenView
+
 9. Accepts a JSON Schema object (subset: type, format, enum, properties). Maps to: string → TextInput/TextField, number → NumberInput/NumberField, boolean → BooleanInput/BooleanField, string+format=email → EmailField, string+format=date → DateInput/DateField, enum → SelectInput/SelectField.
 10. Modes: `"list"` renders a `<DataTable>` with one column per top-level property. `"edit"` and `"show"` render a `<SimpleForm>` / `<SimpleShowLayout>` with one field per top-level property.
 11. Override prop `overrides: Record<string, ReactNode>` lets the caller swap a specific property's rendering.
@@ -34,6 +37,7 @@ T4 components are the heaviest in the spec; the spec itself called Tier 4 a "sep
 13. JSON Schema $ref / allOf / oneOf are not supported.
 
 ### ThemeStudio
+
 14. Renders an editor panel listing every `ThemeVars` key from the current `<ThemeProvider>` (light + dark map).
 15. Each var has a text input. For values matching `oklch(...)` or `#hex` patterns, also renders a `<ColorInput>` chip alongside for convenience.
 16. Live preview: writing to a var updates `document.documentElement.style.setProperty(...)` so the change is visible immediately across the admin app.
@@ -41,12 +45,14 @@ T4 components are the heaviest in the spec; the spec itself called Tier 4 a "sep
 18. v1 doesn't persist; reload reverts to the original theme.
 
 ### LayoutBuilder
+
 19. Modes: `"list-columns"` reorders `<DataTable>` column children. `"show-layout"` reorders `<SimpleShowLayout>` field children. `"edit-form"` reorders `<SimpleForm>` input children. v1 ships `"list-columns"` only — other modes flagged as out-of-scope.
 20. Persists arrangement to `useStore` under `key={\`layout.${resource}.${mode}\`}`.
 21. Drag-drop via `@dnd-kit/core`. Test the persisted state (read from `useStore` after reorder, not the dnd events themselves).
 22. v1 doesn't render a preview of how the layout will look. It only exposes the reorder UI; pairing with a `<DataTable storeKey>` is the consumer's job.
 
 ### I18nKeyEditor
+
 23. Wraps the i18n provider so every `translate(key, params)` call is captured. Records missing keys (returned key equals input key, or matches `allowMissing` semantics).
 24. Floating panel lists missing keys, grouped by namespace. Inline edit field for each entry. State held in component memory.
 25. Export button serializes captured keys to a flat JSON object suitable for merging into a locale file.
@@ -57,31 +63,31 @@ T4 components are the heaviest in the spec; the spec itself called Tier 4 a "sep
 
 ## File structure
 
-| File | Responsibility | Status |
-| --- | --- | --- |
-| `src/components/extras/data-provider-devtools.tsx` | DataProvider call inspector + panel | **Create** |
-| `src/components/extras/data-provider-devtools.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/data-provider-devtools.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/data-provider-devtools.md` | Doc page | **Create** |
-| `src/components/extras/schema-driven-view.tsx` | JSON Schema → CRUD view | **Create** |
-| `src/components/extras/schema-driven-view.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/schema-driven-view.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/schema-driven-view.md` | Doc page | **Create** |
-| `src/components/extras/theme-studio.tsx` | Live theme-token editor | **Create** |
-| `src/components/extras/theme-studio.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/theme-studio.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/theme-studio.md` | Doc page | **Create** |
-| `src/components/extras/layout-builder.tsx` | Drag-drop column reorder | **Create** |
-| `src/components/extras/layout-builder.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/layout-builder.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/layout-builder.md` | Doc page | **Create** |
-| `src/components/extras/i18n-key-editor.tsx` | Runtime missing-key capture | **Create** |
-| `src/components/extras/i18n-key-editor.spec.tsx` | Browser tests | **Create** |
-| `src/stories/extras/i18n-key-editor.stories.tsx` | Stories | **Create** |
-| `docs/src/content/docs/i18n-key-editor.md` | Doc page | **Create** |
-| `src/components/extras/index.ts` | Re-export 5 new entries | **Modify** |
-| `docs/sidebar.config.mjs` | Add 5 Extras entries | **Modify** |
-| `src/demo/component-gallery/ComponentGallery.tsx` | Add 5 gallery entries (check-demo-coverage requires) | **Modify** |
+| File                                                    | Responsibility                                       | Status     |
+| ------------------------------------------------------- | ---------------------------------------------------- | ---------- |
+| `src/components/extras/data-provider-devtools.tsx`      | DataProvider call inspector + panel                  | **Create** |
+| `src/components/extras/data-provider-devtools.spec.tsx` | Browser tests                                        | **Create** |
+| `src/stories/extras/data-provider-devtools.stories.tsx` | Stories                                              | **Create** |
+| `docs/src/content/docs/data-provider-devtools.md`       | Doc page                                             | **Create** |
+| `src/components/extras/schema-driven-view.tsx`          | JSON Schema → CRUD view                              | **Create** |
+| `src/components/extras/schema-driven-view.spec.tsx`     | Browser tests                                        | **Create** |
+| `src/stories/extras/schema-driven-view.stories.tsx`     | Stories                                              | **Create** |
+| `docs/src/content/docs/schema-driven-view.md`           | Doc page                                             | **Create** |
+| `src/components/extras/theme-studio.tsx`                | Live theme-token editor                              | **Create** |
+| `src/components/extras/theme-studio.spec.tsx`           | Browser tests                                        | **Create** |
+| `src/stories/extras/theme-studio.stories.tsx`           | Stories                                              | **Create** |
+| `docs/src/content/docs/theme-studio.md`                 | Doc page                                             | **Create** |
+| `src/components/extras/layout-builder.tsx`              | Drag-drop column reorder                             | **Create** |
+| `src/components/extras/layout-builder.spec.tsx`         | Browser tests                                        | **Create** |
+| `src/stories/extras/layout-builder.stories.tsx`         | Stories                                              | **Create** |
+| `docs/src/content/docs/layout-builder.md`               | Doc page                                             | **Create** |
+| `src/components/extras/i18n-key-editor.tsx`             | Runtime missing-key capture                          | **Create** |
+| `src/components/extras/i18n-key-editor.spec.tsx`        | Browser tests                                        | **Create** |
+| `src/stories/extras/i18n-key-editor.stories.tsx`        | Stories                                              | **Create** |
+| `docs/src/content/docs/i18n-key-editor.md`              | Doc page                                             | **Create** |
+| `src/components/extras/index.ts`                        | Re-export 5 new entries                              | **Modify** |
+| `docs/sidebar.config.mjs`                               | Add 5 Extras entries                                 | **Modify** |
+| `src/demo/component-gallery/ComponentGallery.tsx`       | Add 5 gallery entries (check-demo-coverage requires) | **Modify** |
 
 ---
 
@@ -204,7 +210,9 @@ import {
 describe("<DataProviderDevtools />", () => {
   it("renders the floating panel by default with logged calls", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByText(/data provider/i)).toBeInTheDocument();
+    await expect
+      .element(screen.getByText(/data provider/i))
+      .toBeInTheDocument();
     // Both calls should appear once the effect fires
     await expect.element(screen.getByText(/getList/i)).toBeInTheDocument();
     await expect.element(screen.getByText(/getOne/i)).toBeInTheDocument();
@@ -369,9 +377,7 @@ export const DataProviderDevtools = ({
 
   return (
     <DataProviderContext.Provider value={wrapped}>
-      <DevtoolsLogContext.Provider
-        value={{ logs, clear: () => setLogs([]) }}
-      >
+      <DevtoolsLogContext.Provider value={{ logs, clear: () => setLogs([]) }}>
         {children}
         <Panel
           open={open}
@@ -462,7 +468,10 @@ function parseShortcut(s: string): {
   meta: boolean;
   key: string;
 } {
-  const parts = s.toLowerCase().split("+").map((p) => p.trim());
+  const parts = s
+    .toLowerCase()
+    .split("+")
+    .map((p) => p.trim());
   return {
     ctrl: parts.includes("ctrl"),
     shift: parts.includes("shift"),
@@ -527,12 +536,12 @@ const App = () => (
 
 ## Props
 
-| Prop               | Required | Type        | Default          | Description |
-| ------------------ | -------- | ----------- | ---------------- | ----------- |
-| `children`         | Required | `ReactNode` | -                | Tree to track |
+| Prop               | Required | Type        | Default          | Description         |
+| ------------------ | -------- | ----------- | ---------------- | ------------------- |
+| `children`         | Required | `ReactNode` | -                | Tree to track       |
 | `defaultOpen`      | Optional | `boolean`   | `true`           | Panel open at mount |
-| `maxLogs`          | Optional | `number`    | `50`             | Retained logs |
-| `keyboardShortcut` | Optional | `string`    | `"ctrl+shift+d"` | Toggle key chord |
+| `maxLogs`          | Optional | `number`    | `50`             | Retained logs       |
+| `keyboardShortcut` | Optional | `string`    | `"ctrl+shift+d"` | Toggle key chord    |
 
 ## `useDataProviderDevtools()`
 
@@ -669,7 +678,9 @@ export const WithOverride = () => (
       <SchemaDrivenView
         schema={SCHEMA}
         mode="show"
-        overrides={{ title: <strong data-override-title>{SAMPLE.title}</strong> }}
+        overrides={{
+          title: <strong data-override-title>{SAMPLE.title}</strong>,
+        }}
       />
     </RecordContextProvider>
   </Wrapper>
@@ -720,9 +731,7 @@ describe("<SchemaDrivenView />", () => {
 
   it("respects override prop", async () => {
     const screen = render(<WithOverride />);
-    const overridden = screen.container.querySelector(
-      "[data-override-title]",
-    );
+    const overridden = screen.container.querySelector("[data-override-title]");
     expect(overridden).toBeTruthy();
   });
 });
@@ -906,7 +915,8 @@ title: "SchemaDrivenView"
 ---
 
 Generates a List/Edit/Show view from a flat JSON Schema. Maps property `type`
-+ `format` + `enum` to admin field / input components.
+
+- `format` + `enum` to admin field / input components.
 
 ## Usage
 
@@ -931,22 +941,22 @@ const SCHEMA = {
 
 ## Props
 
-| Prop        | Required | Type                          | Default | Description |
-| ----------- | -------- | ----------------------------- | ------- | ----------- |
-| `schema`    | Required | `JsonSchema`                  | -       | Flat object schema |
-| `mode`      | Required | `"list" \| "edit" \| "show"`  | -       | View kind |
-| `overrides` | Optional | `Record<string, ReactNode>`   | -       | Property-key → custom rendering |
+| Prop        | Required | Type                         | Default | Description                     |
+| ----------- | -------- | ---------------------------- | ------- | ------------------------------- |
+| `schema`    | Required | `JsonSchema`                 | -       | Flat object schema              |
+| `mode`      | Required | `"list" \| "edit" \| "show"` | -       | View kind                       |
+| `overrides` | Optional | `Record<string, ReactNode>`  | -       | Property-key → custom rendering |
 
 ## Mapping table
 
-| Property                          | Show field        | Edit input    |
-| --------------------------------- | ----------------- | ------------- |
-| `type: 'string'`                  | `TextField`       | `TextInput`   |
-| `type: 'string', format: 'email'` | `EmailField`      | `TextInput`   |
-| `type: 'string', format: 'date'`  | `DateField`       | `DateInput`   |
-| `type: 'number' \| 'integer'`     | `NumberField`     | `NumberInput` |
-| `type: 'boolean'`                 | `BooleanField`    | `BooleanInput`|
-| `enum: [...]`                     | `SelectField`     | `SelectInput` |
+| Property                          | Show field     | Edit input     |
+| --------------------------------- | -------------- | -------------- |
+| `type: 'string'`                  | `TextField`    | `TextInput`    |
+| `type: 'string', format: 'email'` | `EmailField`   | `TextInput`    |
+| `type: 'string', format: 'date'`  | `DateField`    | `DateInput`    |
+| `type: 'number' \| 'integer'`     | `NumberField`  | `NumberInput`  |
+| `type: 'boolean'`                 | `BooleanField` | `BooleanInput` |
+| `enum: [...]`                     | `SelectField`  | `SelectInput`  |
 
 ## Limitations
 
@@ -1009,7 +1019,11 @@ export const NoExport = () => (
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, ColorOnly, NoExport } from "@/stories/extras/theme-studio.stories";
+import {
+  Basic,
+  ColorOnly,
+  NoExport,
+} from "@/stories/extras/theme-studio.stories";
 
 describe("<ThemeStudio />", () => {
   it("renders one row per CSS variable in the theme's light map", async () => {
@@ -1023,9 +1037,9 @@ describe("<ThemeStudio />", () => {
     const rows = screen.container.querySelectorAll("[data-theme-var]");
     Array.from(rows).forEach((row) => {
       const val = row.getAttribute("data-value") ?? "";
-      expect(
-        /oklch\(|#[0-9a-f]{3,8}|rgb|hsl/i.test(val) || val === "",
-      ).toBe(true);
+      expect(/oklch\(|#[0-9a-f]{3,8}|rgb|hsl/i.test(val) || val === "").toBe(
+        true,
+      );
     });
   });
 
@@ -1037,9 +1051,7 @@ describe("<ThemeStudio />", () => {
 
   it("hides the export button when showExport=false", async () => {
     const screen = render(<NoExport />);
-    expect(
-      screen.container.querySelector("[data-theme-export]"),
-    ).toBeNull();
+    expect(screen.container.querySelector("[data-theme-export]")).toBeNull();
   });
 });
 ```
@@ -1140,9 +1152,7 @@ export const ThemeStudio = ({
                     style={{ backgroundColor: value }}
                   />
                 )}
-                <span className="w-44 truncate font-mono text-xs">
-                  {key}
-                </span>
+                <span className="w-44 truncate font-mono text-xs">{key}</span>
                 <Input
                   value={value}
                   onChange={(e) => update(key, e.target.value)}
@@ -1190,21 +1200,21 @@ Live editor for an `AdminTheme`'s CSS custom properties. Updates
 ## Usage
 
 ```tsx
-import { ThemeProvider, ThemeStudio, defaultTheme } from '@/components/admin';
+import { ThemeProvider, ThemeStudio, defaultTheme } from "@/components/admin";
 
 <ThemeProvider lightTheme={defaultTheme}>
   <ThemeStudio theme={defaultTheme} />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 ## Props
 
-| Prop         | Required | Type                  | Default | Description |
-| ------------ | -------- | --------------------- | ------- | ----------- |
-| `theme`      | Required | `AdminTheme`          | -       | Theme being edited |
-| `filter`     | Optional | `"color" \| "size"`   | -       | Restrict editable vars |
-| `showExport` | Optional | `boolean`             | `true`  | Show Export button |
-| `className`  | Optional | `string`              | -       | CSS class on the panel |
+| Prop         | Required | Type                | Default | Description            |
+| ------------ | -------- | ------------------- | ------- | ---------------------- |
+| `theme`      | Required | `AdminTheme`        | -       | Theme being edited     |
+| `filter`     | Optional | `"color" \| "size"` | -       | Restrict editable vars |
+| `showExport` | Optional | `boolean`           | `true`  | Show Export button     |
+| `className`  | Optional | `string`            | -       | CSS class on the panel |
 
 ## Export
 
@@ -1320,13 +1330,7 @@ describe("<LayoutBuilder />", () => {
     const rows = Array.from(
       screen.container.querySelectorAll("[data-layout-row]"),
     ).map((r) => r.getAttribute("data-field"));
-    expect(rows).toEqual([
-      "title",
-      "id",
-      "author",
-      "publishedAt",
-      "views",
-    ]);
+    expect(rows).toEqual(["title", "id", "author", "publishedAt", "views"]);
   });
 
   it("respects custom storeKey", async () => {
@@ -1389,7 +1393,10 @@ export const LayoutBuilder = ({
 }: LayoutBuilderProps) => {
   const resource = useResourceContext({ resource: resourceProp });
   const key = storeKey ?? `layout.${resource ?? "unknown"}.${mode}`;
-  const [order, setOrder] = useStore<string[]>(key, defaultOrder ?? availableFields);
+  const [order, setOrder] = useStore<string[]>(
+    key,
+    defaultOrder ?? availableFields,
+  );
   const items = useMemo(
     () => order ?? availableFields,
     [order, availableFields],
@@ -1421,10 +1428,7 @@ export const LayoutBuilder = ({
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
         >
-          <SortableContext
-            items={items}
-            strategy={verticalListSortingStrategy}
-          >
+          <SortableContext items={items} strategy={verticalListSortingStrategy}>
             <ul className="flex flex-col gap-1">
               {items.map((field) => (
                 <Row key={field} id={field} />
@@ -1438,8 +1442,14 @@ export const LayoutBuilder = ({
 };
 
 const Row = ({ id }: { id: string }) => {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -1501,23 +1511,23 @@ Drag-drop reorder UI for a resource's list columns. Persists the order to
 ## Usage
 
 ```tsx
-import { LayoutBuilder } from '@/components/admin';
+import { LayoutBuilder } from "@/components/admin";
 
 <LayoutBuilder
   availableFields={["id", "title", "author"]}
   mode="list-columns"
-/>
+/>;
 ```
 
 ## Props
 
-| Prop              | Required | Type                                              | Default                              | Description |
-| ----------------- | -------- | ------------------------------------------------- | ------------------------------------ | ----------- |
-| `availableFields` | Required | `readonly string[]`                               | -                                    | All fields the resource exposes |
-| `mode`            | Optional | `"list-columns" \| "show-layout" \| "edit-form"`  | `"list-columns"`                     | Layout target (v1 ships list-columns only) |
-| `defaultOrder`    | Optional | `readonly string[]`                               | `availableFields`                    | Initial order |
-| `storeKey`        | Optional | `string`                                          | `\`layout.<resource>.<mode>\``       | Override persistence key |
-| `resource`        | Optional | `string`                                          | Context                              | Override resource |
+| Prop              | Required | Type                                             | Default                        | Description                                |
+| ----------------- | -------- | ------------------------------------------------ | ------------------------------ | ------------------------------------------ |
+| `availableFields` | Required | `readonly string[]`                              | -                              | All fields the resource exposes            |
+| `mode`            | Optional | `"list-columns" \| "show-layout" \| "edit-form"` | `"list-columns"`               | Layout target (v1 ships list-columns only) |
+| `defaultOrder`    | Optional | `readonly string[]`                              | `availableFields`              | Initial order                              |
+| `storeKey`        | Optional | `string`                                         | `\`layout.<resource>.<mode>\`` | Override persistence key                   |
+| `resource`        | Optional | `string`                                         | Context                        | Override resource                          |
 
 ## Persistence
 
@@ -1652,7 +1662,9 @@ describe("<I18nKeyEditor />", () => {
     const screen = render(<Basic />);
     // The CallerComponent translates 3 keys with the `custom.*` prefix that
     // aren't in englishMessages. Each should appear in the missing-keys panel.
-    await expect.element(screen.getByText("custom.foo.bar")).toBeInTheDocument();
+    await expect
+      .element(screen.getByText("custom.foo.bar"))
+      .toBeInTheDocument();
     await expect
       .element(screen.getByText("custom.missing.key"))
       .toBeInTheDocument();
@@ -1674,9 +1686,7 @@ describe("<I18nKeyEditor />", () => {
 
   it("hides the Export button when showExport=false", async () => {
     const screen = render(<NoExport />);
-    expect(
-      screen.container.querySelector("[data-i18n-export]"),
-    ).toBeNull();
+    expect(screen.container.querySelector("[data-i18n-export]")).toBeNull();
   });
 });
 ```
@@ -1720,12 +1730,9 @@ export const I18nKeyEditor = ({
   const [open, setOpen] = useState(defaultOpen);
   const [copied, setCopied] = useState(false);
 
-  const record = useCallback(
-    (key: string) => {
-      setMissing((cur) => (key in cur ? cur : { ...cur, [key]: "" }));
-    },
-    [],
-  );
+  const record = useCallback((key: string) => {
+    setMissing((cur) => (key in cur ? cur : { ...cur, [key]: "" }));
+  }, []);
 
   const wrapped = useMemo<I18nProvider>(() => {
     return {
@@ -1873,12 +1880,12 @@ const App = () => (
 
 ## Props
 
-| Prop          | Required | Type           | Default | Description |
-| ------------- | -------- | -------------- | ------- | ----------- |
-| `children`    | Required | `ReactNode`    | -       | Tree to track |
-| `baseProvider`| Required | `I18nProvider` | -       | Original provider |
-| `defaultOpen` | Optional | `boolean`      | `true`  | Panel state at mount |
-| `showExport`  | Optional | `boolean`      | `true`  | Show Export button |
+| Prop           | Required | Type           | Default | Description          |
+| -------------- | -------- | -------------- | ------- | -------------------- |
+| `children`     | Required | `ReactNode`    | -       | Tree to track        |
+| `baseProvider` | Required | `I18nProvider` | -       | Original provider    |
+| `defaultOpen`  | Optional | `boolean`      | `true`  | Panel state at mount |
+| `showExport`   | Optional | `boolean`      | `true`  | Show Export button   |
 
 ## Detection mechanism
 
@@ -1964,6 +1971,7 @@ git commit -m "docs(sidebar): add Tier 4 dev-experience components"
 Plan saved at `docs/superpowers/plans/2026-05-16-tier-4-dev-experience-components.md`.
 
 Five components → five subagent dispatches:
+
 1. DataProviderDevtools (Tasks 1.1, 1.2, 1.3)
 2. SchemaDrivenView (Tasks 2.1, 2.2, 2.3)
 3. ThemeStudio (Tasks 3.1, 3.2, 3.3)

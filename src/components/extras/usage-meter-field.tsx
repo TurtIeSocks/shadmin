@@ -37,9 +37,7 @@ export const UsageMeterField = <
     | undefined;
   const ctx = useRecordContext<RecordType>({ record });
   const limit =
-    limitSource && ctx
-      ? (ctx[limitSource] as number | undefined)
-      : undefined;
+    limitSource && ctx ? (ctx[limitSource] as number | undefined) : undefined;
 
   if (used == null) return null;
 
@@ -91,7 +89,8 @@ const DEFAULT_THRESHOLDS = { warning: 0.8, critical: 1.0 };
 export interface UsageMeterFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
-  extends FieldProps<RecordType>,
+  extends
+    FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
   /** Sibling record field holding the limit/quota. Bar is only shown when set. */
   limitSource?: string;

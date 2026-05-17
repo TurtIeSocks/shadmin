@@ -174,74 +174,74 @@ export interface SimpleFormIteratorProps extends Partial<UseFieldArrayReturn> {
  * // Typically used internally by SimpleFormIterator
  */
 export const SimpleFormIteratorItem = (props: SimpleFormIteratorItemProps) => {
-    const {
-      children,
-      disabled,
-      disableReordering,
-      disableRemove,
-      getItemLabel,
-      index,
-      inline,
-      ref,
-      removeButton = defaultRemoveItemButton,
-      reOrderButtons = defaultReOrderButtons,
-    } = props;
-    const resource = useResourceContext(props);
-    if (!resource) {
-      throw new Error(
-        "SimpleFormIteratorItem must be used in a ResourceContextProvider or be passed a resource prop.",
-      );
+  const {
+    children,
+    disabled,
+    disableReordering,
+    disableRemove,
+    getItemLabel,
+    index,
+    inline,
+    ref,
+    removeButton = defaultRemoveItemButton,
+    reOrderButtons = defaultReOrderButtons,
+  } = props;
+  const resource = useResourceContext(props);
+  if (!resource) {
+    throw new Error(
+      "SimpleFormIteratorItem must be used in a ResourceContextProvider or be passed a resource prop.",
+    );
+  }
+  const record = useRecordContext(props);
+  if (!record) {
+    throw new Error(
+      "SimpleFormIteratorItem must be used in a RecordContextProvider.",
+    );
+  }
+  // Returns a boolean to indicate whether to disable the remove button for certain fields.
+  // If disableRemove is a function, then call the function with the current record to
+  // determining if the button should be disabled. Otherwise, use a boolean property that
+  // enables or disables the button for all of the fields.
+  const disableRemoveField = (record: RaRecord) => {
+    if (typeof disableRemove === "boolean") {
+      return disableRemove;
     }
-    const record = useRecordContext(props);
-    if (!record) {
-      throw new Error(
-        "SimpleFormIteratorItem must be used in a RecordContextProvider.",
-      );
-    }
-    // Returns a boolean to indicate whether to disable the remove button for certain fields.
-    // If disableRemove is a function, then call the function with the current record to
-    // determining if the button should be disabled. Otherwise, use a boolean property that
-    // enables or disables the button for all of the fields.
-    const disableRemoveField = (record: RaRecord) => {
-      if (typeof disableRemove === "boolean") {
-        return disableRemove;
-      }
-      return disableRemove && disableRemove(record);
-    };
+    return disableRemove && disableRemove(record);
+  };
 
-    const label =
-      typeof getItemLabel === "function" ? getItemLabel(index) : getItemLabel;
+  const label =
+    typeof getItemLabel === "function" ? getItemLabel(index) : getItemLabel;
 
-    return (
-      <SimpleFormIteratorItemBase {...props}>
-        <li
-          ref={ref}
+  return (
+    <SimpleFormIteratorItemBase {...props}>
+      <li
+        ref={ref}
+        className={cn(
+          "flex flex-row items-start justify-between gap-2 pb-2 border-b border-border last:border-b-0",
+          // Align the buttons with the input
+          "[&:has(label)>.simple-form-iterator-item-actions]:pt-10",
+        )}
+      >
+        {label != null && label !== false && (
+          <p className="text-sm text-muted-foreground mb-2">{label}</p>
+        )}
+        <div
           className={cn(
-            "flex flex-row items-start justify-between gap-2 pb-2 border-b border-border last:border-b-0",
-            // Align the buttons with the input
-            "[&:has(label)>.simple-form-iterator-item-actions]:pt-10",
+            "flex flex-1 gap-2",
+            inline ? "flex-col sm:flex-row gap-2" : "flex-col",
           )}
         >
-          {label != null && label !== false && (
-            <p className="text-sm text-muted-foreground mb-2">{label}</p>
-          )}
-          <div
-            className={cn(
-              "flex flex-1 gap-2",
-              inline ? "flex-col sm:flex-row gap-2" : "flex-col",
-            )}
-          >
-            {children}
+          {children}
+        </div>
+        {!disabled && (
+          <div className="simple-form-iterator-item-actions flex flex-row h-9 items-center gap-1">
+            {!disableReordering && reOrderButtons}
+            {!disableRemoveField(record) && removeButton}
           </div>
-          {!disabled && (
-            <div className="simple-form-iterator-item-actions flex flex-row h-9 items-center gap-1">
-              {!disableReordering && reOrderButtons}
-              {!disableRemoveField(record) && removeButton}
-            </div>
-          )}
-        </li>
-      </SimpleFormIteratorItemBase>
-    );
+        )}
+      </li>
+    </SimpleFormIteratorItemBase>
+  );
 };
 
 export interface SimpleFormIteratorItemProps extends SimpleFormIteratorItemBaseProps {

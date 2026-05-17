@@ -7,9 +7,12 @@ import {
 import L from "leaflet";
 
 describe("geojsonTypeToGeomanShape", () => {
-  it("maps Point → Marker", () => expect(geojsonTypeToGeomanShape("Point")).toBe("Marker"));
-  it("maps LineString → Line", () => expect(geojsonTypeToGeomanShape("LineString")).toBe("Line"));
-  it("maps Polygon → Polygon", () => expect(geojsonTypeToGeomanShape("Polygon")).toBe("Polygon"));
+  it("maps Point → Marker", () =>
+    expect(geojsonTypeToGeomanShape("Point")).toBe("Marker"));
+  it("maps LineString → Line", () =>
+    expect(geojsonTypeToGeomanShape("LineString")).toBe("Line"));
+  it("maps Polygon → Polygon", () =>
+    expect(geojsonTypeToGeomanShape("Polygon")).toBe("Polygon"));
 });
 
 describe("layerToGeometry", () => {

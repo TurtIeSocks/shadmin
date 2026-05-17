@@ -81,14 +81,13 @@ export const CommentsThread = (props: CommentsThreadProps) => {
         </Card>
       ) : (
         comments.map((c) => (
-          <Card
-            key={c.id}
-            className={cn(c.resolvedAt && "opacity-60")}
-          >
+          <Card key={c.id} className={cn(c.resolvedAt && "opacity-60")}>
             <CardContent className="flex flex-col gap-2 p-4">
               <div className="flex items-start justify-between">
                 <div className="flex flex-col">
-                  <span className="font-medium">{c.authorName ?? c.authorId}</span>
+                  <span className="font-medium">
+                    {c.authorName ?? c.authorId}
+                  </span>
                   <span className="text-xs text-muted-foreground">
                     {new Date(c.createdAt).toLocaleString()}
                   </span>

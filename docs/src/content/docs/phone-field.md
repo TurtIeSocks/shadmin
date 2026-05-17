@@ -17,13 +17,13 @@ import { PhoneField } from '@/components/admin';
 
 ## Props
 
-| Prop            | Required | Type                                | Default      | Description |
-| --------------- | -------- | ----------------------------------- | ------------ | ----------- |
-| `source`        | Required | `string`                            | -            | Record field to read |
-| `displayFormat` | Optional | `"national" \| "international"`     | `"national"` | Format style |
-| `link`          | Optional | `boolean`                           | `true`       | Wrap value in a `tel:` link |
-| `empty`         | Optional | `ReactNode`                         | -            | Fallback when value is `null` |
-| `className`     | Optional | `string`                            | -            | CSS class |
+| Prop            | Required | Type                            | Default      | Description                   |
+| --------------- | -------- | ------------------------------- | ------------ | ----------------------------- |
+| `source`        | Required | `string`                        | -            | Record field to read          |
+| `displayFormat` | Optional | `"national" \| "international"` | `"national"` | Format style                  |
+| `link`          | Optional | `boolean`                       | `true`       | Wrap value in a `tel:` link   |
+| `empty`         | Optional | `ReactNode`                     | -            | Fallback when value is `null` |
+| `className`     | Optional | `string`                        | -            | CSS class                     |
 
 ## Storage format
 

@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  type ComponentType,
-  useMemo,
-  useState,
-} from "react";
+import { type ComponentType, useMemo, useState } from "react";
 import { ChevronRightIcon } from "lucide-react";
 import {
   type RaRecord,
@@ -31,7 +27,10 @@ interface TreeNode<R extends RaRecord> {
   children: TreeNode<R>[];
 }
 
-const EMPTY_ICON_MAP: Record<string, ComponentType<{ className?: string }>> = {};
+const EMPTY_ICON_MAP: Record<
+  string,
+  ComponentType<{ className?: string }>
+> = {};
 
 const buildTree = <R extends RaRecord>(
   records: R[],

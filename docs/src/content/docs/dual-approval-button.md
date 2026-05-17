@@ -9,7 +9,7 @@ user's id to an approver array on the record; once the count reaches
 ## Usage
 
 ```tsx
-import { DualApprovalButton, Show, RecordField } from '@/components/admin';
+import { DualApprovalButton, Show, RecordField } from "@/components/admin";
 
 const ExpenseShow = () => (
   <Show>
@@ -21,12 +21,12 @@ const ExpenseShow = () => (
 
 ## Props
 
-| Prop             | Required | Type     | Default       | Description |
-| ---------------- | -------- | -------- | ------------- | ----------- |
-| `required`       | Optional | `number` | `2`           | Approvers needed |
-| `approverSource` | Optional | `string` | `"approvers"` | Field for the approver id array |
+| Prop             | Required | Type     | Default       | Description                                |
+| ---------------- | -------- | -------- | ------------- | ------------------------------------------ |
+| `required`       | Optional | `number` | `2`           | Approvers needed                           |
+| `approverSource` | Optional | `string` | `"approvers"` | Field for the approver id array            |
 | `statusSource`   | Optional | `string` | `"status"`    | Field flipped to `"approved"` on threshold |
-| `resource`       | Optional | `string` | Context       | Override resource |
+| `resource`       | Optional | `string` | Context       | Override resource                          |
 
 ## Record shape
 

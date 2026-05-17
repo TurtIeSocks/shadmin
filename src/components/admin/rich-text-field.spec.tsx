@@ -11,7 +11,6 @@ describe("RichTextField", () => {
     await expect.element(screen.getByText("world")).toBeInTheDocument();
   });
 
-
   it("renders sanitized HTML as React elements", async () => {
     const record = {
       id: 1,
