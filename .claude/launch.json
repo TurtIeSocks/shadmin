@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "demo",
+      "runtimeExecutable": "make",
+      "runtimeArgs": ["run"],
+      "port": 5173
+    },
+    {
+      "name": "storybook",
+      "runtimeExecutable": "make",
+      "runtimeArgs": ["storybook"],
+      "port": 6006
+    },
+    {
+      "name": "website",
+      "runtimeExecutable": "make",
+      "runtimeArgs": ["run-website"],
+      "port": 5174
+    },
+    {
+      "name": "test-browser",
+      "runtimeExecutable": "make",
+      "runtimeArgs": ["test-browser"],
+      "port": 63315
+    }
+  ]
+}
