@@ -8,7 +8,7 @@ import { Basic } from "@/stories/admin/rich-text-field.stories";
 describe("RichTextField", () => {
   it("renders the Basic story", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.container.querySelector(".rich-text-field")).toBeInTheDocument();
+    await expect.element(screen.getByText("world")).toBeInTheDocument();
   });
 
 

@@ -10,7 +10,7 @@ export default {
 
 const record = {
   id: 1,
-  title: "Data Edition/NumberInput",
+  title: "War and Peace",
   price: 1.99,
 };
 

@@ -9,19 +9,19 @@ export default {
 
 const record = {
   id: 1,
-  title: "Data Edition/ImageInput",
+  title: "Annual report",
   picture: {
     src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&auto=format&fit=crop",
-    title: "Data Edition/ImageInput",
+    title: "Cover image",
   },
   pictures: [
     {
       src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&auto=format&fit=crop",
-      title: "Data Edition/ImageInput",
+      title: "Project plan",
     },
     {
       src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&auto=format&fit=crop&sat=-100",
-      title: "Data Edition/ImageInput",
+      title: "Meeting notes",
     },
   ],
 };

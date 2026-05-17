@@ -16,7 +16,7 @@ export default {
 
 const record = {
   id: 42,
-  title: "Data Display/SimpleListItem",
+  title: "War and Peace",
   author: "Leo Tolstoy",
 };
 

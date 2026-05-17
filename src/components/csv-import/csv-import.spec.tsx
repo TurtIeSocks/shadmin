@@ -84,12 +84,10 @@ describe(
     it(
       "commits valid rows via dataProvider.create and shows complete",
       async () => {
-        // CommitStep story auto-advances to step 4 (commit), then we trigger commit
+        // CommitStep story auto-advances to step 4 (commit), which auto-imports
+        // on mount and shows "Import complete" when done — no extra click needed.
         const screen = render(<CommitStep />);
-        // Wait for the auto-advance to open the dialog and reach the preview step
         await expect.element(screen.getByRole("dialog")).toBeInTheDocument();
-        // At this point AutoAdvanceTo has navigated past upload/map/preview; click Commit
-        await screen.getByRole("button", { name: /next/i }).click();
         await expect
           .element(screen.getByText(/import complete/i))
           .toBeInTheDocument();

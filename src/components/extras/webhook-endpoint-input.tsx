@@ -14,6 +14,12 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
 import type { WebhookEndpoint } from "./webhook-endpoint-field";
 import { cn } from "@/lib/utils";
 
+const DEFAULT_VALUE: WebhookEndpoint = {
+  url: "",
+  secret: "",
+  eventTypes: [],
+};
+
 /**
  * Composite input for a webhook endpoint. Edits the URL, signing secret, and
  * event-type subscriptions. Optionally renders a test-ping button.
@@ -36,20 +42,15 @@ export const WebhookEndpointInput = (props: WebhookEndpointInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const {
-    onChange: _stripChange,
-    onBlur: _stripBlur,
-    ...sansHandlers
-  } = props;
+  const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
-  const { id, field, isRequired } = useInput(sansHandlers);
+  const { id, field, isRequired } = useInput({
+    defaultValue: DEFAULT_VALUE,
+    ...sansHandlers,
+  });
 
-  const value = (field.value as WebhookEndpoint | null) ?? {
-    url: "",
-    secret: "",
-    eventTypes: [],
-  };
+  const value = field.value as WebhookEndpoint;
 
   const [pinging, setPinging] = useState(false);
 

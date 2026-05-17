@@ -10,7 +10,7 @@ export default {
 
 const record = {
   id: 1,
-  title: "Data Edition/SaveButton",
+  title: "War and Peace",
 };
 
 const Wrapper = ({ children }: React.PropsWithChildren) => (

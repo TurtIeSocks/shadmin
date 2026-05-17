@@ -14,7 +14,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
 
 const defaultRecord = {
   id: 1,
-  title: "Data Edition/TabbedForm",
+  title: "War and Peace",
   body: "Lorem ipsum dolor sit amet.",
   author: "Jane Doe",
   views: 42,

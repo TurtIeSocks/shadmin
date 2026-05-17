@@ -9,7 +9,7 @@ export default {
 
 const record = {
   id: 1,
-  title: "Rich Text Input/RichTextField",
+  title: "War and Peace",
   body: '<p>Hello <strong>world</strong>! Visit <a href="https://example.com">our site</a>.</p>',
   empty: "",
   malicious:

@@ -23,8 +23,8 @@ export default {
 
 const dataProvider = fakeRestDataProvider({
   posts: [
-    { id: 1, title: "Data Edition/BulkUpdateButton", views: 42 },
-    { id: 2, title: "Data Edition/BulkUpdateButton", views: 17 },
+    { id: 1, title: "Hello world", views: 42 },
+    { id: 2, title: "Lorem ipsum", views: 17 },
   ],
 });
 

@@ -16,7 +16,7 @@ export default {
   title: "Data Edition/DeleteButton",
 };
 
-const record = { id: 1, title: "Data Edition/DeleteButton" };
+const record = { id: 1, title: "Hello world" };
 
 const dataProvider = fakeRestDataProvider({
   posts: [record],

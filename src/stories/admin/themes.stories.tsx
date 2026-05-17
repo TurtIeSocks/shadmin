@@ -28,31 +28,31 @@ const data = {
   books: [
     {
       id: 1,
-      title: "Application configuration/Themes",
+      title: "War and Peace",
       author: "Leo Tolstoy",
       year: 1869,
     },
     {
       id: 2,
-      title: "Application configuration/Themes",
+      title: "Pride and Prejudice",
       author: "Jane Austen",
       year: 1813,
     },
     {
       id: 3,
-      title: "Application configuration/Themes",
+      title: "The Picture of Dorian Gray",
       author: "Oscar Wilde",
       year: 1890,
     },
     {
       id: 4,
-      title: "Application configuration/Themes",
+      title: "Le Petit Prince",
       author: "Antoine de Saint-Exupéry",
       year: 1943,
     },
     {
       id: 5,
-      title: "Application configuration/Themes",
+      title: "The Alchemist",
       author: "Paulo Coelho",
       year: 1988,
     },

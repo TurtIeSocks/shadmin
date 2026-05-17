@@ -16,17 +16,17 @@ export default {
 const records = [
   {
     id: 1,
-    title: "Data Edition/SearchInput",
+    title: "War and Peace",
     price: 1.99,
   },
   {
     id: 2,
-    title: "Data Edition/SearchInput",
+    title: "Pride and Prejudice",
     price: 2.99,
   },
   {
     id: 3,
-    title: "Data Edition/SearchInput",
+    title: "The Picture of Dorian Gray",
     price: 2.29,
   },
 ];

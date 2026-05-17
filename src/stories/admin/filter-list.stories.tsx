@@ -22,25 +22,25 @@ const data = {
   posts: [
     {
       id: 1,
-      title: "Data Display/FilterList",
+      title: "Hello world",
       published: true,
       has_newsletter: true,
     },
     {
       id: 2,
-      title: "Data Display/FilterList",
+      title: "Lorem ipsum",
       published: true,
       has_newsletter: false,
     },
     {
       id: 3,
-      title: "Data Display/FilterList",
+      title: "First post",
       published: false,
       has_newsletter: false,
     },
     {
       id: 4,
-      title: "Data Display/FilterList",
+      title: "Another post",
       published: false,
       has_newsletter: true,
     },

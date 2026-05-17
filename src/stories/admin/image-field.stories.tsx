@@ -90,15 +90,15 @@ export const MultipleTitle = () => (
       employees: [
         {
           url: "https://marmelab.com/posters/avatar-1.jpeg?size=32x32",
-          title: "Data Display/ImageField",
+          title: "War and Peace",
         },
         {
           url: "https://marmelab.com/posters/avatar-3.jpeg?size=32x32",
-          title: "Data Display/ImageField",
+          title: "Pride and Prejudice",
         },
         {
           url: "https://marmelab.com/posters/avatar-5.jpeg?size=32x32",
-          title: "Data Display/ImageField",
+          title: "The Picture of Dorian Gray",
         },
       ],
     }}

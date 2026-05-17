@@ -15,7 +15,7 @@ export default {
   title: "Data Edition/EditButton",
 };
 
-const record = { id: 1, title: "Data Edition/EditButton" };
+const record = { id: 1, title: "Hello world" };
 
 const Wrapper = ({
   children,

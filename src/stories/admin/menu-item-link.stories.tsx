@@ -23,7 +23,7 @@ export default {
 };
 
 const data = {
-  posts: [{ id: 1, title: "UI & Layout/MenuItemLink" }],
+  posts: [{ id: 1, title: "Hello world" }],
 };
 const dataProvider = fakeRestDataProvider(data);
 const i18nProvider = polyglotI18nProvider(

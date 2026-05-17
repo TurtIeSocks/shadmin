@@ -18,10 +18,10 @@ export default {
 
 const data = {
   books: [
-    { id: 1, title: "Data Display/FilterLiveForm", author: "Leo Tolstoy" },
-    { id: 2, title: "Data Display/FilterLiveForm", author: "Jane Austen" },
-    { id: 3, title: "Data Display/FilterLiveForm", author: "Oscar Wilde" },
-    { id: 4, title: "Data Display/FilterLiveForm", author: "Gustave Flaubert" },
+    { id: 1, title: "War and Peace", author: "Leo Tolstoy" },
+    { id: 2, title: "Pride and Prejudice", author: "Jane Austen" },
+    { id: 3, title: "The Picture of Dorian Gray", author: "Oscar Wilde" },
+    { id: 4, title: "Le Petit Prince", author: "Gustave Flaubert" },
   ],
 };
 

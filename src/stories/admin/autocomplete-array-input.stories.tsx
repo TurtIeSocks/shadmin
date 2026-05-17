@@ -10,7 +10,7 @@ import { ReactNode } from "react";
 const record = {
   id: 1,
   tags: ["tech"],
-  title: "Data Edition/AutocompleteArrayInput",
+  title: "War and Peace",
 };
 
 export default {

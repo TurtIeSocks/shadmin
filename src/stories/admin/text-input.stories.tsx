@@ -10,7 +10,7 @@ export default {
 
 const record = {
   id: 1,
-  title: "Data Edition/TextInput",
+  title: "Apple",
 };
 
 const FormValues = () => {

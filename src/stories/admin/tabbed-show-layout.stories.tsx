@@ -20,7 +20,7 @@ export default {
 
 const record = {
   id: 1,
-  title: "Page components/TabbedShowLayout",
+  title: "War and Peace",
   author: "Leo Tolstoy",
   summary:
     "War and Peace broadly focuses on Napoleon's invasion of Russia and the impact it had on Tsarist society.",

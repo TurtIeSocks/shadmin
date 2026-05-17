@@ -56,7 +56,7 @@ const contacts = [
     id: 1,
     first_name: "John",
     last_name: "Doe",
-    title: "Data Edition/AutocompleteInput",
+    title: "War and Peace",
     company_name: "Tech Corp",
     avatar:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
@@ -65,7 +65,7 @@ const contacts = [
     id: 2,
     first_name: "Jane",
     last_name: "Smith",
-    title: "Data Edition/AutocompleteInput",
+    title: "Pride and Prejudice",
     company_name: "Innovation Incorporated",
     avatar:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=40&h=40&fit=crop&crop=face",
@@ -74,7 +74,7 @@ const contacts = [
     id: 3,
     first_name: "Mike",
     last_name: "Johnson",
-    title: "Data Edition/AutocompleteInput",
+    title: "The Picture of Dorian Gray",
     company_name: "Creative Studio",
     avatar:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
@@ -83,7 +83,7 @@ const contacts = [
     id: 4,
     first_name: "Sarah",
     last_name: "Wilson",
-    title: "Data Edition/AutocompleteInput",
+    title: "Le Petit Prince",
     company_name: null,
     avatar:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face",
@@ -92,7 +92,7 @@ const contacts = [
     id: 5,
     first_name: "David",
     last_name: "Brown",
-    title: "Data Edition/AutocompleteInput",
+    title: "The Alchemist",
     company_name: "StartupXYZ",
     avatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face",
@@ -101,7 +101,7 @@ const contacts = [
     id: 6,
     first_name: "Emily",
     last_name: "Davis",
-    title: "Data Edition/AutocompleteInput",
+    title: "Madame Bovary",
     company_name: "Design Labs",
     avatar:
       "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face",
@@ -110,7 +110,7 @@ const contacts = [
     id: 7,
     first_name: "Alex",
     last_name: "Garcia",
-    title: "Data Edition/AutocompleteInput",
+    title: "The Lord of the Rings",
     company_name: "AI Solutions",
     avatar:
       "https://images.unsplash.com/photo-1539571696257-f0389e7e00f7?w=40&h=40&fit=crop&crop=face",
@@ -119,7 +119,7 @@ const contacts = [
     id: 8,
     first_name: "Lisa",
     last_name: "Rodriguez",
-    title: "Data Edition/AutocompleteInput",
+    title: "Hamlet",
     company_name: "Global Enterprises",
     avatar:
       "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&h=40&fit=crop&crop=face",
@@ -128,7 +128,7 @@ const contacts = [
     id: 9,
     first_name: "Tom",
     last_name: "Anderson",
-    title: "Data Edition/AutocompleteInput",
+    title: "Don Quixote",
     company_name: null,
     avatar:
       "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=40&h=40&fit=crop&crop=face",
@@ -137,7 +137,7 @@ const contacts = [
     id: 10,
     first_name: "Rachel",
     last_name: "Martinez",
-    title: "Data Edition/AutocompleteInput",
+    title: "Crime and Punishment",
     company_name: "Consulting Plus",
     avatar:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face",

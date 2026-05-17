@@ -19,11 +19,11 @@ export default {
 
 const data = {
   posts: [
-    { id: 1, title: "Data Display/FilterListItem", category: "novel" },
-    { id: 2, title: "Data Display/FilterListItem", category: "novel" },
-    { id: 3, title: "Data Display/FilterListItem", category: "tale" },
-    { id: 4, title: "Data Display/FilterListItem", category: "tale" },
-    { id: 5, title: "Data Display/FilterListItem", category: "novel" },
+    { id: 1, title: "Hello world", category: "novel" },
+    { id: 2, title: "Lorem ipsum", category: "novel" },
+    { id: 3, title: "First post", category: "tale" },
+    { id: 4, title: "Another post", category: "tale" },
+    { id: 5, title: "Sample article", category: "novel" },
   ],
 };
 

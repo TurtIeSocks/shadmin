@@ -10,7 +10,7 @@ export default {
 const record = {
   id: 1,
   tags: [{ name: "tech" }, { name: "news" }, { name: "lifestyle" }],
-  title: "Data Display/DateField",
+  title: "War and Peace",
   created_at: new Date("2025-03-25 14:57:21").toISOString(),
 };
 

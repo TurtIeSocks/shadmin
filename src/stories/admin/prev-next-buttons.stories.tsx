@@ -18,9 +18,9 @@ export default {
 
 const data = {
   posts: [
-    { id: 1, title: "Data Edition/PrevNextButtons" },
-    { id: 2, title: "Data Edition/PrevNextButtons" },
-    { id: 3, title: "Data Edition/PrevNextButtons" },
+    { id: 1, title: "Hello world" },
+    { id: 2, title: "Lorem ipsum" },
+    { id: 3, title: "First post" },
   ],
 };
 

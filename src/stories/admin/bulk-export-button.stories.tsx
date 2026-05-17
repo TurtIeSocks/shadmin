@@ -17,8 +17,8 @@ export default {
 
 const dataProvider = fakeRestDataProvider({
   posts: [
-    { id: 1, title: "Data Edition/BulkExportButton" },
-    { id: 2, title: "Data Edition/BulkExportButton" },
+    { id: 1, title: "Hello world" },
+    { id: 2, title: "Lorem ipsum" },
   ],
 });
 

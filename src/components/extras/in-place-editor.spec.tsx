@@ -6,11 +6,10 @@ import { Basic } from "@/stories/extras/in-place-editor.stories";
 describe("<InPlaceEditor />", () => {
   it("renders the record value in the reading state", async () => {
     const screen = render(<Basic />);
-    // The Basic story seeds the record { title: "Extras/InPlaceEditor" }
-    // and binds InPlaceEditor to `source="title"`, so its initial reading
-    // state must surface that exact text.
+    // The Basic story binds InPlaceEditor to `source="title"`, so its initial
+    // reading state must surface the record's title.
     await expect
-      .element(screen.getByText("Extras/InPlaceEditor"))
+      .element(screen.getByText("Hello world"))
       .toBeInTheDocument();
   });
 });

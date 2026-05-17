@@ -15,7 +15,7 @@ export default {
 
 const record = {
   id: 1,
-  title: "UI & Layout/Labeled",
+  title: "War and Peace",
   author: "Leo Tolstoy",
   year: 1869,
 };

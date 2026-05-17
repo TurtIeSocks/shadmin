@@ -9,7 +9,7 @@ export default {
 
 const record = {
   id: 1,
-  title: "Data Display/TextArrayField",
+  title: "War and Peace",
   genres: [
     "Fiction",
     "Historical Fiction",

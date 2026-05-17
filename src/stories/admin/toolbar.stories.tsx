@@ -19,7 +19,7 @@ export default {
   parameters: { docs: { codePanel: true } },
 };
 
-const record = { id: 1, title: "UI & Layout/Toolbar" };
+const record = { id: 1, title: "War and Peace" };
 
 const storyArgs = {
   args: { theme: "system" as const },

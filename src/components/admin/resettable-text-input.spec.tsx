@@ -34,9 +34,7 @@ describe("<ResettableTextInput />", () => {
   it("clears the input value when the clear button is clicked", async () => {
     const screen = render(<Basic />);
     const input = screen.getByLabelText(/^title$/i);
-    await expect
-      .element(input)
-      .toHaveValue("Data Edition/ResettableTextInput");
+    await expect.element(input).toHaveValue("War and Peace");
     await screen.getByRole("button", { name: /clear value/i }).click();
     await expect.element(input).toHaveValue("");
   });

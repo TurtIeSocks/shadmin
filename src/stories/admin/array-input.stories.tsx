@@ -18,7 +18,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
 const defaultRecord = {
   id: 1,
   tags: [{ name: "tech" }, { name: "news" }, { name: "lifestyle" }],
-  title: "Data Edition/ArrayInput",
+  title: "War and Peace",
 };
 
 export default {

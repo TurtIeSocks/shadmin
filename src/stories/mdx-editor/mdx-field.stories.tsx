@@ -8,7 +8,7 @@ import "@mdxeditor/editor/style.css";
 
 const record = {
   id: 1,
-  title: "MDX Editor/MdxField",
+  title: "War and Peace",
   body: "# Hello\n\nThis is **markdown** content with a [link](https://example.com).",
   empty: "",
 };

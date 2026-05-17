@@ -14,19 +14,19 @@ export default {
 
 const record = {
   id: 1,
-  title: "Data Edition/FileInput",
+  title: "Annual report",
   attachments: [
-    { src: "https://example.org/document.pdf", title: "Data Edition/FileInput" },
-    { src: "https://example.org/picture.png", title: "Data Edition/FileInput" },
+    { src: "https://example.org/document.pdf", title: "Cover image" },
+    { src: "https://example.org/picture.png", title: "Project plan" },
   ],
   pictures: [
     {
       src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&auto=format&fit=crop",
-      title: "Data Edition/FileInput",
+      title: "Meeting notes",
     },
     {
       src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400&auto=format&fit=crop&sat=-100",
-      title: "Data Edition/FileInput",
+      title: "Budget spreadsheet",
     },
   ],
 };

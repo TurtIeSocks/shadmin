@@ -18,9 +18,9 @@ export default {
 
 const data = {
   posts: [
-    { id: 1, title: "UI & Layout/TopToolbar", author: "Leo Tolstoy" },
-    { id: 2, title: "UI & Layout/TopToolbar", author: "Jane Austen" },
-    { id: 3, title: "UI & Layout/TopToolbar", author: "Oscar Wilde" },
+    { id: 1, title: "Hello world", author: "Leo Tolstoy" },
+    { id: 2, title: "Lorem ipsum", author: "Jane Austen" },
+    { id: 3, title: "First post", author: "Oscar Wilde" },
   ],
 };
 

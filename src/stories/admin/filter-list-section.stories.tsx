@@ -22,10 +22,10 @@ export default {
 
 const data = {
   books: [
-    { id: 1, title: "Data Display/FilterListSection", category: "novel" },
-    { id: 2, title: "Data Display/FilterListSection", category: "novel" },
-    { id: 3, title: "Data Display/FilterListSection", category: "tale" },
-    { id: 4, title: "Data Display/FilterListSection", category: "tale" },
+    { id: 1, title: "War and Peace", category: "novel" },
+    { id: 2, title: "Pride and Prejudice", category: "novel" },
+    { id: 3, title: "The Picture of Dorian Gray", category: "tale" },
+    { id: 4, title: "Le Petit Prince", category: "tale" },
   ],
 };
 

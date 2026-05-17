@@ -27,7 +27,7 @@ export default {
 };
 
 const data = {
-  posts: [{ id: 1, title: "UI & Layout/Menu" }],
+  posts: [{ id: 1, title: "Hello world" }],
   comments: [{ id: 1, body: "Great book!" }],
   orders: [{ id: 1, reference: "ORD-1" }],
   customers: [{ id: 1, first_name: "Jane", last_name: "Doe" }],

@@ -21,7 +21,7 @@ export default {
   title: "Data Edition/UpdateButton",
 };
 
-const record = { id: 1, title: "Data Edition/UpdateButton", views: 42 };
+const record = { id: 1, title: "Hello world", views: 42 };
 
 const dataProvider = fakeRestDataProvider({
   posts: [record],

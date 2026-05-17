@@ -9,10 +9,10 @@ export default {
 
 const record = {
   id: 1,
-  title: "Data Display/FileField",
+  title: "Annual report",
   attachments: [
-    { src: "https://example.org/document.pdf", title: "Data Display/FileField" },
-    { src: "https://example.org/picture.png", title: "Data Display/FileField" },
+    { src: "https://example.org/document.pdf", title: "Cover image" },
+    { src: "https://example.org/picture.png", title: "Project plan" },
   ],
 };
 
