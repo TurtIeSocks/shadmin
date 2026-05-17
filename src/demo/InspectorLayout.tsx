@@ -16,7 +16,7 @@ import { InspectorButton } from "@/components/admin/inspector-button";
 import { Inspector } from "@/components/admin/inspector";
 import { CommandMenu } from "@/components/extras/command-menu";
 import { DataProviderDevtools } from "@/components/extras/data-provider-devtools";
-import { ThemeStudioButton } from "./admin-tools-drawer";
+import { LayoutBuilderButton, ThemeStudioButton } from "./admin-tools-drawer";
 
 /**
  * Demo layout that exposes the Inspector / Configurable system.
@@ -63,6 +63,7 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
             <LocalesMenuButton />
             <InspectorButton />
             <ThemeStudioButton />
+            <LayoutBuilderButton />
             <ThemeModeToggle />
             <RefreshButton />
             <UserMenu />
