@@ -19,6 +19,7 @@ export type MonacoJsonInputProps = InputProps & {
 };
 
 export type MonacoJsonFieldProps = FieldProps & {
+  defaultValue?: unknown;
   height?: number | string;
   autoHeight?: boolean;
   maxHeight?: number | string;
