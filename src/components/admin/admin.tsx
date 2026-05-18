@@ -6,12 +6,7 @@ import {
   type CoreAdminProps,
   localStorageStore,
 } from "ra-core";
-import {
-  cloneElement,
-  isValidElement,
-  useEffect,
-  type ReactElement,
-} from "react";
+import { useEffect } from "react";
 import { i18nProvider as defaultI18nProvider } from "@/lib/i18n-provider";
 import { Layout } from "@/components/admin/layout";
 import { LoginPage } from "@/components/admin/login-page";
@@ -20,10 +15,6 @@ import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import type { AdminTheme } from "@/components/admin/theme-types";
 import { AuthCallback } from "@/components/admin/auth-callback";
-import {
-  CommandMenu,
-  type CommandMenuProps,
-} from "@/components/extras/command-menu";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
@@ -47,48 +38,82 @@ export interface AdminProps extends CoreAdminProps {
    * Falls back to `lightTheme` (or `theme`) if omitted.
    */
   darkTheme?: AdminTheme;
-  /**
-   * Mount the cmd+K command palette. Pass `true` for the default palette, or a
-   * `<CommandMenu>` element to customize. The palette's context provider wraps
-   * the admin tree, so any resource view can call `useRegisterCommand()`.
-   */
-  commandMenu?: boolean | ReactElement<CommandMenuProps>;
+}
+
+/**
+ * Props accepted by the {@link AdminContext} component. Identical to ra-core's
+ * `CoreAdminContextProps` — re-exported so callers composing `<AdminContext>`
+ * and `<AdminUI>` manually don't need to import from ra-core directly.
+ */
+export type AdminContextProps = CoreAdminContextProps;
+
+/**
+ * Props accepted by the {@link AdminUI} component.
+ */
+export interface AdminUIProps extends CoreAdminUIProps {
+  theme?: AdminTheme;
+  lightTheme?: AdminTheme;
+  darkTheme?: AdminTheme;
 }
 
 const defaultStore = localStorageStore();
 
 /**
- * Context provider for the Admin component.
+ * Provider half of `<Admin>`.
  *
- * Wraps CoreAdminContext to provide core admin functionality including data provider,
- * auth provider, i18n provider, and store access to child components.
+ * Wraps `CoreAdminContext` and applies shadcn-admin-kit's default `store`
+ * and `i18nProvider`. Use this directly when you need to interleave a
+ * context-providing wrapper (for example the `<CommandMenu>` palette from
+ * `@/components/extras/command-menu`) between the data providers and the
+ * routed UI:
  *
- * @internal
+ * @example
+ * import {
+ *   AdminContext,
+ *   AdminUI,
+ *   Resource,
+ * } from "@/components/admin";
+ * import { CommandMenu } from "@/components/extras/command-menu";
+ *
+ * const App = () => (
+ *   <AdminContext dataProvider={dataProvider}>
+ *     <CommandMenu>
+ *       <AdminUI>
+ *         <Resource name="posts" />
+ *       </AdminUI>
+ *     </CommandMenu>
+ *   </AdminContext>
+ * );
  */
-const AdminContext = (props: CoreAdminContextProps) => (
-  <CoreAdminContext {...props} />
+export const AdminContext = ({
+  i18nProvider = defaultI18nProvider,
+  store = defaultStore,
+  ...rest
+}: AdminContextProps) => (
+  <CoreAdminContext i18nProvider={i18nProvider} store={store} {...rest} />
 );
 
 /**
- * UI component for the Admin application.
+ * UI half of `<Admin>`.
  *
- * Wraps CoreAdminUI with theme provider and handles telemetry reporting.
- * Provides the main layout, login page, ready page, and authentication callback.
+ * Wraps `CoreAdminUI` with the {@link ThemeProvider} and the shadcn-admin-kit
+ * default pages (login, not-found, ready, auth-callback). Telemetry pings are
+ * emitted from here in production builds unless `disableTelemetry` is set.
  *
- * @internal
+ * Must be rendered inside an {@link AdminContext}.
  */
-const AdminUI = (
-  props: CoreAdminUIProps & {
-    theme?: AdminTheme;
-    lightTheme?: AdminTheme;
-    darkTheme?: AdminTheme;
-  },
-) => {
+export const AdminUI = (props: AdminUIProps) => {
   const {
-    disableTelemetry = false,
-    theme,
-    lightTheme,
+    authCallbackPage = AuthCallback,
+    catchAll = NotFound,
     darkTheme,
+    disableTelemetry = false,
+    layout = Layout,
+    lightTheme,
+    loginPage = LoginPage,
+    ready = Ready,
+    theme,
+    title = "Shadcn Admin",
     ...rest
   } = props;
 
@@ -109,11 +134,13 @@ const AdminUI = (
   return (
     <ThemeProvider theme={theme} lightTheme={lightTheme} darkTheme={darkTheme}>
       <CoreAdminUI
-        layout={Layout}
-        loginPage={LoginPage}
-        ready={Ready}
-        authCallbackPage={AuthCallback}
+        authCallbackPage={authCallbackPage}
+        catchAll={catchAll}
         disableTelemetry // Disable telemetry in CoreAdminUI to avoid double logging
+        layout={layout}
+        loginPage={loginPage}
+        ready={ready}
+        title={title}
         {...rest}
       />
     </ThemeProvider>
@@ -125,7 +152,12 @@ const AdminUI = (
  *
  * Creates context providers to allow its children to access the app configuration.
  * Renders the main routes and layout, and delegates content area rendering to Resource children.
- * Combines AdminContext and AdminUI to provide a complete admin interface.
+ * Composes {@link AdminContext} and {@link AdminUI} to provide a complete admin interface.
+ *
+ * Reach for the lower-level {@link AdminContext} + {@link AdminUI} pair when
+ * you need to inject a wrapping component (such as the cmd+K
+ * `<CommandMenu>` palette from `@/components/extras/command-menu`) between
+ * the providers and the routed UI.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/admin/ Admin documentation}
  *
@@ -177,67 +209,29 @@ const AdminUI = (
 export const Admin = (props: AdminProps) => {
   const {
     accessDenied,
-    authCallbackPage = AuthCallback,
+    authCallbackPage,
     authenticationError,
     authProvider,
     basename,
-    catchAll = NotFound,
+    catchAll,
     children,
-    commandMenu,
     dashboard,
     dataProvider,
     disableTelemetry,
     error,
-    i18nProvider = defaultI18nProvider,
-    layout = Layout,
+    i18nProvider,
+    layout,
     loading,
-    loginPage = LoginPage,
+    loginPage,
     queryClient,
-    ready = Ready,
+    ready,
     requireAuth,
-    store = defaultStore,
+    store,
     theme,
     lightTheme,
     darkTheme,
-    title = "Shadcn Admin",
+    title,
   } = props;
-
-  const adminUI = (
-    <AdminUI
-      accessDenied={accessDenied}
-      authCallbackPage={authCallbackPage}
-      authenticationError={authenticationError}
-      catchAll={catchAll}
-      dashboard={dashboard}
-      disableTelemetry={disableTelemetry}
-      error={error}
-      layout={layout}
-      loading={loading}
-      loginPage={loginPage}
-      ready={ready}
-      requireAuth={requireAuth}
-      theme={theme}
-      lightTheme={lightTheme}
-      darkTheme={darkTheme}
-      title={title}
-    >
-      {children}
-    </AdminUI>
-  );
-
-  const wrapped =
-    commandMenu === true ? (
-      <CommandMenu>{adminUI}</CommandMenu>
-    ) : isValidElement(commandMenu) ? (
-      cloneElement(
-        commandMenu,
-        undefined,
-        (commandMenu as ReactElement<CommandMenuProps>).props.children,
-        adminUI,
-      )
-    ) : (
-      adminUI
-    );
 
   return (
     <AdminContext
@@ -248,7 +242,26 @@ export const Admin = (props: AdminProps) => {
       queryClient={queryClient}
       store={store}
     >
-      {wrapped}
+      <AdminUI
+        accessDenied={accessDenied}
+        authCallbackPage={authCallbackPage}
+        authenticationError={authenticationError}
+        catchAll={catchAll}
+        dashboard={dashboard}
+        disableTelemetry={disableTelemetry}
+        error={error}
+        layout={layout}
+        loading={loading}
+        loginPage={loginPage}
+        ready={ready}
+        requireAuth={requireAuth}
+        theme={theme}
+        lightTheme={lightTheme}
+        darkTheme={darkTheme}
+        title={title}
+      >
+        {children}
+      </AdminUI>
     </AdminContext>
   );
 };

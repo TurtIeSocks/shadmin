@@ -11,7 +11,12 @@ import {
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
-import { Admin, ListGuesser, ShowGuesser } from "@/components/admin";
+import {
+  AdminContext,
+  AdminUI,
+  ListGuesser,
+  ShowGuesser,
+} from "@/components/admin";
 import { CommandMenu } from "@/components/extras/command-menu";
 import {
   useCommandMenu,
@@ -54,49 +59,52 @@ export default {
 
 export const Basic = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu={
-        <CommandMenu>
-          <AutoOpen />
-        </CommandMenu>
-      }
     >
-      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
-      <Resource name="orders" list={ListGuesser} show={ShowGuesser} />
-    </Admin>
+      <CommandMenu>
+        <AutoOpen />
+        <AdminUI>
+          <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+          <Resource name="orders" list={ListGuesser} show={ShowGuesser} />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
 
 export const Hotkey = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu
     >
-      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
-    </Admin>
+      <CommandMenu>
+        <AdminUI>
+          <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
 
 export const AdminShorthand = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu={
-        <CommandMenu>
-          <LocationProbe />
-        </CommandMenu>
-      }
     >
-      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
-    </Admin>
+      <CommandMenu>
+        <LocationProbe />
+        <AdminUI>
+          <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
 
@@ -120,47 +128,47 @@ const AutoOpenWithQuery = ({ query }: { query: string }) => {
 
 export const RecordSearch = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu={
-        <CommandMenu searchDebounceMs={50}>
-          <AutoOpenWithQuery query="Notebook" />
-          <LocationProbe />
-        </CommandMenu>
-      }
     >
-      <Resource
-        name="products"
-        list={ListGuesser}
-        show={ShowGuesser}
-        recordRepresentation="name"
-      />
-      <Resource
-        name="orders"
-        list={ListGuesser}
-        show={ShowGuesser}
-        recordRepresentation="reference"
-      />
-    </Admin>
+      <CommandMenu searchDebounceMs={50}>
+        <AutoOpenWithQuery query="Notebook" />
+        <LocationProbe />
+        <AdminUI>
+          <Resource
+            name="products"
+            list={ListGuesser}
+            show={ShowGuesser}
+            recordRepresentation="name"
+          />
+          <Resource
+            name="orders"
+            list={ListGuesser}
+            show={ShowGuesser}
+            recordRepresentation="reference"
+          />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
 
 export const BuiltinActions = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu={
-        <CommandMenu>
-          <AutoOpen />
-        </CommandMenu>
-      }
     >
-      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
-    </Admin>
+      <CommandMenu>
+        <AutoOpen />
+        <AdminUI>
+          <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
 
@@ -178,19 +186,19 @@ const RegisterDuplicateProduct = () => {
 
 export const RegisteredCommand = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu={
-        <CommandMenu>
-          <RegisterDuplicateProduct />
-          <AutoOpen />
-        </CommandMenu>
-      }
     >
-      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
-    </Admin>
+      <CommandMenu>
+        <RegisterDuplicateProduct />
+        <AutoOpen />
+        <AdminUI>
+          <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
 
@@ -205,20 +213,20 @@ const restrictiveAuthProvider: AuthProvider = {
 
 export const PermissionDenied = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       authProvider={restrictiveAuthProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu={
-        <CommandMenu>
-          <AutoOpen />
-        </CommandMenu>
-      }
     >
-      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
-      <Resource name="orders" list={ListGuesser} show={ShowGuesser} />
-    </Admin>
+      <CommandMenu>
+        <AutoOpen />
+        <AdminUI>
+          <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+          <Resource name="orders" list={ListGuesser} show={ShowGuesser} />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
 
@@ -242,17 +250,17 @@ const SeedRecents = () => {
 
 export const Recents = () => (
   <TestMemoryRouter initialEntries={["/products"]}>
-    <Admin
+    <AdminContext
       dataProvider={dataProvider}
       i18nProvider={i18nProvider}
       store={memoryStore()}
-      commandMenu={
-        <CommandMenu>
-          <SeedRecents />
-        </CommandMenu>
-      }
     >
-      <Resource name="products" list={ListGuesser} show={ShowGuesser} />
-    </Admin>
+      <CommandMenu>
+        <SeedRecents />
+        <AdminUI>
+          <Resource name="products" list={ListGuesser} show={ShowGuesser} />
+        </AdminUI>
+      </CommandMenu>
+    </AdminContext>
   </TestMemoryRouter>
 );
