@@ -96,6 +96,12 @@
       "type": "boolean",
       "optional": true,
       "comment": "If true, all text in the search input is selected when the input receives focus"
+    },
+    {
+      "name": "setFilter",
+      "type": "(filter: string) => void",
+      "optional": true,
+      "comment": "Callback fired on every keystroke with the current filter text; for server-side filtering outside ReferenceArrayInput"
     }
   ]
 }

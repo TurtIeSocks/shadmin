@@ -5,7 +5,7 @@ import {
   ThemeProvider,
 } from "@/components/admin";
 import { i18nProvider } from "@/lib/i18n-provider";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 const record = {
   id: 1,
@@ -84,6 +84,21 @@ export const WithMismatchedOptionTextAndValue = () => (
     </SimpleForm>
   </StoryWrapper>
 );
+
+export const WithSetFilter = () => {
+  const [, setFilter] = useState("");
+  return (
+    <StoryWrapper theme="system">
+      <SimpleForm>
+        <AutocompleteArrayInput
+          source="tags"
+          choices={choices}
+          setFilter={setFilter}
+        />
+      </SimpleForm>
+    </StoryWrapper>
+  );
+};
 
 export const WithSelectOnFocus = () => (
   <StoryWrapper theme="system">
