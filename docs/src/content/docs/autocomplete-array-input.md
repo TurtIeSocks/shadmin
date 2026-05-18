@@ -80,6 +80,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `matchSuggestion` | Optional   | `(filter, choice) => boolean`    | -                     | Custom filter function replacing the default substring match; required when `optionText` is a React element                             |
 | `noOptionsText`   | Optional   | `ReactNode`                      | `ra.navigation.no_results` | Content shown in the dropdown when no choices match the current filter                                                            |
 | `onCreate`        | Optional   | `(filter) => object \| Promise`  | -                     | Callback invoked with the filter text when the user picks the "create" item; returns or resolves the new choice object                  |
+| `openOnFocus`     | Optional   | `boolean`                        | `false`               | Accepted for API parity; the array variant always opens on focus regardless of this setting                                             |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -161,6 +162,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `openOnFocus`
+
+Accepted for API parity with `<AutocompleteInput>`. The array variant always opens its dropdown when the inline search input receives focus, so this prop is a no-op — passing it does not change behaviour but allows shared prop objects to be spread across both components without type errors.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  openOnFocus
+/>
 ```
 
 ## `onCreate`

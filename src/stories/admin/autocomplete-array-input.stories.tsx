@@ -85,6 +85,14 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithOpenOnFocus = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput source="tags" choices={choices} openOnFocus />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithOnCreate = () => (
   <StoryWrapper theme="system">
     <SimpleForm>
