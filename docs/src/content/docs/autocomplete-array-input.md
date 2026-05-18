@@ -72,6 +72,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `createHintValue` | Optional   | `string`                         | -                     | Sentinel value passed to `useSupportCreateSuggestion` to represent the "create" item internally                                         |
 | `createItemLabel` | Optional   | `string \| (filter) => ReactNode` | `ra.action.create_item` | Label for the "Create …" menu item shown when the filter is non-empty                                                                  |
 | `createLabel`     | Optional   | `string \| ReactNode`            | -                     | Hint label shown as a menu item when the filter is empty, prompting users that they can create a new option                             |
+| `createValue`     | Optional   | `string`                         | `@@ra-create`         | The option value stored for the "create" item; must not conflict with real choice values                                                |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -153,6 +154,19 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `createValue`
+
+The sentinel string stored as the option value for the "create new option" item in the dropdown. Defaults to `"@@ra-create"`. Only override this when your actual choices contain that string as an ID.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+  createValue="__ra_create__"
+/>
 ```
 
 ## `createLabel`

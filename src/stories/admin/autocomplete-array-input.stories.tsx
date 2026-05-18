@@ -85,6 +85,19 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithCreateValue = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+        createValue="__ra_create__"
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithCreateLabel = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

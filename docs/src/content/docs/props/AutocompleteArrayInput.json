@@ -30,6 +30,12 @@
       "type": "string | ReactNode",
       "optional": true,
       "comment": "Hint label shown when the filter is empty, prompting users that they can create a new option"
+    },
+    {
+      "name": "createValue",
+      "type": "string",
+      "optional": true,
+      "comment": "The option value stored for the 'create' item in the dropdown; defaults to '@@ra-create'"
     }
   ]
 }
