@@ -61,3 +61,14 @@ You can also pass a custom string or translation key directly via the `label` pr
 <CloneButton label="Duplicate" />
 <CloneButton label="resources.posts.action.clone" />
 ```
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+
+const ref = useRef<HTMLAnchorElement>(null);
+<CloneButton ref={ref} />
+```

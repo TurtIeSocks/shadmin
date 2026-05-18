@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   CoreAdminContext,
   RecordContextProvider,
@@ -86,6 +86,15 @@ export const ResourceSpecificLabel = () => (
     <CloneButton />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = useRef<HTMLAnchorElement>(null);
+  return (
+    <Wrapper>
+      <CloneButton ref={ref} />
+    </Wrapper>
+  );
+};
 
 export const CustomIcon = () => (
   <Wrapper>
