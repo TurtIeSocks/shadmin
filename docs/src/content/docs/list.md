@@ -59,6 +59,7 @@ You can find more advanced examples of `<List>` usage in the [demo](https://marm
 | `render`                  | Optional\* | `(ctx) => ReactNode`           | -                                              | Alternate render function receiving the list context                                 |
 | `actions`                 | Optional   | `ReactNode`                    | default action bar                             | Custom actions area (right side of header)                                           |
 | `aside`                   | Optional   | `ReactNode`                    | -                                              | Side panel rendered alongside the list content                                       |
+| `component`               | Optional   | `ElementType`                  | `"div"`                                        | Override the root element wrapping the list content                                  |
 | `debounce`                | Optional   | `number`                       | `500`                                          | Debounce (ms) for filter & sort changes                                              |
 | `disableAuthentication`   | Optional   | `boolean`                      | `false`                                        | Skip auth check for this page                                                        |
 | `disableBreadcrumb`       | Optional   | `boolean`                      | `false`                                        | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
@@ -78,6 +79,24 @@ You can find more advanced examples of `<List>` usage in the [demo](https://marm
 `*` Provide either `children` or `render`.
 
 These props will soon be supported: `emptyWhileLoading`.
+
+## `component`
+
+By default, `<List>` wraps the list content in a `<div>`. Pass any React element type to `component` to replace it:
+
+```tsx
+import { List, DataTable } from "@/components/admin";
+import { Card } from "@/components/ui/card";
+
+export const PostList = () => (
+  <List component={Card}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </List>
+);
+```
 
 ## `aside`
 
