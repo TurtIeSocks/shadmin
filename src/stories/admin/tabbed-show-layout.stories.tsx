@@ -12,6 +12,9 @@ import {
   NumberField,
   ThemeProvider,
 } from "@/components/admin";
+import {
+  TabbedShowLayoutTabsList,
+} from "@/components/admin/tabbed-show-layout";
 
 export default {
   title: "Page components/TabbedShowLayout",
@@ -161,3 +164,40 @@ export const WithSpacing = ({
   </Wrapper>
 );
 Object.assign(WithSpacing, storyArgs);
+
+const tabElements = [
+  <TabbedShowLayout.Tab key="content" label="Content">
+    <TextField source="title" />
+    <TextField source="author" />
+  </TabbedShowLayout.Tab>,
+  <TabbedShowLayout.Tab key="stats" label="Stats">
+    <NumberField source="views" />
+  </TabbedShowLayout.Tab>,
+];
+
+/**
+ * Custom tab-strip passed via `tabs`. Uses `TabbedShowLayoutTabsList` — the
+ * exported default renderer — wrapped in a styled div to add a bottom border.
+ */
+export const CustomTabs = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => (
+  <Wrapper theme={theme}>
+    <TabbedShowLayout
+      syncWithLocation={false}
+      tabs={
+        <div className="border-b pb-1">
+          <TabbedShowLayoutTabsList
+            tabs={tabElements}
+            syncWithLocation={false}
+          />
+        </div>
+      }
+    >
+      {tabElements}
+    </TabbedShowLayout>
+  </Wrapper>
+);
+Object.assign(CustomTabs, storyArgs);
