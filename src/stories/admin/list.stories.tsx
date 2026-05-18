@@ -69,6 +69,31 @@ const PostListCustomSort = () => (
   </List>
 );
 
+const ListHelp = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Tips</p>
+    <p>Use the filters above to narrow your search.</p>
+  </div>
+);
+
+const PostListWithAside = () => (
+  <List aside={<ListHelp />}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="views" />
+    </DataTable>
+  </List>
+);
+
+export const WithAside = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={PostListWithAside} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const CustomSort = () => (
   <TestMemoryRouter initialEntries={["/posts"]}>
     <Admin dataProvider={dataProvider}>

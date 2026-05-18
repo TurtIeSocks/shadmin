@@ -58,6 +58,7 @@ You can find more advanced examples of `<List>` usage in the [demo](https://marm
 | `children`                | Optional\* | `ReactNode`                    | -                                              | Component(s) that display the records (e.g. `<DataTable>`)                           |
 | `render`                  | Optional\* | `(ctx) => ReactNode`           | -                                              | Alternate render function receiving the list context                                 |
 | `actions`                 | Optional   | `ReactNode`                    | default action bar                             | Custom actions area (right side of header)                                           |
+| `aside`                   | Optional   | `ReactNode`                    | -                                              | Side panel rendered alongside the list content                                       |
 | `debounce`                | Optional   | `number`                       | `500`                                          | Debounce (ms) for filter & sort changes                                              |
 | `disableAuthentication`   | Optional   | `boolean`                      | `false`                                        | Skip auth check for this page                                                        |
 | `disableBreadcrumb`       | Optional   | `boolean`                      | `false`                                        | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
@@ -76,7 +77,31 @@ You can find more advanced examples of `<List>` usage in the [demo](https://marm
 
 `*` Provide either `children` or `render`.
 
-These props will soon be supported: `aside`, `empty`, `emptyWhileLoading`.
+These props will soon be supported: `emptyWhileLoading`.
+
+## `aside`
+
+Pass any React node as `aside` to display a side panel next to the list. The aside floats to the right in a flex row alongside the list content:
+
+```tsx
+import { List, DataTable } from "@/components/admin";
+
+const ListHelp = () => (
+  <div className="p-4 bg-muted rounded text-sm w-64">
+    <p className="font-medium mb-2">Tips</p>
+    <p>Use the filters above to narrow your search.</p>
+  </div>
+);
+
+export const PostList = () => (
+  <List aside={<ListHelp />}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </List>
+);
+```
 
 ## Main Content Area
 
