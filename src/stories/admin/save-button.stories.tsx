@@ -1,5 +1,6 @@
 import React from "react";
 import { CoreAdminContext, Form, RecordContextProvider } from "ra-core";
+import { Send } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { SaveButton, TextInput, ThemeProvider } from "@/components/admin";
 import { useFormState } from "react-hook-form";
@@ -139,6 +140,15 @@ export const CustomLabel = () => (
       <SaveButton label="Save Changes" />
       <SaveButton label="Save Draft" variant="outline" />
       <SaveButton label="Save & Close" variant="secondary" />
+    </div>
+  </Wrapper>
+);
+
+export const CustomIcon = () => (
+  <Wrapper>
+    <TextInput source="title" />
+    <div className="mt-4">
+      <SaveButton icon={<Send />} />
     </div>
   </Wrapper>
 );

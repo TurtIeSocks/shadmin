@@ -1,4 +1,59 @@
 {
   "name": "SaveButton",
-  "props": []
+  "props": [
+    {
+      "name": "alwaysEnable",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "mutationOptions",
+      "type": "object",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "transform",
+      "type": "(data: any) => any",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "type",
+      "type": "\"button\" | \"submit\" | \"reset\"",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "variant",
+      "type": "\"default\" | \"outline\" | \"destructive\" | \"secondary\" | \"ghost\" | \"link\"",
+      "optional": true,
+      "comment": ""
+    }
+  ]
 }

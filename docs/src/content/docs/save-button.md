@@ -47,3 +47,14 @@ On click, it triggers the `handleSubmit` callback from the form context.
 | `transform`       | Optional | `(data: any) => any`                                                | -                | Modify data before submit                                               |
 | `type`            | Optional | `"button"\|"submit"\|"reset"`                                       | `submit`         | HTML button type                                                        |
 | `variant`         | Optional | `"default"\|"outline"\|"destructive"\|"secondary"\|"ghost"\|"link"` | `default`        | shadcn button variant                                                   |
+
+## `icon`
+
+Replaces the default `<Save />` shown alongside the label. Pass any lucide-react icon to convey a different action.
+
+```tsx
+import { Send } from "lucide-react";
+import { SaveButton } from "@/components/admin";
+
+<SaveButton icon={<Send />} />
+```
