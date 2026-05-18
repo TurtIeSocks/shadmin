@@ -97,15 +97,7 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/assistant.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/auth-callback.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/auth-error-screen.tsx",
           "type": "registry:component"
         },
         {
@@ -165,10 +157,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/calendar-list.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/cancel-button.tsx",
           "type": "registry:component"
         },
@@ -197,10 +185,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/command-menu.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/configurable.tsx",
           "type": "registry:component"
         },
@@ -218,10 +202,6 @@
         },
         {
           "path": "src/components/admin/create.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/dashboard-charts.tsx",
           "type": "registry:component"
         },
         {
@@ -258,10 +238,6 @@
         },
         {
           "path": "src/components/admin/device-test-wrapper.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/diff-viewer.tsx",
           "type": "registry:component"
         },
         {
@@ -329,19 +305,11 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/filter-live-form.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/filter-live-search.tsx",
           "type": "registry:component"
         },
         {
           "path": "src/components/admin/form.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/hooks/use-form-field.ts",
           "type": "registry:component"
         },
         {
@@ -373,10 +341,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/in-place-editor.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/index.ts",
           "type": "registry:component"
         },
@@ -402,10 +366,6 @@
         },
         {
           "path": "src/components/admin/inspector.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/kanban-board.tsx",
           "type": "registry:component"
         },
         {
@@ -525,27 +485,11 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/onboarding-tour.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/password-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/permission-matrix.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/pivot-grid.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/placeholder.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/presence-bar.tsx",
           "type": "registry:component"
         },
         {
@@ -566,10 +510,6 @@
         },
         {
           "path": "src/components/admin/record-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/record-timeline.tsx",
           "type": "registry:component"
         },
         {
@@ -821,10 +761,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/tree-list.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/update-button.tsx",
           "type": "registry:component"
         },
@@ -833,19 +769,19 @@
           "type": "registry:component"
         },
         {
-          "path": "src/hooks/use-theme.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/user-menu.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/wizard-form.tsx",
+          "path": "src/components/admin/wrapper-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/wrapper-field.tsx",
+          "path": "src/hooks/use-form-field.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/hooks/use-theme.ts",
           "type": "registry:component"
         },
         {
@@ -897,6 +833,21 @@
         "toggle",
         "toggle-group",
         "tooltip"
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "@tiptap/extension-code-block-lowlight",
+        "@tiptap/extension-color",
+        "@tiptap/extension-horizontal-rule",
+        "@tiptap/extension-image",
+        "@tiptap/extension-text-style",
+        "@tiptap/extension-typography",
+        "@tiptap/extensions",
+        "@tiptap/pm",
+        "@tiptap/react",
+        "@tiptap/starter-kit",
+        "lowlight",
+        "react-medium-image-zoom"
       ],
       "files": [
         {
@@ -1123,21 +1074,6 @@
           "path": "src/components/rich-text-input/use-rich-text-input-editor.ts",
           "type": "registry:component"
         }
-      ],
-      "dependencies": [
-        "@radix-ui/react-icons",
-        "@tiptap/extension-code-block-lowlight",
-        "@tiptap/extension-color",
-        "@tiptap/extension-horizontal-rule",
-        "@tiptap/extension-image",
-        "@tiptap/extension-text-style",
-        "@tiptap/extension-typography",
-        "@tiptap/extensions",
-        "@tiptap/pm",
-        "@tiptap/react",
-        "@tiptap/starter-kit",
-        "lowlight",
-        "react-medium-image-zoom"
       ]
     },
     {
@@ -1146,13 +1082,14 @@
       "title": "MdxEditor",
       "description": "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadcn Admin Kit, powered by MDXEditor.",
       "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "dependencies": ["@mdxeditor/editor"],
       "files": [
         {
-          "path": "src/components/mdx-editor/index.ts",
+          "path": "src/components/mdx-editor/default-plugins.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/mdx-editor/default-plugins.tsx",
+          "path": "src/components/mdx-editor/index.ts",
           "type": "registry:component"
         },
         {
@@ -1163,8 +1100,7 @@
           "path": "src/components/mdx-editor/mdx-input.tsx",
           "type": "registry:component"
         }
-      ],
-      "dependencies": ["@mdxeditor/editor"]
+      ]
     },
     {
       "name": "leaflet-admin",
@@ -1194,39 +1130,11 @@
       "devDependencies": ["@types/leaflet"],
       "files": [
         {
-          "path": "src/components/leaflet/index.ts",
+          "path": "src/components/leaflet/feature-collection-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shared.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/shared-map.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/types.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/lat-lng-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/lat-lng-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geojson-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geojson-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/simplify-input.tsx",
+          "path": "src/components/leaflet/feature-collection-input.tsx",
           "type": "registry:component"
         },
         {
@@ -1238,11 +1146,35 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/feature-collection-field.tsx",
+          "path": "src/components/leaflet/geocoding/geocoding-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/feature-collection-input.tsx",
+          "path": "src/components/leaflet/geocoding/map-with-search.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/geocoding/nominatim-client.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/geocoding/reverse-geocode-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/geocoding/use-geocode.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/geocoding/use-reverse-geocode.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/geojson-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/geojson-input.tsx",
           "type": "registry:component"
         },
         {
@@ -1250,35 +1182,79 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/geoman/use-geoman-rhf.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/leaflet/geoman/shape-constraints.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/shape-field-shell.tsx",
+          "path": "src/components/leaflet/geoman/use-geoman-rhf.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/shape-input-shell.tsx",
+          "path": "src/components/leaflet/index.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/point-field.tsx",
+          "path": "src/components/leaflet/lat-lng-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/point-input.tsx",
+          "path": "src/components/leaflet/lat-lng-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/multi-point-field.tsx",
+          "path": "src/components/leaflet/osm/geometry-ops.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/multi-point-input.tsx",
+          "path": "src/components/leaflet/osm/osm-feature-add.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/osm-feature-operator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/osm-feature-subtract.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/osm-presets.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/osm-tag-catalog.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/overpass-client.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/use-osm-features.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/use-osm-snap-to-roads.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/osm/use-overpass.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/shapes/bbox-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/shapes/bbox-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/shapes/geometry-collection-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/shapes/geometry-collection-input.tsx",
           "type": "registry:component"
         },
         {
@@ -1298,11 +1274,11 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/polygon-field.tsx",
+          "path": "src/components/leaflet/shapes/multi-point-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/polygon-input.tsx",
+          "path": "src/components/leaflet/shapes/multi-point-input.tsx",
           "type": "registry:component"
         },
         {
@@ -1314,83 +1290,43 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/geometry-collection-field.tsx",
+          "path": "src/components/leaflet/shapes/point-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/geometry-collection-input.tsx",
+          "path": "src/components/leaflet/shapes/point-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/bbox-field.tsx",
+          "path": "src/components/leaflet/shapes/polygon-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/shapes/bbox-input.tsx",
+          "path": "src/components/leaflet/shapes/polygon-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/osm/overpass-client.ts",
+          "path": "src/components/leaflet/shapes/shape-field-shell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/osm/use-overpass.ts",
+          "path": "src/components/leaflet/shapes/shape-input-shell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/osm/geometry-ops.ts",
+          "path": "src/components/leaflet/shared-map.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/osm/osm-presets.ts",
+          "path": "src/components/leaflet/shared.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/osm/osm-tag-catalog.ts",
+          "path": "src/components/leaflet/simplify-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/osm/use-osm-features.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/osm/osm-feature-operator.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/osm/osm-feature-subtract.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/osm/osm-feature-add.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/osm/use-osm-snap-to-roads.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geocoding/nominatim-client.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geocoding/use-geocode.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geocoding/use-reverse-geocode.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geocoding/geocoding-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geocoding/reverse-geocode-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geocoding/map-with-search.tsx",
+          "path": "src/components/leaflet/types.ts",
           "type": "registry:component"
         }
       ]
@@ -1405,11 +1341,423 @@
       "devDependencies": ["@types/papaparse"],
       "files": [
         {
+          "path": "src/components/csv-import/csv-import.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/csv-import/index.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/components/csv-import/csv-import.tsx",
+          "path": "src/components/csv-import/use-csv-import.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "extras",
+      "type": "registry:block",
+      "title": "Shadcn Admin Kit Extras",
+      "description": "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadcn Admin Kit.",
+      "registryDependencies": [
+        "@shadcn-admin-kit/admin",
+        "alert-dialog",
+        "progress"
+      ],
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities",
+        "cronstrue",
+        "libphonenumber-js"
+      ],
+      "files": [
+        {
+          "path": "src/components/extras/api-key-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/api-key-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/approval-queue.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/assistant-transport.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/assistant.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/bulk-edit-drawer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/calendar-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/color-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/color-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/command-menu-context.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/command-menu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/comments-thread.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/cron-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/cron-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/cron-utils.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/currency-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/currency-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/dashboard-charts.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/data-provider-devtools-context.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/data-provider-devtools.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/diff-viewer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/dual-approval-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/duration-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/duration-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/duration-utils.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/filter-live-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/i18n-key-editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/in-place-editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/job-monitor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/kanban-board.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/layout-builder.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/onboarding-tour.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/permission-matrix.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/phone-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/phone-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/pivot-grid.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/presence-bar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/rating-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/rating-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/record-timeline.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/schema-driven-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/status-transition-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/subscription-plan-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/subscription-plan-picker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/theme-studio.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/tree-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/usage-meter-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/webhook-endpoint-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/webhook-endpoint-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/extras/wizard-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/ui/color-picker/color-picker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/ui/color-picker/color-picker.types.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/ui/color-picker/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "monaco",
+      "type": "registry:block",
+      "title": "Monaco JSON Field & Input",
+      "description": "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadcn Admin Kit.",
+      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "dependencies": ["@monaco-editor/react", "monaco-editor"],
+      "files": [
+        {
+          "path": "src/components/monaco/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/detect-value-shape.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/monaco-skeleton.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/types.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/use-auto-height.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/use-json-schema.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/use-monaco-layout.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/use-monaco-markers.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/internal/use-monaco-theme.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/json-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/monaco-json-field-lazy.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/monaco-json-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/monaco-json-input-lazy.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/monaco/monaco-json-input.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "supabase",
+      "type": "registry:block",
+      "title": "Supabase Admin",
+      "description": "Optional Supabase integration for Shadcn Admin Kit: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
+      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "dependencies": [
+        "@supabase/supabase-js",
+        "openapi-types",
+        "ra-supabase-core"
+      ],
+      "files": [
+        {
+          "path": "src/components/supabase/admin-guesser.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/create-guesser.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/edit-field-types.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/edit-guesser.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/forgot-password-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/forgot-password-page.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/i18n/en.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/i18n/fr.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/i18n/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/icons.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/infer-element-from-type.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/inferred-element.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/list-field-types.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/list-guesser.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/login-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/login-page.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/set-password-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/set-password-page.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/show-field-types.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/show-guesser.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/social-auth-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/supabase/use-crud-guesser.tsx",
           "type": "registry:component"
         }
       ]
@@ -1419,13 +1767,13 @@
       "type": "registry:block",
       "title": "Example Admin built with Shadcn Admin Kit",
       "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "dependencies": [],
       "files": [
         {
           "path": "src/examples/example-admin.tsx",
           "type": "registry:component"
         }
-      ],
-      "dependencies": []
+      ]
     }
   ]
 }

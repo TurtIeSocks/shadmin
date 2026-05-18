@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
 import { execFileSync } from "node:child_process";
-import { mkdtemp, mkdir, readFile, rm, stat, writeFile, copyFile } from "node:fs/promises";
+import {
+  mkdtemp,
+  mkdir,
+  readFile,
+  rm,
+  stat,
+  writeFile,
+  copyFile,
+} from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 
@@ -12,7 +20,11 @@ const registryItemSchema = "https://ui.shadcn.com/schema/registry-item.json";
 
 // The shadcn registry builder currently OOMs on this large, highly-connected block.
 // Build it manually from the declared file list while still using shadcn for the rest.
-const manualBuildItems = new Set(["rich-text-input", "leaflet-admin"]);
+const manualBuildItems = new Set([
+  "rich-text-input",
+  "leaflet-admin",
+  "extras",
+]);
 
 const dedupeBy = (items, keySelector) => {
   const seen = new Set();
@@ -77,7 +89,9 @@ const run = async () => {
     await rm(tempDir, { recursive: true, force: true });
   }
 
-  const manualItems = registry.items.filter((item) => manualBuildItems.has(item.name));
+  const manualItems = registry.items.filter((item) =>
+    manualBuildItems.has(item.name),
+  );
 
   for (const item of manualItems) {
     const itemCopy = JSON.parse(JSON.stringify(item));
