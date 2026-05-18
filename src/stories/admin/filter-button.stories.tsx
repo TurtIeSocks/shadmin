@@ -1,4 +1,3 @@
-import React from "react";
 import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import {
@@ -82,11 +81,9 @@ const Wrapper = ({
       choices={authorsChoices}
     />,
   ],
-  filterButton = <FilterButton />,
 }: {
   defaultDataProvider?: DataProvider;
   filters?: ListProps["filters"];
-  filterButton?: React.ReactElement;
 }) => (
   <TestMemoryRouter initialEntries={["/books"]}>
     <Admin
@@ -99,7 +96,7 @@ const Wrapper = ({
         list={
           <List
             perPage={5}
-            actions={filterButton}
+            actions={<FilterButton />}
             sort={{ field: "id", order: "ASC" }}
             filters={filters}
           >
@@ -118,8 +115,3 @@ const Wrapper = ({
 );
 
 export const Basic = () => <Wrapper />;
-
-export const WithRef = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  return <Wrapper filterButton={<FilterButton ref={ref} />} />;
-};

@@ -52,29 +52,14 @@ The dropdown lists every filter input that is not marked `alwaysOn`. Selecting o
 
 ## Props
 
-| Prop               | Required | Type                       | Default      | Description                                                 |
-| ------------------ | -------- | -------------------------- | ------------ | ----------------------------------------------------------- |
-| `filters`          | Optional | `ReactNode[]`              | from context | List of filter input elements                               |
-| `disableSaveQuery` | Optional | `boolean`                  | `false`      | Hide the "Save current query" and "Remove query" menu items |
-| `ref`              | Optional | `Ref<HTMLDivElement>`      | -            | Forwarded to the underlying `<Button>`                      |
-| `resource`         | Optional | `string`                   | from context | Override the resource used for saved queries                |
-| `variant`          | Optional | `string`                   | `outline`    | Button variant: `default`, `outline`, `ghost`, etc.         |
-| `size`             | Optional | `string`                   | `default`    | Button size: `default`, `sm`, `lg`, `icon`                  |
-| `className`        | Optional | `string`                   | -            | Extra Tailwind classes appended to the wrapper element      |
-
-## `ref`
-
-Forwards a ref to the underlying `<Button>` element.
-
-```tsx
-import { useRef } from "react";
-import { FilterButton } from "@/components/admin";
-
-const MyToolbar = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  return <FilterButton ref={ref} />;
-};
-```
+| Prop               | Required | Type          | Default      | Description                                                 |
+| ------------------ | -------- | ------------- | ------------ | ----------------------------------------------------------- |
+| `filters`          | Optional | `ReactNode[]` | from context | List of filter input elements                               |
+| `disableSaveQuery` | Optional | `boolean`     | `false`      | Hide the "Save current query" and "Remove query" menu items |
+| `resource`         | Optional | `string`      | from context | Override the resource used for saved queries                |
+| `variant`          | Optional | `string`      | `outline`    | Button variant: `default`, `outline`, `ghost`, etc.         |
+| `size`             | Optional | `string`      | `default`    | Button size: `default`, `sm`, `lg`, `icon`                  |
+| `className`        | Optional | `string`      | -            | Extra Tailwind classes appended to the wrapper element      |
 
 ## `filters`
 
