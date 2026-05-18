@@ -12,6 +12,12 @@
       "type": "string",
       "optional": true,
       "comment": ""
+    },
+    {
+      "name": "divider",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Divider element inserted between each field row."
     }
   ]
 }

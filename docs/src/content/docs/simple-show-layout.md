@@ -20,9 +20,29 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop     | Required | Type        | Default | Description                   |
-| -------- | -------- | ----------- | ------- | ----------------------------- |
-| children | Optional | `ReactNode` | -       | Fields to render with labels. |
+| Prop       | Required | Type        | Default | Description                                     |
+| ---------- | -------- | ----------- | ------- | ----------------------------------------------- |
+| `children` | Optional | `ReactNode` | -       | Fields to render with labels.                   |
+| `divider`  | Optional | `ReactNode` | -       | Divider element inserted between each field row |
+
+## `divider`
+
+Pass a React node as `divider` to render a separator between each field row. The divider is inserted after every child except the last:
+
+```tsx
+import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
+import { Separator } from "@/components/ui/separator";
+
+export const PostShow = () => (
+  <Show>
+    <SimpleShowLayout divider={<Separator />}>
+      <RecordField source="title" />
+      <RecordField source="body" />
+      <RecordField source="author" />
+    </SimpleShowLayout>
+  </Show>
+);
+```
 
 ## Behavior
 

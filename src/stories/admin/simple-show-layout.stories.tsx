@@ -66,6 +66,17 @@ export const CustomClassName = () => (
   </Wrapper>
 );
 
+export const WithDivider = () => (
+  <Wrapper>
+    <SimpleShowLayout divider={<hr className="border-border" />}>
+      <TextField source="title" />
+      <TextField source="author" />
+      <NumberField source="views" />
+      <BooleanField source="published" />
+    </SimpleShowLayout>
+  </Wrapper>
+);
+
 export const NestedFields = () => (
   <Wrapper>
     <SimpleShowLayout>
