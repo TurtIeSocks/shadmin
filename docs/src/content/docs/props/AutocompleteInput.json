@@ -2,6 +2,12 @@
   "name": "AutocompleteInput",
   "props": [
     {
+      "name": "openOnFocus",
+      "type": "boolean",
+      "optional": true,
+      "comment": "If true, the dropdown opens automatically when the search input receives focus"
+    },
+    {
       "name": "noOptionsText",
       "type": "React.ReactNode",
       "optional": true,

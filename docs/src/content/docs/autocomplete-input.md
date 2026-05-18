@@ -80,6 +80,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `offline`                 | Optional   | `ReactNode`                                     | -                                          | What to render when there is no network connectivity when fetching the choices                                                                                                                                      |
 | `onChange`                | Optional   | `Function`                                      | `-`                                        | A function called with the new value, along with the selected record, when the input value changes                                                                                                                  |
 | `onCreate`                | Optional   | `Function`                                      | `-`                                        | A function called with the current filter value when users choose to create a new choice.                                                                                                                           |
+| `openOnFocus`             | Optional   | `boolean`                                       | `false`                                    | If true, the dropdown opens automatically when the search input receives focus                                                                                                                                       |
 | `optionText`              | Optional   | `string` &#124; `Function` &#124; `Component`   | `undefined` &#124; `record Representation` | Field name of record to display in the suggestion item or function using the choice object as argument                                                                                                              |
 | `optionValue`             | Optional   | `string`                                        | `id`                                       | Field name of record containing the value to use as input value                                                                                                                                                     |
 | `parse`                   | Optional   | `Function`                                      | `-`                                        | Callback taking the value from the input, and returning the value to be stored in the form state.                                                                                                                   |
@@ -343,6 +344,18 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `openOnFocus`
+
+When `true`, the dropdown opens automatically as soon as the search input gains focus. This saves the user an extra click when they tab into the field or click the trigger button.
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  openOnFocus
+/>
+```
 
 ## `noOptionsText`
 
