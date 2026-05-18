@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   CoreAdminContext,
   ListContext,
@@ -65,6 +65,15 @@ export const CustomLabel = () => (
     <BulkDeleteButton label="Remove selected" />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <BulkDeleteButton ref={ref} />
+    </Wrapper>
+  );
+};
 
 export const CustomIcon = () => (
   <Wrapper>
