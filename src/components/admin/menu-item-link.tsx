@@ -14,7 +14,10 @@ import {
 } from "@/components/ui/tooltip";
 import { KeyboardShortcut } from "@/components/admin/keyboard-shortcut";
 
-const KEY_TO_PROP: Record<string, "metaKey" | "ctrlKey" | "shiftKey" | "altKey"> = {
+const KEY_TO_PROP: Record<
+  string,
+  "metaKey" | "ctrlKey" | "shiftKey" | "altKey"
+> = {
   meta: "metaKey",
   cmd: "metaKey",
   ctrl: "ctrlKey",
@@ -23,10 +26,14 @@ const KEY_TO_PROP: Record<string, "metaKey" | "ctrlKey" | "shiftKey" | "altKey">
   option: "altKey",
 };
 
-const isMac = typeof navigator !== "undefined" && /Mac/i.test(navigator.platform);
+const isMac =
+  typeof navigator !== "undefined" && /Mac/i.test(navigator.platform);
 
 function parseShortcut(shortcut: string) {
-  const parts = shortcut.toLowerCase().split("+").map((s) => s.trim());
+  const parts = shortcut
+    .toLowerCase()
+    .split("+")
+    .map((s) => s.trim());
   const modifiers = new Set<string>();
   let key = "";
   for (const part of parts) {
@@ -46,7 +53,9 @@ export type MenuItemLinkProps = {
    * Target path for the link. Compared against the current location to
    * derive the active state. Accepts a string or a react-router `To` object.
    */
-  to: string | { pathname: string; search?: string; hash?: string; state?: unknown };
+  to:
+    | string
+    | { pathname: string; search?: string; hash?: string; state?: unknown };
   /**
    * The text rendered alongside `leftIcon`. Strings are auto-translated via
    * `useTranslate` (with the string itself as the fallback). Pass a ReactNode
@@ -128,7 +137,10 @@ export const MenuItemLink = ({
       ? translate(primaryText, { _: primaryText })
       : primaryText;
   const toPathname = typeof to === "string" ? to : to.pathname;
-  const match = useMatch({ path: toPathname, end: toPathname === `${basename}/` });
+  const match = useMatch({
+    path: toPathname,
+    end: toPathname === `${basename}/`,
+  });
   const { open, openMobile, setOpenMobile } = useSidebar();
   const handleClick = () => {
     if (openMobile) {

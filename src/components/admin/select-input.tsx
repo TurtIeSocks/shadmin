@@ -316,7 +316,9 @@ export const SelectInput = (props: SelectInputProps) => {
             </SelectContent>
           </Select>
         </div>
-        <InputHelperText helperText={helperText ?? (fetchError as Error | undefined)?.message} />
+        <InputHelperText
+          helperText={helperText ?? (fetchError as Error | undefined)?.message}
+        />
         <FormError />
       </FormField>
       {createElement}

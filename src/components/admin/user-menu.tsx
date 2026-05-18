@@ -57,7 +57,8 @@ export function UserMenu({ children, label, icon }: UserMenuProps) {
   const ariaLabel =
     label != null
       ? translate(label, { _: label })
-      : identity?.fullName || translate("ra.auth.user_menu", { _: "User menu" });
+      : identity?.fullName ||
+        translate("ra.auth.user_menu", { _: "User menu" });
 
   return (
     <UserMenuContext.Provider value={{ onClose: handleClose }}>

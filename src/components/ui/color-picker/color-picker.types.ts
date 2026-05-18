@@ -1,4 +1,4 @@
-type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
 type HexDigit =
   | Digit
@@ -13,15 +13,15 @@ type HexDigit =
   | "C"
   | "D"
   | "E"
-  | "F"
+  | "F";
 
-type WS = " " | "\n" | "\t"
+type WS = " " | "\n" | "\t";
 
-type TrimLeft<S extends string> = S extends `${WS}${infer R}` ? TrimLeft<R> : S
+type TrimLeft<S extends string> = S extends `${WS}${infer R}` ? TrimLeft<R> : S;
 type TrimRight<S extends string> = S extends `${infer R}${WS}`
   ? TrimRight<R>
-  : S
-type Trim<S extends string> = TrimLeft<TrimRight<S>>
+  : S;
+type Trim<S extends string> = TrimLeft<TrimRight<S>>;
 
 type AllChars<S extends string, Allowed extends string> = S extends ""
   ? true
@@ -29,57 +29,57 @@ type AllChars<S extends string, Allowed extends string> = S extends ""
     ? C extends Allowed
       ? AllChars<R, Allowed>
       : false
-    : false
+    : false;
 
 type NonEmptyAllChars<S extends string, Allowed extends string> = S extends ""
   ? false
-  : AllChars<S, Allowed>
+  : AllChars<S, Allowed>;
 
 type Length<
   S extends string,
   A extends unknown[] = [],
-> = S extends `${string}${infer R}` ? Length<R, [...A, unknown]> : A["length"]
+> = S extends `${string}${infer R}` ? Length<R, [...A, unknown]> : A["length"];
 
 type And<A extends boolean, B extends boolean> = A extends true
   ? B extends true
     ? true
     : false
-  : false
+  : false;
 
 type Or<A extends boolean, B extends boolean> = A extends true
   ? true
   : B extends true
     ? true
-    : false
+    : false;
 
 type Enumerate<
   N extends number,
   A extends number[] = [],
-> = A["length"] extends N ? A[number] : Enumerate<N, [...A, A["length"]]>
+> = A["length"] extends N ? A[number] : Enumerate<N, [...A, A["length"]]>;
 
 type IntRange<From extends number, To extends number> = Exclude<
   Enumerate<To>,
   Enumerate<From>
->
+>;
 
 type StripLeadingZeros<S extends string> = S extends `0${infer R}`
   ? R extends ""
     ? "0"
     : StripLeadingZeros<R>
-  : S
+  : S;
 
-type NormalizeInt<S extends string> = S extends "" ? "0" : StripLeadingZeros<S>
+type NormalizeInt<S extends string> = S extends "" ? "0" : StripLeadingZeros<S>;
 
 type IsIntPart<S extends string> = S extends ""
   ? true
-  : NonEmptyAllChars<S, Digit>
+  : NonEmptyAllChars<S, Digit>;
 
 type IsByte<S extends string> =
   NonEmptyAllChars<S, Digit> extends true
     ? NormalizeInt<S> extends `${IntRange<0, 256>}`
       ? true
       : false
-    : false
+    : false;
 
 type IsNumber0To1<S extends string> = S extends `${infer I}.${infer F}`
   ? And<IsIntPart<I>, NonEmptyAllChars<F, Digit>> extends true
@@ -93,7 +93,7 @@ type IsNumber0To1<S extends string> = S extends `${infer I}.${infer F}`
     ? NormalizeInt<S> extends "0" | "1"
       ? true
       : false
-    : false
+    : false;
 
 type IsNumber0To100<S extends string> = S extends `${infer I}.${infer F}`
   ? And<IsIntPart<I>, NonEmptyAllChars<F, Digit>> extends true
@@ -107,7 +107,7 @@ type IsNumber0To100<S extends string> = S extends `${infer I}.${infer F}`
     ? NormalizeInt<S> extends `${IntRange<0, 101>}`
       ? true
       : false
-    : false
+    : false;
 
 type IsNumber0To360<S extends string> = S extends `${infer I}.${infer F}`
   ? And<IsIntPart<I>, NonEmptyAllChars<F, Digit>> extends true
@@ -121,7 +121,7 @@ type IsNumber0To360<S extends string> = S extends `${infer I}.${infer F}`
     ? NormalizeInt<S> extends `${IntRange<0, 361>}`
       ? true
       : false
-    : false
+    : false;
 
 type IsNumber0To400<S extends string> = S extends `${infer I}.${infer F}`
   ? And<IsIntPart<I>, NonEmptyAllChars<F, Digit>> extends true
@@ -135,15 +135,15 @@ type IsNumber0To400<S extends string> = S extends `${infer I}.${infer F}`
     ? NormalizeInt<S> extends `${IntRange<0, 401>}`
       ? true
       : false
-    : false
+    : false;
 
 type IsPercent0To100<S extends string> = S extends `${infer N}%`
   ? IsNumber0To100<N>
-  : false
+  : false;
 
-type IsAlpha<S extends string> = Or<IsNumber0To1<S>, IsPercent0To100<S>>
+type IsAlpha<S extends string> = Or<IsNumber0To1<S>, IsPercent0To100<S>>;
 
-type IsRgbChannel<S extends string> = Or<IsByte<S>, IsPercent0To100<S>>
+type IsRgbChannel<S extends string> = Or<IsByte<S>, IsPercent0To100<S>>;
 
 type IsHue<S extends string> = S extends `${infer N}deg`
   ? IsNumber0To360<N>
@@ -151,13 +151,13 @@ type IsHue<S extends string> = S extends `${infer N}deg`
     ? IsNumber0To1<N>
     : S extends `${infer N}grad`
       ? IsNumber0To400<N>
-      : IsNumber0To360<S>
+      : IsNumber0To360<S>;
 
 type IsNonNegativeNumber<S extends string> = S extends `${infer I}.${infer F}`
   ? And<IsIntPart<I>, NonEmptyAllChars<F, Digit>>
-  : NonEmptyAllChars<S, Digit>
+  : NonEmptyAllChars<S, Digit>;
 
-type KeepIf<B extends boolean, S extends string> = B extends true ? S : never
+type KeepIf<B extends boolean, S extends string> = B extends true ? S : never;
 
 // =====================================================================
 // 2. STRICT VALIDATORS — exported, generic. Used by color() helper.
@@ -168,7 +168,7 @@ export type HexLiteral<S extends string> = S extends `#${infer Body}`
   ? Length<Body> extends 3 | 4 | 6 | 8
     ? KeepIf<AllChars<Body, HexDigit>, S>
     : never
-  : never
+  : never;
 
 /** rgb(255, 0, 0) | rgb(100%, 0%, 0%) | rgb(255 0 0) */
 export type RGBLiteral<S extends string> =
@@ -188,7 +188,7 @@ export type RGBLiteral<S extends string> =
           >,
           S
         >
-      : never
+      : never;
 
 /**
  * rgba(255, 0, 0, 0.5) | rgba(255, 0, 0, 50%)
@@ -228,7 +228,7 @@ export type RGBALiteral<S extends string> =
             >,
             S
           >
-        : never
+        : never;
 
 /** hsl(210, 100%, 50%) | hsl(210 100% 50%) | hsl(210 100% 50% / 0.5) */
 export type HSLLiteral<S extends string> =
@@ -259,7 +259,7 @@ export type HSLLiteral<S extends string> =
             >,
             S
           >
-        : never
+        : never;
 
 /**
  * oklch(62% 0.18 240)
@@ -288,11 +288,11 @@ export type OKLCHLiteral<S extends string> =
           >,
           S
         >
-      : never
+      : never;
 
 type IsSignedDecimal<S extends string> = S extends `-${infer R}`
   ? IsNonNegativeNumber<R>
-  : IsNonNegativeNumber<S>
+  : IsNonNegativeNumber<S>;
 
 /**
  * oklab(0.5 0.1 -0.05)
@@ -322,7 +322,7 @@ export type OklabLiteral<S extends string> =
           >,
           S
         >
-      : never
+      : never;
 
 /**
  * hwb(240 20% 30%)
@@ -348,7 +348,7 @@ export type HWBLiteral<S extends string> =
           >,
           S
         >
-      : never
+      : never;
 
 export type ColorLiteral<S extends string> =
   | HexLiteral<S>
@@ -357,38 +357,38 @@ export type ColorLiteral<S extends string> =
   | HSLLiteral<S>
   | OKLCHLiteral<S>
   | OklabLiteral<S>
-  | HWBLiteral<S>
+  | HWBLiteral<S>;
 
 /** Validate a color literal at the call site. */
-export const color = <S extends string>(value: S & ColorLiteral<S>): S => value
+export const color = <S extends string>(value: S & ColorLiteral<S>): S => value;
 
 // =====================================================================
 // 3. SUGGESTION STRINGS — non-generic, for IntelliSense + onChange returns.
 // =====================================================================
 
-export type HexString = `#${string}`
+export type HexString = `#${string}`;
 
 export type RgbString =
   | `rgb(${number} ${number} ${number})`
   | `rgb(${number} ${number} ${number} / ${number}%)`
   | `rgb(${number}, ${number}, ${number})`
-  | `rgba(${number}, ${number}, ${number}, ${number})`
+  | `rgba(${number}, ${number}, ${number}, ${number})`;
 
 export type HslString =
   | `hsl(${number} ${number}% ${number}%)`
-  | `hsl(${number} ${number}% ${number}% / ${number}%)`
+  | `hsl(${number} ${number}% ${number}% / ${number}%)`;
 
 export type OklchString =
   | `oklch(${number} ${number} ${number})`
-  | `oklch(${number} ${number} ${number} / ${number}%)`
+  | `oklch(${number} ${number} ${number} / ${number}%)`;
 
 export type OklabString =
   | `oklab(${number} ${number} ${number})`
-  | `oklab(${number} ${number} ${number} / ${number}%)`
+  | `oklab(${number} ${number} ${number} / ${number}%)`;
 
 export type HwbString =
   | `hwb(${number} ${number}% ${number}%)`
-  | `hwb(${number} ${number}% ${number}% / ${number}%)`
+  | `hwb(${number} ${number}% ${number}% / ${number}%)`;
 
 export type ColorString =
   | HexString
@@ -396,18 +396,18 @@ export type ColorString =
   | HslString
   | OklchString
   | OklabString
-  | HwbString
+  | HwbString;
 
 export interface ColorStringMap {
-  hex: HexString
-  rgb: RgbString
-  hsl: HslString
-  oklch: OklchString
-  oklab: OklabString
-  hwb: HwbString
+  hex: HexString;
+  rgb: RgbString;
+  hsl: HslString;
+  oklch: OklchString;
+  oklab: OklabString;
+  hwb: HwbString;
 }
 
-export type ColorMode = keyof ColorStringMap
+export type ColorMode = keyof ColorStringMap;
 
 // =====================================================================
 // 4. UTILITY TYPES — operate on color string literals at the type level.
@@ -437,7 +437,7 @@ export type ModeOf<S extends string> = S extends `oklch(${string})`
               ? "hsl"
               : S extends `hwb(${string})`
                 ? "hwb"
-                : never
+                : never;
 
 /**
  * Replace (or add) the alpha tag on a color literal that uses functional
@@ -457,7 +457,7 @@ export type WithAlpha<
   ? `${Base} / ${A}%)`
   : S extends `${infer Base})`
     ? `${Base} / ${A}%)`
-    : never
+    : never;
 
 /**
  * Strip the alpha tag from a color literal that uses functional notation.
@@ -469,4 +469,4 @@ export type WithAlpha<
  * type T2 = WithoutAlpha<"oklch(0.5 0.1 240)">        // "oklch(0.5 0.1 240)"
  */
 export type WithoutAlpha<S extends string> =
-  S extends `${infer Base} / ${string})` ? `${Base})` : S
+  S extends `${infer Base} / ${string})` ? `${Base})` : S;

@@ -18,10 +18,10 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop    | Required | Type                     | Default | Description                               |
-| ------- | -------- | ------------------------ | ------- | ----------------------------------------- |
-| `limit` | Optional | `number`                 | `250`   | Maximum number of records to select.      |
-| `ref`   | Optional | `Ref<HTMLButtonElement>` | -       | Forwarded to the underlying `<Button>`    |
+| Prop    | Required | Type                     | Default | Description                            |
+| ------- | -------- | ------------------------ | ------- | -------------------------------------- |
+| `limit` | Optional | `number`                 | `250`   | Maximum number of records to select.   |
+| `ref`   | Optional | `Ref<HTMLButtonElement>` | -       | Forwarded to the underlying `<Button>` |
 
 ## `ref`
 

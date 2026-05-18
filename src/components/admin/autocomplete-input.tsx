@@ -107,7 +107,10 @@ export const AutocompleteInput = (
       /** When true, Home/End keys scroll the listbox to first/last item. */
       handleHomeEndKeys?: boolean;
       /** Custom equality check between a choice and the current value. */
-      isOptionEqualToValue?: (option: UnknownValue, value: UnknownValue) => boolean;
+      isOptionEqualToValue?: (
+        option: UnknownValue,
+        value: UnknownValue,
+      ) => boolean;
       /** Custom filter function; replaces default substring match. */
       matchSuggestion?: (filter: string, choice: UnknownValue) => boolean;
       /** Gate controlling whether the dropdown opens at all. */
@@ -314,7 +317,8 @@ export const AutocompleteInput = (
 
   // Prop 3: noOptionsText — fall back to translated string.
   const noMatchText =
-    noOptionsText ?? translate("ra.navigation.no_results", { _: "No matching item found." });
+    noOptionsText ??
+    translate("ra.navigation.no_results", { _: "No matching item found." });
 
   // shouldRenderSuggestions: gate on the effective open state.
   const effectiveOpen =
@@ -363,7 +367,11 @@ export const AutocompleteInput = (
           </FormLabel>
         )}
         <FormControl>
-          <Popover open={effectiveOpen} onOpenChange={handleOpenChange} modal={modal}>
+          <Popover
+            open={effectiveOpen}
+            onOpenChange={handleOpenChange}
+            modal={modal}
+          >
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
@@ -422,7 +430,9 @@ export const AutocompleteInput = (
                         <Check
                           className={cn(
                             "mr-2 size-4",
-                            field.value === emptyValue || field.value == null || field.value === ""
+                            field.value === emptyValue ||
+                              field.value == null ||
+                              field.value === ""
                               ? "opacity-100"
                               : "opacity-0",
                           )}

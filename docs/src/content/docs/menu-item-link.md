@@ -21,16 +21,16 @@ On mobile, the component automatically closes the sidebar drawer after navigatio
 
 ## Props
 
-| Prop                             | Required | Type         | Default | Description                                                        |
-| -------------------------------- | -------- | ------------ | ------- | ------------------------------------------------------------------ |
-| `to`                             | Required | `string`     | —       | Target path passed to react-router                                 |
-| `primaryText`                    | Required | `ReactNode`  | —       | Label rendered next to `leftIcon`. Strings are not auto-translated |
-| `className`                      | Optional | `string`     | —       | Extra Tailwind classes appended to the menu button                 |
-| `keyboardShortcut`               | Optional | `string`     | —       | Global keyboard shortcut that triggers navigation to `to`          |
-| `keyboardShortcutRepresentation` | Optional | `ReactNode`  | `<KeyboardShortcut />` | Display node rendered after the label for the shortcut  |
-| `leftIcon`                       | Optional | `ReactNode`  | —       | Icon rendered before the label                                     |
-| `onClick`                        | Optional | `() => void` | —       | Invoked after the default navigation                               |
-| `tooltipProps`                   | Optional | `Omit<TooltipProps, "children">` | — | Extra props forwarded to the wrapping `<Tooltip>`       |
+| Prop                             | Required | Type                             | Default                | Description                                                        |
+| -------------------------------- | -------- | -------------------------------- | ---------------------- | ------------------------------------------------------------------ |
+| `to`                             | Required | `string`                         | —                      | Target path passed to react-router                                 |
+| `primaryText`                    | Required | `ReactNode`                      | —                      | Label rendered next to `leftIcon`. Strings are not auto-translated |
+| `className`                      | Optional | `string`                         | —                      | Extra Tailwind classes appended to the menu button                 |
+| `keyboardShortcut`               | Optional | `string`                         | —                      | Global keyboard shortcut that triggers navigation to `to`          |
+| `keyboardShortcutRepresentation` | Optional | `ReactNode`                      | `<KeyboardShortcut />` | Display node rendered after the label for the shortcut             |
+| `leftIcon`                       | Optional | `ReactNode`                      | —                      | Icon rendered before the label                                     |
+| `onClick`                        | Optional | `() => void`                     | —                      | Invoked after the default navigation                               |
+| `tooltipProps`                   | Optional | `Omit<TooltipProps, "children">` | —                      | Extra props forwarded to the wrapping `<Tooltip>`                  |
 
 ## `keyboardShortcut`
 

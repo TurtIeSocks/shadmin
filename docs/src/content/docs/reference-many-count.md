@@ -49,12 +49,12 @@ Element rendered when the network is offline and the reference data is unavailab
 
 ## Props
 
-| Prop        | Required | Type       | Description                                   |
-| ----------- | -------- | ---------- | --------------------------------------------- |
-| `reference` | Required | `string`   | Target resource name                          |
-| `target`    | Required | `string`   | Foreign key field in target resource          |
-| `filter`    | Optional | `object`   | Extra filter values                           |
-| `link`      | Optional | `boolean`  | Make count a link                             |
-| `record`    | Optional | `RaRecord` | Record providing id (from context if omitted) |
+| Prop        | Required | Type        | Description                                   |
+| ----------- | -------- | ----------- | --------------------------------------------- |
+| `reference` | Required | `string`    | Target resource name                          |
+| `target`    | Required | `string`    | Foreign key field in target resource          |
+| `filter`    | Optional | `object`    | Extra filter values                           |
+| `link`      | Optional | `boolean`   | Make count a link                             |
+| `record`    | Optional | `RaRecord`  | Record providing id (from context if omitted) |
 | `offline`   | Optional | `ReactNode` | Element rendered when the network is offline  |
-| `source`    | Optional | `string`   | Source field of current record (default `id`) |
+| `source`    | Optional | `string`    | Source field of current record (default `id`) |

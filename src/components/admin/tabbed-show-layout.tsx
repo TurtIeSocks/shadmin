@@ -216,10 +216,9 @@ function TabbedShowLayoutView({
     }
   };
 
-  const tabsList =
-    customTabs ?? (
-      <TabbedShowLayoutTabsList tabs={tabs} syncWithLocation={syncWithLocation} />
-    );
+  const tabsList = customTabs ?? (
+    <TabbedShowLayoutTabsList tabs={tabs} syncWithLocation={syncWithLocation} />
+  );
 
   const tabPanels = tabs.map((tab, index) => {
     const tabPath = getShowTabPath(tab, index);
@@ -227,9 +226,13 @@ function TabbedShowLayoutView({
     return (
       <TabsContent key={value} value={value}>
         <div
-          className={cn("flex flex-col", {
-            "gap-4": spacing === undefined,
-          }, tab.props.contentClassName)}
+          className={cn(
+            "flex flex-col",
+            {
+              "gap-4": spacing === undefined,
+            },
+            tab.props.contentClassName,
+          )}
           style={spacing !== undefined ? { gap: spacing * 4 } : undefined}
         >
           {Children.map(tab.props.children, (field) => {

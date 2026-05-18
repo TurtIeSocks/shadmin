@@ -51,7 +51,11 @@ export const CustomAppBar = () => (
 );
 
 const NarrowSidebar = ({ children }: { children?: ReactNode }) => (
-  <Sidebar variant="floating" collapsible="none" style={{ "--sidebar-width": "160px" } as React.CSSProperties}>
+  <Sidebar
+    variant="floating"
+    collapsible="none"
+    style={{ "--sidebar-width": "160px" } as React.CSSProperties}
+  >
     <SidebarContent>{children}</SidebarContent>
   </Sidebar>
 );
@@ -77,11 +81,15 @@ const MinimalError = ({ error, resetErrorBoundary }: ErrorProps) => (
     <p className="text-destructive font-medium">
       {error instanceof Error ? error.message : "Unknown error"}
     </p>
-    <button className="underline text-sm" onClick={resetErrorBoundary}>Try again</button>
+    <button className="underline text-sm" onClick={resetErrorBoundary}>
+      Try again
+    </button>
   </div>
 );
 
-const Broken = () => { throw new Error("Intentional error"); };
+const Broken = () => {
+  throw new Error("Intentional error");
+};
 
 export const CustomError = () => (
   <CoreAdminContext>

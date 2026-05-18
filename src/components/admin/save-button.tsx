@@ -115,7 +115,9 @@ export const SaveButton = <RecordType extends RaRecord = RaRecord>(
       type={type}
       disabled={disabled}
       onClick={handleClick}
-      aria-label={typeof displayedLabel === "string" ? displayedLabel : undefined}
+      aria-label={
+        typeof displayedLabel === "string" ? displayedLabel : undefined
+      }
       className={cn(
         disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
         className,

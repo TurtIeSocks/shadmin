@@ -29,19 +29,19 @@ It relies on [react-hook-form](https://react-hook-form.com/) for form handling. 
 
 ## Props
 
-| Prop                     | Required | Type        | Default   | Description                                                                |
-| ------------------------ | -------- | ----------- | --------- | -------------------------------------------------------------------------- | --------------------------------- |
-| `children`               | Required | `ReactNode` | -         | The form content (usually Input elements).                                 |
-| `className`              | Optional | `string`    | -         | Extra classes appended to base layout                                      |
-| `component`              | Optional | `ElementType` | `Form`  | Override the form wrapper; defaults to ra-core's `<Form>`                  |
-| `defaultValues`          | Optional | `object     | function` | -                                                                          | The default values of the record. |
-| `id`                     | Optional | `string`    | -         | The id of the underlying `<form>` tag.                                     |
-| `noValidate`             | Optional | `boolean`   | -         | Set to `true` to disable the browser's default validation.                 |
-| `onSubmit`               | Optional | `function`  | `save`    | A callback to call when the form is submitted.                             |
-| `sanitizeEmptyValues`    | Optional | `boolean`   | -         | Set to `true` to remove empty values from the form state.                  |
-| `toolbar`                | Optional | `element`   | -         | The toolbar component.                                                     |
-| `validate`               | Optional | `function`  | -         | A function to validate the form values.                                    |
-| `warnWhenUnsavedChanges` | Optional | `boolean`   | -         | Set to `true` to warn the user when leaving the form with unsaved changes. |
+| Prop                     | Required | Type          | Default   | Description                                                                |
+| ------------------------ | -------- | ------------- | --------- | -------------------------------------------------------------------------- | --------------------------------- |
+| `children`               | Required | `ReactNode`   | -         | The form content (usually Input elements).                                 |
+| `className`              | Optional | `string`      | -         | Extra classes appended to base layout                                      |
+| `component`              | Optional | `ElementType` | `Form`    | Override the form wrapper; defaults to ra-core's `<Form>`                  |
+| `defaultValues`          | Optional | `object       | function` | -                                                                          | The default values of the record. |
+| `id`                     | Optional | `string`      | -         | The id of the underlying `<form>` tag.                                     |
+| `noValidate`             | Optional | `boolean`     | -         | Set to `true` to disable the browser's default validation.                 |
+| `onSubmit`               | Optional | `function`    | `save`    | A callback to call when the form is submitted.                             |
+| `sanitizeEmptyValues`    | Optional | `boolean`     | -         | Set to `true` to remove empty values from the form state.                  |
+| `toolbar`                | Optional | `element`     | -         | The toolbar component.                                                     |
+| `validate`               | Optional | `function`    | -         | A function to validate the form values.                                    |
+| `warnWhenUnsavedChanges` | Optional | `boolean`     | -         | Set to `true` to warn the user when leaving the form with unsaved changes. |
 
 Additional props are passed to [the `useForm` hook](https://react-hook-form.com/docs/useform) and to the underlying `<div>` wrapping the form.
 

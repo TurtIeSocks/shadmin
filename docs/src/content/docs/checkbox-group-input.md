@@ -49,8 +49,8 @@ const record = {
 | `format`          | Optional   | `Function`                                    | -          | Callback taking the value from the form state, and returning the input value.                    |
 | `helperText`      | Optional   | `string` &#124; `ReactNode`                   | -          | The helper text to display below the input                                                       |
 | `label`           | Optional   | `string` &#124; `ReactNode` &#124; `false`    | Inferred   | The label to display above the input                                                             |
-| `labelPlacement`  | Optional   | `"end" \| "start" \| "top" \| "bottom"`       | `"end"`    | Position of each checkbox's label relative to the checkbox box                                  |
-| `options`         | Optional   | `ComponentProps<typeof Checkbox>`              | -          | Props forwarded to each underlying `<Checkbox>` (e.g. `className`, `disabled`)                 |
+| `labelPlacement`  | Optional   | `"end" \| "start" \| "top" \| "bottom"`       | `"end"`    | Position of each checkbox's label relative to the checkbox box                                   |
+| `options`         | Optional   | `ComponentProps<typeof Checkbox>`             | -          | Props forwarded to each underlying `<Checkbox>` (e.g. `className`, `disabled`)                   |
 | `optionText`      | Optional   | `string` &#124; `Function` &#124; `Component` | `name`     | Field name of the record to display as the option text, or function/component that renders it    |
 | `optionValue`     | Optional   | `string`                                      | `id`       | Field name of the record containing the value to use as the form value                           |
 | `parse`           | Optional   | `Function`                                    | -          | Callback taking the value from the input, and returning the value to be stored in the form state |

@@ -34,7 +34,7 @@ Replaces the default `<Copy />` shown alongside the label. Pass any React node â
 ```tsx
 import { CopyPlus } from "lucide-react";
 
-<CloneButton icon={<CopyPlus />} />
+<CloneButton icon={<CopyPlus />} />;
 ```
 
 ## `label`
@@ -70,7 +70,7 @@ Forwards a ref to the underlying `<Button>` element.
 import { useRef } from "react";
 
 const ref = useRef<HTMLAnchorElement>(null);
-<CloneButton ref={ref} />
+<CloneButton ref={ref} />;
 ```
 
 ## `scrollToTop`

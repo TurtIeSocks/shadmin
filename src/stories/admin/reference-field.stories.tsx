@@ -66,7 +66,9 @@ const PostListOffline = () => (
         <ReferenceField
           source="author_id"
           reference="authors"
-          offline={<span className="text-muted-foreground italic">Offline</span>}
+          offline={
+            <span className="text-muted-foreground italic">Offline</span>
+          }
         />
       </DataTable.Col>
     </DataTable>

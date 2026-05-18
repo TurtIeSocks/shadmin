@@ -1,6 +1,11 @@
 import type { HTMLAttributes } from "react";
 import { History, SearchX } from "lucide-react";
-import { Translate, useAuthenticated, useDefaultTitle, type TitleComponent } from "ra-core";
+import {
+  Translate,
+  useAuthenticated,
+  useDefaultTitle,
+  type TitleComponent,
+} from "ra-core";
 import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/admin/loading";
 import { Title } from "./title";

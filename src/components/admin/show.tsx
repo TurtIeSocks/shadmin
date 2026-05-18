@@ -92,8 +92,16 @@ export const Show = ({
   </ShowBase>
 );
 
-const defaultOffline = <p className="text-sm text-muted-foreground p-4">Offline — waiting for connection…</p>;
-const defaultError = <p className="text-sm text-destructive p-4">An error occurred while loading this record.</p>;
+const defaultOffline = (
+  <p className="text-sm text-muted-foreground p-4">
+    Offline — waiting for connection…
+  </p>
+);
+const defaultError = (
+  <p className="text-sm text-destructive p-4">
+    An error occurred while loading this record.
+  </p>
+);
 
 export interface ShowViewProps {
   actions?: ReactNode | false;
@@ -162,7 +170,10 @@ export const ShowView = ({
   const hasDashboard = useHasDashboard();
 
   const showOffline =
-    context.isPaused && context.isPending && offline !== undefined && offline !== false;
+    context.isPaused &&
+    context.isPending &&
+    offline !== undefined &&
+    offline !== false;
   const showError = context.error && error !== false && error !== undefined;
 
   if (
@@ -194,16 +205,16 @@ export const ShowView = ({
         ? render(context)
         : children;
 
-  const contentBlock = (
-    <Wrapper className="my-2">{finalContent}</Wrapper>
-  );
+  const contentBlock = <Wrapper className="my-2">{finalContent}</Wrapper>;
 
   const main = aside ? (
     <div className="flex gap-4">
       <div className="flex-1">{contentBlock}</div>
       <div className="flex-shrink-0 w-64">{aside}</div>
     </div>
-  ) : contentBlock;
+  ) : (
+    contentBlock
+  );
 
   return (
     <>

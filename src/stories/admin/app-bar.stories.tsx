@@ -103,13 +103,31 @@ export const CustomChildren = () => (
 );
 
 const ToolbarLayout = ({ children }: { children?: React.ReactNode }) => (
-  <Layout appBar={() => <AppBar toolbar={<span className="text-xs text-muted-foreground">Custom toolbar</span>} />}>
+  <Layout
+    appBar={() => (
+      <AppBar
+        toolbar={
+          <span className="text-xs text-muted-foreground">Custom toolbar</span>
+        }
+      />
+    )}
+  >
     {children}
   </Layout>
 );
 
 const UserMenuLayout = ({ children }: { children?: React.ReactNode }) => (
-  <Layout appBar={() => <AppBar userMenu={<span className="text-xs font-medium px-2 py-1 rounded bg-muted">admin</span>} />}>
+  <Layout
+    appBar={() => (
+      <AppBar
+        userMenu={
+          <span className="text-xs font-medium px-2 py-1 rounded bg-muted">
+            admin
+          </span>
+        }
+      />
+    )}
+  >
     {children}
   </Layout>
 );

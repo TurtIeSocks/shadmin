@@ -97,13 +97,17 @@ export const ResourceMenuItem = ({
     onClick?.();
   };
 
-  const icon = leftIcon !== undefined
-    ? leftIcon
-    : resources[name].icon
-      ? createElement(resources[name].icon)
-      : <List />;
+  const icon =
+    leftIcon !== undefined ? (
+      leftIcon
+    ) : resources[name].icon ? (
+      createElement(resources[name].icon)
+    ) : (
+      <List />
+    );
 
-  const label = primaryText !== undefined ? primaryText : getResourceLabel(name, 2);
+  const label =
+    primaryText !== undefined ? primaryText : getResourceLabel(name, 2);
 
   return (
     <SidebarMenuItem>

@@ -75,7 +75,11 @@ export const WithUndo = () => (
 
 export const CustomIcon = () => (
   <Wrapper>
-    <UpdateButton label="Reset Views" data={{ views: 0 }} icon={<RotateCcw />} />
+    <UpdateButton
+      label="Reset Views"
+      data={{ views: 0 }}
+      icon={<RotateCcw />}
+    />
   </Wrapper>
 );
 

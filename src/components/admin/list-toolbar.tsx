@@ -45,11 +45,14 @@ export const ListToolbar = (props: ListToolbarProps) => {
   } else if (actions == null) {
     actionsElement = <ListActions exporter={exporter} hasCreate={hasCreate} />;
   } else if (isValidElement(actions)) {
-    actionsElement = cloneElement(actions as ReactElement<Record<string, unknown>>, {
-      exporter,
-      hasCreate,
-      filters: filtersArray,
-    });
+    actionsElement = cloneElement(
+      actions as ReactElement<Record<string, unknown>>,
+      {
+        exporter,
+        hasCreate,
+        filters: filtersArray,
+      },
+    );
   } else {
     actionsElement = actions;
   }

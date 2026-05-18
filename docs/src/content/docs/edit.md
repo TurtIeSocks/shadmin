@@ -109,7 +109,13 @@ When the browser goes offline while the record is still loading (`isPaused && is
 import { Edit, SimpleForm, TextInput } from "@/components/admin";
 
 export const PostEdit = () => (
-  <Edit offline={<p className="text-muted-foreground p-4">You appear to be offline. Reconnect to continue editing.</p>}>
+  <Edit
+    offline={
+      <p className="text-muted-foreground p-4">
+        You appear to be offline. Reconnect to continue editing.
+      </p>
+    }
+  >
     <SimpleForm>
       <TextInput source="title" />
     </SimpleForm>
@@ -127,7 +133,13 @@ When `dataProvider.getOne()` fails, `<Edit>` renders a default error message. Pa
 import { Edit, SimpleForm, TextInput } from "@/components/admin";
 
 export const PostEdit = () => (
-  <Edit error={<p className="text-destructive p-4">Failed to load post. Please try again.</p>}>
+  <Edit
+    error={
+      <p className="text-destructive p-4">
+        Failed to load post. Please try again.
+      </p>
+    }
+  >
     <SimpleForm>
       <TextInput source="title" />
     </SimpleForm>

@@ -75,7 +75,11 @@ When the list has no records and no active filters, `<InfiniteList>` renders the
 import { InfiniteList, DataTable } from "@/components/admin";
 
 export const PostList = () => (
-  <InfiniteList empty={<p className="text-center py-8 text-muted-foreground">No posts yet.</p>}>
+  <InfiniteList
+    empty={
+      <p className="text-center py-8 text-muted-foreground">No posts yet.</p>
+    }
+  >
     <DataTable>
       <DataTable.Col source="id" />
       <DataTable.Col source="title" />

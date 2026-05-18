@@ -51,11 +51,11 @@ If you want to customize the button, you can edit the `@/components/admin/locale
 
 ## Props
 
-| Prop        | Required | Type                              | Default   | Description                                                  |
-| ----------- | -------- | --------------------------------- | --------- | ------------------------------------------------------------ |
-| `icon`      | Optional | `ReactNode`                       | -         | Replaces the locale-code text in the trigger button          |
-| `languages` | Optional | `Array<{locale: string; name: string}>` | from `useLocales()` | Override the list of available languages |
-| `ref`       | Optional | `Ref<HTMLButtonElement>`          | -         | Forwarded to the underlying `<Button>`                       |
+| Prop        | Required | Type                                    | Default             | Description                                         |
+| ----------- | -------- | --------------------------------------- | ------------------- | --------------------------------------------------- |
+| `icon`      | Optional | `ReactNode`                             | -                   | Replaces the locale-code text in the trigger button |
+| `languages` | Optional | `Array<{locale: string; name: string}>` | from `useLocales()` | Override the list of available languages            |
+| `ref`       | Optional | `Ref<HTMLButtonElement>`                | -                   | Forwarded to the underlying `<Button>`              |
 
 ## `icon`
 
@@ -79,5 +79,5 @@ const MyHeader = () => {
 import { Globe } from "lucide-react";
 import { LocalesMenuButton } from "@/components/admin";
 
-<LocalesMenuButton icon={<Globe className="size-4" />} />
+<LocalesMenuButton icon={<Globe className="size-4" />} />;
 ```

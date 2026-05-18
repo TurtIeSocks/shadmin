@@ -84,7 +84,10 @@ export const CheckForApplicationUpdate = (
 
     const fetchAndHash = async (): Promise<number | null> => {
       try {
-        const response = await fetch(targetUrl, { ...fetchOptions, cache: "no-store" });
+        const response = await fetch(targetUrl, {
+          ...fetchOptions,
+          cache: "no-store",
+        });
         if (!response.ok) {
           return null;
         }

@@ -44,8 +44,16 @@ export const ReferenceManyField = <
 >(
   props: ReferenceManyFieldProps<RecordType, ReferenceRecordType>,
 ) => {
-  const { children, empty, error, loading, offline = defaultOffline, pagination, render, ...rest } =
-    props;
+  const {
+    children,
+    empty,
+    error,
+    loading,
+    offline = defaultOffline,
+    pagination,
+    render,
+    ...rest
+  } = props;
 
   return (
     <ReferenceManyFieldBase {...rest} offline={offline}>
@@ -66,7 +74,9 @@ export const ReferenceManyField = <
 export interface ReferenceManyFieldProps<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
-> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
+>
+  extends
+    Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
     UseReferenceManyFieldControllerParams<RecordType, ReferenceRecordType>,
     ReferenceManyFieldViewProps<ReferenceRecordType> {}
 

@@ -71,7 +71,7 @@ const ResetViewsButton = () => {
 import { RotateCcw } from "lucide-react";
 import { UpdateButton } from "@/components/admin";
 
-<UpdateButton label="Reset Views" data={{ views: 0 }} icon={<RotateCcw />} />
+<UpdateButton label="Reset Views" data={{ views: 0 }} icon={<RotateCcw />} />;
 ```
 
 ## `mutationMode`

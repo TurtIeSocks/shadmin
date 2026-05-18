@@ -157,11 +157,11 @@ For more customization options, refer to the [shadcn/ui Sidebar documentation](h
 
 ## Props
 
-| Prop              | Required | Type        | Default | Description                                          |
-| ----------------- | -------- | ----------- | ------- | ---------------------------------------------------- |
-| `appBarAlwaysOn`  | Optional | `boolean`   | `false` | Signal that the AppBar is always visible on scroll   |
-| `closedSize`      | Optional | `number`    | `55`    | Width in px of the collapsed icon-rail               |
-| `size`            | Optional | `number`    | `240`   | Width in px of the expanded sidebar                  |
+| Prop             | Required | Type      | Default | Description                                        |
+| ---------------- | -------- | --------- | ------- | -------------------------------------------------- |
+| `appBarAlwaysOn` | Optional | `boolean` | `false` | Signal that the AppBar is always visible on scroll |
+| `closedSize`     | Optional | `number`  | `55`    | Width in px of the collapsed icon-rail             |
+| `size`           | Optional | `number`  | `240`   | Width in px of the expanded sidebar                |
 
 ## `size`
 

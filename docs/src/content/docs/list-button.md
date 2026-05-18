@@ -33,7 +33,7 @@ Replaces the default `<List />` shown alongside the label. Pass any React node â
 ```tsx
 import { LayoutList } from "lucide-react";
 
-<ListButton icon={<LayoutList />} />
+<ListButton icon={<LayoutList />} />;
 ```
 
 ## `label`
@@ -69,7 +69,7 @@ Forwards a ref to the underlying `<Button>` element.
 import { useRef } from "react";
 
 const ref = useRef<HTMLAnchorElement>(null);
-<ListButton ref={ref} />
+<ListButton ref={ref} />;
 ```
 
 ## `scrollToTop`

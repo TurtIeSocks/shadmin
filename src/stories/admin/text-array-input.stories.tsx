@@ -187,7 +187,13 @@ export const WithRenderTags = ({
               className="flex items-center gap-1 rounded bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
             >
               {tag}
-              <button onClick={onDelete} type="button" className="ml-1 opacity-60 hover:opacity-100">×</button>
+              <button
+                onClick={onDelete}
+                type="button"
+                className="ml-1 opacity-60 hover:opacity-100"
+              >
+                ×
+              </button>
             </span>
           );
         })

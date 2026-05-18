@@ -316,8 +316,7 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
                   (v) => String(v) === String(choiceValue),
                 );
                 const itemId = `${id}-${choiceValue}`;
-                const isCreate =
-                  createItem != null && choice === createItem;
+                const isCreate = createItem != null && choice === createItem;
                 if (isCreate) {
                   return (
                     <button

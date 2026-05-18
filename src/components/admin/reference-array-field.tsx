@@ -78,14 +78,21 @@ export const ReferenceArrayField = <
       queryOptions={queryOptions}
       render={render}
     >
-      <PureReferenceArrayFieldView empty={empty} error={error} offline={offline} {...rest} />
+      <PureReferenceArrayFieldView
+        empty={empty}
+        error={error}
+        offline={offline}
+        {...rest}
+      />
     </ReferenceArrayFieldBase>
   );
 };
 export interface ReferenceArrayFieldProps<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
-> extends Omit<FieldProps<RecordType>, "source" | "empty">,
+>
+  extends
+    Omit<FieldProps<RecordType>, "source" | "empty">,
     ReferenceArrayFieldViewProps {
   filter?: FilterPayload;
   page?: number;

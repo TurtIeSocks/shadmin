@@ -108,7 +108,13 @@ export const NoActions = () => (
 );
 
 const PostEditWithOffline = () => (
-  <Edit offline={<p className="text-muted-foreground p-4">You appear to be offline. Reconnect to continue editing.</p>}>
+  <Edit
+    offline={
+      <p className="text-muted-foreground p-4">
+        You appear to be offline. Reconnect to continue editing.
+      </p>
+    }
+  >
     <SimpleForm>
       <TextInput source="title" />
     </SimpleForm>
@@ -124,7 +130,13 @@ export const WithOffline = () => (
 );
 
 const PostEditWithError = () => (
-  <Edit error={<p className="text-destructive p-4">Failed to load post. Please try again.</p>}>
+  <Edit
+    error={
+      <p className="text-destructive p-4">
+        Failed to load post. Please try again.
+      </p>
+    }
+  >
     <SimpleForm>
       <TextInput source="title" />
     </SimpleForm>

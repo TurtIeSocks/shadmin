@@ -49,7 +49,14 @@ export const ReferenceField = <
 >(
   props: ReferenceFieldProps<RecordType, ReferenceRecordType>,
 ) => {
-  const { loading, error, empty, render, offline = defaultOffline, ...rest } = props;
+  const {
+    loading,
+    error,
+    empty,
+    render,
+    offline = defaultOffline,
+    ...rest
+  } = props;
   const id = useFieldValue<RecordType>(props);
   const translate = useTranslate();
 
@@ -74,7 +81,9 @@ export const ReferenceField = <
 export interface ReferenceFieldProps<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
-> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
+>
+  extends
+    Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
     Partial<ReferenceFieldViewProps<ReferenceRecordType>> {
   children?: ReactNode;
   queryOptions?: UseQueryOptions<RaRecord[], Error> & {
@@ -138,7 +147,11 @@ export const ReferenceFieldView = <
   if (link) {
     return (
       <span className={className}>
-        <Link to={link} state={{ _scrollToTop: true }} onClick={stopPropagation}>
+        <Link
+          to={link}
+          state={{ _scrollToTop: true }}
+          onClick={stopPropagation}
+        >
           {child}
         </Link>
       </span>

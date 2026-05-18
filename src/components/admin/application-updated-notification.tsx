@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export interface ApplicationUpdatedNotificationProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+export interface ApplicationUpdatedNotificationProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "children"
+> {
   className?: string;
   /**
    * Translation key (or literal string) for the notification body.
@@ -55,7 +57,9 @@ export const ApplicationUpdatedNotification = (
   } = props;
 
   const finalMessage =
-    message ?? notificationText ?? "ra.notification.application_update_available";
+    message ??
+    notificationText ??
+    "ra.notification.application_update_available";
   const finalButtonLabel = buttonLabel ?? updateText ?? "ra.action.reload";
 
   const translate = useTranslate();
@@ -81,7 +85,9 @@ export const ApplicationUpdatedNotification = (
       {...rest}
     >
       <Sparkles className="size-5 text-primary shrink-0" aria-hidden="true" />
-      <p className="text-sm flex-1">{translate(finalMessage, { _: finalMessage })}</p>
+      <p className="text-sm flex-1">
+        {translate(finalMessage, { _: finalMessage })}
+      </p>
       <Button size="sm" onClick={handleReload}>
         {translate(finalButtonLabel, { _: finalButtonLabel })}
       </Button>

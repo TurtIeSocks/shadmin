@@ -191,13 +191,15 @@ export const CheckboxGroupInput = (inProps: CheckboxGroupInputProps) => {
               key={choiceValue}
               className={cn(
                 "flex gap-x-2",
-                (isTop || isBottom) ? "flex-col gap-y-1 items-start" : "flex-row items-center",
+                isTop || isBottom
+                  ? "flex-col gap-y-1 items-start"
+                  : "flex-row items-center",
                 isTop && "flex-col-reverse",
               )}
             >
-              {(isStart || isTop) ? labelEl : null}
+              {isStart || isTop ? labelEl : null}
               {checkbox}
-              {(!isStart && !isTop) ? labelEl : null}
+              {!isStart && !isTop ? labelEl : null}
             </div>
           );
         })}

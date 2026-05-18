@@ -65,7 +65,7 @@ export const ResourceMenuItemGroup = ({
   const resources =
     resourcesProp ??
     Object.keys(resourceDefinitions).filter(
-      (name) => resourceDefinitions[name].hasList
+      (name) => resourceDefinitions[name].hasList,
     );
 
   if (resources.length === 0) return null;

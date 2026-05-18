@@ -67,7 +67,11 @@ Element rendered when the network is offline and the reference data is unavailab
 <ReferenceOneField
   reference="bios"
   target="author_id"
-  offline={<span className="text-muted-foreground italic">Offline — biography unavailable</span>}
+  offline={
+    <span className="text-muted-foreground italic">
+      Offline — biography unavailable
+    </span>
+  }
 >
   <TextField source="body" />
 </ReferenceOneField>

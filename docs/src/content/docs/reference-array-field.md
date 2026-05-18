@@ -157,7 +157,11 @@ Element rendered when the network is offline and the reference data is unavailab
 <ReferenceArrayField
   reference="tags"
   source="tag_ids"
-  offline={<span className="text-muted-foreground italic">Offline — tags unavailable</span>}
+  offline={
+    <span className="text-muted-foreground italic">
+      Offline — tags unavailable
+    </span>
+  }
 />
 ```
 

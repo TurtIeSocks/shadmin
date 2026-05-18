@@ -170,11 +170,10 @@ export const Confirm = (props: ConfirmProps) => {
  * Radix `Dialog.Root`-level props (`modal`, `defaultOpen`, `onOpenChange`)
  * are also accepted and forwarded to the root `<Dialog>`.
  */
-export interface ConfirmProps
-  extends Omit<
-    React.ComponentProps<typeof DialogPrimitive.Content>,
-    "title" | "content" | "onClose"
-  > {
+export interface ConfirmProps extends Omit<
+  React.ComponentProps<typeof DialogPrimitive.Content>,
+  "title" | "content" | "onClose"
+> {
   cancel?: string;
   className?: string;
   confirm?: string;
@@ -196,5 +195,7 @@ export interface ConfirmProps
   /** Forwarded to Radix `Dialog.Root` — sets modality. */
   modal?: React.ComponentProps<typeof DialogPrimitive.Root>["modal"];
   /** Forwarded to Radix `Dialog.Root` — uncontrolled initial open state. */
-  defaultOpen?: React.ComponentProps<typeof DialogPrimitive.Root>["defaultOpen"];
+  defaultOpen?: React.ComponentProps<
+    typeof DialogPrimitive.Root
+  >["defaultOpen"];
 }

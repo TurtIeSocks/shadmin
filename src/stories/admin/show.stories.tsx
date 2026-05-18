@@ -108,7 +108,9 @@ export const NoActions = () => (
 );
 
 const PostShowWithError = () => (
-  <Show error={<p className="text-destructive p-4">Could not load this record.</p>}>
+  <Show
+    error={<p className="text-destructive p-4">Could not load this record.</p>}
+  >
     <SimpleShowLayout>
       <RecordField source="title" />
     </SimpleShowLayout>
@@ -124,7 +126,11 @@ export const WithError = () => (
 );
 
 const PostShowWithOffline = () => (
-  <Show offline={<p className="text-muted-foreground p-4">You appear to be offline.</p>}>
+  <Show
+    offline={
+      <p className="text-muted-foreground p-4">You appear to be offline.</p>
+    }
+  >
     <SimpleShowLayout>
       <RecordField source="title" />
     </SimpleShowLayout>

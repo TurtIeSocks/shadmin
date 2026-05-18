@@ -22,16 +22,16 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop              | Required | Type           | Default | Description                                                    |
-| ----------------- | -------- | -------------- | ------- | -------------------------------------------------------------- |
-| children          | Required | `ReactNode`    | -       | Tab definitions and field content.                             |
-| className         | Optional | `string`       | -       | Additional CSS class applied to the outer wrapper.             |
-| divider           | Optional | `ReactNode`    | -       | Element rendered between each field in a tab.                  |
-| record            | Optional | `RaRecord`     | -       | Explicit record to display (falls back to `RecordContext`).    |
-| spacing           | Optional | `number`       | -       | Gap between fields within each tab's content panel (in px).   |
-| syncWithLocation  | Optional | `boolean`      | `true`  | When `true`, tab changes update the URL.                       |
-| tabs              | Optional | `ReactElement` | -       | Custom tab-strip renderer that replaces the default TabsList.  |
-| value             | Optional | `string`       | -       | Controlled tab value; forces the `Tabs` component into controlled mode. |
+| Prop             | Required | Type           | Default | Description                                                             |
+| ---------------- | -------- | -------------- | ------- | ----------------------------------------------------------------------- |
+| children         | Required | `ReactNode`    | -       | Tab definitions and field content.                                      |
+| className        | Optional | `string`       | -       | Additional CSS class applied to the outer wrapper.                      |
+| divider          | Optional | `ReactNode`    | -       | Element rendered between each field in a tab.                           |
+| record           | Optional | `RaRecord`     | -       | Explicit record to display (falls back to `RecordContext`).             |
+| spacing          | Optional | `number`       | -       | Gap between fields within each tab's content panel (in px).             |
+| syncWithLocation | Optional | `boolean`      | `true`  | When `true`, tab changes update the URL.                                |
+| tabs             | Optional | `ReactElement` | -       | Custom tab-strip renderer that replaces the default TabsList.           |
+| value            | Optional | `string`       | -       | Controlled tab value; forces the `Tabs` component into controlled mode. |
 
 ## `spacing`
 
@@ -57,7 +57,11 @@ import { TabbedShowLayoutTabsList } from "@/components/admin";
 
 const myTabs = (
   <TabbedShowLayoutTabsList
-    tabs={[/* ShowTab elements */]}
+    tabs={
+      [
+        /* ShowTab elements */
+      ]
+    }
     syncWithLocation={false}
   />
 );
@@ -66,7 +70,7 @@ const myTabs = (
   <TabbedShowLayout.Tab label="Content">
     <TextField source="title" />
   </TabbedShowLayout.Tab>
-</TabbedShowLayout>
+</TabbedShowLayout>;
 ```
 
 ## `value`
@@ -85,7 +89,7 @@ const [activeTab, setActiveTab] = React.useState("");
   <TabbedShowLayout.Tab label="Metadata">
     <NumberField source="views" />
   </TabbedShowLayout.Tab>
-</TabbedShowLayout>
+</TabbedShowLayout>;
 ```
 
 ## Behavior

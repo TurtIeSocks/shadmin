@@ -70,7 +70,8 @@ export const ListPagination = ({
   const isPartial = total == null;
 
   // Out-of-bounds guard: if the current page is beyond the last page, reset to 1.
-  const totalPages = !isPartial && total! > 0 ? Math.ceil(total! / perPage) : undefined;
+  const totalPages =
+    !isPartial && total! > 0 ? Math.ceil(total! / perPage) : undefined;
   useEffect(() => {
     if (totalPages != null && page > totalPages) {
       setPage(1);
@@ -90,7 +91,9 @@ export const ListPagination = ({
   // Custom actions override the default pagination controls.
   if (actions) {
     return (
-      <div className={cn("flex items-center justify-end gap-x-2 gap-4", className)}>
+      <div
+        className={cn("flex items-center justify-end gap-x-2 gap-4", className)}
+      >
         {actions}
       </div>
     );

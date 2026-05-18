@@ -12,9 +12,7 @@ import {
   NumberField,
   ThemeProvider,
 } from "@/components/admin";
-import {
-  TabbedShowLayoutTabsList,
-} from "@/components/admin/tabbed-show-layout";
+import { TabbedShowLayoutTabsList } from "@/components/admin/tabbed-show-layout";
 
 export default {
   title: "Page components/TabbedShowLayout",

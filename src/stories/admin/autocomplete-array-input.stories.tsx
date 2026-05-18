@@ -150,7 +150,10 @@ export const WithOnCreate = () => (
       <AutocompleteArrayInput
         source="tags"
         choices={choices}
-        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+        onCreate={(filter) => ({
+          id: String(filter).toLowerCase(),
+          name: String(filter),
+        })}
       />
     </SimpleForm>
   </StoryWrapper>
@@ -187,7 +190,11 @@ export const WithMatchSuggestion = () => (
 export const WithLimitChoicesToValue = () => (
   <StoryWrapper theme="system">
     <SimpleForm>
-      <AutocompleteArrayInput source="tags" choices={choices} limitChoicesToValue />
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        limitChoicesToValue
+      />
     </SimpleForm>
   </StoryWrapper>
 );
@@ -207,7 +214,11 @@ export const WithIsOptionEqualToValue = () => (
 export const WithHandleHomeEndKeys = () => (
   <StoryWrapper theme="system">
     <SimpleForm>
-      <AutocompleteArrayInput source="tags" choices={choices} handleHomeEndKeys />
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        handleHomeEndKeys
+      />
     </SimpleForm>
   </StoryWrapper>
 );
@@ -215,7 +226,11 @@ export const WithHandleHomeEndKeys = () => (
 export const WithEmptyText = () => (
   <StoryWrapper theme="system">
     <SimpleForm>
-      <AutocompleteArrayInput source="tags" choices={choices} emptyText="No tags" />
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        emptyText="No tags"
+      />
     </SimpleForm>
   </StoryWrapper>
 );
@@ -226,7 +241,10 @@ export const WithCreateValue = () => (
       <AutocompleteArrayInput
         source="tags"
         choices={choices}
-        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+        onCreate={(filter) => ({
+          id: String(filter).toLowerCase(),
+          name: String(filter),
+        })}
         createValue="__ra_create__"
       />
     </SimpleForm>
@@ -239,7 +257,10 @@ export const WithCreateLabel = () => (
       <AutocompleteArrayInput
         source="tags"
         choices={choices}
-        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+        onCreate={(filter) => ({
+          id: String(filter).toLowerCase(),
+          name: String(filter),
+        })}
         createLabel="Start typing to add a tag"
       />
     </SimpleForm>
@@ -252,7 +273,10 @@ export const WithCreateItemLabel = () => (
       <AutocompleteArrayInput
         source="tags"
         choices={choices}
-        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+        onCreate={(filter) => ({
+          id: String(filter).toLowerCase(),
+          name: String(filter),
+        })}
         createItemLabel="Add '%{item}' as a new tag"
       />
     </SimpleForm>
@@ -265,7 +289,10 @@ export const WithCreateHintValue = () => (
       <AutocompleteArrayInput
         source="tags"
         choices={choices}
-        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+        onCreate={(filter) => ({
+          id: String(filter).toLowerCase(),
+          name: String(filter),
+        })}
         createHintValue="__new__"
       />
     </SimpleForm>
@@ -279,7 +306,10 @@ export const WithCreate = () => (
         source="tags"
         choices={choices}
         onCreate={(filter) => {
-          const newTag = { id: String(filter).toLowerCase(), name: String(filter) };
+          const newTag = {
+            id: String(filter).toLowerCase(),
+            name: String(filter),
+          };
           return newTag;
         }}
         createLabel="Start typing to add a tag"

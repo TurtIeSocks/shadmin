@@ -22,11 +22,11 @@ import { RefreshButton } from "@/components/admin";
 
 ## Props
 
-| Prop      | Required | Type                     | Default             | Description                         |
-| --------- | -------- | ------------------------ | ------------------- | ----------------------------------- |
-| `icon`    | Optional | `ReactNode`              | RotateCw icon       | Custom icon element                 |
-| `label`   | Optional | `ReactNode`              | `ra.action.refresh` | aria-label override                 |
-| `onClick` | Optional | `() => void`             | -                   | Additional click handler            |
+| Prop      | Required | Type                     | Default             | Description                            |
+| --------- | -------- | ------------------------ | ------------------- | -------------------------------------- |
+| `icon`    | Optional | `ReactNode`              | RotateCw icon       | Custom icon element                    |
+| `label`   | Optional | `ReactNode`              | `ra.action.refresh` | aria-label override                    |
+| `onClick` | Optional | `() => void`             | -                   | Additional click handler               |
 | `ref`     | Optional | `Ref<HTMLButtonElement>` | -                   | Forwarded to the underlying `<Button>` |
 
 ## `icon`
@@ -51,5 +51,5 @@ const MyHeader = () => {
 import { RefreshCcw } from "lucide-react";
 import { RefreshButton } from "@/components/admin";
 
-<RefreshButton icon={<RefreshCcw />} />
+<RefreshButton icon={<RefreshCcw />} />;
 ```

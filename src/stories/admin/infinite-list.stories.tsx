@@ -63,7 +63,11 @@ export const WithEmpty = () => (
         list={
           <InfiniteList
             perPage={10}
-            empty={<p className="text-center py-8 text-muted-foreground">No books yet.</p>}
+            empty={
+              <p className="text-center py-8 text-muted-foreground">
+                No books yet.
+              </p>
+            }
           >
             <DataTable>
               <DataTable.Col source="id" />

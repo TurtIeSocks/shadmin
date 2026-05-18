@@ -56,5 +56,5 @@ Replaces the default `<Save />` shown alongside the label. Pass any lucide-react
 import { Send } from "lucide-react";
 import { SaveButton } from "@/components/admin";
 
-<SaveButton icon={<Send />} />
+<SaveButton icon={<Send />} />;
 ```

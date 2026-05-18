@@ -74,12 +74,12 @@ export const Layout = (props: { children: ReactNode }) => {
 
 ## Props
 
-| Prop      | Required | Type                              | Default          | Description                                             |
-| --------- | -------- | --------------------------------- | ---------------- | ------------------------------------------------------- |
-| `appBar`  | Optional | `ComponentType<AppBarProps>`      | `<AppBar />`     | Replace the header component rendered above the content |
-| `error`   | Optional | `ComponentType<ErrorProps>`       | `<Error />`      | Replace the error-boundary fallback component           |
-| `menu`    | Optional | `ComponentType<MenuProps>`        | `<Menu />`       | Replace the menu component rendered inside the sidebar  |
-| `sidebar` | Optional | `ComponentType<{ children? }>`    | `<AppSidebar />` | Replace the entire sidebar component                    |
+| Prop      | Required | Type                           | Default          | Description                                             |
+| --------- | -------- | ------------------------------ | ---------------- | ------------------------------------------------------- |
+| `appBar`  | Optional | `ComponentType<AppBarProps>`   | `<AppBar />`     | Replace the header component rendered above the content |
+| `error`   | Optional | `ComponentType<ErrorProps>`    | `<Error />`      | Replace the error-boundary fallback component           |
+| `menu`    | Optional | `ComponentType<MenuProps>`     | `<Menu />`       | Replace the menu component rendered inside the sidebar  |
+| `sidebar` | Optional | `ComponentType<{ children? }>` | `<AppSidebar />` | Replace the entire sidebar component                    |
 
 When rendering the `<Layout>` component, Shadcn Admin Kit passes it a single prop, `children`, which is the main content of the page (the current resource view, depending on the current route).
 
@@ -126,7 +126,11 @@ Pass a custom component to replace the default [`<AppSidebar />`](./app-sidebar)
 ```tsx
 import type { ReactNode } from "react";
 import { Layout } from "@/components/admin";
-import { Sidebar, SidebarContent, SidebarProvider } from "@/components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
 
 const NarrowSidebar = ({ children }: { children?: ReactNode }) => (
   <Sidebar variant="sidebar" collapsible="none" style={{ width: "160px" }}>

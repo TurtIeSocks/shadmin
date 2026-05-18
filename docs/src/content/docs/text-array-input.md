@@ -22,21 +22,21 @@ Users type text and press Enter to add items. Items appear as removable badges. 
 
 ## Props
 
-| Prop           | Required | Type                       | Default                | Description                                    |
-| -------------- | -------- | -------------------------- | ---------------------- | ---------------------------------------------- |
-| `source`       | Required | `string`                   | -                      | Field name                                     |
-| `className`    | Optional | `string`                   | -                      | CSS classes                                    |
-| `defaultValue` | Optional | `string[]`                 | -                      | Default value                                  |
-| `disabled`     | Optional | `boolean`                  | -                      | Disable the input                              |
-| `format`       | Optional | `function`                 | -                      | Callback to convert API value to form value    |
-| `helperText`   | Optional | `ReactNode`                | -                      | Help text displayed below the input            |
-| `label`        | Optional | `string \| false`          | Inferred from `source` | Custom label, or `false` to hide it            |
-| `options`      | Optional | `string[]`                 | -                      | Preset suggestion strings shown in a dropdown  |
-| `parse`        | Optional | `function`                 | -                      | Callback to convert form value to API value    |
-| `placeholder`  | Optional | `string`                   | -                      | Input placeholder (shown when no values exist) |
-| `readOnly`     | Optional | `boolean`                  | -                      | Make the input read-only                       |
-| `renderTags`   | Optional | `(tags, getTagProps) => ReactNode` | -           | Custom renderer for the selected-value chips   |
-| `validate`     | Optional | `Validator \| Validator[]` | -                      | Validation rules                               |
+| Prop           | Required | Type                               | Default                | Description                                    |
+| -------------- | -------- | ---------------------------------- | ---------------------- | ---------------------------------------------- |
+| `source`       | Required | `string`                           | -                      | Field name                                     |
+| `className`    | Optional | `string`                           | -                      | CSS classes                                    |
+| `defaultValue` | Optional | `string[]`                         | -                      | Default value                                  |
+| `disabled`     | Optional | `boolean`                          | -                      | Disable the input                              |
+| `format`       | Optional | `function`                         | -                      | Callback to convert API value to form value    |
+| `helperText`   | Optional | `ReactNode`                        | -                      | Help text displayed below the input            |
+| `label`        | Optional | `string \| false`                  | Inferred from `source` | Custom label, or `false` to hide it            |
+| `options`      | Optional | `string[]`                         | -                      | Preset suggestion strings shown in a dropdown  |
+| `parse`        | Optional | `function`                         | -                      | Callback to convert form value to API value    |
+| `placeholder`  | Optional | `string`                           | -                      | Input placeholder (shown when no values exist) |
+| `readOnly`     | Optional | `boolean`                          | -                      | Make the input read-only                       |
+| `renderTags`   | Optional | `(tags, getTagProps) => ReactNode` | -                      | Custom renderer for the selected-value chips   |
+| `validate`     | Optional | `Validator \| Validator[]`         | -                      | Validation rules                               |
 
 ## Keyboard Shortcuts
 
@@ -59,15 +59,20 @@ import { Tag } from "lucide-react";
     tags.map((tag, index) => {
       const { key, onDelete } = getTagProps(tag, index);
       return (
-        <span key={key} className="flex items-center gap-1 rounded bg-muted px-2 py-0.5 text-xs">
+        <span
+          key={key}
+          className="flex items-center gap-1 rounded bg-muted px-2 py-0.5 text-xs"
+        >
           <Tag className="size-3" />
           {tag}
-          <button onClick={onDelete} type="button">×</button>
+          <button onClick={onDelete} type="button">
+            ×
+          </button>
         </span>
       );
     })
   }
-/>
+/>;
 ```
 
 ## `options`

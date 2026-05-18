@@ -37,30 +37,30 @@ const record = {
 
 ## Props
 
-| Prop              | Required   | Type                                          | Default    | Description                                                                                   |
-| ----------------- | ---------- | --------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------- |
-| `source`          | Required\* | `string`                                      | -          | Field name (inferred in ReferenceArrayInput)                                                  |
-| `choices`         | Required\* | `Object[]`                                    | -          | List of items. Required if not inside a ReferenceArrayInput.                                  |
-| `className`       | Optional   | `string`                                      | -          | Wrapper classes                                                                               |
-| `create`          | Optional   | `ReactElement`                                | -          | React element rendered as an inline-create entry at the bottom of the menu                   |
-| `createHintValue` | Optional   | `string`                                      | -          | Internal sentinel placeholder shown in the input while the create element is active          |
-| `createItemLabel` | Optional   | `string`                                      | `ra.action.create_item` | Label for the create menu item when the filter is non-empty       |
-| `createLabel`     | Optional   | `string`                                      | `ra.action.create`      | Hint label for the create menu entry when the filter is empty     |
-| `createValue`     | Optional   | `string`                                      | `@@ra-create`           | Sentinel value that tags the create option in the options list    |
-| `InputLabelProps` | Optional   | `ComponentProps<typeof FormLabel>`            | -                       | Props forwarded directly to the label element above the trigger   |
-| `onCreate`        | Optional   | `(filter?: string) => Promise<{ id, name }>` | -                       | Lightweight callback to create a new choice without a full dialog |
-| `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
-| `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
-| `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
-| `format`          | Optional   | `function`                                    | -          | Callback to convert the value from the form state into the input value                        |
-| `helperText`      | Optional   | `ReactNode`                                   | -          | Help text                                                                                     |
-| `label`           | Optional   | `string` &#124; `ReactNode` &#124; `false`    | Inferred   | Custom / hide label                                                                           |
-| `optionText`      | Optional   | `string` &#124; `Function` &#124; `Component` | `name`     | Field name of the record to display as the option text, or function/component that renders it |
-| `optionValue`     | Optional   | `string`                                      | `id`       | Field name of the record containing the value to use as the form value                        |
-| `parse`           | Optional   | `function`                                    | -          | Callback to convert the input value into the value stored in the form state                   |
-| `placeholder`     | Optional   | `string`                                      | -          | Text shown in the trigger button when no value is selected                                    |
-| `translateChoice` | Optional   | `boolean`                                     | `true`     | Whether the choices should be translated                                                      |
-| `validate`        | Optional   | `Validator` &#124; `Validator[]`              | -          | Validation                                                                                    |
+| Prop              | Required   | Type                                          | Default                 | Description                                                                                   |
+| ----------------- | ---------- | --------------------------------------------- | ----------------------- | --------------------------------------------------------------------------------------------- |
+| `source`          | Required\* | `string`                                      | -                       | Field name (inferred in ReferenceArrayInput)                                                  |
+| `choices`         | Required\* | `Object[]`                                    | -                       | List of items. Required if not inside a ReferenceArrayInput.                                  |
+| `className`       | Optional   | `string`                                      | -                       | Wrapper classes                                                                               |
+| `create`          | Optional   | `ReactElement`                                | -                       | React element rendered as an inline-create entry at the bottom of the menu                    |
+| `createHintValue` | Optional   | `string`                                      | -                       | Internal sentinel placeholder shown in the input while the create element is active           |
+| `createItemLabel` | Optional   | `string`                                      | `ra.action.create_item` | Label for the create menu item when the filter is non-empty                                   |
+| `createLabel`     | Optional   | `string`                                      | `ra.action.create`      | Hint label for the create menu entry when the filter is empty                                 |
+| `createValue`     | Optional   | `string`                                      | `@@ra-create`           | Sentinel value that tags the create option in the options list                                |
+| `InputLabelProps` | Optional   | `ComponentProps<typeof FormLabel>`            | -                       | Props forwarded directly to the label element above the trigger                               |
+| `onCreate`        | Optional   | `(filter?: string) => Promise<{ id, name }>`  | -                       | Lightweight callback to create a new choice without a full dialog                             |
+| `defaultValue`    | Optional   | `any[]`                                       | `[]`                    | Default value                                                                                 |
+| `disabled`        | Optional   | `boolean`                                     | -                       | Disable input                                                                                 |
+| `disableValue`    | Optional   | `string`                                      | `disabled`              | Field marking disabled choices                                                                |
+| `format`          | Optional   | `function`                                    | -                       | Callback to convert the value from the form state into the input value                        |
+| `helperText`      | Optional   | `ReactNode`                                   | -                       | Help text                                                                                     |
+| `label`           | Optional   | `string` &#124; `ReactNode` &#124; `false`    | Inferred                | Custom / hide label                                                                           |
+| `optionText`      | Optional   | `string` &#124; `Function` &#124; `Component` | `name`                  | Field name of the record to display as the option text, or function/component that renders it |
+| `optionValue`     | Optional   | `string`                                      | `id`                    | Field name of the record containing the value to use as the form value                        |
+| `parse`           | Optional   | `function`                                    | -                       | Callback to convert the input value into the value stored in the form state                   |
+| `placeholder`     | Optional   | `string`                                      | -                       | Text shown in the trigger button when no value is selected                                    |
+| `translateChoice` | Optional   | `boolean`                                     | `true`                  | Whether the choices should be translated                                                      |
+| `validate`        | Optional   | `Validator` &#124; `Validator[]`              | -                       | Validation                                                                                    |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
 
@@ -150,7 +150,9 @@ Use `onCreate` for simple one-step creation (e.g. a `prompt()` or a quick API ca
   source="tags"
   choices={choices}
   onCreate={async (filter) => {
-    const newTag = await dataProvider.create("tags", { data: { name: filter } });
+    const newTag = await dataProvider.create("tags", {
+      data: { name: filter },
+    });
     return newTag.data;
   }}
 />
@@ -239,11 +241,7 @@ const CreateTag = ({ onClose }) => {
   );
 };
 
-<SelectArrayInput
-  source="tags"
-  choices={choices}
-  create={<CreateTag />}
-/>
+<SelectArrayInput source="tags" choices={choices} create={<CreateTag />} />;
 ```
 
 ## Alternatives

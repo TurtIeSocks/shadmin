@@ -64,7 +64,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `disabled`                | Optional   | `boolean`                                       | `false`                                    | If true, the input is disabled                                                                                                                                                                                      |
 | `disableValue`            | Optional   | `string`                                        | `disabled`                                 | Field marking disabled choices                                                                                                                                                                                      |
 | `emptyText`               | Optional   | `string`                                        | `''`                                       | The text to use for the empty element. When non-empty, prepends a "(none)" choice for non-required fields.                                                                                                          |
-| `emptyValue`              | Optional   | `string` &#124; `number`                        | `''`                                       | The underlying form value stored when the user clears the selection (via `emptyText` or by re-clicking the current choice)                                                                                         |
+| `emptyValue`              | Optional   | `string` &#124; `number`                        | `''`                                       | The underlying form value stored when the user clears the selection (via `emptyText` or by re-clicking the current choice)                                                                                          |
 | `filterToQuery`           | Optional   | `string` => `Object`                            | `q => ({ q })`                             | How to transform the searchText into a parameter for the data provider                                                                                                                                              |
 | `handleHomeEndKeys`       | Optional   | `boolean`                                       | `false`                                    | If true, pressing Home scrolls the dropdown list to the first item and End scrolls to the last item                                                                                                                 |
 | `format`                  | Optional   | `Function`                                      | `-`                                        | Callback taking the value from the form state, and returning the input value.                                                                                                                                       |
@@ -73,18 +73,18 @@ If you need to let users select more than one item in the list, check out the [`
 | `isPending`               | Optional   | `boolean`                                       | `false`                                    | If `true`, the component will display a loading indicator.                                                                                                                                                          |
 | `isOptionEqualToValue`    | Optional   | `(option, value) => boolean`                    | `areIdsEqual`                              | Custom equality check between a choice value and the current field value. Useful when IDs are compared across types (e.g. number vs string).                                                                        |
 | `label`                   | Optional   | `string` &#124; `ReactNode`                     | `-`                                        | The label to display for the input                                                                                                                                                                                  |
-| `limitChoicesToValue`     | Optional   | `boolean`                                       | `false`                                    | If true, the dropdown shows only the choice that matches the current value instead of all choices                                                                                                                    |
+| `limitChoicesToValue`     | Optional   | `boolean`                                       | `false`                                    | If true, the dropdown shows only the choice that matches the current value instead of all choices                                                                                                                   |
 | `matchSuggestion`         | Optional   | `Function`                                      | `-`                                        | Required if `optionText` is a React element. Function returning a boolean indicating whether a choice matches the filter. `(filter, choice) => boolean`                                                             |
 | `modal`                   | Optional   | `boolean`                                       | `false`                                    | If `true`, the popover will be displayed as a modal                                                                                                                                                                 |
 | `noOptionsText`           | Optional   | `ReactNode`                                     | `ra.navigation.no_results`                 | Content shown inside the dropdown when no choices match the current filter text                                                                                                                                     |
 | `offline`                 | Optional   | `ReactNode`                                     | -                                          | What to render when there is no network connectivity when fetching the choices                                                                                                                                      |
 | `onChange`                | Optional   | `Function`                                      | `-`                                        | A function called with the new value, along with the selected record, when the input value changes                                                                                                                  |
 | `onCreate`                | Optional   | `Function`                                      | `-`                                        | A function called with the current filter value when users choose to create a new choice.                                                                                                                           |
-| `openOnFocus`             | Optional   | `boolean`                                       | `false`                                    | If true, the dropdown opens automatically when the search input receives focus                                                                                                                                       |
+| `openOnFocus`             | Optional   | `boolean`                                       | `false`                                    | If true, the dropdown opens automatically when the search input receives focus                                                                                                                                      |
 | `optionText`              | Optional   | `string` &#124; `Function` &#124; `Component`   | `undefined` &#124; `record Representation` | Field name of record to display in the suggestion item or function using the choice object as argument                                                                                                              |
 | `optionValue`             | Optional   | `string`                                        | `id`                                       | Field name of record containing the value to use as input value                                                                                                                                                     |
 | `parse`                   | Optional   | `Function`                                      | `-`                                        | Callback taking the value from the input, and returning the value to be stored in the form state.                                                                                                                   |
-| `selectOnFocus`           | Optional   | `boolean`                                       | `false`                                    | If true, all text already in the search input is selected when the input receives focus                                                                                                                              |
+| `selectOnFocus`           | Optional   | `boolean`                                       | `false`                                    | If true, all text already in the search input is selected when the input receives focus                                                                                                                             |
 | `setFilter`               | Optional   | `Function`                                      | `null`                                     | A callback to inform the `searchText` has changed and new `choices` can be retrieved based on this `searchText`. Signature `searchText => void`. This function is automatically set up when using `ReferenceInput`. |
 | `shouldRenderSuggestions` | Optional   | `Function`                                      | `() => true`                               | A function that returns a `boolean` to determine whether or not suggestions are rendered.                                                                                                                           |
 | `suggestionLimit`         | Optional   | `number`                                        | `null`                                     | Limits the numbers of suggestions that are shown in the dropdown list                                                                                                                                               |
@@ -351,11 +351,7 @@ If you just need to ask users for a single string to create the new option, you 
 When `true`, any text already present in the search input is selected when the input receives focus. This lets users immediately start typing a new query without having to manually clear the previous filter text.
 
 ```jsx
-<AutocompleteInput
-  source="category"
-  choices={choices}
-  selectOnFocus
-/>
+<AutocompleteInput source="category" choices={choices} selectOnFocus />
 ```
 
 ## `openOnFocus`
@@ -363,11 +359,7 @@ When `true`, any text already present in the search input is selected when the i
 When `true`, the dropdown opens automatically as soon as the search input gains focus. This saves the user an extra click when they tab into the field or click the trigger button.
 
 ```jsx
-<AutocompleteInput
-  source="category"
-  choices={choices}
-  openOnFocus
-/>
+<AutocompleteInput source="category" choices={choices} openOnFocus />
 ```
 
 ## `noOptionsText`
@@ -387,11 +379,7 @@ The content rendered inside the dropdown when no choices match the current filte
 When `true`, the dropdown filters the displayed choices to only the one that matches the current field value. All other choices are hidden. This is useful in read-heavy UIs where you want to confirm the selection without presenting the full list.
 
 ```jsx
-<AutocompleteInput
-  source="category"
-  choices={choices}
-  limitChoicesToValue
-/>
+<AutocompleteInput source="category" choices={choices} limitChoicesToValue />
 ```
 
 ## `isOptionEqualToValue`
@@ -411,11 +399,7 @@ A custom comparator function called with `(choiceValue, fieldValue)` that return
 When `true`, pressing the `Home` key while the dropdown is open scrolls the option list to the first item, and pressing `End` scrolls to the last item. Useful for long lists where keyboard-only navigation is important.
 
 ```jsx
-<AutocompleteInput
-  source="category"
-  choices={choices}
-  handleHomeEndKeys
-/>
+<AutocompleteInput source="category" choices={choices} handleHomeEndKeys />
 ```
 
 ## `emptyValue`
@@ -448,9 +432,5 @@ When set, prepends a special "(none)" entry at the top of the dropdown for non-r
 When `true`, the search text typed in the filter input is cleared when the input loses focus. This means if the user opens the dropdown, types to narrow results, then clicks away without selecting, the filter resets to empty.
 
 ```jsx
-<AutocompleteInput
-  source="category"
-  choices={choices}
-  clearOnBlur
-/>
+<AutocompleteInput source="category" choices={choices} clearOnBlur />
 ```

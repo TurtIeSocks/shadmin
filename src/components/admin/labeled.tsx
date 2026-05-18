@@ -61,7 +61,10 @@ export const Labeled = ({
       )}
     >
       {showLabel && (
-        <label htmlFor={htmlFor} className="text-muted-foreground text-xs font-medium">
+        <label
+          htmlFor={htmlFor}
+          className="text-muted-foreground text-xs font-medium"
+        >
           <FieldTitle
             label={label ?? childLabel}
             source={

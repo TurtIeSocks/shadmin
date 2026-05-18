@@ -37,7 +37,7 @@ Replaces the default `<RefreshCw />` shown in the button. Pass any lucide-react 
 import { RefreshCcw } from "lucide-react";
 import { RefreshIconButton } from "@/components/admin";
 
-<RefreshIconButton icon={<RefreshCcw />} />
+<RefreshIconButton icon={<RefreshCcw />} />;
 ```
 
 ## `label`

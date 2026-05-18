@@ -1,6 +1,11 @@
 import { X } from "lucide-react";
 import type { InputProps } from "ra-core";
-import { useInput, useResourceContext, FieldTitle, useTranslate } from "ra-core";
+import {
+  useInput,
+  useResourceContext,
+  FieldTitle,
+  useTranslate,
+} from "ra-core";
 import {
   FormControl,
   FormError,

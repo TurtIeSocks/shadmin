@@ -82,7 +82,7 @@ Forwards a ref to the underlying `<Button>` element.
 import { useRef } from "react";
 
 const ref = useRef<HTMLButtonElement>(null);
-<DeleteButton ref={ref} />
+<DeleteButton ref={ref} />;
 ```
 
 ## Soft Delete

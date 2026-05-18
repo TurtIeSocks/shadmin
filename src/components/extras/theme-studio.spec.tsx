@@ -27,7 +27,9 @@ describe("<ThemeStudio />", () => {
 
   it("hides the theme mode toggle button when showThemeModeToggle=false", async () => {
     const screen = render(<NoThemeToggle />);
-    expect(screen.container.querySelector("[data-theme-mode-toggle]")).toBeNull();
+    expect(
+      screen.container.querySelector("[data-theme-mode-toggle]"),
+    ).toBeNull();
   });
 
   it("swaps the active palette when the mode toggle is used", async () => {
@@ -102,9 +104,15 @@ describe("<ThemeStudio />", () => {
     await expect
       .poll(() => document.querySelector('[data-slot="color-picker"]'))
       .not.toBeNull();
-    expect(document.querySelector('[data-slot="color-picker-pad"]')).toBeTruthy();
-    expect(document.querySelector('[data-slot="color-picker-hue"]')).toBeTruthy();
-    expect(document.querySelector('[data-slot="color-picker-alpha"]')).toBeTruthy();
+    expect(
+      document.querySelector('[data-slot="color-picker-pad"]'),
+    ).toBeTruthy();
+    expect(
+      document.querySelector('[data-slot="color-picker-hue"]'),
+    ).toBeTruthy();
+    expect(
+      document.querySelector('[data-slot="color-picker-alpha"]'),
+    ).toBeTruthy();
   });
 
   it("appends an alpha suffix to the var when the Alpha slider is moved", async () => {

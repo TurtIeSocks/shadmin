@@ -186,13 +186,7 @@ export function ThemeProvider({
       liveVars,
       setLiveVar,
     }),
-    [
-      resolvedLightTheme,
-      resolvedDarkTheme,
-      defaultTheme,
-      liveVars,
-      setLiveVar,
-    ],
+    [resolvedLightTheme, resolvedDarkTheme, defaultTheme, liveVars, setLiveVar],
   );
 
   return (

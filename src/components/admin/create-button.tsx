@@ -42,7 +42,12 @@ const defaultIcon = <Plus />;
  * );
  */
 export const CreateButton = (props: CreateButtonProps) => {
-  const { label: labelProp, icon = defaultIcon, scrollToTop = true, ref } = props;
+  const {
+    label: labelProp,
+    icon = defaultIcon,
+    scrollToTop = true,
+    ref,
+  } = props;
   const resource = useResourceContext(props);
   const { canAccess, isPending } = useCanAccess({ action: "create", resource });
   const createPath = useCreatePath();

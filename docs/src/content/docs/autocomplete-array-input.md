@@ -52,40 +52,40 @@ The form value for the source must be an array of the selected values, e.g.
 
 ## Props
 
-| Prop              | Required   | Type                             | Default               | Description                                                                                                                             |
-| ----------------- | ---------- | -------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `source`          | Required\* | `string`                         | -                     | Field name (inferred in ReferenceArrayInput)                                                                                            |
-| `choices`         | Required\* | `any[]`                          | -                     | List of choices                                                                                                                         |
-| `className`       | Optional   | `string`                         | -                     | CSS Classes                                                                                                                             |
-| `disableValue`    | Optional   | `string`                         | `disabled`            | The value to use for the disabled state                                                                                                 |
-| `filterToQuery`   | Optional   | `(text:string)=>object`          | `{ q: text }`         | Server filter mapping                                                                                                                   |
-| `format`          | Optional   | `function`                       | -                     | Function to convert the value sent by the API to the value used by the form                                                             |
-| `helperText`      | Optional   | `ReactNode`                      | -                     | Help text                                                                                                                               |
-| `inputText`       | Optional   | `ReactNode \| (choice) =>string` | Choice text           | Required if `optionText` is a custom Component, this function must return the text displayed for the current selection.                 |
-| `optionText`      | Optional   | `string \| function`             | `name` or record repr | Field name of record to display in the suggestion item or function which accepts the correct record as argument (`(record)=> {string}`) |
-| `optionValue`     | Optional   | `string`                         | `id`                  | Field name of record containing the value to use as input value                                                                         |
-| `parse`           | Optional   | `function`                       | -                     | Function to convert the value from the form to the value sent to the API                                                                |
-| `placeholder`     | Optional   | `string`                         | 'Search…'             | Input placeholder                                                                                                                       |
-| `translateChoice` | Optional   | `boolean`                        | `!isFromReference`    | Translate labels                                                                                                                        |
-| `clearOnBlur`     | Optional   | `boolean`                        | `false`               | If true, clears the filter text in the input when the input loses focus                                                                 |
-| `create`          | Optional   | `ReactElement`                   | -                     | A React element rendered when users want to create a new choice                                                                         |
-| `createHintValue` | Optional   | `string`                         | -                     | Sentinel value passed to `useSupportCreateSuggestion` to represent the "create" item internally                                         |
-| `createItemLabel` | Optional   | `string \| (filter) => ReactNode` | `ra.action.create_item` | Label for the "Create …" menu item shown when the filter is non-empty                                                                  |
-| `createLabel`     | Optional   | `string \| ReactNode`            | -                     | Hint label shown as a menu item when the filter is empty, prompting users that they can create a new option                             |
-| `createValue`     | Optional   | `string`                         | `@@ra-create`         | The option value stored for the "create" item; must not conflict with real choice values                                                |
-| `emptyText`       | Optional   | `string`                         | -                     | Accepted for API parity with `AutocompleteInput`; not rendered in the array variant                                                     |
-| `handleHomeEndKeys` | Optional | `boolean`                        | `false`               | If true, Home/End keys scroll the dropdown list to the first/last item                                                                  |
-| `isOptionEqualToValue` | Optional | `(option, value) => boolean`  | `areIdsEqual`         | Custom equality check between a choice value and the current field value                                                                |
-| `limitChoicesToValue` | Optional  | `boolean`                        | `false`               | If true, the dropdown shows only already-selected choices                                                                               |
-| `matchSuggestion` | Optional   | `(filter, choice) => boolean`    | -                     | Custom filter function replacing the default substring match; required when `optionText` is a React element                             |
-| `noOptionsText`   | Optional   | `ReactNode`                      | `ra.navigation.no_results` | Content shown in the dropdown when no choices match the current filter                                                            |
-| `onCreate`        | Optional   | `(filter) => object \| Promise`  | -                     | Callback invoked with the filter text when the user picks the "create" item; returns or resolves the new choice object                  |
-| `openOnFocus`     | Optional   | `boolean`                        | `false`               | Accepted for API parity; the array variant always opens on focus regardless of this setting                                             |
-| `optionText`      | Optional   | `string \| function \| element`  | `name` or record repr | Field name, function, or element used to derive each choice's display label                                                             |
-| `selectOnFocus`   | Optional   | `boolean`                        | `false`               | If true, all text in the search input is selected when the input receives focus                                                         |
-| `setFilter`       | Optional   | `(filter: string) => void`       | -                     | Callback fired on every keystroke with the current filter text; for server-side filtering outside `ReferenceArrayInput`                 |
-| `shouldRenderSuggestions` | Optional | `(filter: string) => boolean` | `() => true`        | Gate function; when it returns `false` the dropdown stays closed regardless of other open conditions                                   |
-| `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
+| Prop                      | Required   | Type                              | Default                    | Description                                                                                                                             |
+| ------------------------- | ---------- | --------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `source`                  | Required\* | `string`                          | -                          | Field name (inferred in ReferenceArrayInput)                                                                                            |
+| `choices`                 | Required\* | `any[]`                           | -                          | List of choices                                                                                                                         |
+| `className`               | Optional   | `string`                          | -                          | CSS Classes                                                                                                                             |
+| `disableValue`            | Optional   | `string`                          | `disabled`                 | The value to use for the disabled state                                                                                                 |
+| `filterToQuery`           | Optional   | `(text:string)=>object`           | `{ q: text }`              | Server filter mapping                                                                                                                   |
+| `format`                  | Optional   | `function`                        | -                          | Function to convert the value sent by the API to the value used by the form                                                             |
+| `helperText`              | Optional   | `ReactNode`                       | -                          | Help text                                                                                                                               |
+| `inputText`               | Optional   | `ReactNode \| (choice) =>string`  | Choice text                | Required if `optionText` is a custom Component, this function must return the text displayed for the current selection.                 |
+| `optionText`              | Optional   | `string \| function`              | `name` or record repr      | Field name of record to display in the suggestion item or function which accepts the correct record as argument (`(record)=> {string}`) |
+| `optionValue`             | Optional   | `string`                          | `id`                       | Field name of record containing the value to use as input value                                                                         |
+| `parse`                   | Optional   | `function`                        | -                          | Function to convert the value from the form to the value sent to the API                                                                |
+| `placeholder`             | Optional   | `string`                          | 'Search…'                  | Input placeholder                                                                                                                       |
+| `translateChoice`         | Optional   | `boolean`                         | `!isFromReference`         | Translate labels                                                                                                                        |
+| `clearOnBlur`             | Optional   | `boolean`                         | `false`                    | If true, clears the filter text in the input when the input loses focus                                                                 |
+| `create`                  | Optional   | `ReactElement`                    | -                          | A React element rendered when users want to create a new choice                                                                         |
+| `createHintValue`         | Optional   | `string`                          | -                          | Sentinel value passed to `useSupportCreateSuggestion` to represent the "create" item internally                                         |
+| `createItemLabel`         | Optional   | `string \| (filter) => ReactNode` | `ra.action.create_item`    | Label for the "Create …" menu item shown when the filter is non-empty                                                                   |
+| `createLabel`             | Optional   | `string \| ReactNode`             | -                          | Hint label shown as a menu item when the filter is empty, prompting users that they can create a new option                             |
+| `createValue`             | Optional   | `string`                          | `@@ra-create`              | The option value stored for the "create" item; must not conflict with real choice values                                                |
+| `emptyText`               | Optional   | `string`                          | -                          | Accepted for API parity with `AutocompleteInput`; not rendered in the array variant                                                     |
+| `handleHomeEndKeys`       | Optional   | `boolean`                         | `false`                    | If true, Home/End keys scroll the dropdown list to the first/last item                                                                  |
+| `isOptionEqualToValue`    | Optional   | `(option, value) => boolean`      | `areIdsEqual`              | Custom equality check between a choice value and the current field value                                                                |
+| `limitChoicesToValue`     | Optional   | `boolean`                         | `false`                    | If true, the dropdown shows only already-selected choices                                                                               |
+| `matchSuggestion`         | Optional   | `(filter, choice) => boolean`     | -                          | Custom filter function replacing the default substring match; required when `optionText` is a React element                             |
+| `noOptionsText`           | Optional   | `ReactNode`                       | `ra.navigation.no_results` | Content shown in the dropdown when no choices match the current filter                                                                  |
+| `onCreate`                | Optional   | `(filter) => object \| Promise`   | -                          | Callback invoked with the filter text when the user picks the "create" item; returns or resolves the new choice object                  |
+| `openOnFocus`             | Optional   | `boolean`                         | `false`                    | Accepted for API parity; the array variant always opens on focus regardless of this setting                                             |
+| `optionText`              | Optional   | `string \| function \| element`   | `name` or record repr      | Field name, function, or element used to derive each choice's display label                                                             |
+| `selectOnFocus`           | Optional   | `boolean`                         | `false`                    | If true, all text in the search input is selected when the input receives focus                                                         |
+| `setFilter`               | Optional   | `(filter: string) => void`        | -                          | Callback fired on every keystroke with the current filter text; for server-side filtering outside `ReferenceArrayInput`                 |
+| `shouldRenderSuggestions` | Optional   | `(filter: string) => boolean`     | `() => true`               | Gate function; when it returns `false` the dropdown stays closed regardless of other open conditions                                    |
+| `validate`                | Optional   | `Validator \| Validator[]`        | -                          | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
 
@@ -191,7 +191,7 @@ const [filter, setFilter] = useState("");
   source="tags"
   choices={filteredChoices}
   setFilter={setFilter}
-/>
+/>;
 ```
 
 ## `selectOnFocus`
@@ -199,11 +199,7 @@ const [filter, setFilter] = useState("");
 When `true`, any text already present in the search input is selected when the input receives focus. This lets users immediately start typing a new query without having to manually clear the previous filter text.
 
 ```jsx
-<AutocompleteArrayInput
-  source="tags"
-  choices={choices}
-  selectOnFocus
-/>
+<AutocompleteArrayInput source="tags" choices={choices} selectOnFocus />
 ```
 
 ## `optionText`
@@ -215,11 +211,7 @@ Determines how each choice's label is derived. Accepts:
 - A **React element** — rendered inside a `RecordContext` containing the choice. When using an element, also pass `inputText` (for badge labels) and `matchSuggestion` (for filtering).
 
 ```jsx
-<AutocompleteArrayInput
-  source="tags"
-  choices={choices}
-  optionText="label"
-/>
+<AutocompleteArrayInput source="tags" choices={choices} optionText="label" />
 ```
 
 ## `openOnFocus`
@@ -227,11 +219,7 @@ Determines how each choice's label is derived. Accepts:
 Accepted for API parity with `<AutocompleteInput>`. The array variant always opens its dropdown when the inline search input receives focus, so this prop is a no-op — passing it does not change behaviour but allows shared prop objects to be spread across both components without type errors.
 
 ```jsx
-<AutocompleteArrayInput
-  source="tags"
-  choices={choices}
-  openOnFocus
-/>
+<AutocompleteArrayInput source="tags" choices={choices} openOnFocus />
 ```
 
 ## `onCreate`
@@ -242,7 +230,10 @@ A simpler alternative to the `create` prop. Pass a callback `(filter) => newChoi
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
-  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+  onCreate={(filter) => ({
+    id: String(filter).toLowerCase(),
+    name: String(filter),
+  })}
 />
 ```
 
@@ -271,7 +262,7 @@ const matchSuggestion = (filter, choice) =>
   source="author_ids"
   choices={choices}
   matchSuggestion={matchSuggestion}
-/>
+/>;
 ```
 
 ## `limitChoicesToValue`
@@ -279,11 +270,7 @@ const matchSuggestion = (filter, choice) =>
 When `true`, the dropdown only shows choices that are already in the selected values array. All other choices are hidden. Useful in read-heavy UIs where you want users to browse or remove current selections without seeing the full unselected list.
 
 ```jsx
-<AutocompleteArrayInput
-  source="tags"
-  choices={choices}
-  limitChoicesToValue
-/>
+<AutocompleteArrayInput source="tags" choices={choices} limitChoicesToValue />
 ```
 
 ## `isOptionEqualToValue`
@@ -303,11 +290,7 @@ A custom comparator `(choiceValue, fieldValue) => boolean` that determines when 
 When `true`, pressing `Home` while the dropdown is open scrolls the option list to the first item, and pressing `End` scrolls to the last item. Useful for long lists where keyboard-only navigation is important.
 
 ```jsx
-<AutocompleteArrayInput
-  source="tags"
-  choices={choices}
-  handleHomeEndKeys
-/>
+<AutocompleteArrayInput source="tags" choices={choices} handleHomeEndKeys />
 ```
 
 ## `emptyText`
@@ -315,11 +298,7 @@ When `true`, pressing `Home` while the dropdown is open scrolls the option list 
 Accepted for API parity with `<AutocompleteInput>` so code that passes `emptyText` to both variants compiles without errors. The array variant never renders a "(none)" entry — multiple values are deselected by clicking the × badge — so this prop has no visual effect.
 
 ```jsx
-<AutocompleteArrayInput
-  source="tags"
-  choices={choices}
-  emptyText="No tags"
-/>
+<AutocompleteArrayInput source="tags" choices={choices} emptyText="No tags" />
 ```
 
 ## `createValue`
@@ -330,7 +309,10 @@ The sentinel string stored as the option value for the "create new option" item 
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
-  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+  onCreate={(filter) => ({
+    id: String(filter).toLowerCase(),
+    name: String(filter),
+  })}
   createValue="__ra_create__"
 />
 ```
@@ -343,7 +325,10 @@ A hint label rendered as a menu item when the filter text is empty, letting user
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
-  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+  onCreate={(filter) => ({
+    id: String(filter).toLowerCase(),
+    name: String(filter),
+  })}
   createLabel="Start typing to add a tag"
 />
 ```
@@ -356,7 +341,10 @@ The label shown for the "Create …" menu item when the filter text is non-empty
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
-  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+  onCreate={(filter) => ({
+    id: String(filter).toLowerCase(),
+    name: String(filter),
+  })}
   createItemLabel="Add '%{item}' as a new tag"
 />
 ```
@@ -387,8 +375,14 @@ const CreateTag = () => {
   return (
     <Dialog open onOpenChange={onCancel}>
       <DialogContent>
-        <Input value={name} onChange={(e) => setName(e.target.value)} autoFocus />
-        <Button onClick={() => onCreate({ id: name.toLowerCase(), name })}>Save</Button>
+        <Input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          autoFocus
+        />
+        <Button onClick={() => onCreate({ id: name.toLowerCase(), name })}>
+          Save
+        </Button>
       </DialogContent>
     </Dialog>
   );
@@ -398,7 +392,7 @@ const CreateTag = () => {
   source="tags"
   choices={choices}
   create={<CreateTag />}
-/>
+/>;
 ```
 
 ## `clearOnBlur`
@@ -406,11 +400,7 @@ const CreateTag = () => {
 When `true`, the filter text typed in the search input is cleared when the input loses focus. This means if the user opens the dropdown, types to narrow results, then clicks away without selecting, the filter resets to empty.
 
 ```jsx
-<AutocompleteArrayInput
-  source="tags"
-  choices={choices}
-  clearOnBlur
-/>
+<AutocompleteArrayInput source="tags" choices={choices} clearOnBlur />
 ```
 
 ## Working With Object Values

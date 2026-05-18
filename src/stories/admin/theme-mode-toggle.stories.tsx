@@ -23,14 +23,9 @@ const Wrapper = ({
   // `useStore` call only receives notifications once the store inside
   // `CoreAdminContext` has been `setup()`d.
   <CoreAdminContext
-    i18nProvider={polyglotI18nProvider(
-      () => defaultMessages,
-      "en",
-      undefined,
-      {
-        allowMissing: true,
-      },
-    )}
+    i18nProvider={polyglotI18nProvider(() => defaultMessages, "en", undefined, {
+      allowMissing: true,
+    })}
     store={memoryStore()}
   >
     <ThemeProvider defaultTheme={defaultTheme}>{children}</ThemeProvider>

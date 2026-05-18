@@ -148,7 +148,11 @@ When the browser goes offline while the record is still loading (`isPaused && is
 import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
 
 export const PostShow = () => (
-  <Show offline={<p className="text-muted-foreground p-4">You appear to be offline.</p>}>
+  <Show
+    offline={
+      <p className="text-muted-foreground p-4">You appear to be offline.</p>
+    }
+  >
     <SimpleShowLayout>
       <RecordField source="title" />
     </SimpleShowLayout>
@@ -166,7 +170,9 @@ When `dataProvider.getOne()` fails, `<Show>` renders a default error message. Ov
 import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
 
 export const PostShow = () => (
-  <Show error={<p className="text-destructive p-4">Could not load this record.</p>}>
+  <Show
+    error={<p className="text-destructive p-4">Could not load this record.</p>}
+  >
     <SimpleShowLayout>
       <RecordField source="title" />
     </SimpleShowLayout>

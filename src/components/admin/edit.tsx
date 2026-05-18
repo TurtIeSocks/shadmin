@@ -21,7 +21,10 @@ import { cn } from "@/lib/utils";
 import { ShowButton } from "@/components/admin/show-button";
 import { DeleteButton } from "./delete-button";
 
-export interface EditProps extends EditViewProps, Omit<EditBaseProps, "offline" | "error" | "render" | "children"> {}
+export interface EditProps
+  extends
+    EditViewProps,
+    Omit<EditBaseProps, "offline" | "error" | "render" | "children"> {}
 
 /**
  * A complete edit page with breadcrumb, title, and default actions.
@@ -79,8 +82,16 @@ export const Edit = ({
   </EditBase>
 );
 
-const defaultOffline = <p className="text-sm text-muted-foreground p-4">Offline — waiting for connection…</p>;
-const defaultError = <p className="text-sm text-destructive p-4">An error occurred while loading this record.</p>;
+const defaultOffline = (
+  <p className="text-sm text-muted-foreground p-4">
+    Offline — waiting for connection…
+  </p>
+);
+const defaultError = (
+  <p className="text-sm text-destructive p-4">
+    An error occurred while loading this record.
+  </p>
+);
 
 export interface EditViewProps {
   aside?: ReactNode;
@@ -137,7 +148,10 @@ export const EditView = ({
   const hasDashboard = useHasDashboard();
 
   const showOffline =
-    context.isPaused && context.isPending && offline !== undefined && offline !== false;
+    context.isPaused &&
+    context.isPending &&
+    offline !== undefined &&
+    offline !== false;
   const showError = context.error && error !== false && error !== undefined;
 
   if (
@@ -172,16 +186,16 @@ export const EditView = ({
           ? children
           : null;
 
-  const contentBlock = (
-    <Wrapper className="my-2">{finalContent}</Wrapper>
-  );
+  const contentBlock = <Wrapper className="my-2">{finalContent}</Wrapper>;
 
   const main = aside ? (
     <div className="flex gap-4">
       <div className="flex-1">{contentBlock}</div>
       <div className="flex-shrink-0 w-64">{aside}</div>
     </div>
-  ) : contentBlock;
+  ) : (
+    contentBlock
+  );
 
   return (
     <>

@@ -46,7 +46,12 @@ const defaultIcon = <Pencil />;
  * );
  */
 export const EditButton = (props: EditButtonProps) => {
-  const { label: labelProp, icon = defaultIcon, scrollToTop = true, ref } = props;
+  const {
+    label: labelProp,
+    icon = defaultIcon,
+    scrollToTop = true,
+    ref,
+  } = props;
   const resource = useResourceContext(props);
   const record = useRecordContext(props);
   const createPath = useCreatePath();

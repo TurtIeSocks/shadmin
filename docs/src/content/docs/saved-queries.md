@@ -18,9 +18,9 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop   | Required | Type        | Default         | Description                                         |
-| ------ | -------- | ----------- | --------------- | --------------------------------------------------- |
-| `icon` | Optional | `ReactNode` | `<Bookmark />`  | Icon shown in the FilterList header for this section |
+| Prop   | Required | Type        | Default        | Description                                          |
+| ------ | -------- | ----------- | -------------- | ---------------------------------------------------- |
+| `icon` | Optional | `ReactNode` | `<Bookmark />` | Icon shown in the FilterList header for this section |
 
 ## `icon`
 
@@ -30,9 +30,7 @@ Pass any `ReactNode` to replace the default `<Bookmark>` icon rendered in the `<
 import { Star } from "lucide-react";
 import { SavedQueriesList } from "@/components/admin";
 
-const Sidebar = () => (
-  <SavedQueriesList icon={<Star className="size-4" />} />
-);
+const Sidebar = () => <SavedQueriesList icon={<Star className="size-4" />} />;
 ```
 
 ## Behavior

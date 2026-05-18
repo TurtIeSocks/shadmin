@@ -83,23 +83,23 @@ export const PostList = () => (
 
 ## Props
 
-| Prop         | Required | Type                                        | Default | Description                                         |
-| ------------ | -------- | ------------------------------------------- | ------- | --------------------------------------------------- |
-| `reference`  | Required | `string`                                    | -       | Target resource                                     |
-| `target`     | Required | `string`                                    | -       | Foreign key in target referencing current record id |
-| `children`   | Optional | `ReactNode`                                 | -       | List display components                             |
-| `debounce`   | Optional | `number`                                    | 500     | Debounce time in ms for filter changes              |
-| `empty`      | Optional | `ReactNode`                                 | -       | Placeholder when list empty                         |
-| `error`      | Optional | `ReactNode`                                 | -       | Error element (set `false` to hide)                 |
-| `filter`     | Optional | `object`                                    | -       | Permanent filters                                   |
-| `loading`    | Optional | `ReactNode`                                 | -       | Loading element (set `false` to hide)               |
-| `offline`    | Optional | `ReactNode`                                 | `<Offline />` | Element rendered when the network is offline  |
-| `page`       | Optional | `number`                                    | 1       | Initial page                                        |
-| `pagination` | Optional | `ReactNode`                                 | -       | Pagination component                                |
-| `perPage`    | Optional | `number`                                    | -       | Page size                                           |
-| `render`     | Optional | `(listCtx)=>ReactNode`                      | -       | Custom pre-children renderer                        |
-| `sort`       | Optional | `{ field: string; order: 'ASC' \| 'DESC' }` | -       | Sort order                                          |
-| `storeKey`   | Optional | `string`                                    | -       | The key to use to store the records selection state |
+| Prop         | Required | Type                                        | Default       | Description                                         |
+| ------------ | -------- | ------------------------------------------- | ------------- | --------------------------------------------------- |
+| `reference`  | Required | `string`                                    | -             | Target resource                                     |
+| `target`     | Required | `string`                                    | -             | Foreign key in target referencing current record id |
+| `children`   | Optional | `ReactNode`                                 | -             | List display components                             |
+| `debounce`   | Optional | `number`                                    | 500           | Debounce time in ms for filter changes              |
+| `empty`      | Optional | `ReactNode`                                 | -             | Placeholder when list empty                         |
+| `error`      | Optional | `ReactNode`                                 | -             | Error element (set `false` to hide)                 |
+| `filter`     | Optional | `object`                                    | -             | Permanent filters                                   |
+| `loading`    | Optional | `ReactNode`                                 | -             | Loading element (set `false` to hide)               |
+| `offline`    | Optional | `ReactNode`                                 | `<Offline />` | Element rendered when the network is offline        |
+| `page`       | Optional | `number`                                    | 1             | Initial page                                        |
+| `pagination` | Optional | `ReactNode`                                 | -             | Pagination component                                |
+| `perPage`    | Optional | `number`                                    | -             | Page size                                           |
+| `render`     | Optional | `(listCtx)=>ReactNode`                      | -             | Custom pre-children renderer                        |
+| `sort`       | Optional | `{ field: string; order: 'ASC' \| 'DESC' }` | -             | Sort order                                          |
+| `storeKey`   | Optional | `string`                                    | -             | The key to use to store the records selection state |
 
 ## `offline`
 
@@ -109,7 +109,11 @@ Element rendered when the network is offline and the reference data is unavailab
 <ReferenceManyField
   reference="books"
   target="author_id"
-  offline={<span className="text-muted-foreground italic">Offline — books unavailable</span>}
+  offline={
+    <span className="text-muted-foreground italic">
+      Offline — books unavailable
+    </span>
+  }
 >
   <DataTable>
     <DataTable.Col source="title" />

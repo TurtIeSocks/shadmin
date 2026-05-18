@@ -70,7 +70,13 @@ const PostListCustomSort = () => (
 );
 
 const PostListWithEmpty = () => (
-  <List empty={<p className="text-center py-8 text-muted-foreground">No posts yet. Create your first one!</p>}>
+  <List
+    empty={
+      <p className="text-center py-8 text-muted-foreground">
+        No posts yet. Create your first one!
+      </p>
+    }
+  >
     <DataTable>
       <DataTable.Col source="id" />
       <DataTable.Col source="title" />

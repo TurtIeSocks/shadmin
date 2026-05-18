@@ -55,7 +55,11 @@ Replaces the default `<RefreshCw />` shown alongside the label. Pass any React n
 ```tsx
 import { RotateCcw } from "lucide-react";
 
-<BulkUpdateButton icon={<RotateCcw />} label="Reset Views" data={{ views: 0 }} />
+<BulkUpdateButton
+  icon={<RotateCcw />}
+  label="Reset Views"
+  data={{ views: 0 }}
+/>;
 ```
 
 ## `mutationMode`
@@ -94,7 +98,7 @@ Forwards a ref to the underlying `<Button>` element.
 import { useRef } from "react";
 
 const ref = useRef<HTMLButtonElement>(null);
-<BulkUpdateButton ref={ref} label="Reset Views" data={{ views: 0 }} />
+<BulkUpdateButton ref={ref} label="Reset Views" data={{ views: 0 }} />;
 ```
 
 ## `label`

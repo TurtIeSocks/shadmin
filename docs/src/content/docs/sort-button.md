@@ -33,11 +33,11 @@ This button lets users pick the sort field, then the sort direction (ASC/DESC).
 
 ## Props
 
-| Prop     | Required | Type                     | Default          | Description                       |
-| -------- | -------- | ------------------------ | ---------------- | --------------------------------- |
-| `fields` | Required | `string[]`               | -                | Whitelist of sortable field names |
-| `icon`   | Optional | `ReactNode`              | Sort icon        | Custom icon                       |
-| `label`  | Optional | `string`                 | `ra.action.sort` | i18n key                          |
+| Prop     | Required | Type                     | Default          | Description                            |
+| -------- | -------- | ------------------------ | ---------------- | -------------------------------------- |
+| `fields` | Required | `string[]`               | -                | Whitelist of sortable field names      |
+| `icon`   | Optional | `ReactNode`              | Sort icon        | Custom icon                            |
+| `label`  | Optional | `string`                 | `ra.action.sort` | i18n key                               |
 | `ref`    | Optional | `Ref<HTMLButtonElement>` | -                | Forwarded to the underlying `<Button>` |
 
 Additional props are passed to the underlying `<button>` element (e.g., `className`).
@@ -64,7 +64,10 @@ const MyToolbar = () => {
 import { ListOrdered } from "lucide-react";
 import { SortButton } from "@/components/admin";
 
-<SortButton fields={["title", "published_at"]} icon={<ListOrdered className="size-4" />} />
+<SortButton
+  fields={["title", "published_at"]}
+  icon={<ListOrdered className="size-4" />}
+/>;
 ```
 
 ## `label`

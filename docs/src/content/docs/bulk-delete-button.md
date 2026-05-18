@@ -67,7 +67,7 @@ Replaces the default `<Trash />` shown alongside the label. Pass any React node 
 ```tsx
 import { Archive } from "lucide-react";
 
-<BulkDeleteButton icon={<Archive />} />
+<BulkDeleteButton icon={<Archive />} />;
 ```
 
 ## `label`
@@ -103,7 +103,7 @@ Forwards a ref to the underlying `<Button>` element.
 import { useRef } from "react";
 
 const ref = useRef<HTMLButtonElement>(null);
-<BulkDeleteButton ref={ref} />
+<BulkDeleteButton ref={ref} />;
 ```
 
 ## Soft Delete

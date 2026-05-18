@@ -1,6 +1,12 @@
 import * as React from "react";
 import type { HtmlHTMLAttributes, ReactNode } from "react";
-import { useCallback, useEffect, useRef, useState, isValidElement } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  isValidElement,
+} from "react";
 import isEqual from "lodash/isEqual";
 import queryString from "query-string";
 import {

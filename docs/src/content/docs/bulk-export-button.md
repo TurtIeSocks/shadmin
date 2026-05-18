@@ -43,7 +43,7 @@ Replaces the default `<Download />` shown alongside the label. Pass any React no
 ```tsx
 import { FileDown } from "lucide-react";
 
-<BulkExportButton icon={<FileDown />} />
+<BulkExportButton icon={<FileDown />} />;
 ```
 
 ## `label`

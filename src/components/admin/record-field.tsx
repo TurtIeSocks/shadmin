@@ -118,7 +118,9 @@ type NoInfer<T> = T extends infer U ? U : never;
 
 export interface RecordFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends Omit<FieldProps<RecordType>, "source" | "record">,
+>
+  extends
+    Omit<FieldProps<RecordType>, "source" | "record">,
     Omit<HTMLAttributes<HTMLDivElement>, "className"> {
   children?: ReactNode;
   field?: ElementType;

@@ -42,12 +42,12 @@ const MinimalAppBar = () => (
 
 ## Props
 
-| Prop        | Required | Type             | Default                        | Description                                               |
-| ----------- | -------- | ---------------- | ------------------------------ | --------------------------------------------------------- |
-| `children`  | Optional | `ReactNode`      | Default toolbar                | Replace the entire AppBar content                         |
-| `className` | Optional | `string`         | —                              | Extra Tailwind classes appended to the `<header>` element |
-| `toolbar`   | Optional | `ReactNode`      | Locales + Theme + Refresh      | Replace the right-aligned action cluster                  |
-| `userMenu`  | Optional | `ReactNode\|false` | `<UserMenu />`               | Replace or suppress the user menu                         |
+| Prop        | Required | Type               | Default                   | Description                                               |
+| ----------- | -------- | ------------------ | ------------------------- | --------------------------------------------------------- |
+| `children`  | Optional | `ReactNode`        | Default toolbar           | Replace the entire AppBar content                         |
+| `className` | Optional | `string`           | —                         | Extra Tailwind classes appended to the `<header>` element |
+| `toolbar`   | Optional | `ReactNode`        | Locales + Theme + Refresh | Replace the right-aligned action cluster                  |
+| `userMenu`  | Optional | `ReactNode\|false` | `<UserMenu />`            | Replace or suppress the user menu                         |
 
 Additional props are forwarded to the underlying `<header>` element.
 
@@ -59,7 +59,7 @@ When `children` are provided, they replace the entire toolbar — `<AppBar>` onl
 
 Pass any `ReactNode` to replace the default right-side action cluster (LocalesMenuButton + ThemeModeToggle + RefreshButton). Pass `null` to render nothing in that slot (the `userMenu` slot remains separate).
 
-```tsx
+````tsx
 import { AppBar, Layout, RefreshButton } from "@/components/admin";
 import { MyHelpButton } from "./my-help-button";
 
@@ -88,5 +88,5 @@ const MyAppBar = () => <AppBar userMenu={<MyUserMenu />} />;
 
 // Suppress entirely
 const NoUserMenuAppBar = () => <AppBar userMenu={false} />;
-```
-```
+````
+

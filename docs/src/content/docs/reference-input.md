@@ -112,7 +112,11 @@ Element rendered when the network is offline and the reference data is unavailab
 <ReferenceInput
   source="company_id"
   reference="companies"
-  offline={<span className="text-muted-foreground italic">Offline — companies unavailable</span>}
+  offline={
+    <span className="text-muted-foreground italic">
+      Offline — companies unavailable
+    </span>
+  }
 />
 ```
 

@@ -50,13 +50,7 @@ export interface LayoutProps extends CoreLayoutProps {
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/layout/ Layout documentation}
  */
 export const Layout = (props: LayoutProps) => {
-  const {
-    appBar,
-    menu,
-    sidebar,
-    error,
-    ...rest
-  } = props;
+  const { appBar, menu, sidebar, error, ...rest } = props;
   const AppBarComponent = appBar ?? AppBar;
   const SidebarComponent = sidebar ?? AppSidebar;
   const ErrorComponent = error ?? Error;

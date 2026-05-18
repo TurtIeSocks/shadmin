@@ -17,7 +17,8 @@ import type { ElementType, ReactNode } from "react";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 
-export type CreateProps = CreateViewProps & Omit<CreateBaseProps, "render" | "children">;
+export type CreateProps = CreateViewProps &
+  Omit<CreateBaseProps, "render" | "children">;
 
 /**
  * A complete create page with breadcrumb, title, and actions.
@@ -127,16 +128,16 @@ export const CreateView = ({
     </div>
   );
 
-  const contentBlock = (
-    <Wrapper className="my-2">{finalContent}</Wrapper>
-  );
+  const contentBlock = <Wrapper className="my-2">{finalContent}</Wrapper>;
 
   const main = aside ? (
     <div className="flex gap-4">
       <div className="flex-1">{contentBlock}</div>
       <div className="flex-shrink-0 w-64">{aside}</div>
     </div>
-  ) : contentBlock;
+  ) : (
+    contentBlock
+  );
 
   return (
     <>

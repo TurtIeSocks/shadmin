@@ -29,7 +29,11 @@ const defaultOffline = <Offline />;
  * );
  */
 export const ReferenceInput = (props: ReferenceInputProps) => {
-  const { children = defaultChildren, offline = defaultOffline, ...rest } = props;
+  const {
+    children = defaultChildren,
+    offline = defaultOffline,
+    ...rest
+  } = props;
 
   if (props.validate && process.env.NODE_ENV !== "production") {
     throw new Error(
@@ -37,7 +41,11 @@ export const ReferenceInput = (props: ReferenceInputProps) => {
     );
   }
 
-  return <ReferenceInputBase {...rest} offline={offline}>{children}</ReferenceInputBase>;
+  return (
+    <ReferenceInputBase {...rest} offline={offline}>
+      {children}
+    </ReferenceInputBase>
+  );
 };
 
 const defaultChildren = <AutocompleteInput />;

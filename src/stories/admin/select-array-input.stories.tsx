@@ -189,7 +189,11 @@ export const WithCreate = () => (
     <SelectArrayInput
       source="tags"
       choices={tags}
-      create={<div className="px-3 py-2 text-sm text-muted-foreground italic">+ Create new tag (dialog would open here)</div>}
+      create={
+        <div className="px-3 py-2 text-sm text-muted-foreground italic">
+          + Create new tag (dialog would open here)
+        </div>
+      }
     />
     <FormValues />
   </Wrapper>

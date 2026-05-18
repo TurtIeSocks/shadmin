@@ -113,8 +113,7 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
     if (!options || !inputValue.trim()) return [];
     const lower = inputValue.toLowerCase();
     return options.filter(
-      (opt) =>
-        opt.toLowerCase().includes(lower) && !values.includes(opt),
+      (opt) => opt.toLowerCase().includes(lower) && !values.includes(opt),
     );
   }, [options, inputValue, values]);
 

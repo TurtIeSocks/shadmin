@@ -76,10 +76,7 @@ import {
   BulkActionsToolbar,
   BulkActionsToolbarChildren,
 } from "@/components/admin/bulk-actions-toolbar";
-import {
-  Collapsible,
-  CollapsibleContent,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import type { UnknownValue } from "@/lib/unknown-types";
 
 const DefaultBulkActionButtons = () => {
@@ -183,7 +180,14 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
             isRowExpandable: isRowExpandable as (record: RaRecord) => boolean,
           }
         : null,
-    [expand, expandedIds, toggleExpand, setExpandedIds, expandSingle, isRowExpandable],
+    [
+      expand,
+      expandedIds,
+      toggleExpand,
+      setExpandedIds,
+      expandSingle,
+      isRowExpandable,
+    ],
   );
   const resourceFromContext = useResourceContext(props);
   const storeKey = props.storeKey || `${resourceFromContext}.datatable`;
@@ -230,10 +234,16 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
               <DataTableRenderContext.Provider value="header">
                 <HeadComponent>{columns}</HeadComponent>
               </DataTableRenderContext.Provider>
-              {createElement(BodyComponent as ComponentType<{
-                children: ReactNode;
-                rowClassName?: (record: RecordType, rowIndex: number) => string | undefined;
-              }>, { rowClassName, children: columns })}
+              {createElement(
+                BodyComponent as ComponentType<{
+                  children: ReactNode;
+                  rowClassName?: (
+                    record: RecordType,
+                    rowIndex: number,
+                  ) => string | undefined;
+                }>,
+                { rowClassName, children: columns },
+              )}
             </Table>
           </div>
         </DataTableBase>
@@ -249,9 +259,11 @@ export function DataTable<RecordType extends RaRecord = RaRecord>(
           {bulkActionsToolbar ??
             (bulkActionButtons !== false && (
               <BulkActionsToolbar>
-                {isValidElement(bulkActionButtons)
-                  ? bulkActionButtons
-                  : <DefaultBulkActionButtons />}
+                {isValidElement(bulkActionButtons) ? (
+                  bulkActionButtons
+                ) : (
+                  <DefaultBulkActionButtons />
+                )}
               </BulkActionsToolbar>
             ))}
           <DataTableRenderContext.Provider value="columnsSelector">
@@ -270,19 +282,28 @@ function ExpandAllButton() {
   const expandContext = useDataTableExpandContext();
   const data = useDataTableDataContext();
   if (!expandContext || !data) return null;
-  const allExpanded = data.length > 0 && data.every(r => expandContext.expandedIds.includes(r.id));
+  const allExpanded =
+    data.length > 0 &&
+    data.every((r) => expandContext.expandedIds.includes(r.id));
   const handleClick = () => {
     if (allExpanded || expandContext.expandedIds.length > 0) {
       expandContext.setExpandedIds([]);
     } else {
       const expandableIds = expandContext.isRowExpandable
-        ? data.filter(r => expandContext.isRowExpandable!(r)).map(r => r.id)
-        : data.map(r => r.id);
+        ? data.filter((r) => expandContext.isRowExpandable!(r)).map((r) => r.id)
+        : data.map((r) => r.id);
       expandContext.setExpandedIds(expandableIds);
     }
   };
   return (
-    <Button type="button" variant="ghost" size="icon" className="size-7" onClick={handleClick} aria-label={allExpanded ? 'Collapse all rows' : 'Expand all rows'}>
+    <Button
+      type="button"
+      variant="ghost"
+      size="icon"
+      className="size-7"
+      onClick={handleClick}
+      aria-label={allExpanded ? "Collapse all rows" : "Expand all rows"}
+    >
       <ChevronsUpDown className="size-4" />
     </Button>
   );
@@ -348,9 +369,7 @@ export const DataTableHead = ({ children }: { children: ReactNode }) => {
         ) : null}
         {expandContext ? (
           <TableHead className="w-8">
-            {!expandContext.expandSingle && (
-              <ExpandAllButton />
-            )}
+            {!expandContext.expandSingle && <ExpandAllButton />}
           </TableHead>
         ) : null}
         {children}
@@ -412,9 +431,7 @@ export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
                 <TableCell colSpan={expandColSpan} className="p-0">
                   <Collapsible open={!!isExpanded}>
                     <CollapsibleContent>
-                      <div className="bg-muted/30 px-4 py-3">
-                        {expandPanel}
-                      </div>
+                      <div className="bg-muted/30 px-4 py-3">{expandPanel}</div>
                     </CollapsibleContent>
                   </Collapsible>
                 </TableCell>
@@ -661,10 +678,7 @@ export interface DataTableProps<
 > extends Omit<Partial<DataTableBaseProps<RecordType>>, "rowClick" | "expand"> {
   children: ReactNode;
   className?: string;
-  rowClassName?: (
-    record: RecordType,
-    rowIndex: number,
-  ) => string | undefined;
+  rowClassName?: (record: RecordType, rowIndex: number) => string | undefined;
   bulkActionButtons?: ReactNode;
   bulkActionsToolbar?: ReactNode;
   /**

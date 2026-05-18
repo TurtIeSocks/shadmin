@@ -88,7 +88,11 @@ export const WithRef = () => {
 
 export const CustomIcon = () => (
   <Wrapper>
-    <BulkUpdateButton icon={<span>🔄</span>} label="Reset Views" data={{ views: 0 }} />
+    <BulkUpdateButton
+      icon={<span>🔄</span>}
+      label="Reset Views"
+      data={{ views: 0 }}
+    />
   </Wrapper>
 );
 

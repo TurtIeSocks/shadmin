@@ -22,7 +22,11 @@ import {
 } from "@/components/ui/popover";
 import { Command as CommandPrimitive } from "cmdk";
 import { Popover as PopoverPrimitive } from "radix-ui";
-import type { ChoicesProps, InputProps, SupportCreateSuggestionOptions } from "ra-core";
+import type {
+  ChoicesProps,
+  InputProps,
+  SupportCreateSuggestionOptions,
+} from "ra-core";
 import {
   useChoices,
   useChoicesContext,
@@ -99,7 +103,10 @@ export const AutocompleteArrayInput = (
       /** When true, Home/End keys scroll the listbox to first/last item. */
       handleHomeEndKeys?: boolean;
       /** Custom equality check between a choice and a selected value. */
-      isOptionEqualToValue?: (option: UnknownValue, value: UnknownValue) => boolean;
+      isOptionEqualToValue?: (
+        option: UnknownValue,
+        value: UnknownValue,
+      ) => boolean;
       /** Custom filter function; replaces default substring match. */
       matchSuggestion?: (filter: string, choice: UnknownValue) => boolean;
       /** Gate controlling whether the dropdown opens at all. */
@@ -214,9 +221,7 @@ export const AutocompleteArrayInput = (
 
   const handleUnselect = useEvent((choice: UnknownValue) => {
     field.onChange(
-      values.filter(
-        (v: UnknownValue) => !isEqual(getChoiceValue(choice), v),
-      ),
+      values.filter((v: UnknownValue) => !isEqual(getChoiceValue(choice), v)),
     );
     field.onBlur();
   });
@@ -246,7 +251,9 @@ export const AutocompleteArrayInput = (
   );
 
   // Prop 1: limitChoicesToValue — show only selected choices in the dropdown.
-  let availableChoices = limitChoicesToValue ? selectedChoices : unselectedChoices;
+  let availableChoices = limitChoicesToValue
+    ? selectedChoices
+    : unselectedChoices;
 
   // matchSuggestion: when provided, apply custom filtering for non-reference inputs.
   if (matchSuggestion && !isFromReference && filterValue !== "") {
@@ -266,7 +273,8 @@ export const AutocompleteArrayInput = (
 
   // Prop 3: noOptionsText — fall back to translated string.
   const emptyText =
-    noOptionsText ?? translate("ra.navigation.no_results", { _: "No matching item found." });
+    noOptionsText ??
+    translate("ra.navigation.no_results", { _: "No matching item found." });
 
   const getInputText = useCallback(
     (selectedChoice: UnknownValue) => {
@@ -321,7 +329,14 @@ export const AutocompleteArrayInput = (
       field.onChange([...values, val]);
       field.onBlur();
     },
-    [field, values, isFromReference, debouncedSetFilters, setFilters, filterToQuery],
+    [
+      field,
+      values,
+      isFromReference,
+      debouncedSetFilters,
+      setFilters,
+      filterToQuery,
+    ],
   );
 
   const {
@@ -346,165 +361,174 @@ export const AutocompleteArrayInput = (
       : null;
 
   // Append createItem after the suggestionLimit slice so it is always visible.
-  const finalChoices = createItem ? [...availableChoices, createItem] : availableChoices;
+  const finalChoices = createItem
+    ? [...availableChoices, createItem]
+    : availableChoices;
 
   return (
     <>
       <FormField className={props.className} id={id} name={field.name}>
-      {props.label !== false && (
-        <FormLabel>
-          <FieldTitle
-            label={props.label}
-            source={props.source ?? source}
-            resource={resource}
-            isRequired={_isRequired}
-          />
-        </FormLabel>
-      )}
-      <FormControl>
-        <Command
-          onKeyDown={handleKeyDown}
-          shouldFilter={!isFromReference && !matchSuggestion}
-          className="overflow-visible bg-transparent"
-        >
-          <Popover
-            open={effectiveOpen}
-            onOpenChange={(isOpen) => {
-              if (!isOpen) setOpen(false);
-            }}
-            modal={modal}
+        {props.label !== false && (
+          <FormLabel>
+            <FieldTitle
+              label={props.label}
+              source={props.source ?? source}
+              resource={resource}
+              isRequired={_isRequired}
+            />
+          </FormLabel>
+        )}
+        <FormControl>
+          <Command
+            onKeyDown={handleKeyDown}
+            shouldFilter={!isFromReference && !matchSuggestion}
+            className="overflow-visible bg-transparent"
           >
-            <PopoverAnchor asChild>
-              <div
-                ref={anchorRef}
-                className="group rounded-md bg-transparent dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
-              >
-                <div className="flex flex-wrap gap-1">
-                  {selectedChoices.map((choice) => (
-                    <Badge key={getChoiceValue(choice)} variant="outline">
-                      {getInputText(choice)}
-                      <button
-                        className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            handleUnselect(choice);
-                          }
-                        }}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleUnselect(choice);
-                        }}
-                      >
-                        <span className="sr-only">
-                          {translate("ra.action.remove", {
-                            _: "Remove",
-                          })}
-                        </span>
-                        <X className="size-3" />
-                      </button>
-                    </Badge>
-                  ))}
-                  {/* Avoid having the "Search" Icon by not using CommandInput */}
-                  <CommandPrimitive.Input
-                    ref={inputRef}
-                    value={filterValue}
-                    onValueChange={(filter) => {
-                      setFilterValue(filter);
-                      setFilter?.(filter);
-                      requestAnimationFrame(() => {
-                        listRef.current?.scrollTo(0, 0);
-                      });
-                      // We don't want the ChoicesContext to filter the choices if the input
-                      // is not from a reference as it would also filter out the selected values
-                      if (isFromReference) {
-                        debouncedSetFilters(filter);
-                      }
-                    }}
-                    onBlur={handleBlur}
-                    onFocus={handleFocus}
-                    onKeyDown={handleInputKeyDown}
-                    placeholder={placeholder}
-                    className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-                  />
-                </div>
-              </div>
-            </PopoverAnchor>
-            <PopoverContent
-              style={{ width: "var(--radix-popover-trigger-width)" }}
-              className="p-0"
-              onOpenAutoFocus={(e) => e.preventDefault()}
-              onCloseAutoFocus={(e) => e.preventDefault()}
-              onInteractOutside={(e) => {
-                if (anchorRef.current?.contains(e.target as Node)) {
-                  e.preventDefault();
-                }
+            <Popover
+              open={effectiveOpen}
+              onOpenChange={(isOpen) => {
+                if (!isOpen) setOpen(false);
               }}
+              modal={modal}
             >
-              <CommandList ref={listRef}>
-                {finalChoices.length > 0 ? (
-                  <CommandGroup>
-                    {finalChoices.map((choice) => {
-                      const isCreateItem =
-                        !!createItem && choice?.id === createItem.id;
-                      const choiceText = getChoiceText(
-                        isCreateItem ? createItem : choice,
-                      );
-                      return (
-                        <CommandItem
-                          key={isCreateItem ? "__create__" : getChoiceValue(choice)}
-                          value={
-                            isCreateItem
-                              ? `?${filterValue}?`
-                              : getChoiceValue(choice)
-                          }
-                          keywords={
-                            isCreateItem || React.isValidElement(choiceText)
-                              ? undefined
-                              : [choiceText]
-                          }
+              <PopoverAnchor asChild>
+                <div
+                  ref={anchorRef}
+                  className="group rounded-md bg-transparent dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
+                >
+                  <div className="flex flex-wrap gap-1">
+                    {selectedChoices.map((choice) => (
+                      <Badge key={getChoiceValue(choice)} variant="outline">
+                        {getInputText(choice)}
+                        <button
+                          className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              handleUnselect(choice);
+                            }
+                          }}
                           onMouseDown={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
                           }}
-                          onSelect={() => {
-                            if (isCreateItem) {
-                              handleChangeWithCreateSupport(createItem.value);
-                            } else {
-                              setFilterValue("");
-                              if (isFromReference) {
-                                debouncedSetFilters.cancel();
-                                setFilters(filterToQuery(""));
-                              }
-                              field.onChange([...values, getChoiceValue(choice)]);
-                              field.onBlur();
-                            }
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleUnselect(choice);
                           }}
-                          className="cursor-pointer"
                         >
-                          {choiceText}
-                        </CommandItem>
-                      );
-                    })}
-                  </CommandGroup>
-                ) : (
-                  <div className="px-3 py-2 text-sm text-muted-foreground">
-                    {emptyText}
+                          <span className="sr-only">
+                            {translate("ra.action.remove", {
+                              _: "Remove",
+                            })}
+                          </span>
+                          <X className="size-3" />
+                        </button>
+                      </Badge>
+                    ))}
+                    {/* Avoid having the "Search" Icon by not using CommandInput */}
+                    <CommandPrimitive.Input
+                      ref={inputRef}
+                      value={filterValue}
+                      onValueChange={(filter) => {
+                        setFilterValue(filter);
+                        setFilter?.(filter);
+                        requestAnimationFrame(() => {
+                          listRef.current?.scrollTo(0, 0);
+                        });
+                        // We don't want the ChoicesContext to filter the choices if the input
+                        // is not from a reference as it would also filter out the selected values
+                        if (isFromReference) {
+                          debouncedSetFilters(filter);
+                        }
+                      }}
+                      onBlur={handleBlur}
+                      onFocus={handleFocus}
+                      onKeyDown={handleInputKeyDown}
+                      placeholder={placeholder}
+                      className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+                    />
                   </div>
-                )}
-              </CommandList>
-            </PopoverContent>
-          </Popover>
-        </Command>
-      </FormControl>
-      <InputHelperText helperText={props.helperText} />
-      <FormError />
-    </FormField>
-    {createElement}
-  </>
+                </div>
+              </PopoverAnchor>
+              <PopoverContent
+                style={{ width: "var(--radix-popover-trigger-width)" }}
+                className="p-0"
+                onOpenAutoFocus={(e) => e.preventDefault()}
+                onCloseAutoFocus={(e) => e.preventDefault()}
+                onInteractOutside={(e) => {
+                  if (anchorRef.current?.contains(e.target as Node)) {
+                    e.preventDefault();
+                  }
+                }}
+              >
+                <CommandList ref={listRef}>
+                  {finalChoices.length > 0 ? (
+                    <CommandGroup>
+                      {finalChoices.map((choice) => {
+                        const isCreateItem =
+                          !!createItem && choice?.id === createItem.id;
+                        const choiceText = getChoiceText(
+                          isCreateItem ? createItem : choice,
+                        );
+                        return (
+                          <CommandItem
+                            key={
+                              isCreateItem
+                                ? "__create__"
+                                : getChoiceValue(choice)
+                            }
+                            value={
+                              isCreateItem
+                                ? `?${filterValue}?`
+                                : getChoiceValue(choice)
+                            }
+                            keywords={
+                              isCreateItem || React.isValidElement(choiceText)
+                                ? undefined
+                                : [choiceText]
+                            }
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                            }}
+                            onSelect={() => {
+                              if (isCreateItem) {
+                                handleChangeWithCreateSupport(createItem.value);
+                              } else {
+                                setFilterValue("");
+                                if (isFromReference) {
+                                  debouncedSetFilters.cancel();
+                                  setFilters(filterToQuery(""));
+                                }
+                                field.onChange([
+                                  ...values,
+                                  getChoiceValue(choice),
+                                ]);
+                                field.onBlur();
+                              }
+                            }}
+                            className="cursor-pointer"
+                          >
+                            {choiceText}
+                          </CommandItem>
+                        );
+                      })}
+                    </CommandGroup>
+                  ) : (
+                    <div className="px-3 py-2 text-sm text-muted-foreground">
+                      {emptyText}
+                    </div>
+                  )}
+                </CommandList>
+              </PopoverContent>
+            </Popover>
+          </Command>
+        </FormControl>
+        <InputHelperText helperText={props.helperText} />
+        <FormError />
+      </FormField>
+      {createElement}
+    </>
   );
 };
 

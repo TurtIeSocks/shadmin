@@ -93,7 +93,12 @@ export const ColumnsButton = (props: ColumnsButtonProps) => {
               <TooltipContent>{title}</TooltipContent>
             </Tooltip>
           ) : (
-            <Button ref={ref} variant="outline" className="cursor-pointer" {...rest}>
+            <Button
+              ref={ref}
+              variant="outline"
+              className="cursor-pointer"
+              {...rest}
+            >
               <Columns />
               {title}
             </Button>

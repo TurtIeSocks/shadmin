@@ -28,7 +28,11 @@ export interface LocalesMenuButtonProps {
   languages?: Array<{ locale: string; name: string }>;
 }
 
-export function LocalesMenuButton({ ref, icon, languages: languagesProp }: LocalesMenuButtonProps = {}) {
+export function LocalesMenuButton({
+  ref,
+  icon,
+  languages: languagesProp,
+}: LocalesMenuButtonProps = {}) {
   const localesFromHook = useLocales();
   const languages = languagesProp ?? localesFromHook;
   const [locale, setLocale] = useLocaleState();

@@ -130,7 +130,8 @@ export const InfiniteListView = <RecordType extends RaRecord = RaRecord>(
         });
   const { hasCreate } = useResourceDefinition({ resource });
   const hasDashboard = useHasDashboard();
-  const { data, isPending, filterValues, total, hasNextPage, hasPreviousPage } = useListContext<RecordType>();
+  const { data, isPending, filterValues, total, hasNextPage, hasPreviousPage } =
+    useListContext<RecordType>();
 
   const dataIsEmpty = !data || (data as RecordType[]).length === 0;
   const shouldRenderEmpty =

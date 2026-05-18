@@ -9,11 +9,7 @@ title: "CommandMenu"
 `<CommandMenu>` needs to wrap the routed admin UI so the rest of the tree can call `useCommandMenu()` / `useRegisterCommand()`. Compose it between `<AdminContext>` (data/auth/i18n providers) and `<AdminUI>` (theme + routes):
 
 ```tsx
-import {
-  AdminContext,
-  AdminUI,
-  Resource,
-} from "@/components/admin";
+import { AdminContext, AdminUI, Resource } from "@/components/admin";
 import { CommandMenu } from "@/components/extras/command-menu";
 
 const App = () => (
@@ -33,11 +29,7 @@ Press **cmd+K** (or **ctrl+K** on Windows/Linux) to open the palette. Type to se
 Configure the palette by passing props directly:
 
 ```tsx
-import {
-  AdminContext,
-  AdminUI,
-  Resource,
-} from "@/components/admin";
+import { AdminContext, AdminUI, Resource } from "@/components/admin";
 import { CommandMenu } from "@/components/extras/command-menu";
 
 const App = () => (

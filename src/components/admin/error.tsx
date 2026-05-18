@@ -8,7 +8,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import type { HtmlHTMLAttributes, ErrorInfo, ComponentType, ReactNode } from "react";
+import type {
+  HtmlHTMLAttributes,
+  ErrorInfo,
+  ComponentType,
+  ReactNode,
+} from "react";
 import { Title } from "./title";
 
 /**
@@ -20,7 +25,14 @@ import { Title } from "./title";
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/error Error documentation}
  */
 export const Error = (props: InternalErrorProps) => {
-  const { error, errorInfo, resetErrorBoundary, errorComponent, title, ...rest } = props;
+  const {
+    error,
+    errorInfo,
+    resetErrorBoundary,
+    errorComponent,
+    title,
+    ...rest
+  } = props;
 
   useResetErrorBoundaryOnLocationChange(resetErrorBoundary);
 
@@ -132,7 +144,10 @@ interface InternalErrorProps
   title?: ReactNode | string | false;
 }
 
-export interface ErrorProps extends Pick<FallbackProps, "error" | "resetErrorBoundary"> {
+export interface ErrorProps extends Pick<
+  FallbackProps,
+  "error" | "resetErrorBoundary"
+> {
   errorInfo?: ErrorInfo;
   /**
    * When provided, injects a `<Title>` portal to update the app-bar page title.

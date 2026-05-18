@@ -329,11 +329,11 @@ When `expandSingle={true}` the header is empty — there is no point in "expand 
 
 ### `expand`
 
-| Prop | Required | Type | Default | Description |
-| ---- | -------- | ---- | ------- | ----------- |
-| `expand` | Optional | `ReactElement \| ComponentType<{id, record, resource}>` | — | Element or component rendered as the expand panel under each row. When provided, a chevron column is added to every row. |
-| `expandSingle` | Optional | `boolean` | `false` | When `true`, expanding a row collapses any other open row so only one is expanded at a time. Also hides the expand-all header button. |
-| `isRowExpandable` | Optional | `(record) => boolean` | — | Predicate that hides the chevron for rows that should not be expandable. |
+| Prop              | Required | Type                                                    | Default | Description                                                                                                                           |
+| ----------------- | -------- | ------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `expand`          | Optional | `ReactElement \| ComponentType<{id, record, resource}>` | —       | Element or component rendered as the expand panel under each row. When provided, a chevron column is added to every row.              |
+| `expandSingle`    | Optional | `boolean`                                               | `false` | When `true`, expanding a row collapses any other open row so only one is expanded at a time. Also hides the expand-all header button. |
+| `isRowExpandable` | Optional | `(record) => boolean`                                   | —       | Predicate that hides the chevron for rows that should not be expandable.                                                              |
 
 ## Hiding or Reordering Columns
 

@@ -40,12 +40,12 @@ In a `<DataTable>`, you can replace a column with an `<EditButton>` by using the
 
 ## Props
 
-| Prop          | Required | Type        | Default          | Description        |
-| ------------- | -------- | ----------- | ---------------- | ------------------ |
-| `icon`        | Optional | `ReactNode` | Pencil icon      | Custom icon element |
-| `label`       | Optional | `string`    | `ra.action.edit` | i18n key / label   |
-| `record`      | Optional | `RaRecord`  | From context     | Record used for id |
-| `resource`    | Optional | `string`    | From context     | Resource name      |
+| Prop          | Required | Type        | Default          | Description                    |
+| ------------- | -------- | ----------- | ---------------- | ------------------------------ |
+| `icon`        | Optional | `ReactNode` | Pencil icon      | Custom icon element            |
+| `label`       | Optional | `string`    | `ra.action.edit` | i18n key / label               |
+| `record`      | Optional | `RaRecord`  | From context     | Record used for id             |
+| `resource`    | Optional | `string`    | From context     | Resource name                  |
 | `scrollToTop` | Optional | `boolean`   | `true`           | Scroll to top after navigation |
 
 ## `icon`
@@ -55,7 +55,7 @@ Replaces the default `<Pencil />` shown alongside the label. Pass any React node
 ```tsx
 import { FilePen } from "lucide-react";
 
-<EditButton icon={<FilePen />} />
+<EditButton icon={<FilePen />} />;
 ```
 
 ## `label`
@@ -91,7 +91,7 @@ Forwards a ref to the underlying `<Button>` element.
 import { useRef } from "react";
 
 const ref = useRef<HTMLAnchorElement>(null);
-<EditButton ref={ref} />
+<EditButton ref={ref} />;
 ```
 
 ## `scrollToTop`

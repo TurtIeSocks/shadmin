@@ -1,4 +1,9 @@
-import { type ComponentProps, type MouseEventHandler, type ReactNode, type Ref } from "react";
+import {
+  type ComponentProps,
+  type MouseEventHandler,
+  type ReactNode,
+  type Ref,
+} from "react";
 import { useTranslate, usePreferencesEditor } from "ra-core";
 import { Settings } from "lucide-react";
 

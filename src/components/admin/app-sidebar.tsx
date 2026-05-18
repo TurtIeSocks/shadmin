@@ -82,9 +82,7 @@ export function AppSidebar({
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
-        {children ?? <Menu />}
-      </SidebarContent>
+      <SidebarContent>{children ?? <Menu />}</SidebarContent>
       <SidebarFooter />
     </Sidebar>
   );
