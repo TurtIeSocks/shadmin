@@ -47,6 +47,7 @@ export const PostList = () => (
 | `render`                  | Optional\* | `(ctx) => ReactNode`                        | -                        | Alternate render function receiving the list context           |
 | `actions`                 | Optional   | `ReactNode`                                 | default action bar       | Custom actions area (right side of header)                     |
 | `aside`                   | Optional   | `ReactNode`                                 | -                        | Side panel rendered alongside the list content                 |
+| `component`               | Optional   | `ElementType`                               | `"div"`                  | Override the root element wrapping the list content            |
 | `debounce`                | Optional   | `number`                                    | `500`                    | Debounce (ms) for filter & sort changes                        |
 | `disableAuthentication`   | Optional   | `boolean`                                   | `false`                  | Skip auth check for this page                                  |
 | `disableBreadcrumb`       | Optional   | `boolean`                                   | `false`                  | Hide the default breadcrumb                                    |
@@ -64,6 +65,24 @@ export const PostList = () => (
 | `title`                   | Optional   | `string \| ReactNode \| false`              | resource plural label    | Page title                                                     |
 
 `*` Provide either `children` or `render`.
+
+## `component`
+
+By default, `<InfiniteList>` wraps the list content in a `<div>`. Pass any React element type to `component` to replace it:
+
+```tsx
+import { InfiniteList, DataTable } from "@/components/admin";
+import { Card } from "@/components/ui/card";
+
+export const PostList = () => (
+  <InfiniteList component={Card}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </InfiniteList>
+);
+```
 
 ## `aside`
 

@@ -20,6 +20,12 @@
       "comment": ""
     },
     {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the root element wrapping the list content. Defaults to 'div'."
+    },
+    {
       "name": "disableBreadcrumb",
       "type": "boolean",
       "optional": true,
