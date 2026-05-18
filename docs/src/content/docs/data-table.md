@@ -286,6 +286,55 @@ By default, when the user clicks on a column header, the list becomes sorted in 
 <DataTable.Col source="published_at" sortByOrder="DESC" />
 ```
 
+## Row Expansion
+
+Pass an `expand` prop to show a detail panel below each row when the user clicks the chevron toggle:
+
+```tsx
+import { DataTable, List } from "@/components/admin";
+
+const BookDetails = () => (
+  <div className="p-4">
+    <TextField source="description" />
+  </div>
+);
+
+export const BookList = () => (
+  <List>
+    <DataTable expand={<BookDetails />}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
+);
+```
+
+### Expand-all header button
+
+When `expand` is provided and `expandSingle` is `false` (the default), the expand-column header renders an **ExpandAllButton** — a `<ChevronsUpDown>` icon button that toggles all rows at once:
+
+- If **any** rows are currently expanded → click **collapses all** rows.
+- If **no** rows are expanded → click **expands all** rows (respecting `isRowExpandable` if set).
+
+When `expandSingle={true}` the header is empty — there is no point in "expand all" when only one row can be open at a time.
+
+```tsx
+// Multi-row expand (default) — header shows the ExpandAllButton
+<DataTable expand={<BookDetails />}>...</DataTable>
+
+// Single-row expand — header is empty, no ExpandAllButton
+<DataTable expand={<BookDetails />} expandSingle>...</DataTable>
+```
+
+### `expand`
+
+| Prop | Required | Type | Default | Description |
+| ---- | -------- | ---- | ------- | ----------- |
+| `expand` | Optional | `ReactElement \| ComponentType<{id, record, resource}>` | — | Element or component rendered as the expand panel under each row. When provided, a chevron column is added to every row. |
+| `expandSingle` | Optional | `boolean` | `false` | When `true`, expanding a row collapses any other open row so only one is expanded at a time. Also hides the expand-all header button. |
+| `isRowExpandable` | Optional | `(record) => boolean` | — | Predicate that hides the chevron for rows that should not be expandable. |
+
 ## Hiding or Reordering Columns
 
 You can let end users customize the fields displayed in the `<DataTable>` by using the [`<ColumnsButton>`](./columns-button) in the `<List actions>`. When users click on this button, they can show / hide columns and reorder them.

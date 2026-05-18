@@ -235,6 +235,43 @@ const columns = (
   </>
 );
 
+const BookDetails = () => (
+  <div className="flex flex-col gap-1">
+    <strong>Title:</strong> <DataTable.Col source="title" />
+    <span className="text-muted-foreground text-sm">
+      Expand panel for this book row.
+    </span>
+  </div>
+);
+
+const RowDetail = () => (
+  <div className="text-sm text-muted-foreground">
+    Additional details for this record.
+  </div>
+);
+
+export const WithExpandAllButton = () => (
+  <Wrapper>
+    <DataTable expand={<RowDetail />}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col label="Author" source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </Wrapper>
+);
+
+export const WithExpandSingle = () => (
+  <Wrapper>
+    <DataTable expand={<RowDetail />} expandSingle>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col label="Author" source="author.name" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </Wrapper>
+);
+
 export const ComposedCustom = () => (
   <Wrapper>
     <DataTable>
