@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { Layout } from "@/components/admin";
+import { AppBar, Layout } from "@/components/admin";
 import { CoreAdminContext } from "ra-core";
 
 export default {
@@ -31,5 +31,17 @@ export const LoadingState = () => (
     <Layout>
       <LazyComponent />
     </Layout>
+  </CoreAdminContext>
+);
+
+const BrandedAppBar = () => (
+  <AppBar>
+    <span className="font-bold text-primary">Acme Admin</span>
+  </AppBar>
+);
+
+export const CustomAppBar = () => (
+  <CoreAdminContext>
+    <Layout appBar={BrandedAppBar}>Content</Layout>
   </CoreAdminContext>
 );

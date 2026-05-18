@@ -1,0 +1,11 @@
+{
+  "name": "Layout",
+  "props": [
+    {
+      "name": "appBar",
+      "type": "ComponentType<AppBarProps>",
+      "optional": true,
+      "comment": "Replaces the default `<AppBar />` rendered at the top of the content area."
+    }
+  ]
+}

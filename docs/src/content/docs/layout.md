@@ -74,7 +74,30 @@ export const Layout = (props: { children: ReactNode }) => {
 
 ## Props
 
+| Prop      | Required | Type                              | Default          | Description                                             |
+| --------- | -------- | --------------------------------- | ---------------- | ------------------------------------------------------- |
+| `appBar`  | Optional | `ComponentType<AppBarProps>`      | `<AppBar />`     | Replace the header component rendered above the content |
+
 When rendering the `<Layout>` component, Shadcn Admin Kit passes it a single prop, `children`, which is the main content of the page (the current resource view, depending on the current route).
+
+## `appBar`
+
+Pass a custom component to replace the default [`<AppBar />`](./app-bar). The replacement receives the same `AppBarProps` interface, so you can wrap the default `<AppBar>` or build a fully custom header.
+
+```tsx
+import { AppBar, Layout } from "@/components/admin";
+import { MyLogo } from "./my-logo";
+
+const MyAppBar = () => (
+  <AppBar>
+    <MyLogo />
+  </AppBar>
+);
+
+const MyLayout = (props) => <Layout {...props} appBar={MyAppBar} />;
+```
+
+Pass `MyLayout` to `<Admin layout={MyLayout}>` to apply it globally.
 
 ## Building a Custom Layout
 
