@@ -26,6 +26,12 @@
       "comment": ""
     },
     {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the root element wrapping the record content. Defaults to 'div'."
+    },
+    {
       "name": "disableBreadcrumb",
       "type": "boolean",
       "optional": true,

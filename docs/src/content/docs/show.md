@@ -101,6 +101,7 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `render`                | Optional&nbsp;\* | `(showContext) => ReactNode` |              | A function rendering the record fields, receive the show context as its argument     |
 | `actions`               | Optional         | `ReactElement`               |              | The actions to display in the toolbar                                                |
 | `aside`                 | Optional         | `ReactNode`                  |              | Side panel rendered alongside the record content                                     |
+| `component`             | Optional         | `ElementType`                | `"div"`      | Override the root element wrapping the record content                                |
 | `className`             | Optional         | `string`                     |              | passed to the root component                                                         |
 | `disableAuthentication` | Optional         | `boolean`                    |              | Set to `true` to disable the authentication check                                    |
 | `disableBreadcrumb`     | Optional         | `boolean`                    | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
@@ -111,6 +112,23 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `title`                 | Optional         | `string                      | ReactElement | false`                                                                               |                                                                 | The title to display in the App Bar |
 
 `*` You must provide either `children` or `render`.
+
+## `component`
+
+By default, `<Show>` wraps the record content in a `<div>`. Pass any React element type to `component` to replace it:
+
+```tsx
+import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
+import { Card } from "@/components/ui/card";
+
+export const PostShow = () => (
+  <Show component={Card}>
+    <SimpleShowLayout>
+      <RecordField source="title" />
+    </SimpleShowLayout>
+  </Show>
+);
+```
 
 ## `aside`
 
