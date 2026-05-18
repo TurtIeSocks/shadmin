@@ -33,7 +33,7 @@ describe("<CommandMenu />", () => {
     await expect.element(screen.getByRole("dialog")).not.toBeInTheDocument();
   });
 
-  it("auto-mounts via <Admin commandMenu>", async () => {
+  it("mounts via <AdminContext><CommandMenu><AdminUI/></CommandMenu></AdminContext>", async () => {
     const screen = render(<AdminShorthand />);
     await userEvent.keyboard("{Meta>}k{/Meta}");
     await expect.element(screen.getByRole("dialog")).toBeInTheDocument();

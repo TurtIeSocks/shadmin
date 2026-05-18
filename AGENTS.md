@@ -36,6 +36,18 @@ The library re-implements react-admin's UI layer using shadcn/ui components whil
 - `docs/`: Astro documentation site (separate pnpm workspace package)
 - `website/`: Marketing site (separate Vite config)
 
+### Layering rule (imports across `src/components/*`)
+
+Files inside `src/components/admin/` may import only from:
+
+- `src/components/admin/` (sibling admin components)
+- `src/components/ui/` (stock shadcn/ui primitives)
+- `src/lib/`, `src/hooks/`, and external packages (`ra-core`, `react`, etc.)
+
+They **must not** import from `src/components/extras/`, `src/components/rich-text-input/`, or any other sibling folder under `src/components/`. The dependency direction is `extras → admin → ui`, never the reverse.
+
+When an admin component would need a feature that today lives in `extras/` (e.g. the `<CommandMenu>` cmd+K palette), expose lower-level primitives from `admin/` (such as `<AdminContext>` + `<AdminUI>`) so the consumer in `extras/` can compose them — don't reach down from `admin/` into `extras/`.
+
 ### Component Conventions
 
 - **Fields** (`*-field.tsx`): Display components that read from `useRecordContext()`. Used in List/Show views.
@@ -53,6 +65,8 @@ The library re-implements react-admin's UI layer using shadcn/ui components whil
 ### Entry Point
 
 `Admin` component (`src/components/admin/admin.tsx`) wraps ra-core's `CoreAdminContext` + `CoreAdminUI` with the ThemeProvider and default layout. Apps configure it with a `dataProvider`, optional `authProvider`, and `<Resource>` children.
+
+The same file also exports `<AdminContext>` (provider half) and `<AdminUI>` (theme + routes half) for callers that need to inject a wrapping component between the providers and the routed UI — e.g. the cmd+K `<CommandMenu>` palette in `src/components/extras/command-menu.tsx`.
 
 ## Documentation
 

@@ -6,42 +6,57 @@ title: "CommandMenu"
 
 ## Usage
 
-Mount `<CommandMenu>` once at the admin shell with the `commandMenu` shorthand prop:
+`<CommandMenu>` needs to wrap the routed admin UI so the rest of the tree can call `useCommandMenu()` / `useRegisterCommand()`. Compose it between `<AdminContext>` (data/auth/i18n providers) and `<AdminUI>` (theme + routes):
 
 ```tsx
-import { Admin, Resource } from "@/components/admin";
+import {
+  AdminContext,
+  AdminUI,
+  Resource,
+} from "@/components/admin";
+import { CommandMenu } from "@/components/extras/command-menu";
 
 const App = () => (
-  <Admin dataProvider={dp} commandMenu>
-    <Resource name="products" />
-    <Resource name="orders" />
-  </Admin>
+  <AdminContext dataProvider={dp}>
+    <CommandMenu>
+      <AdminUI>
+        <Resource name="products" />
+        <Resource name="orders" />
+      </AdminUI>
+    </CommandMenu>
+  </AdminContext>
 );
 ```
 
 Press **cmd+K** (or **ctrl+K** on Windows/Linux) to open the palette. Type to search across all permitted resources, navigate with arrow keys, and press Enter to select.
 
-To customize the palette, pass a `<CommandMenu>` element instead of `true`:
+Configure the palette by passing props directly:
 
 ```tsx
-import { Admin, CommandMenu, Resource } from "@/components/admin";
+import {
+  AdminContext,
+  AdminUI,
+  Resource,
+} from "@/components/admin";
+import { CommandMenu } from "@/components/extras/command-menu";
 
 const App = () => (
-  <Admin
-    dataProvider={dp}
-    commandMenu={
-      <CommandMenu
-        hotkey={["mod+k"]}
-        perResourceLimit={5}
-        searchFields={{ products: "name", orders: "reference" }}
-      />
-    }
-  >
-    <Resource name="products" />
-    <Resource name="orders" />
-  </Admin>
+  <AdminContext dataProvider={dp}>
+    <CommandMenu
+      hotkey={["mod+k"]}
+      perResourceLimit={5}
+      searchFields={{ products: "name", orders: "reference" }}
+    >
+      <AdminUI>
+        <Resource name="products" />
+        <Resource name="orders" />
+      </AdminUI>
+    </CommandMenu>
+  </AdminContext>
 );
 ```
+
+> The plain `<Admin>` shorthand does not mount `<CommandMenu>`. Drop down to the `<AdminContext>` / `<AdminUI>` pair whenever you need to inject a wrapping provider between the data layer and the routed UI.
 
 ## Props
 
@@ -83,7 +98,7 @@ Resources the current user cannot list (`useCanAccess({ resource, action: "list"
 Open, close, toggle, or seed the search input from any component inside the admin tree:
 
 ```tsx
-import { useCommandMenu } from "@/components/admin";
+import { useCommandMenu } from "@/components/extras/command-menu";
 
 const OpenFromAnywhere = () => {
   const { open } = useCommandMenu();
@@ -98,7 +113,7 @@ The hook returns `{ isOpen, open, close, toggle, setQuery, registerCommand, unre
 Register a context-aware action while a component is mounted:
 
 ```tsx
-import { useRegisterCommand } from "@/components/admin";
+import { useRegisterCommand } from "@/components/extras/command-menu";
 
 const DuplicateAction = ({ id }: { id: number }) => {
   useRegisterCommand({
