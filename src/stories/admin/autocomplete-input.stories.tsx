@@ -312,6 +312,17 @@ export const WithMismatchedOptionTextAndValue = () => (
   </Wrapper>
 );
 
+export const WithSelectOnFocus = () => (
+  <Wrapper>
+    <AutocompleteInput
+      source="tag_id"
+      choices={tags}
+      optionText="label"
+      selectOnFocus
+    />
+  </Wrapper>
+);
+
 export const WithOpenOnFocus = () => (
   <Wrapper>
     <AutocompleteInput

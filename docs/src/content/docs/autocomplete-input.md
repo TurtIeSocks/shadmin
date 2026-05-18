@@ -84,6 +84,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `optionText`              | Optional   | `string` &#124; `Function` &#124; `Component`   | `undefined` &#124; `record Representation` | Field name of record to display in the suggestion item or function using the choice object as argument                                                                                                              |
 | `optionValue`             | Optional   | `string`                                        | `id`                                       | Field name of record containing the value to use as input value                                                                                                                                                     |
 | `parse`                   | Optional   | `Function`                                      | `-`                                        | Callback taking the value from the input, and returning the value to be stored in the form state.                                                                                                                   |
+| `selectOnFocus`           | Optional   | `boolean`                                       | `false`                                    | If true, all text already in the search input is selected when the input receives focus                                                                                                                              |
 | `setFilter`               | Optional   | `Function`                                      | `null`                                     | A callback to inform the `searchText` has changed and new `choices` can be retrieved based on this `searchText`. Signature `searchText => void`. This function is automatically set up when using `ReferenceInput`. |
 | `shouldRenderSuggestions` | Optional   | `Function`                                      | `() => true`                               | A function that returns a `boolean` to determine whether or not suggestions are rendered.                                                                                                                           |
 | `suggestionLimit`         | Optional   | `number`                                        | `null`                                     | Limits the numbers of suggestions that are shown in the dropdown list                                                                                                                                               |
@@ -344,6 +345,18 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `selectOnFocus`
+
+When `true`, any text already present in the search input is selected when the input receives focus. This lets users immediately start typing a new query without having to manually clear the previous filter text.
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  selectOnFocus
+/>
+```
 
 ## `openOnFocus`
 
