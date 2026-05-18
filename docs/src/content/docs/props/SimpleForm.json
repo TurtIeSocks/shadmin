@@ -1,4 +1,29 @@
 {
   "name": "SimpleForm",
-  "props": []
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": "The form content (usually Input elements)."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the form wrapper. Defaults to ra-core's Form component."
+    },
+    {
+      "name": "toolbar",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
 }
