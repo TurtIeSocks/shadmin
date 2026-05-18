@@ -9,6 +9,7 @@ import {
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import { MemoryRouter } from "react-router";
+import { RotateCcw } from "lucide-react";
 import fakeRestDataProvider from "ra-data-fakerest";
 import {
   ThemeProvider,
@@ -69,6 +70,12 @@ export const WithConfirm = () => (
 export const WithUndo = () => (
   <Wrapper>
     <UpdateWithUndoButton label="Reset Views" data={{ views: 0 }} />
+  </Wrapper>
+);
+
+export const CustomIcon = () => (
+  <Wrapper>
+    <UpdateButton label="Reset Views" data={{ views: 0 }} icon={<RotateCcw />} />
   </Wrapper>
 );
 

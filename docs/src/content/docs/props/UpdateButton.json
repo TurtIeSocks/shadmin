@@ -1,4 +1,65 @@
 {
   "name": "UpdateButton",
-  "props": []
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "confirmContent",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "confirmTitle",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "data",
+      "type": "object",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "mutationMode",
+      "type": "\"undoable\" | \"optimistic\" | \"pessimistic\"",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "mutationOptions",
+      "type": "UseUpdateOptions",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onClick",
+      "type": "(e: MouseEvent<HTMLButtonElement>) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "variant",
+      "type": "\"default\" | \"outline\" | \"destructive\" | \"secondary\" | \"ghost\" | \"link\"",
+      "optional": true,
+      "comment": ""
+    }
+  ]
 }
