@@ -48,6 +48,12 @@
       "type": "boolean",
       "optional": true,
       "comment": "If true, Home/End keys scroll the dropdown list to the first/last item"
+    },
+    {
+      "name": "isOptionEqualToValue",
+      "type": "(option: unknown, value: unknown) => boolean",
+      "optional": true,
+      "comment": "Custom equality check between a choice value and a selected field value; defaults to areIdsEqual (loose ==)"
     }
   ]
 }

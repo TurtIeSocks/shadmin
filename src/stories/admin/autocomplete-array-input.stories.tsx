@@ -85,6 +85,18 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithIsOptionEqualToValue = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        isOptionEqualToValue={(option, value) => option === value}
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithHandleHomeEndKeys = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

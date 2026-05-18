@@ -75,6 +75,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `createValue`     | Optional   | `string`                         | `@@ra-create`         | The option value stored for the "create" item; must not conflict with real choice values                                                |
 | `emptyText`       | Optional   | `string`                         | -                     | Accepted for API parity with `AutocompleteInput`; not rendered in the array variant                                                     |
 | `handleHomeEndKeys` | Optional | `boolean`                        | `false`               | If true, Home/End keys scroll the dropdown list to the first/last item                                                                  |
+| `isOptionEqualToValue` | Optional | `(option, value) => boolean`  | `areIdsEqual`         | Custom equality check between a choice value and the current field value                                                                |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -156,6 +157,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `isOptionEqualToValue`
+
+A custom comparator `(choiceValue, fieldValue) => boolean` that determines when a choice matches a value already in the field array. By default the component uses `areIdsEqual`, which does a loose `==` comparison so string and number IDs match. Override this when you need strict equality or a domain-specific comparison.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  isOptionEqualToValue={(option, value) => option === value}
+/>
 ```
 
 ## `handleHomeEndKeys`
