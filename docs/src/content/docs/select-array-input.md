@@ -44,6 +44,7 @@ const record = {
 | `className`       | Optional   | `string`                                      | -          | Wrapper classes                                                                               |
 | `create`          | Optional   | `ReactElement`                                | -          | React element rendered as an inline-create entry at the bottom of the menu                   |
 | `createHintValue` | Optional   | `string`                                      | -          | Internal sentinel placeholder shown in the input while the create element is active          |
+| `createItemLabel` | Optional   | `string`                                      | `ra.action.create_item` | Label for the create menu item when the filter is non-empty       |
 | `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
 | `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
 | `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
@@ -132,6 +133,19 @@ const choices = [
   { id: "people", name: "People", disabled: true },
 ];
 <SelectArrayInput source="tags" choices={choices} />;
+```
+
+## `createItemLabel`
+
+Label for the create menu entry that appears when the user has typed a filter string. Defaults to the `ra.action.create_item` translation key (typically `"Create %{item}"`). Use this to provide a custom label that includes context for your domain.
+
+```jsx
+<SelectArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={handleCreate}
+  createItemLabel='Add "%{item}" as a new tag'
+/>
 ```
 
 ## `createHintValue`

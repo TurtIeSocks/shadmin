@@ -12,6 +12,12 @@
       "type": "string",
       "optional": true,
       "comment": "Internal sentinel placeholder value passed to ra-core to mark the create option; override only when it conflicts with a real choice value."
+    },
+    {
+      "name": "createItemLabel",
+      "type": "string",
+      "optional": true,
+      "comment": "Label for the create menu entry shown when the filter is non-empty. Defaults to the ra.action.create_item translation key."
     }
   ]
 }
