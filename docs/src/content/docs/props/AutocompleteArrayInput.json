@@ -102,6 +102,12 @@
       "type": "(filter: string) => void",
       "optional": true,
       "comment": "Callback fired on every keystroke with the current filter text; for server-side filtering outside ReferenceArrayInput"
+    },
+    {
+      "name": "shouldRenderSuggestions",
+      "type": "(filter: string) => boolean",
+      "optional": true,
+      "comment": "Gate function; when it returns false the dropdown stays closed regardless of other open conditions"
     }
   ]
 }

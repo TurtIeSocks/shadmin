@@ -84,6 +84,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `optionText`      | Optional   | `string \| function \| element`  | `name` or record repr | Field name, function, or element used to derive each choice's display label                                                             |
 | `selectOnFocus`   | Optional   | `boolean`                        | `false`               | If true, all text in the search input is selected when the input receives focus                                                         |
 | `setFilter`       | Optional   | `(filter: string) => void`       | -                     | Callback fired on every keystroke with the current filter text; for server-side filtering outside `ReferenceArrayInput`                 |
+| `shouldRenderSuggestions` | Optional | `(filter: string) => boolean` | `() => true`        | Gate function; when it returns `false` the dropdown stays closed regardless of other open conditions                                   |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -165,6 +166,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `shouldRenderSuggestions`
+
+A gate function `(filter: string) => boolean` called before the dropdown opens. When it returns `false`, the dropdown stays closed regardless of focus state or other conditions. Use this to suppress suggestions until the user has typed a minimum number of characters.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  shouldRenderSuggestions={(filter) => filter.length >= 2}
+/>
 ```
 
 ## `setFilter`

@@ -85,6 +85,18 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithShouldRenderSuggestions = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        shouldRenderSuggestions={(filter) => filter.length >= 2}
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithSetFilter = () => {
   const [, setFilter] = useState("");
   return (
