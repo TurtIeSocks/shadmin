@@ -6,6 +6,12 @@
       "type": "ReactNode",
       "optional": true,
       "comment": "Replaces the default right-side action cluster (LocalesMenuButton + ThemeModeToggle + RefreshButton). Pass a ReactNode to supply custom actions, or omit to keep the default cluster."
+    },
+    {
+      "name": "userMenu",
+      "type": "ReactNode | false",
+      "optional": true,
+      "comment": "Replaces the default `<UserMenu />`. Pass `false` to suppress it entirely, or a ReactNode to render a custom user menu."
     }
   ]
 }

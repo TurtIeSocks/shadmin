@@ -68,4 +68,25 @@ const MyAppBar = () => (
 );
 
 const MyLayout = (props) => <Layout {...props} appBar={MyAppBar} />;
+
+## `userMenu`
+
+Pass a `ReactNode` to replace the default [`<UserMenu />`](./user-menu), or `false` to suppress it entirely (useful when auth is disabled).
+
+```tsx
+import { AppBar, Layout } from "@/components/admin";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
+// Replace with a custom avatar button
+const MyUserMenu = () => (
+  <Avatar className="size-7 cursor-pointer">
+    <AvatarFallback>U</AvatarFallback>
+  </Avatar>
+);
+
+const MyAppBar = () => <AppBar userMenu={<MyUserMenu />} />;
+
+// Suppress entirely
+const NoUserMenuAppBar = () => <AppBar userMenu={false} />;
+```
 ```

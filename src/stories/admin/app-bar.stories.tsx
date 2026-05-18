@@ -108,6 +108,25 @@ const ToolbarLayout = ({ children }: { children?: React.ReactNode }) => (
   </Layout>
 );
 
+const UserMenuLayout = ({ children }: { children?: React.ReactNode }) => (
+  <Layout appBar={() => <AppBar userMenu={<span className="text-xs font-medium px-2 py-1 rounded bg-muted">admin</span>} />}>
+    {children}
+  </Layout>
+);
+
+export const WithCustomUserMenu = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      layout={UserMenuLayout}
+    >
+      <Resource name="posts" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const WithCustomToolbar = () => (
   <TestMemoryRouter initialEntries={["/posts"]}>
     <Admin
