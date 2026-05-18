@@ -77,6 +77,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `handleHomeEndKeys` | Optional | `boolean`                        | `false`               | If true, Home/End keys scroll the dropdown list to the first/last item                                                                  |
 | `isOptionEqualToValue` | Optional | `(option, value) => boolean`  | `areIdsEqual`         | Custom equality check between a choice value and the current field value                                                                |
 | `limitChoicesToValue` | Optional  | `boolean`                        | `false`               | If true, the dropdown shows only already-selected choices                                                                               |
+| `matchSuggestion` | Optional   | `(filter, choice) => boolean`    | -                     | Custom filter function replacing the default substring match; required when `optionText` is a React element                             |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -158,6 +159,22 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `matchSuggestion`
+
+A custom filter function `(filter, choice) => boolean` that replaces the built-in substring match. Required when `optionText` is a React element (because the component cannot derive a text representation to search against). The function receives the current filter string and a choice object and must return `true` when the choice should be shown.
+
+```jsx
+const matchSuggestion = (filter, choice) =>
+  choice.first_name.toLowerCase().includes(filter.toLowerCase()) ||
+  choice.last_name.toLowerCase().includes(filter.toLowerCase());
+
+<AutocompleteArrayInput
+  source="author_ids"
+  choices={choices}
+  matchSuggestion={matchSuggestion}
+/>
 ```
 
 ## `limitChoicesToValue`

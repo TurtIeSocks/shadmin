@@ -60,6 +60,12 @@
       "type": "boolean",
       "optional": true,
       "comment": "If true, the dropdown shows only already-selected choices instead of all unselected choices"
+    },
+    {
+      "name": "matchSuggestion",
+      "type": "(filter: string, choice: unknown) => boolean",
+      "optional": true,
+      "comment": "Custom filter function replacing the default substring match; required when optionText is a React element"
     }
   ]
 }

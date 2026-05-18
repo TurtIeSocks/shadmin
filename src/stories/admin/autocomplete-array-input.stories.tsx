@@ -85,6 +85,22 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithMatchSuggestion = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        matchSuggestion={(filter, choice) =>
+          (choice as { name: string }).name
+            .toLowerCase()
+            .startsWith(filter.toLowerCase())
+        }
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithLimitChoicesToValue = () => (
   <StoryWrapper theme="system">
     <SimpleForm>
