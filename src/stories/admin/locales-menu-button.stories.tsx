@@ -70,5 +70,14 @@ export const CustomIcon = () => (
   </Wrapper>
 );
 
+export const WithRef = () => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <LocalesMenuButton ref={ref} />
+    </Wrapper>
+  );
+};
+
 // Suppress unused
 void frenchMessages;

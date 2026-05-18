@@ -61,6 +61,20 @@ If you want to customize the button, you can edit the `@/components/admin/locale
 
 Replaces the default locale-code text (e.g. "EN") shown in the trigger button. Pass any lucide-react icon to convey a different action.
 
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { LocalesMenuButton } from "@/components/admin";
+
+const MyHeader = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <LocalesMenuButton ref={ref} />;
+};
+```
+
 ```tsx
 import { Globe } from "lucide-react";
 import { LocalesMenuButton } from "@/components/admin";
