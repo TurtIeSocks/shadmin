@@ -74,6 +74,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `createLabel`     | Optional   | `string \| ReactNode`            | -                     | Hint label shown as a menu item when the filter is empty, prompting users that they can create a new option                             |
 | `createValue`     | Optional   | `string`                         | `@@ra-create`         | The option value stored for the "create" item; must not conflict with real choice values                                                |
 | `emptyText`       | Optional   | `string`                         | -                     | Accepted for API parity with `AutocompleteInput`; not rendered in the array variant                                                     |
+| `handleHomeEndKeys` | Optional | `boolean`                        | `false`               | If true, Home/End keys scroll the dropdown list to the first/last item                                                                  |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -155,6 +156,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `handleHomeEndKeys`
+
+When `true`, pressing `Home` while the dropdown is open scrolls the option list to the first item, and pressing `End` scrolls to the last item. Useful for long lists where keyboard-only navigation is important.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  handleHomeEndKeys
+/>
 ```
 
 ## `emptyText`

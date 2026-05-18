@@ -85,6 +85,14 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithHandleHomeEndKeys = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput source="tags" choices={choices} handleHomeEndKeys />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithEmptyText = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

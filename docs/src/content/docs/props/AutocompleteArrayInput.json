@@ -42,6 +42,12 @@
       "type": "string",
       "optional": true,
       "comment": "Accepted for API parity with AutocompleteInput; not rendered in the array variant (use badge × to deselect)"
+    },
+    {
+      "name": "handleHomeEndKeys",
+      "type": "boolean",
+      "optional": true,
+      "comment": "If true, Home/End keys scroll the dropdown list to the first/last item"
     }
   ]
 }
