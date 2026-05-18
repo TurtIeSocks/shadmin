@@ -69,6 +69,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `translateChoice` | Optional   | `boolean`                        | `!isFromReference`    | Translate labels                                                                                                                        |
 | `clearOnBlur`     | Optional   | `boolean`                        | `false`               | If true, clears the filter text in the input when the input loses focus                                                                 |
 | `create`          | Optional   | `ReactElement`                   | -                     | A React element rendered when users want to create a new choice                                                                         |
+| `createHintValue` | Optional   | `string`                         | -                     | Sentinel value passed to `useSupportCreateSuggestion` to represent the "create" item internally                                         |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -150,6 +151,19 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `createHintValue`
+
+An internal sentinel string passed to `useSupportCreateSuggestion` to identify the "create new option" item in the dropdown. You rarely need to set this — only override it when the default sentinel (`@@ra-create`) collides with a real choice value in your dataset.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={(filter) => ({ id: filter, name: filter })}
+  createHintValue="__new__"
+/>
 ```
 
 ## `create`

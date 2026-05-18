@@ -12,6 +12,12 @@
       "type": "ReactElement",
       "optional": true,
       "comment": "A React element rendered when users want to create a new choice inline"
+    },
+    {
+      "name": "createHintValue",
+      "type": "string",
+      "optional": true,
+      "comment": "Sentinel value identifying the 'create' item internally; only needed when the default collides with a real choice value"
     }
   ]
 }
