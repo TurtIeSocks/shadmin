@@ -46,6 +46,7 @@ export const PostList = () => (
 | `children`                | Optional\* | `ReactNode`                                 | -                        | Component(s) that display the records                          |
 | `render`                  | Optional\* | `(ctx) => ReactNode`                        | -                        | Alternate render function receiving the list context           |
 | `actions`                 | Optional   | `ReactNode`                                 | default action bar       | Custom actions area (right side of header)                     |
+| `aside`                   | Optional   | `ReactNode`                                 | -                        | Side panel rendered alongside the list content                 |
 | `debounce`                | Optional   | `number`                                    | `500`                    | Debounce (ms) for filter & sort changes                        |
 | `disableAuthentication`   | Optional   | `boolean`                                   | `false`                  | Skip auth check for this page                                  |
 | `disableBreadcrumb`       | Optional   | `boolean`                                   | `false`                  | Hide the default breadcrumb                                    |
@@ -63,6 +64,30 @@ export const PostList = () => (
 | `title`                   | Optional   | `string \| ReactNode \| false`              | resource plural label    | Page title                                                     |
 
 `*` Provide either `children` or `render`.
+
+## `aside`
+
+Pass any React node as `aside` to display a side panel next to the infinite list content:
+
+```tsx
+import { InfiniteList, DataTable } from "@/components/admin";
+
+const ListHelp = () => (
+  <div className="p-4 bg-muted rounded text-sm w-64">
+    <p className="font-medium mb-2">Tips</p>
+    <p>Scroll down to load more records automatically.</p>
+  </div>
+);
+
+export const PostList = () => (
+  <InfiniteList aside={<ListHelp />}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </InfiniteList>
+);
+```
 
 ## `pagination`
 

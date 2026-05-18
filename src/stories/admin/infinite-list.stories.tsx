@@ -49,6 +49,37 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
+const InfiniteListHelp = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Tips</p>
+    <p>Scroll down to load more records automatically.</p>
+  </div>
+);
+
+export const WithAside = () => (
+  <TestMemoryRouter initialEntries={["/books"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="books"
+        list={
+          <InfiniteList perPage={10} aside={<InfiniteListHelp />}>
+            <DataTable>
+              <DataTable.Col source="id" />
+              <DataTable.Col source="title" />
+              <DataTable.Col source="author" />
+            </DataTable>
+          </InfiniteList>
+        }
+        show={ShowGuesser}
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const WithSimpleList = () => (
   <TestMemoryRouter initialEntries={["/books"]}>
     <Admin

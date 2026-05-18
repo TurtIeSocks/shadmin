@@ -8,6 +8,12 @@
       "comment": ""
     },
     {
+      "name": "aside",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Side panel rendered alongside the list content."
+    },
+    {
       "name": "className",
       "type": "string",
       "optional": true,
