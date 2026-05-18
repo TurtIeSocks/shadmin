@@ -85,6 +85,18 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithNoOptionsText = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        noOptionsText="Nothing matches your search"
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithMatchSuggestion = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

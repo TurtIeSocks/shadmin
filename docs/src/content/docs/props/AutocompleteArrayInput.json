@@ -66,6 +66,12 @@
       "type": "(filter: string, choice: unknown) => boolean",
       "optional": true,
       "comment": "Custom filter function replacing the default substring match; required when optionText is a React element"
+    },
+    {
+      "name": "noOptionsText",
+      "type": "React.ReactNode",
+      "optional": true,
+      "comment": "Content shown in the dropdown when no choices match the current filter; defaults to ra.navigation.no_results"
     }
   ]
 }

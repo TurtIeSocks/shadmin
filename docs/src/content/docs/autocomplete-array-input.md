@@ -78,6 +78,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `isOptionEqualToValue` | Optional | `(option, value) => boolean`  | `areIdsEqual`         | Custom equality check between a choice value and the current field value                                                                |
 | `limitChoicesToValue` | Optional  | `boolean`                        | `false`               | If true, the dropdown shows only already-selected choices                                                                               |
 | `matchSuggestion` | Optional   | `(filter, choice) => boolean`    | -                     | Custom filter function replacing the default substring match; required when `optionText` is a React element                             |
+| `noOptionsText`   | Optional   | `ReactNode`                      | `ra.navigation.no_results` | Content shown in the dropdown when no choices match the current filter                                                            |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -159,6 +160,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `noOptionsText`
+
+The content rendered inside the dropdown when no choices match the current filter. Accepts a string or any React node. Defaults to the translation of `ra.navigation.no_results` ("No matching item found.").
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  noOptionsText="Nothing matches your search"
+/>
 ```
 
 ## `matchSuggestion`
