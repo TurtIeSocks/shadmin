@@ -63,6 +63,27 @@ const PostCreateNoBreadcrumb = () => (
   </Create>
 );
 
+const PostCreateWithRender = () => (
+  <Create
+    render={({ saving }) => (
+      <div className="p-4 max-w-sm flex flex-col gap-4">
+        <p className="text-sm text-muted-foreground">
+          Custom render prop — saving: {String(saving)}
+        </p>
+        <TextInput source="title" />
+      </div>
+    )}
+  />
+);
+
+export const WithRender = () => (
+  <TestMemoryRouter initialEntries={["/posts/create"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} create={PostCreateWithRender} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 const PostCreateAside = () => (
   <div className="p-4 bg-muted rounded text-sm">
     <p className="font-medium mb-2">Tips</p>

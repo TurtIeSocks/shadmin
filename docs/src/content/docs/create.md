@@ -82,6 +82,32 @@ You can customize the `<Create>` component using the following props:
 
 `*` You must provide either `children` or `render`.
 
+## `render`
+
+An alternative to `children`. Pass a function that receives the full [`CreateControllerResult`](https://marmelab.com/ra-core/usecreatecontroller/) and returns a React node. Useful when you need fine-grained control over the create page UI:
+
+```tsx
+import { Create } from "@/components/admin";
+
+export const PostCreate = () => (
+  <Create
+    render={({ saving }) => (
+      <div>
+        <h1>New Post</h1>
+        <form>
+          <input name="title" placeholder="Title" />
+          <button type="submit" disabled={saving}>
+            {saving ? "Saving…" : "Save"}
+          </button>
+        </form>
+      </div>
+    )}
+  />
+);
+```
+
+When `render` is provided, `children` is ignored.
+
 ## `component`
 
 By default, `<Create>` wraps the form content in a `<div>`. Use `component` to replace it with any React element type — useful for adding a `<Card>` or custom container:

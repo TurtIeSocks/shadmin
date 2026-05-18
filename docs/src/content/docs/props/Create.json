@@ -12,6 +12,12 @@
       "type": "ElementType",
       "optional": true,
       "comment": "Override the root element wrapping the form content. Defaults to 'div'."
+    },
+    {
+      "name": "render",
+      "type": "(controllerState: CreateControllerResult) => ReactNode",
+      "optional": true,
+      "comment": "Render-prop alternative to children. Receives the full CreateControllerResult and must return a ReactNode."
     }
   ]
 }
