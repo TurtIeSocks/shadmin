@@ -161,6 +161,22 @@ For more customization options, refer to the [shadcn/ui Sidebar documentation](h
 | ----------------- | -------- | ----------- | ------- | ---------------------------------------------------- |
 | `appBarAlwaysOn`  | Optional | `boolean`   | `false` | Signal that the AppBar is always visible on scroll   |
 | `closedSize`      | Optional | `number`    | `55`    | Width in px of the collapsed icon-rail               |
+| `size`            | Optional | `number`    | `240`   | Width in px of the expanded sidebar                  |
+
+## `size`
+
+Controls the width (in pixels) of the expanded sidebar. Defaults to `240`. Decrease for a more compact sidebar, increase for longer menu labels.
+
+```tsx
+import { AppSidebar, Layout } from "@/components/admin";
+
+const MyLayout = (props) => (
+  <Layout
+    {...props}
+    sidebar={(sidebarProps) => <AppSidebar {...sidebarProps} size={280} />}
+  />
+);
+```
 
 ## `closedSize`
 
