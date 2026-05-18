@@ -35,6 +35,7 @@ Users type text and press Enter to add items. Items appear as removable badges. 
 | `parse`        | Optional | `function`                 | -                      | Callback to convert form value to API value    |
 | `placeholder`  | Optional | `string`                   | -                      | Input placeholder (shown when no values exist) |
 | `readOnly`     | Optional | `boolean`                  | -                      | Make the input read-only                       |
+| `renderTags`   | Optional | `(tags, getTagProps) => ReactNode` | -           | Custom renderer for the selected-value chips   |
 | `validate`     | Optional | `Validator \| Validator[]` | -                      | Validation rules                               |
 
 ## Keyboard Shortcuts
@@ -44,6 +45,30 @@ Users type text and press Enter to add items. Items appear as removable badges. 
 | Enter     | Add the typed text as a new value           |
 | Backspace | Remove the last value (when input is empty) |
 | Escape    | Blur the input                              |
+
+## `renderTags`
+
+Custom render function for the selected-value chips. When provided it replaces the default `<Badge>` per tag. Receives the full `tags` array and a `getTagProps(tag, index)` helper that returns `{ key, onDelete }`.
+
+```jsx
+import { Tag } from "lucide-react";
+
+<TextArrayInput
+  source="tags"
+  renderTags={(tags, getTagProps) =>
+    tags.map((tag, index) => {
+      const { key, onDelete } = getTagProps(tag, index);
+      return (
+        <span key={key} className="flex items-center gap-1 rounded bg-muted px-2 py-0.5 text-xs">
+          <Tag className="size-3" />
+          {tag}
+          <button onClick={onDelete} type="button">×</button>
+        </span>
+      );
+    })
+  }
+/>
+```
 
 ## `options`
 

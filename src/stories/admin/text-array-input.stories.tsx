@@ -169,3 +169,30 @@ export const WithOptions = ({
   </StoryWrapper>
 );
 Object.assign(WithOptions, storyArgs);
+
+export const WithRenderTags = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => (
+  <StoryWrapper theme={theme}>
+    <TextArrayInput
+      source="tags"
+      renderTags={(tags, getTagProps) =>
+        tags.map((tag, index) => {
+          const { key, onDelete } = getTagProps(tag, index);
+          return (
+            <span
+              key={key}
+              className="flex items-center gap-1 rounded bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
+            >
+              {tag}
+              <button onClick={onDelete} type="button" className="ml-1 opacity-60 hover:opacity-100">×</button>
+            </span>
+          );
+        })
+      }
+    />
+  </StoryWrapper>
+);
+Object.assign(WithRenderTags, storyArgs);
