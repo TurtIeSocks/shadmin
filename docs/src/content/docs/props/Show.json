@@ -50,6 +50,12 @@
       "comment": "Content to display when a data-fetch error occurs. Defaults to a built-in error message."
     },
     {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Content to display when the browser is offline and the record is still loading."
+    },
+    {
       "name": "title",
       "type": "ReactNode",
       "optional": true,

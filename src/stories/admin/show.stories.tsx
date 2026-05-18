@@ -122,3 +122,19 @@ export const WithError = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+const PostShowWithOffline = () => (
+  <Show offline={<p className="text-muted-foreground p-4">You appear to be offline.</p>}>
+    <SimpleShowLayout>
+      <RecordField source="title" />
+    </SimpleShowLayout>
+  </Show>
+);
+
+export const WithOffline = () => (
+  <TestMemoryRouter initialEntries={["/posts/1/show"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} show={PostShowWithOffline} />
+    </Admin>
+  </TestMemoryRouter>
+);

@@ -107,12 +107,31 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `disableAuthentication` | Optional         | `boolean`                    |              | Set to `true` to disable the authentication check                                    |
 | `disableBreadcrumb`     | Optional         | `boolean`                    | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
 | `emptyWhileLoading`     | Optional         | `boolean`                    |              | Set to `true` to return `null` while the show is loading                             |
+| `offline`               | Optional         | `ReactNode`                  | default msg  | Content to display when the browser is offline and the record is still loading       |
 | `id`                    | Optional         | `string                      | number`      |                                                                                      | The record id. If not provided, it will be deduced from the URL |
 | `queryOptions`          | Optional         | `object`                     |              | The options to pass to the `useQuery` hook                                           |
 | `resource`              | Optional         | `string`                     |              | The resource name, e.g. `posts`                                                      |
 | `title`                 | Optional         | `string                      | ReactElement | false`                                                                               |                                                                 | The title to display in the App Bar |
 
 `*` You must provide either `children` or `render`.
+
+## `offline`
+
+When the browser goes offline while the record is still loading (`isPaused && isPending`), `<Show>` renders a default "Offline" message. Override it with any `ReactNode`:
+
+```tsx
+import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
+
+export const PostShow = () => (
+  <Show offline={<p className="text-muted-foreground p-4">You appear to be offline.</p>}>
+    <SimpleShowLayout>
+      <RecordField source="title" />
+    </SimpleShowLayout>
+  </Show>
+);
+```
+
+Set `offline={false}` to suppress the offline state entirely.
 
 ## `error`
 
