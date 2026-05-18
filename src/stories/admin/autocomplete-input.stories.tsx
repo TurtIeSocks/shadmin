@@ -312,6 +312,17 @@ export const WithMismatchedOptionTextAndValue = () => (
   </Wrapper>
 );
 
+export const WithLimitChoicesToValue = () => (
+  <Wrapper>
+    <AutocompleteInput
+      source="tag_id"
+      choices={tags}
+      optionText="label"
+      limitChoicesToValue
+    />
+  </Wrapper>
+);
+
 export const WithIsOptionEqualToValue = () => (
   <Wrapper>
     <AutocompleteInput

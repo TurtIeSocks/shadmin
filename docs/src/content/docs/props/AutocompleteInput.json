@@ -2,6 +2,12 @@
   "name": "AutocompleteInput",
   "props": [
     {
+      "name": "limitChoicesToValue",
+      "type": "boolean",
+      "optional": true,
+      "comment": "If true, the dropdown shows only the choice matching the current value instead of all choices"
+    },
+    {
       "name": "isOptionEqualToValue",
       "type": "(option: unknown, value: unknown) => boolean",
       "optional": true,

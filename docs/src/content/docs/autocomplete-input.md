@@ -73,6 +73,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `isPending`               | Optional   | `boolean`                                       | `false`                                    | If `true`, the component will display a loading indicator.                                                                                                                                                          |
 | `isOptionEqualToValue`    | Optional   | `(option, value) => boolean`                    | `areIdsEqual`                              | Custom equality check between a choice value and the current field value. Useful when IDs are compared across types (e.g. number vs string).                                                                        |
 | `label`                   | Optional   | `string` &#124; `ReactNode`                     | `-`                                        | The label to display for the input                                                                                                                                                                                  |
+| `limitChoicesToValue`     | Optional   | `boolean`                                       | `false`                                    | If true, the dropdown shows only the choice that matches the current value instead of all choices                                                                                                                    |
 | `matchSuggestion`         | Optional   | `Function`                                      | `-`                                        | Required if `optionText` is a React element. Function returning a boolean indicating whether a choice matches the filter. `(filter, choice) => boolean`                                                             |
 | `modal`                   | Optional   | `boolean`                                       | `false`                                    | If `true`, the popover will be displayed as a modal                                                                                                                                                                 |
 | `offline`                 | Optional   | `ReactNode`                                     | -                                          | What to render when there is no network connectivity when fetching the choices                                                                                                                                      |
@@ -341,6 +342,18 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `limitChoicesToValue`
+
+When `true`, the dropdown filters the displayed choices to only the one that matches the current field value. All other choices are hidden. This is useful in read-heavy UIs where you want to confirm the selection without presenting the full list.
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  limitChoicesToValue
+/>
+```
 
 ## `isOptionEqualToValue`
 
