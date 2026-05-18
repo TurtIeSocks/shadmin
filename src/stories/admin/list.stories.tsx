@@ -69,6 +69,23 @@ const PostListCustomSort = () => (
   </List>
 );
 
+const PostListWithEmpty = () => (
+  <List empty={<p className="text-center py-8 text-muted-foreground">No posts yet. Create your first one!</p>}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </List>
+);
+
+export const WithEmpty = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin dataProvider={fakeRestProvider({ posts: [] }, false)}>
+      <Resource name="posts" list={PostListWithEmpty} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 const ListHelp = () => (
   <div className="p-4 bg-muted rounded text-sm">
     <p className="font-medium mb-2">Tips</p>

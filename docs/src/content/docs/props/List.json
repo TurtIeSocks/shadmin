@@ -32,6 +32,12 @@
       "comment": ""
     },
     {
+      "name": "empty",
+      "type": "ReactNode | false",
+      "optional": true,
+      "comment": "Replacement for the default empty-state component. Set to false to suppress it."
+    },
+    {
       "name": "filters",
       "type": "ReactNode[]",
       "optional": true,
