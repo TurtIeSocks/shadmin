@@ -41,3 +41,9 @@ export const Empty = () => (
     <UrlField source="website" empty="No website" />
   </Wrapper>
 );
+
+export const CustomContent = () => (
+  <Wrapper>
+    <UrlField source="website" content="Visit homepage" />
+  </Wrapper>
+);

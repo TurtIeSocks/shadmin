@@ -2,6 +2,12 @@
   "name": "UrlField",
   "props": [
     {
+      "name": "content",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Content to display as the link text. Defaults to the URL value."
+    },
+    {
       "name": "empty",
       "type": "ReactNode",
       "optional": true,
