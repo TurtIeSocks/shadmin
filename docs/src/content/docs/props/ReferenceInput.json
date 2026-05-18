@@ -2,6 +2,12 @@
   "name": "ReferenceInput",
   "props": [
     {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Element rendered when the network is offline and the reference data is unavailable."
+    },
+    {
       "name": "validate",
       "type": "undefined",
       "optional": true,

@@ -101,7 +101,20 @@ import { ReferenceInput, SelectInput } from "@/components/admin";
 | `page`         | Optional | `number`                                                                         | 1                                                         | The current page number                                                                        |
 | `perPage`      | Optional | `number`                                                                         | 25                                                        | Number of suggestions to show                                                                  |
 | `queryOptions` | Optional | [`UseQueryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) | `{}`                                                      | `react-query` client options                                                                   |
+| `offline`      | Optional | `ReactNode`                                                                      | `<Offline />`                                             | Element rendered when the network is offline                                                   |
 | `sort`         | Optional | `{ field: String, order: 'ASC' or 'DESC' }`                                      | `{ field:'id', order:'DESC' }`                            | How to order the list of suggestions                                                           |
+
+## `offline`
+
+Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
+
+```jsx
+<ReferenceInput
+  source="company_id"
+  reference="companies"
+  offline={<span className="text-muted-foreground italic">Offline — companies unavailable</span>}
+/>
+```
 
 ## `children`
 

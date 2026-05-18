@@ -66,6 +66,32 @@ export const InEdit = () => (
   </TestMemoryRouter>
 );
 
+const PostCreateOffline = () => (
+  <Create>
+    <SimpleForm>
+      <TextInput source="title" />
+      <ReferenceInput
+        source="author_id"
+        reference="authors"
+        offline={
+          <span className="text-muted-foreground italic">
+            Offline — authors unavailable
+          </span>
+        }
+      />
+    </SimpleForm>
+  </Create>
+);
+
+export const WithOfflineState = () => (
+  <TestMemoryRouter initialEntries={["/posts/create"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="authors" recordRepresentation="name" />
+      <Resource name="posts" list={ListGuesser} create={PostCreateOffline} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 const PostCreateRequired = () => (
   <Create>
     <SimpleForm>
