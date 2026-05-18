@@ -59,6 +59,7 @@ You can customize the `<Edit>` component using the following props:
 | `aside`                 | Optional         | `ReactNode`                                   | -            | Side panel rendered alongside the form                                               |
 | `component`             | Optional         | `ElementType`                                 | `"div"`      | Override the root element wrapping the form content                                  |
 | `className`             | Optional         | `string`                                      | -            | Passed to the root component                                                         |
+| `error`                 | Optional         | `ReactNode`                                   | default msg  | Content to display when a data-fetch error occurs                                    |
 | `disableAuthentication` | Optional         | `boolean`                                     | `false`      | Disable the authentication check                                                     |
 | `disableBreadcrumb`     | Optional         | `boolean`                                     | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
 | `emptyWhileLoading`     | Optional         | `boolean`                                     | `false`      | Set to `true` to return `null` while the edit is loading                             |
@@ -72,6 +73,24 @@ You can customize the `<Edit>` component using the following props:
 | `transform`             | Optional         | `function`                                    | -            | Transform the form data before calling `dataProvider.update()`                       |
 
 `*` You must provide either `children` or `render`.
+
+## `error`
+
+When `dataProvider.getOne()` fails, `<Edit>` renders a default error message. Pass a custom `ReactNode` to `error` to replace it:
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+
+export const PostEdit = () => (
+  <Edit error={<p className="text-destructive p-4">Failed to load post. Please try again.</p>}>
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+Set `error={false}` to suppress the error message entirely.
 
 ## `component`
 

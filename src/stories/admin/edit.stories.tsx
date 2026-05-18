@@ -106,3 +106,19 @@ export const NoActions = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+const PostEditWithError = () => (
+  <Edit error={<p className="text-destructive p-4">Failed to load post. Please try again.</p>}>
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+
+export const WithError = () => (
+  <TestMemoryRouter initialEntries={["/posts/1"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} edit={PostEditWithError} />
+    </Admin>
+  </TestMemoryRouter>
+);
