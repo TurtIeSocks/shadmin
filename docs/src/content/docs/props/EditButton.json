@@ -2,6 +2,12 @@
   "name": "EditButton",
   "props": [
     {
+      "name": "icon",
+      "type": "React.ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
       "name": "label",
       "type": "string",
       "optional": true,
@@ -16,6 +22,12 @@
     {
       "name": "resource",
       "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "scrollToTop",
+      "type": "boolean",
       "optional": true,
       "comment": ""
     }
