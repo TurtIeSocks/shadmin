@@ -86,6 +86,17 @@ import { RotateCcw } from "lucide-react";
 <BulkUpdateWithConfirmButton label="Reset Views" data={{ views: 0 }} />;
 ```
 
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+
+const ref = useRef<HTMLButtonElement>(null);
+<BulkUpdateButton ref={ref} label="Reset Views" data={{ views: 0 }} />
+```
+
 ## `label`
 
 The default label is the translation of `ra.action.update`. Override per-resource via the `resources.{resource}.action.update` key, or pass `label` directly:

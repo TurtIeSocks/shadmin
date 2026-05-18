@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   CoreAdminContext,
   ListContext,
@@ -76,6 +76,15 @@ export const WithUndo = () => (
     <BulkUpdateWithUndoButton label="Reset Views" data={{ views: 0 }} />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <BulkUpdateButton ref={ref} label="Reset Views" data={{ views: 0 }} />
+    </Wrapper>
+  );
+};
 
 export const CustomIcon = () => (
   <Wrapper>
