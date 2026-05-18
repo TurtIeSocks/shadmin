@@ -77,4 +77,10 @@ export const WithUndo = () => (
   </Wrapper>
 );
 
+export const CustomIcon = () => (
+  <Wrapper>
+    <BulkUpdateButton icon={<span>🔄</span>} label="Reset Views" data={{ views: 0 }} />
+  </Wrapper>
+);
+
 export const Basic = Default;

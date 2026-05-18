@@ -48,6 +48,16 @@ Defaults to `mutationMode="undoable"` — the update fires immediately and a not
 | `successMessage`  | Optional | `string`                                      | -                                | Custom success i18n key                      |
 | `variant`         | Optional | shadcn button variant                         | `outline`                        | Button style                                 |
 
+## `icon`
+
+Replaces the default `<RefreshCw />` shown alongside the label. Pass any React node — typically another lucide-react icon.
+
+```tsx
+import { RotateCcw } from "lucide-react";
+
+<BulkUpdateButton icon={<RotateCcw />} label="Reset Views" data={{ views: 0 }} />
+```
+
 ## `mutationMode`
 
 ```tsx
