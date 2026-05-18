@@ -26,6 +26,12 @@
       "comment": ""
     },
     {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Element rendered when the network is offline and the reference data is unavailable."
+    },
+    {
       "name": "pagination",
       "type": "ReactNode",
       "optional": true,

@@ -54,6 +54,39 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
+const AuthorShowOffline = () => (
+  <Show>
+    <SimpleShowLayout>
+      <RecordField source="name" />
+      <RecordField source="books" label="Books">
+        <ReferenceManyField
+          reference="books"
+          target="author_id"
+          offline={
+            <span className="text-muted-foreground italic">
+              Offline — books unavailable
+            </span>
+          }
+        >
+          <DataTable hasBulkActions={false}>
+            <DataTable.Col source="title" />
+            <DataTable.Col source="year" />
+          </DataTable>
+        </ReferenceManyField>
+      </RecordField>
+    </SimpleShowLayout>
+  </Show>
+);
+
+export const WithOfflineState = () => (
+  <TestMemoryRouter initialEntries={["/authors/1/show"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="authors" show={AuthorShowOffline} list={ListGuesser} />
+      <Resource name="books" list={ListGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 const AuthorShowSorted = () => (
   <Show>
     <SimpleShowLayout>
