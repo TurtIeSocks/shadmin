@@ -70,3 +70,22 @@ You can also pass a custom string or translation key directly via the `label` pr
 <CreateButton label="New article" />
 <CreateButton label="resources.articles.action.create" />
 ```
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+
+const ref = useRef<HTMLAnchorElement>(null);
+<CreateButton ref={ref} />
+```
+
+## `scrollToTop`
+
+When `true` (the default), the create page scrolls to the top after navigation. Set to `false` to preserve the current scroll position.
+
+```tsx
+<CreateButton scrollToTop={false} />
+```
