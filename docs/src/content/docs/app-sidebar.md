@@ -160,6 +160,22 @@ For more customization options, refer to the [shadcn/ui Sidebar documentation](h
 | Prop              | Required | Type        | Default | Description                                          |
 | ----------------- | -------- | ----------- | ------- | ---------------------------------------------------- |
 | `appBarAlwaysOn`  | Optional | `boolean`   | `false` | Signal that the AppBar is always visible on scroll   |
+| `closedSize`      | Optional | `number`    | `55`    | Width in px of the collapsed icon-rail               |
+
+## `closedSize`
+
+Controls the width (in pixels) of the collapsed icon-only rail. Defaults to `55`. Increase this value to show wider icons or extra text badges in the collapsed state.
+
+```tsx
+import { AppSidebar, Layout } from "@/components/admin";
+
+const MyLayout = (props) => (
+  <Layout
+    {...props}
+    sidebar={(sidebarProps) => <AppSidebar {...sidebarProps} closedSize={72} />}
+  />
+);
+```
 
 ## `appBarAlwaysOn`
 

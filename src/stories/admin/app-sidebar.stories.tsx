@@ -46,6 +46,24 @@ export const MultipleResources = () => (
   </TestMemoryRouter>
 );
 
+export const WithClosedSize = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin
+      dataProvider={dataProvider}
+      layout={(props) => (
+        <Layout
+          {...props}
+          sidebar={(sidebarProps) => (
+            <AppSidebar {...sidebarProps} closedSize={72} />
+          )}
+        />
+      )}
+    >
+      <Resource name="posts" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const WithAppBarAlwaysOn = () => (
   <TestMemoryRouter initialEntries={["/posts"]}>
     <Admin
