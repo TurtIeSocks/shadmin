@@ -1,8 +1,10 @@
-import { lazy } from "react";
+import React, { lazy } from "react";
+import type { ReactNode } from "react";
 import { AppBar, Layout, MenuItemLink } from "@/components/admin";
 import type { ErrorProps } from "@/components/admin/error";
 import { CoreAdminContext } from "ra-core";
 import { Star } from "lucide-react";
+import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 
 export default {
   title: "UI & Layout/Layout",
@@ -45,6 +47,18 @@ const BrandedAppBar = () => (
 export const CustomAppBar = () => (
   <CoreAdminContext>
     <Layout appBar={BrandedAppBar}>Content</Layout>
+  </CoreAdminContext>
+);
+
+const NarrowSidebar = ({ children }: { children?: ReactNode }) => (
+  <Sidebar variant="floating" collapsible="none" style={{ "--sidebar-width": "160px" } as React.CSSProperties}>
+    <SidebarContent>{children}</SidebarContent>
+  </Sidebar>
+);
+
+export const CustomSidebar = () => (
+  <CoreAdminContext>
+    <Layout sidebar={NarrowSidebar}>Content</Layout>
   </CoreAdminContext>
 );
 

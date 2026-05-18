@@ -79,6 +79,7 @@ export const Layout = (props: { children: ReactNode }) => {
 | `appBar`  | Optional | `ComponentType<AppBarProps>`      | `<AppBar />`     | Replace the header component rendered above the content |
 | `error`   | Optional | `ComponentType<ErrorProps>`       | `<Error />`      | Replace the error-boundary fallback component           |
 | `menu`    | Optional | `ComponentType<MenuProps>`        | `<Menu />`       | Replace the menu component rendered inside the sidebar  |
+| `sidebar` | Optional | `ComponentType<{ children? }>`    | `<AppSidebar />` | Replace the entire sidebar component                    |
 
 When rendering the `<Layout>` component, Shadcn Admin Kit passes it a single prop, `children`, which is the main content of the page (the current resource view, depending on the current route).
 
@@ -116,6 +117,24 @@ const MyMenu = () => (
 );
 
 const MyLayout = (props) => <Layout {...props} menu={MyMenu} />;
+```
+
+## `sidebar`
+
+Pass a custom component to replace the default [`<AppSidebar />`](./app-sidebar). The replacement receives `children` (the resolved menu component) and is responsible for rendering them inside its sidebar shell.
+
+```tsx
+import type { ReactNode } from "react";
+import { Layout } from "@/components/admin";
+import { Sidebar, SidebarContent, SidebarProvider } from "@/components/ui/sidebar";
+
+const NarrowSidebar = ({ children }: { children?: ReactNode }) => (
+  <Sidebar variant="sidebar" collapsible="none" style={{ width: "160px" }}>
+    <SidebarContent>{children}</SidebarContent>
+  </Sidebar>
+);
+
+const MyLayout = (props) => <Layout {...props} sidebar={NarrowSidebar} />;
 ```
 
 ## `error`
