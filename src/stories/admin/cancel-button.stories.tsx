@@ -53,3 +53,12 @@ export const CustomClassName = () => (
     <CancelButton className="bg-muted" />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <CancelButton ref={ref} />
+    </Wrapper>
+  );
+};

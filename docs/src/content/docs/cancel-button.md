@@ -31,6 +31,21 @@ On click, the button navigates back to the previous location (usually the list v
 
 ## Props
 
-| Prop    | Required | Type     | Default            | Description |
-| ------- | -------- | -------- | ------------------ | ----------- |
-| `label` | Optional | `string` | `ra.action.cancel` | i18n key    |
+| Prop    | Required | Type                   | Default            | Description                               |
+| ------- | -------- | ---------------------- | ------------------ | ----------------------------------------- |
+| `label` | Optional | `string`               | `ra.action.cancel` | i18n key                                  |
+| `ref`   | Optional | `Ref<HTMLButtonElement>` | -                | Forwarded to the underlying `<Button>`    |
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { CancelButton } from "@/components/admin";
+
+const MyToolbar = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <CancelButton ref={ref} />;
+};
+```
