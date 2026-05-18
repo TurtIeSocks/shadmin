@@ -21,13 +21,30 @@ On mobile, the component automatically closes the sidebar drawer after navigatio
 
 ## Props
 
-| Prop          | Required | Type         | Default | Description                                                        |
-| ------------- | -------- | ------------ | ------- | ------------------------------------------------------------------ |
-| `to`          | Required | `string`     | —       | Target path passed to react-router                                 |
-| `primaryText` | Required | `ReactNode`  | —       | Label rendered next to `leftIcon`. Strings are not auto-translated |
-| `leftIcon`    | Optional | `ReactNode`  | —       | Icon rendered before the label                                     |
-| `className`   | Optional | `string`     | —       | Extra Tailwind classes appended to the menu button                 |
-| `onClick`     | Optional | `() => void` | —       | Invoked after the default navigation                               |
+| Prop                             | Required | Type         | Default | Description                                                        |
+| -------------------------------- | -------- | ------------ | ------- | ------------------------------------------------------------------ |
+| `to`                             | Required | `string`     | —       | Target path passed to react-router                                 |
+| `primaryText`                    | Required | `ReactNode`  | —       | Label rendered next to `leftIcon`. Strings are not auto-translated |
+| `className`                      | Optional | `string`     | —       | Extra Tailwind classes appended to the menu button                 |
+| `keyboardShortcut`               | Optional | `string`     | —       | Global keyboard shortcut that triggers navigation to `to`          |
+| `leftIcon`                       | Optional | `ReactNode`  | —       | Icon rendered before the label                                     |
+| `onClick`                        | Optional | `() => void` | —       | Invoked after the default navigation                               |
+
+## `keyboardShortcut`
+
+Pass a shortcut string such as `"mod+k"` or `"shift+/"`. When the user presses the combination anywhere on the page, the component navigates to `to`. `mod` normalizes to `metaKey` (⌘) on macOS and `ctrlKey` on Windows/Linux.
+
+```tsx
+import { Settings } from "lucide-react";
+import { MenuItemLink } from "@/components/admin";
+
+<MenuItemLink
+  to="/settings"
+  primaryText="Settings"
+  leftIcon={<Settings />}
+  keyboardShortcut="mod+,"
+/>;
+```
 
 ## `primaryText`
 

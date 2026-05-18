@@ -14,6 +14,12 @@
       "comment": "Icon rendered before `primaryText`. Pass a `lucide-react` icon (or any\nReactNode) sized to match other sidebar items."
     },
     {
+      "name": "keyboardShortcut",
+      "type": "string",
+      "optional": true,
+      "comment": "Keyboard shortcut string (e.g. `\"mod+k\"`, `\"shift+/\"`, `\"meta+s\"`). When pressed anywhere on the page, navigates to `to`. `mod` normalizes to `metaKey` on macOS, `ctrlKey` elsewhere."
+    },
+    {
       "name": "onClick",
       "type": "() => void",
       "optional": true,

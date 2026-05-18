@@ -81,3 +81,20 @@ export const NoIcon = () => (
     <MenuItemLink to="/posts" primaryText="Posts" />
   </SidebarWrapper>
 );
+
+export const WithKeyboardShortcut = () => (
+  <SidebarWrapper>
+    <MenuItemLink
+      to="/posts"
+      primaryText="Posts"
+      leftIcon={<Book />}
+      keyboardShortcut="mod+p"
+    />
+    <MenuItemLink
+      to="/settings"
+      primaryText="Settings"
+      leftIcon={<Settings />}
+      keyboardShortcut="mod+,"
+    />
+  </SidebarWrapper>
+);
