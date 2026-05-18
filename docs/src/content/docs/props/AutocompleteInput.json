@@ -2,6 +2,12 @@
   "name": "AutocompleteInput",
   "props": [
     {
+      "name": "emptyValue",
+      "type": "string | number",
+      "optional": true,
+      "comment": "The underlying form value stored when the selection is cleared. Defaults to empty string."
+    },
+    {
       "name": "emptyText",
       "type": "string",
       "optional": true,
