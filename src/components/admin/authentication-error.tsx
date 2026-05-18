@@ -2,8 +2,8 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { TriangleAlert } from "lucide-react";
 import { useDefaultTitle } from "ra-core";
 
-import { AuthErrorScreen } from "../extras/auth-error-screen";
 import { Title } from "@/components/admin/title";
+import { AccessDenied } from "./access-denied";
 
 export interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -29,7 +29,7 @@ export const AuthenticationError = ({
   return (
     <>
       <Title defaultTitle={title} />
-      <AuthErrorScreen
+      <AccessDenied
         icon={icon}
         textPrimary={textPrimary}
         textSecondary={textSecondary}

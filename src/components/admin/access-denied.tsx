@@ -1,7 +1,8 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { Lock } from "lucide-react";
 
-import { AuthErrorScreen } from "../extras/auth-error-screen";
+import { useTranslate } from "ra-core";
+import { cn } from "@/lib/utils";
 
 export interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -20,12 +21,27 @@ export const AccessDenied = ({
   icon = <Lock className="size-32" />,
   textPrimary = "ra.page.access_denied",
   textSecondary = "ra.message.access_denied",
+  className,
   ...rest
-}: AccessDeniedProps) => (
-  <AuthErrorScreen
-    icon={icon}
-    textPrimary={textPrimary}
-    textSecondary={textSecondary}
-    {...rest}
-  />
-);
+}: AccessDeniedProps) => {
+  const translate = useTranslate();
+  return (
+    <div
+      className={cn(
+        "flex flex-col justify-center items-center h-full",
+        className,
+      )}
+      {...rest}
+    >
+      <div className="flex flex-col items-center text-center pt-4 pb-4 opacity-50">
+        {icon}
+        <h5 className="text-secondary-foreground text-2xl mt-3">
+          {translate(textPrimary, { _: textPrimary })}
+        </h5>
+        <p className="text-sm">
+          {translate(textSecondary, { _: textSecondary })}
+        </p>
+      </div>
+    </div>
+  );
+};
