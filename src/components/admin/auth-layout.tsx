@@ -50,7 +50,7 @@ export const AuthLayout = (props: AuthLayoutProps) => {
         )}
       >
         {hasAside && (
-          <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+          <div className="relative hidden h-full flex-col bg-zinc-900 p-10 text-white dark:border-r lg:flex">
             {aside}
           </div>
         )}

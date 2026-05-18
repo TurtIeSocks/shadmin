@@ -114,9 +114,9 @@ export const FilterListItem = memo((props: FilterListItemProps) => {
           isSelected && "bg-secondary font-medium",
         )}
       >
-        <span className="flex flex-row items-center gap-2 truncate">
+        <span className="flex flex-row items-center gap-2 min-w-0">
           {icon ? <span className="flex shrink-0">{icon}</span> : null}
-          <span className="truncate">{renderedLabel}</span>
+          <span className="truncate min-w-0">{renderedLabel}</span>
         </span>
         {isSelected && (
           <Button
