@@ -74,7 +74,9 @@ export const CustomMenu = () => (
 
 const MinimalError = ({ error, resetErrorBoundary }: ErrorProps) => (
   <div className="p-8 text-center space-y-2">
-    <p className="text-destructive font-medium">{error?.message ?? "Unknown error"}</p>
+    <p className="text-destructive font-medium">
+      {error instanceof Error ? error.message : "Unknown error"}
+    </p>
     <button className="underline text-sm" onClick={resetErrorBoundary}>Try again</button>
   </div>
 );
