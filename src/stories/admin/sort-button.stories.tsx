@@ -2,6 +2,7 @@ import React from "react";
 import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import defaultMessages from "ra-language-english";
 import polyglotI18nProvider from "ra-i18n-polyglot";
+import { ListOrdered } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
 import {
   Admin,
@@ -104,6 +105,17 @@ const Wrapper = ({
 
 export const Basic = () => (
   <Wrapper actions={<SortButton fields={["id", "title", "year"]} />} />
+);
+
+export const CustomIcon = () => (
+  <Wrapper
+    actions={
+      <SortButton
+        fields={["id", "title", "year"]}
+        icon={<ListOrdered className="size-4" />}
+      />
+    }
+  />
 );
 
 export const CustomLabel = () => (

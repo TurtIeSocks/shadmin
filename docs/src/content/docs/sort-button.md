@@ -41,6 +41,17 @@ This button lets users pick the sort field, then the sort direction (ASC/DESC).
 
 Additional props are passed to the underlying `<button>` element (e.g., `className`).
 
+## `icon`
+
+Replaces the default `<ArrowUpDown />` shown alongside the label. Pass any lucide-react icon to convey a different action.
+
+```tsx
+import { ListOrdered } from "lucide-react";
+import { SortButton } from "@/components/admin";
+
+<SortButton fields={["title", "published_at"]} icon={<ListOrdered className="size-4" />} />
+```
+
 ## `label`
 
 By default, the button label is the translation of the `ra.sort.sort_by` key, which reads something like "Sort by Title Asc". It receives `%{field}` (the translated field label), `%{field_lower_first}` (same, but lowercased first letter), and `%{order}` (the translated sort direction).
