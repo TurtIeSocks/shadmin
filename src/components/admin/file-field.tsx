@@ -35,6 +35,8 @@ export const FileField = <RecordType extends UnknownRecord = UnknownRecord>(
     src,
     target,
     download,
+    ping,
+    rel,
     defaultValue,
     source,
     record,
@@ -84,6 +86,8 @@ export const FileField = <RecordType extends UnknownRecord = UnknownRecord>(
                 title={fileTitleValue}
                 target={target}
                 download={download}
+                ping={ping}
+                rel={rel}
                 // useful to prevent click bubbling in a DataTable with rowClick
                 onClick={(e) => e.stopPropagation()}
               >
@@ -106,6 +110,8 @@ export const FileField = <RecordType extends UnknownRecord = UnknownRecord>(
         title={titleValue}
         target={target}
         download={download}
+        ping={ping}
+        rel={rel}
         // useful to prevent click bubbling in a DataTable with rowClick
         onClick={(e) => e.stopPropagation()}
       >
@@ -126,4 +132,6 @@ export interface FileFieldProps<
   title?: HintedString<ExtractRecordPaths<RecordType>>;
   target?: HTMLAnchorElement["target"];
   download?: HTMLAnchorElement["download"];
+  ping?: string;
+  rel?: string;
 }
