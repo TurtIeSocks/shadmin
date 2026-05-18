@@ -66,6 +66,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `emptyText`               | Optional   | `string`                                        | `''`                                       | The text to use for the empty element. When non-empty, prepends a "(none)" choice for non-required fields.                                                                                                          |
 | `emptyValue`              | Optional   | `string` &#124; `number`                        | `''`                                       | The underlying form value stored when the user clears the selection (via `emptyText` or by re-clicking the current choice)                                                                                         |
 | `filterToQuery`           | Optional   | `string` => `Object`                            | `q => ({ q })`                             | How to transform the searchText into a parameter for the data provider                                                                                                                                              |
+| `handleHomeEndKeys`       | Optional   | `boolean`                                       | `false`                                    | If true, pressing Home scrolls the dropdown list to the first item and End scrolls to the last item                                                                                                                 |
 | `format`                  | Optional   | `Function`                                      | `-`                                        | Callback taking the value from the form state, and returning the input value.                                                                                                                                       |
 | `helperText`              | Optional   | `string` &#124; `ReactNode`                     | `-`                                        | The helper text to display below the input                                                                                                                                                                          |
 | `inputText`               | Optional   | `Function`                                      | `-`                                        | Required if `optionText` is a custom Component, this function must return the text displayed for the current selection.                                                                                             |
@@ -339,6 +340,18 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `handleHomeEndKeys`
+
+When `true`, pressing the `Home` key while the dropdown is open scrolls the option list to the first item, and pressing `End` scrolls to the last item. Useful for long lists where keyboard-only navigation is important.
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  handleHomeEndKeys
+/>
+```
 
 ## `emptyValue`
 

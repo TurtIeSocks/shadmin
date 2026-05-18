@@ -312,6 +312,17 @@ export const WithMismatchedOptionTextAndValue = () => (
   </Wrapper>
 );
 
+export const WithHandleHomeEndKeys = () => (
+  <Wrapper>
+    <AutocompleteInput
+      source="tag_id"
+      choices={tags}
+      optionText="label"
+      handleHomeEndKeys
+    />
+  </Wrapper>
+);
+
 export const WithEmptyValue = () => (
   <Wrapper>
     <AutocompleteInput

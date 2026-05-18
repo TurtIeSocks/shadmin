@@ -2,6 +2,12 @@
   "name": "AutocompleteInput",
   "props": [
     {
+      "name": "handleHomeEndKeys",
+      "type": "boolean",
+      "optional": true,
+      "comment": "If true, Home/End keys scroll the dropdown list to the first/last item"
+    },
+    {
       "name": "emptyValue",
       "type": "string | number",
       "optional": true,
