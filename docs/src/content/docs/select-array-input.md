@@ -46,6 +46,7 @@ const record = {
 | `createHintValue` | Optional   | `string`                                      | -          | Internal sentinel placeholder shown in the input while the create element is active          |
 | `createItemLabel` | Optional   | `string`                                      | `ra.action.create_item` | Label for the create menu item when the filter is non-empty       |
 | `createLabel`     | Optional   | `string`                                      | `ra.action.create`      | Hint label for the create menu entry when the filter is empty     |
+| `createValue`     | Optional   | `string`                                      | `@@ra-create`           | Sentinel value that tags the create option in the options list    |
 | `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
 | `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
 | `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
@@ -134,6 +135,19 @@ const choices = [
   { id: "people", name: "People", disabled: true },
 ];
 <SelectArrayInput source="tags" choices={choices} />;
+```
+
+## `createValue`
+
+Sentinel string used to identify the create option inside the options list. Defaults to `"@@ra-create"`. Override when your real dataset happens to contain that string as a valid choice id.
+
+```jsx
+<SelectArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={handleCreate}
+  createValue="__new__"
+/>
 ```
 
 ## `createLabel`

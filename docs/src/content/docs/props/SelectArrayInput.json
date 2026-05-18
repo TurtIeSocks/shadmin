@@ -24,6 +24,12 @@
       "type": "string",
       "optional": true,
       "comment": "Hint label for the create menu entry shown when the filter is empty. Defaults to the ra.action.create translation key."
+    },
+    {
+      "name": "createValue",
+      "type": "string",
+      "optional": true,
+      "comment": "Sentinel value tagging the create option in the list. Defaults to '@@ra-create'; override only when that string conflicts with a real choice id."
     }
   ]
 }
