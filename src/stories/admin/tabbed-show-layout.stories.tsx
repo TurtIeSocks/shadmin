@@ -201,3 +201,34 @@ export const CustomTabs = ({
   </Wrapper>
 );
 Object.assign(CustomTabs, storyArgs);
+
+/**
+ * Controlled mode: the active tab is driven by external state via `value`.
+ * The button below demonstrates programmatic tab switching without URL changes.
+ */
+export const ControlledValue = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => {
+  const [active, setActive] = React.useState("0");
+  return (
+    <Wrapper theme={theme}>
+      <div className="flex gap-2 mb-4">
+        <button onClick={() => setActive("0")}>Show Content</button>
+        <button onClick={() => setActive("1")}>Show Metadata</button>
+      </div>
+      <TabbedShowLayout syncWithLocation={false} value={active}>
+        <TabbedShowLayout.Tab label="Content">
+          <TextField source="title" />
+          <TextField source="author" />
+        </TabbedShowLayout.Tab>
+        <TabbedShowLayout.Tab label="Metadata">
+          <NumberField source="year" />
+          <NumberField source="views" />
+        </TabbedShowLayout.Tab>
+      </TabbedShowLayout>
+    </Wrapper>
+  );
+};
+Object.assign(ControlledValue, storyArgs);
