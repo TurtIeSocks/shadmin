@@ -14,7 +14,7 @@ interface LinkAttributes {
   target: string;
 }
 
-export const LinkBubbleMenu: React.FC<LinkBubbleMenuProps> = ({ editor }) => {
+const LinkBubbleMenu: React.FC<LinkBubbleMenuProps> = ({ editor }) => {
   const [showEdit, setShowEdit] = React.useState(false);
   const [linkAttrs, setLinkAttrs] = React.useState<LinkAttributes>({
     href: "",
@@ -115,3 +115,5 @@ export const LinkBubbleMenu: React.FC<LinkBubbleMenuProps> = ({ editor }) => {
     </BubbleMenu>
   );
 };
+
+export { LinkBubbleMenu };

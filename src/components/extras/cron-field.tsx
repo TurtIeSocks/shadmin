@@ -5,6 +5,14 @@ import type { UnknownRecord } from "@/lib/unknown-types";
 import { describeCron } from "./cron-utils";
 import { cn } from "@/lib/utils";
 
+interface CronFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+  /** When true, render the raw cron expression below the human phrase. */
+  showExpression?: boolean;
+}
+
 /**
  * Displays a 5-field cron expression as a human-readable phrase
  * (via `cronstrue`). Falls back to the raw string on parse failure.
@@ -13,7 +21,7 @@ import { cn } from "@/lib/utils";
  * <CronField source="schedule" />
  * <CronField source="schedule" showExpression />
  */
-export const CronField = <RecordType extends UnknownRecord = UnknownRecord>({
+function CronField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,
@@ -21,7 +29,7 @@ export const CronField = <RecordType extends UnknownRecord = UnknownRecord>({
   showExpression = false,
   className,
   ...rest
-}: CronFieldProps<RecordType>) => {
+}: CronFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -59,12 +67,6 @@ export const CronField = <RecordType extends UnknownRecord = UnknownRecord>({
       )}
     </span>
   );
-};
-
-export interface CronFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
-  /** When true, render the raw cron expression below the human phrase. */
-  showExpression?: boolean;
 }
+
+export { CronField, type CronFieldProps };

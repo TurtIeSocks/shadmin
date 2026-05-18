@@ -16,7 +16,7 @@ import { useMinimalTiptapEditor } from "./hooks/use-minimal-tiptap";
 import { MeasuredContainer } from "./components/measured-container";
 import { useTiptapEditor } from "./hooks/use-tiptap-editor";
 
-export interface MinimalTiptapProps extends Omit<
+interface MinimalTiptapProps extends Omit<
   UseMinimalTiptapEditorProps,
   "onUpdate"
 > {
@@ -27,59 +27,65 @@ export interface MinimalTiptapProps extends Omit<
   toolbar?: MinimalTiptapToolbar;
 }
 
-export type MinimalTiptapToolbar = ReactNode;
+type MinimalTiptapToolbar = ReactNode;
 
-const Toolbar = ({ editor }: { editor: Editor }) => (
-  <div className="border-border flex h-12 shrink-0 overflow-x-auto border-b p-2">
-    <div className="flex w-max items-center gap-px">
-      <SectionOne editor={editor} activeLevels={[1, 2, 3, 4, 5, 6]} />
+interface ToolbarProps {
+  editor: Editor;
+}
 
-      <Separator orientation="vertical" className="mx-2" />
+function Toolbar({ editor }: ToolbarProps) {
+  return (
+    <div className="border-border flex h-12 shrink-0 overflow-x-auto border-b p-2">
+      <div className="flex w-max items-center gap-px">
+        <SectionOne editor={editor} activeLevels={[1, 2, 3, 4, 5, 6]} />
 
-      <SectionTwo
-        editor={editor}
-        activeActions={[
-          "bold",
-          "italic",
-          "underline",
-          "strikethrough",
-          "code",
-          "clearFormatting",
-        ]}
-        mainActionCount={3}
-      />
+        <Separator orientation="vertical" className="mx-2" />
 
-      <Separator orientation="vertical" className="mx-2" />
+        <SectionTwo
+          editor={editor}
+          activeActions={[
+            "bold",
+            "italic",
+            "underline",
+            "strikethrough",
+            "code",
+            "clearFormatting",
+          ]}
+          mainActionCount={3}
+        />
 
-      <SectionThree editor={editor} />
+        <Separator orientation="vertical" className="mx-2" />
 
-      <Separator orientation="vertical" className="mx-2" />
+        <SectionThree editor={editor} />
 
-      <SectionFour
-        editor={editor}
-        activeActions={["orderedList", "bulletList"]}
-        mainActionCount={0}
-      />
+        <Separator orientation="vertical" className="mx-2" />
 
-      <Separator orientation="vertical" className="mx-2" />
+        <SectionFour
+          editor={editor}
+          activeActions={["orderedList", "bulletList"]}
+          mainActionCount={0}
+        />
 
-      <SectionFive
-        editor={editor}
-        activeActions={["codeBlock", "blockquote", "horizontalRule"]}
-        mainActionCount={0}
-      />
+        <Separator orientation="vertical" className="mx-2" />
+
+        <SectionFive
+          editor={editor}
+          activeActions={["codeBlock", "blockquote", "horizontalRule"]}
+          mainActionCount={0}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
-export const MinimalTiptapEditor = ({
+function MinimalTiptapEditor({
   value,
   onChange,
   className,
   editorContentClassName,
   toolbar,
   ...props
-}: MinimalTiptapProps) => {
+}: MinimalTiptapProps) {
   const editor = useMinimalTiptapEditor({
     value,
     onUpdate: onChange,
@@ -100,18 +106,20 @@ export const MinimalTiptapEditor = ({
       />
     </EditorContext.Provider>
   );
-};
+}
 
 MinimalTiptapEditor.displayName = "MinimalTiptapEditor";
 
-export default MinimalTiptapEditor;
+interface MainMinimalTiptapEditorProps extends MinimalTiptapProps {
+  editor: Editor;
+}
 
-export const MainMinimalTiptapEditor = ({
+function MainMinimalTiptapEditor({
   editor: providedEditor,
   className,
   editorContentClassName,
   toolbar,
-}: MinimalTiptapProps & { editor: Editor }) => {
+}: MainMinimalTiptapEditorProps) {
   const { editor } = useTiptapEditor(providedEditor);
 
   if (!editor) {
@@ -138,4 +146,11 @@ export const MainMinimalTiptapEditor = ({
       <LinkBubbleMenu editor={editor} />
     </MeasuredContainer>
   );
+}
+
+export {
+  MinimalTiptapEditor,
+  MainMinimalTiptapEditor,
+  type MinimalTiptapProps,
+  type MinimalTiptapToolbar,
 };

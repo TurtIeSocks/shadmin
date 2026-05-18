@@ -5,7 +5,7 @@ interface ResizeProps extends React.ComponentProps<"div"> {
   isResizing?: boolean;
 }
 
-export const ResizeHandle = ({
+const ResizeHandle = ({
   ref,
   className,
   isResizing = false,
@@ -30,3 +30,5 @@ export const ResizeHandle = ({
 };
 
 ResizeHandle.displayName = "ResizeHandle";
+
+export { ResizeHandle };

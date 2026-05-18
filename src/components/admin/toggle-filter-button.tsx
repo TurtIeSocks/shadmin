@@ -25,17 +25,19 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </div>
  * );
  */
-export const ToggleFilterButton = ({
-  label,
-  size = "sm",
-  value,
-  className,
-}: {
+interface ToggleFilterButtonProps {
   label: React.ReactElement | string;
   value: UnknownRecord;
   className?: string;
   size?: "default" | "sm" | "lg" | "icon" | null | undefined;
-}) => {
+}
+
+function ToggleFilterButton({
+  label,
+  size = "sm",
+  value,
+  className,
+}: ToggleFilterButtonProps) {
   const { filterValues, setFilters } = useListContext();
   const translate = useTranslate();
   const isSelected = getIsSelected(value, filterValues);
@@ -56,7 +58,7 @@ export const ToggleFilterButton = ({
       {isSelected && <CircleX className="opacity-50" />}
     </Button>
   );
-};
+}
 
 const toggleFilter = (value: UnknownRecord, filters: UnknownRecord) => {
   const isSelected = matches(
@@ -78,3 +80,5 @@ const toggleFilter = (value: UnknownRecord, filters: UnknownRecord) => {
 
 const getIsSelected = (value: UnknownRecord, filters: UnknownRecord) =>
   matches(pickBy(value, (val) => typeof val !== "undefined"))(filters);
+
+export { ToggleFilterButton, type ToggleFilterButtonProps };

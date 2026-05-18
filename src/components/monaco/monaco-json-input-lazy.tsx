@@ -35,7 +35,7 @@ import { useMonacoTheme } from "./internal/use-monaco-theme";
 
 loader.config({ monaco });
 
-const MonacoJsonInputInner = (props: MonacoJsonInputProps) => {
+function MonacoJsonInputInner(props: MonacoJsonInputProps) {
   const resource = useResourceContext(props);
   const {
     label,
@@ -219,6 +219,6 @@ const MonacoJsonInputInner = (props: MonacoJsonInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
 
-export default MonacoJsonInputInner;
+export { MonacoJsonInputInner };

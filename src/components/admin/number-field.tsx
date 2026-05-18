@@ -26,7 +26,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const NumberField = <RecordType extends UnknownRecord = UnknownRecord>({
+function NumberField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,
@@ -35,7 +35,7 @@ export const NumberField = <RecordType extends UnknownRecord = UnknownRecord>({
   locales,
   options,
   ...rest
-}: NumberFieldProps<RecordType>) => {
+}: NumberFieldProps<RecordType>) {
   let value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -62,9 +62,9 @@ export const NumberField = <RecordType extends UnknownRecord = UnknownRecord>({
         : value}
     </span>
   );
-};
+}
 
-export interface NumberFieldProps<
+interface NumberFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
@@ -83,3 +83,5 @@ const hasNumberFormat = !!(
   Intl &&
   typeof Intl.NumberFormat === "function"
 );
+
+export { NumberField, type NumberFieldProps };

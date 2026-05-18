@@ -8,7 +8,7 @@ import { notifyAuthError } from "@/lib/notify-auth-error";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 
-export interface LoginFormProps {
+interface LoginFormProps {
   /**
    * Path the user is redirected to after a successful sign in.
    * Defaults to ra-core's default redirect (`/`).
@@ -40,7 +40,7 @@ export interface LoginFormProps {
  *   </AuthLayout>
  * );
  */
-export const LoginForm = (props: LoginFormProps) => {
+function LoginForm(props: LoginFormProps) {
   const { redirectTo, className } = props;
   const [loading, setLoading] = useState(false);
   const login = useLogin();
@@ -87,4 +87,6 @@ export const LoginForm = (props: LoginFormProps) => {
       </Button>
     </Form>
   );
-};
+}
+
+export { LoginForm, type LoginFormProps };

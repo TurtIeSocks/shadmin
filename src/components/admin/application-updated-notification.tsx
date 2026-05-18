@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export interface ApplicationUpdatedNotificationProps extends Omit<
+interface ApplicationUpdatedNotificationProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
   "children"
 > {
@@ -43,9 +43,9 @@ export interface ApplicationUpdatedNotificationProps extends Omit<
  *
  * const Notice = () => <ApplicationUpdatedNotification />;
  */
-export const ApplicationUpdatedNotification = (
+function ApplicationUpdatedNotification(
   props: ApplicationUpdatedNotificationProps,
-) => {
+) {
   const {
     className,
     message,
@@ -93,4 +93,9 @@ export const ApplicationUpdatedNotification = (
       </Button>
     </Card>
   );
+}
+
+export {
+  ApplicationUpdatedNotification,
+  type ApplicationUpdatedNotificationProps,
 };

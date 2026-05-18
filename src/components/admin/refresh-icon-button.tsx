@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { resolveLabel } from "@/lib/resolve-label";
 
-export type RefreshIconButtonProps = {
+type RefreshIconButtonProps = {
   className?: string;
   icon?: React.ReactNode;
   label?: string;
@@ -36,7 +36,7 @@ export type RefreshIconButtonProps = {
  *   </header>
  * );
  */
-export const RefreshIconButton = (props: RefreshIconButtonProps) => {
+function RefreshIconButton(props: RefreshIconButtonProps) {
   const {
     label = "ra.action.refresh",
     icon = defaultIcon,
@@ -81,6 +81,8 @@ export const RefreshIconButton = (props: RefreshIconButtonProps) => {
       </Tooltip>
     </TooltipProvider>
   );
-};
+}
 
 const defaultIcon = <RefreshCw />;
+
+export { RefreshIconButton, type RefreshIconButtonProps };

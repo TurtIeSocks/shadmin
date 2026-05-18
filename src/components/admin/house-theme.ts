@@ -13,7 +13,7 @@ import type { AdminTheme } from "./theme-types";
  * Hex → oklch conversions are computed precisely from the upstream source —
  * see the conversion in the project's tooling for reproducibility.
  */
-export const houseTheme: AdminTheme = {
+const houseTheme: AdminTheme = {
   name: "house",
   label: "House",
   light: {
@@ -117,3 +117,5 @@ export const houseTheme: AdminTheme = {
     "--sidebar-ring": "oklch(0.868 0.165 91.8)",
   },
 };
+
+export { houseTheme };

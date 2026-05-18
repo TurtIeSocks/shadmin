@@ -39,7 +39,7 @@ interface SpinnerContentProps
 /**
  * Animated spinner component for loading states.
  */
-export function Spinner({
+function Spinner({
   size,
   show,
   className,
@@ -58,3 +58,5 @@ export function Spinner({
     </span>
   );
 }
+
+export { Spinner };

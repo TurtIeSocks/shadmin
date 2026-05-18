@@ -5,8 +5,10 @@ import {
   type ShapeFieldShellProps,
 } from "./shape-field-shell";
 
-export type MultiLineStringFieldProps = ShapeFieldShellProps;
+type MultiLineStringFieldProps = ShapeFieldShellProps;
 
-export const MultiLineStringField = (props: MultiLineStringFieldProps) => (
-  <ShapeFieldShell {...props} />
-);
+function MultiLineStringField(props: MultiLineStringFieldProps) {
+  return <ShapeFieldShell {...props} />;
+}
+
+export { MultiLineStringField, type MultiLineStringFieldProps };

@@ -7,7 +7,7 @@ import type * as L from "leaflet";
 import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL } from "./shared";
 import type { BaseMapProps } from "./types";
 
-export interface BaseMapWrapperProps extends BaseMapProps {
+interface BaseMapWrapperProps extends BaseMapProps {
   children?: ReactNode;
   testId?: string;
   className?: string;
@@ -15,7 +15,7 @@ export interface BaseMapWrapperProps extends BaseMapProps {
 
 const MAP_STYLE: React.CSSProperties = { height: "100%", width: "100%" };
 
-export const BaseMap = ({
+function BaseMap({
   zoom = 13,
   defaultCenter = [0, 0],
   height = 300,
@@ -24,31 +24,42 @@ export const BaseMap = ({
   children,
   testId,
   className,
-}: BaseMapWrapperProps) => (
-  <div
-    style={{ height }}
-    className={className ?? "overflow-hidden rounded-md border w-full"}
-    data-testid={testId}
-  >
-    <MapContainer center={defaultCenter} zoom={zoom} style={MAP_STYLE}>
-      <TileLayer url={tileUrl} attribution={attribution} />
-      {children}
-    </MapContainer>
-  </div>
-);
+}: BaseMapWrapperProps) {
+  return (
+    <div
+      style={{ height }}
+      className={className ?? "overflow-hidden rounded-md border w-full"}
+      data-testid={testId}
+    >
+      <MapContainer center={defaultCenter} zoom={zoom} style={MAP_STYLE}>
+        <TileLayer url={tileUrl} attribution={attribution} />
+        {children}
+      </MapContainer>
+    </div>
+  );
+}
 
-export const FitBoundsOnMount = ({
-  bounds,
-  padding = [20, 20],
-  maxZoom = 18,
-}: {
+interface FitBoundsOnMountProps {
   bounds: L.LatLngBoundsExpression | null;
   padding?: L.PointTuple;
   maxZoom?: number;
-}) => {
+}
+
+function FitBoundsOnMount({
+  bounds,
+  padding = [20, 20],
+  maxZoom = 18,
+}: FitBoundsOnMountProps) {
   const map = useMap();
   useEffect(() => {
     if (bounds) map.fitBounds(bounds, { padding, maxZoom });
   }, [bounds, map, padding, maxZoom]);
   return null;
+}
+
+export {
+  BaseMap,
+  type BaseMapWrapperProps,
+  FitBoundsOnMount,
+  type FitBoundsOnMountProps,
 };

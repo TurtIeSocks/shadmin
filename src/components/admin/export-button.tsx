@@ -38,7 +38,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  *   </List>
  * );
  */
-export const ExportButton = (props: ExportButtonProps) => {
+function ExportButton(props: ExportButtonProps) {
   const {
     maxResults = 1000,
     onClick,
@@ -118,11 +118,11 @@ export const ExportButton = (props: ExportButtonProps) => {
       {label}
     </Button>
   );
-};
+}
 
 const defaultIcon = <Download />;
 
-export interface ExportButtonProps {
+interface ExportButtonProps {
   className?: string;
   exporter?: Exporter;
   icon?: React.ReactNode;
@@ -133,3 +133,5 @@ export interface ExportButtonProps {
   meta?: UnknownValue;
   ref?: Ref<HTMLButtonElement>;
 }
+
+export { ExportButton, type ExportButtonProps };

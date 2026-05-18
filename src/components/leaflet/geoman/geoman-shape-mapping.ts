@@ -11,10 +11,10 @@ const TYPE_TO_GEOMAN: Record<ShapeKind, GeomanShape> = {
   GeometryCollection: "Marker",
 };
 
-export const geojsonTypeToGeomanShape = (t: ShapeKind): GeomanShape =>
+const geojsonTypeToGeomanShape = (t: ShapeKind): GeomanShape =>
   TYPE_TO_GEOMAN[t];
 
-export const layerToGeometry = (layer: L.Layer): GeoJSON.Geometry | null => {
+const layerToGeometry = (layer: L.Layer): GeoJSON.Geometry | null => {
   // L.Circle: approximate as a polygon ring (64 vertices around center).
   // GeoJSON has no Circle type and the default `toGeoJSON()` for L.Circle
   // returns a Point, which would lose the radius information.
@@ -59,7 +59,7 @@ const circleToPolygon = (
   return { type: "Polygon", coordinates: [ring] };
 };
 
-export const geometryToLatLngs = (
+const geometryToLatLngs = (
   geom: GeoJSON.Geometry,
 ):
   | L.LatLngExpression
@@ -96,7 +96,7 @@ export const geometryToLatLngs = (
   }
 };
 
-export const geometryToLayer = (
+const geometryToLayer = (
   geom: GeoJSON.Geometry,
   pathOptions?: L.PathOptions,
   markerIcon?: L.Icon | L.DivIcon,
@@ -107,3 +107,5 @@ export const geometryToLayer = (
       markerIcon ? L.marker(latlng, { icon: markerIcon }) : L.marker(latlng),
   });
 };
+
+export { geojsonTypeToGeomanShape, layerToGeometry, geometryToLatLngs, geometryToLayer };

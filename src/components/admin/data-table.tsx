@@ -138,7 +138,7 @@ const useDataTableExpandContext = () => use(DataTableExpandContext);
  *   </List>
  * );
  */
-export function DataTable<RecordType extends RaRecord = RaRecord>(
+function DataTable<RecordType extends RaRecord = RaRecord>(
   props: DataTableProps<RecordType>,
 ) {
   const {
@@ -315,7 +315,7 @@ function ExpandAllButton() {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const DataTableHead = ({ children }: { children: ReactNode }) => {
+function DataTableHead({ children }: { children: ReactNode }) {
   const data = useDataTableDataContext();
   const { hasBulkActions = false } = useDataTableConfigContext();
   const { isRowSelectable, onSelect } = useDataTableCallbacksContext();
@@ -376,7 +376,7 @@ export const DataTableHead = ({ children }: { children: ReactNode }) => {
       </TableRow>
     </TableHeader>
   );
-};
+}
 
 /**
  * Body of a DataTable. Renders one `<DataTableRow>` per record in the current page.
@@ -384,13 +384,13 @@ export const DataTableHead = ({ children }: { children: ReactNode }) => {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
+function DataTableBody<RecordType extends RaRecord = RaRecord>({
   children,
   rowClassName,
 }: {
   children: ReactNode;
   rowClassName?: (record: RecordType, rowIndex: number) => string | undefined;
-}) => {
+}) {
   const data = useDataTableDataContext();
   const { hasBulkActions = false } = useDataTableConfigContext();
   const expandContext = useDataTableExpandContext();
@@ -442,7 +442,7 @@ export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
       })}
     </TableBody>
   );
-};
+}
 
 /**
  * A row in a DataTable. Wires up row click navigation and renders a row-selection checkbox when bulk actions are enabled.
@@ -450,13 +450,13 @@ export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const DataTableRow = ({
+function DataTableRow({
   children,
   className,
 }: {
   children: ReactNode;
   className?: string;
-}) => {
+}) {
   const { rowClick, handleToggleItem } = useDataTableCallbacksContext();
   const selectedIds = useDataTableSelectedIdsContext();
   const { hasBulkActions = false, hover = true } = useDataTableConfigContext();
@@ -600,7 +600,7 @@ export const DataTableRow = ({
       {children}
     </TableRow>
   );
-};
+}
 
 function isPromise<T>(value: UnknownValue): value is Promise<T> {
   return (
@@ -614,13 +614,13 @@ function isPromise<T>(value: UnknownValue): value is Promise<T> {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const DataTableEmpty = () => {
+function DataTableEmpty() {
   return (
     <Alert>
       <AlertDescription>No results found.</AlertDescription>
     </Alert>
   );
-};
+}
 
 const DataTableLoadingSkeleton = ({
   className,
@@ -673,7 +673,7 @@ const DataTableLoadingSkeleton = ({
   );
 };
 
-export interface DataTableProps<
+interface DataTableProps<
   RecordType extends RaRecord = RaRecord,
 > extends Omit<Partial<DataTableBaseProps<RecordType>>, "rowClick" | "expand"> {
   children: ReactNode;
@@ -739,7 +739,7 @@ export interface DataTableProps<
     | ((...args: any[]) => string | false | Promise<string | false>);
 }
 
-export function DataTableColumn<
+function DataTableColumn<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 >(props: DataTableColumnProps<RecordType>) {
   const renderContext = useDataTableRenderContext();
@@ -777,7 +777,7 @@ const reorderChildren = (children: ReactNode, columnRanks: number[]) =>
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export function DataTableHeadCell<
+function DataTableHeadCell<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 >(props: DataTableColumnProps<RecordType>) {
   const {
@@ -877,7 +877,7 @@ const oppositeOrder: Record<SortPayload["order"], SortPayload["order"]> = {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export function DataTableCell<
+function DataTableCell<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 >(props: DataTableColumnProps<RecordType>) {
   const {
@@ -921,7 +921,7 @@ export function DataTableCell<
   );
 }
 
-export interface DataTableColumnProps<
+interface DataTableColumnProps<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 > {
   className?: string;
@@ -937,7 +937,7 @@ export interface DataTableColumnProps<
   sortByOrder?: SortPayload["order"];
 }
 
-export function DataTableNumberColumn<
+function DataTableNumberColumn<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 >(props: DataTableNumberColumnProps<RecordType>) {
   const {
@@ -962,7 +962,7 @@ export function DataTableNumberColumn<
   );
 }
 
-export interface DataTableNumberColumnProps<
+interface DataTableNumberColumnProps<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 > extends DataTableColumnProps<RecordType> {
   source: NoInfer<HintedString<ExtractRecordPaths<RecordType>>>;
@@ -976,13 +976,15 @@ export interface DataTableNumberColumnProps<
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const DataTableRoot = ({
+function DataTableRoot({
   children,
   className,
 }: {
   children: ReactNode;
   className?: string;
-}) => <div className={cn("rounded-md border", className)}>{children}</div>;
+}) {
+  return <div className={cn("rounded-md border", className)}>{children}</div>;
+}
 
 /**
  * Checkbox in the DataTable header that selects/deselects all rows on the current page.
@@ -990,7 +992,7 @@ export const DataTableRoot = ({
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const SelectPageCheckbox = ({ className }: { className?: string }) => {
+function SelectPageCheckbox({ className }: { className?: string }) {
   const data = useDataTableDataContext();
   const { onSelect } = useDataTableCallbacksContext();
   const selectedIds = useDataTableSelectedIdsContext();
@@ -1023,7 +1025,7 @@ export const SelectPageCheckbox = ({ className }: { className?: string }) => {
       aria-label="Select all rows on this page"
     />
   );
-};
+}
 
 /**
  * Checkbox in a DataTable row that selects/deselects that row.
@@ -1031,7 +1033,7 @@ export const SelectPageCheckbox = ({ className }: { className?: string }) => {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const SelectRowCheckbox = ({ className }: { className?: string }) => {
+function SelectRowCheckbox({ className }: { className?: string }) {
   const record = useRecordContext();
   const selectedIds = useDataTableSelectedIdsContext();
   const { handleToggleItem } = useDataTableCallbacksContext();
@@ -1051,9 +1053,9 @@ export const SelectRowCheckbox = ({ className }: { className?: string }) => {
       aria-label="Select row"
     />
   );
-};
+}
 
-export interface DataTableLoadingProps {
+interface DataTableLoadingProps {
   className?: string;
   hasBulkActions?: boolean;
   nbChildren: number;
@@ -1067,12 +1069,12 @@ export interface DataTableLoadingProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
  */
-export const DataTableLoading = ({
+function DataTableLoading({
   className,
   hasBulkActions,
   nbChildren,
   nbFakeLines = 5,
-}: DataTableLoadingProps) => {
+}: DataTableLoadingProps) {
   const oneSecondHasPassed = useTimeout(1000);
   if (!oneSecondHasPassed) return null;
   return (
@@ -1103,4 +1105,24 @@ export const DataTableLoading = ({
       </Table>
     </DataTableRoot>
   );
+}
+
+export {
+  DataTable,
+  DataTableHead,
+  DataTableBody,
+  DataTableRow,
+  DataTableEmpty,
+  DataTableColumn,
+  DataTableHeadCell,
+  DataTableCell,
+  DataTableNumberColumn,
+  DataTableRoot,
+  SelectPageCheckbox,
+  SelectRowCheckbox,
+  DataTableLoading,
+  type DataTableProps,
+  type DataTableColumnProps,
+  type DataTableNumberColumnProps,
+  type DataTableLoadingProps,
 };

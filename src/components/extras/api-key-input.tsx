@@ -25,7 +25,7 @@ import { RefreshCw } from "lucide-react";
  * <ApiKeyInput source="apiKey" />
  * <ApiKeyInput source="apiKey" onRotate={async (record) => await regenKey(record.id)} />
  */
-export const ApiKeyInput = (props: ApiKeyInputProps) => {
+function ApiKeyInput(props: ApiKeyInputProps) {
   const { source, onRotate, disabled, resource: resourceProp } = props;
   const record = useRecordContext();
   const resource = useResourceContext({ resource: resourceProp });
@@ -83,7 +83,7 @@ export const ApiKeyInput = (props: ApiKeyInputProps) => {
   );
 };
 
-export interface ApiKeyInputProps {
+interface ApiKeyInputProps {
   /** Record field holding the API key. Defaults to `"apiKey"`. */
   source: string;
   /** Override resource. */
@@ -93,3 +93,5 @@ export interface ApiKeyInputProps {
   /** Disable the button. */
   disabled?: boolean;
 }
+
+export { ApiKeyInput, type ApiKeyInputProps };

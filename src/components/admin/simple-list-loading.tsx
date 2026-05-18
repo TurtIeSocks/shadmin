@@ -2,7 +2,7 @@ import { useTimeout } from "ra-core";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export interface SimpleListLoadingProps {
+interface SimpleListLoadingProps {
   /**
    * Whether to reserve a slot for a left avatar / icon in each skeleton row.
    */
@@ -40,14 +40,14 @@ export interface SimpleListLoadingProps {
  *   <SimpleListLoading hasLeftAvatarOrIcon hasSecondaryText nbFakeLines={8} />
  * );
  */
-export const SimpleListLoading = ({
+function SimpleListLoading({
   hasLeftAvatarOrIcon,
   hasRightAvatarOrIcon,
   hasSecondaryText,
   hasTertiaryText,
   nbFakeLines = 5,
   className,
-}: SimpleListLoadingProps) => {
+}: SimpleListLoadingProps) {
   const oneSecondHasPassed = useTimeout(1000);
   if (!oneSecondHasPassed) return null;
   return (
@@ -71,4 +71,6 @@ export const SimpleListLoading = ({
       ))}
     </ul>
   );
-};
+}
+
+export { SimpleListLoading, type SimpleListLoadingProps };

@@ -70,7 +70,21 @@ const arePropsEqual = (
  *   </Card>
  * );
  */
-export const FilterListItem = memo((props: FilterListItemProps) => {
+interface FilterListItemProps extends Omit<
+  LiHTMLAttributes<HTMLLIElement>,
+  "value" | "children"
+> {
+  label: ReactNode;
+  value: UnknownRecord;
+  icon?: ReactNode;
+  toggleFilter?: (
+    value: UnknownRecord,
+    filters: UnknownRecord,
+  ) => UnknownRecord;
+  isSelected?: (value: UnknownRecord, filters: UnknownRecord) => boolean;
+}
+
+function FilterListItemComponent(props: FilterListItemProps) {
   const {
     label,
     value,
@@ -136,18 +150,8 @@ export const FilterListItem = memo((props: FilterListItemProps) => {
       </button>
     </li>
   );
-}, arePropsEqual);
-
-export interface FilterListItemProps extends Omit<
-  LiHTMLAttributes<HTMLLIElement>,
-  "value" | "children"
-> {
-  label: ReactNode;
-  value: UnknownRecord;
-  icon?: ReactNode;
-  toggleFilter?: (
-    value: UnknownRecord,
-    filters: UnknownRecord,
-  ) => UnknownRecord;
-  isSelected?: (value: UnknownRecord, filters: UnknownRecord) => boolean;
 }
+
+const FilterListItem = memo(FilterListItemComponent, arePropsEqual);
+
+export { FilterListItem, type FilterListItemProps };

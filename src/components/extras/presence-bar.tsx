@@ -16,18 +16,18 @@ import {
 } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
-export interface PresenceUser {
+interface PresenceUser {
   id: string;
   name: string;
   avatar?: string;
 }
 
-export interface PresenceState {
+interface PresenceState {
   user: PresenceUser;
   timestamp: number;
 }
 
-export interface PresenceTransport {
+interface PresenceTransport {
   subscribe: (
     topic: string,
     handler: (state: PresenceState) => void,
@@ -60,7 +60,7 @@ const broadcastTransport: PresenceTransport = {
   },
 };
 
-export interface PresenceBarProps {
+interface PresenceBarProps {
   topic?: string;
   currentUser?: PresenceUser;
   maxAvatars?: number;
@@ -77,7 +77,7 @@ const getInitials = (name: string) =>
     .slice(0, 2)
     .join("");
 
-export const PresenceBar = ({
+const PresenceBar = ({
   topic: topicProp,
   currentUser: currentUserProp,
   maxAvatars = 5,
@@ -185,3 +185,5 @@ export const PresenceBar = ({
     </AvatarGroup>
   );
 };
+
+export { type PresenceUser, type PresenceState, type PresenceTransport, type PresenceBarProps, PresenceBar };

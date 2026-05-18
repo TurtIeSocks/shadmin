@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export type ResourceMenuItemProps = {
+type ResourceMenuItemProps = {
   /**
    * The resource name (matches the `name` of a `<Resource>` registered in `<Admin>`).
    * Used to look up the resource definition, label, icon and list path.
@@ -64,14 +64,14 @@ export type ResourceMenuItemProps = {
  *   </nav>
  * );
  */
-export const ResourceMenuItem = ({
+function ResourceMenuItem({
   name,
   primaryText,
   leftIcon,
   className,
   onClick,
   ...rest
-}: ResourceMenuItemProps) => {
+}: ResourceMenuItemProps) {
   const { canAccess, isPending } = useCanAccess({
     resource: name,
     action: "list",
@@ -124,4 +124,6 @@ export const ResourceMenuItem = ({
       </SidebarMenuButton>
     </SidebarMenuItem>
   );
-};
+}
+
+export { ResourceMenuItem, type ResourceMenuItemProps };

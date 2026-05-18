@@ -44,7 +44,7 @@ interface InferElementFromTypeArgs {
  * `editFieldTypes` map (see edit-field-types.tsx) — this function
  * only supplies `optionText` and the structural children.
  */
-export const inferElementFromType = ({
+const inferElementFromType = ({
   name,
   description,
   format,
@@ -184,3 +184,5 @@ const inferRecordRepresentationField = (
   if (def.properties?.reference != null) return "reference";
   return undefined;
 };
+
+export { inferElementFromType };

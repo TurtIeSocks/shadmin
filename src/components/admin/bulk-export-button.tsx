@@ -34,13 +34,13 @@ import { Button } from "../ui/button";
  *   </List>
  * );
  */
-export const BulkExportButton = <T extends RaRecord>({
+function BulkExportButton<T extends RaRecord>({
   icon = defaultIcon,
   label: labelProp,
   onClick,
   ref,
   ...props
-}: BulkExportButtonProps<T>) => {
+}: BulkExportButtonProps<T>) {
   const bulkExport = useBulkExport(props);
   const resource = useResourceContext(props);
   const getResourceLabel = useGetResourceLabel();
@@ -75,11 +75,11 @@ export const BulkExportButton = <T extends RaRecord>({
       {label}
     </Button>
   );
-};
+}
 
 const defaultIcon = <Download className="size-4" />;
 
-export type BulkExportButtonProps<T extends RaRecord> =
+type BulkExportButtonProps<T extends RaRecord> =
   UseBulkExportOptions<T> & {
     icon?: React.ReactNode;
     label?: string;
@@ -94,3 +94,5 @@ const sanitizeRestProps = <T extends RaRecord>({
   meta: _meta,
   ...rest
 }: BulkExportButtonProps<T>) => rest;
+
+export { BulkExportButton, type BulkExportButtonProps };

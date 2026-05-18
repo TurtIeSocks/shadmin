@@ -4,13 +4,23 @@ import { Badge } from "@/components/ui/badge";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
-export interface SubscriptionPlan {
+interface SubscriptionPlan {
   id: string;
   name: string;
   price: number;
   currency: string;
   interval: "month" | "year";
   features?: readonly string[];
+}
+
+interface SubscriptionPlanFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends
+    FieldProps<RecordType>,
+    Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
+  /** Available plans to look up by id. */
+  plans: readonly SubscriptionPlan[];
 }
 
 /**
@@ -29,7 +39,7 @@ export interface SubscriptionPlan {
  *
  * <SubscriptionPlanField source="planId" plans={PLANS} />
  */
-export const SubscriptionPlanField = <
+function SubscriptionPlanField<
   RecordType extends UnknownRecord = UnknownRecord,
 >({
   defaultValue,
@@ -39,7 +49,7 @@ export const SubscriptionPlanField = <
   plans,
   className,
   ...rest
-}: SubscriptionPlanFieldProps<RecordType>) => {
+}: SubscriptionPlanFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
   const plan = plans.find((p) => p.id === value);
@@ -70,14 +80,10 @@ export const SubscriptionPlanField = <
       </span>
     </Badge>
   );
-};
-
-export interface SubscriptionPlanFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
-    Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
-  /** Available plans to look up by id. */
-  plans: readonly SubscriptionPlan[];
 }
+
+export {
+  SubscriptionPlanField,
+  type SubscriptionPlan,
+  type SubscriptionPlanFieldProps,
+};

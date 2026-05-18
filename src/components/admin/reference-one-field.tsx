@@ -15,6 +15,34 @@ import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
 
+interface ReferenceOneFieldProps<
+  RecordType extends RaRecord = RaRecord,
+  ReferenceRecordType extends RaRecord = RaRecord,
+> extends Omit<FieldProps<RecordType>, "source" | "record"> {
+  children?: ReactNode;
+  render?: (props: UseReferenceResult<ReferenceRecordType>) => ReactNode;
+  reference: string;
+  target: string;
+  source?: string;
+  sort?: SortPayload;
+  filter?: UnknownRecord;
+  link?: LinkToType<ReferenceRecordType>;
+  loading?: ReactNode;
+  error?: ReactNode;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
+  record?: RecordType;
+  queryOptions?: Omit<
+    UseQueryOptions<{
+      data: ReferenceRecordType[];
+      total: number;
+    }>,
+    "queryKey"
+  > & { meta?: UnknownValue };
+}
+
 /**
  * Displays a related record from a one-to-one relationship.
  *
@@ -37,12 +65,10 @@ const defaultOffline = <Offline />;
  *   </Show>
  * );
  */
-export const ReferenceOneField = <
+function ReferenceOneField<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
->(
-  props: ReferenceOneFieldProps<RecordType, ReferenceRecordType>,
-) => {
+>(props: ReferenceOneFieldProps<RecordType, ReferenceRecordType>) {
   const {
     children,
     render,
@@ -94,37 +120,11 @@ export const ReferenceOneField = <
       </ReferenceFieldView>
     </ReferenceOneFieldBase>
   );
-};
+}
 
 // disable sorting on this field by default as its default source prop ('id')
 // will match the default sort ({ field: 'id', order: 'DESC' }),
 // leading to an incorrect sort indicator in a data table header.
 ReferenceOneField.sortable = false;
 
-export interface ReferenceOneFieldProps<
-  RecordType extends RaRecord = RaRecord,
-  ReferenceRecordType extends RaRecord = RaRecord,
-> extends Omit<FieldProps<RecordType>, "source" | "record"> {
-  children?: ReactNode;
-  render?: (props: UseReferenceResult<ReferenceRecordType>) => ReactNode;
-  reference: string;
-  target: string;
-  source?: string;
-  sort?: SortPayload;
-  filter?: UnknownRecord;
-  link?: LinkToType<ReferenceRecordType>;
-  loading?: ReactNode;
-  error?: ReactNode;
-  /**
-   * Component to display when offline and the request is pending or has stale placeholder data.
-   */
-  offline?: ReactNode;
-  record?: RecordType;
-  queryOptions?: Omit<
-    UseQueryOptions<{
-      data: ReferenceRecordType[];
-      total: number;
-    }>,
-    "queryKey"
-  > & { meta?: UnknownValue };
-}
+export { ReferenceOneField, type ReferenceOneFieldProps };

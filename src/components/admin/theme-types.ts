@@ -5,7 +5,7 @@
  * values for that property (typically `oklch(...)` color expressions, but any
  * valid CSS string is accepted — e.g. `--radius: 0.5rem`).
  */
-export type ThemeVars = Record<string, string>;
+type ThemeVars = Record<string, string>;
 
 /**
  * Shape of a named theme accepted by shadcn-admin-kit's `<ThemeProvider>` and `<Admin>`.
@@ -15,7 +15,7 @@ export type ThemeVars = Record<string, string>;
  * variables in dark mode. If `dark` is omitted, the `light` map is used in dark
  * mode too (useful for themes that don't differentiate between modes).
  */
-export interface AdminTheme {
+interface AdminTheme {
   /**
    * Stable identifier for the theme.
    *
@@ -39,3 +39,5 @@ export interface AdminTheme {
    */
   dark?: ThemeVars;
 }
+
+export { type ThemeVars, type AdminTheme };

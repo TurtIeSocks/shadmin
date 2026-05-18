@@ -25,7 +25,7 @@ const SHAPE_TO_GEOMAN: Record<ShapeKind, GeomanShape> = {
 
 const DEFAULT_SHAPES: ShapeKind[] = ["Point", "LineString", "Polygon"];
 
-export interface GeoJsonInputProps extends BaseInputProps {
+interface GeoJsonInputProps extends BaseInputProps {
   /**
    * Which GeoJSON shape kinds the user can draw. Each maps to a Geoman
    * draw button; duplicates (e.g. Point + MultiPoint both → Marker) are
@@ -44,7 +44,7 @@ export interface GeoJsonInputProps extends BaseInputProps {
  * toolbar with one button per allowed shape kind. Defaults to allowing
  * Point, LineString, and Polygon.
  */
-export const GeoJsonInput = ({
+function GeoJsonInput({
   source,
   shapes = DEFAULT_SHAPES,
   collection = false,
@@ -58,7 +58,7 @@ export const GeoJsonInput = ({
   snapDistance = 20,
   label,
   helperText,
-}: GeoJsonInputProps) => {
+}: GeoJsonInputProps) {
   const geomanShapes = Array.from(
     new Set(shapes.map((s) => SHAPE_TO_GEOMAN[s])),
   );
@@ -87,7 +87,7 @@ export const GeoJsonInput = ({
       ) : null}
     </div>
   );
-};
+}
 
 interface GeoJsonInnerProps {
   source: string;
@@ -98,14 +98,14 @@ interface GeoJsonInnerProps {
   pathOptions?: L.PathOptions;
 }
 
-const GeoJsonInner = ({
+function GeoJsonInner({
   source,
   shapes,
   collection,
   snappable,
   snapDistance,
   pathOptions,
-}: GeoJsonInnerProps) => {
+}: GeoJsonInnerProps) {
   // Sentinel shape: combineMulti falls through to "keep most recent" when
   // shape isn't a Multi* type. When `collection` is true, the hook writes
   // a GeometryCollection regardless of shape.
@@ -145,4 +145,6 @@ const GeoJsonInner = ({
       />
     </FeatureGroup>
   );
-};
+}
+
+export { GeoJsonInput, type GeoJsonInputProps };

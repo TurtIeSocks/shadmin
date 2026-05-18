@@ -25,7 +25,7 @@ const KeyMap: Record<string, string> = {
   pagedown: "⇟",
 };
 
-export interface KeyboardShortcutProps extends React.HTMLAttributes<HTMLDivElement> {
+interface KeyboardShortcutProps extends React.HTMLAttributes<HTMLDivElement> {
   keyboardShortcut?: string;
 }
 
@@ -41,11 +41,11 @@ export interface KeyboardShortcutProps extends React.HTMLAttributes<HTMLDivEleme
  * @example
  * <KeyboardShortcut keyboardShortcut="mod+k" />
  */
-export const KeyboardShortcut = ({
+function KeyboardShortcut({
   className,
   keyboardShortcut,
   ...rest
-}: KeyboardShortcutProps) => {
+}: KeyboardShortcutProps) {
   if (!keyboardShortcut) {
     return null;
   }
@@ -67,4 +67,6 @@ export const KeyboardShortcut = ({
       ))}
     </div>
   );
-};
+}
+
+export { KeyboardShortcut, type KeyboardShortcutProps };

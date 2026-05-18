@@ -28,7 +28,7 @@ import { Check, X } from "lucide-react";
  *   <ApprovalQueue titleSource="title" requireReason />
  * </List>
  */
-export const ApprovalQueue = (props: ApprovalQueueProps) => {
+function ApprovalQueue(props: ApprovalQueueProps) {
   const {
     titleSource = "title",
     subtitleSource,
@@ -201,7 +201,7 @@ const ApprovalRow = (props: ApprovalRowInternalProps) => {
   );
 };
 
-export interface ApprovalQueueProps {
+interface ApprovalQueueProps {
   /** Record field holding the human-readable title. Default `"title"`. */
   titleSource?: string;
   /** Optional subtitle / secondary text field. */
@@ -219,3 +219,5 @@ export interface ApprovalQueueProps {
   /** Optional custom slot rendered between header and action row. */
   rowExtra?: (record: RaRecord) => ReactNode;
 }
+
+export { ApprovalQueue, type ApprovalQueueProps };

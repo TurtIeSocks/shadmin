@@ -62,7 +62,7 @@ import { cn } from "@/lib/utils";
  *   </List>
  * );
  */
-export const ColumnsButton = (props: ColumnsButtonProps) => {
+function ColumnsButton(props: ColumnsButtonProps) {
   const { className, storeKey: _, ref, ...rest } = props;
   const resource = useResourceContext(props);
   const storeKey = props.storeKey || `${resource}.datatable`;
@@ -119,9 +119,9 @@ export const ColumnsButton = (props: ColumnsButtonProps) => {
       </Popover>
     </span>
   );
-};
+}
 
-export interface ColumnsButtonProps extends ComponentProps<typeof Button> {
+interface ColumnsButtonProps extends ComponentProps<typeof Button> {
   resource?: string;
   storeKey?: string;
 }
@@ -131,7 +131,7 @@ export interface ColumnsButtonProps extends ComponentProps<typeof Button> {
  *
  * @see ColumnsButton
  */
-export const ColumnsSelector = ({ children }: ColumnsSelectorProps) => {
+function ColumnsSelector({ children }: ColumnsSelectorProps) {
   const translate = useTranslate();
   const { storeKey, defaultHiddenColumns } = useDataTableStoreContext();
   const [columnRanks, setColumnRanks] = useStore<number[] | undefined>(
@@ -229,18 +229,18 @@ export const ColumnsSelector = ({ children }: ColumnsSelectorProps) => {
     </div>,
     container,
   );
-};
+}
 
 interface ColumnsSelectorProps {
   children?: React.ReactNode;
 }
 
-export const ColumnsSelectorItem = <
+function ColumnsSelectorItem<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 >({
   source,
   label,
-}: ColumnsSelectorItemProps<RecordType>) => {
+}: ColumnsSelectorItemProps<RecordType>) {
   const resource = useResourceContext();
   const { storeKey, defaultHiddenColumns } = useDataTableStoreContext();
   const [hiddenColumns, setHiddenColumns] = useStore<string[]>(
@@ -315,11 +315,11 @@ export const ColumnsSelectorItem = <
       onMove={handleMove}
     />
   ) : null;
-};
+}
 
 // this is the same interface as DataTableColumnProps
 // but we copied it here to avoid circular dependencies with data-table
-export interface ColumnsSelectorItemProps<
+interface ColumnsSelectorItemProps<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
 > {
   className?: string;
@@ -347,3 +347,11 @@ const fieldLabelMatchesFilter = (fieldLabel: string, columnFilter?: string) =>
         .toLowerCase()
         .includes(diacritic.clean(columnFilter).toLowerCase())
     : true;
+
+export {
+  ColumnsButton,
+  ColumnsSelector,
+  ColumnsSelectorItem,
+  type ColumnsButtonProps,
+  type ColumnsSelectorItemProps,
+};

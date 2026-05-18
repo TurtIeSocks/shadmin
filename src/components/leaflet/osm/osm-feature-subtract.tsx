@@ -5,12 +5,12 @@ import {
   type OsmFeatureOperatorProps,
 } from "./osm-feature-operator";
 
-export type OsmFeatureSubtractProps = Omit<
+type OsmFeatureSubtractProps = Omit<
   OsmFeatureOperatorProps,
   "mode" | "icon"
 >;
 
-export const OsmFeatureSubtract = (props: OsmFeatureSubtractProps) => (
+const OsmFeatureSubtract = (props: OsmFeatureSubtractProps) => (
   <OsmFeatureOperator
     {...props}
     mode="subtract"
@@ -18,3 +18,5 @@ export const OsmFeatureSubtract = (props: OsmFeatureSubtractProps) => (
     label={props.label ?? "Subtract OSM features"}
   />
 );
+
+export { type OsmFeatureSubtractProps, OsmFeatureSubtract };

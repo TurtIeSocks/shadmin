@@ -5,11 +5,13 @@ import {
   type ShapeInputShellProps,
 } from "./shape-input-shell";
 
-export type MultiPointInputProps = Omit<
+type MultiPointInputProps = Omit<
   ShapeInputShellProps,
   "shape" | "multi"
 >;
 
-export const MultiPointInput = (props: MultiPointInputProps) => (
-  <ShapeInputShell {...props} shape="MultiPoint" multi={true} />
-);
+function MultiPointInput(props: MultiPointInputProps) {
+  return <ShapeInputShell {...props} shape="MultiPoint" multi={true} />;
+}
+
+export { MultiPointInput, type MultiPointInputProps };

@@ -3,7 +3,7 @@
 import { GeoJsonInput, type GeoJsonInputProps } from "../geojson-input";
 import type { ShapeKind } from "../types";
 
-export interface GeometryCollectionInputProps extends Omit<
+interface GeometryCollectionInputProps extends Omit<
   GeoJsonInputProps,
   "shapes" | "collection"
 > {
@@ -12,9 +12,11 @@ export interface GeometryCollectionInputProps extends Omit<
 
 const DEFAULT_ALLOWED: ShapeKind[] = ["Point", "LineString", "Polygon"];
 
-export const GeometryCollectionInput = ({
+function GeometryCollectionInput({
   allowedShapes = DEFAULT_ALLOWED,
   ...rest
-}: GeometryCollectionInputProps) => (
-  <GeoJsonInput {...rest} shapes={allowedShapes} collection />
-);
+}: GeometryCollectionInputProps) {
+  return <GeoJsonInput {...rest} shapes={allowedShapes} collection />;
+}
+
+export { GeometryCollectionInput, type GeometryCollectionInputProps };

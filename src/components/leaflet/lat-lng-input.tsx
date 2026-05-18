@@ -13,7 +13,7 @@ import { useFormContext } from "react-hook-form";
 
 import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "./shared";
 
-export interface LatLngInputProps {
+interface LatLngInputProps {
   latSource: string;
   lngSource: string;
   defaultPosition?: [number, number];
@@ -25,13 +25,12 @@ export interface LatLngInputProps {
   helperText?: ReactNode;
 }
 
-const DraggableMarker = ({
-  position,
-  onChange,
-}: {
+interface DraggableMarkerProps {
   position: [number, number];
   onChange: (lat: number, lng: number) => void;
-}) => {
+}
+
+function DraggableMarker({ position, onChange }: DraggableMarkerProps) {
   const markerRef = useRef<L.Marker>(null);
   useMapEvents({
     click: (e) => onChange(e.latlng.lat, e.latlng.lng),
@@ -50,16 +49,20 @@ const DraggableMarker = ({
       }}
     />
   );
-};
+}
 
-const RecenterOnChange = ({ position }: { position: [number, number] }) => {
+interface RecenterOnChangeProps {
+  position: [number, number];
+}
+
+function RecenterOnChange({ position }: RecenterOnChangeProps) {
   const map = useMap();
   useEffect(() => {
     map.setView(position, map.getZoom(), { animate: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position[0], position[1]]);
   return null;
-};
+}
 
 /**
  * Lat/lng map form input. Renders a draggable Leaflet marker; clicking the map or dragging the marker
@@ -81,7 +84,7 @@ const RecenterOnChange = ({ position }: { position: [number, number] }) => {
  *   </SimpleForm>
  * </Create>
  */
-export const LatLngInput = ({
+function LatLngInput({
   latSource,
   lngSource,
   defaultPosition = [0, 0],
@@ -91,7 +94,7 @@ export const LatLngInput = ({
   attribution = DEFAULT_ATTRIBUTION,
   label,
   helperText,
-}: LatLngInputProps) => {
+}: LatLngInputProps) {
   const form = useFormContext();
   const latValue = form?.watch(latSource) as number | undefined;
   const lngValue = form?.watch(lngSource) as number | undefined;
@@ -129,4 +132,6 @@ export const LatLngInput = ({
       ) : null}
     </div>
   );
-};
+}
+
+export { LatLngInput, type LatLngInputProps };

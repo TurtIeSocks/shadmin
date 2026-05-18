@@ -55,7 +55,7 @@ import { cn } from "@/lib/utils";
  *   </Edit>
  * );
  */
-export const SelectArrayInput = (props: SelectArrayInputProps) => {
+function SelectArrayInput(props: SelectArrayInputProps) {
   const {
     choices: choicesProp,
     isLoading: isLoadingProp,
@@ -357,9 +357,9 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
       {createElement}
     </FormField>
   );
-};
+}
 
-export type SelectArrayInputProps = ChoicesProps &
+type SelectArrayInputProps = ChoicesProps &
   // Source is optional as SelectArrayInput can be used inside a ReferenceArrayInput that already defines the source
   Partial<InputProps> &
   Omit<Partial<SupportCreateSuggestionOptions>, "handleChange" | "filter"> & {
@@ -367,3 +367,5 @@ export type SelectArrayInputProps = ChoicesProps &
     placeholder?: string;
     InputLabelProps?: React.ComponentProps<typeof FormLabel>;
   };
+
+export { SelectArrayInput, type SelectArrayInputProps };

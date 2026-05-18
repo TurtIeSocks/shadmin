@@ -11,6 +11,16 @@ import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
 
+interface ReferenceArrayInputProps
+  extends InputProps,
+    UseReferenceArrayInputParams {
+  children?: ReactElement;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
+}
+
 /**
  * Form input for editing arrays of foreign key relationships with autocompletion.
  *
@@ -33,7 +43,7 @@ const defaultOffline = <Offline />;
  *   </Edit>
  * );
  */
-export const ReferenceArrayInput = (props: ReferenceArrayInputProps) => {
+function ReferenceArrayInput(props: ReferenceArrayInputProps) {
   const {
     children = defaultChildren,
     offline = defaultOffline,
@@ -66,16 +76,9 @@ export const ReferenceArrayInput = (props: ReferenceArrayInputProps) => {
       </ChoicesContextProvider>
     </ResourceContextProvider>
   );
-};
+}
 
 const defaultChildren = <AutocompleteArrayInput />;
 const defaultFilter = {};
 
-export interface ReferenceArrayInputProps
-  extends InputProps, UseReferenceArrayInputParams {
-  children?: ReactElement;
-  /**
-   * Component to display when offline and the request is pending or has stale placeholder data.
-   */
-  offline?: ReactNode;
-}
+export { ReferenceArrayInput, type ReferenceArrayInputProps };

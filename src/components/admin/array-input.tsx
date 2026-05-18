@@ -49,7 +49,7 @@ import { FormError, FormField } from "@/components/admin/form";
  *   </Edit>
  * );
  */
-export const ArrayInput = (props: ArrayInputProps) => {
+function ArrayInput(props: ArrayInputProps) {
   const {
     className,
     defaultValue = [],
@@ -102,9 +102,9 @@ export const ArrayInput = (props: ArrayInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
 
-export interface ArrayInputProps extends Omit<
+interface ArrayInputProps extends Omit<
   InputProps,
   "disabled" | "readOnly"
 > {
@@ -115,3 +115,5 @@ export interface ArrayInputProps extends Omit<
   isPending?: boolean;
   loading?: React.ReactNode;
 }
+
+export { ArrayInput, type ArrayInputProps };

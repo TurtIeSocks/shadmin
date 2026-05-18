@@ -1,7 +1,7 @@
 import area from "@turf/area";
 import { feature } from "@turf/helpers";
 
-export type GeometryValidator = (g: GeoJSON.Geometry) => string | undefined;
+type GeometryValidator = (g: GeoJSON.Geometry) => string | undefined;
 
 const countVertices = (g: GeoJSON.Geometry): number => {
   switch (g.type) {
@@ -24,21 +24,21 @@ const countVertices = (g: GeoJSON.Geometry): number => {
   }
 };
 
-export const validateMinVertices =
+const validateMinVertices =
   (min: number): GeometryValidator =>
   (g) =>
     countVertices(g) < min
       ? `Shape must have at least ${min} vertices`
       : undefined;
 
-export const validateMaxVertices =
+const validateMaxVertices =
   (max: number): GeometryValidator =>
   (g) =>
     countVertices(g) > max
       ? `Shape must have at most ${max} vertices`
       : undefined;
 
-export const validateMinAreaM2 =
+const validateMinAreaM2 =
   (minM2: number): GeometryValidator =>
   (g) => {
     if (g.type !== "Polygon" && g.type !== "MultiPolygon") return undefined;
@@ -48,7 +48,7 @@ export const validateMinAreaM2 =
       : undefined;
   };
 
-export const combineValidators =
+const combineValidators =
   (...validators: GeometryValidator[]): GeometryValidator =>
   (g) => {
     for (const v of validators) {
@@ -57,3 +57,5 @@ export const combineValidators =
     }
     return undefined;
   };
+
+export { type GeometryValidator, validateMinVertices, validateMaxVertices, validateMinAreaM2, combineValidators };

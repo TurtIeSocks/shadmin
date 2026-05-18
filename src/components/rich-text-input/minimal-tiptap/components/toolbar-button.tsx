@@ -14,7 +14,7 @@ interface ToolbarButtonProps extends React.ComponentProps<typeof Toggle> {
   tooltipOptions?: TooltipPrimitive.TooltipContentProps;
 }
 
-export const ToolbarButton = ({
+const ToolbarButton = ({
   isActive,
   children,
   tooltip,
@@ -44,4 +44,4 @@ export const ToolbarButton = ({
 
 ToolbarButton.displayName = "ToolbarButton";
 
-export default ToolbarButton;
+export { ToolbarButton };

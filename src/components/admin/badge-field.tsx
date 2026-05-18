@@ -34,14 +34,19 @@ type BadgeProps = React.ComponentProps<typeof Badge>;
  *   </List>
  * );
  */
-export const BadgeField = <RecordType extends RaRecord = RaRecord>({
+interface BadgeFieldProps<RecordType extends RaRecord = RaRecord>
+  extends FieldProps<RecordType>, BadgeProps {
+  variant?: "default" | "outline" | "secondary" | "destructive";
+}
+
+function BadgeField<RecordType extends RaRecord = RaRecord>({
   defaultValue,
   source,
   record,
   empty,
   variant = "outline",
   ...rest
-}: BadgeFieldProps<RecordType>) => {
+}: BadgeFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -56,9 +61,6 @@ export const BadgeField = <RecordType extends RaRecord = RaRecord>({
       {typeof value !== "string" ? value.toString() : value}
     </Badge>
   );
-};
-
-export interface BadgeFieldProps<RecordType extends RaRecord = RaRecord>
-  extends FieldProps<RecordType>, BadgeProps {
-  variant?: "default" | "outline" | "secondary" | "destructive";
 }
+
+export { BadgeField, type BadgeFieldProps };

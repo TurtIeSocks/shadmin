@@ -23,7 +23,14 @@ import {
  *   </Card>
  * );
  */
-export const FilterLiveSearch = memo((props: FilterLiveSearchProps) => {
+interface FilterLiveSearchProps extends Omit<
+  SearchInputProps,
+  "source"
+> {
+  source?: string;
+}
+
+function FilterLiveSearchComponent(props: FilterLiveSearchProps) {
   const translate = useTranslate();
   const {
     source = "q",
@@ -36,11 +43,8 @@ export const FilterLiveSearch = memo((props: FilterLiveSearchProps) => {
       <SearchInput source={source} placeholder={placeholder} {...rest} />
     </FilterLiveForm>
   );
-});
-
-export interface FilterLiveSearchProps extends Omit<
-  SearchInputProps,
-  "source"
-> {
-  source?: string;
 }
+
+const FilterLiveSearch = memo(FilterLiveSearchComponent);
+
+export { FilterLiveSearch, type FilterLiveSearchProps };

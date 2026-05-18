@@ -3,7 +3,7 @@ import { useTimeout } from "ra-core";
 
 import { cn } from "@/lib/utils";
 
-export interface LinearProgressProps extends HTMLAttributes<HTMLDivElement> {
+interface LinearProgressProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Delay in milliseconds before showing the progress bar.
    * @default 1000
@@ -33,7 +33,7 @@ export interface LinearProgressProps extends HTMLAttributes<HTMLDivElement> {
  *
  * const ReferenceFieldFallback = () => <LinearProgress />;
  */
-export const LinearProgress = (props: LinearProgressProps) => {
+function LinearProgress(props: LinearProgressProps) {
   const { className, timeout = 1000, value, max = 100, ...rest } = props;
   const oneSecondHasPassed = useTimeout(timeout);
 
@@ -59,4 +59,6 @@ export const LinearProgress = (props: LinearProgressProps) => {
       )}
     </div>
   );
-};
+}
+
+export { LinearProgress, type LinearProgressProps };

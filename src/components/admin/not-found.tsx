@@ -10,14 +10,14 @@ import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/admin/loading";
 import { Title } from "./title";
 
-export type NotFoundProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
+type NotFoundProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
   title?: TitleComponent;
 };
 
 /**
  * Fallback page displayed when no route matches the current URL.
  */
-export const NotFound = ({ title: _title, ...rest }: NotFoundProps) => {
+function NotFound({ title: _title, ...rest }: NotFoundProps) {
   const { isPending } = useAuthenticated();
   const defaultTitle = useDefaultTitle();
   if (isPending) {
@@ -42,8 +42,10 @@ export const NotFound = ({ title: _title, ...rest }: NotFoundProps) => {
       </Button>
     </div>
   );
-};
+}
 
 function goBack() {
   window.history.go(-1);
 }
+
+export { NotFound, type NotFoundProps };

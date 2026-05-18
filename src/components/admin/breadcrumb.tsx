@@ -55,7 +55,7 @@ import { Translate } from "ra-core";
  *   </Edit>
  * );
  */
-export const Breadcrumb = ({ children, ref }: BreadcrumbProps) => {
+function Breadcrumb({ children, ref }: BreadcrumbProps) {
   const breadcrumbPortal = document.getElementById("breadcrumb");
   const isMobile = useIsMobile();
   const [open, setOpen] = React.useState(false);
@@ -126,10 +126,15 @@ export const Breadcrumb = ({ children, ref }: BreadcrumbProps) => {
     </>,
     breadcrumbPortal,
   );
-};
+}
 Breadcrumb.Item = BreadcrumbItem;
 Breadcrumb.PageItem = BreadcrumbPage;
 
-export { BreadcrumbItem, BreadcrumbPage };
+type BreadcrumbProps = React.ComponentProps<"nav">;
 
-export type BreadcrumbProps = React.ComponentProps<"nav">;
+export {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbPage,
+  type BreadcrumbProps,
+};

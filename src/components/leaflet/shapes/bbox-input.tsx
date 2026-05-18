@@ -10,7 +10,7 @@ import {
   aspectLockedBBox,
 } from "../osm/geometry-ops";
 
-export interface BBoxInputProps extends Omit<
+interface BBoxInputProps extends Omit<
   ShapeInputShellProps,
   "shape" | "multi" | "valueTransform" | "valueParse"
 > {
@@ -23,19 +23,25 @@ export interface BBoxInputProps extends Omit<
   aspectRatio?: number;
 }
 
-export const BBoxInput = ({
+function BBoxInput({
   minBBoxArea_m2: _minBBoxArea_m2,
   aspectRatio,
   ...rest
-}: BBoxInputProps) => (
+}: BBoxInputProps) {
   // A drawn rectangle is a `Polygon` in Geoman; we round-trip it through
   // `[w, s, e, n]` (GeoJSON.BBox) for storage in the form value.
-  <ShapeInputShell
-    {...rest}
-    shape="Polygon"
-    multi={false}
-    geomanShapes={["Rectangle"]}
-    valueTransform={aspectRatio ? aspectLockedBBox(aspectRatio) : polygonToBBox}
-    valueParse={bboxToPolygon}
-  />
-);
+  return (
+    <ShapeInputShell
+      {...rest}
+      shape="Polygon"
+      multi={false}
+      geomanShapes={["Rectangle"]}
+      valueTransform={
+        aspectRatio ? aspectLockedBBox(aspectRatio) : polygonToBBox
+      }
+      valueParse={bboxToPolygon}
+    />
+  );
+}
+
+export { BBoxInput, type BBoxInputProps };

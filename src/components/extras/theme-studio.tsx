@@ -107,7 +107,7 @@ const MEASUREMENT_RE = new RegExp(
   "i",
 );
 
-export interface ThemeStudioProps {
+interface ThemeStudioProps {
   /** Whether to render the Export button. Defaults to `true`. */
   showExport?: boolean;
   /** Whether to render the ThemeModeToggle button. Defaults to `true`. */
@@ -143,7 +143,7 @@ export interface ThemeStudioProps {
  * </ThemeProvider>;
  * ```
  */
-export const ThemeStudio = ({
+const ThemeStudio = ({
   showExport = true,
   showThemeModeToggle = true,
   className,
@@ -354,3 +354,5 @@ function parseMeasurement(value: string) {
 
   return [match[1], match[2]] as const;
 }
+
+export { type ThemeStudioProps, ThemeStudio };

@@ -19,9 +19,9 @@ export type FileValidationOptions = {
 
 type FileInput = File | { src: string | File; alt?: string; title?: string };
 
-export const isClient = (): boolean => typeof window !== "undefined";
-export const isServer = (): boolean => !isClient();
-export const isMacOS = (): boolean =>
+const isClient = (): boolean => typeof window !== "undefined";
+const isServer = (): boolean => !isClient();
+const isMacOS = (): boolean =>
   isClient() && window.navigator.platform === "MacIntel";
 
 const shortcutKeyMap: Record<string, ShortcutKeyResult> = {
@@ -34,13 +34,13 @@ const shortcutKeyMap: Record<string, ShortcutKeyResult> = {
   shift: { symbol: "⇧", readable: "Shift" },
 };
 
-export const getShortcutKey = (key: string): ShortcutKeyResult =>
+const getShortcutKey = (key: string): ShortcutKeyResult =>
   shortcutKeyMap[key.toLowerCase()] || { symbol: key, readable: key };
 
-export const getShortcutKeys = (keys: string[]): ShortcutKeyResult[] =>
+const getShortcutKeys = (keys: string[]): ShortcutKeyResult[] =>
   keys.map(getShortcutKey);
 
-export const getOutput = (
+const getOutput = (
   editor: Editor,
   format: MinimalTiptapProps["output"],
 ): object | string => {
@@ -54,7 +54,7 @@ export const getOutput = (
   }
 };
 
-export const isUrl = (
+const isUrl = (
   text: string,
   options: { requireHostname: boolean; allowBase64?: boolean } = {
     requireHostname: false,
@@ -86,7 +86,7 @@ export const isUrl = (
   }
 };
 
-export const sanitizeUrl = (
+const sanitizeUrl = (
   url: string | null | undefined,
   options: { allowBase64?: boolean } = {},
 ): string | undefined => {
@@ -229,3 +229,5 @@ export const filterFiles = <T extends FileInput>(
 
   return [validFiles, errors];
 };
+
+export { getShortcutKey, getShortcutKeys, getOutput, isUrl, isServer };

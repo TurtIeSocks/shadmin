@@ -11,7 +11,7 @@ import type {
   ToolDefinition,
 } from "./assistant-transport";
 
-export interface AssistantProps {
+interface AssistantProps {
   transport: AssistantTransport;
   tools?: Record<string, ToolDefinition>;
   placement?: "bottom-right" | "bottom-left" | "sidebar";
@@ -21,7 +21,7 @@ export interface AssistantProps {
 
 const EMPTY_TOOLS: Record<string, ToolDefinition> = {};
 
-export const Assistant = ({
+const Assistant = ({
   transport,
   tools = EMPTY_TOOLS,
   placement = "bottom-right",
@@ -236,3 +236,5 @@ const MessageBubble = ({ message }: { message: AssistantMessage }) => {
     </div>
   );
 };
+
+export { type AssistantProps, Assistant };

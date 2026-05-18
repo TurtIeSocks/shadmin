@@ -34,4 +34,6 @@ const SpinnerComponent = function Spinner({
 
 SpinnerComponent.displayName = "Spinner";
 
-export const Spinner = React.memo(SpinnerComponent);
+const Spinner = React.memo(SpinnerComponent);
+
+export { Spinner };

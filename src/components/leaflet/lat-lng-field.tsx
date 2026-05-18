@@ -5,7 +5,7 @@ import { useRecordContext } from "ra-core";
 
 import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "./shared";
 
-export interface LatLngFieldProps {
+interface LatLngFieldProps {
   latSource: string;
   lngSource: string;
   zoom?: number;
@@ -28,14 +28,14 @@ export interface LatLngFieldProps {
  *   </SimpleShowLayout>
  * </Show>
  */
-export const LatLngField = ({
+function LatLngField({
   latSource,
   lngSource,
   zoom = 13,
   height = 300,
   tileUrl = DEFAULT_TILE_URL,
   attribution = DEFAULT_ATTRIBUTION,
-}: LatLngFieldProps) => {
+}: LatLngFieldProps) {
   const record = useRecordContext();
   const lat = record?.[latSource] as number | undefined;
   const lng = record?.[lngSource] as number | undefined;
@@ -67,4 +67,6 @@ export const LatLngField = ({
       </MapContainer>
     </div>
   );
-};
+}
+
+export { LatLngField, type LatLngFieldProps };

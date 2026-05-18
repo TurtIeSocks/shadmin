@@ -4,7 +4,7 @@ import { useTranslate } from "ra-core";
 
 import { cn } from "@/lib/utils";
 
-export interface OfflineProps {
+interface OfflineProps {
   children?: ReactNode;
   className?: string;
 }
@@ -33,7 +33,7 @@ export interface OfflineProps {
  *   <p>Working from cache — changes will sync once you reconnect.</p>
  * </Offline>
  */
-export const Offline = (props: OfflineProps) => {
+function Offline(props: OfflineProps) {
   const { children, className } = props;
   const translate = useTranslate();
 
@@ -77,4 +77,6 @@ export const Offline = (props: OfflineProps) => {
       </span>
     </div>
   );
-};
+}
+
+export { Offline, type OfflineProps };

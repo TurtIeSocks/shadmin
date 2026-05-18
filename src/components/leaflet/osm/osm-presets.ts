@@ -7,12 +7,12 @@
 
 import { tagToFilter, type OsmTagInput } from "./osm-tag-catalog";
 
-export type OsmTagFilter =
+type OsmTagFilter =
   | { key: string; value: string }
   | { key: string; values: string[] }
   | { key: string; any: true };
 
-export interface OsmPresetDef {
+interface OsmPresetDef {
   /** Tag filters; OR'd together inside Overpass. */
   filters: OsmTagFilter[];
   /** When set, line geometries (highway etc.) are buffered to polygons. */
@@ -21,7 +21,7 @@ export interface OsmPresetDef {
   elementTypes?: Array<"way" | "relation">;
 }
 
-export const OSM_PRESETS = {
+const OSM_PRESETS = {
   // ────────────────────────────────────────────────────────────────────────
   // Curated presets — hand-tuned subsets of well-known OSM keys.
   // ────────────────────────────────────────────────────────────────────────
@@ -91,7 +91,7 @@ export const OSM_PRESETS = {
   },
 } as const satisfies Record<string, OsmPresetDef>;
 
-export type OsmPresetName = keyof typeof OSM_PRESETS;
+type OsmPresetName = keyof typeof OSM_PRESETS;
 
 function renderFilter(filter: OsmTagFilter): string {
   if ("value" in filter) return `["${filter.key}"="${filter.value}"]`;
@@ -104,7 +104,7 @@ function renderFilter(filter: OsmTagFilter): string {
  * Compile an Overpass query from preset names AND/OR raw tag strings.
  * Filters from both sources are OR'd together inside one query.
  */
-export function buildOverpassQueryFromSources(
+function buildOverpassQueryFromSources(
   sources: {
     presets?: ReadonlyArray<OsmPresetName>;
     tags?: ReadonlyArray<OsmTagInput>;
@@ -136,3 +136,5 @@ export function buildOverpassQueryFromSources(
 
   return `[out:json][timeout:25];\n(\n${lines.join("\n")}\n);\nout geom;`;
 }
+
+export { type OsmTagFilter, type OsmPresetDef, OSM_PRESETS, type OsmPresetName, buildOverpassQueryFromSources };

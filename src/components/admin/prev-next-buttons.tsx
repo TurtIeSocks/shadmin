@@ -11,9 +11,8 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export interface PrevNextButtonsProps<
-  RecordType extends RaRecord = RaRecord,
-> extends UsePrevNextControllerProps<RecordType> {
+interface PrevNextButtonsProps<RecordType extends RaRecord = RaRecord>
+  extends UsePrevNextControllerProps<RecordType> {
   className?: string;
   ref?: Ref<HTMLElement>;
 }
@@ -36,9 +35,9 @@ export interface PrevNextButtonsProps<
  *   </Edit>
  * );
  */
-export const PrevNextButtons = <RecordType extends RaRecord = RaRecord>(
+function PrevNextButtons<RecordType extends RaRecord = RaRecord>(
   props: PrevNextButtonsProps<RecordType>,
-) => {
+) {
   const { className, ref } = props;
   const {
     hasPrev,
@@ -125,4 +124,6 @@ export const PrevNextButtons = <RecordType extends RaRecord = RaRecord>(
       )}
     </nav>
   );
-};
+}
+
+export { PrevNextButtons, type PrevNextButtonsProps };

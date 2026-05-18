@@ -2,11 +2,11 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { getShortcutKey } from "../utils";
 
-export interface ShortcutKeyProps extends React.ComponentProps<"span"> {
+interface ShortcutKeyProps extends React.ComponentProps<"span"> {
   keys: string[];
 }
 
-export const ShortcutKey = ({
+const ShortcutKey = ({
   ref,
   className,
   keys,
@@ -43,3 +43,5 @@ export const ShortcutKey = ({
 };
 
 ShortcutKey.displayName = "ShortcutKey";
+
+export { type ShortcutKeyProps, ShortcutKey };

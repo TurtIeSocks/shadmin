@@ -9,7 +9,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export interface InfinitePaginationProps {
+interface InfinitePaginationProps {
   /**
    * Options forwarded to the underlying `IntersectionObserver` watching the
    * sentinel element. Defaults to `{ threshold: 0 }`.
@@ -41,10 +41,10 @@ const defaultOptions: IntersectionObserverInit = { threshold: 0 };
  *   </InfiniteList>
  * );
  */
-export const InfinitePagination = ({
+function InfinitePagination({
   options = defaultOptions,
   className,
-}: InfinitePaginationProps = {}) => {
+}: InfinitePaginationProps = {}) {
   const { isPending } = useListContext();
   const { fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfinitePaginationContext();
@@ -99,4 +99,6 @@ export const InfinitePagination = ({
       </Button>
     </div>
   );
-};
+}
+
+export { InfinitePagination, type InfinitePaginationProps };

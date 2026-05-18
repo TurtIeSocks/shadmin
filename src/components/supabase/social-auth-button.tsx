@@ -29,7 +29,7 @@ import {
  * already depend on `@supabase/supabase-js`, you can pass that
  * package's `Provider` here — it is structurally identical.
  */
-export type SupabaseAuthProvider =
+type SupabaseAuthProvider =
   | "apple"
   | "azure"
   | "bitbucket"
@@ -47,7 +47,7 @@ export type SupabaseAuthProvider =
   | "twitter"
   | "workos";
 
-export interface SocialAuthButtonProps extends Omit<
+interface SocialAuthButtonProps extends Omit<
   React.ComponentProps<typeof Button>,
   "onClick"
 > {
@@ -64,7 +64,7 @@ export interface SocialAuthButtonProps extends Omit<
  * premature redirects) — only notifies when an actual `Error.message`
  * is present.
  */
-export const SocialAuthButton = ({
+const SocialAuthButton = ({
   provider,
   redirect,
   className,
@@ -117,35 +117,37 @@ const providerButton =
     );
   };
 
-export const AppleButton = providerButton("apple", "Apple", AppleIcon);
-export const AzureButton = providerButton("azure", "Azure", AzureIcon);
-export const BitbucketButton = providerButton(
+const AppleButton = providerButton("apple", "Apple", AppleIcon);
+const AzureButton = providerButton("azure", "Azure", AzureIcon);
+const BitbucketButton = providerButton(
   "bitbucket",
   "Bitbucket",
   BitbucketIcon,
 );
-export const DiscordButton = providerButton("discord", "Discord", DiscordIcon);
-export const FacebookButton = providerButton(
+const DiscordButton = providerButton("discord", "Discord", DiscordIcon);
+const FacebookButton = providerButton(
   "facebook",
   "Facebook",
   FacebookIcon,
 );
-export const GithubButton = providerButton("github", "Github", GithubIcon);
-export const GitlabButton = providerButton("gitlab", "Gitlab", GitlabIcon);
-export const GoogleButton = providerButton("google", "Google", GoogleIcon);
-export const KeycloakButton = providerButton(
+const GithubButton = providerButton("github", "Github", GithubIcon);
+const GitlabButton = providerButton("gitlab", "Gitlab", GitlabIcon);
+const GoogleButton = providerButton("google", "Google", GoogleIcon);
+const KeycloakButton = providerButton(
   "keycloak",
   "Keycloak",
   KeycloakIcon,
 );
-export const LinkedInButton = providerButton(
+const LinkedInButton = providerButton(
   "linkedin",
   "LinkedIn",
   LinkedinIcon,
 );
-export const NotionButton = providerButton("notion", "Notion", NotionIcon);
-export const SlackButton = providerButton("slack", "Slack", SlackIcon);
-export const SpotifyButton = providerButton("spotify", "Spotify", SpotifyIcon);
-export const TwitchButton = providerButton("twitch", "Twitch", TwitchIcon);
-export const TwitterButton = providerButton("twitter", "Twitter", TwitterIcon);
-export const WorkosButton = providerButton("workos", "WorkOS", WorkosIcon);
+const NotionButton = providerButton("notion", "Notion", NotionIcon);
+const SlackButton = providerButton("slack", "Slack", SlackIcon);
+const SpotifyButton = providerButton("spotify", "Spotify", SpotifyIcon);
+const TwitchButton = providerButton("twitch", "Twitch", TwitchIcon);
+const TwitterButton = providerButton("twitter", "Twitter", TwitterIcon);
+const WorkosButton = providerButton("workos", "WorkOS", WorkosIcon);
+
+export { type SupabaseAuthProvider, type SocialAuthButtonProps, SocialAuthButton, AppleButton, AzureButton, BitbucketButton, DiscordButton, FacebookButton, GithubButton, GitlabButton, GoogleButton, KeycloakButton, LinkedInButton, NotionButton, SlackButton, SpotifyButton, TwitchButton, TwitterButton, WorkosButton };

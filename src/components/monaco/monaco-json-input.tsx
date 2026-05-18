@@ -2,7 +2,11 @@ import { lazy, Suspense } from "react";
 import { MonacoSkeleton } from "./internal/monaco-skeleton";
 import type { MonacoJsonInputProps } from "./internal/types";
 
-const LazyInner = lazy(() => import("./monaco-json-input-lazy"));
+const LazyInner = lazy(() =>
+  import("./monaco-json-input-lazy").then((m) => ({
+    default: m.MonacoJsonInputInner,
+  })),
+);
 
 /**
  * Form input for JSON values, powered by the Monaco editor. Supports
@@ -32,18 +36,20 @@ const LazyInner = lazy(() => import("./monaco-json-input-lazy"));
  *   </Edit>
  * );
  */
-export const MonacoJsonInput = (props: MonacoJsonInputProps) => (
-  <Suspense
-    fallback={
-      <MonacoSkeleton
-        height={
-          props.autoHeight ? (props.minHeight ?? 120) : (props.height ?? 300)
-        }
-      />
-    }
-  >
-    <LazyInner {...props} />
-  </Suspense>
-);
+function MonacoJsonInput(props: MonacoJsonInputProps) {
+  return (
+    <Suspense
+      fallback={
+        <MonacoSkeleton
+          height={
+            props.autoHeight ? (props.minHeight ?? 120) : (props.height ?? 300)
+          }
+        />
+      }
+    >
+      <LazyInner {...props} />
+    </Suspense>
+  );
+}
 
-export type { MonacoJsonInputProps };
+export { MonacoJsonInput, type MonacoJsonInputProps };

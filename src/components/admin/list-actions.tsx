@@ -11,7 +11,7 @@ import { CreateButton } from "@/components/admin/create-button";
 import { ExportButton } from "@/components/admin/export-button";
 import { FilterButton } from "@/components/admin/filter-button";
 
-export interface ListActionsProps extends Omit<
+interface ListActionsProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
   "children"
 > {
@@ -54,7 +54,7 @@ export interface ListActionsProps extends Omit<
  *   </List>
  * );
  */
-export const ListActions = (props: ListActionsProps) => {
+function ListActions(props: ListActionsProps) {
   const {
     className,
     children,
@@ -93,4 +93,6 @@ export const ListActions = (props: ListActionsProps) => {
       )}
     </div>
   );
-};
+}
+
+export { ListActions, type ListActionsProps };

@@ -8,18 +8,18 @@ import {
 } from "./shape-input-shell";
 import { snapToRoadsOnce } from "../osm/use-osm-snap-to-roads";
 
-export interface LineStringInputProps extends Omit<
+interface LineStringInputProps extends Omit<
   ShapeInputShellProps,
   "shape" | "multi"
 > {
   snapToRoads?: boolean;
 }
 
-export const LineStringInput = ({
+function LineStringInput({
   snapToRoads,
   source,
   ...rest
-}: LineStringInputProps) => {
+}: LineStringInputProps) {
   const form = useFormContext();
   const value = useWatch({ name: source }) as
     | GeoJSON.LineString
@@ -53,4 +53,6 @@ export const LineStringInput = ({
       multi={false}
     />
   );
-};
+}
+
+export { LineStringInput, type LineStringInputProps };

@@ -5,7 +5,7 @@ import { MenuItemLink } from "@/components/admin/menu-item-link";
 
 const defaultLeftIcon = <House />;
 
-export type DashboardMenuItemProps = {
+type DashboardMenuItemProps = {
   /**
    * Extra CSS class appended to the underlying menu button.
    */
@@ -46,12 +46,12 @@ export type DashboardMenuItemProps = {
  *   </nav>
  * );
  */
-export const DashboardMenuItem = ({
+function DashboardMenuItem({
   className,
   onClick,
   leftIcon,
   primaryText,
-}: DashboardMenuItemProps) => {
+}: DashboardMenuItemProps) {
   const translate = useTranslate();
   const basename = useBasename();
   const finalText =
@@ -69,4 +69,6 @@ export const DashboardMenuItem = ({
       onClick={onClick}
     />
   );
-};
+}
+
+export { DashboardMenuItem, type DashboardMenuItemProps };

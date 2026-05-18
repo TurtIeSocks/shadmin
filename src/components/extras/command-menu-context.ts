@@ -2,7 +2,7 @@
 
 import { createContext, use, useEffect, type ReactNode } from "react";
 
-export interface CommandAction {
+interface CommandAction {
   id: string;
   label: ReactNode;
   icon?: React.ComponentType<{ className?: string }>;
@@ -13,7 +13,7 @@ export interface CommandAction {
   onSelect: () => void | Promise<void>;
 }
 
-export interface RecentEntry {
+interface RecentEntry {
   type: "record" | "resource";
   resource: string;
   id?: number | string;
@@ -21,9 +21,9 @@ export interface RecentEntry {
   path: string;
 }
 
-export const RECENTS_KEY = "command-menu.recents";
+const RECENTS_KEY = "command-menu.recents";
 
-export interface CommandMenuContextValue {
+interface CommandMenuContextValue {
   isOpen: boolean;
   open: () => void;
   close: () => void;
@@ -34,11 +34,11 @@ export interface CommandMenuContextValue {
   registeredCommands: CommandAction[];
 }
 
-export const CommandMenuContext = createContext<CommandMenuContextValue | null>(
+const CommandMenuContext = createContext<CommandMenuContextValue | null>(
   null,
 );
 
-export const useCommandMenu = () => {
+const useCommandMenu = () => {
   const ctx = use(CommandMenuContext);
   if (!ctx) {
     throw new Error(
@@ -55,11 +55,21 @@ export const useCommandMenu = () => {
  * Callers are responsible for stabilising dynamic data via `useMemo`/`useCallback`
  * if the action payload (not just `id`) needs to stay fresh.
  */
-export const useRegisterCommand = (action: CommandAction) => {
+const useRegisterCommand = (action: CommandAction) => {
   const { registerCommand, unregisterCommand } = useCommandMenu();
   useEffect(() => {
     registerCommand(action);
     return () => unregisterCommand(action.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [action.id]);
+};
+
+export {
+  RECENTS_KEY,
+  CommandMenuContext,
+  useCommandMenu,
+  useRegisterCommand,
+  type CommandAction,
+  type RecentEntry,
+  type CommandMenuContextValue,
 };

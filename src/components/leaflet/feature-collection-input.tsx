@@ -28,7 +28,7 @@ const SHAPE_TO_GEOMAN: Record<DrawableShape, GeomanShape> = {
 
 const DEFAULT_SHAPES: DrawableShape[] = ["Point", "LineString", "Polygon"];
 
-export interface FeatureCollectionInputProps extends BaseInputProps {
+interface FeatureCollectionInputProps extends BaseInputProps {
   /** Which draw tools to expose. Defaults to `["Point", "LineString", "Polygon"]`. */
   allowedShapes?: DrawableShape[];
 }
@@ -38,7 +38,7 @@ export interface FeatureCollectionInputProps extends BaseInputProps {
  * shape becomes a `Feature` in the collection; `properties` are preserved
  * by index across edits (best-effort — order may shift on removal).
  */
-export const FeatureCollectionInput = ({
+function FeatureCollectionInput({
   source,
   allowedShapes = DEFAULT_SHAPES,
   zoom = 13,
@@ -51,7 +51,7 @@ export const FeatureCollectionInput = ({
   snapDistance = 20,
   label,
   helperText,
-}: FeatureCollectionInputProps) => {
+}: FeatureCollectionInputProps) {
   const geomanShapes = Array.from(
     new Set(allowedShapes.map((s) => SHAPE_TO_GEOMAN[s])),
   );
@@ -79,7 +79,7 @@ export const FeatureCollectionInput = ({
       ) : null}
     </div>
   );
-};
+}
 
 interface InnerProps {
   source: string;
@@ -89,13 +89,13 @@ interface InnerProps {
   pathOptions?: L.PathOptions;
 }
 
-const Inner = ({
+function Inner({
   source,
   shapes,
   snappable,
   snapDistance,
   pathOptions,
-}: InnerProps) => {
+}: InnerProps) {
   // Shape kind doesn't matter for FC mode — `featureCollection: true` overrides
   // multi/collection branches in the hook.
   const { featureGroupRef, geomanControlsProps } = useGeomanRHF({
@@ -134,4 +134,6 @@ const Inner = ({
       />
     </FeatureGroup>
   );
-};
+}
+
+export { FeatureCollectionInput, type FeatureCollectionInputProps };

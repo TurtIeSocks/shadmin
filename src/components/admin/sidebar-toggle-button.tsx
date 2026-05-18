@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-export interface SidebarToggleButtonProps {
+interface SidebarToggleButtonProps {
   className?: string;
   ref?: Ref<HTMLButtonElement>;
 }
@@ -32,7 +32,7 @@ export interface SidebarToggleButtonProps {
  *   </header>
  * );
  */
-export const SidebarToggleButton = (props: SidebarToggleButtonProps) => {
+function SidebarToggleButton(props: SidebarToggleButtonProps) {
   const { className, ref } = props;
   const { open } = useSidebar();
   const translate = useTranslate();
@@ -51,4 +51,6 @@ export const SidebarToggleButton = (props: SidebarToggleButtonProps) => {
       <TooltipContent>{tooltipText}</TooltipContent>
     </Tooltip>
   );
-};
+}
+
+export { SidebarToggleButton, type SidebarToggleButtonProps };

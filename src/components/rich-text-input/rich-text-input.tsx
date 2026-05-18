@@ -16,7 +16,7 @@ import {
 import { RichTextInputToolbar } from "@/components/rich-text-input/rich-text-input-toolbar";
 import { DefaultEditorOptions } from "./default-editor-options";
 
-export type RichTextInputProps = InputProps & {
+type RichTextInputProps = InputProps & {
   className?: string;
   toolbar?: MinimalTiptapToolbar;
   editorOptions?: Partial<UseEditorOptions>;
@@ -28,7 +28,7 @@ export type RichTextInputProps = InputProps & {
  * Stores HTML by default and supports the usual input props used by the kit.
  * Pass additional TipTap options via `editorOptions`.
  */
-export const RichTextInput = (props: RichTextInputProps) => {
+function RichTextInput(props: RichTextInputProps) {
   const {
     className,
     defaultValue = "",
@@ -85,4 +85,6 @@ export const RichTextInput = (props: RichTextInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
+
+export { RichTextInput, type RichTextInputProps };

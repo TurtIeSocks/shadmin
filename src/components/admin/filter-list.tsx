@@ -28,16 +28,7 @@ import { FilterListSection } from "@/components/admin/filter-list-section";
  *   </Card>
  * );
  */
-export const FilterList = (props: FilterListProps) => {
-  const { children, ...rest } = props;
-  return (
-    <FilterListSection {...rest}>
-      <ul className={cn("flex flex-col gap-0.5")}>{children}</ul>
-    </FilterListSection>
-  );
-};
-
-export interface FilterListProps extends Omit<
+interface FilterListProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
   "children"
 > {
@@ -45,3 +36,14 @@ export interface FilterListProps extends Omit<
   icon?: ReactNode;
   children: ReactNode;
 }
+
+function FilterList(props: FilterListProps) {
+  const { children, ...rest } = props;
+  return (
+    <FilterListSection {...rest}>
+      <ul className={cn("flex flex-col gap-0.5")}>{children}</ul>
+    </FilterListSection>
+  );
+}
+
+export { FilterList, type FilterListProps };

@@ -2,10 +2,15 @@ import type { ReactNode } from "react";
 import { FileQuestion } from "lucide-react";
 import { useTranslate } from "ra-core";
 
-export const GuesserEmpty = ({
+interface GuesserEmptyProps {
+  title?: ReactNode;
+  message?: ReactNode;
+}
+
+function GuesserEmpty({
   title = "ra.guesser.empty.title",
   message = "ra.guesser.empty.message",
-}: GuesserEmptyProps) => {
+}: GuesserEmptyProps) {
   const translate = useTranslate();
   const resolvedTitle =
     typeof title === "string" ? translate(title, { _: title }) : title;
@@ -19,9 +24,6 @@ export const GuesserEmpty = ({
       <p className="text-muted-foreground">{resolvedMessage}</p>
     </div>
   );
-};
-
-export interface GuesserEmptyProps {
-  title?: ReactNode;
-  message?: ReactNode;
 }
+
+export { GuesserEmpty, type GuesserEmptyProps };

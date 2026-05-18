@@ -32,7 +32,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * // Display the number of published posts with a link
  * <Count resource="posts" filter={{ is_published: true }} link />
  */
-export const Count = (props: CountProps) => {
+function Count(props: CountProps) {
   const {
     filter,
     sort,
@@ -82,12 +82,14 @@ export const Count = (props: CountProps) => {
   ) : (
     <span {...rest}>{body}</span>
   );
-};
+}
 
-export interface CountProps {
+interface CountProps {
   filter?: UnknownValue;
   sort?: SortPayload;
   link?: boolean;
   resource?: string;
   timeout?: number;
 }
+
+export { Count, type CountProps };

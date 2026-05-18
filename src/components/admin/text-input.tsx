@@ -18,7 +18,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
 import { sanitizeInputRestProps } from "@/lib/sanitize-input-rest-props";
 import { cn } from "@/lib/utils";
 
-export type TextInputProps = InputProps & {
+type TextInputProps = InputProps & {
   multiline?: boolean;
   inputClassName?: string;
   resettable?: boolean;
@@ -46,7 +46,7 @@ export type TextInputProps = InputProps & {
  *   </Edit>
  * );
  */
-export const TextInput = (props: TextInputProps) => {
+function TextInput(props: TextInputProps) {
   const resource = useResourceContext(props);
   const {
     label,
@@ -123,4 +123,6 @@ export const TextInput = (props: TextInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
+
+export { TextInput, type TextInputProps };

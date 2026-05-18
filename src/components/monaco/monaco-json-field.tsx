@@ -2,7 +2,11 @@ import { lazy, Suspense } from "react";
 import { MonacoSkeleton } from "./internal/monaco-skeleton";
 import type { MonacoJsonFieldProps } from "./internal/types";
 
-const LazyInner = lazy(() => import("./monaco-json-field-lazy"));
+const LazyInner = lazy(() =>
+  import("./monaco-json-field-lazy").then((m) => ({
+    default: m.MonacoJsonFieldInner,
+  })),
+);
 
 /**
  * Read-only Monaco viewer for JSON values. Use in Show/Edit detail
@@ -24,16 +28,18 @@ const LazyInner = lazy(() => import("./monaco-json-field-lazy"));
  *   </Show>
  * );
  */
-export const MonacoJsonField = (props: MonacoJsonFieldProps) => (
-  <Suspense
-    fallback={
-      <MonacoSkeleton
-        height={props.autoHeight === false ? (props.height ?? 200) : 120}
-      />
-    }
-  >
-    <LazyInner {...props} />
-  </Suspense>
-);
+function MonacoJsonField(props: MonacoJsonFieldProps) {
+  return (
+    <Suspense
+      fallback={
+        <MonacoSkeleton
+          height={props.autoHeight === false ? (props.height ?? 200) : 120}
+        />
+      }
+    >
+      <LazyInner {...props} />
+    </Suspense>
+  );
+}
 
-export type { MonacoJsonFieldProps };
+export { MonacoJsonField, type MonacoJsonFieldProps };

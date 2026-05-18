@@ -5,8 +5,10 @@ import {
   type ShapeFieldShellProps,
 } from "./shape-field-shell";
 
-export type MultiPolygonFieldProps = ShapeFieldShellProps;
+type MultiPolygonFieldProps = ShapeFieldShellProps;
 
-export const MultiPolygonField = (props: MultiPolygonFieldProps) => (
-  <ShapeFieldShell {...props} />
-);
+function MultiPolygonField(props: MultiPolygonFieldProps) {
+  return <ShapeFieldShell {...props} />;
+}
+
+export { MultiPolygonField, type MultiPolygonFieldProps };

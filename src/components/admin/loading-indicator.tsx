@@ -3,7 +3,7 @@ import { useLoading, useTranslate } from "ra-core";
 import { cn } from "@/lib/utils";
 import { RefreshIconButton } from "@/components/admin/refresh-icon-button";
 
-export interface LoadingIndicatorProps {
+interface LoadingIndicatorProps {
   className?: string;
   onClick?: () => void;
 }
@@ -19,7 +19,7 @@ export interface LoadingIndicatorProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loadingindicator/ LoadingIndicator documentation}
  */
-export const LoadingIndicator = (props: LoadingIndicatorProps) => {
+function LoadingIndicator(props: LoadingIndicatorProps) {
   const { className, onClick } = props;
   const loading = useLoading();
   const translate = useTranslate();
@@ -42,4 +42,6 @@ export const LoadingIndicator = (props: LoadingIndicatorProps) => {
       )}
     </div>
   );
-};
+}
+
+export { LoadingIndicator, type LoadingIndicatorProps };

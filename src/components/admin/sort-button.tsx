@@ -48,7 +48,7 @@ type ButtonProps = React.ComponentProps<typeof Button>;
  *   )}>
  * );
  */
-const SortButtonComponent = (props: SortButtonProps) => {
+function SortButtonComponent(props: SortButtonProps) {
   const {
     fields,
     label = "ra.sort.sort_by",
@@ -144,7 +144,7 @@ const SortButtonComponent = (props: SortButtonProps) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}
 
 const defaultIcon = <ArrowUpDown className="size-4" />;
 
@@ -155,7 +155,7 @@ const arePropsEqual = (
   nextProps: SortButtonProps,
 ) => shallowEqual(prevProps.fields, nextProps.fields);
 
-export interface SortButtonProps extends ButtonProps {
+interface SortButtonProps extends ButtonProps {
   fields: string[];
   icon?: React.ReactNode;
   label?: string;
@@ -163,4 +163,6 @@ export interface SortButtonProps extends ButtonProps {
   ref?: React.Ref<HTMLButtonElement>;
 }
 
-export const SortButton = memo(SortButtonComponent, arePropsEqual);
+const SortButton = memo(SortButtonComponent, arePropsEqual);
+
+export { SortButton, type SortButtonProps };

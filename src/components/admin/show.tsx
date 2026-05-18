@@ -20,7 +20,7 @@ import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 import { EditButton } from "@/components/admin/edit-button";
 
-export interface ShowProps
+interface ShowProps
   extends ShowViewProps, Omit<ShowBaseProps, "children" | "render"> {}
 
 /**
@@ -50,7 +50,7 @@ export interface ShowProps
  *   </Show>
  * );
  */
-export const Show = ({
+function Show({
   actions,
   aside,
   children,
@@ -67,7 +67,8 @@ export const Show = ({
   render,
   resource,
   title,
-}: ShowProps) => (
+}: ShowProps) {
+  return (
   <ShowBase
     id={id}
     resource={resource}
@@ -90,7 +91,8 @@ export const Show = ({
       {children}
     </ShowView>
   </ShowBase>
-);
+  );
+}
 
 const defaultOffline = (
   <p className="text-sm text-muted-foreground p-4">
@@ -103,7 +105,7 @@ const defaultError = (
   </p>
 );
 
-export interface ShowViewProps {
+interface ShowViewProps {
   actions?: ReactNode | false;
   aside?: ReactNode;
   component?: ElementType;
@@ -134,7 +136,7 @@ export interface ShowViewProps {
  *     </ShowBase>
  * );
  */
-export const ShowView = ({
+function ShowView({
   actions,
   aside,
   children,
@@ -146,7 +148,7 @@ export const ShowView = ({
   offline = defaultOffline,
   render,
   title,
-}: ShowViewProps) => {
+}: ShowViewProps) {
   const context = useShowContext();
 
   const resource = useResourceContext();
@@ -249,4 +251,6 @@ export const ShowView = ({
       {main}
     </>
   );
-};
+}
+
+export { Show, type ShowProps, ShowView, type ShowViewProps };

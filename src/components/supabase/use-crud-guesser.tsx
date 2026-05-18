@@ -14,7 +14,7 @@ import { SupabaseCreateGuesser } from "./create-guesser";
  *
  * Returns an empty array until `useAPISchema()` resolves.
  */
-export const useCrudGuesser = (): ResourceProps[] => {
+const useCrudGuesser = (): ResourceProps[] => {
   const { data: schema, error, isPending } = useAPISchema();
   return useMemo<ResourceProps[]>(() => {
     if (isPending || error || !schema) return [];
@@ -31,3 +31,5 @@ export const useCrudGuesser = (): ResourceProps[] => {
     });
   }, [schema, isPending, error]);
 };
+
+export { useCrudGuesser };

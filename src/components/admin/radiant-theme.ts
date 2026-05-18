@@ -12,7 +12,7 @@ import type { AdminTheme } from "./theme-types";
  * `#F2E963` (lime), error `#DB488B` (magenta). Border radius is 6px
  * (`shape.borderRadius: 6`).
  */
-export const radiantTheme: AdminTheme = {
+const radiantTheme: AdminTheme = {
   name: "radiant",
   label: "Radiant",
   light: {
@@ -111,3 +111,5 @@ export const radiantTheme: AdminTheme = {
     "--sidebar-ring": "oklch(0.755 0.265 333)",
   },
 };
+
+export { radiantTheme };

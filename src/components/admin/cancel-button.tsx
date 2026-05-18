@@ -30,10 +30,14 @@ import { Button } from "../ui/button";
  *   </Edit>
  * );
  */
-export function CancelButton({
+type CancelButtonProps = React.ComponentProps<"button"> & {
+  ref?: Ref<HTMLButtonElement>;
+};
+
+function CancelButton({
   ref,
   ...props
-}: React.ComponentProps<"button"> & { ref?: Ref<HTMLButtonElement> }) {
+}: CancelButtonProps) {
   const navigate = useNavigate();
   return (
     <Button
@@ -49,3 +53,5 @@ export function CancelButton({
     </Button>
   );
 }
+
+export { CancelButton, type CancelButtonProps };

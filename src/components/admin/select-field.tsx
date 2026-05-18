@@ -100,12 +100,14 @@ const SelectFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
 
 SelectFieldImpl.displayName = "SelectFieldImpl";
 
-export const SelectField = genericMemo(SelectFieldImpl);
+const SelectField = genericMemo(SelectFieldImpl);
 
-export interface SelectFieldProps<
+interface SelectFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
   extends
     Omit<ChoicesProps, "disableValue" | "createValue" | "createHintValue">,
     FieldProps<RecordType>,
     HTMLAttributes<HTMLSpanElement> {}
+
+export { SelectField, type SelectFieldProps };

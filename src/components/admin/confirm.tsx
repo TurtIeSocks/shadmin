@@ -66,7 +66,7 @@ import {
  *   );
  * };
  */
-export const Confirm = (props: ConfirmProps) => {
+function Confirm(props: ConfirmProps) {
   const {
     className,
     isOpen = false,
@@ -159,7 +159,7 @@ export const Confirm = (props: ConfirmProps) => {
       </DialogContent>
     </Dialog>
   );
-};
+}
 
 /**
  * Props for `<Confirm>`.
@@ -170,7 +170,7 @@ export const Confirm = (props: ConfirmProps) => {
  * Radix `Dialog.Root`-level props (`modal`, `defaultOpen`, `onOpenChange`)
  * are also accepted and forwarded to the root `<Dialog>`.
  */
-export interface ConfirmProps extends Omit<
+interface ConfirmProps extends Omit<
   React.ComponentProps<typeof DialogPrimitive.Content>,
   "title" | "content" | "onClose"
 > {
@@ -199,3 +199,5 @@ export interface ConfirmProps extends Omit<
     typeof DialogPrimitive.Root
   >["defaultOpen"];
 }
+
+export { Confirm, type ConfirmProps };

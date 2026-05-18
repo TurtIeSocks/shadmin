@@ -16,7 +16,7 @@ import { TabsTrigger } from "@/components/ui/tabs";
  * @example
  * <TranslatableFieldsTab locale="fr" />
  */
-export const TranslatableFieldsTab = (props: TranslatableFieldsTabProps) => {
+function TranslatableFieldsTab(props: TranslatableFieldsTabProps) {
   const { locale, groupKey = "", ...rest } = props;
   const translate = useTranslate();
 
@@ -31,12 +31,14 @@ export const TranslatableFieldsTab = (props: TranslatableFieldsTabProps) => {
       })}
     </TabsTrigger>
   );
-};
+}
 
-export interface TranslatableFieldsTabProps extends Omit<
+interface TranslatableFieldsTabProps extends Omit<
   React.ComponentProps<typeof TabsTrigger>,
   "value"
 > {
   locale: string;
   groupKey?: string;
 }
+
+export { TranslatableFieldsTab, type TranslatableFieldsTabProps };

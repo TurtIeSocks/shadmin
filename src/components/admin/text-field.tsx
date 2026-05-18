@@ -24,13 +24,13 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </List>
  * );
  */
-export const TextField = <RecordType extends UnknownRecord = UnknownRecord>({
+function TextField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,
   empty,
   ...rest
-}: TextFieldProps<RecordType>) => {
+}: TextFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -51,9 +51,11 @@ export const TextField = <RecordType extends UnknownRecord = UnknownRecord>({
       {typeof value !== "string" ? value.toString() : value}
     </span>
   );
-};
+}
 
-export interface TextFieldProps<
+interface TextFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {}
+
+export { TextField, type TextFieldProps };

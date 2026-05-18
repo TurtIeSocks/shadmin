@@ -12,17 +12,19 @@ import type { editor } from "monaco-editor";
  *
  * Marker severities: 1=Hint, 2=Info, 4=Warning, 8=Error.
  */
-export function useMonacoMarkers({
-  monaco,
-  model,
-  markersRef,
-  onChange,
-}: {
+interface UseMonacoMarkersArgs {
   monaco: Monaco | null;
   model: editor.ITextModel | null;
   markersRef: MutableRefObject<editor.IMarker[]>;
   onChange: () => void;
-}): void {
+}
+
+function useMonacoMarkers({
+  monaco,
+  model,
+  markersRef,
+  onChange,
+}: UseMonacoMarkersArgs): void {
   useEffect(() => {
     if (!monaco || !model) return;
 
@@ -43,3 +45,5 @@ export function useMonacoMarkers({
     return () => disposable.dispose();
   }, [monaco, model, markersRef, onChange]);
 }
+
+export { useMonacoMarkers };

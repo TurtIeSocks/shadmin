@@ -31,7 +31,7 @@ const normalizeUploadResponse = (res: UploadReturnType) => ({
   id: typeof res === "string" ? randomId() : res.id,
 });
 
-export const ImageViewBlock: React.FC<NodeViewProps> = ({
+const ImageViewBlock: React.FC<NodeViewProps> = ({
   editor,
   node,
   selected,
@@ -339,3 +339,5 @@ export const ImageViewBlock: React.FC<NodeViewProps> = ({
     </NodeViewWrapper>
   );
 };
+
+export { ImageViewBlock };

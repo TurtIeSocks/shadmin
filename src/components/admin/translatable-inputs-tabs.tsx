@@ -21,7 +21,7 @@ import { TranslatableInputsTab } from "@/components/admin/translatable-inputs-ta
  *     <TextInput source="name" />
  * </TranslatableInputs>
  */
-export const TranslatableInputsTabs = (props: TranslatableInputsTabsProps) => {
+function TranslatableInputsTabs(props: TranslatableInputsTabsProps) {
   const { groupKey, className } = props;
   const { locales } = useTranslatableContext();
 
@@ -38,9 +38,11 @@ export const TranslatableInputsTabs = (props: TranslatableInputsTabsProps) => {
       ))}
     </TabsList>
   );
-};
+}
 
-export interface TranslatableInputsTabsProps {
+interface TranslatableInputsTabsProps {
   groupKey?: string;
   className?: string;
 }
+
+export { TranslatableInputsTabs, type TranslatableInputsTabsProps };

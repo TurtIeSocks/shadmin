@@ -37,18 +37,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const ArrayField = <RecordType extends RaRecord = RaRecord>(
-  props: ArrayFieldProps<RecordType>,
-) => {
-  const { children, resource, perPage, sort, filter } = props;
-  const data = useFieldValue(props) || emptyArray;
-  const listContext = useList({ data, resource, perPage, sort, filter });
-
-  return (
-    <ListContextProvider value={listContext}>{children}</ListContextProvider>
-  );
-};
-export type ArrayFieldProps<
+type ArrayFieldProps<
   RecordType extends RaRecord = RaRecord,
   ErrorType = Error,
 > = UseListOptions<RecordType, ErrorType> &
@@ -56,4 +45,18 @@ export type ArrayFieldProps<
     children?: ReactNode;
   };
 
+function ArrayField<RecordType extends RaRecord = RaRecord>(
+  props: ArrayFieldProps<RecordType>,
+) {
+  const { children, resource, perPage, sort, filter } = props;
+  const data = useFieldValue(props) || emptyArray;
+  const listContext = useList({ data, resource, perPage, sort, filter });
+
+  return (
+    <ListContextProvider value={listContext}>{children}</ListContextProvider>
+  );
+}
+
 const emptyArray: UnknownValue[] = [];
+
+export { ArrayField, type ArrayFieldProps };

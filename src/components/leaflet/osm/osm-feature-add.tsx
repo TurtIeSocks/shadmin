@@ -5,9 +5,9 @@ import {
   type OsmFeatureOperatorProps,
 } from "./osm-feature-operator";
 
-export type OsmFeatureAddProps = Omit<OsmFeatureOperatorProps, "mode" | "icon">;
+type OsmFeatureAddProps = Omit<OsmFeatureOperatorProps, "mode" | "icon">;
 
-export const OsmFeatureAdd = (props: OsmFeatureAddProps) => (
+const OsmFeatureAdd = (props: OsmFeatureAddProps) => (
   <OsmFeatureOperator
     {...props}
     mode="add"
@@ -15,3 +15,5 @@ export const OsmFeatureAdd = (props: OsmFeatureAddProps) => (
     label={props.label ?? "Add OSM features"}
   />
 );
+
+export { type OsmFeatureAddProps, OsmFeatureAdd };

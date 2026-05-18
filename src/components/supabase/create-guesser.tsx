@@ -13,11 +13,11 @@ import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { editFieldTypes } from "./edit-field-types";
 
-export type SupabaseCreateGuesserProps = Omit<CreateProps, "children"> & {
+type SupabaseCreateGuesserProps = Omit<CreateProps, "children"> & {
   enableLog?: boolean;
 };
 
-export const SupabaseCreateGuesser = (props: SupabaseCreateGuesserProps) => {
+function SupabaseCreateGuesser(props: SupabaseCreateGuesserProps) {
   const {
     mutationOptions,
     resource,
@@ -98,3 +98,5 @@ const SupabaseCreateGuesserView = (
 
   return <CreateView {...rest}>{child}</CreateView>;
 };
+
+export { type SupabaseCreateGuesserProps, SupabaseCreateGuesser };

@@ -3,7 +3,7 @@ import type { InputProps } from "ra-core";
 import type { editor } from "monaco-editor";
 import type { FieldProps } from "@/lib/field-types";
 
-export type MonacoJsonInputProps = InputProps & {
+type MonacoJsonInputProps = InputProps & {
   schema?: object;
   schemaUri?: string;
   allowComments?: boolean;
@@ -18,7 +18,7 @@ export type MonacoJsonInputProps = InputProps & {
   monacoOptions?: editor.IStandaloneEditorConstructionOptions;
 };
 
-export type MonacoJsonFieldProps = FieldProps & {
+type MonacoJsonFieldProps = FieldProps & {
   defaultValue?: unknown;
   height?: number | string;
   autoHeight?: boolean;
@@ -27,8 +27,10 @@ export type MonacoJsonFieldProps = FieldProps & {
   monacoOptions?: editor.IStandaloneEditorConstructionOptions;
 };
 
-export type JsonFieldProps = FieldProps &
+type JsonFieldProps = FieldProps &
   HTMLAttributes<HTMLPreElement> & {
     indent?: number;
     empty?: ReactNode;
   };
+
+export type { MonacoJsonInputProps, MonacoJsonFieldProps, JsonFieldProps };

@@ -20,7 +20,7 @@ import { fileToBase64, getOutput, randomId } from "../utils";
 import { useThrottle } from "../hooks/use-throttle";
 import { toast } from "sonner";
 
-export interface UseMinimalTiptapEditorProps extends UseEditorOptions {
+interface UseMinimalTiptapEditorProps extends UseEditorOptions {
   value?: Content;
   output?: "html" | "json" | "text";
   placeholder?: string;
@@ -175,7 +175,7 @@ const createExtensions = ({
   Placeholder.configure({ placeholder: () => placeholder }),
 ];
 
-export const useMinimalTiptapEditor = ({
+const useMinimalTiptapEditor = ({
   value,
   output = "html",
   placeholder = "",
@@ -286,4 +286,4 @@ export const useMinimalTiptapEditor = ({
   return editor;
 };
 
-export default useMinimalTiptapEditor;
+export { type UseMinimalTiptapEditorProps, useMinimalTiptapEditor };

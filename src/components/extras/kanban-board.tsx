@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 // Public types
 // ---------------------------------------------------------------------------
 
-export interface KanbanColumnDef {
+interface KanbanColumnDef {
   /** Unique identifier that matches the value of `groupBy` field in records. */
   id: string;
   /** Human-readable column header. */
@@ -32,7 +32,7 @@ export interface KanbanColumnDef {
   className?: string;
 }
 
-export interface KanbanBoardProps<R extends RaRecord = RaRecord> {
+interface KanbanBoardProps<R extends RaRecord = RaRecord> {
   /**
    * Field name whose value buckets records into columns.
    * e.g. `"status"`, `"stage"`, `"priority"`.
@@ -240,7 +240,7 @@ const EmptyColumnPlaceholder = () => (
  * </List>
  * ```
  */
-export const KanbanBoard = <R extends RaRecord = RaRecord>(
+const KanbanBoard = <R extends RaRecord = RaRecord>(
   props: KanbanBoardProps<R>,
 ) => {
   const {
@@ -392,3 +392,5 @@ export const KanbanBoard = <R extends RaRecord = RaRecord>(
     </DndContext>
   );
 };
+
+export { type KanbanColumnDef, type KanbanBoardProps, KanbanBoard };

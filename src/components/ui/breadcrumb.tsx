@@ -31,13 +31,15 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
   )
 }
 
+interface BreadcrumbLinkProps extends React.ComponentProps<"a"> {
+  asChild?: boolean
+}
+
 function BreadcrumbLink({
   asChild,
   className,
   ...props
-}: React.ComponentProps<"a"> & {
-  asChild?: boolean
-}) {
+}: BreadcrumbLinkProps) {
   const Comp = asChild ? Slot.Root : "a"
 
   return (
@@ -103,6 +105,7 @@ export {
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
+  type BreadcrumbLinkProps,
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,

@@ -9,7 +9,7 @@ interface ImageEditBlockProps {
   close: () => void;
 }
 
-export const ImageEditBlock: React.FC<ImageEditBlockProps> = ({
+const ImageEditBlock: React.FC<ImageEditBlockProps> = ({
   editor,
   close,
 }) => {
@@ -91,4 +91,4 @@ export const ImageEditBlock: React.FC<ImageEditBlockProps> = ({
   );
 };
 
-export default ImageEditBlock;
+export { ImageEditBlock };

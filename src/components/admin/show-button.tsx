@@ -13,7 +13,7 @@ import {
   useResourceTranslation,
 } from "ra-core";
 
-export type ShowButtonProps = {
+type ShowButtonProps = {
   label?: string;
   icon?: React.ReactNode;
   record?: RaRecord;
@@ -36,7 +36,7 @@ export type ShowButtonProps = {
  *   <ShowButton label="View Details" />
  * );
  */
-export const ShowButton = (props: ShowButtonProps) => {
+function ShowButton(props: ShowButtonProps) {
   const {
     label: labelProp,
     icon,
@@ -92,7 +92,9 @@ export const ShowButton = (props: ShowButtonProps) => {
       {label}
     </Link>
   );
-};
+}
 
 // useful to prevent click bubbling in a datagrid with rowClick
 const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
+
+export { ShowButton, type ShowButtonProps };

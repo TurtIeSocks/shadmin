@@ -12,9 +12,9 @@ import { type OsmPresetName } from "./osm-presets";
 import type { OsmTagInput } from "./osm-tag-catalog";
 import { bboxOf, subtract, unionAll, areaM2 } from "./geometry-ops";
 
-export type OsmFeatureMode = "subtract" | "add";
+type OsmFeatureMode = "subtract" | "add";
 
-export interface OsmFeatureOperatorProps {
+interface OsmFeatureOperatorProps {
   source: string;
   presets?: ReadonlyArray<OsmPresetName>;
   tags?: ReadonlyArray<OsmTagInput>;
@@ -24,7 +24,7 @@ export interface OsmFeatureOperatorProps {
   endpoint?: string;
 }
 
-export const OsmFeatureOperator = ({
+const OsmFeatureOperator = ({
   source,
   presets,
   tags,
@@ -143,3 +143,5 @@ export const OsmFeatureOperator = ({
 };
 
 const formatKm2 = (m2: number) => (Math.round(m2 / 1000) / 1000).toFixed(3);
+
+export { type OsmFeatureMode, type OsmFeatureOperatorProps, OsmFeatureOperator };

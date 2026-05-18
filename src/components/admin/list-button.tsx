@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 
-export type ListButtonProps = {
+type ListButtonProps = {
   resource?: string;
   label?: string;
   icon?: React.ReactNode;
@@ -38,7 +38,7 @@ export type ListButtonProps = {
  *   </Edit>
  * );
  */
-export const ListButton = (props: ListButtonProps) => {
+function ListButton(props: ListButtonProps) {
   const {
     label: labelProp,
     icon = defaultIcon,
@@ -83,7 +83,9 @@ export const ListButton = (props: ListButtonProps) => {
       {label}
     </Link>
   );
-};
+}
 
 const defaultIcon = <ListIcon />;
 const scrollState = { _scrollToTop: true };
+
+export { ListButton, type ListButtonProps };

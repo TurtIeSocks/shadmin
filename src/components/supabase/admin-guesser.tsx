@@ -15,7 +15,7 @@ import { SupabaseLoginPage } from "./login-page";
 import { ForgotPasswordPage } from "./forgot-password-page";
 import { SetPasswordPage } from "./set-password-page";
 
-export type AdminGuesserProps = CoreAdminProps & {
+type AdminGuesserProps = CoreAdminProps & {
   instanceUrl: string;
   /**
    * Supabase API key. Accepts both the legacy anonymous JWT key
@@ -35,7 +35,7 @@ export type AdminGuesserProps = CoreAdminProps & {
  * (`dataProvider`, `authProvider`, `i18nProvider`, `loginPage`,
  * `children` for explicit `<Resource>` entries, …).
  */
-export const AdminGuesser = (props: AdminGuesserProps) => {
+function AdminGuesser(props: AdminGuesserProps) {
   const {
     instanceUrl,
     apiKey,
@@ -98,3 +98,5 @@ const AdminGuesserResources = ({ children }: { children?: AdminChildren }) => {
     </>
   );
 };
+
+export { type AdminGuesserProps, AdminGuesser };

@@ -24,7 +24,7 @@ import { ImageField } from "@/components/admin/image-field";
  *   </Edit>
  * );
  */
-export const ImageInput = (props: ImageInputProps) => {
+function ImageInput(props: ImageInputProps) {
   const {
     accept = { "image/*": [] },
     labelMultiple = "ra.input.image.upload_several",
@@ -49,6 +49,8 @@ export const ImageInput = (props: ImageInputProps) => {
       )}
     </FileInput>
   );
-};
+}
 
-export type ImageInputProps = FileInputProps;
+type ImageInputProps = FileInputProps;
+
+export { ImageInput, type ImageInputProps };

@@ -2,7 +2,7 @@
  * French translation messages for the Supabase integration.
  * Source: ra-supabase-language-french@3.5.2
  */
-export const raSupabaseFrenchMessages = {
+const raSupabaseFrenchMessages = {
   "ra-supabase": {
     auth: {
       email: "Email",
@@ -28,3 +28,5 @@ export const raSupabaseFrenchMessages = {
     },
   },
 };
+
+export { raSupabaseFrenchMessages };

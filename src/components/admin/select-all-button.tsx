@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
  *   </BulkActionsToolbar>
  * );
  */
-export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
+function SelectAllButton<RecordType extends RaRecord = RaRecord>({
   label = "ra.action.select_all",
   limit = 250,
   queryOptions,
@@ -32,7 +32,7 @@ export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
   onClick,
   ref,
   ...props
-}: SelectAllButtonProps<RecordType>) => {
+}: SelectAllButtonProps<RecordType>) {
   const listContext = useListContext<RecordType>();
   const { getData, onSelect, onSelectAll, selectedIds, total } = listContext;
   const data: RecordType[] | undefined = listContext.data;
@@ -79,11 +79,13 @@ export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
       <Translate i18nKey={label}>{label}</Translate>
     </Button>
   );
-};
+}
 
-export type SelectAllButtonProps<RecordType extends RaRecord = RaRecord> = {
+type SelectAllButtonProps<RecordType extends RaRecord = RaRecord> = {
   label?: string;
   limit?: number;
   queryOptions?: UseGetListOptions<RecordType>;
   ref?: Ref<HTMLButtonElement>;
 } & React.ComponentPropsWithoutRef<"button">;
+
+export { SelectAllButton, type SelectAllButtonProps };

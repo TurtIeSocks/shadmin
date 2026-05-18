@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
  * Tracks runtime changes via a `MutationObserver` so the editor follows
  * mode switches without a remount.
  */
-export function useMonacoTheme(): "vs" | "vs-dark" {
+function useMonacoTheme(): "vs" | "vs-dark" {
   const [theme, setTheme] = useState<"vs" | "vs-dark">(() => readTheme());
 
   useEffect(() => {
@@ -27,3 +27,5 @@ function readTheme(): "vs" | "vs-dark" {
   if (typeof document === "undefined") return "vs";
   return document.documentElement.classList.contains("dark") ? "vs-dark" : "vs";
 }
+
+export { useMonacoTheme };

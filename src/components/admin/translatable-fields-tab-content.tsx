@@ -28,9 +28,9 @@ import { cn } from "@/lib/utils";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatablefields/ TranslatableFields documentation}
  */
-export const TranslatableFieldsTabContent = (
+function TranslatableFieldsTabContent(
   props: TranslatableFieldsTabContentProps,
-) => {
+) {
   const { children, groupKey = "", locale, record, className } = props;
   const { getRecordForLocale } = useTranslatableContext();
   const addLabel = Children.count(children) > 1;
@@ -95,9 +95,9 @@ export const TranslatableFieldsTabContent = (
       </RecordContextProvider>
     </TabsContent>
   );
-};
+}
 
-export interface TranslatableFieldsTabContentProps {
+interface TranslatableFieldsTabContentProps {
   children: ReactNode;
   className?: string;
   groupKey?: string;
@@ -105,3 +105,8 @@ export interface TranslatableFieldsTabContentProps {
   record: RaRecord;
   resource?: string;
 }
+
+export {
+  TranslatableFieldsTabContent,
+  type TranslatableFieldsTabContentProps,
+};

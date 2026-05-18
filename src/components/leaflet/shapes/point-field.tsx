@@ -7,10 +7,12 @@ import {
   type ShapeFieldShellProps,
 } from "./shape-field-shell";
 
-export type PointFieldProps = Omit<ShapeFieldShellProps, "pathOptions"> & {
+type PointFieldProps = Omit<ShapeFieldShellProps, "pathOptions"> & {
   pathOptions?: L.PathOptions;
 };
 
-export const PointField = (props: PointFieldProps) => (
-  <ShapeFieldShell {...props} />
-);
+function PointField(props: PointFieldProps) {
+  return <ShapeFieldShell {...props} />;
+}
+
+export { PointField, type PointFieldProps };

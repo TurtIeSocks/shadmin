@@ -25,7 +25,7 @@ interface ToolbarSectionProps extends VariantProps<typeof toggleVariants> {
   dropdownClassName?: string;
 }
 
-export const ToolbarSection: React.FC<ToolbarSectionProps> = ({
+const ToolbarSection: React.FC<ToolbarSectionProps> = ({
   editor,
   actions,
   activeActions = actions.map((action) => action.value),
@@ -117,4 +117,4 @@ export const ToolbarSection: React.FC<ToolbarSectionProps> = ({
   );
 };
 
-export default ToolbarSection;
+export { ToolbarSection };

@@ -60,13 +60,13 @@ function getShowTabPath(
  *   </TabbedShowLayout.Tab>
  * </TabbedShowLayout>
  */
-export function ShowTab(_props: ShowTabProps): null {
+function ShowTab(_props: ShowTabProps): null {
   return null;
 }
 
 ShowTab.displayName = "ShowTab";
 
-export interface ShowTabProps {
+interface ShowTabProps {
   /** Tab label shown in the trigger. */
   label: string | ReactElement;
   /** Fields/components to display in the tab panel. */
@@ -115,7 +115,7 @@ export interface ShowTabProps {
  *   </Show>
  * );
  */
-export const TabbedShowLayout = (props: TabbedShowLayoutProps) => {
+function TabbedShowLayout(props: TabbedShowLayoutProps) {
   const {
     children,
     className,
@@ -145,11 +145,11 @@ export const TabbedShowLayout = (props: TabbedShowLayoutProps) => {
       </TabbedShowLayoutView>
     </OptionalRecordContextProvider>
   );
-};
+}
 
 TabbedShowLayout.Tab = ShowTab;
 
-export interface TabbedShowLayoutProps {
+interface TabbedShowLayoutProps {
   children: ReactNode;
   className?: string;
   /** Optional divider element rendered between each field in a tab. */
@@ -279,7 +279,7 @@ function TabbedShowLayoutView({
 // TabbedShowLayoutTabsList (public)
 // ---------------------------------------------------------------------------
 
-export interface TabbedShowLayoutTabsListProps {
+interface TabbedShowLayoutTabsListProps {
   tabs: ReactElement<ShowTabProps>[];
   syncWithLocation: boolean;
 }
@@ -290,7 +290,7 @@ export interface TabbedShowLayoutTabsListProps {
  * Exported so consumers can compose their own custom TabbedShowLayout
  * without forking the entire `TabbedShowLayoutView`.
  */
-export function TabbedShowLayoutTabsList({
+function TabbedShowLayoutTabsList({
   tabs,
   syncWithLocation,
 }: TabbedShowLayoutTabsListProps) {
@@ -348,3 +348,12 @@ function ShowTabTrigger({
     </TabsTrigger>
   );
 }
+
+export {
+  TabbedShowLayout,
+  type TabbedShowLayoutProps,
+  ShowTab,
+  type ShowTabProps,
+  TabbedShowLayoutTabsList,
+  type TabbedShowLayoutTabsListProps,
+};

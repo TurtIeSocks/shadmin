@@ -23,7 +23,7 @@ import {
 } from "ra-core";
 import { Confirm } from "@/components/admin/confirm";
 
-export type DeleteButtonProps = {
+type DeleteButtonProps = {
   label?: string;
   size?: "default" | "sm" | "lg" | "icon";
   onClick?: React.ReactEventHandler<HTMLButtonElement>;
@@ -63,13 +63,13 @@ export type DeleteButtonProps = {
  *     </Edit>
  * );
  */
-export const DeleteButton = (props: DeleteButtonProps) => {
+function DeleteButton(props: DeleteButtonProps) {
   const { mutationMode = "undoable" } = props;
   if (mutationMode === "undoable") {
     return <DeleteWithUndoButton {...props} />;
   }
   return <DeleteWithConfirmButton {...props} mutationMode={mutationMode} />;
-};
+}
 
 const defaultDestructiveClassName =
   "cursor-pointer hover:bg-destructive/10! text-destructive! border-destructive! focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40";
@@ -81,9 +81,9 @@ const defaultDestructiveClassName =
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/deletebutton/ DeleteButton documentation}
  */
-export const DeleteWithUndoButton = (
+function DeleteWithUndoButton(
   props: Omit<DeleteButtonProps, "mutationMode">,
-) => {
+) {
   const {
     label: labelProp,
     onClick,
@@ -153,7 +153,7 @@ export const DeleteWithUndoButton = (
       {label}
     </Button>
   );
-};
+}
 
 /**
  * Delete button variant that asks the user to confirm before firing the mutation.
@@ -162,16 +162,16 @@ export const DeleteWithUndoButton = (
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/deletebutton/ DeleteButton documentation}
  */
-export const DeleteWithConfirmButton = (
-  props: Omit<DeleteButtonProps, "mutationMode"> & {
-    mutationMode?: Exclude<MutationMode, "undoable">;
-    confirmTitle?: React.ReactNode;
-    confirmContent?: React.ReactNode;
-    confirmColor?: "primary" | "warning";
-    titleTranslateOptions?: object;
-    contentTranslateOptions?: object;
-  },
-) => {
+type DeleteWithConfirmButtonProps = Omit<DeleteButtonProps, "mutationMode"> & {
+  mutationMode?: Exclude<MutationMode, "undoable">;
+  confirmTitle?: React.ReactNode;
+  confirmContent?: React.ReactNode;
+  confirmColor?: "primary" | "warning";
+  titleTranslateOptions?: object;
+  contentTranslateOptions?: object;
+};
+
+function DeleteWithConfirmButton(props: DeleteWithConfirmButtonProps) {
   const {
     label: labelProp,
     onClick,
@@ -351,6 +351,14 @@ export const DeleteWithConfirmButton = (
       />
     </Fragment>
   );
-};
+}
 
 const emptyObject = {};
+
+export {
+  DeleteButton,
+  DeleteWithUndoButton,
+  DeleteWithConfirmButton,
+  type DeleteButtonProps,
+  type DeleteWithConfirmButtonProps,
+};

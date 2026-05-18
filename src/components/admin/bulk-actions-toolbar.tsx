@@ -12,7 +12,7 @@ import { BulkExportButton } from "./bulk-export-button";
  *
  * @internal
  */
-export function BulkActionsToolbarChildren() {
+function BulkActionsToolbarChildren() {
   return (
     <>
       <SelectAllButton />
@@ -47,15 +47,17 @@ export function BulkActionsToolbarChildren() {
  *   </List>
  * );
  */
-export const BulkActionsToolbar = ({
-  children = <BulkActionsToolbarChildren />,
-  label,
-  selectAllButton = <SelectAllButton />,
-}: {
+interface BulkActionsToolbarProps {
   children?: ReactNode;
   label?: ReactNode;
   selectAllButton?: ReactNode | false;
-}) => {
+}
+
+function BulkActionsToolbar({
+  children = <BulkActionsToolbarChildren />,
+  label,
+  selectAllButton = <SelectAllButton />,
+}: BulkActionsToolbarProps) {
   const { selectedIds, onUnselectItems } = useListContext();
   const translate = useTranslate();
   if (!selectedIds?.length) {
@@ -93,4 +95,10 @@ export const BulkActionsToolbar = ({
       {children}
     </Card>
   );
+}
+
+export {
+  BulkActionsToolbar,
+  BulkActionsToolbarChildren,
+  type BulkActionsToolbarProps,
 };

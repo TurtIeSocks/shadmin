@@ -22,13 +22,18 @@ import {
  *   <Trash2 />
  * </IconButtonWithTooltip>
  */
-export const IconButtonWithTooltip = ({
+interface IconButtonWithTooltipProps extends React.ComponentProps<"button"> {
+  label: React.ReactNode;
+  children: React.ReactNode;
+}
+
+function IconButtonWithTooltip({
   label,
   onClick,
   children,
   disabled,
   ...props
-}: IconButtonWithTooltipProps) => {
+}: IconButtonWithTooltipProps) {
   const translate = useTranslate();
   const [open, setOpen] = React.useState(false);
 
@@ -76,9 +81,6 @@ export const IconButtonWithTooltip = ({
       </Tooltip>
     </TooltipProvider>
   );
-};
-
-export interface IconButtonWithTooltipProps extends React.ComponentProps<"button"> {
-  label: React.ReactNode;
-  children: React.ReactNode;
 }
+
+export { IconButtonWithTooltip, type IconButtonWithTooltipProps };

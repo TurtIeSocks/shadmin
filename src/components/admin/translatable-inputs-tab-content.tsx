@@ -28,9 +28,9 @@ import { cn } from "@/lib/utils";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
  */
-export const TranslatableInputsTabContent = (
+function TranslatableInputsTabContent(
   props: TranslatableInputsTabContentProps,
-) => {
+) {
   const { children, groupKey = "", locale, className } = props;
   const { getRecordForLocale } = useTranslatableContext();
   const parentSourceContext = useSourceContext();
@@ -83,9 +83,9 @@ export const TranslatableInputsTabContent = (
       </TabsContent>
     </FormGroupContextProvider>
   );
-};
+}
 
-export interface TranslatableInputsTabContentProps {
+interface TranslatableInputsTabContentProps {
   children: ReactNode;
   className?: string;
   groupKey?: string;
@@ -93,3 +93,8 @@ export interface TranslatableInputsTabContentProps {
   record?: RaRecord;
   resource?: string;
 }
+
+export {
+  TranslatableInputsTabContent,
+  type TranslatableInputsTabContentProps,
+};

@@ -17,6 +17,39 @@ import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
 
+interface ReferenceArrayFieldProps<
+  RecordType extends RaRecord = RaRecord,
+  ReferenceRecordType extends RaRecord = RaRecord,
+> extends Omit<FieldProps<RecordType>, "source" | "empty">,
+    ReferenceArrayFieldViewProps {
+  filter?: FilterPayload;
+  page?: number;
+  pagination?: ReactElement;
+  perPage?: number;
+  reference: string;
+  resource?: string;
+  source: NoInfer<HintedString<ExtractRecordPaths<RecordType>>>;
+  sort?: SortPayload;
+  queryOptions?: Omit<
+    UseQueryOptions<ReferenceRecordType[], Error>,
+    "queryFn" | "queryKey"
+  >;
+  render?: (props: ListControllerResult<ReferenceRecordType>) => ReactElement;
+}
+
+interface ReferenceArrayFieldViewProps {
+  children?: ReactNode;
+  className?: string;
+  empty?: ReactNode;
+  error?: ReactNode;
+  loading?: ReactNode;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
+  pagination?: ReactNode;
+}
+
 /**
  * Displays multiple related records by following an array of foreign keys.
  *
@@ -44,12 +77,10 @@ const defaultOffline = <Offline />;
  *   </List>
  * );
  */
-export const ReferenceArrayField = <
+function ReferenceArrayField<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
->(
-  props: ReferenceArrayFieldProps<RecordType, ReferenceRecordType>,
-) => {
+>(props: ReferenceArrayFieldProps<RecordType, ReferenceRecordType>) {
   const {
     empty,
     error,
@@ -86,45 +117,9 @@ export const ReferenceArrayField = <
       />
     </ReferenceArrayFieldBase>
   );
-};
-export interface ReferenceArrayFieldProps<
-  RecordType extends RaRecord = RaRecord,
-  ReferenceRecordType extends RaRecord = RaRecord,
->
-  extends
-    Omit<FieldProps<RecordType>, "source" | "empty">,
-    ReferenceArrayFieldViewProps {
-  filter?: FilterPayload;
-  page?: number;
-  pagination?: ReactElement;
-  perPage?: number;
-  reference: string;
-  resource?: string;
-  source: NoInfer<HintedString<ExtractRecordPaths<RecordType>>>;
-  sort?: SortPayload;
-  queryOptions?: Omit<
-    UseQueryOptions<ReferenceRecordType[], Error>,
-    "queryFn" | "queryKey"
-  >;
-  render?: (props: ListControllerResult<ReferenceRecordType>) => ReactElement;
 }
 
-export interface ReferenceArrayFieldViewProps {
-  children?: ReactNode;
-  className?: string;
-  empty?: ReactNode;
-  error?: ReactNode;
-  loading?: ReactNode;
-  /**
-   * Component to display when offline and the request is pending or has stale placeholder data.
-   */
-  offline?: ReactNode;
-  pagination?: ReactNode;
-}
-
-export const ReferenceArrayFieldView = (
-  props: ReferenceArrayFieldViewProps,
-) => {
+function ReferenceArrayFieldView(props: ReferenceArrayFieldViewProps) {
   const {
     children = defaultChildren,
     className,
@@ -178,8 +173,15 @@ export const ReferenceArrayFieldView = (
       )}
     </div>
   );
-};
+}
 
 const defaultChildren = <SingleFieldList />;
 const defaultLoading = <LinearProgress />;
 const PureReferenceArrayFieldView = memo(ReferenceArrayFieldView);
+
+export {
+  ReferenceArrayField,
+  ReferenceArrayFieldView,
+  type ReferenceArrayFieldProps,
+  type ReferenceArrayFieldViewProps,
+};

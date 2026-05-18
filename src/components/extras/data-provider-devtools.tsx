@@ -13,7 +13,7 @@ import {
   type DataProviderLog,
 } from "./data-provider-devtools-context";
 
-export interface DataProviderDevtoolsProps {
+interface DataProviderDevtoolsProps {
   children: ReactNode;
   /** Initial open state. Default `true`. */
   defaultOpen?: boolean;
@@ -33,7 +33,7 @@ export interface DataProviderDevtoolsProps {
  *   <List resource="posts">{...}</List>
  * </DataProviderDevtools>
  */
-export const DataProviderDevtools = ({
+const DataProviderDevtools = ({
   children,
   defaultOpen = true,
   maxLogs = 50,
@@ -224,3 +224,5 @@ function parseShortcut(s: string): {
     key: parts[parts.length - 1],
   };
 }
+
+export { type DataProviderDevtoolsProps, DataProviderDevtools };

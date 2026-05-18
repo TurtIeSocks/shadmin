@@ -4,14 +4,14 @@ import { type ReactNode, useEffect, useLayoutEffect, useState } from "react";
 import { useStore, useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
 
-export interface TourStep {
+interface TourStep {
   target: string;
   title?: ReactNode;
   content: ReactNode;
   placement?: "top" | "bottom" | "left" | "right";
 }
 
-export interface OnboardingTourProps {
+interface OnboardingTourProps {
   id: string;
   steps: TourStep[];
   autoStart?: boolean;
@@ -81,7 +81,7 @@ const computeTooltipPosition = (
   }
 };
 
-export const OnboardingTour = ({
+const OnboardingTour = ({
   id,
   steps,
   autoStart = true,
@@ -203,3 +203,5 @@ export const OnboardingTour = ({
     </div>
   );
 };
+
+export { type TourStep, type OnboardingTourProps, OnboardingTour };

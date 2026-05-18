@@ -19,11 +19,11 @@ import { useTheme } from "@/hooks/use-theme";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/thememodetoggle ThemeModeToggle documentation}
  */
-export interface ThemeModeToggleProps {
+interface ThemeModeToggleProps {
   ref?: Ref<HTMLButtonElement>;
 }
 
-export function ThemeModeToggle({ ref }: ThemeModeToggleProps = {}) {
+function ThemeModeToggle({ ref }: ThemeModeToggleProps = {}) {
   const [theme, setTheme] = useTheme();
   const translate = useTranslate();
 
@@ -60,3 +60,5 @@ export function ThemeModeToggle({ ref }: ThemeModeToggleProps = {}) {
     </DropdownMenu>
   );
 }
+
+export { ThemeModeToggle, type ThemeModeToggleProps };

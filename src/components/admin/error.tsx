@@ -24,7 +24,7 @@ import { Title } from "./title";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/error Error documentation}
  */
-export const Error = (props: InternalErrorProps) => {
+function Error(props: InternalErrorProps) {
   const {
     error,
     errorInfo,
@@ -130,7 +130,7 @@ export const Error = (props: InternalErrorProps) => {
       </div>
     </div>
   );
-};
+}
 
 interface InternalErrorProps
   extends Omit<HtmlHTMLAttributes<HTMLDivElement>, "title">, FallbackProps {
@@ -144,7 +144,7 @@ interface InternalErrorProps
   title?: ReactNode | string | false;
 }
 
-export interface ErrorProps extends Pick<
+interface ErrorProps extends Pick<
   FallbackProps,
   "error" | "resetErrorBoundary"
 > {
@@ -159,3 +159,5 @@ export interface ErrorProps extends Pick<
 function goBack() {
   window.history.go(-1);
 }
+
+export { Error, type ErrorProps };

@@ -1,6 +1,6 @@
 import { Extension } from "@tiptap/react";
 
-export const ResetMarksOnEnter = Extension.create({
+const ResetMarksOnEnter = Extension.create({
   name: "resetMarksOnEnter",
 
   addKeyboardShortcuts() {
@@ -23,3 +23,5 @@ export const ResetMarksOnEnter = Extension.create({
     };
   },
 });
+
+export { ResetMarksOnEnter };

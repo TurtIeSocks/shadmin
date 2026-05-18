@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-export interface PlaceholderProps {
+interface PlaceholderProps {
   className?: string;
   children?: ReactNode;
 }
@@ -20,8 +20,12 @@ export interface PlaceholderProps {
  *
  * const LoadingField = () => <Placeholder className="w-24" />;
  */
-export const Placeholder = ({ className, children }: PlaceholderProps) => (
-  <span className={cn("inline-flex bg-muted", className)}>
-    {children ?? " "}
-  </span>
-);
+function Placeholder({ className, children }: PlaceholderProps) {
+  return (
+    <span className={cn("inline-flex bg-muted", className)}>
+      {children ?? " "}
+    </span>
+  );
+}
+
+export { Placeholder, type PlaceholderProps };

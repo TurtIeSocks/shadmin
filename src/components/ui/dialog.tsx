@@ -45,14 +45,17 @@ function DialogOverlay({
   )
 }
 
+interface DialogContentProps
+  extends React.ComponentProps<typeof DialogPrimitive.Content> {
+  showCloseButton?: boolean
+}
+
 function DialogContent({
   className,
   children,
   showCloseButton = true,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Content> & {
-  showCloseButton?: boolean
-}) {
+}: DialogContentProps) {
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
@@ -89,14 +92,16 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+interface DialogFooterProps extends React.ComponentProps<"div"> {
+  showCloseButton?: boolean
+}
+
 function DialogFooter({
   className,
   showCloseButton = false,
   children,
   ...props
-}: React.ComponentProps<"div"> & {
-  showCloseButton?: boolean
-}) {
+}: DialogFooterProps) {
   return (
     <div
       data-slot="dialog-footer"
@@ -146,8 +151,10 @@ export {
   Dialog,
   DialogClose,
   DialogContent,
+  type DialogContentProps,
   DialogDescription,
   DialogFooter,
+  type DialogFooterProps,
   DialogHeader,
   DialogOverlay,
   DialogPortal,

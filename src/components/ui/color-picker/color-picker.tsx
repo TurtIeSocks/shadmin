@@ -28,7 +28,7 @@ const COLOR_MODES = [
 // Component (top of file — filled in Phase 5)
 // ---------------------------------------------------------------------------
 
-export interface ColorPickerProps<
+interface ColorPickerProps<
   TMode extends ColorMode | undefined = undefined,
 > {
   value: ColorString | (string & {});
@@ -41,7 +41,7 @@ export interface ColorPickerProps<
   "aria-label"?: string;
 }
 
-export function ColorPicker<TMode extends ColorMode | undefined>({
+function ColorPicker<TMode extends ColorMode | undefined>({
   value,
   onChange,
   mode: modeProp,
@@ -235,19 +235,19 @@ export function ColorPicker<TMode extends ColorMode | undefined>({
 // Parsing / formatting (filled below)
 // ---------------------------------------------------------------------------
 
-export function parseAlphaToken(raw: string): number {
+function parseAlphaToken(raw: string): number {
   return raw.endsWith("%") ? parseFloat(raw) / 100 : parseFloat(raw);
 }
 
-export function trimNumber(n: number): number {
+function trimNumber(n: number): number {
   return parseFloat(n.toFixed(4));
 }
 
-export function clamp01(n: number): number {
+function clamp01(n: number): number {
   return n < 0 ? 0 : n > 1 ? 1 : n;
 }
 
-export function parseHex(
+function parseHex(
   value: string,
 ): { r: number; g: number; b: number; a: number } | null {
   const match = value.match(/^#([0-9a-f]{3,8})$/i);
@@ -289,7 +289,7 @@ export function parseHex(
   return null;
 }
 
-export function parseRgb(
+function parseRgb(
   value: string,
 ): { r: number; g: number; b: number; a: number } | null {
   const match = value.match(
@@ -306,7 +306,7 @@ export function parseRgb(
   return { r, g, b, a };
 }
 
-export function parseHsl(
+function parseHsl(
   value: string,
 ): { h: number; s: number; l: number; a: number } | null {
   const match = value.match(
@@ -324,7 +324,7 @@ export function parseHsl(
 const OKLCH_RE =
   /^oklch\(\s*([\d.]+%?)\s+([\d.]+%?)\s+([\d.]+(?:deg)?)\s*(?:\/\s*([\d.]+%?)\s*)?\)$/i;
 
-export function parseOklch(value: string): {
+function parseOklch(value: string): {
   l: number;
   c: number;
   h: number;
@@ -349,7 +349,7 @@ export function parseOklch(value: string): {
 // to integer percent (byte-quantized inputs make fractional alpha meaningless).
 // Hex encodes alpha as a byte-aligned digit pair.
 
-export function formatOklch({
+function formatOklch({
   l,
   c,
   h,
@@ -365,7 +365,7 @@ export function formatOklch({
   return `${base} / ${trimNumber(a * 100)}%)`;
 }
 
-export function formatHex(
+function formatHex(
   oklch: { l: number; c: number; h: number; a: number },
   includeAlpha: boolean,
 ): string {
@@ -379,7 +379,7 @@ export function formatHex(
   return `${base}${channel(oklch.a)}`;
 }
 
-export function formatRgb(oklch: {
+function formatRgb(oklch: {
   l: number;
   c: number;
   h: number;
@@ -392,7 +392,7 @@ export function formatRgb(oklch: {
   return `${base} / ${Math.round(oklch.a * 100)}%)`;
 }
 
-export function formatHsl(oklch: {
+function formatHsl(oklch: {
   l: number;
   c: number;
   h: number;
@@ -411,7 +411,7 @@ export function formatHsl(oklch: {
 const OKLAB_RE =
   /^oklab\(\s*([\d.]+%?)\s+(-?[\d.]+%?)\s+(-?[\d.]+%?)\s*(?:\/\s*([\d.]+%?)\s*)?\)$/i;
 
-export function parseOklab(value: string): {
+function parseOklab(value: string): {
   l: number;
   a: number;
   b: number;
@@ -434,7 +434,7 @@ export function parseOklab(value: string): {
   return { l, a, b, alpha };
 }
 
-export function formatOklab(oklch: {
+function formatOklab(oklch: {
   l: number;
   c: number;
   h: number;
@@ -449,7 +449,7 @@ export function formatOklab(oklch: {
 const HWB_RE =
   /^hwb\(\s*([\d.]+)(?:deg)?[\s,]+([\d.]+)%[\s,]+([\d.]+)%\s*(?:\/\s*([\d.]+%?)\s*)?\)$/i;
 
-export function parseHwb(value: string): {
+function parseHwb(value: string): {
   h: number;
   w: number;
   b: number;
@@ -465,7 +465,7 @@ export function parseHwb(value: string): {
   return { h, w, b, a };
 }
 
-export function formatHwb(oklch: {
+function formatHwb(oklch: {
   l: number;
   c: number;
   h: number;
@@ -485,19 +485,19 @@ export function formatHwb(oklch: {
 // Color space conversions
 // ---------------------------------------------------------------------------
 
-export function linearToSrgb(x: number): number {
+function linearToSrgb(x: number): number {
   if (x <= 0) return 0;
   if (x >= 1) return 1;
   return x <= 0.0031308 ? 12.92 * x : 1.055 * x ** (1 / 2.4) - 0.055;
 }
 
-export function srgbToLinear(x: number): number {
+function srgbToLinear(x: number): number {
   if (x <= 0) return 0;
   if (x >= 1) return 1;
   return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
 }
 
-export function hslToSrgb(
+function hslToSrgb(
   h: number,
   s: number,
   l: number,
@@ -518,7 +518,7 @@ export function hslToSrgb(
   return { r: r1 + m, g: g1 + m, b: b1 + m };
 }
 
-export function srgbToHsl(
+function srgbToHsl(
   r: number,
   g: number,
   b: number,
@@ -538,7 +538,7 @@ export function srgbToHsl(
   return { h, s, l };
 }
 
-export function oklchToSrgb(
+function oklchToSrgb(
   L: number,
   C: number,
   hDeg: number,
@@ -565,7 +565,7 @@ export function oklchToSrgb(
   return [linearToSrgb(rLin), linearToSrgb(gLin), linearToSrgb(bLin)];
 }
 
-export function srgbToOklch(
+function srgbToOklch(
   r: number,
   g: number,
   b: number,
@@ -594,7 +594,7 @@ export function srgbToOklch(
   return { l: L, c: C, h: H, a: alpha };
 }
 
-export function oklchToOklab(
+function oklchToOklab(
   L: number,
   C: number,
   hDeg: number,
@@ -603,7 +603,7 @@ export function oklchToOklab(
   return { l: L, a: C * Math.cos(hRad), b: C * Math.sin(hRad) };
 }
 
-export function oklabToOklch(
+function oklabToOklch(
   L: number,
   a: number,
   b: number,
@@ -615,7 +615,7 @@ export function oklabToOklch(
 }
 
 // Per CSS Color 4 spec, https://www.w3.org/TR/css-color-4/#hwb-to-rgb
-export function hwbToSrgb(
+function hwbToSrgb(
   h: number,
   w: number,
   b: number,
@@ -633,7 +633,7 @@ export function hwbToSrgb(
   };
 }
 
-export function srgbToHwb(
+function srgbToHwb(
   r: number,
   g: number,
   b: number,
@@ -648,12 +648,12 @@ export function srgbToHwb(
 // Mode dispatchers
 // ---------------------------------------------------------------------------
 
-export interface ParseResult {
+interface ParseResult {
   oklch: { l: number; c: number; h: number; a: number };
   mode: ColorMode;
 }
 
-export function parseColor(value: string): ParseResult | null {
+function parseColor(value: string): ParseResult | null {
   const trimmed = value.trim();
 
   const oklch = parseOklch(trimmed);
@@ -709,15 +709,15 @@ export function parseColor(value: string): ParseResult | null {
  *   // v is now typed ColorString
  * }
  */
-export function isColorString(value: string): value is ColorString;
-export function isColorString<S extends string>(
+function isColorString(value: string): value is ColorString;
+function isColorString<S extends string>(
   value: S,
 ): value is S & ColorLiteral<S>;
-export function isColorString(value: string): boolean {
+function isColorString(value: string): boolean {
   return parseColor(value) !== null;
 }
 
-export function formatColor(
+function formatColor(
   oklch: { l: number; c: number; h: number; a: number },
   mode: ColorMode,
 ): string {
@@ -1011,3 +1011,37 @@ function PresetPalette({
     </div>
   );
 }
+
+export {
+  ColorPicker,
+  type ColorPickerProps,
+  parseAlphaToken,
+  trimNumber,
+  clamp01,
+  parseHex,
+  parseRgb,
+  parseHsl,
+  parseOklch,
+  formatOklch,
+  formatHex,
+  formatRgb,
+  formatHsl,
+  parseOklab,
+  formatOklab,
+  parseHwb,
+  formatHwb,
+  linearToSrgb,
+  srgbToLinear,
+  hslToSrgb,
+  srgbToHsl,
+  oklchToSrgb,
+  srgbToOklch,
+  oklchToOklab,
+  oklabToOklch,
+  hwbToSrgb,
+  srgbToHwb,
+  type ParseResult,
+  parseColor,
+  isColorString,
+  formatColor,
+};

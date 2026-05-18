@@ -19,19 +19,19 @@ import {
   TextInput,
 } from "@/components/admin";
 
-export interface JsonSchemaProperty {
+interface JsonSchemaProperty {
   type: "string" | "number" | "integer" | "boolean";
   format?: "email" | "date" | "date-time" | "uri";
   enum?: readonly string[];
   title?: string;
 }
 
-export interface JsonSchema {
+interface JsonSchema {
   type: "object";
   properties: Record<string, JsonSchemaProperty>;
 }
 
-export interface SchemaDrivenViewProps {
+interface SchemaDrivenViewProps {
   schema: JsonSchema;
   mode: "list" | "edit" | "show";
   /** Map of property key → custom ReactNode used instead of the default mapping. */
@@ -50,7 +50,7 @@ export interface SchemaDrivenViewProps {
  * <SchemaDrivenView schema={SCHEMA} mode="list" />
  * <SchemaDrivenView schema={SCHEMA} mode="edit" overrides={{ title: <TextInput source="title" multiline /> }} />
  */
-export const SchemaDrivenView = ({
+const SchemaDrivenView = ({
   schema,
   mode,
   overrides,
@@ -153,3 +153,5 @@ function renderInput(key: string, prop: JsonSchemaProperty): ReactNode {
   }
   return <TextInput key={key} source={key} />;
 }
+
+export { type JsonSchemaProperty, type JsonSchema, type SchemaDrivenViewProps, SchemaDrivenView };

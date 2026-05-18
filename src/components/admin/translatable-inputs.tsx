@@ -17,7 +17,7 @@ import { TranslatableInputsTabs } from "@/components/admin/translatable-inputs-t
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
  */
-export const TranslatableInputs = (props: TranslatableInputsProps) => {
+function TranslatableInputs(props: TranslatableInputsProps) {
   const {
     className,
     defaultLocale,
@@ -48,11 +48,13 @@ export const TranslatableInputs = (props: TranslatableInputsProps) => {
       </Tabs>
     </TranslatableContextProvider>
   );
-};
+}
 
-export interface TranslatableInputsProps extends UseTranslatableOptions {
+interface TranslatableInputsProps extends UseTranslatableOptions {
   className?: string;
   selector?: ReactElement;
   children: ReactNode;
   groupKey?: string;
 }
+
+export { TranslatableInputs, type TranslatableInputsProps };

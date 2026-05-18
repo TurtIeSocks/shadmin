@@ -1,7 +1,7 @@
 import type * as L from "leaflet";
 import type { ReactNode } from "react";
 
-export type ShapeKind =
+type ShapeKind =
   | "Point"
   | "MultiPoint"
   | "LineString"
@@ -10,7 +10,7 @@ export type ShapeKind =
   | "MultiPolygon"
   | "GeometryCollection";
 
-export type GeomanShape =
+type GeomanShape =
   | "Marker"
   | "CircleMarker"
   | "Line"
@@ -19,7 +19,7 @@ export type GeomanShape =
   | "Circle"
   | "Text";
 
-export interface BaseMapProps {
+interface BaseMapProps {
   zoom?: number;
   defaultCenter?: [number, number];
   height?: number | string;
@@ -27,7 +27,7 @@ export interface BaseMapProps {
   attribution?: string;
 }
 
-export interface BaseFieldProps extends BaseMapProps {
+interface BaseFieldProps extends BaseMapProps {
   source: string;
   pathOptions?: L.PathOptions;
   markerIcon?: L.Icon | L.DivIcon;
@@ -35,7 +35,7 @@ export interface BaseFieldProps extends BaseMapProps {
   emptyText?: ReactNode;
 }
 
-export interface BaseInputProps extends BaseMapProps {
+interface BaseInputProps extends BaseMapProps {
   source: string;
   label?: ReactNode;
   helperText?: ReactNode;
@@ -47,3 +47,11 @@ export interface BaseInputProps extends BaseMapProps {
     | ((v: unknown) => string | undefined)
     | Array<(v: unknown) => string | undefined>;
 }
+
+export {
+  type ShapeKind,
+  type GeomanShape,
+  type BaseMapProps,
+  type BaseFieldProps,
+  type BaseInputProps,
+};

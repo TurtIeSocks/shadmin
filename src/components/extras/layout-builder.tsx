@@ -19,7 +19,7 @@ import { GripVertical } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export interface LayoutBuilderProps {
+interface LayoutBuilderProps {
   /** All fields available for the resource. */
   availableFields: readonly string[];
   /** Layout mode. Only `list-columns` is implemented in v1. */
@@ -46,7 +46,7 @@ export interface LayoutBuilderProps {
  *   mode="list-columns"
  * />
  */
-export const LayoutBuilder = ({
+const LayoutBuilder = ({
   availableFields,
   mode = "list-columns",
   defaultOrder,
@@ -135,3 +135,5 @@ const Row = ({ id }: { id: string }) => {
     </li>
   );
 };
+
+export { type LayoutBuilderProps, LayoutBuilder };

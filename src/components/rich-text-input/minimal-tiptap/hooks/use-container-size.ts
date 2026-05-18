@@ -12,7 +12,7 @@ const DEFAULT_RECT: DOMRect = {
   toJSON: () => "{}",
 };
 
-export function useContainerSize(element: HTMLElement | null): DOMRect {
+function useContainerSize(element: HTMLElement | null): DOMRect {
   const [size, setSize] = useState<DOMRect>(
     () => element?.getBoundingClientRect() ?? DEFAULT_RECT,
   );
@@ -53,3 +53,5 @@ export function useContainerSize(element: HTMLElement | null): DOMRect {
 
   return size;
 }
+
+export { useContainerSize };

@@ -6,7 +6,7 @@ import type { editor } from "monaco-editor";
  * content height, clamped to `[minHeight, maxHeight]`. When `enabled`
  * is false, returns 0 (caller should use its own `height`).
  */
-export function useAutoHeight(
+function useAutoHeight(
   instance: editor.IStandaloneCodeEditor | null,
   enabled: boolean,
   minHeight: number,
@@ -31,3 +31,5 @@ export function useAutoHeight(
 
   return enabled ? height : 0;
 }
+
+export { useAutoHeight };

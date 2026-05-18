@@ -50,9 +50,9 @@ import { cn } from "@/lib/utils";
  *   </InfiniteList>
  * );
  */
-export const InfiniteList = <RecordType extends RaRecord = RaRecord>(
+function InfiniteList<RecordType extends RaRecord = RaRecord>(
   props: InfiniteListProps<RecordType>,
-) => {
+) {
   const {
     debounce,
     disableAuthentication,
@@ -87,9 +87,9 @@ export const InfiniteList = <RecordType extends RaRecord = RaRecord>(
       <InfiniteListView<RecordType> {...rest} />
     </InfiniteListBase>
   );
-};
+}
 
-export interface InfiniteListProps<RecordType extends RaRecord = RaRecord>
+interface InfiniteListProps<RecordType extends RaRecord = RaRecord>
   extends
     InfiniteListBaseProps<RecordType>,
     InfiniteListViewProps<RecordType> {}
@@ -99,9 +99,9 @@ export interface InfiniteListProps<RecordType extends RaRecord = RaRecord>
  *
  * @internal
  */
-export const InfiniteListView = <RecordType extends RaRecord = RaRecord>(
+function InfiniteListView<RecordType extends RaRecord = RaRecord>(
   props: InfiniteListViewProps<RecordType>,
-) => {
+) {
   const {
     aside,
     component: Content = "div",
@@ -190,12 +190,12 @@ export const InfiniteListView = <RecordType extends RaRecord = RaRecord>(
       </FilterContext.Provider>
     </>
   );
-};
+}
 
 const defaultPagination = <InfinitePagination />;
 const defaultEmpty = <Empty />;
 
-export interface InfiniteListViewProps<RecordType extends RaRecord = RaRecord> {
+interface InfiniteListViewProps<RecordType extends RaRecord = RaRecord> {
   aside?: ReactNode;
   children?: ReactNode;
   component?: ElementType;
@@ -210,3 +210,10 @@ export interface InfiniteListViewProps<RecordType extends RaRecord = RaRecord> {
   title?: ReactNode | string | false;
   className?: string;
 }
+
+export {
+  InfiniteList,
+  InfiniteListView,
+  type InfiniteListProps,
+  type InfiniteListViewProps,
+};

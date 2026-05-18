@@ -50,7 +50,7 @@ interface SectionFourProps extends VariantProps<typeof toggleVariants> {
   mainActionCount?: number;
 }
 
-export const SectionFour: React.FC<SectionFourProps> = ({
+const SectionFour: React.FC<SectionFourProps> = ({
   editor,
   activeActions = formatActions.map((action) => action.value),
   mainActionCount = 0,
@@ -78,4 +78,4 @@ export const SectionFour: React.FC<SectionFourProps> = ({
 
 SectionFour.displayName = "SectionFour";
 
-export default SectionFour;
+export { SectionFour };

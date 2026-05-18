@@ -6,6 +6,17 @@ import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
 
+interface ReferenceInputProps extends ReferenceInputBaseProps {
+  /**
+   * Call validate on the child component instead
+   */
+  validate?: never;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
+}
+
 /**
  * Form input for editing foreign key relationships with autocompletion.
  *
@@ -28,7 +39,7 @@ const defaultOffline = <Offline />;
  *   </Edit>
  * );
  */
-export const ReferenceInput = (props: ReferenceInputProps) => {
+function ReferenceInput(props: ReferenceInputProps) {
   const {
     children = defaultChildren,
     offline = defaultOffline,
@@ -46,17 +57,8 @@ export const ReferenceInput = (props: ReferenceInputProps) => {
       {children}
     </ReferenceInputBase>
   );
-};
+}
 
 const defaultChildren = <AutocompleteInput />;
 
-export interface ReferenceInputProps extends ReferenceInputBaseProps {
-  /**
-   * Call validate on the child component instead
-   */
-  validate?: never;
-  /**
-   * Component to display when offline and the request is pending or has stale placeholder data.
-   */
-  offline?: ReactNode;
-}
+export { ReferenceInput, type ReferenceInputProps };

@@ -29,7 +29,7 @@ const DEFAULT_VALUE: WebhookEndpoint = {
  * @example
  * <WebhookEndpointInput source="endpoint" eventTypes={EVENT_TYPES} />
  */
-export const WebhookEndpointInput = (props: WebhookEndpointInputProps) => {
+function WebhookEndpointInput(props: WebhookEndpointInputProps) {
   const {
     label,
     source,
@@ -141,7 +141,7 @@ export const WebhookEndpointInput = (props: WebhookEndpointInputProps) => {
   );
 };
 
-export interface WebhookEndpointInputProps extends InputProps {
+interface WebhookEndpointInputProps extends InputProps {
   /** Available event-type strings to surface as checkboxes. */
   eventTypes: readonly string[];
   /** Optional test-ping handler. When set, renders the test-ping button. */
@@ -149,3 +149,5 @@ export interface WebhookEndpointInputProps extends InputProps {
   disabled?: boolean;
   className?: string;
 }
+
+export { WebhookEndpointInput, type WebhookEndpointInputProps };

@@ -20,7 +20,7 @@ import { TranslatableFieldsTab } from "@/components/admin/translatable-fields-ta
  *     <TextField source="name" />
  * </TranslatableFields>
  */
-export const TranslatableFieldsTabs = (props: TranslatableFieldsTabsProps) => {
+function TranslatableFieldsTabs(props: TranslatableFieldsTabsProps) {
   const { groupKey, className } = props;
   const { locales } = useTranslatableContext();
 
@@ -37,9 +37,11 @@ export const TranslatableFieldsTabs = (props: TranslatableFieldsTabsProps) => {
       ))}
     </TabsList>
   );
-};
+}
 
-export interface TranslatableFieldsTabsProps {
+interface TranslatableFieldsTabsProps {
   groupKey?: string;
   className?: string;
 }
+
+export { TranslatableFieldsTabs, type TranslatableFieldsTabsProps };

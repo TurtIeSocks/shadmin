@@ -8,6 +8,20 @@ import {
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
+interface CurrencyFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+  /** ISO-4217 currency code (e.g. 'USD'). Required when value is a plain number. */
+  currency?: string;
+  /** Override the user's app locale. */
+  displayLocale?: string;
+  /** Treat the stored value as minor units (cents) and divide by 100. */
+  storeAsMinorUnits?: boolean;
+  /** Extra options forwarded to `Intl.NumberFormat`. */
+  options?: Intl.NumberFormatOptions;
+}
+
 /**
  * Displays a monetary value using `Intl.NumberFormat`.
  *
@@ -15,7 +29,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * `{ amount: number, currency: string }` object. When `storeAsMinorUnits` is
  * true, the numeric value is divided by 100 before formatting (cents → dollars).
  */
-export const CurrencyField = <
+function CurrencyField<
   RecordType extends UnknownRecord = UnknownRecord,
 >({
   defaultValue,
@@ -28,7 +42,7 @@ export const CurrencyField = <
   options,
   className,
   ...rest
-}: CurrencyFieldProps<RecordType>) => {
+}: CurrencyFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const [appLocale] = useLocaleState();
   const translate = useTranslate();
@@ -56,7 +70,7 @@ export const CurrencyField = <
       {formatted}
     </span>
   );
-};
+}
 
 function normalizeCurrencyValue(
   v: unknown,
@@ -74,16 +88,4 @@ function normalizeCurrencyValue(
   return { amount: Number(v), code: fallbackCurrency };
 }
 
-export interface CurrencyFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
-  /** ISO-4217 currency code (e.g. 'USD'). Required when value is a plain number. */
-  currency?: string;
-  /** Override the user's app locale. */
-  displayLocale?: string;
-  /** Treat the stored value as minor units (cents) and divide by 100. */
-  storeAsMinorUnits?: boolean;
-  /** Extra options forwarded to `Intl.NumberFormat`. */
-  options?: Intl.NumberFormatOptions;
-}
+export { CurrencyField, type CurrencyFieldProps };

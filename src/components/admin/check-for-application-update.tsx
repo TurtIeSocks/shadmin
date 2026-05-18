@@ -4,7 +4,7 @@ import { ApplicationUpdatedNotification } from "./application-updated-notificati
 
 const ONE_HOUR = 3600000;
 
-export interface CheckForApplicationUpdateProps {
+interface CheckForApplicationUpdateProps {
   /**
    * Interval in milliseconds between two checks. Defaults to 3600000 (1 hour).
    */
@@ -59,9 +59,9 @@ export interface CheckForApplicationUpdateProps {
  *   </Layout>
  * );
  */
-export const CheckForApplicationUpdate = (
+function CheckForApplicationUpdate(
   props: CheckForApplicationUpdateProps,
-) => {
+) {
   const {
     interval = ONE_HOUR,
     url,
@@ -130,7 +130,7 @@ export const CheckForApplicationUpdate = (
   }
 
   return <>{notification}</>;
-};
+}
 
 /**
  * Tiny, synchronous, non-cryptographic string hash (djb2).
@@ -144,3 +144,8 @@ function hashString(input: string): number {
   // Force unsigned 32-bit integer so the value is stable for comparison.
   return hash >>> 0;
 }
+
+export {
+  CheckForApplicationUpdate,
+  type CheckForApplicationUpdateProps,
+};

@@ -47,11 +47,11 @@ const EMPTY_ARRAY: SelectableField[] = [];
  *   </Edit>
  * );
  */
-export const SimpleFormConfigurable = ({
+function SimpleFormConfigurable({
   preferenceKey,
   omit,
   ...props
-}: SimpleFormConfigurableProps) => {
+}: SimpleFormConfigurableProps) {
   const translate = useTranslate();
   const resource = useResourceContext();
   const finalPreferenceKey = preferenceKey || `${resource}.simpleForm`;
@@ -104,7 +104,7 @@ export const SimpleFormConfigurable = ({
       <SimpleFormWithPreferences {...props} />
     </Configurable>
   );
-};
+}
 
 /**
  * Filters the children of {@link SimpleForm} based on the user's saved
@@ -148,7 +148,7 @@ const SimpleFormEditor = () => {
   return <FieldsSelector name="inputs" availableName="availableInputs" />;
 };
 
-export interface SimpleFormConfigurableProps extends SimpleFormProps {
+interface SimpleFormConfigurableProps extends SimpleFormProps {
   /**
    * Key used to store user preferences for this form. Defaults to
    * `${resource}.simpleForm`. Pass a custom key when several
@@ -164,3 +164,5 @@ export interface SimpleFormConfigurableProps extends SimpleFormProps {
    */
   omit?: string[];
 }
+
+export { SimpleFormConfigurable, type SimpleFormConfigurableProps };

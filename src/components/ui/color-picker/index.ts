@@ -1,6 +1,7 @@
-export type { ColorPickerProps } from "./color-picker";
-export { ColorPicker, isColorString } from "./color-picker";
-export type {
+import { ColorPicker, isColorString } from "./color-picker";
+import type { ColorPickerProps } from "./color-picker";
+import { color } from "./color-picker.types";
+import type {
   ColorLiteral,
   ColorMode,
   ColorString,
@@ -22,4 +23,30 @@ export type {
   WithAlpha,
   WithoutAlpha,
 } from "./color-picker.types";
-export { color } from "./color-picker.types";
+
+export {
+  ColorPicker,
+  type ColorPickerProps,
+  isColorString,
+  color,
+  type ColorLiteral,
+  type ColorMode,
+  type ColorString,
+  type ColorStringMap,
+  type HexLiteral,
+  type HexString,
+  type HSLLiteral,
+  type HslString,
+  type HWBLiteral,
+  type HwbString,
+  type ModeOf,
+  type OKLCHLiteral,
+  type OklabLiteral,
+  type OklabString,
+  type OklchString,
+  type RGBALiteral,
+  type RGBLiteral,
+  type RgbString,
+  type WithAlpha,
+  type WithoutAlpha,
+};

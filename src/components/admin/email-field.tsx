@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
-const EmailFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
+function EmailFieldImpl<RecordType extends UnknownRecord = UnknownRecord>(
   inProps: EmailFieldProps<RecordType>,
-) => {
+) {
   const { className, empty, defaultValue, source, record, ...rest } = inProps;
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
@@ -40,7 +40,7 @@ const EmailFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
       {value}
     </a>
   );
-};
+}
 EmailFieldImpl.displayName = "EmailFieldImpl";
 
 /**
@@ -63,9 +63,9 @@ EmailFieldImpl.displayName = "EmailFieldImpl";
  *   </List>
  * );
  */
-export const EmailField = genericMemo(EmailFieldImpl);
+const EmailField = genericMemo(EmailFieldImpl);
 
-export interface EmailFieldProps<
+interface EmailFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, AnchorHTMLAttributes<HTMLAnchorElement> {}
@@ -73,3 +73,5 @@ export interface EmailFieldProps<
 // useful to prevent click bubbling in a DataTable with rowClick
 const stopPropagation = (e: React.MouseEvent<HTMLAnchorElement>) =>
   e.stopPropagation();
+
+export { EmailField, type EmailFieldProps };

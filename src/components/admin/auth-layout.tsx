@@ -3,7 +3,7 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Notification } from "@/components/admin/notification";
 
-export interface AuthLayoutProps extends Omit<
+interface AuthLayoutProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
   "title"
 > {
@@ -41,7 +41,7 @@ export interface AuthLayoutProps extends Omit<
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/authlayout/ AuthLayout documentation}
  */
-export const AuthLayout = (props: AuthLayoutProps) => {
+function AuthLayout(props: AuthLayoutProps) {
   const { children, title, subtitle, aside, className, ...rest } = props;
   const hasAside = aside != null;
   return (
@@ -80,4 +80,6 @@ export const AuthLayout = (props: AuthLayoutProps) => {
       <Notification />
     </div>
   );
-};
+}
+
+export { AuthLayout, type AuthLayoutProps };

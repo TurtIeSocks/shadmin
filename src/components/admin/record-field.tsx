@@ -13,6 +13,20 @@ import { TextField } from "@/components/admin/text-field";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import type { FieldProps } from "@/lib/field-types";
 
+// FIXME remove custom type when using TypeScript >= 5.4 as it is now native
+type NoInfer<T> = T extends infer U ? U : never;
+
+interface RecordFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends Omit<FieldProps<RecordType>, "source" | "record">,
+    Omit<HTMLAttributes<HTMLDivElement>, "className"> {
+  children?: ReactNode;
+  field?: ElementType;
+  render?: (record: RecordType) => React.ReactNode;
+  source?: NoInfer<HintedString<ExtractRecordPaths<RecordType>>>;
+  record?: RecordType;
+  variant?: "default" | "inline";
+}
+
 /**
  * Displays a labeled field-value pair with flexible rendering options.
  *
@@ -43,9 +57,9 @@ import type { FieldProps } from "@/lib/field-types";
  *   </Show>
  * );
  */
-export const RecordField = <RecordType extends UnknownRecord = UnknownRecord>(
+function RecordField<RecordType extends UnknownRecord = UnknownRecord>(
   props: RecordFieldProps<RecordType>,
-) => {
+) {
   const {
     children,
     className,
@@ -111,21 +125,6 @@ export const RecordField = <RecordType extends UnknownRecord = UnknownRecord>(
       ) : null}
     </div>
   );
-};
-
-// FIXME remove custom type when using TypeScript >= 5.4 as it is now native
-type NoInfer<T> = T extends infer U ? U : never;
-
-export interface RecordFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    Omit<FieldProps<RecordType>, "source" | "record">,
-    Omit<HTMLAttributes<HTMLDivElement>, "className"> {
-  children?: ReactNode;
-  field?: ElementType;
-  render?: (record: RecordType) => React.ReactNode;
-  source?: NoInfer<HintedString<ExtractRecordPaths<RecordType>>>;
-  record?: RecordType;
-  variant?: "default" | "inline";
 }
+
+export { RecordField, type RecordFieldProps };

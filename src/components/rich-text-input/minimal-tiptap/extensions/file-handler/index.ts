@@ -95,7 +95,7 @@ const FileHandlePlugin = (options: FileHandlePluginOptions) => {
   });
 };
 
-export const FileHandler = Extension.create<
+const FileHandler = Extension.create<
   Omit<FileHandlePluginOptions, "key" | "editor">
 >({
   name: "fileHandler",
@@ -118,3 +118,5 @@ export const FileHandler = Extension.create<
     ];
   },
 });
+
+export { FileHandler };

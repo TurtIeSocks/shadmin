@@ -5,8 +5,10 @@ import {
   type ShapeFieldShellProps,
 } from "./shape-field-shell";
 
-export type GeometryCollectionFieldProps = ShapeFieldShellProps;
+type GeometryCollectionFieldProps = ShapeFieldShellProps;
 
-export const GeometryCollectionField = (
-  props: GeometryCollectionFieldProps,
-) => <ShapeFieldShell {...props} />;
+function GeometryCollectionField(props: GeometryCollectionFieldProps) {
+  return <ShapeFieldShell {...props} />;
+}
+
+export { GeometryCollectionField, type GeometryCollectionFieldProps };

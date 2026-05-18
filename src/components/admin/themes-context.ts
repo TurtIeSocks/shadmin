@@ -4,7 +4,7 @@ import type { AdminTheme, ThemeVars } from "./theme-types";
 /**
  * Value exposed by `<ThemesContext.Provider>` to descendants.
  */
-export interface ThemesContextValue {
+interface ThemesContextValue {
   /**
    * The theme applied in light mode.
    */
@@ -46,7 +46,7 @@ export interface ThemesContextValue {
  * React context that carries the active named themes down the tree.
  * Populated by `<ThemeProvider>` and consumed via {@link useThemes}.
  */
-export const ThemesContext = createContext<ThemesContextValue>({
+const ThemesContext = createContext<ThemesContextValue>({
   liveVars: {},
   setLiveVar: () => {},
 });
@@ -59,6 +59,8 @@ export const ThemesContext = createContext<ThemesContextValue>({
  * descendant that wants to introspect or mutate the active palette without
  * touching `documentElement.style` directly.
  */
-export function useThemes(): ThemesContextValue {
+function useThemes(): ThemesContextValue {
   return useContext(ThemesContext);
 }
+
+export { ThemesContext, useThemes, type ThemesContextValue };

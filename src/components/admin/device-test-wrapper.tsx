@@ -8,7 +8,7 @@ const WIDTH_MAP = {
   xl: 1536,
 } as const;
 
-export interface DeviceTestWrapperProps {
+interface DeviceTestWrapperProps {
   width: keyof typeof WIDTH_MAP;
   children: ReactNode;
 }
@@ -58,10 +58,10 @@ const buildMatchMedia =
  *   <MyResponsiveComponent />
  * </DeviceTestWrapper>
  */
-export const DeviceTestWrapper = ({
+function DeviceTestWrapper({
   width,
   children,
-}: DeviceTestWrapperProps) => {
+}: DeviceTestWrapperProps) {
   const pixelWidth = WIDTH_MAP[width];
 
   useEffect(() => {
@@ -73,4 +73,6 @@ export const DeviceTestWrapper = ({
   }, [pixelWidth]);
 
   return <div style={{ width: pixelWidth }}>{children}</div>;
-};
+}
+
+export { DeviceTestWrapper, type DeviceTestWrapperProps };

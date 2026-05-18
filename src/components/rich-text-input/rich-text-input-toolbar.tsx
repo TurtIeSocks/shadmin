@@ -8,11 +8,11 @@ import { SectionThree } from "@/components/rich-text-input/minimal-tiptap/compon
 import { SectionTwo } from "@/components/rich-text-input/minimal-tiptap/components/section/two";
 import { useRichTextInputEditor } from "./use-rich-text-input-editor";
 
-export type RichTextInputToolbarProps = {
+interface RichTextInputToolbarProps {
   children?: ReactNode;
-};
+}
 
-const DefaultToolbarItems = () => {
+function DefaultToolbarItems() {
   const editor = useRichTextInputEditor();
 
   if (!editor) {
@@ -59,11 +59,9 @@ const DefaultToolbarItems = () => {
       />
     </>
   );
-};
+}
 
-export const RichTextInputToolbar = ({
-  children,
-}: RichTextInputToolbarProps) => {
+function RichTextInputToolbar({ children }: RichTextInputToolbarProps) {
   const editor = useRichTextInputEditor();
 
   if (!editor && !children) {
@@ -75,4 +73,6 @@ export const RichTextInputToolbar = ({
       {children ?? <DefaultToolbarItems />}
     </div>
   );
-};
+}
+
+export { RichTextInputToolbar, type RichTextInputToolbarProps };

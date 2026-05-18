@@ -39,9 +39,9 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *   </Edit>
  * )
  */
-export const SaveButton = <RecordType extends RaRecord = RaRecord>(
+function SaveButton<RecordType extends RaRecord = RaRecord>(
   props: SaveButtonProps<RecordType>,
-) => {
+) {
   const {
     className,
     icon = defaultIcon,
@@ -128,7 +128,7 @@ export const SaveButton = <RecordType extends RaRecord = RaRecord>(
       {displayedLabel}
     </Button>
   );
-};
+}
 
 const defaultIcon = <Save className="size-4" />;
 
@@ -156,5 +156,7 @@ interface Props<
     | "link";
 }
 
-export type SaveButtonProps<RecordType extends RaRecord = RaRecord> =
+type SaveButtonProps<RecordType extends RaRecord = RaRecord> =
   Props<RecordType> & React.ComponentProps<"button">;
+
+export { SaveButton, type SaveButtonProps };

@@ -1,6 +1,6 @@
 const ISO_RE = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/;
 
-export interface ParsedDuration {
+interface ParsedDuration {
   days?: number;
   hours?: number;
   minutes?: number;
@@ -15,7 +15,7 @@ export interface ParsedDuration {
  * imported by `<DurationInput>` without triggering the
  * `react-refresh/only-export-components` lint rule.
  */
-export function parseIsoDuration(s: string): ParsedDuration | null {
+function parseIsoDuration(s: string): ParsedDuration | null {
   const m = s.match(ISO_RE);
   if (!m) return null;
   const [, d, h, mn, sc] = m;
@@ -30,7 +30,7 @@ export function parseIsoDuration(s: string): ParsedDuration | null {
 /**
  * Renders a `ParsedDuration` in compact human-readable form, e.g. `2h 30m`.
  */
-export function compactDuration(p: ParsedDuration): string {
+function compactDuration(p: ParsedDuration): string {
   const parts: string[] = [];
   if (p.days) parts.push(`${p.days}d`);
   if (p.hours) parts.push(`${p.hours}h`);
@@ -38,3 +38,5 @@ export function compactDuration(p: ParsedDuration): string {
   if (p.seconds) parts.push(`${p.seconds}s`);
   return parts.join(" ") || "0m";
 }
+
+export { parseIsoDuration, compactDuration, type ParsedDuration };

@@ -7,7 +7,7 @@ import { LatLngInput } from "../lat-lng-input";
 import { GeocodingInput } from "./geocoding-input";
 import { useReverseGeocode } from "./use-reverse-geocode";
 
-export interface MapWithSearchProps {
+interface MapWithSearchProps {
   latSource: string;
   lngSource: string;
   addressSource: string;
@@ -23,7 +23,7 @@ export interface MapWithSearchProps {
  *
  * Must be rendered inside a React Hook Form context (e.g. `<SimpleForm>`).
  */
-export const MapWithSearch = ({
+const MapWithSearch = ({
   latSource,
   lngSource,
   addressSource,
@@ -61,3 +61,5 @@ export const MapWithSearch = ({
     </div>
   );
 };
+
+export { type MapWithSearchProps, MapWithSearch };

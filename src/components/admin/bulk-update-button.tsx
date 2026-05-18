@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Confirm } from "@/components/admin/confirm";
 import type { UnknownValue } from "@/lib/unknown-types";
 
-export interface BulkUpdateWithUndoButtonProps<
+interface BulkUpdateWithUndoButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > extends Omit<
@@ -34,7 +34,7 @@ export interface BulkUpdateWithUndoButtonProps<
   variant?: React.ComponentProps<typeof Button>["variant"];
 }
 
-export interface BulkUpdateWithConfirmButtonProps<
+interface BulkUpdateWithConfirmButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > extends UseBulkUpdateControllerParams<RecordType, MutationOptionsError> {
@@ -49,7 +49,7 @@ export interface BulkUpdateWithConfirmButtonProps<
   variant?: React.ComponentProps<typeof Button>["variant"];
 }
 
-export type BulkUpdateButtonProps<
+type BulkUpdateButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > = { mutationMode?: MutationMode } & (
@@ -81,7 +81,7 @@ export type BulkUpdateButtonProps<
  *   </List>
  * );
  */
-export const BulkUpdateButton = (props: BulkUpdateButtonProps) => {
+function BulkUpdateButton(props: BulkUpdateButtonProps) {
   const { mutationMode = "undoable", ...rest } = props;
   return mutationMode === "undoable" ? (
     <BulkUpdateWithUndoButton {...(rest as BulkUpdateWithUndoButtonProps)} />
@@ -91,16 +91,16 @@ export const BulkUpdateButton = (props: BulkUpdateButtonProps) => {
       {...(rest as BulkUpdateWithConfirmButtonProps)}
     />
   );
-};
+}
 
 /**
  * Bulk update button variant that asks the user to confirm before firing the mutation.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkupdatebutton/ BulkUpdateButton documentation}
  */
-export const BulkUpdateWithConfirmButton = (
+function BulkUpdateWithConfirmButton(
   props: BulkUpdateWithConfirmButtonProps,
-) => {
+) {
   const {
     className,
     confirmTitle = "ra.message.bulk_update_title",
@@ -206,16 +206,16 @@ export const BulkUpdateWithConfirmButton = (
       />
     </Fragment>
   );
-};
+}
 
 /**
  * Bulk update button variant that fires immediately with undo capability.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkupdatebutton/ BulkUpdateButton documentation}
  */
-export const BulkUpdateWithUndoButton = (
+function BulkUpdateWithUndoButton(
   props: BulkUpdateWithUndoButtonProps,
-) => {
+) {
   const {
     className,
     data = defaultData,
@@ -267,7 +267,16 @@ export const BulkUpdateWithUndoButton = (
       {label}
     </Button>
   );
-};
+}
 
 const defaultIcon = <RefreshCw />;
 const defaultData = {};
+
+export {
+  BulkUpdateButton,
+  BulkUpdateWithConfirmButton,
+  BulkUpdateWithUndoButton,
+  type BulkUpdateButtonProps,
+  type BulkUpdateWithConfirmButtonProps,
+  type BulkUpdateWithUndoButtonProps,
+};

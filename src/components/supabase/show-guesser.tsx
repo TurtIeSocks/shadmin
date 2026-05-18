@@ -13,11 +13,11 @@ import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { showFieldTypes } from "./show-field-types";
 
-export type SupabaseShowGuesserProps = Omit<ShowProps, "children"> & {
+type SupabaseShowGuesserProps = Omit<ShowProps, "children"> & {
   enableLog?: boolean;
 };
 
-export const SupabaseShowGuesser = (props: SupabaseShowGuesserProps) => {
+function SupabaseShowGuesser(props: SupabaseShowGuesserProps) {
   const { id, disableAuthentication, queryOptions, resource, ...rest } = props;
   return (
     <ShowBase
@@ -85,3 +85,5 @@ const SupabaseShowGuesserView = (
 
   return <ShowView {...rest}>{child}</ShowView>;
 };
+
+export { type SupabaseShowGuesserProps, SupabaseShowGuesser };

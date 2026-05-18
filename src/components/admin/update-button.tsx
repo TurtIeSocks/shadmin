@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Confirm } from "@/components/admin/confirm";
 import type { UnknownValue } from "@/lib/unknown-types";
 
-export interface UpdateWithUndoButtonProps<
+interface UpdateWithUndoButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > extends Omit<
@@ -34,7 +34,7 @@ export interface UpdateWithUndoButtonProps<
   variant?: React.ComponentProps<typeof Button>["variant"];
 }
 
-export interface UpdateWithConfirmButtonProps<
+interface UpdateWithConfirmButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > extends UseUpdateControllerParams<RecordType, MutationOptionsError> {
@@ -51,7 +51,7 @@ export interface UpdateWithConfirmButtonProps<
   variant?: React.ComponentProps<typeof Button>["variant"];
 }
 
-export type UpdateButtonProps<
+type UpdateButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > =
@@ -79,7 +79,7 @@ export type UpdateButtonProps<
  *   <UpdateButton label="Reset Views" data={{ views: 0 }} />
  * );
  */
-export const UpdateButton = (props: UpdateButtonProps) => {
+function UpdateButton(props: UpdateButtonProps) {
   const { mutationMode = "undoable", ...rest } = props;
   return mutationMode === "undoable" ? (
     <UpdateWithUndoButton {...(rest as UpdateWithUndoButtonProps)} />
@@ -89,16 +89,16 @@ export const UpdateButton = (props: UpdateButtonProps) => {
       {...(rest as UpdateWithConfirmButtonProps)}
     />
   );
-};
+}
 
 /**
  * Update button variant that asks the user to confirm before firing the mutation.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/updatebutton/ UpdateButton documentation}
  */
-export const UpdateWithConfirmButton = (
+function UpdateWithConfirmButton(
   props: UpdateWithConfirmButtonProps,
-) => {
+) {
   const {
     className,
     confirmTitle: confirmTitleProp,
@@ -232,14 +232,14 @@ export const UpdateWithConfirmButton = (
       />
     </Fragment>
   );
-};
+}
 
 /**
  * Update button variant that fires immediately with undo capability.
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/updatebutton/ UpdateButton documentation}
  */
-export const UpdateWithUndoButton = (props: UpdateWithUndoButtonProps) => {
+function UpdateWithUndoButton(props: UpdateWithUndoButtonProps) {
   const {
     className,
     data,
@@ -316,7 +316,16 @@ export const UpdateWithUndoButton = (props: UpdateWithUndoButtonProps) => {
       {label}
     </Button>
   );
-};
+}
 
 const defaultIcon = <RefreshCw />;
 const emptyObject = {};
+
+export {
+  UpdateButton,
+  type UpdateButtonProps,
+  UpdateWithConfirmButton,
+  type UpdateWithConfirmButtonProps,
+  UpdateWithUndoButton,
+  type UpdateWithUndoButtonProps,
+};

@@ -33,7 +33,7 @@ import { ReferenceArrayField } from "@/components/admin/reference-array-field";
  *
  * export const PostShow = () => <ShowGuesser enableLog />;
  */
-export const ShowGuesser = (props: ShowGuesserProps) => {
+function ShowGuesser(props: ShowGuesserProps) {
   const { disableAuthentication, id, queryOptions, resource, ...rest } = props;
   return (
     <ShowBase
@@ -45,11 +45,11 @@ export const ShowGuesser = (props: ShowGuesserProps) => {
       <ShowViewGuesser {...rest} />
     </ShowBase>
   );
-};
+}
 
-const ShowViewGuesser = (
+function ShowViewGuesser(
   props: Omit<ShowGuesserProps, ShowBaseControllerProps>,
-) => {
+) {
   const resource = useResourceContext();
 
   if (!resource) {
@@ -114,7 +114,7 @@ ${inferredChild.getRepresentation()}
   }, [record, child, resource, enableLog]);
 
   return <ShowView {...rest}>{child}</ShowView>;
-};
+}
 
 type ShowBaseControllerProps =
   | "disableAuthentication"
@@ -236,3 +236,5 @@ const kebabCase = (name: string) => {
     .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
     .toLowerCase();
 };
+
+export { ShowGuesser, type ShowGuesserProps };

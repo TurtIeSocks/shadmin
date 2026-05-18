@@ -6,7 +6,7 @@ import {
 } from "./shapes/shape-input-shell";
 import type { ShapeKind } from "./types";
 
-export interface FeatureInputProps extends Omit<
+interface FeatureInputProps extends Omit<
   ShapeInputShellProps,
   "shape" | "multi" | "collection" | "valueTransform" | "valueParse"
 > {
@@ -19,26 +19,30 @@ export interface FeatureInputProps extends Omit<
  * but persists `{ type: "Feature", geometry, properties }`, preserving
  * `properties` across edits.
  */
-export const FeatureInput = ({
+function FeatureInput({
   shape = "Polygon",
   ...rest
-}: FeatureInputProps) => (
-  <ShapeInputShell
-    {...rest}
-    shape={shape}
-    multi={false}
-    valueTransform={(geom, prev) => {
-      const prevFeat = (prev as GeoJSON.Feature | null | undefined) ?? null;
-      const feature: GeoJSON.Feature = {
-        type: "Feature",
-        geometry: geom,
-        properties: prevFeat?.properties ?? {},
-      };
-      return feature;
-    }}
-    valueParse={(stored) => {
-      const feat = stored as GeoJSON.Feature | null;
-      return feat?.geometry ?? null;
-    }}
-  />
-);
+}: FeatureInputProps) {
+  return (
+    <ShapeInputShell
+      {...rest}
+      shape={shape}
+      multi={false}
+      valueTransform={(geom, prev) => {
+        const prevFeat = (prev as GeoJSON.Feature | null | undefined) ?? null;
+        const feature: GeoJSON.Feature = {
+          type: "Feature",
+          geometry: geom,
+          properties: prevFeat?.properties ?? {},
+        };
+        return feature;
+      }}
+      valueParse={(stored) => {
+        const feat = stored as GeoJSON.Feature | null;
+        return feat?.geometry ?? null;
+      }}
+    />
+  );
+}
+
+export { FeatureInput, type FeatureInputProps };

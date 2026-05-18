@@ -86,7 +86,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   );
 }
 
-const FormError = ({ className, ...props }: React.ComponentProps<"p">) => {
+function FormError({ className, ...props }: React.ComponentProps<"p">) {
   const { invalid, error, formMessageId } = useFormField();
 
   const err = error?.root?.message ?? error?.message;
@@ -104,6 +104,6 @@ const FormError = ({ className, ...props }: React.ComponentProps<"p">) => {
       <ValidationError error={err} />
     </p>
   );
-};
+}
 
 export { Form, FormField, FormLabel, FormControl, FormDescription, FormError };

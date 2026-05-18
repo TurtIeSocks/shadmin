@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
-export interface ListNoResultsProps {
+interface ListNoResultsProps {
   resource?: string;
   filterValues?: UnknownRecord;
   setFilters?: (filters: UnknownRecord, displayedFilters?: string[]) => void;
@@ -24,7 +24,7 @@ export interface ListNoResultsProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listnoresults/ ListNoResults documentation}
  */
-export const ListNoResults = (props: ListNoResultsProps) => {
+function ListNoResults(props: ListNoResultsProps) {
   const { className } = props;
   const translate = useTranslate();
   const resource = useResourceContext(props);
@@ -68,4 +68,6 @@ export const ListNoResults = (props: ListNoResultsProps) => {
       )}
     </div>
   );
-};
+}
+
+export { ListNoResults, type ListNoResultsProps };

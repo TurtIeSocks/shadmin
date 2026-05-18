@@ -21,7 +21,7 @@ import { Loading } from "@/components/admin/loading";
  *   </Admin>
  * );
  */
-export const AuthCallback = () => {
+function AuthCallback() {
   const { error } = useHandleAuthCallback();
   if (error) {
     return (
@@ -31,4 +31,6 @@ export const AuthCallback = () => {
     );
   }
   return <Loading />;
-};
+}
+
+export { AuthCallback };

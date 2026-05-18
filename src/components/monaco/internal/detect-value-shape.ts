@@ -1,12 +1,12 @@
-export type ValueShape = "string" | "object";
+type ValueShape = "string" | "object";
 
-export function detectValueShape(value: unknown): ValueShape | null {
+function detectValueShape(value: unknown): ValueShape | null {
   if (value === undefined) return null;
   if (typeof value === "string") return "string";
   return "object";
 }
 
-export function toEditorText(
+function toEditorText(
   value: unknown,
   shape: ValueShape,
   indent = 2,
@@ -22,7 +22,7 @@ export function toEditorText(
   }
 }
 
-export function fromEditorText(
+function fromEditorText(
   text: string,
   shape: ValueShape,
 ): { value: unknown; parseError: Error | null } {
@@ -38,3 +38,5 @@ export function fromEditorText(
     return { value: undefined, parseError: e as Error };
   }
 }
+
+export { detectValueShape, toEditorText, fromEditorText, type ValueShape };

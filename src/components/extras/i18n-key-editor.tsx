@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
  *   <Resource name="posts" />
  * </I18nKeyEditor>
  */
-export const I18nKeyEditor = ({
+const I18nKeyEditor = ({
   children,
   baseProvider,
   defaultOpen = true,
@@ -136,7 +136,7 @@ export const I18nKeyEditor = ({
   );
 };
 
-export interface I18nKeyEditorProps {
+interface I18nKeyEditorProps {
   children: ReactNode;
   /** The original i18nProvider being wrapped. */
   baseProvider: I18nProvider;
@@ -145,3 +145,5 @@ export interface I18nKeyEditorProps {
   /** Show the Export-to-clipboard button. */
   showExport?: boolean;
 }
+
+export { I18nKeyEditor, type I18nKeyEditorProps };

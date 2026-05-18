@@ -14,7 +14,7 @@ import {
 
 import { useGeocode, type UseGeocodeOptions } from "./use-geocode";
 
-export interface GeocodingInputProps extends UseGeocodeOptions {
+interface GeocodingInputProps extends UseGeocodeOptions {
   source: string;
   latSource?: string;
   lngSource?: string;
@@ -30,7 +30,7 @@ export interface GeocodingInputProps extends UseGeocodeOptions {
  * remounts the input. That keeps focus on the input across keystrokes while the
  * `useGeocode` query results update.
  */
-export const GeocodingInput = ({
+const GeocodingInput = ({
   source,
   latSource,
   lngSource,
@@ -107,3 +107,5 @@ export const GeocodingInput = ({
     </div>
   );
 };
+
+export { type GeocodingInputProps, GeocodingInput };

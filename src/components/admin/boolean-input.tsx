@@ -35,7 +35,7 @@ import type { ComponentProps } from "react";
  *   </Edit>
  * );
  */
-export const BooleanInput = (props: BooleanInputProps) => {
+function BooleanInput(props: BooleanInputProps) {
   const {
     className,
     defaultValue = false,
@@ -102,9 +102,9 @@ export const BooleanInput = (props: BooleanInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
 
-export interface BooleanInputProps {
+interface BooleanInputProps {
   className?: string;
   defaultValue?: boolean;
   format?: (value: UnknownValue) => boolean;
@@ -121,3 +121,5 @@ export interface BooleanInputProps {
   validate?: Validator | Validator[];
   options?: ComponentProps<typeof Switch>;
 }
+
+export { BooleanInput, type BooleanInputProps };

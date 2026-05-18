@@ -15,7 +15,7 @@ import type { OsmTagFilter } from "./osm-presets";
 // ──────────────────────────────────────────────────────────────────────────
 // natural
 // ──────────────────────────────────────────────────────────────────────────
-export type NaturalTag =
+type NaturalTag =
   | "natural=water"
   | "natural=wood"
   | "natural=forest"
@@ -59,7 +59,7 @@ export type NaturalTag =
 // ──────────────────────────────────────────────────────────────────────────
 // building
 // ──────────────────────────────────────────────────────────────────────────
-export type BuildingTag =
+type BuildingTag =
   | "building=*"
   | "building=yes"
   | "building=apartments"
@@ -117,7 +117,7 @@ export type BuildingTag =
 // ──────────────────────────────────────────────────────────────────────────
 // landuse
 // ──────────────────────────────────────────────────────────────────────────
-export type LandUseTag =
+type LandUseTag =
   | "landuse=residential"
   | "landuse=commercial"
   | "landuse=retail"
@@ -150,7 +150,7 @@ export type LandUseTag =
 // ──────────────────────────────────────────────────────────────────────────
 // amenity
 // ──────────────────────────────────────────────────────────────────────────
-export type AmenityTag =
+type AmenityTag =
   | "amenity=bar"
   | "amenity=restaurant"
   | "amenity=cafe"
@@ -227,7 +227,7 @@ export type AmenityTag =
 // ──────────────────────────────────────────────────────────────────────────
 // leisure
 // ──────────────────────────────────────────────────────────────────────────
-export type LeisureTag =
+type LeisureTag =
   | "leisure=park"
   | "leisure=playground"
   | "leisure=pitch"
@@ -252,7 +252,7 @@ export type LeisureTag =
 // ──────────────────────────────────────────────────────────────────────────
 // highway
 // ──────────────────────────────────────────────────────────────────────────
-export type HighwayTag =
+type HighwayTag =
   | "highway=motorway"
   | "highway=trunk"
   | "highway=primary"
@@ -279,7 +279,7 @@ export type HighwayTag =
 // ──────────────────────────────────────────────────────────────────────────
 // waterway
 // ──────────────────────────────────────────────────────────────────────────
-export type WaterwayTag =
+type WaterwayTag =
   | "waterway=river"
   | "waterway=stream"
   | "waterway=tidal_channel"
@@ -297,7 +297,7 @@ export type WaterwayTag =
 // ──────────────────────────────────────────────────────────────────────────
 // railway
 // ──────────────────────────────────────────────────────────────────────────
-export type RailwayTag =
+type RailwayTag =
   | "railway=rail"
   | "railway=subway"
   | "railway=tram"
@@ -317,7 +317,7 @@ export type RailwayTag =
 // ──────────────────────────────────────────────────────────────────────────
 // boundary
 // ──────────────────────────────────────────────────────────────────────────
-export type BoundaryTag =
+type BoundaryTag =
   | "boundary=administrative"
   | "boundary=protected_area"
   | "boundary=national_park"
@@ -332,7 +332,7 @@ export type BoundaryTag =
 // ──────────────────────────────────────────────────────────────────────────
 // place
 // ──────────────────────────────────────────────────────────────────────────
-export type PlaceTag =
+type PlaceTag =
   | "place=continent"
   | "place=country"
   | "place=state"
@@ -360,7 +360,7 @@ export type PlaceTag =
 // ──────────────────────────────────────────────────────────────────────────
 // man_made (commonly-mapped subset)
 // ──────────────────────────────────────────────────────────────────────────
-export type ManMadeTag =
+type ManMadeTag =
   | "man_made=bridge"
   | "man_made=chimney"
   | "man_made=communications_tower"
@@ -391,7 +391,7 @@ export type ManMadeTag =
 // ──────────────────────────────────────────────────────────────────────────
 // shop (top-level subset)
 // ──────────────────────────────────────────────────────────────────────────
-export type ShopTag =
+type ShopTag =
   | "shop=supermarket"
   | "shop=convenience"
   | "shop=bakery"
@@ -428,7 +428,7 @@ export type ShopTag =
 // ──────────────────────────────────────────────────────────────────────────
 // tourism
 // ──────────────────────────────────────────────────────────────────────────
-export type TourismTag =
+type TourismTag =
   | "tourism=hotel"
   | "tourism=motel"
   | "tourism=guest_house"
@@ -454,7 +454,7 @@ export type TourismTag =
 // ──────────────────────────────────────────────────────────────────────────
 // barrier
 // ──────────────────────────────────────────────────────────────────────────
-export type BarrierTag =
+type BarrierTag =
   | "barrier=fence"
   | "barrier=wall"
   | "barrier=hedge"
@@ -477,7 +477,7 @@ export type BarrierTag =
 // ──────────────────────────────────────────────────────────────────────────
 // historic
 // ──────────────────────────────────────────────────────────────────────────
-export type HistoricTag =
+type HistoricTag =
   | "historic=monument"
   | "historic=memorial"
   | "historic=castle"
@@ -493,7 +493,7 @@ export type HistoricTag =
 // ──────────────────────────────────────────────────────────────────────────
 // power
 // ──────────────────────────────────────────────────────────────────────────
-export type PowerTag =
+type PowerTag =
   | "power=line"
   | "power=minor_line"
   | "power=tower"
@@ -508,7 +508,7 @@ export type PowerTag =
  * previously imported — derived from the category types rather than
  * hand-rolled, so the two never drift.
  */
-export type KnownOsmTag =
+type KnownOsmTag =
   | NaturalTag
   | BuildingTag
   | LandUseTag
@@ -535,7 +535,7 @@ export type KnownOsmTag =
  * const t: OsmTagInput[] = ["natural=water", "fictional_key=value"];
  * ```
  */
-export type OsmTagInput = KnownOsmTag | (string & {});
+type OsmTagInput = KnownOsmTag | (string & {});
 
 /**
  * Convert a `"key=value"` or `"key=*"` string into the structured filter shape
@@ -543,7 +543,7 @@ export type OsmTagInput = KnownOsmTag | (string & {});
  *
  * Throws on malformed input (no `=` separator).
  */
-export function tagToFilter(tag: string): OsmTagFilter {
+function tagToFilter(tag: string): OsmTagFilter {
   const eq = tag.indexOf("=");
   if (eq < 0) {
     throw new Error(
@@ -563,3 +563,5 @@ export function tagToFilter(tag: string): OsmTagFilter {
   }
   return { key, value };
 }
+
+export { type NaturalTag, type BuildingTag, type LandUseTag, type AmenityTag, type LeisureTag, type HighwayTag, type WaterwayTag, type RailwayTag, type BoundaryTag, type PlaceTag, type ManMadeTag, type ShopTag, type TourismTag, type BarrierTag, type HistoricTag, type PowerTag, type KnownOsmTag, type OsmTagInput, tagToFilter };

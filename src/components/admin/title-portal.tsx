@@ -2,7 +2,7 @@ import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 import { TITLE_PORTAL_ID } from "./title-portal-id";
 
-export type TitlePortalProps = HTMLAttributes<HTMLDivElement>;
+type TitlePortalProps = HTMLAttributes<HTMLDivElement>;
 
 /**
  * Render target for `<Title>`, placed in the app bar.
@@ -22,10 +22,14 @@ export type TitlePortalProps = HTMLAttributes<HTMLDivElement>;
  *   </header>
  * );
  */
-export const TitlePortal = ({ className, ...rest }: TitlePortalProps) => (
-  <div
-    id={TITLE_PORTAL_ID}
-    className={cn("flex flex-1 items-center min-w-0", className)}
-    {...rest}
-  />
-);
+function TitlePortal({ className, ...rest }: TitlePortalProps) {
+  return (
+    <div
+      id={TITLE_PORTAL_ID}
+      className={cn("flex flex-1 items-center min-w-0", className)}
+      {...rest}
+    />
+  );
+}
+
+export { TitlePortal, type TitlePortalProps };

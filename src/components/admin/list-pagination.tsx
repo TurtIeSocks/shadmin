@@ -46,15 +46,17 @@ import { useEffect } from "react";
  *   </List>
  * );
  */
-export const ListPagination = ({
-  actions,
-  rowsPerPageOptions = [5, 10, 25, 50],
-  className,
-}: {
+interface ListPaginationProps {
   actions?: ReactElement;
   rowsPerPageOptions?: number[];
   className?: string;
-}) => {
+}
+
+function ListPagination({
+  actions,
+  rowsPerPageOptions = [5, 10, 25, 50],
+  className,
+}: ListPaginationProps) {
   const translate = useTranslate();
   const {
     hasPreviousPage,
@@ -327,4 +329,6 @@ export const ListPagination = ({
       </Pagination>
     </div>
   );
-};
+}
+
+export { ListPagination, type ListPaginationProps };

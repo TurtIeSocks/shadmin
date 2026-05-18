@@ -8,7 +8,7 @@ import {
   type OverpassResponse,
 } from "./overpass-client";
 
-export const useOverpass = (
+const useOverpass = (
   query: string | null,
   opts: OverpassOptions & { enabled?: boolean; staleTime?: number } = {},
 ) => {
@@ -19,3 +19,5 @@ export const useOverpass = (
     staleTime: opts.staleTime ?? 60 * 60 * 1000,
   });
 };
+
+export { useOverpass };

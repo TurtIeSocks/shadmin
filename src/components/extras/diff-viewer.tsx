@@ -5,11 +5,11 @@ import { ArrowRightIcon } from "lucide-react";
 import { useTranslate } from "ra-core";
 import { cn } from "@/lib/utils";
 
-export type DiffStatus = "unchanged" | "added" | "removed" | "changed";
+type DiffStatus = "unchanged" | "added" | "removed" | "changed";
 
-export type DiffMode = "inline" | "side-by-side";
+type DiffMode = "inline" | "side-by-side";
 
-export interface DiffViewerProps {
+interface DiffViewerProps {
   before: Record<string, unknown>;
   after: Record<string, unknown>;
   fields?: string[];
@@ -53,14 +53,14 @@ const formatValue = (v: unknown): ReactNode => {
   return String(v);
 };
 
-export const DiffViewer = ({
+function DiffViewer({
   before,
   after,
   fields,
   labels = EMPTY_LABELS,
   formatters = EMPTY_FORMATTERS,
   mode = "side-by-side",
-}: DiffViewerProps) => {
+}: DiffViewerProps) {
   const translate = useTranslate();
   const allFields = useMemo(() => {
     if (fields) return fields;
@@ -186,4 +186,6 @@ export const DiffViewer = ({
       ))}
     </div>
   );
-};
+}
+
+export { DiffViewer, type DiffStatus, type DiffMode, type DiffViewerProps };

@@ -20,7 +20,7 @@ import { useLocales, useLocaleState, useTranslate } from "ra-core";
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/localesmenubutton LocalesMenuButton documentation}
  * @see {@link https://marmelab.com/ra-core/translationsetup/ i18nProvider setup}
  */
-export interface LocalesMenuButtonProps {
+interface LocalesMenuButtonProps {
   ref?: Ref<HTMLButtonElement>;
   /** Replaces the locale-code text in the trigger button when provided. */
   icon?: ReactNode;
@@ -28,7 +28,7 @@ export interface LocalesMenuButtonProps {
   languages?: Array<{ locale: string; name: string }>;
 }
 
-export function LocalesMenuButton({
+function LocalesMenuButton({
   ref,
   icon,
   languages: languagesProp,
@@ -81,3 +81,5 @@ export function LocalesMenuButton({
     </DropdownMenu>
   );
 }
+
+export { LocalesMenuButton, type LocalesMenuButtonProps };

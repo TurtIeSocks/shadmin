@@ -22,7 +22,7 @@ import { AuthCallback } from "@/components/admin/auth-callback";
  * The shadcn-admin-kit extension adds the `theme` / `lightTheme` / `darkTheme`
  * trio so a named {@link AdminTheme} palette can be selected at the root.
  */
-export interface AdminProps extends CoreAdminProps {
+interface AdminProps extends CoreAdminProps {
   /**
    * Convenience alias for `lightTheme`. Use this when you only want to pass
    * one named theme — its `light` and `dark` variable maps cover both modes.
@@ -45,12 +45,12 @@ export interface AdminProps extends CoreAdminProps {
  * `CoreAdminContextProps` — re-exported so callers composing `<AdminContext>`
  * and `<AdminUI>` manually don't need to import from ra-core directly.
  */
-export type AdminContextProps = CoreAdminContextProps;
+type AdminContextProps = CoreAdminContextProps;
 
 /**
  * Props accepted by the {@link AdminUI} component.
  */
-export interface AdminUIProps extends CoreAdminUIProps {
+interface AdminUIProps extends CoreAdminUIProps {
   theme?: AdminTheme;
   lightTheme?: AdminTheme;
   darkTheme?: AdminTheme;
@@ -85,13 +85,15 @@ const defaultStore = localStorageStore();
  *   </AdminContext>
  * );
  */
-export const AdminContext = ({
+function AdminContext({
   i18nProvider = defaultI18nProvider,
   store = defaultStore,
   ...rest
-}: AdminContextProps) => (
-  <CoreAdminContext i18nProvider={i18nProvider} store={store} {...rest} />
-);
+}: AdminContextProps) {
+  return (
+    <CoreAdminContext i18nProvider={i18nProvider} store={store} {...rest} />
+  );
+}
 
 /**
  * UI half of `<Admin>`.
@@ -102,7 +104,7 @@ export const AdminContext = ({
  *
  * Must be rendered inside an {@link AdminContext}.
  */
-export const AdminUI = (props: AdminUIProps) => {
+function AdminUI(props: AdminUIProps) {
   const {
     authCallbackPage = AuthCallback,
     catchAll = NotFound,
@@ -145,7 +147,7 @@ export const AdminUI = (props: AdminUIProps) => {
       />
     </ThemeProvider>
   );
-};
+}
 
 /**
  * Root component of a shadcn-admin-kit application.
@@ -206,7 +208,7 @@ export const AdminUI = (props: AdminUIProps) => {
  *   </Admin>
  * );
  */
-export const Admin = (props: AdminProps) => {
+function Admin(props: AdminProps) {
   const {
     accessDenied,
     authCallbackPage,
@@ -264,4 +266,13 @@ export const Admin = (props: AdminProps) => {
       </AdminUI>
     </AdminContext>
   );
+}
+
+export {
+  Admin,
+  AdminContext,
+  AdminUI,
+  type AdminProps,
+  type AdminContextProps,
+  type AdminUIProps,
 };

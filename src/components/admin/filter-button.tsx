@@ -59,7 +59,33 @@ interface FilterElementProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterbutton/ FilterButton documentation}
  */
-export const FilterButton = (props: FilterButtonProps) => {
+interface FilterButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
+  className?: string;
+  disableSaveQuery?: boolean;
+  filters?: ReactNode[];
+  resource?: string;
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
+  size?: "default" | "sm" | "lg" | "icon";
+}
+
+interface FilterButtonMenuItemProps {
+  filter: React.ReactElement<FilterElementProps>;
+  displayed: boolean;
+
+  onShow: (params: { source: string; defaultValue: UnknownValue }) => void;
+  onHide: (params: { source: string }) => void;
+  resource?: string;
+  autoFocus?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
+}
+
+function FilterButton(props: FilterButtonProps) {
   const {
     filters: filtersProp,
     className,
@@ -286,21 +312,6 @@ export const FilterButton = (props: FilterButtonProps) => {
       )}
     </div>
   );
-};
-
-export interface FilterButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
-  className?: string;
-  disableSaveQuery?: boolean;
-  filters?: ReactNode[];
-  resource?: string;
-  variant?:
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | "link";
-  size?: "default" | "sm" | "lg" | "icon";
 }
 
 /**
@@ -309,7 +320,7 @@ export interface FilterButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterbutton/ FilterButton documentation}
  */
-export const FilterButtonMenuItem = (props: FilterButtonMenuItemProps) => {
+function FilterButtonMenuItem(props: FilterButtonMenuItemProps) {
   const { filter, onShow, onHide, displayed, autoFocus, ref } = props;
   const resource = useResourceContext(props);
   const localRef = useRef<HTMLDivElement | null>(null);
@@ -370,15 +381,11 @@ export const FilterButtonMenuItem = (props: FilterButtonMenuItemProps) => {
       </div>
     </div>
   );
-};
-
-export interface FilterButtonMenuItemProps {
-  filter: React.ReactElement<FilterElementProps>;
-  displayed: boolean;
-
-  onShow: (params: { source: string; defaultValue: UnknownValue }) => void;
-  onHide: (params: { source: string }) => void;
-  resource?: string;
-  autoFocus?: boolean;
-  ref?: React.Ref<HTMLDivElement>;
 }
+
+export {
+  FilterButton,
+  type FilterButtonProps,
+  FilterButtonMenuItem,
+  type FilterButtonMenuItemProps,
+};

@@ -12,7 +12,7 @@ import {
 import { Shell } from "lucide-react";
 import { Menu } from "@/components/admin/menu";
 
-export type AppSidebarProps = {
+interface AppSidebarProps {
   /**
    * Replaces the default `<Menu />` rendered inside the sidebar content area.
    * Pass a custom navigation tree when you need full control over sidebar items.
@@ -35,7 +35,7 @@ export type AppSidebarProps = {
    * requiring a separate context provider in the layout.
    */
   appBarAlwaysOn?: boolean;
-};
+}
 
 /**
  * Navigation sidebar displaying menu items, allowing users to navigate between different sections of the application.
@@ -50,7 +50,7 @@ export type AppSidebarProps = {
  * @see {@link https://ui.shadcn.com/docs/components/sidebar shadcn/ui Sidebar component}
  * @see layout.tsx
  */
-export function AppSidebar({
+function AppSidebar({
   children,
   size = 240,
   closedSize = 55,
@@ -87,3 +87,5 @@ export function AppSidebar({
     </Sidebar>
   );
 }
+
+export { AppSidebar, type AppSidebarProps };

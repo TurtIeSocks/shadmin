@@ -49,7 +49,7 @@ function getTabPath(tab: ReactElement<FormTabProps>, index: number): string {
       : "";
 }
 
-export interface TabbedFormTabsListProps {
+interface TabbedFormTabsListProps {
   tabs: ReactElement<FormTabProps>[];
   syncWithLocation: boolean;
   tabValue: number;
@@ -64,7 +64,7 @@ export interface TabbedFormTabsListProps {
  * Exported so consumers can compose their own custom TabbedForm without
  * forking the entire `TabbedFormView`.
  */
-export function TabbedFormTabsList({
+function TabbedFormTabsList({
   tabs,
   syncWithLocation,
   tabValue,
@@ -153,7 +153,7 @@ function FormTabHeader({
  *   <TextInput source="title" />
  * </TabbedForm.Tab>
  */
-export function FormTab(props: FormTabProps) {
+function FormTab(props: FormTabProps) {
   const {
     children,
     className,
@@ -327,7 +327,7 @@ function TabbedFormView({
  *   </Edit>
  * );
  */
-export function TabbedForm(props: TabbedFormProps) {
+function TabbedForm(props: TabbedFormProps) {
   const formRootPathname = useFormRootPath();
   const {
     children,
@@ -358,7 +358,7 @@ export function TabbedForm(props: TabbedFormProps) {
 
 TabbedForm.Tab = FormTab;
 
-export interface FormTabProps {
+interface FormTabProps {
   children?: ReactNode;
   className?: string;
   contentClassName?: string;
@@ -385,10 +385,19 @@ interface TabbedFormViewProps {
   tabs?: ReactElement;
 }
 
-export interface TabbedFormProps extends Omit<FormProps, "children"> {
+interface TabbedFormProps extends Omit<FormProps, "children"> {
   children?: ReactNode;
   toolbar?: ReactNode | false;
   className?: string;
   syncWithLocation?: boolean;
   tabs?: ReactElement;
 }
+
+export {
+  TabbedForm,
+  type TabbedFormProps,
+  TabbedFormTabsList,
+  type TabbedFormTabsListProps,
+  FormTab,
+  type FormTabProps,
+};

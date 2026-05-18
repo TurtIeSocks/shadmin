@@ -3,6 +3,14 @@ import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
+interface ColorFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+  /** When false, hides the textual color value next to the chip. */
+  showLabel?: boolean;
+}
+
 /**
  * Displays a color value as a colored chip plus its string label.
  *
@@ -20,7 +28,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const ColorField = <RecordType extends UnknownRecord = UnknownRecord>({
+function ColorField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,
@@ -28,7 +36,7 @@ export const ColorField = <RecordType extends UnknownRecord = UnknownRecord>({
   showLabel = true,
   className,
   ...rest
-}: ColorFieldProps<RecordType>) => {
+}: ColorFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -57,12 +65,6 @@ export const ColorField = <RecordType extends UnknownRecord = UnknownRecord>({
       {showLabel && <span className="font-mono text-sm">{colorString}</span>}
     </span>
   );
-};
-
-export interface ColorFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
-  /** When false, hides the textual color value next to the chip. */
-  showLabel?: boolean;
 }
+
+export { ColorField, type ColorFieldProps };

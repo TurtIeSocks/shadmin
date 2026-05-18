@@ -31,7 +31,7 @@ import { cn } from "@/lib/utils";
  *   <TextField source="published_at" />
  * </Labeled>
  */
-export const Labeled = ({
+function Labeled({
   children,
   className,
   component: Wrapper = "div",
@@ -41,7 +41,7 @@ export const Labeled = ({
   label,
   resource,
   source,
-}: LabeledProps) => {
+}: LabeledProps) {
   // Suppress label when any condition signals "no label".
   const childLabel = (children as ReactElement<{ label?: React.ReactNode }>)
     ?.props?.label;
@@ -79,11 +79,11 @@ export const Labeled = ({
       {children}
     </Wrapper>
   );
-};
+}
 
 Labeled.displayName = "Labeled";
 
-export interface LabeledProps {
+interface LabeledProps {
   children: ReactElement;
   className?: string;
   /** Override the wrapper element type. Defaults to `"div"`. */
@@ -101,3 +101,5 @@ export interface LabeledProps {
   /** Override the source for label translation. */
   source?: string;
 }
+
+export { Labeled, type LabeledProps };

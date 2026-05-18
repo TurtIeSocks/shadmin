@@ -18,7 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { Logout } from "./logout";
 
-export type UserMenuProps = {
+type UserMenuProps = {
   children?: ReactNode;
   label?: string;
   icon?: ReactNode;
@@ -33,7 +33,7 @@ export type UserMenuProps = {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/usermenu UserMenu documentation}
  */
-export function UserMenu({ children, label, icon }: UserMenuProps) {
+function UserMenu({ children, label, icon }: UserMenuProps) {
   const authProvider = useAuthProvider();
   const { isPending, data: identity } = useGetIdentity();
   const translate = useTranslate();
@@ -96,3 +96,5 @@ export function UserMenu({ children, label, icon }: UserMenuProps) {
     </UserMenuContext.Provider>
   );
 }
+
+export { UserMenu, type UserMenuProps };

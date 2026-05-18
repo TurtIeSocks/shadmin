@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
-export type PermissionsState = Record<
+type PermissionsState = Record<
   string,
   Record<string, Record<string, boolean>>
 >;
@@ -16,7 +16,7 @@ interface Identified {
   label: string;
 }
 
-export interface PermissionMatrixProps {
+interface PermissionMatrixProps {
   roles: Array<string | Identified>;
   resources: Array<string | Identified>;
   actions?: string[];
@@ -33,7 +33,7 @@ const normalize = (item: string | Identified): Identified =>
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-export const PermissionMatrix = ({
+const PermissionMatrix = ({
   roles,
   resources,
   actions = DEFAULT_ACTIONS,
@@ -162,3 +162,5 @@ export const PermissionMatrix = ({
     </Tabs>
   );
 };
+
+export { type PermissionsState, type PermissionMatrixProps, PermissionMatrix };

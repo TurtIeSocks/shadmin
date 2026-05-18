@@ -10,7 +10,7 @@ import type { AdminTheme } from "./theme-types";
  * colors (success `#00745F`, info `#39AEA9`, warning `#F2CB05`, error
  * `#B57185`) match the MUI palette exactly.
  */
-export const nanoTheme: AdminTheme = {
+const nanoTheme: AdminTheme = {
   name: "nano",
   label: "Nano",
   light: {
@@ -110,3 +110,5 @@ export const nanoTheme: AdminTheme = {
     "--sidebar-ring": "oklch(0.7 0.058 199)",
   },
 };
+
+export { nanoTheme };

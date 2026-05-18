@@ -58,7 +58,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  *   </Edit>
  * );
  */
-export const SelectInput = (props: SelectInputProps) => {
+function SelectInput(props: SelectInputProps) {
   const {
     choices: choicesProp,
     isLoading: isLoadingProp,
@@ -324,9 +324,9 @@ export const SelectInput = (props: SelectInputProps) => {
       {createElement}
     </>
   );
-};
+}
 
-export type SelectInputProps = ChoicesProps &
+type SelectInputProps = ChoicesProps &
   // Source is optional as SelectInput can be used inside a ReferenceInput that already defines the source
   Partial<InputProps> &
   Omit<SupportCreateSuggestionOptions, "handleChange"> & {
@@ -335,3 +335,5 @@ export type SelectInputProps = ChoicesProps &
     onChange?: (value: string) => void;
     resettable?: boolean;
   } & Omit<ComponentProps<typeof FormField>, "id" | "name" | "children">;
+
+export { SelectInput, type SelectInputProps };

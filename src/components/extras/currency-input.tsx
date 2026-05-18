@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
  * Stores either a plain `number` (single-currency mode) or a composite
  * `{ amount: number, currency: string }` (multi-currency mode).
  */
-export const CurrencyInput = (props: CurrencyInputProps) => {
+function CurrencyInput(props: CurrencyInputProps) {
   const {
     label,
     source,
@@ -157,7 +157,7 @@ export const CurrencyInput = (props: CurrencyInputProps) => {
   );
 };
 
-export interface CurrencyInputProps
+interface CurrencyInputProps
   extends
     InputProps,
     Omit<
@@ -173,3 +173,5 @@ export interface CurrencyInputProps
   /** Multiply displayed major units by 100 on write so storage is integer cents. */
   storeAsMinorUnits?: boolean;
 }
+
+export { CurrencyInput, type CurrencyInputProps };

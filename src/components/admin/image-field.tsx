@@ -30,9 +30,20 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *     }
  * />
  */
-export const ImageField = <RecordType extends UnknownRecord = UnknownRecord>(
+interface ImageFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends
+    FieldProps<RecordType>,
+    Omit<HTMLAttributes<HTMLSpanElement>, "defaultValue"> {
+  defaultValue?: UnknownValue;
+  src?: string;
+  title?: HintedString<ExtractRecordPaths<RecordType>>;
+}
+
+function ImageField<RecordType extends UnknownRecord = UnknownRecord>(
   props: ImageFieldProps<RecordType>,
-) => {
+) {
   const { src, defaultValue, source, record, empty, title, ...rest } = props;
   const value = useFieldValue({ defaultValue, source, record });
   const titleValue =
@@ -99,13 +110,4 @@ export const ImageField = <RecordType extends UnknownRecord = UnknownRecord>(
 // What? TypeScript loses the displayName if we don't set it explicitly
 ImageField.displayName = "ImageField";
 
-export interface ImageFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
-    Omit<HTMLAttributes<HTMLSpanElement>, "defaultValue"> {
-  defaultValue?: UnknownValue;
-  src?: string;
-  title?: HintedString<ExtractRecordPaths<RecordType>>;
-}
+export { ImageField, type ImageFieldProps };

@@ -42,9 +42,9 @@ import {
 } from "ra-core";
 import { cn } from "@/lib/utils";
 
-export type CalendarView = "month" | "week" | "agenda";
+type CalendarView = "month" | "week" | "agenda";
 
-export interface CalendarEventInfo<R extends RaRecord = RaRecord> {
+interface CalendarEventInfo<R extends RaRecord = RaRecord> {
   record: R;
   start: Date;
   end?: Date;
@@ -53,10 +53,10 @@ export interface CalendarEventInfo<R extends RaRecord = RaRecord> {
   isDragging?: boolean;
 }
 
-export type EventRendererProps<R extends RaRecord = RaRecord> =
+type EventRendererProps<R extends RaRecord = RaRecord> =
   CalendarEventInfo<R>;
 
-export interface HeaderRendererProps {
+interface HeaderRendererProps {
   range: { start: Date; end: Date };
   anchor: Date;
   view: CalendarView;
@@ -64,7 +64,7 @@ export interface HeaderRendererProps {
   onViewChange: (view: CalendarView) => void;
 }
 
-export interface CalendarListProps<R extends RaRecord = RaRecord> {
+interface CalendarListProps<R extends RaRecord = RaRecord> {
   startSource: string;
   endSource?: string;
   titleSource?: string;
@@ -172,7 +172,7 @@ const DefaultCalendarHeader = ({
   );
 };
 
-export const CalendarList = <R extends RaRecord = RaRecord>({
+const CalendarList = <R extends RaRecord = RaRecord>({
   startSource,
   endSource,
   titleSource,
@@ -818,3 +818,5 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
     </div>
   );
 };
+
+export { type CalendarView, type CalendarEventInfo, type EventRendererProps, type HeaderRendererProps, type CalendarListProps, CalendarList };

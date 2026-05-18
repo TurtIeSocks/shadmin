@@ -34,7 +34,7 @@ interface ActionButtonProps extends React.ComponentProps<"button"> {
   tooltip: string;
 }
 
-export const ActionWrapper = ({
+const ActionWrapper = ({
   children,
   className,
   ...props
@@ -53,7 +53,7 @@ export const ActionWrapper = ({
 
 ActionWrapper.displayName = "ActionWrapper";
 
-export const ActionButton = ({
+const ActionButton = ({
   icon,
   tooltip,
   className,
@@ -110,7 +110,7 @@ const ActionItems: Array<{
   },
 ];
 
-export const ImageActions: React.FC<ImageActionsProps> = ({
+const ImageActions: React.FC<ImageActionsProps> = ({
   shouldMerge = false,
   isLink = false,
   ...actions
@@ -171,3 +171,5 @@ export const ImageActions: React.FC<ImageActionsProps> = ({
 };
 
 ImageActions.displayName = "ImageActions";
+
+export { ActionWrapper, ActionButton, ImageActions };
