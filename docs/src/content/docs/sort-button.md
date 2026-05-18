@@ -33,17 +33,32 @@ This button lets users pick the sort field, then the sort direction (ASC/DESC).
 
 ## Props
 
-| Prop     | Required | Type        | Default          | Description                       |
-| -------- | -------- | ----------- | ---------------- | --------------------------------- |
-| `fields` | Required | `string[]`  | -                | Whitelist of sortable field names |
-| `label`  | Optional | `string`    | `ra.action.sort` | i18n key                          |
-| `icon`   | Optional | `ReactNode` | Sort icon        | Custom icon                       |
+| Prop     | Required | Type                     | Default          | Description                       |
+| -------- | -------- | ------------------------ | ---------------- | --------------------------------- |
+| `fields` | Required | `string[]`               | -                | Whitelist of sortable field names |
+| `icon`   | Optional | `ReactNode`              | Sort icon        | Custom icon                       |
+| `label`  | Optional | `string`                 | `ra.action.sort` | i18n key                          |
+| `ref`    | Optional | `Ref<HTMLButtonElement>` | -                | Forwarded to the underlying `<Button>` |
 
 Additional props are passed to the underlying `<button>` element (e.g., `className`).
 
 ## `icon`
 
 Replaces the default `<ArrowUpDown />` shown alongside the label. Pass any lucide-react icon to convey a different action.
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { SortButton } from "@/components/admin";
+
+const MyToolbar = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <SortButton fields={["title", "published_at"]} ref={ref} />;
+};
+```
 
 ```tsx
 import { ListOrdered } from "lucide-react";

@@ -118,6 +118,15 @@ export const CustomIcon = () => (
   />
 );
 
+export const WithRef = () => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper
+      actions={<SortButton fields={["id", "title", "year"]} ref={ref} />}
+    />
+  );
+};
+
 export const CustomLabel = () => (
   <Wrapper
     actions={
