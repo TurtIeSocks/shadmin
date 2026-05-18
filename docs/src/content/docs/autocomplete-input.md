@@ -76,6 +76,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `limitChoicesToValue`     | Optional   | `boolean`                                       | `false`                                    | If true, the dropdown shows only the choice that matches the current value instead of all choices                                                                                                                    |
 | `matchSuggestion`         | Optional   | `Function`                                      | `-`                                        | Required if `optionText` is a React element. Function returning a boolean indicating whether a choice matches the filter. `(filter, choice) => boolean`                                                             |
 | `modal`                   | Optional   | `boolean`                                       | `false`                                    | If `true`, the popover will be displayed as a modal                                                                                                                                                                 |
+| `noOptionsText`           | Optional   | `ReactNode`                                     | `ra.navigation.no_results`                 | Content shown inside the dropdown when no choices match the current filter text                                                                                                                                     |
 | `offline`                 | Optional   | `ReactNode`                                     | -                                          | What to render when there is no network connectivity when fetching the choices                                                                                                                                      |
 | `onChange`                | Optional   | `Function`                                      | `-`                                        | A function called with the new value, along with the selected record, when the input value changes                                                                                                                  |
 | `onCreate`                | Optional   | `Function`                                      | `-`                                        | A function called with the current filter value when users choose to create a new choice.                                                                                                                           |
@@ -342,6 +343,18 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `noOptionsText`
+
+The content rendered inside the dropdown when no choices match the current filter. Accepts a string or any React node. Defaults to the translation of `ra.navigation.no_results` ("No matching item found.").
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  noOptionsText="Nothing matches your search"
+/>
+```
 
 ## `limitChoicesToValue`
 

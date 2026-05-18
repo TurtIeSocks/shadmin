@@ -312,6 +312,17 @@ export const WithMismatchedOptionTextAndValue = () => (
   </Wrapper>
 );
 
+export const WithNoOptionsText = () => (
+  <Wrapper>
+    <AutocompleteInput
+      source="tag_id"
+      choices={tags}
+      optionText="label"
+      noOptionsText="Nothing matches your search"
+    />
+  </Wrapper>
+);
+
 export const WithLimitChoicesToValue = () => (
   <Wrapper>
     <AutocompleteInput

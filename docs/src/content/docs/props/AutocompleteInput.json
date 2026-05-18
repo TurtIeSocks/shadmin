@@ -2,6 +2,12 @@
   "name": "AutocompleteInput",
   "props": [
     {
+      "name": "noOptionsText",
+      "type": "React.ReactNode",
+      "optional": true,
+      "comment": "Content shown in the dropdown when no choices match the current filter; defaults to ra.navigation.no_results"
+    },
+    {
       "name": "limitChoicesToValue",
       "type": "boolean",
       "optional": true,
