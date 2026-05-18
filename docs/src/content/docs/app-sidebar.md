@@ -154,3 +154,24 @@ export function AppSidebar() {
 ```
 
 For more customization options, refer to the [shadcn/ui Sidebar documentation](https://ui.shadcn.com/docs/components/sidebar).
+
+## Props
+
+| Prop              | Required | Type        | Default | Description                                          |
+| ----------------- | -------- | ----------- | ------- | ---------------------------------------------------- |
+| `appBarAlwaysOn`  | Optional | `boolean`   | `false` | Signal that the AppBar is always visible on scroll   |
+
+## `appBarAlwaysOn`
+
+When `true`, signals to descendant components that the AppBar is pinned and never hidden by scroll. Descendants can use this flag to adjust top-offset spacing so content doesn't slide behind the always-visible header.
+
+```tsx
+import { Layout, AppSidebar } from "@/components/admin";
+
+const MyLayout = (props) => (
+  <Layout
+    {...props}
+    sidebar={(sidebarProps) => <AppSidebar {...sidebarProps} appBarAlwaysOn />}
+  />
+);
+```

@@ -2,6 +2,8 @@ import { TestMemoryRouter } from "ra-core";
 import fakeRestProvider from "ra-data-fakerest";
 
 import { Admin } from "@/components/admin/admin";
+import { AppSidebar } from "@/components/admin/app-sidebar";
+import { Layout } from "@/components/admin/layout";
 import { Resource } from "@/components/admin/resource";
 import { ListGuesser } from "@/components/admin/list-guesser";
 import { ShowGuesser } from "@/components/admin/show-guesser";
@@ -40,6 +42,24 @@ export const MultipleResources = () => (
       <Resource name="posts" list={ListGuesser} show={ShowGuesser} />
       <Resource name="comments" list={ListGuesser} show={ShowGuesser} />
       <Resource name="authors" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+export const WithAppBarAlwaysOn = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin
+      dataProvider={dataProvider}
+      layout={(props) => (
+        <Layout
+          {...props}
+          sidebar={(sidebarProps) => (
+            <AppSidebar {...sidebarProps} appBarAlwaysOn />
+          )}
+        />
+      )}
+    >
+      <Resource name="posts" list={ListGuesser} show={ShowGuesser} />
     </Admin>
   </TestMemoryRouter>
 );

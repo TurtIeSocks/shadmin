@@ -1,0 +1,11 @@
+{
+  "name": "AppSidebar",
+  "props": [
+    {
+      "name": "appBarAlwaysOn",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When `true`, signals that the AppBar is always visible (not hidden on scroll). Descendants can read this flag via props to adjust their top spacing."
+    }
+  ]
+}
