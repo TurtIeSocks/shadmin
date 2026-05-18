@@ -6,6 +6,12 @@
       "type": "ReactNode",
       "optional": true,
       "comment": "Side panel rendered next to the form."
+    },
+    {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the root element wrapping the form content. Defaults to 'div'."
     }
   ]
 }

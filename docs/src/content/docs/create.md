@@ -68,6 +68,7 @@ You can customize the `<Create>` component using the following props:
 | `render`                | Optional&nbsp;\* | `function`           | -               | Alternative to children. Function that renders the form, receives the create context as argument |
 | `actions`               | Optional         | `ReactNode`          | Default toolbar | Override the actions toolbar with a custom component                                             |
 | `aside`                 | Optional         | `ReactNode`          | -               | Side panel rendered next to the form                                                             |
+| `component`             | Optional         | `ElementType`        | `"div"`         | Override the root element wrapping the form content                                              |
 | `className`             | Optional         | `string`             | -               | Passed to the root component                                                                     |
 | `disableAuthentication` | Optional         | `boolean`            | `false`         | Disable the authentication check                                                                 |
 | `disableBreadcrumb`     | Optional         | `boolean`            | `false`         | Set to `true` to define a custom breadcrumb for the page, instead of the default one             |
@@ -80,6 +81,23 @@ You can customize the `<Create>` component using the following props:
 | `transform`             | Optional         | `function`           | -               | Transform the form data before calling `dataProvider.create()`                                   |
 
 `*` You must provide either `children` or `render`.
+
+## `component`
+
+By default, `<Create>` wraps the form content in a `<div>`. Use `component` to replace it with any React element type — useful for adding a `<Card>` or custom container:
+
+```tsx
+import { Create, SimpleForm, TextInput } from "@/components/admin";
+import { Card } from "@/components/ui/card";
+
+export const PostCreate = () => (
+  <Create component={Card}>
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Create>
+);
+```
 
 ## `aside`
 
