@@ -94,7 +94,7 @@ export const WithTooltipProps = () => (
       to="/settings"
       primaryText="Settings"
       leftIcon={<Settings />}
-      tooltipProps={{ delayDuration: 0, side: "bottom" }}
+      tooltipProps={{ delayDuration: 500 }}
     />
   </SidebarWrapper>
 );
