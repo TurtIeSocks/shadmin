@@ -85,6 +85,22 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithCreate = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        onCreate={(filter) => {
+          const newTag = { id: String(filter).toLowerCase(), name: String(filter) };
+          return newTag;
+        }}
+        createLabel="Start typing to add a tag"
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithClearOnBlur = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

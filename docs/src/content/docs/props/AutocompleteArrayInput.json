@@ -6,6 +6,12 @@
       "type": "boolean",
       "optional": true,
       "comment": "If true, clears the filter text in the input when the input loses focus"
+    },
+    {
+      "name": "create",
+      "type": "ReactElement",
+      "optional": true,
+      "comment": "A React element rendered when users want to create a new choice inline"
     }
   ]
 }

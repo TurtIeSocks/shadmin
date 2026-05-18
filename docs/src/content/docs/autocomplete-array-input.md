@@ -68,6 +68,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `placeholder`     | Optional   | `string`                         | 'Search…'             | Input placeholder                                                                                                                       |
 | `translateChoice` | Optional   | `boolean`                        | `!isFromReference`    | Translate labels                                                                                                                        |
 | `clearOnBlur`     | Optional   | `boolean`                        | `false`               | If true, clears the filter text in the input when the input loses focus                                                                 |
+| `create`          | Optional   | `ReactElement`                   | -                     | A React element rendered when users want to create a new choice                                                                         |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -149,6 +150,33 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `create`
+
+Pass a React element to let users create a new option on the fly. `<AutocompleteArrayInput>` renders a "Create …" menu item at the bottom of the dropdown; clicking it mounts the element you provide. Use `useCreateSuggestionContext` inside the element to access the current filter text and the `onCreate` callback.
+
+```jsx
+import { useCreateSuggestionContext } from "ra-core";
+
+const CreateTag = () => {
+  const { onCancel, onCreate, filter } = useCreateSuggestionContext();
+  const [name, setName] = React.useState(filter ?? "");
+  return (
+    <Dialog open onOpenChange={onCancel}>
+      <DialogContent>
+        <Input value={name} onChange={(e) => setName(e.target.value)} autoFocus />
+        <Button onClick={() => onCreate({ id: name.toLowerCase(), name })}>Save</Button>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  create={<CreateTag />}
+/>
 ```
 
 ## `clearOnBlur`
