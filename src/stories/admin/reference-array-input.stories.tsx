@@ -59,6 +59,36 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
+export const WithOfflineState = () => (
+  <TestMemoryRouter initialEntries={["/posts/create"]}>
+    <Admin dataProvider={dataProvider} i18nProvider={i18nProvider}>
+      <Resource name="tags" recordRepresentation={"name"} />
+      <Resource
+        name="posts"
+        list={ListGuesser}
+        create={
+          <Create resource="posts" record={{ tags_ids: [] }}>
+            <SimpleForm>
+              <ReferenceArrayInput
+                reference="tags"
+                resource="posts"
+                source="tags_ids"
+                offline={
+                  <span className="text-muted-foreground italic">
+                    Offline — tags unavailable
+                  </span>
+                }
+              />
+            </SimpleForm>
+          </Create>
+        }
+        edit={EditGuesser}
+        show={ShowGuesser}
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const WithValidation = () => (
   <TestMemoryRouter initialEntries={["/posts/create"]}>
     <Admin dataProvider={dataProvider} i18nProvider={i18nProvider}>

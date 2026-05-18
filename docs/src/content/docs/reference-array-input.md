@@ -84,12 +84,25 @@ You can tweak how `<ReferenceArrayInput>` fetches the possible values using the 
 | `source`       | Required | `string`                                                                         | Field with array of ids                                           |
 | `reference`    | Required | `string`                                                                         | Target resource                                                   |
 | `children`     | Optional | `ReactNode`                                                                      | Reference selector element (default `<AutocompleteArrayInput />`) |
+| `offline`      | Optional | `ReactNode`                                                                      | `<Offline />`                                                     | Element rendered when the network is offline                                                        |
 | `filter`       | Optional | `Object`                                                                         | `{}`                                                              | Permanent filters to use for getting the suggestion list                                            |
 | `label`        | Optional | `string`                                                                         | -                                                                 | Useful only when `ReferenceArrayInput` is in a Filter array, the label is used as the Filter label. |
 | `page`         | Optional | `number`                                                                         | 1                                                                 | The current page number                                                                             |
 | `perPage`      | Optional | `number`                                                                         | 25                                                                | Number of suggestions to show                                                                       |
 | `queryOptions` | Optional | [`UseQueryOptions`](https://tanstack.com/query/v5/docs/react/reference/useQuery) | `{}`                                                              | `react-query` client options                                                                        |
 | `sort`         | Optional | `{ field: String, order: 'ASC' or 'DESC' }`                                      | `{ field: 'id', order: 'DESC' }`                                  | How to order the list of suggestions                                                                |
+
+## `offline`
+
+Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
+
+```jsx
+<ReferenceArrayInput
+  source="tag_ids"
+  reference="tags"
+  offline={<span className="text-muted-foreground italic">Offline — tags unavailable</span>}
+/>
+```
 
 ## `format`
 
