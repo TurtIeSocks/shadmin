@@ -5,9 +5,12 @@ import { Admin } from "@/components/admin/admin";
 import { List } from "@/components/admin/list";
 import { DataTable } from "@/components/admin/data-table";
 import { TextInput } from "@/components/admin/text-input";
+import { Star } from "lucide-react";
+
 import {
   AddSavedQueryIconButton,
   RemoveSavedQueryIconButton,
+  SavedQueriesList,
 } from "@/components/admin/saved-queries";
 
 export default {
@@ -72,6 +75,29 @@ export const AddButtonOnly = () => (
   <TestMemoryRouter initialEntries={["/posts"]}>
     <Admin dataProvider={dataProvider}>
       <Resource name="posts" list={AddOnly} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+const WithStarIcon = () => (
+  <List filters={postFilters}>
+    <div className="flex gap-4">
+      <div className="w-48 p-3 border rounded">
+        <SavedQueriesList icon={<Star className="size-4" />} />
+      </div>
+      <DataTable>
+        <DataTable.Col source="id" />
+        <DataTable.Col source="title" />
+        <DataTable.Col source="status" />
+      </DataTable>
+    </div>
+  </List>
+);
+
+export const WithCustomIcon = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={WithStarIcon} />
     </Admin>
   </TestMemoryRouter>
 );

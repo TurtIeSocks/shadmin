@@ -1,0 +1,11 @@
+{
+  "name": "SavedQueriesList",
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Icon rendered in the FilterList header for saved queries. Defaults to a `<Bookmark>` icon."
+    }
+  ]
+}

@@ -18,9 +18,22 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop      | Required | Type     | Default | Description                       |
-| --------- | -------- | -------- | ------- | --------------------------------- |
-| className | Optional | `string` | -       | Extra classes for the query list. |
+| Prop   | Required | Type        | Default         | Description                                         |
+| ------ | -------- | ----------- | --------------- | --------------------------------------------------- |
+| `icon` | Optional | `ReactNode` | `<Bookmark />`  | Icon shown in the FilterList header for this section |
+
+## `icon`
+
+Pass any `ReactNode` to replace the default `<Bookmark>` icon rendered in the `<FilterList>` section header. Use this to match the icon to your app's visual language.
+
+```tsx
+import { Star } from "lucide-react";
+import { SavedQueriesList } from "@/components/admin";
+
+const Sidebar = () => (
+  <SavedQueriesList icon={<Star className="size-4" />} />
+);
+```
 
 ## Behavior
 
