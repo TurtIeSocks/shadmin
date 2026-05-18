@@ -2,6 +2,7 @@ import React from "react";
 import { CoreAdminContext, memoryStore } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
+import { Globe } from "lucide-react";
 
 import { LocalesMenuButton } from "@/components/admin/locales-menu-button";
 import { ThemeProvider } from "@/components/admin/theme-provider";
@@ -60,6 +61,12 @@ export const SingleLocale = () => (
     <p className="text-sm text-muted-foreground mt-2">
       (renders nothing when only one locale is configured)
     </p>
+  </Wrapper>
+);
+
+export const CustomIcon = () => (
+  <Wrapper>
+    <LocalesMenuButton icon={<Globe className="size-4" />} />
   </Wrapper>
 );
 

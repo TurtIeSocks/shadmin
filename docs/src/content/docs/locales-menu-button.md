@@ -48,3 +48,22 @@ import { LocalesMenuButton } from "@/components/admin";
 ```
 
 If you want to customize the button, you can edit the `@/components/admin/locales-menu-button.tsx` file directly. It leverages the [`useLocaleState`](https://marmelab.com/ra-core/uselocalestate/) hook from `ra-core`, as well as the [`<Dropdown>`](https://ui.shadcn.com/docs/components/dropdown-menu) component from shadcn/ui.
+
+## Props
+
+| Prop        | Required | Type                              | Default   | Description                                                  |
+| ----------- | -------- | --------------------------------- | --------- | ------------------------------------------------------------ |
+| `icon`      | Optional | `ReactNode`                       | -         | Replaces the locale-code text in the trigger button          |
+| `languages` | Optional | `Array<{locale: string; name: string}>` | from `useLocales()` | Override the list of available languages |
+| `ref`       | Optional | `Ref<HTMLButtonElement>`          | -         | Forwarded to the underlying `<Button>`                       |
+
+## `icon`
+
+Replaces the default locale-code text (e.g. "EN") shown in the trigger button. Pass any lucide-react icon to convey a different action.
+
+```tsx
+import { Globe } from "lucide-react";
+import { LocalesMenuButton } from "@/components/admin";
+
+<LocalesMenuButton icon={<Globe className="size-4" />} />
+```
