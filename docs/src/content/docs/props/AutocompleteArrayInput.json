@@ -18,6 +18,12 @@
       "type": "string",
       "optional": true,
       "comment": "Sentinel value identifying the 'create' item internally; only needed when the default collides with a real choice value"
+    },
+    {
+      "name": "createItemLabel",
+      "type": "string | ((filter: string) => ReactNode)",
+      "optional": true,
+      "comment": "Label for the 'Create …' menu item shown when the filter is non-empty; supports %{item} interpolation"
     }
   ]
 }

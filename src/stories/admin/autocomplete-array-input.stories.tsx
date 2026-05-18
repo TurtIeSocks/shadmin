@@ -85,6 +85,19 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithCreateItemLabel = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+        createItemLabel="Add '%{item}' as a new tag"
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithCreateHintValue = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

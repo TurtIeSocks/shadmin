@@ -70,6 +70,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `clearOnBlur`     | Optional   | `boolean`                        | `false`               | If true, clears the filter text in the input when the input loses focus                                                                 |
 | `create`          | Optional   | `ReactElement`                   | -                     | A React element rendered when users want to create a new choice                                                                         |
 | `createHintValue` | Optional   | `string`                         | -                     | Sentinel value passed to `useSupportCreateSuggestion` to represent the "create" item internally                                         |
+| `createItemLabel` | Optional   | `string \| (filter) => ReactNode` | `ra.action.create_item` | Label for the "Create …" menu item shown when the filter is non-empty                                                                  |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -151,6 +152,19 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `createItemLabel`
+
+The label shown for the "Create …" menu item when the filter text is non-empty. Accepts a string (supports `%{item}` interpolation for the current filter) or a function `(filter) => ReactNode` for fully custom rendering. Defaults to the translation of `ra.action.create_item` ("Create %{item}").
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+  createItemLabel="Add '%{item}' as a new tag"
+/>
 ```
 
 ## `createHintValue`
