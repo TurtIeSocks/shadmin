@@ -79,4 +79,13 @@ export const CustomIcon = () => (
   </Wrapper>
 );
 
+export const WithRef = () => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <UpdateButton label="Reset Views" data={{ views: 0 }} ref={ref} />
+    </Wrapper>
+  );
+};
+
 export const Basic = Default;

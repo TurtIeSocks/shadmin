@@ -44,6 +44,7 @@ Defaults to `mutationMode="undoable"` — the update fires immediately and a not
 | `mutationOptions` | Optional | `UseUpdateOptions`                            | -                  | Forwarded to `useUpdate`                           |
 | `onClick`         | Optional | `(e: MouseEvent<HTMLButtonElement>) => void`  | -                  | Additional click handler                           |
 | `redirect`        | Optional | `RedirectionSideEffect`                       | -                  | Where to redirect after update                     |
+| `ref`             | Optional | `Ref<HTMLButtonElement>`                      | -                  | Forwarded to the underlying `<Button>`             |
 | `resource`        | Optional | `string`                                      | From context       | Resource name                                      |
 | `successMessage`  | Optional | `string`                                      | -                  | Custom success i18n key                            |
 | `variant`         | Optional | shadcn button variant                         | `outline`          | Button style                                       |
@@ -51,6 +52,20 @@ Defaults to `mutationMode="undoable"` — the update fires immediately and a not
 ## `icon`
 
 Replaces the default `<RefreshCw />` shown alongside the label. Pass any lucide-react icon to convey a different action.
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { UpdateButton } from "@/components/admin";
+
+const ResetViewsButton = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <UpdateButton label="Reset Views" data={{ views: 0 }} ref={ref} />;
+};
+```
 
 ```tsx
 import { RotateCcw } from "lucide-react";
