@@ -2,6 +2,7 @@ import React from "react";
 import { CoreAdminContext, memoryStore, TestMemoryRouter } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
+import { RefreshCcw } from "lucide-react";
 
 import { RefreshButton } from "@/components/admin/refresh-button";
 import { ThemeProvider } from "@/components/admin/theme-provider";
@@ -38,6 +39,12 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
 export const Basic = () => (
   <Wrapper>
     <RefreshButton />
+  </Wrapper>
+);
+
+export const CustomIcon = () => (
+  <Wrapper>
+    <RefreshButton icon={<RefreshCcw />} />
   </Wrapper>
 );
 
