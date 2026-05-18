@@ -15,7 +15,13 @@ import {
   FormField,
   FormLabel,
 } from "@/components/admin/form";
+import {
+  Popover,
+  PopoverAnchor,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { Command as CommandPrimitive } from "cmdk";
+import { Popover as PopoverPrimitive } from "radix-ui";
 import type { ChoicesProps, InputProps, SupportCreateSuggestionOptions } from "ra-core";
 import {
   useChoices,
@@ -102,7 +108,7 @@ export const AutocompleteArrayInput = (
       emptyText?: string;
       /** Called with the current filter text on every keystroke. For server-side filtering outside ReferenceArrayInput. No debounce applied — caller decides. */
       setFilter?: (filter: string) => void;
-    },
+    } & Pick<PopoverPrimitive.PopoverProps, "modal">,
 ) => {
   const {
     debounce: debounceDelay = 250,
@@ -115,6 +121,7 @@ export const AutocompleteArrayInput = (
     createItemLabel,
     onCreate,
     optionText,
+    modal,
     limitChoicesToValue = false,
     suggestionLimit,
     noOptionsText,
@@ -157,6 +164,7 @@ export const AutocompleteArrayInput = (
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listRef = React.useRef<HTMLDivElement>(null);
+  const anchorRef = React.useRef<HTMLDivElement>(null);
   const [open, setOpen] = React.useState(false);
 
   // Keep stable references for the debounced filter setter so it isn't
@@ -359,65 +367,86 @@ export const AutocompleteArrayInput = (
           shouldFilter={!isFromReference && !matchSuggestion}
           className="overflow-visible bg-transparent"
         >
-          <div className="group rounded-md bg-transparent dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]">
-            <div className="flex flex-wrap gap-1">
-              {selectedChoices.map((choice) => (
-                <Badge key={getChoiceValue(choice)} variant="outline">
-                  {getInputText(choice)}
-                  <button
-                    className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        handleUnselect(choice);
+          <Popover
+            open={effectiveOpen}
+            onOpenChange={(isOpen) => {
+              if (!isOpen) setOpen(false);
+            }}
+            modal={modal}
+          >
+            <PopoverAnchor asChild>
+              <div
+                ref={anchorRef}
+                className="group rounded-md bg-transparent dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
+              >
+                <div className="flex flex-wrap gap-1">
+                  {selectedChoices.map((choice) => (
+                    <Badge key={getChoiceValue(choice)} variant="outline">
+                      {getInputText(choice)}
+                      <button
+                        className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            handleUnselect(choice);
+                          }
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleUnselect(choice);
+                        }}
+                      >
+                        <span className="sr-only">
+                          {translate("ra.action.remove", {
+                            _: "Remove",
+                          })}
+                        </span>
+                        <X className="size-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                  {/* Avoid having the "Search" Icon by not using CommandInput */}
+                  <CommandPrimitive.Input
+                    ref={inputRef}
+                    value={filterValue}
+                    onValueChange={(filter) => {
+                      setFilterValue(filter);
+                      setFilter?.(filter);
+                      requestAnimationFrame(() => {
+                        listRef.current?.scrollTo(0, 0);
+                      });
+                      // We don't want the ChoicesContext to filter the choices if the input
+                      // is not from a reference as it would also filter out the selected values
+                      if (isFromReference) {
+                        debouncedSetFilters(filter);
                       }
                     }}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleUnselect(choice);
-                    }}
-                  >
-                    <span className="sr-only">
-                      {translate("ra.action.remove", {
-                        _: "Remove",
-                      })}
-                    </span>
-                    <X className="size-3" />
-                  </button>
-                </Badge>
-              ))}
-              {/* Avoid having the "Search" Icon by not using CommandInput */}
-              <CommandPrimitive.Input
-                ref={inputRef}
-                value={filterValue}
-                onValueChange={(filter) => {
-                  setFilterValue(filter);
-                  setFilter?.(filter);
-                  requestAnimationFrame(() => {
-                    listRef.current?.scrollTo(0, 0);
-                  });
-                  // We don't want the ChoicesContext to filter the choices if the input
-                  // is not from a reference as it would also filter out the selected values
-                  if (isFromReference) {
-                    debouncedSetFilters(filter);
-                  }
-                }}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-                onKeyDown={handleInputKeyDown}
-                placeholder={placeholder}
-                className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-              />
-            </div>
-          </div>
-          <div className="relative">
-            <CommandList ref={listRef}>
-              {effectiveOpen && finalChoices.length > 0 ? (
-                <div className="absolute top-2 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
-                  <CommandGroup className="h-full overflow-auto">
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
+                    onKeyDown={handleInputKeyDown}
+                    placeholder={placeholder}
+                    className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+                  />
+                </div>
+              </div>
+            </PopoverAnchor>
+            <PopoverContent
+              style={{ width: "var(--radix-popover-trigger-width)" }}
+              className="p-0"
+              onOpenAutoFocus={(e) => e.preventDefault()}
+              onCloseAutoFocus={(e) => e.preventDefault()}
+              onInteractOutside={(e) => {
+                if (anchorRef.current?.contains(e.target as Node)) {
+                  e.preventDefault();
+                }
+              }}
+            >
+              <CommandList ref={listRef}>
+                {finalChoices.length > 0 ? (
+                  <CommandGroup>
                     {finalChoices.map((choice) => {
                       const isCreateItem =
                         !!createItem && choice?.id === createItem.id;
@@ -461,14 +490,14 @@ export const AutocompleteArrayInput = (
                       );
                     })}
                   </CommandGroup>
-                </div>
-              ) : effectiveOpen && finalChoices.length === 0 ? (
-                <div className="absolute top-2 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in px-3 py-2 text-sm text-muted-foreground">
-                  {emptyText}
-                </div>
-              ) : null}
-            </CommandList>
-          </div>
+                ) : (
+                  <div className="px-3 py-2 text-sm text-muted-foreground">
+                    {emptyText}
+                  </div>
+                )}
+              </CommandList>
+            </PopoverContent>
+          </Popover>
         </Command>
       </FormControl>
       <InputHelperText helperText={props.helperText} />
