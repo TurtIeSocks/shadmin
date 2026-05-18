@@ -1,3 +1,4 @@
+import React from "react";
 import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
@@ -95,6 +96,25 @@ export const CustomChildren = () => (
       i18nProvider={i18nProvider}
       store={memoryStore()}
       layout={MinimalLayout}
+    >
+      <Resource name="posts" list={ListGuesser} show={ShowGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
+const ToolbarLayout = ({ children }: { children?: React.ReactNode }) => (
+  <Layout appBar={() => <AppBar toolbar={<span className="text-xs text-muted-foreground">Custom toolbar</span>} />}>
+    {children}
+  </Layout>
+);
+
+export const WithCustomToolbar = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin
+      dataProvider={dataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+      layout={ToolbarLayout}
     >
       <Resource name="posts" list={ListGuesser} show={ShowGuesser} />
     </Admin>

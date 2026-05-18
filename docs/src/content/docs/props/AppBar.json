@@ -1,4 +1,11 @@
 {
   "name": "AppBar",
-  "props": []
+  "props": [
+    {
+      "name": "toolbar",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Replaces the default right-side action cluster (LocalesMenuButton + ThemeModeToggle + RefreshButton). Pass a ReactNode to supply custom actions, or omit to keep the default cluster."
+    }
+  ]
 }

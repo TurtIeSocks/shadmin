@@ -42,13 +42,30 @@ const MinimalAppBar = () => (
 
 ## Props
 
-| Prop        | Required | Type        | Default         | Description                                               |
-| ----------- | -------- | ----------- | --------------- | --------------------------------------------------------- |
-| `children`  | Optional | `ReactNode` | Default toolbar | Replace the entire AppBar content                         |
-| `className` | Optional | `string`    | —               | Extra Tailwind classes appended to the `<header>` element |
+| Prop        | Required | Type             | Default                        | Description                                               |
+| ----------- | -------- | ---------------- | ------------------------------ | --------------------------------------------------------- |
+| `children`  | Optional | `ReactNode`      | Default toolbar                | Replace the entire AppBar content                         |
+| `className` | Optional | `string`         | —                              | Extra Tailwind classes appended to the `<header>` element |
+| `toolbar`   | Optional | `ReactNode`      | Locales + Theme + Refresh      | Replace the right-aligned action cluster                  |
+| `userMenu`  | Optional | `ReactNode\|false` | `<UserMenu />`               | Replace or suppress the user menu                         |
 
 Additional props are forwarded to the underlying `<header>` element.
 
 ## `children`
 
 When `children` are provided, they replace the entire toolbar — `<AppBar>` only contributes the `<header>` wrapper with its default flex layout. Compose with [`<TitlePortal>`](./title-portal), [`<SidebarToggleButton>`](./sidebar-toggle-button), [`<UserMenu>`](./user-menu), and other building blocks to keep parity with the default behavior.
+
+## `toolbar`
+
+Pass any `ReactNode` to replace the default right-side action cluster (LocalesMenuButton + ThemeModeToggle + RefreshButton). Pass `null` to render nothing in that slot (the `userMenu` slot remains separate).
+
+```tsx
+import { AppBar, Layout, RefreshButton } from "@/components/admin";
+import { MyHelpButton } from "./my-help-button";
+
+const MyAppBar = () => (
+  <AppBar toolbar={<><MyHelpButton /><RefreshButton /></>} />
+);
+
+const MyLayout = (props) => <Layout {...props} appBar={MyAppBar} />;
+```
