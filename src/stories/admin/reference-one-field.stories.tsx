@@ -55,6 +55,39 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
+export const WithOfflineState = () => (
+  <TestMemoryRouter initialEntries={["/authors/1/show"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource
+        name="authors"
+        list={ListGuesser}
+        show={
+          <Show>
+            <SimpleShowLayout>
+              <RecordField source="id" />
+              <RecordField source="name" />
+              <RecordField label="Biography">
+                <ReferenceOneField
+                  reference="bios"
+                  target="author_id"
+                  offline={
+                    <span className="text-muted-foreground italic">
+                      Offline — biography unavailable
+                    </span>
+                  }
+                >
+                  <TextField source="body" />
+                </ReferenceOneField>
+              </RecordField>
+            </SimpleShowLayout>
+          </Show>
+        }
+      />
+      <Resource name="bios" />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const WithRenderProp = () => (
   <TestMemoryRouter initialEntries={["/authors/1/show"]}>
     <Admin dataProvider={dataProvider}>

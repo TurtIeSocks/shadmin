@@ -28,6 +28,7 @@ import { ReferenceOneField, TextField } from "@/components/admin";
 | `link`         | Optional | `LinkToType`           | -                   | Link the rendered field to the related record                    |
 | `empty`        | Optional | `ReactNode`            | -                   | Rendered when no record is found                                 |
 | `loading`      | Optional | `ReactNode`            | -                   | Rendered while the request is pending                            |
+| `offline`      | Optional | `ReactNode`            | `<Offline />`       | Element rendered when the network is offline                     |
 | `error`        | Optional | `ReactNode`            | -                   | Rendered when the request fails                                  |
 | `record`       | Optional | `object`               | Record from context | Explicit current record                                          |
 | `queryOptions` | Optional | `UseQueryOptions`      | -                   | Extra options forwarded to TanStack Query                        |
@@ -54,6 +55,20 @@ Wrap the rendered field in a `<Link>` to the related record. Accepts `"show"`, `
 
 ```tsx
 <ReferenceOneField reference="bios" target="author_id" link="show">
+  <TextField source="body" />
+</ReferenceOneField>
+```
+
+## `offline`
+
+Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
+
+```jsx
+<ReferenceOneField
+  reference="bios"
+  target="author_id"
+  offline={<span className="text-muted-foreground italic">Offline — biography unavailable</span>}
+>
   <TextField source="body" />
 </ReferenceOneField>
 ```
