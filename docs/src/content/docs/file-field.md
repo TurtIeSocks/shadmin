@@ -56,6 +56,7 @@ You can optionally set the `target` prop to choose which window will the link tr
 | `empty`        | Optional | `ReactNode` | -                   | Placeholder when empty                |
 | `ping`         | Optional | `string`    | -                   | URLs to ping on click (passthrough)   |
 | `record`       | Optional | `object`    | Record from context | Explicit record                       |
+| `rel`          | Optional | `string`    | -                   | Anchor `rel` (e.g. `noopener`)        |
 | `src`          | Optional | `string`    | -                   | Path within each file object to URL   |
 | `target`       | Optional | `string`    | -                   | Anchor target                         |
 | `title`        | Optional | `string`    | -                   | Field used for link text (or literal) |

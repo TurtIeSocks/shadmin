@@ -20,6 +20,12 @@
       "comment": "Space-separated list of URLs to which a `POST` request is sent when the link is followed. Passes through to the underlying `<a>` element."
     },
     {
+      "name": "rel",
+      "type": "string",
+      "optional": true,
+      "comment": "Relationship of the linked URL (e.g. `noopener noreferrer`). Passes through to the underlying `<a>` element."
+    },
+    {
       "name": "src",
       "type": "string",
       "optional": true,

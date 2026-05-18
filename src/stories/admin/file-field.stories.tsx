@@ -40,3 +40,15 @@ export const WithPing = () => (
     />
   </Wrapper>
 );
+
+export const WithRel = () => (
+  <Wrapper>
+    <FileField
+      source="attachments"
+      src="src"
+      title="title"
+      target="_blank"
+      rel="noopener noreferrer"
+    />
+  </Wrapper>
+);
