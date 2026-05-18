@@ -82,6 +82,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `onCreate`        | Optional   | `(filter) => object \| Promise`  | -                     | Callback invoked with the filter text when the user picks the "create" item; returns or resolves the new choice object                  |
 | `openOnFocus`     | Optional   | `boolean`                        | `false`               | Accepted for API parity; the array variant always opens on focus regardless of this setting                                             |
 | `optionText`      | Optional   | `string \| function \| element`  | `name` or record repr | Field name, function, or element used to derive each choice's display label                                                             |
+| `selectOnFocus`   | Optional   | `boolean`                        | `false`               | If true, all text in the search input is selected when the input receives focus                                                         |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -163,6 +164,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `selectOnFocus`
+
+When `true`, any text already present in the search input is selected when the input receives focus. This lets users immediately start typing a new query without having to manually clear the previous filter text.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  selectOnFocus
+/>
 ```
 
 ## `optionText`

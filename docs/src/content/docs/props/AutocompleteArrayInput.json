@@ -90,6 +90,12 @@
       "type": "string | ((choice: unknown) => string | ReactNode) | ReactElement",
       "optional": true,
       "comment": "Field name, function, or React element used to derive each choice's display label; defaults to 'name' or record representation"
+    },
+    {
+      "name": "selectOnFocus",
+      "type": "boolean",
+      "optional": true,
+      "comment": "If true, all text in the search input is selected when the input receives focus"
     }
   ]
 }

@@ -85,6 +85,14 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithSelectOnFocus = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput source="tags" choices={choices} selectOnFocus />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithOptionText = () => (
   <StoryWrapper theme="system">
     <SimpleForm>
