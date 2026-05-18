@@ -2,9 +2,11 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { ApplicationUpdatedNotification } from "./application-updated-notification";
 
+const ONE_HOUR = 3600000;
+
 export interface CheckForApplicationUpdateProps {
   /**
-   * Interval in milliseconds between two checks. Defaults to 60000 (1 minute).
+   * Interval in milliseconds between two checks. Defaults to 3600000 (1 hour).
    */
   interval?: number;
   /**
@@ -21,6 +23,20 @@ export interface CheckForApplicationUpdateProps {
    * When true, the polling is skipped.
    */
   disabled?: boolean;
+  /**
+   * Options forwarded to the internal `fetch()` call — allows custom headers,
+   * credentials, abort signal, etc. The `cache` option is always overridden to
+   * `"no-store"` so change detection remains reliable.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/fetch#options
+   */
+  fetchOptions?: RequestInit;
+  /**
+   * Called when a new version is detected (hash change), in addition to
+   * rendering the `notification`. Useful for side effects such as analytics or
+   * auto-reloading after a grace period.
+   */
+  onNewVersionAvailable?: () => void;
 }
 
 /**
@@ -47,10 +63,12 @@ export const CheckForApplicationUpdate = (
   props: CheckForApplicationUpdateProps,
 ) => {
   const {
-    interval = 60_000,
+    interval = ONE_HOUR,
     url,
     notification = <ApplicationUpdatedNotification />,
-    disabled = false,
+    disabled = import.meta.env.DEV,
+    fetchOptions,
+    onNewVersionAvailable,
   } = props;
 
   const [hasNewVersion, setHasNewVersion] = useState(false);
@@ -66,7 +84,7 @@ export const CheckForApplicationUpdate = (
 
     const fetchAndHash = async (): Promise<number | null> => {
       try {
-        const response = await fetch(targetUrl, { cache: "no-store" });
+        const response = await fetch(targetUrl, { ...fetchOptions, cache: "no-store" });
         if (!response.ok) {
           return null;
         }
@@ -88,6 +106,7 @@ export const CheckForApplicationUpdate = (
       }
       if (nextHash !== initialHashRef.current) {
         setHasNewVersion(true);
+        onNewVersionAvailable?.();
       }
     };
 
@@ -101,7 +120,7 @@ export const CheckForApplicationUpdate = (
       cancelled = true;
       window.clearInterval(timer);
     };
-  }, [disabled, interval, url]);
+  }, [disabled, fetchOptions, interval, onNewVersionAvailable, url]);
 
   if (!hasNewVersion) {
     return null;

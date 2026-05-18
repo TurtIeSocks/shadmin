@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactElement } from "react";
+import type { ElementType, ReactElement } from "react";
 import { FieldTitle } from "ra-core";
 import { cn } from "@/lib/utils";
 
@@ -34,7 +34,9 @@ import { cn } from "@/lib/utils";
 export const Labeled = ({
   children,
   className,
+  component: Wrapper = "div",
   fullWidth,
+  htmlFor,
   isRequired,
   label,
   resource,
@@ -51,7 +53,7 @@ export const Labeled = ({
     (childType as { displayName?: string })?.displayName !== "Labeled";
 
   return (
-    <div
+    <Wrapper
       className={cn(
         "inline-flex flex-col gap-1",
         fullWidth && "w-full",
@@ -59,7 +61,7 @@ export const Labeled = ({
       )}
     >
       {showLabel && (
-        <span className="text-muted-foreground text-xs font-medium">
+        <label htmlFor={htmlFor} className="text-muted-foreground text-xs font-medium">
           <FieldTitle
             label={label ?? childLabel}
             source={
@@ -69,10 +71,10 @@ export const Labeled = ({
             resource={resource}
             isRequired={isRequired}
           />
-        </span>
+        </label>
       )}
       {children}
-    </div>
+    </Wrapper>
   );
 };
 
@@ -81,14 +83,18 @@ Labeled.displayName = "Labeled";
 export interface LabeledProps {
   children: ReactElement;
   className?: string;
+  /** Override the wrapper element type. Defaults to `"div"`. */
+  component?: ElementType;
+  /** Expand the component to fill its container's width. */
+  fullWidth?: boolean;
+  /** When provided, sets the `for` attribute on the rendered `<label>` so clicking it focuses the associated input. */
+  htmlFor?: string;
+  /** Whether to show a required indicator. */
+  isRequired?: boolean;
   /** Set to `false` to hide the label entirely. */
   label?: React.ReactNode;
   /** Override the resource for label translation. */
   resource?: string;
   /** Override the source for label translation. */
   source?: string;
-  /** Whether to show a required indicator. */
-  isRequired?: boolean;
-  /** Expand the component to fill its container's width. */
-  fullWidth?: boolean;
 }

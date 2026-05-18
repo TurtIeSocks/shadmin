@@ -1,14 +1,28 @@
 import { Sparkles } from "lucide-react";
 import { useTranslate } from "ra-core";
+import type { HTMLAttributes } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export interface ApplicationUpdatedNotificationProps {
+export interface ApplicationUpdatedNotificationProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   className?: string;
+  /**
+   * Translation key (or literal string) for the notification body.
+   * Also accepted as `notificationText` (MUI alias).
+   */
   message?: string;
+  /** @alias message — MUI-compatible name for the notification text. */
+  notificationText?: string;
+  /**
+   * Translation key (or literal string) for the reload button label.
+   * Also accepted as `updateText` (MUI alias).
+   */
   buttonLabel?: string;
+  /** @alias buttonLabel — MUI-compatible name for the button label. */
+  updateText?: string;
   onReload?: () => void;
 }
 
@@ -32,10 +46,17 @@ export const ApplicationUpdatedNotification = (
 ) => {
   const {
     className,
-    message = "ra.notification.application_update_available",
-    buttonLabel = "ra.action.reload",
+    message,
+    notificationText,
+    buttonLabel,
+    updateText,
     onReload,
+    ...rest
   } = props;
+
+  const finalMessage =
+    message ?? notificationText ?? "ra.notification.application_update_available";
+  const finalButtonLabel = buttonLabel ?? updateText ?? "ra.action.reload";
 
   const translate = useTranslate();
 
@@ -57,11 +78,12 @@ export const ApplicationUpdatedNotification = (
         "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 max-w-md w-[calc(100%-2rem)] flex-row items-center gap-3 px-4 py-3",
         className,
       )}
+      {...rest}
     >
       <Sparkles className="size-5 text-primary shrink-0" aria-hidden="true" />
-      <p className="text-sm flex-1">{translate(message, { _: message })}</p>
+      <p className="text-sm flex-1">{translate(finalMessage, { _: finalMessage })}</p>
       <Button size="sm" onClick={handleReload}>
-        {translate(buttonLabel, { _: buttonLabel })}
+        {translate(finalButtonLabel, { _: finalButtonLabel })}
       </Button>
     </Card>
   );

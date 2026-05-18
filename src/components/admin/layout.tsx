@@ -1,4 +1,4 @@
-import type { ErrorInfo } from "react";
+import type { ComponentType, ErrorInfo, ReactNode } from "react";
 import { Suspense, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { CoreLayoutProps } from "ra-core";
@@ -7,9 +7,33 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { Notification } from "@/components/admin/notification";
 import { AppSidebar } from "@/components/admin/app-sidebar";
 import { AppBar } from "@/components/admin/app-bar";
+import type { AppBarProps } from "@/components/admin/app-bar";
 import { Error } from "@/components/admin/error";
+import type { ErrorProps } from "@/components/admin/error";
 import { Loading } from "@/components/admin/loading";
+import { Menu } from "@/components/admin/menu";
+import type { MenuProps } from "@/components/admin/menu";
+import { SkipNavigationButton } from "@/components/admin/skip-navigation-button";
 import type { UnknownValue } from "@/lib/unknown-types";
+
+export interface LayoutProps extends CoreLayoutProps {
+  /**
+   * Replaces the default `<AppBar />` rendered at the top of the content area.
+   */
+  appBar?: ComponentType<AppBarProps>;
+  /**
+   * Replaces the default `<Menu />` rendered inside the sidebar content area.
+   */
+  menu?: ComponentType<MenuProps>;
+  /**
+   * Replaces the default `<AppSidebar>` component.
+   */
+  sidebar?: ComponentType<{ children?: ReactNode }>;
+  /**
+   * Replaces the default `<Error>` component rendered by the ErrorBoundary fallback.
+   */
+  error?: ComponentType<ErrorProps>;
+}
 
 /**
  * The main application layout with sidebar, header, and content area.
@@ -20,16 +44,32 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * Header markup is delegated to `<AppBar>`; sidebar markup to `<AppSidebar>`. The public
  * `<Layout>` API and visuals are unchanged.
  *
+ * Accepts slot props (`appBar`, `menu`, `sidebar`, `error`) to replace individual sub-components
+ * without re-implementing the full layout.
+ *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/layout/ Layout documentation}
  */
-export const Layout = (props: CoreLayoutProps) => {
+export const Layout = (props: LayoutProps) => {
+  const {
+    appBar,
+    menu,
+    sidebar,
+    error,
+    ...rest
+  } = props;
+  const AppBarComponent = appBar ?? AppBar;
+  const SidebarComponent = sidebar ?? AppSidebar;
+  const ErrorComponent = error ?? Error;
+  const MenuComponent = menu ?? Menu;
   const [errorInfo, setErrorInfo] = useState<ErrorInfo | undefined>(undefined);
   const handleError = (_: UnknownValue, info: ErrorInfo) => {
     setErrorInfo(info);
   };
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <SidebarComponent>
+        <MenuComponent />
+      </SidebarComponent>
       <main
         className={cn(
           "ml-auto w-full max-w-full",
@@ -41,11 +81,12 @@ export const Layout = (props: CoreLayoutProps) => {
           "has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh",
         )}
       >
-        <AppBar />
+        <SkipNavigationButton />
+        <AppBarComponent />
         <ErrorBoundary
           onError={handleError}
           fallbackRender={({ error, resetErrorBoundary }) => (
-            <Error
+            <ErrorComponent
               error={error}
               errorInfo={errorInfo}
               resetErrorBoundary={resetErrorBoundary}
@@ -53,7 +94,7 @@ export const Layout = (props: CoreLayoutProps) => {
           )}
         >
           <Suspense fallback={<Loading />}>
-            <div className="flex flex-1 flex-col px-4 ">{props.children}</div>
+            <div className="flex flex-1 flex-col px-4 ">{rest.children}</div>
           </Suspense>
         </ErrorBoundary>
       </main>

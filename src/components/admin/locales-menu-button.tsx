@@ -1,3 +1,4 @@
+import type { ReactNode, Ref } from "react";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,8 +20,17 @@ import { useLocales, useLocaleState, useTranslate } from "ra-core";
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/localesmenubutton LocalesMenuButton documentation}
  * @see {@link https://marmelab.com/ra-core/translationsetup/ i18nProvider setup}
  */
-export function LocalesMenuButton() {
-  const languages = useLocales();
+export interface LocalesMenuButtonProps {
+  ref?: Ref<HTMLButtonElement>;
+  /** Replaces the locale-code text in the trigger button when provided. */
+  icon?: ReactNode;
+  /** Override the list of available languages instead of calling `useLocales()`. */
+  languages?: Array<{ locale: string; name: string }>;
+}
+
+export function LocalesMenuButton({ ref, icon, languages: languagesProp }: LocalesMenuButtonProps = {}) {
+  const localesFromHook = useLocales();
+  const languages = languagesProp ?? localesFromHook;
   const [locale, setLocale] = useLocaleState();
   const translate = useTranslate();
 
@@ -46,8 +56,9 @@ export function LocalesMenuButton() {
           aria-label={translate("ra.action.change_locale", {
             _: "Change locale",
           })}
+          ref={ref}
         >
-          {locale.toUpperCase()}
+          {icon ?? locale.toUpperCase()}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

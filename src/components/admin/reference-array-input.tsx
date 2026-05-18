@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode } from "react";
 import type { InputProps, UseReferenceArrayInputParams } from "ra-core";
 import {
   useReferenceArrayInputController,
@@ -7,6 +7,9 @@ import {
   ChoicesContextProvider,
 } from "ra-core";
 import { AutocompleteArrayInput } from "@/components/admin/autocomplete-array-input";
+import { Offline } from "@/components/admin/offline";
+
+const defaultOffline = <Offline />;
 
 /**
  * Form input for editing arrays of foreign key relationships with autocompletion.
@@ -33,6 +36,7 @@ import { AutocompleteArrayInput } from "@/components/admin/autocomplete-array-in
 export const ReferenceArrayInput = (props: ReferenceArrayInputProps) => {
   const {
     children = defaultChildren,
+    offline = defaultOffline,
     reference,
     sort,
     filter = defaultFilter,
@@ -49,6 +53,12 @@ export const ReferenceArrayInput = (props: ReferenceArrayInputProps) => {
     filter,
   });
 
+  const { isPaused, isPending } = controllerProps;
+  // Render offline placeholder when network is paused and choices are unavailable
+  if (isPaused && isPending && offline !== undefined && offline !== false) {
+    return <>{offline}</>;
+  }
+
   return (
     <ResourceContextProvider value={reference}>
       <ChoicesContextProvider value={controllerProps}>
@@ -64,4 +74,8 @@ const defaultFilter = {};
 export interface ReferenceArrayInputProps
   extends InputProps, UseReferenceArrayInputParams {
   children?: ReactElement;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
 }

@@ -48,17 +48,21 @@ export const SaveButton = <RecordType extends RaRecord = RaRecord>(
     label = "ra.action.save",
     onClick,
     mutationOptions,
+    alwaysEnable = false,
     disabled: disabledProp,
     type = "submit",
     transform,
     variant = "default",
+    ref,
     ...rest
   } = props;
   const translate = useTranslate();
   const form = useFormContext();
   const saveContext = useSaveContext();
   const { isValidating, isSubmitting, disabled: formDisabled } = useFormState();
-  const disabled = disabledProp || isValidating || isSubmitting || formDisabled;
+  const disabled = alwaysEnable
+    ? disabledProp
+    : disabledProp || isValidating || isSubmitting || formDisabled;
 
   warning(
     type === "submit" &&
@@ -106,10 +110,12 @@ export const SaveButton = <RecordType extends RaRecord = RaRecord>(
 
   return (
     <Button
+      ref={ref}
       variant={variant}
       type={type}
       disabled={disabled}
       onClick={handleClick}
+      aria-label={typeof displayedLabel === "string" ? displayedLabel : undefined}
       className={cn(
         disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
         className,
@@ -129,6 +135,7 @@ interface Props<
   MutationOptionsError = UnknownValue,
 > {
   className?: string;
+  alwaysEnable?: boolean;
   disabled?: boolean;
   icon?: React.ReactNode;
   label?: string;

@@ -2,6 +2,18 @@ import * as React from "react";
 import { X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverAnchor,
+} from "@/components/ui/popover";
+import {
   FormControl,
   FormError,
   FormField,
@@ -16,9 +28,21 @@ import {
 } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
 
+export type TagProps = { key: string | number; onDelete: () => void };
+
 export type TextArrayInputProps = InputProps & {
   className?: string;
   placeholder?: string;
+  /** Autocomplete suggestions shown in a dropdown below the input. */
+  options?: string[];
+  /**
+   * Custom tag renderer. When provided, replaces the default Badge-per-tag
+   * rendering. `getTagProps(tag, index)` returns `{ key, onDelete }`.
+   */
+  renderTags?: (
+    tags: string[],
+    getTagProps: (tag: string, index: number) => TagProps,
+  ) => React.ReactNode;
 };
 
 const emptyArray: string[] = [];
@@ -55,9 +79,11 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
     name,
     onBlur,
     onChange,
+    options,
     parse,
     placeholder,
     readOnly,
+    renderTags,
     source,
     validate,
     ...rest
@@ -65,11 +91,13 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
   const resource = useResourceContext(props);
   const { id, field, isRequired } = useInput({
     defaultValue,
+    disabled,
     format: format ?? ((v) => v ?? emptyArray),
     name,
     onBlur,
     onChange,
     parse,
+    readOnly,
     source,
     validate,
   });
@@ -77,8 +105,18 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = React.useState("");
+  const [suggestionsOpen, setSuggestionsOpen] = React.useState(false);
 
   const values: string[] = field.value ?? emptyArray;
+
+  const filteredOptions = React.useMemo(() => {
+    if (!options || !inputValue.trim()) return [];
+    const lower = inputValue.toLowerCase();
+    return options.filter(
+      (opt) =>
+        opt.toLowerCase().includes(lower) && !values.includes(opt),
+    );
+  }, [options, inputValue, values]);
 
   const handleAddValue = (text: string) => {
     const trimmed = text.trim();
@@ -86,11 +124,17 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
       field.onChange([...values, trimmed]);
     }
     setInputValue("");
+    setSuggestionsOpen(false);
   };
 
   const handleRemoveValue = (index: number) => {
     field.onChange(values.filter((_, i) => i !== index));
   };
+
+  const getTagProps = (tag: string, index: number): TagProps => ({
+    key: `${tag}-${index}`,
+    onDelete: () => handleRemoveValue(index),
+  });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -106,9 +150,42 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
     ) {
       field.onChange(values.slice(0, -1));
     } else if (e.key === "Escape") {
+      setSuggestionsOpen(false);
       inputRef.current?.blur();
     }
   };
+
+  const defaultTagRenderer = () =>
+    values.map((value, index) => (
+      <Badge key={`${value}-${index}`} variant="outline">
+        {value}
+        <button
+          className="ml-1 cursor-pointer rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleRemoveValue(index);
+            }
+          }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            handleRemoveValue(index);
+          }}
+          disabled={disabled || readOnly}
+        >
+          <span className="sr-only">
+            {translate("ra.action.remove", { _: "Remove" })}
+          </span>
+          <X className="size-3" />
+        </button>
+      </Badge>
+    ));
+
+  const showSuggestions =
+    !!options && suggestionsOpen && filteredOptions.length > 0;
 
   return (
     <FormField id={id} className={className} name={field.name}>
@@ -123,56 +200,69 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
         </FormLabel>
       )}
       <FormControl>
-        <div
-          className="group rounded-md bg-background shadow-xs dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
-          {...rest}
-        >
-          <div className="flex flex-wrap gap-1">
-            {values.map((value, index) => (
-              <Badge key={`${value}-${index}`} variant="outline">
-                {value}
-                <button
-                  className="ml-1 cursor-pointer rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      handleRemoveValue(index);
+        <Popover open={showSuggestions} onOpenChange={setSuggestionsOpen}>
+          <PopoverAnchor asChild>
+            <div
+              className="group rounded-md bg-background shadow-xs dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
+              {...rest}
+            >
+              <div className="flex flex-wrap gap-1">
+                {renderTags
+                  ? renderTags(values, getTagProps)
+                  : defaultTagRenderer()}
+                <input
+                  ref={inputRef}
+                  value={inputValue}
+                  onChange={(e) => {
+                    setInputValue(e.target.value);
+                    if (options) setSuggestionsOpen(true);
+                  }}
+                  onKeyDown={handleKeyDown}
+                  onBlur={() => {
+                    if (inputValue.trim()) {
+                      handleAddValue(inputValue);
                     }
+                    field.onBlur?.();
+                    // delay close so clicks on suggestions register first
+                    setTimeout(() => setSuggestionsOpen(false), 150);
                   }}
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleRemoveValue(index);
-                  }}
-                  disabled={disabled || readOnly}
-                >
-                  <span className="sr-only">
-                    {translate("ra.action.remove", { _: "Remove" })}
-                  </span>
-                  <X className="size-3" />
-                </button>
-              </Badge>
-            ))}
-            <input
-              ref={inputRef}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onBlur={() => {
-                if (inputValue.trim()) {
-                  handleAddValue(inputValue);
-                }
-                field.onBlur?.();
-              }}
-              placeholder={values.length === 0 ? placeholder : undefined}
-              disabled={disabled}
-              readOnly={readOnly}
-              className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-            />
-          </div>
-        </div>
+                  placeholder={values.length === 0 ? placeholder : undefined}
+                  disabled={disabled}
+                  readOnly={readOnly}
+                  className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+                />
+              </div>
+            </div>
+          </PopoverAnchor>
+          {showSuggestions && (
+            <PopoverContent
+              className="p-0 w-(--radix-popover-trigger-width)"
+              align="start"
+              onOpenAutoFocus={(e) => e.preventDefault()}
+            >
+              <Command>
+                <CommandList>
+                  <CommandEmpty>
+                    {translate("ra.navigation.no_results", {
+                      _: "No results",
+                    })}
+                  </CommandEmpty>
+                  <CommandGroup>
+                    {filteredOptions.map((opt) => (
+                      <CommandItem
+                        key={opt}
+                        value={opt}
+                        onSelect={() => handleAddValue(opt)}
+                      >
+                        {opt}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          )}
+        </Popover>
       </FormControl>
       <InputHelperText helperText={helperText} />
       <FormError />

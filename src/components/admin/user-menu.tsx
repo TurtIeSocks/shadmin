@@ -1,4 +1,4 @@
-import { Children, useCallback, useState } from "react";
+import { Children, useCallback, useState, type ReactNode } from "react";
 import {
   useAuthProvider,
   useGetIdentity,
@@ -14,11 +14,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { Logout } from "./logout";
 
 export type UserMenuProps = {
-  children?: React.ReactNode;
+  children?: ReactNode;
+  label?: string;
+  icon?: ReactNode;
 };
 
 /**
@@ -30,9 +33,9 @@ export type UserMenuProps = {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/usermenu UserMenu documentation}
  */
-export function UserMenu({ children }: UserMenuProps) {
+export function UserMenu({ children, label, icon }: UserMenuProps) {
   const authProvider = useAuthProvider();
-  const { data: identity } = useGetIdentity();
+  const { isPending, data: identity } = useGetIdentity();
   const translate = useTranslate();
 
   const [open, setOpen] = useState(false);
@@ -47,6 +50,15 @@ export function UserMenu({ children }: UserMenuProps) {
 
   if (!authProvider) return null;
 
+  if (isPending) {
+    return <Skeleton className="size-8 rounded-full ml-2" />;
+  }
+
+  const ariaLabel =
+    label != null
+      ? translate(label, { _: label })
+      : identity?.fullName || translate("ra.auth.user_menu", { _: "User menu" });
+
   return (
     <UserMenuContext.Provider value={{ onClose: handleClose }}>
       <DropdownMenu open={open} onOpenChange={handleToggleOpen}>
@@ -54,15 +66,16 @@ export function UserMenu({ children }: UserMenuProps) {
           <Button
             variant="ghost"
             className="relative size-8 ml-2 rounded-full"
-            aria-label={
-              identity?.fullName ||
-              translate("ra.auth.user_menu", { _: "User menu" })
-            }
+            aria-label={ariaLabel}
           >
-            <Avatar className="size-8">
-              <AvatarImage src={identity?.avatar} alt={identity?.fullName} />
-              <AvatarFallback>{identity?.fullName?.charAt(0)}</AvatarFallback>
-            </Avatar>
+            {icon ? (
+              icon
+            ) : (
+              <Avatar className="size-8">
+                <AvatarImage src={identity?.avatar} alt={identity?.fullName} />
+                <AvatarFallback>{identity?.fullName?.charAt(0)}</AvatarFallback>
+              </Avatar>
+            )}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>

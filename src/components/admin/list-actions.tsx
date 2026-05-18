@@ -21,6 +21,11 @@ export interface ListActionsProps extends Omit<
   exporter?: Exporter | boolean;
   hasCreate?: boolean;
   children?: ReactNode;
+  showFilter?: (filterName: string) => void;
+  displayedFilters?: Record<string, boolean>;
+  filterValues?: Record<string, unknown>;
+  permanentFilter?: Record<string, unknown>;
+  total?: number;
 }
 
 /**
@@ -57,6 +62,11 @@ export const ListActions = (props: ListActionsProps) => {
     exporter: exporterProp,
     hasCreate: hasCreateProp,
     resource: _resourceProp,
+    showFilter: _showFilter,
+    displayedFilters: _displayedFilters,
+    filterValues: _filterValues,
+    permanentFilter: _permanentFilter,
+    total: _total,
     ...rest
   } = props;
   const resource = useResourceContext(props);

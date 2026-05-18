@@ -35,8 +35,8 @@ export const NumberInput = (props: NumberInputProps) => {
     source,
     className,
     resource: resourceProp,
-    validate: _validateProp,
-    format: _formatProp,
+    validate,
+    format = defaultFormat,
     parse = convertStringToNumber,
     onFocus,
     onChange: onChangeProp,
@@ -46,18 +46,14 @@ export const NumberInput = (props: NumberInputProps) => {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  // Strip `onChange` / `onBlur` from the props passed to `useInput` so the
-  // user's handlers aren't invoked twice (once by ra-core's `useInput`
-  // wiring and once by our handlers below).
-  const {
-    onChange: _onChangeStripped,
-    onBlur: _onBlurStripped,
-    ...inputProps
-  } = props;
-  void _onChangeStripped;
-  void _onBlurStripped;
-
-  const { id, field, isRequired } = useInput(inputProps);
+  const { id, field, isRequired } = useInput({
+    ...rest,
+    source,
+    resource: resourceProp,
+    validate,
+    format,
+    parse,
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
@@ -152,6 +148,9 @@ export interface NumberInputProps
     > {
   parse?: (value: string | number) => number | null;
 }
+
+const defaultFormat = (value: unknown) =>
+  value == null || Number.isNaN(value) ? "" : String(value);
 
 const convertStringToNumber = (value?: string | number | null) => {
   if (value == null || value === "") {

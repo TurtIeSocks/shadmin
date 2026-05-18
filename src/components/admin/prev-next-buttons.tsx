@@ -1,3 +1,4 @@
+import type { Ref } from "react";
 import { Link } from "react-router";
 import { ChevronLeft, ChevronRight, AlertCircle } from "lucide-react";
 import {
@@ -14,6 +15,7 @@ export interface PrevNextButtonsProps<
   RecordType extends RaRecord = RaRecord,
 > extends UsePrevNextControllerProps<RecordType> {
   className?: string;
+  ref?: Ref<HTMLElement>;
 }
 
 /**
@@ -37,7 +39,7 @@ export interface PrevNextButtonsProps<
 export const PrevNextButtons = <RecordType extends RaRecord = RaRecord>(
   props: PrevNextButtonsProps<RecordType>,
 ) => {
-  const { className } = props;
+  const { className, ref } = props;
   const {
     hasPrev,
     hasNext,
@@ -76,6 +78,7 @@ export const PrevNextButtons = <RecordType extends RaRecord = RaRecord>(
     <nav
       role="navigation"
       className={cn("inline-flex items-center gap-2", className)}
+      ref={ref}
     >
       {hasPrev && prevPath ? (
         <Link

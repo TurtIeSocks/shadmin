@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/select";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useListPaginationContext, Translate, useTranslate } from "ra-core";
+import type { ReactElement } from "react";
+import { useEffect } from "react";
 
 /**
  * A pagination component with page numbers and rows per page selector.
@@ -45,9 +47,11 @@ import { useListPaginationContext, Translate, useTranslate } from "ra-core";
  * );
  */
 export const ListPagination = ({
+  actions,
   rowsPerPageOptions = [5, 10, 25, 50],
   className,
 }: {
+  actions?: ReactElement;
   rowsPerPageOptions?: number[];
   className?: string;
 }) => {
@@ -65,6 +69,17 @@ export const ListPagination = ({
   // Partial pagination = total is unknown (cursor-based / infinite providers).
   const isPartial = total == null;
 
+  // Out-of-bounds guard: if the current page is beyond the last page, reset to 1.
+  const totalPages = !isPartial && total! > 0 ? Math.ceil(total! / perPage) : undefined;
+  useEffect(() => {
+    if (totalPages != null && page > totalPages) {
+      setPage(1);
+    }
+  }, [page, totalPages, setPage]);
+  if (totalPages != null && page > totalPages) {
+    return null;
+  }
+
   // Issue 1: when the total is known and equals 0, render nothing.
   // No pagination is needed for an empty list. The empty state is handled
   // by the component displaying the data (Datagrid, DataTable, SimpleList).
@@ -72,19 +87,26 @@ export const ListPagination = ({
     return null;
   }
 
+  // Custom actions override the default pagination controls.
+  if (actions) {
+    return (
+      <div className={cn("flex items-center justify-end gap-x-2 gap-4", className)}>
+        {actions}
+      </div>
+    );
+  }
+
   const pageStart = (page - 1) * perPage + 1;
 
   // Issue 3: avoid "undefined" in the range info when total is unknown.
   // When total is known, clamp the end to `total` so the last page shows the
   // real number of items rather than `page * perPage`.
-  const pageEnd = isPartial
-    ? page * perPage
-    : Math.min(page * perPage, total as number);
+  const pageEnd =
+    total == null ? page * perPage : Math.min(page * perPage, total);
 
   // Issue 2: page-number/ellipsis logic only makes sense when total is known.
   // We compute it lazily below and guard the JSX with `!isPartial`.
-  const count =
-    !isPartial && total ? Math.ceil((total as number) / perPage) : 1;
+  const count = total != null && total > 0 ? Math.ceil(total / perPage) : 1;
 
   const boundaryCount = 1;
   const siblingCount = 1;

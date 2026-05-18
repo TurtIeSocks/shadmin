@@ -17,11 +17,13 @@ describe("<SimpleListLoading />", () => {
 
   it("renders the requested number of rows", async () => {
     const screen = render(<FewLines />);
+    await expect.element(screen.getByRole("list")).toBeInTheDocument();
     expect(screen.getByRole("listitem").all().length).toBe(2);
   });
 
   it("renders the full layout with avatar slots", async () => {
     const screen = render(<FullLayout />);
+    await expect.element(screen.getByRole("list")).toBeInTheDocument();
     expect(screen.getByRole("listitem").all().length).toBe(6);
   });
 });

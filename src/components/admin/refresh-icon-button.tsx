@@ -42,6 +42,7 @@ export const RefreshIconButton = (props: RefreshIconButtonProps) => {
     icon = defaultIcon,
     onClick,
     className,
+    ref,
     ...rest
   } = props;
   const refresh = useRefresh();
@@ -64,6 +65,7 @@ export const RefreshIconButton = (props: RefreshIconButtonProps) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
+            ref={ref}
             variant="ghost"
             size="icon"
             type="button"

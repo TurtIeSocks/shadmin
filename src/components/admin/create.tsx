@@ -3,7 +3,7 @@ import {
   BreadcrumbItem,
   BreadcrumbPage,
 } from "@/components/admin/breadcrumb";
-import type { CreateBaseProps } from "ra-core";
+import type { CreateBaseProps, CreateControllerResult } from "ra-core";
 import {
   CreateBase,
   Translate,
@@ -13,11 +13,11 @@ import {
   useHasDashboard,
   useResourceContext,
 } from "ra-core";
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 
-export type CreateProps = CreateViewProps & CreateBaseProps;
+export type CreateProps = CreateViewProps & Omit<CreateBaseProps, "render" | "children">;
 
 /**
  * A complete create page with breadcrumb, title, and actions.
@@ -41,17 +41,23 @@ export type CreateProps = CreateViewProps & CreateBaseProps;
  */
 export const Create = ({
   actions,
+  aside,
   children,
   className,
+  component,
   disableBreadcrumb,
+  render,
   title,
   ...rest
 }: CreateProps) => (
   <CreateBase {...rest}>
     <CreateView
       actions={actions}
+      aside={aside}
       className={className}
+      component={component}
       disableBreadcrumb={disableBreadcrumb}
+      render={render}
       title={title}
     >
       {children}
@@ -61,9 +67,12 @@ export const Create = ({
 
 export type CreateViewProps = {
   actions?: ReactNode;
+  aside?: ReactNode;
+  component?: ElementType;
   disableBreadcrumb?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
+  render?: (controllerState: CreateControllerResult) => ReactNode;
   title?: ReactNode | string | false;
 };
 
@@ -74,10 +83,13 @@ export type CreateViewProps = {
  */
 export const CreateView = ({
   actions,
+  aside,
+  component,
   disableBreadcrumb,
   title,
   children,
   className,
+  render,
 }: CreateViewProps) => {
   const context = useCreateContext();
 
@@ -95,6 +107,36 @@ export const CreateView = ({
     type: "list",
   });
   const hasDashboard = useHasDashboard();
+
+  const finalContent = render ? render(context) : children;
+  const Wrapper = component ?? "div";
+
+  const header = (
+    <div
+      className={cn(
+        "flex justify-between items-start flex-wrap gap-2 my-2",
+        className,
+      )}
+    >
+      {title !== false && (
+        <h2 className="text-2xl font-bold tracking-tight">
+          {title !== undefined ? title : context.defaultTitle}
+        </h2>
+      )}
+      {actions}
+    </div>
+  );
+
+  const contentBlock = (
+    <Wrapper className="my-2">{finalContent}</Wrapper>
+  );
+
+  const main = aside ? (
+    <div className="flex gap-4">
+      <div className="flex-1">{contentBlock}</div>
+      <div className="flex-shrink-0 w-64">{aside}</div>
+    </div>
+  ) : contentBlock;
 
   return (
     <>
@@ -115,18 +157,8 @@ export const CreateView = ({
           </BreadcrumbPage>
         </Breadcrumb>
       )}
-      <div
-        className={cn(
-          "flex justify-between items-start flex-wrap gap-2 my-2",
-          className,
-        )}
-      >
-        <h2 className="text-2xl font-bold tracking-tight">
-          {title !== undefined ? title : context.defaultTitle}
-        </h2>
-        {actions}
-      </div>
-      <div className="my-2">{children}</div>
+      {header}
+      {main}
     </>
   );
 };

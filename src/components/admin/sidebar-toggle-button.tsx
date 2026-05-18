@@ -1,8 +1,16 @@
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import type { Ref } from "react";
+import { useTranslate } from "ra-core";
+import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 export interface SidebarToggleButtonProps {
   className?: string;
+  ref?: Ref<HTMLButtonElement>;
 }
 
 /**
@@ -25,6 +33,22 @@ export interface SidebarToggleButtonProps {
  * );
  */
 export const SidebarToggleButton = (props: SidebarToggleButtonProps) => {
-  const { className } = props;
-  return <SidebarTrigger className={cn("scale-125 sm:scale-100", className)} />;
+  const { className, ref } = props;
+  const { open } = useSidebar();
+  const translate = useTranslate();
+  const tooltipText = open
+    ? translate("ra.action.close_menu", { _: "Close menu" })
+    : translate("ra.action.open_menu", { _: "Open menu" });
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <SidebarTrigger
+          className={cn("scale-125 sm:scale-100", className)}
+          ref={ref}
+        />
+      </TooltipTrigger>
+      <TooltipContent>{tooltipText}</TooltipContent>
+    </Tooltip>
+  );
 };

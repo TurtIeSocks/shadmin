@@ -37,8 +37,9 @@ describe("<DataTable />", () => {
   it("does not apply the cursor-pointer class when rowClick is false", async () => {
     const screen = render(<RowClickFalse />);
     // Rows should still render; just sanity check
-    const rows = screen.getByRole("row");
-    expect(rows.all().length).toBeGreaterThan(1);
+    await expect
+      .poll(() => screen.getByRole("row").all().length, { timeout: 5000 })
+      .toBeGreaterThan(1);
   });
 
   it("renders custom bulk action buttons when provided", async () => {

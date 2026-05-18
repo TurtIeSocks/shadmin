@@ -63,7 +63,7 @@ import { cn } from "@/lib/utils";
  * );
  */
 export const ColumnsButton = (props: ColumnsButtonProps) => {
-  const { className, storeKey: _, ...rest } = props;
+  const { className, storeKey: _, ref, ...rest } = props;
   const resource = useResourceContext(props);
   const storeKey = props.storeKey || `${resource}.datatable`;
 
@@ -81,6 +81,7 @@ export const ColumnsButton = (props: ColumnsButtonProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
+                  ref={ref}
                   variant="ghost"
                   size="icon"
                   aria-label={title}
@@ -92,7 +93,7 @@ export const ColumnsButton = (props: ColumnsButtonProps) => {
               <TooltipContent>{title}</TooltipContent>
             </Tooltip>
           ) : (
-            <Button variant="outline" className="cursor-pointer" {...rest}>
+            <Button ref={ref} variant="outline" className="cursor-pointer" {...rest}>
               <Columns />
               {title}
             </Button>

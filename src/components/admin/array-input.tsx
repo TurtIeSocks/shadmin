@@ -55,6 +55,7 @@ export const ArrayInput = (props: ArrayInputProps) => {
     defaultValue = [],
     label,
     isPending,
+    loading,
     children,
     helperText,
     resource: resourceFromProps,
@@ -67,7 +68,11 @@ export const ArrayInput = (props: ArrayInputProps) => {
   const finalSource = parentSourceContext.getSource(arraySource);
 
   if (isPending) {
-    return <Skeleton className="w-full h-9" />;
+    return loading != null ? (
+      <>{loading}</>
+    ) : (
+      <Skeleton className="w-full h-9" />
+    );
   }
 
   return (
@@ -108,4 +113,5 @@ export interface ArrayInputProps extends Omit<
   isFetching?: boolean;
   isLoading?: boolean;
   isPending?: boolean;
+  loading?: React.ReactNode;
 }

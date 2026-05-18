@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { HtmlHTMLAttributes, ReactNode } from "react";
-import { useCallback, useState, isValidElement } from "react";
+import { useCallback, useEffect, useRef, useState, isValidElement } from "react";
 import isEqual from "lodash/isEqual";
 import queryString from "query-string";
 import {
@@ -304,8 +304,9 @@ export interface FilterButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterbutton/ FilterButton documentation}
  */
 export const FilterButtonMenuItem = (props: FilterButtonMenuItemProps) => {
-  const { filter, onShow, onHide, displayed, ref } = props;
+  const { filter, onShow, onHide, displayed, autoFocus, ref } = props;
   const resource = useResourceContext(props);
+  const localRef = useRef<HTMLDivElement | null>(null);
   const handleShow = useCallback(() => {
     onShow({
       source: filter.props.source,
@@ -317,6 +318,23 @@ export const FilterButtonMenuItem = (props: FilterButtonMenuItemProps) => {
       source: filter.props.source,
     });
   }, [filter.props.source, onHide]);
+  useEffect(() => {
+    if (autoFocus) {
+      localRef.current?.focus();
+    }
+  }, [autoFocus]);
+
+  const setRefs = useCallback(
+    (node: HTMLDivElement | null) => {
+      localRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      }
+    },
+    [ref],
+  );
 
   return (
     <div
@@ -329,9 +347,10 @@ export const FilterButtonMenuItem = (props: FilterButtonMenuItemProps) => {
       onClick={
         filter.props.disabled ? undefined : displayed ? handleHide : handleShow
       }
-      ref={ref}
+      ref={setRefs}
       role="menuitemcheckbox"
       aria-checked={displayed}
+      tabIndex={-1}
     >
       <div className="flex items-center justify-center size-4 mr-2">
         {displayed && <Check className="size-3" />}

@@ -35,26 +35,19 @@ const Wrapper = ({ children }: React.PropsWithChildren) => (
 
 export const Basic = () => (
   <Wrapper>
-    <AuthLayout
-      title="Sign in"
-      subtitle="Enter your email to receive a magic link"
-    >
-      <LoginWithEmail submitLabel="Send magic link" />
+    <AuthLayout title="Sign in" subtitle="Enter your email and password">
+      <LoginWithEmail />
     </AuthLayout>
   </Wrapper>
 );
 
 export const CustomSubmit = () => (
   <Wrapper>
-    <AuthLayout
-      title="Passwordless sign in"
-      subtitle="We'll email you a link you can use to sign in"
-    >
+    <AuthLayout title="Custom sign in" subtitle="Sign in with a custom flow">
       <LoginWithEmail
-        submitLabel="Send magic link"
-        onSubmit={async ({ email }) => {
-          // demo only — replace with your passwordless flow
-          window.alert(`Magic link sent to ${email}`);
+        onSubmit={async ({ email, password }) => {
+          // demo only — replace with your own sign-in flow
+          window.alert(`Sign in: ${email} / ${password}`);
         }}
       />
     </AuthLayout>

@@ -1,3 +1,4 @@
+import { useResourceDefinitions } from "ra-core";
 import { ChevronRightIcon } from "lucide-react";
 import {
   Collapsible,
@@ -19,9 +20,10 @@ export interface ResourceMenuItemGroupProps {
    */
   label?: string;
   /**
-   * Resource names to render in this group.
+   * Resource names to render in this group. When omitted, all registered
+   * resources with `hasList === true` are rendered automatically.
    */
-  resources: string[];
+  resources?: string[];
   /**
    * Extra CSS class appended to the wrapping sidebar group.
    */
@@ -54,11 +56,18 @@ export interface ResourceMenuItemGroupProps {
  */
 export const ResourceMenuItemGroup = ({
   label,
-  resources,
+  resources: resourcesProp,
   className,
   menuClassName,
   defaultOpen = true,
 }: ResourceMenuItemGroupProps) => {
+  const resourceDefinitions = useResourceDefinitions();
+  const resources =
+    resourcesProp ??
+    Object.keys(resourceDefinitions).filter(
+      (name) => resourceDefinitions[name].hasList
+    );
+
   if (resources.length === 0) return null;
 
   const menu = (

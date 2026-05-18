@@ -4,11 +4,18 @@ import { render } from "vitest-browser-react";
 import { Basic } from "@/stories/admin/login-with-email.stories";
 
 describe("<LoginWithEmail />", () => {
-  it("renders the email field and the custom submit button label", async () => {
+  it("renders the email and password fields and the sign in button", async () => {
     const screen = render(<Basic />);
-    await expect.element(screen.getByLabelText(/email/i)).toBeInTheDocument();
+    const inputs = screen.container.querySelectorAll("input");
+    expect(inputs.length).toBeGreaterThanOrEqual(2);
+    const emailInput = screen.container.querySelector('input[type="email"]');
+    const passwordInput = screen.container.querySelector(
+      'input[type="password"]',
+    );
+    expect(emailInput).not.toBeNull();
+    expect(passwordInput).not.toBeNull();
     await expect
-      .element(screen.getByRole("button", { name: /send magic link/i }))
+      .element(screen.getByRole("button", { name: /sign in/i }))
       .toBeInTheDocument();
   });
 });

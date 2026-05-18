@@ -1,3 +1,4 @@
+import { useTimeout } from "ra-core";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -46,24 +47,28 @@ export const SimpleListLoading = ({
   hasTertiaryText,
   nbFakeLines = 5,
   className,
-}: SimpleListLoadingProps) => (
-  <ul className={cn("flex flex-col", className)}>
-    {Array.from({ length: nbFakeLines }).map((_, key) => (
-      <li key={key} className="flex items-center gap-3 px-3 py-2">
-        {hasLeftAvatarOrIcon && (
-          <Skeleton className="size-10 shrink-0 rounded-full" />
-        )}
-        <div className="flex-1 space-y-2 min-w-0">
-          <div className="flex items-center justify-between gap-2">
-            <Skeleton className="h-4 w-2/3" />
-            {hasTertiaryText && <Skeleton className="h-3 w-12 shrink-0" />}
+}: SimpleListLoadingProps) => {
+  const oneSecondHasPassed = useTimeout(1000);
+  if (!oneSecondHasPassed) return null;
+  return (
+    <ul className={cn("flex flex-col", className)}>
+      {Array.from({ length: nbFakeLines }).map((_, key) => (
+        <li key={key} className="flex items-center gap-3 px-3 py-2">
+          {hasLeftAvatarOrIcon && (
+            <Skeleton className="size-10 shrink-0 rounded-full" />
+          )}
+          <div className="flex-1 space-y-2 min-w-0">
+            <div className="flex items-center justify-between gap-2">
+              <Skeleton className="h-4 w-2/3" />
+              {hasTertiaryText && <Skeleton className="h-3 w-12 shrink-0" />}
+            </div>
+            {hasSecondaryText && <Skeleton className="h-3 w-1/3" />}
           </div>
-          {hasSecondaryText && <Skeleton className="h-3 w-1/3" />}
-        </div>
-        {hasRightAvatarOrIcon && (
-          <Skeleton className="size-10 shrink-0 rounded-full" />
-        )}
-      </li>
-    ))}
-  </ul>
-);
+          {hasRightAvatarOrIcon && (
+            <Skeleton className="size-10 shrink-0 rounded-full" />
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+};

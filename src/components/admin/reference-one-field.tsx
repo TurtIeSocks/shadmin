@@ -10,6 +10,10 @@ import type { UseQueryOptions } from "@tanstack/react-query";
 
 import { ReferenceFieldView } from "./reference-field";
 import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
+import type { FieldProps } from "@/lib/field-types";
+import { Offline } from "@/components/admin/offline";
+
+const defaultOffline = <Offline />;
 
 /**
  * Displays a related record from a one-to-one relationship.
@@ -48,6 +52,7 @@ export const ReferenceOneField = <
     empty,
     loading,
     error,
+    offline = defaultOffline,
     sort,
     filter,
     link,
@@ -75,6 +80,7 @@ export const ReferenceOneField = <
       empty={resolvedEmpty}
       loading={loading}
       error={error}
+      offline={offline}
       link={link}
       render={render}
     >
@@ -98,7 +104,7 @@ ReferenceOneField.sortable = false;
 export interface ReferenceOneFieldProps<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
-> {
+> extends Omit<FieldProps<RecordType>, "source" | "record"> {
   children?: ReactNode;
   render?: (props: UseReferenceResult<ReferenceRecordType>) => ReactNode;
   reference: string;
@@ -107,9 +113,12 @@ export interface ReferenceOneFieldProps<
   sort?: SortPayload;
   filter?: UnknownRecord;
   link?: LinkToType<ReferenceRecordType>;
-  empty?: ReactNode;
   loading?: ReactNode;
   error?: ReactNode;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
   record?: RecordType;
   queryOptions?: Omit<
     UseQueryOptions<{
@@ -118,5 +127,4 @@ export interface ReferenceOneFieldProps<
     }>,
     "queryKey"
   > & { meta?: UnknownValue };
-  label?: string;
 }

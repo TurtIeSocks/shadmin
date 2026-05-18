@@ -94,6 +94,7 @@ export const SelectInput = (props: SelectInputProps) => {
     create,
     createLabel,
     onCreate,
+    resettable = true,
 
     ...rest
   } = props;
@@ -279,7 +280,7 @@ export const SelectInput = (props: SelectInputProps) => {
             >
               <SelectValue placeholder={renderEmptyItemOption()} />
 
-              {field.value && field.value !== emptyValue ? (
+              {resettable && field.value && field.value !== emptyValue ? (
                 <button
                   type="button"
                   aria-label={translate("ra.action.clear_input_value", {
@@ -315,7 +316,7 @@ export const SelectInput = (props: SelectInputProps) => {
             </SelectContent>
           </Select>
         </div>
-        <InputHelperText helperText={helperText} />
+        <InputHelperText helperText={helperText ?? (fetchError as Error | undefined)?.message} />
         <FormError />
       </FormField>
       {createElement}
@@ -330,4 +331,5 @@ export type SelectInputProps = ChoicesProps &
     emptyText?: string | ReactElement;
     emptyValue?: string | number | boolean | null;
     onChange?: (value: string) => void;
+    resettable?: boolean;
   } & Omit<ComponentProps<typeof FormField>, "id" | "name" | "children">;

@@ -49,8 +49,12 @@ export function BulkActionsToolbarChildren() {
  */
 export const BulkActionsToolbar = ({
   children = <BulkActionsToolbarChildren />,
+  label,
+  selectAllButton = <SelectAllButton />,
 }: {
   children?: ReactNode;
+  label?: ReactNode;
+  selectAllButton?: ReactNode | false;
 }) => {
   const { selectedIds, onUnselectItems } = useListContext();
   const translate = useTranslate();
@@ -73,14 +77,19 @@ export const BulkActionsToolbar = ({
           <X />
         </Button>
         <span className="text-sm text-muted-foreground">
-          <Translate
-            i18nKey="ra.action.bulk_actions"
-            options={{ smart_count: selectedIds.length }}
-          >
-            {selectedIds.length} rows selected
-          </Translate>
+          {label != null ? (
+            label
+          ) : (
+            <Translate
+              i18nKey="ra.action.bulk_actions"
+              options={{ smart_count: selectedIds.length }}
+            >
+              {selectedIds.length} rows selected
+            </Translate>
+          )}
         </span>
       </div>
+      {selectAllButton !== false && selectAllButton}
       {children}
     </Card>
   );

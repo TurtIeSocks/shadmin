@@ -10,6 +10,7 @@ export type SkipNavigationButtonProps = Omit<
   "onClick"
 > & {
   label?: string;
+  ref?: React.Ref<HTMLButtonElement>;
 };
 
 /**
@@ -34,7 +35,7 @@ export type SkipNavigationButtonProps = Omit<
  * );
  */
 export const SkipNavigationButton = (props: SkipNavigationButtonProps) => {
-  const { label = "ra.navigation.skip_nav", className, ...rest } = props;
+  const { label = "ra.navigation.skip_nav", className, ref, ...rest } = props;
   const translate = useTranslate();
   const translatedLabel = resolveLabel(label, translate, "Skip to content");
 
@@ -42,6 +43,7 @@ export const SkipNavigationButton = (props: SkipNavigationButtonProps) => {
     <Button
       type="button"
       onClick={skipToContent}
+      ref={ref}
       className={cn(
         "skip-nav-button fixed left-4 -top-24 z-5000 focus:top-4",
         "transition-[top,opacity] duration-200 ease-in focus:ease-out",

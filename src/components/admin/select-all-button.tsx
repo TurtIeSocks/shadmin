@@ -1,4 +1,4 @@
-import type { MouseEvent } from "react";
+import type { MouseEvent, Ref } from "react";
 import type { RaRecord, UseGetListOptions } from "ra-core";
 import { Translate, useListContext } from "ra-core";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,7 @@ export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
   queryOptions,
   className,
   onClick,
+  ref,
   ...props
 }: SelectAllButtonProps<RecordType>) => {
   const listContext = useListContext<RecordType>();
@@ -50,20 +51,18 @@ export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
   };
 
   // Hide the button when:
-  // - there are no records to select
-  // - everything is already selected (total === selectedIds.length, or
-  //   if total is unknown, all currently loaded data is selected)
+  // - everything is already selected (total === selectedIds.length)
   // - we've hit the selection cap
-  const dataLength = data?.length ?? 0;
-  const hasRecords = dataLength > 0 || (total ?? 0) > 0;
-  const allSelected =
-    total != null
-      ? selectedIds.length >= total
-      : data != null && data.length > 0
-        ? data.every((item) => selectedIds.includes(item.id))
-        : true;
+  // - not all currently loaded data is selected (button only offered as an
+  //   escalation from "all on this page" to "all across pages")
+  const areAllDataSelected =
+    data != null && data.every((item) => selectedIds.includes(item.id));
 
-  if (!hasRecords || allSelected || selectedIds.length >= limit) {
+  if (
+    total === selectedIds.length ||
+    selectedIds.length >= limit ||
+    !areAllDataSelected
+  ) {
     return null;
   }
 
@@ -74,6 +73,7 @@ export const SelectAllButton = <RecordType extends RaRecord = RaRecord>({
       size="sm"
       className={cn("h-9", className)}
       onClick={handleClick}
+      ref={ref}
       {...props}
     >
       <Translate i18nKey={label}>{label}</Translate>
@@ -85,4 +85,5 @@ export type SelectAllButtonProps<RecordType extends RaRecord = RaRecord> = {
   label?: string;
   limit?: number;
   queryOptions?: UseGetListOptions<RecordType>;
+  ref?: Ref<HTMLButtonElement>;
 } & React.ComponentPropsWithoutRef<"button">;

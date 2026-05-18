@@ -13,7 +13,15 @@ describe("<AppSidebar />", () => {
 
   it("renders group labels when resources declare a group", async () => {
     const screen = render(<WithGroups />);
-    await expect.element(screen.getByText("Content")).toBeInTheDocument();
-    await expect.element(screen.getByText("People")).toBeInTheDocument();
+    await expect
+      .element(
+        screen.getByRole("button", { name: "Content", exact: true }).first(),
+      )
+      .toBeInTheDocument();
+    await expect
+      .element(
+        screen.getByRole("button", { name: "People", exact: true }).first(),
+      )
+      .toBeInTheDocument();
   });
 });

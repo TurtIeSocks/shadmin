@@ -25,7 +25,7 @@ export type TitlePortalProps = HTMLAttributes<HTMLDivElement>;
 export const TitlePortal = ({ className, ...rest }: TitlePortalProps) => (
   <div
     id={TITLE_PORTAL_ID}
-    className={cn("flex items-center min-w-0", className)}
+    className={cn("flex flex-1 items-center min-w-0", className)}
     {...rest}
   />
 );

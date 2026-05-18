@@ -1,4 +1,5 @@
 import * as React from "react";
+import type { Ref } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import type { RaRecord } from "ra-core";
@@ -19,6 +20,7 @@ export type CloneButtonProps = {
   icon?: React.ReactNode;
   className?: string;
   scrollToTop?: boolean;
+  ref?: Ref<HTMLAnchorElement>;
 };
 
 /**
@@ -44,6 +46,7 @@ export const CloneButton = (props: CloneButtonProps) => {
     icon = defaultIcon,
     className,
     scrollToTop = true,
+    ref,
   } = props;
   const resource = useResourceContext(props);
   const record = useRecordContext(props);
@@ -59,10 +62,12 @@ export const CloneButton = (props: CloneButtonProps) => {
     },
     userText: labelProp,
   });
+  if (!record || record.id == null) return null;
   const pathname = createPath({ resource, type: "create" });
-  const recordWithoutId = record ? omitId(record) : undefined;
+  const recordWithoutId = omitId(record);
   return (
     <Link
+      ref={ref}
       className={cn(buttonVariants({ variant: "outline" }), className)}
       to={{
         pathname,

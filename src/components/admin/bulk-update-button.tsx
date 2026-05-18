@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, type Ref } from "react";
 import { humanize, inflect } from "inflection";
 import { RefreshCw } from "lucide-react";
 import {
   type MutationMode,
   type RaRecord,
   type UseBulkUpdateControllerParams,
+  useCanAccess,
   useBulkUpdateController,
   useListContext,
   useResourceContext,
@@ -25,10 +26,11 @@ export interface BulkUpdateWithUndoButtonProps<
   "mutationMode"
 > {
   className?: string;
-  data: Partial<RecordType>;
+  data?: Partial<RecordType>;
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  ref?: Ref<HTMLButtonElement>;
   variant?: React.ComponentProps<typeof Button>["variant"];
 }
 
@@ -39,10 +41,11 @@ export interface BulkUpdateWithConfirmButtonProps<
   className?: string;
   confirmContent?: React.ReactNode;
   confirmTitle?: React.ReactNode;
-  data: Partial<RecordType>;
+  data?: Partial<RecordType>;
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  ref?: Ref<HTMLButtonElement>;
   variant?: React.ComponentProps<typeof Button>["variant"];
 }
 
@@ -102,16 +105,21 @@ export const BulkUpdateWithConfirmButton = (
     className,
     confirmTitle = "ra.message.bulk_update_title",
     confirmContent = "ra.message.bulk_update_content",
-    data,
+    data = defaultData,
     icon = defaultIcon,
     label: labelProp,
     mutationMode = "pessimistic",
     onClick,
+    ref,
     variant = "outline",
     ...rest
   } = props;
   const translate = useTranslate();
   const resource = useResourceContext(props);
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "edit",
+    resource,
+  });
   const [isOpen, setOpen] = useState(false);
   const { selectedIds } = useListContext();
 
@@ -171,9 +179,11 @@ export const BulkUpdateWithConfirmButton = (
     }),
   };
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Fragment>
       <Button
+        ref={ref}
         type="button"
         variant={variant}
         onClick={handleClick}
@@ -208,14 +218,19 @@ export const BulkUpdateWithUndoButton = (
 ) => {
   const {
     className,
-    data,
+    data = defaultData,
     icon = defaultIcon,
     label: labelProp,
     onClick,
+    ref,
     variant = "outline",
     ...rest
   } = props;
   const resource = useResourceContext(props);
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "edit",
+    resource,
+  });
   const { handleUpdate, isPending } = useBulkUpdateController({
     ...rest,
     mutationMode: "undoable",
@@ -237,8 +252,10 @@ export const BulkUpdateWithUndoButton = (
     userText: labelProp,
   });
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Button
+      ref={ref}
       type="button"
       variant={variant}
       onClick={handleClick}
@@ -253,3 +270,4 @@ export const BulkUpdateWithUndoButton = (
 };
 
 const defaultIcon = <RefreshCw />;
+const defaultData = {};

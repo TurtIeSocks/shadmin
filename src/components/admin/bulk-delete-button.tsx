@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, type Ref } from "react";
 import { humanize, inflect } from "inflection";
 import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { RaRecord, UseBulkDeleteControllerParams } from "ra-core";
 import {
+  useCanAccess,
   useBulkDeleteController,
   useGetResourceLabel,
   useListContext,
@@ -23,6 +24,7 @@ export type BulkDeleteButtonProps<
 > = {
   label?: string;
   icon?: ReactNode;
+  ref?: Ref<HTMLButtonElement>;
 } & React.ComponentPropsWithoutRef<"button"> &
   UseBulkDeleteControllerParams<RecordType, MutationOptionsError>;
 
@@ -89,6 +91,7 @@ export const BulkDeleteWithUndoButton = <
   label: labelProp,
   className,
   onClick,
+  ref,
   ...props
 }: BulkDeleteButtonProps<RecordType, MutationOptionsError>) => {
   const { handleDelete, isPending } = useBulkDeleteController({
@@ -96,6 +99,10 @@ export const BulkDeleteWithUndoButton = <
     mutationMode: "undoable",
   });
   const resource = useResourceContext(props);
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "delete",
+    resource,
+  });
   const getResourceLabel = useGetResourceLabel();
   const label = useResourceTranslation({
     resourceI18nKey: resource
@@ -113,8 +120,10 @@ export const BulkDeleteWithUndoButton = <
     onClick?.(e);
   };
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Button
+      ref={ref}
       variant="destructive"
       type="button"
       onClick={handleClick}
@@ -155,6 +164,7 @@ export const BulkDeleteWithConfirmButton = <
     label: labelProp,
     className,
     onClick,
+    ref,
     confirmTitle = "ra.message.bulk_delete_title",
     confirmContent = "ra.message.bulk_delete_content",
     confirmColor = "primary",
@@ -165,6 +175,10 @@ export const BulkDeleteWithConfirmButton = <
   const [isOpen, setOpen] = useState(false);
   const { selectedIds } = useListContext();
   const resource = useResourceContext(props);
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "delete",
+    resource,
+  });
   const translate = useTranslate();
   const getResourceLabel = useGetResourceLabel();
 
@@ -227,9 +241,11 @@ export const BulkDeleteWithConfirmButton = <
     }),
   };
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Fragment>
       <Button
+        ref={ref}
         variant="destructive"
         type="button"
         onClick={handleClick}

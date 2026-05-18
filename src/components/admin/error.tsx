@@ -8,7 +8,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import type { HtmlHTMLAttributes, ErrorInfo } from "react";
+import type { HtmlHTMLAttributes, ErrorInfo, ComponentType, ReactNode } from "react";
+import { Title } from "./title";
 
 /**
  * App-wide error component for displaying error boundaries.
@@ -18,10 +19,21 @@ import type { HtmlHTMLAttributes, ErrorInfo } from "react";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/error Error documentation}
  */
-export const Error = (props: InternalErrorProps & {}) => {
-  const { error, errorInfo, resetErrorBoundary, ...rest } = props;
+export const Error = (props: InternalErrorProps) => {
+  const { error, errorInfo, resetErrorBoundary, errorComponent, title, ...rest } = props;
 
   useResetErrorBoundaryOnLocationChange(resetErrorBoundary);
+
+  if (errorComponent) {
+    const ErrorComponent = errorComponent;
+    return (
+      <ErrorComponent
+        error={error}
+        errorInfo={errorInfo}
+        resetErrorBoundary={resetErrorBoundary}
+      />
+    );
+  }
 
   const errorMessage: string =
     typeof error === "object" &&
@@ -35,6 +47,9 @@ export const Error = (props: InternalErrorProps & {}) => {
 
   return (
     <div className="flex flex-col items-center md:p-16 gap-5" {...rest}>
+      {title ? (
+        <Title defaultTitle={typeof title === "string" ? title : undefined} />
+      ) : null}
       <h1 className="flex items-center text-3xl mt-5 mb-5 gap-3" role="alert">
         <CircleAlert className="w-[2em] h-[2em]" />
         <Translate i18nKey="ra.page.error" />
@@ -109,10 +124,21 @@ interface InternalErrorProps
   extends Omit<HtmlHTMLAttributes<HTMLDivElement>, "title">, FallbackProps {
   className?: string;
   errorInfo?: ErrorInfo;
+  errorComponent?: ComponentType<ErrorProps>;
+  /**
+   * When provided, injects a `<Title>` portal to update the app-bar page title.
+   * Pass `false` to explicitly suppress a title. Matches MUI react-admin `Error` behaviour.
+   */
+  title?: ReactNode | string | false;
 }
 
-export interface ErrorProps extends Pick<FallbackProps, "error"> {
+export interface ErrorProps extends Pick<FallbackProps, "error" | "resetErrorBoundary"> {
   errorInfo?: ErrorInfo;
+  /**
+   * When provided, injects a `<Title>` portal to update the app-bar page title.
+   * Pass `false` to explicitly suppress a title.
+   */
+  title?: ReactNode | string | false;
 }
 
 function goBack() {

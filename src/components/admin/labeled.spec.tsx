@@ -42,8 +42,8 @@ describe("<Labeled />", () => {
 
   it("should not produce a double label for nested Labeled components", async () => {
     const { container } = render(<NoDoubleLabel />);
-    // Should have exactly one label span (the outer Labeled's label)
-    const labels = container.querySelectorAll("span.text-xs");
+    // Should have exactly one label element (the outer Labeled's label)
+    const labels = container.querySelectorAll("label.text-xs");
     expect(labels.length).toBe(1);
   });
 });

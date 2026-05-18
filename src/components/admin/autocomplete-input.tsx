@@ -88,7 +88,34 @@ export const AutocompleteInput = (
       filterToQuery?: (searchText: string) => UnknownValue;
       translateChoice?: boolean;
       placeholder?: string;
-      inputText?: React.ReactNode | ((option: UnknownValue) => React.ReactNode);
+      /** Custom display text for the selected value in the trigger button. Must return a string. */
+      inputText?: (option: UnknownValue) => string;
+      /** When true, only show choices matching the current value in the dropdown. */
+      limitChoicesToValue?: boolean;
+      /** Cap the number of dropdown items shown. */
+      suggestionLimit?: number;
+      /** Content to show when no choices match the filter. Defaults to ra.navigation.no_results. */
+      noOptionsText?: React.ReactNode;
+      /** Underlying value used when clearing the selection. Defaults to "". */
+      emptyValue?: string | number;
+      /** When true, clear the filter text on input blur. */
+      clearOnBlur?: boolean;
+      /** When true, open the dropdown on input focus. */
+      openOnFocus?: boolean;
+      /** When true, select all text in the input on focus. */
+      selectOnFocus?: boolean;
+      /** When true, Home/End keys scroll the listbox to first/last item. */
+      handleHomeEndKeys?: boolean;
+      /** Custom equality check between a choice and the current value. */
+      isOptionEqualToValue?: (option: UnknownValue, value: UnknownValue) => boolean;
+      /** Custom filter function; replaces default substring match. */
+      matchSuggestion?: (filter: string, choice: UnknownValue) => boolean;
+      /** Gate controlling whether the dropdown opens at all. */
+      shouldRenderSuggestions?: (filter: string) => boolean;
+      /** Label of a "(none)" entry prepended when the field is not required. */
+      emptyText?: string;
+      /** Called with the current filter text on every keystroke. For server-side filtering outside ReferenceInput. No debounce applied — caller decides. */
+      setFilter?: (filter: string) => void;
     } & Pick<PopoverPrimitive.PopoverProps, "modal">,
 ) => {
   const {
@@ -103,6 +130,19 @@ export const AutocompleteInput = (
     onCreate,
     optionText,
     modal,
+    limitChoicesToValue = false,
+    suggestionLimit,
+    noOptionsText,
+    emptyValue = "",
+    clearOnBlur = false,
+    openOnFocus = false,
+    selectOnFocus = false,
+    handleHomeEndKeys = false,
+    isOptionEqualToValue,
+    matchSuggestion,
+    shouldRenderSuggestions,
+    emptyText: emptyTextProp = "",
+    setFilter,
   } = props;
   const {
     allChoices = [],
@@ -152,19 +192,35 @@ export const AutocompleteInput = (
   // responses.
   useEffect(() => () => debouncedSetFilters.cancel(), [debouncedSetFilters]);
 
+  // Prop 10: Reset filter when field.value changes externally (e.g. form reset).
+  useEffect(() => {
+    debouncedSetFilters.cancel();
+    setFilterValue("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [field.value]);
+
   const [open, setOpen] = React.useState(false);
   const listboxId = React.useId();
+
+  // Equality helper: use isOptionEqualToValue when provided, else areIdsEqual.
+  const isEqual = useCallback(
+    (choiceVal: UnknownValue, fieldVal: UnknownValue) => {
+      if (isOptionEqualToValue) {
+        return isOptionEqualToValue(choiceVal, fieldVal);
+      }
+      return areIdsEqual(choiceVal, fieldVal);
+    },
+    [isOptionEqualToValue],
+  );
+
   const selectedChoice = allChoices.find((choice) =>
-    areIdsEqual(getChoiceValue(choice), field.value),
+    isEqual(getChoiceValue(choice), field.value),
   );
 
   const getInputText = useCallback(
     (selectedChoice: UnknownValue) => {
       if (typeof inputText === "function") {
         return inputText(selectedChoice);
-      }
-      if (inputText !== undefined) {
-        return inputText;
       }
       return getChoiceText(selectedChoice);
     },
@@ -183,8 +239,9 @@ export const AutocompleteInput = (
 
   const handleChange = useCallback(
     (choice: UnknownValue) => {
-      if (areIdsEqual(field.value, getChoiceValue(choice)) && !isRequired) {
-        field.onChange("");
+      if (isEqual(getChoiceValue(choice), field.value) && !isRequired) {
+        // Prop 4: use emptyValue instead of hardcoded "".
+        field.onChange(emptyValue);
         setFilterValue("");
         if (isFromReference) {
           debouncedSetFilters.cancel();
@@ -200,7 +257,8 @@ export const AutocompleteInput = (
       field,
       getChoiceValue,
       isRequired,
-      setFilterValue,
+      isEqual,
+      emptyValue,
       isFromReference,
       setFilters,
       filterToQuery,
@@ -230,10 +288,66 @@ export const AutocompleteInput = (
     (create || onCreate) && (filterValue !== "" || createLabel)
       ? getCreateItem(filterValue)
       : null;
-  let finalChoices = allChoices;
+
+  // Prop 1: limitChoicesToValue — filter to only the matching choice.
+  let availableChoices = limitChoicesToValue
+    ? allChoices.filter((c) => isEqual(getChoiceValue(c), field.value))
+    : allChoices;
+
+  // matchSuggestion: when provided, apply custom filtering for non-reference inputs.
+  // (Reference inputs delegate filtering to the data provider via debouncedSetFilters.)
+  if (matchSuggestion && !isFromReference && filterValue !== "") {
+    availableChoices = availableChoices.filter((choice) =>
+      matchSuggestion(filterValue, choice),
+    );
+  }
+
+  // Prop 2: suggestionLimit — cap choices after filtering.
+  if (suggestionLimit !== undefined) {
+    availableChoices = availableChoices.slice(0, suggestionLimit);
+  }
+
+  let finalChoices = availableChoices;
   if (createItem) {
     finalChoices = [...finalChoices, createItem];
   }
+
+  // Prop 3: noOptionsText — fall back to translated string.
+  const noMatchText =
+    noOptionsText ?? translate("ra.navigation.no_results", { _: "No matching item found." });
+
+  // shouldRenderSuggestions: gate on the effective open state.
+  const effectiveOpen =
+    open && (!shouldRenderSuggestions || shouldRenderSuggestions(filterValue));
+
+  // Prop 8: handleHomeEndKeys handler for CommandInput.
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!handleHomeEndKeys) return;
+      if (e.key === "Home") {
+        e.preventDefault();
+        listRef.current?.scrollTo(0, 0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        listRef.current?.scrollTo(0, listRef.current.scrollHeight);
+      }
+    },
+    [handleHomeEndKeys],
+  );
+
+  // Prop 6 + 7: openOnFocus / selectOnFocus handler for CommandInput.
+  const handleFocus = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      if (openOnFocus) setOpen(true);
+      if (selectOnFocus) e.currentTarget.select();
+    },
+    [openOnFocus, selectOnFocus],
+  );
+
+  // Prop 5: clearOnBlur handler for CommandInput.
+  const handleBlur = useCallback(() => {
+    if (clearOnBlur) setFilterValue("");
+  }, [clearOnBlur]);
 
   return (
     <>
@@ -249,7 +363,7 @@ export const AutocompleteInput = (
           </FormLabel>
         )}
         <FormControl>
-          <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
+          <Popover open={effectiveOpen} onOpenChange={handleOpenChange} modal={modal}>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
@@ -267,13 +381,16 @@ export const AutocompleteInput = (
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full max-w-(--radix-popover-trigger-width) p-0">
-              {/* We handle the filtering ourselves */}
-              <Command shouldFilter={!isFromReference}>
+              {/* We handle the filtering ourselves when matchSuggestion is provided */}
+              <Command shouldFilter={!isFromReference && !matchSuggestion}>
                 <CommandInput
-                  placeholder="Search..."
+                  placeholder={translate("ra.action.search", {
+                    _: "Search...",
+                  })}
                   value={filterValue}
                   onValueChange={(filter) => {
                     setFilterValue(filter);
+                    setFilter?.(filter);
                     requestAnimationFrame(() => {
                       listRef.current?.scrollTo(0, 0);
                     });
@@ -283,10 +400,36 @@ export const AutocompleteInput = (
                       debouncedSetFilters(filter);
                     }
                   }}
+                  onKeyDown={handleKeyDown}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
                 />
                 <CommandList id={listboxId} ref={listRef}>
-                  <CommandEmpty>No matching item found.</CommandEmpty>
+                  {/* Prop 3: noOptionsText */}
+                  <CommandEmpty>{noMatchText}</CommandEmpty>
                   <CommandGroup>
+                    {/* emptyText: "(none)" entry when prop is set and field is not required */}
+                    {emptyTextProp !== "" && !isRequired && (
+                      <CommandItem
+                        value={`__empty__${emptyTextProp}`}
+                        onSelect={() => {
+                          field.onChange(emptyValue);
+                          setFilterValue("");
+                          setOpen(false);
+                        }}
+                        className="text-muted-foreground"
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 size-4",
+                            field.value === emptyValue || field.value == null || field.value === ""
+                              ? "opacity-100"
+                              : "opacity-0",
+                          )}
+                        />
+                        {emptyTextProp}
+                      </CommandItem>
+                    )}
                     {finalChoices.map((choice) => {
                       const isCreateItem =
                         !!createItem && choice?.id === createItem.id;
@@ -318,7 +461,7 @@ export const AutocompleteInput = (
                           <Check
                             className={cn(
                               "mr-2 size-4",
-                              areIdsEqual(field.value, getChoiceValue(choice))
+                              isEqual(field.value, getChoiceValue(choice))
                                 ? "opacity-100"
                                 : "opacity-0",
                             )}

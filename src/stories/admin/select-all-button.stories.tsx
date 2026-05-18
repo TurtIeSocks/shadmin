@@ -22,44 +22,50 @@ export default {
 
 const Wrapper = ({
   children,
-  selectedIds = [],
-  total = 10,
+  selectedIds,
+  total = 50,
+  pageSize = 10,
 }: React.PropsWithChildren<{
   selectedIds?: number[];
   total?: number;
-}>) => (
-  <ThemeProvider>
-    <CoreAdminContext
-      i18nProvider={polyglotI18nProvider(
-        () => defaultMessages,
-        "en",
-        undefined,
-        {
-          allowMissing: true,
-        },
-      )}
-      store={memoryStore()}
-    >
-      <ResourceContextProvider value="posts">
-        <ListContext.Provider
-          value={
-            {
-              selectedIds,
-              onSelect: () => {},
-              onSelectAll: () => {},
-              data: Array.from({ length: total }).map((_, i) => ({
-                id: i + 1,
-              })),
-              total,
-            } as never
-          }
-        >
-          <div className="p-4">{children}</div>
-        </ListContext.Provider>
-      </ResourceContextProvider>
-    </CoreAdminContext>
-  </ThemeProvider>
-);
+  pageSize?: number;
+}>) => {
+  const data = Array.from({ length: pageSize }).map((_, i) => ({
+    id: i + 1,
+  }));
+  const ids = selectedIds ?? data.map((record) => record.id);
+  return (
+    <ThemeProvider>
+      <CoreAdminContext
+        i18nProvider={polyglotI18nProvider(
+          () => defaultMessages,
+          "en",
+          undefined,
+          {
+            allowMissing: true,
+          },
+        )}
+        store={memoryStore()}
+      >
+        <ResourceContextProvider value="posts">
+          <ListContext.Provider
+            value={
+              {
+                selectedIds: ids,
+                onSelect: () => {},
+                onSelectAll: () => {},
+                data,
+                total,
+              } as never
+            }
+          >
+            <div className="p-4">{children}</div>
+          </ListContext.Provider>
+        </ResourceContextProvider>
+      </CoreAdminContext>
+    </ThemeProvider>
+  );
+};
 
 export const Basic = () => (
   <Wrapper>

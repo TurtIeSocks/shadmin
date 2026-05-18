@@ -1,18 +1,29 @@
+import type { HTMLAttributes } from "react";
 import { History, SearchX } from "lucide-react";
-import { Translate, useAuthenticated } from "ra-core";
+import { Translate, useAuthenticated, useDefaultTitle, type TitleComponent } from "ra-core";
 import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/admin/loading";
+import { Title } from "./title";
+
+export type NotFoundProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
+  title?: TitleComponent;
+};
 
 /**
  * Fallback page displayed when no route matches the current URL.
  */
-export const NotFound = () => {
+export const NotFound = ({ title: _title, ...rest }: NotFoundProps) => {
   const { isPending } = useAuthenticated();
+  const defaultTitle = useDefaultTitle();
   if (isPending) {
     return <Loading />;
   }
   return (
-    <div className="flex min-h-[50vh] flex-1 flex-col items-center justify-center gap-2 text-center">
+    <div
+      className="flex min-h-[50vh] flex-1 flex-col items-center justify-center gap-2 text-center"
+      {...rest}
+    >
+      <Title defaultTitle={defaultTitle} />
       <SearchX className="size-16 text-muted-foreground" />
       <h1 className="text-2xl font-semibold">
         <Translate i18nKey="ra.page.not_found" />

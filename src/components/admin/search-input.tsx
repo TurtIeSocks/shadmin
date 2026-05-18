@@ -59,7 +59,7 @@ export const SearchInput = (inProps: SearchInputProps) => {
         helperText={false}
         placeholder={translate("ra.action.search")}
         className={cn("grow", className)}
-        inputClassName={cn("pr-8", showClearButton ? "pr-16" : "pr-8")}
+        inputClassName={showClearButton ? "pr-16" : "pr-8"}
         {...rest}
       />
       <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />

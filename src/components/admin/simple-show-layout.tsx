@@ -2,6 +2,8 @@
 
 import type { ReactElement, ReactNode } from "react";
 import { Children, isValidElement } from "react";
+import type { RaRecord } from "ra-core";
+import { OptionalRecordContextProvider } from "ra-core";
 import { cn } from "@/lib/utils";
 import { Labeled } from "./labeled";
 
@@ -33,16 +35,41 @@ import { Labeled } from "./labeled";
 export const SimpleShowLayout = ({
   children,
   className,
-}: SimpleShowLayoutProps) => (
-  <div className={cn("flex flex-col gap-4", className)}>
-    {Children.map(children, (child) => {
-      if (!isValidElement(child)) return child;
-      return <Labeled>{child as ReactElement}</Labeled>;
-    })}
-  </div>
-);
+  divider,
+  record,
+  spacing = 1,
+}: SimpleShowLayoutProps) => {
+  const childArray = Children.toArray(children);
+  const content = (
+    <div className={cn(`flex flex-col gap-${spacing}`, className)}>
+      {childArray.map((child, index) => {
+        const labeled = isValidElement(child) ? (
+          <Labeled key={index}>{child as ReactElement}</Labeled>
+        ) : (
+          child
+        );
+        return (
+          <>
+            {labeled}
+            {divider != null && index < childArray.length - 1 && divider}
+          </>
+        );
+      })}
+    </div>
+  );
+  return record != null ? (
+    <OptionalRecordContextProvider value={record}>
+      {content}
+    </OptionalRecordContextProvider>
+  ) : (
+    content
+  );
+};
 
 export interface SimpleShowLayoutProps {
   children?: ReactNode;
   className?: string;
+  divider?: ReactNode;
+  record?: RaRecord;
+  spacing?: number;
 }

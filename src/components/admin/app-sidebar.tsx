@@ -1,3 +1,4 @@
+import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router";
 import {
   Sidebar,
@@ -10,6 +11,31 @@ import {
 } from "@/components/ui/sidebar";
 import { Shell } from "lucide-react";
 import { Menu } from "@/components/admin/menu";
+
+export type AppSidebarProps = {
+  /**
+   * Replaces the default `<Menu />` rendered inside the sidebar content area.
+   * Pass a custom navigation tree when you need full control over sidebar items.
+   */
+  children?: ReactNode;
+  /**
+   * Width of the sidebar in its open/expanded state, in pixels. Defaults to 240.
+   * Applied as an inline `style` override on the underlying `<Sidebar>` element.
+   */
+  size?: number;
+  /**
+   * Width of the sidebar in its collapsed/icon-only state, in pixels. Defaults to 55.
+   * Applied as an inline `style` override on the underlying `<Sidebar>` element.
+   */
+  closedSize?: number;
+  /**
+   * When `true`, signals that the AppBar is always visible (not hidden on scroll).
+   * Descendants can read this flag via context or props to adjust their top spacing.
+   * The flag is accepted here so it can be forwarded to the sidebar tree without
+   * requiring a separate context provider in the layout.
+   */
+  appBarAlwaysOn?: boolean;
+};
 
 /**
  * Navigation sidebar displaying menu items, allowing users to navigate between different sections of the application.
@@ -24,9 +50,23 @@ import { Menu } from "@/components/admin/menu";
  * @see {@link https://ui.shadcn.com/docs/components/sidebar shadcn/ui Sidebar component}
  * @see layout.tsx
  */
-export function AppSidebar() {
+export function AppSidebar({
+  children,
+  size = 240,
+  closedSize = 55,
+  appBarAlwaysOn: _appBarAlwaysOn,
+}: AppSidebarProps) {
   return (
-    <Sidebar variant="floating" collapsible="icon">
+    <Sidebar
+      variant="floating"
+      collapsible="icon"
+      style={
+        {
+          "--sidebar-width": `${size}px`,
+          "--sidebar-width-icon": `${closedSize}px`,
+        } as CSSProperties
+      }
+    >
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -43,7 +83,7 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <Menu />
+        {children ?? <Menu />}
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

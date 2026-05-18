@@ -2,6 +2,7 @@ import { AlertCircle, CheckCircle } from "lucide-react";
 import { useTranslate } from "ra-core";
 import * as React from "react";
 import { type ComponentType, type MouseEventHandler, useCallback } from "react";
+import { Dialog as DialogPrimitive } from "radix-ui";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -82,10 +83,20 @@ export const Confirm = (props: ConfirmProps) => {
     translateOptions = {},
     titleTranslateOptions = translateOptions,
     contentTranslateOptions = translateOptions,
+    // Dialog (Radix Root) pass-through props
+    modal,
+    defaultOpen,
     ...rest
   } = props;
 
   const translate = useTranslate();
+
+  const handleClose = useCallback(
+    (e?: React.MouseEvent) => {
+      onClose(e);
+    },
+    [onClose],
+  );
 
   const handleConfirm = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -100,7 +111,12 @@ export const Confirm = (props: ConfirmProps) => {
   }, []);
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => onClose()}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={() => handleClose()}
+      modal={modal}
+      defaultOpen={defaultOpen}
+    >
       <DialogContent className={className} onClick={handleClick} {...rest}>
         <DialogHeader>
           <DialogTitle>
@@ -123,13 +139,14 @@ export const Confirm = (props: ConfirmProps) => {
           <Button
             variant="ghost"
             disabled={loading}
-            onClick={onClose}
+            onClick={handleClose}
             className="gap-1"
           >
             <CancelIcon className="size-5" />
             {translate(cancel, { _: cancel })}
           </Button>
           <Button
+            autoFocus
             disabled={loading}
             onClick={handleConfirm}
             className="gap-1"
@@ -144,7 +161,20 @@ export const Confirm = (props: ConfirmProps) => {
   );
 };
 
-export interface ConfirmProps {
+/**
+ * Props for `<Confirm>`.
+ *
+ * Extends `React.ComponentProps<typeof DialogPrimitive.Content>` so any
+ * HTML attribute (e.g. `aria-*`, `data-*`) or Radix `DialogContent` prop
+ * is forwarded to the underlying `<DialogContent>` element.
+ * Radix `Dialog.Root`-level props (`modal`, `defaultOpen`, `onOpenChange`)
+ * are also accepted and forwarded to the root `<Dialog>`.
+ */
+export interface ConfirmProps
+  extends Omit<
+    React.ComponentProps<typeof DialogPrimitive.Content>,
+    "title" | "content" | "onClose"
+  > {
   cancel?: string;
   className?: string;
   confirm?: string;
@@ -154,7 +184,7 @@ export interface ConfirmProps {
   content?: React.ReactNode;
   isOpen?: boolean;
   loading?: boolean;
-  onClose: () => void;
+  onClose: (event?: React.MouseEvent) => void;
   onConfirm: MouseEventHandler;
   title: React.ReactNode;
   /**
@@ -163,4 +193,8 @@ export interface ConfirmProps {
   translateOptions?: object;
   titleTranslateOptions?: object;
   contentTranslateOptions?: object;
+  /** Forwarded to Radix `Dialog.Root` — sets modality. */
+  modal?: React.ComponentProps<typeof DialogPrimitive.Root>["modal"];
+  /** Forwarded to Radix `Dialog.Root` — uncontrolled initial open state. */
+  defaultOpen?: React.ComponentProps<typeof DialogPrimitive.Root>["defaultOpen"];
 }

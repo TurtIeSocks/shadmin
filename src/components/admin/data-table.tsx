@@ -76,6 +76,10 @@ import {
   BulkActionsToolbar,
   BulkActionsToolbarChildren,
 } from "@/components/admin/bulk-actions-toolbar";
+import {
+  Collapsible,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 import type { UnknownValue } from "@/lib/unknown-types";
 
 const DefaultBulkActionButtons = () => {
@@ -380,25 +384,22 @@ export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
       {data?.map((record, rowIndex) => {
         const key = record.id ?? `row${rowIndex}`;
         const isExpanded = expandContext?.expandedIds.includes(record.id);
-        const expandPanel =
-          expandContext && isExpanded
-            ? isValidElement(expandContext.expand)
-              ? expandContext.expand
-              : expandContext.expand
-                ? createElement(
-                    expandContext.expand as ComponentType<{
-                      id: Identifier;
-                      record: RaRecord;
-                      resource: string;
-                    }>,
-                    {
-                      id: record.id,
-                      record,
-                      resource: resource ?? "",
-                    },
-                  )
-                : null
-            : null;
+        const expandPanel = expandContext?.expand
+          ? isValidElement(expandContext.expand)
+            ? expandContext.expand
+            : createElement(
+                expandContext.expand as ComponentType<{
+                  id: Identifier;
+                  record: RaRecord;
+                  resource: string;
+                }>,
+                {
+                  id: record.id,
+                  record,
+                  resource: resource ?? "",
+                },
+              )
+          : null;
         return (
           <RecordContextProvider value={record} key={key}>
             <DataTableRow
@@ -406,10 +407,16 @@ export const DataTableBody = <RecordType extends RaRecord = RaRecord>({
             >
               {children}
             </DataTableRow>
-            {expandPanel ? (
+            {expandContext ? (
               <TableRow data-slot="data-table-expand-panel">
-                <TableCell colSpan={expandColSpan} className="bg-muted/30">
-                  {expandPanel}
+                <TableCell colSpan={expandColSpan} className="p-0">
+                  <Collapsible open={!!isExpanded}>
+                    <CollapsibleContent>
+                      <div className="bg-muted/30 px-4 py-3">
+                        {expandPanel}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </TableCell>
               </TableRow>
             ) : null}

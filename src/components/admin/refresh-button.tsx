@@ -1,6 +1,16 @@
+import type { ReactNode, Ref } from "react";
 import { useRefresh, useLoading, useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle, RotateCw } from "lucide-react";
+
+const defaultIcon = <RotateCw />;
+
+export interface RefreshButtonProps {
+  ref?: Ref<HTMLButtonElement>;
+  label?: ReactNode;
+  icon?: ReactNode;
+  onClick?: () => void;
+}
 
 /**
  * A button that refreshes the current view's data.
@@ -10,27 +20,37 @@ import { LoaderCircle, RotateCw } from "lucide-react";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/refreshbutton/ RefreshButton documentation}
  */
-export const RefreshButton = () => {
+export const RefreshButton = ({
+  ref,
+  label,
+  icon = defaultIcon,
+  onClick,
+}: RefreshButtonProps = {}) => {
   const refresh = useRefresh();
   const loading = useLoading();
   const translate = useTranslate();
 
   const handleRefresh = () => {
     refresh();
+    if (onClick) {
+      onClick();
+    }
   };
 
-  const label = translate("ra.action.refresh", { _: "Refresh" });
+  const defaultLabel = translate("ra.action.refresh", { _: "Refresh" });
+  const ariaLabel = label != null ? String(label) : defaultLabel;
 
   return (
     <Button
+      ref={ref}
       onClick={handleRefresh}
       variant="ghost"
       size="icon"
       className="hidden sm:inline-flex"
-      aria-label={label}
+      aria-label={ariaLabel}
       disabled={loading}
     >
-      {loading ? <LoaderCircle className="animate-spin" /> : <RotateCw />}
+      {loading ? <LoaderCircle className="animate-spin" /> : icon}
     </Button>
   );
 };

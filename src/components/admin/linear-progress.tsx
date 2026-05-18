@@ -9,6 +9,16 @@ export interface LinearProgressProps extends HTMLAttributes<HTMLDivElement> {
    * @default 1000
    */
   timeout?: number;
+  /**
+   * When provided, switches to determinate mode and renders the bar at
+   * `(value / max) * 100` percent width.
+   */
+  value?: number;
+  /**
+   * Maximum value used to compute the fill percentage.
+   * @default 100
+   */
+  max?: number;
 }
 
 /**
@@ -24,7 +34,7 @@ export interface LinearProgressProps extends HTMLAttributes<HTMLDivElement> {
  * const ReferenceFieldFallback = () => <LinearProgress />;
  */
 export const LinearProgress = (props: LinearProgressProps) => {
-  const { className, timeout = 1000, ...rest } = props;
+  const { className, timeout = 1000, value, max = 100, ...rest } = props;
   const oneSecondHasPassed = useTimeout(timeout);
 
   if (!oneSecondHasPassed) {
@@ -39,7 +49,14 @@ export const LinearProgress = (props: LinearProgressProps) => {
       )}
       {...rest}
     >
-      <div className="h-full w-1/2 bg-primary animate-pulse" />
+      {value !== undefined ? (
+        <div
+          className="h-full bg-primary transition-all"
+          style={{ width: `${(value / max) * 100}%` }}
+        />
+      ) : (
+        <div className="h-full w-1/2 bg-primary animate-pulse" />
+      )}
     </div>
   );
 };

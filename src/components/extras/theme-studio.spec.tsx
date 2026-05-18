@@ -33,7 +33,7 @@ describe("<ThemeStudio />", () => {
   it("swaps the active palette when the mode toggle is used", async () => {
     const screen = render(<Basic />);
 
-    await screen.getByRole("button", { name: /toggle theme/i }).click();
+    await screen.getByRole("button", { name: /toggle.*(theme|mode)/i }).click();
     await screen.getByRole("menuitem", { name: "Dark" }).click();
 
     await expect
@@ -43,7 +43,7 @@ describe("<ThemeStudio />", () => {
       document.documentElement.style.getPropertyValue("--background"),
     ).toBe("oklch(0.145 0 0)");
 
-    await screen.getByRole("button", { name: /toggle theme/i }).click();
+    await screen.getByRole("button", { name: /toggle.*(theme|mode)/i }).click();
     await screen.getByRole("menuitem", { name: "Light" }).click();
 
     await expect
@@ -57,7 +57,7 @@ describe("<ThemeStudio />", () => {
   it("routes ColorInput edits through the provider's live var state", async () => {
     const screen = render(<Basic />);
 
-    await screen.getByRole("button", { name: /toggle theme/i }).click();
+    await screen.getByRole("button", { name: /toggle.*(theme|mode)/i }).click();
     await screen.getByRole("menuitem", { name: "Light" }).click();
     await expect
       .poll(() => document.documentElement.classList.contains("light"))
@@ -89,7 +89,7 @@ describe("<ThemeStudio />", () => {
   it("opens an oklch picker popover when the swatch is clicked", async () => {
     const screen = render(<Basic />);
 
-    await screen.getByRole("button", { name: /toggle theme/i }).click();
+    await screen.getByRole("button", { name: /toggle.*(theme|mode)/i }).click();
     await screen.getByRole("menuitem", { name: "Light" }).click();
     await expect
       .poll(() => document.documentElement.classList.contains("light"))
@@ -110,7 +110,7 @@ describe("<ThemeStudio />", () => {
   it("appends an alpha suffix to the var when the Alpha slider is moved", async () => {
     const screen = render(<Basic />);
 
-    await screen.getByRole("button", { name: /toggle theme/i }).click();
+    await screen.getByRole("button", { name: /toggle.*(theme|mode)/i }).click();
     await screen.getByRole("menuitem", { name: "Light" }).click();
     await expect
       .poll(() => document.documentElement.classList.contains("light"))

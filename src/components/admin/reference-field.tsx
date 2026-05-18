@@ -15,6 +15,10 @@ import type { MouseEvent, ReactNode } from "react";
 import { Link } from "react-router";
 import type { UseQueryOptions } from "@tanstack/react-query";
 import type { UnknownValue } from "@/lib/unknown-types";
+import type { FieldProps } from "@/lib/field-types";
+import { Offline } from "@/components/admin/offline";
+
+const defaultOffline = <Offline />;
 
 /**
  * Displays a field from a related record by following a foreign key relationship.
@@ -45,7 +49,7 @@ export const ReferenceField = <
 >(
   props: ReferenceFieldProps<RecordType, ReferenceRecordType>,
 ) => {
-  const { loading, error, empty, render, ...rest } = props;
+  const { loading, error, empty, render, offline = defaultOffline, ...rest } = props;
   const id = useFieldValue<RecordType>(props);
   const translate = useTranslate();
 
@@ -56,7 +60,7 @@ export const ReferenceField = <
       empty
     )
   ) : (
-    <ReferenceFieldBase {...rest}>
+    <ReferenceFieldBase {...rest} offline={offline}>
       <ReferenceFieldView<ReferenceRecordType>
         render={render}
         loading={loading}
@@ -70,7 +74,8 @@ export const ReferenceField = <
 export interface ReferenceFieldProps<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
-> extends Partial<ReferenceFieldViewProps<ReferenceRecordType>> {
+> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
+    Partial<ReferenceFieldViewProps<ReferenceRecordType>> {
   children?: ReactNode;
   queryOptions?: UseQueryOptions<RaRecord[], Error> & {
     meta?: UnknownValue;
@@ -80,6 +85,10 @@ export interface ReferenceFieldProps<
   translateChoice?: ((record: ReferenceRecordType) => string) | boolean;
   link?: LinkToType;
   source: ExtractRecordPaths<RecordType>;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
 }
 
 // useful to prevent click bubbling in a datagrid with rowClick
@@ -101,14 +110,17 @@ export const ReferenceFieldView = <
     loading,
   } = props;
   const referenceFieldContext = useReferenceFieldContext();
-  const { error, link, isPending, referenceRecord } = referenceFieldContext;
+  const { error, link, isLoading, referenceRecord } = referenceFieldContext;
   const getRecordRepresentation = useGetRecordRepresentation(reference);
   const translate = useTranslate();
 
   if (!referenceRecord && error && errorElement !== false) {
     return errorElement;
   }
-  if (isPending && loading !== false) {
+  // We explicitly check isLoading here as the record may not have an id for the reference,
+  // in which case, the query will not be enabled and isPending will be true
+  // isLoading checks that we are actually loading the reference record
+  if (isLoading && loading !== false) {
     return loading;
   }
   if (!referenceRecord && empty !== false) {
@@ -126,7 +138,7 @@ export const ReferenceFieldView = <
   if (link) {
     return (
       <span className={className}>
-        <Link to={link} onClick={stopPropagation}>
+        <Link to={link} state={{ _scrollToTop: true }} onClick={stopPropagation}>
           {child}
         </Link>
       </span>

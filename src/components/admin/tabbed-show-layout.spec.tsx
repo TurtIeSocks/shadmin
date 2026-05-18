@@ -37,8 +37,8 @@ describe("<TabbedShowLayout />", () => {
 
   it("should wrap fields in Labeled components", async () => {
     const { container } = render(<Basic theme="system" />);
-    // Labeled renders a span.text-xs for the label
-    const labels = container.querySelectorAll("span.text-xs");
+    // Labeled renders a label.text-xs for the label
+    const labels = container.querySelectorAll("label.text-xs");
     expect(labels.length).toBeGreaterThan(0);
   });
 

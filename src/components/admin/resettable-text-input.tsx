@@ -56,6 +56,7 @@ export const ResettableTextInput = (props: ResettableTextInputProps) => {
   const { setValue } = useFormContext();
   const fieldValue = useWatch({ name: source });
   const hasValue = fieldValue != null && fieldValue !== "";
+  const hasLabel = rest.label !== false;
 
   const handleClear = useCallback(() => {
     setValue(source, "", { shouldDirty: true, shouldTouch: true });
@@ -80,7 +81,10 @@ export const ResettableTextInput = (props: ResettableTextInputProps) => {
           type="button"
           variant="ghost"
           size="icon"
-          className="absolute right-1 top-6 size-7 text-muted-foreground"
+          className={cn(
+            "absolute right-1 size-7 text-muted-foreground",
+            hasLabel ? "top-6" : "top-1",
+          )}
           onClick={handleClear}
           disabled={disabled || readOnly || !hasValue}
           aria-label={clearLabel}

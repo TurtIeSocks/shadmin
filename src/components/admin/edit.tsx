@@ -1,4 +1,4 @@
-import type { EditBaseProps } from "ra-core";
+import type { EditBaseProps, EditControllerResult } from "ra-core";
 import {
   EditBase,
   Translate,
@@ -10,7 +10,7 @@ import {
   useResourceContext,
   useResourceDefinition,
 } from "ra-core";
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import { Link } from "react-router";
 import {
   Breadcrumb,
@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 import { ShowButton } from "@/components/admin/show-button";
 import { DeleteButton } from "./delete-button";
 
-export interface EditProps extends EditViewProps, EditBaseProps {}
+export interface EditProps extends EditViewProps, Omit<EditBaseProps, "offline" | "error" | "render" | "children"> {}
 
 /**
  * A complete edit page with breadcrumb, title, and default actions.
@@ -49,19 +49,29 @@ export interface EditProps extends EditViewProps, EditBaseProps {}
  */
 export const Edit = ({
   actions,
+  aside,
   children,
   className,
+  component,
   disableBreadcrumb,
   emptyWhileLoading,
+  error,
+  offline,
+  render,
   title,
   ...rest
 }: EditProps) => (
   <EditBase {...rest}>
     <EditView
       actions={actions}
+      aside={aside}
       className={className}
+      component={component}
       disableBreadcrumb={disableBreadcrumb}
       emptyWhileLoading={emptyWhileLoading}
+      error={error}
+      offline={offline}
+      render={render}
       title={title}
     >
       {children}
@@ -69,9 +79,17 @@ export const Edit = ({
   </EditBase>
 );
 
+const defaultOffline = <p className="text-sm text-muted-foreground p-4">Offline — waiting for connection…</p>;
+const defaultError = <p className="text-sm text-destructive p-4">An error occurred while loading this record.</p>;
+
 export interface EditViewProps {
+  aside?: ReactNode;
+  component?: ElementType;
   disableBreadcrumb?: boolean;
   emptyWhileLoading?: boolean;
+  error?: ReactNode;
+  offline?: ReactNode;
+  render?: (controllerState: EditControllerResult) => ReactNode;
   title?: ReactNode | string | false;
   actions?: ReactNode | false;
   children?: ReactNode;
@@ -84,8 +102,13 @@ export interface EditViewProps {
  * @internal
  */
 export const EditView = ({
+  aside,
+  component,
   disableBreadcrumb,
   emptyWhileLoading,
+  error = defaultError,
+  offline = defaultOffline,
+  render,
   title,
   actions,
   className,
@@ -113,7 +136,17 @@ export const EditView = ({
   const { hasShow } = useResourceDefinition({ resource });
   const hasDashboard = useHasDashboard();
 
-  if (!context.record && context.isPending && emptyWhileLoading) {
+  const showOffline =
+    context.isPaused && context.isPending && offline !== undefined && offline !== false;
+  const showError = context.error && error !== false && error !== undefined;
+
+  if (
+    !context.record &&
+    context.isPending &&
+    emptyWhileLoading &&
+    !showOffline &&
+    !showError
+  ) {
     return null;
   }
 
@@ -126,6 +159,29 @@ export const EditView = ({
             <DeleteButton />
           </div>
         ));
+
+  const Wrapper = component ?? "div";
+
+  const finalContent = showOffline
+    ? offline
+    : showError
+      ? error
+      : render
+        ? render(context)
+        : context.record
+          ? children
+          : null;
+
+  const contentBlock = (
+    <Wrapper className="my-2">{finalContent}</Wrapper>
+  );
+
+  const main = aside ? (
+    <div className="flex gap-4">
+      <div className="flex-1">{contentBlock}</div>
+      <div className="flex-shrink-0 w-64">{aside}</div>
+    </div>
+  ) : contentBlock;
 
   return (
     <>
@@ -150,12 +206,14 @@ export const EditView = ({
           className,
         )}
       >
-        <h2 className="text-2xl font-bold tracking-tight">
-          {title !== undefined ? title : context.defaultTitle}
-        </h2>
+        {title !== false && (
+          <h2 className="text-2xl font-bold tracking-tight">
+            {title !== undefined ? title : context.defaultTitle}
+          </h2>
+        )}
         {resolvedActions}
       </div>
-      <div className="my-2">{context.record ? children : null}</div>
+      {main}
     </>
   );
 };

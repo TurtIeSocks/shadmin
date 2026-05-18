@@ -98,7 +98,6 @@ function RenderLabel({
 export interface BooleanFieldProps<
   RecordType extends RaRecord = RaRecord,
 > extends FieldProps<RecordType> {
-  className?: string;
   defaultValue?: unknown;
   TrueIcon?: LucideIcon | null;
   FalseIcon?: LucideIcon | null;

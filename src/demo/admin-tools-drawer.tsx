@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { LayoutIcon, PaletteIcon } from "lucide-react";
 
-import { defaultTheme } from "@/components/admin";
 import { LayoutBuilder } from "@/components/extras/layout-builder";
 import { ThemeStudio } from "@/components/extras/theme-studio";
 import { Button } from "@/components/ui/button";
@@ -34,7 +33,7 @@ export const ThemeStudioButton = () => {
           <SheetTitle>Theme Studio</SheetTitle>
         </SheetHeader>
         <div className="px-4 pb-4">
-          <ThemeStudio theme={defaultTheme} />
+          <ThemeStudio />
         </div>
       </SheetContent>
     </Sheet>

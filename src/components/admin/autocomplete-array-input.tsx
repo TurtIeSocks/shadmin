@@ -16,7 +16,7 @@ import {
   FormLabel,
 } from "@/components/admin/form";
 import { Command as CommandPrimitive } from "cmdk";
-import type { ChoicesProps, InputProps } from "ra-core";
+import type { ChoicesProps, InputProps, SupportCreateSuggestionOptions } from "ra-core";
 import {
   useChoices,
   useChoicesContext,
@@ -25,6 +25,7 @@ import {
   useTranslate,
   FieldTitle,
   useEvent,
+  useSupportCreateSuggestion,
 } from "ra-core";
 import { areIdsEqual } from "@/lib/are-ids-equal";
 import { InputHelperText } from "./input-helper-text";
@@ -66,6 +67,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  */
 export const AutocompleteArrayInput = (
   props: Omit<InputProps, "source"> &
+    Omit<SupportCreateSuggestionOptions, "handleChange" | "filter"> &
     Partial<Pick<InputProps, "source">> &
     ChoicesProps & {
       className?: string;
@@ -74,13 +76,58 @@ export const AutocompleteArrayInput = (
       filterToQuery?: (searchText: string) => UnknownValue;
       translateChoice?: boolean;
       placeholder?: string;
-      inputText?: React.ReactNode | ((option: UnknownValue) => React.ReactNode);
+      /** Custom display text for badge labels. Must return a string. */
+      inputText?: (option: UnknownValue) => string;
+      /** When true, only show choices that are already selected in the dropdown. */
+      limitChoicesToValue?: boolean;
+      /** Cap the number of dropdown items shown. */
+      suggestionLimit?: number;
+      /** Content to show when no choices match the filter. Defaults to ra.navigation.no_results. */
+      noOptionsText?: React.ReactNode;
+      /** When true, clear the filter text on input blur. */
+      clearOnBlur?: boolean;
+      /** When true, open the dropdown on input focus. */
+      openOnFocus?: boolean;
+      /** When true, select all text in the input on focus. */
+      selectOnFocus?: boolean;
+      /** When true, Home/End keys scroll the listbox to first/last item. */
+      handleHomeEndKeys?: boolean;
+      /** Custom equality check between a choice and a selected value. */
+      isOptionEqualToValue?: (option: UnknownValue, value: UnknownValue) => boolean;
+      /** Custom filter function; replaces default substring match. */
+      matchSuggestion?: (filter: string, choice: UnknownValue) => boolean;
+      /** Gate controlling whether the dropdown opens at all. */
+      shouldRenderSuggestions?: (filter: string) => boolean;
+      /** Label of a "(none)" entry; accepted for API parity but not rendered in the array variant. */
+      emptyText?: string;
+      /** Called with the current filter text on every keystroke. For server-side filtering outside ReferenceArrayInput. No debounce applied — caller decides. */
+      setFilter?: (filter: string) => void;
     },
 ) => {
   const {
     debounce: debounceDelay = 250,
     filterToQuery = DefaultFilterToQuery,
     inputText,
+    create,
+    createValue,
+    createLabel,
+    createHintValue,
+    createItemLabel,
+    onCreate,
+    optionText,
+    limitChoicesToValue = false,
+    suggestionLimit,
+    noOptionsText,
+    clearOnBlur = false,
+    openOnFocus: _openOnFocus = false, // array variant always opens on focus; prop kept for API parity
+    selectOnFocus = false,
+    handleHomeEndKeys = false,
+    isOptionEqualToValue,
+    matchSuggestion,
+    shouldRenderSuggestions,
+    setFilter,
+    // emptyText: accepted for API parity; not rendered in array variant
+    emptyText: _emptyText,
   } = props;
   const {
     allChoices = [],
@@ -89,7 +136,7 @@ export const AutocompleteArrayInput = (
     isFromReference,
     setFilters,
   } = useChoicesContext(props);
-  const { id, field, isRequired } = useInput({ ...props, source });
+  const { id, field, isRequired: _isRequired } = useInput({ ...props, source });
   const translate = useTranslate();
   const { placeholder = translate("ra.action.search", { _: "Search..." }) } =
     props;
@@ -137,12 +184,33 @@ export const AutocompleteArrayInput = (
 
   useEffect(() => () => debouncedSetFilters.cancel(), [debouncedSetFilters]);
 
+  const [filterValue, setFilterValue] = React.useState("");
+
+  // Prop 10: Reset filter when field.value changes externally (e.g. form reset).
+  useEffect(() => {
+    debouncedSetFilters.cancel();
+    setFilterValue("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [field.value]);
+
+  // Equality helper: use isOptionEqualToValue when provided, else areIdsEqual.
+  const isEqual = useCallback(
+    (choiceVal: UnknownValue, fieldVal: UnknownValue) => {
+      if (isOptionEqualToValue) {
+        return isOptionEqualToValue(choiceVal, fieldVal);
+      }
+      return areIdsEqual(choiceVal, fieldVal);
+    },
+    [isOptionEqualToValue],
+  );
+
   const handleUnselect = useEvent((choice: UnknownValue) => {
     field.onChange(
       values.filter(
-        (v: UnknownValue) => !areIdsEqual(v, getChoiceValue(choice)),
+        (v: UnknownValue) => !isEqual(getChoiceValue(choice), v),
       ),
     );
+    field.onBlur();
   });
 
   const handleKeyDown = useEvent((e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -160,44 +228,135 @@ export const AutocompleteArrayInput = (
     }
   });
 
-  const availableChoices = allChoices.filter(
+  // Base unselected choices (not yet in field.value).
+  const unselectedChoices = allChoices.filter(
     (choice) =>
-      !values.some((v: UnknownValue) => areIdsEqual(v, getChoiceValue(choice))),
+      !values.some((v: UnknownValue) => isEqual(getChoiceValue(choice), v)),
   );
   const selectedChoices = allChoices.filter((choice) =>
-    values.some((v: UnknownValue) => areIdsEqual(v, getChoiceValue(choice))),
+    values.some((v: UnknownValue) => isEqual(getChoiceValue(choice), v)),
   );
-  const [filterValue, setFilterValue] = React.useState("");
+
+  // Prop 1: limitChoicesToValue — show only selected choices in the dropdown.
+  let availableChoices = limitChoicesToValue ? selectedChoices : unselectedChoices;
+
+  // matchSuggestion: when provided, apply custom filtering for non-reference inputs.
+  if (matchSuggestion && !isFromReference && filterValue !== "") {
+    availableChoices = availableChoices.filter((choice) =>
+      matchSuggestion(filterValue, choice),
+    );
+  }
+
+  // Prop 2: suggestionLimit — cap after filtering.
+  if (suggestionLimit !== undefined) {
+    availableChoices = availableChoices.slice(0, suggestionLimit);
+  }
+
+  // shouldRenderSuggestions: gate on the effective open state.
+  const effectiveOpen =
+    open && (!shouldRenderSuggestions || shouldRenderSuggestions(filterValue));
+
+  // Prop 3: noOptionsText — fall back to translated string.
+  const emptyText =
+    noOptionsText ?? translate("ra.navigation.no_results", { _: "No matching item found." });
 
   const getInputText = useCallback(
     (selectedChoice: UnknownValue) => {
       if (typeof inputText === "function") {
         return inputText(selectedChoice);
       }
-      if (inputText !== undefined) {
-        return inputText;
-      }
       return getChoiceText(selectedChoice);
     },
     [inputText, getChoiceText],
   );
 
+  // Prop 8: handleHomeEndKeys for the inline CommandPrimitive.Input.
+  const handleInputKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!handleHomeEndKeys) return;
+      if (e.key === "Home") {
+        e.preventDefault();
+        listRef.current?.scrollTo(0, 0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        listRef.current?.scrollTo(0, listRef.current.scrollHeight);
+      }
+    },
+    [handleHomeEndKeys],
+  );
+
+  // Prop 6 + 7: openOnFocus / selectOnFocus.
+  // The array variant always opens on focus (existing behavior); openOnFocus is
+  // a no-op override since open-on-focus is the default for the inline input.
+  const handleFocus = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setOpen(true);
+      if (selectOnFocus) e.currentTarget.select();
+    },
+    [selectOnFocus],
+  );
+
+  // Prop 5: clearOnBlur.
+  const handleBlur = useCallback(() => {
+    setOpen(false);
+    if (clearOnBlur) setFilterValue("");
+  }, [clearOnBlur]);
+
+  // handleChange used by useSupportCreateSuggestion: appends the chosen value to the array.
+  const handleChange = useCallback(
+    async (val: UnknownValue) => {
+      setFilterValue("");
+      if (isFromReference) {
+        debouncedSetFilters.cancel();
+        setFilters(filterToQuery(""));
+      }
+      field.onChange([...values, val]);
+      field.onBlur();
+    },
+    [field, values, isFromReference, debouncedSetFilters, setFilters, filterToQuery],
+  );
+
+  const {
+    getCreateItem,
+    handleChange: handleChangeWithCreateSupport,
+    createElement,
+  } = useSupportCreateSuggestion({
+    create,
+    createLabel,
+    createValue,
+    createHintValue,
+    createItemLabel,
+    onCreate,
+    handleChange,
+    optionText,
+    filter: filterValue,
+  });
+
+  const createItem =
+    (create || onCreate) && (filterValue !== "" || createLabel)
+      ? getCreateItem(filterValue)
+      : null;
+
+  // Append createItem after the suggestionLimit slice so it is always visible.
+  const finalChoices = createItem ? [...availableChoices, createItem] : availableChoices;
+
   return (
-    <FormField className={props.className} id={id} name={field.name}>
+    <>
+      <FormField className={props.className} id={id} name={field.name}>
       {props.label !== false && (
         <FormLabel>
           <FieldTitle
             label={props.label}
             source={props.source ?? source}
             resource={resource}
-            isRequired={isRequired}
+            isRequired={_isRequired}
           />
         </FormLabel>
       )}
       <FormControl>
         <Command
           onKeyDown={handleKeyDown}
-          shouldFilter={!isFromReference}
+          shouldFilter={!isFromReference && !matchSuggestion}
           className="overflow-visible bg-transparent"
         >
           <div className="group rounded-md bg-transparent dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]">
@@ -236,6 +395,7 @@ export const AutocompleteArrayInput = (
                 value={filterValue}
                 onValueChange={(filter) => {
                   setFilterValue(filter);
+                  setFilter?.(filter);
                   requestAnimationFrame(() => {
                     listRef.current?.scrollTo(0, 0);
                   });
@@ -245,8 +405,9 @@ export const AutocompleteArrayInput = (
                     debouncedSetFilters(filter);
                   }
                 }}
-                onBlur={() => setOpen(false)}
-                onFocus={() => setOpen(true)}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+                onKeyDown={handleInputKeyDown}
                 placeholder={placeholder}
                 className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
               />
@@ -254,17 +415,25 @@ export const AutocompleteArrayInput = (
           </div>
           <div className="relative">
             <CommandList ref={listRef}>
-              {open && availableChoices.length > 0 ? (
+              {effectiveOpen && finalChoices.length > 0 ? (
                 <div className="absolute top-2 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
                   <CommandGroup className="h-full overflow-auto">
-                    {availableChoices.map((choice) => {
-                      const choiceText = getChoiceText(choice);
+                    {finalChoices.map((choice) => {
+                      const isCreateItem =
+                        !!createItem && choice?.id === createItem.id;
+                      const choiceText = getChoiceText(
+                        isCreateItem ? createItem : choice,
+                      );
                       return (
                         <CommandItem
-                          key={getChoiceValue(choice)}
-                          value={getChoiceValue(choice)}
+                          key={isCreateItem ? "__create__" : getChoiceValue(choice)}
+                          value={
+                            isCreateItem
+                              ? `?${filterValue}?`
+                              : getChoiceValue(choice)
+                          }
                           keywords={
-                            React.isValidElement(choiceText)
+                            isCreateItem || React.isValidElement(choiceText)
                               ? undefined
                               : [choiceText]
                           }
@@ -273,12 +442,17 @@ export const AutocompleteArrayInput = (
                             e.stopPropagation();
                           }}
                           onSelect={() => {
-                            setFilterValue("");
-                            if (isFromReference) {
-                              debouncedSetFilters.cancel();
-                              setFilters(filterToQuery(""));
+                            if (isCreateItem) {
+                              handleChangeWithCreateSupport(createItem.value);
+                            } else {
+                              setFilterValue("");
+                              if (isFromReference) {
+                                debouncedSetFilters.cancel();
+                                setFilters(filterToQuery(""));
+                              }
+                              field.onChange([...values, getChoiceValue(choice)]);
+                              field.onBlur();
                             }
-                            field.onChange([...values, getChoiceValue(choice)]);
                           }}
                           className="cursor-pointer"
                         >
@@ -288,6 +462,10 @@ export const AutocompleteArrayInput = (
                     })}
                   </CommandGroup>
                 </div>
+              ) : effectiveOpen && finalChoices.length === 0 ? (
+                <div className="absolute top-2 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in px-3 py-2 text-sm text-muted-foreground">
+                  {emptyText}
+                </div>
               ) : null}
             </CommandList>
           </div>
@@ -296,6 +474,8 @@ export const AutocompleteArrayInput = (
       <InputHelperText helperText={props.helperText} />
       <FormError />
     </FormField>
+    {createElement}
+  </>
   );
 };
 

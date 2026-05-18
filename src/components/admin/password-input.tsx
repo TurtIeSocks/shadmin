@@ -37,6 +37,7 @@ export const PasswordInput = (props: PasswordInputProps) => {
   } = props;
   const [visible, setVisible] = useState(initiallyVisible);
   const translate = useTranslate();
+  const hasLabel = rest.label !== false;
 
   return (
     <div className={cn("relative", className)}>
@@ -49,7 +50,10 @@ export const PasswordInput = (props: PasswordInputProps) => {
         type="button"
         variant="ghost"
         size="icon"
-        className="absolute right-1 top-6 size-7 text-muted-foreground"
+        className={cn(
+          "absolute right-1 size-7 text-muted-foreground",
+          hasLabel ? "top-6" : "top-1",
+        )}
         onClick={() => setVisible((v) => !v)}
         aria-label={translate(
           visible

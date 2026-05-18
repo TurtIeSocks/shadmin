@@ -17,7 +17,6 @@ export const WithCustomRotate = () => (
     <ApiKeyInput
       source="apiKey"
       onRotate={async () => {
-        // eslint-disable-next-line no-alert
         alert("Rotating key…");
       }}
     />

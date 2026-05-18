@@ -8,10 +8,18 @@ import { FormDescription } from "@/components/admin/form";
  *
  * @internal
  */
-export function InputHelperText({ helperText }: { helperText?: ReactNode }) {
+export function InputHelperText({
+  helperText,
+}: {
+  helperText?: ReactNode | false;
+}) {
   const translate = useTranslate();
 
-  if (!helperText) {
+  if (helperText === false) {
+    return null;
+  }
+
+  if (helperText == null) {
     return null;
   }
 

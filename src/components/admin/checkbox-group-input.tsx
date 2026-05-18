@@ -1,4 +1,5 @@
 import * as React from "react";
+import type { ComponentProps } from "react";
 import type { ChoicesProps, InputProps } from "ra-core";
 import {
   FieldTitle,
@@ -68,6 +69,8 @@ export const CheckboxGroupInput = (inProps: CheckboxGroupInputProps) => {
     helperText,
     label,
     row = false,
+    options,
+    labelPlacement = "end",
     ...rest
   } = inProps;
 
@@ -156,30 +159,50 @@ export const CheckboxGroupInput = (inProps: CheckboxGroupInputProps) => {
             disabled || readOnly || getDisableValue(choice);
           const choiceId = `${id}-${choiceValue}`;
 
+          const checkbox = (
+            <Checkbox
+              id={choiceId}
+              checked={value.includes(choiceValue)}
+              disabled={isChoiceDisabled}
+              onCheckedChange={(checked) =>
+                handleCheck(choiceValue, checked === true)
+              }
+              {...options}
+            />
+          );
+          const labelEl = (
+            <Label
+              htmlFor={choiceId}
+              className={cn(
+                "text-sm font-normal cursor-pointer",
+                isChoiceDisabled && "opacity-50 cursor-not-allowed",
+              )}
+            >
+              {getChoiceText(choice)}
+            </Label>
+          );
+
+          const isTop = labelPlacement === "top";
+          const isBottom = labelPlacement === "bottom";
+          const isStart = labelPlacement === "start";
+
           return (
-            <div key={choiceValue} className="flex items-center gap-x-2">
-              <Checkbox
-                id={choiceId}
-                checked={value.includes(choiceValue)}
-                disabled={isChoiceDisabled}
-                onCheckedChange={(checked) =>
-                  handleCheck(choiceValue, checked === true)
-                }
-              />
-              <Label
-                htmlFor={choiceId}
-                className={cn(
-                  "text-sm font-normal cursor-pointer",
-                  isChoiceDisabled && "opacity-50 cursor-not-allowed",
-                )}
-              >
-                {getChoiceText(choice)}
-              </Label>
+            <div
+              key={choiceValue}
+              className={cn(
+                "flex gap-x-2",
+                (isTop || isBottom) ? "flex-col gap-y-1 items-start" : "flex-row items-center",
+                isTop && "flex-col-reverse",
+              )}
+            >
+              {(isStart || isTop) ? labelEl : null}
+              {checkbox}
+              {(!isStart && !isTop) ? labelEl : null}
             </div>
           );
         })}
       </div>
-      <InputHelperText helperText={helperText} />
+      <InputHelperText helperText={helperText ?? fetchError?.message} />
       <FormError />
     </FormField>
   );
@@ -194,4 +217,6 @@ export interface CheckboxGroupInputProps
       "defaultValue" | "onBlur" | "onChange"
     > {
   row?: boolean;
+  options?: ComponentProps<typeof Checkbox>;
+  labelPlacement?: "end" | "start" | "top" | "bottom";
 }

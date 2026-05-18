@@ -1,3 +1,4 @@
+import type { Ref } from "react";
 import { CircleX } from "lucide-react";
 import { Translate } from "ra-core";
 import { useNavigate } from "react-router";
@@ -29,7 +30,10 @@ import { Button } from "../ui/button";
  *   </Edit>
  * );
  */
-export function CancelButton(props: React.ComponentProps<"button">) {
+export function CancelButton({
+  ref,
+  ...props
+}: React.ComponentProps<"button"> & { ref?: Ref<HTMLButtonElement> }) {
   const navigate = useNavigate();
   return (
     <Button
@@ -37,6 +41,7 @@ export function CancelButton(props: React.ComponentProps<"button">) {
       variant="ghost"
       onClick={() => navigate(-1)}
       className="cursor-pointer"
+      ref={ref}
       {...props}
     >
       <CircleX />

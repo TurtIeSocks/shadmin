@@ -72,7 +72,6 @@ export const HiddenLabel = () => (
 export const ChildLabelFalse = () => (
   <Wrapper>
     <Labeled>
-      {/* @ts-expect-error intentional false label */}
       <TextField source="title" label={false} />
     </Labeled>
   </Wrapper>

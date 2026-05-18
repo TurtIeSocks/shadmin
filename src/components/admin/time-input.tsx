@@ -230,10 +230,22 @@ const formatTime = (value: string | Date | null | undefined) => {
 };
 
 /**
- * Converts a "hh:mm" string entered using a <input type="time" /> input into the value
- * stored in the form state. By default, we keep the string value as-is (no timezone).
+ * Converts a "hh:mm" or "hh:mm:ss" string entered using a <input type="time" /> input
+ * into a Date object (today's date at that local time), for dataProvider compatibility.
+ * Returns null for empty values.
  */
-const parseTime = (value: string): string => value;
+const parseTime = (value: string): Date | null => {
+  if (value == null || value === "") {
+    return null;
+  }
+  if (timeRegex.test(value)) {
+    const [hh, mm, ss = "0"] = value.split(":");
+    const d = new Date();
+    d.setHours(parseInt(hh, 10), parseInt(mm, 10), parseInt(ss, 10), 0);
+    return d;
+  }
+  return null;
+};
 
 /**
  * Merges multiple refs into a single callback ref.

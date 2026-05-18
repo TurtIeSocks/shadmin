@@ -38,6 +38,7 @@ export const BulkExportButton = <T extends RaRecord>({
   icon = defaultIcon,
   label: labelProp,
   onClick,
+  ref,
   ...props
 }: BulkExportButtonProps<T>) => {
   const bulkExport = useBulkExport(props);
@@ -61,6 +62,7 @@ export const BulkExportButton = <T extends RaRecord>({
 
   return (
     <Button
+      ref={ref}
       onClick={handleClick}
       role="button"
       variant="outline"

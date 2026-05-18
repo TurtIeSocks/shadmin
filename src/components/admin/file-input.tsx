@@ -130,6 +130,7 @@ export const FileInput = (props: FileInputProps) => {
     id,
     field: { onChange, onBlur, value, name },
     isRequired,
+    fieldState,
   } = useInput({
     alwaysOn,
     defaultValue,
@@ -235,12 +236,14 @@ export const FileInput = (props: FileInputProps) => {
             disabled || readOnly
               ? "bg-muted cursor-not-allowed"
               : "bg-muted text-muted-foreground cursor-pointer",
+            fieldState.invalid && "border-destructive",
           ),
         })}
       >
         <input
           id={id}
           name={name}
+          aria-invalid={fieldState.invalid || undefined}
           {...getInputProps({
             ...inputPropsOptions,
           })}
@@ -341,12 +344,12 @@ export const FileInputPreview = (props: FileInputPreviewProps) => {
   }, [file]);
 
   return (
-    <div className={cn("flex flex-row gap-1", className)} {...rest}>
+    <div className={cn("flex flex-row gap-1 group", className)} {...rest}>
       <Button
         type="button"
         variant="ghost"
         size="icon"
-        className="size-6 rounded-full shadow-sm cursor-pointer"
+        className="size-6 rounded-full shadow-sm cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
         onClick={onRemove}
         aria-label={translate("ra.action.delete")}
         title={translate("ra.action.delete")}

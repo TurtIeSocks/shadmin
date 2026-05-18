@@ -1,11 +1,13 @@
 import { createElement } from "react";
 import { Link, useMatch } from "react-router";
 import {
+  useBasename,
   useCanAccess,
   useCreatePath,
   useGetResourceLabel,
   useResourceDefinitions,
 } from "ra-core";
+import type { ReactNode } from "react";
 import { List } from "lucide-react";
 import {
   SidebarMenuButton,
@@ -21,6 +23,14 @@ export type ResourceMenuItemProps = {
    */
   name: string;
   /**
+   * Override the label. Defaults to the pluralised resource label.
+   */
+  primaryText?: ReactNode;
+  /**
+   * Override the icon. Defaults to the resource icon or `<List />`.
+   */
+  leftIcon?: ReactNode;
+  /**
    * Extra CSS class appended to the underlying menu button.
    */
   className?: string;
@@ -29,6 +39,9 @@ export type ResourceMenuItemProps = {
    * `<AppSidebar>` uses this to close the mobile drawer.
    */
   onClick?: () => void;
+  /** Additional props forwarded to the underlying element (dense, tooltipProps, etc.). */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [rest: string]: any;
 };
 
 /**
@@ -53,8 +66,11 @@ export type ResourceMenuItemProps = {
  */
 export const ResourceMenuItem = ({
   name,
+  primaryText,
+  leftIcon,
   className,
   onClick,
+  ...rest
 }: ResourceMenuItemProps) => {
   const { canAccess, isPending } = useCanAccess({
     resource: name,
@@ -63,8 +79,9 @@ export const ResourceMenuItem = ({
   const resources = useResourceDefinitions();
   const getResourceLabel = useGetResourceLabel();
   const createPath = useCreatePath();
+  const basename = useBasename();
   const to = createPath({ resource: name, type: "list" });
-  const match = useMatch({ path: to, end: false });
+  const match = useMatch({ path: to, end: to === `${basename}/` });
   const { openMobile, setOpenMobile } = useSidebar();
 
   if (isPending) {
@@ -80,16 +97,25 @@ export const ResourceMenuItem = ({
     onClick?.();
   };
 
+  const icon = leftIcon !== undefined
+    ? leftIcon
+    : resources[name].icon
+      ? createElement(resources[name].icon)
+      : <List />;
+
+  const label = primaryText !== undefined ? primaryText : getResourceLabel(name, 2);
+
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton asChild isActive={!!match} className={className}>
+      <SidebarMenuButton
+        asChild
+        isActive={!!match}
+        className={className}
+        {...rest}
+      >
         <Link to={to} state={{ _scrollToTop: true }} onClick={handleClick}>
-          {resources[name].icon ? (
-            createElement(resources[name].icon)
-          ) : (
-            <List />
-          )}
-          {getResourceLabel(name, 2)}
+          {icon}
+          {label}
         </Link>
       </SidebarMenuButton>
     </SidebarMenuItem>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import { Children } from "react";
 import type { FormProps } from "ra-core";
 import { Form } from "ra-core";
@@ -29,16 +29,17 @@ import { SaveButton } from "@/components/admin/form";
 export const SimpleForm = ({
   children,
   className,
+  component: Wrapper = Form,
   toolbar = defaultFormToolbar,
   ...rest
 }: SimpleFormProps) => (
-  <Form
+  <Wrapper
     className={cn(`flex flex-col gap-4 w-full max-w-lg`, className)}
     {...rest}
   >
     {children}
     {toolbar}
-  </Form>
+  </Wrapper>
 );
 
 /**
@@ -84,6 +85,7 @@ export const FormToolbar = ({
 export type SimpleFormProps = {
   children: ReactNode;
   className?: string;
+  component?: ElementType;
   toolbar?: ReactNode;
 } & FormProps;
 

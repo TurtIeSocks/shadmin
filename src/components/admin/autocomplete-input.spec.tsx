@@ -24,7 +24,7 @@ describe("<AutocompleteInput />", () => {
     await expect
       .element(options.nth(4))
       .toHaveTextContent("Start typing to create a new tag");
-    const searchInput = screen.getByPlaceholder("Search...");
+    const searchInput = screen.getByPlaceholder("Search");
     await userEvent.type(searchInput, "New Tag");
 
     await expect.poll(() => screen.getByRole("option").all()).toHaveLength(1);
@@ -45,7 +45,7 @@ describe("<AutocompleteInput />", () => {
     expect(allOptions.all()).toHaveLength(159);
 
     // Type a filter that matches only 3 choice
-    const searchInput = screen.getByPlaceholder("Search...");
+    const searchInput = screen.getByPlaceholder("Search");
     await userEvent.type(searchInput, "aus");
 
     // Only "Sarah Wilson", "Lisa Rodriguez" and Tom Anderson should remain

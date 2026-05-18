@@ -81,7 +81,7 @@ export const NullableBooleanInput = (props: NullableBooleanInputProps) => {
   const resource = useResourceContext({ resource: resourceProp });
   const translate = useTranslate();
 
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     format,
     parse,
     onBlur,
@@ -127,7 +127,10 @@ export const NullableBooleanInput = (props: NullableBooleanInputProps) => {
         onValueChange={handleValueChange}
         disabled={disabled || readOnly}
       >
-        <SelectTrigger className="w-full transition-all hover:bg-accent">
+        <SelectTrigger
+          className="w-full transition-all hover:bg-accent"
+          aria-invalid={fieldState.invalid || undefined}
+        >
           <SelectValue />
         </SelectTrigger>
         <SelectContent position="popper">

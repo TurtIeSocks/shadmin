@@ -6,4 +6,4 @@
  * slot in the default Layout header — this constant is the canonical one used
  * by the new `<AppBar>` / `<Title>` pair.
  */
-export const TITLE_PORTAL_ID = "ra-title-portal";
+export const TITLE_PORTAL_ID = "react-admin-title";

@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, type Ref } from "react";
 import { humanize, singularize } from "inflection";
 import { RefreshCw } from "lucide-react";
 import {
   type RaRecord,
   type UseUpdateControllerParams,
+  useCanAccess,
   useGetRecordRepresentation,
   useRecordContext,
   useResourceContext,
@@ -29,6 +30,7 @@ export interface UpdateWithUndoButtonProps<
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  ref?: Ref<HTMLButtonElement>;
   variant?: React.ComponentProps<typeof Button>["variant"];
 }
 
@@ -43,6 +45,7 @@ export interface UpdateWithConfirmButtonProps<
   icon?: React.ReactNode;
   label?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  ref?: Ref<HTMLButtonElement>;
   titleTranslateOptions?: object;
   contentTranslateOptions?: object;
   variant?: React.ComponentProps<typeof Button>["variant"];
@@ -105,6 +108,7 @@ export const UpdateWithConfirmButton = (
     label: labelProp,
     mutationMode = "pessimistic",
     onClick,
+    ref,
     titleTranslateOptions = emptyObject,
     contentTranslateOptions = emptyObject,
     variant = "outline",
@@ -113,6 +117,11 @@ export const UpdateWithConfirmButton = (
   const translate = useTranslate();
   const resource = useResourceContext(props);
   const record = useRecordContext(props);
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "edit",
+    resource,
+    record,
+  });
   const [isOpen, setOpen] = useState(false);
 
   const { handleUpdate, isPending } = useUpdateController({
@@ -198,9 +207,11 @@ export const UpdateWithConfirmButton = (
     userText: confirmContentProp,
   });
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Fragment>
       <Button
+        ref={ref}
         type="button"
         variant={variant}
         onClick={handleClick}
@@ -235,11 +246,17 @@ export const UpdateWithUndoButton = (props: UpdateWithUndoButtonProps) => {
     icon = defaultIcon,
     label: labelProp,
     onClick,
+    ref,
     variant = "outline",
     ...rest
   } = props;
   const record = useRecordContext(props);
   const resource = useResourceContext(props);
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "edit",
+    resource,
+    record,
+  });
   const translate = useTranslate();
   const { handleUpdate, isPending } = useUpdateController({
     ...rest,
@@ -284,8 +301,10 @@ export const UpdateWithUndoButton = (props: UpdateWithUndoButtonProps) => {
     e.stopPropagation();
   };
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Button
+      ref={ref}
       type="button"
       variant={variant}
       onClick={handleClick}

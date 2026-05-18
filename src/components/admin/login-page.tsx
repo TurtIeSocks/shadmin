@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, type HTMLAttributes, type ReactNode } from "react";
 import { useCheckAuth } from "ra-core";
 import { useNavigate } from "react-router";
 import { AuthLayout } from "@/components/admin/auth-layout";
@@ -19,8 +19,13 @@ import { LoginForm } from "@/components/admin/login-form";
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loginpage LoginPage documentation}
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/security Security documentation}
  */
-export const LoginPage = (props: { redirectTo?: string }) => {
-  const { redirectTo } = props;
+export interface LoginPageProps extends HTMLAttributes<HTMLDivElement> {
+  redirectTo?: string;
+  children?: ReactNode;
+}
+
+export const LoginPage = (props: LoginPageProps) => {
+  const { redirectTo, children, ...rest } = props;
   const checkAuth = useCheckAuth();
   const navigate = useNavigate();
 
@@ -36,8 +41,8 @@ export const LoginPage = (props: { redirectTo?: string }) => {
   }, [checkAuth, navigate]);
 
   return (
-    <AuthLayout title="Sign in">
-      <LoginForm redirectTo={redirectTo} />
+    <AuthLayout title="Sign in" {...rest}>
+      {children ?? <LoginForm redirectTo={redirectTo} />}
     </AuthLayout>
   );
 };

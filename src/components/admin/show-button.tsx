@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type Ref } from "react";
 import { Link } from "react-router";
 import { buttonVariants } from "@/components/ui/button";
 import { Eye } from "lucide-react";
@@ -18,6 +18,8 @@ export type ShowButtonProps = {
   icon?: React.ReactNode;
   record?: RaRecord;
   resource?: string;
+  scrollToTop?: boolean;
+  ref?: Ref<HTMLAnchorElement>;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 /**
@@ -40,6 +42,8 @@ export const ShowButton = (props: ShowButtonProps) => {
     icon,
     record: _record,
     resource: _resource,
+    scrollToTop = true,
+    ref,
     ...rest
   } = props;
   const resource = useResourceContext(props);
@@ -76,8 +80,10 @@ export const ShowButton = (props: ShowButtonProps) => {
   });
   return (
     <Link
+      ref={ref}
       className={buttonVariants({ variant: "outline" })}
       to={link}
+      state={{ _scrollToTop: scrollToTop }}
       onClick={stopPropagation}
       aria-label={typeof label === "string" ? label : undefined}
       {...rest}

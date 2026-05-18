@@ -222,6 +222,7 @@ function TabbedFormView({
   syncWithLocation = true,
   formRootPathname: _formRootPathname,
   toolbar = defaultToolbar,
+  tabs,
 }: TabbedFormViewProps) {
   const { Route, Routes } = useRouterProvider();
   const location = useLocation();
@@ -230,7 +231,7 @@ function TabbedFormView({
   const navigate = useNavigate();
   const [tabValue, setTabValue] = useState(0);
 
-  const tabs = (
+  const tabsElements = (
     Children.toArray(children) as ReactElement<FormTabProps>[]
   ).filter(isValidElement);
 
@@ -248,9 +249,16 @@ function TabbedFormView({
     }
   };
 
-  const tabHeadersList = (
+  const tabHeadersList = tabs ? (
+    cloneElement(tabs as ReactElement<TabbedFormTabsListProps>, {
+      tabs: tabsElements,
+      syncWithLocation,
+      tabValue,
+      onValueChange: handleValueChange,
+    })
+  ) : (
     <TabbedFormTabsList
-      tabs={tabs}
+      tabs={tabsElements}
       syncWithLocation={syncWithLocation}
       tabValue={tabValue}
       onValueChange={handleValueChange}
@@ -272,7 +280,7 @@ function TabbedFormView({
       {/* All tabs are rendered (not only the one in focus) to allow validation
           on tabs not in focus. Hidden tabs use display:none via inline style. */}
       <div>
-        {tabs.map((tab, index) => {
+        {tabsElements.map((tab, index) => {
           if (!tab) return null;
           const tabPath = getTabPath(tab, index);
           const hidden = syncWithLocation
@@ -326,7 +334,7 @@ export function TabbedForm(props: TabbedFormProps) {
     toolbar = defaultToolbar,
     syncWithLocation = true,
     className,
-    tabs: _tabs,
+    tabs,
     ...rest
   } = props;
 
@@ -340,6 +348,7 @@ export function TabbedForm(props: TabbedFormProps) {
         formRootPathname={formRootPathname}
         syncWithLocation={syncWithLocation}
         toolbar={toolbar}
+        tabs={tabs}
       >
         {children}
       </TabbedFormView>
@@ -373,6 +382,7 @@ interface TabbedFormViewProps {
   syncWithLocation?: boolean;
   formRootPathname?: string;
   toolbar?: ReactNode | false;
+  tabs?: ReactElement;
 }
 
 export interface TabbedFormProps extends Omit<FormProps, "children"> {

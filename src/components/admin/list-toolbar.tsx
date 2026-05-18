@@ -1,10 +1,11 @@
 import {
   Children,
+  cloneElement,
   isValidElement,
   type ReactElement,
   type ReactNode,
 } from "react";
-import { FilterContext } from "ra-core";
+import { type Exporter, FilterContext } from "ra-core";
 import { cn } from "@/lib/utils";
 import { FilterForm } from "@/components/admin/filter-form";
 import { ListActions } from "@/components/admin/list-actions";
@@ -13,6 +14,8 @@ export interface ListToolbarProps {
   filters?: ReactElement | ReactNode[];
   actions?: ReactNode | false;
   className?: string;
+  exporter?: Exporter | false;
+  hasCreate?: boolean;
 }
 
 /**
@@ -27,7 +30,7 @@ export interface ListToolbarProps {
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listtoolbar/ ListToolbar documentation}
  */
 export const ListToolbar = (props: ListToolbarProps) => {
-  const { filters, actions, className } = props;
+  const { filters, actions, className, exporter, hasCreate } = props;
   let filtersArray: ReactNode[] | undefined;
   if (Array.isArray(filters)) {
     filtersArray = filters;
@@ -35,6 +38,22 @@ export const ListToolbar = (props: ListToolbarProps) => {
     const childProps = filters.props as { children?: ReactNode };
     filtersArray = Children.toArray(childProps.children);
   }
+
+  let actionsElement: ReactNode;
+  if (actions === false) {
+    actionsElement = null;
+  } else if (actions == null) {
+    actionsElement = <ListActions exporter={exporter} hasCreate={hasCreate} />;
+  } else if (isValidElement(actions)) {
+    actionsElement = cloneElement(actions as ReactElement<Record<string, unknown>>, {
+      exporter,
+      hasCreate,
+      filters: filtersArray,
+    });
+  } else {
+    actionsElement = actions;
+  }
+
   const content = (
     <div
       className={cn(
@@ -45,7 +64,7 @@ export const ListToolbar = (props: ListToolbarProps) => {
       <div className="flex-1">
         <FilterForm filters={filtersArray} />
       </div>
-      {actions === false ? null : <div>{actions ?? <ListActions />}</div>}
+      {actionsElement != null ? <div>{actionsElement}</div> : null}
     </div>
   );
 

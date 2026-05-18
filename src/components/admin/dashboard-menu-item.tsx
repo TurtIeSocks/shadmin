@@ -1,6 +1,9 @@
+import type { ReactNode } from "react";
 import { House } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useBasename, useTranslate } from "ra-core";
 import { MenuItemLink } from "@/components/admin/menu-item-link";
+
+const defaultLeftIcon = <House />;
 
 export type DashboardMenuItemProps = {
   /**
@@ -12,6 +15,16 @@ export type DashboardMenuItemProps = {
    * mobile drawer or trigger side effects.
    */
   onClick?: () => void;
+  /**
+   * Replaces the default `<House />` icon. Pass any ReactNode.
+   */
+  leftIcon?: ReactNode;
+  /**
+   * Replaces the default translated label (`ra.page.dashboard`). Strings are
+   * passed through `useTranslate` with the string itself as fallback; ReactNodes
+   * are rendered as-is.
+   */
+  primaryText?: ReactNode;
 };
 
 /**
@@ -36,13 +49,22 @@ export type DashboardMenuItemProps = {
 export const DashboardMenuItem = ({
   className,
   onClick,
+  leftIcon,
+  primaryText,
 }: DashboardMenuItemProps) => {
   const translate = useTranslate();
+  const basename = useBasename();
+  const finalText =
+    primaryText === undefined
+      ? translate("ra.page.dashboard", { _: "Dashboard" })
+      : typeof primaryText === "string"
+        ? translate(primaryText, { _: primaryText })
+        : primaryText;
   return (
     <MenuItemLink
-      to="/"
-      primaryText={translate("ra.page.dashboard", { _: "Dashboard" })}
-      leftIcon={<House />}
+      to={`${basename}/`}
+      primaryText={finalText}
+      leftIcon={leftIcon ?? defaultLeftIcon}
       className={className}
       onClick={onClick}
     />

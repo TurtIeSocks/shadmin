@@ -222,15 +222,17 @@ export const SimpleFormIteratorItem = (props: SimpleFormIteratorItemProps) => {
           "[&:has(label)>.simple-form-iterator-item-actions]:pt-10",
         )}
       >
-        {label != null && label !== false && (
-          <p className="text-sm text-muted-foreground mb-2">{label}</p>
-        )}
         <div
           className={cn(
             "flex flex-1 gap-2",
             inline ? "flex-col sm:flex-row gap-2" : "flex-col",
           )}
         >
+          {label != null && label !== false && (
+            <span className="flex items-center text-sm text-muted-foreground">
+              {label}
+            </span>
+          )}
           {children}
         </div>
         {!disabled && (

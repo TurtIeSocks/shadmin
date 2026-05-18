@@ -1,7 +1,9 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { TriangleAlert } from "lucide-react";
+import { useDefaultTitle } from "ra-core";
 
 import { AuthErrorScreen } from "../extras/auth-error-screen";
+import { Title } from "@/components/admin/title";
 
 export interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -22,11 +24,17 @@ export const AuthenticationError = ({
   textPrimary = "ra.page.authentication_error",
   textSecondary = "ra.message.authentication_error",
   ...rest
-}: AuthenticationErrorProps) => (
-  <AuthErrorScreen
-    icon={icon}
-    textPrimary={textPrimary}
-    textSecondary={textSecondary}
-    {...rest}
-  />
-);
+}: AuthenticationErrorProps) => {
+  const title = useDefaultTitle();
+  return (
+    <>
+      <Title defaultTitle={title} />
+      <AuthErrorScreen
+        icon={icon}
+        textPrimary={textPrimary}
+        textSecondary={textSecondary}
+        {...rest}
+      />
+    </>
+  );
+};

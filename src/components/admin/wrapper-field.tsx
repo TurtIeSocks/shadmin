@@ -36,18 +36,5 @@ export interface WrapperFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 > extends Omit<FieldProps<RecordType>, "source"> {
   source?: FieldProps<RecordType>["source"];
-  /**
-   * The label to display in the parent layout (e.g. `<SimpleShowLayout>` or `<DataTable.Col>`).
-   * Defaults to a humanized version of `source`.
-   */
-  label?: string | false;
-  /**
-   * The field to sort by when the wrapped fields are inside a sortable parent.
-   */
-  sortBy?: string;
-  /**
-   * The order of the sort when the wrapped fields are inside a sortable parent.
-   */
-  sortByOrder?: "ASC" | "DESC";
   children: ReactNode;
 }

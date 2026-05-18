@@ -10,7 +10,12 @@ import type {
 } from "ra-core";
 import { ReferenceArrayFieldBase, useListContext } from "ra-core";
 import type { UseQueryOptions } from "@tanstack/react-query";
+import { LinearProgress } from "@/components/admin/linear-progress";
 import { SingleFieldList } from "@/components/admin/single-field-list";
+import type { FieldProps } from "@/lib/field-types";
+import { Offline } from "@/components/admin/offline";
+
+const defaultOffline = <Offline />;
 
 /**
  * Displays multiple related records by following an array of foreign keys.
@@ -46,7 +51,10 @@ export const ReferenceArrayField = <
   props: ReferenceArrayFieldProps<RecordType, ReferenceRecordType>,
 ) => {
   const {
+    empty,
+    error,
     filter,
+    offline = defaultOffline,
     page = 1,
     perPage,
     reference,
@@ -60,6 +68,7 @@ export const ReferenceArrayField = <
   return (
     <ReferenceArrayFieldBase
       filter={filter}
+      offline={offline}
       page={page}
       perPage={perPage}
       reference={reference}
@@ -69,14 +78,15 @@ export const ReferenceArrayField = <
       queryOptions={queryOptions}
       render={render}
     >
-      <PureReferenceArrayFieldView {...rest} />
+      <PureReferenceArrayFieldView empty={empty} error={error} offline={offline} {...rest} />
     </ReferenceArrayFieldBase>
   );
 };
 export interface ReferenceArrayFieldProps<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
-> extends ReferenceArrayFieldViewProps {
+> extends Omit<FieldProps<RecordType>, "source" | "empty">,
+    ReferenceArrayFieldViewProps {
   filter?: FilterPayload;
   page?: number;
   pagination?: ReactElement;
@@ -98,6 +108,10 @@ export interface ReferenceArrayFieldViewProps {
   empty?: ReactNode;
   error?: ReactNode;
   loading?: ReactNode;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
   pagination?: ReactNode;
 }
 
@@ -109,11 +123,14 @@ export const ReferenceArrayFieldView = (
     className,
     empty,
     error: errorElement,
-    loading,
+    loading = defaultLoading,
+    offline = defaultOffline,
     pagination,
   } = props;
   const {
     isPending,
+    isPaused,
+    isPlaceholderData,
     error,
     total,
     hasPreviousPage,
@@ -122,9 +139,17 @@ export const ReferenceArrayFieldView = (
     filterValues,
   } = useListContext();
 
+  const shouldRenderOffline =
+    isPaused &&
+    (isPending || isPlaceholderData) &&
+    offline !== undefined &&
+    offline !== false;
+
   return (
     <div className={className}>
-      {isPending && loading !== false ? (
+      {shouldRenderOffline ? (
+        offline
+      ) : isPending && loading !== false ? (
         loading
       ) : error && errorElement !== false ? (
         errorElement
@@ -149,4 +174,5 @@ export const ReferenceArrayFieldView = (
 };
 
 const defaultChildren = <SingleFieldList />;
+const defaultLoading = <LinearProgress />;
 const PureReferenceArrayFieldView = memo(ReferenceArrayFieldView);

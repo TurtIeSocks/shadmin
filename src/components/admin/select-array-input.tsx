@@ -1,12 +1,17 @@
 import * as React from "react";
 import { ChevronDown, X } from "lucide-react";
-import type { ChoicesProps, InputProps } from "ra-core";
+import type {
+  ChoicesProps,
+  InputProps,
+  SupportCreateSuggestionOptions,
+} from "ra-core";
 import {
   FieldTitle,
   useChoices,
   useChoicesContext,
   useGetRecordRepresentation,
   useInput,
+  useSupportCreateSuggestion,
   useTranslate,
 } from "ra-core";
 import { FormError, FormField, FormLabel } from "@/components/admin/form";
@@ -63,6 +68,13 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
     optionValue,
     disableValue = "disabled",
     translateChoice,
+    createValue,
+    createHintValue,
+    create,
+    createLabel,
+    createItemLabel,
+    onCreate,
+    InputLabelProps,
 
     defaultValue,
     format,
@@ -119,6 +131,8 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
     optionValue,
     disableValue,
     translateChoice: translateChoice ?? !isFromReference,
+    createValue,
+    createHintValue,
   });
 
   const { id, field, isRequired } = useInput({
@@ -135,6 +149,44 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
     validate,
     readOnly,
     disabled,
+  });
+
+  const value: Array<string | number> = Array.isArray(field.value)
+    ? field.value
+    : field.value != null
+      ? [field.value]
+      : [];
+
+  const handleToggle = (choiceValue: string | number) => {
+    const isSelected = value.some((v) => String(v) === String(choiceValue));
+    const next = isSelected
+      ? value.filter((v) => String(v) !== String(choiceValue))
+      : [...value, choiceValue];
+    field.onChange(next);
+  };
+
+  const {
+    getCreateItem,
+    handleChange: handleChangeWithCreateSupport,
+    createElement,
+  } = useSupportCreateSuggestion({
+    create,
+    createLabel,
+    createItemLabel,
+    createValue,
+    createHintValue,
+    onCreate,
+    handleChange: async (eventOrValue) => {
+      // SelectArrayInput appends the freshly-created item to the array
+      const newValue =
+        typeof eventOrValue === "object" &&
+        eventOrValue !== null &&
+        "target" in eventOrValue
+          ? (eventOrValue as React.ChangeEvent<HTMLInputElement>).target.value
+          : (eventOrValue as string | number);
+      field.onChange([...value, newValue]);
+    },
+    optionText,
   });
 
   if (isPending) {
@@ -161,27 +213,19 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
     );
   }
 
-  const value: Array<string | number> = Array.isArray(field.value)
-    ? field.value
-    : field.value != null
-      ? [field.value]
-      : [];
-
-  const handleToggle = (choiceValue: string | number) => {
-    const next = value.includes(choiceValue)
-      ? value.filter((v) => v !== choiceValue)
-      : [...value, choiceValue];
-    field.onChange(next);
-  };
+  const createItem = create || onCreate ? getCreateItem() : null;
 
   const handleClear = (e: React.MouseEvent) => {
     e.stopPropagation();
     field.onChange([]);
   };
 
-  const choicesArr = fetchError ? [] : (allChoices ?? []);
+  let choicesArr = fetchError ? [] : (allChoices ?? []);
+  if (createItem) {
+    choicesArr = [...choicesArr, createItem];
+  }
   const selectedChoices = choicesArr.filter((choice) =>
-    value.includes(getChoiceValue(choice)),
+    value.some((v) => String(v) === String(getChoiceValue(choice))),
   );
 
   return (
@@ -192,7 +236,7 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
       {...rest}
     >
       {label !== false && label !== "" && (
-        <FormLabel>
+        <FormLabel {...InputLabelProps}>
           <FieldTitle
             label={label}
             source={source}
@@ -268,8 +312,24 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
                 const choiceValue = getChoiceValue(choice);
                 const choiceText = getChoiceText(choice);
                 const isChoiceDisabled = getDisableValue(choice);
-                const isSelected = value.includes(choiceValue);
+                const isSelected = value.some(
+                  (v) => String(v) === String(choiceValue),
+                );
                 const itemId = `${id}-${choiceValue}`;
+                const isCreate =
+                  createItem != null && choice === createItem;
+                if (isCreate) {
+                  return (
+                    <button
+                      key={String(choiceValue)}
+                      type="button"
+                      className="flex items-center gap-2 px-3 py-1.5 text-sm cursor-pointer hover:bg-accent text-left"
+                      onClick={() => handleChangeWithCreateSupport(choiceValue)}
+                    >
+                      <span className="flex-1">{choiceText}</span>
+                    </button>
+                  );
+                }
                 return (
                   <label
                     key={String(choiceValue)}
@@ -295,13 +355,16 @@ export const SelectArrayInput = (props: SelectArrayInputProps) => {
       </Popover>
       <InputHelperText helperText={helperText} />
       <FormError />
+      {createElement}
     </FormField>
   );
 };
 
 export type SelectArrayInputProps = ChoicesProps &
   // Source is optional as SelectArrayInput can be used inside a ReferenceArrayInput that already defines the source
-  Partial<InputProps> & {
+  Partial<InputProps> &
+  Omit<Partial<SupportCreateSuggestionOptions>, "handleChange" | "filter"> & {
     className?: string;
     placeholder?: string;
+    InputLabelProps?: React.ComponentProps<typeof FormLabel>;
   };

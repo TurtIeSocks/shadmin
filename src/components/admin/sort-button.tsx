@@ -54,6 +54,7 @@ const SortButtonComponent = (props: SortButtonProps) => {
     label = "ra.sort.sort_by",
     icon = defaultIcon,
     resource: _resource,
+    ref,
     ...rest
   } = props;
   const resource = useResourceContext(props);
@@ -99,6 +100,7 @@ const SortButtonComponent = (props: SortButtonProps) => {
                   variant="outline"
                   size="icon"
                   aria-label={buttonLabel}
+                  ref={ref}
                   {...rest}
                 >
                   {icon}
@@ -112,7 +114,7 @@ const SortButtonComponent = (props: SortButtonProps) => {
         </TooltipProvider>
       ) : (
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="h-9" {...rest}>
+          <Button variant="outline" size="sm" className="h-9" ref={ref} {...rest}>
             {icon}
             <span className="ml-2">{buttonLabel}</span>
             <ChevronDown className="ml-2 size-4" />
@@ -152,6 +154,7 @@ export interface SortButtonProps extends ButtonProps {
   icon?: React.ReactNode;
   label?: string;
   resource?: string;
+  ref?: React.Ref<HTMLButtonElement>;
 }
 
 export const SortButton = memo(SortButtonComponent, arePropsEqual);

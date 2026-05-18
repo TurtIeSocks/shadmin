@@ -68,6 +68,7 @@ export const RadioButtonGroupInput = (inProps: RadioButtonGroupInputProps) => {
     helperText,
     label,
     row,
+    options,
     ...rest
   } = inProps;
 
@@ -138,6 +139,7 @@ export const RadioButtonGroupInput = (inProps: RadioButtonGroupInputProps) => {
       <FormControl>
         <RadioGroup
           {...sanitizeInputRestProps(rest)}
+          {...options}
           // Radix' RadioGroup only deals in string values; coerce here
           // but pass the original (possibly numeric) id back on change.
           value={field.value != null ? String(field.value) : undefined}
@@ -176,7 +178,7 @@ export const RadioButtonGroupInput = (inProps: RadioButtonGroupInputProps) => {
           })}
         </RadioGroup>
       </FormControl>
-      <InputHelperText helperText={helperText} />
+      <InputHelperText helperText={helperText ?? fetchError?.message} />
       <FormError />
     </FormField>
   );
@@ -191,4 +193,5 @@ export interface RadioButtonGroupInputProps
       "defaultValue" | "onBlur" | "onChange" | "type"
     > {
   row?: boolean;
+  options?: React.ComponentProps<typeof RadioGroup>;
 }

@@ -1,6 +1,8 @@
-import { type ComponentProps, type MouseEventHandler, type Ref } from "react";
+import { type ComponentProps, type MouseEventHandler, type ReactNode, type Ref } from "react";
 import { useTranslate, usePreferencesEditor } from "ra-core";
 import { Settings } from "lucide-react";
+
+const defaultIcon = <Settings className="size-4" />;
 
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +34,7 @@ import {
  * );
  */
 export const InspectorButton = ({
+  icon = defaultIcon,
   label = "ra.configurable.configureMode",
   ref,
   ...props
@@ -65,7 +68,7 @@ export const InspectorButton = ({
           {...props}
           onClick={handleClick}
         >
-          <Settings className="size-4" />
+          {icon}
         </Button>
       </TooltipTrigger>
       <TooltipContent>{translatedLabel}</TooltipContent>
@@ -77,6 +80,8 @@ export interface InspectorButtonProps extends Omit<
   ComponentProps<typeof Button>,
   "children"
 > {
+  /** Custom icon node. Defaults to the {@link Settings} icon. */
+  icon?: ReactNode;
   /** Translation key for the tooltip and aria-label. */
   label?: string;
   ref?: Ref<HTMLButtonElement>;

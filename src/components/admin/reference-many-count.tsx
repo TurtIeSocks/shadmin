@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
 import type { RaRecord, SortPayload } from "ra-core";
 import type { UnknownRecord } from "@/lib/unknown-types";
+import type { FieldProps } from "@/lib/field-types";
 import {
   useCreatePath,
   useRecordContext,
@@ -10,6 +12,9 @@ import {
 import { CircleX, LoaderCircle } from "lucide-react";
 import get from "lodash/get";
 import { Link } from "react-router";
+import { Offline } from "@/components/admin/offline";
+
+const defaultOffline = <Offline />;
 
 /**
  * Displays the count of related records that reference the current record.
@@ -42,6 +47,7 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
     filter,
     sort,
     link,
+    offline = defaultOffline,
     resource,
     source = "id",
     timeout = 1000,
@@ -51,7 +57,7 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
   const translate = useTranslate();
   const timeoutReached = useTimeout(timeout);
 
-  const { isPending, error, total } =
+  const { isPending, isPaused, error, total } =
     useReferenceManyFieldController<RecordType>({
       filter,
       sort,
@@ -64,20 +70,23 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
       target,
     });
 
-  const body = isPending ? (
-    timeoutReached ? (
-      <LoaderCircle className="size-4 animate-spin" />
+  const body =
+    isPaused && isPending && offline !== undefined && offline !== false ? (
+      offline
+    ) : isPending ? (
+      timeoutReached ? (
+        <LoaderCircle className="size-4 animate-spin" />
+      ) : (
+        ""
+      )
+    ) : error ? (
+      <CircleX
+        className="size-4 text-destructive"
+        aria-label={translate("ra.notification.http_error", { _: "Error" })}
+      />
     ) : (
-      ""
-    )
-  ) : error ? (
-    <CircleX
-      className="size-4 text-destructive"
-      aria-label={translate("ra.notification.http_error", { _: "Error" })}
-    />
-  ) : (
-    total
-  );
+      total
+    );
 
   return link && record ? (
     <Link
@@ -99,7 +108,7 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
 
 export interface ReferenceManyCountProps<
   RecordType extends RaRecord = RaRecord,
-> {
+> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty"> {
   record?: RecordType;
   reference: string;
   resource?: string;
@@ -108,5 +117,9 @@ export interface ReferenceManyCountProps<
   sort?: SortPayload;
   filter?: UnknownRecord;
   link?: boolean;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
   timeout?: number;
 }

@@ -60,7 +60,7 @@ export const LoginForm = (props: LoginFormProps) => {
   };
 
   return (
-    <Form className={cn("space-y-8", className)} onSubmit={handleSubmit}>
+    <Form className={cn("space-y-8", className)} onSubmit={handleSubmit} mode="onChange" noValidate>
       <TextInput
         label="Email"
         source="email"

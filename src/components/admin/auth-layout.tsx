@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 import { Notification } from "@/components/admin/notification";
 
-export interface AuthLayoutProps {
+export interface AuthLayoutProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   /**
    * Content rendered in the main pane — typically a login, signup or
    * password-reset form.
@@ -39,10 +39,10 @@ export interface AuthLayoutProps {
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/authlayout/ AuthLayout documentation}
  */
 export const AuthLayout = (props: AuthLayoutProps) => {
-  const { children, title, subtitle, aside, className } = props;
+  const { children, title, subtitle, aside, className, ...rest } = props;
   const hasAside = aside != null;
   return (
-    <div className={cn("min-h-screen flex", className)}>
+    <div className={cn("min-h-screen flex", className)} {...rest}>
       <div
         className={cn(
           "container relative grid flex-col items-center justify-center sm:max-w-none lg:px-0",

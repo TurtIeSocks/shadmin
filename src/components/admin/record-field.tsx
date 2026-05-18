@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 import { TextField } from "@/components/admin/text-field";
 import type { UnknownRecord } from "@/lib/unknown-types";
+import type { FieldProps } from "@/lib/field-types";
 
 /**
  * Displays a labeled field-value pair with flexible rendering options.
@@ -117,14 +118,11 @@ type NoInfer<T> = T extends infer U ? U : never;
 
 export interface RecordFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
-> extends HTMLAttributes<HTMLDivElement> {
+> extends Omit<FieldProps<RecordType>, "source" | "record">,
+    Omit<HTMLAttributes<HTMLDivElement>, "className"> {
   children?: ReactNode;
-  className?: string;
-  empty?: ReactNode;
   field?: ElementType;
-  label?: ReactNode;
   render?: (record: RecordType) => React.ReactNode;
-  resource?: string;
   source?: NoInfer<HintedString<ExtractRecordPaths<RecordType>>>;
   record?: RecordType;
   variant?: "default" | "inline";

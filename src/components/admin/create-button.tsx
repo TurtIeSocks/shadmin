@@ -1,7 +1,8 @@
-import React from "react";
+import React, { type Ref } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import {
+  useCanAccess,
   useCreatePath,
   useGetResourceLabel,
   useResourceContext,
@@ -11,8 +12,13 @@ import { Link } from "react-router";
 
 export type CreateButtonProps = {
   label?: string;
+  icon?: React.ReactNode;
   resource?: string;
+  scrollToTop?: boolean;
+  ref?: Ref<HTMLAnchorElement>;
 };
+
+const defaultIcon = <Plus />;
 
 /**
  * A button that navigates to the create page for a resource.
@@ -36,8 +42,9 @@ export type CreateButtonProps = {
  * );
  */
 export const CreateButton = (props: CreateButtonProps) => {
-  const { label: labelProp } = props;
+  const { label: labelProp, icon = defaultIcon, scrollToTop = true, ref } = props;
   const resource = useResourceContext(props);
+  const { canAccess, isPending } = useCanAccess({ action: "create", resource });
   const createPath = useCreatePath();
   const getResourceLabel = useGetResourceLabel();
   const link = createPath({
@@ -54,14 +61,17 @@ export const CreateButton = (props: CreateButtonProps) => {
     },
     userText: labelProp,
   });
+  if (isPending || !canAccess) return null;
   return (
     <Link
+      ref={ref}
       className={buttonVariants({ variant: "outline" })}
       to={link}
+      state={{ _scrollToTop: scrollToTop }}
       onClick={stopPropagation}
       aria-label={typeof label === "string" ? label : undefined}
     >
-      <Plus />
+      {icon}
       {label}
     </Link>
   );

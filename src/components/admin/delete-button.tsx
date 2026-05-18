@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, type Ref } from "react";
 import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { humanize, singularize } from "inflection";
@@ -9,6 +9,7 @@ import type {
   UseDeleteOptions,
 } from "ra-core";
 import {
+  useCanAccess,
   useDeleteController,
   useDeleteWithUndoController,
   useGetRecordRepresentation,
@@ -32,6 +33,7 @@ export type DeleteButtonProps = {
   resource?: string;
   successMessage?: string;
   className?: string;
+  ref?: Ref<HTMLButtonElement>;
   variant?:
     | "default"
     | "destructive"
@@ -85,6 +87,7 @@ export const DeleteWithUndoButton = (
   const {
     label: labelProp,
     onClick,
+    ref,
     size,
     mutationOptions,
     redirect = "list",
@@ -94,6 +97,11 @@ export const DeleteWithUndoButton = (
   } = props;
   const record = useRecordContext(props);
   const resource = useResourceContext(props);
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "delete",
+    resource,
+    record,
+  });
 
   const { isPending, handleDelete } = useDeleteWithUndoController({
     record,
@@ -129,8 +137,10 @@ export const DeleteWithUndoButton = (
     userText: labelProp,
   });
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Button
+      ref={ref}
       variant={variant}
       type="button"
       onClick={handleDelete}
@@ -165,6 +175,7 @@ export const DeleteWithConfirmButton = (
   const {
     label: labelProp,
     onClick,
+    ref,
     size,
     mutationMode = "pessimistic",
     mutationOptions,
@@ -185,6 +196,11 @@ export const DeleteWithConfirmButton = (
       "<DeleteWithConfirmButton> components should be used inside a <Resource> component or provided with a resource prop.",
     );
   }
+  const { canAccess, isPending: isAccessPending } = useCanAccess({
+    action: "delete",
+    resource,
+    record,
+  });
   const translate = useTranslate();
   const notify = useNotify();
   const unselect = useUnselect(resource);
@@ -308,9 +324,11 @@ export const DeleteWithConfirmButton = (
     userText: confirmContentProp,
   });
 
+  if (isAccessPending || !canAccess) return null;
   return (
     <Fragment>
       <Button
+        ref={ref}
         variant={variant}
         type="button"
         onClick={handleDialogOpen}

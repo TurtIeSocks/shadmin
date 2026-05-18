@@ -34,7 +34,7 @@ export const CardContentInner = ({
   className,
   children,
 }: CardContentInnerProps) => (
-  <div className={cn("px-6 py-0 first:pt-4 last:pb-4", className)}>
+  <div className={cn("px-6 py-0 first:pt-4 last:pb-[70px] sm:last:pb-4", className)}>
     {children}
   </div>
 );

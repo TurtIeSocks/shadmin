@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type Ref } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import type { RaRecord } from "ra-core";
@@ -17,7 +17,12 @@ export type EditButtonProps = {
   record?: RaRecord;
   resource?: string;
   label?: string;
+  icon?: React.ReactNode;
+  scrollToTop?: boolean;
+  ref?: Ref<HTMLAnchorElement>;
 };
+
+const defaultIcon = <Pencil />;
 
 /**
  * A button that navigates to the edit page for a record.
@@ -41,7 +46,7 @@ export type EditButtonProps = {
  * );
  */
 export const EditButton = (props: EditButtonProps) => {
-  const { label: labelProp } = props;
+  const { label: labelProp, icon = defaultIcon, scrollToTop = true, ref } = props;
   const resource = useResourceContext(props);
   const record = useRecordContext(props);
   const createPath = useCreatePath();
@@ -76,12 +81,14 @@ export const EditButton = (props: EditButtonProps) => {
   });
   return (
     <Link
+      ref={ref}
       className={buttonVariants({ variant: "outline" })}
       to={link}
+      state={{ _scrollToTop: scrollToTop }}
       onClick={stopPropagation}
       aria-label={typeof label === "string" ? label : undefined}
     >
-      <Pencil />
+      {icon}
       {label}
     </Link>
   );

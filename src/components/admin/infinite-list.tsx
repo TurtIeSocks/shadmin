@@ -9,11 +9,12 @@ import {
   Translate,
   useGetResourceLabel,
   useHasDashboard,
+  useListContext,
   useResourceContext,
   useResourceDefinition,
   useTranslate,
 } from "ra-core";
-import type { ReactElement, ReactNode } from "react";
+import type { ElementType, ReactElement, ReactNode } from "react";
 import { Link } from "react-router";
 import {
   Breadcrumb,
@@ -21,6 +22,7 @@ import {
   BreadcrumbPage,
 } from "@/components/admin/breadcrumb";
 import { CreateButton } from "@/components/admin/create-button";
+import { Empty } from "@/components/admin/empty";
 import { ExportButton } from "@/components/admin/export-button";
 import { FilterButton } from "@/components/admin/filter-button";
 import { FilterForm } from "@/components/admin/filter-form";
@@ -101,7 +103,10 @@ export const InfiniteListView = <RecordType extends RaRecord = RaRecord>(
   props: InfiniteListViewProps<RecordType>,
 ) => {
   const {
+    aside,
+    component: Content = "div",
     disableBreadcrumb,
+    empty = defaultEmpty,
     filters,
     pagination = defaultPagination,
     title,
@@ -125,6 +130,18 @@ export const InfiniteListView = <RecordType extends RaRecord = RaRecord>(
         });
   const { hasCreate } = useResourceDefinition({ resource });
   const hasDashboard = useHasDashboard();
+  const { data, isPending, filterValues, total, hasNextPage, hasPreviousPage } = useListContext<RecordType>();
+
+  const dataIsEmpty = !data || (data as RecordType[]).length === 0;
+  const shouldRenderEmpty =
+    !isPending &&
+    (total === 0 ||
+      (total == null &&
+        hasPreviousPage === false &&
+        hasNextPage === false &&
+        dataIsEmpty)) &&
+    !Object.keys(filterValues).length &&
+    empty !== false;
 
   return (
     <>
@@ -156,18 +173,33 @@ export const InfiniteListView = <RecordType extends RaRecord = RaRecord>(
         </div>
         <FilterForm />
 
-        <div className={cn("my-2", props.className)}>{children}</div>
-        {pagination}
+        <div className={cn("flex", aside ? "gap-4" : undefined)}>
+          <div className="flex-1 min-w-0">
+            {shouldRenderEmpty ? (
+              empty
+            ) : (
+              <Content className={cn("my-2", props.className)}>
+                {children}
+              </Content>
+            )}
+            {!shouldRenderEmpty && pagination}
+          </div>
+          {aside}
+        </div>
       </FilterContext.Provider>
     </>
   );
 };
 
 const defaultPagination = <InfinitePagination />;
+const defaultEmpty = <Empty />;
 
 export interface InfiniteListViewProps<RecordType extends RaRecord = RaRecord> {
+  aside?: ReactNode;
   children?: ReactNode;
+  component?: ElementType;
   disableBreadcrumb?: boolean;
+  empty?: ReactNode | false;
   render?: (
     props: InfiniteListControllerResult<RecordType, Error>,
   ) => ReactNode;

@@ -1,4 +1,5 @@
 import * as React from "react";
+import type { Ref } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { List as ListIcon } from "lucide-react";
 import {
@@ -17,6 +18,7 @@ export type ListButtonProps = {
   icon?: React.ReactNode;
   className?: string;
   scrollToTop?: boolean;
+  ref?: Ref<HTMLAnchorElement>;
 };
 
 /**
@@ -42,6 +44,7 @@ export const ListButton = (props: ListButtonProps) => {
     icon = defaultIcon,
     className,
     scrollToTop = true,
+    ref,
   } = props;
   const resource = useResourceContext(props);
   if (!resource) {
@@ -59,7 +62,7 @@ export const ListButton = (props: ListButtonProps) => {
     resourceI18nKey: `resources.${resource}.action.list`,
     baseI18nKey: "ra.action.list",
     options: {
-      name: getResourceLabel(resource, 2),
+      name: getResourceLabel(resource, 1),
     },
     userText: labelProp,
   });
@@ -70,6 +73,7 @@ export const ListButton = (props: ListButtonProps) => {
 
   return (
     <Link
+      ref={ref}
       className={cn(buttonVariants({ variant: "outline" }), className)}
       to={createPath({ type: "list", resource })}
       state={scrollToTop ? scrollState : undefined}

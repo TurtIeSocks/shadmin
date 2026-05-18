@@ -14,6 +14,17 @@ export type AppBarProps = HTMLAttributes<HTMLElement> & {
    * theme toggle, refresh button, user menu.
    */
   children?: ReactNode;
+  /**
+   * Replaces the default right-side action cluster (LocalesMenuButton +
+   * ThemeModeToggle + RefreshButton). Pass a ReactNode to supply custom
+   * actions, or omit to keep the default cluster.
+   */
+  toolbar?: ReactNode;
+  /**
+   * Replaces the default `<UserMenu />`. Pass `false` to suppress it entirely,
+   * or a ReactNode to render a custom user menu.
+   */
+  userMenu?: ReactNode | false;
 };
 
 /**
@@ -38,7 +49,13 @@ export type AppBarProps = HTMLAttributes<HTMLElement> & {
  *   </AppBar>
  * );
  */
-export const AppBar = ({ children, className, ...rest }: AppBarProps) => (
+export const AppBar = ({
+  children,
+  className,
+  toolbar,
+  userMenu,
+  ...rest
+}: AppBarProps) => (
   <header
     className={cn(
       "flex h-16 md:h-12 shrink-0 items-center gap-2 px-4",
@@ -52,10 +69,16 @@ export const AppBar = ({ children, className, ...rest }: AppBarProps) => (
         <div className="flex-1 flex items-center" id="breadcrumb">
           <TitlePortal />
         </div>
-        <LocalesMenuButton />
-        <ThemeModeToggle />
-        <RefreshButton />
-        <UserMenu />
+        {toolbar !== undefined ? (
+          toolbar
+        ) : (
+          <>
+            <LocalesMenuButton />
+            <ThemeModeToggle />
+            <RefreshButton />
+          </>
+        )}
+        {userMenu !== false && (userMenu ?? <UserMenu />)}
       </>
     )}
   </header>

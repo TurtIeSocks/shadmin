@@ -9,10 +9,11 @@ import type {
   ComponentProps,
   FormEvent,
   ReactElement,
+  ReactNode,
 } from "react";
 import { useState } from "react";
 import isEqual from "lodash/isEqual";
-import { MinusCircle, PlusCircle } from "lucide-react";
+import { Bookmark, MinusCircle, PlusCircle, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -26,6 +27,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FilterList } from "@/components/admin/filter-list";
 
 /**
  * Dialog for saving the current list view query (filters, sort, pagination) as a named saved query.
@@ -254,3 +256,150 @@ export const RemoveSavedQueryIconButton = ({
     </>
   );
 };
+
+/**
+ * FilterList-style sidebar component listing all saved queries for the current
+ * resource. Each item applies its stored filters/sort/perPage on click, and has
+ * a remove button. An "Add current query" shortcut appears at the bottom when
+ * the current filter state hasn't already been saved.
+ *
+ * Rendered inside a `<FilterList>` wrapper so it fits naturally alongside other
+ * filter sidebar sections.
+ *
+ * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
+ *
+ * @example
+ * import { Card } from "@/components/ui/card";
+ * import { SavedQueriesList, FilterList, FilterListItem } from "@/components/admin";
+ *
+ * const Sidebar = () => (
+ *   <Card className="p-4">
+ *     <SavedQueriesList />
+ *     <FilterList label="Category" icon={<CategoryIcon />}>
+ *       ...
+ *     </FilterList>
+ *   </Card>
+ * );
+ */
+export const SavedQueriesList = ({
+  icon = <Bookmark className="size-4" />,
+}: SavedQueriesListProps): ReactElement => {
+  const translate = useTranslate();
+  const {
+    resource,
+    filterValues,
+    displayedFilters,
+    sort,
+    perPage,
+    setFilters,
+    setPage,
+    setSort,
+    setPerPage,
+  } = useListContext();
+
+  const [savedQueries, setSavedQueries] = useSavedQueries(resource);
+  const [addOpen, setAddOpen] = useState(false);
+  const validSavedQueries = extractValidSavedQueries(savedQueries);
+
+  const hasSavedCurrentQuery = validSavedQueries.some((q) =>
+    isEqual(q.value, { filter: filterValues, sort, perPage, displayedFilters }),
+  );
+  const hasFilterValues = !isEqual(filterValues, {});
+
+  const handleApply = (index: number) => {
+    const query = validSavedQueries[index];
+    if (!query) return;
+    setFilters(query.value.filter, query.value.displayedFilters ?? {});
+    if (query.value.sort) setSort(query.value.sort);
+    if (query.value.perPage) setPerPage(query.value.perPage);
+    setPage(1);
+  };
+
+  const handleRemove = (index: number) => {
+    const newQueries = [
+      ...validSavedQueries.slice(0, index),
+      ...validSavedQueries.slice(index + 1),
+    ];
+    setSavedQueries(newQueries);
+  };
+
+  return (
+    <>
+      <FilterList
+        label={translate("ra.saved_queries.label", { _: "Saved queries" })}
+        icon={icon}
+      >
+        {validSavedQueries.map((query, index) => {
+          const isSelected = isEqual(query.value, {
+            filter: filterValues,
+            sort,
+            perPage,
+            displayedFilters,
+          });
+          return (
+            <li
+              key={index}
+              className={cn(
+                "flex items-stretch list-none",
+                isSelected && "filter-list-item-selected",
+              )}
+            >
+              <button
+                type="button"
+                onClick={() => handleApply(index)}
+                aria-pressed={isSelected}
+                data-selected={isSelected ? "true" : "false"}
+                className={cn(
+                  "flex flex-row items-center justify-between gap-2 flex-1 px-2 py-1 text-sm text-left rounded cursor-pointer",
+                  "hover:bg-accent",
+                  isSelected && "bg-secondary font-medium",
+                )}
+              >
+                <span className="truncate">{query.label}</span>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="size-5 ml-auto text-muted-foreground opacity-70 hover:opacity-100 shrink-0"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemove(index);
+                  }}
+                  aria-label={translate("ra.saved_queries.remove_label", {
+                    _: "Remove saved query",
+                  })}
+                  tabIndex={-1}
+                >
+                  <Trash2 className="size-3" />
+                </Button>
+              </button>
+            </li>
+          );
+        })}
+        {!hasSavedCurrentQuery && hasFilterValues && (
+          <li className="flex items-stretch list-none">
+            <button
+              type="button"
+              onClick={() => setAddOpen(true)}
+              className="flex flex-row items-center gap-2 flex-1 px-2 py-1 text-sm text-left rounded cursor-pointer hover:bg-accent"
+            >
+              <span className="flex shrink-0">
+                <PlusCircle className="size-3" />
+              </span>
+              <span className="truncate">
+                {translate("ra.saved_queries.new_label", {
+                  _: "Save current query...",
+                })}
+              </span>
+            </button>
+          </li>
+        )}
+      </FilterList>
+      <AddSavedQueryDialog open={addOpen} onClose={() => setAddOpen(false)} />
+    </>
+  );
+};
+
+export interface SavedQueriesListProps {
+  icon?: ReactNode;
+}

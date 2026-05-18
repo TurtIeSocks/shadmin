@@ -5,6 +5,10 @@ import type {
   ListControllerResult,
 } from "ra-core";
 import { ReferenceManyFieldBase, useListContext } from "ra-core";
+import type { FieldProps } from "@/lib/field-types";
+import { Offline } from "@/components/admin/offline";
+
+const defaultOffline = <Offline />;
 
 /**
  * Displays multiple related records that reference the current record via a foreign key.
@@ -40,15 +44,16 @@ export const ReferenceManyField = <
 >(
   props: ReferenceManyFieldProps<RecordType, ReferenceRecordType>,
 ) => {
-  const { children, empty, error, loading, pagination, render, ...rest } =
+  const { children, empty, error, loading, offline = defaultOffline, pagination, render, ...rest } =
     props;
 
   return (
-    <ReferenceManyFieldBase {...rest}>
+    <ReferenceManyFieldBase {...rest} offline={offline}>
       <ReferenceManyFieldView<ReferenceRecordType>
         empty={empty}
         error={error}
         loading={loading}
+        offline={offline}
         pagination={pagination}
         render={render}
       >
@@ -61,8 +66,7 @@ export const ReferenceManyField = <
 export interface ReferenceManyFieldProps<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
->
-  extends
+> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
     UseReferenceManyFieldControllerParams<RecordType, ReferenceRecordType>,
     ReferenceManyFieldViewProps<ReferenceRecordType> {}
 
@@ -76,12 +80,15 @@ const ReferenceManyFieldView = <
     empty,
     error: errorElement,
     loading,
+    offline = defaultOffline,
     pagination,
     render,
   } = props;
   const listContext = useListContext();
   const {
     isPending,
+    isPaused,
+    isPlaceholderData,
     error,
     total,
     hasPreviousPage,
@@ -90,6 +97,14 @@ const ReferenceManyFieldView = <
     filterValues,
   } = listContext;
 
+  if (
+    isPaused &&
+    (isPending || isPlaceholderData) &&
+    offline !== false &&
+    offline !== undefined
+  ) {
+    return offline;
+  }
   if (isPending && loading !== false) {
     return loading;
   }
@@ -126,6 +141,10 @@ export interface ReferenceManyFieldViewProps<
   empty?: ReactNode;
   error?: ReactNode;
   loading?: ReactNode;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
   pagination?: ReactNode;
   render?: (props: ListControllerResult<ReferenceRecordType>) => ReactNode;
 }

@@ -5,6 +5,7 @@ import type { Validator } from "ra-core";
 import { useInput, FieldTitle } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
 import type { UnknownValue } from "@/lib/unknown-types";
+import type { ComponentProps } from "react";
 
 /**
  * Toggle switch for boolean (true/false) values.
@@ -50,6 +51,7 @@ export const BooleanInput = (props: BooleanInputProps) => {
     resource,
     source,
     validate,
+    options,
     ...rest
   } = props;
   const { id, field, isRequired } = useInput({
@@ -85,6 +87,7 @@ export const BooleanInput = (props: BooleanInputProps) => {
           onFocus={onFocus}
           onCheckedChange={handleChange}
           disabled={disabled || readOnly}
+          {...options}
         />
         <FormLabel htmlFor={id}>
           <FieldTitle
@@ -116,4 +119,5 @@ export interface BooleanInputProps {
   resource?: string;
   source: string;
   validate?: Validator | Validator[];
+  options?: ComponentProps<typeof Switch>;
 }

@@ -11,10 +11,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
 export interface ListNoResultsProps {
   resource?: string;
   filterValues?: UnknownRecord;
-  setFilters?: (
-    filters: UnknownRecord,
-    displayedFilters?: UnknownRecord,
-  ) => void;
+  setFilters?: (filters: UnknownRecord, displayedFilters?: string[]) => void;
   className?: string;
 }
 
@@ -55,7 +52,7 @@ export const ListNoResults = (props: ListNoResultsProps) => {
             type="button"
             variant="link"
             className="p-0 h-auto align-baseline"
-            onClick={() => setFilters({}, {})}
+            onClick={() => setFilters({}, [])}
           >
             {translate("ra.navigation.clear_filters", { _: "Clear filters" })}
           </Button>

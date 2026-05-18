@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCallback } from "react";
+import { useCallback, type Ref } from "react";
 import { Download } from "lucide-react";
 import type { Exporter } from "ra-core";
 import {
@@ -47,6 +47,7 @@ export const ExportButton = (props: ExportButtonProps) => {
     exporter: customExporter,
     meta,
     className = "cursor-pointer",
+    ref,
   } = props;
   const {
     getData,
@@ -87,7 +88,7 @@ export const ExportButton = (props: ExportButtonProps) => {
         )
         .catch((error) => {
           console.error(error);
-          notify("HTTP Error", { type: "error" });
+          notify("ra.notification.http_error", { type: "error" });
         });
       if (typeof onClick === "function") {
         onClick(event);
@@ -107,6 +108,7 @@ export const ExportButton = (props: ExportButtonProps) => {
 
   return (
     <Button
+      ref={ref}
       variant="outline"
       onClick={handleClick}
       disabled={total === 0}
@@ -129,4 +131,5 @@ export interface ExportButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   resource?: string;
   meta?: UnknownValue;
+  ref?: Ref<HTMLButtonElement>;
 }
