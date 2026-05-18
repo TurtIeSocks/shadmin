@@ -52,6 +52,7 @@ This component fetches a referenced record (`users` in this example) using the `
 | `queryOptions`    | Optional | `UseQueryOptions`             | -                       | TanStack Query options (meta, staleTime, etc.)    |
 | `record`          | Optional | `object`                      | Context record          | Explicit record                                   |
 | `render`          | Optional | `(ctx)=>ReactNode`            | -                       | Custom renderer receiving reference field context |
+| `offline`         | Optional | `ReactNode`                   | `<Offline />`           | Element rendered when the network is offline      |
 | `translateChoice` | Optional | `boolean \| (record)=>string` | `true`                  | Translate referenced record representation        |
 
 ## Record Representation
@@ -93,6 +94,18 @@ This allows to inline the render logic for the list of related records.
     }
     return <p>{referenceRecord.name}</p>;
   }}
+/>
+```
+
+## `offline`
+
+Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
+
+```jsx
+<ReferenceField
+  source="author_id"
+  reference="authors"
+  offline={<span>Offline — author unavailable</span>}
 />
 ```
 

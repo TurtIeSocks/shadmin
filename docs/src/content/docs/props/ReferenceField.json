@@ -38,6 +38,12 @@
       "comment": ""
     },
     {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Element rendered when the network is offline and the reference data is unavailable."
+    },
+    {
       "name": "queryOptions",
       "type": "UseQueryOptions<RaRecord<Identifier>[], Error, RaRecord<Identifier>[], readonly unknown[]> & { meta?: unknown }",
       "optional": true,

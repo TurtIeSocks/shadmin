@@ -57,6 +57,36 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
+const PostListOffline = () => (
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author_id" label="Author">
+        <ReferenceField
+          source="author_id"
+          reference="authors"
+          offline={<span className="text-muted-foreground italic">Offline</span>}
+        />
+      </DataTable.Col>
+    </DataTable>
+  </List>
+);
+
+export const WithOfflineState = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource
+        name="posts"
+        list={PostListOffline}
+        edit={EditGuesser}
+        show={ShowGuesser}
+      />
+      <Resource name="authors" list={ListGuesser} recordRepresentation="name" />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 const PostListWithLink = () => (
   <List>
     <DataTable>
