@@ -74,6 +74,7 @@ Configure the `<Resource recordRepresentation>` to render related records in a m
 | `error`        | Optional | `ReactNode`                                                          | -                     | Error element (set `false` to hide)                                            |
 | `filter`       | Optional | `object`                                                             | -                     | Permanent filters                                                              |
 | `loading`      | Optional | `ReactNode`                                                          | -                     | Loading element (set `false` to hide)                                          |
+| `offline`      | Optional | `ReactNode`                                                          | `<Offline />`         | Element rendered when the network is offline                                   |
 | `page`         | Optional | `number`                                                             | 1                     | Initial page                                                                   |
 | `pagination`   | Optional | `ReactNode`                                                          | -                     | Pagination component                                                           |
 | `perPage`      | Optional | `number`                                                             | -                     | Page size (default 1000 in code if unspecified)                                |
@@ -146,6 +147,18 @@ export const PostShow = () => (
     </SimpleShowLayout>
   </Show>
 );
+```
+
+## `offline`
+
+Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
+
+```jsx
+<ReferenceArrayField
+  reference="tags"
+  source="tag_ids"
+  offline={<span className="text-muted-foreground italic">Offline — tags unavailable</span>}
+/>
 ```
 
 ## Tips

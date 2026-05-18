@@ -50,6 +50,36 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
+export const WithOfflineState = () => (
+  <TestMemoryRouter initialEntries={["/bands/1/show"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource
+        name="bands"
+        list={ListGuesser}
+        show={
+          <Show>
+            <SimpleShowLayout>
+              <RecordField source="id" />
+              <RecordField source="name" />
+              <RecordField source="artists_ids" label="Artists">
+                <ReferenceArrayField
+                  reference="artists"
+                  source="artists_ids"
+                  offline={
+                    <span className="text-muted-foreground italic">
+                      Offline — artists unavailable
+                    </span>
+                  }
+                />
+              </RecordField>
+            </SimpleShowLayout>
+          </Show>
+        }
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const WithDataTable = () => (
   <TestMemoryRouter initialEntries={["/bands/1/show"]}>
     <Admin dataProvider={dataProvider}>
