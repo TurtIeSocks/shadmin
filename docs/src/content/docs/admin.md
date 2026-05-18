@@ -63,3 +63,30 @@ Here are all the props accepted by the component:
 | `title`               | Optional | `string`       | -                    | The error page title                                            |
 
 To learn more about these props, refer to [the `<CoreAdmin>` component documentation](https://marmelab.com/ra-core/coreadmin/) on the ra-core website.
+
+## Lower-level building blocks: `<AdminContext>` and `<AdminUI>`
+
+`<Admin>` is a thin composition of two lower-level components exported from the same module:
+
+- `<AdminContext>` — the **provider half**. Wraps `CoreAdminContext` and applies shadcn-admin-kit's default `store` (`localStorageStore()`) and `i18nProvider`.
+- `<AdminUI>` — the **UI half**. Wraps `CoreAdminUI` with the `<ThemeProvider>` (accepting `theme` / `lightTheme` / `darkTheme`) and shadcn-admin-kit's default pages (login, not-found, ready, auth-callback). Telemetry pings are emitted from here in production builds unless `disableTelemetry` is set.
+
+Reach for the pair when you need to inject a wrapping component between the providers and the routed UI — for example to mount the cmd+K [`<CommandMenu>`](./command-menu) palette:
+
+```tsx
+import { AdminContext, AdminUI } from "@/components/admin";
+import { CommandMenu } from "@/components/extras/command-menu";
+import { Resource } from "ra-core";
+
+const App = () => (
+  <AdminContext dataProvider={dataProvider}>
+    <CommandMenu>
+      <AdminUI>
+        <Resource name="posts" />
+      </AdminUI>
+    </CommandMenu>
+  </AdminContext>
+);
+```
+
+`<AdminUI>` must be rendered inside an `<AdminContext>`. `<AdminContext>` accepts the data/auth/i18n/router props from ra-core's `CoreAdminContextProps`; `<AdminUI>` accepts the layout/page/theme props from `CoreAdminUIProps` plus the same `theme`/`lightTheme`/`darkTheme` trio as `<Admin>`.
