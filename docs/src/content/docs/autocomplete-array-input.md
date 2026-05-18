@@ -73,6 +73,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `createItemLabel` | Optional   | `string \| (filter) => ReactNode` | `ra.action.create_item` | Label for the "Create …" menu item shown when the filter is non-empty                                                                  |
 | `createLabel`     | Optional   | `string \| ReactNode`            | -                     | Hint label shown as a menu item when the filter is empty, prompting users that they can create a new option                             |
 | `createValue`     | Optional   | `string`                         | `@@ra-create`         | The option value stored for the "create" item; must not conflict with real choice values                                                |
+| `emptyText`       | Optional   | `string`                         | -                     | Accepted for API parity with `AutocompleteInput`; not rendered in the array variant                                                     |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -154,6 +155,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `emptyText`
+
+Accepted for API parity with `<AutocompleteInput>` so code that passes `emptyText` to both variants compiles without errors. The array variant never renders a "(none)" entry — multiple values are deselected by clicking the × badge — so this prop has no visual effect.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  emptyText="No tags"
+/>
 ```
 
 ## `createValue`

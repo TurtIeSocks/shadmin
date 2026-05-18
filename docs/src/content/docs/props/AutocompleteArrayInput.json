@@ -36,6 +36,12 @@
       "type": "string",
       "optional": true,
       "comment": "The option value stored for the 'create' item in the dropdown; defaults to '@@ra-create'"
+    },
+    {
+      "name": "emptyText",
+      "type": "string",
+      "optional": true,
+      "comment": "Accepted for API parity with AutocompleteInput; not rendered in the array variant (use badge × to deselect)"
     }
   ]
 }
