@@ -4,7 +4,7 @@ import {
   ResolvedTheme,
   ThemeProviderContext,
   type Theme,
-} from "./theme-context";
+} from "../components/admin/theme-context";
 
 /**
  * Returns the current theme mode and a setter as a `[mode, setMode]` tuple.

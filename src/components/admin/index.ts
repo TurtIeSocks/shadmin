@@ -168,8 +168,5 @@ export * from "./translatable-inputs-tab-content";
 export * from "./translatable-inputs-tabs";
 export * from "./update-button";
 export * from "./url-field";
-export * from "./use-theme";
 export * from "./user-menu";
 export * from "./wrapper-field";
-
-export * from "../extras";

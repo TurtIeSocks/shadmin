@@ -337,19 +337,11 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/form/form-item-context.ts",
+          "path": "src/components/admin/form.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/form/form.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/form/index.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/form/use-form-field.ts",
+          "path": "src/hooks/use-form-field.ts",
           "type": "registry:component"
         },
         {
@@ -841,7 +833,7 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/use-theme.ts",
+          "path": "src/hooks/use-theme.ts",
           "type": "registry:component"
         },
         {

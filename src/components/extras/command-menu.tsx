@@ -21,7 +21,7 @@ import {
   useTranslate,
   type RaRecord,
 } from "ra-core";
-import { useTheme } from "@/components/admin/use-theme";
+import { useTheme } from "@/hooks/use-theme";
 import {
   Command,
   CommandDialog,

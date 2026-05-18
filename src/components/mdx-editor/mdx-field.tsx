@@ -6,7 +6,7 @@ import {
 } from "@mdxeditor/editor";
 import { useFieldValue, useTranslate } from "ra-core";
 
-import { useTheme } from "@/components/admin/use-theme";
+import { useTheme } from "@/hooks/use-theme";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { cn } from "@/lib/utils";

@@ -14,7 +14,7 @@ import {
   FormLabel,
 } from "@/components/admin/form";
 import { InputHelperText } from "@/components/admin/input-helper-text";
-import { useTheme } from "@/components/admin/use-theme";
+import { useTheme } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
 import { defaultInputPlugins } from "./default-plugins";
 import "./mdx-editor-dark.css";
