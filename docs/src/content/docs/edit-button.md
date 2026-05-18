@@ -93,3 +93,11 @@ import { useRef } from "react";
 const ref = useRef<HTMLAnchorElement>(null);
 <EditButton ref={ref} />
 ```
+
+## `scrollToTop`
+
+When `true` (the default), the edit page scrolls to the top after navigation. Set to `false` to preserve the current scroll position.
+
+```tsx
+<EditButton scrollToTop={false} />
+```

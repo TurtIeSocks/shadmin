@@ -66,6 +66,12 @@ export const CustomLabel = () => (
   </Wrapper>
 );
 
+export const NoScrollToTop = () => (
+  <Wrapper>
+    <EditButton scrollToTop={false} />
+  </Wrapper>
+);
+
 export const WithRef = () => {
   const ref = useRef<HTMLAnchorElement>(null);
   return (
