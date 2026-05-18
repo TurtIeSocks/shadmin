@@ -9,7 +9,7 @@ import {
 import { ThemesContext } from "./themes-context";
 import type { AdminTheme, ThemeVars } from "./theme-types";
 
-type ThemeProviderProps = {
+interface ThemeProviderProps {
   children: React.ReactNode;
   /**
    * Initial mode to use when no user preference has been persisted yet.
@@ -37,7 +37,7 @@ type ThemeProviderProps = {
    */
   darkTheme?: AdminTheme;
   storageKey?: string;
-};
+}
 
 function resolveMode(mode: Theme): ResolvedTheme {
   if (mode === "system") {

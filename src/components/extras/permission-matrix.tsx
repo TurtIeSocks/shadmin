@@ -11,7 +11,10 @@ export type PermissionsState = Record<
   Record<string, Record<string, boolean>>
 >;
 
-type Identified = { id: string; label: string };
+interface Identified {
+  id: string;
+  label: string;
+}
 
 export interface PermissionMatrixProps {
   roles: Array<string | Identified>;

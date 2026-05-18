@@ -1,10 +1,10 @@
 import type { Editor } from "@tiptap/react";
 import type { MinimalTiptapProps } from "./minimal-tiptap";
 
-type ShortcutKeyResult = {
+interface ShortcutKeyResult {
   symbol: string;
   readable: string;
-};
+}
 
 export type FileError = {
   file: File | string;

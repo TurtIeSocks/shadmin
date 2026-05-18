@@ -31,10 +31,10 @@ function FormField({ className, id, name, ...props }: FormItemProps) {
   );
 }
 
-type FormItemProps = Omit<React.ComponentProps<"div">, "id"> & {
+interface FormItemProps extends Omit<React.ComponentProps<"div">, "id"> {
   id: string;
   name: string;
-};
+}
 
 function FormLabel({
   className,

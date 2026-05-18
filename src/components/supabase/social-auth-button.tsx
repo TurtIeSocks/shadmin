@@ -47,10 +47,13 @@ export type SupabaseAuthProvider =
   | "twitter"
   | "workos";
 
-export type SocialAuthButtonProps = {
+export interface SocialAuthButtonProps extends Omit<
+  React.ComponentProps<typeof Button>,
+  "onClick"
+> {
   provider: SupabaseAuthProvider;
   redirect?: string;
-} & Omit<React.ComponentProps<typeof Button>, "onClick">;
+}
 
 /**
  * Base button that triggers a Supabase OAuth flow on click.

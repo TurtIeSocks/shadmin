@@ -3,13 +3,13 @@ import { Plugin, PluginKey } from "@tiptap/pm/state";
 import type { FileError, FileValidationOptions } from "../../utils";
 import { filterFiles } from "../../utils";
 
-type FileHandlePluginOptions = {
+interface FileHandlePluginOptions extends FileValidationOptions {
   key?: PluginKey;
   editor: Editor;
   onPaste?: (editor: Editor, files: File[], pasteContent?: string) => void;
   onDrop?: (editor: Editor, files: File[], pos: number) => void;
   onValidationError?: (errors: FileError[]) => void;
-} & FileValidationOptions;
+}
 
 const FileHandlePlugin = (options: FileHandlePluginOptions) => {
   const {

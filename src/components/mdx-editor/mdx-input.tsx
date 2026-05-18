@@ -30,10 +30,10 @@ type LimitedMDXEditorProps = Omit<
   | "ref"
 >;
 
-export type MdxInputProps = InputProps & {
+export interface MdxInputProps extends InputProps {
   className?: string;
   mdxProps?: LimitedMDXEditorProps;
-};
+}
 
 /**
  * A markdown editor input powered by MDXEditor.

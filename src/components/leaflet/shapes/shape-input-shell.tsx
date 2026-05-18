@@ -34,7 +34,7 @@ export interface ShapeInputShellProps extends BaseInputProps {
   valueParse?: (stored: unknown) => GeoJSON.Geometry | null;
 }
 
-type ShellInnerProps = Pick<
+interface ShellInnerProps extends Pick<
   ShapeInputShellProps,
   | "source"
   | "shape"
@@ -46,10 +46,10 @@ type ShellInnerProps = Pick<
   | "pathOptions"
   | "valueTransform"
   | "valueParse"
-> & {
+> {
   disabled?: boolean;
   validate?: (geom: GeoJSON.Geometry) => string | undefined;
-};
+}
 
 export const ShapeInputShell = ({
   source,

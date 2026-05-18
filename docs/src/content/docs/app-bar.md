@@ -89,4 +89,3 @@ const MyAppBar = () => <AppBar userMenu={<MyUserMenu />} />;
 // Suppress entirely
 const NoUserMenuAppBar = () => <AppBar userMenu={false} />;
 ````
-
