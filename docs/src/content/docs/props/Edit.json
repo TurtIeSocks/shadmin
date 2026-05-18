@@ -56,6 +56,12 @@
       "comment": "Content to display when the browser is offline and the record is still loading."
     },
     {
+      "name": "render",
+      "type": "(controllerState: EditControllerResult) => ReactNode",
+      "optional": true,
+      "comment": "Render-prop alternative to children. Receives the full EditControllerResult."
+    },
+    {
       "name": "title",
       "type": "ReactNode",
       "optional": true,

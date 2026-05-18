@@ -75,6 +75,32 @@ You can customize the `<Edit>` component using the following props:
 
 `*` You must provide either `children` or `render`.
 
+## `render`
+
+An alternative to `children`. Pass a function that receives the full [`EditControllerResult`](https://marmelab.com/ra-core/useeditcontroller/) and returns a React node. Use it when you need full control over the edit page UI:
+
+```tsx
+import { Edit } from "@/components/admin";
+
+export const PostEdit = () => (
+  <Edit
+    render={({ record, saving }) => (
+      <div>
+        <h1>Edit: {record?.title}</h1>
+        <form>
+          <input name="title" defaultValue={record?.title} />
+          <button type="submit" disabled={saving}>
+            {saving ? "Saving…" : "Save"}
+          </button>
+        </form>
+      </div>
+    )}
+  />
+);
+```
+
+When `render` is provided, `children` is ignored.
+
 ## `offline`
 
 When the browser goes offline while the record is still loading (`isPaused && isPending`), `<Edit>` shows a default "Offline — waiting for connection…" message. Override it with any `ReactNode`:

@@ -138,3 +138,24 @@ export const WithError = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+const PostEditWithRender = () => (
+  <Edit
+    render={({ record, saving }) => (
+      <div className="p-4 max-w-sm flex flex-col gap-4">
+        <p className="text-sm text-muted-foreground">
+          Editing: {record?.title ?? "…"} — saving: {String(saving)}
+        </p>
+        <TextInput source="title" />
+      </div>
+    )}
+  />
+);
+
+export const WithRender = () => (
+  <TestMemoryRouter initialEntries={["/posts/1"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} edit={PostEditWithRender} />
+    </Admin>
+  </TestMemoryRouter>
+);
