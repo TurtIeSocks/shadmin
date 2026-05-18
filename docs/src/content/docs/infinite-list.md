@@ -48,6 +48,7 @@ export const PostList = () => (
 | `actions`                 | Optional   | `ReactNode`                                 | default action bar       | Custom actions area (right side of header)                     |
 | `aside`                   | Optional   | `ReactNode`                                 | -                        | Side panel rendered alongside the list content                 |
 | `component`               | Optional   | `ElementType`                               | `"div"`                  | Override the root element wrapping the list content            |
+| `empty`                   | Optional   | `ReactNode \| false`                        | `<Empty />`              | Replacement for the default empty-state component              |
 | `debounce`                | Optional   | `number`                                    | `500`                    | Debounce (ms) for filter & sort changes                        |
 | `disableAuthentication`   | Optional   | `boolean`                                   | `false`                  | Skip auth check for this page                                  |
 | `disableBreadcrumb`       | Optional   | `boolean`                                   | `false`                  | Hide the default breadcrumb                                    |
@@ -65,6 +66,23 @@ export const PostList = () => (
 | `title`                   | Optional   | `string \| ReactNode \| false`              | resource plural label    | Page title                                                     |
 
 `*` Provide either `children` or `render`.
+
+## `empty`
+
+When the list has no records and no active filters, `<InfiniteList>` renders the default [`<Empty>`](./empty) component. Pass a custom node to replace it, or `false` to suppress:
+
+```tsx
+import { InfiniteList, DataTable } from "@/components/admin";
+
+export const PostList = () => (
+  <InfiniteList empty={<p className="text-center py-8 text-muted-foreground">No posts yet.</p>}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </InfiniteList>
+);
+```
 
 ## `component`
 

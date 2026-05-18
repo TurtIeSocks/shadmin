@@ -49,6 +49,33 @@ export const Basic = () => (
   </TestMemoryRouter>
 );
 
+const emptyDataProvider = fakeRestDataProvider({ books: [] }) as DataProvider;
+
+export const WithEmpty = () => (
+  <TestMemoryRouter initialEntries={["/books"]}>
+    <Admin
+      dataProvider={emptyDataProvider}
+      i18nProvider={i18nProvider}
+      store={memoryStore()}
+    >
+      <Resource
+        name="books"
+        list={
+          <InfiniteList
+            perPage={10}
+            empty={<p className="text-center py-8 text-muted-foreground">No books yet.</p>}
+          >
+            <DataTable>
+              <DataTable.Col source="id" />
+              <DataTable.Col source="title" />
+            </DataTable>
+          </InfiniteList>
+        }
+      />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 const InfiniteListHelp = () => (
   <div className="p-4 bg-muted rounded text-sm">
     <p className="font-medium mb-2">Tips</p>
