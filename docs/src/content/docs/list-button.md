@@ -60,3 +60,22 @@ You can also pass a custom string or translation key directly via the `label` pr
 <ListButton label="All Posts" />
 <ListButton label="resources.posts.action.list" />
 ```
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+
+const ref = useRef<HTMLAnchorElement>(null);
+<ListButton ref={ref} />
+```
+
+## `scrollToTop`
+
+When `true` (the default), the list page scrolls to the top after navigation. Set to `false` to preserve the current scroll position.
+
+```tsx
+<ListButton scrollToTop={false} />
+```
