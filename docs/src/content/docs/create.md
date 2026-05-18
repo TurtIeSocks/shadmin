@@ -67,6 +67,7 @@ You can customize the `<Create>` component using the following props:
 | `children`              | Optional&nbsp;\* | `ReactNode`          | -               | The components that render the form                                                              |
 | `render`                | Optional&nbsp;\* | `function`           | -               | Alternative to children. Function that renders the form, receives the create context as argument |
 | `actions`               | Optional         | `ReactNode`          | Default toolbar | Override the actions toolbar with a custom component                                             |
+| `aside`                 | Optional         | `ReactNode`          | -               | Side panel rendered next to the form                                                             |
 | `className`             | Optional         | `string`             | -               | Passed to the root component                                                                     |
 | `disableAuthentication` | Optional         | `boolean`            | `false`         | Disable the authentication check                                                                 |
 | `disableBreadcrumb`     | Optional         | `boolean`            | `false`         | Set to `true` to define a custom breadcrumb for the page, instead of the default one             |
@@ -79,3 +80,30 @@ You can customize the `<Create>` component using the following props:
 | `transform`             | Optional         | `function`           | -               | Transform the form data before calling `dataProvider.create()`                                   |
 
 `*` You must provide either `children` or `render`.
+
+## `aside`
+
+Pass any React node as `aside` to render a side panel next to the form. The aside is displayed in a `flex` row: the form takes the remaining space (`flex-1`) and the aside is pinned to a fixed width (`w-64`).
+
+```tsx
+import { Create, SimpleForm, TextInput } from "@/components/admin";
+
+const PostCreateAside = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p>Tips for writing a great post:</p>
+    <ul className="list-disc pl-4 mt-2 space-y-1">
+      <li>Keep the title concise</li>
+      <li>Add a descriptive body</li>
+    </ul>
+  </div>
+);
+
+export const PostCreate = () => (
+  <Create aside={<PostCreateAside />}>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="body" multiline />
+    </SimpleForm>
+  </Create>
+);
+```

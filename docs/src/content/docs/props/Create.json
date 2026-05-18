@@ -1,4 +1,11 @@
 {
   "name": "Create",
-  "props": []
+  "props": [
+    {
+      "name": "aside",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Side panel rendered next to the form."
+    }
+  ]
 }

@@ -63,6 +63,33 @@ const PostCreateNoBreadcrumb = () => (
   </Create>
 );
 
+const PostCreateAside = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Tips</p>
+    <ul className="list-disc pl-4 space-y-1">
+      <li>Keep the title concise</li>
+      <li>Add a descriptive body</li>
+    </ul>
+  </div>
+);
+
+const PostCreateWithAside = () => (
+  <Create aside={<PostCreateAside />}>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="body" multiline />
+    </SimpleForm>
+  </Create>
+);
+
+export const WithAside = () => (
+  <TestMemoryRouter initialEntries={["/posts/create"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} create={PostCreateWithAside} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const NoBreadcrumb = () => (
   <TestMemoryRouter initialEntries={["/posts/create"]}>
     <Admin dataProvider={dataProvider}>
