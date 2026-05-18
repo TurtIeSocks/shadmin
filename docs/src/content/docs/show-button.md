@@ -84,3 +84,11 @@ import { useRef } from "react";
 const ref = useRef<HTMLAnchorElement>(null);
 <ShowButton ref={ref} />
 ```
+
+## `scrollToTop`
+
+When `true` (the default), the show page scrolls to the top after navigation. Set to `false` to preserve the current scroll position.
+
+```tsx
+<ShowButton scrollToTop={false} />
+```

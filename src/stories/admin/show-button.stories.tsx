@@ -65,6 +65,12 @@ export const CustomLabel = () => (
   </Wrapper>
 );
 
+export const NoScrollToTop = () => (
+  <Wrapper>
+    <ShowButton scrollToTop={false} />
+  </Wrapper>
+);
+
 export const WithRef = () => {
   const ref = useRef<HTMLAnchorElement>(null);
   return (
