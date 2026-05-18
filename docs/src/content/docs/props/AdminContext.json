@@ -1,0 +1,17 @@
+{
+  "name": "AdminContext",
+  "props": [
+    {
+      "name": "i18nProvider",
+      "type": "I18nProvider",
+      "optional": true,
+      "comment": "The internationalization provider for translations. Defaults to shadcn-admin-kit's bundled `i18nProvider` (English `ra-language-english`)."
+    },
+    {
+      "name": "store",
+      "type": "Store",
+      "optional": true,
+      "comment": "Store for user preferences. Defaults to `localStorageStore()`."
+    }
+  ]
+}
