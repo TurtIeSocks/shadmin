@@ -2,6 +2,12 @@
   "name": "CheckboxGroupInput",
   "props": [
     {
+      "name": "labelPlacement",
+      "type": "\"end\" | \"start\" | \"top\" | \"bottom\"",
+      "optional": true,
+      "comment": "Position of each checkbox's text label relative to the checkbox box. Defaults to 'end' (label to the right)."
+    },
+    {
       "name": "row",
       "type": "boolean",
       "optional": true,

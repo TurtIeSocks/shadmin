@@ -78,6 +78,13 @@ export const HelperText = () => (
   </Wrapper>
 );
 
+export const LabelPlacement = () => (
+  <Wrapper>
+    <CheckboxGroupInput source="tags" choices={tags} labelPlacement="top" row />
+    <FormValues />
+  </Wrapper>
+);
+
 export const DisabledChoice = () => (
   <Wrapper>
     <CheckboxGroupInput
