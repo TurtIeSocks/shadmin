@@ -24,6 +24,12 @@
       "type": "RaRecord",
       "optional": true,
       "comment": "Override the record from the RecordContext."
+    },
+    {
+      "name": "spacing",
+      "type": "number",
+      "optional": true,
+      "comment": "Gap between field rows using Tailwind gap-{n}. Defaults to 1."
     }
   ]
 }

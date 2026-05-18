@@ -25,6 +25,25 @@ After: the component has a direct import example and a focused behavior note.
 | `children` | Optional | `ReactNode` | -       | Fields to render with labels.                   |
 | `divider`  | Optional | `ReactNode` | -       | Divider element inserted between each field row |
 | `record`   | Optional | `RaRecord`  | -       | Override the record from the RecordContext      |
+| `spacing`  | Optional | `number`    | `1`     | Gap between field rows (Tailwind `gap-{n}`)     |
+
+## `spacing`
+
+Controls the vertical gap between field rows using Tailwind's `gap-{n}` utility. Defaults to `1`. Increase it to add more breathing room:
+
+```tsx
+import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
+
+export const PostShow = () => (
+  <Show>
+    <SimpleShowLayout spacing={4}>
+      <RecordField source="title" />
+      <RecordField source="body" />
+      <RecordField source="author" />
+    </SimpleShowLayout>
+  </Show>
+);
+```
 
 ## `record`
 
