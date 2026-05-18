@@ -47,6 +47,7 @@ const record = {
 | `createItemLabel` | Optional   | `string`                                      | `ra.action.create_item` | Label for the create menu item when the filter is non-empty       |
 | `createLabel`     | Optional   | `string`                                      | `ra.action.create`      | Hint label for the create menu entry when the filter is empty     |
 | `createValue`     | Optional   | `string`                                      | `@@ra-create`           | Sentinel value that tags the create option in the options list    |
+| `InputLabelProps` | Optional   | `ComponentProps<typeof FormLabel>`            | -                       | Props forwarded directly to the label element above the trigger   |
 | `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
 | `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
 | `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
@@ -135,6 +136,18 @@ const choices = [
   { id: "people", name: "People", disabled: true },
 ];
 <SelectArrayInput source="tags" choices={choices} />;
+```
+
+## `InputLabelProps`
+
+Props forwarded directly to the `<FormLabel>` element rendered above the trigger button. Use this to add a custom `className`, `style`, or any other label attribute without reaching into the DOM manually.
+
+```jsx
+<SelectArrayInput
+  source="tags"
+  choices={choices}
+  InputLabelProps={{ className: "text-primary font-semibold" }}
+/>
 ```
 
 ## `createValue`

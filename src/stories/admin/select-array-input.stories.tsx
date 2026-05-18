@@ -107,6 +107,17 @@ export const DisabledChoice = () => (
   </Wrapper>
 );
 
+export const WithInputLabelProps = () => (
+  <Wrapper>
+    <SelectArrayInput
+      source="tags"
+      choices={tags}
+      InputLabelProps={{ className: "text-primary font-semibold" }}
+    />
+    <FormValues />
+  </Wrapper>
+);
+
 export const WithCreateValue = () => (
   <Wrapper>
     <SelectArrayInput

@@ -30,6 +30,12 @@
       "type": "string",
       "optional": true,
       "comment": "Sentinel value tagging the create option in the list. Defaults to '@@ra-create'; override only when that string conflicts with a real choice id."
+    },
+    {
+      "name": "InputLabelProps",
+      "type": "ComponentProps<typeof FormLabel>",
+      "optional": true,
+      "comment": "Props forwarded to the FormLabel element rendered above the trigger button (e.g. className, style)."
     }
   ]
 }
