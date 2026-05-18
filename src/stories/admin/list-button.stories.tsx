@@ -82,4 +82,10 @@ export const ResourceSpecificLabel = () => (
   </Wrapper>
 );
 
+export const CustomIcon = () => (
+  <Wrapper>
+    <ListButton icon={<span>📋</span>} />
+  </Wrapper>
+);
+
 export const Basic = Default;

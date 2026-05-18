@@ -26,6 +26,16 @@ Reads the resource from `ResourceContext` by default. If the current user does n
 | `resource`    | Optional | `string`    | From context     | Resource name                        |
 | `scrollToTop` | Optional | `boolean`   | `true`           | Whether the list page scrolls to top |
 
+## `icon`
+
+Replaces the default `<List />` shown alongside the label. Pass any React node — typically another lucide-react icon.
+
+```tsx
+import { LayoutList } from "lucide-react";
+
+<ListButton icon={<LayoutList />} />
+```
+
 ## `label`
 
 By default, the label is the translation of the `ra.action.list` key, which reads "List".
