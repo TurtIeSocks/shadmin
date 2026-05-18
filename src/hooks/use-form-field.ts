@@ -1,8 +1,16 @@
-import { use, useMemo } from "react";
+import { createContext, use, useMemo } from "react";
 import { useFormContext } from "react-hook-form";
-import { FormItemContext } from "./form-item-context";
 
-const useFormField = () => {
+export type FormItemContextValue = {
+  id: string;
+  name: string;
+};
+
+export const FormItemContext = createContext<FormItemContextValue>(
+  {} as FormItemContextValue,
+);
+
+export const useFormField = () => {
   const { getFieldState, formState } = useFormContext();
   const { id, name } = use(FormItemContext);
 
@@ -18,5 +26,3 @@ const useFormField = () => {
     [id, fieldState],
   );
 };
-
-export { useFormField };

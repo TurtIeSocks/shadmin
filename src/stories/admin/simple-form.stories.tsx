@@ -12,7 +12,7 @@ import defaultMessages from "ra-language-english";
 import { SimpleForm, FormToolbar } from "@/components/admin/simple-form";
 import { TextInput } from "@/components/admin/text-input";
 import { BooleanInput } from "@/components/admin/boolean-input";
-import { SaveButton } from "@/components/admin/form";
+import { SaveButton } from "@/components/admin/save-button";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 
 export default {

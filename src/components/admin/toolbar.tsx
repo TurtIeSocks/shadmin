@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Children } from "react";
 import { cn } from "@/lib/utils";
-import { SaveButton } from "@/components/admin/form";
+import { SaveButton } from "@/components/admin/save-button";
 import { DeleteButton } from "@/components/admin/delete-button";
 
 /**

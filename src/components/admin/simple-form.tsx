@@ -5,7 +5,7 @@ import type { FormProps } from "ra-core";
 import { Form } from "ra-core";
 import { cn } from "@/lib/utils";
 import { CancelButton } from "@/components/admin/cancel-button";
-import { SaveButton } from "@/components/admin/form";
+import { SaveButton } from "@/components/admin/save-button";
 
 /**
  * A simple form layout with vertical stacking, validation, and default toolbar.
