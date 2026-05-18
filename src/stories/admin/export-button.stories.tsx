@@ -71,6 +71,11 @@ export const CustomIcon = () => (
   <Wrapper actions={<ExportButton icon={<FileSpreadsheet />} />} />
 );
 
+export const WithRef = () => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return <Wrapper actions={<ExportButton ref={ref} />} />;
+};
+
 export const ResourceSpecificLabel = () => (
   <Wrapper
     i18nProvider={polyglotI18nProvider(

@@ -30,19 +30,34 @@ It calls `dataProvider.getList()` with `perPage=maxResults` then invokes `export
 
 ## Props
 
-| Prop         | Required | Type        | Default            | Description              |
-| ------------ | -------- | ----------- | ------------------ | ------------------------ |
-| `className`  | Optional | `string`    | `cursor-pointer`   | Extra classes            |
-| `exporter`   | Optional | `Exporter`  | From ListContext   | Custom exporter function |
-| `icon`       | Optional | `ReactNode` | Download icon      | Custom icon              |
-| `label`      | Optional | `string`    | `ra.action.export` | i18n key                 |
-| `maxResults` | Optional | `number`    | `1000`             | Max records to fetch     |
-| `meta`       | Optional | `any`       | -                  | Provider meta parameter  |
-| `onClick`    | Optional | `(e)=>void` | -                  | Extra click handler      |
+| Prop         | Required | Type                     | Default            | Description              |
+| ------------ | -------- | ------------------------ | ------------------ | ------------------------ |
+| `className`  | Optional | `string`                 | `cursor-pointer`   | Extra classes            |
+| `exporter`   | Optional | `Exporter`               | From ListContext   | Custom exporter function |
+| `icon`       | Optional | `ReactNode`              | Download icon      | Custom icon              |
+| `label`      | Optional | `string`                 | `ra.action.export` | i18n key                 |
+| `maxResults` | Optional | `number`                 | `1000`             | Max records to fetch     |
+| `meta`       | Optional | `any`                    | -                  | Provider meta parameter  |
+| `onClick`    | Optional | `(e)=>void`              | -                  | Extra click handler      |
+| `ref`        | Optional | `Ref<HTMLButtonElement>` | -                  | Forwarded to the underlying `<Button>` |
 
 ## `icon`
 
 Replaces the default `<Download />` shown alongside the label. Pass any lucide-react icon to convey a different action.
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { ExportButton } from "@/components/admin";
+
+const MyToolbar = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <ExportButton ref={ref} />;
+};
+```
 
 ```tsx
 import { FileSpreadsheet } from "lucide-react";
