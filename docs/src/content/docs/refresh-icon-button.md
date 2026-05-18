@@ -29,6 +29,17 @@ For a full text button, use [`<RefreshButton>`](./refresh-button) instead.
 | `label`     | Optional | `string`                                     | `ra.action.refresh` | Tooltip and aria-label   |
 | `onClick`   | Optional | `(e: MouseEvent<HTMLButtonElement>) => void` | -                   | Additional click handler |
 
+## `icon`
+
+Replaces the default `<RefreshCw />` shown in the button. Pass any lucide-react icon to convey a different action.
+
+```tsx
+import { RefreshCcw } from "lucide-react";
+import { RefreshIconButton } from "@/components/admin";
+
+<RefreshIconButton icon={<RefreshCcw />} />
+```
+
 ## `label`
 
 By default, the label is the translation of the `ra.action.refresh` key, which reads "Refresh". Pass a custom string or translation key to override:
