@@ -81,6 +81,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `noOptionsText`   | Optional   | `ReactNode`                      | `ra.navigation.no_results` | Content shown in the dropdown when no choices match the current filter                                                            |
 | `onCreate`        | Optional   | `(filter) => object \| Promise`  | -                     | Callback invoked with the filter text when the user picks the "create" item; returns or resolves the new choice object                  |
 | `openOnFocus`     | Optional   | `boolean`                        | `false`               | Accepted for API parity; the array variant always opens on focus regardless of this setting                                             |
+| `optionText`      | Optional   | `string \| function \| element`  | `name` or record repr | Field name, function, or element used to derive each choice's display label                                                             |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -162,6 +163,22 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `optionText`
+
+Determines how each choice's label is derived. Accepts:
+
+- A **string** — the name of the field on the choice object to use as the label (default: `"name"`).
+- A **function** `(choice) => string | ReactNode` — called with each choice object; return a string or element.
+- A **React element** — rendered inside a `RecordContext` containing the choice. When using an element, also pass `inputText` (for badge labels) and `matchSuggestion` (for filtering).
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  optionText="label"
+/>
 ```
 
 ## `openOnFocus`

@@ -84,6 +84,12 @@
       "type": "boolean",
       "optional": true,
       "comment": "Accepted for API parity; the array variant always opens on focus so this prop has no effect"
+    },
+    {
+      "name": "optionText",
+      "type": "string | ((choice: unknown) => string | ReactNode) | ReactElement",
+      "optional": true,
+      "comment": "Field name, function, or React element used to derive each choice's display label; defaults to 'name' or record representation"
     }
   ]
 }

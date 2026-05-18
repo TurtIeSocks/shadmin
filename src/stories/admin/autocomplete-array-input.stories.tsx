@@ -85,6 +85,22 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithOptionText = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={[
+          { id: "tech", label: "Tech" },
+          { id: "news", label: "News" },
+          { id: "lifestyle", label: "Lifestyle" },
+        ]}
+        optionText="label"
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithOpenOnFocus = () => (
   <StoryWrapper theme="system">
     <SimpleForm>
