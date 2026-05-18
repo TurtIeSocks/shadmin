@@ -1,7 +1,11 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useStore } from "ra-core";
 
-import { ThemeProviderContext, type Theme } from "./theme-context";
+import {
+  ThemeProviderContext,
+  type ResolvedTheme,
+  type Theme,
+} from "./theme-context";
 import { ThemesContext } from "./themes-context";
 import type { AdminTheme, ThemeVars } from "./theme-types";
 
@@ -35,24 +39,34 @@ type ThemeProviderProps = {
   storageKey?: string;
 };
 
+function resolveMode(mode: Theme): ResolvedTheme {
+  if (mode === "system") {
+    if (typeof window === "undefined") return "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+  return mode;
+}
+
 /**
  * Theme provider that manages the active light/dark mode and applies the
  * matching named theme's CSS variables to the document root.
  *
- * Two concerns are layered here:
+ * Three concerns are layered here:
  *
  * 1. **Mode**: light/dark/system, persisted via ra-core's `useStore`. The mode
  *    is applied as a class (`light`/`dark`) on `<html>` so existing Tailwind
  *    `dark:` variants keep working.
- * 2. **Named theme**: a {@link AdminTheme} object whose CSS variables are
- *    written to `documentElement.style` via `setProperty`. When the active
- *    mode flips, the matching variable map (light or dark) is applied. The set
- *    of keys currently applied is tracked in a ref so they can be cleared on
- *    the next switch (or unmount) to avoid leaking stale overrides.
- *
- * Both pieces of state are exposed via two contexts:
- * - `ThemeProviderContext` for the mode (consumed by `useTheme`)
- * - `ThemesContext` for the named themes (internal)
+ * 2. **Named theme**: a {@link AdminTheme} object whose CSS variables seed the
+ *    initial live var map. When `theme`/`lightTheme`/`darkTheme` props change,
+ *    the live state resyncs.
+ * 3. **Live var state**: a mutable per-mode `ThemeVars` map exposed via
+ *    {@link ThemesContext}. The reconcile effect writes these vars to
+ *    `documentElement.style` whenever they change. Descendants like a theme
+ *    editor can call `setLiveVar(key, value)` and the change flows through
+ *    React state, so a subsequent mode flip or prop change won't blow it away
+ *    until the next explicit resync.
  *
  * @internal
  */
@@ -70,6 +84,26 @@ export function ThemeProvider({
   const resolvedLightTheme = lightTheme ?? theme;
   const resolvedDarkTheme = darkTheme ?? lightTheme ?? theme;
 
+  // Live var state per mode. Initialized from props; mutated via `setLiveVar`.
+  // Storing each mode separately lets a user edit one mode, flip to the other,
+  // and return without losing edits.
+  const [liveLight, setLiveLight] = useState<ThemeVars>(
+    () => resolvedLightTheme?.light ?? {},
+  );
+  const [liveDark, setLiveDark] = useState<ThemeVars>(
+    () => resolvedDarkTheme?.dark ?? resolvedDarkTheme?.light ?? {},
+  );
+
+  // Resync when the caller swaps the theme palette via props.
+  useEffect(() => {
+    setLiveLight(resolvedLightTheme?.light ?? {});
+  }, [resolvedLightTheme]);
+  useEffect(() => {
+    setLiveDark(resolvedDarkTheme?.dark ?? resolvedDarkTheme?.light ?? {});
+  }, [resolvedDarkTheme]);
+
+  const effectiveMode = resolveMode(mode);
+
   // Track which CSS variable keys we set last so we can clear them before
   // applying a new palette. Without this, swapping themes (or unmounting)
   // would leave the previous palette's `--*` overrides on `documentElement`.
@@ -79,48 +113,37 @@ export function ThemeProvider({
     const root = window.document.documentElement;
 
     root.classList.remove("light", "dark");
-
-    let effectiveMode: "light" | "dark";
-    if (mode === "system") {
-      effectiveMode = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    } else {
-      effectiveMode = mode;
-    }
-
     root.classList.add(effectiveMode);
 
-    // Clear previously-set inline CSS variables before applying new ones.
     for (const key of appliedKeysRef.current) {
       root.style.removeProperty(key);
     }
     appliedKeysRef.current = [];
 
-    // Pick the active palette and the matching variable map for the mode.
+    const vars = effectiveMode === "dark" ? liveDark : liveLight;
+    if (vars && Object.keys(vars).length > 0) {
+      for (const [key, value] of Object.entries(vars)) {
+        root.style.setProperty(key, value);
+      }
+      appliedKeysRef.current = Object.keys(vars);
+    }
+
     const activeTheme: AdminTheme | undefined =
       effectiveMode === "dark"
         ? (resolvedDarkTheme ?? resolvedLightTheme)
         : (resolvedLightTheme ?? resolvedDarkTheme);
-
     if (activeTheme) {
-      const vars: ThemeVars | undefined =
-        effectiveMode === "dark"
-          ? (activeTheme.dark ?? activeTheme.light)
-          : activeTheme.light;
-      if (vars) {
-        for (const [key, value] of Object.entries(vars)) {
-          root.style.setProperty(key, value);
-        }
-        appliedKeysRef.current = Object.keys(vars);
-      }
-
-      // Mirror the theme name onto `data-theme` so user CSS can target it.
       root.setAttribute("data-theme", activeTheme.name);
     } else {
       root.removeAttribute("data-theme");
     }
-  }, [mode, resolvedLightTheme, resolvedDarkTheme]);
+  }, [
+    effectiveMode,
+    liveLight,
+    liveDark,
+    resolvedLightTheme,
+    resolvedDarkTheme,
+  ]);
 
   // Cleanup on unmount: remove inline CSS variables and the data-theme attr.
   useEffect(() => {
@@ -134,6 +157,17 @@ export function ThemeProvider({
     };
   }, []);
 
+  const setLiveVar = useCallback(
+    (key: string, value: string) => {
+      if (effectiveMode === "dark") {
+        setLiveDark((cur) => ({ ...cur, [key]: value }));
+      } else {
+        setLiveLight((cur) => ({ ...cur, [key]: value }));
+      }
+    },
+    [effectiveMode],
+  );
+
   const value = useMemo(
     () => ({
       theme: mode,
@@ -142,13 +176,23 @@ export function ThemeProvider({
     [mode, setMode],
   );
 
+  const liveVars = effectiveMode === "dark" ? liveDark : liveLight;
+
   const themesContextValue = useMemo(
     () => ({
       lightTheme: resolvedLightTheme,
       darkTheme: resolvedDarkTheme,
       defaultTheme,
+      liveVars,
+      setLiveVar,
     }),
-    [resolvedLightTheme, resolvedDarkTheme, defaultTheme],
+    [
+      resolvedLightTheme,
+      resolvedDarkTheme,
+      defaultTheme,
+      liveVars,
+      setLiveVar,
+    ],
   );
 
   return (

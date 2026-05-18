@@ -1,3 +1,6 @@
+import type { PropsWithChildren } from "react";
+import { CoreAdminContext, memoryStore } from "ra-core";
+
 import { ThemeProvider, defaultTheme } from "@/components/admin";
 import { ThemeStudio } from "@/components/extras/theme-studio";
 
@@ -6,46 +9,45 @@ export default {
   parameters: { docs: { codePanel: true } },
 };
 
+// `ThemeProvider` uses ra-core's `useStore` for mode persistence, which only
+// notifies subscribers once the surrounding `Store` has been `setup()`d.
+// `CoreAdminContext` does that, so it must sit *outside* `ThemeProvider`
+// (mirroring the order used in `<Admin>` itself).
+const Wrapper = ({ children }: PropsWithChildren) => (
+  <CoreAdminContext store={memoryStore()}>
+    <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+  </CoreAdminContext>
+);
+
 export const Basic = () => (
-  <ThemeProvider lightTheme={defaultTheme}>
+  <Wrapper>
     <div className="p-4">
       <p className="mb-2 text-sm text-muted-foreground">
         Background sample text — edit the variables to preview changes live.
       </p>
-      <ThemeStudio theme={defaultTheme} />
+      <ThemeStudio />
     </div>
-  </ThemeProvider>
-);
-
-export const ColorOnly = () => (
-  <ThemeProvider lightTheme={defaultTheme}>
-    <div className="p-4">
-      <p className="mb-2 text-sm text-muted-foreground">
-        Filtered to color variables only.
-      </p>
-      <ThemeStudio theme={defaultTheme} filter="color" />
-    </div>
-  </ThemeProvider>
-);
-
-export const SizeOnly = () => (
-  <ThemeProvider lightTheme={defaultTheme}>
-    <div className="p-4">
-      <p className="mb-2 text-sm text-muted-foreground">
-        Filtered to size variables (rem / px / %).
-      </p>
-      <ThemeStudio theme={defaultTheme} filter="size" />
-    </div>
-  </ThemeProvider>
+  </Wrapper>
 );
 
 export const NoExport = () => (
-  <ThemeProvider lightTheme={defaultTheme}>
+  <Wrapper>
     <div className="p-4">
       <p className="mb-2 text-sm text-muted-foreground">
         Export button hidden via <code>showExport=false</code>.
       </p>
-      <ThemeStudio theme={defaultTheme} showExport={false} />
+      <ThemeStudio showExport={false} />
     </div>
-  </ThemeProvider>
+  </Wrapper>
+);
+
+export const NoThemeToggle = () => (
+  <Wrapper>
+    <div className="p-4">
+      <p className="mb-2 text-sm text-muted-foreground">
+        Theme mode toggle hidden via <code>showThemeModeToggle=false</code>.
+      </p>
+      <ThemeStudio showThemeModeToggle={false} />
+    </div>
+  </Wrapper>
 );

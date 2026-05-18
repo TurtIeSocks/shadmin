@@ -7,15 +7,17 @@ import {
   FormField,
   FormLabel,
 } from "@/components/admin/form";
-import { Input } from "@/components/ui/input";
+import { ColorPicker } from "@/components/ui/color-picker";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
 
 /**
  * Color picker input. Stores a CSS color string (hex by default).
  *
- * Backed by the native `<input type="color">` element. Optionally renders
- * a row of preset swatch buttons that set the value on click.
+ * Wraps the `<ColorPicker>` UI primitive — opens a popover with an
+ * oklch L×C pad, hue / alpha strips, and a mode switcher (oklch / oklab /
+ * hex / rgb / hsl / hwb). Pass `swatches` to render a row of quick-set
+ * preset buttons next to the trigger.
  *
  * @example
  * import { Edit, SimpleForm, ColorInput } from '@/components/admin';
@@ -23,7 +25,7 @@ import { cn } from "@/lib/utils";
  * const BrandEdit = () => (
  *   <Edit>
  *     <SimpleForm>
- *       <ColorInput source="color" />
+ *       <ColorInput source="color" swatches={["#3b82f6", "#22c55e"]} />
  *     </SimpleForm>
  *   </Edit>
  * );
@@ -37,7 +39,8 @@ export const ColorInput = (props: ColorInputProps) => {
     helperText,
     swatches,
     disabled,
-    ...rest
+    mode,
+    native,
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
@@ -48,6 +51,8 @@ export const ColorInput = (props: ColorInputProps) => {
   void _stripChange;
   void _stripBlur;
   const { id, field, isRequired } = useInput(sansHandlers);
+
+  const value = (field.value as string | undefined) ?? "#000000";
 
   return (
     <FormField id={id} className={className} name={field.name}>
@@ -62,15 +67,22 @@ export const ColorInput = (props: ColorInputProps) => {
         </FormLabel>
       )}
       <FormControl>
-        <div className="flex items-center gap-2">
-          <Input
-            {...rest}
-            type="color"
-            value={(field.value as string | undefined) ?? "#000000"}
-            onChange={(e) => field.onChange(e.target.value)}
-            onBlur={field.onBlur}
-            disabled={disabled}
-            className="h-9 w-12 cursor-pointer p-1"
+        <fieldset
+          disabled={disabled}
+          // `fieldset[disabled]` blocks all inner form controls (incl. the
+          // picker trigger button + swatch buttons). The classes below add the
+          // visual cue and prevent stray hover states.
+          className={cn(
+            "flex items-center gap-2 border-0 p-0",
+            disabled && "cursor-not-allowed opacity-50",
+          )}
+        >
+          <ColorPicker
+            value={value}
+            onChange={(next) => field.onChange(next)}
+            mode={mode}
+            native={native}
+            aria-label="Pick a color"
           />
           {swatches?.map((s) => (
             <button
@@ -78,16 +90,15 @@ export const ColorInput = (props: ColorInputProps) => {
               type="button"
               data-color-swatch
               aria-label={`Select color ${s}`}
-              disabled={disabled}
-              onClick={() => !disabled && field.onChange(s)}
+              onClick={() => field.onChange(s)}
               className={cn(
                 "h-6 w-6 rounded border border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                disabled && "cursor-not-allowed opacity-50",
+                disabled && "cursor-not-allowed",
               )}
               style={{ backgroundColor: s }}
             />
           ))}
-        </div>
+        </fieldset>
       </FormControl>
       <InputHelperText helperText={helperText} />
       <FormError />
@@ -102,5 +113,18 @@ export interface ColorInputProps
       React.ComponentProps<"input">,
       "defaultValue" | "onBlur" | "onChange" | "type"
     > {
+  /** Quick-set color buttons rendered next to the picker trigger. */
   swatches?: readonly string[];
+  /**
+   * Force the picker to output values in a specific mode.
+   *
+   * @see ColorPicker
+   */
+  mode?: React.ComponentProps<typeof ColorPicker>["mode"];
+  /**
+   * Replace the popover picker with the browser's native `<input type="color">`.
+   *
+   * @see ColorPicker
+   */
+  native?: boolean;
 }

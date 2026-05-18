@@ -19,21 +19,22 @@ const Wrapper = ({
   children,
   defaultTheme = "system",
 }: React.PropsWithChildren<{ defaultTheme?: "system" | "light" | "dark" }>) => (
-  <ThemeProvider defaultTheme={defaultTheme}>
-    <CoreAdminContext
-      i18nProvider={polyglotI18nProvider(
-        () => defaultMessages,
-        "en",
-        undefined,
-        {
-          allowMissing: true,
-        },
-      )}
-      store={memoryStore()}
-    >
-      {children}
-    </CoreAdminContext>
-  </ThemeProvider>
+  // `CoreAdminContext` must wrap `ThemeProvider` because the latter's
+  // `useStore` call only receives notifications once the store inside
+  // `CoreAdminContext` has been `setup()`d.
+  <CoreAdminContext
+    i18nProvider={polyglotI18nProvider(
+      () => defaultMessages,
+      "en",
+      undefined,
+      {
+        allowMissing: true,
+      },
+    )}
+    store={memoryStore()}
+  >
+    <ThemeProvider defaultTheme={defaultTheme}>{children}</ThemeProvider>
+  </CoreAdminContext>
 );
 
 export const Basic = () => (

@@ -8,13 +8,16 @@ import {
 } from "@/stories/extras/color-input.stories";
 
 describe("<ColorInput />", () => {
-  it("renders a color input bound to source", async () => {
+  it("renders a color picker trigger bound to the source value", async () => {
     const screen = render(<Basic />);
-    const input = screen.container.querySelector(
-      "input[type='color']",
-    ) as HTMLInputElement;
-    expect(input).toBeTruthy();
-    expect(input.value).toBe("#3b82f6");
+    const trigger = screen.container.querySelector<HTMLButtonElement>(
+      '[data-slot="color-picker-trigger"]',
+    );
+    expect(trigger).toBeTruthy();
+    // The trigger renders an inline swatch span whose background is the
+    // current color value. Use it as a proxy for "input bound to source".
+    const swatch = trigger?.querySelector<HTMLElement>("span[aria-hidden]");
+    expect(swatch?.style.backgroundColor).toBeTruthy();
     await expect.element(screen.getByText(/^color$/i)).toBeInTheDocument();
   });
 
@@ -26,9 +29,17 @@ describe("<ColorInput />", () => {
 
   it("respects the disabled prop", async () => {
     const screen = render(<Disabled />);
-    const input = screen.container.querySelector(
-      "input[type='color']",
-    ) as HTMLInputElement;
-    expect(input.disabled).toBe(true);
+    // `<fieldset disabled>` cascades `disabled` to every form control inside,
+    // so the trigger button reports `disabled=true`.
+    const fieldset =
+      screen.container.querySelector<HTMLFieldSetElement>("fieldset");
+    expect(fieldset?.disabled).toBe(true);
+    // `HTMLButtonElement.disabled` mirrors the attribute, not the cascaded
+    // `<fieldset disabled>` state, so use `:disabled` (which the CSS selector
+    // engine resolves against the fieldset chain).
+    const trigger = screen.container.querySelector<HTMLButtonElement>(
+      '[data-slot="color-picker-trigger"]',
+    );
+    expect(trigger?.matches(":disabled")).toBe(true);
   });
 });

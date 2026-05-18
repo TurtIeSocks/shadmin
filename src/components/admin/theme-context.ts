@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 export type Theme = "dark" | "light" | "system";
+export type ResolvedTheme = Exclude<Theme, "system">;
 
 export type ThemeProviderState = {
   theme: Theme;

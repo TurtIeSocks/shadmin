@@ -21,7 +21,7 @@ export function ThemeModeToggle() {
   const [theme, setTheme] = useTheme();
 
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu data-theme-mode-toggle modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="hidden sm:inline-flex relative">
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
