@@ -87,4 +87,10 @@ export const ResourceSpecificLabel = () => (
   </Wrapper>
 );
 
+export const CustomIcon = () => (
+  <Wrapper>
+    <CloneButton icon={<span>📋</span>} />
+  </Wrapper>
+);
+
 export const Basic = Default;

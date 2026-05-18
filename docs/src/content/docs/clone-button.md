@@ -27,6 +27,16 @@ On click, the button navigates to the `create` route of the current resource (e.
 | `resource`    | Optional | `string`    | From context      | Resource name                           |
 | `scrollToTop` | Optional | `boolean`   | `true`            | Whether the create page scrolls to top  |
 
+## `icon`
+
+Replaces the default `<Copy />` shown alongside the label. Pass any React node — typically another lucide-react icon.
+
+```tsx
+import { CopyPlus } from "lucide-react";
+
+<CloneButton icon={<CopyPlus />} />
+```
+
 ## `label`
 
 By default, the label is the translation of the `ra.action.clone` key, which reads "Clone".
