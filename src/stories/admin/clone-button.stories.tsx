@@ -87,6 +87,12 @@ export const ResourceSpecificLabel = () => (
   </Wrapper>
 );
 
+export const NoScrollToTop = () => (
+  <Wrapper>
+    <CloneButton scrollToTop={false} />
+  </Wrapper>
+);
+
 export const WithRef = () => {
   const ref = useRef<HTMLAnchorElement>(null);
   return (

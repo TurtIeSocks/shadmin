@@ -72,3 +72,11 @@ import { useRef } from "react";
 const ref = useRef<HTMLAnchorElement>(null);
 <CloneButton ref={ref} />
 ```
+
+## `scrollToTop`
+
+When `true` (the default), the create page scrolls to the top after cloning. Set to `false` to preserve the current scroll position.
+
+```tsx
+<CloneButton scrollToTop={false} />
+```
