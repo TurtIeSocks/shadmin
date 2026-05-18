@@ -24,6 +24,22 @@ After: the component has a direct import example and a focused behavior note.
 | ---------- | -------- | ----------- | ------- | ----------------------------------------------- |
 | `children` | Optional | `ReactNode` | -       | Fields to render with labels.                   |
 | `divider`  | Optional | `ReactNode` | -       | Divider element inserted between each field row |
+| `record`   | Optional | `RaRecord`  | -       | Override the record from the RecordContext      |
+
+## `record`
+
+By default, `<SimpleShowLayout>` reads the current record from the nearest `RecordContext`. Pass a `record` prop to override it — useful when you want to display a different record inline:
+
+```tsx
+import { SimpleShowLayout, RecordField } from "@/components/admin";
+
+export const InlinePost = ({ post }: { post: RaRecord }) => (
+  <SimpleShowLayout record={post}>
+    <RecordField source="title" />
+    <RecordField source="body" />
+  </SimpleShowLayout>
+);
+```
 
 ## `divider`
 

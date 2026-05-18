@@ -18,6 +18,12 @@
       "type": "ReactNode",
       "optional": true,
       "comment": "Divider element inserted between each field row."
+    },
+    {
+      "name": "record",
+      "type": "RaRecord",
+      "optional": true,
+      "comment": "Override the record from the RecordContext."
     }
   ]
 }
