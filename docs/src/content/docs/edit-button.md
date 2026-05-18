@@ -82,3 +82,14 @@ You can also pass a custom string or translation key directly via the `label` pr
 <EditButton label="Modify" />
 <EditButton label="resources.posts.action.edit" />
 ```
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+
+const ref = useRef<HTMLAnchorElement>(null);
+<EditButton ref={ref} />
+```
