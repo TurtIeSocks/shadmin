@@ -29,10 +29,22 @@ Clicking on the button navigates to the `create` route of the current resource (
 
 ## Props
 
-| Prop       | Required | Type     | Default            | Description                      |
-| ---------- | -------- | -------- | ------------------ | -------------------------------- |
-| `label`    | Optional | `string` | `ra.action.create` | i18n key / custom label          |
-| `resource` | Optional | `string` | From context       | Target resource for create route |
+| Prop          | Required | Type        | Default            | Description                      |
+| ------------- | -------- | ----------- | ------------------ | -------------------------------- |
+| `icon`        | Optional | `ReactNode` | Plus icon          | Custom icon element               |
+| `label`       | Optional | `string`    | `ra.action.create` | i18n key / custom label          |
+| `resource`    | Optional | `string`    | From context       | Target resource for create route |
+| `scrollToTop` | Optional | `boolean`   | `true`             | Scroll to top after navigation   |
+
+## `icon`
+
+Replaces the default `<Plus />` shown alongside the label. Pass any React node — typically another lucide-react icon.
+
+```tsx
+import { PlusCircle } from "lucide-react";
+
+<CreateButton icon={<PlusCircle />} />
+```
 
 ## `label`
 
