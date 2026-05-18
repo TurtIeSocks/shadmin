@@ -1,7 +1,12 @@
 import { Resource, TestMemoryRouter } from "ra-core";
 import fakeRestProvider from "ra-data-fakerest";
 
-import { Admin } from "@/components/admin/admin";
+import type { ReactNode } from "react";
+import {
+  Admin,
+  AdminContext,
+  AdminUI,
+} from "@/components/admin/admin";
 import { ListGuesser } from "@/components/admin/list-guesser";
 import { ShowGuesser } from "@/components/admin/show-guesser";
 import { EditGuesser } from "@/components/admin/edit-guesser";
@@ -57,5 +62,26 @@ export const WithTheme = () => (
     <Admin dataProvider={dataProvider} theme={bwTheme}>
       <Resource name="posts" list={ListGuesser} />
     </Admin>
+  </TestMemoryRouter>
+);
+
+const BetweenLayer = ({ children }: { children: ReactNode }) => (
+  <div data-testid="between-layer">{children}</div>
+);
+
+export const Composition = () => (
+  <TestMemoryRouter initialEntries={["/posts"]}>
+    <AdminContext dataProvider={dataProvider}>
+      <BetweenLayer>
+        <AdminUI>
+          <Resource
+            name="posts"
+            list={ListGuesser}
+            edit={EditGuesser}
+            show={ShowGuesser}
+          />
+        </AdminUI>
+      </BetweenLayer>
+    </AdminContext>
   </TestMemoryRouter>
 );
