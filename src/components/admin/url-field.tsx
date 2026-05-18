@@ -4,7 +4,7 @@ import {
   useFieldValue,
   useTranslate,
 } from "ra-core";
-import type { AnchorHTMLAttributes } from "react";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -44,6 +44,7 @@ const UrlFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
     resource: _,
     target,
     rel,
+    content,
     ...rest
   } = inProps;
   const value = useFieldValue({ defaultValue, source, record });
@@ -85,7 +86,7 @@ const UrlFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
       target={target}
       rel={safeRel}
     >
-      {value}
+      {content ?? value}
     </a>
   );
 };
@@ -94,7 +95,11 @@ UrlFieldImpl.displayName = "UrlFieldImpl";
 export const UrlField = genericMemo(UrlFieldImpl);
 
 export interface UrlFieldProps<RecordType extends UnknownRecord = UnknownRecord>
-  extends FieldProps<RecordType>, AnchorHTMLAttributes<HTMLAnchorElement> {}
+  extends FieldProps<RecordType>,
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "content"> {
+  /** Content to display as the link text. Defaults to the URL value. */
+  content?: ReactNode;
+}
 
 // useful to prevent click bubbling in a DataTable with rowClick
 const stopPropagation = (e: React.MouseEvent<HTMLAnchorElement>) =>
