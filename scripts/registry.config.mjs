@@ -115,7 +115,6 @@ export const blocks = [
       "tooltip",
     ],
     dependencies: [
-      "@radix-ui/react-icons",
       "@tiptap/extension-code-block-lowlight",
       "@tiptap/extension-color",
       "@tiptap/extension-horizontal-rule",
