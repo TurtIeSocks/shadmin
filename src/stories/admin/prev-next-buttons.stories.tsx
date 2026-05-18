@@ -90,3 +90,12 @@ export const LastRecord = () => (
 );
 
 export const Basic = Default;
+
+export const WithRef = () => {
+  const ref = React.useRef<HTMLElement>(null);
+  return (
+    <Wrapper>
+      <PrevNextButtons ref={ref} />
+    </Wrapper>
+  );
+};
