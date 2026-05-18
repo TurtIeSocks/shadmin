@@ -36,6 +36,16 @@ const BulkActions = () => (
 
 Additional props are passed to the underlying shadcn/ui `<Button>` component.
 
+## `icon`
+
+Replaces the default `<Download />` shown alongside the label. Pass any React node — typically another lucide-react icon.
+
+```tsx
+import { FileDown } from "lucide-react";
+
+<BulkExportButton icon={<FileDown />} />
+```
+
 ## `label`
 
 By default, the label is the translation of the `ra.action.export` key, which reads "Export".
