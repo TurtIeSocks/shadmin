@@ -74,6 +74,17 @@ You can also pass a custom string or translation key directly via the `label` pr
 <DeleteButton label="resources.posts.action.delete" />
 ```
 
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+
+const ref = useRef<HTMLButtonElement>(null);
+<DeleteButton ref={ref} />
+```
+
 ## Soft Delete
 
 If your data provider supports soft delete (see [Soft Delete Features](./soft-delete-features)), you can use an alternative [`SoftDeleteButton`](./soft-delete-features.md#soft-delete-button) that performs a soft delete instead of a permanent delete.

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   CoreAdminContext,
   RecordContextProvider,
@@ -70,6 +70,15 @@ export const CustomLabel = () => (
     <DeleteButton label="Remove" />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <DeleteButton ref={ref} />
+    </Wrapper>
+  );
+};
 
 export const ResourceSpecificLabel = () => (
   <Wrapper
