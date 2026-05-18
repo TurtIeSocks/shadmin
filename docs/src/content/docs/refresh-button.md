@@ -33,6 +33,20 @@ import { RefreshButton } from "@/components/admin";
 
 Replaces the default `<RotateCw />` shown in the button. Pass any lucide-react icon to convey a different action.
 
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { RefreshButton } from "@/components/admin";
+
+const MyHeader = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <RefreshButton ref={ref} />;
+};
+```
+
 ```tsx
 import { RefreshCcw } from "lucide-react";
 import { RefreshButton } from "@/components/admin";

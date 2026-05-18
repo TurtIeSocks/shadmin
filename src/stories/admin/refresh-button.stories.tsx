@@ -48,6 +48,15 @@ export const CustomIcon = () => (
   </Wrapper>
 );
 
+export const WithRef = () => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <RefreshButton ref={ref} />
+    </Wrapper>
+  );
+};
+
 export const InToolbar = () => (
   <Wrapper>
     <div className="flex flex-row items-center gap-2 p-2 border rounded">
