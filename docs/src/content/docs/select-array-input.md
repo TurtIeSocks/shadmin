@@ -43,6 +43,7 @@ const record = {
 | `choices`         | Required\* | `Object[]`                                    | -          | List of items. Required if not inside a ReferenceArrayInput.                                  |
 | `className`       | Optional   | `string`                                      | -          | Wrapper classes                                                                               |
 | `create`          | Optional   | `ReactElement`                                | -          | React element rendered as an inline-create entry at the bottom of the menu                   |
+| `createHintValue` | Optional   | `string`                                      | -          | Internal sentinel placeholder shown in the input while the create element is active          |
 | `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
 | `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
 | `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
@@ -131,6 +132,19 @@ const choices = [
   { id: "people", name: "People", disabled: true },
 ];
 <SelectArrayInput source="tags" choices={choices} />;
+```
+
+## `createHintValue`
+
+Internal sentinel string passed to ra-core's `useChoices` / `useSupportCreateSuggestion` to mark the "create" option while the create element is rendered. You rarely need to set this manually; override only when the default sentinel conflicts with a real option value in your dataset.
+
+```jsx
+<SelectArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={handleCreate}
+  createHintValue="@@create-tag"
+/>
 ```
 
 ## `create`

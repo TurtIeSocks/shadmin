@@ -107,6 +107,19 @@ export const DisabledChoice = () => (
   </Wrapper>
 );
 
+export const WithCreateHintValue = () => (
+  <Wrapper>
+    <SelectArrayInput
+      source="tags"
+      choices={tags}
+      onCreate={() => Promise.resolve({ id: "new-tag", name: "New Tag" })}
+      createHintValue="@@create-tag"
+      createLabel="Add a tag"
+    />
+    <FormValues />
+  </Wrapper>
+);
+
 export const WithCreate = () => (
   <Wrapper>
     <SelectArrayInput

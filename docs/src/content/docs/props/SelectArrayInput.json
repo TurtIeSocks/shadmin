@@ -6,6 +6,12 @@
       "type": "ReactElement",
       "optional": true,
       "comment": "React element rendered as an inline-create entry at the bottom of the options menu."
+    },
+    {
+      "name": "createHintValue",
+      "type": "string",
+      "optional": true,
+      "comment": "Internal sentinel placeholder value passed to ra-core to mark the create option; override only when it conflicts with a real choice value."
     }
   ]
 }
