@@ -31,12 +31,23 @@ Clicking on the button navigates to the `show` route of the current resource (e.
 
 | Prop       | Required | Type        | Default          | Description                           |
 | ---------- | -------- | ----------- | ---------------- | ------------------------------------- |
-| `icon`     | Optional | `ReactNode` | `<Eye />`        | Icon to display                       |
-| `label`    | Optional | `string`    | `ra.action.show` | i18n key / label                      |
-| `record`   | Optional | `RaRecord`  | From context     | Record used for id and representation |
-| `resource` | Optional | `string`    | From context     | Resource name                         |
+| `icon`        | Optional | `ReactNode` | `<Eye />`        | Icon to display                       |
+| `label`       | Optional | `string`    | `ra.action.show` | i18n key / label                      |
+| `record`      | Optional | `RaRecord`  | From context     | Record used for id and representation |
+| `resource`    | Optional | `string`    | From context     | Resource name                         |
+| `scrollToTop` | Optional | `boolean`   | `true`           | Scroll to top after navigation        |
 
 Additional props are passed to the underlying `<a>` element (e.g., `className`, `target`, `rel`).
+
+## `icon`
+
+Replaces the default `<Eye />` shown alongside the label. Pass any React node — typically another lucide-react icon.
+
+```tsx
+import { ScanEye } from "lucide-react";
+
+<ShowButton icon={<ScanEye />} />
+```
 
 ## `label`
 
