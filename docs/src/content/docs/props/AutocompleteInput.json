@@ -1,0 +1,11 @@
+{
+  "name": "AutocompleteInput",
+  "props": [
+    {
+      "name": "clearOnBlur",
+      "type": "boolean",
+      "optional": true,
+      "comment": "If true, clears the search text in the input when the input loses focus"
+    }
+  ]
+}

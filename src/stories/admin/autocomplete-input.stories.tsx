@@ -312,6 +312,17 @@ export const WithMismatchedOptionTextAndValue = () => (
   </Wrapper>
 );
 
+export const WithClearOnBlur = () => (
+  <Wrapper>
+    <AutocompleteInput
+      source="tag_id"
+      choices={tags}
+      optionText="label"
+      clearOnBlur
+    />
+  </Wrapper>
+);
+
 export const InsideArrayInputWithValidation = () => (
   <TestMemoryRouter initialEntries={["/posts/create"]}>
     <CoreAdminContext i18nProvider={i18nProvider}>

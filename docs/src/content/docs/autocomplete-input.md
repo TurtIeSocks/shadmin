@@ -55,6 +55,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `source`                  | Required\* | `string`                                        | `-`                                        | Field name (inferred in ReferenceInput)                                                                                                                                                                             |
 | `choices`                 | Required\* | `Object[]`                                      | `-`                                        | List of items to autosuggest. Required if not inside a ReferenceInput.                                                                                                                                              |
 | `className`               | Optional   | `string`                                        | `-`                                        | The class name to apply to the root element                                                                                                                                                                         |
+| `clearOnBlur`             | Optional   | `boolean`                                       | `false`                                    | If true, clears the search text in the input when the input loses focus                                                                                                                                             |
 | `create`                  | Optional   | `Element`                                       | `-`                                        | A React Element to render when users want to create a new choice                                                                                                                                                    |
 | `createItemLabel`         | Optional   | `string` &#124; `(filter: string) => ReactNode` | `ra.action .create_item`                   | The label for the menu item allowing users to create a new choice. Used when the filter is not empty.                                                                                                               |
 | `createLabel`             | Optional   | `string` &#124; `ReactNode`                     | -                                          | The label used as hint to let users know they can create a new choice. Displayed when the filter is empty.                                                                                                          |
@@ -338,3 +339,15 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `clearOnBlur`
+
+When `true`, the search text typed in the filter input is cleared when the input loses focus. This means if the user opens the dropdown, types to narrow results, then clicks away without selecting, the filter resets to empty.
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  clearOnBlur
+/>
+```
