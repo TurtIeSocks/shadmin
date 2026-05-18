@@ -18,9 +18,24 @@ After: the component has a direct import example and a focused behavior note.
 
 ## Props
 
-| Prop  | Required | Type     | Default | Description                          |
-| ----- | -------- | -------- | ------- | ------------------------------------ |
-| limit | Optional | `number` | `250`   | Maximum number of records to select. |
+| Prop    | Required | Type                     | Default | Description                               |
+| ------- | -------- | ------------------------ | ------- | ----------------------------------------- |
+| `limit` | Optional | `number`                 | `250`   | Maximum number of records to select.      |
+| `ref`   | Optional | `Ref<HTMLButtonElement>` | -       | Forwarded to the underlying `<Button>`    |
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { SelectAllButton } from "@/components/admin";
+
+const MyBulkToolbar = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <SelectAllButton ref={ref} />;
+};
+```
 
 ## Behavior
 

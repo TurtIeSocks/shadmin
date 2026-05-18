@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   CoreAdminContext,
   ListContext,
@@ -84,3 +84,12 @@ export const CustomLabel = () => (
     <SelectAllButton label="Select everything" />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <SelectAllButton ref={ref} />
+    </Wrapper>
+  );
+};
