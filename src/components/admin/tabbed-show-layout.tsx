@@ -122,6 +122,9 @@ export const TabbedShowLayout = (props: TabbedShowLayoutProps) => {
     divider,
     record: recordProp,
     syncWithLocation = true,
+    tabs,
+    spacing,
+    value,
   } = props;
 
   const record = useRecordContext(props);
@@ -134,6 +137,9 @@ export const TabbedShowLayout = (props: TabbedShowLayoutProps) => {
         className={className}
         divider={divider}
         syncWithLocation={syncWithLocation}
+        tabs={tabs}
+        spacing={spacing}
+        value={value}
       >
         {children}
       </TabbedShowLayoutView>
@@ -152,6 +158,12 @@ export interface TabbedShowLayoutProps {
   record?: RaRecord;
   /** When true (default), tab changes update the URL. */
   syncWithLocation?: boolean;
+  /** Custom tab-strip renderer. If provided, replaces the default TabsList. */
+  tabs?: ReactElement;
+  /** Gap between fields within each tab's content panel (in px). */
+  spacing?: number;
+  /** Controlled tab value override. When provided, forces the Tabs into controlled mode. */
+  value?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -163,11 +175,17 @@ function TabbedShowLayoutView({
   className,
   divider,
   syncWithLocation,
+  tabs: customTabs,
+  spacing,
+  value: valueProp,
 }: {
   children: ReactNode;
   className?: string;
   divider?: ReactNode;
   syncWithLocation: boolean;
+  tabs?: ReactElement;
+  spacing?: number;
+  value?: string;
 }) {
   const { Route, Routes } = useRouterProvider();
   const params = useParams();
@@ -181,9 +199,12 @@ function TabbedShowLayoutView({
   ).filter(isValidElement);
 
   // Determine the active tab value
-  const activeValue = syncWithLocation
-    ? (params["*"] ?? "")
-    : localTabIndex.toString();
+  const activeValue =
+    valueProp !== undefined
+      ? valueProp
+      : syncWithLocation
+        ? (params["*"] ?? "")
+        : localTabIndex.toString();
 
   const handleValueChange = (value: string) => {
     if (syncWithLocation) {
@@ -195,16 +216,22 @@ function TabbedShowLayoutView({
     }
   };
 
-  const tabsList = (
-    <TabbedShowLayoutTabsList tabs={tabs} syncWithLocation={syncWithLocation} />
-  );
+  const tabsList =
+    customTabs ?? (
+      <TabbedShowLayoutTabsList tabs={tabs} syncWithLocation={syncWithLocation} />
+    );
 
   const tabPanels = tabs.map((tab, index) => {
     const tabPath = getShowTabPath(tab, index);
     const value = syncWithLocation ? tabPath : index.toString();
     return (
       <TabsContent key={value} value={value}>
-        <div className={cn("flex flex-col gap-4", tab.props.contentClassName)}>
+        <div
+          className={cn("flex flex-col", {
+            "gap-4": spacing === undefined,
+          }, tab.props.contentClassName)}
+          style={spacing !== undefined ? { gap: spacing * 4 } : undefined}
+        >
           {Children.map(tab.props.children, (field) => {
             if (!field || !isValidElement(field)) return null;
             return (
