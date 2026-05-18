@@ -44,6 +44,12 @@
       "comment": ""
     },
     {
+      "name": "error",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Content to display when a data-fetch error occurs. Defaults to a built-in error message."
+    },
+    {
       "name": "title",
       "type": "ReactNode",
       "optional": true,

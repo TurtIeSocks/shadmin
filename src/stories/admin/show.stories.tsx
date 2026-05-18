@@ -106,3 +106,19 @@ export const NoActions = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+const PostShowWithError = () => (
+  <Show error={<p className="text-destructive p-4">Could not load this record.</p>}>
+    <SimpleShowLayout>
+      <RecordField source="title" />
+    </SimpleShowLayout>
+  </Show>
+);
+
+export const WithError = () => (
+  <TestMemoryRouter initialEntries={["/posts/1/show"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} show={PostShowWithError} />
+    </Admin>
+  </TestMemoryRouter>
+);

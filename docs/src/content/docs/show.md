@@ -103,6 +103,7 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `aside`                 | Optional         | `ReactNode`                  |              | Side panel rendered alongside the record content                                     |
 | `component`             | Optional         | `ElementType`                | `"div"`      | Override the root element wrapping the record content                                |
 | `className`             | Optional         | `string`                     |              | passed to the root component                                                         |
+| `error`                 | Optional         | `ReactNode`                  | default msg  | Content to display when a data-fetch error occurs                                    |
 | `disableAuthentication` | Optional         | `boolean`                    |              | Set to `true` to disable the authentication check                                    |
 | `disableBreadcrumb`     | Optional         | `boolean`                    | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
 | `emptyWhileLoading`     | Optional         | `boolean`                    |              | Set to `true` to return `null` while the show is loading                             |
@@ -112,6 +113,24 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `title`                 | Optional         | `string                      | ReactElement | false`                                                                               |                                                                 | The title to display in the App Bar |
 
 `*` You must provide either `children` or `render`.
+
+## `error`
+
+When `dataProvider.getOne()` fails, `<Show>` renders a default error message. Override it with any `ReactNode`:
+
+```tsx
+import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
+
+export const PostShow = () => (
+  <Show error={<p className="text-destructive p-4">Could not load this record.</p>}>
+    <SimpleShowLayout>
+      <RecordField source="title" />
+    </SimpleShowLayout>
+  </Show>
+);
+```
+
+Set `error={false}` to suppress the error message entirely.
 
 ## `component`
 
