@@ -107,6 +107,18 @@ export const DisabledChoice = () => (
   </Wrapper>
 );
 
+export const WithCreateLabel = () => (
+  <Wrapper>
+    <SelectArrayInput
+      source="tags"
+      choices={tags}
+      onCreate={() => Promise.resolve({ id: "new-tag", name: "New Tag" })}
+      createLabel="Add a new tag"
+    />
+    <FormValues />
+  </Wrapper>
+);
+
 export const WithCreateItemLabel = () => (
   <Wrapper>
     <SelectArrayInput

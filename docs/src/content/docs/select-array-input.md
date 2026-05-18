@@ -45,6 +45,7 @@ const record = {
 | `create`          | Optional   | `ReactElement`                                | -          | React element rendered as an inline-create entry at the bottom of the menu                   |
 | `createHintValue` | Optional   | `string`                                      | -          | Internal sentinel placeholder shown in the input while the create element is active          |
 | `createItemLabel` | Optional   | `string`                                      | `ra.action.create_item` | Label for the create menu item when the filter is non-empty       |
+| `createLabel`     | Optional   | `string`                                      | `ra.action.create`      | Hint label for the create menu entry when the filter is empty     |
 | `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
 | `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
 | `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
@@ -133,6 +134,19 @@ const choices = [
   { id: "people", name: "People", disabled: true },
 ];
 <SelectArrayInput source="tags" choices={choices} />;
+```
+
+## `createLabel`
+
+Label for the create menu entry shown when no filter has been typed (i.e. the dropdown just opened). Defaults to the `ra.action.create` translation key (typically `"Create"`). Pair with [`createItemLabel`](#createitemlabel) to cover both the empty and non-empty filter states.
+
+```jsx
+<SelectArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={handleCreate}
+  createLabel="Add a new tag"
+/>
 ```
 
 ## `createItemLabel`
