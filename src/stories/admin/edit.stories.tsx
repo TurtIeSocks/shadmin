@@ -107,6 +107,22 @@ export const NoActions = () => (
   </TestMemoryRouter>
 );
 
+const PostEditWithOffline = () => (
+  <Edit offline={<p className="text-muted-foreground p-4">You appear to be offline. Reconnect to continue editing.</p>}>
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+
+export const WithOffline = () => (
+  <TestMemoryRouter initialEntries={["/posts/1"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} edit={PostEditWithOffline} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 const PostEditWithError = () => (
   <Edit error={<p className="text-destructive p-4">Failed to load post. Please try again.</p>}>
     <SimpleForm>

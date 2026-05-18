@@ -64,6 +64,7 @@ You can customize the `<Edit>` component using the following props:
 | `disableBreadcrumb`     | Optional         | `boolean`                                     | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
 | `emptyWhileLoading`     | Optional         | `boolean`                                     | `false`      | Set to `true` to return `null` while the edit is loading                             |
 | `id`                    | Optional         | `string`/`number`                             | -            | The id of the record to edit                                                         |
+| `offline`               | Optional         | `ReactNode`                                   | default msg  | Content to display when the browser is offline and the record is still loading       |
 | `mutationMode`          | Optional         | `'undoable' \| 'optimistic' \| 'pessimistic'` | `'undoable'` | Switch to optimistic or pessimistic mutations                                        |
 | `mutationOptions`       | Optional         | `object`                                      | -            | Options for the `dataProvider.update()` call                                         |
 | `queryOptions`          | Optional         | `object`                                      | -            | Options for the `dataProvider.getOne()` call                                         |
@@ -73,6 +74,24 @@ You can customize the `<Edit>` component using the following props:
 | `transform`             | Optional         | `function`                                    | -            | Transform the form data before calling `dataProvider.update()`                       |
 
 `*` You must provide either `children` or `render`.
+
+## `offline`
+
+When the browser goes offline while the record is still loading (`isPaused && isPending`), `<Edit>` shows a default "Offline — waiting for connection…" message. Override it with any `ReactNode`:
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+
+export const PostEdit = () => (
+  <Edit offline={<p className="text-muted-foreground p-4">You appear to be offline. Reconnect to continue editing.</p>}>
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+Set `offline={false}` to suppress the offline state entirely.
 
 ## `error`
 
