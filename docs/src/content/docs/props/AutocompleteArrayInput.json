@@ -24,6 +24,12 @@
       "type": "string | ((filter: string) => ReactNode)",
       "optional": true,
       "comment": "Label for the 'Create …' menu item shown when the filter is non-empty; supports %{item} interpolation"
+    },
+    {
+      "name": "createLabel",
+      "type": "string | ReactNode",
+      "optional": true,
+      "comment": "Hint label shown when the filter is empty, prompting users that they can create a new option"
     }
   ]
 }

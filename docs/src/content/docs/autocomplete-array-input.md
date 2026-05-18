@@ -71,6 +71,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `create`          | Optional   | `ReactElement`                   | -                     | A React element rendered when users want to create a new choice                                                                         |
 | `createHintValue` | Optional   | `string`                         | -                     | Sentinel value passed to `useSupportCreateSuggestion` to represent the "create" item internally                                         |
 | `createItemLabel` | Optional   | `string \| (filter) => ReactNode` | `ra.action.create_item` | Label for the "Create …" menu item shown when the filter is non-empty                                                                  |
+| `createLabel`     | Optional   | `string \| ReactNode`            | -                     | Hint label shown as a menu item when the filter is empty, prompting users that they can create a new option                             |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -152,6 +153,19 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `createLabel`
+
+A hint label rendered as a menu item when the filter text is empty, letting users know they can type to create a new option. Unlike `createItemLabel`, this appears before the user has typed anything.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+  createLabel="Start typing to add a tag"
+/>
 ```
 
 ## `createItemLabel`
