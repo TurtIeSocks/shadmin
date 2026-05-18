@@ -85,6 +85,14 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithLimitChoicesToValue = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput source="tags" choices={choices} limitChoicesToValue />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithIsOptionEqualToValue = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

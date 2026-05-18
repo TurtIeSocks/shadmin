@@ -76,6 +76,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `emptyText`       | Optional   | `string`                         | -                     | Accepted for API parity with `AutocompleteInput`; not rendered in the array variant                                                     |
 | `handleHomeEndKeys` | Optional | `boolean`                        | `false`               | If true, Home/End keys scroll the dropdown list to the first/last item                                                                  |
 | `isOptionEqualToValue` | Optional | `(option, value) => boolean`  | `areIdsEqual`         | Custom equality check between a choice value and the current field value                                                                |
+| `limitChoicesToValue` | Optional  | `boolean`                        | `false`               | If true, the dropdown shows only already-selected choices                                                                               |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -157,6 +158,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `limitChoicesToValue`
+
+When `true`, the dropdown only shows choices that are already in the selected values array. All other choices are hidden. Useful in read-heavy UIs where you want users to browse or remove current selections without seeing the full unselected list.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  limitChoicesToValue
+/>
 ```
 
 ## `isOptionEqualToValue`

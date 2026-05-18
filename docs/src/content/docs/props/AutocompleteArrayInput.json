@@ -54,6 +54,12 @@
       "type": "(option: unknown, value: unknown) => boolean",
       "optional": true,
       "comment": "Custom equality check between a choice value and a selected field value; defaults to areIdsEqual (loose ==)"
+    },
+    {
+      "name": "limitChoicesToValue",
+      "type": "boolean",
+      "optional": true,
+      "comment": "If true, the dropdown shows only already-selected choices instead of all unselected choices"
     }
   ]
 }
