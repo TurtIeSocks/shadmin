@@ -2,6 +2,12 @@
   "name": "Edit",
   "props": [
     {
+      "name": "aside",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Side panel rendered alongside the form."
+    },
+    {
       "name": "actions",
       "type": "ReactNode",
       "optional": true,

@@ -72,6 +72,33 @@ const PostEditNoActions = () => (
   </Edit>
 );
 
+const EditNotes = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Editing tips</p>
+    <ul className="list-disc pl-4 space-y-1">
+      <li>Changes are undoable for 5 seconds.</li>
+      <li>Delete removes the record permanently.</li>
+    </ul>
+  </div>
+);
+
+const PostEditWithAside = () => (
+  <Edit aside={<EditNotes />}>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="body" multiline />
+    </SimpleForm>
+  </Edit>
+);
+
+export const WithAside = () => (
+  <TestMemoryRouter initialEntries={["/posts/1"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} edit={PostEditWithAside} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const NoActions = () => (
   <TestMemoryRouter initialEntries={["/posts/1"]}>
     <Admin dataProvider={dataProvider}>

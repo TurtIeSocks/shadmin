@@ -56,6 +56,7 @@ You can customize the `<Edit>` component using the following props:
 | `children`              | Optional&nbsp;\* | `ReactNode`                                   | -            | The components that render the form                                                  |
 | `render`                | Optional&nbsp;\* | `function`                                    | -            | Function to render the form, receives the editContext as argument                    |
 | `actions`               | Optional         | `ReactNode`                                   | -            | Override the actions toolbar with a custom component                                 |
+| `aside`                 | Optional         | `ReactNode`                                   | -            | Side panel rendered alongside the form                                               |
 | `className`             | Optional         | `string`                                      | -            | Passed to the root component                                                         |
 | `disableAuthentication` | Optional         | `boolean`                                     | `false`      | Disable the authentication check                                                     |
 | `disableBreadcrumb`     | Optional         | `boolean`                                     | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
@@ -70,6 +71,33 @@ You can customize the `<Edit>` component using the following props:
 | `transform`             | Optional         | `function`                                    | -            | Transform the form data before calling `dataProvider.update()`                       |
 
 `*` You must provide either `children` or `render`.
+
+## `aside`
+
+Pass any React node as `aside` to render a side panel alongside the form. The aside floats to the right in a flex row — the form takes `flex-1` and the aside gets a fixed `w-64` width.
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+
+const EditNotes = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Editing tips</p>
+    <ul className="list-disc pl-4 space-y-1">
+      <li>Changes are undoable for 5 seconds.</li>
+      <li>Delete removes the record permanently.</li>
+    </ul>
+  </div>
+);
+
+export const PostEdit = () => (
+  <Edit aside={<EditNotes />}>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="body" multiline />
+    </SimpleForm>
+  </Edit>
+);
+```
 
 ## Main Content Area
 
