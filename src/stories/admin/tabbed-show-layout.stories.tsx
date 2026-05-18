@@ -139,3 +139,25 @@ export const CustomLabel = ({
   </Wrapper>
 );
 Object.assign(CustomLabel, storyArgs);
+
+/** `spacing={2}` compresses the gap between fields to 8px (2 × 4). */
+export const WithSpacing = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => (
+  <Wrapper theme={theme}>
+    <TabbedShowLayout syncWithLocation={false} spacing={2}>
+      <TabbedShowLayout.Tab label="Content">
+        <TextField source="title" />
+        <TextField source="author" />
+        <TextField source="summary" />
+      </TabbedShowLayout.Tab>
+      <TabbedShowLayout.Tab label="Metadata">
+        <NumberField source="year" />
+        <NumberField source="views" />
+      </TabbedShowLayout.Tab>
+    </TabbedShowLayout>
+  </Wrapper>
+);
+Object.assign(WithSpacing, storyArgs);

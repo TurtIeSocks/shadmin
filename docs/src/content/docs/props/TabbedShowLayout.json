@@ -26,10 +26,28 @@
       "comment": "Explicit record to display (falls back to RecordContext)."
     },
     {
+      "name": "spacing",
+      "type": "number",
+      "optional": true,
+      "comment": "Gap between fields within each tab's content panel (in px)."
+    },
+    {
       "name": "syncWithLocation",
       "type": "boolean",
       "optional": true,
       "comment": "When true (default), tab changes update the URL."
+    },
+    {
+      "name": "tabs",
+      "type": "ReactElement",
+      "optional": true,
+      "comment": "Custom tab-strip renderer. If provided, replaces the default TabsList."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "optional": true,
+      "comment": "Controlled tab value override. When provided, forces the Tabs into controlled mode."
     }
   ]
 }
