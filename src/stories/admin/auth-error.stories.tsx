@@ -7,6 +7,7 @@ import { AuthError } from "@/components/admin/auth-error";
 export default {
   title: "UI & Layout/AuthError",
   parameters: {
+    layout: "fullscreen",
     docs: {
       codePanel: true,
     },
@@ -15,7 +16,9 @@ export default {
 
 const Wrapper = ({ children }: React.PropsWithChildren) => (
   <ThemeProvider>
-    <CoreAdminContext i18nProvider={i18nProvider}>{children}</CoreAdminContext>
+    <CoreAdminContext i18nProvider={i18nProvider}>
+      <div className="h-screen">{children}</div>
+    </CoreAdminContext>
   </ThemeProvider>
 );
 

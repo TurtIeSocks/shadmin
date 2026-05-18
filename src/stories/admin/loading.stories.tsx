@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/admin";
 export default {
   title: "UI & Layout/Loading",
   parameters: {
+    layout: "fullscreen",
     docs: {
       // 👇 Enable Code panel for all stories in this file
       codePanel: true,
@@ -21,7 +22,11 @@ const StoryWrapper = ({
 }: {
   children: ReactNode;
   theme: "system" | "light" | "dark";
-}) => <ThemeProvider defaultTheme={theme}>{children}</ThemeProvider>;
+}) => (
+  <ThemeProvider defaultTheme={theme}>
+    <div className="h-screen">{children}</div>
+  </ThemeProvider>
+);
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages, "en");
 
