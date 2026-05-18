@@ -71,6 +71,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `helperText`              | Optional   | `string` &#124; `ReactNode`                     | `-`                                        | The helper text to display below the input                                                                                                                                                                          |
 | `inputText`               | Optional   | `Function`                                      | `-`                                        | Required if `optionText` is a custom Component, this function must return the text displayed for the current selection.                                                                                             |
 | `isPending`               | Optional   | `boolean`                                       | `false`                                    | If `true`, the component will display a loading indicator.                                                                                                                                                          |
+| `isOptionEqualToValue`    | Optional   | `(option, value) => boolean`                    | `areIdsEqual`                              | Custom equality check between a choice value and the current field value. Useful when IDs are compared across types (e.g. number vs string).                                                                        |
 | `label`                   | Optional   | `string` &#124; `ReactNode`                     | `-`                                        | The label to display for the input                                                                                                                                                                                  |
 | `matchSuggestion`         | Optional   | `Function`                                      | `-`                                        | Required if `optionText` is a React element. Function returning a boolean indicating whether a choice matches the filter. `(filter, choice) => boolean`                                                             |
 | `modal`                   | Optional   | `boolean`                                       | `false`                                    | If `true`, the popover will be displayed as a modal                                                                                                                                                                 |
@@ -340,6 +341,18 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `isOptionEqualToValue`
+
+A custom comparator function called with `(choiceValue, fieldValue)` that returns `true` when they should be considered equal. By default the component uses `areIdsEqual`, which does a loose `==` comparison so string and number IDs match. Override this when you need strict equality or a domain-specific comparison.
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  isOptionEqualToValue={(option, value) => option.id === value.id}
+/>
+```
 
 ## `handleHomeEndKeys`
 

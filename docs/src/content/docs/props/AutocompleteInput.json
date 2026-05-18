@@ -2,6 +2,12 @@
   "name": "AutocompleteInput",
   "props": [
     {
+      "name": "isOptionEqualToValue",
+      "type": "(option: unknown, value: unknown) => boolean",
+      "optional": true,
+      "comment": "Custom equality check between a choice value and the current field value; defaults to areIdsEqual (loose ==)"
+    },
+    {
       "name": "handleHomeEndKeys",
       "type": "boolean",
       "optional": true,
