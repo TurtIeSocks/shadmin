@@ -82,6 +82,23 @@ export const NoIcon = () => (
   </SidebarWrapper>
 );
 
+export const WithTooltipProps = () => (
+  <SidebarWrapper>
+    <MenuItemLink
+      to="/posts"
+      primaryText="Posts"
+      leftIcon={<Book />}
+      tooltipProps={{ delayDuration: 0 }}
+    />
+    <MenuItemLink
+      to="/settings"
+      primaryText="Settings"
+      leftIcon={<Settings />}
+      tooltipProps={{ delayDuration: 0, side: "bottom" }}
+    />
+  </SidebarWrapper>
+);
+
 export const WithKeyboardShortcutRepresentation = () => (
   <SidebarWrapper>
     <MenuItemLink

@@ -30,6 +30,7 @@ On mobile, the component automatically closes the sidebar drawer after navigatio
 | `keyboardShortcutRepresentation` | Optional | `ReactNode`  | `<KeyboardShortcut />` | Display node rendered after the label for the shortcut  |
 | `leftIcon`                       | Optional | `ReactNode`  | —       | Icon rendered before the label                                     |
 | `onClick`                        | Optional | `() => void` | —       | Invoked after the default navigation                               |
+| `tooltipProps`                   | Optional | `Omit<TooltipProps, "children">` | — | Extra props forwarded to the wrapping `<Tooltip>`       |
 
 ## `keyboardShortcut`
 
@@ -61,6 +62,22 @@ import { MenuItemLink } from "@/components/admin";
   leftIcon={<Settings />}
   keyboardShortcut="mod+,"
   keyboardShortcutRepresentation="⌘,"
+/>;
+```
+
+## `tooltipProps`
+
+Extra props forwarded to the `<Tooltip>` that wraps the menu item. In collapsed-sidebar mode the tooltip always shows; in expanded mode it only shows when `tooltipProps` is explicitly provided. Use this to customize tooltip side, delay, or content.
+
+```tsx
+import { Settings } from "lucide-react";
+import { MenuItemLink } from "@/components/admin";
+
+<MenuItemLink
+  to="/settings"
+  primaryText="Settings"
+  leftIcon={<Settings />}
+  tooltipProps={{ delayDuration: 0, side: "bottom" }}
 />;
 ```
 
