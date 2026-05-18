@@ -60,6 +60,16 @@ import { BulkDeleteWithConfirmButton, BulkDeleteWithUndoButton } from '@/compone
 
 Additional props are passed to the underlying shadcn/ui `<Button>` component.
 
+## `icon`
+
+Replaces the default `<Trash />` shown alongside the label. Pass any React node — typically another lucide-react icon.
+
+```tsx
+import { Archive } from "lucide-react";
+
+<BulkDeleteButton icon={<Archive />} />
+```
+
 ## `label`
 
 By default, the label is the translation of the `ra.action.delete` key, which reads "Delete".

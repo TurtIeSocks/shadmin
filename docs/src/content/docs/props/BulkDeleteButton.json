@@ -1,4 +1,11 @@
 {
   "name": "BulkDeleteButton",
-  "props": []
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
 }

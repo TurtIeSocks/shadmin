@@ -66,6 +66,12 @@ export const CustomLabel = () => (
   </Wrapper>
 );
 
+export const CustomIcon = () => (
+  <Wrapper>
+    <BulkDeleteButton icon={<span>🗑️</span>} />
+  </Wrapper>
+);
+
 export const ResourceSpecificLabel = () => (
   <Wrapper
     i18nProvider={polyglotI18nProvider(
