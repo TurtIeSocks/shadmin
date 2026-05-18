@@ -54,6 +54,7 @@ You can optionally set the `target` prop to choose which window will the link tr
 | `defaultValue` | Optional | `any`       | -                   | Fallback when no value                |
 | `download`     | Optional | `string`    | -                   | Download attribute                    |
 | `empty`        | Optional | `ReactNode` | -                   | Placeholder when empty                |
+| `ping`         | Optional | `string`    | -                   | URLs to ping on click (passthrough)   |
 | `record`       | Optional | `object`    | Record from context | Explicit record                       |
 | `src`          | Optional | `string`    | -                   | Path within each file object to URL   |
 | `target`       | Optional | `string`    | -                   | Anchor target                         |

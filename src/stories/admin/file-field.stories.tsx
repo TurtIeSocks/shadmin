@@ -29,3 +29,14 @@ export const Basic = () => (
     <FileField source="attachments" src="src" title="title" />
   </Wrapper>
 );
+
+export const WithPing = () => (
+  <Wrapper>
+    <FileField
+      source="attachments"
+      src="src"
+      title="title"
+      ping="https://example.org/track-download"
+    />
+  </Wrapper>
+);

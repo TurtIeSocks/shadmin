@@ -14,6 +14,12 @@
       "comment": "The component to display when the field value is empty. Defaults to empty string."
     },
     {
+      "name": "ping",
+      "type": "string",
+      "optional": true,
+      "comment": "Space-separated list of URLs to which a `POST` request is sent when the link is followed. Passes through to the underlying `<a>` element."
+    },
+    {
       "name": "src",
       "type": "string",
       "optional": true,
