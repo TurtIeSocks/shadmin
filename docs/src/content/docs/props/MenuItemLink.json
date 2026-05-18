@@ -20,6 +20,12 @@
       "comment": "Keyboard shortcut string (e.g. `\"mod+k\"`, `\"shift+/\"`, `\"meta+s\"`). When pressed anywhere on the page, navigates to `to`. `mod` normalizes to `metaKey` on macOS, `ctrlKey` elsewhere."
     },
     {
+      "name": "keyboardShortcutRepresentation",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Visual representation of the keyboard shortcut rendered after the label. Defaults to `<KeyboardShortcut keyboardShortcut={keyboardShortcut} />`."
+    },
+    {
       "name": "onClick",
       "type": "() => void",
       "optional": true,

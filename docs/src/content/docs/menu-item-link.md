@@ -27,6 +27,7 @@ On mobile, the component automatically closes the sidebar drawer after navigatio
 | `primaryText`                    | Required | `ReactNode`  | —       | Label rendered next to `leftIcon`. Strings are not auto-translated |
 | `className`                      | Optional | `string`     | —       | Extra Tailwind classes appended to the menu button                 |
 | `keyboardShortcut`               | Optional | `string`     | —       | Global keyboard shortcut that triggers navigation to `to`          |
+| `keyboardShortcutRepresentation` | Optional | `ReactNode`  | `<KeyboardShortcut />` | Display node rendered after the label for the shortcut  |
 | `leftIcon`                       | Optional | `ReactNode`  | —       | Icon rendered before the label                                     |
 | `onClick`                        | Optional | `() => void` | —       | Invoked after the default navigation                               |
 
@@ -43,6 +44,23 @@ import { MenuItemLink } from "@/components/admin";
   primaryText="Settings"
   leftIcon={<Settings />}
   keyboardShortcut="mod+,"
+/>;
+```
+
+## `keyboardShortcutRepresentation`
+
+Overrides the visual badge rendered after the label for a `keyboardShortcut`. By default `<KeyboardShortcut keyboardShortcut={keyboardShortcut} />` is used (which renders platform-aware modifier symbols). Pass a custom `ReactNode` to use a different visual — for instance a plain string like `"⌘,"`:
+
+```tsx
+import { Settings } from "lucide-react";
+import { MenuItemLink } from "@/components/admin";
+
+<MenuItemLink
+  to="/settings"
+  primaryText="Settings"
+  leftIcon={<Settings />}
+  keyboardShortcut="mod+,"
+  keyboardShortcutRepresentation="⌘,"
 />;
 ```
 
