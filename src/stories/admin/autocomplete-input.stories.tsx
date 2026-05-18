@@ -312,6 +312,17 @@ export const WithMismatchedOptionTextAndValue = () => (
   </Wrapper>
 );
 
+export const WithEmptyText = () => (
+  <Wrapper>
+    <AutocompleteInput
+      source="tag_id"
+      choices={tags}
+      optionText="label"
+      emptyText="No tag"
+    />
+  </Wrapper>
+);
+
 export const WithClearOnBlur = () => (
   <Wrapper>
     <AutocompleteInput

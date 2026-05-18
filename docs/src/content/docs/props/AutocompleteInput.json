@@ -2,6 +2,12 @@
   "name": "AutocompleteInput",
   "props": [
     {
+      "name": "emptyText",
+      "type": "string",
+      "optional": true,
+      "comment": "Label of a '(none)' entry prepended when the field is not required, allowing users to clear the selection"
+    },
+    {
       "name": "clearOnBlur",
       "type": "boolean",
       "optional": true,

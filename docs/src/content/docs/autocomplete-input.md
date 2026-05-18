@@ -63,7 +63,7 @@ If you need to let users select more than one item in the list, check out the [`
 | `defaultValue`            | Optional   | `any`                                           | `''`                                       | The default value for the input                                                                                                                                                                                     |
 | `disabled`                | Optional   | `boolean`                                       | `false`                                    | If true, the input is disabled                                                                                                                                                                                      |
 | `disableValue`            | Optional   | `string`                                        | `disabled`                                 | Field marking disabled choices                                                                                                                                                                                      |
-| `emptyText`               | Optional   | `string`                                        | `''`                                       | The text to use for the empty element                                                                                                                                                                               |
+| `emptyText`               | Optional   | `string`                                        | `''`                                       | The text to use for the empty element. When non-empty, prepends a "(none)" choice for non-required fields.                                                                                                          |
 | `emptyValue`              | Optional   | `any`                                           | `''`                                       | The value to use for the empty element                                                                                                                                                                              |
 | `filterToQuery`           | Optional   | `string` => `Object`                            | `q => ({ q })`                             | How to transform the searchText into a parameter for the data provider                                                                                                                                              |
 | `format`                  | Optional   | `Function`                                      | `-`                                        | Callback taking the value from the form state, and returning the input value.                                                                                                                                       |
@@ -339,6 +339,18 @@ const BookCreateEdit = () => (
 If you want to customize the label of the "Create XXX" option, use the `createItemLabel` prop.
 
 If you just need to ask users for a single string to create the new option, you can use the `onCreate` prop instead.
+
+## `emptyText`
+
+When set, prepends a special "(none)" entry at the top of the dropdown for non-required fields. Selecting this entry sets the field value to `emptyValue` (defaults to `""`). Useful when users need a way to explicitly clear a previously chosen value.
+
+```jsx
+<AutocompleteInput
+  source="category"
+  choices={choices}
+  emptyText="No category"
+/>
+```
 
 ## `clearOnBlur`
 
