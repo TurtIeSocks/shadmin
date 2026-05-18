@@ -30,7 +30,7 @@ export const AuthErrorScreen = ({
       )}
       {...rest}
     >
-      <div className="text-center pt-4 pb-4 opacity-50">
+      <div className="flex flex-col items-center text-center pt-4 pb-4 opacity-50">
         {icon}
         <h5 className="text-secondary-foreground text-2xl mt-3">
           {translate(textPrimary, { _: textPrimary })}

@@ -7,6 +7,7 @@ import { AccessDenied } from "@/components/admin/access-denied";
 export default {
   title: "UI & Layout/AccessDenied",
   parameters: {
+    layout: "fullscreen",
     docs: {
       codePanel: true,
     },
