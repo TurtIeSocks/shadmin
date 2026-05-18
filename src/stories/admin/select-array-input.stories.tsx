@@ -107,6 +107,22 @@ export const DisabledChoice = () => (
   </Wrapper>
 );
 
+export const WithOnCreate = () => (
+  <Wrapper>
+    <SelectArrayInput
+      source="tags"
+      choices={tags}
+      onCreate={async (filter) => {
+        const name = filter ?? "New Tag";
+        return { id: name.toLowerCase().replace(/\s+/g, "-"), name };
+      }}
+      createLabel="Add a new tag"
+      createItemLabel='Add "%{item}" as a tag'
+    />
+    <FormValues />
+  </Wrapper>
+);
+
 export const WithInputLabelProps = () => (
   <Wrapper>
     <SelectArrayInput

@@ -36,6 +36,12 @@
       "type": "ComponentProps<typeof FormLabel>",
       "optional": true,
       "comment": "Props forwarded to the FormLabel element rendered above the trigger button (e.g. className, style)."
+    },
+    {
+      "name": "onCreate",
+      "type": "(filter?: string) => Promise<{ id: any; [key: string]: any }>",
+      "optional": true,
+      "comment": "Lightweight callback alternative to create; called with the filter string when the create entry is clicked, should return a new record whose id is then appended to the selection."
     }
   ]
 }

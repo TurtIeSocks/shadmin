@@ -48,6 +48,7 @@ const record = {
 | `createLabel`     | Optional   | `string`                                      | `ra.action.create`      | Hint label for the create menu entry when the filter is empty     |
 | `createValue`     | Optional   | `string`                                      | `@@ra-create`           | Sentinel value that tags the create option in the options list    |
 | `InputLabelProps` | Optional   | `ComponentProps<typeof FormLabel>`            | -                       | Props forwarded directly to the label element above the trigger   |
+| `onCreate`        | Optional   | `(filter?: string) => Promise<{ id, name }>` | -                       | Lightweight callback to create a new choice without a full dialog |
 | `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
 | `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
 | `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
@@ -136,6 +137,23 @@ const choices = [
   { id: "people", name: "People", disabled: true },
 ];
 <SelectArrayInput source="tags" choices={choices} />;
+```
+
+## `onCreate`
+
+Lightweight callback alternative to [`create`](#create). Called with the current filter string when the user clicks the create menu entry. Return a new record (must include `id` and the field used by `optionText`) and the component appends its id to the selected values automatically.
+
+Use `onCreate` for simple one-step creation (e.g. a `prompt()` or a quick API call). For complex creation UI, use [`create`](#create) instead.
+
+```jsx
+<SelectArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={async (filter) => {
+    const newTag = await dataProvider.create("tags", { data: { name: filter } });
+    return newTag.data;
+  }}
+/>
 ```
 
 ## `InputLabelProps`
