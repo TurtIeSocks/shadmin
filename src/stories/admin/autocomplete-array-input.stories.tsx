@@ -85,6 +85,14 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithClearOnBlur = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput source="tags" choices={choices} clearOnBlur />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 Basic.args = {
   theme: "system",
 };

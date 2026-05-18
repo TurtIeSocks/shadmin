@@ -67,6 +67,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `parse`           | Optional   | `function`                       | -                     | Function to convert the value from the form to the value sent to the API                                                                |
 | `placeholder`     | Optional   | `string`                         | 'Search…'             | Input placeholder                                                                                                                       |
 | `translateChoice` | Optional   | `boolean`                        | `!isFromReference`    | Translate labels                                                                                                                        |
+| `clearOnBlur`     | Optional   | `boolean`                        | `false`               | If true, clears the filter text in the input when the input loses focus                                                                 |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -148,6 +149,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `clearOnBlur`
+
+When `true`, the filter text typed in the search input is cleared when the input loses focus. This means if the user opens the dropdown, types to narrow results, then clicks away without selecting, the filter resets to empty.
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  clearOnBlur
+/>
 ```
 
 ## Working With Object Values
