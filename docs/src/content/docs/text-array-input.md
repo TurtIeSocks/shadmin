@@ -31,6 +31,7 @@ Users type text and press Enter to add items. Items appear as removable badges. 
 | `format`       | Optional | `function`                 | -                      | Callback to convert API value to form value    |
 | `helperText`   | Optional | `ReactNode`                | -                      | Help text displayed below the input            |
 | `label`        | Optional | `string \| false`          | Inferred from `source` | Custom label, or `false` to hide it            |
+| `options`      | Optional | `string[]`                 | -                      | Preset suggestion strings shown in a dropdown  |
 | `parse`        | Optional | `function`                 | -                      | Callback to convert form value to API value    |
 | `placeholder`  | Optional | `string`                   | -                      | Input placeholder (shown when no values exist) |
 | `readOnly`     | Optional | `boolean`                  | -                      | Make the input read-only                       |
@@ -43,6 +44,19 @@ Users type text and press Enter to add items. Items appear as removable badges. 
 | Enter     | Add the typed text as a new value           |
 | Backspace | Remove the last value (when input is empty) |
 | Escape    | Blur the input                              |
+
+## `options`
+
+An array of preset suggestion strings. When the user types in the input, matching suggestions appear in a dropdown and can be selected by clicking — this adds the suggestion to the value array without pressing Enter.
+
+Only suggestions that contain the typed text (case-insensitive) and are not already selected are shown.
+
+```jsx
+<TextArrayInput
+  source="tags"
+  options={["react", "typescript", "javascript", "css", "html"]}
+/>
+```
 
 ### Format and Parse
 

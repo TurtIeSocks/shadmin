@@ -154,3 +154,18 @@ export const WithFormatAndParse = ({
   </StoryWrapper>
 );
 Object.assign(WithFormatAndParse, storyArgs);
+
+export const WithOptions = ({
+  theme,
+}: {
+  theme: "system" | "light" | "dark";
+}) => (
+  <StoryWrapper theme={theme} defaultValues={{ id: 1, tags: [] }}>
+    <TextArrayInput
+      source="tags"
+      options={["react", "typescript", "javascript", "css", "html"]}
+      placeholder="Type to search suggestions..."
+    />
+  </StoryWrapper>
+);
+Object.assign(WithOptions, storyArgs);
