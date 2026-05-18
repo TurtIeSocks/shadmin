@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   CoreAdminContext,
   RecordContextProvider,
@@ -64,6 +64,15 @@ export const CustomLabel = () => (
     <ShowButton label="View Details" />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = useRef<HTMLAnchorElement>(null);
+  return (
+    <Wrapper>
+      <ShowButton ref={ref} />
+    </Wrapper>
+  );
+};
 
 export const CustomIcon = () => (
   <Wrapper>

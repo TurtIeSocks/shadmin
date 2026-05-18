@@ -73,3 +73,14 @@ You can also pass a custom string or translation key directly via the `label` pr
 <ShowButton label="View details" />
 <ShowButton label="resources.posts.action.show" />
 ```
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+
+const ref = useRef<HTMLAnchorElement>(null);
+<ShowButton ref={ref} />
+```
