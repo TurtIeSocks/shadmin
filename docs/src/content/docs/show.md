@@ -100,6 +100,7 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `children`              | Optional&nbsp;\* | `ReactNode`                  |              | The components rendering the record fields                                           |
 | `render`                | Optional&nbsp;\* | `(showContext) => ReactNode` |              | A function rendering the record fields, receive the show context as its argument     |
 | `actions`               | Optional         | `ReactElement`               |              | The actions to display in the toolbar                                                |
+| `aside`                 | Optional         | `ReactNode`                  |              | Side panel rendered alongside the record content                                     |
 | `className`             | Optional         | `string`                     |              | passed to the root component                                                         |
 | `disableAuthentication` | Optional         | `boolean`                    |              | Set to `true` to disable the authentication check                                    |
 | `disableBreadcrumb`     | Optional         | `boolean`                    | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
@@ -110,6 +111,30 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `title`                 | Optional         | `string                      | ReactElement | false`                                                                               |                                                                 | The title to display in the App Bar |
 
 `*` You must provide either `children` or `render`.
+
+## `aside`
+
+Pass any React node as `aside` to render a side panel next to the record content. The aside floats to the right in a flex row — the content takes `flex-1` and the aside gets a fixed `w-64` width.
+
+```tsx
+import { Show, SimpleShowLayout, RecordField } from "@/components/admin";
+
+const ShowNotes = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Related actions</p>
+    <p>Use the Edit button in the toolbar to modify this record.</p>
+  </div>
+);
+
+export const PostShow = () => (
+  <Show aside={<ShowNotes />}>
+    <SimpleShowLayout>
+      <RecordField source="title" />
+      <RecordField source="body" />
+    </SimpleShowLayout>
+  </Show>
+);
+```
 
 ## Live Updates
 

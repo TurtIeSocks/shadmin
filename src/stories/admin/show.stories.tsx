@@ -74,6 +74,31 @@ const PostShowNoActions = () => (
   </Show>
 );
 
+const ShowNotes = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Related actions</p>
+    <p>Use the Edit button in the toolbar to modify this record.</p>
+  </div>
+);
+
+const PostShowWithAside = () => (
+  <Show aside={<ShowNotes />}>
+    <SimpleShowLayout>
+      <RecordField source="id" />
+      <RecordField source="title" />
+      <RecordField source="body" />
+    </SimpleShowLayout>
+  </Show>
+);
+
+export const WithAside = () => (
+  <TestMemoryRouter initialEntries={["/posts/1/show"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} show={PostShowWithAside} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const NoActions = () => (
   <TestMemoryRouter initialEntries={["/posts/1/show"]}>
     <Admin dataProvider={dataProvider}>
