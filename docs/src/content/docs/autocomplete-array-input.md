@@ -79,6 +79,7 @@ The form value for the source must be an array of the selected values, e.g.
 | `limitChoicesToValue` | Optional  | `boolean`                        | `false`               | If true, the dropdown shows only already-selected choices                                                                               |
 | `matchSuggestion` | Optional   | `(filter, choice) => boolean`    | -                     | Custom filter function replacing the default substring match; required when `optionText` is a React element                             |
 | `noOptionsText`   | Optional   | `ReactNode`                      | `ra.navigation.no_results` | Content shown in the dropdown when no choices match the current filter                                                            |
+| `onCreate`        | Optional   | `(filter) => object \| Promise`  | -                     | Callback invoked with the filter text when the user picks the "create" item; returns or resolves the new choice object                  |
 | `validate`        | Optional   | `Validator \| Validator[]`       | -                     | Validation                                                                                                                              |
 
 `*` `source` and `choices` are optional inside `<ReferenceArrayInput>`.
@@ -160,6 +161,18 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput filterToQuery={filterToQuery} />
 </ReferenceArrayInput>;
+```
+
+## `onCreate`
+
+A simpler alternative to the `create` prop. Pass a callback `(filter) => newChoice | Promise<newChoice>` that receives the current filter text and returns (or resolves with) the new choice object. The returned object is automatically appended to the selection. Use `create` instead when you need a full custom UI (e.g. a dialog with multiple fields).
+
+```jsx
+<AutocompleteArrayInput
+  source="tags"
+  choices={choices}
+  onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+/>
 ```
 
 ## `noOptionsText`

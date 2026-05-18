@@ -85,6 +85,18 @@ export const WithMismatchedOptionTextAndValue = () => (
   </StoryWrapper>
 );
 
+export const WithOnCreate = () => (
+  <StoryWrapper theme="system">
+    <SimpleForm>
+      <AutocompleteArrayInput
+        source="tags"
+        choices={choices}
+        onCreate={(filter) => ({ id: String(filter).toLowerCase(), name: String(filter) })}
+      />
+    </SimpleForm>
+  </StoryWrapper>
+);
+
 export const WithNoOptionsText = () => (
   <StoryWrapper theme="system">
     <SimpleForm>

@@ -72,6 +72,12 @@
       "type": "React.ReactNode",
       "optional": true,
       "comment": "Content shown in the dropdown when no choices match the current filter; defaults to ra.navigation.no_results"
+    },
+    {
+      "name": "onCreate",
+      "type": "(filter: string) => object | Promise<object>",
+      "optional": true,
+      "comment": "Callback invoked with the current filter text when the user picks the create item; returns the new choice object"
     }
   ]
 }
