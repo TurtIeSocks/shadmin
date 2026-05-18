@@ -42,6 +42,7 @@ const record = {
 | `source`          | Required\* | `string`                                      | -          | Field name (inferred in ReferenceArrayInput)                                                  |
 | `choices`         | Required\* | `Object[]`                                    | -          | List of items. Required if not inside a ReferenceArrayInput.                                  |
 | `className`       | Optional   | `string`                                      | -          | Wrapper classes                                                                               |
+| `create`          | Optional   | `ReactElement`                                | -          | React element rendered as an inline-create entry at the bottom of the menu                   |
 | `defaultValue`    | Optional   | `any[]`                                       | `[]`       | Default value                                                                                 |
 | `disabled`        | Optional   | `boolean`                                     | -          | Disable input                                                                                 |
 | `disableValue`    | Optional   | `string`                                      | `disabled` | Field marking disabled choices                                                                |
@@ -130,6 +131,32 @@ const choices = [
   { id: "people", name: "People", disabled: true },
 ];
 <SelectArrayInput source="tags" choices={choices} />;
+```
+
+## `create`
+
+A React element rendered as a special entry at the bottom of the options list. When the user clicks it, ra-core's `useSupportCreateSuggestion` hook mounts the element (typically a dialog or inline form) and appends the newly-created record id to the selection.
+
+Use `create` when you need full UI control over the creation form. For a simple callback, prefer [`onCreate`](#oncreate).
+
+```jsx
+import { useState } from "react";
+
+const CreateTag = ({ onClose }) => {
+  const [name, setName] = useState("");
+  return (
+    <div className="p-2">
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <button onClick={() => onClose(name)}>Add</button>
+    </div>
+  );
+};
+
+<SelectArrayInput
+  source="tags"
+  choices={choices}
+  create={<CreateTag />}
+/>
 ```
 
 ## Alternatives

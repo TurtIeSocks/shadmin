@@ -106,3 +106,14 @@ export const DisabledChoice = () => (
     <FormValues />
   </Wrapper>
 );
+
+export const WithCreate = () => (
+  <Wrapper>
+    <SelectArrayInput
+      source="tags"
+      choices={tags}
+      create={<div className="px-3 py-2 text-sm text-muted-foreground italic">+ Create new tag (dialog would open here)</div>}
+    />
+    <FormValues />
+  </Wrapper>
+);

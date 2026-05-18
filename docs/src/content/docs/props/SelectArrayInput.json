@@ -1,4 +1,11 @@
 {
   "name": "SelectArrayInput",
-  "props": []
+  "props": [
+    {
+      "name": "create",
+      "type": "ReactElement",
+      "optional": true,
+      "comment": "React element rendered as an inline-create entry at the bottom of the options menu."
+    }
+  ]
 }
