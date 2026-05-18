@@ -77,6 +77,7 @@ export const Layout = (props: { children: ReactNode }) => {
 | Prop      | Required | Type                              | Default          | Description                                             |
 | --------- | -------- | --------------------------------- | ---------------- | ------------------------------------------------------- |
 | `appBar`  | Optional | `ComponentType<AppBarProps>`      | `<AppBar />`     | Replace the header component rendered above the content |
+| `error`   | Optional | `ComponentType<ErrorProps>`       | `<Error />`      | Replace the error-boundary fallback component           |
 
 When rendering the `<Layout>` component, Shadcn Admin Kit passes it a single prop, `children`, which is the main content of the page (the current resource view, depending on the current route).
 
@@ -98,6 +99,24 @@ const MyLayout = (props) => <Layout {...props} appBar={MyAppBar} />;
 ```
 
 Pass `MyLayout` to `<Admin layout={MyLayout}>` to apply it globally.
+
+## `error`
+
+Pass a custom component to replace the default [`<Error />`](./error) rendered inside the `ErrorBoundary` fallback. The replacement receives `error`, `errorInfo`, and `resetErrorBoundary` props.
+
+```tsx
+import { Layout } from "@/components/admin";
+import type { ErrorProps } from "@/components/admin/error";
+
+const MyError = ({ error, resetErrorBoundary }: ErrorProps) => (
+  <div className="p-8 text-center">
+    <p className="text-destructive">{error?.message}</p>
+    <button onClick={resetErrorBoundary}>Try again</button>
+  </div>
+);
+
+const MyLayout = (props) => <Layout {...props} error={MyError} />;
+```
 
 ## Building a Custom Layout
 

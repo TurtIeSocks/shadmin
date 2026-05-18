@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { AppBar, Layout } from "@/components/admin";
+import type { ErrorProps } from "@/components/admin/error";
 import { CoreAdminContext } from "ra-core";
 
 export default {
@@ -43,5 +44,22 @@ const BrandedAppBar = () => (
 export const CustomAppBar = () => (
   <CoreAdminContext>
     <Layout appBar={BrandedAppBar}>Content</Layout>
+  </CoreAdminContext>
+);
+
+const MinimalError = ({ error, resetErrorBoundary }: ErrorProps) => (
+  <div className="p-8 text-center space-y-2">
+    <p className="text-destructive font-medium">{error?.message ?? "Unknown error"}</p>
+    <button className="underline text-sm" onClick={resetErrorBoundary}>Try again</button>
+  </div>
+);
+
+const Broken = () => { throw new Error("Intentional error"); };
+
+export const CustomError = () => (
+  <CoreAdminContext>
+    <Layout error={MinimalError}>
+      <Broken />
+    </Layout>
   </CoreAdminContext>
 );

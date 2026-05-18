@@ -6,6 +6,12 @@
       "type": "ComponentType<AppBarProps>",
       "optional": true,
       "comment": "Replaces the default `<AppBar />` rendered at the top of the content area."
+    },
+    {
+      "name": "error",
+      "type": "ComponentType<ErrorProps>",
+      "optional": true,
+      "comment": "Replaces the default `<Error>` component rendered by the ErrorBoundary fallback."
     }
   ]
 }
