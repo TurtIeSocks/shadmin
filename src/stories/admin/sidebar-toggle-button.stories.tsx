@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from "react";
+import { useRef, type PropsWithChildren } from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { SidebarToggleButton, ThemeProvider } from "@/components/admin";
 
@@ -28,3 +28,12 @@ export const CustomClass = () => (
     <SidebarToggleButton className="size-10" />
   </Wrapper>
 );
+
+export const WithRef = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return (
+    <Wrapper>
+      <SidebarToggleButton ref={ref} />
+    </Wrapper>
+  );
+};

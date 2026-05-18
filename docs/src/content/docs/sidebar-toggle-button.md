@@ -26,6 +26,21 @@ It is a thin wrapper around the shadcn/ui `<SidebarTrigger>` and therefore requi
 
 ## Props
 
-| Prop        | Required | Type     | Default                  | Description                                    |
-| ----------- | -------- | -------- | ------------------------ | ---------------------------------------------- |
-| `className` | Optional | `string` | `scale-125 sm:scale-100` | Extra Tailwind classes appended to the trigger |
+| Prop        | Required | Type                     | Default                  | Description                                    |
+| ----------- | -------- | ------------------------ | ------------------------ | ---------------------------------------------- |
+| `className` | Optional | `string`                 | `scale-125 sm:scale-100` | Extra Tailwind classes appended to the trigger |
+| `ref`       | Optional | `Ref<HTMLButtonElement>` | -                        | Forwarded to the underlying `<Button>`         |
+
+## `ref`
+
+Forwards a ref to the underlying `<Button>` element.
+
+```tsx
+import { useRef } from "react";
+import { SidebarToggleButton } from "@/components/admin";
+
+const CustomHeader = () => {
+  const ref = useRef<HTMLButtonElement>(null);
+  return <SidebarToggleButton ref={ref} />;
+};
+```
