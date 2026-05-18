@@ -115,6 +115,31 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 
 `*` You must provide either `children` or `render`.
 
+## `render`
+
+An alternative to `children`. Pass a function receiving the full [`ShowControllerResult`](https://marmelab.com/ra-core/useshowcontroller/) and returning a React node:
+
+```tsx
+import { Show } from "@/components/admin";
+
+export const PostShow = () => (
+  <Show
+    render={({ record, isPending }) =>
+      isPending ? (
+        <p>Loading…</p>
+      ) : (
+        <div>
+          <h1>{record?.title}</h1>
+          <p>{record?.body}</p>
+        </div>
+      )
+    }
+  />
+);
+```
+
+When `render` is provided, `children` is ignored.
+
 ## `offline`
 
 When the browser goes offline while the record is still loading (`isPaused && isPending`), `<Show>` renders a default "Offline" message. Override it with any `ReactNode`:

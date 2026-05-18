@@ -138,3 +138,26 @@ export const WithOffline = () => (
     </Admin>
   </TestMemoryRouter>
 );
+
+const PostShowWithRender = () => (
+  <Show
+    render={({ record, isPending }) =>
+      isPending ? (
+        <p className="p-4 text-muted-foreground">Loading…</p>
+      ) : (
+        <div className="p-4 flex flex-col gap-2">
+          <h2 className="text-xl font-semibold">{record?.title}</h2>
+          <p className="text-sm text-muted-foreground">{record?.body}</p>
+        </div>
+      )
+    }
+  />
+);
+
+export const WithRender = () => (
+  <TestMemoryRouter initialEntries={["/posts/1/show"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={ListGuesser} show={PostShowWithRender} />
+    </Admin>
+  </TestMemoryRouter>
+);
