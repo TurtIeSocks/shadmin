@@ -65,6 +65,30 @@ const AuthorListWithLink = () => (
   </List>
 );
 
+const AuthorListOffline = () => (
+  <List>
+    <DataTable>
+      <DataTable.Col source="name" />
+      <DataTable.Col label="Number of books">
+        <ReferenceManyCount
+          reference="books"
+          target="author_id"
+          offline={<span className="text-muted-foreground italic">—</span>}
+        />
+      </DataTable.Col>
+    </DataTable>
+  </List>
+);
+
+export const WithOfflineState = () => (
+  <TestMemoryRouter initialEntries={["/authors"]}>
+    <Admin dataProvider={dataProvider}>
+      <Resource name="authors" list={AuthorListOffline} show={ShowGuesser} />
+      <Resource name="books" list={ListGuesser} />
+    </Admin>
+  </TestMemoryRouter>
+);
+
 export const WithLink = () => (
   <TestMemoryRouter initialEntries={["/authors"]}>
     <Admin dataProvider={dataProvider}>

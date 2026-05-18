@@ -35,6 +35,18 @@ You can get a count of a subset of the related records by passing a `filter` pro
 If you need to count all the records of a given resource, use [the `<Count>` component](./count) instead.
 :::
 
+## `offline`
+
+Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
+
+```jsx
+<ReferenceManyCount
+  reference="comments"
+  target="post_id"
+  offline={<span className="text-muted-foreground italic">—</span>}
+/>
+```
+
 ## Props
 
 | Prop        | Required | Type       | Description                                   |
@@ -44,4 +56,5 @@ If you need to count all the records of a given resource, use [the `<Count>` com
 | `filter`    | Optional | `object`   | Extra filter values                           |
 | `link`      | Optional | `boolean`  | Make count a link                             |
 | `record`    | Optional | `RaRecord` | Record providing id (from context if omitted) |
+| `offline`   | Optional | `ReactNode` | Element rendered when the network is offline  |
 | `source`    | Optional | `string`   | Source field of current record (default `id`) |
