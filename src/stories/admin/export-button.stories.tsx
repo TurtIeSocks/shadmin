@@ -2,6 +2,7 @@ import React from "react";
 import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
+import { FileSpreadsheet } from "lucide-react";
 import {
   Admin,
   ExportButton,
@@ -64,6 +65,10 @@ export const Basic = () => <Wrapper />;
 
 export const CustomLabel = () => (
   <Wrapper actions={<ExportButton label="Download CSV" />} />
+);
+
+export const CustomIcon = () => (
+  <Wrapper actions={<ExportButton icon={<FileSpreadsheet />} />} />
 );
 
 export const ResourceSpecificLabel = () => (

@@ -40,6 +40,17 @@ It calls `dataProvider.getList()` with `perPage=maxResults` then invokes `export
 | `meta`       | Optional | `any`       | -                  | Provider meta parameter  |
 | `onClick`    | Optional | `(e)=>void` | -                  | Extra click handler      |
 
+## `icon`
+
+Replaces the default `<Download />` shown alongside the label. Pass any lucide-react icon to convey a different action.
+
+```tsx
+import { FileSpreadsheet } from "lucide-react";
+import { ExportButton } from "@/components/admin";
+
+<ExportButton icon={<FileSpreadsheet />} />
+```
+
 ## `label`
 
 By default, the label is the translation of the `ra.action.export` key, which reads "Export".
