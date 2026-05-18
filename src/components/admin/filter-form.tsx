@@ -21,6 +21,9 @@ interface FilterElementProps {
   size?: string;
   label?: React.ReactNode;
   disabled?: boolean;
+  resource?: string;
+  record?: Record<string, UnknownValue>;
+  helperText?: React.ReactNode | false;
 }
 
 /**
@@ -130,7 +133,7 @@ const StyledForm = (props: React.FormHTMLAttributes<HTMLFormElement>) => {
     <form
       {...props}
       className={cn(
-        "flex flex-row justify-start items-end gap-x-2 gap-y-3 pointer-events-none flex-wrap",
+        "flex flex-col sm:flex-row justify-start items-end gap-x-2 gap-y-3 pointer-events-none flex-wrap",
         "[&_.form-helper-text]:hidden",
         props.className,
       )}
@@ -156,20 +159,16 @@ export const FilterFormInput = (inProps: FilterFormInputProps) => {
   const { filterElement, handleHide, className } = inProps;
   const resource = useResourceContext(inProps);
   const translate = useTranslate();
-  const { alwaysOn: _, ...filterElementProps } = filterElement.props;
-  const filterElementType =
-    typeof filterElement === "string" ? filterElement : filterElement.type;
 
   return (
     <div
       data-source={filterElement.props.source}
       className={cn(
-        "filter-field flex flex-row pointer-events-auto gap-2 relative",
+        "filter-field flex flex-row pointer-events-auto gap-2 relative w-full sm:w-auto",
         className,
       )}
     >
-      {React.createElement(filterElementType, {
-        ...filterElementProps,
+      {React.cloneElement(filterElement, {
         resource,
         record: emptyRecord,
         size: filterElement.props.size ?? "small",
