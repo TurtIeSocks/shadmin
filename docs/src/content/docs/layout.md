@@ -78,6 +78,7 @@ export const Layout = (props: { children: ReactNode }) => {
 | --------- | -------- | --------------------------------- | ---------------- | ------------------------------------------------------- |
 | `appBar`  | Optional | `ComponentType<AppBarProps>`      | `<AppBar />`     | Replace the header component rendered above the content |
 | `error`   | Optional | `ComponentType<ErrorProps>`       | `<Error />`      | Replace the error-boundary fallback component           |
+| `menu`    | Optional | `ComponentType<MenuProps>`        | `<Menu />`       | Replace the menu component rendered inside the sidebar  |
 
 When rendering the `<Layout>` component, Shadcn Admin Kit passes it a single prop, `children`, which is the main content of the page (the current resource view, depending on the current route).
 
@@ -99,6 +100,23 @@ const MyLayout = (props) => <Layout {...props} appBar={MyAppBar} />;
 ```
 
 Pass `MyLayout` to `<Admin layout={MyLayout}>` to apply it globally.
+
+## `menu`
+
+Pass a custom component to replace the default [`<Menu />`](./menu) rendered inside the sidebar. The replacement receives the same `MenuProps` interface.
+
+```tsx
+import { Layout, MenuItemLink } from "@/components/admin";
+import { Star } from "lucide-react";
+
+const MyMenu = () => (
+  <>
+    <MenuItemLink to="/featured" primaryText="Featured" leftIcon={<Star />} />
+  </>
+);
+
+const MyLayout = (props) => <Layout {...props} menu={MyMenu} />;
+```
 
 ## `error`
 

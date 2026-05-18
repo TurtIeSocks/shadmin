@@ -1,7 +1,8 @@
 import { lazy } from "react";
-import { AppBar, Layout } from "@/components/admin";
+import { AppBar, Layout, MenuItemLink } from "@/components/admin";
 import type { ErrorProps } from "@/components/admin/error";
 import { CoreAdminContext } from "ra-core";
+import { Star } from "lucide-react";
 
 export default {
   title: "UI & Layout/Layout",
@@ -44,6 +45,16 @@ const BrandedAppBar = () => (
 export const CustomAppBar = () => (
   <CoreAdminContext>
     <Layout appBar={BrandedAppBar}>Content</Layout>
+  </CoreAdminContext>
+);
+
+const StarMenu = () => (
+  <MenuItemLink to="/featured" primaryText="Featured" leftIcon={<Star />} />
+);
+
+export const CustomMenu = () => (
+  <CoreAdminContext>
+    <Layout menu={StarMenu}>Content</Layout>
   </CoreAdminContext>
 );
 
