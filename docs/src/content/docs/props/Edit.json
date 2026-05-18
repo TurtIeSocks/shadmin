@@ -2,16 +2,16 @@
   "name": "Edit",
   "props": [
     {
-      "name": "aside",
-      "type": "ReactNode",
-      "optional": true,
-      "comment": "Side panel rendered alongside the form."
-    },
-    {
       "name": "actions",
       "type": "ReactNode",
       "optional": true,
       "comment": ""
+    },
+    {
+      "name": "aside",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Side panel rendered alongside the form."
     },
     {
       "name": "children",
@@ -24,6 +24,12 @@
       "type": "string",
       "optional": true,
       "comment": ""
+    },
+    {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the root element wrapping the form content. Defaults to 'div'."
     },
     {
       "name": "disableBreadcrumb",

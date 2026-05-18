@@ -57,6 +57,7 @@ You can customize the `<Edit>` component using the following props:
 | `render`                | Optional&nbsp;\* | `function`                                    | -            | Function to render the form, receives the editContext as argument                    |
 | `actions`               | Optional         | `ReactNode`                                   | -            | Override the actions toolbar with a custom component                                 |
 | `aside`                 | Optional         | `ReactNode`                                   | -            | Side panel rendered alongside the form                                               |
+| `component`             | Optional         | `ElementType`                                 | `"div"`      | Override the root element wrapping the form content                                  |
 | `className`             | Optional         | `string`                                      | -            | Passed to the root component                                                         |
 | `disableAuthentication` | Optional         | `boolean`                                     | `false`      | Disable the authentication check                                                     |
 | `disableBreadcrumb`     | Optional         | `boolean`                                     | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
@@ -71,6 +72,23 @@ You can customize the `<Edit>` component using the following props:
 | `transform`             | Optional         | `function`                                    | -            | Transform the form data before calling `dataProvider.update()`                       |
 
 `*` You must provide either `children` or `render`.
+
+## `component`
+
+By default, `<Edit>` wraps the form content in a `<div>`. Pass any React element type to `component` to replace it — for example a `<Card>`:
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+import { Card } from "@/components/ui/card";
+
+export const PostEdit = () => (
+  <Edit component={Card}>
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+```
 
 ## `aside`
 
