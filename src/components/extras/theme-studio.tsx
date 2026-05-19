@@ -13,7 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { ThemeModeToggle, useResolvedTheme } from "../admin";
+import { ThemeModeToggle } from "../admin";
+import { useResolvedTheme } from "@/hooks/use-theme";
 import { useThemes } from "../admin/themes-context";
 import { Separator } from "../ui/separator";
 import { ColorPicker } from "../ui/color-picker";

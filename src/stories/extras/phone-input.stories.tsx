@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { PhoneInput } from "@/components/admin";
+import { PhoneInput } from "@/components/extras";
 
 export default { title: "Data Edition/PhoneInput" };
 

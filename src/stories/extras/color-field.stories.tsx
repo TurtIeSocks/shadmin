@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { ColorField } from "@/components/admin";
+import { ColorField } from "@/components/extras";
 
 export default { title: "Data Display/ColorField" };
 

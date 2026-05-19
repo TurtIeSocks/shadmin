@@ -7,7 +7,8 @@ import {
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
-import { Admin, PivotGrid } from "@/components/admin";
+import { Admin } from "@/components/admin";
+import { PivotGrid } from "@/components/extras";
 import { List } from "@/components/admin/list";
 
 const i18nProvider = polyglotI18nProvider(

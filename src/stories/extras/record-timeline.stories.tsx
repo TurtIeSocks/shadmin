@@ -9,7 +9,8 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { PlusIcon, EditIcon, TrashIcon } from "lucide-react";
-import { Admin, RecordTimeline } from "@/components/admin";
+import { Admin } from "@/components/admin";
+import { RecordTimeline } from "@/components/extras";
 
 const i18nProvider = polyglotI18nProvider(
   () => defaultMessages,

@@ -11,12 +11,8 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
 
-import {
-  BulkEditDrawer,
-  NumberInput,
-  TextInput,
-  ThemeProvider,
-} from "@/components/admin";
+import { NumberInput, TextInput, ThemeProvider } from "@/components/admin";
+import { BulkEditDrawer } from "@/components/extras";
 
 export default { title: "Extras/BulkEditDrawer" };
 

@@ -4,12 +4,7 @@ import {
   TrendingUpIcon,
   UsersIcon,
 } from "lucide-react";
-import {
-  BarChart,
-  DonutChart,
-  MetricCard,
-  TrendChart,
-} from "@/components/admin";
+import { BarChart, DonutChart, MetricCard, TrendChart } from "@/components/extras";
 
 export default { title: "Extras/DashboardCharts" };
 

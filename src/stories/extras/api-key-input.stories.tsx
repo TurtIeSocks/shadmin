@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { ApiKeyInput } from "@/components/admin";
+import { ApiKeyInput } from "@/components/extras";
 
 export default {
   title: "Extras/ApiKeyInput",

@@ -8,7 +8,8 @@ import {
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
-import { Admin, CalendarList } from "@/components/admin";
+import { Admin } from "@/components/admin";
+import { CalendarList } from "@/components/extras";
 import { List } from "@/components/admin/list";
 
 // Seed events: a few records on today and surrounding days

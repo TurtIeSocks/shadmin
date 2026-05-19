@@ -1,15 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useRecordContext } from "ra-core";
-import {
-  Assistant,
-  type AssistantTransport,
-  PresenceBar,
-  type PresenceState,
-  type PresenceTransport,
-  RecordField,
-  Show,
-  SimpleShowLayout,
-} from "@/components/admin";
+import { RecordField, Show, SimpleShowLayout } from "@/components/admin";
+import { Assistant, type AssistantTransport, PresenceBar, type PresenceState, type PresenceTransport } from "@/components/extras";
 import { MdxField } from "@/components/mdx-editor";
 import "@mdxeditor/editor/style.css";
 import type { WorkspaceDocument } from "./documents-seed";

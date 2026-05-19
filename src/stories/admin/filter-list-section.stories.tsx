@@ -2,18 +2,8 @@ import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Search, Type } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
-import {
-  Admin,
-  DataTable,
-  FilterList,
-  FilterListItem,
-  FilterListSection,
-  FilterLiveForm,
-  List,
-  ListPagination,
-  ShowGuesser,
-  TextInput,
-} from "@/components/admin";
+import { Admin, DataTable, FilterList, FilterListItem, FilterListSection, List, ListPagination, ShowGuesser, TextInput } from "@/components/admin";
+import { FilterLiveForm } from "@/components/extras";
 import { Card } from "@/components/ui/card";
 
 export default {
