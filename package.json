@@ -77,7 +77,7 @@
     "ra-i18n-polyglot": "^5.14.0",
     "ra-language-english": "^5.14.0",
     "ra-language-french": "^5.14.0",
-    "radix-ui": "latest",
+    "radix-ui": "^1.4.3",
     "react": "^19.0.0",
     "react-day-picker": "^10.0.0",
     "react-dom": "^19.0.0",
