@@ -129,17 +129,14 @@ function ReferenceFieldView<ReferenceRecordType extends RaRecord = RaRecord>(
     loading,
   } = props;
   const referenceFieldContext = useReferenceFieldContext();
-  const { error, link, isLoading, referenceRecord } = referenceFieldContext;
+  const { error, link, isPending, referenceRecord } = referenceFieldContext;
   const getRecordRepresentation = useGetRecordRepresentation(reference);
   const translate = useTranslate();
 
   if (!referenceRecord && error && errorElement !== false) {
     return errorElement;
   }
-  // We explicitly check isLoading here as the record may not have an id for the reference,
-  // in which case, the query will not be enabled and isPending will be true
-  // isLoading checks that we are actually loading the reference record
-  if (isLoading && loading !== false) {
+  if (isPending && loading !== false) {
     return loading;
   }
   if (!referenceRecord && empty !== false) {
