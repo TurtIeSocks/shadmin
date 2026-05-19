@@ -1,4 +1,4 @@
-import type { EditBaseProps, EditControllerResult } from "ra-core";
+import type { EditBaseProps } from "ra-core";
 import {
   EditBase,
   Translate,
@@ -21,10 +21,7 @@ import { cn } from "@/lib/utils";
 import { ShowButton } from "@/components/admin/show-button";
 import { DeleteButton } from "./delete-button";
 
-interface EditProps
-  extends
-    EditViewProps,
-    Omit<EditBaseProps, "offline" | "error" | "render" | "children"> {}
+interface EditProps extends EditViewProps, EditBaseProps {}
 
 /**
  * A complete edit page with breadcrumb, title, and default actions.
@@ -57,10 +54,6 @@ function Edit({
   className,
   component,
   disableBreadcrumb,
-  emptyWhileLoading,
-  error,
-  offline,
-  render,
   title,
   ...rest
 }: EditProps) {
@@ -72,10 +65,6 @@ function Edit({
         className={className}
         component={component}
         disableBreadcrumb={disableBreadcrumb}
-        emptyWhileLoading={emptyWhileLoading}
-        error={error}
-        offline={offline}
-        render={render}
         title={title}
       >
         {children}
@@ -84,25 +73,10 @@ function Edit({
   );
 }
 
-const defaultOffline = (
-  <p className="text-sm text-muted-foreground p-4">
-    Offline — waiting for connection…
-  </p>
-);
-const defaultError = (
-  <p className="text-sm text-destructive p-4">
-    An error occurred while loading this record.
-  </p>
-);
-
 interface EditViewProps {
   aside?: ReactNode;
   component?: ElementType;
   disableBreadcrumb?: boolean;
-  emptyWhileLoading?: boolean;
-  error?: ReactNode;
-  offline?: ReactNode;
-  render?: (controllerState: EditControllerResult) => ReactNode;
   title?: ReactNode | string | false;
   actions?: ReactNode | false;
   children?: ReactNode;
@@ -118,10 +92,6 @@ function EditView({
   aside,
   component,
   disableBreadcrumb,
-  emptyWhileLoading,
-  error = defaultError,
-  offline = defaultOffline,
-  render,
   title,
   actions,
   className,
@@ -149,23 +119,6 @@ function EditView({
   const { hasShow } = useResourceDefinition({ resource });
   const hasDashboard = useHasDashboard();
 
-  const showOffline =
-    context.isPaused &&
-    context.isPending &&
-    offline !== undefined &&
-    offline !== false;
-  const showError = context.error && error !== false && error !== undefined;
-
-  if (
-    !context.record &&
-    context.isPending &&
-    emptyWhileLoading &&
-    !showOffline &&
-    !showError
-  ) {
-    return null;
-  }
-
   const resolvedActions =
     actions === false
       ? null
@@ -178,17 +131,9 @@ function EditView({
 
   const Wrapper = component ?? "div";
 
-  const finalContent = showOffline
-    ? offline
-    : showError
-      ? error
-      : render
-        ? render(context)
-        : context.record
-          ? children
-          : null;
-
-  const contentBlock = <Wrapper className="my-2">{finalContent}</Wrapper>;
+  const contentBlock = (
+    <Wrapper className="my-2">{context.record ? children : null}</Wrapper>
+  );
 
   const main = aside ? (
     <div className="flex gap-4">

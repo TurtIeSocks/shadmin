@@ -3,7 +3,7 @@ import {
   BreadcrumbItem,
   BreadcrumbPage,
 } from "@/components/admin/breadcrumb";
-import type { CreateBaseProps, CreateControllerResult } from "ra-core";
+import type { CreateBaseProps } from "ra-core";
 import {
   CreateBase,
   Translate,
@@ -17,8 +17,7 @@ import type { ElementType, ReactNode } from "react";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 
-type CreateProps = CreateViewProps &
-  Omit<CreateBaseProps, "render" | "children">;
+type CreateProps = CreateViewProps & CreateBaseProps;
 
 /**
  * A complete create page with breadcrumb, title, and actions.
@@ -47,7 +46,6 @@ function Create({
   className,
   component,
   disableBreadcrumb,
-  render,
   title,
   ...rest
 }: CreateProps) {
@@ -59,7 +57,6 @@ function Create({
         className={className}
         component={component}
         disableBreadcrumb={disableBreadcrumb}
-        render={render}
         title={title}
       >
         {children}
@@ -75,7 +72,6 @@ type CreateViewProps = {
   disableBreadcrumb?: boolean;
   children?: ReactNode;
   className?: string;
-  render?: (controllerState: CreateControllerResult) => ReactNode;
   title?: ReactNode | string | false;
 };
 
@@ -92,7 +88,6 @@ function CreateView({
   title,
   children,
   className,
-  render,
 }: CreateViewProps) {
   const context = useCreateContext();
 
@@ -111,7 +106,6 @@ function CreateView({
   });
   const hasDashboard = useHasDashboard();
 
-  const finalContent = render ? render(context) : children;
   const Wrapper = component ?? "div";
 
   const header = (
@@ -130,7 +124,7 @@ function CreateView({
     </div>
   );
 
-  const contentBlock = <Wrapper className="my-2">{finalContent}</Wrapper>;
+  const contentBlock = <Wrapper className="my-2">{children}</Wrapper>;
 
   const main = aside ? (
     <div className="flex gap-4">

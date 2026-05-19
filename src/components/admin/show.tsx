@@ -3,7 +3,7 @@ import {
   BreadcrumbItem,
   BreadcrumbPage,
 } from "@/components/admin/breadcrumb";
-import type { ShowBaseProps, ShowControllerResult } from "ra-core";
+import type { ShowBaseProps } from "ra-core";
 import {
   ShowBase,
   Translate,
@@ -20,8 +20,7 @@ import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 import { EditButton } from "@/components/admin/edit-button";
 
-interface ShowProps
-  extends ShowViewProps, Omit<ShowBaseProps, "children" | "render"> {}
+interface ShowProps extends ShowViewProps, ShowBaseProps {}
 
 /**
  * A complete show page with breadcrumb, title, and default actions.
@@ -56,54 +55,25 @@ function Show({
   children,
   className,
   component,
-  disableAuthentication,
   disableBreadcrumb,
-  emptyWhileLoading,
-  error,
-  id,
-  loading,
-  offline,
-  queryOptions,
-  render,
-  resource,
   title,
+  ...rest
 }: ShowProps) {
   return (
-  <ShowBase
-    id={id}
-    resource={resource}
-    queryOptions={queryOptions}
-    disableAuthentication={disableAuthentication}
-    loading={loading}
-  >
-    <ShowView
-      title={title}
-      actions={actions}
-      aside={aside}
-      className={className}
-      component={component}
-      disableBreadcrumb={disableBreadcrumb}
-      emptyWhileLoading={emptyWhileLoading}
-      error={error}
-      offline={offline}
-      render={render}
-    >
-      {children}
-    </ShowView>
-  </ShowBase>
+    <ShowBase {...rest}>
+      <ShowView
+        title={title}
+        actions={actions}
+        aside={aside}
+        className={className}
+        component={component}
+        disableBreadcrumb={disableBreadcrumb}
+      >
+        {children}
+      </ShowView>
+    </ShowBase>
   );
 }
-
-const defaultOffline = (
-  <p className="text-sm text-muted-foreground p-4">
-    Offline — waiting for connection…
-  </p>
-);
-const defaultError = (
-  <p className="text-sm text-destructive p-4">
-    An error occurred while loading this record.
-  </p>
-);
 
 interface ShowViewProps {
   actions?: ReactNode | false;
@@ -112,10 +82,6 @@ interface ShowViewProps {
   disableBreadcrumb?: boolean;
   children?: ReactNode;
   className?: string;
-  emptyWhileLoading?: boolean;
-  error?: ReactNode;
-  offline?: ReactNode;
-  render?: (controllerState: ShowControllerResult) => ReactNode;
   title?: ReactNode | string | false;
 }
 
@@ -143,10 +109,6 @@ function ShowView({
   className,
   component,
   disableBreadcrumb,
-  emptyWhileLoading,
-  error = defaultError,
-  offline = defaultOffline,
-  render,
   title,
 }: ShowViewProps) {
   const context = useShowContext();
@@ -171,23 +133,6 @@ function ShowView({
   const { hasEdit } = useResourceDefinition({ resource });
   const hasDashboard = useHasDashboard();
 
-  const showOffline =
-    context.isPaused &&
-    context.isPending &&
-    offline !== undefined &&
-    offline !== false;
-  const showError = context.error && error !== false && error !== undefined;
-
-  if (
-    !context.record &&
-    context.isPending &&
-    emptyWhileLoading &&
-    !showOffline &&
-    !showError
-  ) {
-    return null;
-  }
-
   const resolvedActions =
     actions === false
       ? null
@@ -199,15 +144,7 @@ function ShowView({
 
   const Wrapper = component ?? "div";
 
-  const finalContent = showOffline
-    ? offline
-    : showError
-      ? error
-      : render
-        ? render(context)
-        : children;
-
-  const contentBlock = <Wrapper className="my-2">{finalContent}</Wrapper>;
+  const contentBlock = <Wrapper className="my-2">{children}</Wrapper>;
 
   const main = aside ? (
     <div className="flex gap-4">
