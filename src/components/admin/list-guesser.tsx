@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { RaRecord } from "ra-core";
 import {
   ListBase,
@@ -94,49 +94,49 @@ function ListViewGuesser(
   const { data } = useListContext();
   const resource = useResourceContext();
   const [child, setChild] = useState<React.ReactElement | null>(null);
+  const hasInferredRef = useRef(false);
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
   useEffect(() => {
+    hasInferredRef.current = false;
     setChild(null);
   }, [resource]);
 
+  const hasData = (data?.length ?? 0) > 0;
   useEffect(() => {
-    if (data && data.length > 0 && !child) {
-      const inferredElements = getElementsFromRecords(data, listFieldTypes);
-      const inferredChild = new InferredElement(
-        listFieldTypes.table,
-        null,
-        inferredElements,
-      );
-      const inferredChildElement = inferredChild.getElement();
-      const representation = inferredChild.getRepresentation();
-      if (!resource) {
-        throw new Error(
-          "Cannot use <ListGuesser> outside of a ResourceContext",
-        );
-      }
-      if (!inferredChildElement || !representation) {
-        return;
-      }
+    if (hasInferredRef.current || !hasData) return;
+    if (!resource) {
+      throw new Error("Cannot use <ListGuesser> outside of a ResourceContext");
+    }
+    const inferredElements = getElementsFromRecords(data, listFieldTypes);
+    const inferredChild = new InferredElement(
+      listFieldTypes.table,
+      null,
+      inferredElements,
+    );
+    const inferredChildElement = inferredChild.getElement();
+    const representation = inferredChild.getRepresentation();
+    if (!inferredChildElement || !representation) {
+      return;
+    }
+    hasInferredRef.current = true;
+    setChild(inferredChildElement);
 
-      setChild(inferredChildElement);
-
-      const components = ["List"]
-        .concat(
-          Array.from(
-            new Set(
-              Array.from(representation.matchAll(/<([^/\s.>]+)/g))
-                .map((match) => match[1])
-                .filter((component) => component !== "span"),
-            ),
+    if (!enableLog) return;
+    const components = ["List"]
+      .concat(
+        Array.from(
+          new Set(
+            Array.from(representation.matchAll(/<([^/\s.>]+)/g))
+              .map((match) => match[1])
+              .filter((component) => component !== "span"),
           ),
-        )
-        .sort();
-
-      if (enableLog) {
-        // eslint-disable-next-line no-console
-        console.log(
-          `Guessed List:
+        ),
+      )
+      .sort();
+    // eslint-disable-next-line no-console
+    console.log(
+      `Guessed List:
 
 ${components
   .map(
@@ -152,10 +152,9 @@ export const ${capitalize(singularize(resource))}List = () => (
 ${inferredChild.getRepresentation()}
     </List>
 );`,
-        );
-      }
-    }
-  }, [data, child, resource, enableLog]);
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasData, resource, enableLog]);
 
   return <ListView {...rest}>{child}</ListView>;
 }

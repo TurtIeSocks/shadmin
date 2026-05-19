@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ReactNode } from "react";
-import { useEffect, useState, isValidElement, Children } from "react";
+import { useEffect, useRef, useState, isValidElement, Children } from "react";
 import type { InferredTypeMap } from "ra-core";
 import {
   ShowBase,
@@ -58,42 +58,44 @@ function ShowViewGuesser(
 
   const { record } = useShowContext();
   const [child, setChild] = useState<ReactNode>(null);
+  const hasInferredRef = useRef(false);
   const { enableLog = import.meta.env.DEV, ...rest } = props;
 
   useEffect(() => {
+    hasInferredRef.current = false;
     setChild(null);
   }, [resource]);
 
+  const hasRecord = !!record;
   useEffect(() => {
-    if (record && !child) {
-      const inferredElements = getElementsFromRecords([record], showFieldTypes);
-      const inferredChild = new InferredElement(
-        showFieldTypes.show,
-        null,
-        inferredElements,
-      );
-      setChild(inferredChild.getElement());
+    if (hasInferredRef.current || !hasRecord || !record) return;
+    hasInferredRef.current = true;
+    const inferredElements = getElementsFromRecords([record], showFieldTypes);
+    const inferredChild = new InferredElement(
+      showFieldTypes.show,
+      null,
+      inferredElements,
+    );
+    setChild(inferredChild.getElement());
 
-      if (!enableLog) return;
-
-      const representation = inferredChild.getRepresentation();
-      const components = ["Show"]
-        .concat(
-          Array.from(
-            new Set(
-              Array.from(representation.matchAll(/<([^/\s>]+)/g))
-                .map((match) => match[1])
-                .filter(
-                  (component) => component !== "span" && component !== "div",
-                ),
-            ),
+    if (!enableLog) return;
+    const representation = inferredChild.getRepresentation();
+    const components = ["Show"]
+      .concat(
+        Array.from(
+          new Set(
+            Array.from(representation.matchAll(/<([^/\s>]+)/g))
+              .map((match) => match[1])
+              .filter(
+                (component) => component !== "span" && component !== "div",
+              ),
           ),
-        )
-        .sort();
-
-      // eslint-disable-next-line no-console
-      console.log(
-        `Guessed Show:
+        ),
+      )
+      .sort();
+    // eslint-disable-next-line no-console
+    console.log(
+      `Guessed Show:
 
 ${components
   .map(
@@ -109,9 +111,9 @@ export const ${capitalize(singularize(resource))}Show = () => (
 ${inferredChild.getRepresentation()}
     </Show>
 );`,
-      );
-    }
-  }, [record, child, resource, enableLog]);
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasRecord, resource, enableLog]);
 
   return <ShowView {...rest}>{child}</ShowView>;
 }
