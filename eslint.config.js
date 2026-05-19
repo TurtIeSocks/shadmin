@@ -9,7 +9,15 @@ import tseslint from "typescript-eslint";
 import noTautologicalExpect from "./eslint-rules/no-tautological-expect.js";
 
 export default tseslint.config(
-  { ignores: ["dist", "docs/.astro/**", "eslint-rules/__tests__/**"] },
+  {
+    ignores: [
+      "dist",
+      "docs/.astro/**",
+      "eslint-rules/__tests__/**",
+      "storybook-static/**",
+      ".claude/worktrees/**",
+    ],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
