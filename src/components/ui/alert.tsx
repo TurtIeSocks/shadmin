@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const alertVariants = cva(
-  "relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg border px-4 py-3 text-sm has-[>svg]:grid-cols-[--spacing(4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+  "relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg border px-4 py-3 text-sm has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   {
     variants: {
       variant: {
@@ -19,11 +19,11 @@ const alertVariants = cva(
   }
 )
 
-interface AlertProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof alertVariants> {}
-
-function Alert({ className, variant, ...props }: AlertProps) {
+function Alert({
+  className,
+  variant,
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
   return (
     <div
       data-slot="alert"
@@ -63,4 +63,4 @@ function AlertDescription({
   )
 }
 
-export { Alert, type AlertProps, AlertTitle, AlertDescription }
+export { Alert, AlertTitle, AlertDescription }

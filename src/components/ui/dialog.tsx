@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { XIcon } from "lucide-react"
 import { Dialog as DialogPrimitive } from "radix-ui"
@@ -45,17 +47,14 @@ function DialogOverlay({
   )
 }
 
-interface DialogContentProps
-  extends React.ComponentProps<typeof DialogPrimitive.Content> {
-  showCloseButton?: boolean
-}
-
 function DialogContent({
   className,
   children,
   showCloseButton = true,
   ...props
-}: DialogContentProps) {
+}: React.ComponentProps<typeof DialogPrimitive.Content> & {
+  showCloseButton?: boolean
+}) {
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
@@ -92,16 +91,14 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-interface DialogFooterProps extends React.ComponentProps<"div"> {
-  showCloseButton?: boolean
-}
-
 function DialogFooter({
   className,
   showCloseButton = false,
   children,
   ...props
-}: DialogFooterProps) {
+}: React.ComponentProps<"div"> & {
+  showCloseButton?: boolean
+}) {
   return (
     <div
       data-slot="dialog-footer"
@@ -151,10 +148,8 @@ export {
   Dialog,
   DialogClose,
   DialogContent,
-  type DialogContentProps,
   DialogDescription,
   DialogFooter,
-  type DialogFooterProps,
   DialogHeader,
   DialogOverlay,
   DialogPortal,

@@ -1,14 +1,17 @@
+"use client"
+
 import * as React from "react"
 import { Avatar as AvatarPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
-interface AvatarProps
-  extends React.ComponentProps<typeof AvatarPrimitive.Root> {
+function Avatar({
+  className,
+  size = "default",
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Root> & {
   size?: "default" | "sm" | "lg"
-}
-
-function Avatar({ className, size = "default", ...props }: AvatarProps) {
+}) {
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
@@ -98,7 +101,6 @@ function AvatarGroupCount({
 
 export {
   Avatar,
-  type AvatarProps,
   AvatarImage,
   AvatarFallback,
   AvatarBadge,

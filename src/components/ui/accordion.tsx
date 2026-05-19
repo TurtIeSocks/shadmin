@@ -1,4 +1,4 @@
-import type * as React from "react"
+import * as React from "react"
 import { ChevronDownIcon } from "lucide-react"
 import { Accordion as AccordionPrimitive } from "radix-ui"
 
@@ -61,4 +61,4 @@ function AccordionContent({
   )
 }
 
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger }
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

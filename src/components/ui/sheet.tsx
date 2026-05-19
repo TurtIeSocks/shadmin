@@ -44,19 +44,16 @@ function SheetOverlay({
   )
 }
 
-interface SheetContentProps
-  extends React.ComponentProps<typeof SheetPrimitive.Content> {
-  side?: "top" | "right" | "bottom" | "left"
-  showCloseButton?: boolean
-}
-
 function SheetContent({
   className,
   children,
   side = "right",
   showCloseButton = true,
   ...props
-}: SheetContentProps) {
+}: React.ComponentProps<typeof SheetPrimitive.Content> & {
+  side?: "top" | "right" | "bottom" | "left"
+  showCloseButton?: boolean
+}) {
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -139,7 +136,6 @@ export {
   SheetTrigger,
   SheetClose,
   SheetContent,
-  type SheetContentProps,
   SheetHeader,
   SheetFooter,
   SheetTitle,
