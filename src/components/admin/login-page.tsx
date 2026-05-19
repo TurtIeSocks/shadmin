@@ -19,12 +19,12 @@ import { LoginForm } from "@/components/admin/login-form";
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loginpage LoginPage documentation}
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/security Security documentation}
  */
-export interface LoginPageProps extends HTMLAttributes<HTMLDivElement> {
+interface LoginPageProps extends HTMLAttributes<HTMLDivElement> {
   redirectTo?: string;
   children?: ReactNode;
 }
 
-export const LoginPage = (props: LoginPageProps) => {
+function LoginPage(props: LoginPageProps) {
   const { redirectTo, children, ...rest } = props;
   const checkAuth = useCheckAuth();
   const navigate = useNavigate();
@@ -45,4 +45,6 @@ export const LoginPage = (props: LoginPageProps) => {
       {children ?? <LoginForm redirectTo={redirectTo} />}
     </AuthLayout>
   );
-};
+}
+
+export { LoginPage, type LoginPageProps };

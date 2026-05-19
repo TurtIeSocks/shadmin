@@ -80,7 +80,7 @@ interface SectionOneProps extends VariantProps<typeof toggleVariants> {
   activeLevels?: Level[];
 }
 
-export const SectionOne: React.FC<SectionOneProps> = ({
+const SectionOne: React.FC<SectionOneProps> = ({
   editor,
   activeLevels = [1, 2, 3, 4, 5, 6],
   size,
@@ -148,4 +148,4 @@ export const SectionOne: React.FC<SectionOneProps> = ({
 
 SectionOne.displayName = "SectionOne";
 
-export default SectionOne;
+export { SectionOne };

@@ -143,7 +143,7 @@ interface SectionThreeProps extends VariantProps<typeof toggleVariants> {
   editor: Editor;
 }
 
-export const SectionThree: React.FC<SectionThreeProps> = ({
+const SectionThree: React.FC<SectionThreeProps> = ({
   editor,
   size,
   variant,
@@ -229,4 +229,4 @@ export const SectionThree: React.FC<SectionThreeProps> = ({
 
 SectionThree.displayName = "SectionThree";
 
-export default SectionThree;
+export { SectionThree };

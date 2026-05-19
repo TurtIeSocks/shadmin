@@ -9,14 +9,14 @@ import {
   type UseReverseGeocodeOptions,
 } from "./use-reverse-geocode";
 
-export interface ReverseGeocodeFieldProps extends UseReverseGeocodeOptions {
+interface ReverseGeocodeFieldProps extends UseReverseGeocodeOptions {
   latSource: string;
   lngSource: string;
   format?: "full" | "street" | "city";
   className?: string;
 }
 
-export const ReverseGeocodeField = ({
+const ReverseGeocodeField = ({
   latSource,
   lngSource,
   format = "full",
@@ -56,3 +56,5 @@ export const ReverseGeocodeField = ({
     </span>
   );
 };
+
+export { type ReverseGeocodeFieldProps, ReverseGeocodeField };

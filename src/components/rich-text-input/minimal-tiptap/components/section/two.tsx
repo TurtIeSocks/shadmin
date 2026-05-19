@@ -101,7 +101,7 @@ interface SectionTwoProps extends VariantProps<typeof toggleVariants> {
   mainActionCount?: number;
 }
 
-export const SectionTwo: React.FC<SectionTwoProps> = ({
+const SectionTwo: React.FC<SectionTwoProps> = ({
   editor,
   activeActions = formatActions.map((action) => action.value),
   mainActionCount = 2,
@@ -125,4 +125,4 @@ export const SectionTwo: React.FC<SectionTwoProps> = ({
 
 SectionTwo.displayName = "SectionTwo";
 
-export default SectionTwo;
+export { SectionTwo };

@@ -30,7 +30,7 @@ type LimitedMDXEditorProps = Omit<
   | "ref"
 >;
 
-export interface MdxInputProps extends InputProps {
+interface MdxInputProps extends InputProps {
   className?: string;
   mdxProps?: LimitedMDXEditorProps;
 }
@@ -56,7 +56,7 @@ export interface MdxInputProps extends InputProps {
  *   </Edit>
  * );
  */
-export const MdxInput = (props: MdxInputProps) => {
+function MdxInput(props: MdxInputProps) {
   const {
     className,
     defaultValue = "",
@@ -190,3 +190,5 @@ function shallowEqual(
       Object.is(prev[key], next[key]),
   );
 }
+
+export { type MdxInputProps, MdxInput };

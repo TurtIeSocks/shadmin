@@ -3,7 +3,7 @@ import { useTranslate } from "ra-core";
 import { AuthLayout } from "@/components/admin/auth-layout";
 import { SetPasswordForm } from "./set-password-form";
 
-export interface SetPasswordPageProps {
+interface SetPasswordPageProps {
   children?: ReactNode;
   /**
    * Optional content for `<AuthLayout>`'s left pane. Pass any ReactNode
@@ -19,7 +19,7 @@ export interface SetPasswordPageProps {
  * Register at `SetPasswordPage.path` (`/set-password`) via
  * `<CustomRoutes noLayout>` so it is reachable without authentication.
  */
-export const SetPasswordPage = ({
+const SetPasswordPage = ({
   children = <SetPasswordForm />,
   aside,
 }: SetPasswordPageProps) => {
@@ -37,3 +37,5 @@ export const SetPasswordPage = ({
 };
 
 SetPasswordPage.path = "/set-password";
+
+export { type SetPasswordPageProps, SetPasswordPage };

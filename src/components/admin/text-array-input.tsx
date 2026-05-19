@@ -28,9 +28,9 @@ import {
 } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
 
-export type TagProps = { key: string | number; onDelete: () => void };
+type TagProps = { key: string | number; onDelete: () => void };
 
-export type TextArrayInputProps = InputProps & {
+type TextArrayInputProps = InputProps & {
   className?: string;
   placeholder?: string;
   /** Autocomplete suggestions shown in a dropdown below the input. */
@@ -68,7 +68,7 @@ const emptyArray: string[] = [];
  *   </Edit>
  * );
  */
-export const TextArrayInput = (props: TextArrayInputProps) => {
+function TextArrayInput(props: TextArrayInputProps) {
   const {
     className,
     defaultValue,
@@ -267,4 +267,6 @@ export const TextArrayInput = (props: TextArrayInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
+
+export { TextArrayInput, type TextArrayInputProps, type TagProps };

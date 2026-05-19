@@ -5,9 +5,10 @@ import { TextInput, type TextInputProps } from "@/components/admin/text-input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export type PasswordInputProps = Omit<TextInputProps, "type" | "multiline"> & {
+interface PasswordInputProps
+  extends Omit<TextInputProps, "type" | "multiline"> {
   initiallyVisible?: boolean;
-};
+}
 
 /**
  * Text input for passwords, with a button to toggle visibility.
@@ -28,7 +29,7 @@ export type PasswordInputProps = Omit<TextInputProps, "type" | "multiline"> & {
  *   </Edit>
  * );
  */
-export const PasswordInput = (props: PasswordInputProps) => {
+function PasswordInput(props: PasswordInputProps) {
   const {
     initiallyVisible = false,
     className,
@@ -71,4 +72,6 @@ export const PasswordInput = (props: PasswordInputProps) => {
       </Button>
     </div>
   );
-};
+}
+
+export { PasswordInput, type PasswordInputProps };

@@ -13,7 +13,7 @@ import {
 } from "@/components/admin/simple-list-item";
 import { SimpleListLoading } from "@/components/admin/simple-list-loading";
 
-export interface SimpleListProps<RecordType extends RaRecord = RaRecord> {
+interface SimpleListProps<RecordType extends RaRecord = RaRecord> {
   /**
    * A function returning the primary text for each record.
    */
@@ -80,9 +80,9 @@ export interface SimpleListProps<RecordType extends RaRecord = RaRecord> {
  *   </List>
  * );
  */
-export const SimpleList = <RecordType extends RaRecord = RaRecord>(
+function SimpleList<RecordType extends RaRecord = RaRecord>(
   props: SimpleListProps<RecordType>,
-) => {
+) {
   const {
     primaryText,
     secondaryText,
@@ -157,6 +157,8 @@ export const SimpleList = <RecordType extends RaRecord = RaRecord>(
       ))}
     </ul>
   );
-};
+}
 
 const defaultEmpty = <ListNoResults />;
+
+export { SimpleList, type SimpleListProps };

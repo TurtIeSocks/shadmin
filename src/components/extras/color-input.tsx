@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
  *   </Edit>
  * );
  */
-export const ColorInput = (props: ColorInputProps) => {
+function ColorInput(props: ColorInputProps) {
   const {
     label,
     source,
@@ -106,7 +106,7 @@ export const ColorInput = (props: ColorInputProps) => {
   );
 };
 
-export interface ColorInputProps
+interface ColorInputProps
   extends
     InputProps,
     Omit<
@@ -128,3 +128,5 @@ export interface ColorInputProps
    */
   native?: boolean;
 }
+
+export { ColorInput, type ColorInputProps };

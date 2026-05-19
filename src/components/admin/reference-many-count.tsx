@@ -16,6 +16,23 @@ import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
 
+interface ReferenceManyCountProps<RecordType extends RaRecord = RaRecord>
+  extends Omit<FieldProps<RecordType>, "source" | "record" | "empty"> {
+  record?: RecordType;
+  reference: string;
+  resource?: string;
+  target: string;
+  source?: string;
+  sort?: SortPayload;
+  filter?: UnknownRecord;
+  link?: boolean;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
+  timeout?: number;
+}
+
 /**
  * Displays the count of related records that reference the current record.
  *
@@ -38,9 +55,9 @@ const defaultOffline = <Offline />;
  *   </List>
  * );
  */
-export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
+function ReferenceManyCount<RecordType extends RaRecord = RaRecord>(
   props: ReferenceManyCountProps<RecordType>,
-) => {
+) {
   const {
     reference,
     target,
@@ -104,22 +121,6 @@ export const ReferenceManyCount = <RecordType extends RaRecord = RaRecord>(
   ) : (
     <span>{body}</span>
   );
-};
-
-export interface ReferenceManyCountProps<
-  RecordType extends RaRecord = RaRecord,
-> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty"> {
-  record?: RecordType;
-  reference: string;
-  resource?: string;
-  target: string;
-  source?: string;
-  sort?: SortPayload;
-  filter?: UnknownRecord;
-  link?: boolean;
-  /**
-   * Component to display when offline and the request is pending or has stale placeholder data.
-   */
-  offline?: ReactNode;
-  timeout?: number;
 }
+
+export { ReferenceManyCount, type ReferenceManyCountProps };

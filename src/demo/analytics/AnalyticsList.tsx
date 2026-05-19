@@ -1,12 +1,6 @@
 import { WithListContext } from "ra-core";
-import {
-  BarChart,
-  DonutChart,
-  List,
-  MetricCard,
-  PivotGrid,
-  TrendChart,
-} from "@/components/admin";
+import { List } from "@/components/admin";
+import { BarChart, DonutChart, MetricCard, PivotGrid, TrendChart } from "@/components/extras";
 import { DollarSignIcon, TrendingUpIcon, UsersIcon } from "lucide-react";
 import type { Report } from "./reports-seed";
 

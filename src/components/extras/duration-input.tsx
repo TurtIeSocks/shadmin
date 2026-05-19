@@ -37,7 +37,7 @@ const UNIT_LABEL: Record<Unit, string> = {
  *   </Edit>
  * );
  */
-export const DurationInput = (props: DurationInputProps) => {
+function DurationInput(props: DurationInputProps) {
   const {
     label,
     source,
@@ -130,7 +130,7 @@ export const DurationInput = (props: DurationInputProps) => {
   );
 };
 
-export interface DurationInputProps
+interface DurationInputProps
   extends
     InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
@@ -138,3 +138,5 @@ export interface DurationInputProps
   units?: readonly Unit[];
   disabled?: boolean;
 }
+
+export { DurationInput, type DurationInputProps };

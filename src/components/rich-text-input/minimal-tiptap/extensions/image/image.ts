@@ -23,7 +23,7 @@ interface ImageActionProps extends DownloadImageCommandProps {
   action: ImageAction;
 }
 
-export type UploadReturnType =
+type UploadReturnType =
   | string
   | {
       id: string | number;
@@ -176,7 +176,7 @@ const copyLink = async (
   }
 };
 
-export const Image = TiptapImage.extend<CustomImageOptions>({
+const Image = TiptapImage.extend<CustomImageOptions>({
   atom: true,
 
   addOptions() {
@@ -359,3 +359,5 @@ export const Image = TiptapImage.extend<CustomImageOptions>({
     });
   },
 });
+
+export { type UploadReturnType, Image };

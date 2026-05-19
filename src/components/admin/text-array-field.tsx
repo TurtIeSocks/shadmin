@@ -29,11 +29,11 @@ type BadgeProps = ComponentProps<typeof Badge>;
  *   </Show>
  * );
  */
-export const TextArrayField = <
+function TextArrayField<
   RecordType extends UnknownRecord = UnknownRecord,
 >(
   props: TextArrayFieldProps<RecordType>,
-) => {
+) {
   const {
     className,
     defaultValue,
@@ -71,9 +71,9 @@ export const TextArrayField = <
       ))}
     </div>
   );
-};
+}
 
-export interface TextArrayFieldProps<
+interface TextArrayFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
   extends
@@ -81,3 +81,5 @@ export interface TextArrayFieldProps<
     Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   variant?: BadgeProps["variant"];
 }
+
+export { TextArrayField, type TextArrayFieldProps };

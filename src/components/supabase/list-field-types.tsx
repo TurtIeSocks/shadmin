@@ -11,7 +11,7 @@ import { ReferenceArrayField } from "@/components/admin/reference-array-field";
 /**
  * Column-component map for the Supabase List guesser.
  */
-export const listFieldTypes: InferredTypeMap = {
+const listFieldTypes: InferredTypeMap = {
   table: {
     component: (props: any) => <DataTable {...props} />,
     representation: (
@@ -99,3 +99,5 @@ ${children
       `<DataTable.Col source="${props.source}" />`,
   },
 };
+
+export { listFieldTypes };

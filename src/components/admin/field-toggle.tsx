@@ -4,12 +4,24 @@ import { GripVertical } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
+interface FieldToggleProps {
+  selected: boolean;
+  label: React.ReactNode;
+  onToggle?: (event: boolean) => void;
+  onMove?: (
+    dragIndex: string | number,
+    dropIndex: string | number | null,
+  ) => void;
+  source: string;
+  index: number | string;
+}
+
 /**
  * A toggleable field item with drag-and-drop reordering, used by ColumnsSelector
  *
  * @internal
  */
-export const FieldToggle = (props: FieldToggleProps) => {
+function FieldToggle(props: FieldToggleProps) {
   const { selected, label, onToggle, onMove, source, index } = props;
   const resource = useResourceContext();
   const dropIndex = React.useRef<number | null>(null);
@@ -150,16 +162,6 @@ export const FieldToggle = (props: FieldToggleProps) => {
       )}
     </li>
   );
-};
-
-export interface FieldToggleProps {
-  selected: boolean;
-  label: React.ReactNode;
-  onToggle?: (event: boolean) => void;
-  onMove?: (
-    dragIndex: string | number,
-    dropIndex: string | number | null,
-  ) => void;
-  source: string;
-  index: number | string;
 }
+
+export { FieldToggle, type FieldToggleProps };

@@ -39,7 +39,7 @@ import { cn } from "@/lib/utils";
  *   </Edit>
  * );
  */
-export const DateTimeInput = ({
+function DateTimeInput({
   className,
   inputClassName,
   defaultValue,
@@ -56,7 +56,7 @@ export const DateTimeInput = ({
   disabled,
   readOnly,
   ...rest
-}: DateTimeInputProps) => {
+}: DateTimeInputProps) {
   const { field, id, isRequired } = useInput({
     defaultValue,
     onBlur,
@@ -201,9 +201,9 @@ export const DateTimeInput = ({
       <FormError />
     </FormField>
   );
-};
+}
 
-export type DateTimeInputProps = Omit<InputProps, "defaultValue"> & {
+type DateTimeInputProps = Omit<InputProps, "defaultValue"> & {
   defaultValue?: string | number | Date;
   inputClassName?: string;
 } & Omit<React.ComponentProps<"input">, "defaultValue" | "type">;
@@ -334,3 +334,5 @@ function useForkRef<Instance>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, refs);
 }
+
+export { DateTimeInput, type DateTimeInputProps };

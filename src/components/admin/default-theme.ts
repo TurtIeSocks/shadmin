@@ -8,7 +8,7 @@ import type { AdminTheme } from "./theme-types";
  * Choosing this theme (or not passing one at all) preserves the historical
  * visual identity of shadcn-admin-kit.
  */
-export const defaultTheme: AdminTheme = {
+const defaultTheme: AdminTheme = {
   name: "default",
   label: "Default",
   light: {
@@ -80,3 +80,5 @@ export const defaultTheme: AdminTheme = {
     "--sidebar-ring": "oklch(0.556 0 0)",
   },
 };
+
+export { defaultTheme };

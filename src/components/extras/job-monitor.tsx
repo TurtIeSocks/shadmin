@@ -12,9 +12,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, RotateCcw, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type JobStatus = "queued" | "running" | "failed" | "done" | "cancelled";
+type JobStatus = "queued" | "running" | "failed" | "done" | "cancelled";
 
-export interface JobRecord extends RaRecord {
+interface JobRecord extends RaRecord {
   type?: string;
   status: JobStatus;
   payload?: unknown;
@@ -26,7 +26,7 @@ export interface JobRecord extends RaRecord {
 
 const DEFAULT_TABS: JobStatus[] = ["running", "queued", "failed", "done"];
 
-export interface JobMonitorProps {
+interface JobMonitorProps {
   /** Override resource (defaults to surrounding ResourceContext). */
   resource?: string;
   /** Polling interval in ms. `0` disables polling. Default `5000`. */
@@ -55,7 +55,7 @@ export interface JobMonitorProps {
  * @example
  * <JobMonitor resource="jobs" pollInterval={5000} />
  */
-export const JobMonitor = (props: JobMonitorProps) => {
+function JobMonitor(props: JobMonitorProps) {
   const {
     resource: resourceProp,
     pollInterval = 5000,
@@ -244,3 +244,5 @@ export const JobMonitor = (props: JobMonitorProps) => {
     </Card>
   );
 };
+
+export { type JobStatus, type JobRecord, type JobMonitorProps, JobMonitor };

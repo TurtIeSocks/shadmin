@@ -32,13 +32,13 @@ import { Labeled } from "./labeled";
  *   </Show>
  * );
  */
-export const SimpleShowLayout = ({
+function SimpleShowLayout({
   children,
   className,
   divider,
   record,
   spacing = 1,
-}: SimpleShowLayoutProps) => {
+}: SimpleShowLayoutProps) {
   const childArray = Children.toArray(children);
   const content = (
     <div className={cn(`flex flex-col gap-${spacing}`, className)}>
@@ -64,12 +64,14 @@ export const SimpleShowLayout = ({
   ) : (
     content
   );
-};
+}
 
-export interface SimpleShowLayoutProps {
+interface SimpleShowLayoutProps {
   children?: ReactNode;
   className?: string;
   divider?: ReactNode;
   record?: RaRecord;
   spacing?: number;
 }
+
+export { SimpleShowLayout, type SimpleShowLayoutProps };

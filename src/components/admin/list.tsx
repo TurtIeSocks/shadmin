@@ -53,9 +53,9 @@ import { FilterForm } from "@/components/admin/filter-form";
  *   </List>
  * );
  */
-export const List = <RecordType extends RaRecord = RaRecord>(
+function List<RecordType extends RaRecord = RaRecord>(
   props: ListProps<RecordType>,
-) => {
+) {
   const {
     debounce,
     disableAuthentication,
@@ -90,9 +90,9 @@ export const List = <RecordType extends RaRecord = RaRecord>(
       <ListView<RecordType> {...rest} />
     </ListBase>
   );
-};
+}
 
-export interface ListProps<RecordType extends RaRecord = RaRecord>
+interface ListProps<RecordType extends RaRecord = RaRecord>
   extends ListBaseProps<RecordType>, ListViewProps<RecordType> {}
 
 /**
@@ -100,9 +100,9 @@ export interface ListProps<RecordType extends RaRecord = RaRecord>
  *
  * @internal
  */
-export const ListView = <RecordType extends RaRecord = RaRecord>(
+function ListView<RecordType extends RaRecord = RaRecord>(
   props: ListViewProps<RecordType>,
-) => {
+) {
   const {
     aside,
     component: Content = "div",
@@ -186,12 +186,12 @@ export const ListView = <RecordType extends RaRecord = RaRecord>(
       </FilterContext.Provider>
     </>
   );
-};
+}
 
 const defaultPagination = <ListPagination />;
 const defaultEmpty = <Empty />;
 
-export interface ListViewProps<RecordType extends RaRecord = RaRecord> {
+interface ListViewProps<RecordType extends RaRecord = RaRecord> {
   aside?: ReactNode;
   children?: ReactNode;
   component?: ElementType;
@@ -204,3 +204,10 @@ export interface ListViewProps<RecordType extends RaRecord = RaRecord> {
   title?: ReactNode | string | false;
   className?: string;
 }
+
+export {
+  List,
+  ListView,
+  type ListProps,
+  type ListViewProps,
+};

@@ -70,7 +70,7 @@ function resolveMode(mode: Theme): ResolvedTheme {
  *
  * @internal
  */
-export function ThemeProvider({
+function ThemeProvider({
   children,
   defaultTheme = "system",
   theme,
@@ -197,3 +197,5 @@ export function ThemeProvider({
     </ThemesContext.Provider>
   );
 }
+
+export { ThemeProvider };

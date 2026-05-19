@@ -29,6 +29,13 @@ function Command({
   )
 }
 
+interface CommandDialogProps extends React.ComponentProps<typeof Dialog> {
+  title?: string
+  description?: string
+  className?: string
+  showCloseButton?: boolean
+}
+
 function CommandDialog({
   title = "Command Palette",
   description = "Search for a command to run...",
@@ -36,12 +43,7 @@ function CommandDialog({
   className,
   showCloseButton = true,
   ...props
-}: React.ComponentProps<typeof Dialog> & {
-  title?: string
-  description?: string
-  className?: string
-  showCloseButton?: boolean
-}) {
+}: CommandDialogProps) {
   return (
     <Dialog {...props}>
       <DialogHeader className="sr-only">
@@ -174,6 +176,7 @@ function CommandShortcut({
 export {
   Command,
   CommandDialog,
+  type CommandDialogProps,
   CommandInput,
   CommandList,
   CommandEmpty,

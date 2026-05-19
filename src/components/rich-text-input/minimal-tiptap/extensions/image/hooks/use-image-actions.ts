@@ -10,7 +10,7 @@ interface UseImageActionsProps {
   onViewClick: (value: boolean) => void;
 }
 
-export type ImageActionHandlers = {
+type ImageActionHandlers = {
   onView?: () => void;
   onDownload?: () => void;
   onCopy?: () => void;
@@ -18,7 +18,7 @@ export type ImageActionHandlers = {
   onRemoveImg?: () => void;
 };
 
-export const useImageActions = ({
+const useImageActions = ({
   editor,
   node,
   src,
@@ -59,3 +59,5 @@ export const useImageActions = ({
 
   return { isLink, onView, onDownload, onCopy, onCopyLink, onRemoveImg };
 };
+
+export { type ImageActionHandlers, useImageActions };

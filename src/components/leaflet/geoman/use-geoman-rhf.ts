@@ -8,7 +8,7 @@ import type { PM } from "leaflet";
 import type { ShapeKind } from "../types";
 import { geometryToLayer, layerToGeometry } from "./geoman-shape-mapping";
 
-export interface UseGeomanRHFOptions {
+interface UseGeomanRHFOptions {
   source: string;
   shape: ShapeKind;
   multi: boolean;
@@ -39,7 +39,7 @@ export interface UseGeomanRHFOptions {
   valueParse?: (stored: unknown) => GeoJSON.Geometry | null;
 }
 
-export interface UseGeomanRHFReturn {
+interface UseGeomanRHFReturn {
   featureGroupRef: React.MutableRefObject<L.FeatureGroup | null>;
   geomanControlsProps: {
     onCreate: PM.CreateEventHandler;
@@ -50,7 +50,7 @@ export interface UseGeomanRHFReturn {
   };
 }
 
-export const useGeomanRHF = ({
+const useGeomanRHF = ({
   source,
   shape,
   multi,
@@ -289,3 +289,5 @@ const combineMulti = (
       return geoms[geoms.length - 1];
   }
 };
+
+export { type UseGeomanRHFOptions, type UseGeomanRHFReturn, useGeomanRHF };

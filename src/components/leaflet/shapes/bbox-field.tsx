@@ -8,9 +8,9 @@ import {
   type ShapeFieldShellProps,
 } from "./shape-field-shell";
 
-export type BBoxFieldProps = ShapeFieldShellProps;
+type BBoxFieldProps = ShapeFieldShellProps;
 
-export const BBoxField = ({ source, ...rest }: BBoxFieldProps) => {
+function BBoxField({ source, ...rest }: BBoxFieldProps) {
   const record = useRecordContext();
   const bbox = record?.[source] as GeoJSON.BBox | null | undefined;
 
@@ -43,4 +43,6 @@ export const BBoxField = ({ source, ...rest }: BBoxFieldProps) => {
       <ShapeFieldShell source={source} {...rest} />
     </RecordContextProvider>
   );
-};
+}
+
+export { BBoxField, type BBoxFieldProps };

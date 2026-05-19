@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
-export interface Comment {
+interface Comment {
   id: string | number;
   parentId: string | number;
   authorId: string;
@@ -32,7 +32,7 @@ export interface Comment {
  * @example
  * <CommentsThread reference="comments" target="parentId" />
  */
-export const CommentsThread = (props: CommentsThreadProps) => {
+function CommentsThread(props: CommentsThreadProps) {
   const { reference, target, resolvable = false } = props;
   const record = useRecordContext();
   const { identity } = useGetIdentity();
@@ -137,7 +137,7 @@ export const CommentsThread = (props: CommentsThreadProps) => {
   );
 };
 
-export interface CommentsThreadProps {
+interface CommentsThreadProps {
   /** Comments sub-resource name (e.g. "comments"). */
   reference: string;
   /** Field on the comment record that holds the parent record id. */
@@ -145,3 +145,5 @@ export interface CommentsThreadProps {
   /** When true, each unresolved comment shows a "Mark resolved" button. */
   resolvable?: boolean;
 }
+
+export { type Comment, CommentsThread, type CommentsThreadProps };

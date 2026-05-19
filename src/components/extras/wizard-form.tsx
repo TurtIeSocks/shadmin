@@ -33,9 +33,9 @@ import { Button } from "@/components/ui/button";
 import { SaveButton } from "@/components/admin/save-button";
 import { cn } from "@/lib/utils";
 
-export type WizardProgressMode = "steps" | "dots" | "none";
+type WizardProgressMode = "steps" | "dots" | "none";
 
-export interface WizardFormProps extends Omit<FormProps, "children" | "id"> {
+interface WizardFormProps extends Omit<FormProps, "children" | "id"> {
   isOpen: boolean;
   onClose: () => void;
   title: ReactNode;
@@ -46,7 +46,7 @@ export interface WizardFormProps extends Omit<FormProps, "children" | "id"> {
   children: ReactNode;
 }
 
-export interface WizardStepProps {
+interface WizardStepProps {
   label: string | ReactElement;
   description?: string | ReactElement;
   optional?: boolean;
@@ -203,7 +203,7 @@ function WizardErrorJumper() {
  *   </WizardForm.Step>
  * </WizardForm>
  */
-export function WizardForm(props: WizardFormProps) {
+function WizardForm(props: WizardFormProps) {
   const {
     isOpen,
     onClose,
@@ -293,7 +293,7 @@ export function WizardForm(props: WizardFormProps) {
   );
 }
 
-export function WizardFormStep(props: WizardStepProps) {
+function WizardFormStep(props: WizardStepProps) {
   const { className, children, description, __stepKey, __hidden } = props;
   if (!__stepKey) {
     return (
@@ -326,7 +326,7 @@ WizardForm.Step = WizardFormStep;
  * Default toolbar for <WizardForm>.
  * Renders Cancel / Back / Next / Save based on wizard position.
  */
-export function WizardToolbar() {
+function WizardToolbar() {
   const translate = useTranslate();
   const ctx = useWizard();
   const { isFirst, isLast, goNext, goBack, currentStep } = ctx;
@@ -383,3 +383,5 @@ export function WizardToolbar() {
     </DialogFooter>
   );
 }
+
+export { type WizardProgressMode, type WizardFormProps, type WizardStepProps, WizardForm, WizardFormStep, WizardToolbar };

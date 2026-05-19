@@ -8,11 +8,13 @@ import { FormDescription } from "@/components/admin/form";
  *
  * @internal
  */
-export function InputHelperText({
-  helperText,
-}: {
+interface InputHelperTextProps {
   helperText?: ReactNode | false;
-}) {
+}
+
+function InputHelperText({
+  helperText,
+}: InputHelperTextProps) {
   const translate = useTranslate();
 
   if (helperText === false) {
@@ -35,3 +37,5 @@ export function InputHelperText({
     </FormDescription>
   );
 }
+
+export { InputHelperText, type InputHelperTextProps };

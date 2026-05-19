@@ -5,7 +5,7 @@ import { useDefaultTitle } from "ra-core";
 import { Title } from "@/components/admin/title";
 import { AccessDenied } from "./access-denied";
 
-export interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement> {
+interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   icon?: ReactNode;
   textPrimary?: string;
@@ -19,12 +19,12 @@ export interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement>
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/authenticationerror/ AuthenticationError documentation}
  */
-export const AuthenticationError = ({
+function AuthenticationError({
   icon = <TriangleAlert className="size-32" />,
   textPrimary = "ra.page.authentication_error",
   textSecondary = "ra.message.authentication_error",
   ...rest
-}: AuthenticationErrorProps) => {
+}: AuthenticationErrorProps) {
   const title = useDefaultTitle();
   return (
     <>
@@ -37,4 +37,6 @@ export const AuthenticationError = ({
       />
     </>
   );
-};
+}
+
+export { AuthenticationError, type AuthenticationErrorProps };

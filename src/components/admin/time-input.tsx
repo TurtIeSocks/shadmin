@@ -34,7 +34,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  *   </Edit>
  * );
  */
-export const TimeInput = ({
+function TimeInput({
   className,
   defaultValue,
   format = formatTime,
@@ -50,7 +50,7 @@ export const TimeInput = ({
   disabled,
   readOnly,
   ...rest
-}: TimeInputProps) => {
+}: TimeInputProps) {
   const { field, id, isRequired } = useInput({
     defaultValue,
     onBlur,
@@ -180,11 +180,13 @@ export const TimeInput = ({
       <FormError />
     </FormField>
   );
-};
+}
 
-export type TimeInputProps = Omit<InputProps, "defaultValue"> & {
+type TimeInputProps = Omit<InputProps, "defaultValue"> & {
   defaultValue?: string | number | Date;
 } & Omit<React.ComponentProps<"input">, "defaultValue" | "type">;
+
+export { TimeInput, type TimeInputProps };
 
 const leftPad =
   (nb = 2) =>

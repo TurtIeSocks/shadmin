@@ -13,9 +13,9 @@ import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { editFieldTypes } from "./edit-field-types";
 
-export type SupabaseEditGuesserProps = EditProps & { enableLog?: boolean };
+type SupabaseEditGuesserProps = EditProps & { enableLog?: boolean };
 
-export const SupabaseEditGuesser = (props: SupabaseEditGuesserProps) => {
+function SupabaseEditGuesser(props: SupabaseEditGuesserProps) {
   const {
     resource,
     id,
@@ -100,3 +100,5 @@ const SupabaseEditGuesserView = (
 
   return <EditView {...rest}>{child}</EditView>;
 };
+
+export { type SupabaseEditGuesserProps, SupabaseEditGuesser };

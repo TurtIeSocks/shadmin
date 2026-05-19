@@ -14,6 +14,17 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 
+interface RadioButtonGroupInputProps
+  extends Partial<InputProps>,
+    ChoicesProps,
+    Omit<
+      React.ComponentProps<typeof RadioGroup>,
+      "defaultValue" | "onBlur" | "onChange" | "type"
+    > {
+  row?: boolean;
+  options?: React.ComponentProps<typeof RadioGroup>;
+}
+
 /**
  * Single-select input rendered as a list of radio buttons, arranged vertically or horizontally.
  *
@@ -42,7 +53,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  *   </Edit>
  * );
  */
-export const RadioButtonGroupInput = (inProps: RadioButtonGroupInputProps) => {
+function RadioButtonGroupInput(inProps: RadioButtonGroupInputProps) {
   const {
     choices: choicesProp,
     isFetching: isFetchingProp,
@@ -182,16 +193,6 @@ export const RadioButtonGroupInput = (inProps: RadioButtonGroupInputProps) => {
       <FormError />
     </FormField>
   );
-};
-
-export interface RadioButtonGroupInputProps
-  extends
-    Partial<InputProps>,
-    ChoicesProps,
-    Omit<
-      React.ComponentProps<typeof RadioGroup>,
-      "defaultValue" | "onBlur" | "onChange" | "type"
-    > {
-  row?: boolean;
-  options?: React.ComponentProps<typeof RadioGroup>;
 }
+
+export { RadioButtonGroupInput, type RadioButtonGroupInputProps };

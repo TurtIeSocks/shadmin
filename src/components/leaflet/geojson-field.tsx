@@ -7,7 +7,7 @@ import {
   type ShapeFieldShellProps,
 } from "./shapes/shape-field-shell";
 
-export interface GeoJsonFieldProps extends Omit<
+interface GeoJsonFieldProps extends Omit<
   ShapeFieldShellProps,
   "pathOptions"
 > {
@@ -25,10 +25,12 @@ export interface GeoJsonFieldProps extends Omit<
  * which already handles all geometry kinds (Point / Line / Polygon / Multi*
  * / GeometryCollection).
  */
-export const GeoJsonField = ({
+function GeoJsonField({
   pathOptionsByType: _pathOptionsByType,
   pathOptions,
   ...rest
-}: GeoJsonFieldProps) => (
-  <ShapeFieldShell {...rest} pathOptions={pathOptions} />
-);
+}: GeoJsonFieldProps) {
+  return <ShapeFieldShell {...rest} pathOptions={pathOptions} />;
+}
+
+export { GeoJsonField, type GeoJsonFieldProps };

@@ -38,12 +38,12 @@ import {
  *   </header>
  * );
  */
-export const InspectorButton = ({
+function InspectorButton({
   icon = defaultIcon,
   label = "ra.configurable.configureMode",
   ref,
   ...props
-}: InspectorButtonProps) => {
+}: InspectorButtonProps) {
   const { enable, disable, setPreferenceKey, isEnabled } =
     usePreferencesEditor();
   const translate = useTranslate();
@@ -79,9 +79,9 @@ export const InspectorButton = ({
       <TooltipContent>{translatedLabel}</TooltipContent>
     </Tooltip>
   );
-};
+}
 
-export interface InspectorButtonProps extends Omit<
+interface InspectorButtonProps extends Omit<
   ComponentProps<typeof Button>,
   "children"
 > {
@@ -91,3 +91,5 @@ export interface InspectorButtonProps extends Omit<
   label?: string;
   ref?: Ref<HTMLButtonElement>;
 }
+
+export { InspectorButton, type InspectorButtonProps };

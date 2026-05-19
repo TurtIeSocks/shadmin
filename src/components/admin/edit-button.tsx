@@ -13,7 +13,7 @@ import {
 } from "ra-core";
 import { Link } from "react-router";
 
-export type EditButtonProps = {
+type EditButtonProps = {
   record?: RaRecord;
   resource?: string;
   label?: string;
@@ -45,7 +45,7 @@ const defaultIcon = <Pencil />;
  *   </DataTable>
  * );
  */
-export const EditButton = (props: EditButtonProps) => {
+function EditButton(props: EditButtonProps) {
   const {
     label: labelProp,
     icon = defaultIcon,
@@ -97,7 +97,9 @@ export const EditButton = (props: EditButtonProps) => {
       {label}
     </Link>
   );
-};
+}
 
 // useful to prevent click bubbling in a datagrid with rowClick
 const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
+
+export { EditButton, type EditButtonProps };

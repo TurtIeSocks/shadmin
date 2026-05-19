@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
  * @example
  * <RatingInput source="rating" allowHalf max={5} />
  */
-export const RatingInput = (props: RatingInputProps) => {
+function RatingInput(props: RatingInputProps) {
   const {
     label,
     source,
@@ -104,7 +104,7 @@ const Star = ({ filled, half }: { filled: boolean; half: boolean }) => (
   </svg>
 );
 
-export interface RatingInputProps
+interface RatingInputProps
   extends
     InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
@@ -112,3 +112,5 @@ export interface RatingInputProps
   allowHalf?: boolean;
   disabled?: boolean;
 }
+
+export { RatingInput, type RatingInputProps };

@@ -1,18 +1,7 @@
 import { useRecordContext, Translate } from "ra-core";
 import { z } from "zod";
-import {
-  BooleanField,
-  ColumnsButton,
-  DataTable,
-  ExportButton,
-  FilterList,
-  FilterListItem,
-  FilterLiveSearch,
-  InPlaceEditor,
-  List,
-  ListPagination,
-  CreateButton,
-} from "@/components/admin";
+import { BooleanField, ColumnsButton, DataTable, ExportButton, FilterList, FilterListItem, FilterLiveSearch, List, ListPagination, CreateButton } from "@/components/admin";
+import { InPlaceEditor } from "@/components/extras";
 import { CsvImport } from "@/components/csv-import";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";

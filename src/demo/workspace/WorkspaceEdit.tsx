@@ -1,12 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useInput, useRecordContext, required } from "ra-core";
-import {
-  Edit,
-  PermissionMatrix,
-  type PermissionsState,
-  SimpleForm,
-  TextInput,
-} from "@/components/admin";
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+import { PermissionMatrix, type PermissionsState } from "@/components/extras";
 import { MdxInput } from "@/components/mdx-editor";
 import "@mdxeditor/editor/style.css";
 import type { DocumentPermission, WorkspaceDocument } from "./documents-seed";

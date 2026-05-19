@@ -4,9 +4,9 @@ import { type ReactNode, useMemo } from "react";
 import { useListContext, useTranslate } from "ra-core";
 import { cn } from "@/lib/utils";
 
-export type PivotAggregator = "count" | "sum" | "avg" | "min" | "max";
+type PivotAggregator = "count" | "sum" | "avg" | "min" | "max";
 
-export interface PivotGridProps {
+interface PivotGridProps {
   data?: Array<Record<string, unknown>>;
   rowField: string;
   columnField: string;
@@ -75,7 +75,7 @@ const useListData = () => {
   return ctx?.data;
 };
 
-export const PivotGrid = ({
+const PivotGrid = ({
   data: dataProp,
   rowField,
   columnField,
@@ -184,3 +184,5 @@ export const PivotGrid = ({
     </div>
   );
 };
+
+export { type PivotAggregator, type PivotGridProps, PivotGrid };

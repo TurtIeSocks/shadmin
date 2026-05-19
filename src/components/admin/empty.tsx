@@ -8,7 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 import { CreateButton } from "@/components/admin/create-button";
 
-export interface EmptyProps {
+interface EmptyProps {
   resource?: string;
   hasCreate?: boolean;
   className?: string;
@@ -32,7 +32,7 @@ export interface EmptyProps {
  *   </List>
  * );
  */
-export const Empty = (props: EmptyProps) => {
+function Empty(props: EmptyProps) {
   const { className } = props;
   const resource = useResourceContext(props);
   const { hasCreate: hasCreateFromDefinition } = useResourceDefinition(props);
@@ -67,4 +67,6 @@ export const Empty = (props: EmptyProps) => {
       )}
     </div>
   );
-};
+}
+
+export { Empty, type EmptyProps };

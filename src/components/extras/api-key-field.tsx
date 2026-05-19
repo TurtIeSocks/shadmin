@@ -10,6 +10,18 @@ import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { cn } from "@/lib/utils";
 
+interface ApiKeyFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+  /** Record field with scope strings. Renders chips when set. */
+  scopesSource?: string;
+  /** Record field with ISO last-used timestamp. */
+  lastUsedSource?: string;
+  /** 'last4' shows the trailing 4 chars; 'full' masks everything. */
+  maskedFormat?: "last4" | "full";
+}
+
 /**
  * Masked API-key display with reveal + copy buttons.
  *
@@ -19,7 +31,7 @@ import { cn } from "@/lib/utils";
  * @example
  * <ApiKeyField source="apiKey" scopesSource="scopes" lastUsedSource="lastUsedAt" />
  */
-export const ApiKeyField = <RecordType extends UnknownRecord = UnknownRecord>({
+function ApiKeyField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,
@@ -28,7 +40,7 @@ export const ApiKeyField = <RecordType extends UnknownRecord = UnknownRecord>({
   maskedFormat = "last4",
   className,
   ...rest
-}: ApiKeyFieldProps<RecordType>) => {
+}: ApiKeyFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const ctx = useRecordContext<RecordType>({ record });
   const [revealed, setRevealed] = useState(false);
@@ -117,7 +129,7 @@ export const ApiKeyField = <RecordType extends UnknownRecord = UnknownRecord>({
       )}
     </span>
   );
-};
+}
 
 function formatRelative(iso: string | null | undefined): string {
   if (!iso) return "Never";
@@ -132,14 +144,4 @@ function formatRelative(iso: string | null | undefined): string {
   return rtf.format(Math.round(delta / (86400 * 30)), "month");
 }
 
-export interface ApiKeyFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
-  /** Record field with scope strings. Renders chips when set. */
-  scopesSource?: string;
-  /** Record field with ISO last-used timestamp. */
-  lastUsedSource?: string;
-  /** 'last4' shows the trailing 4 chars; 'full' masks everything. */
-  maskedFormat?: "last4" | "full";
-}
+export { ApiKeyField, type ApiKeyFieldProps };

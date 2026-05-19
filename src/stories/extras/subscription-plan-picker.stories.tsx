@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { SubscriptionPlanPicker } from "@/components/admin";
+import { SubscriptionPlanPicker } from "@/components/extras";
 
 export default {
   title: "Extras/SubscriptionPlanPicker",

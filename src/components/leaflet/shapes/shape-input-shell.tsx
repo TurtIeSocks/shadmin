@@ -10,7 +10,7 @@ import { useGeomanRHF } from "../geoman/use-geoman-rhf";
 import { geojsonTypeToGeomanShape } from "../geoman/geoman-shape-mapping";
 import type { BaseInputProps, GeomanShape, ShapeKind } from "../types";
 
-export interface ShapeInputShellProps extends BaseInputProps {
+interface ShapeInputShellProps extends BaseInputProps {
   shape: ShapeKind;
   multi: boolean;
   collection?: boolean;
@@ -51,7 +51,7 @@ interface ShellInnerProps extends Pick<
   validate?: (geom: GeoJSON.Geometry) => string | undefined;
 }
 
-export const ShapeInputShell = ({
+function ShapeInputShell({
   source,
   shape,
   multi,
@@ -71,7 +71,7 @@ export const ShapeInputShell = ({
   validate,
   valueTransform,
   valueParse,
-}: ShapeInputShellProps) => {
+}: ShapeInputShellProps) {
   const validators = Array.isArray(validate)
     ? validate
     : validate
@@ -123,9 +123,9 @@ export const ShapeInputShell = ({
       ) : null}
     </div>
   );
-};
+}
 
-const ShellInner = ({
+function ShellInner({
   source,
   shape,
   multi,
@@ -138,7 +138,7 @@ const ShellInner = ({
   validate,
   valueTransform,
   valueParse,
-}: ShellInnerProps) => {
+}: ShellInnerProps) {
   const { featureGroupRef, geomanControlsProps } = useGeomanRHF({
     source,
     shape,
@@ -182,4 +182,6 @@ const ShellInner = ({
       />
     </FeatureGroup>
   );
-};
+}
+
+export { ShapeInputShell, type ShapeInputShellProps };

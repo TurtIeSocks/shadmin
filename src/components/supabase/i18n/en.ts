@@ -8,7 +8,7 @@
  *
  * Source: ra-supabase-language-english@3.5.2
  */
-export const raSupabaseEnglishMessages = {
+const raSupabaseEnglishMessages = {
   "ra-supabase": {
     auth: {
       email: "Email",
@@ -33,3 +33,5 @@ export const raSupabaseEnglishMessages = {
     },
   },
 };
+
+export { raSupabaseEnglishMessages };

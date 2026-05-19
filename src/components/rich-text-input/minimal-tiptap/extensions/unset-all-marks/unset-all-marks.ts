@@ -1,9 +1,11 @@
 import { Extension } from "@tiptap/react";
 
-export const UnsetAllMarks = Extension.create({
+const UnsetAllMarks = Extension.create({
   addKeyboardShortcuts() {
     return {
       "Mod-\\": () => this.editor.commands.unsetAllMarks(),
     };
   },
 });
+
+export { UnsetAllMarks };

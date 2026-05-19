@@ -5,14 +5,14 @@ import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export interface LinkEditorProps extends React.ComponentProps<"div"> {
+interface LinkEditorProps extends React.ComponentProps<"div"> {
   defaultUrl?: string;
   defaultText?: string;
   defaultIsNewTab?: boolean;
   onSave: (url: string, text?: string, isNewTab?: boolean) => void;
 }
 
-export const LinkEditBlock = ({
+const LinkEditBlock = ({
   onSave,
   defaultIsNewTab,
   defaultUrl,
@@ -87,4 +87,4 @@ export const LinkEditBlock = ({
 
 LinkEditBlock.displayName = "LinkEditBlock";
 
-export default LinkEditBlock;
+export { type LinkEditorProps, LinkEditBlock };

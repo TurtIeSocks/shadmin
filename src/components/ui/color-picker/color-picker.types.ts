@@ -164,14 +164,14 @@ type KeepIf<B extends boolean, S extends string> = B extends true ? S : never;
 // =====================================================================
 
 /** #RGB, #RGBA, #RRGGBB, #RRGGBBAA */
-export type HexLiteral<S extends string> = S extends `#${infer Body}`
+type HexLiteral<S extends string> = S extends `#${infer Body}`
   ? Length<Body> extends 3 | 4 | 6 | 8
     ? KeepIf<AllChars<Body, HexDigit>, S>
     : never
   : never;
 
 /** rgb(255, 0, 0) | rgb(100%, 0%, 0%) | rgb(255 0 0) */
-export type RGBLiteral<S extends string> =
+type RGBLiteral<S extends string> =
   S extends `rgb(${infer R},${infer G},${infer B})`
     ? KeepIf<
         And<
@@ -194,7 +194,7 @@ export type RGBLiteral<S extends string> =
  * rgba(255, 0, 0, 0.5) | rgba(255, 0, 0, 50%)
  * rgba(255 0 0 / 0.5) | rgb(255 0 0 / 0.5)
  */
-export type RGBALiteral<S extends string> =
+type RGBALiteral<S extends string> =
   S extends `rgba(${infer R},${infer G},${infer B},${infer A})`
     ? KeepIf<
         And<
@@ -231,7 +231,7 @@ export type RGBALiteral<S extends string> =
         : never;
 
 /** hsl(210, 100%, 50%) | hsl(210 100% 50%) | hsl(210 100% 50% / 0.5) */
-export type HSLLiteral<S extends string> =
+type HSLLiteral<S extends string> =
   S extends `hsl(${infer H} ${infer Sat} ${infer Light} / ${infer A})`
     ? KeepIf<
         And<
@@ -265,7 +265,7 @@ export type HSLLiteral<S extends string> =
  * oklch(62% 0.18 240)
  * oklch(0.62 0.18 240deg / 0.8)
  */
-export type OKLCHLiteral<S extends string> =
+type OKLCHLiteral<S extends string> =
   S extends `oklch(${infer L} ${infer C} ${infer H} / ${infer A})`
     ? KeepIf<
         And<
@@ -302,7 +302,7 @@ type IsSignedDecimal<S extends string> = S extends `-${infer R}`
  * accepts any signed decimal; it does NOT range-check a/b to keep complexity
  * tractable. CSS Color 4 allows broader ranges anyway.
  */
-export type OklabLiteral<S extends string> =
+type OklabLiteral<S extends string> =
   S extends `oklab(${infer L} ${infer A} ${infer B} / ${infer Alpha})`
     ? KeepIf<
         And<
@@ -328,7 +328,7 @@ export type OklabLiteral<S extends string> =
  * hwb(240 20% 30%)
  * hwb(240 20% 30% / 0.5)
  */
-export type HWBLiteral<S extends string> =
+type HWBLiteral<S extends string> =
   S extends `hwb(${infer H} ${infer W} ${infer B} / ${infer A})`
     ? KeepIf<
         And<
@@ -350,7 +350,7 @@ export type HWBLiteral<S extends string> =
         >
       : never;
 
-export type ColorLiteral<S extends string> =
+type ColorLiteral<S extends string> =
   | HexLiteral<S>
   | RGBLiteral<S>
   | RGBALiteral<S>
@@ -360,37 +360,37 @@ export type ColorLiteral<S extends string> =
   | HWBLiteral<S>;
 
 /** Validate a color literal at the call site. */
-export const color = <S extends string>(value: S & ColorLiteral<S>): S => value;
+const color = <S extends string>(value: S & ColorLiteral<S>): S => value;
 
 // =====================================================================
 // 3. SUGGESTION STRINGS — non-generic, for IntelliSense + onChange returns.
 // =====================================================================
 
-export type HexString = `#${string}`;
+type HexString = `#${string}`;
 
-export type RgbString =
+type RgbString =
   | `rgb(${number} ${number} ${number})`
   | `rgb(${number} ${number} ${number} / ${number}%)`
   | `rgb(${number}, ${number}, ${number})`
   | `rgba(${number}, ${number}, ${number}, ${number})`;
 
-export type HslString =
+type HslString =
   | `hsl(${number} ${number}% ${number}%)`
   | `hsl(${number} ${number}% ${number}% / ${number}%)`;
 
-export type OklchString =
+type OklchString =
   | `oklch(${number} ${number} ${number})`
   | `oklch(${number} ${number} ${number} / ${number}%)`;
 
-export type OklabString =
+type OklabString =
   | `oklab(${number} ${number} ${number})`
   | `oklab(${number} ${number} ${number} / ${number}%)`;
 
-export type HwbString =
+type HwbString =
   | `hwb(${number} ${number}% ${number}%)`
   | `hwb(${number} ${number}% ${number}% / ${number}%)`;
 
-export type ColorString =
+type ColorString =
   | HexString
   | RgbString
   | HslString
@@ -398,7 +398,7 @@ export type ColorString =
   | OklabString
   | HwbString;
 
-export interface ColorStringMap {
+interface ColorStringMap {
   hex: HexString;
   rgb: RgbString;
   hsl: HslString;
@@ -407,7 +407,7 @@ export interface ColorStringMap {
   hwb: HwbString;
 }
 
-export type ColorMode = keyof ColorStringMap;
+type ColorMode = keyof ColorStringMap;
 
 // =====================================================================
 // 4. UTILITY TYPES — operate on color string literals at the type level.
@@ -421,7 +421,7 @@ export type ColorMode = keyof ColorStringMap;
  * type T2 = ModeOf<"oklch(0.5 0.1 240)">   // "oklch"
  * type T3 = ModeOf<"not-a-color">          // never
  */
-export type ModeOf<S extends string> = S extends `oklch(${string})`
+type ModeOf<S extends string> = S extends `oklch(${string})`
   ? "oklch"
   : S extends `oklab(${string})`
     ? "oklab"
@@ -450,7 +450,7 @@ export type ModeOf<S extends string> = S extends `oklch(${string})`
  * type T2 = WithAlpha<"oklch(0.5 0.1 240 / 100%)", 50>    // "oklch(0.5 0.1 240 / 50%)"
  * type T3 = WithAlpha<"rgb(255 0 0)", 25>                 // "rgb(255 0 0 / 25%)"
  */
-export type WithAlpha<
+type WithAlpha<
   S extends string,
   A extends number,
 > = S extends `${infer Base} / ${string})`
@@ -468,5 +468,29 @@ export type WithAlpha<
  * type T1 = WithoutAlpha<"oklch(0.5 0.1 240 / 50%)">  // "oklch(0.5 0.1 240)"
  * type T2 = WithoutAlpha<"oklch(0.5 0.1 240)">        // "oklch(0.5 0.1 240)"
  */
-export type WithoutAlpha<S extends string> =
+type WithoutAlpha<S extends string> =
   S extends `${infer Base} / ${string})` ? `${Base})` : S;
+
+export {
+  color,
+  type HexLiteral,
+  type RGBLiteral,
+  type RGBALiteral,
+  type HSLLiteral,
+  type OKLCHLiteral,
+  type OklabLiteral,
+  type HWBLiteral,
+  type ColorLiteral,
+  type HexString,
+  type RgbString,
+  type HslString,
+  type OklchString,
+  type OklabString,
+  type HwbString,
+  type ColorString,
+  type ColorStringMap,
+  type ColorMode,
+  type ModeOf,
+  type WithAlpha,
+  type WithoutAlpha,
+};

@@ -36,10 +36,10 @@ import { FilterList } from "@/components/admin/filter-list";
  *
  * @internal
  */
-export const AddSavedQueryDialog = ({
+function AddSavedQueryDialog({
   open,
   onClose,
-}: AddSavedQueryDialogProps): ReactElement => {
+}: AddSavedQueryDialogProps): ReactElement {
   const translate = useTranslate();
   const { resource, filterValues, displayedFilters, sort, perPage } =
     useListContext();
@@ -109,9 +109,9 @@ export const AddSavedQueryDialog = ({
       </DialogContent>
     </Dialog>
   );
-};
+}
 
-export interface AddSavedQueryDialogProps {
+interface AddSavedQueryDialogProps {
   open: boolean;
   onClose: () => void;
 }
@@ -121,10 +121,10 @@ export interface AddSavedQueryDialogProps {
  *
  * @internal
  */
-export const RemoveSavedQueryDialog = ({
+function RemoveSavedQueryDialog({
   open,
   onClose,
-}: RemoveSavedQueryDialogProps): ReactElement => {
+}: RemoveSavedQueryDialogProps): ReactElement {
   const translate = useTranslate();
   const { resource, filterValues, sort, perPage, displayedFilters } =
     useListContext();
@@ -180,9 +180,9 @@ export const RemoveSavedQueryDialog = ({
       </DialogContent>
     </Dialog>
   );
-};
+}
 
-export interface RemoveSavedQueryDialogProps {
+interface RemoveSavedQueryDialogProps {
   open: boolean;
   onClose: () => void;
 }
@@ -197,10 +197,10 @@ type IconButtonProps = Omit<ComponentProps<typeof Button>, "children">;
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
  */
-export const AddSavedQueryIconButton = ({
+function AddSavedQueryIconButton({
   className,
   ...rest
-}: IconButtonProps) => {
+}: IconButtonProps) {
   const [open, setOpen] = useState(false);
   const translate = useTranslate();
   return (
@@ -221,7 +221,7 @@ export const AddSavedQueryIconButton = ({
       <AddSavedQueryDialog open={open} onClose={() => setOpen(false)} />
     </>
   );
-};
+}
 
 /**
  * Standalone icon button that opens the {@link RemoveSavedQueryDialog}.
@@ -231,10 +231,10 @@ export const AddSavedQueryIconButton = ({
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
  */
-export const RemoveSavedQueryIconButton = ({
+function RemoveSavedQueryIconButton({
   className,
   ...rest
-}: IconButtonProps) => {
+}: IconButtonProps) {
   const [open, setOpen] = useState(false);
   const translate = useTranslate();
   return (
@@ -281,9 +281,9 @@ export const RemoveSavedQueryIconButton = ({
  *   </Card>
  * );
  */
-export const SavedQueriesList = ({
+function SavedQueriesList({
   icon = <Bookmark className="size-4" />,
-}: SavedQueriesListProps): ReactElement => {
+}: SavedQueriesListProps): ReactElement {
   const translate = useTranslate();
   const {
     resource,
@@ -398,8 +398,19 @@ export const SavedQueriesList = ({
       <AddSavedQueryDialog open={addOpen} onClose={() => setAddOpen(false)} />
     </>
   );
-};
+}
 
-export interface SavedQueriesListProps {
+interface SavedQueriesListProps {
   icon?: ReactNode;
 }
+
+export {
+  AddSavedQueryDialog,
+  type AddSavedQueryDialogProps,
+  RemoveSavedQueryDialog,
+  type RemoveSavedQueryDialogProps,
+  AddSavedQueryIconButton,
+  RemoveSavedQueryIconButton,
+  SavedQueriesList,
+  type SavedQueriesListProps,
+};

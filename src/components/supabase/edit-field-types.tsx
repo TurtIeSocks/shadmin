@@ -20,7 +20,7 @@ const ilikeFilter = (optionText: string) => (searchText: string) => ({
  * `autocompleteArrayInput` use the `@ilike` operator that
  * Supabase's REST API understands.
  */
-export const editFieldTypes: InferredTypeMap = {
+const editFieldTypes: InferredTypeMap = {
   form: {
     component: (props: any) => <SimpleForm {...props} />,
     representation: (
@@ -123,3 +123,5 @@ ${children
     representation: (props: any) => `<TextInput source="${props.source}" />`,
   },
 };
+
+export { editFieldTypes };

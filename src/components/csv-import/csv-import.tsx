@@ -26,7 +26,7 @@ import {
   useCsvImport,
 } from "./use-csv-import";
 
-export interface CsvImportProps {
+interface CsvImportProps {
   schema?: z.ZodObject<z.ZodRawShape>;
   mapping?: Record<string, string>;
   transform?: (
@@ -469,7 +469,7 @@ const CsvImportCommitStep = () => {
 
 const EMPTY_MAPPING: Record<string, string> = {};
 
-export const CsvImport = ({
+const CsvImport = ({
   schema,
   mapping: initialMapping = EMPTY_MAPPING,
   transform,
@@ -581,3 +581,5 @@ export const CsvImport = ({
     </CsvImportContext.Provider>
   );
 };
+
+export { type CsvImportProps, CsvImport };

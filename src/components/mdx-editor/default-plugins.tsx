@@ -28,7 +28,7 @@ import {
  * Plugin preset used by `MdxField` for read-only markdown rendering.
  * Excludes the toolbar plugin.
  */
-export const defaultFieldPlugins: RealmPlugin[] = [
+const defaultFieldPlugins: RealmPlugin[] = [
   headingsPlugin(),
   imagePlugin(),
   linkPlugin(),
@@ -44,7 +44,7 @@ export const defaultFieldPlugins: RealmPlugin[] = [
  * Plugin preset used by `MdxInput`. Builds on `defaultFieldPlugins` and adds
  * the toolbar plugin with the default toolbar contents.
  */
-export const defaultInputPlugins: RealmPlugin[] = [
+const defaultInputPlugins: RealmPlugin[] = [
   ...defaultFieldPlugins,
   toolbarPlugin({
     toolbarContents: () => (
@@ -71,3 +71,5 @@ export const defaultInputPlugins: RealmPlugin[] = [
     ),
   }),
 ];
+
+export { defaultFieldPlugins, defaultInputPlugins };

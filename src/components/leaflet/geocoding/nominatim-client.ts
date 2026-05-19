@@ -1,4 +1,4 @@
-export interface GeocodeResult {
+interface GeocodeResult {
   displayName: string;
   lat: number;
   lng: number;
@@ -7,7 +7,7 @@ export interface GeocodeResult {
   raw: unknown;
 }
 
-export interface SearchOptions {
+interface SearchOptions {
   endpoint?: string;
   countryCodes?: string[];
   viewBox?: [number, number, number, number];
@@ -15,12 +15,12 @@ export interface SearchOptions {
   signal?: AbortSignal;
 }
 
-export interface ReverseOptions {
+interface ReverseOptions {
   endpoint?: string;
   signal?: AbortSignal;
 }
 
-export interface GeocodingProvider {
+interface GeocodingProvider {
   search(query: string, opts?: SearchOptions): Promise<GeocodeResult[]>;
   reverse(
     lat: number,
@@ -59,7 +59,7 @@ interface NominatimReverseHit {
   lon: string;
 }
 
-export const nominatimProvider: GeocodingProvider = {
+const nominatimProvider: GeocodingProvider = {
   async search(query, opts = {}) {
     await polite();
     const url = new URL("/search", opts.endpoint ?? DEFAULT_ENDPOINT);
@@ -118,3 +118,5 @@ export const nominatimProvider: GeocodingProvider = {
     };
   },
 };
+
+export { type GeocodeResult, type SearchOptions, type ReverseOptions, type GeocodingProvider, nominatimProvider };

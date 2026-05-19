@@ -13,9 +13,9 @@ import type { UnknownRecord } from "@/lib/unknown-types";
 
 type BadgeProps = ComponentProps<typeof Badge>;
 
-const ChipFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
+function ChipFieldImpl<RecordType extends UnknownRecord = UnknownRecord>(
   inProps: ChipFieldProps<RecordType>,
-) => {
+) {
   const {
     className,
     empty,
@@ -49,7 +49,7 @@ const ChipFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
       {typeof value !== "string" ? value.toString() : value}
     </Badge>
   );
-};
+}
 ChipFieldImpl.displayName = "ChipFieldImpl";
 
 /**
@@ -74,11 +74,13 @@ ChipFieldImpl.displayName = "ChipFieldImpl";
  *   </List>
  * );
  */
-export const ChipField = genericMemo(ChipFieldImpl);
+const ChipField = genericMemo(ChipFieldImpl);
 
-export interface ChipFieldProps<
+interface ChipFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, Omit<BadgeProps, "children"> {
   variant?: "default" | "outline" | "secondary" | "destructive";
 }
+
+export { ChipField, type ChipFieldProps };

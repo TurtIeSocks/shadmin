@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { RecordContextProvider, type RaRecord } from "ra-core";
-import {
-  CalendarList,
-  KanbanBoard,
-  List,
-  type KanbanColumnDef,
-} from "@/components/admin";
+import { List } from "@/components/admin";
+import { CalendarList, KanbanBoard, type KanbanColumnDef } from "@/components/extras";
 import { DurationField } from "@/components/extras/duration-field";
 import { Button } from "@/components/ui/button";
 

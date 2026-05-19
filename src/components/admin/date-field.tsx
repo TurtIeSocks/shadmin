@@ -9,9 +9,9 @@ import {
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
-const DateFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
+function DateFieldImpl<RecordType extends UnknownRecord = UnknownRecord>(
   inProps: DateFieldProps<RecordType>,
-) => {
+) {
   const {
     empty,
     locales,
@@ -73,7 +73,7 @@ const DateFieldImpl = <RecordType extends UnknownRecord = UnknownRecord>(
   }
 
   return <span {...sanitizeFieldRestProps(rest)}>{dateString}</span>;
-};
+}
 DateFieldImpl.displayName = "DateFieldImpl";
 
 /**
@@ -106,9 +106,9 @@ DateFieldImpl.displayName = "DateFieldImpl";
  *   </List>
  * );
  */
-export const DateField = genericMemo(DateFieldImpl);
+const DateField = genericMemo(DateFieldImpl);
 
-export interface DateFieldProps<
+interface DateFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 >
   extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
@@ -135,3 +135,5 @@ const toLocaleStringSupportsLocales = (() => {
   }
   return false;
 })();
+
+export { DateField, type DateFieldProps };

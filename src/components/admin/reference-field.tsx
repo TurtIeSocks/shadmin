@@ -20,6 +20,42 @@ import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
 
+interface ReferenceFieldProps<
+  RecordType extends RaRecord = RaRecord,
+  ReferenceRecordType extends RaRecord = RaRecord,
+> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
+    Partial<ReferenceFieldViewProps<ReferenceRecordType>> {
+  children?: ReactNode;
+  queryOptions?: UseQueryOptions<RaRecord[], Error> & {
+    meta?: UnknownValue;
+  };
+  record?: RecordType;
+  reference: string;
+  translateChoice?: ((record: ReferenceRecordType) => string) | boolean;
+  link?: LinkToType;
+  source: ExtractRecordPaths<RecordType>;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
+}
+
+interface ReferenceFieldViewProps<
+  ReferenceRecordType extends RaRecord = RaRecord,
+> {
+  children?: ReactNode;
+  className?: string;
+  empty?: ReactNode;
+  loading?: ReactNode;
+  render?: (props: UseReferenceFieldControllerResult) => ReactNode;
+  reference: string;
+  source: string;
+  resource?: string;
+  translateChoice?: ((record: ReferenceRecordType) => string) | boolean;
+  resourceLinkPath?: LinkToType;
+  error?: ReactNode;
+}
+
 /**
  * Displays a field from a related record by following a foreign key relationship.
  *
@@ -43,12 +79,10 @@ const defaultOffline = <Offline />;
  *   </List>
  * );
  */
-export const ReferenceField = <
+function ReferenceField<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
->(
-  props: ReferenceFieldProps<RecordType, ReferenceRecordType>,
-) => {
+>(props: ReferenceFieldProps<RecordType, ReferenceRecordType>) {
   const {
     loading,
     error,
@@ -76,39 +110,15 @@ export const ReferenceField = <
       />
     </ReferenceFieldBase>
   );
-};
-
-export interface ReferenceFieldProps<
-  RecordType extends RaRecord = RaRecord,
-  ReferenceRecordType extends RaRecord = RaRecord,
->
-  extends
-    Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
-    Partial<ReferenceFieldViewProps<ReferenceRecordType>> {
-  children?: ReactNode;
-  queryOptions?: UseQueryOptions<RaRecord[], Error> & {
-    meta?: UnknownValue;
-  };
-  record?: RecordType;
-  reference: string;
-  translateChoice?: ((record: ReferenceRecordType) => string) | boolean;
-  link?: LinkToType;
-  source: ExtractRecordPaths<RecordType>;
-  /**
-   * Component to display when offline and the request is pending or has stale placeholder data.
-   */
-  offline?: ReactNode;
 }
 
 // useful to prevent click bubbling in a datagrid with rowClick
 const stopPropagation = (e: MouseEvent<HTMLAnchorElement>) =>
   e.stopPropagation();
 
-export const ReferenceFieldView = <
-  ReferenceRecordType extends RaRecord = RaRecord,
->(
+function ReferenceFieldView<ReferenceRecordType extends RaRecord = RaRecord>(
   props: ReferenceFieldViewProps<ReferenceRecordType>,
-) => {
+) {
   const {
     children,
     className,
@@ -159,20 +169,11 @@ export const ReferenceFieldView = <
   }
 
   return <>{child}</>;
-};
-
-export interface ReferenceFieldViewProps<
-  ReferenceRecordType extends RaRecord = RaRecord,
-> {
-  children?: ReactNode;
-  className?: string;
-  empty?: ReactNode;
-  loading?: ReactNode;
-  render?: (props: UseReferenceFieldControllerResult) => ReactNode;
-  reference: string;
-  source: string;
-  resource?: string;
-  translateChoice?: ((record: ReferenceRecordType) => string) | boolean;
-  resourceLinkPath?: LinkToType;
-  error?: ReactNode;
 }
+
+export {
+  ReferenceField,
+  ReferenceFieldView,
+  type ReferenceFieldProps,
+  type ReferenceFieldViewProps,
+};

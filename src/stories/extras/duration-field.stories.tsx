@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { DurationField } from "@/components/admin";
+import { DurationField } from "@/components/extras";
 
 export default { title: "Data Display/DurationField" };
 

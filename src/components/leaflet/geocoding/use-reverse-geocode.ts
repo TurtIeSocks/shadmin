@@ -9,14 +9,14 @@ import {
   type GeocodeResult,
 } from "./nominatim-client";
 
-export interface UseReverseGeocodeOptions extends ReverseOptions {
+interface UseReverseGeocodeOptions extends ReverseOptions {
   provider?: GeocodingProvider;
   enabled?: boolean;
 }
 
 const round5 = (n: number) => Math.round(n * 1e5) / 1e5;
 
-export const useReverseGeocode = (
+const useReverseGeocode = (
   coords: { lat: number | undefined; lng: number | undefined },
   opts: UseReverseGeocodeOptions = {},
 ) => {
@@ -36,3 +36,5 @@ export const useReverseGeocode = (
     staleTime: 5 * 60 * 1000,
   });
 };
+
+export { type UseReverseGeocodeOptions, useReverseGeocode };

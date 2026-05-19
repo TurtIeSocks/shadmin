@@ -4,7 +4,7 @@ import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { cn } from "@/lib/utils";
 
-export interface WebhookEndpoint {
+interface WebhookEndpoint {
   url: string;
   secret: string;
   eventTypes: readonly string[];
@@ -16,6 +16,11 @@ export interface WebhookEndpoint {
 
 type DeliveryStatus = "ok" | "failed" | "pending";
 
+interface WebhookEndpointFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {}
+
 /**
  * Displays a webhook endpoint's URL and last-delivery status badge.
  * The signing secret is never rendered.
@@ -23,7 +28,7 @@ type DeliveryStatus = "ok" | "failed" | "pending";
  * @example
  * <WebhookEndpointField source="endpoint" />
  */
-export const WebhookEndpointField = <
+function WebhookEndpointField<
   RecordType extends UnknownRecord = UnknownRecord,
 >({
   defaultValue,
@@ -31,7 +36,7 @@ export const WebhookEndpointField = <
   record,
   className,
   ...rest
-}: WebhookEndpointFieldProps<RecordType>) => {
+}: WebhookEndpointFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
 
   if (!value || typeof value !== "object") return null;
@@ -58,9 +63,10 @@ export const WebhookEndpointField = <
       </span>
     </span>
   );
-};
+}
 
-export interface WebhookEndpointFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {}
+export {
+  WebhookEndpointField,
+  type WebhookEndpoint,
+  type WebhookEndpointFieldProps,
+};

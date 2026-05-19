@@ -29,7 +29,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  *   </Edit>
  * );
  */
-export const NumberInput = (props: NumberInputProps) => {
+function NumberInput(props: NumberInputProps) {
   const {
     label,
     source,
@@ -137,9 +137,9 @@ export const NumberInput = (props: NumberInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
 
-export interface NumberInputProps
+interface NumberInputProps
   extends
     InputProps,
     Omit<
@@ -160,3 +160,5 @@ const convertStringToNumber = (value?: string | number | null) => {
 
   return Number.isNaN(float) ? null : float;
 };
+
+export { NumberInput, type NumberInputProps };

@@ -4,7 +4,7 @@ import { useTranslate } from "ra-core";
 import { TITLE_PORTAL_ID } from "@/components/admin/title-portal-id";
 import { cn } from "@/lib/utils";
 
-export type TitleProps = {
+type TitleProps = {
   /**
    * The title to display. If a string, it is translated using the i18n provider.
    * Pass a React element to render a custom title.
@@ -44,7 +44,7 @@ export type TitleProps = {
  *   </>
  * );
  */
-export const Title = ({ title, defaultTitle, className }: TitleProps) => {
+function Title({ title, defaultTitle, className }: TitleProps) {
   const translate = useTranslate();
   const [target, setTarget] = useState<HTMLElement | null>(() =>
     typeof document !== "undefined"
@@ -78,4 +78,6 @@ export const Title = ({ title, defaultTitle, className }: TitleProps) => {
     );
 
   return createPortal(node, target);
-};
+}
+
+export { Title, type TitleProps };

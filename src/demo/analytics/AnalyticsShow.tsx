@@ -1,5 +1,6 @@
 import { useRecordContext } from "ra-core";
-import { Show, RecordTimeline } from "@/components/admin";
+import { Show } from "@/components/admin";
+import { RecordTimeline } from "@/components/extras";
 import { DiffViewer } from "@/components/extras/diff-viewer";
 import type { Report, ReportTimelineEntry } from "./reports-seed";
 

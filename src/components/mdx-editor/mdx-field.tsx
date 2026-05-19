@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { defaultFieldPlugins } from "./default-plugins";
 import "./mdx-editor-dark.css";
 
-export interface MdxFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+interface MdxFieldProps<RecordType extends UnknownRecord = UnknownRecord>
   extends
     FieldProps<RecordType>,
     Omit<MDXEditorProps, "markdown" | "readOnly" | "ref"> {
@@ -40,7 +40,7 @@ export interface MdxFieldProps<RecordType extends UnknownRecord = UnknownRecord>
  *   </Show>
  * );
  */
-export const MdxField = <RecordType extends UnknownRecord = UnknownRecord>(
+const MdxField = <RecordType extends UnknownRecord = UnknownRecord>(
   props: MdxFieldProps<RecordType>,
 ) => {
   const {
@@ -96,3 +96,5 @@ export const MdxField = <RecordType extends UnknownRecord = UnknownRecord>(
     />
   );
 };
+
+export { type MdxFieldProps, MdxField };

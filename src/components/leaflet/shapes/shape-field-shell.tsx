@@ -9,21 +9,19 @@ import { BaseMap, FitBoundsOnMount } from "../shared-map";
 import { MarkerIcon } from "../shared";
 import type { BaseFieldProps } from "../types";
 
-export interface ShapeFieldShellProps extends BaseFieldProps {
+interface ShapeFieldShellProps extends BaseFieldProps {
   testId?: string;
   fitBoundsPadding?: L.PointTuple;
   fitBoundsMaxZoom?: number;
 }
 
-const FitToData = ({
-  geom,
-  padding,
-  maxZoom,
-}: {
+interface FitToDataProps {
   geom: GeoJSON.GeoJsonObject;
   padding?: L.PointTuple;
   maxZoom?: number;
-}) => {
+}
+
+function FitToData({ geom, padding, maxZoom }: FitToDataProps) {
   useMap();
   const bounds = useMemo(() => {
     const layer = L.geoJSON(geom);
@@ -33,9 +31,9 @@ const FitToData = ({
   return (
     <FitBoundsOnMount bounds={bounds} padding={padding} maxZoom={maxZoom} />
   );
-};
+}
 
-export const ShapeFieldShell = ({
+function ShapeFieldShell({
   source,
   zoom = 13,
   defaultCenter = [0, 0],
@@ -49,7 +47,7 @@ export const ShapeFieldShell = ({
   fitBoundsMaxZoom,
   emptyText = "No geometry available",
   testId,
-}: ShapeFieldShellProps) => {
+}: ShapeFieldShellProps) {
   const record = useRecordContext();
   const geom = record?.[source] as GeoJSON.GeoJsonObject | null | undefined;
 
@@ -88,4 +86,6 @@ export const ShapeFieldShell = ({
       ) : null}
     </BaseMap>
   );
-};
+}
+
+export { ShapeFieldShell, type ShapeFieldShellProps };

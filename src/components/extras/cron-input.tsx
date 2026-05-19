@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
  * @example
  * <CronInput source="schedule" />
  */
-export const CronInput = (props: CronInputProps) => {
+function CronInput(props: CronInputProps) {
   const {
     label,
     source,
@@ -72,9 +72,11 @@ export const CronInput = (props: CronInputProps) => {
   );
 };
 
-export interface CronInputProps
+interface CronInputProps
   extends
     InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   disabled?: boolean;
 }
+
+export { CronInput, type CronInputProps };

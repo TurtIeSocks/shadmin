@@ -33,7 +33,7 @@ interface FilterElementProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/list/#filter-button--form-combo FilterForm documentation}
  */
-export const FilterForm = (inProps: FilterFormProps) => {
+function FilterForm(inProps: FilterFormProps) {
   const { filters: filtersProps, ...rest } = inProps;
   const filters = useFilterContext() || filtersProps;
 
@@ -42,15 +42,15 @@ export const FilterForm = (inProps: FilterFormProps) => {
       <FilterFormBase filters={filters} />
     </FilterLiveForm>
   );
-};
+}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface FilterFormProps extends FilterFormBaseProps {}
+interface FilterFormProps extends FilterFormBaseProps {}
 
 /**
  * @deprecated Use FilterFormBase from `ra-core` once available.
  */
-export const FilterFormBase = (props: FilterFormBaseProps) => {
+function FilterFormBase(props: FilterFormBaseProps) {
   const { filters } = props;
   const resource = useResourceContext(props);
   const { displayedFilters = {}, filterValues, hideFilter } = useListContext();
@@ -111,7 +111,7 @@ export const FilterFormBase = (props: FilterFormBaseProps) => {
       ))}
     </>
   );
-};
+}
 
 const sanitizeRestProps = ({
   hasCreate: _hasCreate,
@@ -119,7 +119,7 @@ const sanitizeRestProps = ({
   ...props
 }: Partial<FilterFormBaseProps> & { hasCreate?: boolean }) => props;
 
-export type FilterFormBaseProps = Omit<
+type FilterFormBaseProps = Omit<
   HtmlHTMLAttributes<HTMLFormElement>,
   "children"
 > & {
@@ -128,7 +128,7 @@ export type FilterFormBaseProps = Omit<
   filters?: ReactNode[];
 };
 
-const StyledForm = (props: React.FormHTMLAttributes<HTMLFormElement>) => {
+function StyledForm(props: React.FormHTMLAttributes<HTMLFormElement>) {
   return (
     <form
       {...props}
@@ -139,7 +139,7 @@ const StyledForm = (props: React.FormHTMLAttributes<HTMLFormElement>) => {
       )}
     />
   );
-};
+}
 
 const isEmptyValue = (filterValue: UnknownValue): boolean => {
   if (filterValue === "" || filterValue == null) return true;
@@ -155,7 +155,7 @@ const isEmptyValue = (filterValue: UnknownValue): boolean => {
   return false;
 };
 
-export const FilterFormInput = (inProps: FilterFormInputProps) => {
+function FilterFormInput(inProps: FilterFormInputProps) {
   const { filterElement, handleHide, className } = inProps;
   const resource = useResourceContext(inProps);
   const translate = useTranslate();
@@ -191,9 +191,9 @@ export const FilterFormInput = (inProps: FilterFormInputProps) => {
       )}
     </div>
   );
-};
+}
 
-export interface FilterFormInputProps {
+interface FilterFormInputProps {
   filterElement: React.ReactElement<FilterElementProps>;
   handleHide: (event: React.MouseEvent<HTMLElement>) => void;
   className?: string;
@@ -201,3 +201,12 @@ export interface FilterFormInputProps {
 }
 
 const emptyRecord = {};
+
+export {
+  FilterForm,
+  type FilterFormProps,
+  FilterFormBase,
+  type FilterFormBaseProps,
+  FilterFormInput,
+  type FilterFormInputProps,
+};

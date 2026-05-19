@@ -5,7 +5,7 @@ import { LogOut } from "lucide-react";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
-export interface LogoutProps {
+interface LogoutProps {
   className?: string;
   /**
    * Path the user is redirected to after a successful logout. Defaults to
@@ -28,7 +28,7 @@ export interface LogoutProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/logout/ Logout documentation}
  */
-export const Logout = ({ className, redirectTo, icon }: LogoutProps) => {
+function Logout({ className, redirectTo, icon }: LogoutProps) {
   const { authenticated } = useAuthState();
   const logout = useLogout();
 
@@ -48,4 +48,6 @@ export const Logout = ({ className, redirectTo, icon }: LogoutProps) => {
       <Translate i18nKey="ra.auth.logout">Log out</Translate>
     </DropdownMenuItem>
   );
-};
+}
+
+export { Logout, type LogoutProps };

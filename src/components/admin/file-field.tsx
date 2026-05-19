@@ -6,6 +6,19 @@ import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
+interface FileFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLElement> {
+  /**
+   * The source of the link to the file, for an array of files.
+   */
+  src?: string;
+  title?: HintedString<ExtractRecordPaths<RecordType>>;
+  target?: HTMLAnchorElement["target"];
+  download?: HTMLAnchorElement["download"];
+  ping?: string;
+  rel?: string;
+}
+
 /**
  * Displays a downloadable file link with customizable title and target.
  *
@@ -25,9 +38,9 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *     <a href="doc.pdf" title="Presentation">Presentation</a>
  * </div>
  */
-export const FileField = <RecordType extends UnknownRecord = UnknownRecord>(
+function FileField<RecordType extends UnknownRecord = UnknownRecord>(
   props: FileFieldProps<RecordType>,
-) => {
+) {
   const {
     className,
     empty,
@@ -119,19 +132,6 @@ export const FileField = <RecordType extends UnknownRecord = UnknownRecord>(
       </a>
     </div>
   );
-};
-
-export interface FileFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLElement> {
-  /**
-   * The source of the link to the file, for an array of files.
-   */
-  src?: string;
-  title?: HintedString<ExtractRecordPaths<RecordType>>;
-  target?: HTMLAnchorElement["target"];
-  download?: HTMLAnchorElement["download"];
-  ping?: string;
-  rel?: string;
 }
+
+export { FileField, type FileFieldProps };

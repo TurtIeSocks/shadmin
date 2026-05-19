@@ -3,7 +3,7 @@ import { useTranslate } from "ra-core";
 import { AuthLayout } from "@/components/admin/auth-layout";
 import { ForgotPasswordForm } from "./forgot-password-form";
 
-export interface ForgotPasswordPageProps {
+interface ForgotPasswordPageProps {
   children?: ReactNode;
   /**
    * Optional content for `<AuthLayout>`'s left pane. Pass any ReactNode
@@ -30,7 +30,7 @@ export interface ForgotPasswordPageProps {
  *   </CustomRoutes>
  * </Admin>
  */
-export const ForgotPasswordPage = ({
+const ForgotPasswordPage = ({
   children = <ForgotPasswordForm />,
   aside,
 }: ForgotPasswordPageProps) => {
@@ -54,3 +54,5 @@ export const ForgotPasswordPage = ({
 };
 
 ForgotPasswordPage.path = "/forgot-password";
+
+export { type ForgotPasswordPageProps, ForgotPasswordPage };

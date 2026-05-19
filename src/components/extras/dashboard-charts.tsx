@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 
 // ---------- MetricCard ----------
 
-export interface MetricCardProps {
+interface MetricCardProps {
   label: string;
   value: number | string;
   delta?: number;
@@ -40,7 +40,7 @@ export interface MetricCardProps {
   className?: string;
 }
 
-export const MetricCard = ({
+const MetricCard = ({
   label,
   value,
   delta,
@@ -133,7 +133,7 @@ const ChartShell = ({
 
 // ---------- TrendChart ----------
 
-export interface TrendChartProps {
+interface TrendChartProps {
   data: Array<Record<string, unknown>>;
   xField: string;
   yField: string;
@@ -150,7 +150,7 @@ export interface TrendChartProps {
   tooltipFormatter?: (value: unknown, name: string) => [ReactNode, ReactNode];
 }
 
-export const TrendChart = ({
+const TrendChart = ({
   data,
   xField,
   yField,
@@ -246,7 +246,7 @@ export const TrendChart = ({
 
 // ---------- BarChart ----------
 
-export interface BarChartProps {
+interface BarChartProps {
   data: Array<Record<string, unknown>>;
   xField: string;
   yField: string;
@@ -257,7 +257,7 @@ export interface BarChartProps {
   className?: string;
 }
 
-export const BarChart = ({
+const BarChart = ({
   data,
   xField,
   yField,
@@ -289,7 +289,7 @@ export const BarChart = ({
 
 // ---------- DonutChart ----------
 
-export interface DonutChartProps {
+interface DonutChartProps {
   data: Array<Record<string, unknown>>;
   labelField: string;
   valueField: string;
@@ -308,7 +308,7 @@ const DEFAULT_DONUT_COLORS = [
   "var(--chart-5, hsl(262 83% 58%))",
 ];
 
-export const DonutChart = ({
+const DonutChart = ({
   data,
   labelField,
   valueField,
@@ -342,3 +342,5 @@ export const DonutChart = ({
     </PieChart>
   </ChartShell>
 );
+
+export { type MetricCardProps, MetricCard, type TrendChartProps, TrendChart, type BarChartProps, BarChart, type DonutChartProps, DonutChart };

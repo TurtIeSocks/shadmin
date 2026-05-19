@@ -1,7 +1,7 @@
 import { Color as TiptapColor } from "@tiptap/extension-color";
 import { Plugin } from "@tiptap/pm/state";
 
-export const Color = TiptapColor.extend({
+const Color = TiptapColor.extend({
   addProseMirrorPlugins() {
     return [
       ...(this.parent?.() || []),
@@ -18,3 +18,5 @@ export const Color = TiptapColor.extend({
     ];
   },
 });
+
+export { Color };

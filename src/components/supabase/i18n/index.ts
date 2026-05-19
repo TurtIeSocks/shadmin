@@ -13,7 +13,7 @@ export { raSupabaseEnglishMessages, raSupabaseFrenchMessages };
  * consumer does not pass one. Override by passing an `i18nProvider`
  * prop to `<AdminGuesser>` (e.g. one that merges French messages too).
  */
-export const defaultSupabaseI18nProvider = polyglotI18nProvider(
+const defaultSupabaseI18nProvider = polyglotI18nProvider(
   () => ({
     ...defaultEnglishMessages,
     ...raSupabaseEnglishMessages,
@@ -22,3 +22,5 @@ export const defaultSupabaseI18nProvider = polyglotI18nProvider(
   [{ name: "en", value: "English" }],
   { allowMissing: true },
 );
+
+export { defaultSupabaseI18nProvider };

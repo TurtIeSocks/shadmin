@@ -7,6 +7,17 @@ import {
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+interface DualApprovalButtonProps {
+  /** Total approvers required. Default `2`. */
+  required?: number;
+  /** Record field with the approver id array. Default `"approvers"`. */
+  approverSource?: string;
+  /** Record field updated to `"approved"` when threshold reached. Default `"status"`. */
+  statusSource?: string;
+  /** Override resource. */
+  resource?: string;
+}
+
 /**
  * Four-eyes / segregation-of-duties approval button. Records each approver's
  * id in the `approverSource` array on the record; once the count reaches
@@ -17,7 +28,7 @@ import { Button } from "@/components/ui/button";
  * @example
  * <DualApprovalButton required={2} />
  */
-export const DualApprovalButton = (props: DualApprovalButtonProps) => {
+function DualApprovalButton(props: DualApprovalButtonProps) {
   const {
     required = 2,
     approverSource = "approvers",
@@ -87,15 +98,6 @@ export const DualApprovalButton = (props: DualApprovalButtonProps) => {
       )}
     </span>
   );
-};
-
-export interface DualApprovalButtonProps {
-  /** Total approvers required. Default `2`. */
-  required?: number;
-  /** Record field with the approver id array. Default `"approvers"`. */
-  approverSource?: string;
-  /** Record field updated to `"approved"` when threshold reached. Default `"status"`. */
-  statusSource?: string;
-  /** Override resource. */
-  resource?: string;
 }
+
+export { DualApprovalButton, type DualApprovalButtonProps };

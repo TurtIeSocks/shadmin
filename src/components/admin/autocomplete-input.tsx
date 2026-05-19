@@ -77,50 +77,50 @@ import type { UnknownValue } from "@/lib/unknown-types";
  *   </Create>
  * );
  */
-export const AutocompleteInput = (
-  props: Omit<InputProps, "source"> &
-    Omit<SupportCreateSuggestionOptions, "handleChange" | "filter"> &
-    Partial<Pick<InputProps, "source">> &
-    ChoicesProps & {
-      className?: string;
-      debounce?: number;
-      disableValue?: string;
-      filterToQuery?: (searchText: string) => UnknownValue;
-      translateChoice?: boolean;
-      placeholder?: string;
-      /** Custom display text for the selected value in the trigger button. Must return a string. */
-      inputText?: (option: UnknownValue) => string;
-      /** When true, only show choices matching the current value in the dropdown. */
-      limitChoicesToValue?: boolean;
-      /** Cap the number of dropdown items shown. */
-      suggestionLimit?: number;
-      /** Content to show when no choices match the filter. Defaults to ra.navigation.no_results. */
-      noOptionsText?: React.ReactNode;
-      /** Underlying value used when clearing the selection. Defaults to "". */
-      emptyValue?: string | number;
-      /** When true, clear the filter text on input blur. */
-      clearOnBlur?: boolean;
-      /** When true, open the dropdown on input focus. */
-      openOnFocus?: boolean;
-      /** When true, select all text in the input on focus. */
-      selectOnFocus?: boolean;
-      /** When true, Home/End keys scroll the listbox to first/last item. */
-      handleHomeEndKeys?: boolean;
-      /** Custom equality check between a choice and the current value. */
-      isOptionEqualToValue?: (
-        option: UnknownValue,
-        value: UnknownValue,
-      ) => boolean;
-      /** Custom filter function; replaces default substring match. */
-      matchSuggestion?: (filter: string, choice: UnknownValue) => boolean;
-      /** Gate controlling whether the dropdown opens at all. */
-      shouldRenderSuggestions?: (filter: string) => boolean;
-      /** Label of a "(none)" entry prepended when the field is not required. */
-      emptyText?: string;
-      /** Called with the current filter text on every keystroke. For server-side filtering outside ReferenceInput. No debounce applied — caller decides. */
-      setFilter?: (filter: string) => void;
-    } & Pick<PopoverPrimitive.PopoverProps, "modal">,
-) => {
+type AutocompleteInputProps = Omit<InputProps, "source"> &
+  Omit<SupportCreateSuggestionOptions, "handleChange" | "filter"> &
+  Partial<Pick<InputProps, "source">> &
+  ChoicesProps & {
+    className?: string;
+    debounce?: number;
+    disableValue?: string;
+    filterToQuery?: (searchText: string) => UnknownValue;
+    translateChoice?: boolean;
+    placeholder?: string;
+    /** Custom display text for the selected value in the trigger button. Must return a string. */
+    inputText?: (option: UnknownValue) => string;
+    /** When true, only show choices matching the current value in the dropdown. */
+    limitChoicesToValue?: boolean;
+    /** Cap the number of dropdown items shown. */
+    suggestionLimit?: number;
+    /** Content to show when no choices match the filter. Defaults to ra.navigation.no_results. */
+    noOptionsText?: React.ReactNode;
+    /** Underlying value used when clearing the selection. Defaults to "". */
+    emptyValue?: string | number;
+    /** When true, clear the filter text on input blur. */
+    clearOnBlur?: boolean;
+    /** When true, open the dropdown on input focus. */
+    openOnFocus?: boolean;
+    /** When true, select all text in the input on focus. */
+    selectOnFocus?: boolean;
+    /** When true, Home/End keys scroll the listbox to first/last item. */
+    handleHomeEndKeys?: boolean;
+    /** Custom equality check between a choice and the current value. */
+    isOptionEqualToValue?: (
+      option: UnknownValue,
+      value: UnknownValue,
+    ) => boolean;
+    /** Custom filter function; replaces default substring match. */
+    matchSuggestion?: (filter: string, choice: UnknownValue) => boolean;
+    /** Gate controlling whether the dropdown opens at all. */
+    shouldRenderSuggestions?: (filter: string) => boolean;
+    /** Label of a "(none)" entry prepended when the field is not required. */
+    emptyText?: string;
+    /** Called with the current filter text on every keystroke. For server-side filtering outside ReferenceInput. No debounce applied — caller decides. */
+    setFilter?: (filter: string) => void;
+  } & Pick<PopoverPrimitive.PopoverProps, "modal">;
+
+function AutocompleteInput(props: AutocompleteInputProps) {
   const {
     debounce: debounceDelay = 250,
     filterToQuery = DefaultFilterToQuery,
@@ -492,6 +492,8 @@ export const AutocompleteInput = (
       {createElement}
     </>
   );
-};
+}
 
 const DefaultFilterToQuery = (searchText: string) => ({ q: searchText });
+
+export { AutocompleteInput, type AutocompleteInputProps };

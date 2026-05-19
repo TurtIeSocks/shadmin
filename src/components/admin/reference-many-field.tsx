@@ -10,6 +10,28 @@ import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
 
+interface ReferenceManyFieldProps<
+  RecordType extends RaRecord = RaRecord,
+  ReferenceRecordType extends RaRecord = RaRecord,
+> extends Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
+    UseReferenceManyFieldControllerParams<RecordType, ReferenceRecordType>,
+    ReferenceManyFieldViewProps<ReferenceRecordType> {}
+
+interface ReferenceManyFieldViewProps<
+  ReferenceRecordType extends RaRecord = RaRecord,
+> {
+  children?: ReactNode;
+  empty?: ReactNode;
+  error?: ReactNode;
+  loading?: ReactNode;
+  /**
+   * Component to display when offline and the request is pending or has stale placeholder data.
+   */
+  offline?: ReactNode;
+  pagination?: ReactNode;
+  render?: (props: ListControllerResult<ReferenceRecordType>) => ReactNode;
+}
+
 /**
  * Displays multiple related records that reference the current record via a foreign key.
  *
@@ -38,12 +60,10 @@ const defaultOffline = <Offline />;
  *   </Show>
  * );
  */
-export const ReferenceManyField = <
+function ReferenceManyField<
   RecordType extends RaRecord = RaRecord,
   ReferenceRecordType extends RaRecord = RaRecord,
->(
-  props: ReferenceManyFieldProps<RecordType, ReferenceRecordType>,
-) => {
+>(props: ReferenceManyFieldProps<RecordType, ReferenceRecordType>) {
   const {
     children,
     empty,
@@ -69,22 +89,11 @@ export const ReferenceManyField = <
       </ReferenceManyFieldView>
     </ReferenceManyFieldBase>
   );
-};
+}
 
-export interface ReferenceManyFieldProps<
-  RecordType extends RaRecord = RaRecord,
+function ReferenceManyFieldView<
   ReferenceRecordType extends RaRecord = RaRecord,
->
-  extends
-    Omit<FieldProps<RecordType>, "source" | "record" | "empty">,
-    UseReferenceManyFieldControllerParams<RecordType, ReferenceRecordType>,
-    ReferenceManyFieldViewProps<ReferenceRecordType> {}
-
-const ReferenceManyFieldView = <
-  ReferenceRecordType extends RaRecord = RaRecord,
->(
-  props: ReferenceManyFieldViewProps<ReferenceRecordType>,
-) => {
+>(props: ReferenceManyFieldViewProps<ReferenceRecordType>) {
   const {
     children,
     empty,
@@ -142,19 +151,10 @@ const ReferenceManyFieldView = <
       {pagination}
     </>
   );
-};
-
-export interface ReferenceManyFieldViewProps<
-  ReferenceRecordType extends RaRecord = RaRecord,
-> {
-  children?: ReactNode;
-  empty?: ReactNode;
-  error?: ReactNode;
-  loading?: ReactNode;
-  /**
-   * Component to display when offline and the request is pending or has stale placeholder data.
-   */
-  offline?: ReactNode;
-  pagination?: ReactNode;
-  render?: (props: ListControllerResult<ReferenceRecordType>) => ReactNode;
 }
+
+export {
+  ReferenceManyField,
+  type ReferenceManyFieldProps,
+  type ReferenceManyFieldViewProps,
+};

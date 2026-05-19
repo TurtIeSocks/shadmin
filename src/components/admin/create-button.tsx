@@ -10,7 +10,7 @@ import {
 } from "ra-core";
 import { Link } from "react-router";
 
-export type CreateButtonProps = {
+type CreateButtonProps = {
   label?: string;
   icon?: React.ReactNode;
   resource?: string;
@@ -41,7 +41,7 @@ const defaultIcon = <Plus />;
  *   </List>
  * );
  */
-export const CreateButton = (props: CreateButtonProps) => {
+function CreateButton(props: CreateButtonProps) {
   const {
     label: labelProp,
     icon = defaultIcon,
@@ -80,7 +80,9 @@ export const CreateButton = (props: CreateButtonProps) => {
       {label}
     </Link>
   );
-};
+}
 
 // useful to prevent click bubbling in a datagrid with rowClick
 const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
+
+export { CreateButton, type CreateButtonProps };

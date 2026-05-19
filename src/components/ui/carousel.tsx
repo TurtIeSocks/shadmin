@@ -42,6 +42,10 @@ function useCarousel() {
   return context
 }
 
+interface CarouselComponentProps
+  extends React.ComponentProps<"div">,
+    CarouselProps {}
+
 function Carousel({
   orientation = "horizontal",
   opts,
@@ -50,7 +54,7 @@ function Carousel({
   className,
   children,
   ...props
-}: React.ComponentProps<"div"> & CarouselProps) {
+}: CarouselComponentProps) {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,

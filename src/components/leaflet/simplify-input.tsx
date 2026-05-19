@@ -12,9 +12,9 @@ import { Slider } from "@/components/ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import type { BaseInputProps } from "./types";
 
-export type SimplifyQuality = "Default" | "High";
+type SimplifyQuality = "Default" | "High";
 
-export interface SimplifyInputProps extends BaseInputProps {
+interface SimplifyInputProps extends BaseInputProps {
   /** Initial slider value. Defaults to `0.01`. */
   tolerance?: number;
   /** Minimum slider value. Defaults to `0`. */
@@ -37,7 +37,7 @@ const isGeoJsonLike = (v: unknown): boolean =>
   "type" in v &&
   typeof (v as { type: unknown }).type === "string";
 
-export const SimplifyInput = ({
+function SimplifyInput({
   source,
   zoom = 13,
   defaultCenter = [0, 0],
@@ -52,7 +52,7 @@ export const SimplifyInput = ({
   quality: initialQuality = "Default",
   label,
   helperText,
-}: SimplifyInputProps) => {
+}: SimplifyInputProps) {
   const form = useFormContext();
   const value = useWatch({ name: source }) as
     | GeoJSON.Geometry
@@ -185,4 +185,6 @@ export const SimplifyInput = ({
       ) : null}
     </div>
   );
-};
+}
+
+export { SimplifyInput, type SimplifyInputProps, type SimplifyQuality };

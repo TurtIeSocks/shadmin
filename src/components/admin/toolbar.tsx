@@ -38,34 +38,38 @@ import { DeleteButton } from "@/components/admin/delete-button";
  *   </Toolbar>
  * );
  */
-export const Toolbar = ({
+function Toolbar({
   children,
   className,
   resource,
   ...rest
-}: ToolbarProps) => (
-  <div
-    {...rest}
-    role="toolbar"
-    className={cn(
-      "sticky pt-4 pb-4 md:block md:pt-2 md:pb-0 bottom-0 bg-linear-to-b from-transparent to-background to-10%",
-      className,
-    )}
-  >
-    {Children.count(children) === 0 ? (
-      <div className="flex flex-row gap-2 justify-between">
-        <SaveButton />
-        <DeleteButton resource={resource} variant="ghost" />
-      </div>
-    ) : (
-      children
-    )}
-  </div>
-);
+}: ToolbarProps) {
+  return (
+    <div
+      {...rest}
+      role="toolbar"
+      className={cn(
+        "sticky pt-4 pb-4 md:block md:pt-2 md:pb-0 bottom-0 bg-linear-to-b from-transparent to-background to-10%",
+        className,
+      )}
+    >
+      {Children.count(children) === 0 ? (
+        <div className="flex flex-row gap-2 justify-between">
+          <SaveButton />
+          <DeleteButton resource={resource} variant="ghost" />
+        </div>
+      ) : (
+        children
+      )}
+    </div>
+  );
+}
 
-export interface ToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   className?: string;
   /** Forward to the default `<DeleteButton>` when used outside a ResourceContext. */
   resource?: string;
 }
+
+export { Toolbar, type ToolbarProps };

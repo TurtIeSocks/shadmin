@@ -4,7 +4,7 @@ import bbox from "@turf/bbox";
 import area from "@turf/area";
 import { feature, featureCollection } from "@turf/helpers";
 
-export const subtract = (
+const subtract = (
   input: GeoJSON.Polygon | GeoJSON.MultiPolygon,
   mask: GeoJSON.FeatureCollection<GeoJSON.Polygon | GeoJSON.MultiPolygon>,
 ): GeoJSON.Polygon | GeoJSON.MultiPolygon | null => {
@@ -17,7 +17,7 @@ export const subtract = (
   return result?.geometry ?? null;
 };
 
-export const unionAll = (
+const unionAll = (
   fc: GeoJSON.FeatureCollection<GeoJSON.Polygon>,
 ): GeoJSON.Polygon | GeoJSON.MultiPolygon | null => {
   if (fc.features.length === 0) return null;
@@ -26,20 +26,20 @@ export const unionAll = (
   return result?.geometry ?? null;
 };
 
-export const bboxOf = (geom: GeoJSON.Geometry): GeoJSON.BBox => {
+const bboxOf = (geom: GeoJSON.Geometry): GeoJSON.BBox => {
   const b = bbox(feature(geom));
   return [b[0], b[1], b[2], b[3]];
 };
 
-export const areaM2 = (geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): number =>
+const areaM2 = (geom: GeoJSON.Polygon | GeoJSON.MultiPolygon): number =>
   area(feature(geom));
 
-export const polygonToBBox = (geom: GeoJSON.Geometry): GeoJSON.BBox | null => {
+const polygonToBBox = (geom: GeoJSON.Geometry): GeoJSON.BBox | null => {
   if (geom.type !== "Polygon") return null;
   return bboxOf(geom);
 };
 
-export const bboxToPolygon = (bb: unknown): GeoJSON.Polygon | null => {
+const bboxToPolygon = (bb: unknown): GeoJSON.Polygon | null => {
   if (
     !Array.isArray(bb) ||
     bb.length !== 4 ||
@@ -66,7 +66,7 @@ export const bboxToPolygon = (bb: unknown): GeoJSON.Polygon | null => {
  * Build a value-transform that locks a Polygon's bounding box to a given
  * width/height aspect ratio, centred on the original polygon's bbox centre.
  */
-export const aspectLockedBBox =
+const aspectLockedBBox =
   (ratio: number): ((geom: GeoJSON.Geometry) => GeoJSON.BBox | null) =>
   (geom) => {
     const bb = polygonToBBox(geom);
@@ -89,3 +89,5 @@ export const aspectLockedBBox =
       centerY + newHeight / 2,
     ];
   };
+
+export { subtract, unionAll, bboxOf, areaM2, polygonToBBox, bboxToPolygon, aspectLockedBBox };

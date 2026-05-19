@@ -36,7 +36,7 @@ import { cn } from "@/lib/utils";
  *   </Edit>
  * );
  */
-export const PhoneInput = (props: PhoneInputProps) => {
+function PhoneInput(props: PhoneInputProps) {
   const {
     label,
     source,
@@ -148,7 +148,7 @@ function formatNational(value: string, country: CountryCode): string {
   }
 }
 
-export interface PhoneInputProps
+interface PhoneInputProps
   extends
     InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
@@ -156,3 +156,5 @@ export interface PhoneInputProps
   allowedCountries?: readonly CountryCode[];
   disabled?: boolean;
 }
+
+export { PhoneInput, type PhoneInputProps };

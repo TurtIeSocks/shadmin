@@ -34,7 +34,7 @@ import {
  *   return <button onClick={handleClick}>Notify</button>;
  * };
  */
-export const Notification = (props: ToasterProps) => {
+function Notification(props: ToasterProps) {
   const { notifications, takeNotification, resetNotifications } =
     useNotificationContext();
   const takeMutation = useTakeUndoableMutation();
@@ -191,14 +191,14 @@ export const Notification = (props: ToasterProps) => {
       <Toaster {...defaultToasterProps} theme={theme} {...props} />
     </CloseNotificationContext.Provider>
   );
-};
+}
 
 /**
  * Listens for the user becoming unauthenticated (e.g. after logout) and
  * clears the notification queue so a stale notification doesn't surface
  * against the login screen or a subsequent session.
  */
-const LogoutQueueReset = ({ resetQueue }: { resetQueue: () => void }) => {
+function LogoutQueueReset({ resetQueue }: { resetQueue: () => void }) {
   const { authenticated } = useAuthState(undefined, false);
   const wasAuthenticatedRef = useRef<boolean | undefined>(undefined);
   useEffect(() => {
@@ -208,4 +208,6 @@ const LogoutQueueReset = ({ resetQueue }: { resetQueue: () => void }) => {
     wasAuthenticatedRef.current = authenticated;
   }, [authenticated, resetQueue]);
   return null;
-};
+}
+
+export { Notification };

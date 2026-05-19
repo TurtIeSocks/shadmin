@@ -11,7 +11,7 @@ import { TextInput } from "@/components/admin/text-input";
  * Calls `useResetPassword().mutateAsync({ email })` on submit and
  * surfaces errors via `useNotify`. Includes a "Back to login" link.
  */
-export const ForgotPasswordForm = () => {
+function ForgotPasswordForm() {
   const notify = useNotify();
   const translate = useTranslate();
   const [, { mutateAsync: resetPassword }] = useResetPassword();
@@ -71,3 +71,5 @@ export const ForgotPasswordForm = () => {
     </>
   );
 };
+
+export { ForgotPasswordForm };

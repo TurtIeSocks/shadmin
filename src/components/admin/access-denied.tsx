@@ -4,7 +4,7 @@ import { Lock } from "lucide-react";
 import { useTranslate } from "ra-core";
 import { cn } from "@/lib/utils";
 
-export interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {
+interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   icon?: ReactNode;
   textPrimary?: string;
@@ -17,13 +17,13 @@ export interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/accessdenied/ AccessDenied documentation}
  */
-export const AccessDenied = ({
+function AccessDenied({
   icon = <Lock className="size-32" />,
   textPrimary = "ra.page.access_denied",
   textSecondary = "ra.message.access_denied",
   className,
   ...rest
-}: AccessDeniedProps) => {
+}: AccessDeniedProps) {
   const translate = useTranslate();
   return (
     <div
@@ -44,4 +44,6 @@ export const AccessDenied = ({
       </div>
     </div>
   );
-};
+}
+
+export { AccessDenied, type AccessDeniedProps };

@@ -43,7 +43,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  *   </Edit>
  * );
  */
-export const CheckboxGroupInput = (inProps: CheckboxGroupInputProps) => {
+function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
   const {
     choices: choicesProp,
     isFetching: isFetchingProp,
@@ -208,9 +208,9 @@ export const CheckboxGroupInput = (inProps: CheckboxGroupInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
 
-export interface CheckboxGroupInputProps
+interface CheckboxGroupInputProps
   extends
     Partial<InputProps>,
     ChoicesProps,
@@ -222,3 +222,5 @@ export interface CheckboxGroupInputProps
   options?: ComponentProps<typeof Checkbox>;
   labelPlacement?: "end" | "start" | "top" | "bottom";
 }
+
+export { CheckboxGroupInput, type CheckboxGroupInputProps };

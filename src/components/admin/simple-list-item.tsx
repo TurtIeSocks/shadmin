@@ -10,12 +10,12 @@ import { cn } from "@/lib/utils";
  * Used by `<SimpleList>` and `<SimpleListItem>` for their slot props such as
  * `primaryText`, `secondaryText`, `leftAvatar`, etc.
  */
-export type FunctionToElement<RecordType extends RaRecord = RaRecord> = (
+type FunctionToElement<RecordType extends RaRecord = RaRecord> = (
   record: RecordType,
   id: Identifier,
 ) => ReactNode;
 
-export interface SimpleListItemProps<RecordType extends RaRecord = RaRecord> {
+interface SimpleListItemProps<RecordType extends RaRecord = RaRecord> {
   /**
    * The record to display. If omitted, the item reads it from the current
    * `<RecordContext>`.
@@ -63,9 +63,9 @@ export interface SimpleListItemProps<RecordType extends RaRecord = RaRecord> {
  *   </SimpleListItem>
  * );
  */
-export const SimpleListItem = <RecordType extends RaRecord = RaRecord>(
+function SimpleListItem<RecordType extends RaRecord = RaRecord>(
   props: SimpleListItemProps<RecordType>,
-) => {
+) {
   const { children, linkType, className } = props;
   const record = useRecordContext<RecordType>(props);
   const resource = useResourceContext(props);
@@ -95,4 +95,10 @@ export const SimpleListItem = <RecordType extends RaRecord = RaRecord>(
       </Link>
     </li>
   );
+}
+
+export {
+  SimpleListItem,
+  type SimpleListItemProps,
+  type FunctionToElement,
 };

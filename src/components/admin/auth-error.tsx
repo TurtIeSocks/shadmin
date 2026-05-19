@@ -5,7 +5,7 @@ import { CircleAlert, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-export interface AuthErrorProps {
+interface AuthErrorProps {
   className?: string;
   title?: string;
   message?: string;
@@ -30,7 +30,7 @@ export interface AuthErrorProps {
  *   </Admin>
  * );
  */
-export const AuthError = (props: AuthErrorProps) => {
+function AuthError(props: AuthErrorProps) {
   const {
     className,
     title = "ra.page.error",
@@ -59,4 +59,6 @@ export const AuthError = (props: AuthErrorProps) => {
       </Button>
     </div>
   );
-};
+}
+
+export { AuthError, type AuthErrorProps };

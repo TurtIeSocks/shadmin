@@ -13,7 +13,7 @@ interface LinkPopoverBlockProps {
   onEdit: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({
+const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({
   url,
   onClear,
   onEdit,
@@ -71,3 +71,5 @@ export const LinkPopoverBlock: React.FC<LinkPopoverBlockProps> = ({
     </div>
   );
 };
+
+export { LinkPopoverBlock };

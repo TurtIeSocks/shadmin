@@ -2,13 +2,13 @@ import type { Editor } from "@tiptap/react";
 import type { EditorView } from "@tiptap/pm/view";
 import type { EditorState } from "@tiptap/pm/state";
 
-export interface LinkProps {
+interface LinkProps {
   url: string;
   text?: string;
   openInNewTab?: boolean;
 }
 
-export interface ShouldShowProps {
+interface ShouldShowProps {
   editor: Editor;
   view: EditorView;
   state: EditorState;
@@ -17,7 +17,7 @@ export interface ShouldShowProps {
   to: number;
 }
 
-export interface FormatAction {
+interface FormatAction {
   label: string;
   icon?: React.ReactNode;
   action: (editor: Editor) => void;
@@ -26,3 +26,5 @@ export interface FormatAction {
   shortcuts: string[];
   value: string;
 }
+
+export { type LinkProps, type ShouldShowProps, type FormatAction };

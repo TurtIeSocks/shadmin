@@ -6,7 +6,7 @@ import type { editor } from "monaco-editor";
  * Monaco renders at its initial size and doesn't react to container
  * width changes (e.g., sidebar collapses, responsive breakpoints).
  */
-export function useMonacoLayout(
+function useMonacoLayout(
   containerRef: RefObject<HTMLElement | null>,
   instance: editor.IStandaloneCodeEditor | null,
 ) {
@@ -18,3 +18,5 @@ export function useMonacoLayout(
     return () => observer.disconnect();
   }, [containerRef, instance]);
 }
+
+export { useMonacoLayout };

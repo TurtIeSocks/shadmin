@@ -51,6 +51,12 @@ function useSidebar() {
   return context
 }
 
+interface SidebarProviderProps extends React.ComponentProps<"div"> {
+  defaultOpen?: boolean
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+}
+
 function SidebarProvider({
   defaultOpen = true,
   open: openProp,
@@ -59,11 +65,7 @@ function SidebarProvider({
   style,
   children,
   ...props
-}: React.ComponentProps<"div"> & {
-  defaultOpen?: boolean
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
-}) {
+}: SidebarProviderProps) {
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = React.useState(false)
 
@@ -149,6 +151,12 @@ function SidebarProvider({
   )
 }
 
+interface SidebarProps extends React.ComponentProps<"div"> {
+  side?: "left" | "right"
+  variant?: "sidebar" | "floating" | "inset"
+  collapsible?: "offcanvas" | "icon" | "none"
+}
+
 function Sidebar({
   side = "left",
   variant = "sidebar",
@@ -156,11 +164,7 @@ function Sidebar({
   className,
   children,
   ...props
-}: React.ComponentProps<"div"> & {
-  side?: "left" | "right"
-  variant?: "sidebar" | "floating" | "inset"
-  collapsible?: "offcanvas" | "icon" | "none"
-}) {
+}: SidebarProps) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
 
   if (collapsible === "none") {
@@ -391,11 +395,15 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+interface SidebarGroupLabelProps extends React.ComponentProps<"div"> {
+  asChild?: boolean
+}
+
 function SidebarGroupLabel({
   className,
   asChild = false,
   ...props
-}: React.ComponentProps<"div"> & { asChild?: boolean }) {
+}: SidebarGroupLabelProps) {
   const Comp = asChild ? Slot.Root : "div"
 
   return (
@@ -412,11 +420,15 @@ function SidebarGroupLabel({
   )
 }
 
+interface SidebarGroupActionProps extends React.ComponentProps<"button"> {
+  asChild?: boolean
+}
+
 function SidebarGroupAction({
   className,
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> & { asChild?: boolean }) {
+}: SidebarGroupActionProps) {
   const Comp = asChild ? Slot.Root : "button"
 
   return (
@@ -493,6 +505,14 @@ const sidebarMenuButtonVariants = cva(
   }
 )
 
+interface SidebarMenuButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof sidebarMenuButtonVariants> {
+  asChild?: boolean
+  isActive?: boolean
+  tooltip?: string | React.ComponentProps<typeof TooltipContent>
+}
+
 function SidebarMenuButton({
   asChild = false,
   isActive = false,
@@ -501,11 +521,7 @@ function SidebarMenuButton({
   tooltip,
   className,
   ...props
-}: React.ComponentProps<"button"> & {
-  asChild?: boolean
-  isActive?: boolean
-  tooltip?: string | React.ComponentProps<typeof TooltipContent>
-} & VariantProps<typeof sidebarMenuButtonVariants>) {
+}: SidebarMenuButtonProps) {
   const Comp = asChild ? Slot.Root : "button"
   const { isMobile, state } = useSidebar()
 
@@ -543,15 +559,17 @@ function SidebarMenuButton({
   )
 }
 
+interface SidebarMenuActionProps extends React.ComponentProps<"button"> {
+  asChild?: boolean
+  showOnHover?: boolean
+}
+
 function SidebarMenuAction({
   className,
   asChild = false,
   showOnHover = false,
   ...props
-}: React.ComponentProps<"button"> & {
-  asChild?: boolean
-  showOnHover?: boolean
-}) {
+}: SidebarMenuActionProps) {
   const Comp = asChild ? Slot.Root : "button"
 
   return (
@@ -597,13 +615,15 @@ function SidebarMenuBadge({
   )
 }
 
+interface SidebarMenuSkeletonProps extends React.ComponentProps<"div"> {
+  showIcon?: boolean
+}
+
 function SidebarMenuSkeleton({
   className,
   showIcon = false,
   ...props
-}: React.ComponentProps<"div"> & {
-  showIcon?: boolean
-}) {
+}: SidebarMenuSkeletonProps) {
   // Random width between 50 to 90%.
   const width = React.useMemo(() => {
     return `${Math.floor(Math.random() * 40) + 50}%`
@@ -664,17 +684,19 @@ function SidebarMenuSubItem({
   )
 }
 
+interface SidebarMenuSubButtonProps extends React.ComponentProps<"a"> {
+  asChild?: boolean
+  size?: "sm" | "md"
+  isActive?: boolean
+}
+
 function SidebarMenuSubButton({
   asChild = false,
   size = "md",
   isActive = false,
   className,
   ...props
-}: React.ComponentProps<"a"> & {
-  asChild?: boolean
-  size?: "sm" | "md"
-  isActive?: boolean
-}) {
+}: SidebarMenuSubButtonProps) {
   const Comp = asChild ? Slot.Root : "a"
 
   return (
@@ -698,25 +720,33 @@ function SidebarMenuSubButton({
 
 export {
   Sidebar,
+  type SidebarProps,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupAction,
+  type SidebarGroupActionProps,
   SidebarGroupContent,
   SidebarGroupLabel,
+  type SidebarGroupLabelProps,
   SidebarHeader,
   SidebarInput,
   SidebarInset,
   SidebarMenu,
   SidebarMenuAction,
+  type SidebarMenuActionProps,
   SidebarMenuBadge,
   SidebarMenuButton,
+  type SidebarMenuButtonProps,
   SidebarMenuItem,
   SidebarMenuSkeleton,
+  type SidebarMenuSkeletonProps,
   SidebarMenuSub,
   SidebarMenuSubButton,
+  type SidebarMenuSubButtonProps,
   SidebarMenuSubItem,
   SidebarProvider,
+  type SidebarProviderProps,
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,

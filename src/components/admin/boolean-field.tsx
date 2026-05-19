@@ -27,7 +27,7 @@ import {
  *   </Show>
  * );
  */
-export const BooleanField = <RecordType extends RaRecord = RaRecord>({
+function BooleanField<RecordType extends RaRecord = RaRecord>({
   source,
   record,
   defaultValue,
@@ -38,7 +38,7 @@ export const BooleanField = <RecordType extends RaRecord = RaRecord>({
   valueLabelTrue,
   looseValue = false,
   empty = null,
-}: BooleanFieldProps<RecordType>) => {
+}: BooleanFieldProps<RecordType>) {
   const value = useFieldValue({ source, record, defaultValue });
   const isTruthyValue = value === true || (looseValue && value);
   const baseClassName = "size-5 text-foreground";
@@ -73,7 +73,7 @@ export const BooleanField = <RecordType extends RaRecord = RaRecord>({
   }
 
   return <>{empty}</>;
-};
+}
 
 function RenderLabel({
   value,
@@ -95,7 +95,7 @@ function RenderLabel({
   return <p>{label}</p>;
 }
 
-export interface BooleanFieldProps<
+interface BooleanFieldProps<
   RecordType extends RaRecord = RaRecord,
 > extends FieldProps<RecordType> {
   defaultValue?: unknown;
@@ -105,3 +105,5 @@ export interface BooleanFieldProps<
   valueLabelFalse?: string;
   looseValue?: boolean;
 }
+
+export { BooleanField, type BooleanFieldProps };

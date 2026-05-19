@@ -5,7 +5,7 @@ import type {
 } from "ra-core";
 import { Resource as RaResource } from "ra-core";
 
-export interface ResourceProps extends RaResourceProps {
+interface ResourceProps extends RaResourceProps {
   /**
    * Sidebar group label used by the default `<Menu>`.
    *
@@ -15,7 +15,7 @@ export interface ResourceProps extends RaResourceProps {
   group?: string;
 }
 
-export interface ResourceDefinitionWithGroup extends ResourceDefinition {
+interface ResourceDefinitionWithGroup extends ResourceDefinition {
   readonly group?: string;
 }
 
@@ -39,7 +39,7 @@ interface ResourceComponent {
 
 const CoreResource = RaResource as unknown as RaResourceComponent;
 
-export const Resource = Object.assign(
+const Resource = Object.assign(
   function Resource({ group: _group, ...props }: ResourceProps) {
     return <CoreResource {...props} />;
   },
@@ -54,3 +54,9 @@ export const Resource = Object.assign(
     }),
   },
 ) satisfies ResourceComponent;
+
+export {
+  Resource,
+  type ResourceProps,
+  type ResourceDefinitionWithGroup,
+};

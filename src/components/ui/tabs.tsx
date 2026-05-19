@@ -38,12 +38,11 @@ const tabsListVariants = cva(
   }
 )
 
-function TabsList({
-  className,
-  variant = "default",
-  ...props
-}: React.ComponentProps<typeof TabsPrimitive.List> &
-  VariantProps<typeof tabsListVariants>) {
+interface TabsListProps
+  extends React.ComponentProps<typeof TabsPrimitive.List>,
+    VariantProps<typeof tabsListVariants> {}
+
+function TabsList({ className, variant = "default", ...props }: TabsListProps) {
   return (
     <TabsPrimitive.List
       data-slot="tabs-list"
@@ -86,4 +85,11 @@ function TabsContent({
   )
 }
 
-export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants }
+export {
+  Tabs,
+  TabsList,
+  type TabsListProps,
+  TabsTrigger,
+  TabsContent,
+  tabsListVariants,
+}

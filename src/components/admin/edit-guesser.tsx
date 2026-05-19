@@ -39,7 +39,7 @@ import { ReferenceArrayInput } from "@/components/admin/reference-array-input";
  *   </Admin>
  * );
  */
-export const EditGuesser = (props: EditGuesserProps) => {
+function EditGuesser(props: EditGuesserProps) {
   const {
     disableAuthentication,
     id,
@@ -65,11 +65,11 @@ export const EditGuesser = (props: EditGuesserProps) => {
       <EditViewGuesser {...rest} />
     </EditBase>
   );
-};
+}
 
-const EditViewGuesser = (
+function EditViewGuesser(
   props: Omit<EditGuesserProps, EditBaseControllerProps>,
-) => {
+) {
   const resource = useResourceContext();
 
   if (!resource) {
@@ -133,7 +133,7 @@ ${representation}
   }, [record, child, resource, enableLog]);
 
   return <EditView {...rest}>{child}</EditView>;
-};
+}
 
 type EditBaseControllerProps =
   | "disableAuthentication"
@@ -193,3 +193,5 @@ const kebabCase = (name: string) => {
     .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
     .toLowerCase();
 };
+
+export { EditGuesser };

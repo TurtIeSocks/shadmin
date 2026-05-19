@@ -42,9 +42,9 @@ import { GuesserEmpty } from "@/components/admin/guesser-empty";
  *   </Admin>
  * );
  */
-export const ListGuesser = <RecordType extends RaRecord = RaRecord>(
+function ListGuesser<RecordType extends RaRecord = RaRecord>(
   props: Omit<ListProps, "children"> & { enableLog?: boolean },
-) => {
+) {
   const {
     debounce,
     disableAuthentication,
@@ -86,11 +86,11 @@ export const ListGuesser = <RecordType extends RaRecord = RaRecord>(
       <ListViewGuesser {...rest} />
     </ListBase>
   );
-};
+}
 
-const ListViewGuesser = (
+function ListViewGuesser(
   props: Omit<ListViewProps, "children"> & { enableLog?: boolean },
-) => {
+) {
   const { data } = useListContext();
   const resource = useResourceContext();
   const [child, setChild] = useState<React.ReactElement | null>(null);
@@ -158,7 +158,7 @@ ${inferredChild.getRepresentation()}
   }, [data, child, resource, enableLog]);
 
   return <ListView {...rest}>{child}</ListView>;
-};
+}
 
 const listFieldTypes = {
   table: {
@@ -241,3 +241,5 @@ const kebabCase = (name: string) => {
     .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
     .toLowerCase();
 };
+
+export { ListGuesser };

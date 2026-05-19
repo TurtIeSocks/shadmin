@@ -5,8 +5,10 @@ import {
   type ShapeFieldShellProps,
 } from "./shape-field-shell";
 
-export type PolygonFieldProps = ShapeFieldShellProps;
+type PolygonFieldProps = ShapeFieldShellProps;
 
-export const PolygonField = (props: PolygonFieldProps) => (
-  <ShapeFieldShell {...props} />
-);
+function PolygonField(props: PolygonFieldProps) {
+  return <ShapeFieldShell {...props} />;
+}
+
+export { PolygonField, type PolygonFieldProps };

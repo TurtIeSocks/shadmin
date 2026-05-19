@@ -13,18 +13,18 @@ import {
 } from "./osm-presets";
 import type { OsmTagInput } from "./osm-tag-catalog";
 
-export interface UseOsmFeaturesOptions {
+interface UseOsmFeaturesOptions {
   endpoint?: string;
   enabled?: boolean;
   staleTime?: number;
 }
 
-export interface OsmFeatureSources {
+interface OsmFeatureSources {
   presets?: ReadonlyArray<OsmPresetName>;
   tags?: ReadonlyArray<OsmTagInput>;
 }
 
-export const useOsmFeatures = (
+const useOsmFeatures = (
   bbox: GeoJSON.BBox | null,
   sources: OsmFeatureSources,
   opts: UseOsmFeaturesOptions = {},
@@ -126,3 +126,5 @@ function findPresetForFeature(
   }
   return null;
 }
+
+export { type UseOsmFeaturesOptions, type OsmFeatureSources, useOsmFeatures };

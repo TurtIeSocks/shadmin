@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-export interface CardContentInnerProps {
+interface CardContentInnerProps {
   className?: string;
   children: ReactNode;
 }
@@ -30,16 +30,20 @@ export interface CardContentInnerProps {
  *   </Card>
  * );
  */
-export const CardContentInner = ({
+function CardContentInner({
   className,
   children,
-}: CardContentInnerProps) => (
-  <div
-    className={cn(
-      "px-6 py-0 first:pt-4 last:pb-[70px] sm:last:pb-4",
-      className,
-    )}
-  >
-    {children}
-  </div>
-);
+}: CardContentInnerProps) {
+  return (
+    <div
+      className={cn(
+        "px-6 py-0 first:pt-4 last:pb-[70px] sm:last:pb-4",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+export { CardContentInner, type CardContentInnerProps };

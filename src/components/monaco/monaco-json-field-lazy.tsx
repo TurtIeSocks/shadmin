@@ -12,7 +12,7 @@ import { useMonacoTheme } from "./internal/use-monaco-theme";
 
 loader.config({ monaco });
 
-const MonacoJsonFieldInner = ({
+function MonacoJsonFieldInner({
   source,
   record,
   defaultValue,
@@ -21,7 +21,7 @@ const MonacoJsonFieldInner = ({
   maxHeight = 400,
   className,
   monacoOptions,
-}: MonacoJsonFieldProps) => {
+}: MonacoJsonFieldProps) {
   const value = useFieldValue({ defaultValue, source, record });
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [instance, setInstance] = useState<editor.IStandaloneCodeEditor | null>(
@@ -75,6 +75,6 @@ const MonacoJsonFieldInner = ({
       />
     </div>
   );
-};
+}
 
-export default MonacoJsonFieldInner;
+export { MonacoJsonFieldInner };

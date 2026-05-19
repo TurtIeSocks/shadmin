@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 import { PasswordInput } from "@/components/admin/password-input";
 
-export interface LoginWithEmailProps {
+interface LoginWithEmailProps {
   /**
    * Custom submit handler. When provided, it is called with the form values
    * (`{ email, password }`) and is responsible for signing the user in.
@@ -58,7 +58,7 @@ export interface LoginWithEmailProps {
  *   </AuthLayout>
  * );
  */
-export const LoginWithEmail = (props: LoginWithEmailProps) => {
+function LoginWithEmail(props: LoginWithEmailProps) {
   const {
     onSubmit,
     loading: loadingProp,
@@ -123,4 +123,6 @@ export const LoginWithEmail = (props: LoginWithEmailProps) => {
       </Button>
     </Form>
   );
-};
+}
+
+export { LoginWithEmail, type LoginWithEmailProps };

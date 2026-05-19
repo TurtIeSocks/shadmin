@@ -1,11 +1,11 @@
 import { createContext, use } from "react";
 import { z } from "zod";
 
-export const CsvImportContext = createContext<CsvImportContextValue | null>(
+const CsvImportContext = createContext<CsvImportContextValue | null>(
   null,
 );
 
-export interface CsvImportContextValue {
+interface CsvImportContextValue {
   parsedRows: Array<Record<string, unknown>>;
   setParsedRows: (rows: Array<Record<string, unknown>>) => void;
   headers: string[];
@@ -22,7 +22,7 @@ export interface CsvImportContextValue {
   onError?: (e: Error) => void;
 }
 
-export interface ImportReport {
+interface ImportReport {
   total: number;
   created: number;
   failed: number;
@@ -33,13 +33,21 @@ export interface ImportReport {
   }>;
 }
 
-export type CsvTransform = (
+type CsvTransform = (
   row: Record<string, unknown>,
   index: number,
 ) => Record<string, unknown>;
 
-export const useCsvImport = () => {
+const useCsvImport = () => {
   const ctx = use(CsvImportContext);
   if (!ctx) throw new Error("useCsvImport must be used inside <CsvImport>");
   return ctx;
+};
+
+export {
+  CsvImportContext,
+  useCsvImport,
+  type CsvImportContextValue,
+  type ImportReport,
+  type CsvTransform,
 };

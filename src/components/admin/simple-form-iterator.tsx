@@ -63,7 +63,7 @@ type GetItemLabelFunc = (index: number) => string | ReactElement;
  *   </ArrayInput>
  * );
  */
-export const SimpleFormIterator = (props: SimpleFormIteratorProps) => {
+function SimpleFormIterator(props: SimpleFormIteratorProps) {
   const {
     addButton = defaultAddItemButton,
     removeButton,
@@ -135,9 +135,9 @@ export const SimpleFormIterator = (props: SimpleFormIteratorProps) => {
       </div>
     </SimpleFormIteratorBase>
   ) : null;
-};
+}
 
-export interface SimpleFormIteratorProps extends Partial<UseFieldArrayReturn> {
+interface SimpleFormIteratorProps extends Partial<UseFieldArrayReturn> {
   addButton?: ReactElement;
   children?: ReactElement | ReactElement[];
   className?: string;
@@ -173,7 +173,7 @@ export interface SimpleFormIteratorProps extends Partial<UseFieldArrayReturn> {
  *
  * // Typically used internally by SimpleFormIterator
  */
-export const SimpleFormIteratorItem = (props: SimpleFormIteratorItemProps) => {
+function SimpleFormIteratorItem(props: SimpleFormIteratorItemProps) {
   const {
     children,
     disabled,
@@ -244,9 +244,9 @@ export const SimpleFormIteratorItem = (props: SimpleFormIteratorItemProps) => {
       </li>
     </SimpleFormIteratorItemBase>
   );
-};
+}
 
-export interface SimpleFormIteratorItemProps extends SimpleFormIteratorItemBaseProps {
+interface SimpleFormIteratorItemProps extends SimpleFormIteratorItemBaseProps {
   disabled?: boolean;
   disableRemove?: boolean | SimpleFormIteratorDisableRemoveFunction;
   disableReordering?: boolean;
@@ -274,7 +274,7 @@ export interface SimpleFormIteratorItemProps extends SimpleFormIteratorItemBaseP
  *     </ArrayInput>
  * );
  */
-export const AddItemButton = (props: React.ComponentProps<"button">) => {
+function AddItemButton(props: React.ComponentProps<"button">) {
   const { add, source } = useSimpleFormIterator();
   const { className, ...rest } = props;
   const translate = useTranslate();
@@ -297,7 +297,7 @@ export const AddItemButton = (props: React.ComponentProps<"button">) => {
       </Tooltip>
     </TooltipProvider>
   );
-};
+}
 
 /**
  * Up and down buttons for reordering items in a SimpleFormIterator.
@@ -314,7 +314,7 @@ export const AddItemButton = (props: React.ComponentProps<"button">) => {
  *     </SimpleFormIterator>
  * );
  */
-export const ReOrderButtons = ({ className }: { className?: string }) => {
+function ReOrderButtons({ className }: { className?: string }) {
   const { index, total, reOrder } = useSimpleFormIteratorItem();
   const { source } = useSimpleFormIterator();
 
@@ -342,13 +342,13 @@ export const ReOrderButtons = ({ className }: { className?: string }) => {
       </IconButtonWithTooltip>
     </span>
   );
-};
+}
 
-export const SimpleFormIteratorClearButton = ({
+function SimpleFormIteratorClearButton({
   className,
   disableClear,
   disableRemove,
-}: SimpleFormIteratorClearButtonProp) => {
+}: SimpleFormIteratorClearButtonProp) {
   const translate = useTranslate();
   const [confirmIsOpen, setConfirmIsOpen] = useState<boolean>(false);
   const { clear, total } = useSimpleFormIterator();
@@ -377,9 +377,9 @@ export const SimpleFormIteratorClearButton = ({
       />
     </>
   );
-};
+}
 
-export interface SimpleFormIteratorClearButtonProp {
+interface SimpleFormIteratorClearButtonProp {
   className?: string;
   disableClear?: boolean;
   disableRemove?: boolean | SimpleFormIteratorDisableRemoveFunction;
@@ -396,7 +396,7 @@ export interface SimpleFormIteratorClearButtonProp {
  *
  * // Typically used internally by SimpleFormIterator
  */
-export const ClearArrayButton = (props: React.ComponentProps<"button">) => {
+function ClearArrayButton(props: React.ComponentProps<"button">) {
   const translate = useTranslate();
   return (
     <TooltipProvider>
@@ -412,7 +412,7 @@ export const ClearArrayButton = (props: React.ComponentProps<"button">) => {
       </Tooltip>
     </TooltipProvider>
   );
-};
+}
 
 /**
  * A button to remove a single item from a SimpleFormIterator.
@@ -429,7 +429,7 @@ export const ClearArrayButton = (props: React.ComponentProps<"button">) => {
  *     </SimpleFormIterator>
  * );
  */
-export const RemoveItemButton = (props: React.ComponentProps<"button">) => {
+function RemoveItemButton(props: React.ComponentProps<"button">) {
   const { remove, index } = useSimpleFormIteratorItem();
   const { source } = useSimpleFormIterator();
   const { className, ...rest } = props;
@@ -458,8 +458,21 @@ export const RemoveItemButton = (props: React.ComponentProps<"button">) => {
       </Tooltip>
     </TooltipProvider>
   );
-};
+}
 
 const defaultAddItemButton = <AddItemButton />;
 const defaultRemoveItemButton = <RemoveItemButton />;
 const defaultReOrderButtons = <ReOrderButtons />;
+
+export {
+  SimpleFormIterator,
+  type SimpleFormIteratorProps,
+  SimpleFormIteratorItem,
+  type SimpleFormIteratorItemProps,
+  AddItemButton,
+  ReOrderButtons,
+  SimpleFormIteratorClearButton,
+  type SimpleFormIteratorClearButtonProp,
+  ClearArrayButton,
+  RemoveItemButton,
+};

@@ -39,15 +39,17 @@ import type { UnknownValue } from "@/lib/unknown-types";
  *     </Show>
  * );
  */
-export const SingleFieldList = <RecordType = UnknownValue,>({
-  children,
-  render,
-  className,
-}: {
+interface SingleFieldListProps<RecordType = UnknownValue> {
   children?: React.ReactNode;
   render?: (record: RecordType, index: number) => React.ReactNode;
   className?: string;
-}) => {
+}
+
+function SingleFieldList<RecordType = UnknownValue>({
+  children,
+  render,
+  className,
+}: SingleFieldListProps<RecordType>) {
   const { data } = useListContext();
 
   return (
@@ -59,10 +61,12 @@ export const SingleFieldList = <RecordType = UnknownValue,>({
       ))}
     </div>
   );
-};
+}
 
 const DefaultChildren = () => (
   <Badge variant="outline">
     <RecordRepresentation />
   </Badge>
 );
+
+export { SingleFieldList, type SingleFieldListProps };

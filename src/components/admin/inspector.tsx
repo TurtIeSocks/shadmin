@@ -27,7 +27,7 @@ import { InspectorRoot } from "./inspector-root";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
  */
-export const Inspector = ({ className }: InspectorProps = {}) => {
+function Inspector({ className }: InspectorProps = {}) {
   const { isEnabled, disable, title, titleOptions, editor, preferenceKey } =
     usePreferencesEditor();
   const removeItems = useRemoveItemsFromStore(preferenceKey);
@@ -198,11 +198,13 @@ export const Inspector = ({ className }: InspectorProps = {}) => {
       </div>
     </div>
   );
-};
+}
 
 Inspector.displayName = "Inspector";
 
-export interface InspectorProps {
+interface InspectorProps {
   /** Extra classes appended to the inspector card. */
   className?: string;
 }
+
+export { Inspector, type InspectorProps };

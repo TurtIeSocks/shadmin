@@ -13,6 +13,27 @@ import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
+// We only support the case where sanitize() returns a string,
+// hence we force the RETURN_DOM_FRAGMENT and RETURN_DOM options to false.
+type PurifyOptions = DOMPurifyConfig & {
+  RETURN_DOM_FRAGMENT?: false | undefined;
+  RETURN_DOM?: false | undefined;
+};
+
+interface RichTextFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends
+    FieldProps<RecordType>,
+    Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
+  stripTags?: boolean;
+  purifyOptions?: PurifyOptions;
+  /**
+   * @deprecated Use the `empty` prop instead.
+   */
+  emptyText?: string;
+}
+
 /**
  * Strips all HTML tags by sanitizing with an empty allow-list.
  * The output is plain text safe to render as a React child.
@@ -103,25 +124,6 @@ RichTextFieldImpl.displayName = "RichTextFieldImpl";
  * @example // strip all HTML tags
  * <RichTextField source="body" stripTags />
  */
-export const RichTextField = genericMemo(RichTextFieldImpl);
+const RichTextField = genericMemo(RichTextFieldImpl);
 
-// We only support the case where sanitize() returns a string,
-// hence we force the RETURN_DOM_FRAGMENT and RETURN_DOM options to false.
-export type PurifyOptions = DOMPurifyConfig & {
-  RETURN_DOM_FRAGMENT?: false | undefined;
-  RETURN_DOM?: false | undefined;
-};
-
-export interface RichTextFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
-    Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
-  stripTags?: boolean;
-  purifyOptions?: PurifyOptions;
-  /**
-   * @deprecated Use the `empty` prop instead.
-   */
-  emptyText?: string;
-}
+export { RichTextField, type RichTextFieldProps, type PurifyOptions };

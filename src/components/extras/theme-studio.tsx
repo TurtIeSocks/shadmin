@@ -13,7 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { ThemeModeToggle, useResolvedTheme } from "../admin";
+import { ThemeModeToggle } from "../admin";
+import { useResolvedTheme } from "@/hooks/use-theme";
 import { useThemes } from "../admin/themes-context";
 import { Separator } from "../ui/separator";
 import { ColorPicker } from "../ui/color-picker";
@@ -107,7 +108,7 @@ const MEASUREMENT_RE = new RegExp(
   "i",
 );
 
-export interface ThemeStudioProps {
+interface ThemeStudioProps {
   /** Whether to render the Export button. Defaults to `true`. */
   showExport?: boolean;
   /** Whether to render the ThemeModeToggle button. Defaults to `true`. */
@@ -143,7 +144,7 @@ export interface ThemeStudioProps {
  * </ThemeProvider>;
  * ```
  */
-export const ThemeStudio = ({
+const ThemeStudio = ({
   showExport = true,
   showThemeModeToggle = true,
   className,
@@ -354,3 +355,5 @@ function parseMeasurement(value: string) {
 
   return [match[1], match[2]] as const;
 }
+
+export { type ThemeStudioProps, ThemeStudio };

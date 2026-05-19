@@ -5,6 +5,14 @@ import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { compactDuration, parseIsoDuration } from "./duration-utils";
 
+interface DurationFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+  /** 'compact' renders `2h 30m`; 'relative' renders `2 hours 30 minutes`. */
+  displayFormat?: "compact" | "relative";
+}
+
 /**
  * Displays an ISO-8601 duration string as a compact ("2h 30m") or relative
  * ("2 hours 30 minutes") human-readable value.
@@ -18,7 +26,7 @@ import { compactDuration, parseIsoDuration } from "./duration-utils";
  * <DurationField source="duration" displayFormat="relative" />
  * <DurationField source="duration" empty="—" />
  */
-export const DurationField = <
+function DurationField<
   RecordType extends UnknownRecord = UnknownRecord,
 >({
   defaultValue,
@@ -28,7 +36,7 @@ export const DurationField = <
   displayFormat = "compact",
   className,
   ...rest
-}: DurationFieldProps<RecordType>) => {
+}: DurationFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -54,12 +62,6 @@ export const DurationField = <
       {text}
     </span>
   );
-};
-
-export interface DurationFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
-  /** 'compact' renders `2h 30m`; 'relative' renders `2 hours 30 minutes`. */
-  displayFormat?: "compact" | "relative";
 }
+
+export { DurationField, type DurationFieldProps };

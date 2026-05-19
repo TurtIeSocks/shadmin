@@ -5,7 +5,7 @@ import {
   type ShapeInputShellProps,
 } from "./shape-input-shell";
 
-export interface PolygonInputProps extends Omit<
+interface PolygonInputProps extends Omit<
   ShapeInputShellProps,
   "shape" | "multi" | "geomanShapes"
 > {
@@ -17,17 +17,21 @@ export interface PolygonInputProps extends Omit<
 
 const POLYGON_TOOLS = ["Polygon", "Rectangle", "Circle"] as const;
 
-export const PolygonInput = ({
+function PolygonInput({
   allowSelfIntersection: _allowSelfIntersection,
   minVertices: _minVertices,
   maxVertices: _maxVertices,
   minArea_m2: _minArea_m2,
   ...rest
-}: PolygonInputProps) => (
-  <ShapeInputShell
-    {...rest}
-    shape="Polygon"
-    multi={false}
-    geomanShapes={[...POLYGON_TOOLS]}
-  />
-);
+}: PolygonInputProps) {
+  return (
+    <ShapeInputShell
+      {...rest}
+      shape="Polygon"
+      multi={false}
+      geomanShapes={[...POLYGON_TOOLS]}
+    />
+  );
+}
+
+export { PolygonInput, type PolygonInputProps };

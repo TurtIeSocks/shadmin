@@ -39,7 +39,7 @@ import { cn } from "@/lib/utils";
  *   </Configurable>
  * );
  */
-export const Configurable = (props: ConfigurableProps) => {
+function Configurable(props: ConfigurableProps) {
   const {
     children,
     editor,
@@ -132,9 +132,9 @@ export const Configurable = (props: ConfigurableProps) => {
       </span>
     </PreferenceKeyContextProvider>
   );
-};
+}
 
-export interface ConfigurableProps {
+interface ConfigurableProps {
   /** The element that becomes configurable. */
   children: ReactNode;
   /**
@@ -154,3 +154,5 @@ export interface ConfigurableProps {
   /** Extra classes appended to the wrapper element. */
   className?: string;
 }
+
+export { Configurable, type ConfigurableProps };

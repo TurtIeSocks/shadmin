@@ -26,15 +26,19 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const WrapperField = <RecordType extends UnknownRecord = UnknownRecord>({
+function WrapperField<RecordType extends UnknownRecord = UnknownRecord>({
   children,
-}: WrapperFieldProps<RecordType>) => <>{children}</>;
+}: WrapperFieldProps<RecordType>) {
+  return <>{children}</>;
+}
 
 WrapperField.displayName = "WrapperField";
 
-export interface WrapperFieldProps<
+interface WrapperFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
 > extends Omit<FieldProps<RecordType>, "source"> {
   source?: FieldProps<RecordType>["source"];
   children: ReactNode;
 }
+
+export { WrapperField, type WrapperFieldProps };

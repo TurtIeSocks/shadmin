@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 import { ShowButton } from "@/components/admin/show-button";
 import { DeleteButton } from "./delete-button";
 
-export interface EditProps
+interface EditProps
   extends
     EditViewProps,
     Omit<EditBaseProps, "offline" | "error" | "render" | "children"> {}
@@ -50,7 +50,7 @@ export interface EditProps
  *   </Edit>
  * );
  */
-export const Edit = ({
+function Edit({
   actions,
   aside,
   children,
@@ -63,24 +63,26 @@ export const Edit = ({
   render,
   title,
   ...rest
-}: EditProps) => (
-  <EditBase {...rest}>
-    <EditView
-      actions={actions}
-      aside={aside}
-      className={className}
-      component={component}
-      disableBreadcrumb={disableBreadcrumb}
-      emptyWhileLoading={emptyWhileLoading}
-      error={error}
-      offline={offline}
-      render={render}
-      title={title}
-    >
-      {children}
-    </EditView>
-  </EditBase>
-);
+}: EditProps) {
+  return (
+    <EditBase {...rest}>
+      <EditView
+        actions={actions}
+        aside={aside}
+        className={className}
+        component={component}
+        disableBreadcrumb={disableBreadcrumb}
+        emptyWhileLoading={emptyWhileLoading}
+        error={error}
+        offline={offline}
+        render={render}
+        title={title}
+      >
+        {children}
+      </EditView>
+    </EditBase>
+  );
+}
 
 const defaultOffline = (
   <p className="text-sm text-muted-foreground p-4">
@@ -93,7 +95,7 @@ const defaultError = (
   </p>
 );
 
-export interface EditViewProps {
+interface EditViewProps {
   aside?: ReactNode;
   component?: ElementType;
   disableBreadcrumb?: boolean;
@@ -112,7 +114,7 @@ export interface EditViewProps {
  *
  * @internal
  */
-export const EditView = ({
+function EditView({
   aside,
   component,
   disableBreadcrumb,
@@ -124,7 +126,7 @@ export const EditView = ({
   actions,
   className,
   children,
-}: EditViewProps) => {
+}: EditViewProps) {
   const context = useEditContext();
 
   const resource = useResourceContext();
@@ -230,4 +232,11 @@ export const EditView = ({
       {main}
     </>
   );
+}
+
+export {
+  Edit,
+  EditView,
+  type EditProps,
+  type EditViewProps,
 };

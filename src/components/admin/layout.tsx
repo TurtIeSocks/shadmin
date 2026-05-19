@@ -16,7 +16,7 @@ import type { MenuProps } from "@/components/admin/menu";
 import { SkipNavigationButton } from "@/components/admin/skip-navigation-button";
 import type { UnknownValue } from "@/lib/unknown-types";
 
-export interface LayoutProps extends CoreLayoutProps {
+interface LayoutProps extends CoreLayoutProps {
   /**
    * Replaces the default `<AppBar />` rendered at the top of the content area.
    */
@@ -49,7 +49,7 @@ export interface LayoutProps extends CoreLayoutProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/layout/ Layout documentation}
  */
-export const Layout = (props: LayoutProps) => {
+function Layout(props: LayoutProps) {
   const { appBar, menu, sidebar, error, ...rest } = props;
   const AppBarComponent = appBar ?? AppBar;
   const SidebarComponent = sidebar ?? AppSidebar;
@@ -95,4 +95,6 @@ export const Layout = (props: LayoutProps) => {
       <Notification />
     </SidebarProvider>
   );
-};
+}
+
+export { Layout, type LayoutProps };

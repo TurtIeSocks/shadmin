@@ -4,6 +4,30 @@ import { Button } from "@/components/ui/button";
 
 import { FieldToggle } from "./field-toggle";
 
+interface FieldsSelectorProps {
+  /**
+   * Preference key for the array of selected field indexes.
+   *
+   * @default "columns"
+   */
+  name?: string;
+  /**
+   * Preference key for the array of available fields.
+   *
+   * @default "availableColumns"
+   */
+  availableName?: string;
+}
+
+interface SelectableField {
+  /** Stable identifier used when storing the user's selection / order. */
+  index: string;
+  /** Field source path (used for i18n via {@link FieldTitle}). */
+  source: string;
+  /** Optional human label, overrides the source-based label. */
+  label?: React.ReactNode;
+}
+
 /**
  * Editor body that lets the user toggle and reorder fields, persisting the
  * choices to the preferences store.
@@ -24,10 +48,10 @@ import { FieldToggle } from "./field-toggle";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
  */
-export const FieldsSelector = ({
+function FieldsSelector({
   name = "columns",
   availableName = "availableColumns",
-}: FieldsSelectorProps) => {
+}: FieldsSelectorProps) {
   const translate = useTranslate();
 
   const [availableFields = [], setAvailableFields] = usePreference<
@@ -124,28 +148,10 @@ export const FieldsSelector = ({
       </div>
     </div>
   );
+}
+
+export {
+  FieldsSelector,
+  type FieldsSelectorProps,
+  type SelectableField,
 };
-
-export interface FieldsSelectorProps {
-  /**
-   * Preference key for the array of selected field indexes.
-   *
-   * @default "columns"
-   */
-  name?: string;
-  /**
-   * Preference key for the array of available fields.
-   *
-   * @default "availableColumns"
-   */
-  availableName?: string;
-}
-
-export interface SelectableField {
-  /** Stable identifier used when storing the user's selection / order. */
-  index: string;
-  /** Field source path (used for i18n via {@link FieldTitle}). */
-  source: string;
-  /** Optional human label, overrides the source-based label. */
-  label?: React.ReactNode;
-}

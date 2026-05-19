@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { CurrencyField } from "@/components/admin";
+import { CurrencyField } from "@/components/extras";
 
 export default { title: "Data Display/CurrencyField" };
 

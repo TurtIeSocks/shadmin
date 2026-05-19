@@ -19,19 +19,19 @@ import { Button } from "@/components/ui/button";
 import { TextField } from "@/components/admin/text-field";
 import { TextInput } from "@/components/admin/text-input";
 
-export type InPlaceEditorAction =
+type InPlaceEditorAction =
   | { type: "edit" }
   | { type: "save"; values: FieldValues }
   | { type: "cancel" }
   | { type: "success" }
   | { type: "error"; error: unknown };
 
-export type InPlaceEditorState =
+type InPlaceEditorState =
   | { state: "editing" }
   | { state: "saving"; values: FieldValues }
   | { state: "reading" };
 
-export interface InPlaceEditorProps<
+interface InPlaceEditorProps<
   RecordType extends RaRecord = RaRecord,
   ErrorType = Error,
 > {
@@ -67,12 +67,10 @@ export interface InPlaceEditorProps<
  *   <InPlaceEditor source="title" />
  * );
  */
-export const InPlaceEditor = <
+function InPlaceEditor<
   RecordType extends RaRecord = RaRecord,
   ErrorType extends Error = Error,
->(
-  props: InPlaceEditorProps<RecordType, ErrorType>,
-) => {
+>(props: InPlaceEditorProps<RecordType, ErrorType>) {
   const {
     source,
     mutationMode,
@@ -280,4 +278,11 @@ export const InPlaceEditor = <
       {renderContent()}
     </div>
   );
+}
+
+export {
+  InPlaceEditor,
+  type InPlaceEditorAction,
+  type InPlaceEditorState,
+  type InPlaceEditorProps,
 };

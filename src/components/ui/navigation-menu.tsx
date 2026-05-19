@@ -5,14 +5,17 @@ import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
+interface NavigationMenuProps
+  extends React.ComponentProps<typeof NavigationMenuPrimitive.Root> {
+  viewport?: boolean
+}
+
 function NavigationMenu({
   className,
   children,
   viewport = true,
   ...props
-}: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
-  viewport?: boolean
-}) {
+}: NavigationMenuProps) {
   return (
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
@@ -157,6 +160,7 @@ function NavigationMenuIndicator({
 
 export {
   NavigationMenu,
+  type NavigationMenuProps,
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuContent,

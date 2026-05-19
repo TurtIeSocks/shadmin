@@ -13,7 +13,7 @@ import type { JsonFieldProps } from "./internal/types";
  * possible and re-stringified with the configured indent. Unparseable
  * strings are rendered verbatim.
  */
-export const JsonField = ({
+function JsonField({
   defaultValue,
   source,
   record,
@@ -21,7 +21,7 @@ export const JsonField = ({
   indent = 2,
   className,
   ...rest
-}: JsonFieldProps) => {
+}: JsonFieldProps) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -57,4 +57,6 @@ export const JsonField = ({
       {formatted}
     </pre>
   );
-};
+}
+
+export { JsonField };

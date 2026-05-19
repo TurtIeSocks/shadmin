@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
  *   recommendedPlanId="pro"
  * />
  */
-export const SubscriptionPlanPicker = (props: SubscriptionPlanPickerProps) => {
+function SubscriptionPlanPicker(props: SubscriptionPlanPickerProps) {
   const {
     label,
     source,
@@ -153,9 +153,11 @@ const PlanCard = ({
   );
 };
 
-export interface SubscriptionPlanPickerProps extends InputProps {
+interface SubscriptionPlanPickerProps extends InputProps {
   plans: readonly SubscriptionPlan[];
   recommendedPlanId?: string;
   disabled?: boolean;
   className?: string;
 }
+
+export { SubscriptionPlanPicker, type SubscriptionPlanPickerProps };

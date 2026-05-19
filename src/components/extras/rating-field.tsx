@@ -8,6 +8,18 @@ import {
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
+interface RatingFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+  /** Total stars rendered (filled + outlined). Default 5. */
+  max?: number;
+  /** Allow half-star granularity when value is between integers. */
+  allowHalf?: boolean;
+  /** Sibling record source rendered in parentheses (e.g. review count). */
+  countSource?: string;
+}
+
 /**
  * Displays a numeric rating as a row of filled/half/outlined star icons.
  *
@@ -18,7 +30,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * @example
  * <RatingField source="rating" allowHalf countSource="reviewCount" />
  */
-export const RatingField = <RecordType extends UnknownRecord = UnknownRecord>({
+function RatingField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,
@@ -28,7 +40,7 @@ export const RatingField = <RecordType extends UnknownRecord = UnknownRecord>({
   countSource,
   className,
   ...rest
-}: RatingFieldProps<RecordType>) => {
+}: RatingFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const ctxRecord = useRecordContext<RecordType>({ record });
   const translate = useTranslate();
@@ -61,7 +73,7 @@ export const RatingField = <RecordType extends UnknownRecord = UnknownRecord>({
       )}
     </span>
   );
-};
+}
 
 function renderStars(value: number, max: number, allowHalf: boolean) {
   const out: React.ReactNode[] = [];
@@ -74,7 +86,7 @@ function renderStars(value: number, max: number, allowHalf: boolean) {
   return out;
 }
 
-const Star = ({ kind }: { kind: "filled" | "half" | "empty" }) => {
+function Star({ kind }: { kind: "filled" | "half" | "empty" }) {
   const fill =
     kind === "filled"
       ? "currentColor"
@@ -102,16 +114,6 @@ const Star = ({ kind }: { kind: "filled" | "half" | "empty" }) => {
       <polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9" />
     </svg>
   );
-};
-
-export interface RatingFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
-  /** Total stars rendered (filled + outlined). Default 5. */
-  max?: number;
-  /** Allow half-star granularity when value is between integers. */
-  allowHalf?: boolean;
-  /** Sibling record source rendered in parentheses (e.g. review count). */
-  countSource?: string;
 }
+
+export { RatingField, type RatingFieldProps };

@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { WebhookEndpointInput } from "@/components/admin";
+import { WebhookEndpointInput } from "@/components/extras";
 
 export default { title: "Extras/WebhookEndpointInput" };
 

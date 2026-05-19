@@ -24,14 +24,17 @@ function SelectValue({
   return <SelectPrimitive.Value data-slot="select-value" {...props} />
 }
 
+interface SelectTriggerProps
+  extends React.ComponentProps<typeof SelectPrimitive.Trigger> {
+  size?: "sm" | "default"
+}
+
 function SelectTrigger({
   className,
   size = "default",
   children,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
-  size?: "sm" | "default"
-}) {
+}: SelectTriggerProps) {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
@@ -186,5 +189,6 @@ export {
   SelectScrollUpButton,
   SelectSeparator,
   SelectTrigger,
+  type SelectTriggerProps,
   SelectValue,
 }

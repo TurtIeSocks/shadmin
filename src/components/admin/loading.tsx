@@ -10,7 +10,7 @@ import { Spinner } from "./spinner";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loading/ Loading documentation}
  */
-export const Loading = (props: LoadingProps) => {
+function Loading(props: LoadingProps) {
   const {
     loadingPrimary = "ra.page.loading",
     loadingSecondary = "ra.message.loading",
@@ -36,13 +36,19 @@ export const Loading = (props: LoadingProps) => {
       </div>
     </div>
   ) : null;
-};
+}
 
-export interface LoadingProps {
+interface LoadingProps {
   loadingPrimary?: string;
   loadingSecondary?: string;
   delay?: number;
 }
 
-export { Loading as LoadingPage };
-export type LoadingPageProps = LoadingProps;
+type LoadingPageProps = LoadingProps;
+
+export {
+  Loading,
+  Loading as LoadingPage,
+  type LoadingProps,
+  type LoadingPageProps,
+};

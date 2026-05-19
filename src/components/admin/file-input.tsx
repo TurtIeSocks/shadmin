@@ -59,7 +59,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  *   </Edit>
  * );
  */
-export const FileInput = (props: FileInputProps) => {
+function FileInput(props: FileInputProps) {
   const {
     alwaysOn,
     defaultValue,
@@ -283,9 +283,9 @@ export const FileInput = (props: FileInputProps) => {
       )}
     </FormField>
   );
-};
+}
 
-export type FileInputProps = Omit<InputProps, "type"> & {
+type FileInputProps = Omit<InputProps, "type"> & {
   accept?: DropzoneOptions["accept"];
   className?: string;
   children?: ReactNode;
@@ -308,7 +308,7 @@ interface FileWithPreview extends File {
   preview?: string;
 }
 
-export interface TransformedFile {
+interface TransformedFile {
   rawFile: FileWithPreview;
   src: string;
   title: string;
@@ -319,7 +319,7 @@ export interface TransformedFile {
  *
  * @internal
  */
-export const FileInputPreview = (props: FileInputPreviewProps) => {
+function FileInputPreview(props: FileInputPreviewProps) {
   const {
     className,
     children,
@@ -359,10 +359,18 @@ export const FileInputPreview = (props: FileInputPreviewProps) => {
       {children}
     </div>
   );
-};
+}
 
-export interface FileInputPreviewProps extends HTMLAttributes<HTMLDivElement> {
+interface FileInputPreviewProps extends HTMLAttributes<HTMLDivElement> {
   file: FileWithPreview | TransformedFile;
   onRemove: () => void;
   removeIcon?: React.ComponentType<{ className?: string }>;
 }
+
+export {
+  FileInput,
+  type FileInputProps,
+  FileInputPreview,
+  type FileInputPreviewProps,
+  type TransformedFile,
+};

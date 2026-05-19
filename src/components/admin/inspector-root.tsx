@@ -9,7 +9,7 @@ import { useTranslate, useSetInspectorTitle } from "ra-core";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
  */
-export const InspectorRoot = () => {
+function InspectorRoot() {
   const translate = useTranslate();
   useSetInspectorTitle("ra.configurable.inspector.title", {
     _: "Inspector",
@@ -22,4 +22,6 @@ export const InspectorRoot = () => {
       })}
     </p>
   );
-};
+}
+
+export { InspectorRoot };

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-export interface HideOnScrollProps {
+interface HideOnScrollProps {
   children: ReactNode;
   className?: string;
   /**
@@ -28,11 +28,11 @@ export interface HideOnScrollProps {
  *   </HideOnScroll>
  * );
  */
-export const HideOnScroll = ({
+function HideOnScroll({
   children,
   className,
   threshold = 100,
-}: HideOnScrollProps) => {
+}: HideOnScrollProps) {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(
     typeof window !== "undefined" ? window.scrollY : 0,
@@ -64,4 +64,6 @@ export const HideOnScroll = ({
       {children}
     </div>
   );
-};
+}
+
+export { HideOnScroll, type HideOnScrollProps };

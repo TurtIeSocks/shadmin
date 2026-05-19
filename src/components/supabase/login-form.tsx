@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import { TextInput } from "@/components/admin/text-input";
 
-export interface SupabaseLoginFormProps {
+interface SupabaseLoginFormProps {
   disableForgotPassword?: boolean;
   redirectTo?: string;
 }
@@ -18,7 +18,7 @@ export interface SupabaseLoginFormProps {
  * `disableForgotPassword` is set. The link points at
  * `ForgotPasswordPage.path` (`/forgot-password`).
  */
-export const SupabaseLoginForm = ({
+const SupabaseLoginForm = ({
   disableForgotPassword,
   redirectTo,
 }: SupabaseLoginFormProps) => {
@@ -94,3 +94,5 @@ export const SupabaseLoginForm = ({
     </>
   );
 };
+
+export { type SupabaseLoginFormProps, SupabaseLoginForm };

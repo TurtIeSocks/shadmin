@@ -24,7 +24,7 @@ import {
   WorkosButton,
 } from "./social-auth-button";
 
-export interface SupabaseLoginPageProps {
+interface SupabaseLoginPageProps {
   children?: ReactNode;
   disableEmailPassword?: boolean;
   disableForgotPassword?: boolean;
@@ -67,7 +67,7 @@ const providerButtons: Record<
  * Pass `children` to fully replace the form-pane content. Pass `aside`
  * for a split-screen layout with custom marketing content.
  */
-export const SupabaseLoginPage = (props: SupabaseLoginPageProps) => {
+function SupabaseLoginPage(props: SupabaseLoginPageProps) {
   const {
     children,
     disableEmailPassword = false,
@@ -115,3 +115,5 @@ export const SupabaseLoginPage = (props: SupabaseLoginPageProps) => {
 };
 
 SupabaseLoginPage.path = "/login";
+
+export { type SupabaseLoginPageProps, SupabaseLoginPage };

@@ -5,8 +5,10 @@ import {
   type ShapeFieldShellProps,
 } from "./shape-field-shell";
 
-export type LineStringFieldProps = ShapeFieldShellProps;
+type LineStringFieldProps = ShapeFieldShellProps;
 
-export const LineStringField = (props: LineStringFieldProps) => (
-  <ShapeFieldShell {...props} />
-);
+function LineStringField(props: LineStringFieldProps) {
+  return <ShapeFieldShell {...props} />;
+}
+
+export { LineStringField, type LineStringFieldProps };

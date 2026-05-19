@@ -48,7 +48,7 @@ function parseShortcut(shortcut: string) {
   return { modifiers, key };
 }
 
-export type MenuItemLinkProps = {
+type MenuItemLinkProps = {
   /**
    * Target path for the link. Compared against the current location to
    * derive the active state. Accepts a string or a react-router `To` object.
@@ -119,7 +119,7 @@ export type MenuItemLinkProps = {
  *   />
  * );
  */
-export const MenuItemLink = ({
+function MenuItemLink({
   to,
   primaryText,
   leftIcon,
@@ -128,7 +128,7 @@ export const MenuItemLink = ({
   keyboardShortcut,
   keyboardShortcutRepresentation,
   tooltipProps,
-}: MenuItemLinkProps) => {
+}: MenuItemLinkProps) {
   const translate = useTranslate();
   const basename = useBasename();
   const navigate = useNavigate();
@@ -194,4 +194,6 @@ export const MenuItemLink = ({
       )}
     </SidebarMenuItem>
   );
-};
+}
+
+export { MenuItemLink, type MenuItemLinkProps };

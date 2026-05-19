@@ -12,7 +12,7 @@ import type { ResourceDefinitionWithGroup } from "@/components/admin/resource";
 import { ResourceMenuItemGroup } from "@/components/admin/resource-menu-item-group";
 import { ResourceMenuItem } from "@/components/admin/resource-menu-item";
 
-export type MenuProps = {
+type MenuProps = {
   /**
    * When provided, replaces the default resource-list rendering. Use
    * `<Menu.Item>`, `<Menu.DashboardItem>` and `<Menu.ResourceItem>` as
@@ -89,7 +89,7 @@ const getResourceMenuGroups = (
  *   </Menu>
  * );
  */
-export const Menu = ({ children, className }: MenuProps) => {
+function Menu({ children, className }: MenuProps) {
   const hasDashboard = useHasDashboard();
   const resources = useResourceDefinitions() as Record<
     string,
@@ -133,10 +133,12 @@ export const Menu = ({ children, className }: MenuProps) => {
       />
     </>
   );
-};
+}
 
 // re-export menu pieces for convenience (mirrors the upstream react-admin API)
 Menu.Item = MenuItemLink;
 Menu.DashboardItem = DashboardMenuItem;
 Menu.ResourceItem = ResourceMenuItem;
 Menu.ResourceGroup = ResourceMenuItemGroup;
+
+export { Menu, type MenuProps };

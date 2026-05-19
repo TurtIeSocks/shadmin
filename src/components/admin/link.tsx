@@ -5,7 +5,7 @@ import {
 } from "react-router";
 import { cn } from "@/lib/utils";
 
-export interface LinkProps extends RouterLinkProps {
+interface LinkProps extends RouterLinkProps {
   className?: string;
   ref?: Ref<HTMLAnchorElement>;
 }
@@ -25,10 +25,14 @@ export interface LinkProps extends RouterLinkProps {
  *
  * <Link to="/posts/1/show">Show</Link>
  */
-export const Link = ({ className, ref, ...rest }: LinkProps) => (
-  <RouterLink
-    ref={ref}
-    className={cn("text-primary underline-offset-4 hover:underline", className)}
-    {...rest}
-  />
-);
+function Link({ className, ref, ...rest }: LinkProps) {
+  return (
+    <RouterLink
+      ref={ref}
+      className={cn("text-primary underline-offset-4 hover:underline", className)}
+      {...rest}
+    />
+  );
+}
+
+export { Link, type LinkProps };

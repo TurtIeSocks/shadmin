@@ -7,7 +7,7 @@ import { ThemeModeToggle } from "@/components/admin/theme-mode-toggle";
 import { RefreshButton } from "@/components/admin/refresh-button";
 import { UserMenu } from "@/components/admin/user-menu";
 
-export type AppBarProps = HTMLAttributes<HTMLElement> & {
+type AppBarProps = HTMLAttributes<HTMLElement> & {
   /**
    * When provided, replaces the entire default AppBar layout. The default is:
    * sidebar trigger, breadcrumb portal (with title portal inside), locales menu,
@@ -49,37 +49,41 @@ export type AppBarProps = HTMLAttributes<HTMLElement> & {
  *   </AppBar>
  * );
  */
-export const AppBar = ({
+function AppBar({
   children,
   className,
   toolbar,
   userMenu,
   ...rest
-}: AppBarProps) => (
-  <header
-    className={cn(
-      "flex h-16 md:h-12 shrink-0 items-center gap-2 px-4",
-      className,
-    )}
-    {...rest}
-  >
-    {children ?? (
-      <>
-        <SidebarToggleButton />
-        <div className="flex-1 flex items-center" id="breadcrumb">
-          <TitlePortal />
-        </div>
-        {toolbar !== undefined ? (
-          toolbar
-        ) : (
-          <>
-            <LocalesMenuButton />
-            <ThemeModeToggle />
-            <RefreshButton />
-          </>
-        )}
-        {userMenu !== false && (userMenu ?? <UserMenu />)}
-      </>
-    )}
-  </header>
-);
+}: AppBarProps) {
+  return (
+    <header
+      className={cn(
+        "flex h-16 md:h-12 shrink-0 items-center gap-2 px-4",
+        className,
+      )}
+      {...rest}
+    >
+      {children ?? (
+        <>
+          <SidebarToggleButton />
+          <div className="flex-1 flex items-center" id="breadcrumb">
+            <TitlePortal />
+          </div>
+          {toolbar !== undefined ? (
+            toolbar
+          ) : (
+            <>
+              <LocalesMenuButton />
+              <ThemeModeToggle />
+              <RefreshButton />
+            </>
+          )}
+          {userMenu !== false && (userMenu ?? <UserMenu />)}
+        </>
+      )}
+    </header>
+  );
+}
+
+export { AppBar, type AppBarProps };

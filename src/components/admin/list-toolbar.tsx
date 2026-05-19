@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { FilterForm } from "@/components/admin/filter-form";
 import { ListActions } from "@/components/admin/list-actions";
 
-export interface ListToolbarProps {
+interface ListToolbarProps {
   filters?: ReactElement | ReactNode[];
   actions?: ReactNode | false;
   className?: string;
@@ -29,7 +29,7 @@ export interface ListToolbarProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listtoolbar/ ListToolbar documentation}
  */
-export const ListToolbar = (props: ListToolbarProps) => {
+function ListToolbar(props: ListToolbarProps) {
   const { filters, actions, className, exporter, hasCreate } = props;
   let filtersArray: ReactNode[] | undefined;
   if (Array.isArray(filters)) {
@@ -79,4 +79,6 @@ export const ListToolbar = (props: ListToolbarProps) => {
     );
   }
   return content;
-};
+}
+
+export { ListToolbar, type ListToolbarProps };

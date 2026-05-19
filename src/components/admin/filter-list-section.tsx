@@ -30,7 +30,16 @@ import { cn } from "@/lib/utils";
  *   </Card>
  * );
  */
-export const FilterListSection = (props: FilterListSectionProps) => {
+interface FilterListSectionProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "children"
+> {
+  label: string;
+  icon?: ReactNode;
+  children: ReactNode;
+}
+
+function FilterListSection(props: FilterListSectionProps) {
   const { label, icon, children, className, ...rest } = props;
   const translate = useTranslate();
   return (
@@ -42,13 +51,6 @@ export const FilterListSection = (props: FilterListSectionProps) => {
       {children}
     </div>
   );
-};
-
-export interface FilterListSectionProps extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  "children"
-> {
-  label: string;
-  icon?: ReactNode;
-  children: ReactNode;
 }
+
+export { FilterListSection, type FilterListSectionProps };

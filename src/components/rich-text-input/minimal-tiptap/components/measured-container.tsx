@@ -9,7 +9,7 @@ interface MeasuredContainerProps<T extends React.ElementType> {
 
 const EMPTY_STYLE: React.CSSProperties = {};
 
-export const MeasuredContainer = <T extends React.ElementType>({
+const MeasuredContainer = <T extends React.ElementType>({
   as: Component,
   name,
   children,
@@ -32,3 +32,5 @@ export const MeasuredContainer = <T extends React.ElementType>({
 };
 
 MeasuredContainer.displayName = "MeasuredContainer";
+
+export { MeasuredContainer };

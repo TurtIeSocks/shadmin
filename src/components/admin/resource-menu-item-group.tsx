@@ -14,7 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ResourceMenuItem } from "@/components/admin/resource-menu-item";
 
-export interface ResourceMenuItemGroupProps {
+interface ResourceMenuItemGroupProps {
   /**
    * Optional section label. Omit it for the ungrouped resource section.
    */
@@ -54,13 +54,13 @@ export interface ResourceMenuItemGroupProps {
  *   <ResourceMenuItemGroup label="Content" resources={["posts", "comments"]} />
  * );
  */
-export const ResourceMenuItemGroup = ({
+function ResourceMenuItemGroup({
   label,
   resources: resourcesProp,
   className,
   menuClassName,
   defaultOpen = true,
-}: ResourceMenuItemGroupProps) => {
+}: ResourceMenuItemGroupProps) {
   const resourceDefinitions = useResourceDefinitions();
   const resources =
     resourcesProp ??
@@ -97,4 +97,6 @@ export const ResourceMenuItemGroup = ({
       </SidebarGroup>
     </Collapsible>
   );
-};
+}
+
+export { ResourceMenuItemGroup, type ResourceMenuItemGroupProps };

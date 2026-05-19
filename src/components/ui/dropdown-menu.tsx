@@ -59,15 +59,18 @@ function DropdownMenuGroup({
   )
 }
 
+interface DropdownMenuItemProps
+  extends React.ComponentProps<typeof DropdownMenuPrimitive.Item> {
+  inset?: boolean
+  variant?: "default" | "destructive"
+}
+
 function DropdownMenuItem({
   className,
   inset,
   variant = "default",
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
-  inset?: boolean
-  variant?: "default" | "destructive"
-}) {
+}: DropdownMenuItemProps) {
   return (
     <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"
@@ -143,13 +146,16 @@ function DropdownMenuRadioItem({
   )
 }
 
+interface DropdownMenuLabelProps
+  extends React.ComponentProps<typeof DropdownMenuPrimitive.Label> {
+  inset?: boolean
+}
+
 function DropdownMenuLabel({
   className,
   inset,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Label> & {
-  inset?: boolean
-}) {
+}: DropdownMenuLabelProps) {
   return (
     <DropdownMenuPrimitive.Label
       data-slot="dropdown-menu-label"
@@ -198,14 +204,17 @@ function DropdownMenuSub({
   return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />
 }
 
+interface DropdownMenuSubTriggerProps
+  extends React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> {
+  inset?: boolean
+}
+
 function DropdownMenuSubTrigger({
   className,
   inset,
   children,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
-  inset?: boolean
-}) {
+}: DropdownMenuSubTriggerProps) {
   return (
     <DropdownMenuPrimitive.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
@@ -245,7 +254,9 @@ export {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuLabel,
+  type DropdownMenuLabelProps,
   DropdownMenuItem,
+  type DropdownMenuItemProps,
   DropdownMenuCheckboxItem,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
@@ -253,5 +264,6 @@ export {
   DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubTrigger,
+  type DropdownMenuSubTriggerProps,
   DropdownMenuSubContent,
 }

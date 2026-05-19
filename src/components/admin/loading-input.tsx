@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/admin/spinner";
 
-export interface LoadingInputProps {
+interface LoadingInputProps {
   fullWidth?: boolean;
   label?: ReactNode;
   helperText?: ReactNode;
@@ -33,14 +33,14 @@ export interface LoadingInputProps {
  *   return <TextInput source="title" />;
  * };
  */
-export const LoadingInput = ({
+function LoadingInput({
   fullWidth,
   label,
   helperText,
   size = "default",
   timeout = 1000,
   className,
-}: LoadingInputProps) => {
+}: LoadingInputProps) {
   const ready = useTimeout(timeout);
 
   return (
@@ -71,4 +71,6 @@ export const LoadingInput = ({
       ) : null}
     </div>
   );
-};
+}
+
+export { LoadingInput, type LoadingInputProps };

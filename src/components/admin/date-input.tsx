@@ -61,7 +61,7 @@ import { cn } from "@/lib/utils";
  * // to convert the form value (which is always a date string) back to a Date object.
  * <DateInput source="published_at" parse={val => new Date(val)} />
  */
-export const DateInput = (props: DateInputProps) => {
+function DateInput(props: DateInputProps) {
   const {
     className,
     inputClassName,
@@ -241,9 +241,9 @@ export const DateInput = (props: DateInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
 
-export type DateInputProps = InputProps & {
+type DateInputProps = InputProps & {
   inputClassName?: string;
 } & Omit<React.ComponentProps<"input">, "label" | "defaultValue">;
 
@@ -315,3 +315,5 @@ const defaultFormat = (value: string | Date | number) => {
   // other values (e.g., localized date strings, timestamps) need to be converted to Dates first
   return convertDateToString(new Date(value));
 };
+
+export { DateInput, type DateInputProps };

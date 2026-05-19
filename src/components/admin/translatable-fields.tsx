@@ -20,7 +20,7 @@ import { TranslatableFieldsTabs } from "@/components/admin/translatable-fields-t
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatablefields/ TranslatableFields documentation}
  */
-export const TranslatableFields = (props: TranslatableFieldsProps) => {
+function TranslatableFields(props: TranslatableFieldsProps) {
   const {
     defaultLocale,
     locales,
@@ -69,9 +69,9 @@ export const TranslatableFields = (props: TranslatableFieldsProps) => {
       </Tabs>
     </TranslatableContextProvider>
   );
-};
+}
 
-export interface TranslatableFieldsProps extends UseTranslatableOptions {
+interface TranslatableFieldsProps extends UseTranslatableOptions {
   children: ReactNode;
   className?: string;
   record?: RaRecord;
@@ -79,3 +79,5 @@ export interface TranslatableFieldsProps extends UseTranslatableOptions {
   selector?: ReactElement;
   groupKey?: string;
 }
+
+export { TranslatableFields, type TranslatableFieldsProps };

@@ -21,11 +21,15 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
   )
 }
 
+interface FieldLegendProps extends React.ComponentProps<"legend"> {
+  variant?: "legend" | "label"
+}
+
 function FieldLegend({
   className,
   variant = "legend",
   ...props
-}: React.ComponentProps<"legend"> & { variant?: "legend" | "label" }) {
+}: FieldLegendProps) {
   return (
     <legend
       data-slot="field-legend"
@@ -78,11 +82,11 @@ const fieldVariants = cva(
   }
 )
 
-function Field({
-  className,
-  orientation = "vertical",
-  ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
+interface FieldProps
+  extends React.ComponentProps<"div">,
+    VariantProps<typeof fieldVariants> {}
+
+function Field({ className, orientation = "vertical", ...props }: FieldProps) {
   return (
     <div
       role="group"
@@ -153,13 +157,15 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
+interface FieldSeparatorProps extends React.ComponentProps<"div"> {
+  children?: React.ReactNode
+}
+
 function FieldSeparator({
   children,
   className,
   ...props
-}: React.ComponentProps<"div"> & {
-  children?: React.ReactNode
-}) {
+}: FieldSeparatorProps) {
   return (
     <div
       data-slot="field-separator"
@@ -183,14 +189,11 @@ function FieldSeparator({
   )
 }
 
-function FieldError({
-  className,
-  children,
-  errors,
-  ...props
-}: React.ComponentProps<"div"> & {
+interface FieldErrorProps extends React.ComponentProps<"div"> {
   errors?: Array<{ message?: string } | undefined>
-}) {
+}
+
+function FieldError({ className, children, errors, ...props }: FieldErrorProps) {
   const content = useMemo(() => {
     if (children) {
       return children
@@ -236,12 +239,16 @@ function FieldError({
 
 export {
   Field,
+  type FieldProps,
   FieldLabel,
   FieldDescription,
   FieldError,
+  type FieldErrorProps,
   FieldGroup,
   FieldLegend,
+  type FieldLegendProps,
   FieldSeparator,
+  type FieldSeparatorProps,
   FieldSet,
   FieldContent,
   FieldTitle,

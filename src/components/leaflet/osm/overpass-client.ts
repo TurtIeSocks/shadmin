@@ -2,7 +2,7 @@ export class OverpassError extends Error {}
 export class OverpassRateLimitError extends OverpassError {}
 export class OverpassTimeoutError extends OverpassError {}
 
-export interface OverpassOptions {
+interface OverpassOptions {
   endpoint?: string;
   timeoutMs?: number;
   signal?: AbortSignal;
@@ -10,7 +10,7 @@ export interface OverpassOptions {
 
 const DEFAULT_ENDPOINT = "https://overpass-api.de/api/interpreter";
 
-export interface OverpassResponse {
+interface OverpassResponse {
   version?: number;
   generator?: string;
   elements: Array<{
@@ -53,3 +53,5 @@ export async function queryOverpass(
     clearTimeout(timeout);
   }
 }
+
+export { type OverpassOptions, type OverpassResponse };

@@ -9,6 +9,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 
+interface StatusTransitionButtonProps {
+  /** Record field holding the current state. Defaults to `"status"`. */
+  source?: string;
+  /** Map of state → allowed next states. */
+  transitions: Record<string, readonly string[]>;
+  /** Optional `${from}->${to}` predicates to allow/block specific moves. */
+  guards?: Record<string, (record: RaRecord) => boolean>;
+  /** Override resource (defaults to the surrounding `<ResourceContext>`). */
+  resource?: string;
+  /** Show a native `confirm()` before firing the update. */
+  confirm?: boolean;
+  /** Side-effect hook fired after the update is dispatched. */
+  onTransition?: (from: string, to: string, record: RaRecord) => void;
+}
+
 /**
  * Reads the record's status from `source`, looks up allowed transitions in
  * `transitions`, optionally filters via `guards`, and renders a dropdown that
@@ -20,7 +35,7 @@ import { ChevronDown } from "lucide-react";
  *   transitions={{ draft: ["review"], review: ["published"] }}
  * />
  */
-export const StatusTransitionButton = (props: StatusTransitionButtonProps) => {
+function StatusTransitionButton(props: StatusTransitionButtonProps) {
   const {
     source = "status",
     transitions,
@@ -74,19 +89,6 @@ export const StatusTransitionButton = (props: StatusTransitionButtonProps) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-export interface StatusTransitionButtonProps {
-  /** Record field holding the current state. Defaults to `"status"`. */
-  source?: string;
-  /** Map of state → allowed next states. */
-  transitions: Record<string, readonly string[]>;
-  /** Optional `${from}->${to}` predicates to allow/block specific moves. */
-  guards?: Record<string, (record: RaRecord) => boolean>;
-  /** Override resource (defaults to the surrounding `<ResourceContext>`). */
-  resource?: string;
-  /** Show a native `confirm()` before firing the update. */
-  confirm?: boolean;
-  /** Side-effect hook fired after the update is dispatched. */
-  onTransition?: (from: string, to: string, record: RaRecord) => void;
 }
+
+export { StatusTransitionButton, type StatusTransitionButtonProps };

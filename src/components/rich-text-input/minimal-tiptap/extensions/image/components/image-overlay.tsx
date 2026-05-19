@@ -2,7 +2,7 @@ import * as React from "react";
 import { Spinner } from "../../../components/spinner";
 import { cn } from "@/lib/utils";
 
-export const ImageOverlay = React.memo(() => {
+const ImageOverlay = React.memo(() => {
   return (
     <div
       className={cn(
@@ -16,3 +16,5 @@ export const ImageOverlay = React.memo(() => {
 });
 
 ImageOverlay.displayName = "ImageOverlay";
+
+export { ImageOverlay };

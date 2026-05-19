@@ -5,7 +5,7 @@ import { LoaderCircle, RotateCw } from "lucide-react";
 
 const defaultIcon = <RotateCw />;
 
-export interface RefreshButtonProps {
+interface RefreshButtonProps {
   ref?: Ref<HTMLButtonElement>;
   label?: ReactNode;
   icon?: ReactNode;
@@ -20,12 +20,12 @@ export interface RefreshButtonProps {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/refreshbutton/ RefreshButton documentation}
  */
-export const RefreshButton = ({
+function RefreshButton({
   ref,
   label,
   icon = defaultIcon,
   onClick,
-}: RefreshButtonProps = {}) => {
+}: RefreshButtonProps = {}) {
   const refresh = useRefresh();
   const loading = useLoading();
   const translate = useTranslate();
@@ -53,4 +53,6 @@ export const RefreshButton = ({
       {loading ? <LoaderCircle className="animate-spin" /> : icon}
     </Button>
   );
-};
+}
+
+export { RefreshButton, type RefreshButtonProps };

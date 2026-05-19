@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import type { Monaco } from "@monaco-editor/react";
 
-interface Args {
+interface UseJsonSchemaArgs {
   monaco: Monaco | null;
   modelUri: string;
   schema?: object;
@@ -15,14 +15,14 @@ interface Args {
  * `jsonDefaults`, scoped by `fileMatch: [modelUri]` so it doesn't leak
  * across instances. Removes the entry on unmount or when args change.
  */
-export function useJsonSchema({
+function useJsonSchema({
   monaco,
   modelUri,
   schema,
   schemaUri,
   allowComments,
   enabled,
-}: Args) {
+}: UseJsonSchemaArgs) {
   useEffect(() => {
     if (!monaco || !enabled) return;
 
@@ -62,3 +62,5 @@ export function useJsonSchema({
     };
   }, [monaco, modelUri, schema, schemaUri, allowComments, enabled]);
 }
+
+export { useJsonSchema };

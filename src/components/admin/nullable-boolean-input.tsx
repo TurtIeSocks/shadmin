@@ -32,7 +32,7 @@ const getStringFromBoolean = (value?: boolean | null): string => {
 // string for the "null" option and map back to "" / null when reading/writing.
 const NULL_OPTION = "__null__";
 
-export type NullableBooleanInputProps = InputProps & {
+type NullableBooleanInputProps = InputProps & {
   className?: string;
   nullLabel?: string;
   trueLabel?: string;
@@ -59,7 +59,7 @@ export type NullableBooleanInputProps = InputProps & {
  *   </Edit>
  * );
  */
-export const NullableBooleanInput = (props: NullableBooleanInputProps) => {
+function NullableBooleanInput(props: NullableBooleanInputProps) {
   const {
     className,
     format = getStringFromBoolean,
@@ -155,4 +155,6 @@ export const NullableBooleanInput = (props: NullableBooleanInputProps) => {
       <FormError />
     </FormField>
   );
-};
+}
+
+export { NullableBooleanInput, type NullableBooleanInputProps };

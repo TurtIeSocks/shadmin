@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { resolveLabel } from "@/lib/resolve-label";
 
-export type SkipNavigationButtonProps = Omit<
+type SkipNavigationButtonProps = Omit<
   React.ComponentProps<typeof Button>,
   "onClick"
 > & {
@@ -34,7 +34,7 @@ export type SkipNavigationButtonProps = Omit<
  *   </>
  * );
  */
-export const SkipNavigationButton = (props: SkipNavigationButtonProps) => {
+function SkipNavigationButton(props: SkipNavigationButtonProps) {
   const { label = "ra.navigation.skip_nav", className, ref, ...rest } = props;
   const translate = useTranslate();
   const translatedLabel = resolveLabel(label, translate, "Skip to content");
@@ -55,7 +55,7 @@ export const SkipNavigationButton = (props: SkipNavigationButtonProps) => {
       {translatedLabel}
     </Button>
   );
-};
+}
 
 const skipToContent = () => {
   if (typeof document === "undefined") return;
@@ -75,3 +75,5 @@ const skipToContent = () => {
   element.blur();
   element.removeAttribute("tabIndex");
 };
+
+export { SkipNavigationButton, type SkipNavigationButtonProps };

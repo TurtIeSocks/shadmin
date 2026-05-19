@@ -7,7 +7,7 @@ import { TextInput, type TextInputProps } from "@/components/admin/text-input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export type ResettableTextInputProps = TextInputProps & {
+type ResettableTextInputProps = TextInputProps & {
   /**
    * If true (the default), a clear button is shown next to the input when it has a value.
    */
@@ -40,7 +40,7 @@ export type ResettableTextInputProps = TextInputProps & {
  *   </Edit>
  * );
  */
-export const ResettableTextInput = (props: ResettableTextInputProps) => {
+function ResettableTextInput(props: ResettableTextInputProps) {
   const {
     resettable = true,
     clearAlwaysVisible = false,
@@ -96,4 +96,6 @@ export const ResettableTextInput = (props: ResettableTextInputProps) => {
       ) : null}
     </div>
   );
-};
+}
+
+export { ResettableTextInput, type ResettableTextInputProps };

@@ -10,7 +10,7 @@ import {
 } from "ra-core";
 import { formatRelative } from "date-fns";
 
-export interface TimelineEntry {
+interface TimelineEntry {
   id: string | number;
   message: ReactNode;
   timestamp: string;
@@ -18,7 +18,7 @@ export interface TimelineEntry {
   icon?: ComponentType<{ className?: string }>;
 }
 
-export interface RecordTimelineProps {
+interface RecordTimelineProps {
   entries?: TimelineEntry[];
   reference?: string;
   target?: string;
@@ -104,7 +104,7 @@ const TimelineFromReference = ({
   return <TimelineList items={items} emptyLabel={emptyLabel} />;
 };
 
-export const RecordTimeline = ({
+const RecordTimeline = ({
   entries,
   reference,
   target,
@@ -142,3 +142,5 @@ export const RecordTimeline = ({
     </ReferenceManyFieldBase>
   );
 };
+
+export { type TimelineEntry, type RecordTimelineProps, RecordTimeline };

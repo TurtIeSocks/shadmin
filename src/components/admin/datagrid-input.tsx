@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { DataTable } from "@/components/admin/data-table";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 
-export type DatagridInputProps = Omit<
+type DatagridInputProps = Omit<
   InputProps,
   "fullWidth" | "readOnly" | "disabled" | "source"
 > &
@@ -44,9 +44,9 @@ export type DatagridInputProps = Omit<
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datagridinput/ DatagridInput documentation}
  */
-export const DatagridInput = <RecordType extends RaRecord = RaRecord>(
+function DatagridInput<RecordType extends RaRecord = RaRecord>(
   props: DatagridInputProps,
-) => {
+) {
   const {
     children,
     choices,
@@ -167,4 +167,6 @@ export const DatagridInput = <RecordType extends RaRecord = RaRecord>(
       </ListContextProvider>
     </div>
   );
-};
+}
+
+export { DatagridInput, type DatagridInputProps };

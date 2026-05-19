@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 
-export type CloneButtonProps = {
+type CloneButtonProps = {
   record?: Partial<RaRecord>;
   resource?: string;
   label?: string;
@@ -40,7 +40,7 @@ export type CloneButtonProps = {
  *   </Show>
  * );
  */
-export const CloneButton = (props: CloneButtonProps) => {
+function CloneButton(props: CloneButtonProps) {
   const {
     label: labelProp,
     icon = defaultIcon,
@@ -83,7 +83,7 @@ export const CloneButton = (props: CloneButtonProps) => {
       {label}
     </Link>
   );
-};
+}
 
 const defaultIcon = <Copy />;
 
@@ -94,3 +94,5 @@ const omitId = (record: Partial<RaRecord>) => {
   const { id: _id, ...rest } = record;
   return rest;
 };
+
+export { CloneButton, type CloneButtonProps };

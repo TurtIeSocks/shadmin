@@ -17,7 +17,7 @@ import type { ElementType, ReactNode } from "react";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 
-export type CreateProps = CreateViewProps &
+type CreateProps = CreateViewProps &
   Omit<CreateBaseProps, "render" | "children">;
 
 /**
@@ -40,7 +40,7 @@ export type CreateProps = CreateViewProps &
  *   </Create>
  * );
  */
-export const Create = ({
+function Create({
   actions,
   aside,
   children,
@@ -50,23 +50,25 @@ export const Create = ({
   render,
   title,
   ...rest
-}: CreateProps) => (
-  <CreateBase {...rest}>
-    <CreateView
-      actions={actions}
-      aside={aside}
-      className={className}
-      component={component}
-      disableBreadcrumb={disableBreadcrumb}
-      render={render}
-      title={title}
-    >
-      {children}
-    </CreateView>
-  </CreateBase>
-);
+}: CreateProps) {
+  return (
+    <CreateBase {...rest}>
+      <CreateView
+        actions={actions}
+        aside={aside}
+        className={className}
+        component={component}
+        disableBreadcrumb={disableBreadcrumb}
+        render={render}
+        title={title}
+      >
+        {children}
+      </CreateView>
+    </CreateBase>
+  );
+}
 
-export type CreateViewProps = {
+type CreateViewProps = {
   actions?: ReactNode;
   aside?: ReactNode;
   component?: ElementType;
@@ -82,7 +84,7 @@ export type CreateViewProps = {
  *
  * @internal
  */
-export const CreateView = ({
+function CreateView({
   actions,
   aside,
   component,
@@ -91,7 +93,7 @@ export const CreateView = ({
   children,
   className,
   render,
-}: CreateViewProps) => {
+}: CreateViewProps) {
   const context = useCreateContext();
 
   const resource = useResourceContext();
@@ -162,4 +164,11 @@ export const CreateView = ({
       {main}
     </>
   );
+}
+
+export {
+  Create,
+  CreateView,
+  type CreateProps,
+  type CreateViewProps,
 };

@@ -4,6 +4,18 @@ import { parsePhoneNumber } from "libphonenumber-js";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
+interface PhoneFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends
+    FieldProps<RecordType>,
+    Omit<HTMLAttributes<HTMLAnchorElement>, "href"> {
+  /** 'national' renders `(415) 555-2671`; 'international' renders `+1 415 555 2671`. */
+  displayFormat?: "national" | "international";
+  /** When false, renders a plain `<span>` instead of a `tel:` link. */
+  link?: boolean;
+}
+
 /**
  * Displays an E.164 phone number as a formatted label, optionally wrapped in
  * a `tel:` link.
@@ -21,7 +33,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </Show>
  * );
  */
-export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
+function PhoneField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,
@@ -30,7 +42,7 @@ export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
   link = true,
   className,
   ...rest
-}: PhoneFieldProps<RecordType>) => {
+}: PhoneFieldProps<RecordType>) {
   const value = useFieldValue({ defaultValue, source, record });
   const translate = useTranslate();
 
@@ -69,16 +81,6 @@ export const PhoneField = <RecordType extends UnknownRecord = UnknownRecord>({
       {formatted}
     </a>
   );
-};
-
-export interface PhoneFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
-    Omit<HTMLAttributes<HTMLAnchorElement>, "href"> {
-  /** 'national' renders `(415) 555-2671`; 'international' renders `+1 415 555 2671`. */
-  displayFormat?: "national" | "international";
-  /** When false, renders a plain `<span>` instead of a `tel:` link. */
-  link?: boolean;
 }
+
+export { PhoneField, type PhoneFieldProps };

@@ -14,7 +14,7 @@ import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { listFieldTypes } from "./list-field-types";
 
-export type SupabaseListGuesserProps = ListProps & { enableLog?: boolean };
+type SupabaseListGuesserProps = ListProps & { enableLog?: boolean };
 
 /**
  * Supabase-aware drop-in `<List>` for resources whose shape is
@@ -27,7 +27,7 @@ export type SupabaseListGuesserProps = ListProps & { enableLog?: boolean };
  * Logs the equivalent hand-written `<List>` source to the console
  * unless `enableLog={false}`.
  */
-export const SupabaseListGuesser = (props: SupabaseListGuesserProps) => {
+function SupabaseListGuesser(props: SupabaseListGuesserProps) {
   const {
     debounce,
     disableAuthentication,
@@ -121,3 +121,5 @@ const SupabaseListGuesserView = (
 
   return <ListView {...rest}>{child}</ListView>;
 };
+
+export { type SupabaseListGuesserProps, SupabaseListGuesser };

@@ -18,7 +18,7 @@ import type { ReactNode } from "react";
 import { Confirm } from "@/components/admin/confirm";
 import type { UnknownValue } from "@/lib/unknown-types";
 
-export type BulkDeleteButtonProps<
+type BulkDeleteButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > = {
@@ -55,12 +55,12 @@ export type BulkDeleteButtonProps<
  *   </List>
  * );
  */
-export const BulkDeleteButton = <
+function BulkDeleteButton<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 >(
   props: BulkDeleteButtonProps<RecordType, MutationOptionsError>,
-) => {
+) {
   const { mutationMode = "undoable" } = props;
   if (mutationMode === "undoable") {
     return (
@@ -74,7 +74,7 @@ export const BulkDeleteButton = <
       {...(props as BulkDeleteButtonProps<RecordType, MutationOptionsError>)}
     />
   );
-};
+}
 
 /**
  * Bulk delete button variant that fires immediately and shows an undo notification.
@@ -83,7 +83,7 @@ export const BulkDeleteButton = <
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
  */
-export const BulkDeleteWithUndoButton = <
+function BulkDeleteWithUndoButton<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 >({
@@ -93,7 +93,7 @@ export const BulkDeleteWithUndoButton = <
   onClick,
   ref,
   ...props
-}: BulkDeleteButtonProps<RecordType, MutationOptionsError>) => {
+}: BulkDeleteButtonProps<RecordType, MutationOptionsError>) {
   const { handleDelete, isPending } = useBulkDeleteController({
     ...props,
     mutationMode: "undoable",
@@ -135,9 +135,9 @@ export const BulkDeleteWithUndoButton = <
       {label}
     </Button>
   );
-};
+}
 
-export type BulkDeleteWithConfirmButtonProps<
+type BulkDeleteWithConfirmButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > = BulkDeleteButtonProps<RecordType, MutationOptionsError> & {
@@ -153,12 +153,12 @@ export type BulkDeleteWithConfirmButtonProps<
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
  */
-export const BulkDeleteWithConfirmButton = <
+function BulkDeleteWithConfirmButton<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 >(
   props: BulkDeleteWithConfirmButtonProps<RecordType, MutationOptionsError>,
-) => {
+) {
   const {
     icon = defaultIcon,
     label: labelProp,
@@ -269,6 +269,14 @@ export const BulkDeleteWithConfirmButton = <
       />
     </Fragment>
   );
-};
+}
 
 const defaultIcon = <Trash />;
+
+export {
+  BulkDeleteButton,
+  BulkDeleteWithUndoButton,
+  BulkDeleteWithConfirmButton,
+  type BulkDeleteButtonProps,
+  type BulkDeleteWithConfirmButtonProps,
+};

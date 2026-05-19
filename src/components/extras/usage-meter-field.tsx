@@ -9,6 +9,22 @@ import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { cn } from "@/lib/utils";
 
+interface UsageMeterFieldProps<
+  RecordType extends UnknownRecord = UnknownRecord,
+>
+  extends
+    FieldProps<RecordType>,
+    Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
+  /** Sibling record field holding the limit/quota. Bar is only shown when set. */
+  limitSource?: string;
+  /** Optional unit suffix (e.g. "GB", "requests"). */
+  unit?: string;
+  /** Ratio thresholds for warning + critical states. Defaults `{ warning: 0.8, critical: 1.0 }`. */
+  thresholds?: { warning: number; critical: number };
+}
+
+const DEFAULT_THRESHOLDS = { warning: 0.8, critical: 1.0 };
+
 /**
  * Displays a numeric usage value relative to an optional limit, rendering a
  * progress bar that shifts color at configurable thresholds.
@@ -19,7 +35,7 @@ import { cn } from "@/lib/utils";
  * @example
  * <UsageMeterField source="used" limitSource="limit" unit="GB" />
  */
-export const UsageMeterField = <
+function UsageMeterField<
   RecordType extends UnknownRecord = UnknownRecord,
 >({
   defaultValue,
@@ -30,7 +46,7 @@ export const UsageMeterField = <
   thresholds = DEFAULT_THRESHOLDS,
   className,
   ...rest
-}: UsageMeterFieldProps<RecordType>) => {
+}: UsageMeterFieldProps<RecordType>) {
   const used = useFieldValue({ defaultValue, source, record }) as
     | number
     | null
@@ -82,20 +98,6 @@ export const UsageMeterField = <
       </span>
     </span>
   );
-};
-
-const DEFAULT_THRESHOLDS = { warning: 0.8, critical: 1.0 };
-
-export interface UsageMeterFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
-    Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
-  /** Sibling record field holding the limit/quota. Bar is only shown when set. */
-  limitSource?: string;
-  /** Optional unit suffix (e.g. "GB", "requests"). */
-  unit?: string;
-  /** Ratio thresholds for warning + critical states. Defaults `{ warning: 0.8, critical: 1.0 }`. */
-  thresholds?: { warning: number; critical: number };
 }
+
+export { UsageMeterField, type UsageMeterFieldProps };

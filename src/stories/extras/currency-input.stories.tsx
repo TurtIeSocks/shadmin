@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/stories/_test-helpers";
-import { CurrencyInput } from "@/components/admin";
+import { CurrencyInput } from "@/components/extras";
 
 export default { title: "Data Edition/CurrencyInput" };
 

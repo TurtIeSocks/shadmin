@@ -9,7 +9,7 @@ import type { AdminTheme } from "./theme-types";
  *
  * Equivalent to the upstream `ra-ui-materialui` `bwLightTheme` / `bwDarkTheme`.
  */
-export const bwTheme: AdminTheme = {
+const bwTheme: AdminTheme = {
   name: "bw",
   label: "Black & White",
   light: {
@@ -81,3 +81,5 @@ export const bwTheme: AdminTheme = {
     "--sidebar-ring": "oklch(0.55 0 0)",
   },
 };
+
+export { bwTheme };

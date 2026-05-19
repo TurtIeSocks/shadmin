@@ -10,8 +10,10 @@ import {
  * field. Leaflet's `L.geoJSON` accepts Features directly, so this is a thin
  * wrapper around `ShapeFieldShell`.
  */
-export type FeatureFieldProps = ShapeFieldShellProps;
+type FeatureFieldProps = ShapeFieldShellProps;
 
-export const FeatureField = (props: FeatureFieldProps) => (
-  <ShapeFieldShell {...props} />
-);
+function FeatureField(props: FeatureFieldProps) {
+  return <ShapeFieldShell {...props} />;
+}
+
+export { FeatureField, type FeatureFieldProps };

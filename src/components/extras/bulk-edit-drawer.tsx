@@ -36,7 +36,7 @@ import {
  *   </BulkEditDrawer>
  * );
  */
-export const BulkEditDrawer = (props: BulkEditDrawerProps) => {
+function BulkEditDrawer(props: BulkEditDrawerProps) {
   const {
     children,
     label = "Edit selected",
@@ -119,7 +119,7 @@ export const BulkEditDrawer = (props: BulkEditDrawerProps) => {
   );
 };
 
-export interface BulkEditDrawerProps {
+interface BulkEditDrawerProps {
   /** Form inputs to render inside the sheet. */
   children: ReactNode;
   /** Trigger button label. Defaults to `"Edit selected"`. */
@@ -136,3 +136,5 @@ export interface BulkEditDrawerProps {
     ids: readonly (string | number)[],
   ) => void;
 }
+
+export { BulkEditDrawer, type BulkEditDrawerProps };

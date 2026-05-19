@@ -5,11 +5,13 @@ import {
   type ShapeInputShellProps,
 } from "./shape-input-shell";
 
-export type MultiLineStringInputProps = Omit<
+type MultiLineStringInputProps = Omit<
   ShapeInputShellProps,
   "shape" | "multi"
 >;
 
-export const MultiLineStringInput = (props: MultiLineStringInputProps) => (
-  <ShapeInputShell {...props} shape="MultiLineString" multi={true} />
-);
+function MultiLineStringInput(props: MultiLineStringInputProps) {
+  return <ShapeInputShell {...props} shape="MultiLineString" multi={true} />;
+}
+
+export { MultiLineStringInput, type MultiLineStringInputProps };

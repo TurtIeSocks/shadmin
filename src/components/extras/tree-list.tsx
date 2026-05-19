@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router";
 import { cn } from "@/lib/utils";
 
-export interface TreeListProps<R extends RaRecord = RaRecord> {
+interface TreeListProps<R extends RaRecord = RaRecord> {
   parentSource: string;
   titleSource?: string;
   iconSource?: string;
@@ -130,7 +130,7 @@ const TreeRow = <R extends RaRecord>({
   );
 };
 
-export const TreeList = <R extends RaRecord = RaRecord>({
+const TreeList = <R extends RaRecord = RaRecord>({
   parentSource,
   titleSource,
   iconSource,
@@ -187,3 +187,5 @@ export const TreeList = <R extends RaRecord = RaRecord>({
     </div>
   );
 };
+
+export { type TreeListProps, TreeList };

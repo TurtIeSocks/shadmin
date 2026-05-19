@@ -11,7 +11,7 @@ import { ReferenceArrayField } from "@/components/admin/reference-array-field";
 /**
  * Field-component map for the Supabase Show guesser.
  */
-export const showFieldTypes: InferredTypeMap = {
+const showFieldTypes: InferredTypeMap = {
   show: {
     component: (props: any) => (
       <div className="flex flex-col gap-4">{props.children}</div>
@@ -99,3 +99,5 @@ ${children
     representation: (props: any) => `<RecordField source="${props.source}" />`,
   },
 };
+
+export { showFieldTypes };

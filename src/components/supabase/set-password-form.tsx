@@ -20,7 +20,7 @@ interface FormData {
  * If either token is missing, renders the translated
  * `ra-supabase.auth.missing_tokens` message instead.
  */
-export const SetPasswordForm = () => {
+function SetPasswordForm() {
   const access_token = useSupabaseAccessToken();
   const refresh_token = useSupabaseAccessToken({
     parameterName: "refresh_token",
@@ -106,3 +106,5 @@ export const SetPasswordForm = () => {
     </Form>
   );
 };
+
+export { SetPasswordForm };

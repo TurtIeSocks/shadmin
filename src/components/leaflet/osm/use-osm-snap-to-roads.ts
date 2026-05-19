@@ -1,4 +1,4 @@
-export interface SnapToRoadsOptions {
+interface SnapToRoadsOptions {
   endpoint?: string;
   profile?: "driving" | "walking" | "cycling";
 }
@@ -22,3 +22,5 @@ export async function snapToRoadsOnce(
   if (json.code !== "Ok" || !json.matchings?.length) return null;
   return json.matchings[0].geometry;
 }
+
+export { type SnapToRoadsOptions };

@@ -10,14 +10,14 @@ import {
   type GeocodeResult,
 } from "./nominatim-client";
 
-export interface UseGeocodeOptions extends SearchOptions {
+interface UseGeocodeOptions extends SearchOptions {
   provider?: GeocodingProvider;
   minChars?: number;
   debounceMs?: number;
   enabled?: boolean;
 }
 
-export const useGeocode = (query: string, opts: UseGeocodeOptions = {}) => {
+const useGeocode = (query: string, opts: UseGeocodeOptions = {}) => {
   const provider = opts.provider ?? nominatimProvider;
   const minChars = opts.minChars ?? 3;
   const debounceMs = opts.debounceMs ?? 300;
@@ -39,3 +39,5 @@ export const useGeocode = (query: string, opts: UseGeocodeOptions = {}) => {
     staleTime: 5 * 60 * 1000,
   });
 };
+
+export { type UseGeocodeOptions, useGeocode };

@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
  */
-export const TranslatableInputsTab = (props: TranslatableInputsTabProps) => {
+function TranslatableInputsTab(props: TranslatableInputsTabProps) {
   const { groupKey = "", locale, className, ...rest } = props;
   const { isValid } = useFormGroup(`${groupKey}${locale}`);
   const translate = useTranslate();
@@ -28,12 +28,14 @@ export const TranslatableInputsTab = (props: TranslatableInputsTabProps) => {
       })}
     </TabsTrigger>
   );
-};
+}
 
-export interface TranslatableInputsTabProps extends Omit<
+interface TranslatableInputsTabProps extends Omit<
   React.ComponentProps<typeof TabsTrigger>,
   "value"
 > {
   groupKey?: string;
   locale: string;
 }
+
+export { TranslatableInputsTab, type TranslatableInputsTabProps };

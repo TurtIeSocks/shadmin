@@ -47,7 +47,7 @@ import {
   type RecentEntry,
 } from "./command-menu-context";
 
-export interface CommandMenuProps {
+interface CommandMenuProps {
   hotkey?: string[] | false;
   resources?: string[];
   searchFields?: Record<string, string>;
@@ -446,7 +446,7 @@ const CommandMenuFooter = () => {
   );
 };
 
-export const CommandMenu = ({
+const CommandMenu = ({
   hotkey = DEFAULT_HOTKEYS,
   searchDebounceMs = 200,
   perResourceLimit = 5,
@@ -586,3 +586,5 @@ export const CommandMenu = ({
     </CommandMenuContext.Provider>
   );
 };
+
+export { type CommandMenuProps, CommandMenu };
