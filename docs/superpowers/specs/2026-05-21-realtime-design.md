@@ -166,6 +166,10 @@ export interface RealtimeDataProvider<R extends string = string> extends DataPro
   unlock(resource: R, params: UnlockParams): Promise<Lock>;
   getLock(resource: R, params: GetLockParams): Promise<Lock | null>;
   getLocks(resource: R, params?: GetLocksParams): Promise<Lock[]>;
+  // Pass-through from transport so React hooks can access reconnect / status
+  // events without holding a direct transport reference.
+  onReconnect?(cb: () => void): Unsubscribe;
+  onStatusChange?(cb: (status: RealtimeConnectionStatus) => void): Unsubscribe;
 }
 
 export interface RealtimeDataProviderOptions<R extends string = string> {
@@ -369,6 +373,14 @@ export function inMemoryLockProvider<R extends string = string>(
 ```
 
 Pure-memory `Map<string, Lock>` keyed by `resource/recordId`. `lock` throws `LockConflictError(existingLock)` when held by another identity. Demo wires this up with the `broadcastChannelTransport` to make locks visible across tabs.
+
+### 9.5b RealtimeDataProvider pass-through
+
+The factory copies `onReconnect` and `onStatusChange` from the transport onto
+the returned `RealtimeDataProvider` (when the transport defines them). Hooks
+observe reconnect or connection-status events through
+`useDataProvider<RealtimeDataProvider>()` — no separate transport context is
+required, keeping consumer setup as a single `realtimeDataProvider(...)` call.
 
 ### 9.6 Cross-cutting transport rules
 
