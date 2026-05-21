@@ -1,5 +1,4 @@
 import { Resource } from "ra-core";
-import fakeRestProvider from "ra-data-fakerest";
 import { Admin } from "@/components/admin";
 import {
   realtimeDataProvider,
@@ -8,6 +7,7 @@ import {
   inMemoryLockProvider,
 } from "@/components/realtime";
 import { realtimeSeed } from "./realtime/seed";
+import { localStorageDataProvider } from "./realtime/local-storage-data-provider";
 import { PostListLive } from "./realtime/PostListLive";
 import { PostEditLive } from "./realtime/PostEditLive";
 import { PostShowLive } from "./realtime/PostShowLive";
@@ -17,7 +17,7 @@ const transport = broadcastChannelTransport({
 });
 const locks = inMemoryLockProvider({ publisher: transport });
 const baseDP = realtimeDataProvider(
-  fakeRestProvider(realtimeSeed, false),
+  localStorageDataProvider(realtimeSeed),
   transport,
   { locks }
 );
