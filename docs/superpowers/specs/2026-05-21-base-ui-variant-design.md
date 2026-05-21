@@ -1,8 +1,45 @@
 # Base-UI Variant of the Shadcn Admin Kit Registry
 
-**Status:** Draft
+**Status:** Rejected (kept as decision record)
 **Date:** 2026-05-21
 **Author:** session continuation from `2026-05-21` registry refactor
+
+## Decision
+
+We considered shipping a base-ui primitive variant alongside the existing
+radix variant — mirroring shadcn upstream's `{style}` field model — and
+decided against it after surveying the community-registry landscape.
+
+**Why rejected:**
+
+- Of the top 20 community registries listed at registry.directory, none ship
+  multi-backend support via shadcn's `{style}` mechanism. One registry (Coss
+  UI) is base-ui-only; the rest are radix-only. Only shadcn upstream itself
+  bothers with both, and even its docs recommend radix as the default for
+  most users.
+- The registry refactor that landed in commit `06ef140bd` (Step 3 of that
+  session) already isolated every primitive import behind
+  `src/components/ui/`. Consumers who genuinely want base-ui can fork that
+  one directory in their own project — a few hours of one-time work — without
+  us shipping or maintaining anything.
+- The cost is real and ongoing: 10–16h initial implementation, 55 extra
+  files to keep in sync forever, doubled CI matrix wall-clock, and
+  asymmetric coverage gaps on both sides (e.g. radix has no Combobox,
+  base-ui may lack other primitives). No demand signal to justify it.
+
+**When to revive:**
+
+- A meaningful number of external consumers ask for base-ui specifically.
+- shadcn upstream's base-ui variant becomes the documented default (which
+  would shift the "table stakes" line for downstream kits).
+- An ecosystem need we don't currently see emerges (e.g. a popular block
+  registry standardizes on base-ui and breaks compatibility with our radix
+  variant).
+
+The remaining sections capture the architecture as it would be built so a
+future revival has the design pre-done.
+
+---
 
 ## Problem
 
