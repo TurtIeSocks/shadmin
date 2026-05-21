@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, showDataProvider, showTransport } from "@/stories/realtime/show-live.stories";
+import { Basic } from "@/stories/realtime/show-live.stories";
+import { showDataProvider, showTransport } from "@/stories/realtime/show-live-fixtures";
 
 describe("<ShowLive>", () => {
   it("renders the record field", async () => {

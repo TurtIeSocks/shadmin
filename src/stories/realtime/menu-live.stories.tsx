@@ -4,11 +4,10 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import { ThemeProvider } from "@/components/admin";
 import { realtimeDataProvider } from "@/components/realtime/realtime-data-provider";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
 import fakeRestProvider from "ra-data-fakerest";
 import { MenuLiveItemLink } from "@/components/realtime/menu-live";
+import { menuTransport } from "./menu-live-fixtures";
 
-export const menuTransport = fakeTransport();
 const dataProvider = realtimeDataProvider(fakeRestProvider({}, false), menuTransport);
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 

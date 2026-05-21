@@ -116,6 +116,8 @@ type AutocompleteArrayInputProps = Omit<InputProps, "source"> &
     setFilter?: (filter: string) => void;
   } & Pick<PopoverPrimitive.PopoverProps, "modal">;
 
+const EMPTY_VALUES: UnknownValue[] = [];
+
 function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
   const {
     debounce: debounceDelay = 250,
@@ -165,9 +167,11 @@ function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
   });
 
   // `field.value` may be `undefined` (no default + uncontrolled state).
-  // Coalesce to an empty array so the rest of the component can rely on
-  // array semantics without crashing.
-  const values: UnknownValue[] = Array.isArray(field.value) ? field.value : [];
+  // Coalesce to a stable empty array so the rest of the component can rely on
+  // array semantics without crashing or invalidating memoized deps.
+  const values: UnknownValue[] = Array.isArray(field.value)
+    ? field.value
+    : EMPTY_VALUES;
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listRef = React.useRef<HTMLDivElement>(null);

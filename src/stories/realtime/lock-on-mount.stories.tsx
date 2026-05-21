@@ -1,11 +1,7 @@
 import { ResourceContextProvider, RecordContextProvider } from "ra-core";
 import { RealtimeStoryAdmin } from "@/stories/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
 import { LockOnMount } from "@/components/realtime/lock-on-mount";
-
-export const lomTransport = fakeTransport();
-export const lomLocks = inMemoryLockProvider({ publisher: lomTransport });
+import { lomTransport, lomLocks } from "./lock-on-mount-fixtures";
 
 export default { title: "realtime/LockOnMount" };
 

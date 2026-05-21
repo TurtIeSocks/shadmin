@@ -4,8 +4,6 @@ import { OrderList } from "./OrderList";
 import { OrderEdit } from "./OrderEdit";
 import { OrderShow } from "./OrderShow";
 
-export { OrderShow };
-
 export const orders: ResourceProps = {
   name: "orders",
   list: OrderList,

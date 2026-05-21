@@ -1,13 +1,7 @@
 import { ResourceContextProvider, RecordContextProvider } from "ra-core";
 import { RealtimeStoryAdmin } from "@/stories/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
 import { LockStatus } from "@/components/realtime/lock-status";
-
-export const lsTransport = fakeTransport();
-export const lsLocks = inMemoryLockProvider({ publisher: lsTransport });
-// Pre-lock so the test can assert the held UI.
-lsLocks.lock("posts", { id: 1, identity: "alice" });
+import { lsTransport, lsLocks } from "./lock-status-fixtures";
 
 export default { title: "realtime/LockStatus" };
 

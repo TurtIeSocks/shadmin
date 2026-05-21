@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, editDataProvider, editTransport } from "@/stories/realtime/edit-live.stories";
+import { Basic } from "@/stories/realtime/edit-live.stories";
+import { editDataProvider, editTransport } from "@/stories/realtime/edit-live-fixtures";
 
 describe("<EditLive>", () => {
   it("renders the title input", async () => {
