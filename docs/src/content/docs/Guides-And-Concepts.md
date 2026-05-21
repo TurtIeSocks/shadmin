@@ -15,3 +15,7 @@ To learn more about the features and architecture of Shadcn-Admin-Kit, you can r
 - [I18N](https://marmelab.com/ra-core/translation/)
 - [Preferences](https://marmelab.com/ra-core/store/)
 - [All Features](https://marmelab.com/ra-core/features/)
+
+## Realtime
+
+The realtime subsystem adds live data updates, pub-sub subscriptions, and record locking to any admin app. It ships drop-in replacements for `<List>`, `<Edit>`, and `<Show>` as well as a full suite of hooks for lower-level control. See the [Realtime overview](./Realtime.md) to get started.
