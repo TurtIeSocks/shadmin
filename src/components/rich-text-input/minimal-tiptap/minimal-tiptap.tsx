@@ -5,6 +5,7 @@ import type { Content, Editor } from "@tiptap/react";
 import type { UseMinimalTiptapEditorProps } from "./hooks/use-minimal-tiptap";
 import { EditorContent, EditorContext } from "@tiptap/react";
 import { Separator } from "@/components/ui/separator";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { SectionOne } from "./components/section/one";
 import { SectionTwo } from "./components/section/two";
@@ -97,14 +98,16 @@ function MinimalTiptapEditor({
   }
 
   return (
-    <EditorContext.Provider value={{ editor }}>
-      <MainMinimalTiptapEditor
-        editor={editor}
-        className={className}
-        editorContentClassName={editorContentClassName}
-        toolbar={toolbar}
-      />
-    </EditorContext.Provider>
+    <TooltipProvider>
+      <EditorContext.Provider value={{ editor }}>
+        <MainMinimalTiptapEditor
+          editor={editor}
+          className={className}
+          editorContentClassName={editorContentClassName}
+          toolbar={toolbar}
+        />
+      </EditorContext.Provider>
+    </TooltipProvider>
   );
 }
 
