@@ -84,6 +84,11 @@ function AddSavedQueryDialog({
               _: "Save current query as",
             })}
           </DialogTitle>
+          <DialogDescription>
+            {translate("ra.saved_queries.new_dialog_description", {
+              _: "Save the current filters and sort under a name to recall them later.",
+            })}
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleFormSubmit} className="space-y-4">
           <div className="space-y-2">

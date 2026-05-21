@@ -75,6 +75,10 @@ function DateInput(props: DateInputProps) {
     validate,
     disabled,
     readOnly,
+    // Pulled out of `rest` so they don't leak onto the underlying <input>:
+    parse,
+    alwaysOn,
+    resource: _resource,
     ...rest
   } = props;
 
@@ -92,6 +96,8 @@ function DateInput(props: DateInputProps) {
     disabled,
     readOnly,
     format,
+    parse,
+    alwaysOn,
     ...rest,
   });
   const localInputRef = React.useRef<HTMLInputElement>(null);

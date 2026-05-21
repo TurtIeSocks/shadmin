@@ -241,8 +241,9 @@ function SelectInput(props: SelectInputProps) {
   }
 
   // Handle reset functionality
-  const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleReset = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     field.onChange(emptyValue);
   };
 
@@ -281,16 +282,24 @@ function SelectInput(props: SelectInputProps) {
               <SelectValue placeholder={renderEmptyItemOption()} />
 
               {resettable && field.value && field.value !== emptyValue ? (
-                <button
-                  type="button"
+                // <span> instead of <button>: SelectTrigger is itself a <button>
+                // and HTML forbids nested interactive controls.
+                <span
+                  role="button"
+                  tabIndex={0}
                   aria-label={translate("ra.action.clear_input_value", {
                     _: "Clear",
                   })}
                   className="p-0 ml-auto pointer-events-auto hover:bg-transparent text-muted-foreground opacity-50 hover:opacity-100"
                   onClick={handleReset}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleReset(e);
+                    }
+                  }}
                 >
                   <X className="size-4" />
-                </button>
+                </span>
               ) : null}
             </SelectTrigger>
             <SelectContent position="popper">

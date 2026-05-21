@@ -18,10 +18,18 @@ function TooltipProvider({
   )
 }
 
+// NOTE: Diverges from canonical shadcn output by auto-wrapping <Tooltip> in
+// <TooltipProvider>. Keep this when running `npx shadcn add --overwrite` —
+// many callers rely on the self-contained behavior. Callers can still mount
+// their own provider higher to share delayDuration. See commit cba345e41.
 function Tooltip({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Root>) {
-  return <TooltipPrimitive.Root data-slot="tooltip" {...props} />
+  return (
+    <TooltipProvider>
+      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
+    </TooltipProvider>
+  )
 }
 
 function TooltipTrigger({

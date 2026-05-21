@@ -58,7 +58,16 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["@dnd-kit/core"],
+    // Pre-bundle deps that Vite would otherwise discover mid-run. Discovery
+    // triggers an HMR reload which surfaces as "Failed to fetch dynamically
+    // imported module" or "more than one copy of React" inside the persistent
+    // vitest browser worker.
+    include: [
+      "@dnd-kit/core",
+      "react-dom/client",
+      "data-generator-retail",
+      "ra-language-french",
+    ],
   },
   test: {
     testTimeout: 2500,
