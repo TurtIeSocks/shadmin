@@ -1,4 +1,8 @@
-## Unreleased
+## [Unreleased]
+
+### Added
+
+- Realtime subsystem under `src/components/realtime/`: `realtimeDataProvider` factory + `RealtimeDataProvider` type, opt-in `addEventsForMutations`, four transports (`webSocketTransport`, `sseTransport`, `broadcastChannelTransport`, `fakeTransport`), `inMemoryLockProvider`, 17 hooks (subscribe/publish/live/lock families), and six components (`ListLive`, `EditLive`, `ShowLive`, `MenuLive` + `MenuLiveItemLink`, `LockOnMount`, `LockStatus`). Demo app under `src/demo/App.realtime-demo.tsx` with cross-tab `broadcastChannelTransport`.
 
 ### Add public component coverage audit and gallery
 

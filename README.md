@@ -28,6 +28,7 @@ A component kit to build your Admin app with [shadcn/ui](https://ui.shadcn.com/)
 - Accessible
 - Compatible with any API (REST, GraphQL, etc.)
 - Works with Vite.js, Remix, Netx.js, and more
+- **Realtime** — `DataProvider` extension with WebSocket, SSE, and BroadcastChannel transports; live `<ListLive>` / `<EditLive>` / `<ShowLive>`; menu badges; record locks. See [Realtime.md](docs/src/content/docs/Realtime.md).
 
 ## Tech Stack
 

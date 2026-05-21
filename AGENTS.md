@@ -48,6 +48,8 @@ They **must not** import from `src/components/extras/`, `src/components/rich-tex
 
 When an admin component would need a feature that today lives in `extras/` (e.g. the `<CommandMenu>` cmd+K palette), expose lower-level primitives from `admin/` (such as `<AdminContext>` + `<AdminUI>`) so the consumer in `extras/` can compose them — don't reach down from `admin/` into `extras/`.
 
+A `src/components/realtime/` feature folder exists as a sibling of `admin/`. The dependency direction is `extras → realtime → admin → ui`. `realtime/` may import from `admin/`, `ui/`, `lib/`, `hooks/`, and external packages. `admin/` MUST NOT import from `realtime/`. `extras/` MAY import from `realtime/`.
+
 ### Component Conventions
 
 - **Fields** (`*-field.tsx`): Display components that read from `useRecordContext()`. Used in List/Show views.
