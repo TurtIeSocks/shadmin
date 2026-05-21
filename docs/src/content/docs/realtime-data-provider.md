@@ -1,0 +1,59 @@
+---
+title: realtimeDataProvider
+---
+
+`realtimeDataProvider` wraps an existing `DataProvider` with pub-sub and (optionally) locking capabilities, producing a `RealtimeDataProvider` that all realtime hooks and components expect.
+
+## Usage
+
+```tsx
+import {
+  realtimeDataProvider,
+  webSocketTransport,
+  inMemoryLockProvider,
+} from "@/components/realtime";
+import base from "./my-rest-data-provider";
+
+const transport = webSocketTransport({ url: "wss://example.com/rt" });
+
+const dataProvider = realtimeDataProvider(base, transport, {
+  locks: inMemoryLockProvider(),
+});
+
+export default function App() {
+  return (
+    <Admin dataProvider={dataProvider}>
+      <Resource name="posts" list={PostList} />
+    </Admin>
+  );
+}
+```
+
+## Params
+
+| Param | Required | Type | Description |
+|-------|----------|------|-------------|
+| `baseDataProvider` | Required | `DataProvider` | Your existing REST/GraphQL data provider |
+| `transport` | Required | `RealtimeTransport` | The pub-sub transport to use |
+| `options` | Optional | `RealtimeDataProviderOptions` | Additional options (see below) |
+
+## `options`
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `locks` | `LockProvider` | — | Enables `lock()`, `unlock()`, `getLock()`, `getLocks()`. Without this, those methods throw. |
+
+## Returns
+
+A `RealtimeDataProvider` that:
+
+- Delegates all standard data methods (`getList`, `getOne`, etc.) to `baseDataProvider`.
+- Adds `subscribe(topic, cb)` and `publish(topic, event)` backed by the transport.
+- Adds `lock`, `unlock`, `getLock`, `getLocks` backed by `options.locks` (throws if omitted).
+- Proxies `onReconnect` and `onStatusChange` from the transport when the transport implements them.
+
+## Notes
+
+- The `RealtimeDataProvider` type extends `DataProvider`, so it is fully compatible with `<Admin>` and all standard hooks.
+- Call `addEventsForMutations(dataProvider, dataProvider)` after wrapping if you want the data provider's own writes to broadcast events (useful for demos and single-user apps).
+- If you pass a transport that does not implement `onReconnect` / `onStatusChange`, those methods will be absent on the returned provider — `useOnReconnect` and `useRealtimeStatus` handle this gracefully (no-ops).
