@@ -217,13 +217,21 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
       if (!config.publishUrl) {
         throw new Error("sseTransport: publish requires publishUrl in config");
       }
-      const res = await fetch(config.publishUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic, event }),
-      });
+      let res: Response;
+      try {
+        res = await fetch(config.publishUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ topic, event }),
+        });
+      } catch (cause) {
+        config.onError?.({ kind: "send_failed", topic, cause, retrying: false });
+        throw cause;
+      }
       if (!res.ok) {
-        throw new Error(`sseTransport: publish failed with status ${res.status}`);
+        const error = new Error(`sseTransport: publish failed with status ${res.status}`);
+        config.onError?.({ kind: "send_failed", topic, cause: error, retrying: false });
+        throw error;
       }
     },
 

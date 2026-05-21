@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from "react";
+import { useEffect, type ReactElement, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
 import { useStore } from "ra-core";
 import { Badge } from "@/components/ui/badge";
@@ -31,9 +31,11 @@ export function MenuLiveItemLink({
     if (events.includes(event.type)) setCount((c) => (c ?? 0) + 1);
   });
 
-  if (pathname.startsWith(to) && (count ?? 0) !== 0) {
-    setCount(0);
-  }
+  useEffect(() => {
+    if (pathname.startsWith(to) && (count ?? 0) !== 0) {
+      setCount(0);
+    }
+  }, [pathname, to, count, setCount]);
 
   const safeCount = count ?? 0;
   const label = badgeLabel

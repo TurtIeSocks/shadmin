@@ -38,6 +38,11 @@ export function inMemoryLockProvider<R extends string = string>(
       type: "locked",
       payload: newLock,
     });
+    // Also broadcast on the collection topic so useGetLocksLive subscribers wake up.
+    await options?.publisher?.publish(lockResourceTopic(resource), {
+      type: "locked",
+      payload: newLock,
+    });
 
     return newLock;
   }

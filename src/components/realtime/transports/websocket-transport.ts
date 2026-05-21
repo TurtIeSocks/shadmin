@@ -79,6 +79,12 @@ export function webSocketTransport(
     if (pongTimer !== null) { clearTimeout(pongTimer); pongTimer = null; }
   }
 
+  function rejectPendingPublishes(error: Error) {
+    for (const pending of pendingPublishes.splice(0)) {
+      pending.reject(error);
+    }
+  }
+
   function jitteredDelay(attempt: number): number {
     const base = Math.min(
       reconnectCfg.initialDelayMs * Math.pow(2, attempt),
@@ -203,12 +209,24 @@ export function webSocketTransport(
     socket.onclose = (ev) => {
       clearTimers();
       ws = null;
-      if (intentionalClose) return;
+      if (intentionalClose) {
+        rejectPendingPublishes(new Error("webSocketTransport: connection closed"));
+        return;
+      }
 
       const unclean = !ev.wasClean;
-      if (unclean && reconnectCfg.enabled && reconnectAttempts < reconnectCfg.maxAttempts) {
+      const willRetry =
+        unclean && reconnectCfg.enabled && reconnectAttempts < reconnectCfg.maxAttempts;
+      if (willRetry) {
         const delay = jitteredDelay(reconnectAttempts++);
         reconnectTimer = setTimeout(() => { void openSocket(); }, delay);
+      } else {
+        // Reconnect disabled or attempts exhausted — any queued publishes will
+        // never be flushed. Reject them so callers can react instead of hanging.
+        config.onError?.({ kind: "connect_failed", retrying: false });
+        rejectPendingPublishes(
+          new Error("webSocketTransport: reconnect exhausted; pending publishes dropped")
+        );
       }
     };
 
@@ -294,6 +312,9 @@ export function webSocketTransport(
       clearTimers();
       ws?.close();
       ws = null;
+      rejectPendingPublishes(
+        new Error("webSocketTransport: disconnected; pending publishes dropped")
+      );
     },
 
     onReconnect(cb: () => void): Unsubscribe {

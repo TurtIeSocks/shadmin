@@ -58,6 +58,7 @@ export function useLockOnMount(
         heldRef.current = null;
       }
     };
+    // lock/unlock/options are stable enough — only the identity triple drives the effect.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resource, id, identity]);
 
