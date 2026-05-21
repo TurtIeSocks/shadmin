@@ -1,0 +1,37 @@
+---
+title: useSubscribeToRecordList
+---
+
+`useSubscribeToRecordList` subscribes to the `resource/<name>` topic for a whole resource collection. It fires on `created`, `updated`, and `deleted` events for any record in the collection.
+
+## Usage
+
+```tsx
+import { useSubscribeToRecordList } from "@/components/realtime";
+import { useQueryClient } from "@tanstack/react-query";
+
+function PostsWatcher() {
+  const queryClient = useQueryClient();
+  useSubscribeToRecordList("posts", () => {
+    queryClient.invalidateQueries({ predicate: (q) => q.queryKey[0] === "posts" });
+  });
+  return null;
+}
+```
+
+## Params
+
+| Param | Required | Type | Description |
+|-------|----------|------|-------------|
+| `resource` | Required | `string` | Resource name |
+| `callback` | Required | `(event: RealtimeEvent) => void` | Called for each event on the resource topic |
+| `options.enabled` | Optional | `boolean` | Default `true`. Set to `false` to pause the subscription |
+
+## Returns
+
+`void`
+
+## Notes
+
+- The topic format is `resource/<resource>` — constructed by the `resourceTopic()` helper.
+- This is the hook used internally by `<ListLive>`. Use it directly when you need list-level live updates outside a `<List>` component.
