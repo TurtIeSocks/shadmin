@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactElement, ReactNode } from "react";
-import { Children, isValidElement } from "react";
+import { Children, Fragment, isValidElement } from "react";
 import type { RaRecord } from "ra-core";
 import { OptionalRecordContextProvider } from "ra-core";
 import { cn } from "@/lib/utils";
@@ -44,15 +44,15 @@ function SimpleShowLayout({
     <div className={cn(`flex flex-col gap-${spacing}`, className)}>
       {childArray.map((child, index) => {
         const labeled = isValidElement(child) ? (
-          <Labeled key={index}>{child as ReactElement}</Labeled>
+          <Labeled>{child as ReactElement}</Labeled>
         ) : (
           child
         );
         return (
-          <>
+          <Fragment key={index}>
             {labeled}
             {divider != null && index < childArray.length - 1 && divider}
-          </>
+          </Fragment>
         );
       })}
     </div>
