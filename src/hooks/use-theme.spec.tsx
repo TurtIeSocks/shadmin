@@ -5,7 +5,7 @@ import { useState, type PropsWithChildren } from "react";
 import {
   ThemeProviderContext,
   type Theme,
-} from "../components/admin/theme-context";
+} from "@/lib/themes/theme-context";
 import { useResolvedTheme, useTheme } from "./use-theme";
 
 const wrapper =

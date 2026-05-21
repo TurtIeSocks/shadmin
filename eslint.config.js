@@ -41,6 +41,24 @@ export default tseslint.config(
         },
       ],
       "no-console": ["error", { allow: ["warn", "error"] }],
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "radix-ui",
+                "radix-ui/*",
+                "@radix-ui/*",
+                "@base-ui/react",
+                "@base-ui/react/*",
+              ],
+              message:
+                "Import from '@/components/ui/*' instead. Primitive libraries (radix-ui, @base-ui/react) must only be referenced inside src/components/ui/ so the primitive backend can be swapped in one place.",
+            },
+          ],
+        },
+      ],
     },
   },
   storybook.configs["flat/recommended"],

@@ -25,6 +25,10 @@ export const blocks = [
     title: "Shadcn Admin Kit Main Block",
     description:
       "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
+    // Auto-emit one granular registry item per file in this block alongside
+    // the monolith. Lets consumers install single components (e.g.
+    // `shadcn add @shadcn-admin-kit/data-table`) instead of the full block.
+    granularize: true,
     registryDependencies: [
       "accordion",
       "alert",
@@ -82,6 +86,7 @@ export const blocks = [
     sourceDirs: [{ path: "src/components/admin", recursive: false }],
     extraFiles: [
       { path: "rules/AGENTS.md", type: "registry:file", target: "~/AGENTS.md" },
+      { path: "src/components/ui/slot.tsx", type: "registry:ui" },
       { path: "src/hooks/use-form-field.ts", type: "registry:component" },
       { path: "src/hooks/use-theme.ts", type: "registry:component" },
       { path: "src/lib/are-ids-equal.ts", type: "registry:lib" },
@@ -89,8 +94,18 @@ export const blocks = [
       { path: "src/lib/i18n-provider.ts", type: "registry:lib" },
       { path: "src/lib/notify-auth-error.ts", type: "registry:lib" },
       { path: "src/lib/sanitize-input-rest-props.ts", type: "registry:lib" },
+      { path: "src/lib/title-portal-id.ts", type: "registry:lib" },
       { path: "src/lib/unknown-types.ts", type: "registry:lib" },
       { path: "src/lib/utils.ts", type: "registry:lib" },
+      { path: "src/lib/themes/bw-theme.ts", type: "registry:lib" },
+      { path: "src/lib/themes/default-theme.ts", type: "registry:lib" },
+      { path: "src/lib/themes/house-theme.ts", type: "registry:lib" },
+      { path: "src/lib/themes/index.ts", type: "registry:lib" },
+      { path: "src/lib/themes/nano-theme.ts", type: "registry:lib" },
+      { path: "src/lib/themes/radiant-theme.ts", type: "registry:lib" },
+      { path: "src/lib/themes/theme-context.ts", type: "registry:lib" },
+      { path: "src/lib/themes/theme-types.ts", type: "registry:lib" },
+      { path: "src/lib/themes/themes-context.ts", type: "registry:lib" },
     ],
   },
   {

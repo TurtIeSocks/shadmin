@@ -86,4 +86,5 @@ export {
   PopoverHeader,
   PopoverTitle,
   PopoverDescription,
+  PopoverPrimitive,
 }

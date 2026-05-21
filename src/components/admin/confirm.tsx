@@ -2,7 +2,7 @@ import { AlertCircle, CheckCircle } from "lucide-react";
 import { useTranslate } from "ra-core";
 import * as React from "react";
 import { type ComponentType, type MouseEventHandler, useCallback } from "react";
-import { Dialog as DialogPrimitive } from "radix-ui";
+import { DialogPrimitive } from "@/components/ui/dialog";
 
 import { Button } from "@/components/ui/button";
 import {

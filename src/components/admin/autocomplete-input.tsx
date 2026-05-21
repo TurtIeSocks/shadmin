@@ -40,7 +40,7 @@ import {
   useSupportCreateSuggestion,
 } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
-import { Popover as PopoverPrimitive } from "radix-ui";
+import { PopoverPrimitive } from "@/components/ui/popover";
 import type { UnknownValue } from "@/lib/unknown-types";
 
 /**

@@ -5,9 +5,9 @@ import {
   ThemeProviderContext,
   type ResolvedTheme,
   type Theme,
-} from "./theme-context";
-import { ThemesContext } from "./themes-context";
-import type { AdminTheme, ThemeVars } from "./theme-types";
+} from "@/lib/themes/theme-context";
+import { ThemesContext } from "@/lib/themes/themes-context";
+import type { AdminTheme, ThemeVars } from "@/lib/themes/theme-types";
 
 interface ThemeProviderProps {
   children: React.ReactNode;

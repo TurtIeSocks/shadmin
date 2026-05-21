@@ -1,4 +1,5 @@
-import { Admin, defaultTheme, Resource } from "@/components/admin";
+import { Admin, Resource } from "@/components/admin";
+import { defaultTheme } from "@/lib/themes";
 import { CustomRoutes } from "ra-core";
 import { Route } from "react-router";
 

@@ -4,6 +4,13 @@
 
 - Realtime subsystem under `src/components/realtime/`: `realtimeDataProvider` factory + `RealtimeDataProvider` type, opt-in `addEventsForMutations`, four transports (`webSocketTransport`, `sseTransport`, `broadcastChannelTransport`, `fakeTransport`), `inMemoryLockProvider`, 17 hooks (subscribe/publish/live/lock families), and six components (`ListLive`, `EditLive`, `ShowLive`, `MenuLive` + `MenuLiveItemLink`, `LockOnMount`, `LockStatus`). Demo app under `src/demo/App.realtime-demo.tsx` with cross-tab `broadcastChannelTransport`.
 
+### Registry refactor: granular install + primitive abstraction
+
+- **BREAKING**: Theme palettes, theme contexts, theme types, and the title-portal constant moved out of `src/components/admin/` into `src/lib/themes/` and `src/lib/`. Imports of `bwTheme`, `defaultTheme`, `houseTheme`, `nanoTheme`, `radiantTheme`, `AdminTheme`, `ThemeVars`, `useThemes`, `ThemesContextValue`, and `TITLE_PORTAL_ID` must move from `@/components/admin` to `@/lib/themes` (themes/contexts/types) or `@/lib/title-portal-id` (constant).
+- Tighten `src/components/ui/` wrappers to expose each primitive namespace (`PopoverPrimitive`, `DialogPrimitive`, `TooltipPrimitive`, `LabelPrimitive`) plus a new `Slot` wrapper. Consumers needing low-level primitive access import from the ui wrapper instead of `radix-ui` directly. Swapping primitive libraries (radix-ui ↔ @base-ui/react) now means editing only `src/components/ui/`.
+- Add an ESLint rule banning `radix-ui` and `@base-ui/react` imports outside `src/components/ui/`. Keeps the primitive seam from leaking back over time.
+- Auto-derive granular registry items from the import graph. Each component, hook, and lib file in the admin block is now also shipped as its own `registry:component` / `registry:hook` / `registry:lib` item alongside the existing monolith `admin` block. Consumers can install individual pieces via `shadcn add @shadcn-admin-kit/data-table` (etc.) instead of pulling the full kit.
+
 ### Add public component coverage audit and gallery
 
 - Add a reusable public component coverage audit script that checks Storybook, co-located specs, docs, and demo gallery entries for exported admin-facing components.

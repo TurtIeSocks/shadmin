@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
-import { TITLE_PORTAL_ID } from "./title-portal-id";
+import { TITLE_PORTAL_ID } from "@/lib/title-portal-id";
 
 type TitlePortalProps = HTMLAttributes<HTMLDivElement>;
 

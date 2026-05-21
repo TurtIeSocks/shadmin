@@ -1,7 +1,8 @@
 import type { PropsWithChildren } from "react";
 import { CoreAdminContext, memoryStore } from "ra-core";
 
-import { ThemeProvider, defaultTheme } from "@/components/admin";
+import { ThemeProvider } from "@/components/admin";
+import { defaultTheme } from "@/lib/themes";
 import { ThemeStudio } from "@/components/extras/theme-studio";
 
 export default {

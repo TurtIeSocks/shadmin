@@ -8,12 +8,13 @@
 // The script walks each block's `sourceDirs`, ignores tests / stories / screenshots,
 // merges in any `extraFiles`, and writes a deterministic registry.json.
 
-import { readdirSync, statSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import prettier from "prettier";
 
+import { granularizeBlock } from "./granularize-block.mjs";
 import { blocks, registryMetadata } from "./registry.config.mjs";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
@@ -139,8 +140,25 @@ const verifyFilesExist = (items) => {
   }
 };
 
+const packageJson = JSON.parse(
+  readFileSync(join(repoRoot, "package.json"), "utf8"),
+);
+
 const main = async () => {
-  const items = blocks.map(buildBlock);
+  const items = [];
+  for (const block of blocks) {
+    const builtBlock = buildBlock(block);
+    items.push(builtBlock);
+
+    if (block.granularize) {
+      const granular = granularizeBlock({
+        files: builtBlock.files.map((f) => f.path),
+        packageJson,
+        repoRoot,
+      });
+      items.push(...granular);
+    }
+  }
   verifyFilesExist(items);
 
   const registry = {
