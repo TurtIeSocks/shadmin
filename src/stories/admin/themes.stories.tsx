@@ -2,17 +2,19 @@ import { memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import {
   Admin,
-  bwTheme,
   DataTable,
-  defaultTheme,
   EditButton,
-  houseTheme,
   List,
+  ShowGuesser,
+} from "@/components/admin";
+import {
+  bwTheme,
+  defaultTheme,
+  houseTheme,
   nanoTheme,
   radiantTheme,
-  ShowGuesser,
   type AdminTheme,
-} from "@/components/admin";
+} from "@/lib/themes";
 import { i18nProvider } from "@/lib/i18n-provider";
 
 export default {

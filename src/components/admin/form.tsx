@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useMemo } from "react";
 import { ValidationError } from "ra-core";
-import { Slot as SlotPrimitive, Label as LabelPrimitive } from "radix-ui";
 import { FormProvider } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
+import { Label, LabelPrimitive } from "@/components/ui/label";
+import { SlotPrimitive } from "@/components/ui/slot";
 import { FormItemContext, FormItemContextValue, useFormField } from "../../hooks/use-form-field";
 
 const Form = FormProvider;

@@ -19,9 +19,9 @@ import {
   Popover,
   PopoverAnchor,
   PopoverContent,
+  PopoverPrimitive,
 } from "@/components/ui/popover";
 import { Command as CommandPrimitive } from "cmdk";
-import { Popover as PopoverPrimitive } from "radix-ui";
 import type {
   ChoicesProps,
   InputProps,

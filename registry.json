@@ -153,10 +153,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/bw-theme.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/cancel-button.tsx",
           "type": "registry:component"
         },
@@ -226,10 +222,6 @@
         },
         {
           "path": "src/components/admin/date-time-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/default-theme.ts",
           "type": "registry:component"
         },
         {
@@ -322,10 +314,6 @@
         },
         {
           "path": "src/components/admin/hide-on-scroll.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/house-theme.ts",
           "type": "registry:component"
         },
         {
@@ -457,10 +445,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/nano-theme.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/not-found.tsx",
           "type": "registry:component"
         },
@@ -494,10 +478,6 @@
         },
         {
           "path": "src/components/admin/prev-next-buttons.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/radiant-theme.ts",
           "type": "registry:component"
         },
         {
@@ -681,10 +661,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/theme-context.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/theme-mode-toggle.tsx",
           "type": "registry:component"
         },
@@ -693,19 +669,7 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/theme-types.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/themes-context.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/time-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/title-portal-id.ts",
           "type": "registry:component"
         },
         {
@@ -777,6 +741,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/ui/slot.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/hooks/use-form-field.ts",
           "type": "registry:component"
         },
@@ -805,6 +773,46 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/themes/bw-theme.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/default-theme.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/house-theme.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/index.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/nano-theme.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/radiant-theme.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/theme-context.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/theme-types.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/themes/themes-context.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/title-portal-id.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/unknown-types.ts",
           "type": "registry:lib"
         },
@@ -813,6 +821,2952 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "access-denied",
+      "type": "registry:component",
+      "title": "Access Denied",
+      "files": [
+        {
+          "path": "src/components/admin/access-denied.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "admin",
+      "type": "registry:component",
+      "title": "Admin",
+      "files": [
+        {
+          "path": "src/components/admin/admin.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/auth-callback",
+        "@shadcn-admin-kit/layout",
+        "@shadcn-admin-kit/lib-i18n-provider",
+        "@shadcn-admin-kit/login-page",
+        "@shadcn-admin-kit/not-found",
+        "@shadcn-admin-kit/ready",
+        "@shadcn-admin-kit/theme-provider",
+        "@shadcn-admin-kit/theme-types"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "app-bar",
+      "type": "registry:component",
+      "title": "App Bar",
+      "files": [
+        {
+          "path": "src/components/admin/app-bar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/locales-menu-button",
+        "@shadcn-admin-kit/refresh-button",
+        "@shadcn-admin-kit/sidebar-toggle-button",
+        "@shadcn-admin-kit/theme-mode-toggle",
+        "@shadcn-admin-kit/title-portal",
+        "@shadcn-admin-kit/user-menu"
+      ]
+    },
+    {
+      "name": "app-sidebar",
+      "type": "registry:component",
+      "title": "App Sidebar",
+      "files": [
+        {
+          "path": "src/components/admin/app-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/menu", "sidebar"],
+      "dependencies": ["lucide-react", "react-router"]
+    },
+    {
+      "name": "application-updated-notification",
+      "type": "registry:component",
+      "title": "Application Updated Notification",
+      "files": [
+        {
+          "path": "src/components/admin/application-updated-notification.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button", "card"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "array-field",
+      "type": "registry:component",
+      "title": "Array Field",
+      "files": [
+        {
+          "path": "src/components/admin/array-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "array-input",
+      "type": "registry:component",
+      "title": "Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-utils",
+        "label",
+        "skeleton"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "auth-callback",
+      "type": "registry:component",
+      "title": "Auth Callback",
+      "files": [
+        {
+          "path": "src/components/admin/auth-callback.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/auth-error",
+        "@shadcn-admin-kit/loading"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "auth-error",
+      "type": "registry:component",
+      "title": "Auth Error",
+      "files": [
+        {
+          "path": "src/components/admin/auth-error.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "auth-layout",
+      "type": "registry:component",
+      "title": "Auth Layout",
+      "files": [
+        {
+          "path": "src/components/admin/auth-layout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/notification"
+      ]
+    },
+    {
+      "name": "authentication-error",
+      "type": "registry:component",
+      "title": "Authentication Error",
+      "files": [
+        {
+          "path": "src/components/admin/authentication-error.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/access-denied",
+        "@shadcn-admin-kit/title"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "autocomplete-array-input",
+      "type": "registry:component",
+      "title": "Autocomplete Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/autocomplete-array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-are-ids-equal",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "badge",
+        "command",
+        "popover"
+      ],
+      "dependencies": ["cmdk", "lodash", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "autocomplete-input",
+      "type": "registry:component",
+      "title": "Autocomplete Input",
+      "files": [
+        {
+          "path": "src/components/admin/autocomplete-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-are-ids-equal",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "command",
+        "popover"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "badge-field",
+      "type": "registry:component",
+      "title": "Badge Field",
+      "files": [
+        {
+          "path": "src/components/admin/badge-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-field-types", "badge"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "boolean-field",
+      "type": "registry:component",
+      "title": "Boolean Field",
+      "files": [
+        {
+          "path": "src/components/admin/boolean-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-utils",
+        "tooltip"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "boolean-input",
+      "type": "registry:component",
+      "title": "Boolean Input",
+      "files": [
+        {
+          "path": "src/components/admin/boolean-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "switch"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:component",
+      "title": "Breadcrumb",
+      "files": [
+        {
+          "path": "src/components/admin/breadcrumb.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "breadcrumb",
+        "button",
+        "drawer",
+        "separator",
+        "use-mobile"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "bulk-actions-toolbar",
+      "type": "registry:component",
+      "title": "Bulk Actions Toolbar",
+      "files": [
+        {
+          "path": "src/components/admin/bulk-actions-toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/bulk-delete-button",
+        "@shadcn-admin-kit/bulk-export-button",
+        "@shadcn-admin-kit/select-all-button",
+        "button",
+        "card"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "bulk-delete-button",
+      "type": "registry:component",
+      "title": "Bulk Delete Button",
+      "files": [
+        {
+          "path": "src/components/admin/bulk-delete-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/confirm",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["inflection", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "bulk-export-button",
+      "type": "registry:component",
+      "title": "Bulk Export Button",
+      "files": [
+        {
+          "path": "src/components/admin/bulk-export-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "bulk-update-button",
+      "type": "registry:component",
+      "title": "Bulk Update Button",
+      "files": [
+        {
+          "path": "src/components/admin/bulk-update-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/confirm",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "button"
+      ],
+      "dependencies": ["inflection", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "cancel-button",
+      "type": "registry:component",
+      "title": "Cancel Button",
+      "files": [
+        {
+          "path": "src/components/admin/cancel-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "card-content-inner",
+      "type": "registry:component",
+      "title": "Card Content Inner",
+      "files": [
+        {
+          "path": "src/components/admin/card-content-inner.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+    },
+    {
+      "name": "check-for-application-update",
+      "type": "registry:component",
+      "title": "Check For Application Update",
+      "files": [
+        {
+          "path": "src/components/admin/check-for-application-update.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/application-updated-notification"
+      ]
+    },
+    {
+      "name": "checkbox-group-input",
+      "type": "registry:component",
+      "title": "Checkbox Group Input",
+      "files": [
+        {
+          "path": "src/components/admin/checkbox-group-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-utils",
+        "checkbox",
+        "label",
+        "skeleton"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "chip-field",
+      "type": "registry:component",
+      "title": "Chip Field",
+      "files": [
+        {
+          "path": "src/components/admin/chip-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "badge"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "clone-button",
+      "type": "registry:component",
+      "title": "Clone Button",
+      "files": [
+        {
+          "path": "src/components/admin/clone-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "columns-button",
+      "type": "registry:component",
+      "title": "Columns Button",
+      "files": [
+        {
+          "path": "src/components/admin/columns-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/field-toggle",
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "input",
+        "popover",
+        "tooltip",
+        "use-mobile"
+      ],
+      "dependencies": ["diacritic", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "configurable",
+      "type": "registry:component",
+      "title": "Configurable",
+      "files": [
+        {
+          "path": "src/components/admin/configurable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "confirm",
+      "type": "registry:component",
+      "title": "Confirm",
+      "files": [
+        {
+          "path": "src/components/admin/confirm.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "dialog"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "count",
+      "type": "registry:component",
+      "title": "Count",
+      "files": [
+        {
+          "path": "src/components/admin/count.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "create-button",
+      "type": "registry:component",
+      "title": "Create Button",
+      "files": [
+        {
+          "path": "src/components/admin/create-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "create",
+      "type": "registry:component",
+      "title": "Create",
+      "files": [
+        {
+          "path": "src/components/admin/create.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/breadcrumb",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "dashboard-menu-item",
+      "type": "registry:component",
+      "title": "Dashboard Menu Item",
+      "files": [
+        {
+          "path": "src/components/admin/dashboard-menu-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/menu-item-link"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "Data Table",
+      "files": [
+        {
+          "path": "src/components/admin/data-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/bulk-actions-toolbar",
+        "@shadcn-admin-kit/columns-button",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/number-field",
+        "alert",
+        "button",
+        "checkbox",
+        "collapsible",
+        "skeleton",
+        "table",
+        "tooltip"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "datagrid-input",
+      "type": "registry:component",
+      "title": "Datagrid Input",
+      "files": [
+        {
+          "path": "src/components/admin/datagrid-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/data-table",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "date-field",
+      "type": "registry:component",
+      "title": "Date Field",
+      "files": [
+        {
+          "path": "src/components/admin/date-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "date-input",
+      "type": "registry:component",
+      "title": "Date Input",
+      "files": [
+        {
+          "path": "src/components/admin/date-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-utils",
+        "input"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "date-time-input",
+      "type": "registry:component",
+      "title": "Date Time Input",
+      "files": [
+        {
+          "path": "src/components/admin/date-time-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-utils",
+        "input"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "delete-button",
+      "type": "registry:component",
+      "title": "Delete Button",
+      "files": [
+        {
+          "path": "src/components/admin/delete-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/confirm", "button"],
+      "dependencies": ["inflection", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "device-test-wrapper",
+      "type": "registry:component",
+      "title": "Device Test Wrapper",
+      "files": [
+        {
+          "path": "src/components/admin/device-test-wrapper.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "edit-button",
+      "type": "registry:component",
+      "title": "Edit Button",
+      "files": [
+        {
+          "path": "src/components/admin/edit-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "edit-guesser",
+      "type": "registry:component",
+      "title": "Edit Guesser",
+      "files": [
+        {
+          "path": "src/components/admin/edit-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/autocomplete-input",
+        "@shadcn-admin-kit/boolean-input",
+        "@shadcn-admin-kit/edit",
+        "@shadcn-admin-kit/reference-array-input",
+        "@shadcn-admin-kit/reference-input",
+        "@shadcn-admin-kit/simple-form",
+        "@shadcn-admin-kit/text-input"
+      ],
+      "dependencies": ["inflection", "ra-core"]
+    },
+    {
+      "name": "edit",
+      "type": "registry:component",
+      "title": "Edit",
+      "files": [
+        {
+          "path": "src/components/admin/edit.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/breadcrumb",
+        "@shadcn-admin-kit/delete-button",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/show-button"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "email-field",
+      "type": "registry:component",
+      "title": "Email Field",
+      "files": [
+        {
+          "path": "src/components/admin/email-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "empty",
+      "type": "registry:component",
+      "title": "Empty",
+      "files": [
+        {
+          "path": "src/components/admin/empty.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/create-button",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "error",
+      "type": "registry:component",
+      "title": "Error",
+      "files": [
+        {
+          "path": "src/components/admin/error.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/title",
+        "accordion",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "devDependencies": ["react-error-boundary"]
+    },
+    {
+      "name": "export-button",
+      "type": "registry:component",
+      "title": "Export Button",
+      "files": [
+        {
+          "path": "src/components/admin/export-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types", "button"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "field-toggle",
+      "type": "registry:component",
+      "title": "Field Toggle",
+      "files": [
+        {
+          "path": "src/components/admin/field-toggle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "switch"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "fields-selector",
+      "type": "registry:component",
+      "title": "Fields Selector",
+      "files": [
+        {
+          "path": "src/components/admin/fields-selector.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/field-toggle", "button"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "file-field",
+      "type": "registry:component",
+      "title": "File Field",
+      "files": [
+        {
+          "path": "src/components/admin/file-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["lodash", "ra-core"]
+    },
+    {
+      "name": "file-input",
+      "type": "registry:component",
+      "title": "File Input",
+      "files": [
+        {
+          "path": "src/components/admin/file-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-dropzone"]
+    },
+    {
+      "name": "filter-button",
+      "type": "registry:component",
+      "title": "Filter Button",
+      "files": [
+        {
+          "path": "src/components/admin/filter-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/saved-queries",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [
+        "lodash",
+        "lucide-react",
+        "query-string",
+        "ra-core",
+        "react-router"
+      ]
+    },
+    {
+      "name": "filter-form",
+      "type": "registry:component",
+      "title": "Filter Form",
+      "files": [
+        {
+          "path": "src/components/admin/filter-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "filter-list-item",
+      "type": "registry:component",
+      "title": "Filter List Item",
+      "files": [
+        {
+          "path": "src/components/admin/filter-list-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "filter-list-section",
+      "type": "registry:component",
+      "title": "Filter List Section",
+      "files": [
+        {
+          "path": "src/components/admin/filter-list-section.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "filter-list",
+      "type": "registry:component",
+      "title": "Filter List",
+      "files": [
+        {
+          "path": "src/components/admin/filter-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/filter-list-section",
+        "@shadcn-admin-kit/lib-utils"
+      ]
+    },
+    {
+      "name": "filter-live-search",
+      "type": "registry:component",
+      "title": "Filter Live Search",
+      "files": [
+        {
+          "path": "src/components/admin/filter-live-search.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/search-input"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "form",
+      "type": "registry:component",
+      "title": "Form",
+      "files": [
+        {
+          "path": "src/components/admin/form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/slot",
+        "@shadcn-admin-kit/use-form-field",
+        "label"
+      ],
+      "dependencies": ["ra-core", "react-hook-form"]
+    },
+    {
+      "name": "function-field",
+      "type": "registry:component",
+      "title": "Function Field",
+      "files": [
+        {
+          "path": "src/components/admin/function-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "guesser-empty",
+      "type": "registry:component",
+      "title": "Guesser Empty",
+      "files": [
+        {
+          "path": "src/components/admin/guesser-empty.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "hide-on-scroll",
+      "type": "registry:component",
+      "title": "Hide On Scroll",
+      "files": [
+        {
+          "path": "src/components/admin/hide-on-scroll.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+    },
+    {
+      "name": "icon-button-with-tooltip",
+      "type": "registry:component",
+      "title": "Icon Button With Tooltip",
+      "files": [
+        {
+          "path": "src/components/admin/icon-button-with-tooltip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "tooltip"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "image-field",
+      "type": "registry:component",
+      "title": "Image Field",
+      "files": [
+        {
+          "path": "src/components/admin/image-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["lodash", "ra-core"]
+    },
+    {
+      "name": "image-input",
+      "type": "registry:component",
+      "title": "Image Input",
+      "files": [
+        {
+          "path": "src/components/admin/image-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/file-input",
+        "@shadcn-admin-kit/image-field"
+      ]
+    },
+    {
+      "name": "infinite-list",
+      "type": "registry:component",
+      "title": "Infinite List",
+      "files": [
+        {
+          "path": "src/components/admin/infinite-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/breadcrumb",
+        "@shadcn-admin-kit/create-button",
+        "@shadcn-admin-kit/empty",
+        "@shadcn-admin-kit/export-button",
+        "@shadcn-admin-kit/filter-button",
+        "@shadcn-admin-kit/filter-form",
+        "@shadcn-admin-kit/infinite-pagination",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "infinite-pagination",
+      "type": "registry:component",
+      "title": "Infinite Pagination",
+      "files": [
+        {
+          "path": "src/components/admin/infinite-pagination.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "input-helper-text",
+      "type": "registry:component",
+      "title": "Input Helper Text",
+      "files": [
+        {
+          "path": "src/components/admin/input-helper-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/form"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "inspector-button",
+      "type": "registry:component",
+      "title": "Inspector Button",
+      "files": [
+        {
+          "path": "src/components/admin/inspector-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "tooltip"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "inspector-root",
+      "type": "registry:component",
+      "title": "Inspector Root",
+      "files": [
+        {
+          "path": "src/components/admin/inspector-root.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "inspector",
+      "type": "registry:component",
+      "title": "Inspector",
+      "files": [
+        {
+          "path": "src/components/admin/inspector.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/inspector-root",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "keyboard-shortcut",
+      "type": "registry:component",
+      "title": "Keyboard Shortcut",
+      "files": [
+        {
+          "path": "src/components/admin/keyboard-shortcut.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+    },
+    {
+      "name": "labeled",
+      "type": "registry:component",
+      "title": "Labeled",
+      "files": [
+        {
+          "path": "src/components/admin/labeled.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "layout",
+      "type": "registry:component",
+      "title": "Layout",
+      "files": [
+        {
+          "path": "src/components/admin/layout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/app-bar",
+        "@shadcn-admin-kit/app-sidebar",
+        "@shadcn-admin-kit/error",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/loading",
+        "@shadcn-admin-kit/menu",
+        "@shadcn-admin-kit/notification",
+        "@shadcn-admin-kit/skip-navigation-button",
+        "sidebar"
+      ],
+      "dependencies": ["ra-core"],
+      "devDependencies": ["react-error-boundary"]
+    },
+    {
+      "name": "linear-progress",
+      "type": "registry:component",
+      "title": "Linear Progress",
+      "files": [
+        {
+          "path": "src/components/admin/linear-progress.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "link",
+      "type": "registry:component",
+      "title": "Link",
+      "files": [
+        {
+          "path": "src/components/admin/link.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["react-router"]
+    },
+    {
+      "name": "list-actions",
+      "type": "registry:component",
+      "title": "List Actions",
+      "files": [
+        {
+          "path": "src/components/admin/list-actions.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/create-button",
+        "@shadcn-admin-kit/export-button",
+        "@shadcn-admin-kit/filter-button",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "list-button",
+      "type": "registry:component",
+      "title": "List Button",
+      "files": [
+        {
+          "path": "src/components/admin/list-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "list-guesser",
+      "type": "registry:component",
+      "title": "List Guesser",
+      "files": [
+        {
+          "path": "src/components/admin/list-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/array-field",
+        "@shadcn-admin-kit/badge-field",
+        "@shadcn-admin-kit/data-table",
+        "@shadcn-admin-kit/guesser-empty",
+        "@shadcn-admin-kit/list",
+        "@shadcn-admin-kit/reference-array-field",
+        "@shadcn-admin-kit/reference-field",
+        "@shadcn-admin-kit/single-field-list"
+      ],
+      "dependencies": ["inflection", "ra-core", "react-router"]
+    },
+    {
+      "name": "list-no-results",
+      "type": "registry:component",
+      "title": "List No Results",
+      "files": [
+        {
+          "path": "src/components/admin/list-no-results.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "list-pagination",
+      "type": "registry:component",
+      "title": "List Pagination",
+      "files": [
+        {
+          "path": "src/components/admin/list-pagination.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "pagination",
+        "select"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "list-toolbar",
+      "type": "registry:component",
+      "title": "List Toolbar",
+      "files": [
+        {
+          "path": "src/components/admin/list-toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/filter-form",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/list-actions"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "list",
+      "type": "registry:component",
+      "title": "List",
+      "files": [
+        {
+          "path": "src/components/admin/list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/breadcrumb",
+        "@shadcn-admin-kit/create-button",
+        "@shadcn-admin-kit/empty",
+        "@shadcn-admin-kit/export-button",
+        "@shadcn-admin-kit/filter-button",
+        "@shadcn-admin-kit/filter-form",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/list-pagination"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "loading-indicator",
+      "type": "registry:component",
+      "title": "Loading Indicator",
+      "files": [
+        {
+          "path": "src/components/admin/loading-indicator.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/refresh-icon-button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "loading-input",
+      "type": "registry:component",
+      "title": "Loading Input",
+      "files": [
+        {
+          "path": "src/components/admin/loading-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/spinner",
+        "input",
+        "label"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "loading",
+      "type": "registry:component",
+      "title": "Loading",
+      "files": [
+        {
+          "path": "src/components/admin/loading.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/spinner"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "locales-menu-button",
+      "type": "registry:component",
+      "title": "Locales Menu Button",
+      "files": [
+        {
+          "path": "src/components/admin/locales-menu-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "login-form",
+      "type": "registry:component",
+      "title": "Login Form",
+      "files": [
+        {
+          "path": "src/components/admin/login-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-notify-auth-error",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+    },
+    {
+      "name": "login-page",
+      "type": "registry:component",
+      "title": "Login Page",
+      "files": [
+        {
+          "path": "src/components/admin/login-page.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/auth-layout",
+        "@shadcn-admin-kit/login-form"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "login-with-email",
+      "type": "registry:component",
+      "title": "Login With Email",
+      "files": [
+        {
+          "path": "src/components/admin/login-with-email.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-notify-auth-error",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/password-input",
+        "@shadcn-admin-kit/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+    },
+    {
+      "name": "logout",
+      "type": "registry:component",
+      "title": "Logout",
+      "files": [
+        {
+          "path": "src/components/admin/logout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "dropdown-menu"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "menu-item-link",
+      "type": "registry:component",
+      "title": "Menu Item Link",
+      "files": [
+        {
+          "path": "src/components/admin/menu-item-link.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/keyboard-shortcut",
+        "sidebar",
+        "tooltip"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "menu",
+      "type": "registry:component",
+      "title": "Menu",
+      "files": [
+        {
+          "path": "src/components/admin/menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/dashboard-menu-item",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/menu-item-link",
+        "@shadcn-admin-kit/resource",
+        "@shadcn-admin-kit/resource-menu-item",
+        "@shadcn-admin-kit/resource-menu-item-group",
+        "sidebar"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "not-found",
+      "type": "registry:component",
+      "title": "Not Found",
+      "files": [
+        {
+          "path": "src/components/admin/not-found.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/loading",
+        "@shadcn-admin-kit/title",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "notification",
+      "type": "registry:component",
+      "title": "Notification",
+      "files": [
+        {
+          "path": "src/components/admin/notification.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/use-theme"],
+      "dependencies": ["ra-core", "sonner"]
+    },
+    {
+      "name": "nullable-boolean-input",
+      "type": "registry:component",
+      "title": "Nullable Boolean Input",
+      "files": [
+        {
+          "path": "src/components/admin/nullable-boolean-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-utils",
+        "select"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "number-field",
+      "type": "registry:component",
+      "title": "Number Field",
+      "files": [
+        {
+          "path": "src/components/admin/number-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:component",
+      "title": "Number Input",
+      "files": [
+        {
+          "path": "src/components/admin/number-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "input"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "offline",
+      "type": "registry:component",
+      "title": "Offline",
+      "files": [
+        {
+          "path": "src/components/admin/offline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:component",
+      "title": "Password Input",
+      "files": [
+        {
+          "path": "src/components/admin/password-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "placeholder",
+      "type": "registry:component",
+      "title": "Placeholder",
+      "files": [
+        {
+          "path": "src/components/admin/placeholder.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+    },
+    {
+      "name": "prev-next-buttons",
+      "type": "registry:component",
+      "title": "Prev Next Buttons",
+      "files": [
+        {
+          "path": "src/components/admin/prev-next-buttons.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "radio-button-group-input",
+      "type": "registry:component",
+      "title": "Radio Button Group Input",
+      "files": [
+        {
+          "path": "src/components/admin/radio-button-group-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-sanitize-input-rest-props",
+        "@shadcn-admin-kit/lib-utils",
+        "label",
+        "radio-group",
+        "skeleton"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "ready",
+      "type": "registry:component",
+      "title": "Ready",
+      "files": [
+        {
+          "path": "src/components/admin/ready.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["lucide-react"]
+    },
+    {
+      "name": "record-field",
+      "type": "registry:component",
+      "title": "Record Field",
+      "files": [
+        {
+          "path": "src/components/admin/record-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/text-field"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "reference-array-field",
+      "type": "registry:component",
+      "title": "Reference Array Field",
+      "files": [
+        {
+          "path": "src/components/admin/reference-array-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/linear-progress",
+        "@shadcn-admin-kit/offline",
+        "@shadcn-admin-kit/single-field-list"
+      ],
+      "dependencies": ["@tanstack/react-query", "ra-core"]
+    },
+    {
+      "name": "reference-array-input",
+      "type": "registry:component",
+      "title": "Reference Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/reference-array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/autocomplete-array-input",
+        "@shadcn-admin-kit/offline"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "reference-field",
+      "type": "registry:component",
+      "title": "Reference Field",
+      "files": [
+        {
+          "path": "src/components/admin/reference-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/offline"
+      ],
+      "dependencies": ["@tanstack/react-query", "ra-core", "react-router"]
+    },
+    {
+      "name": "reference-input",
+      "type": "registry:component",
+      "title": "Reference Input",
+      "files": [
+        {
+          "path": "src/components/admin/reference-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/autocomplete-input",
+        "@shadcn-admin-kit/offline"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "reference-many-count",
+      "type": "registry:component",
+      "title": "Reference Many Count",
+      "files": [
+        {
+          "path": "src/components/admin/reference-many-count.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/offline"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "reference-many-field",
+      "type": "registry:component",
+      "title": "Reference Many Field",
+      "files": [
+        {
+          "path": "src/components/admin/reference-many-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/offline"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "reference-one-field",
+      "type": "registry:component",
+      "title": "Reference One Field",
+      "files": [
+        {
+          "path": "src/components/admin/reference-one-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/offline",
+        "@shadcn-admin-kit/reference-field"
+      ],
+      "dependencies": ["@tanstack/react-query", "ra-core"]
+    },
+    {
+      "name": "refresh-button",
+      "type": "registry:component",
+      "title": "Refresh Button",
+      "files": [
+        {
+          "path": "src/components/admin/refresh-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "refresh-icon-button",
+      "type": "registry:component",
+      "title": "Refresh Icon Button",
+      "files": [
+        {
+          "path": "src/components/admin/refresh-icon-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-resolve-label",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "resettable-text-input",
+      "type": "registry:component",
+      "title": "Resettable Text Input",
+      "files": [
+        {
+          "path": "src/components/admin/resettable-text-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+    },
+    {
+      "name": "resource-menu-item-group",
+      "type": "registry:component",
+      "title": "Resource Menu Item Group",
+      "files": [
+        {
+          "path": "src/components/admin/resource-menu-item-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/resource-menu-item",
+        "collapsible",
+        "sidebar"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "resource-menu-item",
+      "type": "registry:component",
+      "title": "Resource Menu Item",
+      "files": [
+        {
+          "path": "src/components/admin/resource-menu-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["sidebar", "skeleton"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "resource",
+      "type": "registry:component",
+      "title": "Resource",
+      "files": [
+        {
+          "path": "src/components/admin/resource.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "rich-text-field",
+      "type": "registry:component",
+      "title": "Rich Text Field",
+      "files": [
+        {
+          "path": "src/components/admin/rich-text-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["dompurify", "html-react-parser", "ra-core"]
+    },
+    {
+      "name": "save-button",
+      "type": "registry:component",
+      "title": "Save Button",
+      "files": [
+        {
+          "path": "src/components/admin/save-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": [
+        "@tanstack/react-query",
+        "lucide-react",
+        "ra-core",
+        "react-hook-form"
+      ]
+    },
+    {
+      "name": "saved-queries",
+      "type": "registry:component",
+      "title": "Saved Queries",
+      "files": [
+        {
+          "path": "src/components/admin/saved-queries.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/filter-list",
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "dialog",
+        "input",
+        "label"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:component",
+      "title": "Search Input",
+      "files": [
+        {
+          "path": "src/components/admin/search-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+    },
+    {
+      "name": "select-all-button",
+      "type": "registry:component",
+      "title": "Select All Button",
+      "files": [
+        {
+          "path": "src/components/admin/select-all-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "select-array-input",
+      "type": "registry:component",
+      "title": "Select Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/select-array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-utils",
+        "badge",
+        "button",
+        "checkbox",
+        "popover",
+        "skeleton"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "select-field",
+      "type": "registry:component",
+      "title": "Select Field",
+      "files": [
+        {
+          "path": "src/components/admin/select-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "select-input",
+      "type": "registry:component",
+      "title": "Select Input",
+      "files": [
+        {
+          "path": "src/components/admin/select-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "select",
+        "skeleton"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "show-button",
+      "type": "registry:component",
+      "title": "Show Button",
+      "files": [
+        {
+          "path": "src/components/admin/show-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"]
+    },
+    {
+      "name": "show-guesser",
+      "type": "registry:component",
+      "title": "Show Guesser",
+      "files": [
+        {
+          "path": "src/components/admin/show-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/array-field",
+        "@shadcn-admin-kit/badge-field",
+        "@shadcn-admin-kit/date-field",
+        "@shadcn-admin-kit/number-field",
+        "@shadcn-admin-kit/record-field",
+        "@shadcn-admin-kit/reference-array-field",
+        "@shadcn-admin-kit/reference-field",
+        "@shadcn-admin-kit/show",
+        "@shadcn-admin-kit/simple-show-layout",
+        "@shadcn-admin-kit/single-field-list"
+      ],
+      "dependencies": ["inflection", "ra-core"]
+    },
+    {
+      "name": "show",
+      "type": "registry:component",
+      "title": "Show",
+      "files": [
+        {
+          "path": "src/components/admin/show.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/breadcrumb",
+        "@shadcn-admin-kit/edit-button",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "sidebar-toggle-button",
+      "type": "registry:component",
+      "title": "Sidebar Toggle Button",
+      "files": [
+        {
+          "path": "src/components/admin/sidebar-toggle-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "sidebar",
+        "tooltip"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "simple-form-configurable",
+      "type": "registry:component",
+      "title": "Simple Form Configurable",
+      "files": [
+        {
+          "path": "src/components/admin/simple-form-configurable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/configurable",
+        "@shadcn-admin-kit/fields-selector",
+        "@shadcn-admin-kit/simple-form"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "simple-form-iterator",
+      "type": "registry:component",
+      "title": "Simple Form Iterator",
+      "files": [
+        {
+          "path": "src/components/admin/simple-form-iterator.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/confirm",
+        "@shadcn-admin-kit/icon-button-with-tooltip",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-hook-form"]
+    },
+    {
+      "name": "simple-form",
+      "type": "registry:component",
+      "title": "Simple Form",
+      "files": [
+        {
+          "path": "src/components/admin/simple-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/cancel-button",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/save-button"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "simple-list-item",
+      "type": "registry:component",
+      "title": "Simple List Item",
+      "files": [
+        {
+          "path": "src/components/admin/simple-list-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "simple-list-loading",
+      "type": "registry:component",
+      "title": "Simple List Loading",
+      "files": [
+        {
+          "path": "src/components/admin/simple-list-loading.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "skeleton"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "simple-list",
+      "type": "registry:component",
+      "title": "Simple List",
+      "files": [
+        {
+          "path": "src/components/admin/simple-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/list-no-results",
+        "@shadcn-admin-kit/simple-list-item",
+        "@shadcn-admin-kit/simple-list-loading"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "simple-show-layout",
+      "type": "registry:component",
+      "title": "Simple Show Layout",
+      "files": [
+        {
+          "path": "src/components/admin/simple-show-layout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/labeled",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "single-field-list",
+      "type": "registry:component",
+      "title": "Single Field List",
+      "files": [
+        {
+          "path": "src/components/admin/single-field-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "badge"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "skip-navigation-button",
+      "type": "registry:component",
+      "title": "Skip Navigation Button",
+      "files": [
+        {
+          "path": "src/components/admin/skip-navigation-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-resolve-label",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "sort-button",
+      "type": "registry:component",
+      "title": "Sort Button",
+      "files": [
+        {
+          "path": "src/components/admin/sort-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "tooltip",
+        "use-mobile"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "files": [
+        {
+          "path": "src/components/admin/spinner.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "dependencies": ["class-variance-authority", "lucide-react"]
+    },
+    {
+      "name": "tabbed-form",
+      "type": "registry:component",
+      "title": "Tabbed Form",
+      "files": [
+        {
+          "path": "src/components/admin/tabbed-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/simple-form",
+        "tabs"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "tabbed-show-layout",
+      "type": "registry:component",
+      "title": "Tabbed Show Layout",
+      "files": [
+        {
+          "path": "src/components/admin/tabbed-show-layout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/labeled",
+        "@shadcn-admin-kit/lib-utils",
+        "tabs"
+      ],
+      "dependencies": ["ra-core", "react-router"]
+    },
+    {
+      "name": "text-array-field",
+      "type": "registry:component",
+      "title": "Text Array Field",
+      "files": [
+        {
+          "path": "src/components/admin/text-array-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "badge"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "text-array-input",
+      "type": "registry:component",
+      "title": "Text Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/text-array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "badge",
+        "command",
+        "popover"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "text-field",
+      "type": "registry:component",
+      "title": "Text Field",
+      "files": [
+        {
+          "path": "src/components/admin/text-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "text-input",
+      "type": "registry:component",
+      "title": "Text Input",
+      "files": [
+        {
+          "path": "src/components/admin/text-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "@shadcn-admin-kit/lib-sanitize-input-rest-props",
+        "@shadcn-admin-kit/lib-utils",
+        "input",
+        "textarea"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "theme-mode-toggle",
+      "type": "registry:component",
+      "title": "Theme Mode Toggle",
+      "files": [
+        {
+          "path": "src/components/admin/theme-mode-toggle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/use-theme",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": ["lucide-react", "ra-core"]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:component",
+      "title": "Theme Provider",
+      "files": [
+        {
+          "path": "src/components/admin/theme-provider.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/theme-context",
+        "@shadcn-admin-kit/theme-types",
+        "@shadcn-admin-kit/themes-context"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "time-input",
+      "type": "registry:component",
+      "title": "Time Input",
+      "files": [
+        {
+          "path": "src/components/admin/time-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/form",
+        "@shadcn-admin-kit/input-helper-text",
+        "input"
+      ],
+      "dependencies": ["clsx", "ra-core"]
+    },
+    {
+      "name": "title-portal",
+      "type": "registry:component",
+      "title": "Title Portal",
+      "files": [
+        {
+          "path": "src/components/admin/title-portal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-title-portal-id",
+        "@shadcn-admin-kit/lib-utils"
+      ]
+    },
+    {
+      "name": "title",
+      "type": "registry:component",
+      "title": "Title",
+      "files": [
+        {
+          "path": "src/components/admin/title.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-title-portal-id",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "toggle-filter-button",
+      "type": "registry:component",
+      "title": "Toggle Filter Button",
+      "files": [
+        {
+          "path": "src/components/admin/toggle-filter-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:component",
+      "title": "Toolbar",
+      "files": [
+        {
+          "path": "src/components/admin/toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/delete-button",
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/save-button"
+      ]
+    },
+    {
+      "name": "top-toolbar",
+      "type": "registry:component",
+      "title": "Top Toolbar",
+      "files": [
+        {
+          "path": "src/components/admin/top-toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+    },
+    {
+      "name": "translatable-fields-tab-content",
+      "type": "registry:component",
+      "title": "Translatable Fields Tab Content",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-fields-tab-content.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "label", "tabs"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "translatable-fields-tab",
+      "type": "registry:component",
+      "title": "Translatable Fields Tab",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-fields-tab.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["tabs"],
+      "dependencies": ["inflection", "ra-core"]
+    },
+    {
+      "name": "translatable-fields-tabs",
+      "type": "registry:component",
+      "title": "Translatable Fields Tabs",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-fields-tabs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/translatable-fields-tab",
+        "tabs"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "translatable-fields",
+      "type": "registry:component",
+      "title": "Translatable Fields",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-fields.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/translatable-fields-tab-content",
+        "@shadcn-admin-kit/translatable-fields-tabs",
+        "tabs"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "translatable-inputs-tab-content",
+      "type": "registry:component",
+      "title": "Translatable Inputs Tab Content",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-inputs-tab-content.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "tabs"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "translatable-inputs-tab",
+      "type": "registry:component",
+      "title": "Translatable Inputs Tab",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-inputs-tab.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "tabs"],
+      "dependencies": ["inflection", "ra-core"]
+    },
+    {
+      "name": "translatable-inputs-tabs",
+      "type": "registry:component",
+      "title": "Translatable Inputs Tabs",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-inputs-tabs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/translatable-inputs-tab",
+        "tabs"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "translatable-inputs",
+      "type": "registry:component",
+      "title": "Translatable Inputs",
+      "files": [
+        {
+          "path": "src/components/admin/translatable-inputs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "@shadcn-admin-kit/translatable-inputs-tab-content",
+        "@shadcn-admin-kit/translatable-inputs-tabs",
+        "tabs"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "update-button",
+      "type": "registry:component",
+      "title": "Update Button",
+      "files": [
+        {
+          "path": "src/components/admin/update-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/confirm",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "button"
+      ],
+      "dependencies": ["inflection", "lucide-react", "ra-core"]
+    },
+    {
+      "name": "url-field",
+      "type": "registry:component",
+      "title": "Url Field",
+      "files": [
+        {
+          "path": "src/components/admin/url-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadcn-admin-kit/lib-utils"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "user-menu",
+      "type": "registry:component",
+      "title": "User Menu",
+      "files": [
+        {
+          "path": "src/components/admin/user-menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/logout",
+        "avatar",
+        "button",
+        "dropdown-menu",
+        "skeleton"
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "wrapper-field",
+      "type": "registry:component",
+      "title": "Wrapper Field",
+      "files": [
+        {
+          "path": "src/components/admin/wrapper-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-field-types",
+        "@shadcn-admin-kit/lib-unknown-types"
+      ]
+    },
+    {
+      "name": "slot",
+      "type": "registry:ui",
+      "title": "Slot",
+      "files": [
+        {
+          "path": "src/components/ui/slot.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": ["radix-ui"]
+    },
+    {
+      "name": "use-form-field",
+      "type": "registry:hook",
+      "title": "Use Form Field",
+      "files": [
+        {
+          "path": "src/hooks/use-form-field.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "dependencies": ["react-hook-form"]
+    },
+    {
+      "name": "use-theme",
+      "type": "registry:hook",
+      "title": "Use Theme",
+      "files": [
+        {
+          "path": "src/hooks/use-theme.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/theme-context"]
+    },
+    {
+      "name": "lib-are-ids-equal",
+      "type": "registry:lib",
+      "title": "Lib Are Ids Equal",
+      "files": [
+        {
+          "path": "src/lib/are-ids-equal.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "lib-field-types",
+      "type": "registry:lib",
+      "title": "Lib Field Types",
+      "files": [
+        {
+          "path": "src/lib/field-types.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "lib-i18n-provider",
+      "type": "registry:lib",
+      "title": "Lib I18n Provider",
+      "files": [
+        {
+          "path": "src/lib/i18n-provider.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": ["ra-i18n-polyglot", "ra-language-english"]
+    },
+    {
+      "name": "lib-notify-auth-error",
+      "type": "registry:lib",
+      "title": "Lib Notify Auth Error",
+      "files": [
+        {
+          "path": "src/lib/notify-auth-error.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": ["ra-core"]
+    },
+    {
+      "name": "lib-sanitize-input-rest-props",
+      "type": "registry:lib",
+      "title": "Lib Sanitize Input Rest Props",
+      "files": [
+        {
+          "path": "src/lib/sanitize-input-rest-props.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"]
+    },
+    {
+      "name": "bw-theme",
+      "type": "registry:lib",
+      "title": "Bw Theme",
+      "files": [
+        {
+          "path": "src/lib/themes/bw-theme.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+    },
+    {
+      "name": "default-theme",
+      "type": "registry:lib",
+      "title": "Default Theme",
+      "files": [
+        {
+          "path": "src/lib/themes/default-theme.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+    },
+    {
+      "name": "house-theme",
+      "type": "registry:lib",
+      "title": "House Theme",
+      "files": [
+        {
+          "path": "src/lib/themes/house-theme.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+    },
+    {
+      "name": "nano-theme",
+      "type": "registry:lib",
+      "title": "Nano Theme",
+      "files": [
+        {
+          "path": "src/lib/themes/nano-theme.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+    },
+    {
+      "name": "radiant-theme",
+      "type": "registry:lib",
+      "title": "Radiant Theme",
+      "files": [
+        {
+          "path": "src/lib/themes/radiant-theme.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+    },
+    {
+      "name": "theme-context",
+      "type": "registry:lib",
+      "title": "Theme Context",
+      "files": [
+        {
+          "path": "src/lib/themes/theme-context.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "theme-types",
+      "type": "registry:lib",
+      "title": "Theme Types",
+      "files": [
+        {
+          "path": "src/lib/themes/theme-types.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "themes-context",
+      "type": "registry:lib",
+      "title": "Themes Context",
+      "files": [
+        {
+          "path": "src/lib/themes/themes-context.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+    },
+    {
+      "name": "lib-title-portal-id",
+      "type": "registry:lib",
+      "title": "Lib Title Portal Id",
+      "files": [
+        {
+          "path": "src/lib/title-portal-id.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "lib-unknown-types",
+      "type": "registry:lib",
+      "title": "Lib Unknown Types",
+      "files": [
+        {
+          "path": "src/lib/unknown-types.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "lib-utils",
+      "type": "registry:lib",
+      "title": "Lib Utils",
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge"]
     },
     {
       "name": "rich-text-input",

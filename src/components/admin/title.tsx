@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactElement } from "react";
 import { createPortal } from "react-dom";
 import { useTranslate } from "ra-core";
-import { TITLE_PORTAL_ID } from "@/components/admin/title-portal-id";
+import { TITLE_PORTAL_ID } from "@/lib/title-portal-id";
 import { cn } from "@/lib/utils";
 
 type TitleProps = {

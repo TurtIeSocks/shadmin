@@ -15,7 +15,7 @@ import {
 } from "../ui/select";
 import { ThemeModeToggle } from "../admin";
 import { useResolvedTheme } from "@/hooks/use-theme";
-import { useThemes } from "../admin/themes-context";
+import { useThemes } from "@/lib/themes/themes-context";
 import { Separator } from "../ui/separator";
 import { ColorPicker } from "../ui/color-picker";
 
@@ -136,7 +136,8 @@ interface ThemeStudioProps {
  *
  * @example
  * ```tsx
- * import { ThemeProvider, defaultTheme } from "@/components/admin";
+ * import { ThemeProvider } from "@/components/admin";
+ * import { defaultTheme } from "@/lib/themes";
  * import { ThemeStudio } from "@/components/extras/theme-studio";
  *
  * <ThemeProvider theme={defaultTheme}>

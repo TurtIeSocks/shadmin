@@ -13,7 +13,7 @@ import { LoginPage } from "@/components/admin/login-page";
 import { NotFound } from "@/components/admin/not-found";
 import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import type { AdminTheme } from "@/components/admin/theme-types";
+import type { AdminTheme } from "@/lib/themes/theme-types";
 import { AuthCallback } from "@/components/admin/auth-callback";
 
 /**
@@ -186,7 +186,8 @@ function AdminUI(props: AdminUIProps) {
  *
  * @example
  * // With a named theme palette
- * import { Admin, radiantTheme } from "@/components/admin";
+ * import { Admin } from "@/components/admin";
+ * import { radiantTheme } from "@/lib/themes";
  *
  * const App = () => (
  *   <Admin dataProvider={dataProvider} theme={radiantTheme}>
@@ -196,7 +197,8 @@ function AdminUI(props: AdminUIProps) {
  *
  * @example
  * // With distinct light and dark themes
- * import { Admin, nanoTheme, bwTheme } from "@/components/admin";
+ * import { Admin } from "@/components/admin";
+ * import { nanoTheme, bwTheme } from "@/lib/themes";
  *
  * const App = () => (
  *   <Admin

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
 import { Empty, WithTitle } from "@/stories/admin/title-portal.stories";
-import { TITLE_PORTAL_ID } from "./title-portal-id";
+import { TITLE_PORTAL_ID } from "@/lib/title-portal-id";
 
 describe("<TitlePortal />", () => {
   it("renders the portal slot even when empty", async () => {
