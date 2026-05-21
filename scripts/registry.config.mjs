@@ -240,6 +240,17 @@ export const blocks = [
     ],
   },
   {
+    name: "realtime",
+    type: "registry:block",
+    title: "Shadcn Admin Kit Realtime",
+    description:
+      "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live List/Edit/Show views, menu badges, record locks.",
+    registryDependencies: ["admin"],
+    dependencies: ["ra-core", "@tanstack/react-query", "react", "react-router"],
+    devDependencies: ["mock-socket"],
+    sourceDirs: [{ path: "src/components/realtime", recursive: true }],
+  },
+  {
     name: "example-admin",
     type: "registry:block",
     title: "Example Admin built with Shadcn Admin Kit",
