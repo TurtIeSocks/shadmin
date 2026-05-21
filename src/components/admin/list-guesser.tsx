@@ -108,7 +108,7 @@ function ListViewGuesser(
     if (!resource) {
       throw new Error("Cannot use <ListGuesser> outside of a ResourceContext");
     }
-    const inferredElements = getElementsFromRecords(data, listFieldTypes);
+    const inferredElements = getElementsFromRecords(data ?? [], listFieldTypes);
     const inferredChild = new InferredElement(
       listFieldTypes.table,
       null,
