@@ -25,6 +25,6 @@ function ShowLiveSubscription() {
   useSubscribeToRecord(resource ?? "", record?.id, invalidate, {
     enabled: !!resource && record?.id != null,
   });
-  useOnReconnect(invalidate, { enabled: !!resource });
+  useOnReconnect(invalidate);
   return null;
 }

@@ -22,6 +22,6 @@ function ListLiveSubscription() {
     queryClient.invalidateQueries({ predicate: (q) => q.queryKey[0] === resource });
   };
   useSubscribeToRecordList(resource ?? "", invalidate, { enabled: !!resource });
-  useOnReconnect(invalidate, { enabled: !!resource });
+  useOnReconnect(invalidate);
   return null;
 }
