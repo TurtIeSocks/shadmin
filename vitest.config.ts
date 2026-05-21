@@ -1,8 +1,57 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
+import type { Plugin } from "vite";
+import type { ServerResponse } from "node:http";
+
+// SSE test plugin — serves /sse (EventSource endpoint) and /sse-publish (POST)
+// directly from the Vite dev server so Playwright browser tests can reach it
+// without running into Private Network Access (PNA) restrictions.
+function sseTestPlugin(): Plugin {
+  const subscribers = new Set<ServerResponse>();
+
+  return {
+    name: "sse-test",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const url = req.url ?? "";
+        if (!url.startsWith("/sse")) return next();
+
+        if (url.startsWith("/sse-publish") && req.method === "POST") {
+          let body = "";
+          req.on("data", (c: Buffer) => (body += String(c)));
+          req.on("end", () => {
+            try {
+              const { topic, event } = JSON.parse(body) as {
+                topic: string;
+                event: { type: string; payload: unknown; meta?: unknown };
+              };
+              const frame = `event: ${topic}\ndata: ${JSON.stringify(event)}\n\n`;
+              for (const sub of subscribers) sub.write(frame);
+              res.statusCode = 204;
+              res.end();
+            } catch {
+              res.statusCode = 400;
+              res.end();
+            }
+          });
+          return;
+        }
+
+        // GET /sse — open SSE stream
+        res.writeHead(200, {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
+        });
+        subscribers.add(res);
+        req.on("close", () => subscribers.delete(res));
+      });
+    },
+  };
+}
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), sseTestPlugin()],
   resolve: {
     alias: {
       "@": "/src",
