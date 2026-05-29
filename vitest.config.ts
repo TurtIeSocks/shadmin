@@ -67,6 +67,9 @@ export default defineConfig({
       "react-dom/client",
       "data-generator-retail",
       "ra-language-french",
+      "@tiptap/core",
+      "@tiptap/react",
+      "lucide-react",
     ],
   },
   test: {
@@ -81,6 +84,7 @@ export default defineConfig({
       "src/components/realtime/**/*.spec.{ts,tsx}",
       "src/components/rich-text-input/**/*.spec.{ts,tsx}",
       "src/components/supabase/**/*.spec.{ts,tsx}",
+      "src/components/block-editor/**/*.spec.{ts,tsx}",
       "src/{hooks,lib,stories}/**/*.spec.{ts,tsx}",
     ],
     browser: {
