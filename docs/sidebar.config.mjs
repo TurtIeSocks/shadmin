@@ -280,6 +280,10 @@ export const sidebar = [
     items: ["rich-text-input", "rich-text-field"],
   },
   {
+    label: "Block Editor",
+    items: ["block-editor-input", "block-doc-field", "custom-blocks"],
+  },
+  {
     label: "UI & Layout",
     items: [
       "access-denied",
