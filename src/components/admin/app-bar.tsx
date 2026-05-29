@@ -67,9 +67,8 @@ function AppBar({
       {children ?? (
         <>
           <SidebarToggleButton />
-          <div className="flex-1 flex items-center" id="breadcrumb">
-            <TitlePortal />
-          </div>
+          <div className="flex items-center min-w-0" id="breadcrumb" />
+          <TitlePortal />
           {toolbar !== undefined ? (
             toolbar
           ) : (

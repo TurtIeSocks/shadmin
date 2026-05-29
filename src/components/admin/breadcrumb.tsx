@@ -62,11 +62,6 @@ function Breadcrumb({ children, ref }: BreadcrumbProps) {
   if (!breadcrumbPortal) return null;
   return createPortal(
     <>
-      <Separator
-        decorative
-        orientation="vertical"
-        className="data-[orientation=vertical]:h-4 mr-4"
-      />
       <BaseBreadcrumb ref={ref}>
         <BreadcrumbList>
           {isMobile && React.Children.count(children) > 2 ? (
@@ -123,6 +118,11 @@ function Breadcrumb({ children, ref }: BreadcrumbProps) {
           )}
         </BreadcrumbList>
       </BaseBreadcrumb>
+      <Separator
+        decorative
+        orientation="vertical"
+        className="data-[orientation=vertical]:h-4 ml-4"
+      />
     </>,
     breadcrumbPortal,
   );
