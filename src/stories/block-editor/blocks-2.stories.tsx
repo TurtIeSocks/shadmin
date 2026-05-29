@@ -1,6 +1,7 @@
 import { BlockEditor } from "@/components/block-editor/block-editor";
 import { toggleBlock } from "@/components/block-editor/blocks/toggle";
 import { imageBlock } from "@/components/block-editor/blocks/image";
+import { embedBlock } from "@/components/block-editor/blocks/embed";
 import { ThemeProvider } from "@/components/admin";
 
 export default { title: "Block Editor/Blocks 2" };
@@ -47,6 +48,29 @@ export const ImageEmptyStory = () => (
       editable={false}
       blocks={[imageBlock]}
       value={{ type: "doc", content: [{ type: "image", attrs: { src: "", alt: "", widthPct: 100 } }] }}
+    />
+  </ThemeProvider>
+);
+
+export const EmbedStory = () => (
+  <ThemeProvider>
+    <BlockEditor
+      editable={false}
+      blocks={[embedBlock]}
+      value={{
+        type: "doc",
+        content: [{ type: "embed", attrs: { url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" } }],
+      }}
+    />
+  </ThemeProvider>
+);
+
+export const EmbedUnsupportedStory = () => (
+  <ThemeProvider>
+    <BlockEditor
+      editable={false}
+      blocks={[embedBlock]}
+      value={{ type: "doc", content: [{ type: "embed", attrs: { url: "https://evil.com/x" } }] }}
     />
   </ThemeProvider>
 );
