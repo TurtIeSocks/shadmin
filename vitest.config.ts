@@ -69,6 +69,7 @@ export default defineConfig({
       "ra-language-french",
       "@tiptap/core",
       "@tiptap/react",
+      "@tiptap/suggestion",
       "lucide-react",
     ],
   },

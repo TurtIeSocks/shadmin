@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useEditor, type Editor, type JSONContent } from "@tiptap/react";
+import type { Range } from "@tiptap/core";
 import { createBaseExtensions } from "./extensions/base";
 import { createBlockNode } from "./extensions/block-node";
+import { SlashCommand } from "./extensions/slash-command";
 import {
   UnknownBlock,
   wrapUnknownNodes,
@@ -18,6 +20,12 @@ export interface UseBlockEditorProps {
   placeholder?: string;
   onChange?: (value: JSONContent) => void;
   onBlur?: () => void;
+  /** Fired when the user types "/" — opens the catalog picker at `range`. */
+  onSlashTrigger?: (range: Range) => void;
+  /** Fired when the slash suggestion is dismissed without choosing a block. */
+  onSlashClose?: () => void;
+  /** Fired once the editor instance exists — for imperative access. */
+  onCreate?: (editor: Editor) => void;
 }
 
 export function useBlockEditor({
@@ -27,14 +35,35 @@ export function useBlockEditor({
   placeholder,
   onChange,
   onBlur,
+  onSlashTrigger,
+  onSlashClose,
+  onCreate,
 }: UseBlockEditorProps): Editor | null {
   const registry = useMemo(() => createBlockRegistry(blocks), [blocks]);
+
+  // Thread the slash callbacks per editor through refs so the `extensions`
+  // useMemo (and thus the editor instance) stays stable when the parent passes
+  // new callback identities. The SlashCommand extension reads `*.current` at
+  // call time. Avoids a module-level event singleton that would cross-talk
+  // between multiple editors on one page.
+  const slashTriggerRef = useRef(onSlashTrigger);
+  const slashCloseRef = useRef(onSlashClose);
+  const onCreateRef = useRef(onCreate);
+  useEffect(() => {
+    slashTriggerRef.current = onSlashTrigger;
+    slashCloseRef.current = onSlashClose;
+    onCreateRef.current = onCreate;
+  }, [onSlashTrigger, onSlashClose, onCreate]);
 
   const extensions = useMemo(
     () => [
       ...createBaseExtensions({ placeholder }),
       UnknownBlock,
       ...registry.list().map(createBlockNode),
+      SlashCommand.configure({
+        onTrigger: ({ range }) => slashTriggerRef.current?.(range),
+        onClose: () => slashCloseRef.current?.(),
+      }),
     ],
     [registry, placeholder],
   );
@@ -55,6 +84,7 @@ export function useBlockEditor({
         editor.commands.setContent(wrapUnknownNodes(value ?? EMPTY_DOC, known), {
           emitUpdate: false,
         });
+        onCreateRef.current?.(editor);
       },
       onUpdate: ({ editor }) => handleUpdate(editor),
       onBlur: () => onBlur?.(),
