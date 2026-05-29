@@ -70,6 +70,7 @@ export default defineConfig({
       "@tiptap/core",
       "@tiptap/react",
       "@tiptap/suggestion",
+      "@tiptap/extension-drag-handle-react",
       "lucide-react",
     ],
   },

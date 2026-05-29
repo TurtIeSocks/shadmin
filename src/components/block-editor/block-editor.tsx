@@ -14,6 +14,7 @@ import { useBlockEditor } from "./use-block-editor";
 import { createBlockRegistry } from "./block-registry";
 import { insertBlock } from "./extensions/slash-command";
 import { CatalogPicker } from "./chrome/catalog-picker";
+import { BlockGutter } from "./chrome/block-gutter";
 import type { BlockDefinition } from "./define-block";
 import { ONCHANGE_DEBOUNCE_MS } from "./constants";
 
@@ -180,6 +181,12 @@ function BlockEditorChrome({
           />
         </PopoverContent>
       </Popover>
+      {editable && (
+        <BlockGutter
+          editor={editor}
+          onAdd={() => editor.storage.slashCommand.open?.()}
+        />
+      )}
     </div>
   );
 }
