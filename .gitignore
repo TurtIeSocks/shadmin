@@ -29,6 +29,9 @@ public/*
 
 temp
 
+# Superpowers brainstorm visual companion mockups
+.superpowers/
+
 *storybook.log
 storybook-static
 
