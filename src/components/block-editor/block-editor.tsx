@@ -17,6 +17,7 @@ import { insertBlock } from "./extensions/slash-command";
 import { CatalogPicker } from "./chrome/catalog-picker";
 import { BlockGutter } from "./chrome/block-gutter";
 import { BlockToolbar } from "./chrome/block-toolbar";
+import { BlockConfigBody } from "./chrome/block-config-popover";
 import type { BlockDefinition } from "./define-block";
 import { ONCHANGE_DEBOUNCE_MS } from "./constants";
 
@@ -276,19 +277,76 @@ function BlockSelectionLayer({
   const block = registry.get(selected.name);
   if (!block) return null;
 
-  // The config popover (Task 13) consumes `configuring`; until then the toolbar's
-  // Configure button simply toggles the flag (the toolbar hides while it is set).
   return (
-    <Popover open={!configuring}>
+    <>
+      {/* Toolbar — hidden while the config popover is open to avoid overlap. */}
+      <Popover open={!configuring}>
+        <PopoverAnchor virtualRef={virtualRef} />
+        <PopoverContent
+          side="top"
+          align="start"
+          sideOffset={6}
+          className="w-auto border-0 bg-transparent p-0 shadow-none"
+          onOpenAutoFocus={(e) => e.preventDefault()}
+        >
+          <BlockToolbar editor={editor} onConfigure={() => setConfiguring(true)} />
+        </PopoverContent>
+      </Popover>
+
+      <BlockConfigPopover
+        editor={editor}
+        block={block}
+        attrs={selected.attrs}
+        open={configuring}
+        onOpenChange={setConfiguring}
+        virtualRef={virtualRef}
+      />
+    </>
+  );
+}
+
+interface BlockConfigPopoverWiringProps {
+  editor: Editor;
+  block: BlockDefinition;
+  attrs: Record<string, unknown>;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  virtualRef: { current: { getBoundingClientRect: () => DOMRect } };
+}
+
+/**
+ * Config popover anchored to the selected node. The body is the block's custom
+ * `config` component or the schema-derived auto form ({@link BlockConfigBody});
+ * edits write straight to the node via `updateAttributes`.
+ */
+function BlockConfigPopover({
+  editor,
+  block,
+  attrs,
+  open,
+  onOpenChange,
+  virtualRef,
+}: BlockConfigPopoverWiringProps) {
+  return (
+    <Popover
+      open={open}
+      onOpenChange={(next) => {
+        onOpenChange(next);
+        if (!next) editor.commands.focus();
+      }}
+    >
       <PopoverAnchor virtualRef={virtualRef} />
       <PopoverContent
         side="top"
         align="start"
         sideOffset={6}
-        className="w-auto border-0 bg-transparent p-0 shadow-none"
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
-        <BlockToolbar editor={editor} onConfigure={() => setConfiguring(true)} />
+        <BlockConfigBody
+          block={block}
+          attrs={attrs}
+          onChange={(patch) => editor.commands.updateAttributes(block.name, patch)}
+        />
       </PopoverContent>
     </Popover>
   );
