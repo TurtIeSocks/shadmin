@@ -14,7 +14,13 @@ export interface BlockConfigProps<A extends Record<string, unknown> = Record<str
   onChange: (patch: Partial<A>) => void;
 }
 
-export interface BlockDefinition<A extends Record<string, unknown> = Record<string, unknown>> {
+/**
+ * Author-facing block definition — precisely typed in `A` so `render`/`config`
+ * receive correctly-typed attrs. Passed to {@link defineBlock}.
+ */
+export interface BlockDefinitionInput<
+  A extends Record<string, unknown> = Record<string, unknown>,
+> {
   /** Unique id — also the ProseMirror node name. */
   name: string;
   label: string;
@@ -38,11 +44,23 @@ export interface BlockDefinition<A extends Record<string, unknown> = Record<stri
   atom?: boolean;
 }
 
-/** Identity helper that pins generic inference from the schema. */
+/**
+ * Erased, collection-friendly block type. Arrays (`blocks` prop, `defaultBlocks`),
+ * the registry, and the node factory all use this. `defineBlock` erases the `A`
+ * generic on return so heterogeneous blocks collect into `BlockDefinition[]`
+ * without variance errors (`A` is contravariant via `render`/`config`).
+ */
+export interface BlockDefinition extends BlockDefinitionInput<Record<string, unknown>> {}
+
+/**
+ * Define a block. `A` is inferred from the schema so `render`/`config` are
+ * type-checked against the precise attrs, while the returned value is the erased
+ * {@link BlockDefinition} for safe collection into arrays.
+ */
 export function defineBlock<A extends Record<string, unknown>>(
-  def: BlockDefinition<A>,
-): BlockDefinition<A> {
-  return def;
+  def: BlockDefinitionInput<A>,
+): BlockDefinition {
+  return def as unknown as BlockDefinition;
 }
 
 type ZodObjectLike = { shape: Record<string, z.ZodType> };
