@@ -4030,6 +4030,147 @@
       ]
     },
     {
+      "name": "block-editor",
+      "type": "registry:block",
+      "title": "BlockEditor",
+      "description": "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadcn Admin Kit, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
+      "registryDependencies": [
+        "@shadcn-admin-kit/admin",
+        "button",
+        "card",
+        "command",
+        "input",
+        "label",
+        "popover",
+        "select",
+        "skeleton",
+        "switch",
+        "tooltip"
+      ],
+      "dependencies": [
+        "@tiptap/core",
+        "@tiptap/extension-drag-handle-react",
+        "@tiptap/extensions",
+        "@tiptap/pm",
+        "@tiptap/react",
+        "@tiptap/starter-kit",
+        "@tiptap/suggestion",
+        "ra-core",
+        "recharts",
+        "zod"
+      ],
+      "files": [
+        {
+          "path": "src/components/block-editor/block-doc-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/block-editor-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/block-editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/block-registry.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/block-states.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/callout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/chart.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/data-blocks.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/embed.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/image.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/record-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/reference-record.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/toggle.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/chrome/auto-config-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/chrome/block-config-popover.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/chrome/block-gutter.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/chrome/block-toolbar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/chrome/catalog-picker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/constants.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/define-block.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/extensions/base.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/extensions/block-node.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/extensions/slash-command.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/extensions/unknown-block.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/index.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/use-block-editor.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "mdx-editor",
       "type": "registry:block",
       "title": "MdxEditor",

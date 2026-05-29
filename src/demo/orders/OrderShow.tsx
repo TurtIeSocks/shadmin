@@ -6,6 +6,11 @@ import {
   SimpleShowLayout,
   TextField,
 } from "@/components/admin";
+import {
+  BlockDocField,
+  dataBlocks,
+  defaultBlocks,
+} from "@/components/block-editor";
 import { CommentsThread } from "@/components/extras/comments-thread";
 
 export const OrderShow = () => (
@@ -20,6 +25,10 @@ export const OrderShow = () => (
           <NumberField
             source="total"
             options={{ style: "currency", currency: "USD" }}
+          />
+          <BlockDocField
+            source="notes"
+            blocks={[...defaultBlocks, ...dataBlocks]}
           />
         </SimpleShowLayout>
       </div>

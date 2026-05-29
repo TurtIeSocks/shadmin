@@ -75,4 +75,17 @@ export default tseslint.config(
       "local-rules/no-tautological-expect": "error",
     },
   },
+  {
+    // Block + extension DEFINITION files intentionally co-locate a TipTap node /
+    // ProseMirror extension with its React node-view component in a single file —
+    // that one-file-per-block ergonomic is the point of the open block API. These
+    // are not app UI modules, so fast-refresh boundary enforcement does not apply.
+    files: [
+      "src/components/block-editor/blocks/**/*.{ts,tsx}",
+      "src/components/block-editor/extensions/**/*.{ts,tsx}",
+    ],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
 );
