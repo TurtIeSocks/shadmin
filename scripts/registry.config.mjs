@@ -178,6 +178,8 @@ export const blocks = [
       "@tiptap/react",
       "@tiptap/starter-kit",
       "@tiptap/suggestion",
+      "ra-core",
+      "recharts",
       "zod",
     ],
     sourceDirs: [{ path: "src/components/block-editor", recursive: true }],

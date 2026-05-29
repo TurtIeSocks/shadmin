@@ -4055,6 +4055,8 @@
         "@tiptap/react",
         "@tiptap/starter-kit",
         "@tiptap/suggestion",
+        "ra-core",
+        "recharts",
         "zod"
       ],
       "files": [
@@ -4083,11 +4085,35 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/block-editor/blocks/chart.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/data-blocks.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/embed.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/image.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/block-editor/blocks/index.ts",
           "type": "registry:component"
         },
         {
+          "path": "src/components/block-editor/blocks/record-list.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/block-editor/blocks/reference-record.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/block-editor/blocks/toggle.tsx",
           "type": "registry:component"
         },
         {

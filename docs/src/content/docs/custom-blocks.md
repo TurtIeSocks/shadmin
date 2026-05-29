@@ -4,6 +4,39 @@ title: "Custom Blocks"
 
 The block editor is open by design. Use `defineBlock` to author new block types and pass them to `<BlockEditorInput>` and `<BlockDocField>` via the `blocks` prop. There is no global registry — blocks are always explicit.
 
+## Built-in blocks
+
+The package ships two block sets so you can opt into exactly what you need:
+
+- **`defaultBlocks`** — content and media blocks with no ra-core data dependency, safe to use anywhere:
+  - `callout` — a highlighted note with `info` / `warning` / `success` variants.
+  - `toggle` — a collapsible section with an editable summary and body.
+  - `image` — an image with an editable caption and a configurable display width.
+  - `embed` — an external embed for **YouTube and Vimeo only**; the URL is matched against an allowlist and rendered as an `<iframe>` with a constructed `src`, never as raw HTML.
+- **`dataBlocks`** — blocks that fetch live data through ra-core hooks, so they must run inside an admin context:
+  - `referenceRecord` — embeds a single live record fetched with `useGetOne`.
+  - `recordList` — renders a list of records fetched with `useGetList`.
+  - `chart` — a bar / line / area chart (powered by recharts) over a fetched list, with category/value aggregation computed client-side.
+
+`defaultBlocks` is applied when the `blocks` prop is omitted. The data blocks are opt-in: spread both sets together to expose the full catalog.
+
+```tsx
+import {
+  BlockEditorInput,
+  BlockDocField,
+  defaultBlocks,
+  dataBlocks,
+} from "@/components/block-editor";
+
+// In Edit:
+<BlockEditorInput source="notes" blocks={[...defaultBlocks, ...dataBlocks]} />
+
+// In Show:
+<BlockDocField source="notes" blocks={[...defaultBlocks, ...dataBlocks]} />
+```
+
+Both the `recordList` and `chart` blocks aggregate their fetched rows on the client, so they stay self-contained and need no special data-provider support.
+
 ## `defineBlock`
 
 ```ts
@@ -231,7 +264,7 @@ const myBlocks = [calloutBlock, referenceRecordBlock, myCustomBlock];
 <BlockDocField source="notes" blocks={myBlocks} />
 ```
 
-The `defaultBlocks` export (used when `blocks` is omitted) contains only `calloutBlock` — it has no dependency on ra-core data hooks and is safe to use anywhere.
+The `defaultBlocks` export (used when `blocks` is omitted) bundles the content and media blocks — `callout`, `toggle`, `image`, and `embed` — none of which depend on ra-core data hooks, so it is safe to use anywhere. To add the data blocks, spread `dataBlocks` alongside it (see [Built-in blocks](#built-in-blocks)).
 
 ## Unknown-block data-safety guarantee
 
