@@ -5,6 +5,7 @@ import {
   ReferenceField,
   SimpleForm,
 } from "@/components/admin";
+import { BlockEditorInput } from "@/components/block-editor";
 import { StatusTransitionButton } from "@/components/extras/status-transition-button";
 import { RecordRepresentation } from "ra-core";
 import { Link } from "react-router";
@@ -74,6 +75,11 @@ export const OrderEdit = () => (
       </div>
       <Basket />
       <Totals />
+      <BlockEditorInput
+        source="notes"
+        label="Notes"
+        helperText="Internal notes for this order. Type / to insert a block."
+      />
     </SimpleForm>
   </Edit>
 );

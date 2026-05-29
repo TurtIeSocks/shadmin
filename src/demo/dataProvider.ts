@@ -70,8 +70,47 @@ const productsWithMetadata = generated.products.map((product, idx) => {
   return product;
 });
 
+// Seed a few orders with a `notes` field holding a TipTap JSON document so the
+// BlockEditorInput / BlockDocField on the orders edit & show pages have content
+// to render. The value is a TipTap doc object (never a string): an absent
+// `notes` field renders an empty editor on edit and nothing on show.
+const ordersWithNotes = generated.orders.map((order, idx) => {
+  if (idx === 0) {
+    return {
+      ...order,
+      notes: {
+        type: "doc",
+        content: [
+          {
+            type: "paragraph",
+            content: [
+              { type: "text", text: "Customer requested gift wrapping." },
+            ],
+          },
+        ],
+      },
+    };
+  }
+  if (idx === 1) {
+    return {
+      ...order,
+      notes: {
+        type: "doc",
+        content: [
+          {
+            type: "paragraph",
+            content: [{ type: "text", text: "Fragile — handle with care." }],
+          },
+        ],
+      },
+    };
+  }
+  return order;
+});
+
 const data = {
   ...generated,
+  orders: ordersWithNotes,
   products: productsWithMetadata,
   customers: customersWithPhone,
   categories: categoriesWithColor,
