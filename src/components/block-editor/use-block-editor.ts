@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { useEditor, type Editor, type JSONContent } from "@tiptap/react";
 import { createBaseExtensions } from "./extensions/base";
 import { createBlockNode } from "./extensions/block-node";
@@ -61,6 +61,29 @@ export function useBlockEditor({
     },
     [extensions, editable],
   );
+
+  // Re-sync when the external value changes (form reset, record load) without
+  // clobbering in-flight edits. The content-equality guard means typing — which
+  // pushes the same value back through onChange — is a no-op here. Mirrors the
+  // rich-text-input pattern (use-minimal-tiptap.ts).
+  const lastValueRef = useRef(value);
+  useEffect(() => {
+    if (!editor || value === lastValueRef.current) return;
+    lastValueRef.current = value;
+    const incoming = JSON.stringify(value ?? EMPTY_DOC);
+    const current = JSON.stringify(unwrapUnknownNodes(editor.getJSON()));
+    if (incoming === current) return;
+    const known = new Set(Object.keys(editor.schema.nodes));
+    const { from, to } = editor.state.selection;
+    editor.commands.setContent(wrapUnknownNodes(value ?? EMPTY_DOC, known), {
+      emitUpdate: false,
+    });
+    const max = Math.max(editor.state.doc.content.size, 1);
+    editor.commands.setTextSelection({
+      from: Math.max(1, Math.min(from, max)),
+      to: Math.max(1, Math.min(to, max)),
+    });
+  }, [editor, value]);
 
   return editor;
 }

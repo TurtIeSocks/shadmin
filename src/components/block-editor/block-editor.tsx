@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   EditorContent,
   EditorContext,
@@ -31,10 +31,24 @@ export function BlockEditor({
   onChange,
   onBlur,
 }: BlockEditorProps) {
+  // Stable debounced callback: read the latest onChange through a ref so the
+  // instance is created once. Prevents (a) dropped pending saves when the parent
+  // passes a new onChange identity and (b) a stale onUpdate closure in the editor.
+  const onChangeRef = useRef(onChange);
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
+
   const debouncedChange = useMemo(
-    () => (onChange ? debounce(onChange, ONCHANGE_DEBOUNCE_MS) : undefined),
-    [onChange],
+    () =>
+      debounce(
+        (next: JSONContent) => onChangeRef.current?.(next),
+        ONCHANGE_DEBOUNCE_MS,
+      ),
+    [],
   );
+
+  useEffect(() => () => debouncedChange.cancel(), [debouncedChange]);
 
   const editor = useBlockEditor({
     value,

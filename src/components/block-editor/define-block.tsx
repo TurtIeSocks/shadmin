@@ -50,7 +50,7 @@ export interface BlockDefinitionInput<
  * generic on return so heterogeneous blocks collect into `BlockDefinition[]`
  * without variance errors (`A` is contravariant via `render`/`config`).
  */
-export interface BlockDefinition extends BlockDefinitionInput<Record<string, unknown>> {}
+export type BlockDefinition = BlockDefinitionInput<Record<string, unknown>>;
 
 /**
  * Define a block. `A` is inferred from the schema so `render`/`config` are
