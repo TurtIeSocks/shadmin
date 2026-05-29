@@ -6,15 +6,17 @@ import {
   type JSONContent,
 } from "@tiptap/react";
 import type { Range } from "@tiptap/core";
+import { NodeSelection } from "@tiptap/pm/state";
 import { debounce } from "lodash";
 import { Popover, PopoverAnchor, PopoverContent } from "@/components/ui/popover";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { useBlockEditor } from "./use-block-editor";
-import { createBlockRegistry } from "./block-registry";
+import { createBlockRegistry, type BlockRegistry } from "./block-registry";
 import { insertBlock } from "./extensions/slash-command";
 import { CatalogPicker } from "./chrome/catalog-picker";
 import { BlockGutter } from "./chrome/block-gutter";
+import { BlockToolbar } from "./chrome/block-toolbar";
 import type { BlockDefinition } from "./define-block";
 import { ONCHANGE_DEBOUNCE_MS } from "./constants";
 
@@ -187,6 +189,107 @@ function BlockEditorChrome({
           onAdd={() => editor.storage.slashCommand.open?.()}
         />
       )}
+      {editable && <BlockSelectionLayer editor={editor} registry={registry} />}
     </div>
+  );
+}
+
+interface SelectedBlock {
+  /** ProseMirror node name (registry key). */
+  name: string;
+  attrs: Record<string, unknown>;
+  /** Document position of the selected node. */
+  pos: number;
+}
+
+/**
+ * Reflects the editor's block `NodeSelection` into React state and renders the
+ * selection toolbar (configure / duplicate / delete) plus the schema-driven
+ * config popover, both anchored to the selected node via a virtual measurable.
+ *
+ * A block is "selected" when `editor.state.selection` is a `NodeSelection` whose
+ * node type is a registered block. Subscribing to both `selectionUpdate` (the
+ * selection moved) and `transaction` (attrs changed under a stable selection)
+ * keeps the toolbar position and the config popover's `attrs` live.
+ */
+function BlockSelectionLayer({
+  editor,
+  registry,
+}: {
+  editor: Editor;
+  registry: BlockRegistry;
+}) {
+  const [selected, setSelected] = useState<SelectedBlock | null>(null);
+  const [configuring, setConfiguring] = useState(false);
+
+  useEffect(() => {
+    const read = () => {
+      const { selection } = editor.state;
+      if (
+        selection instanceof NodeSelection &&
+        registry.get(selection.node.type.name)
+      ) {
+        setSelected({
+          name: selection.node.type.name,
+          attrs: { ...selection.node.attrs },
+          pos: selection.from,
+        });
+      } else {
+        setSelected(null);
+        setConfiguring(false);
+      }
+    };
+    read();
+    editor.on("selectionUpdate", read);
+    editor.on("transaction", read);
+    return () => {
+      editor.off("selectionUpdate", read);
+      editor.off("transaction", read);
+    };
+  }, [editor, registry]);
+
+  // Virtual anchor at the selected node's screen rect, recomputed on demand by
+  // Radix when it measures (handles scroll / typing without extra state).
+  // Radix's `virtualRef` wants a ref object whose `.current` is a Measurable.
+  const virtualRef = useMemo(
+    () => ({
+      current: {
+        getBoundingClientRect: () => {
+          if (!selected) return new DOMRect();
+          const dom = editor.view.nodeDOM(selected.pos) as HTMLElement | null;
+          if (dom?.getBoundingClientRect) return dom.getBoundingClientRect();
+          const coords = editor.view.coordsAtPos(selected.pos);
+          return new DOMRect(
+            coords.left,
+            coords.top,
+            0,
+            coords.bottom - coords.top,
+          );
+        },
+      },
+    }),
+    [editor, selected],
+  );
+
+  if (!selected) return null;
+
+  const block = registry.get(selected.name);
+  if (!block) return null;
+
+  // The config popover (Task 13) consumes `configuring`; until then the toolbar's
+  // Configure button simply toggles the flag (the toolbar hides while it is set).
+  return (
+    <Popover open={!configuring}>
+      <PopoverAnchor virtualRef={virtualRef} />
+      <PopoverContent
+        side="top"
+        align="start"
+        sideOffset={6}
+        className="w-auto border-0 bg-transparent p-0 shadow-none"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
+        <BlockToolbar editor={editor} onConfigure={() => setConfiguring(true)} />
+      </PopoverContent>
+    </Popover>
   );
 }
