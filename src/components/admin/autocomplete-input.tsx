@@ -13,12 +13,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   Popover,
   PopoverContent,
@@ -38,6 +33,7 @@ import {
   FieldTitle,
   useEvent,
   useSupportCreateSuggestion,
+  ValidationError,
 } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
 import { PopoverPrimitive } from "@/components/ui/popover";
@@ -154,10 +150,14 @@ function AutocompleteInput(props: AutocompleteInputProps) {
     isFromReference,
     setFilters,
   } = useChoicesContext(props);
-  const { id, field, isRequired } = useInput({ ...props, source });
+  const { id, field, fieldState, isRequired } = useInput({ ...props, source });
   const translate = useTranslate();
   const { placeholder = translate("ra.action.search", { _: "Search..." }) } =
     props;
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const getRecordRepresentation = useGetRecordRepresentation(resource);
   const { getChoiceText, getChoiceValue } = useChoices({
@@ -355,140 +355,144 @@ function AutocompleteInput(props: AutocompleteInputProps) {
 
   return (
     <>
-      <FormField className={props.className} id={id} name={field.name}>
+      <Field className={props.className} data-invalid={invalid || undefined}>
         {props.label !== false && (
-          <FormLabel>
+          <FieldLabel htmlFor={id}>
             <FieldTitle
               label={props.label}
               source={props.source ?? source}
               resource={resource}
               isRequired={isRequired}
             />
-          </FormLabel>
+          </FieldLabel>
         )}
-        <FormControl>
-          <Popover
-            open={effectiveOpen}
-            onOpenChange={handleOpenChange}
-            modal={modal}
-          >
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                aria-controls={listboxId}
-                className="w-full justify-between h-auto py-1.75 font-normal"
-              >
-                {selectedChoice ? (
-                  getInputText(selectedChoice)
-                ) : (
-                  <span className="text-muted-foreground">{placeholder}</span>
-                )}
-                <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-full max-w-(--radix-popover-trigger-width) p-0">
-              {/* We handle the filtering ourselves when matchSuggestion is provided */}
-              <Command shouldFilter={!isFromReference && !matchSuggestion}>
-                <CommandInput
-                  placeholder={translate("ra.action.search", {
-                    _: "Search...",
-                  })}
-                  value={filterValue}
-                  onValueChange={(filter) => {
-                    setFilterValue(filter);
-                    setFilter?.(filter);
-                    requestAnimationFrame(() => {
-                      listRef.current?.scrollTo(0, 0);
-                    });
-                    // We don't want the ChoicesContext to filter the choices if the input
-                    // is not from a reference as it would also filter out the selected values
-                    if (isFromReference) {
-                      debouncedSetFilters(filter);
-                    }
-                  }}
-                  onKeyDown={handleKeyDown}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                />
-                <CommandList id={listboxId} ref={listRef}>
-                  {/* Prop 3: noOptionsText */}
-                  <CommandEmpty>{noMatchText}</CommandEmpty>
-                  <CommandGroup>
-                    {/* emptyText: "(none)" entry when prop is set and field is not required */}
-                    {emptyTextProp !== "" && !isRequired && (
+        <Popover
+          open={effectiveOpen}
+          onOpenChange={handleOpenChange}
+          modal={modal}
+        >
+          <PopoverTrigger asChild>
+            <Button
+              id={id}
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              aria-controls={listboxId}
+              aria-invalid={invalid || undefined}
+              className="w-full justify-between h-auto py-1.75 font-normal"
+            >
+              {selectedChoice ? (
+                getInputText(selectedChoice)
+              ) : (
+                <span className="text-muted-foreground">{placeholder}</span>
+              )}
+              <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-full max-w-(--radix-popover-trigger-width) p-0">
+            {/* We handle the filtering ourselves when matchSuggestion is provided */}
+            <Command shouldFilter={!isFromReference && !matchSuggestion}>
+              <CommandInput
+                placeholder={translate("ra.action.search", {
+                  _: "Search...",
+                })}
+                value={filterValue}
+                onValueChange={(filter) => {
+                  setFilterValue(filter);
+                  setFilter?.(filter);
+                  requestAnimationFrame(() => {
+                    listRef.current?.scrollTo(0, 0);
+                  });
+                  // We don't want the ChoicesContext to filter the choices if the input
+                  // is not from a reference as it would also filter out the selected values
+                  if (isFromReference) {
+                    debouncedSetFilters(filter);
+                  }
+                }}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              <CommandList id={listboxId} ref={listRef}>
+                {/* Prop 3: noOptionsText */}
+                <CommandEmpty>{noMatchText}</CommandEmpty>
+                <CommandGroup>
+                  {/* emptyText: "(none)" entry when prop is set and field is not required */}
+                  {emptyTextProp !== "" && !isRequired && (
+                    <CommandItem
+                      value={`__empty__${emptyTextProp}`}
+                      onSelect={() => {
+                        field.onChange(emptyValue);
+                        setFilterValue("");
+                        setOpen(false);
+                      }}
+                      className="text-muted-foreground"
+                    >
+                      <Check
+                        className={cn(
+                          "mr-2 size-4",
+                          field.value === emptyValue ||
+                            field.value == null ||
+                            field.value === ""
+                            ? "opacity-100"
+                            : "opacity-0",
+                        )}
+                      />
+                      {emptyTextProp}
+                    </CommandItem>
+                  )}
+                  {finalChoices.map((choice) => {
+                    const isCreateItem =
+                      !!createItem && choice?.id === createItem.id;
+                    const disabled = getOptionDisabled(choice);
+
+                    const choiceText = getChoiceText(
+                      isCreateItem ? createItem : choice,
+                    );
+
+                    return (
                       <CommandItem
-                        value={`__empty__${emptyTextProp}`}
-                        onSelect={() => {
-                          field.onChange(emptyValue);
-                          setFilterValue("");
-                          setOpen(false);
-                        }}
-                        className="text-muted-foreground"
+                        key={getChoiceValue(choice)}
+                        keywords={
+                          isCreateItem || React.isValidElement(choiceText)
+                            ? undefined
+                            : [choiceText]
+                        }
+                        value={
+                          isCreateItem
+                            ? // if it's the create option, include the filter value so it is shown in the command input
+                              // characters before and after the filter value are required
+                              // to show the option when the filter value starts or ends with a space
+                              `?${filterValue}?`
+                            : getChoiceValue(choice)
+                        }
+                        onSelect={() => handleChangeWithCreateSupport(choice)}
+                        disabled={disabled}
                       >
                         <Check
                           className={cn(
                             "mr-2 size-4",
-                            field.value === emptyValue ||
-                              field.value == null ||
-                              field.value === ""
+                            isEqual(field.value, getChoiceValue(choice))
                               ? "opacity-100"
                               : "opacity-0",
                           )}
                         />
-                        {emptyTextProp}
+                        {choiceText}
                       </CommandItem>
-                    )}
-                    {finalChoices.map((choice) => {
-                      const isCreateItem =
-                        !!createItem && choice?.id === createItem.id;
-                      const disabled = getOptionDisabled(choice);
-
-                      const choiceText = getChoiceText(
-                        isCreateItem ? createItem : choice,
-                      );
-
-                      return (
-                        <CommandItem
-                          key={getChoiceValue(choice)}
-                          keywords={
-                            isCreateItem || React.isValidElement(choiceText)
-                              ? undefined
-                              : [choiceText]
-                          }
-                          value={
-                            isCreateItem
-                              ? // if it's the create option, include the filter value so it is shown in the command input
-                                // characters before and after the filter value are required
-                                // to show the option when the filter value starts or ends with a space
-                                `?${filterValue}?`
-                              : getChoiceValue(choice)
-                          }
-                          onSelect={() => handleChangeWithCreateSupport(choice)}
-                          disabled={disabled}
-                        >
-                          <Check
-                            className={cn(
-                              "mr-2 size-4",
-                              isEqual(field.value, getChoiceValue(choice))
-                                ? "opacity-100"
-                                : "opacity-0",
-                            )}
-                          />
-                          {choiceText}
-                        </CommandItem>
-                      );
-                    })}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
-        </FormControl>
+                    );
+                  })}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
         <InputHelperText helperText={props.helperText} />
-        <FormError />
-      </FormField>
+        <FieldError>
+          {invalid && errorMessage ? (
+            <ValidationError error={errorMessage} />
+          ) : null}
+        </FieldError>
+      </Field>
       {createElement}
     </>
   );

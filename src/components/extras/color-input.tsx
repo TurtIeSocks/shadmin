@@ -1,12 +1,12 @@
 import type * as React from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
 import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { ColorPicker } from "@/components/ui/color-picker";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -50,59 +50,67 @@ function ColorInput(props: ColorInputProps) {
   const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
-  const { id, field, isRequired } = useInput(sansHandlers);
+  const { id, field, fieldState, isRequired } = useInput(sansHandlers);
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const value = (field.value as string | undefined) ?? "#000000";
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <fieldset
-          disabled={disabled}
-          // `fieldset[disabled]` blocks all inner form controls (incl. the
-          // picker trigger button + swatch buttons). The classes below add the
-          // visual cue and prevent stray hover states.
-          className={cn(
-            "flex items-center gap-2 border-0 p-0",
-            disabled && "cursor-not-allowed opacity-50",
-          )}
-        >
-          <ColorPicker
-            value={value}
-            onChange={(next) => field.onChange(next)}
-            mode={mode}
-            native={native}
-            aria-label="Pick a color"
+      <fieldset
+        id={id}
+        aria-invalid={invalid || undefined}
+        disabled={disabled}
+        // `fieldset[disabled]` blocks all inner form controls (incl. the
+        // picker trigger button + swatch buttons). The classes below add the
+        // visual cue and prevent stray hover states.
+        className={cn(
+          "flex items-center gap-2 border-0 p-0",
+          disabled && "cursor-not-allowed opacity-50",
+        )}
+      >
+        <ColorPicker
+          value={value}
+          onChange={(next) => field.onChange(next)}
+          mode={mode}
+          native={native}
+          aria-label="Pick a color"
+        />
+        {swatches?.map((s) => (
+          <button
+            key={s}
+            type="button"
+            data-color-swatch
+            aria-label={`Select color ${s}`}
+            onClick={() => field.onChange(s)}
+            className={cn(
+              "h-6 w-6 rounded border border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              disabled && "cursor-not-allowed",
+            )}
+            style={{ backgroundColor: s }}
           />
-          {swatches?.map((s) => (
-            <button
-              key={s}
-              type="button"
-              data-color-swatch
-              aria-label={`Select color ${s}`}
-              onClick={() => field.onChange(s)}
-              className={cn(
-                "h-6 w-6 rounded border border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                disabled && "cursor-not-allowed",
-              )}
-              style={{ backgroundColor: s }}
-            />
-          ))}
-        </fieldset>
-      </FormControl>
+        ))}
+      </fieldset>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 };
 

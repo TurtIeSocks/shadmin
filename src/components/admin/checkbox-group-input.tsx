@@ -7,11 +7,17 @@ import {
   useChoicesContext,
   useGetRecordRepresentation,
   useInput,
+  ValidationError,
 } from "ra-core";
 import { cn } from "@/lib/utils";
-import { FormError, FormField, FormLabel } from "@/components/admin/form";
+import {
+  Field,
+  FieldError,
+  FieldLabel,
+  FieldSet,
+  FieldLegend,
+} from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 
@@ -102,7 +108,7 @@ function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
     );
   }
 
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     format,
     onBlur,
     onChange,
@@ -114,6 +120,10 @@ function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
     readOnly,
     ...rest,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const getRecordRepresentation = useGetRecordRepresentation(resource);
   const { getChoiceText, getChoiceValue, getDisableValue } = useChoices({
@@ -141,16 +151,16 @@ function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
   };
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <FieldSet className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLegend variant="label">
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLegend>
       )}
       <div className={cn("flex", row ? "flex-row gap-4" : "flex-col gap-2")}>
         {allChoices?.map((choice) => {
@@ -171,15 +181,9 @@ function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
             />
           );
           const labelEl = (
-            <Label
-              htmlFor={choiceId}
-              className={cn(
-                "text-sm font-normal cursor-pointer",
-                isChoiceDisabled && "opacity-50 cursor-not-allowed",
-              )}
-            >
+            <FieldLabel htmlFor={choiceId} className="font-normal">
               {getChoiceText(choice)}
-            </Label>
+            </FieldLabel>
           );
 
           const isTop = labelPlacement === "top";
@@ -187,26 +191,29 @@ function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
           const isStart = labelPlacement === "start";
 
           return (
-            <div
+            <Field
               key={choiceValue}
+              orientation={isTop || isBottom ? "vertical" : "horizontal"}
+              data-disabled={isChoiceDisabled || undefined}
               className={cn(
-                "flex gap-x-2",
-                isTop || isBottom
-                  ? "flex-col gap-y-1 items-start"
-                  : "flex-row items-center",
+                isTop || isBottom ? "items-start gap-y-1" : undefined,
                 isTop && "flex-col-reverse",
               )}
             >
               {isStart || isTop ? labelEl : null}
               {checkbox}
               {!isStart && !isTop ? labelEl : null}
-            </div>
+            </Field>
           );
         })}
       </div>
       <InputHelperText helperText={helperText ?? fetchError?.message} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </FieldSet>
   );
 }
 

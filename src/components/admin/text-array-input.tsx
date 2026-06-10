@@ -13,18 +13,14 @@ import {
   PopoverContent,
   PopoverAnchor,
 } from "@/components/ui/popover";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import type { InputProps } from "ra-core";
 import {
   useInput,
   useResourceContext,
   FieldTitle,
   useTranslate,
+  ValidationError,
 } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
 
@@ -89,7 +85,7 @@ function TextArrayInput(props: TextArrayInputProps) {
     ...rest
   } = props;
   const resource = useResourceContext(props);
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     defaultValue,
     disabled,
     format: format ?? ((v) => v ?? emptyArray),
@@ -102,6 +98,10 @@ function TextArrayInput(props: TextArrayInputProps) {
     validate,
   });
   const translate = useTranslate();
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = React.useState("");
@@ -187,85 +187,89 @@ function TextArrayInput(props: TextArrayInputProps) {
     !!options && suggestionsOpen && filteredOptions.length > 0;
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <Popover open={showSuggestions} onOpenChange={setSuggestionsOpen}>
-          <PopoverAnchor asChild>
-            <div
-              className="group rounded-md bg-background shadow-xs dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
-              {...rest}
-            >
-              <div className="flex flex-wrap gap-1">
-                {renderTags
-                  ? renderTags(values, getTagProps)
-                  : defaultTagRenderer()}
-                <input
-                  ref={inputRef}
-                  value={inputValue}
-                  onChange={(e) => {
-                    setInputValue(e.target.value);
-                    if (options) setSuggestionsOpen(true);
-                  }}
-                  onKeyDown={handleKeyDown}
-                  onBlur={() => {
-                    if (inputValue.trim()) {
-                      handleAddValue(inputValue);
-                    }
-                    field.onBlur?.();
-                    // delay close so clicks on suggestions register first
-                    setTimeout(() => setSuggestionsOpen(false), 150);
-                  }}
-                  placeholder={values.length === 0 ? placeholder : undefined}
-                  disabled={disabled}
-                  readOnly={readOnly}
-                  className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-                />
-              </div>
+      <Popover open={showSuggestions} onOpenChange={setSuggestionsOpen}>
+        <PopoverAnchor asChild>
+          <div
+            className="group rounded-md bg-background shadow-xs dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
+            {...rest}
+          >
+            <div className="flex flex-wrap gap-1">
+              {renderTags
+                ? renderTags(values, getTagProps)
+                : defaultTagRenderer()}
+              <input
+                ref={inputRef}
+                id={id}
+                aria-invalid={invalid || undefined}
+                value={inputValue}
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                  if (options) setSuggestionsOpen(true);
+                }}
+                onKeyDown={handleKeyDown}
+                onBlur={() => {
+                  if (inputValue.trim()) {
+                    handleAddValue(inputValue);
+                  }
+                  field.onBlur?.();
+                  // delay close so clicks on suggestions register first
+                  setTimeout(() => setSuggestionsOpen(false), 150);
+                }}
+                placeholder={values.length === 0 ? placeholder : undefined}
+                disabled={disabled}
+                readOnly={readOnly}
+                className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+              />
             </div>
-          </PopoverAnchor>
-          {showSuggestions && (
-            <PopoverContent
-              className="p-0 w-(--radix-popover-trigger-width)"
-              align="start"
-              onOpenAutoFocus={(e) => e.preventDefault()}
-            >
-              <Command>
-                <CommandList>
-                  <CommandEmpty>
-                    {translate("ra.navigation.no_results", {
-                      _: "No results",
-                    })}
-                  </CommandEmpty>
-                  <CommandGroup>
-                    {filteredOptions.map((opt) => (
-                      <CommandItem
-                        key={opt}
-                        value={opt}
-                        onSelect={() => handleAddValue(opt)}
-                      >
-                        {opt}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          )}
-        </Popover>
-      </FormControl>
+          </div>
+        </PopoverAnchor>
+        {showSuggestions && (
+          <PopoverContent
+            className="p-0 w-(--radix-popover-trigger-width)"
+            align="start"
+            onOpenAutoFocus={(e) => e.preventDefault()}
+          >
+            <Command>
+              <CommandList>
+                <CommandEmpty>
+                  {translate("ra.navigation.no_results", {
+                    _: "No results",
+                  })}
+                </CommandEmpty>
+                <CommandGroup>
+                  {filteredOptions.map((opt) => (
+                    <CommandItem
+                      key={opt}
+                      value={opt}
+                      onSelect={() => handleAddValue(opt)}
+                    >
+                      {opt}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        )}
+      </Popover>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

@@ -1,15 +1,21 @@
 import * as React from "react";
 import type { ChoicesProps, InputProps } from "ra-core";
-import { FieldTitle, useChoices, useChoicesContext, useInput } from "ra-core";
+import {
+  FieldTitle,
+  useChoices,
+  useChoicesContext,
+  useInput,
+  ValidationError,
+} from "ra-core";
 import { cn } from "@/lib/utils";
 import { sanitizeInputRestProps } from "@/lib/sanitize-input-rest-props";
 import {
-  FormField,
-  FormControl,
-  FormLabel,
-  FormError,
-} from "@/components/admin/form";
-import { Label } from "@/components/ui/label";
+  Field,
+  FieldError,
+  FieldLabel,
+  FieldSet,
+  FieldLegend,
+} from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InputHelperText } from "@/components/admin/input-helper-text";
@@ -110,7 +116,7 @@ function RadioButtonGroupInput(inProps: RadioButtonGroupInputProps) {
     );
   }
 
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     format,
     onBlur,
     onChange,
@@ -122,6 +128,10 @@ function RadioButtonGroupInput(inProps: RadioButtonGroupInputProps) {
     readOnly,
     ...rest,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const { getChoiceText, getChoiceValue, getDisableValue } = useChoices({
     optionText,
@@ -135,63 +145,65 @@ function RadioButtonGroupInput(inProps: RadioButtonGroupInputProps) {
   }
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <FieldSet className={className} data-invalid={invalid || undefined}>
       {label && (
-        <FormLabel>
+        <FieldLegend variant="label">
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLegend>
       )}
+      <RadioGroup
+        {...sanitizeInputRestProps(rest)}
+        {...options}
+        // Radix' RadioGroup only deals in string values; coerce here
+        // but pass the original (possibly numeric) id back on change.
+        value={field.value != null ? String(field.value) : undefined}
+        onValueChange={(nextValue) => {
+          const choice = allChoices?.find(
+            (c) => String(getChoiceValue(c)) === nextValue,
+          );
+          field.onChange(choice ? getChoiceValue(choice) : nextValue);
+        }}
+        className={cn("flex", row ? "flex-row gap-4" : "flex-col gap-2")}
+        disabled={disabled || readOnly}
+      >
+        {allChoices?.map((choice) => {
+          const value = getChoiceValue(choice);
+          const stringValue = String(value);
+          const isDisabled = disabled || readOnly || getDisableValue(choice);
 
-      <FormControl>
-        <RadioGroup
-          {...sanitizeInputRestProps(rest)}
-          {...options}
-          // Radix' RadioGroup only deals in string values; coerce here
-          // but pass the original (possibly numeric) id back on change.
-          value={field.value != null ? String(field.value) : undefined}
-          onValueChange={(nextValue) => {
-            const choice = allChoices?.find(
-              (c) => String(getChoiceValue(c)) === nextValue,
-            );
-            field.onChange(choice ? getChoiceValue(choice) : nextValue);
-          }}
-          className={cn("flex", row ? "flex-row gap-4" : "flex-col gap-2")}
-          disabled={disabled || readOnly}
-        >
-          {allChoices?.map((choice) => {
-            const value = getChoiceValue(choice);
-            const stringValue = String(value);
-            const isDisabled = disabled || readOnly || getDisableValue(choice);
-
-            return (
-              <div key={stringValue} className="flex items-center gap-x-2">
-                <RadioGroupItem
-                  value={stringValue}
-                  id={`${id}-${stringValue}`}
-                  disabled={isDisabled}
-                />
-                <Label
-                  htmlFor={`${id}-${stringValue}`}
-                  className={cn(
-                    "text-sm font-normal cursor-pointer",
-                    isDisabled && "opacity-50 cursor-not-allowed",
-                  )}
-                >
-                  {getChoiceText(choice)}
-                </Label>
-              </div>
-            );
-          })}
-        </RadioGroup>
-      </FormControl>
+          return (
+            <Field
+              key={stringValue}
+              orientation="horizontal"
+              data-disabled={isDisabled || undefined}
+            >
+              <RadioGroupItem
+                value={stringValue}
+                id={`${id}-${stringValue}`}
+                disabled={isDisabled}
+              />
+              <FieldLabel
+                htmlFor={`${id}-${stringValue}`}
+                className="font-normal"
+              >
+                {getChoiceText(choice)}
+              </FieldLabel>
+            </Field>
+          );
+        })}
+      </RadioGroup>
       <InputHelperText helperText={helperText ?? fetchError?.message} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </FieldSet>
   );
 }
 

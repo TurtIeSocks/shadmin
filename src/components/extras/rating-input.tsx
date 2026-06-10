@@ -1,8 +1,16 @@
 import type * as React from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
-import { FormControl, FormField, FormLabel } from "@/components/admin/form";
-import { FormError } from "@/components/admin/form";
+import {
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
+import {
+  FieldError,
+  FieldLegend,
+  FieldSet,
+} from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
 
@@ -28,58 +36,66 @@ function RatingInput(props: RatingInputProps) {
     ...rest
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
-  const { id, field, isRequired } = useInput(props);
+  const { id, field, fieldState, isRequired } = useInput(props);
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const steps = allowHalf ? max * 2 : max;
   const stepValue = allowHalf ? 0.5 : 1;
   const currentValue = (field.value as number | null | undefined) ?? 0;
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <FieldSet className={cn("gap-3", className)} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLegend variant="label">
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLegend>
       )}
-      <FormControl>
-        <div
-          role="radiogroup"
-          aria-disabled={disabled}
-          className={cn("flex items-center gap-1", className)}
-          {...rest}
-        >
-          {Array.from({ length: steps }).map((_, i) => {
-            const v = (i + 1) * stepValue;
-            const selected = currentValue >= v;
-            return (
-              <button
-                key={v}
-                type="button"
-                role="radio"
-                aria-checked={selected}
-                aria-disabled={disabled}
-                disabled={disabled}
-                onClick={() => !disabled && field.onChange(v)}
-                onBlur={field.onBlur}
-                className={cn(
-                  "p-0.5 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  disabled && "cursor-not-allowed opacity-50",
-                )}
-              >
-                <Star filled={selected} half={allowHalf && v % 1 !== 0} />
-              </button>
-            );
-          })}
-        </div>
-      </FormControl>
+      <div
+        id={id}
+        role="radiogroup"
+        aria-disabled={disabled}
+        aria-invalid={invalid || undefined}
+        className={cn("flex items-center gap-1", className)}
+        {...rest}
+      >
+        {Array.from({ length: steps }).map((_, i) => {
+          const v = (i + 1) * stepValue;
+          const selected = currentValue >= v;
+          return (
+            <button
+              key={v}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              aria-disabled={disabled}
+              disabled={disabled}
+              onClick={() => !disabled && field.onChange(v)}
+              onBlur={field.onBlur}
+              className={cn(
+                "p-0.5 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                disabled && "cursor-not-allowed opacity-50",
+              )}
+            >
+              <Star filled={selected} half={allowHalf && v % 1 !== 0} />
+            </button>
+          );
+        })}
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </FieldSet>
   );
 };
 

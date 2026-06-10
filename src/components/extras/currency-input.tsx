@@ -6,13 +6,9 @@ import {
   useInput,
   useLocaleState,
   useResourceContext,
+  ValidationError,
 } from "ra-core";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -44,7 +40,11 @@ function CurrencyInput(props: CurrencyInputProps) {
   const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
-  const { id, field, isRequired } = useInput(sansHandlers);
+  const { id, field, fieldState, isRequired } = useInput(sansHandlers);
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const isComposite = !!currencies;
   const composite = isComposite
@@ -105,55 +105,59 @@ function CurrencyInput(props: CurrencyInputProps) {
     : "";
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <div className={cn("flex items-center gap-2", className)}>
-          <span className="text-muted-foreground text-sm w-6 text-right">
-            {currencySymbol}
-          </span>
-          <Input
-            {...rest}
-            type="number"
-            value={displayValue}
-            step={storeAsMinorUnits ? 0.01 : "any"}
-            onChange={handleAmountChange}
-            onFocus={() => (hasFocus.current = true)}
-            onBlur={() => {
-              hasFocus.current = false;
-              field.onBlur();
-            }}
+      <div className={cn("flex items-center gap-2", className)}>
+        <span className="text-muted-foreground text-sm w-6 text-right">
+          {currencySymbol}
+        </span>
+        <Input
+          {...rest}
+          type="number"
+          value={displayValue}
+          step={storeAsMinorUnits ? 0.01 : "any"}
+          onChange={handleAmountChange}
+          onFocus={() => (hasFocus.current = true)}
+          onBlur={() => {
+            hasFocus.current = false;
+            field.onBlur();
+          }}
+          disabled={disabled}
+          id={id}
+          aria-invalid={invalid || undefined}
+        />
+        {isComposite && (
+          <select
+            data-currency-select
+            value={currentCurrency ?? currencies![0]}
+            onChange={handleCurrencyChange}
             disabled={disabled}
-          />
-          {isComposite && (
-            <select
-              data-currency-select
-              value={currentCurrency ?? currencies![0]}
-              onChange={handleCurrencyChange}
-              disabled={disabled}
-              className="rounded-md border border-input bg-background px-2 py-1 text-sm"
-            >
-              {currencies!.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          )}
-        </div>
-      </FormControl>
+            className="rounded-md border border-input bg-background px-2 py-1 text-sm"
+          >
+            {currencies!.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        )}
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 };
 

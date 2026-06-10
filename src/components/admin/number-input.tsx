@@ -1,10 +1,14 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
-import { FormControl, FormField, FormLabel } from "@/components/admin/form";
+import {
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { FormError } from "@/components/admin/form";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 
 /**
@@ -46,7 +50,7 @@ function NumberInput(props: NumberInputProps) {
   } = props;
   const resource = useResourceContext({ resource: resourceProp });
 
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     ...rest,
     source,
     resource: resourceProp,
@@ -54,6 +58,10 @@ function NumberInput(props: NumberInputProps) {
     format,
     parse,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
@@ -110,32 +118,36 @@ function NumberInput(props: NumberInputProps) {
   void _fieldOnBlur;
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <Input
-          {...rest}
-          {...fieldRest}
-          ref={ref}
-          type="number"
-          value={value}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-        />
-      </FormControl>
+      <Input
+        {...rest}
+        {...fieldRest}
+        ref={ref}
+        id={id}
+        type="number"
+        value={value}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        aria-invalid={invalid || undefined}
+      />
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

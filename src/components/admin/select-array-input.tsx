@@ -13,8 +13,9 @@ import {
   useInput,
   useSupportCreateSuggestion,
   useTranslate,
+  ValidationError,
 } from "ra-core";
-import { FormError, FormField, FormLabel } from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -135,7 +136,7 @@ function SelectArrayInput(props: SelectArrayInputProps) {
     createHintValue,
   });
 
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     defaultValue,
     format,
     label,
@@ -150,6 +151,10 @@ function SelectArrayInput(props: SelectArrayInputProps) {
     readOnly,
     disabled,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const value: Array<string | number> = Array.isArray(field.value)
     ? field.value
@@ -191,25 +196,28 @@ function SelectArrayInput(props: SelectArrayInputProps) {
 
   if (isPending) {
     return (
-      <FormField
-        id={id}
-        name={field.name}
+      <Field
         className={cn("w-full min-w-20", className)}
+        data-invalid={invalid || undefined}
       >
         {label !== false && label !== "" && (
-          <FormLabel>
+          <FieldLabel htmlFor={id}>
             <FieldTitle
               label={label}
               source={source}
               resource={resourceProp}
               isRequired={isRequired}
             />
-          </FormLabel>
+          </FieldLabel>
         )}
         <Skeleton className="w-full h-9" />
         <InputHelperText helperText={helperText} />
-        <FormError />
-      </FormField>
+        <FieldError>
+          {invalid && errorMessage ? (
+            <ValidationError error={errorMessage} />
+          ) : null}
+        </FieldError>
+      </Field>
     );
   }
 
@@ -229,30 +237,31 @@ function SelectArrayInput(props: SelectArrayInputProps) {
   );
 
   return (
-    <FormField
-      id={id}
-      name={field.name}
+    <Field
       className={cn("w-full min-w-20", className)}
+      data-invalid={invalid || undefined}
       {...rest}
     >
       {label !== false && label !== "" && (
-        <FormLabel {...InputLabelProps}>
+        <FieldLabel htmlFor={id} {...InputLabelProps}>
           <FieldTitle
             label={label}
             source={source}
             resource={resourceProp}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
+            id={id}
             type="button"
             variant="outline"
             role="combobox"
             aria-expanded={open}
             aria-controls={listboxId}
+            aria-invalid={invalid || undefined}
             disabled={disabled || readOnly}
             className={cn(
               "w-full justify-between font-normal hover:bg-accent min-h-9 h-auto py-1.5",
@@ -353,9 +362,13 @@ function SelectArrayInput(props: SelectArrayInputProps) {
         </PopoverContent>
       </Popover>
       <InputHelperText helperText={helperText} />
-      <FormError />
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
       {createElement}
-    </FormField>
+    </Field>
   );
 }
 
@@ -365,7 +378,7 @@ type SelectArrayInputProps = ChoicesProps &
   Omit<Partial<SupportCreateSuggestionOptions>, "handleChange" | "filter"> & {
     className?: string;
     placeholder?: string;
-    InputLabelProps?: React.ComponentProps<typeof FormLabel>;
+    InputLabelProps?: React.ComponentProps<typeof FieldLabel>;
   };
 
 export { SelectArrayInput, type SelectArrayInputProps };

@@ -1,13 +1,13 @@
 import type * as React from "react";
 import { useEffect, useState } from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
 import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { parseIsoDuration } from "./duration-utils";
@@ -53,7 +53,11 @@ function DurationInput(props: DurationInputProps) {
   const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
-  const { id, field, isRequired } = useInput(sansHandlers);
+  const { id, field, fieldState, isRequired } = useInput(sansHandlers);
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const parsed = parseIsoDuration(String(field.value ?? "")) ?? {};
   const [values, setValues] = useState<Record<Unit, string>>({
@@ -87,46 +91,50 @@ function DurationInput(props: DurationInputProps) {
   };
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <div className={cn("flex items-end gap-2", className)} {...rest}>
-          {units.map((u) => (
-            <label
-              key={u}
-              className="flex flex-col items-center text-xs text-muted-foreground"
-            >
-              <Input
-                type="number"
-                min={0}
-                disabled={disabled}
-                value={values[u]}
-                onChange={(e) => {
-                  const next = { ...values, [u]: e.target.value };
-                  setValues(next);
-                  writeBack(next);
-                }}
-                onBlur={field.onBlur}
-                className="w-16"
-                aria-label={UNIT_LABEL[u]}
-              />
-              <span>{UNIT_LABEL[u]}</span>
-            </label>
-          ))}
-        </div>
-      </FormControl>
+      <div className={cn("flex items-end gap-2", className)} {...rest}>
+        {units.map((u, i) => (
+          <label
+            key={u}
+            className="flex flex-col items-center text-xs text-muted-foreground"
+          >
+            <Input
+              type="number"
+              min={0}
+              disabled={disabled}
+              value={values[u]}
+              onChange={(e) => {
+                const next = { ...values, [u]: e.target.value };
+                setValues(next);
+                writeBack(next);
+              }}
+              onBlur={field.onBlur}
+              className="w-16"
+              aria-label={UNIT_LABEL[u]}
+              id={i === 0 ? id : undefined}
+              aria-invalid={invalid || undefined}
+            />
+            <span>{UNIT_LABEL[u]}</span>
+          </label>
+        ))}
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 };
 

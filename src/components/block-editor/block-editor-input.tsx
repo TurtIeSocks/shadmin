@@ -1,12 +1,12 @@
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
-
 import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
+
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 
 import { BlockEditor } from "./block-editor";
@@ -40,35 +40,45 @@ export function BlockEditorInput(props: BlockEditorInputProps) {
     source,
   } = props;
   const resource = useResourceContext(props);
-  const { id, field, isRequired } = useInput({ ...props, source, defaultValue });
+  const { id, field, fieldState, isRequired } = useInput({
+    ...props,
+    source,
+    defaultValue,
+  });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        {/* Keep ARIA props from FormControl on a native element, not on the TipTap hook options */}
-        <div>
-          <BlockEditor
-            value={field.value ?? EMPTY_DOC}
-            blocks={blocks}
-            placeholder={placeholder}
-            editable={!disabled && !readOnly}
-            onChange={field.onChange}
-            onBlur={() => field.onBlur?.()}
-          />
-        </div>
-      </FormControl>
+      {/* TipTap has no plain focusable control taking id/aria-invalid; id lands on the wrapper for the label's htmlFor */}
+      <div id={id}>
+        <BlockEditor
+          value={field.value ?? EMPTY_DOC}
+          blocks={blocks}
+          placeholder={placeholder}
+          editable={!disabled && !readOnly}
+          onChange={field.onChange}
+          onBlur={() => field.onBlur?.()}
+        />
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
 import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -45,10 +45,14 @@ function WebhookEndpointInput(props: WebhookEndpointInputProps) {
   const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     defaultValue: DEFAULT_VALUE,
     ...sansHandlers,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const value = field.value as WebhookEndpoint;
 
@@ -76,68 +80,72 @@ function WebhookEndpointInput(props: WebhookEndpointInputProps) {
   };
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <div className={cn("flex flex-col gap-3", className)}>
-          <Input
-            type="url"
-            data-webhook-url
-            value={value.url}
-            onChange={(e) => update({ url: e.target.value })}
-            onBlur={field.onBlur}
-            disabled={disabled}
-            placeholder="https://example.com/webhook"
-          />
-          <Input
-            type="password"
-            data-webhook-secret
-            value={value.secret}
-            onChange={(e) => update({ secret: e.target.value })}
-            disabled={disabled}
-            placeholder="Signing secret"
-          />
-          <div className="flex flex-wrap gap-3">
-            {eventTypes.map((event) => (
-              <label
-                key={event}
-                className="flex items-center gap-2 text-sm font-mono"
-              >
-                <Checkbox
-                  data-event-checkbox
-                  checked={value.eventTypes.includes(event)}
-                  onCheckedChange={(c) => toggleEvent(event, c === true)}
-                  disabled={disabled}
-                />
-                {event}
-              </label>
-            ))}
-          </div>
-          {onTestPing && (
-            <Button
-              type="button"
-              variant="outline"
-              data-test-ping-button
-              onClick={handlePing}
-              disabled={disabled || pinging || !value.url}
+      <div className={cn("flex flex-col gap-3", className)}>
+        <Input
+          type="url"
+          data-webhook-url
+          value={value.url}
+          onChange={(e) => update({ url: e.target.value })}
+          onBlur={field.onBlur}
+          disabled={disabled}
+          placeholder="https://example.com/webhook"
+          id={id}
+          aria-invalid={invalid || undefined}
+        />
+        <Input
+          type="password"
+          data-webhook-secret
+          value={value.secret}
+          onChange={(e) => update({ secret: e.target.value })}
+          disabled={disabled}
+          placeholder="Signing secret"
+        />
+        <div className="flex flex-wrap gap-3">
+          {eventTypes.map((event) => (
+            <label
+              key={event}
+              className="flex items-center gap-2 text-sm font-mono"
             >
-              {pinging ? "Pinging…" : "Send test ping"}
-            </Button>
-          )}
+              <Checkbox
+                data-event-checkbox
+                checked={value.eventTypes.includes(event)}
+                onCheckedChange={(c) => toggleEvent(event, c === true)}
+                disabled={disabled}
+              />
+              {event}
+            </label>
+          ))}
         </div>
-      </FormControl>
+        {onTestPing && (
+          <Button
+            type="button"
+            variant="outline"
+            data-test-ping-button
+            onClick={handlePing}
+            disabled={disabled || pinging || !value.url}
+          >
+            {pinging ? "Pinging…" : "Send test ping"}
+          </Button>
+        )}
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 };
 

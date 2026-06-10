@@ -1,7 +1,12 @@
 import type * as React from "react";
 import { useEffect, useState } from "react";
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
+import {
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
 import {
   AsYouType,
   getCountries,
@@ -9,12 +14,7 @@ import {
   parsePhoneNumber,
   type CountryCode,
 } from "libphonenumber-js";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -53,7 +53,11 @@ function PhoneInput(props: PhoneInputProps) {
   const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
-  const { id, field, isRequired } = useInput(sansHandlers);
+  const { id, field, fieldState, isRequired } = useInput(sansHandlers);
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const countries = allowedCountries ?? (getCountries() as CountryCode[]);
 
@@ -80,53 +84,57 @@ function PhoneInput(props: PhoneInputProps) {
   };
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <div className={cn("flex items-center gap-2", className)} {...rest}>
-          <select
-            data-country-select
-            value={country}
-            onChange={(e) => {
-              const cc = e.target.value as CountryCode;
-              setCountry(cc);
-              writeBack(display, cc);
-            }}
-            disabled={disabled}
-            className="rounded-md border border-input bg-background px-2 py-1 text-sm"
-          >
-            {countries.map((c) => (
-              <option key={c} value={c}>
-                {c} +{getCountryCallingCode(c)}
-              </option>
-            ))}
-          </select>
-          <Input
-            type="tel"
-            value={display}
-            disabled={disabled}
-            onChange={(e) => {
-              const formatter = new AsYouType(country);
-              const formatted = formatter.input(e.target.value);
-              writeBack(formatted, country);
-            }}
-            onBlur={field.onBlur}
-            className="flex-1"
-          />
-        </div>
-      </FormControl>
+      <div className={cn("flex items-center gap-2", className)} {...rest}>
+        <select
+          data-country-select
+          value={country}
+          onChange={(e) => {
+            const cc = e.target.value as CountryCode;
+            setCountry(cc);
+            writeBack(display, cc);
+          }}
+          disabled={disabled}
+          className="rounded-md border border-input bg-background px-2 py-1 text-sm"
+        >
+          {countries.map((c) => (
+            <option key={c} value={c}>
+              {c} +{getCountryCallingCode(c)}
+            </option>
+          ))}
+        </select>
+        <Input
+          type="tel"
+          value={display}
+          disabled={disabled}
+          onChange={(e) => {
+            const formatter = new AsYouType(country);
+            const formatted = formatter.input(e.target.value);
+            writeBack(formatted, country);
+          }}
+          onBlur={field.onBlur}
+          className="flex-1"
+          id={id}
+          aria-invalid={invalid || undefined}
+        />
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 };
 

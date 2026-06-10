@@ -1,13 +1,13 @@
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
+import {
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
 import type { UseEditorOptions } from "@tiptap/react";
 
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import {
   MinimalTiptapEditor,
@@ -43,47 +43,53 @@ function RichTextInput(props: RichTextInputProps) {
     format: _formatProp,
   } = props;
   const resource = useResourceContext(props);
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     ...props,
     source,
     defaultValue,
   });
 
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
+
   const resolvedToolbar = toolbar ?? <RichTextInputToolbar />;
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        {/* Keep ARIA props from FormControl on a native element, not on the TipTap hook options */}
-        <div>
-          <MinimalTiptapEditor
-            {...editorOptions}
-            value={field.value ?? ""}
-            onChange={(value) => {
-              field.onChange(value);
-            }}
-            onBlur={() => {
-              field.onBlur?.();
-            }}
-            output="html"
-            editable={!disabled && !readOnly}
-            toolbar={resolvedToolbar}
-          />
-        </div>
-      </FormControl>
+      {/* TipTap has no plain focusable control taking id/aria-invalid; id lands on the wrapper for the label's htmlFor */}
+      <div id={id}>
+        <MinimalTiptapEditor
+          {...editorOptions}
+          value={field.value ?? ""}
+          onChange={(value) => {
+            field.onChange(value);
+          }}
+          onBlur={() => {
+            field.onBlur?.();
+          }}
+          output="html"
+          editable={!disabled && !readOnly}
+          toolbar={resolvedToolbar}
+        />
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

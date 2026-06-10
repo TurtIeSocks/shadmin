@@ -12,11 +12,12 @@ import {
   useInput,
   useSupportCreateSuggestion,
   useTranslate,
+  ValidationError,
 } from "ra-core";
 import type { ComponentProps, ReactElement } from "react";
 import { useCallback, useEffect } from "react";
 
-import { FormError, FormField, FormLabel } from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import {
   Select,
@@ -146,7 +147,7 @@ function SelectInput(props: SelectInputProps) {
     createValue,
     createHintValue,
   });
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     alwaysOn,
     defaultValue,
     format,
@@ -162,6 +163,10 @@ function SelectInput(props: SelectInputProps) {
     readOnly,
     disabled,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const renderEmptyItemOption = useCallback(() => {
     return typeof emptyText === "string"
@@ -210,27 +215,30 @@ function SelectInput(props: SelectInputProps) {
 
   if (isPending) {
     return (
-      <FormField
-        id={id}
-        name={field.name}
+      <Field
         className={cn("w-full min-w-20", className)}
+        data-invalid={invalid || undefined}
       >
         {label !== "" && label !== false && (
-          <FormLabel>
+          <FieldLabel htmlFor={id}>
             <FieldTitle
               label={label}
               source={source}
               resource={resourceProp}
               isRequired={isRequired}
             />
-          </FormLabel>
+          </FieldLabel>
         )}
         <div className="relative">
           <Skeleton className="w-full h-9" />
         </div>
         <InputHelperText helperText={helperText} />
-        <FormError />
-      </FormField>
+        <FieldError>
+          {invalid && errorMessage ? (
+            <ValidationError error={errorMessage} />
+          ) : null}
+        </FieldError>
+      </Field>
     );
   }
 
@@ -249,21 +257,20 @@ function SelectInput(props: SelectInputProps) {
 
   return (
     <>
-      <FormField
-        id={id}
-        name={field.name}
+      <Field
         className={cn("w-full min-w-20", className)}
+        data-invalid={invalid || undefined}
         {...rest}
       >
         {label !== "" && label !== false && (
-          <FormLabel>
+          <FieldLabel htmlFor={id}>
             <FieldTitle
               label={label}
               source={source}
               resource={resourceProp}
               isRequired={isRequired}
             />
-          </FormLabel>
+          </FieldLabel>
         )}
         <div className="relative">
           <Select
@@ -276,6 +283,8 @@ function SelectInput(props: SelectInputProps) {
             onValueChange={handleChangeWithCreateSupport}
           >
             <SelectTrigger
+              id={id}
+              aria-invalid={invalid || undefined}
               className={cn("w-full transition-all hover:bg-accent")}
               disabled={field.disabled}
             >
@@ -328,8 +337,12 @@ function SelectInput(props: SelectInputProps) {
         <InputHelperText
           helperText={helperText ?? (fetchError as Error | undefined)?.message}
         />
-        <FormError />
-      </FormField>
+        <FieldError>
+          {invalid && errorMessage ? (
+            <ValidationError error={errorMessage} />
+          ) : null}
+        </FieldError>
+      </Field>
       {createElement}
     </>
   );
@@ -343,6 +356,6 @@ type SelectInputProps = ChoicesProps &
     emptyValue?: string | number | boolean | null;
     onChange?: (value: string) => void;
     resettable?: boolean;
-  } & Omit<ComponentProps<typeof FormField>, "id" | "name" | "children">;
+  } & Omit<ComponentProps<typeof Field>, "children">;
 
 export { SelectInput, type SelectInputProps };

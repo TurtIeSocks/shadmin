@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { Switch } from "@/components/ui/switch";
-import { FormError, FormField, FormLabel } from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import type { Validator } from "ra-core";
-import { useInput, FieldTitle } from "ra-core";
+import { useInput, FieldTitle, ValidationError } from "ra-core";
 import { InputHelperText } from "./input-helper-text";
 import type { UnknownValue } from "@/lib/unknown-types";
 import type { ComponentProps } from "react";
@@ -54,7 +54,7 @@ function BooleanInput(props: BooleanInputProps) {
     options,
     ...rest
   } = props;
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     defaultValue,
     format,
     parse,
@@ -69,6 +69,10 @@ function BooleanInput(props: BooleanInputProps) {
     ...rest,
   });
 
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
+
   const handleChange = useCallback(
     (checked: boolean) => {
       field.onChange(checked);
@@ -79,28 +83,33 @@ function BooleanInput(props: BooleanInputProps) {
   );
 
   return (
-    <FormField className={className} id={id} name={field.name}>
-      <div className="flex items-center gap-x-2">
+    <Field className={className} data-invalid={invalid || undefined}>
+      <div className="flex items-center gap-2">
         <Switch
           id={id}
+          aria-invalid={invalid || undefined}
           checked={Boolean(field.value)}
           onFocus={onFocus}
           onCheckedChange={handleChange}
           disabled={disabled || readOnly}
           {...options}
         />
-        <FormLabel htmlFor={id}>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

@@ -13,6 +13,7 @@ import {
   shallowEqual,
   useInput,
   useTranslate,
+  ValidationError,
 } from "ra-core";
 import type {
   DropzoneOptions,
@@ -24,7 +25,7 @@ import { useDropzone } from "react-dropzone";
 import { XCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { FormError, FormField, FormLabel } from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { Button } from "@/components/ui/button.tsx";
 import type { UnknownValue } from "@/lib/unknown-types";
@@ -149,6 +150,10 @@ function FileInput(props: FileInputProps) {
   });
   const files = value ? (Array.isArray(value) ? value : [value]) : [];
 
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
+
   const onDrop = (
     newFiles: File[],
     rejectedFiles: FileRejection[],
@@ -210,13 +215,12 @@ function FileInput(props: FileInputProps) {
   });
 
   return (
-    <FormField
-      id={id}
-      name={name}
+    <Field
       className={cn("w-full", className)}
+      data-invalid={invalid || undefined}
       {...rest}
     >
-      <FormLabel
+      <FieldLabel
         htmlFor={id}
         className={disabled || readOnly ? "cursor-default" : "cursor-pointer"}
       >
@@ -226,7 +230,7 @@ function FileInput(props: FileInputProps) {
           resource={resource}
           isRequired={isRequired}
         />
-      </FormLabel>
+      </FieldLabel>
 
       <div
         {...getRootProps({
@@ -236,14 +240,14 @@ function FileInput(props: FileInputProps) {
             disabled || readOnly
               ? "bg-muted cursor-not-allowed"
               : "bg-muted text-muted-foreground cursor-pointer",
-            fieldState.invalid && "border-destructive",
+            invalid && "border-destructive",
           ),
         })}
       >
         <input
           id={id}
           name={name}
-          aria-invalid={fieldState.invalid || undefined}
+          aria-invalid={invalid || undefined}
           {...getInputProps({
             ...inputPropsOptions,
           })}
@@ -259,7 +263,11 @@ function FileInput(props: FileInputProps) {
       </div>
 
       <InputHelperText helperText={helperText} />
-      <FormError />
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
 
       {children && (
         <div className="previews flex flex-col gap-1">
@@ -281,7 +289,7 @@ function FileInput(props: FileInputProps) {
           ))}
         </div>
       )}
-    </FormField>
+    </Field>
   );
 }
 

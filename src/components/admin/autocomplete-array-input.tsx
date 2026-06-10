@@ -9,12 +9,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   Popover,
   PopoverAnchor,
@@ -36,6 +31,7 @@ import {
   FieldTitle,
   useEvent,
   useSupportCreateSuggestion,
+  ValidationError,
 } from "ra-core";
 import { areIdsEqual } from "@/lib/are-ids-equal";
 import { InputHelperText } from "./input-helper-text";
@@ -152,10 +148,19 @@ function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
     isFromReference,
     setFilters,
   } = useChoicesContext(props);
-  const { id, field, isRequired: _isRequired } = useInput({ ...props, source });
+  const {
+    id,
+    field,
+    fieldState,
+    isRequired: _isRequired,
+  } = useInput({ ...props, source });
   const translate = useTranslate();
   const { placeholder = translate("ra.action.search", { _: "Search..." }) } =
     props;
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const getRecordRepresentation = useGetRecordRepresentation(resource);
   const { getChoiceText, getChoiceValue } = useChoices({
@@ -371,166 +376,170 @@ function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
 
   return (
     <>
-      <FormField className={props.className} id={id} name={field.name}>
+      <Field className={props.className} data-invalid={invalid || undefined}>
         {props.label !== false && (
-          <FormLabel>
+          <FieldLabel htmlFor={id}>
             <FieldTitle
               label={props.label}
               source={props.source ?? source}
               resource={resource}
               isRequired={_isRequired}
             />
-          </FormLabel>
+          </FieldLabel>
         )}
-        <FormControl>
-          <Command
-            onKeyDown={handleKeyDown}
-            shouldFilter={!isFromReference && !matchSuggestion}
-            className="overflow-visible bg-transparent"
+        <Command
+          onKeyDown={handleKeyDown}
+          shouldFilter={!isFromReference && !matchSuggestion}
+          className="overflow-visible bg-transparent"
+        >
+          <Popover
+            open={effectiveOpen}
+            onOpenChange={(isOpen) => {
+              if (!isOpen) setOpen(false);
+            }}
+            modal={modal}
           >
-            <Popover
-              open={effectiveOpen}
-              onOpenChange={(isOpen) => {
-                if (!isOpen) setOpen(false);
+            <PopoverAnchor asChild>
+              <div
+                ref={anchorRef}
+                className="group rounded-md bg-transparent dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
+              >
+                <div className="flex flex-wrap gap-1">
+                  {selectedChoices.map((choice) => (
+                    <Badge key={getChoiceValue(choice)} variant="outline">
+                      {getInputText(choice)}
+                      <button
+                        className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            handleUnselect(choice);
+                          }
+                        }}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                        }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleUnselect(choice);
+                        }}
+                      >
+                        <span className="sr-only">
+                          {translate("ra.action.remove", {
+                            _: "Remove",
+                          })}
+                        </span>
+                        <X className="size-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                  {/* Avoid having the "Search" Icon by not using CommandInput */}
+                  <CommandPrimitive.Input
+                    ref={inputRef}
+                    id={id}
+                    aria-invalid={invalid || undefined}
+                    value={filterValue}
+                    onValueChange={(filter) => {
+                      setFilterValue(filter);
+                      setFilter?.(filter);
+                      requestAnimationFrame(() => {
+                        listRef.current?.scrollTo(0, 0);
+                      });
+                      // We don't want the ChoicesContext to filter the choices if the input
+                      // is not from a reference as it would also filter out the selected values
+                      if (isFromReference) {
+                        debouncedSetFilters(filter);
+                      }
+                    }}
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
+                    onKeyDown={handleInputKeyDown}
+                    placeholder={placeholder}
+                    className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+                  />
+                </div>
+              </div>
+            </PopoverAnchor>
+            <PopoverContent
+              style={{ width: "var(--radix-popover-trigger-width)" }}
+              className="p-0"
+              onOpenAutoFocus={(e) => e.preventDefault()}
+              onCloseAutoFocus={(e) => e.preventDefault()}
+              onInteractOutside={(e) => {
+                if (anchorRef.current?.contains(e.target as Node)) {
+                  e.preventDefault();
+                }
               }}
-              modal={modal}
             >
-              <PopoverAnchor asChild>
-                <div
-                  ref={anchorRef}
-                  className="group rounded-md bg-transparent dark:bg-input/30 border border-input px-3 py-1.75 text-sm transition-all ring-offset-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
-                >
-                  <div className="flex flex-wrap gap-1">
-                    {selectedChoices.map((choice) => (
-                      <Badge key={getChoiceValue(choice)} variant="outline">
-                        {getInputText(choice)}
-                        <button
-                          className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              handleUnselect(choice);
-                            }
-                          }}
+              <CommandList ref={listRef}>
+                {finalChoices.length > 0 ? (
+                  <CommandGroup>
+                    {finalChoices.map((choice) => {
+                      const isCreateItem =
+                        !!createItem && choice?.id === createItem.id;
+                      const choiceText = getChoiceText(
+                        isCreateItem ? createItem : choice,
+                      );
+                      return (
+                        <CommandItem
+                          key={
+                            isCreateItem
+                              ? "__create__"
+                              : getChoiceValue(choice)
+                          }
+                          value={
+                            isCreateItem
+                              ? `?${filterValue}?`
+                              : getChoiceValue(choice)
+                          }
+                          keywords={
+                            isCreateItem || React.isValidElement(choiceText)
+                              ? undefined
+                              : [choiceText]
+                          }
                           onMouseDown={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
                           }}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleUnselect(choice);
-                          }}
-                        >
-                          <span className="sr-only">
-                            {translate("ra.action.remove", {
-                              _: "Remove",
-                            })}
-                          </span>
-                          <X className="size-3" />
-                        </button>
-                      </Badge>
-                    ))}
-                    {/* Avoid having the "Search" Icon by not using CommandInput */}
-                    <CommandPrimitive.Input
-                      ref={inputRef}
-                      value={filterValue}
-                      onValueChange={(filter) => {
-                        setFilterValue(filter);
-                        setFilter?.(filter);
-                        requestAnimationFrame(() => {
-                          listRef.current?.scrollTo(0, 0);
-                        });
-                        // We don't want the ChoicesContext to filter the choices if the input
-                        // is not from a reference as it would also filter out the selected values
-                        if (isFromReference) {
-                          debouncedSetFilters(filter);
-                        }
-                      }}
-                      onBlur={handleBlur}
-                      onFocus={handleFocus}
-                      onKeyDown={handleInputKeyDown}
-                      placeholder={placeholder}
-                      className="ml-2 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
-                    />
-                  </div>
-                </div>
-              </PopoverAnchor>
-              <PopoverContent
-                style={{ width: "var(--radix-popover-trigger-width)" }}
-                className="p-0"
-                onOpenAutoFocus={(e) => e.preventDefault()}
-                onCloseAutoFocus={(e) => e.preventDefault()}
-                onInteractOutside={(e) => {
-                  if (anchorRef.current?.contains(e.target as Node)) {
-                    e.preventDefault();
-                  }
-                }}
-              >
-                <CommandList ref={listRef}>
-                  {finalChoices.length > 0 ? (
-                    <CommandGroup>
-                      {finalChoices.map((choice) => {
-                        const isCreateItem =
-                          !!createItem && choice?.id === createItem.id;
-                        const choiceText = getChoiceText(
-                          isCreateItem ? createItem : choice,
-                        );
-                        return (
-                          <CommandItem
-                            key={
-                              isCreateItem
-                                ? "__create__"
-                                : getChoiceValue(choice)
-                            }
-                            value={
-                              isCreateItem
-                                ? `?${filterValue}?`
-                                : getChoiceValue(choice)
-                            }
-                            keywords={
-                              isCreateItem || React.isValidElement(choiceText)
-                                ? undefined
-                                : [choiceText]
-                            }
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                            onSelect={() => {
-                              if (isCreateItem) {
-                                handleChangeWithCreateSupport(createItem.value);
-                              } else {
-                                setFilterValue("");
-                                if (isFromReference) {
-                                  debouncedSetFilters.cancel();
-                                  setFilters(filterToQuery(""));
-                                }
-                                field.onChange([
-                                  ...values,
-                                  getChoiceValue(choice),
-                                ]);
-                                field.onBlur();
+                          onSelect={() => {
+                            if (isCreateItem) {
+                              handleChangeWithCreateSupport(createItem.value);
+                            } else {
+                              setFilterValue("");
+                              if (isFromReference) {
+                                debouncedSetFilters.cancel();
+                                setFilters(filterToQuery(""));
                               }
-                            }}
-                            className="cursor-pointer"
-                          >
-                            {choiceText}
-                          </CommandItem>
-                        );
-                      })}
-                    </CommandGroup>
-                  ) : (
-                    <div className="px-3 py-2 text-sm text-muted-foreground">
-                      {emptyText}
-                    </div>
-                  )}
-                </CommandList>
-              </PopoverContent>
-            </Popover>
-          </Command>
-        </FormControl>
+                              field.onChange([
+                                ...values,
+                                getChoiceValue(choice),
+                              ]);
+                              field.onBlur();
+                            }
+                          }}
+                          className="cursor-pointer"
+                        >
+                          {choiceText}
+                        </CommandItem>
+                      );
+                    })}
+                  </CommandGroup>
+                ) : (
+                  <div className="px-3 py-2 text-sm text-muted-foreground">
+                    {emptyText}
+                  </div>
+                )}
+              </CommandList>
+            </PopoverContent>
+          </Popover>
+        </Command>
         <InputHelperText helperText={props.helperText} />
-        <FormError />
-      </FormField>
+        <FieldError>
+          {invalid && errorMessage ? (
+            <ValidationError error={errorMessage} />
+          ) : null}
+        </FieldError>
+      </Field>
       {createElement}
     </>
   );

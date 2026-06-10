@@ -4,6 +4,7 @@ import {
   composeValidators,
   useInput,
   useResourceContext,
+  ValidationError,
 } from "ra-core";
 import { useFormContext } from "react-hook-form";
 import Editor, { type Monaco, loader } from "@monaco-editor/react";
@@ -11,12 +12,7 @@ import * as monaco from "monaco-editor";
 import type { editor } from "monaco-editor";
 
 import { Button } from "@/components/ui/button";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
 
@@ -82,10 +78,14 @@ function MonacoJsonInputInner(props: MonacoJsonInputProps) {
     return composeValidators([markersValidate, ...userValidators]);
   }, [markersValidate, validate]);
 
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     ...props,
     validate: composedValidate,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const { trigger } = useFormContext();
 
@@ -171,53 +171,57 @@ function MonacoJsonInputInner(props: MonacoJsonInputProps) {
   );
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <div
-          ref={containerRef}
-          className={cn(
-            "relative rounded-md border overflow-hidden",
-            editorClassName,
-          )}
-          style={{ height: effectiveHeight || height }}
-        >
-          {showFormatButton && (
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              className="absolute top-1 right-1 z-10 h-6 px-2 text-xs"
-              onClick={handleFormat}
-              aria-label="Format JSON"
-            >
-              Format
-            </Button>
-          )}
-          <Editor
-            height="100%"
-            language="json"
-            theme={monacoTheme}
-            value={editorText}
-            path={modelUri}
-            options={editorOptions}
-            onChange={handleEditorChange}
-            onMount={handleEditorMount}
-          />
-        </div>
-      </FormControl>
+      {/* Monaco renders its own textarea; id lands on the container for the label's htmlFor, no aria-invalid carrier */}
+      <div
+        ref={containerRef}
+        id={id}
+        className={cn(
+          "relative rounded-md border overflow-hidden",
+          editorClassName,
+        )}
+        style={{ height: effectiveHeight || height }}
+      >
+        {showFormatButton && (
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            className="absolute top-1 right-1 z-10 h-6 px-2 text-xs"
+            onClick={handleFormat}
+            aria-label="Format JSON"
+          >
+            Format
+          </Button>
+        )}
+        <Editor
+          height="100%"
+          language="json"
+          theme={monacoTheme}
+          value={editorText}
+          path={modelUri}
+          options={editorOptions}
+          onChange={handleEditorChange}
+          onMount={handleEditorMount}
+        />
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

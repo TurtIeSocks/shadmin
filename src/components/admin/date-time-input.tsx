@@ -1,12 +1,7 @@
 import * as React from "react";
 import type { InputProps } from "ra-core";
-import { useInput, FieldTitle } from "ra-core";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { useInput, FieldTitle, ValidationError } from "ra-core";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -57,7 +52,7 @@ function DateTimeInput({
   readOnly,
   ...rest
 }: DateTimeInputProps) {
-  const { field, id, isRequired } = useInput({
+  const { field, fieldState, id, isRequired } = useInput({
     defaultValue,
     onBlur,
     resource,
@@ -69,6 +64,10 @@ function DateTimeInput({
     parse,
     ...rest,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
   const localInputRef = React.useRef<HTMLInputElement | null>(null);
   // DateInput is not a really controlled input to ensure users can start entering a date, go to another input and come back to complete it.
   // This ref stores the value that is passed to the input defaultValue prop to solve this issue.
@@ -165,41 +164,44 @@ function DateTimeInput({
   const inputRef = useForkRef(ref, localInputRef);
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <Input
-          id={id}
-          ref={inputRef}
-          name={name}
-          defaultValue={format(initialDefaultValueRef.current)}
-          key={inputKey}
-          type="datetime-local"
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          className={cn(
-            "ra-input",
-            `ra-input-${source}`,
-            "scheme-light dark:scheme-dark relative [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-3 [&::-webkit-calendar-picker-indicator]:opacity-100 appearance-none",
-            inputClassName,
-          )}
-          disabled={disabled || readOnly}
-          readOnly={readOnly}
-        />
-      </FormControl>
+      <Input
+        ref={inputRef}
+        name={name}
+        defaultValue={format(initialDefaultValueRef.current)}
+        key={inputKey}
+        type="datetime-local"
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        className={cn(
+          "ra-input",
+          `ra-input-${source}`,
+          "scheme-light dark:scheme-dark relative [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-3 [&::-webkit-calendar-picker-indicator]:opacity-100 appearance-none",
+          inputClassName,
+        )}
+        disabled={disabled || readOnly}
+        readOnly={readOnly}
+        id={id}
+        aria-invalid={invalid || undefined}
+      />
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

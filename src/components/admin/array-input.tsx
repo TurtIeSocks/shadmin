@@ -6,13 +6,14 @@ import {
   useSourceContext,
   sanitizeInputRestProps,
   ArrayInputBase,
+  ValidationError,
 } from "ra-core";
+import { useFormContext, useFormState } from "react-hook-form";
 
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "../ui/skeleton";
 import { InputHelperText } from "@/components/admin/input-helper-text";
-import { FormError, FormField } from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 
 /**
  * Creates a list of sub-forms for editing arrays of data embedded inside a record.
@@ -67,6 +68,13 @@ function ArrayInput(props: ArrayInputProps) {
   const parentSourceContext = useSourceContext();
   const finalSource = parentSourceContext.getSource(arraySource);
 
+  const { getFieldState } = useFormContext();
+  const formState = useFormState({ name: finalSource });
+  const fieldState = getFieldState(finalSource, formState);
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
+
   if (isPending) {
     return loading != null ? (
       <>{loading}</>
@@ -76,31 +84,35 @@ function ArrayInput(props: ArrayInputProps) {
   }
 
   return (
-    <FormField
+    <Field
       className={cn(
         "ra-input",
         `ra-input-${finalSource}`,
         className,
         "w-full flex flex-col gap-2",
       )}
-      name={finalSource}
+      data-invalid={invalid || undefined}
       {...sanitizeInputRestProps(rest)}
     >
-      <Label className="text-muted-foreground text-sm">
+      <FieldLabel className="text-muted-foreground text-sm">
         <FieldTitle
           label={label}
           source={arraySource}
           resource={resourceFromProps}
           isRequired={isRequired(validate)}
         />
-      </Label>
+      </FieldLabel>
       <ArrayInputBase {...props} defaultValue={defaultValue}>
         {children}
       </ArrayInputBase>
 
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

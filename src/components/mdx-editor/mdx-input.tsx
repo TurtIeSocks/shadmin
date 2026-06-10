@@ -4,15 +4,15 @@ import {
   type MDXEditorMethods,
   type MDXEditorProps,
 } from "@mdxeditor/editor";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
+import {
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
 import type { InputProps } from "ra-core";
 
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { useTheme } from "@/hooks/use-theme";
 import { cn } from "@/lib/utils";
@@ -70,11 +70,15 @@ function MdxInput(props: MdxInputProps) {
     format: _formatProp,
   } = props;
   const resource = useResourceContext(props);
-  const { id, field, isRequired } = useInput({
+  const { id, field, fieldState, isRequired } = useInput({
     ...props,
     source,
     defaultValue,
   });
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
 
   const editorRef = React.useRef<MDXEditorMethods | null>(null);
   // Capture the initial markdown once so the (uncontrolled) editor isn't
@@ -109,32 +113,35 @@ function MdxInput(props: MdxInputProps) {
   const isReadOnly = !!disabled || !!readOnly;
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        <div>
-          <MemoizedEditor
-            editorRef={editorRef}
-            initialMarkdown={initialMarkdownRef.current}
-            readOnly={isReadOnly}
-            mdxProps={themedMdxProps}
-            onChange={field.onChange}
-            onBlur={field.onBlur}
-          />
-        </div>
-      </FormControl>
+      {/* MDXEditor has no plain focusable control taking id/aria-invalid; id lands on the wrapper for the label's htmlFor */}
+      <div id={id}>
+        <MemoizedEditor
+          editorRef={editorRef}
+          initialMarkdown={initialMarkdownRef.current}
+          readOnly={isReadOnly}
+          mdxProps={themedMdxProps}
+          onChange={field.onChange}
+          onBlur={field.onBlur}
+        />
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 };
 

@@ -1,13 +1,17 @@
 import type { InputProps } from "ra-core";
-import { FieldTitle, useInput, useResourceContext } from "ra-core";
+import {
+  FieldTitle,
+  useInput,
+  useResourceContext,
+  ValidationError,
+} from "ra-core";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+  FieldError,
+  FieldLegend,
+  FieldSet,
+} from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import type { SubscriptionPlan } from "./subscription-plan-field";
 import { cn } from "@/lib/utils";
@@ -43,42 +47,51 @@ function SubscriptionPlanPicker(props: SubscriptionPlanPickerProps) {
   const { onChange: _stripChange, onBlur: _stripBlur, ...sansHandlers } = props;
   void _stripChange;
   void _stripBlur;
-  const { id, field, isRequired } = useInput(sansHandlers);
+  const { id, field, fieldState, isRequired } = useInput(sansHandlers);
+
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
+
   const currentId = (field.value as string | null | undefined) ?? null;
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <FieldSet className={cn("gap-3", className)} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLegend variant="label">
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLegend>
       )}
-      <FormControl>
-        <div
-          role="radiogroup"
-          className="grid gap-3 sm:grid-cols-3"
-          aria-disabled={disabled}
-        >
-          {plans.map((plan) => (
-            <PlanCard
-              key={plan.id}
-              plan={plan}
-              selected={currentId === plan.id}
-              recommended={recommendedPlanId === plan.id}
-              disabled={disabled}
-              onSelect={() => !disabled && field.onChange(plan.id)}
-            />
-          ))}
-        </div>
-      </FormControl>
+      <div
+        id={id}
+        role="radiogroup"
+        className="grid gap-3 sm:grid-cols-3"
+        aria-disabled={disabled}
+        aria-invalid={invalid || undefined}
+      >
+        {plans.map((plan) => (
+          <PlanCard
+            key={plan.id}
+            plan={plan}
+            selected={currentId === plan.id}
+            recommended={recommendedPlanId === plan.id}
+            disabled={disabled}
+            onSelect={() => !disabled && field.onChange(plan.id)}
+          />
+        ))}
+      </div>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </FieldSet>
   );
 };
 

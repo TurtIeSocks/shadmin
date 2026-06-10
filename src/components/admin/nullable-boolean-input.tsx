@@ -4,8 +4,9 @@ import {
   useInput,
   useResourceContext,
   useTranslate,
+  ValidationError,
 } from "ra-core";
-import { FormError, FormField, FormLabel } from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   Select,
   SelectContent,
@@ -94,6 +95,10 @@ function NullableBooleanInput(props: NullableBooleanInputProps) {
     ...rest,
   });
 
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
+
   // field.value will be "" / "true" / "false" thanks to format. Map "" to sentinel.
   const selectValue =
     field.value === "" || field.value == null ? NULL_OPTION : field.value;
@@ -104,20 +109,19 @@ function NullableBooleanInput(props: NullableBooleanInputProps) {
   };
 
   return (
-    <FormField
-      id={id}
-      name={field.name}
+    <Field
+      data-invalid={invalid || undefined}
       className={cn("w-full min-w-20", className)}
     >
       {label !== false && label !== "" && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={sourceProp}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
       <Select
         // Key based on value: avoids Radix issue where onValueChange fires
@@ -128,8 +132,9 @@ function NullableBooleanInput(props: NullableBooleanInputProps) {
         disabled={disabled || readOnly}
       >
         <SelectTrigger
+          id={id}
           className="w-full transition-all hover:bg-accent"
-          aria-invalid={fieldState.invalid || undefined}
+          aria-invalid={invalid || undefined}
         >
           <SelectValue />
         </SelectTrigger>
@@ -152,8 +157,12 @@ function NullableBooleanInput(props: NullableBooleanInputProps) {
         </SelectContent>
       </Select>
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 
