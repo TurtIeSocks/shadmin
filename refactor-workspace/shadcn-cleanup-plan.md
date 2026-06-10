@@ -157,3 +157,28 @@ Wrap sub-fields in `FieldGroup`; per-row controls follow the relevant pattern ab
 5. **`ui/color-picker` kept**, only nit-fixed — replacing it with a registry component is a separate decision.
 6. **No autonomous push or merge to `main`.** Work committed on the feature branch, left for review.
 7. **`linear-progress` animate-pulse left as-is** — it's an indeterminate progress indicator, not a skeleton.
+
+---
+
+## 7. Execution log (2026-06-09, delegate-mode autonomous run)
+
+Branch `c/nostalgic-almeida-09c189`. 5 commits, not pushed/merged. Verified: typecheck 0, lint 0, full suite **1034/1035** (the 1 failure is a pre-existing date flake in `calendar-list.spec`, unrelated — flagged as a separate task).
+
+**DONE**
+- ✅ Phase 1 sweeps — dead `ui/form.tsx` removed; `animate-pulse`→`Skeleton`; raw colors→tokens; `space-y`→`gap`; color-picker `size-*`; 8 inline button spinners→`ui/Spinner`+`data-icon`; SaveButton redundant disabled styling dropped. (`982dd4f08`)
+- ✅ Phase 2 — **all 28 inputs** migrated off the `admin/form` fork onto `ui/field` (TextInput reference `0e88e5ca9`; the other 27 `14d3c40d7`). Choice groups use `FieldSet`+`FieldLegend`; error from `useInput().fieldState`; `data-invalid`/`aria-invalid` wiring.
+- ✅ Fork teardown — deleted `admin/form.tsx`, `hooks/use-form-field.ts` + their tests/story; `Form` kept exported; `input-helper-text` → `FieldDescription`; registry config + `registry.json` regenerated with the `field` dep. (`c3f069cbc`)
+- ✅ Second fork — `admin/spinner.tsx` deduped onto `ui/spinner` (wrapper preserving size/show API). (`brjtdps15` commit)
+
+**DEFERRED (recommended follow-ups, not blocking)**
+- ⏭️ **`data-icon` broad adoption** (~30 button files) + dropping manual icon `size-*`. Cosmetic convention; large blast radius; wants visual review. Done opportunistically only on the spinner buttons so far.
+- ⏭️ **Manual disabled styling tail** — `list-pagination.tsx:171`, `filter-button.tsx:360` (case-by-case: only strip if the element is a shadcn `Button`/disabled-aware). `file-input` dropzone `cursor-not-allowed` intentionally left.
+- ⏭️ **`ui/color-picker/`** — non-shadcn custom component; only nit-fixed. Consider replacing with a registry component.
+- ⏭️ **Field-display read views** (`labeled.tsx`, `*-field.tsx`) — not touched; a separate `Field`-alignment pass.
+
+**INTENTIONALLY LEFT (flagged, not bugs)**
+- `configurable.tsx` amber accent (deliberate edit-mode highlight; no semantic token).
+- `auth-layout.tsx` always-dark marketing panel (`bg-zinc-900 text-white`; mapping to `bg-foreground` would wrongly invert in dark mode).
+- `linear-progress.tsx` `animate-pulse` (indeterminate progress, not a skeleton).
+
+**a11y note:** the modern `Field` primitive does not auto-wire `aria-describedby` (helper/error) the way the old fork's `FormControl` did; `FieldError` uses `role="alert"`. This matches shadcn's own Field. If strict `aria-describedby` linkage is desired, add it in a follow-up.
