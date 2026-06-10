@@ -1,47 +1,28 @@
 import { cn } from "@/lib/utils";
-import type { VariantProps } from "class-variance-authority";
-import { cva } from "class-variance-authority";
-import { Loader2 } from "lucide-react";
+import { Spinner as UISpinner } from "@/components/ui/spinner";
 
-const spinnerVariants = cva("flex-col items-center justify-center", {
-  variants: {
-    show: {
-      true: "flex",
-      false: "hidden",
-    },
-  },
-  defaultVariants: {
-    show: true,
-  },
-});
+const sizeClasses = {
+  small: "size-6",
+  medium: "size-8",
+  large: "size-12",
+} as const;
 
-const loaderVariants = cva("animate-spin text-primary", {
-  variants: {
-    size: {
-      small: "size-6",
-      medium: "size-8",
-      large: "size-12",
-    },
-  },
-  defaultVariants: {
-    size: "medium",
-  },
-});
-
-interface SpinnerContentProps
-  extends
-    VariantProps<typeof spinnerVariants>,
-    VariantProps<typeof loaderVariants> {
+interface SpinnerContentProps {
+  size?: keyof typeof sizeClasses;
+  show?: boolean;
   className?: string;
   "aria-label"?: string;
 }
 
 /**
- * Animated spinner component for loading states.
+ * Animated spinner for loading states.
+ *
+ * Thin wrapper over the shadcn `ui/spinner` that layers on the admin kit's
+ * `size` scale, an optional `show` gate, and the primary color.
  */
 function Spinner({
-  size,
-  show,
+  size = "medium",
+  show = true,
   className,
   "aria-label": ariaLabel,
 }: SpinnerContentProps) {
@@ -49,13 +30,10 @@ function Spinner({
     return null;
   }
   return (
-    <span
-      className={spinnerVariants({ show })}
-      role="status"
+    <UISpinner
       aria-label={ariaLabel ?? "Loading"}
-    >
-      <Loader2 className={cn(loaderVariants({ size }), className)} />
-    </span>
+      className={cn("text-primary", sizeClasses[size], className)}
+    />
   );
 }
 
