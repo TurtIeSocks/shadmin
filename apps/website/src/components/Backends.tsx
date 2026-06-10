@@ -50,9 +50,9 @@ export function Backends() {
                   any authentication provider.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {backends.map((backend, index) => (
+                  {backends.map((backend) => (
                     <div
-                      key={index}
+                      key={backend.name}
                       className="inline-flex items-center rounded-full border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/5 text-secondary-foreground hover:bg-primary/15 text-sm py-1 px-3"
                     >
                       <img
@@ -73,6 +73,7 @@ export function Backends() {
                   <a
                     href="https://marmelab.com/shadcn-admin-kit/docs/dataproviders/"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Learn More
                   </a>

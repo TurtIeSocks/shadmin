@@ -69,6 +69,7 @@ function RatingInput(props: RatingInputProps) {
           const v = (i + 1) * stepValue;
           const selected = currentValue >= v;
           return (
+            // biome-ignore lint/a11y/useSemanticElements: custom star visuals can't be rendered with native <input type="radio">; button[role=radio] inside the role="radiogroup" is the standard accessible rating pattern
             <button
               key={v}
               type="button"
@@ -107,7 +108,7 @@ const Star = ({ filled, half }: { filled: boolean; half: boolean }) => (
     strokeWidth={1.5}
     fill={filled ? "currentColor" : "none"}
     className="text-yellow-500"
-    aria-hidden
+    aria-hidden="true"
   >
     <polygon
       points={

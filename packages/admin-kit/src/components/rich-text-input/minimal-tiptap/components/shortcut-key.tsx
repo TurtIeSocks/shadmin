@@ -14,6 +14,7 @@ const ShortcutKey = ({ ref, className, keys, ...props }: ShortcutKeyProps) => {
 
   return (
     <span
+      role="img"
       aria-label={ariaLabel}
       className={cn("inline-flex items-center gap-0.5", className)}
       {...props}

@@ -642,6 +642,7 @@ const DataTableLoadingSkeleton = ({
               </TableHead>
             ) : null}
             {Array.from({ length: nbColumns }).map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: fixed-count loading skeleton placeholders with no data identity and stable order
               <TableHead key={i}>
                 <Skeleton className="h-4 w-24" />
               </TableHead>
@@ -650,6 +651,7 @@ const DataTableLoadingSkeleton = ({
         </TableHeader>
         <TableBody>
           {Array.from({ length: nbFakeLines }).map((_, rowIndex) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: fixed-count loading skeleton placeholders with no data identity and stable order
             <TableRow key={rowIndex}>
               {hasBulkActions ? (
                 <TableCell className="w-8">
@@ -657,6 +659,7 @@ const DataTableLoadingSkeleton = ({
                 </TableCell>
               ) : null}
               {Array.from({ length: nbColumns }).map((_, colIndex) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: fixed-count loading skeleton placeholders with no data identity and stable order
                 <TableCell key={colIndex} className="py-2">
                   <Skeleton className="h-4 w-full max-w-48" />
                 </TableCell>
@@ -1079,6 +1082,7 @@ function DataTableLoading({
           <TableRow>
             {hasBulkActions && <TableHead className="w-8" />}
             {Array.from({ length: nbChildren }).map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: fixed-count loading skeleton placeholders with no data identity and stable order
               <TableHead key={i}>
                 <Skeleton className="h-4 w-24" />
               </TableHead>
@@ -1087,9 +1091,11 @@ function DataTableLoading({
         </TableHeader>
         <TableBody>
           {Array.from({ length: nbFakeLines }).map((_, rowIdx) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: fixed-count loading skeleton placeholders with no data identity and stable order
             <TableRow key={rowIdx} className="opacity-50">
               {hasBulkActions && <TableCell />}
               {Array.from({ length: nbChildren }).map((_, colIdx) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: fixed-count loading skeleton placeholders with no data identity and stable order
                 <TableCell key={colIdx}>
                   <Skeleton className="h-4 w-3/4" />
                 </TableCell>

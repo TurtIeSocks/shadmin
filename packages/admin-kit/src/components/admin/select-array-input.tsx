@@ -223,7 +223,7 @@ function SelectArrayInput(props: SelectArrayInputProps) {
 
   const createItem = create || onCreate ? getCreateItem() : null;
 
-  const handleClear = (e: React.MouseEvent) => {
+  const handleClear = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     field.onChange([]);
   };
@@ -286,10 +286,17 @@ function SelectArrayInput(props: SelectArrayInputProps) {
             </div>
             <div className="flex items-center gap-1 ml-2 shrink-0">
               {selectedChoices.length > 0 && !disabled && !readOnly ? (
+                // biome-ignore lint/a11y/useSemanticElements: the combobox trigger is itself a <button>; a nested <button> is invalid HTML, so the clear control is a focusable role="button" span
                 <span
                   role="button"
+                  tabIndex={0}
                   className="p-0 pointer-events-auto hover:bg-transparent text-muted-foreground opacity-50 hover:opacity-100"
                   onClick={handleClear}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleClear(e);
+                    }
+                  }}
                   onPointerDown={(e) => e.stopPropagation()}
                   aria-label={translate("ra.action.clear_input_value", {
                     _: "Clear value",

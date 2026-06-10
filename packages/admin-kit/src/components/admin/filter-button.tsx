@@ -364,6 +364,20 @@ function FilterButtonMenuItem(props: FilterButtonMenuItemProps) {
       onClick={
         filter.props.disabled ? undefined : displayed ? handleHide : handleShow
       }
+      onKeyDown={
+        filter.props.disabled
+          ? undefined
+          : (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                if (displayed) {
+                  handleHide();
+                } else {
+                  handleShow();
+                }
+              }
+            }
+      }
       ref={setRefs}
       role="menuitemcheckbox"
       aria-checked={displayed}

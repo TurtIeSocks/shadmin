@@ -62,10 +62,7 @@ export function Pricing() {
                 <span className="text-sm">{tier.priceFreq}</span>
               </p>
 
-              <ul
-                role="list"
-                className="mt-8 space-y-2 text-sm leading-6 text-gray-700 xl:mt-10"
-              >
+              <ul className="mt-8 space-y-2 text-sm leading-6 text-gray-700 xl:mt-10">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex gap-x-3">
                     <Check aria-hidden="true" className="h-6 w-5 flex-none" />

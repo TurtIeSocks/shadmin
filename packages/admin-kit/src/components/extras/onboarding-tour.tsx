@@ -112,6 +112,17 @@ const OnboardingTour = ({
     onComplete?.();
   };
 
+  // Keyboard parity for the click-to-dismiss backdrop: Escape ends the tour.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: finish only reads stable setters; re-binding the listener on every render is unnecessary
+  useEffect(() => {
+    if (!active) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") finish();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [active]);
+
   if (!active || !currentStep) return null;
 
   const tooltip = rect ? computeTooltipPosition(rect, placement) : null;
@@ -126,6 +137,8 @@ const OnboardingTour = ({
       {/* Spotlight overlay */}
       {rect ? (
         <>
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: modal scrim; click-to-dismiss is a mouse convenience, keyboard users dismiss via Escape (document handler above) and the visible Skip button */}
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: modal scrim; click-to-dismiss is a mouse convenience, keyboard parity is provided by the Escape handler and the Skip button */}
           <div
             className="pointer-events-auto fixed inset-0 bg-black/50 transition-opacity"
             style={{
@@ -151,10 +164,14 @@ const OnboardingTour = ({
           />
         </>
       ) : (
-        <div
-          className="pointer-events-auto fixed inset-0 bg-black/50"
-          onClick={finish}
-        />
+        <>
+          {/* biome-ignore lint/a11y/noStaticElementInteractions: modal scrim; click-to-dismiss is a mouse convenience, keyboard users dismiss via Escape (document handler above) and the visible Skip button */}
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: modal scrim; click-to-dismiss is a mouse convenience, keyboard parity is provided by the Escape handler and the Skip button */}
+          <div
+            className="pointer-events-auto fixed inset-0 bg-black/50"
+            onClick={finish}
+          />
+        </>
       )}
       {/* Tooltip card */}
       {tooltip ? (

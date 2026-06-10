@@ -122,6 +122,7 @@ const DraggableCard = <R extends RaRecord = RaRecord>({
   });
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: dnd-kit drag listeners are spread on this element and the card may contain nested interactive content; a native <button> would conflict, so role="button" with full keyboard support is the accessible draggable-card pattern
     <div
       ref={setNodeRef}
       {...attributes}

@@ -293,6 +293,7 @@ function SelectInput(props: SelectInputProps) {
               {resettable && field.value && field.value !== emptyValue ? (
                 // <span> instead of <button>: SelectTrigger is itself a <button>
                 // and HTML forbids nested interactive controls.
+                // biome-ignore lint/a11y/useSemanticElements: nested <button> inside the trigger <button> is invalid HTML; focusable role="button" span with keyboard handler is the accessible alternative
                 <span
                   role="button"
                   tabIndex={0}

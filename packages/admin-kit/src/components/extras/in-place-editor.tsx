@@ -200,8 +200,18 @@ function InPlaceEditor<
     switch (state.state) {
       case "reading":
         return (
+          // biome-ignore lint/a11y/useSemanticElements: click-to-edit wrapper around arbitrary (possibly interactive) children; a native <button> can't contain interactive content, so role="button" with keyboard support is the accessible trigger
           <div
+            role="button"
+            tabIndex={0}
+            aria-label={translate("ra.action.edit", { _: "Edit" })}
             onClick={handleEdit}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleEdit();
+              }
+            }}
             className={cn(
               "cursor-pointer rounded px-1 py-0.5 hover:bg-muted/50",
             )}
@@ -213,6 +223,7 @@ function InPlaceEditor<
       case "editing":
         return (
           <Form onSubmit={handleSave} record={record}>
+            {/* biome-ignore lint/a11y/noStaticElementInteractions: presentational wrapper around the edit form; onKeyDown/onBlur manage form keyboard behavior (Escape-cancel, blur-commit) for the nested controls, they are not a primary interaction */}
             <div
               onKeyDown={handleKeyDown}
               onBlur={handleBlur}

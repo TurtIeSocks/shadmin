@@ -23,6 +23,7 @@ export function Hero() {
                   <a
                     href="https://marmelab.com/shadcn-admin-kit/docs/install/"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Get started
                   </a>
@@ -32,6 +33,7 @@ export function Hero() {
                     href="https://marmelab.com/shadcn-admin-kit/demo"
                     // className="text-sm font-semibold leading-6 text-gray-900"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Test it online <span aria-hidden="true">→</span>
                   </a>

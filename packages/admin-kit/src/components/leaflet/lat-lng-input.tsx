@@ -112,7 +112,7 @@ function LatLngInput({
       data-slot="lat-lng-input"
       data-testid="lat-lng-input"
     >
-      {label ? <label className="text-sm font-medium">{label}</label> : null}
+      {label ? <span className="text-sm font-medium">{label}</span> : null}
       <div
         style={{ height, width: "100%" }}
         className="overflow-hidden rounded-md border"

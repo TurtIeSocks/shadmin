@@ -188,8 +188,13 @@ const HotspotSvg = () => {
         viewBox={`0 0 ${IMG_WIDTH} ${IMG_HEIGHT}`}
         width={IMG_WIDTH}
         height={IMG_HEIGHT}
+        role="img"
+        aria-labelledby="hotspot-screenshot-title"
         className="mx-auto rounded-2xl shadow-lg ring-1 ring-gray-900/10"
       >
+        <title id="hotspot-screenshot-title">
+          Shadcn Admin Kit dashboard screenshot
+        </title>
         <image
           href={HeroScreenshot}
           x="0"
@@ -206,7 +211,7 @@ const HotspotSvg = () => {
           opacity="1"
         >
           <div className="absolute left-0 top-0 pointer-events-none opacity-0 duration-150 ease-in-out transition-opacity group-hover/all:opacity-100 group-hover/all:z-3 bg-gray-0 bg-opacity-20 backdrop-blur-sm w-full h-full" />
-          <svg height="0" width="0">
+          <svg height="0" width="0" aria-hidden="true">
             <defs>
               {Object.entries(HOTSPOTS).map(([key, hotspot]) => (
                 <clipPath id={`clip-${key}`} key={key}>

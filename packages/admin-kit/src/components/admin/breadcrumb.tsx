@@ -107,6 +107,7 @@ function Breadcrumb({ children, ref }: BreadcrumbProps) {
               children,
               (child, index) =>
                 child && (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: keys arbitrary React children by position (React.Children); no stable per-child identity available
                   <React.Fragment key={index}>
                     {child}
                     {index < React.Children.count(children) - 1 ? (

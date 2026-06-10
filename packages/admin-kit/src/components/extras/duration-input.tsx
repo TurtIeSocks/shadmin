@@ -93,7 +93,7 @@ function DurationInput(props: DurationInputProps) {
   return (
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FieldLabel htmlFor={id}>
+        <FieldLabel htmlFor={units.length > 0 ? `${id}-${units[0]}` : id}>
           <FieldTitle
             label={label}
             source={source}
@@ -103,9 +103,10 @@ function DurationInput(props: DurationInputProps) {
         </FieldLabel>
       )}
       <div className={cn("flex items-end gap-2", className)} {...rest}>
-        {units.map((u, i) => (
+        {units.map((u) => (
           <label
             key={u}
+            htmlFor={`${id}-${u}`}
             className="flex flex-col items-center text-xs text-muted-foreground"
           >
             <Input
@@ -121,7 +122,7 @@ function DurationInput(props: DurationInputProps) {
               onBlur={field.onBlur}
               className="w-16"
               aria-label={UNIT_LABEL[u]}
-              id={i === 0 ? id : undefined}
+              id={`${id}-${u}`}
               aria-invalid={invalid || undefined}
             />
             <span>{UNIT_LABEL[u]}</span>

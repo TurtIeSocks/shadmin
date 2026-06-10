@@ -58,8 +58,8 @@ export function AdvancedCapabilities() {
                   experience.
                 </p>
                 <dl className="my-10 max-w-xl space-y-2 text-base leading-7 text-white lg:max-w-none">
-                  {features.map((feature, index) => (
-                    <div key={index} className="relative pl-9">
+                  {features.map((feature) => (
+                    <div key={feature.name} className="relative pl-9">
                       <dt className="font-bold">
                         <Check
                           aria-hidden="true"
@@ -78,6 +78,7 @@ export function AdvancedCapabilities() {
                   <a
                     href="https://marmelab.com/shadcn-admin-kit/docs/install/"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Learn More
                   </a>

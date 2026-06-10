@@ -80,11 +80,23 @@ const TreeRow = <R extends RaRecord>({
     ? iconMap[String(node.record[iconSource] ?? "")]
     : undefined;
   return (
-    <div data-tree-row data-id={node.record.id}>
+    <div
+      data-tree-row
+      data-id={node.record.id}
+      role="treeitem"
+      aria-expanded={hasChildren ? expanded : undefined}
+      tabIndex={0}
+      onClick={() => onSelect(node.record)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect(node.record);
+        }
+      }}
+    >
       <div
         className="flex cursor-pointer items-center gap-1 rounded-sm px-1 py-1 text-sm hover:bg-accent"
         style={{ paddingLeft: `${depth * 1.25 + 0.25}rem` }}
-        onClick={() => onSelect(node.record)}
       >
         {hasChildren ? (
           <button
@@ -110,7 +122,8 @@ const TreeRow = <R extends RaRecord>({
         <span className="truncate">{label}</span>
       </div>
       {expanded && hasChildren ? (
-        <div data-tree-children>
+        // biome-ignore lint/a11y/useSemanticElements: ARIA tree pattern; role="group" wraps child treeitems inside role="tree" — <fieldset> would be semantically wrong here
+        <div data-tree-children role="group">
           {node.children.map((child) => (
             <TreeRow
               key={String(child.record.id)}

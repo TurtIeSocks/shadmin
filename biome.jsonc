@@ -29,21 +29,18 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      // a11y: the old eslint setup had no jsx-a11y coverage; every fix below
-      // requires DOM/behavior changes, which are frozen during the toolchain
-      // swap. Re-enabling these (and fixing the ~70 hits) is a flagged follow-up.
       "a11y": {
-        "noLabelWithoutControl": "off",
-        "noNoninteractiveElementToInteractiveRole": "off",
-        "noRedundantRoles": "off",
-        "noStaticElementInteractions": "off",
-        "noSvgWithoutTitle": "off",
-        "useAriaPropsSupportedByRole": "off",
-        "useButtonType": "off",
-        "useFocusableInteractive": "off",
-        "useKeyWithClickEvents": "off",
-        "useSemanticElements": "off",
-        "useValidAnchor": "off"
+        "noLabelWithoutControl": "error",
+        "noNoninteractiveElementToInteractiveRole": "error",
+        "noRedundantRoles": "error",
+        "noStaticElementInteractions": "error",
+        "noSvgWithoutTitle": "error",
+        "useAriaPropsSupportedByRole": "error",
+        "useButtonType": "error",
+        "useFocusableInteractive": "error",
+        "useKeyWithClickEvents": "error",
+        "useSemanticElements": "error",
+        "useValidAnchor": "error"
       },
       "correctness": {
         // children passed through React.createElement(props) in data-table.tsx
@@ -54,16 +51,12 @@
         "useHookAtTopLevel": "error"
       },
       "security": {
-        // Fix auto-adds rel attributes (DOM/behavior change) to 12 website
-        // links; old toolchain never enforced this. Flagged follow-up.
-        "noBlankTarget": "off",
+        "noBlankTarget": "error",
         // Single intentional use: website renders its own static HTML strings.
         "noDangerouslySetInnerHtml": "off"
       },
       "suspicious": {
-        // 27 hits; choosing stable keys changes React reconciliation behavior —
-        // frozen during the swap. Flagged follow-up.
-        "noArrayIndexKey": "off",
+        "noArrayIndexKey": "error",
         // `(map[k] ??= []).push(x)` and `while ((m = re.exec(s)))` idioms are
         // used deliberately.
         "noAssignInExpressions": "off",

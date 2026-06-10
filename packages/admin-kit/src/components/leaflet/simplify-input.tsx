@@ -120,7 +120,7 @@ function SimplifyInput({
 
   return (
     <div className="flex flex-col gap-2" data-slot="simplify-input">
-      {label ? <label className="text-sm font-medium">{label}</label> : null}
+      {label ? <span className="text-sm font-medium">{label}</span> : null}
       {previewGeom == null ? (
         <div
           style={{ height, width: "100%" }}

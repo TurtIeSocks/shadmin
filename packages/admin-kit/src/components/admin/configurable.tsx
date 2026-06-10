@@ -101,6 +101,7 @@ function Configurable(props: ConfigurableProps) {
 
   return (
     <PreferenceKeyContextProvider value={prefixedPreferenceKey}>
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: presentational wrapper around app content; mouse/focus handlers only reveal the nested keyboard-accessible Customize button (hover + focus-within affordance), they are not a primary interaction */}
       <span
         className={cn(
           "relative inline-block",
@@ -111,6 +112,16 @@ function Configurable(props: ConfigurableProps) {
         )}
         onMouseEnter={isEnabled ? () => setIsHovered(true) : undefined}
         onMouseLeave={isEnabled ? () => setIsHovered(false) : undefined}
+        onFocus={isEnabled ? () => setIsHovered(true) : undefined}
+        onBlur={
+          isEnabled
+            ? (e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                  setIsHovered(false);
+                }
+              }
+            : undefined
+        }
       >
         {children}
         {showButton && (

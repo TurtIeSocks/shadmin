@@ -167,6 +167,7 @@ const Assistant = ({
             ) : (
               <div className="flex flex-col gap-2">
                 {messages.map((m, idx) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: AssistantMessage (public API type) carries no id; the list is append-only (never reordered or spliced), so index is stable
                   <MessageBubble key={idx} message={m} />
                 ))}
                 {streaming ? (

@@ -64,6 +64,7 @@ function RatingField<RecordType extends UnknownRecord = UnknownRecord>({
     <span
       {...sanitizeFieldRestProps(rest)}
       className={`inline-flex items-center gap-1 ${className ?? ""}`}
+      role="img"
       aria-label={`${numericValue} out of ${max}`}
     >
       <span className="inline-flex">{stars}</span>
@@ -102,7 +103,7 @@ function Star({ kind }: { kind: "filled" | "half" | "empty" }) {
       fill={fill}
       data-rating-star={kind}
       className="text-yellow-500"
-      aria-hidden
+      aria-hidden="true"
     >
       <defs>
         <linearGradient id="rating-half">

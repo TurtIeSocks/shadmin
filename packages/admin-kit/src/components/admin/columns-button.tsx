@@ -193,6 +193,7 @@ function ColumnsSelector({ children }: ColumnsSelectorProps) {
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
           {columnFilter && (
             <button
+              type="button"
               onClick={() => setColumnFilter("")}
               className="absolute right-8 top-2 size-4 text-muted-foreground"
               aria-label="Clear"

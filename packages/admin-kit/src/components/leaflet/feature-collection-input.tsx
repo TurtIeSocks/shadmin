@@ -57,7 +57,7 @@ function FeatureCollectionInput({
   );
   return (
     <div className="flex flex-col gap-1" data-slot="feature-collection-input">
-      {label ? <label className="text-sm font-medium">{label}</label> : null}
+      {label ? <span className="text-sm font-medium">{label}</span> : null}
       <BaseMap
         zoom={zoom}
         defaultCenter={defaultCenter}

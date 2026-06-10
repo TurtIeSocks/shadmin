@@ -54,12 +54,11 @@ function PrevNextButtons<RecordType extends RaRecord = RaRecord>(
 
   if (isPending) {
     return (
-      <div
-        role="navigation"
+      <nav
         className={cn("inline-flex items-center gap-2 min-h-[34px]", className)}
       >
         <Skeleton className="h-1 w-24" />
-      </div>
+      </nav>
     );
   }
   if (error) {
@@ -75,11 +74,7 @@ function PrevNextButtons<RecordType extends RaRecord = RaRecord>(
   }
 
   return (
-    <nav
-      role="navigation"
-      className={cn("inline-flex items-center gap-2", className)}
-      ref={ref}
-    >
+    <nav className={cn("inline-flex items-center gap-2", className)} ref={ref}>
       {hasPrev && prevPath ? (
         <Link
           to={prevPath}

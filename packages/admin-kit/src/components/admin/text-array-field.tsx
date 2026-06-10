@@ -63,6 +63,7 @@ function TextArrayField<RecordType extends UnknownRecord = UnknownRecord>(
       {...sanitizeFieldRestProps(rest)}
     >
       {(data as ReactNode[]).map((item, index) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: field value is an array of primitives that may contain duplicates (e.g. ["a","a"]); index disambiguates equal values
         <Badge key={`${String(item)}-${index}`} variant={variant}>
           {item != null && typeof item !== "string" ? String(item) : item}
         </Badge>

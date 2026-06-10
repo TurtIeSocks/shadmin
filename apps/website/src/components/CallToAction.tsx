@@ -11,7 +11,11 @@ export function CallToAction() {
           Then customize every detail to fit your unique requirements.
         </p>
         <Button asChild className="mt-10" size="lg" variant="outline">
-          <a href="https://marmelab.com/shadcn-admin-kit/docs" target="_blank">
+          <a
+            href="https://marmelab.com/shadcn-admin-kit/docs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Get started
           </a>
         </Button>

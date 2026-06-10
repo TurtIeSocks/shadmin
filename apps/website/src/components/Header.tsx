@@ -17,7 +17,7 @@ export function Header() {
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center gap-x-2">
-            <a href="#" aria-label="Home">
+            <a href="/" aria-label="Home">
               <Logo className="h-8 w-auto" />
             </a>
             <h1 className="text-xl md:text-2xl font-extrabold leading-none tracking-tight text-slate-900 font-heading">
@@ -42,6 +42,7 @@ export function Header() {
                     href="https://marmelab.com/shadcn-admin-kit/demo"
                     target="_blank"
                     className="flex-1"
+                    rel="noopener noreferrer"
                   >
                     E-Commerce
                   </a>
@@ -51,6 +52,7 @@ export function Header() {
                     href="https://marmelab.com/atomic-crm-demo/"
                     target="_blank"
                     className="flex-1"
+                    rel="noopener noreferrer"
                   >
                     CRM
                   </a>
@@ -62,6 +64,7 @@ export function Header() {
               <a
                 href="https://github.com/marmelab/shadcn-admin-kit"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <img
                   src={GithubLogo}
@@ -101,6 +104,7 @@ export function Header() {
                     href="https://marmelab.com/shadcn-admin-kit/demo"
                     target="_blank"
                     className="flex-1"
+                    rel="noopener noreferrer"
                   >
                     Demo E-Commerce
                   </a>
@@ -110,6 +114,7 @@ export function Header() {
                     href="https://marmelab.com/atomic-crm-demo/"
                     target="_blank"
                     className="flex-1"
+                    rel="noopener noreferrer"
                   >
                     Demo CRM
                   </a>
@@ -125,6 +130,7 @@ export function Header() {
                       href="https://github.com/marmelab/shadcn-admin-kit"
                       target="_blank"
                       className="flex-1"
+                      rel="noopener noreferrer"
                     >
                       <img
                         src={GithubLogo}

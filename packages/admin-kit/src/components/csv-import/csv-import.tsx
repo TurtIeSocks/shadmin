@@ -287,6 +287,7 @@ const CsvImportPreviewStep = () => {
           </thead>
           <tbody>
             {validations.slice(0, 50).map((v, idx) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: CSV preview rows have no unique id and may be byte-identical; row position is the displayed identity (#idx+1) and the slice never reorders
               <tr key={idx} className={v.ok ? "" : "bg-destructive/10"}>
                 <td className="p-2">{idx + 1}</td>
                 {Object.keys(mapping).map((f) => (

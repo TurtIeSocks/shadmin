@@ -49,6 +49,7 @@ function SimpleShowLayout({
           child
         );
         return (
+          // biome-ignore lint/suspicious/noArrayIndexKey: keys arbitrary React children by position (React.Children); no stable per-child identity available
           <Fragment key={index}>
             {labeled}
             {divider != null && index < childArray.length - 1 && divider}

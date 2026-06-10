@@ -53,9 +53,11 @@ function KeyboardShortcut({
   return (
     <div className={cn("opacity-70", className)} {...rest}>
       {keyboardShortcut.split(">").map((sequence, sequenceIndex, sequences) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: shortcut tokens are positional primitives that may repeat (e.g. "mod" twice); index disambiguates duplicates in a fixed split
         <React.Fragment key={`${sequence}-${sequenceIndex}`}>
           {sequence.split("+").map((key, keyIndex) => (
             <kbd
+              // biome-ignore lint/suspicious/noArrayIndexKey: shortcut tokens are positional primitives that may repeat (e.g. "mod" twice); index disambiguates duplicates in a fixed split
               key={`${key}-${keyIndex}`}
               className="mx-px inline-block whitespace-nowrap rounded-md border border-border px-[5px] py-[4px] text-[11px] leading-[10px] text-foreground align-middle shadow-[inset_0_-1px_0_var(--border)]"
             >

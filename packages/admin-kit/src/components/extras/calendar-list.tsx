@@ -459,10 +459,19 @@ const DroppableDayCell = ({
 }) => {
   const dayKey = format(day, "yyyy-MM-dd");
   const { setNodeRef, isOver } = useDroppable({ id: dayKey });
+  const selectSlot = () => {
+    onSelectSlot?.({
+      startISO: startOfDay(day).toISOString(),
+      endISO: endOfDay(day).toISOString(),
+      allDay: true,
+    });
+  };
   return (
+    // biome-ignore lint/a11y/useSemanticElements: CSS-grid calendar (not an HTML table); role="gridcell" inside the role="grid" container is the correct ARIA pattern
     <div
       ref={setNodeRef}
       role="gridcell"
+      tabIndex={0}
       data-day={dayKey}
       data-today={isToday || undefined}
       data-over={isOver || undefined}
@@ -474,13 +483,14 @@ const DroppableDayCell = ({
       )}
       onClick={(ev) => {
         if (ev.target !== ev.currentTarget) return;
-        const slotStart = startOfDay(day);
-        const slotEnd = endOfDay(day);
-        onSelectSlot?.({
-          startISO: slotStart.toISOString(),
-          endISO: slotEnd.toISOString(),
-          allDay: true,
-        });
+        selectSlot();
+      }}
+      onKeyDown={(ev) => {
+        if (ev.target !== ev.currentTarget) return;
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          selectSlot();
+        }
       }}
     >
       {children}
@@ -550,6 +560,7 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
   const today = new Date();
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: CSS-grid calendar layout (not tabular data); role="grid" is the correct ARIA pattern for this widget
     <div
       className="flex flex-1 flex-col"
       role="grid"
@@ -606,10 +617,19 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
             );
           }
 
+          const selectDaySlot = () => {
+            onSelectSlot?.({
+              startISO: startOfDay(day).toISOString(),
+              endISO: endOfDay(day).toISOString(),
+              allDay: true,
+            });
+          };
           return (
+            // biome-ignore lint/a11y/useSemanticElements: CSS-grid calendar (not an HTML table); role="gridcell" inside the role="grid" container is the correct ARIA pattern
             <div
               key={day.toISOString()}
               role="gridcell"
+              tabIndex={0}
               data-day={format(day, "yyyy-MM-dd")}
               data-today={isToday || undefined}
               className={cn(
@@ -619,13 +639,14 @@ const CalendarMonthView = <R extends RaRecord = RaRecord>({
               )}
               onClick={(ev) => {
                 if (ev.target !== ev.currentTarget) return;
-                const slotStart = startOfDay(day);
-                const slotEnd = endOfDay(day);
-                onSelectSlot?.({
-                  startISO: slotStart.toISOString(),
-                  endISO: slotEnd.toISOString(),
-                  allDay: true,
-                });
+                selectDaySlot();
+              }}
+              onKeyDown={(ev) => {
+                if (ev.target !== ev.currentTarget) return;
+                if (ev.key === "Enter" || ev.key === " ") {
+                  ev.preventDefault();
+                  selectDaySlot();
+                }
               }}
             >
               {cellContent}
@@ -766,7 +787,11 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
           );
         })}
       </div>
-      <div className="grid flex-1 grid-cols-[3rem_repeat(7,minmax(0,1fr))]">
+      {/* biome-ignore lint/a11y/useSemanticElements: CSS-grid calendar layout (not tabular data); role="grid" is the correct ARIA pattern for this widget */}
+      <div
+        className="grid flex-1 grid-cols-[3rem_repeat(7,minmax(0,1fr))]"
+        role="grid"
+      >
         {HOURS.map((h) => (
           <Fragment key={h}>
             <div className="border-b border-r p-1 text-right text-xs text-muted-foreground">
@@ -781,18 +806,31 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
                 const eStart = e.start;
                 return eStart >= cellStart && eStart <= cellEnd;
               });
+              const selectHourSlot = () => {
+                onSelectSlot?.({
+                  startISO: cellStart.toISOString(),
+                  endISO: cellEnd.toISOString(),
+                  allDay: false,
+                });
+              };
               return (
+                // biome-ignore lint/a11y/useSemanticElements: CSS-grid calendar (not an HTML table); role="gridcell" inside the role="grid" container is the correct ARIA pattern
                 <div
                   key={`${d.toISOString()}-${h}`}
+                  role="gridcell"
+                  tabIndex={0}
                   className="min-h-10 border-b border-r p-0.5"
                   data-slot-start={cellStart.toISOString()}
                   onClick={(ev) => {
                     if (ev.target !== ev.currentTarget) return;
-                    onSelectSlot?.({
-                      startISO: cellStart.toISOString(),
-                      endISO: cellEnd.toISOString(),
-                      allDay: false,
-                    });
+                    selectHourSlot();
+                  }}
+                  onKeyDown={(ev) => {
+                    if (ev.target !== ev.currentTarget) return;
+                    if (ev.key === "Enter" || ev.key === " ") {
+                      ev.preventDefault();
+                      selectHourSlot();
+                    }
                   }}
                 >
                   {slotEvents.map((e) => (

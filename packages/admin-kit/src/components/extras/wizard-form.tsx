@@ -302,8 +302,7 @@ function WizardFormStep(props: WizardStepProps) {
   }
   return (
     <FormGroupContextProvider name={__stepKey}>
-      <div
-        role="group"
+      <fieldset
         data-wizard-step={__stepKey}
         aria-hidden={__hidden || undefined}
         style={__hidden ? { display: "none" } : undefined}
@@ -313,7 +312,7 @@ function WizardFormStep(props: WizardStepProps) {
           <p className="text-sm text-muted-foreground">{description}</p>
         ) : null}
         {children}
-      </div>
+      </fieldset>
     </FormGroupContextProvider>
   );
 }

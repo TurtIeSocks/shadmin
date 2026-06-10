@@ -337,7 +337,7 @@ function SavedQueriesList({
           });
           return (
             <li
-              key={index}
+              key={JSON.stringify(query.value)}
               className={cn(
                 "flex items-stretch list-none",
                 isSelected && "filter-list-item-selected",

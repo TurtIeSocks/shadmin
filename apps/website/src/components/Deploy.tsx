@@ -43,9 +43,9 @@ export function Deploy() {
                   and no surprises.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {hosts.map((host, index) => (
+                  {hosts.map((host) => (
                     <div
-                      key={index}
+                      key={host.name}
                       className="inline-flex items-center rounded-full border font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/5 text-secondary-foreground hover:bg-primary/15 text-sm py-1 px-3"
                     >
                       <img

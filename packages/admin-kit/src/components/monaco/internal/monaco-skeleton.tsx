@@ -10,6 +10,7 @@ function MonacoSkeleton({ height, className }: MonacoSkeletonProps) {
     <div
       className={cn("rounded-md border bg-muted/30 animate-pulse", className)}
       style={{ height: typeof height === "number" ? `${height}px` : height }}
+      role="status"
       aria-busy="true"
       aria-label="Loading editor"
     />

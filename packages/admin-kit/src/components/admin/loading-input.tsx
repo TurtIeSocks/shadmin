@@ -44,9 +44,8 @@ function LoadingInput({
   const ready = useTimeout(timeout);
 
   return (
-    <div
+    <fieldset
       className={cn("grid gap-2", fullWidth ? "w-full" : undefined, className)}
-      role="group"
       data-slot="loading-input"
     >
       {label != null ? <Label aria-disabled>{label}</Label> : null}
@@ -69,7 +68,7 @@ function LoadingInput({
       {helperText ? (
         <p className="text-muted-foreground text-sm">{helperText}</p>
       ) : null}
-    </div>
+    </fieldset>
   );
 }
 

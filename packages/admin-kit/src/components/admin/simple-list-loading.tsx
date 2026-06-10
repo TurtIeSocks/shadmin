@@ -53,6 +53,7 @@ function SimpleListLoading({
   return (
     <ul className={cn("flex flex-col", className)}>
       {Array.from({ length: nbFakeLines }).map((_, key) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: fixed-count loading skeleton placeholders with no data identity and stable order
         <li key={key} className="flex items-center gap-3 px-3 py-2">
           {hasLeftAvatarOrIcon && (
             <Skeleton className="size-10 shrink-0 rounded-full" />

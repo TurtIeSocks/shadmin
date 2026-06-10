@@ -62,14 +62,20 @@ function ReferenceRecordConfig({
 }: BlockConfigProps<RefAttrs>) {
   return (
     <div className="flex flex-col gap-2 p-1">
-      <label className="text-xs">Resource</label>
+      <label className="text-xs" htmlFor="reference-record-resource">
+        Resource
+      </label>
       <input
+        id="reference-record-resource"
         className="rounded border px-2 py-1 text-sm"
         value={attrs.resource ?? ""}
         onChange={(e) => onChange({ resource: e.target.value })}
       />
-      <label className="text-xs">Record id</label>
+      <label className="text-xs" htmlFor="reference-record-id">
+        Record id
+      </label>
       <input
+        id="reference-record-id"
         className="rounded border px-2 py-1 text-sm"
         value={attrs.id == null ? "" : String(attrs.id)}
         onChange={(e) =>

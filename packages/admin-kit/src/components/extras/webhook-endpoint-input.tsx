@@ -115,9 +115,11 @@ function WebhookEndpointInput(props: WebhookEndpointInputProps) {
           {eventTypes.map((event) => (
             <label
               key={event}
+              htmlFor={`webhook-event-${event}`}
               className="flex items-center gap-2 text-sm font-mono"
             >
               <Checkbox
+                id={`webhook-event-${event}`}
                 data-event-checkbox
                 checked={value.eventTypes.includes(event)}
                 onCheckedChange={(c) => toggleEvent(event, c === true)}

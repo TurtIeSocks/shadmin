@@ -130,8 +130,6 @@ function FieldToggle(props: FieldToggleProps) {
   return (
     <li
       key={source}
-      role="option"
-      aria-selected={selected}
       draggable={onMove ? "true" : undefined}
       onDrag={onMove ? handleDrag : undefined}
       onDragStart={onMove ? handleDragStart : undefined}

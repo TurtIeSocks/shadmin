@@ -334,8 +334,11 @@ const DonutChart = ({
         outerRadius="90%"
         paddingAngle={2}
       >
-        {data.map((_, i) => (
-          <Cell key={i} fill={colors[i % colors.length]} />
+        {data.map((entry, i) => (
+          <Cell
+            key={String(entry[labelField])}
+            fill={colors[i % colors.length]}
+          />
         ))}
       </Pie>
       <Tooltip />

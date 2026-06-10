@@ -156,9 +156,11 @@ function TextArrayInput(props: TextArrayInputProps) {
 
   const defaultTagRenderer = () =>
     values.map((value, index) => (
+      // biome-ignore lint/suspicious/noArrayIndexKey: tag values are user-entered primitives that may duplicate; index keeps keys unique and matches handleRemoveValue(index)
       <Badge key={`${value}-${index}`} variant="outline">
         {value}
         <button
+          type="button"
           className="ml-1 cursor-pointer rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
           onKeyDown={(e) => {
             if (e.key === "Enter") {

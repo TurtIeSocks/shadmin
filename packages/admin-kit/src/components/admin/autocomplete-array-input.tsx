@@ -409,6 +409,7 @@ function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
                     <Badge key={getChoiceValue(choice)} variant="outline">
                       {getInputText(choice)}
                       <button
+                        type="button"
                         className="ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
                         onKeyDown={(e) => {
                           if (e.key === "Enter") {
