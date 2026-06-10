@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, EmptyValue } from "./shapes/geometry-collection-field.stories";
+import { Basic, EmptyValue } from "./geometry-collection-field.stories";
 
 const findAsync = async (
   container: Element,

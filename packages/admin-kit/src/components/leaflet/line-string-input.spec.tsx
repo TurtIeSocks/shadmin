@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "./shapes/line-string-input.stories";
+import { Basic } from "./line-string-input.stories";
 
 describe("<LineStringInput />", () => {
   it("renders the labeled map input with a Leaflet container", async () => {

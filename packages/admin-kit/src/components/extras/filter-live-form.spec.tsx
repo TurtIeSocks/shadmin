@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "../admin/filter-live-form.stories";
+import { Basic } from "./filter-live-form.stories";
 
 describe("<FilterLiveForm />", () => {
   it("renders the live filter inputs alongside the data table", async () => {

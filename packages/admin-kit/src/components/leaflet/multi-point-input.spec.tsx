@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "./shapes/multi-point-input.stories";
+import { Basic } from "./multi-point-input.stories";
 
 describe("<MultiPointInput />", () => {
   it("renders the labeled map input with a Leaflet container", async () => {

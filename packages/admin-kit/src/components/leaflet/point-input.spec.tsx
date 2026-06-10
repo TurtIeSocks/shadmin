@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "./shapes/point-input.stories";
+import { Basic } from "./point-input.stories";
 
 describe("<PointInput />", () => {
   it("renders the labeled map input with a Leaflet container", async () => {

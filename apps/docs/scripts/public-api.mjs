@@ -14,6 +14,9 @@ const COMPONENT_DIRS = [
   "csv-import",
   "mdx-editor",
   "rich-text-input",
+  "realtime",
+  "block-editor",
+  "monaco",
 ];
 
 /**

@@ -37,10 +37,33 @@ const CATEGORY_COLORS = [
   "#14b8a6",
   "#f97316",
 ];
-const categoriesWithColor = generated.categories.map((category, i) => ({
-  ...category,
-  color: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
-}));
+// Seed a deterministic 2-level parent hierarchy onto the (otherwise flat)
+// generated categories so the `<TreeList>` on the Categories list page has a
+// real tree to render. Each child references an existing root category id via
+// `parent_id`; roots have `parent_id: null`. Keyed by the stable seed `name`
+// so the mapping survives reloads. Names not listed here stay top-level roots.
+const CATEGORY_PARENT_BY_NAME: Record<string, string> = {
+  beard: "people",
+  sports: "people",
+  cars: "travel",
+  city: "travel",
+  flowers: "nature",
+  animals: "nature",
+  food: "business",
+  tech: "business",
+};
+const categoryIdByName = new Map(
+  generated.categories.map((c) => [c.name as string, c.id]),
+);
+const categoriesWithColor = generated.categories.map((category, i) => {
+  const parentName = CATEGORY_PARENT_BY_NAME[category.name as string];
+  const parentId = parentName ? categoryIdByName.get(parentName) : undefined;
+  return {
+    ...category,
+    color: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
+    parent_id: parentId ?? null,
+  };
+});
 
 // Add a `metadata` JSON field to a few seed products so the
 // MonacoJsonInput on the products edit page has something to show.

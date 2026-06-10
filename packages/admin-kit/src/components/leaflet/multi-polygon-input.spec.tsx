@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "./shapes/multi-polygon-input.stories";
+import { Basic } from "./multi-polygon-input.stories";
 
 describe("<MultiPolygonInput />", () => {
   it("renders the labeled map input with a Leaflet container", async () => {

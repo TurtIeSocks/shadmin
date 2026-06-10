@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "./geocoding/reverse-geocode-field.stories";
+import { Basic } from "./reverse-geocode-field.stories";
 
 /**
  * Reverse geocoding makes a real Nominatim HTTP request when coordinates are

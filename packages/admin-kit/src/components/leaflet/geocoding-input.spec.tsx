@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { userEvent } from "@vitest/browser/context";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "./geocoding/geocoding-input.stories";
+import { Basic } from "./geocoding-input.stories";
 
 /**
  * Live Nominatim calls only fire after the user has typed at least `minChars`
