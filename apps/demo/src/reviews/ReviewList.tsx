@@ -1,0 +1,279 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { useCallback } from "react";
+import { useCreatePath, useTranslate } from "ra-core";
+import { Link, matchPath, useLocation, useNavigate } from "react-router";
+import { X } from "lucide-react";
+import {
+  BulkDeleteButton,
+  DataTable,
+  List,
+  ReferenceField,
+  TextInput,
+  ReferenceInput,
+  SingleFieldList,
+  AutocompleteInput,
+} from "shadcn-admin-kit/components/admin";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarProvider,
+} from "shadcn-admin-kit/components/ui/sidebar";
+import { Button } from "shadcn-admin-kit/components/ui/button";
+import { Card, CardContent } from "shadcn-admin-kit/components/ui/card";
+import { cn } from "shadcn-admin-kit/lib/utils";
+
+import { RatingField } from "shadcn-admin-kit/components/extras/rating-field";
+import { FullNameField } from "../customers/FullNameField";
+import { ReviewEdit } from "./ReviewEdit";
+import { BulkApproveButton } from "./BulkApproveButton";
+import { BulkRejectButton } from "./BulkRejectButton";
+import { useIsMobile } from "../../hooks/use-mobile";
+import type { Review } from "../types";
+
+const filters = [
+  <TextInput key="q" source="q" placeholder="Search" label={false} alwaysOn />,
+  <ReferenceInput
+    key="customer_id"
+    source="customer_id"
+    reference="customers"
+    sort={{ field: "last_name", order: "ASC" }}
+    alwaysOn
+  >
+    <AutocompleteInput placeholder="Filter by customer" label={false} />
+  </ReferenceInput>,
+  <ReferenceInput
+    key="product_id"
+    source="product_id"
+    reference="products"
+    sort={{ field: "name", order: "ASC" }}
+    alwaysOn
+  >
+    <AutocompleteInput placeholder="Filter by product" label={false} />
+  </ReferenceInput>,
+  <AutocompleteInput
+    key="status"
+    source="status"
+    placeholder="Filter by status"
+    choices={[
+      { id: "accepted", name: "Approved" },
+      { id: "rejected", name: "Rejected" },
+      { id: "pending", name: "Pending" },
+    ]}
+    optionText={(choice) => (
+      <>
+        <span
+          className={cn(
+            "size-2 rounded-full",
+            choice.id === "accepted"
+              ? "bg-green-400 dark:bg-green-800"
+              : choice.id === "rejected"
+                ? "bg-red-400 dark:bg-red-800"
+                : "bg-yellow-400 dark:bg-yellow-800",
+          )}
+        />
+        {choice.name}
+      </>
+    )}
+    label={false}
+    alwaysOn
+  />,
+];
+
+export const ReviewList = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const translate = useTranslate();
+
+  const handleClose = useCallback(() => {
+    navigate("/reviews");
+  }, [navigate]);
+  const match = matchPath("/reviews/:id", location.pathname);
+  const isMobile = useIsMobile();
+  return (
+    <>
+      <List
+        sort={{ field: "date", order: "DESC" }}
+        perPage={25}
+        filters={isMobile ? undefined : filters}
+        pagination={match ? false : undefined}
+        queryOptions={{ meta: { embed: ["customer", "product"] } }}
+      >
+        {isMobile ? (
+          <ReviewListMobile />
+        ) : (
+          <ReviewListDesktop
+            selectedRow={
+              match ? parseInt(match.params.id || "0", 10) : undefined
+            }
+          />
+        )}
+      </List>
+      <SidebarProvider
+        open={!!match}
+        style={{
+          // @ts-ignore
+          "--sidebar-width": "25rem",
+          "--sidebar-width-mobile": "20rem",
+        }}
+        className="min-h-0 h-auto"
+      >
+        <Sidebar collapsible="offcanvas" variant="sidebar" side="right">
+          {!!match && (
+            <>
+              <SidebarHeader>
+                <h3 className="flex justify-between items-center text-lg font-semibold mb-1 ml-1">
+                  {translate("resources.reviews.detail")}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleClose}
+                    className="cursor-pointer"
+                  >
+                    <X className="size-4" />
+                  </Button>
+                </h3>
+              </SidebarHeader>
+              <SidebarContent className="px-4 pt-1 pb-4">
+                <ReviewEdit id={match.params.id || 0} onCancel={handleClose} />
+              </SidebarContent>
+            </>
+          )}
+        </Sidebar>
+      </SidebarProvider>
+    </>
+  );
+};
+
+const ReviewListMobile = () => {
+  const location = useLocation();
+  const match = matchPath("/reviews/:id", location.pathname);
+  if (!match) {
+    return (
+      <SingleFieldList<Review>
+        className="flex-col"
+        render={(record) => (
+          <Link
+            to={`/reviews/${record.id}`}
+            state={{ _scrollToTop: true }}
+            className="no-underline"
+          >
+            <Card>
+              <CardContent>
+                <ReferenceField
+                  source="customer_id"
+                  reference="customers"
+                  link={false}
+                >
+                  <FullNameField />
+                </ReferenceField>
+                <div className="my-1 flex gap-2">
+                  <RatingField source="rating" max={5} /> on{" "}
+                  <ReferenceField
+                    source="product_id"
+                    reference="products"
+                    link={false}
+                  />
+                </div>
+                <div className="max-w-[18em] overflow-hidden text-ellipsis whitespace-nowrap">
+                  {record.comment}
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        )}
+      />
+    );
+  }
+  return <ReviewEdit id={match.params.id || 0} />;
+};
+
+const ReviewListDesktop = ({ selectedRow }: { selectedRow?: number }) => {
+  const navigate = useNavigate();
+  const createPath = useCreatePath();
+  return (
+    <DataTable
+      rowClick={(id, resource) => {
+        // As we display the edit view in a drawer, we don't the default rowClick behavior that will scroll to the top of the page
+        // So we navigate manually without specifying the _scrollToTop state
+        navigate(
+          createPath({
+            resource,
+            id,
+            type: "edit",
+          }),
+        );
+        // Disable the default rowClick behavior
+        return false;
+      }}
+      rowClassName={(record: Review) => {
+        let className = "";
+        if (selectedRow != undefined && record.id === selectedRow) {
+          className = "bg-input";
+        }
+        switch (record.status) {
+          case "accepted":
+            className +=
+              " border-l-green-400 dark:border-l-green-800 border-l-5";
+            break;
+          case "pending":
+            className +=
+              " border-l-yellow-400 dark:border-l-yellow-800 border-l-5";
+            break;
+          case "rejected":
+            className += " border-l-red-400 dark:border-l-red-800 border-l-5";
+            break;
+          default:
+            throw new Error(
+              `Unknown status: ${record.status}. Please check your data.`,
+            );
+        }
+        return className;
+      }}
+      bulkActionButtons={
+        <>
+          <BulkApproveButton />
+          <BulkRejectButton />
+          <BulkDeleteButton />
+        </>
+      }
+      className="[&_thead_tr]:border-l-transparent [&_thead_tr]:border-l-5"
+    >
+      <DataTable.Col
+        source="date"
+        render={(record) => new Date(record.date).toLocaleDateString()}
+      />
+      <DataTable.Col
+        source="customer.last_name"
+        label="resources.reviews.fields.customer_id"
+      >
+        <ReferenceField source="customer_id" reference="customers" link={false}>
+          <FullNameField />
+        </ReferenceField>
+      </DataTable.Col>
+      <DataTable.Col
+        source="product.reference"
+        label="resources.reviews.fields.product_id"
+      >
+        <ReferenceField source="product_id" reference="products" link={false} />
+      </DataTable.Col>
+      <DataTable.Col source="rating">
+        <RatingField source="rating" max={5} />
+      </DataTable.Col>
+      <DataTable.Col
+        source="comment"
+        cellClassName="max-w-[18em] overflow-hidden text-ellipsis whitespace-nowrap"
+      />
+      <DataTable.Col<Review>
+        source="status"
+        render={(record) =>
+          ({
+            accepted: "Approved",
+            rejected: "Rejected",
+            pending: "Pending",
+          })[record.status]
+        }
+      />
+    </DataTable>
+  );
+};
