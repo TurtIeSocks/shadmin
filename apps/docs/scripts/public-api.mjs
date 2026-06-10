@@ -72,19 +72,45 @@ function resolveSourceFile(sourceDir, relPath) {
 }
 
 /**
- * Read top-level named exports from a source file's
- * `export const/function/class/type/interface` declarations.
+ * Read top-level named exports from a source file. Handles both export styles
+ * present in the component tree:
+ *   (a) inline declarations — `export const/function/class/type/interface Foo`
+ *   (b) export-list blocks — `export { Foo, type FooProps };`, including the
+ *       multi-line, `export type { ... }`, and re-export
+ *       (`export { Bar as Baz } from "..."`) forms.
+ * Most component files use (b) since commit 35b0ba039 normalized them to a
+ * bottom-of-file export list; ~9 files still use (a).
  * @param {string} filePath
  */
 function collectNamedExportsFromFile(filePath) {
   const src = readFileSync(filePath, "utf-8");
   /** @type {string[]} */
   const names = [];
-  const re = /^export (?:const|function|class|type|interface) (\w+)/gm;
+
+  // (a) inline declarations
+  const inlineRe = /^export (?:const|function|class|type|interface) (\w+)/gm;
   let m;
-  while ((m = re.exec(src)) !== null) {
+  while ((m = inlineRe.exec(src)) !== null) {
     names.push(m[1]);
   }
+
+  // (b) export-list blocks. Capture the brace body (spans newlines via
+  // `[^}]`); each specifier may be `Foo`, `type FooProps`, or `X as Y`.
+  const blockRe = /^export\s+(?:type\s+)?\{([^}]*)\}/gm;
+  while ((m = blockRe.exec(src)) !== null) {
+    for (const raw of m[1].split(",")) {
+      // strip a per-specifier `type ` prefix, then take the exported name
+      // (the alias after `as`, when present).
+      const entry = raw.trim().replace(/^type\s+/, "");
+      if (!entry) continue;
+      const asMatch = entry.match(/\bas\s+(\w+)$/);
+      const name = asMatch ? asMatch[1] : entry;
+      if (/^\w+$/.test(name) && name !== "default") {
+        names.push(name);
+      }
+    }
+  }
+
   return names;
 }
 
