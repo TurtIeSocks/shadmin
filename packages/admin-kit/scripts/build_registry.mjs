@@ -15,7 +15,7 @@ import path from "node:path";
 
 const cwd = process.cwd();
 const registryPath = path.resolve(cwd, "registry.json");
-const outputDir = path.resolve(cwd, "public/r");
+const outputDir = path.resolve(cwd, "dist/r");
 const registryItemSchema = "https://ui.shadcn.com/schema/registry-item.json";
 
 // The shadcn registry builder currently OOMs on this large, highly-connected block.

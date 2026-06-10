@@ -26,7 +26,7 @@ echo "Building registry"
 make build-registry
 
 echo "Serving registry locally on port 8080"
-python3 -m http.server -d ./public 8080 &
+python3 -m http.server -d ./dist 8080 &
 SERVER_PID=$!
 
 echo "Creating new Vite app in a temp folder for admin block"
