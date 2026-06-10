@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import type { InferredTypeMap } from "ra-core";
@@ -111,7 +110,6 @@ function EditViewGuesser(
         ),
       )
       .sort();
-    // eslint-disable-next-line no-console
     console.log(
       `Guessed Edit:
 
@@ -130,7 +128,6 @@ ${representation}
     </Edit>
 );`,
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasRecord, resource, enableLog]);
 
   return <EditView {...rest}>{child}</EditView>;

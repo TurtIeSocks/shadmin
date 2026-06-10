@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import type { RaRecord } from "ra-core";
@@ -134,7 +133,6 @@ function ListViewGuesser(
         ),
       )
       .sort();
-    // eslint-disable-next-line no-console
     console.log(
       `Guessed List:
 
@@ -153,7 +151,6 @@ ${inferredChild.getRepresentation()}
     </List>
 );`,
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasData, resource, enableLog]);
 
   return <ListView {...rest}>{child}</ListView>;

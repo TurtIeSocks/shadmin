@@ -59,7 +59,6 @@ function RecenterOnChange({ position }: RecenterOnChangeProps) {
   const map = useMap();
   useEffect(() => {
     map.setView(position, map.getZoom(), { animate: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position[0], position[1]]);
   return null;
 }

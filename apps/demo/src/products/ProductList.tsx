@@ -81,18 +81,18 @@ const ImageThumbnail = () => {
   const isSelected = selectedIds?.includes(product.id) ?? false;
   return (
     <div className="relative">
-      <div
-        className="absolute top-2 left-2 z-10"
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          onToggleItem(product.id);
-        }}
-      >
+      <div className="absolute top-2 left-2 z-10">
         <Checkbox
           checked={isSelected}
           aria-label={`Select ${product.reference}`}
           className="bg-white/90 border-zinc-400"
+          onClick={(e) => {
+            // Stop the surrounding product <Link> from navigating when the
+            // checkbox is clicked.
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onCheckedChange={() => onToggleItem(product.id)}
         />
       </div>
       <Link to={`/products/${product.id}`}>

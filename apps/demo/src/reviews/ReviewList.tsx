@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useCallback } from "react";
 import { useCreatePath, useTranslate } from "ra-core";
 import { Link, matchPath, useLocation, useNavigate } from "react-router";

@@ -58,7 +58,6 @@ const useRegisterCommand = (action: CommandAction) => {
   useEffect(() => {
     registerCommand(action);
     return () => unregisterCommand(action.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [action.id]);
 };
 

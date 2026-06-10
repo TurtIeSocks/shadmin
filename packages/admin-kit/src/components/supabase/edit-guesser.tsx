@@ -87,7 +87,6 @@ const SupabaseEditGuesserView = (
     setChild(form.getElement());
 
     if (!enableLog) return;
-    // eslint-disable-next-line no-console
     console.log(
       `Guessed Edit:\n\nexport const ${capitalize(
         singularize(resource),

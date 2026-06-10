@@ -72,7 +72,6 @@ const SupabaseShowGuesserView = (
     setChild(layout.getElement());
 
     if (!enableLog) return;
-    // eslint-disable-next-line no-console
     console.log(
       `Guessed Show:\n\nexport const ${capitalize(
         singularize(resource),

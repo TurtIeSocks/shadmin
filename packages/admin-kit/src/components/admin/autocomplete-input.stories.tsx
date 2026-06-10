@@ -417,7 +417,6 @@ export const InsideArrayInputWithValidation = () => (
     <CoreAdminContext i18nProvider={i18nProvider}>
       <ResourceContextProvider value="posts">
         <AdminCreate resource="posts" record={{ test: [{ name: "test" }] }}>
-          {/* eslint-disable-next-line no-console */}
           <SimpleForm onSubmit={console.log}>
             <ArrayInput source="test">
               <SimpleFormIterator>

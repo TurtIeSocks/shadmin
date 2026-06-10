@@ -202,7 +202,6 @@ const CsvImportMapStep = () => {
       if (match) next[field] = match;
     }
     if (Object.keys(next).length > 0) setMapping(next);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [headersKey, fields.length]);
 
   const hasUnmappedRequired = requiredFields.some((f) => !mapping[f]);

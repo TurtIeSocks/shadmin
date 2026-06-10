@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { InferredTypeMap } from "ra-core";
 import { RecordField } from "@/components/admin/record-field";
 import { DateField } from "@/components/admin/date-field";

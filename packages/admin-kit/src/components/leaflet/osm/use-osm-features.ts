@@ -33,12 +33,10 @@ const useOsmFeatures = (
   const tagsKey = sources.tags?.join("|") ?? "";
   const presets = useMemo<ReadonlyArray<OsmPresetName>>(
     () => sources.presets ?? [],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [presetsKey],
   );
   const tags = useMemo<ReadonlyArray<OsmTagInput>>(
     () => sources.tags ?? [],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [tagsKey],
   );
   const hasSources = presets.length + tags.length > 0;

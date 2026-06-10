@@ -92,7 +92,6 @@ function SimpleFormConfigurable({
     // Re-initialize only when the persisted availableInputs list is
     // cleared. Re-running on every child / translate change would clobber
     // the user's saved order.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableInputs]);
 
   return (

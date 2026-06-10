@@ -40,7 +40,6 @@ type ResourceMenuItemProps = {
    */
   onClick?: () => void;
   /** Additional props forwarded to the underlying element (dense, tooltipProps, etc.). */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [rest: string]: any;
 };
 

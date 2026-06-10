@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState, isValidElement, Children } from "react";
 import type { InferredTypeMap } from "ra-core";
@@ -93,7 +92,6 @@ function ShowViewGuesser(
         ),
       )
       .sort();
-    // eslint-disable-next-line no-console
     console.log(
       `Guessed Show:
 
@@ -112,7 +110,6 @@ ${inferredChild.getRepresentation()}
     </Show>
 );`,
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasRecord, resource, enableLog]);
 
   return <ShowView {...rest}>{child}</ShowView>;

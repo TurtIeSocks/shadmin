@@ -284,7 +284,6 @@ function useForkRef<Instance>(
     return () => {
       cleanups.forEach((refCleanup) => refCleanup?.());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, refs);
 
   return React.useMemo(() => {
@@ -302,6 +301,5 @@ function useForkRef<Instance>(
         cleanupRef.current = refEffect(value);
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, refs);
 }

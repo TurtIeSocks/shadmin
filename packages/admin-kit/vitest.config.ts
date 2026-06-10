@@ -66,7 +66,6 @@ export default defineConfig({
       "@dnd-kit/core",
       "react-dom/client",
       "data-generator-retail",
-      "ra-language-french",
       "@tiptap/core",
       "@tiptap/react",
       "@tiptap/suggestion",

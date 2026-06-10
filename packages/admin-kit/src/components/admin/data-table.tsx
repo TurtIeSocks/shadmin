@@ -213,7 +213,6 @@ function DataTable<RecordType extends RaRecord = RaRecord>(
         <DataTableBase<RecordType>
           hasBulkActions={hasBulkActions}
           hover={hover}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           rowClick={rowClick as any}
           loading={
             <DataTableLoadingSkeleton
@@ -733,7 +732,6 @@ interface DataTableProps<RecordType extends RaRecord = RaRecord>
   rowClick?:
     | string
     | false
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | ((...args: any[]) => string | false | Promise<string | false>);
 }
 

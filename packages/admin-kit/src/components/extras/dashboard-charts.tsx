@@ -193,7 +193,6 @@ const TrendChart = ({
         tickFormatter={xTickFormatter}
       />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Tooltip formatter={rechartsTooltipFormatter as any} />
       <Area
         type={curveType}
@@ -217,7 +216,6 @@ const TrendChart = ({
         tickFormatter={xTickFormatter}
       />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Tooltip formatter={rechartsTooltipFormatter as any} />
       <Line
         type={curveType}

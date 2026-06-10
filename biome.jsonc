@@ -132,9 +132,27 @@
       // CSF stories must export meta + story objects; specs are not
       // fast-refresh modules. The old eslint react-refresh rule did not flag
       // either, so keep that noise floor.
+      // Test/story fixtures aren't the a11y/key-stability surface — disable
+      // the DOM a11y group + array-index-key rule that only matter for shipped UI.
       "includes": ["**/*.stories.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
       "linter": {
-        "rules": { "style": { "useComponentExportOnlyModules": "off" } }
+        "rules": {
+          "a11y": {
+            "noLabelWithoutControl": "off",
+            "noNoninteractiveElementToInteractiveRole": "off",
+            "noRedundantRoles": "off",
+            "noStaticElementInteractions": "off",
+            "noSvgWithoutTitle": "off",
+            "useAriaPropsSupportedByRole": "off",
+            "useButtonType": "off",
+            "useFocusableInteractive": "off",
+            "useKeyWithClickEvents": "off",
+            "useSemanticElements": "off",
+            "useValidAnchor": "off"
+          },
+          "style": { "useComponentExportOnlyModules": "off" },
+          "suspicious": { "noArrayIndexKey": "off" }
+        }
       }
     },
     {

@@ -268,7 +268,6 @@ const CalendarList = <R extends RaRecord = RaRecord>({
       },
       undefined,
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeStartISO, rangeEndISO, startKey, endKey, setFilters]);
 
   const events: CalendarEventInfo<R>[] = useMemo(() => {

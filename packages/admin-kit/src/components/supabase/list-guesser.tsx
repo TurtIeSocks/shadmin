@@ -108,7 +108,6 @@ const SupabaseListGuesserView = (
     setChild(table.getElement());
 
     if (!enableLog) return;
-    // eslint-disable-next-line no-console
     console.log(
       `Guessed List:\n\nexport const ${capitalize(
         singularize(resource),

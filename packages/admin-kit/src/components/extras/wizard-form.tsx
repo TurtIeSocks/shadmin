@@ -187,7 +187,6 @@ function WizardErrorJumper() {
     }
     // submitCount is the canonical "a submission happened" signal; errors are
     // read imperatively inside so we don't need to track them as deps.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitCount, formGroups, totalSteps]);
 
   return null;

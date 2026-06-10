@@ -29,7 +29,6 @@ export function useGetManyLive<RecordType extends RaRecord = RaRecord>(
       }),
     );
     return () => unsubs.forEach((u) => u());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProvider, resource, idsKey]);
 
   useOnReconnect(() => {

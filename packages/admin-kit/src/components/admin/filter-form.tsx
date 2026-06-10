@@ -44,7 +44,6 @@ function FilterForm(inProps: FilterFormProps) {
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface FilterFormProps extends FilterFormBaseProps {}
 
 /**

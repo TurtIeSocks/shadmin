@@ -199,7 +199,6 @@ function AutocompleteInput(props: AutocompleteInputProps) {
   useEffect(() => {
     debouncedSetFilters.cancel();
     setFilterValue("");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [field.value]);
 
   const [open, setOpen] = React.useState(false);
