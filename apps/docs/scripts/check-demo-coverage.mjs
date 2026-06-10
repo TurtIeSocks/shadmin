@@ -2,7 +2,7 @@
 /**
  * Audit every documented public-API React component (per {@link getPublicComponents}
  * intersected with the docs sidebar) for an import reference somewhere under
- * `src/demo/`.
+ * `apps/demo/src/`.
  *
  * The goal: every public component the project documents should be exercised
  * at least once in the demo app. Catches cases where a component ships but is
@@ -17,8 +17,8 @@ import { getPublicComponents } from "./public-api.mjs";
 import { buildGroupLookup } from "./component-to-group.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(__dirname, "../..");
-const demoRoot = resolve(repoRoot, "src/demo");
+const repoRoot = resolve(__dirname, "../../..");
+const demoRoot = resolve(repoRoot, "apps/demo/src");
 const lookup = buildGroupLookup();
 
 function walk(dir) {
@@ -49,7 +49,7 @@ for (const item of documented) {
   const re = new RegExp(`\\b${item.componentName}\\b`);
   if (!re.test(allDemoSource)) {
     failures.push(
-      `${item.componentName} (${item.sourceDir}/${item.slug}): not referenced under src/demo/`,
+      `${item.componentName} (${item.sourceDir}/${item.slug}): not referenced under apps/demo/src/`,
     );
   }
 }
@@ -60,5 +60,5 @@ if (failures.length) {
   process.exit(1);
 }
 console.log(
-  `OK: ${documented.length} public components referenced in src/demo/.`,
+  `OK: ${documented.length} public components referenced in apps/demo/src/.`,
 );

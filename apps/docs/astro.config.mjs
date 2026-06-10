@@ -23,7 +23,7 @@ const inlineChangelogPlugin = {
   enforce: "pre",
   transform(code, id) {
     if (!id.endsWith("changelog.mdx")) return;
-    const changelogPath = resolve(__dirname, "../CHANGELOG.md");
+    const changelogPath = resolve(__dirname, "../../CHANGELOG.md");
     const changelogContent = readFileSync(changelogPath, "utf-8");
     return [code, changelogContent].join("\n");
   },

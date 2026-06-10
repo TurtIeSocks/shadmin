@@ -3,7 +3,7 @@
  * Audit every documented public-API React component (per {@link getPublicComponents}
  * intersected with the docs sidebar — matches the precedent of check-docs and
  * check-stories) for a sibling spec file under
- * `src/components/<sourceDir>/<slug>.spec.tsx`.
+ * `packages/admin-kit/src/components/<sourceDir>/<slug>.spec.tsx`.
  *
  * Fails (exit 1) when any documented component is missing its spec file, still
  * contains the placeholder `expect(true).toBe(true)` pattern, or does not import
@@ -18,7 +18,7 @@ import { getPublicComponents } from "./public-api.mjs";
 import { buildGroupLookup } from "./component-to-group.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(__dirname, "../..");
+const repoRoot = resolve(__dirname, "../../..");
 const lookup = buildGroupLookup();
 
 const components = await getPublicComponents();
@@ -30,7 +30,7 @@ const failures = [];
 for (const item of documented) {
   const specPath = resolve(
     repoRoot,
-    `src/components/${item.sourceDir}/${item.slug}.spec.tsx`,
+    `packages/admin-kit/src/components/${item.sourceDir}/${item.slug}.spec.tsx`,
   );
   if (!existsSync(specPath)) {
     failures.push(

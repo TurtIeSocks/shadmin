@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Audit every public-API React component (per {@link getPublicComponents}) for
- * a sibling Storybook story file under `src/components/<sourceDir>/<slug>.stories.tsx`
+ * a sibling Storybook story file under `packages/admin-kit/src/components/<sourceDir>/<slug>.stories.tsx`
  * (colocated next to the component and its spec).
  *
  * Fails (exit 1) when any documented component is missing its story file, still
@@ -18,7 +18,7 @@ import { getPublicComponents } from "./public-api.mjs";
 import { buildGroupLookup } from "./component-to-group.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const repoRoot = resolve(__dirname, "../..");
+const repoRoot = resolve(__dirname, "../../..");
 const lookup = buildGroupLookup();
 
 const components = await getPublicComponents();
@@ -31,7 +31,7 @@ const failures = [];
 const documented = components.filter((item) => lookup.has(item.slug));
 
 for (const item of documented) {
-  const storyPath = resolve(repoRoot, `src/components/${item.sourceDir}/${item.slug}.stories.tsx`);
+  const storyPath = resolve(repoRoot, `packages/admin-kit/src/components/${item.sourceDir}/${item.slug}.stories.tsx`);
   if (!existsSync(storyPath)) {
     failures.push(`${item.componentName} (${item.sourceDir}/${item.slug}): missing story file`);
     continue;

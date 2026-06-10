@@ -5,7 +5,7 @@
  * - check-docs (Phase 2): docs pages cover every documented component
  * - check-stories (Phase 3): every documented component has a real story
  * - check-specs (Phase 4): every documented component has a non-placeholder spec
- * - check-demo-coverage (Phase 5): every public component imported in src/demo/
+ * - check-demo-coverage (Phase 5): every public component imported in apps/demo/src/
  *
  * Exits non-zero if any sub-check fails. Run via `pnpm run check-coverage`
  * from the `docs/` workspace or `make check-coverage` from the repo root.

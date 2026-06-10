@@ -1,0 +1,19 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "../../packages/admin-kit/src/components/admin/index.ts",
+    "../../packages/admin-kit/src/components/extras/index.ts",
+    "../../packages/admin-kit/src/components/leaflet/index.ts",
+    "../../packages/admin-kit/src/components/supabase/index.ts",
+    "../../packages/admin-kit/src/components/csv-import/index.ts",
+    "../../packages/admin-kit/src/components/mdx-editor/index.ts",
+    "../../packages/admin-kit/src/components/rich-text-input/index.ts"
+  ],
+  "tsconfig": "../../packages/admin-kit/tsconfig.json",
+  "json": "./public-api.typedoc.json",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "excludeExternals": true,
+  "skipErrorChecking": true,
+  "logLevel": "Error"
+}
