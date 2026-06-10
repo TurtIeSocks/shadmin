@@ -30,7 +30,7 @@ describe("<WizardForm />", () => {
     render(<MultipleSteps theme="system" />);
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect(panels.length).toBe(3);
     // Only first panel is visible
     expect((panels[0] as HTMLElement).style.display).not.toBe("none");
@@ -42,7 +42,7 @@ describe("<WizardForm />", () => {
     render(<MultipleSteps theme="system" />);
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect(panels[0].getAttribute("aria-hidden")).not.toBe("true");
     expect(panels[1].getAttribute("aria-hidden")).toBe("true");
   });
@@ -71,7 +71,7 @@ describe("<WizardForm />", () => {
     await screen.getByRole("button", { name: /next/i }).click();
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect((panels[0] as HTMLElement).style.display).toBe("none");
     expect((panels[1] as HTMLElement).style.display).not.toBe("none");
   });
@@ -90,7 +90,7 @@ describe("<WizardForm />", () => {
     await screen.getByRole("button", { name: /back/i }).click();
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect((panels[0] as HTMLElement).style.display).not.toBe("none");
   });
 
@@ -111,7 +111,7 @@ describe("<WizardForm />", () => {
     await getByRole("button", { name: /next/i }).click();
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect((panels[0] as HTMLElement).style.display).not.toBe("none");
   });
 
@@ -131,7 +131,7 @@ describe("<WizardForm />", () => {
     await screen.getByRole("button", { name: /next/i }).click();
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect((panels[1] as HTMLElement).style.display).not.toBe("none");
   });
 
@@ -140,7 +140,7 @@ describe("<WizardForm />", () => {
     await getByRole("button", { name: /next/i }).click();
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect((panels[1] as HTMLElement).style.display).not.toBe("none");
   });
 
@@ -170,7 +170,7 @@ describe("<WizardForm />", () => {
     // Wizard returns to first step
     const dialog = document.body.querySelector('[role="dialog"]');
     expect(dialog).toBeTruthy();
-    const panels = dialog!.querySelectorAll('[role="group"][data-wizard-step]');
+    const panels = dialog!.querySelectorAll("[data-wizard-step]");
     expect((panels[0] as HTMLElement).style.display).not.toBe("none");
     // The name input shows the server error
     const invalid = dialog!.querySelector('[aria-invalid="true"]');
