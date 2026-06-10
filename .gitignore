@@ -40,3 +40,4 @@ storybook-static
 
 .claude/settings.local.json
 .claude/worktrees/
+.turbo
