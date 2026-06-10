@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import {
+  differenceInCalendarDays,
+  endOfMonth,
+  endOfWeek,
+  startOfMonth,
+  startOfWeek,
+} from "date-fns";
+import {
   Basic,
   RangeLoading,
   Navigation,
@@ -22,10 +29,18 @@ describe("<CalendarList />", () => {
 
   it("renders day cells", async () => {
     const screen = render(<Basic />);
-    // 42 cells (6 weeks * 7 days) for the month grid
     await expect.element(screen.getByRole("grid")).toBeInTheDocument();
+    // The month grid spans whole weeks from the start of the current month's
+    // first week to the end of its last week (weekStartsOn: 0, matching
+    // CalendarList). That's 4–6 weeks depending on the month, so derive the
+    // count instead of hardcoding 42 (e.g. June 2026 renders 35 = 5 weeks).
+    const anchor = new Date();
+    const gridStart = startOfWeek(startOfMonth(anchor), { weekStartsOn: 0 });
+    const gridEnd = endOfWeek(endOfMonth(anchor), { weekStartsOn: 0 });
+    const expectedCells = differenceInCalendarDays(gridEnd, gridStart) + 1;
+    expect(expectedCells % 7).toBe(0); // sanity: always whole weeks
     const cells = document.querySelectorAll('[role="gridcell"]');
-    expect(cells.length).toBe(42);
+    expect(cells.length).toBe(expectedCells);
   });
 
   it("renders seeded events in their day cells", async () => {
