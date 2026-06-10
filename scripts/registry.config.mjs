@@ -43,6 +43,7 @@ export const blocks = [
       "dialog",
       "drawer",
       "dropdown-menu",
+      "field",
       "input",
       "kbd",
       "label",
@@ -87,7 +88,6 @@ export const blocks = [
     extraFiles: [
       { path: "rules/AGENTS.md", type: "registry:file", target: "~/AGENTS.md" },
       { path: "src/components/ui/slot.tsx", type: "registry:ui" },
-      { path: "src/hooks/use-form-field.ts", type: "registry:component" },
       { path: "src/hooks/use-theme.ts", type: "registry:component" },
       { path: "src/lib/are-ids-equal.ts", type: "registry:lib" },
       { path: "src/lib/field-types.ts", type: "registry:lib" },

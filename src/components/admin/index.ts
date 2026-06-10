@@ -56,7 +56,9 @@ export * from "./filter-list";
 export * from "./filter-list-item";
 export * from "./filter-list-section";
 export * from "./filter-live-search";
-export * from "./form";
+// The admin form-field fork was removed in favor of shadcn's `ui/field`.
+// `Form` (the react-hook-form provider) stays public for building custom forms.
+export { FormProvider as Form } from "react-hook-form";
 export * from "./function-field";
 export * from "./hide-on-scroll";
 export * from "./image-field";

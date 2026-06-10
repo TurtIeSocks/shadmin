@@ -22,6 +22,7 @@
         "dialog",
         "drawer",
         "dropdown-menu",
+        "field",
         "input",
         "kbd",
         "label",
@@ -298,10 +299,6 @@
         },
         {
           "path": "src/components/admin/filter-live-search.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/form.tsx",
           "type": "registry:component"
         },
         {
@@ -745,10 +742,6 @@
           "type": "registry:ui"
         },
         {
-          "path": "src/hooks/use-form-field.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/hooks/use-theme.ts",
           "type": "registry:component"
         },
@@ -927,13 +920,12 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-utils",
-        "label",
+        "field",
         "skeleton"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core", "react-hook-form"]
     },
     {
       "name": "auth-callback",
@@ -1006,12 +998,12 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-are-ids-equal",
         "@shadcn-admin-kit/lib-unknown-types",
         "badge",
         "command",
+        "field",
         "popover"
       ],
       "dependencies": ["cmdk", "lodash", "lucide-react", "ra-core"]
@@ -1027,13 +1019,13 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-are-ids-equal",
         "@shadcn-admin-kit/lib-unknown-types",
         "@shadcn-admin-kit/lib-utils",
         "button",
         "command",
+        "field",
         "popover"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core"]
@@ -1079,9 +1071,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-unknown-types",
+        "field",
         "switch"
       ],
       "dependencies": ["ra-core"]
@@ -1222,11 +1214,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-utils",
         "checkbox",
-        "label",
+        "field",
         "skeleton"
       ],
       "dependencies": ["ra-core"]
@@ -1319,7 +1310,10 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-unknown-types",
+        "spinner"
+      ],
       "dependencies": ["lucide-react", "ra-core", "react-router"]
     },
     {
@@ -1434,9 +1428,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-utils",
+        "field",
         "input"
       ],
       "dependencies": ["ra-core"]
@@ -1452,9 +1446,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-utils",
+        "field",
         "input"
       ],
       "dependencies": ["ra-core"]
@@ -1653,11 +1647,11 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-unknown-types",
         "@shadcn-admin-kit/lib-utils",
-        "button"
+        "button",
+        "field"
       ],
       "dependencies": ["lucide-react", "ra-core", "react-dropzone"]
     },
@@ -1760,24 +1754,6 @@
       ],
       "registryDependencies": ["@shadcn-admin-kit/search-input"],
       "dependencies": ["ra-core"]
-    },
-    {
-      "name": "form",
-      "type": "registry:component",
-      "title": "Form",
-      "files": [
-        {
-          "path": "src/components/admin/form.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/slot",
-        "@shadcn-admin-kit/use-form-field",
-        "label"
-      ],
-      "dependencies": ["ra-core", "react-hook-form"]
     },
     {
       "name": "function-field",
@@ -1897,8 +1873,12 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "spinner"
+      ],
+      "dependencies": ["ra-core"]
     },
     {
       "name": "input-helper-text",
@@ -1910,7 +1890,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/form"],
+      "registryDependencies": ["field"],
       "dependencies": ["ra-core"]
     },
     {
@@ -2170,9 +2150,10 @@
       ],
       "registryDependencies": [
         "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/refresh-icon-button"
+        "@shadcn-admin-kit/refresh-icon-button",
+        "spinner"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["ra-core"]
     },
     {
       "name": "loading-input",
@@ -2236,9 +2217,10 @@
         "@shadcn-admin-kit/lib-notify-auth-error",
         "@shadcn-admin-kit/lib-utils",
         "@shadcn-admin-kit/text-input",
-        "button"
+        "button",
+        "spinner"
       ],
-      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+      "dependencies": ["ra-core", "react-hook-form"]
     },
     {
       "name": "login-page",
@@ -2271,7 +2253,8 @@
         "@shadcn-admin-kit/lib-utils",
         "@shadcn-admin-kit/password-input",
         "@shadcn-admin-kit/text-input",
-        "button"
+        "button",
+        "spinner"
       ],
       "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
     },
@@ -2367,9 +2350,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-utils",
+        "field",
         "select"
       ],
       "dependencies": ["ra-core"]
@@ -2401,8 +2384,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
+        "field",
         "input"
       ],
       "dependencies": ["ra-core"]
@@ -2459,7 +2442,11 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "registryDependencies": [
+        "@shadcn-admin-kit/lib-utils",
+        "button",
+        "skeleton"
+      ],
       "dependencies": ["lucide-react", "ra-core", "react-router"]
     },
     {
@@ -2473,11 +2460,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-sanitize-input-rest-props",
         "@shadcn-admin-kit/lib-utils",
-        "label",
+        "field",
         "radio-group",
         "skeleton"
       ],
@@ -2593,7 +2579,8 @@
       "registryDependencies": [
         "@shadcn-admin-kit/lib-field-types",
         "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/offline"
+        "@shadcn-admin-kit/offline",
+        "spinner"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"]
     },
@@ -2641,7 +2628,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["button"],
+      "registryDependencies": ["button", "spinner"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -2750,8 +2737,8 @@
       ],
       "registryDependencies": [
         "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
-        "button"
+        "button",
+        "spinner"
       ],
       "dependencies": [
         "@tanstack/react-query",
@@ -2821,12 +2808,12 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-utils",
         "badge",
         "button",
         "checkbox",
+        "field",
         "popover",
         "skeleton"
       ],
@@ -2859,10 +2846,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-unknown-types",
         "@shadcn-admin-kit/lib-utils",
+        "field",
         "select",
         "skeleton"
       ],
@@ -3182,10 +3169,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "badge",
         "command",
+        "field",
         "popover"
       ],
       "dependencies": ["lucide-react", "ra-core"]
@@ -3217,10 +3204,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
         "@shadcn-admin-kit/lib-sanitize-input-rest-props",
         "@shadcn-admin-kit/lib-utils",
+        "field",
         "input",
         "textarea"
       ],
@@ -3272,8 +3259,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/form",
         "@shadcn-admin-kit/input-helper-text",
+        "field",
         "input"
       ],
       "dependencies": ["clsx", "ra-core"]
@@ -3555,18 +3542,6 @@
         }
       ],
       "dependencies": ["radix-ui"]
-    },
-    {
-      "name": "use-form-field",
-      "type": "registry:hook",
-      "title": "Use Form Field",
-      "files": [
-        {
-          "path": "src/hooks/use-form-field.ts",
-          "type": "registry:hook"
-        }
-      ],
-      "dependencies": ["react-hook-form"]
     },
     {
       "name": "use-theme",

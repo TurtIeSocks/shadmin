@@ -1,17 +1,12 @@
 import { describe, expect, it } from "vitest";
+import type { ReactNode } from "react";
 import { InputHelperText } from "./input-helper-text";
 import { render } from "vitest-browser-react";
-import { FormField } from "./form";
-import { Form } from "ra-core";
 import { MemoryRouter } from "react-router";
 
-const TestWrapper = ({ children }: { children: React.ReactNode }) => (
+const TestWrapper = ({ children }: { children: ReactNode }) => (
   <MemoryRouter>
-    <Form>
-      <FormField id="test-field" name="test-field">
-        {children}
-      </FormField>
-    </Form>
+    <div role="group">{children}</div>
   </MemoryRouter>
 );
 
