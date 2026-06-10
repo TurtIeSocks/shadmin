@@ -121,13 +121,13 @@ function SaveButton<RecordType extends RaRecord = RaRecord>(
       className={className}
       {...rest}
     >
-      {isSubmitting ? <Spinner data-icon="inline-start" /> : icon}
+      {isSubmitting ? <Spinner /> : icon}
       {displayedLabel}
     </Button>
   );
 }
 
-const defaultIcon = <Save data-icon="inline-start" />;
+const defaultIcon = <Save />;
 
 interface Props<
   RecordType extends RaRecord = RaRecord,

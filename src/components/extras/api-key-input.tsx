@@ -60,7 +60,7 @@ function ApiKeyInput(props: ApiKeyInputProps) {
           data-rotate-button
           disabled={disabled}
         >
-          <RefreshCw className="mr-2 h-4 w-4" />
+          <RefreshCw />
           Rotate
         </Button>
       </AlertDialogTrigger>

@@ -386,7 +386,7 @@ function AutocompleteInput(props: AutocompleteInputProps) {
               ) : (
                 <span className="text-muted-foreground">{placeholder}</span>
               )}
-              <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+              <ChevronsUpDown className="shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-full max-w-(--radix-popover-trigger-width) p-0">

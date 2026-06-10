@@ -82,7 +82,7 @@ function LoginForm(props: LoginFormProps) {
         validate={required()}
       />
       <Button type="submit" className="cursor-pointer" disabled={loading}>
-        {loading ? <Spinner data-icon="inline-start" /> : null}
+        {loading ? <Spinner /> : null}
         {translate("ra.auth.sign_in", { _: "Sign in" })}
       </Button>
     </Form>

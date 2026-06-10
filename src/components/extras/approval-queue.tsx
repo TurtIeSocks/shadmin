@@ -150,7 +150,7 @@ const ApprovalRow = (props: ApprovalRowInternalProps) => {
               data-approve-button
               onClick={() => submit("approved")}
             >
-              <Check className="mr-1 h-4 w-4" /> Approve
+              <Check /> Approve
             </Button>
             <Button
               type="button"
@@ -161,7 +161,7 @@ const ApprovalRow = (props: ApprovalRowInternalProps) => {
                 if (!requireReason) submit("rejected");
               }}
             >
-              <X className="mr-1 h-4 w-4" /> Reject
+              <X /> Reject
             </Button>
           </div>
         </div>

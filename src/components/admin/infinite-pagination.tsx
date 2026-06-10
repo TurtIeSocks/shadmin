@@ -90,7 +90,7 @@ function InfinitePagination({
       >
         {isFetchingNextPage ? (
           <>
-            <Spinner data-icon="inline-start" aria-hidden="true" />
+            <Spinner aria-hidden="true" />
             {translate("ra.action.loading", { _: "Loading..." })}
           </>
         ) : (

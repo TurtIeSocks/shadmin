@@ -183,7 +183,7 @@ function JobMonitor(props: JobMonitorProps) {
                                 data-job-retry
                                 onClick={() => handleRetry(job)}
                               >
-                                <RotateCcw className="mr-1 h-3 w-3" />
+                                <RotateCcw className="h-3 w-3" />
                                 Retry
                               </Button>
                             )}
@@ -194,7 +194,7 @@ function JobMonitor(props: JobMonitorProps) {
                                 data-job-cancel
                                 onClick={() => handleCancel(job)}
                               >
-                                <X className="mr-1 h-3 w-3" />
+                                <X className="h-3 w-3" />
                                 Cancel
                               </Button>
                             )}

@@ -368,14 +368,14 @@ function WizardToolbar() {
       </Button>
       {!isFirst ? (
         <Button name="back" type="button" variant="outline" onClick={goBack}>
-          <ArrowLeft className="mr-2 size-4" />
+          <ArrowLeft />
           {translate("ra.action.wizard_back", { _: "Back" })}
         </Button>
       ) : null}
       {!isLast ? (
         <Button name="next" type="button" onClick={handleNext}>
           {translate("ra.action.wizard_next", { _: "Next" })}
-          <ArrowRight className="ml-2 size-4" />
+          <ArrowRight />
         </Button>
       ) : (
         <SaveButton />

@@ -77,7 +77,7 @@ function StatusTransitionButton(props: StatusTransitionButtonProps) {
           disabled={allowed.length === 0}
         >
           {currentState || "—"}
-          <ChevronDown className="ml-2 h-3 w-3" />
+          <ChevronDown className="h-3 w-3" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

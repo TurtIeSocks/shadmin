@@ -304,7 +304,7 @@ function ExpandAllButton() {
       onClick={handleClick}
       aria-label={allExpanded ? "Collapse all rows" : "Expand all rows"}
     >
-      <ChevronsUpDown className="size-4" />
+      <ChevronsUpDown />
     </Button>
   );
 }
@@ -589,9 +589,9 @@ function DataTableRow({
               aria-expanded={isExpanded}
             >
               {isExpanded ? (
-                <ChevronDown className="size-4" />
+                <ChevronDown />
               ) : (
-                <ChevronRight className="size-4" />
+                <ChevronRight />
               )}
             </Button>
           ) : null}
@@ -840,9 +840,9 @@ function DataTableHeadCell<
                 )}
                 {sort.field === source ? (
                   sort.order === "ASC" ? (
-                    <ArrowDownAZ className="ml-2 size-6" />
+                    <ArrowDownAZ className="size-6" />
                   ) : (
-                    <ArrowUpZA className="ml-2 size-6" />
+                    <ArrowUpZA className="size-6" />
                   )
                 ) : null}
                 {headerClassName?.includes("text-right") ? (

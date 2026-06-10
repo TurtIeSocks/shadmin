@@ -51,7 +51,7 @@ function RefreshButton({
       aria-label={ariaLabel}
       disabled={loading}
     >
-      {loading ? <Spinner data-icon="inline-start" /> : icon}
+      {loading ? <Spinner /> : icon}
     </Button>
   );
 }

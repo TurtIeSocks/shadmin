@@ -208,7 +208,7 @@ function FilterButton(props: FilterButtonProps) {
             size={size}
             aria-haspopup="true"
           >
-            <Filter className="size-4" />
+            <Filter />
             {translate("ra.action.add_filter")}
           </Button>
         </DropdownMenuTrigger>

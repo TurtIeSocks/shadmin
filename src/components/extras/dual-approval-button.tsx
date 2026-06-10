@@ -86,7 +86,7 @@ function DualApprovalButton(props: DualApprovalButtonProps) {
         disabled={alreadyApproved || !currentUserId}
         title={alreadyApproved ? "You already approved" : undefined}
       >
-        <Check className="mr-1 h-4 w-4" /> Approve
+        <Check /> Approve
       </Button>
       <span className="text-sm text-muted-foreground">
         {count} of {required}
