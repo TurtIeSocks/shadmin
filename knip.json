@@ -12,6 +12,10 @@
         "src/components/supabase/**/*.{ts,tsx}!",
         "src/components/csv-import/**/*.{ts,tsx}!",
         "src/components/rich-text-input/**/*.{ts,tsx}!",
+        "src/components/realtime/**/*.{ts,tsx}!",
+        "src/components/block-editor/**/*.{ts,tsx}!",
+        "src/components/mdx-editor/**/*.{ts,tsx}!",
+        "src/components/monaco/**/*.{ts,tsx}!",
         "src/components/ui/**/*.{ts,tsx}!",
         "src/components/**/*.spec.{ts,tsx}",
         "src/components/**/*.stories.{ts,tsx}",
@@ -19,15 +23,22 @@
         "src/lib/**/*.{ts,tsx}!",
         "scripts/**/*.{js,mjs}"
       ],
-      "project": ["src/**/*.{ts,tsx}", "scripts/**/*.{js,mjs}"]
+      "project": ["src/**/*.{ts,tsx}", "scripts/**/*.{js,mjs}"],
+      "ignoreDependencies": [
+        "tailwindcss",
+        "tw-animate-css",
+        "shadcn",
+        "ra-language-french"
+      ]
     },
     "apps/demo": {
-      "entry": ["src/main.tsx", "src/App.*.tsx"],
+      "entry": ["src/App.*.tsx"],
       "project": ["src/**/*.{ts,tsx}"]
     },
     "apps/website": {
       "entry": ["src/**/*.{ts,tsx}"],
-      "project": ["src/**/*.{ts,tsx}"]
+      "project": ["src/**/*.{ts,tsx}"],
+      "ignoreDependencies": ["tailwindcss", "tw-animate-css"]
     },
     "apps/docs": { "ignore": ["**"] }
   }

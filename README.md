@@ -28,7 +28,7 @@ A component kit to build your Admin app with [shadcn/ui](https://ui.shadcn.com/)
 - Accessible
 - Compatible with any API (REST, GraphQL, etc.)
 - Works with Vite.js, Remix, Netx.js, and more
-- **Realtime** — `DataProvider` extension with WebSocket, SSE, and BroadcastChannel transports; live `<ListLive>` / `<EditLive>` / `<ShowLive>`; menu badges; record locks. See [Realtime.md](docs/src/content/docs/Realtime.md).
+- **Realtime** — `DataProvider` extension with WebSocket, SSE, and BroadcastChannel transports; live `<ListLive>` / `<EditLive>` / `<ShowLive>`; menu badges; record locks. See [Realtime.md](apps/docs/src/content/docs/Realtime.md).
 
 ## Tech Stack
 
@@ -47,7 +47,7 @@ Check the [Quick Start Guide](https://marmelab.com/shadcn-admin-kit/docs/quick-s
 
 ## Exploring Components
 
-`shadcn-admin-kit` provides a set of components that you can use to build your Admin app. The components are organized in the [`src/components/admin`](./src/components/admin/) directory, and you can find the documentation for each component in its respective file.
+`shadcn-admin-kit` provides a set of components that you can use to build your Admin app. The components are organized in the [`packages/admin-kit/src/components/admin`](./packages/admin-kit/src/components/admin/) directory, and you can find the documentation for each component in its respective file.
 
 ## Usage
 
@@ -226,7 +226,7 @@ export const App = () => (
 
 Now, when a user browses to `/settings` or `/profile`, the components you defined will appear in the main part of the screen.
 
-**Tip:** Custom routes don’t automatically appear in the menu. You'll need to customize the [`<AppSidebar>` component](https://github.com/marmelab/shadcn-admin-kit/blob/main/src/components/admin/app-sidebar.tsx) if you want custom routes to be accessible from the menu.
+**Tip:** Custom routes don’t automatically appear in the menu. You'll need to customize the [`<AppSidebar>` component](./packages/admin-kit/src/components/admin/app-sidebar.tsx) if you want custom routes to be accessible from the menu.
 
 ## Contributing
 
