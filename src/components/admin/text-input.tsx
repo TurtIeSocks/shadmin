@@ -5,13 +5,9 @@ import {
   useResourceContext,
   FieldTitle,
   useTranslate,
+  ValidationError,
 } from "ra-core";
-import {
-  FormControl,
-  FormError,
-  FormField,
-  FormLabel,
-} from "@/components/admin/form";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { InputHelperText } from "@/components/admin/input-helper-text";
@@ -59,9 +55,12 @@ function TextInput(props: TextInputProps) {
     type = "text",
     ...rest
   } = props;
-  const { id, field, isRequired } = useInput({ ...props, type });
+  const { id, field, fieldState, isRequired } = useInput({ ...props, type });
   const translate = useTranslate();
 
+  const invalid = fieldState.invalid;
+  const errorMessage =
+    fieldState.error?.root?.message ?? fieldState.error?.message;
   const hasValue = field.value != null && field.value !== "";
 
   const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -70,58 +69,66 @@ function TextInput(props: TextInputProps) {
   };
 
   return (
-    <FormField id={id} className={className} name={field.name}>
+    <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
-        <FormLabel>
+        <FieldLabel htmlFor={id}>
           <FieldTitle
             label={label}
             source={source}
             resource={resource}
             isRequired={isRequired}
           />
-        </FormLabel>
+        </FieldLabel>
       )}
-      <FormControl>
-        {multiline ? (
-          <Textarea
-            {...sanitizeInputRestProps(rest)}
-            {...field}
-            className={inputClassName}
-          />
-        ) : resettable ? (
-          <div className="relative flex items-center">
-            <Input
-              {...sanitizeInputRestProps(rest)}
-              {...field}
-              type={type}
-              className={cn(inputClassName, hasValue && "pr-8")}
-            />
-            {hasValue && (
-              <button
-                type="button"
-                aria-label={translate("ra.action.clear_input_value", {
-                  _: "Clear",
-                })}
-                className="absolute right-2 p-0 text-muted-foreground opacity-50 hover:opacity-100 hover:bg-transparent"
-                onClick={handleReset}
-                tabIndex={-1}
-              >
-                <X className="size-4" />
-              </button>
-            )}
-          </div>
-        ) : (
+      {multiline ? (
+        <Textarea
+          {...sanitizeInputRestProps(rest)}
+          {...field}
+          id={id}
+          aria-invalid={invalid || undefined}
+          className={inputClassName}
+        />
+      ) : resettable ? (
+        <div className="relative flex items-center">
           <Input
             {...sanitizeInputRestProps(rest)}
             {...field}
+            id={id}
             type={type}
-            className={inputClassName}
+            aria-invalid={invalid || undefined}
+            className={cn(inputClassName, hasValue && "pr-8")}
           />
-        )}
-      </FormControl>
+          {hasValue && (
+            <button
+              type="button"
+              aria-label={translate("ra.action.clear_input_value", {
+                _: "Clear",
+              })}
+              className="absolute right-2 p-0 text-muted-foreground opacity-50 hover:opacity-100 hover:bg-transparent"
+              onClick={handleReset}
+              tabIndex={-1}
+            >
+              <X className="size-4" />
+            </button>
+          )}
+        </div>
+      ) : (
+        <Input
+          {...sanitizeInputRestProps(rest)}
+          {...field}
+          id={id}
+          type={type}
+          aria-invalid={invalid || undefined}
+          className={inputClassName}
+        />
+      )}
       <InputHelperText helperText={helperText} />
-      <FormError />
-    </FormField>
+      <FieldError>
+        {invalid && errorMessage ? (
+          <ValidationError error={errorMessage} />
+        ) : null}
+      </FieldError>
+    </Field>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useTranslate } from "ra-core";
 import type { ReactNode } from "react";
 import { isValidElement } from "react";
-import { FormDescription } from "@/components/admin/form";
+import { FieldDescription } from "@/components/ui/field";
 
 /**
  * Renders helper text below form inputs with automatic translation support.
@@ -30,11 +30,11 @@ function InputHelperText({
   }
 
   return (
-    <FormDescription>
+    <FieldDescription>
       {typeof helperText === "string"
         ? translate(helperText, { _: helperText })
         : helperText}
-    </FormDescription>
+    </FieldDescription>
   );
 }
 
