@@ -8,10 +8,9 @@ import {
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
-interface CurrencyFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+interface CurrencyFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLSpanElement> {
   /** ISO-4217 currency code (e.g. 'USD'). Required when value is a plain number. */
   currency?: string;
   /** Override the user's app locale. */
@@ -29,9 +28,7 @@ interface CurrencyFieldProps<
  * `{ amount: number, currency: string }` object. When `storeAsMinorUnits` is
  * true, the numeric value is divided by 100 before formatting (cents → dollars).
  */
-function CurrencyField<
-  RecordType extends UnknownRecord = UnknownRecord,
->({
+function CurrencyField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,

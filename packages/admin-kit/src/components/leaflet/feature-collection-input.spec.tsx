@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  PolygonOnly,
-  Seeded,
-} from "./feature-collection-input.stories";
+import { Basic, PolygonOnly, Seeded } from "./feature-collection-input.stories";
 
 const findAsync = async (
   container: Element,

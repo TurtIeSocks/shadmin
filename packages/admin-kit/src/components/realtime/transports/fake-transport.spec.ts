@@ -6,7 +6,10 @@ describe("fakeTransport", () => {
     const t = fakeTransport();
     const cb = vi.fn();
     t.subscribe("resource/posts", cb);
-    await t.publish("resource/posts", { type: "created", payload: { ids: [1] } });
+    await t.publish("resource/posts", {
+      type: "created",
+      payload: { ids: [1] },
+    });
     expect(cb).toHaveBeenCalledTimes(1);
     expect(cb.mock.calls[0][0]).toMatchObject({
       topic: "resource/posts",
@@ -55,7 +58,7 @@ describe("fakeTransport", () => {
     await t.publish("x", { type: "created", payload: {} });
     expect(good).toHaveBeenCalledTimes(1);
     expect(onError).toHaveBeenCalledWith(
-      expect.objectContaining({ kind: "handler_threw", topic: "x" })
+      expect.objectContaining({ kind: "handler_threw", topic: "x" }),
     );
   });
 

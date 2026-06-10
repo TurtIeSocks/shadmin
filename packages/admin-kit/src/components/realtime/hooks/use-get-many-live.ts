@@ -9,10 +9,12 @@ import { useOnReconnect } from "./use-on-reconnect";
 export function useGetManyLive<RecordType extends RaRecord = RaRecord>(
   resource: string,
   params: GetManyParams,
-  options?: Parameters<typeof useGetMany<RecordType>>[2]
+  options?: Parameters<typeof useGetMany<RecordType>>[2],
 ): ReturnType<typeof useGetMany<RecordType>> {
   const queryClient = useQueryClient();
-  const dataProvider = useContext(DataProviderContext) as RealtimeDataProvider | null;
+  const dataProvider = useContext(
+    DataProviderContext,
+  ) as RealtimeDataProvider | null;
   const result = useGetMany<RecordType>(resource, params, options);
 
   const idsKey = JSON.stringify(params.ids);
@@ -24,7 +26,7 @@ export function useGetManyLive<RecordType extends RaRecord = RaRecord>(
         queryClient.invalidateQueries({
           predicate: (q) => q.queryKey[0] === resource,
         });
-      })
+      }),
     );
     return () => unsubs.forEach((u) => u());
     // eslint-disable-next-line react-hooks/exhaustive-deps

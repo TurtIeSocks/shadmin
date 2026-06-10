@@ -159,11 +159,10 @@ function CurrencyInput(props: CurrencyInputProps) {
       </FieldError>
     </Field>
   );
-};
+}
 
 interface CurrencyInputProps
-  extends
-    InputProps,
+  extends InputProps,
     Omit<
       React.ComponentProps<"input">,
       "defaultValue" | "onBlur" | "onChange" | "type" | "step"

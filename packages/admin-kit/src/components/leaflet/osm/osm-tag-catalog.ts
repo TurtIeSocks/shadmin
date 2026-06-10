@@ -564,4 +564,24 @@ function tagToFilter(tag: string): OsmTagFilter {
   return { key, value };
 }
 
-export { type NaturalTag, type BuildingTag, type LandUseTag, type AmenityTag, type LeisureTag, type HighwayTag, type WaterwayTag, type RailwayTag, type BoundaryTag, type PlaceTag, type ManMadeTag, type ShopTag, type TourismTag, type BarrierTag, type HistoricTag, type PowerTag, type KnownOsmTag, type OsmTagInput, tagToFilter };
+export {
+  type NaturalTag,
+  type BuildingTag,
+  type LandUseTag,
+  type AmenityTag,
+  type LeisureTag,
+  type HighwayTag,
+  type WaterwayTag,
+  type RailwayTag,
+  type BoundaryTag,
+  type PlaceTag,
+  type ManMadeTag,
+  type ShopTag,
+  type TourismTag,
+  type BarrierTag,
+  type HistoricTag,
+  type PowerTag,
+  type KnownOsmTag,
+  type OsmTagInput,
+  tagToFilter,
+};

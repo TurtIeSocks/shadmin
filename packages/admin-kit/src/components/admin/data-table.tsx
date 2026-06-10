@@ -588,11 +588,7 @@ function DataTableRow({
               aria-label={expandLabel}
               aria-expanded={isExpanded}
             >
-              {isExpanded ? (
-                <ChevronDown />
-              ) : (
-                <ChevronRight />
-              )}
+              {isExpanded ? <ChevronDown /> : <ChevronRight />}
             </Button>
           ) : null}
         </TableCell>
@@ -673,9 +669,8 @@ const DataTableLoadingSkeleton = ({
   );
 };
 
-interface DataTableProps<
-  RecordType extends RaRecord = RaRecord,
-> extends Omit<Partial<DataTableBaseProps<RecordType>>, "rowClick" | "expand"> {
+interface DataTableProps<RecordType extends RaRecord = RaRecord>
+  extends Omit<Partial<DataTableBaseProps<RecordType>>, "rowClick" | "expand"> {
   children: ReactNode;
   className?: string;
   rowClassName?: (record: RecordType, rowIndex: number) => string | undefined;

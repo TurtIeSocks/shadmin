@@ -237,10 +237,7 @@ interface ColumnsSelectorProps {
 
 function ColumnsSelectorItem<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
->({
-  source,
-  label,
-}: ColumnsSelectorItemProps<RecordType>) {
+>({ source, label }: ColumnsSelectorItemProps<RecordType>) {
   const resource = useResourceContext();
   const { storeKey, defaultHiddenColumns } = useDataTableStoreContext();
   const [hiddenColumns, setHiddenColumns] = useStore<string[]>(
@@ -279,7 +276,7 @@ function ColumnsSelectorItem<
     if (index1Pos === -1 || index2Pos === -1) {
       return;
     }
-    let newColumnRanks;
+    let newColumnRanks: typeof colRanks;
     if (index1Pos > index2Pos) {
       newColumnRanks = [
         ...colRanks.slice(0, index2Pos),

@@ -6,10 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
-type PermissionsState = Record<
-  string,
-  Record<string, Record<string, boolean>>
->;
+type PermissionsState = Record<string, Record<string, Record<string, boolean>>>;
 
 interface Identified {
   id: string;

@@ -53,8 +53,7 @@ interface CalendarEventInfo<R extends RaRecord = RaRecord> {
   isDragging?: boolean;
 }
 
-type EventRendererProps<R extends RaRecord = RaRecord> =
-  CalendarEventInfo<R>;
+type EventRendererProps<R extends RaRecord = RaRecord> = CalendarEventInfo<R>;
 
 interface HeaderRendererProps {
   range: { start: Date; end: Date };
@@ -819,4 +818,11 @@ const CalendarWeekView = <R extends RaRecord = RaRecord>({
   );
 };
 
-export { type CalendarView, type CalendarEventInfo, type EventRendererProps, type HeaderRendererProps, type CalendarListProps, CalendarList };
+export {
+  type CalendarView,
+  type CalendarEventInfo,
+  type EventRendererProps,
+  type HeaderRendererProps,
+  type CalendarListProps,
+  CalendarList,
+};

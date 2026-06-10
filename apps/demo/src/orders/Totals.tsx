@@ -1,4 +1,9 @@
-import { Table, TableBody, TableCell, TableRow } from "shadcn-admin-kit/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "shadcn-admin-kit/components/ui/table";
 import { Label } from "shadcn-admin-kit/components/ui/label";
 import { useRecordContext, useTranslate } from "ra-core";
 

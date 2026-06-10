@@ -18,8 +18,8 @@ type DeliveryStatus = "ok" | "failed" | "pending";
 
 interface WebhookEndpointFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {}
+> extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLSpanElement> {}
 
 /**
  * Displays a webhook endpoint's URL and last-delivery status badge.

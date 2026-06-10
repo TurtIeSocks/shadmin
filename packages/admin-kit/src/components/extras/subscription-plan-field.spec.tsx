@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Free,
-  Unknown,
-} from "./subscription-plan-field.stories";
+import { Basic, Free, Unknown } from "./subscription-plan-field.stories";
 
 describe("<SubscriptionPlanField />", () => {
   it("renders the matched plan's name and price", async () => {

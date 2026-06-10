@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  FewLines,
-  FullLayout,
-} from "./simple-list-loading.stories";
+import { Basic, FewLines, FullLayout } from "./simple-list-loading.stories";
 
 describe("<SimpleListLoading />", () => {
   it("renders the default number of skeleton rows", async () => {

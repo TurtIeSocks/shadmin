@@ -8,7 +8,10 @@ const record = {
   body: {
     type: "doc",
     content: [
-      { type: "paragraph", content: [{ type: "text", text: "Stored content" }] },
+      {
+        type: "paragraph",
+        content: [{ type: "text", text: "Stored content" }],
+      },
     ],
   },
 };

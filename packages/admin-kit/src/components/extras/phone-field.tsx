@@ -4,11 +4,8 @@ import { parsePhoneNumber } from "libphonenumber-js";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
-interface PhoneFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
+interface PhoneFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLAnchorElement>, "href"> {
   /** 'national' renders `(415) 555-2671`; 'international' renders `+1 415 555 2671`. */
   displayFormat?: "national" | "international";

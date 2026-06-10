@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Currency,
-  Percent,
-  Empty,
-} from "./number-field.stories";
+import { Basic, Currency, Percent, Empty } from "./number-field.stories";
 
 describe("<NumberField />", () => {
   it("renders a number formatted with the default locale", async () => {

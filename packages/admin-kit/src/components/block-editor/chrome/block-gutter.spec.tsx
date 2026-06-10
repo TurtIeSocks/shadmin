@@ -28,7 +28,9 @@ describe("BlockGutter", () => {
     await screen.getByRole("button", { name: /open picker/i }).click();
     await screen.getByText("Callout").click();
     await expect
-      .element(screen.container.querySelector('[data-block="callout"]') as HTMLElement)
+      .element(
+        screen.container.querySelector('[data-block="callout"]') as HTMLElement,
+      )
       .toBeInTheDocument();
   });
 });

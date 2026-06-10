@@ -97,8 +97,4 @@ function SimpleListItem<RecordType extends RaRecord = RaRecord>(
   );
 }
 
-export {
-  SimpleListItem,
-  type SimpleListItemProps,
-  type FunctionToElement,
-};
+export { SimpleListItem, type SimpleListItemProps, type FunctionToElement };

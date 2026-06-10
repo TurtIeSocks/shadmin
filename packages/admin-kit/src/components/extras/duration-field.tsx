@@ -5,10 +5,9 @@ import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { compactDuration, parseIsoDuration } from "./duration-utils";
 
-interface DurationFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+interface DurationFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLSpanElement> {
   /** 'compact' renders `2h 30m`; 'relative' renders `2 hours 30 minutes`. */
   displayFormat?: "compact" | "relative";
 }
@@ -26,9 +25,7 @@ interface DurationFieldProps<
  * <DurationField source="duration" displayFormat="relative" />
  * <DurationField source="duration" empty="—" />
  */
-function DurationField<
-  RecordType extends UnknownRecord = UnknownRecord,
->({
+function DurationField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,

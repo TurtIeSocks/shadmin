@@ -18,9 +18,12 @@ describe("useSubscribeToRecord", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <Probe resource="posts" id={42} />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
-    await transport.publish("resource/posts/42", { type: "updated", payload: {} });
+    await transport.publish("resource/posts/42", {
+      type: "updated",
+      payload: {},
+    });
     await expect.element(screen.getByTestId("count")).toHaveTextContent("1");
   });
 
@@ -29,9 +32,12 @@ describe("useSubscribeToRecord", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <Probe resource="posts" id={undefined} />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
-    await transport.publish("resource/posts/42", { type: "updated", payload: {} });
+    await transport.publish("resource/posts/42", {
+      type: "updated",
+      payload: {},
+    });
     await expect.element(screen.getByTestId("count")).toHaveTextContent("0");
   });
 });

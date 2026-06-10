@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-  Label,
-} from "./select-array-input.stories";
+import { Basic, Disabled, Label } from "./select-array-input.stories";
 
 describe("<SelectArrayInput />", () => {
   it("renders a combobox trigger and shows the initially-selected choices", async () => {

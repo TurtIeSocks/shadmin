@@ -90,7 +90,7 @@ export default defineConfig({
   },
   vite: {
     // We are loading type for vite v7 but expecting type for vite v6
-    // @ts-ignore
+    // @ts-expect-error
     plugins: [tailwindcss(), inlineChangelogPlugin],
   },
   base: "/shadcn-admin-kit/docs/",

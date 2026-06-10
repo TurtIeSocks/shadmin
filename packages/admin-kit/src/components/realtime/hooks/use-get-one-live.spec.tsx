@@ -8,7 +8,7 @@ import { useGetOneLive } from "./use-get-one-live";
 function OneProbe() {
   const { data, isPending } = useGetOneLive<{ id: number; title: string }>(
     "posts",
-    { id: 1 }
+    { id: 1 },
   );
   if (isPending) return <div data-testid="title">loading</div>;
   return <div data-testid="title">{data?.title ?? "none"}</div>;
@@ -21,7 +21,7 @@ describe("useGetOneLive", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport} baseDataProvider={baseDP}>
         <OneProbe />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await expect.element(screen.getByTestId("title")).toHaveTextContent("x");
 

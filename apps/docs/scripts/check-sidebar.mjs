@@ -81,8 +81,12 @@ function collectSidebarSlugs() {
 const contentSlugs = collectContentSlugs();
 const sidebarSlugs = collectSidebarSlugs();
 
-const orphanFiles = [...contentSlugs].filter((s) => !sidebarSlugs.has(s)).sort();
-const brokenSidebar = [...sidebarSlugs].filter((s) => !contentSlugs.has(s)).sort();
+const orphanFiles = [...contentSlugs]
+  .filter((s) => !sidebarSlugs.has(s))
+  .sort();
+const brokenSidebar = [...sidebarSlugs]
+  .filter((s) => !contentSlugs.has(s))
+  .sort();
 
 let failed = false;
 

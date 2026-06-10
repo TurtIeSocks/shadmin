@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Empty,
-  International,
-  NoLink,
-} from "./phone-field.stories";
+import { Basic, Empty, International, NoLink } from "./phone-field.stories";
 
 describe("<PhoneField />", () => {
   it("renders a tel: link with national format for a US number", async () => {

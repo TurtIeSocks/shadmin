@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomTitle,
-  NoBreadcrumb,
-} from "./create.stories";
+import { Basic, CustomTitle, NoBreadcrumb } from "./create.stories";
 
 describe("<Create />", () => {
   it("renders the create form with empty inputs and a Save button", async () => {

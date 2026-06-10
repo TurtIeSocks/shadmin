@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomClass,
-} from "./sidebar-toggle-button.stories";
+import { Basic, CustomClass } from "./sidebar-toggle-button.stories";
 
 describe("<SidebarToggleButton />", () => {
   it("renders the sidebar toggle button", async () => {

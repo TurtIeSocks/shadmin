@@ -30,10 +30,7 @@ interface CardContentInnerProps {
  *   </Card>
  * );
  */
-function CardContentInner({
-  className,
-  children,
-}: CardContentInnerProps) {
+function CardContentInner({ className, children }: CardContentInnerProps) {
   return (
     <div
       className={cn(

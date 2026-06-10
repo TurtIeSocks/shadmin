@@ -14,7 +14,12 @@ import {
 } from "shadcn-admin-kit/components/admin";
 import { BulkEditDrawer } from "shadcn-admin-kit/components/extras/bulk-edit-drawer";
 import { CurrencyField } from "shadcn-admin-kit/components/extras/currency-field";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "shadcn-admin-kit/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "shadcn-admin-kit/components/ui/tabs";
 import { Badge } from "shadcn-admin-kit/components/ui/badge";
 
 import { AddressField } from "../customers/AddressField";

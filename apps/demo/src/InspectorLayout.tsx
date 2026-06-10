@@ -3,7 +3,10 @@ import { Suspense, useState } from "react";
 import { cn } from "shadcn-admin-kit/lib/utils";
 import type { CoreLayoutProps } from "ra-core";
 import { ErrorBoundary } from "react-error-boundary";
-import { SidebarProvider, SidebarTrigger } from "shadcn-admin-kit/components/ui/sidebar";
+import {
+  SidebarProvider,
+  SidebarTrigger,
+} from "shadcn-admin-kit/components/ui/sidebar";
 import { UserMenu } from "shadcn-admin-kit/components/admin/user-menu";
 import { ThemeModeToggle } from "shadcn-admin-kit/components/admin/theme-mode-toggle";
 import { Notification } from "shadcn-admin-kit/components/admin/notification";

@@ -132,9 +132,4 @@ Breadcrumb.PageItem = BreadcrumbPage;
 
 type BreadcrumbProps = React.ComponentProps<"nav">;
 
-export {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbPage,
-  type BreadcrumbProps,
-};
+export { Breadcrumb, BreadcrumbItem, BreadcrumbPage, type BreadcrumbProps };

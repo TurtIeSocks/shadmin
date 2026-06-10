@@ -90,4 +90,12 @@ const aspectLockedBBox =
     ];
   };
 
-export { subtract, unionAll, bboxOf, areaM2, polygonToBBox, bboxToPolygon, aspectLockedBBox };
+export {
+  subtract,
+  unionAll,
+  bboxOf,
+  areaM2,
+  polygonToBBox,
+  bboxToPolygon,
+  aspectLockedBBox,
+};

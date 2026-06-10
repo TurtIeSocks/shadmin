@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  WithAside,
-  WithoutHeading,
-} from "./auth-layout.stories";
+import { Basic, WithAside, WithoutHeading } from "./auth-layout.stories";
 
 describe("<AuthLayout />", () => {
   it("renders the title and child content", async () => {

@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { wrapUnknownNodes, unwrapUnknownNodes, UNKNOWN_BLOCK_NAME } from "./unknown-block";
+import {
+  wrapUnknownNodes,
+  unwrapUnknownNodes,
+  UNKNOWN_BLOCK_NAME,
+} from "./unknown-block";
 
 const known = new Set(["doc", "paragraph", "text", "callout"]);
 
@@ -7,7 +11,11 @@ const doc = {
   type: "doc",
   content: [
     { type: "paragraph", content: [{ type: "text", text: "hi" }] },
-    { type: "fancyWidget", attrs: { foo: 1 }, content: [{ type: "text", text: "x" }] },
+    {
+      type: "fancyWidget",
+      attrs: { foo: 1 },
+      content: [{ type: "text", text: "x" }],
+    },
     { type: "callout", attrs: { variant: "info" } },
   ],
 };
@@ -26,7 +34,10 @@ describe("unknown-block transforms", () => {
   });
 
   it("leaves docs without foreign nodes untouched", () => {
-    const clean = { type: "doc", content: [{ type: "callout", attrs: { variant: "info" } }] };
+    const clean = {
+      type: "doc",
+      content: [{ type: "callout", attrs: { variant: "info" } }],
+    };
     expect(wrapUnknownNodes(clean, known)).toEqual(clean);
   });
 });

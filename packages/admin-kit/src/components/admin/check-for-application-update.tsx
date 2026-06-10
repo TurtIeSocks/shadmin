@@ -59,9 +59,7 @@ interface CheckForApplicationUpdateProps {
  *   </Layout>
  * );
  */
-function CheckForApplicationUpdate(
-  props: CheckForApplicationUpdateProps,
-) {
+function CheckForApplicationUpdate(props: CheckForApplicationUpdateProps) {
   const {
     interval = ONE_HOUR,
     url,
@@ -145,7 +143,4 @@ function hashString(input: string): number {
   return hash >>> 0;
 }
 
-export {
-  CheckForApplicationUpdate,
-  type CheckForApplicationUpdateProps,
-};
+export { CheckForApplicationUpdate, type CheckForApplicationUpdateProps };

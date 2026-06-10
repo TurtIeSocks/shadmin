@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { RecordContextProvider, type RaRecord } from "ra-core";
 import { List } from "shadcn-admin-kit/components/admin";
-import { CalendarList, KanbanBoard, type KanbanColumnDef } from "shadcn-admin-kit/components/extras";
+import {
+  CalendarList,
+  KanbanBoard,
+  type KanbanColumnDef,
+} from "shadcn-admin-kit/components/extras";
 import { DurationField } from "shadcn-admin-kit/components/extras/duration-field";
 import { Button } from "shadcn-admin-kit/components/ui/button";
 

@@ -1,17 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import {
-  Basic,
-  ReadOnly,
-  WithCallout,
-} from "./block-editor.stories";
+import { Basic, ReadOnly, WithCallout } from "./block-editor.stories";
 
 const pm = (c: HTMLElement) => c.querySelector(".ProseMirror") as HTMLElement;
 
 describe("<BlockEditor />", () => {
   it("renders the initial document text", async () => {
     const screen = render(<Basic />);
-    await expect.element(pm(screen.container)).toHaveTextContent("Hello blocks");
+    await expect
+      .element(pm(screen.container))
+      .toHaveTextContent("Hello blocks");
   });
 
   it("is not editable in read mode", async () => {

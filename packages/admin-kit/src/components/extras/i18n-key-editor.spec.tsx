@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Hidden,
-  NoExport,
-} from "./i18n-key-editor.stories";
+import { Basic, Hidden, NoExport } from "./i18n-key-editor.stories";
 
 describe("<I18nKeyEditor />", () => {
   it("renders the floating panel by default", async () => {

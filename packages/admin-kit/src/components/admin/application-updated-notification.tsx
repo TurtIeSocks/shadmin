@@ -6,10 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-interface ApplicationUpdatedNotificationProps extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  "children"
-> {
+interface ApplicationUpdatedNotificationProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   className?: string;
   /**
    * Translation key (or literal string) for the notification body.

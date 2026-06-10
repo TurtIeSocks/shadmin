@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  NoToolbar,
-  CustomToolbar,
-} from "./simple-form.stories";
+import { Basic, NoToolbar, CustomToolbar } from "./simple-form.stories";
 
 describe("<SimpleForm />", () => {
   it("renders every declared input plus the default Save button", async () => {

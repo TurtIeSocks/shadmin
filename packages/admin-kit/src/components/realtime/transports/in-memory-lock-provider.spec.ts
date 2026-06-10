@@ -7,14 +7,18 @@ describe("inMemoryLockProvider", () => {
   it("locks an unlocked record", async () => {
     const lp = inMemoryLockProvider();
     const lock = await lp.lock("posts", { id: 1, identity: "alice" });
-    expect(lock).toMatchObject({ resource: "posts", recordId: 1, identity: "alice" });
+    expect(lock).toMatchObject({
+      resource: "posts",
+      recordId: 1,
+      identity: "alice",
+    });
   });
 
   it("throws LockConflictError when another identity holds the lock", async () => {
     const lp = inMemoryLockProvider();
     await lp.lock("posts", { id: 1, identity: "alice" });
     await expect(
-      lp.lock("posts", { id: 1, identity: "bob" })
+      lp.lock("posts", { id: 1, identity: "bob" }),
     ).rejects.toBeInstanceOf(LockConflictError);
   });
 

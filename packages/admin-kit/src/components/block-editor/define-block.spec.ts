@@ -23,7 +23,11 @@ describe("defineBlock", () => {
   });
 
   it("schemaKeys lists the top-level schema keys", () => {
-    expect(schemaKeys(block.schema).sort()).toEqual(["id", "required", "variant"]);
+    expect(schemaKeys(block.schema).sort()).toEqual([
+      "id",
+      "required",
+      "variant",
+    ]);
   });
 
   it("getDefaultAttrs derives defaults; missing required → null", () => {

@@ -46,14 +46,20 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
   const topicHandlers = new Map<string, (ev: MessageEvent) => void>();
 
   function clearTimers() {
-    if (reconnectTimer !== null) { clearTimeout(reconnectTimer); reconnectTimer = null; }
-    if (idleTimer !== null) { clearTimeout(idleTimer); idleTimer = null; }
+    if (reconnectTimer !== null) {
+      clearTimeout(reconnectTimer);
+      reconnectTimer = null;
+    }
+    if (idleTimer !== null) {
+      clearTimeout(idleTimer);
+      idleTimer = null;
+    }
   }
 
   function jitteredDelay(attempt: number): number {
     const base = Math.min(
-      reconnectCfg.initialDelayMs * Math.pow(2, attempt),
-      reconnectCfg.maxDelayMs
+      reconnectCfg.initialDelayMs * 2 ** attempt,
+      reconnectCfg.maxDelayMs,
     );
     const j = base * reconnectCfg.jitter;
     return base + (Math.random() * 2 - 1) * j;
@@ -80,23 +86,42 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
 
   function attachTopicHandler(src: EventSource, topic: string) {
     const handler = (ev: MessageEvent) => {
-      let parsed: { type?: string; payload?: unknown; meta?: Record<string, unknown> };
+      let parsed: {
+        type?: string;
+        payload?: unknown;
+        meta?: Record<string, unknown>;
+      };
       try {
         parsed = JSON.parse(String(ev.data)) as typeof parsed;
       } catch (cause) {
-        config.onError?.({ kind: "parse_failed", topic, cause, retrying: false });
+        config.onError?.({
+          kind: "parse_failed",
+          topic,
+          cause,
+          retrying: false,
+        });
         return;
       }
       const { type, payload, meta } = parsed;
       if (!type) return;
-      const full: RealtimeEvent = { topic, type, payload, ...(meta ? { meta } : {}) };
+      const full: RealtimeEvent = {
+        topic,
+        type,
+        payload,
+        ...(meta ? { meta } : {}),
+      };
       const set = subscribers.get(topic);
       if (!set) return;
       for (const cb of set) {
         try {
           cb(full);
         } catch (cause) {
-          config.onError?.({ kind: "handler_threw", topic, cause, retrying: false });
+          config.onError?.({
+            kind: "handler_threw",
+            topic,
+            cause,
+            retrying: false,
+          });
         }
       }
     };
@@ -122,7 +147,9 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
       return;
     }
 
-    const es = new EventSource(url, { withCredentials: config.withCredentials ?? false });
+    const es = new EventSource(url, {
+      withCredentials: config.withCredentials ?? false,
+    });
     source = es;
 
     es.onopen = () => {
@@ -134,7 +161,10 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
     };
 
     es.onerror = () => {
-      config.onError?.({ kind: "connect_failed", retrying: reconnectCfg.enabled });
+      config.onError?.({
+        kind: "connect_failed",
+        retrying: reconnectCfg.enabled,
+      });
       es.onopen = null;
       es.onerror = null;
       es.close();
@@ -143,7 +173,9 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
 
       if (reconnectCfg.enabled && reconnectAttempts < Infinity) {
         const delay = jitteredDelay(reconnectAttempts++);
-        reconnectTimer = setTimeout(() => { void openSource(); }, delay);
+        reconnectTimer = setTimeout(() => {
+          void openSource();
+        }, delay);
       }
     };
 
@@ -170,14 +202,20 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
   }
 
   function ensureConnected() {
-    if (idleTimer !== null) { clearTimeout(idleTimer); idleTimer = null; }
+    if (idleTimer !== null) {
+      clearTimeout(idleTimer);
+      idleTimer = null;
+    }
     if (!source || source.readyState === EventSource.CLOSED) {
       void openSource();
     }
   }
 
   return {
-    subscribe<P = unknown>(topic: string, cb: SubscriptionCallback<P>): Unsubscribe {
+    subscribe<P = unknown>(
+      topic: string,
+      cb: SubscriptionCallback<P>,
+    ): Unsubscribe {
       const isNewTopic = !subscribers.has(topic);
 
       let set = subscribers.get(topic);
@@ -212,7 +250,7 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
 
     async publish<P = unknown>(
       topic: string,
-      event: Omit<RealtimeEvent<P>, "topic">
+      event: Omit<RealtimeEvent<P>, "topic">,
     ): Promise<void> {
       if (!config.publishUrl) {
         throw new Error("sseTransport: publish requires publishUrl in config");
@@ -225,12 +263,24 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
           body: JSON.stringify({ topic, event }),
         });
       } catch (cause) {
-        config.onError?.({ kind: "send_failed", topic, cause, retrying: false });
+        config.onError?.({
+          kind: "send_failed",
+          topic,
+          cause,
+          retrying: false,
+        });
         throw cause;
       }
       if (!res.ok) {
-        const error = new Error(`sseTransport: publish failed with status ${res.status}`);
-        config.onError?.({ kind: "send_failed", topic, cause: error, retrying: false });
+        const error = new Error(
+          `sseTransport: publish failed with status ${res.status}`,
+        );
+        config.onError?.({
+          kind: "send_failed",
+          topic,
+          cause: error,
+          retrying: false,
+        });
         throw error;
       }
     },
@@ -252,7 +302,9 @@ export function sseTransport(config: SSETransportConfig): RealtimeTransport {
 
     onReconnect(cb: () => void): Unsubscribe {
       reconnectListeners.add(cb);
-      return () => { reconnectListeners.delete(cb); };
+      return () => {
+        reconnectListeners.delete(cb);
+      };
     },
   };
 }

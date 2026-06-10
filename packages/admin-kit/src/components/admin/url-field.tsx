@@ -95,8 +95,7 @@ UrlFieldImpl.displayName = "UrlFieldImpl";
 const UrlField = genericMemo(UrlFieldImpl);
 
 interface UrlFieldProps<RecordType extends UnknownRecord = UnknownRecord>
-  extends
-    FieldProps<RecordType>,
+  extends FieldProps<RecordType>,
     Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "content"> {
   /** Content to display as the link text. Defaults to the URL value. */
   content?: ReactNode;

@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { aggregate } from "@/components/block-editor/blocks/chart";
-import {
-  ChartResolved,
-  ChartEmpty,
-} from "./data-blocks.stories";
+import { ChartResolved, ChartEmpty } from "./data-blocks.stories";
 
 describe("aggregate (client-side group-by)", () => {
   const rows = [
@@ -54,7 +51,9 @@ describe("chart block", () => {
   it("shows the empty state when unconfigured", async () => {
     const screen = render(<ChartEmpty />);
     await expect
-      .element(screen.container.querySelector('[data-block="chart"]') as HTMLElement)
+      .element(
+        screen.container.querySelector('[data-block="chart"]') as HTMLElement,
+      )
       .toHaveTextContent(/pick a resource/i);
   });
 });

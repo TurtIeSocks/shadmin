@@ -34,9 +34,8 @@ function WrapperField<RecordType extends UnknownRecord = UnknownRecord>({
 
 WrapperField.displayName = "WrapperField";
 
-interface WrapperFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
-> extends Omit<FieldProps<RecordType>, "source"> {
+interface WrapperFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends Omit<FieldProps<RecordType>, "source"> {
   source?: FieldProps<RecordType>["source"];
   children: ReactNode;
 }

@@ -18,7 +18,8 @@ function makeBlockView(def: BlockDefinition) {
     selected,
     updateAttributes,
   }: NodeViewProps) {
-    const Component = (!editor.isEditable && def.read) || def.edit || def.render;
+    const Component =
+      (!editor.isEditable && def.read) || def.edit || def.render;
     const mode = editor.isEditable ? "edit" : "read";
     const body = createElement(Component as BlockDefinition["render"], {
       attrs: node.attrs as Record<string, unknown>,

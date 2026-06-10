@@ -85,7 +85,7 @@ function AdminGuesser(props: AdminGuesserProps) {
       </CustomRoutes>
     </Admin>
   );
-};
+}
 
 const AdminGuesserResources = ({ children }: { children?: AdminChildren }) => {
   const inferred = useCrudGuesser();

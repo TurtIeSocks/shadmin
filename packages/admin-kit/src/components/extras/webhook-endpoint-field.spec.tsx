@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Failed,
-  Pending,
-} from "./webhook-endpoint-field.stories";
+import { Basic, Failed, Pending } from "./webhook-endpoint-field.stories";
 
 describe("<WebhookEndpointField />", () => {
   it("renders the URL and an OK status badge for a successful last delivery", async () => {

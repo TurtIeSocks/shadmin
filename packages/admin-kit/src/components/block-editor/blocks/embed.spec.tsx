@@ -27,15 +27,23 @@ describe("toEmbedSrc (allowlist parser)", () => {
 describe("embed block", () => {
   it("renders an iframe with the safe constructed src for YouTube", async () => {
     const screen = render(<EmbedStory />);
-    const iframe = screen.container.querySelector('[data-block="embed"] iframe') as HTMLIFrameElement;
+    const iframe = screen.container.querySelector(
+      '[data-block="embed"] iframe',
+    ) as HTMLIFrameElement;
     expect(iframe).not.toBeNull();
-    expect(iframe.getAttribute("src")).toBe("https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ");
+    expect(iframe.getAttribute("src")).toBe(
+      "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
+    );
   });
   it("renders a placeholder (no iframe) for unsupported URLs", async () => {
     const screen = render(<EmbedUnsupportedStory />);
-    expect(screen.container.querySelector('[data-block="embed"] iframe')).toBeNull();
+    expect(
+      screen.container.querySelector('[data-block="embed"] iframe'),
+    ).toBeNull();
     await expect
-      .element(screen.container.querySelector('[data-block="embed"]') as HTMLElement)
+      .element(
+        screen.container.querySelector('[data-block="embed"]') as HTMLElement,
+      )
       .toHaveTextContent(/youtube or vimeo/i);
   });
 });

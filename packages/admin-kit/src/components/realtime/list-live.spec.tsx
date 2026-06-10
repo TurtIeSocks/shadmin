@@ -1,7 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { Basic } from "./list-live.stories";
-import { basicDataProvider, basicTransport } from "@/components/realtime/__fixtures__/list-live-fixtures";
+import {
+  basicDataProvider,
+  basicTransport,
+} from "@/components/realtime/__fixtures__/list-live-fixtures";
 
 describe("<ListLive>", () => {
   it("renders rows", async () => {
@@ -13,7 +16,10 @@ describe("<ListLive>", () => {
     const screen = render(<Basic />);
     await expect.element(screen.getByText("alpha")).toBeVisible();
     await basicDataProvider.create("posts", { data: { id: 2, title: "beta" } });
-    await basicTransport.publish("resource/posts", { type: "created", payload: { ids: [2] } });
+    await basicTransport.publish("resource/posts", {
+      type: "created",
+      payload: { ids: [2] },
+    });
     await expect.element(screen.getByText("beta")).toBeVisible();
   });
 });

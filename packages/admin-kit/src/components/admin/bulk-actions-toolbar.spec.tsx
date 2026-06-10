@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomChildren,
-  Empty,
-} from "./bulk-actions-toolbar.stories";
+import { Basic, CustomChildren, Empty } from "./bulk-actions-toolbar.stories";
 
 describe("<BulkActionsToolbar />", () => {
   it("renders a count of selected rows", async () => {

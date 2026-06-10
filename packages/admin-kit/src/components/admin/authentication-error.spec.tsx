@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomText,
-} from "./authentication-error.stories";
+import { Basic, CustomText } from "./authentication-error.stories";
 
 describe("<AuthenticationError />", () => {
   it("renders the default authentication-error heading", async () => {

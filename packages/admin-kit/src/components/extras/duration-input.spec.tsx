@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-  HoursMinutesOnly,
-} from "./duration-input.stories";
+import { Basic, Disabled, HoursMinutesOnly } from "./duration-input.stories";
 
 describe("<DurationInput />", () => {
   it("renders separate inputs for each unit (default d/h/m/s)", async () => {

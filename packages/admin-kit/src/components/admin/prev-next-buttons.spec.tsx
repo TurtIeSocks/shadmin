@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Default,
-  FirstRecord,
-  LastRecord,
-} from "./prev-next-buttons.stories";
+import { Default, FirstRecord, LastRecord } from "./prev-next-buttons.stories";
 
 describe("<PrevNextButtons />", () => {
   it("renders previous and next navigation when there is a record on each side", async () => {

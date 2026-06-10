@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  DaysHours,
-  Empty,
-  Relative,
-} from "./duration-field.stories";
+import { Basic, DaysHours, Empty, Relative } from "./duration-field.stories";
 
 describe("<DurationField />", () => {
   it("renders '2h 30m' for PT2H30M", async () => {

@@ -26,11 +26,15 @@ export function toEmbedSrc(url: string): string | null {
 
   if (host === "youtube.com" || host === "m.youtube.com") {
     const id = parsed.searchParams.get("v") ?? "";
-    return YT_ID.test(id) ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+    return YT_ID.test(id)
+      ? `https://www.youtube-nocookie.com/embed/${id}`
+      : null;
   }
   if (host === "youtu.be") {
     const id = parsed.pathname.slice(1);
-    return YT_ID.test(id) ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+    return YT_ID.test(id)
+      ? `https://www.youtube-nocookie.com/embed/${id}`
+      : null;
   }
   if (host === "vimeo.com") {
     const id = parsed.pathname.split("/").filter(Boolean)[0] ?? "";
@@ -40,10 +44,13 @@ export function toEmbedSrc(url: string): string | null {
 }
 
 function EmbedRender({ attrs }: BlockRenderProps<EmbedAttrs>) {
-  if (!attrs.url) return <BlockEmpty label="Paste a YouTube or Vimeo URL (configure)" />;
+  if (!attrs.url)
+    return <BlockEmpty label="Paste a YouTube or Vimeo URL (configure)" />;
   const src = toEmbedSrc(attrs.url);
   if (!src) {
-    return <BlockEmpty label="Unsupported embed — only YouTube or Vimeo URLs are allowed" />;
+    return (
+      <BlockEmpty label="Unsupported embed — only YouTube or Vimeo URLs are allowed" />
+    );
   }
   return (
     <div className="relative aspect-video w-full overflow-hidden rounded-md">

@@ -19,7 +19,9 @@ function ListLiveSubscription() {
   const queryClient = useQueryClient();
   const invalidate = () => {
     if (!resource) return;
-    queryClient.invalidateQueries({ predicate: (q) => q.queryKey[0] === resource });
+    queryClient.invalidateQueries({
+      predicate: (q) => q.queryKey[0] === resource,
+    });
   };
   useSubscribeToRecordList(resource ?? "", invalidate, { enabled: !!resource });
   useOnReconnect(invalidate);

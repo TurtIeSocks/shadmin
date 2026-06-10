@@ -59,7 +59,11 @@ export const RecordListResolved = () => (
       content: [
         {
           type: "recordList",
-          attrs: { resource: "products", perPage: 5, fields: ["name", "price"] },
+          attrs: {
+            resource: "products",
+            perPage: 5,
+            fields: ["name", "price"],
+          },
         },
       ],
     }}

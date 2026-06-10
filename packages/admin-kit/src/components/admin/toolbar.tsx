@@ -38,12 +38,7 @@ import { DeleteButton } from "@/components/admin/delete-button";
  *   </Toolbar>
  * );
  */
-function Toolbar({
-  children,
-  className,
-  resource,
-  ...rest
-}: ToolbarProps) {
+function Toolbar({ children, className, resource, ...rest }: ToolbarProps) {
   return (
     <div
       {...rest}

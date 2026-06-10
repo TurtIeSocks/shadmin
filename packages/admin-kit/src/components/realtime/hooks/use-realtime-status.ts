@@ -12,11 +12,13 @@ interface RealtimeStatusResult {
 }
 
 export function useRealtimeStatus(): RealtimeStatusResult {
-  const dataProvider = useContext(DataProviderContext) as RealtimeDataProvider | null;
+  const dataProvider = useContext(
+    DataProviderContext,
+  ) as RealtimeDataProvider | null;
   const hasStatusChange = typeof dataProvider?.onStatusChange === "function";
 
   const [status, setStatus] = useState<RealtimeConnectionStatus>(
-    hasStatusChange ? "disconnected" : "idle"
+    hasStatusChange ? "disconnected" : "idle",
   );
   const [lastError] = useState<RealtimeTransportError | null>(null);
 

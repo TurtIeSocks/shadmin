@@ -343,4 +343,13 @@ const DonutChart = ({
   </ChartShell>
 );
 
-export { type MetricCardProps, MetricCard, type TrendChartProps, TrendChart, type BarChartProps, BarChart, type DonutChartProps, DonutChart };
+export {
+  type MetricCardProps,
+  MetricCard,
+  type TrendChartProps,
+  TrendChart,
+  type BarChartProps,
+  BarChart,
+  type DonutChartProps,
+  DonutChart,
+};

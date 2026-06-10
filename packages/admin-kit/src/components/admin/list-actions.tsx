@@ -11,10 +11,8 @@ import { CreateButton } from "@/components/admin/create-button";
 import { ExportButton } from "@/components/admin/export-button";
 import { FilterButton } from "@/components/admin/filter-button";
 
-interface ListActionsProps extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  "children"
-> {
+interface ListActionsProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   className?: string;
   resource?: string;
   filters?: ReactElement | ReactNode[];

@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  CustomLabel,
-  Default,
-} from "./refresh-icon-button.stories";
+import { CustomLabel, Default } from "./refresh-icon-button.stories";
 import { RefreshIconButton } from "@/components/admin/refresh-icon-button";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { CoreAdminContext, memoryStore } from "ra-core";

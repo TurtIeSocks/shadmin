@@ -6,11 +6,7 @@ import { fakeTransport } from "@/components/realtime/transports/fake-transport";
 import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
 import { useLock } from "./use-lock";
 
-function LockOnce({
-  onSuccess,
-}: {
-  onSuccess: (lock: unknown) => void;
-}) {
+function LockOnce({ onSuccess }: { onSuccess: (lock: unknown) => void }) {
   const { lock, isLoading } = useLock();
   useEffect(() => {
     if (isLoading) return;
@@ -27,11 +23,11 @@ describe("useLock", () => {
     render(
       <RealtimeStoryAdmin transport={transport} locks={locks}>
         <LockOnce onSuccess={onSuccess} />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await new Promise((r) => setTimeout(r, 50));
     expect(onSuccess).toHaveBeenCalledWith(
-      expect.objectContaining({ identity: "alice", resource: "posts" })
+      expect.objectContaining({ identity: "alice", resource: "posts" }),
     );
   });
 });

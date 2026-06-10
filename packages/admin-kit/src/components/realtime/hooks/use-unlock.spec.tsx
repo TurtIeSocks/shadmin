@@ -24,7 +24,7 @@ describe("useUnlock", () => {
     render(
       <RealtimeStoryAdmin transport={transport} locks={locks}>
         <UnlockOnce onDone={onDone} />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await new Promise((r) => setTimeout(r, 50));
     expect(onDone).toHaveBeenCalled();

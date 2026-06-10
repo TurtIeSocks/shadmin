@@ -1,4 +1,8 @@
-import { RecordField, Show, TabbedShowLayout } from "shadcn-admin-kit/components/admin";
+import {
+  RecordField,
+  Show,
+  TabbedShowLayout,
+} from "shadcn-admin-kit/components/admin";
 import {
   BBoxField,
   FeatureCollectionField,

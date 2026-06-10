@@ -136,11 +136,10 @@ function DurationInput(props: DurationInputProps) {
       </FieldError>
     </Field>
   );
-};
+}
 
 interface DurationInputProps
-  extends
-    InputProps,
+  extends InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   /** Which units to expose. Default `["d","h","m","s"]`. */
   units?: readonly Unit[];

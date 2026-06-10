@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  WithRenderProp,
-} from "./reference-one-field.stories";
+import { Basic, WithRenderProp } from "./reference-one-field.stories";
 
 describe("<ReferenceOneField />", () => {
   it("renders the related record's referenced value once loaded", async () => {

@@ -9,11 +9,8 @@ import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { cn } from "@/lib/utils";
 
-interface UsageMeterFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
+interface UsageMeterFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
   /** Sibling record field holding the limit/quota. Bar is only shown when set. */
   limitSource?: string;
@@ -35,9 +32,7 @@ const DEFAULT_THRESHOLDS = { warning: 0.8, critical: 1.0 };
  * @example
  * <UsageMeterField source="used" limitSource="limit" unit="GB" />
  */
-function UsageMeterField<
-  RecordType extends UnknownRecord = UnknownRecord,
->({
+function UsageMeterField<RecordType extends UnknownRecord = UnknownRecord>({
   defaultValue,
   source,
   record,

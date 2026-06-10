@@ -14,7 +14,10 @@ const record = {
   body: {
     type: "doc",
     content: [
-      { type: "paragraph", content: [{ type: "text", text: "Initial content" }] },
+      {
+        type: "paragraph",
+        content: [{ type: "text", text: "Initial content" }],
+      },
     ],
   },
 };

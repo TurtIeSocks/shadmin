@@ -74,7 +74,7 @@ function SaveButton<RecordType extends RaRecord = RaRecord>(
 
   const handleSubmit = useCallback(
     async (values: UnknownRecord) => {
-      let errors;
+      let errors: unknown;
       if (saveContext?.save) {
         errors = await saveContext.save(values, {
           ...mutationOptions,

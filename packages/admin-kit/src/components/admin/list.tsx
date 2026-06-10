@@ -93,7 +93,8 @@ function List<RecordType extends RaRecord = RaRecord>(
 }
 
 interface ListProps<RecordType extends RaRecord = RaRecord>
-  extends ListBaseProps<RecordType>, ListViewProps<RecordType> {}
+  extends ListBaseProps<RecordType>,
+    ListViewProps<RecordType> {}
 
 /**
  * The view component for List pages with layout and UI.
@@ -205,9 +206,4 @@ interface ListViewProps<RecordType extends RaRecord = RaRecord> {
   className?: string;
 }
 
-export {
-  List,
-  ListView,
-  type ListProps,
-  type ListViewProps,
-};
+export { List, ListView, type ListProps, type ListViewProps };

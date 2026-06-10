@@ -8,10 +8,9 @@ import {
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
-interface RatingFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+interface RatingFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLSpanElement> {
   /** Total stars rendered (filled + outlined). Default 5. */
   max?: number;
   /** Allow half-star granularity when value is between integers. */

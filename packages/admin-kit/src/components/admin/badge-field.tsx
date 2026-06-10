@@ -35,7 +35,8 @@ type BadgeProps = React.ComponentProps<typeof Badge>;
  * );
  */
 interface BadgeFieldProps<RecordType extends RaRecord = RaRecord>
-  extends FieldProps<RecordType>, BadgeProps {
+  extends FieldProps<RecordType>,
+    BadgeProps {
   variant?: "default" | "outline" | "secondary" | "destructive";
 }
 

@@ -154,4 +154,9 @@ function renderInput(key: string, prop: JsonSchemaProperty): ReactNode {
   return <TextInput key={key} source={key} />;
 }
 
-export { type JsonSchemaProperty, type JsonSchema, type SchemaDrivenViewProps, SchemaDrivenView };
+export {
+  type JsonSchemaProperty,
+  type JsonSchema,
+  type SchemaDrivenViewProps,
+  SchemaDrivenView,
+};

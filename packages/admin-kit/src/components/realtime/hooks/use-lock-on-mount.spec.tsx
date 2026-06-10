@@ -24,7 +24,7 @@ describe("useLockOnMount", () => {
             <Probe />
           </RecordContextProvider>
         </ResourceContextProvider>
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await expect
       .element(screen.getByTestId("state"))
@@ -42,8 +42,10 @@ describe("useLockOnMount", () => {
             <Probe />
           </RecordContextProvider>
         </ResourceContextProvider>
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
-    await expect.element(screen.getByTestId("state")).toHaveTextContent("conflict");
+    await expect
+      .element(screen.getByTestId("state"))
+      .toHaveTextContent("conflict");
   });
 });

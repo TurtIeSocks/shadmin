@@ -64,10 +64,9 @@ function NumberField<RecordType extends UnknownRecord = UnknownRecord>({
   );
 }
 
-interface NumberFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+interface NumberFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLSpanElement> {
   locales?: string | string[];
   options?: object;
   transform?: (value: UnknownValue) => UnknownValue;

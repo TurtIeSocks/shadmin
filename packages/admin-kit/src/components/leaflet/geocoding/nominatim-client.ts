@@ -119,4 +119,10 @@ const nominatimProvider: GeocodingProvider = {
   },
 };
 
-export { type GeocodeResult, type SearchOptions, type ReverseOptions, type GeocodingProvider, nominatimProvider };
+export {
+  type GeocodeResult,
+  type SearchOptions,
+  type ReverseOptions,
+  type GeocodingProvider,
+  nominatimProvider,
+};

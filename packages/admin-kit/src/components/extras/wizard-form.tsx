@@ -384,4 +384,11 @@ function WizardToolbar() {
   );
 }
 
-export { type WizardProgressMode, type WizardFormProps, type WizardStepProps, WizardForm, WizardFormStep, WizardToolbar };
+export {
+  type WizardProgressMode,
+  type WizardFormProps,
+  type WizardStepProps,
+  WizardForm,
+  WizardFormStep,
+  WizardToolbar,
+};

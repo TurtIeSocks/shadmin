@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  SingleLocale,
-} from "./locales-menu-button.stories";
+import { Basic, SingleLocale } from "./locales-menu-button.stories";
 
 describe("<LocalesMenuButton />", () => {
   it("renders the change-locale button when multiple locales are configured", async () => {

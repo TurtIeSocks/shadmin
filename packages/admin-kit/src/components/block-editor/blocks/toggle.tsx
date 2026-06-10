@@ -10,7 +10,11 @@ const schema = z.object({
 });
 type ToggleAttrs = z.infer<typeof schema>;
 
-function ToggleRender({ attrs, updateAttrs, mode }: BlockRenderProps<ToggleAttrs>) {
+function ToggleRender({
+  attrs,
+  updateAttrs,
+  mode,
+}: BlockRenderProps<ToggleAttrs>) {
   const expanded = mode === "edit" ? true : attrs.open;
   return (
     <div className="rounded-md border p-2">

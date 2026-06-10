@@ -186,4 +186,10 @@ const PresenceBar = ({
   );
 };
 
-export { type PresenceUser, type PresenceState, type PresenceTransport, type PresenceBarProps, PresenceBar };
+export {
+  type PresenceUser,
+  type PresenceState,
+  type PresenceTransport,
+  type PresenceBarProps,
+  PresenceBar,
+};

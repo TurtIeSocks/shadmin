@@ -22,9 +22,9 @@ interface UpdateWithUndoButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > extends Omit<
-  UseUpdateControllerParams<RecordType, MutationOptionsError>,
-  "mutationMode"
-> {
+    UseUpdateControllerParams<RecordType, MutationOptionsError>,
+    "mutationMode"
+  > {
   className?: string;
   data: Partial<RecordType>;
   icon?: React.ReactNode;
@@ -96,9 +96,7 @@ function UpdateButton(props: UpdateButtonProps) {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/updatebutton/ UpdateButton documentation}
  */
-function UpdateWithConfirmButton(
-  props: UpdateWithConfirmButtonProps,
-) {
+function UpdateWithConfirmButton(props: UpdateWithConfirmButtonProps) {
   const {
     className,
     confirmTitle: confirmTitleProp,

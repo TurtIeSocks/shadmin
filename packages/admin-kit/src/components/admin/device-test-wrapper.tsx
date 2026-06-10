@@ -58,10 +58,7 @@ const buildMatchMedia =
  *   <MyResponsiveComponent />
  * </DeviceTestWrapper>
  */
-function DeviceTestWrapper({
-  width,
-  children,
-}: DeviceTestWrapperProps) {
+function DeviceTestWrapper({ width, children }: DeviceTestWrapperProps) {
   const pixelWidth = WIDTH_MAP[width];
 
   useEffect(() => {

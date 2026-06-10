@@ -105,6 +105,6 @@ function SetPasswordForm() {
       </Button>
     </Form>
   );
-};
+}
 
 export { SetPasswordForm };

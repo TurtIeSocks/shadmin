@@ -4,27 +4,37 @@ import type { Identifier } from "ra-core";
 import type { Lock, LockParams, RealtimeDataProvider } from "../types";
 
 export function useLock<R extends string = string>(): {
-  lock: (resource: R, params: Omit<LockParams, "identity"> & { identity?: Identifier }) => Promise<Lock>;
+  lock: (
+    resource: R,
+    params: Omit<LockParams, "identity"> & { identity?: Identifier },
+  ) => Promise<Lock>;
   isLoading: boolean;
   error: Error | null;
 } {
-  const dataProvider = useContext(DataProviderContext) as RealtimeDataProvider<R> | null;
+  const dataProvider = useContext(
+    DataProviderContext,
+  ) as RealtimeDataProvider<R> | null;
   if (!dataProvider) {
-    throw new Error("useLock: no DataProvider found. Must be used inside an Admin or CoreAdminContext.");
+    throw new Error(
+      "useLock: no DataProvider found. Must be used inside an Admin or CoreAdminContext.",
+    );
   }
 
-  const { identity: defaultIdentity, isLoading: identityLoading } = useGetIdentity();
+  const { identity: defaultIdentity, isLoading: identityLoading } =
+    useGetIdentity();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   const lock = useCallback(
     async (
       resource: R,
-      params: Omit<LockParams, "identity"> & { identity?: Identifier }
+      params: Omit<LockParams, "identity"> & { identity?: Identifier },
     ): Promise<Lock> => {
       const identity = params.identity ?? defaultIdentity?.id;
       if (identity == null) {
-        throw new Error("useLock: no identity available. Pass identity explicitly or configure an authProvider.");
+        throw new Error(
+          "useLock: no identity available. Pass identity explicitly or configure an authProvider.",
+        );
       }
       setIsLoading(true);
       setError(null);
@@ -42,7 +52,7 @@ export function useLock<R extends string = string>(): {
         setIsLoading(false);
       }
     },
-    [dataProvider, defaultIdentity?.id]
+    [dataProvider, defaultIdentity?.id],
   );
 
   return { lock, isLoading: isLoading || identityLoading, error };

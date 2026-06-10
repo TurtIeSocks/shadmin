@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
-import {
-  Basic,
-  CustomPlacement,
-} from "./onboarding-tour.stories";
+import { Basic, CustomPlacement } from "./onboarding-tour.stories";
 
 describe("<OnboardingTour />", () => {
   it("should render the tour when not yet completed", async () => {

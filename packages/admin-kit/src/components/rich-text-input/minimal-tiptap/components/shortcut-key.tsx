@@ -6,12 +6,7 @@ interface ShortcutKeyProps extends React.ComponentProps<"span"> {
   keys: string[];
 }
 
-const ShortcutKey = ({
-  ref,
-  className,
-  keys,
-  ...props
-}: ShortcutKeyProps) => {
+const ShortcutKey = ({ ref, className, keys, ...props }: ShortcutKeyProps) => {
   const modifiedKeys = keys.map((key) => getShortcutKey(key));
   const ariaLabel = modifiedKeys
     .map((shortcut) => shortcut.readable)

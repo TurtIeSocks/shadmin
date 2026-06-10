@@ -5,12 +5,20 @@ import { defineBlock } from "./define-block";
 import { createBlockRegistry } from "./block-registry";
 
 const callout = defineBlock({
-  name: "callout", label: "Callout", group: "content", icon: Lightbulb,
-  schema: z.object({ variant: z.string().default("info") }), render: () => null,
+  name: "callout",
+  label: "Callout",
+  group: "content",
+  icon: Lightbulb,
+  schema: z.object({ variant: z.string().default("info") }),
+  render: () => null,
 });
 const ref = defineBlock({
-  name: "referenceRecord", label: "Reference record", group: "data", icon: Boxes,
-  schema: z.object({ id: z.number().nullable().default(null) }), render: () => null,
+  name: "referenceRecord",
+  label: "Reference record",
+  group: "data",
+  icon: Boxes,
+  schema: z.object({ id: z.number().nullable().default(null) }),
+  render: () => null,
 });
 
 describe("createBlockRegistry", () => {

@@ -20,7 +20,9 @@ function ShowLiveSubscription() {
   const queryClient = useQueryClient();
   const invalidate = () => {
     if (!resource) return;
-    queryClient.invalidateQueries({ predicate: (q) => q.queryKey[0] === resource });
+    queryClient.invalidateQueries({
+      predicate: (q) => q.queryKey[0] === resource,
+    });
   };
   useSubscribeToRecord(resource ?? "", record?.id, invalidate, {
     enabled: !!resource && record?.id != null,

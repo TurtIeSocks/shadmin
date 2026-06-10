@@ -29,7 +29,10 @@ describe("webSocketTransport", () => {
     transports.push(t);
     t.subscribe("resource/posts", vi.fn());
     await new Promise((r) => setTimeout(r, 30));
-    expect(received).toContainEqual({ op: "subscribe", topic: "resource/posts" });
+    expect(received).toContainEqual({
+      op: "subscribe",
+      topic: "resource/posts",
+    });
   });
 
   it("dispatches incoming events to subscribers", async () => {
@@ -43,7 +46,7 @@ describe("webSocketTransport", () => {
             topic: "resource/posts",
             type: "created",
             payload: { ids: [1] },
-          })
+          }),
         );
       });
     });
@@ -57,7 +60,7 @@ describe("webSocketTransport", () => {
     t.subscribe("resource/posts", cb);
     await new Promise((r) => setTimeout(r, 60));
     expect(cb).toHaveBeenCalledWith(
-      expect.objectContaining({ topic: "resource/posts", type: "created" })
+      expect.objectContaining({ topic: "resource/posts", type: "created" }),
     );
   });
 
@@ -77,7 +80,10 @@ describe("webSocketTransport", () => {
     transports.push(t);
     t.subscribe("resource/posts", vi.fn());
     await new Promise((r) => setTimeout(r, 30));
-    await t.publish("resource/posts", { type: "created", payload: { ids: [1] } });
+    await t.publish("resource/posts", {
+      type: "created",
+      payload: { ids: [1] },
+    });
     await new Promise((r) => setTimeout(r, 30));
     expect(received).toContainEqual({
       op: "publish",

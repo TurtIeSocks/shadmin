@@ -1,13 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Empty,
-  Half,
-  MaxTen,
-  WithCount,
-} from "./rating-field.stories";
+import { Basic, Empty, Half, MaxTen, WithCount } from "./rating-field.stories";
 
 describe("<RatingField />", () => {
   it("renders 5 stars with 3 filled by default", async () => {

@@ -1,7 +1,14 @@
 import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { i18nProvider } from "@/lib/i18n-provider";
-import { Admin, DataTable, List, ListPagination, ShowGuesser, TextInput } from "@/components/admin";
+import {
+  Admin,
+  DataTable,
+  List,
+  ListPagination,
+  ShowGuesser,
+  TextInput,
+} from "@/components/admin";
 import { FilterLiveForm } from "@/components/extras";
 import { Card } from "@/components/ui/card";
 

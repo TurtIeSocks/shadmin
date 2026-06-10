@@ -84,7 +84,9 @@ const calloutDoc: JSONContent = {
     {
       type: "callout",
       attrs: { variant: "info", dense: false },
-      content: [{ type: "paragraph", content: [{ type: "text", text: "Note" }] }],
+      content: [
+        { type: "paragraph", content: [{ type: "text", text: "Note" }] },
+      ],
     },
   ],
 };

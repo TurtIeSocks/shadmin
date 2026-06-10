@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Empty,
-  Resolvable,
-} from "./comments-thread.stories";
+import { Basic, Empty, Resolvable } from "./comments-thread.stories";
 
 describe("<CommentsThread />", () => {
   it("renders one card per comment matching the parent", async () => {

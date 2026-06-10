@@ -117,7 +117,7 @@ function BulkEditDrawer(props: BulkEditDrawerProps) {
       </SheetContent>
     </Sheet>
   );
-};
+}
 
 interface BulkEditDrawerProps {
   /** Form inputs to render inside the sheet. */

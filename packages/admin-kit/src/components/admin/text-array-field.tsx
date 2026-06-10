@@ -29,9 +29,7 @@ type BadgeProps = ComponentProps<typeof Badge>;
  *   </Show>
  * );
  */
-function TextArrayField<
-  RecordType extends UnknownRecord = UnknownRecord,
->(
+function TextArrayField<RecordType extends UnknownRecord = UnknownRecord>(
   props: TextArrayFieldProps<RecordType>,
 ) {
   const {
@@ -73,11 +71,8 @@ function TextArrayField<
   );
 }
 
-interface TextArrayFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
+interface TextArrayFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   variant?: BadgeProps["variant"];
 }

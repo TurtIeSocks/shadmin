@@ -34,19 +34,20 @@ interface ShapeInputShellProps extends BaseInputProps {
   valueParse?: (stored: unknown) => GeoJSON.Geometry | null;
 }
 
-interface ShellInnerProps extends Pick<
-  ShapeInputShellProps,
-  | "source"
-  | "shape"
-  | "multi"
-  | "collection"
-  | "geomanShapes"
-  | "snappable"
-  | "snapDistance"
-  | "pathOptions"
-  | "valueTransform"
-  | "valueParse"
-> {
+interface ShellInnerProps
+  extends Pick<
+    ShapeInputShellProps,
+    | "source"
+    | "shape"
+    | "multi"
+    | "collection"
+    | "geomanShapes"
+    | "snappable"
+    | "snapDistance"
+    | "pathOptions"
+    | "valueTransform"
+    | "valueParse"
+  > {
   disabled?: boolean;
   validate?: (geom: GeoJSON.Geometry) => string | undefined;
 }

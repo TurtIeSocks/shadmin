@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Default,
-  WithConfirm,
-} from "./bulk-update-button.stories";
+import { Default, WithConfirm } from "./bulk-update-button.stories";
 
 describe("<BulkUpdateButton />", () => {
   it("renders the labeled bulk update button", async () => {

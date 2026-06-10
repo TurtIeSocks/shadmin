@@ -4,7 +4,7 @@ import { recordTopic, resourceTopic } from "./topics";
 
 export function addEventsForMutations<R extends string = string>(
   baseDataProvider: DataProvider<R> | RealtimeDataProvider<R>,
-  publisher: Pick<RealtimeDataProvider<R>, "publish">
+  publisher: Pick<RealtimeDataProvider<R>, "publish">,
 ): DataProvider<R> {
   return {
     ...baseDataProvider,

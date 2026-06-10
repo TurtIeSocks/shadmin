@@ -136,7 +136,7 @@ function PhoneInput(props: PhoneInputProps) {
       </FieldError>
     </Field>
   );
-};
+}
 
 function inferCountry(value: string, fallback: CountryCode): CountryCode {
   try {
@@ -157,8 +157,7 @@ function formatNational(value: string, country: CountryCode): string {
 }
 
 interface PhoneInputProps
-  extends
-    InputProps,
+  extends InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   defaultCountry?: CountryCode;
   allowedCountries?: readonly CountryCode[];

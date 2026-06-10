@@ -59,11 +59,7 @@ function SimpleForm({
  *     </FormToolbar>
  * );
  */
-function FormToolbar({
-  children,
-  className,
-  ...rest
-}: FormToolbarProps) {
+function FormToolbar({ children, className, ...rest }: FormToolbarProps) {
   return (
     <div
       {...rest}
@@ -98,9 +94,4 @@ interface FormToolbarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const defaultFormToolbar = <FormToolbar />;
 
-export {
-  SimpleForm,
-  type SimpleFormProps,
-  FormToolbar,
-  type FormToolbarProps,
-};
+export { SimpleForm, type SimpleFormProps, FormToolbar, type FormToolbarProps };

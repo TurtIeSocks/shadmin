@@ -1,4 +1,8 @@
-import { Edit, SelectInput, SimpleForm } from "shadcn-admin-kit/components/admin";
+import {
+  Edit,
+  SelectInput,
+  SimpleForm,
+} from "shadcn-admin-kit/components/admin";
 import { WebhookEndpointInput } from "shadcn-admin-kit/components/extras/webhook-endpoint-input";
 import { EVENT_TYPES } from "./event-types";
 

@@ -218,8 +218,7 @@ function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
 }
 
 interface CheckboxGroupInputProps
-  extends
-    Partial<InputProps>,
+  extends Partial<InputProps>,
     ChoicesProps,
     Omit<
       React.HTMLAttributes<HTMLDivElement>,

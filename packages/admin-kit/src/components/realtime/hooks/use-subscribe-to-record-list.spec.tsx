@@ -17,7 +17,7 @@ describe("useSubscribeToRecordList", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <Probe resource="posts" />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await transport.publish("resource/posts", { type: "created", payload: {} });
     await expect.element(screen.getByTestId("count")).toHaveTextContent("1");

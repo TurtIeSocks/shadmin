@@ -28,10 +28,8 @@ import { FilterListSection } from "@/components/admin/filter-list-section";
  *   </Card>
  * );
  */
-interface FilterListProps extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  "children"
-> {
+interface FilterListProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   label: string;
   icon?: ReactNode;
   children: ReactNode;

@@ -7,11 +7,7 @@ import {
 } from "ra-core";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  FieldError,
-  FieldLegend,
-  FieldSet,
-} from "@/components/ui/field";
+import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import type { SubscriptionPlan } from "./subscription-plan-field";
 import { cn } from "@/lib/utils";
@@ -56,7 +52,10 @@ function SubscriptionPlanPicker(props: SubscriptionPlanPickerProps) {
   const currentId = (field.value as string | null | undefined) ?? null;
 
   return (
-    <FieldSet className={cn("gap-3", className)} data-invalid={invalid || undefined}>
+    <FieldSet
+      className={cn("gap-3", className)}
+      data-invalid={invalid || undefined}
+    >
       {label !== false && (
         <FieldLegend variant="label">
           <FieldTitle
@@ -93,7 +92,7 @@ function SubscriptionPlanPicker(props: SubscriptionPlanPickerProps) {
       </FieldError>
     </FieldSet>
   );
-};
+}
 
 interface PlanCardProps {
   plan: SubscriptionPlan;

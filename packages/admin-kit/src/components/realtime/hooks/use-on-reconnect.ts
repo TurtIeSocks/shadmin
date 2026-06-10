@@ -3,7 +3,9 @@ import { DataProviderContext } from "ra-core";
 import type { RealtimeDataProvider } from "../types";
 
 export function useOnReconnect(callback: () => void): void {
-  const dataProvider = useContext(DataProviderContext) as RealtimeDataProvider | null;
+  const dataProvider = useContext(
+    DataProviderContext,
+  ) as RealtimeDataProvider | null;
   const callbackRef = useRef(callback);
 
   useEffect(() => {

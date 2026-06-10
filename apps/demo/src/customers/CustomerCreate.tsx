@@ -1,4 +1,9 @@
-import { Create, SimpleForm, TextInput, FormToolbar } from "shadcn-admin-kit/components/admin";
+import {
+  Create,
+  SimpleForm,
+  TextInput,
+  FormToolbar,
+} from "shadcn-admin-kit/components/admin";
 import { required, email, Translate } from "ra-core";
 
 export const CustomerCreate = () => (

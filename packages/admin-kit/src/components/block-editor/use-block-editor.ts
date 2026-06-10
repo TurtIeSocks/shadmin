@@ -81,9 +81,12 @@ export function useBlockEditor({
       content: value ?? EMPTY_DOC,
       onCreate: ({ editor }) => {
         const known = new Set(Object.keys(editor.schema.nodes));
-        editor.commands.setContent(wrapUnknownNodes(value ?? EMPTY_DOC, known), {
-          emitUpdate: false,
-        });
+        editor.commands.setContent(
+          wrapUnknownNodes(value ?? EMPTY_DOC, known),
+          {
+            emitUpdate: false,
+          },
+        );
         onCreateRef.current?.(editor);
       },
       onUpdate: ({ editor }) => handleUpdate(editor),

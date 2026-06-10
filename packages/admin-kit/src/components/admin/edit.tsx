@@ -179,9 +179,4 @@ function EditView({
   );
 }
 
-export {
-  Edit,
-  EditView,
-  type EditProps,
-  type EditViewProps,
-};
+export { Edit, EditView, type EditProps, type EditViewProps };

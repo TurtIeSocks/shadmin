@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  TranslatedTitle,
-  ReactElementTitle,
-} from "./title.stories";
+import { Basic, TranslatedTitle, ReactElementTitle } from "./title.stories";
 
 describe("<Title />", () => {
   it("renders the title text inside the portal", async () => {

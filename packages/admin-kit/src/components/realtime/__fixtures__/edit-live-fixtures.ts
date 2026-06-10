@@ -7,5 +7,5 @@ const seed = { posts: [{ id: 1, title: "alpha" }] };
 export const editTransport = fakeTransport();
 export const editDataProvider = realtimeDataProvider(
   fakeRestProvider(seed, false),
-  editTransport
+  editTransport,
 );

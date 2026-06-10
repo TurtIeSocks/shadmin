@@ -1,4 +1,9 @@
-import { Edit, SelectInput, SimpleForm, TextInput } from "shadcn-admin-kit/components/admin";
+import {
+  Edit,
+  SelectInput,
+  SimpleForm,
+  TextInput,
+} from "shadcn-admin-kit/components/admin";
 import { CronInput } from "shadcn-admin-kit/components/extras/cron-input";
 
 export const ScheduledJobEdit = () => (

@@ -94,7 +94,4 @@ interface TranslatableInputsTabContentProps {
   resource?: string;
 }
 
-export {
-  TranslatableInputsTabContent,
-  type TranslatableInputsTabContentProps,
-};
+export { TranslatableInputsTabContent, type TranslatableInputsTabContentProps };

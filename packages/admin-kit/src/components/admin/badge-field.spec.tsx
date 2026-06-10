@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Outline,
-  Secondary,
-  Empty,
-} from "./badge-field.stories";
+import { Basic, Outline, Secondary, Empty } from "./badge-field.stories";
 
 describe("<BadgeField />", () => {
   it("renders the source value inside a badge", async () => {

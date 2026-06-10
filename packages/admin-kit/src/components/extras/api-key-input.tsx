@@ -81,7 +81,7 @@ function ApiKeyInput(props: ApiKeyInputProps) {
       </AlertDialogContent>
     </AlertDialog>
   );
-};
+}
 
 interface ApiKeyInputProps {
   /** Record field holding the API key. Defaults to `"apiKey"`. */

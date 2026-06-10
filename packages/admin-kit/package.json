@@ -22,9 +22,15 @@
     "react-dom": "^19.0.0"
   },
   "peerDependenciesMeta": {
-    "@supabase/supabase-js": { "optional": true },
-    "openapi-types": { "optional": true },
-    "ra-supabase-core": { "optional": true }
+    "@supabase/supabase-js": {
+      "optional": true
+    },
+    "openapi-types": {
+      "optional": true
+    },
+    "ra-supabase-core": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

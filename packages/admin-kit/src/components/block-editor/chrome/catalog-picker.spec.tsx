@@ -29,7 +29,11 @@ describe("<CatalogPicker />", () => {
   it("lists grouped blocks and fires onSelect with the chosen block", async () => {
     const onSelect = vi.fn();
     const screen = render(
-      <CatalogPicker registry={registry} onSelect={onSelect} onClose={() => {}} />,
+      <CatalogPicker
+        registry={registry}
+        onSelect={onSelect}
+        onClose={() => {}}
+      />,
     );
     await expect
       .element(screen.getByText("Reference record"))
@@ -40,7 +44,11 @@ describe("<CatalogPicker />", () => {
 
   it("filters by search query", async () => {
     const screen = render(
-      <CatalogPicker registry={registry} onSelect={() => {}} onClose={() => {}} />,
+      <CatalogPicker
+        registry={registry}
+        onSelect={() => {}}
+        onClose={() => {}}
+      />,
     );
     await screen.getByPlaceholder(/search blocks/i).fill("call");
     await expect.element(screen.getByText("Callout")).toBeInTheDocument();

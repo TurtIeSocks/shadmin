@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-  NoSelection,
-} from "./bulk-edit-drawer.stories";
+import { Basic, Disabled, NoSelection } from "./bulk-edit-drawer.stories";
 
 describe("<BulkEditDrawer />", () => {
   it("renders a trigger button with the supplied label", async () => {

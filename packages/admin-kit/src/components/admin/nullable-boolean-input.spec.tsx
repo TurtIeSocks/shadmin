@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-  Label,
-} from "./nullable-boolean-input.stories";
+import { Basic, Disabled, Label } from "./nullable-boolean-input.stories";
 
 describe("<NullableBooleanInput />", () => {
   it("renders the select trigger with the humanized field label", async () => {

@@ -29,7 +29,10 @@ function Link({ className, ref, ...rest }: LinkProps) {
   return (
     <RouterLink
       ref={ref}
-      className={cn("text-primary underline-offset-4 hover:underline", className)}
+      className={cn(
+        "text-primary underline-offset-4 hover:underline",
+        className,
+      )}
       {...rest}
     />
   );

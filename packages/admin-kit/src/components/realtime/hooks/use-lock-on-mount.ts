@@ -13,9 +13,11 @@ export interface UseLockOnMountOptions {
   onLockError?: (error: Error) => void;
 }
 
-export function useLockOnMount(
-  options: UseLockOnMountOptions = {}
-): { lock: Lock | null; isLocking: boolean; lockError: Error | null } {
+export function useLockOnMount(options: UseLockOnMountOptions = {}): {
+  lock: Lock | null;
+  isLocking: boolean;
+  lockError: Error | null;
+} {
   const ctxResource = useResourceContext();
   const ctxRecord = useRecordContext();
   const { identity: ctxIdentity } = useGetIdentity();

@@ -39,7 +39,7 @@ function SupabaseCreateGuesser(props: SupabaseCreateGuesserProps) {
       <SupabaseCreateGuesserView {...rest} />
     </CreateBase>
   );
-};
+}
 
 const SupabaseCreateGuesserView = (
   props: Omit<CreateViewProps, "children"> & { enableLog?: boolean },

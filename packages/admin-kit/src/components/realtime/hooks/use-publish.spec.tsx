@@ -19,7 +19,7 @@ describe("usePublish", () => {
     render(
       <RealtimeStoryAdmin transport={transport}>
         <Publisher />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await new Promise((r) => setTimeout(r, 0));
     expect(transport.publishedEvents).toHaveLength(1);

@@ -15,7 +15,10 @@ import { referenceRecordBlock } from "@/components/block-editor/blocks/reference
 export default { title: "Block Editor/Blocks/ReferenceRecord" };
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
-const dataProvider = fakeRestProvider({ products: [{ id: 1, name: "Widget" }] }, false);
+const dataProvider = fakeRestProvider(
+  { products: [{ id: 1, name: "Widget" }] },
+  false,
+);
 
 // Disable react-query retries so the MissingRecord (id 999) query settles to
 // `error` immediately instead of retrying 3× with backoff (which would keep the
@@ -42,7 +45,12 @@ const Frame = ({ id }: { id: number | null }) => (
               content: [
                 {
                   type: "referenceRecord",
-                  attrs: { resource: "products", id, fields: ["name"], layout: "card" },
+                  attrs: {
+                    resource: "products",
+                    id,
+                    fields: ["name"],
+                    layout: "card",
+                  },
                 },
               ],
             }}

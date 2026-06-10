@@ -16,7 +16,10 @@ export const CalloutStory = () => (
             type: "callout",
             attrs: { variant: "warning" },
             content: [
-              { type: "paragraph", content: [{ type: "text", text: "Note text" }] },
+              {
+                type: "paragraph",
+                content: [{ type: "text", text: "Note text" }],
+              },
             ],
           },
         ],

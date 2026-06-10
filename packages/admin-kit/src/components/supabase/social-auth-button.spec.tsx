@@ -13,11 +13,7 @@ vi.mock("ra-core", async (importOriginal) => {
   };
 });
 
-import {
-  CustomProvider,
-  Github,
-  Google,
-} from "./social-auth-button.stories";
+import { CustomProvider, Github, Google } from "./social-auth-button.stories";
 
 describe("<SocialAuthButton />", () => {
   it("renders the GithubButton with the translated label", async () => {

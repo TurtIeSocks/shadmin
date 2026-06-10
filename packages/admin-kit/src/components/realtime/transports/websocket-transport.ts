@@ -47,7 +47,7 @@ interface PendingPublish {
 }
 
 export function webSocketTransport(
-  config: WebSocketTransportConfig
+  config: WebSocketTransportConfig,
 ): RealtimeTransport {
   const reconnectCfg: Required<WebSocketReconnectConfig> = {
     enabled: config.reconnect?.enabled ?? true,
@@ -73,10 +73,22 @@ export function webSocketTransport(
   let intentionalClose = false;
 
   function clearTimers() {
-    if (reconnectTimer !== null) { clearTimeout(reconnectTimer); reconnectTimer = null; }
-    if (idleTimer !== null) { clearTimeout(idleTimer); idleTimer = null; }
-    if (heartbeatTimer !== null) { clearTimeout(heartbeatTimer); heartbeatTimer = null; }
-    if (pongTimer !== null) { clearTimeout(pongTimer); pongTimer = null; }
+    if (reconnectTimer !== null) {
+      clearTimeout(reconnectTimer);
+      reconnectTimer = null;
+    }
+    if (idleTimer !== null) {
+      clearTimeout(idleTimer);
+      idleTimer = null;
+    }
+    if (heartbeatTimer !== null) {
+      clearTimeout(heartbeatTimer);
+      heartbeatTimer = null;
+    }
+    if (pongTimer !== null) {
+      clearTimeout(pongTimer);
+      pongTimer = null;
+    }
   }
 
   function rejectPendingPublishes(error: Error) {
@@ -87,8 +99,8 @@ export function webSocketTransport(
 
   function jitteredDelay(attempt: number): number {
     const base = Math.min(
-      reconnectCfg.initialDelayMs * Math.pow(2, attempt),
-      reconnectCfg.maxDelayMs
+      reconnectCfg.initialDelayMs * 2 ** attempt,
+      reconnectCfg.maxDelayMs,
     );
     const j = base * reconnectCfg.jitter;
     return base + (Math.random() * 2 - 1) * j;
@@ -106,10 +118,13 @@ export function webSocketTransport(
     if (heartbeatMs <= 0) return;
     heartbeatTimer = setTimeout(() => {
       sendFrame({ op: "ping" });
-      pongTimer = setTimeout(() => {
-        // no pong — force close to trigger reconnect
-        ws?.close();
-      }, Math.ceil(heartbeatMs / 3));
+      pongTimer = setTimeout(
+        () => {
+          // no pong — force close to trigger reconnect
+          ws?.close();
+        },
+        Math.ceil(heartbeatMs / 3),
+      );
     }, heartbeatMs);
   }
 
@@ -138,15 +153,17 @@ export function webSocketTransport(
         protocols = Array.isArray(protocols)
           ? [...protocols, token]
           : protocols
-          ? [protocols, token]
-          : token;
+            ? [protocols, token]
+            : token;
       } catch (cause) {
         config.onError?.({ kind: "auth_failed", cause, retrying: false });
         return;
       }
     }
 
-    const socket = protocols ? new WebSocket(url, protocols) : new WebSocket(url);
+    const socket = protocols
+      ? new WebSocket(url, protocols)
+      : new WebSocket(url);
     ws = socket;
 
     socket.onopen = () => {
@@ -163,11 +180,17 @@ export function webSocketTransport(
 
       // flush pending publishes
       for (const pending of pendingPublishes.splice(0)) {
-        const sent = sendFrame({ op: "publish", topic: pending.topic, event: pending.event });
+        const sent = sendFrame({
+          op: "publish",
+          topic: pending.topic,
+          event: pending.event,
+        });
         if (sent) {
           pending.resolve();
         } else {
-          pending.reject(new Error("webSocketTransport: send failed after reconnect"));
+          pending.reject(
+            new Error("webSocketTransport: send failed after reconnect"),
+          );
         }
       }
 
@@ -176,8 +199,14 @@ export function webSocketTransport(
 
     socket.onmessage = (ev) => {
       // reset heartbeat on any message
-      if (pongTimer !== null) { clearTimeout(pongTimer); pongTimer = null; }
-      if (heartbeatTimer !== null) { clearTimeout(heartbeatTimer); heartbeatTimer = null; }
+      if (pongTimer !== null) {
+        clearTimeout(pongTimer);
+        pongTimer = null;
+      }
+      if (heartbeatTimer !== null) {
+        clearTimeout(heartbeatTimer);
+        heartbeatTimer = null;
+      }
       scheduleHeartbeat();
 
       let frame: ServerFrame;
@@ -196,12 +225,22 @@ export function webSocketTransport(
       const set = subscribers.get(topic);
       if (!set) return;
 
-      const full: RealtimeEvent = { topic, type, payload, ...(meta ? { meta } : {}) };
+      const full: RealtimeEvent = {
+        topic,
+        type,
+        payload,
+        ...(meta ? { meta } : {}),
+      };
       for (const cb of set) {
         try {
           cb(full);
         } catch (cause) {
-          config.onError?.({ kind: "handler_threw", topic, cause, retrying: false });
+          config.onError?.({
+            kind: "handler_threw",
+            topic,
+            cause,
+            retrying: false,
+          });
         }
       }
     };
@@ -210,28 +249,39 @@ export function webSocketTransport(
       clearTimers();
       ws = null;
       if (intentionalClose) {
-        rejectPendingPublishes(new Error("webSocketTransport: connection closed"));
+        rejectPendingPublishes(
+          new Error("webSocketTransport: connection closed"),
+        );
         return;
       }
 
       const unclean = !ev.wasClean;
       const willRetry =
-        unclean && reconnectCfg.enabled && reconnectAttempts < reconnectCfg.maxAttempts;
+        unclean &&
+        reconnectCfg.enabled &&
+        reconnectAttempts < reconnectCfg.maxAttempts;
       if (willRetry) {
         const delay = jitteredDelay(reconnectAttempts++);
-        reconnectTimer = setTimeout(() => { void openSocket(); }, delay);
+        reconnectTimer = setTimeout(() => {
+          void openSocket();
+        }, delay);
       } else {
         // Reconnect disabled or attempts exhausted — any queued publishes will
         // never be flushed. Reject them so callers can react instead of hanging.
         config.onError?.({ kind: "connect_failed", retrying: false });
         rejectPendingPublishes(
-          new Error("webSocketTransport: reconnect exhausted; pending publishes dropped")
+          new Error(
+            "webSocketTransport: reconnect exhausted; pending publishes dropped",
+          ),
         );
       }
     };
 
     socket.onerror = () => {
-      config.onError?.({ kind: "connect_failed", retrying: reconnectCfg.enabled });
+      config.onError?.({
+        kind: "connect_failed",
+        retrying: reconnectCfg.enabled,
+      });
     };
   }
 
@@ -249,14 +299,24 @@ export function webSocketTransport(
   }
 
   function ensureConnected() {
-    if (!ws || ws.readyState === WebSocket.CLOSING || ws.readyState === WebSocket.CLOSED) {
+    if (
+      !ws ||
+      ws.readyState === WebSocket.CLOSING ||
+      ws.readyState === WebSocket.CLOSED
+    ) {
       void openSocket();
     }
-    if (idleTimer !== null) { clearTimeout(idleTimer); idleTimer = null; }
+    if (idleTimer !== null) {
+      clearTimeout(idleTimer);
+      idleTimer = null;
+    }
   }
 
   return {
-    subscribe<P = unknown>(topic: string, cb: SubscriptionCallback<P>): Unsubscribe {
+    subscribe<P = unknown>(
+      topic: string,
+      cb: SubscriptionCallback<P>,
+    ): Unsubscribe {
       ensureConnected();
 
       let set = subscribers.get(topic);
@@ -283,22 +343,36 @@ export function webSocketTransport(
 
     async publish<P = unknown>(
       topic: string,
-      event: Omit<RealtimeEvent<P>, "topic">
+      event: Omit<RealtimeEvent<P>, "topic">,
     ): Promise<void> {
       ensureConnected();
-      const frame: ClientFrame = { op: "publish", topic, event: event as Omit<RealtimeEvent, "topic"> };
+      const frame: ClientFrame = {
+        op: "publish",
+        topic,
+        event: event as Omit<RealtimeEvent, "topic">,
+      };
       if (ws && ws.readyState === WebSocket.OPEN) {
         try {
           ws.send(JSON.stringify(frame));
         } catch (cause) {
-          config.onError?.({ kind: "send_failed", topic, cause, retrying: false });
+          config.onError?.({
+            kind: "send_failed",
+            topic,
+            cause,
+            retrying: false,
+          });
           throw cause;
         }
         return;
       }
       // queue until open
       return new Promise<void>((resolve, reject) => {
-        pendingPublishes.push({ topic, event: event as Omit<RealtimeEvent, "topic">, resolve, reject });
+        pendingPublishes.push({
+          topic,
+          event: event as Omit<RealtimeEvent, "topic">,
+          resolve,
+          reject,
+        });
       });
     },
 
@@ -313,13 +387,17 @@ export function webSocketTransport(
       ws?.close();
       ws = null;
       rejectPendingPublishes(
-        new Error("webSocketTransport: disconnected; pending publishes dropped")
+        new Error(
+          "webSocketTransport: disconnected; pending publishes dropped",
+        ),
       );
     },
 
     onReconnect(cb: () => void): Unsubscribe {
       reconnectListeners.add(cb);
-      return () => { reconnectListeners.delete(cb); };
+      return () => {
+        reconnectListeners.delete(cb);
+      };
     },
   };
 }

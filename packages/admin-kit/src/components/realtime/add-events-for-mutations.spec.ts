@@ -20,7 +20,7 @@ describe("addEventsForMutations", () => {
       expect.objectContaining({
         topic: "resource/posts",
         event: expect.objectContaining({ type: "created" }),
-      })
+      }),
     );
   });
 
@@ -47,7 +47,7 @@ describe("addEventsForMutations", () => {
     const { transport, dp } = buildStack();
     await dp.updateMany("posts", { ids: [1], data: { title: "z" } });
     const updates = transport.publishedEvents.filter(
-      (e) => e.event.type === "updated"
+      (e) => e.event.type === "updated",
     );
     expect(updates).toHaveLength(1);
     expect(updates[0].topic).toBe("resource/posts");
@@ -57,7 +57,7 @@ describe("addEventsForMutations", () => {
     const { transport, dp } = buildStack();
     await dp.deleteMany("posts", { ids: [1] });
     const deletes = transport.publishedEvents.filter(
-      (e) => e.event.type === "deleted"
+      (e) => e.event.type === "deleted",
     );
     expect(deletes).toHaveLength(1);
     expect(deletes[0].topic).toBe("resource/posts");

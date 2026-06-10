@@ -30,10 +30,8 @@ import { cn } from "@/lib/utils";
  *   </Card>
  * );
  */
-interface FilterListSectionProps extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  "children"
-> {
+interface FilterListSectionProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
   label: string;
   icon?: ReactNode;
   children: ReactNode;

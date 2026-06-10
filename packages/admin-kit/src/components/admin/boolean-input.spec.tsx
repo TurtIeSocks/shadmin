@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-  Label,
-  ReadOnly,
-} from "./boolean-input.stories";
+import { Basic, Disabled, Label, ReadOnly } from "./boolean-input.stories";
 
 describe("<BooleanInput />", () => {
   it("renders the switch with the humanized field label", async () => {

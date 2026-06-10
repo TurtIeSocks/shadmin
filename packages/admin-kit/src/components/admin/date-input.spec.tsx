@@ -163,20 +163,17 @@ describe("<DateInput />", () => {
       ["2021-09-10 20:46:20.000-04:00", "2021-09-11"],
       ["2021-09-11T20:46:20.000Z", "2021-09-11"],
       ["2021-09-11 20:46:20.000Z", "2021-09-11"],
-    ])(
-      "should accept a value with timezone %s",
-      async (publishedAt, expectedValue) => {
-        const screen = render(
-          <Basic
-            simpleFormProps={{
-              defaultValues: { publishedAt },
-            }}
-          />,
-        );
-        const input = await screen.getByLabelText("Published at");
-        await expect.element(input).toHaveValue(expectedValue);
-      },
-    );
+    ])("should accept a value with timezone %s", async (publishedAt, expectedValue) => {
+      const screen = render(
+        <Basic
+          simpleFormProps={{
+            defaultValues: { publishedAt },
+          }}
+        />,
+      );
+      const input = await screen.getByLabelText("Published at");
+      await expect.element(input).toHaveValue(expectedValue);
+    });
   });
 
   describe("error message", () => {

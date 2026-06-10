@@ -70,10 +70,8 @@ const arePropsEqual = (
  *   </Card>
  * );
  */
-interface FilterListItemProps extends Omit<
-  LiHTMLAttributes<HTMLLIElement>,
-  "value" | "children"
-> {
+interface FilterListItemProps
+  extends Omit<LiHTMLAttributes<HTMLLIElement>, "value" | "children"> {
   label: ReactNode;
   value: UnknownRecord;
   icon?: ReactNode;

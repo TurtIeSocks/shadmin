@@ -116,7 +116,10 @@ export const sidebar = [
       "reference-field",
       "reference-many-count",
       "reference-many-field",
-      enterpriseEntry("reference-many-to-many-field-base", "ReferenceManyToManyFieldBase"),
+      enterpriseEntry(
+        "reference-many-to-many-field-base",
+        "ReferenceManyToManyFieldBase",
+      ),
       "reference-one-field",
       "select-field",
       "single-field-list",
@@ -172,7 +175,10 @@ export const sidebar = [
       "reference-array-input",
       "reference-input",
       enterpriseEntry("reference-many-input-base", "ReferenceManyInputBase"),
-      enterpriseEntry("reference-many-to-many-input-base", "ReferenceManyToManyInputBase"),
+      enterpriseEntry(
+        "reference-many-to-many-input-base",
+        "ReferenceManyToManyInputBase",
+      ),
       enterpriseEntry("reference-one-input-base", "ReferenceOneInputBase"),
       "resettable-text-input",
       "save-button",

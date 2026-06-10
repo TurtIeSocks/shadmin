@@ -9,10 +9,7 @@ interface ImageEditBlockProps {
   close: () => void;
 }
 
-const ImageEditBlock: React.FC<ImageEditBlockProps> = ({
-  editor,
-  close,
-}) => {
+const ImageEditBlock: React.FC<ImageEditBlockProps> = ({ editor, close }) => {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [link, setLink] = React.useState("");
 

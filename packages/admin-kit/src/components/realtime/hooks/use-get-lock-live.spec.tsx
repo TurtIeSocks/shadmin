@@ -20,7 +20,7 @@ describe("useGetLockLive", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport} locks={locks}>
         <LockLiveProbe />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await expect.element(screen.getByTestId("lock")).toHaveTextContent("alice");
 

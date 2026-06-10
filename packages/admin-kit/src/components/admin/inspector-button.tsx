@@ -84,10 +84,8 @@ function InspectorButton({
   );
 }
 
-interface InspectorButtonProps extends Omit<
-  ComponentProps<typeof Button>,
-  "children"
-> {
+interface InspectorButtonProps
+  extends Omit<ComponentProps<typeof Button>, "children"> {
   /** Custom icon node. Defaults to the {@link Settings} icon. */
   icon?: ReactNode;
   /** Translation key for the tooltip and aria-label. */

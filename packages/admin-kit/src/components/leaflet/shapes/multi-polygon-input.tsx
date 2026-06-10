@@ -5,10 +5,8 @@ import {
   type ShapeInputShellProps,
 } from "./shape-input-shell";
 
-interface MultiPolygonInputProps extends Omit<
-  ShapeInputShellProps,
-  "shape" | "multi" | "geomanShapes"
-> {
+interface MultiPolygonInputProps
+  extends Omit<ShapeInputShellProps, "shape" | "multi" | "geomanShapes"> {
   allowSelfIntersection?: boolean;
   minVertices?: number;
   maxVertices?: number;

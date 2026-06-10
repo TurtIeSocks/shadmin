@@ -10,7 +10,11 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin } from "@/components/admin";
-import { PresenceBar, type PresenceTransport, type PresenceState } from "@/components/extras";
+import {
+  PresenceBar,
+  type PresenceTransport,
+  type PresenceState,
+} from "@/components/extras";
 
 const i18nProvider = polyglotI18nProvider(
   () => defaultMessages,

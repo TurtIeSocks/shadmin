@@ -160,9 +160,4 @@ function CreateView({
   );
 }
 
-export {
-  Create,
-  CreateView,
-  type CreateProps,
-  type CreateViewProps,
-};
+export { Create, CreateView, type CreateProps, type CreateViewProps };

@@ -8,10 +8,8 @@ import {
 } from "./shape-input-shell";
 import { snapToRoadsOnce } from "../osm/use-osm-snap-to-roads";
 
-interface LineStringInputProps extends Omit<
-  ShapeInputShellProps,
-  "shape" | "multi"
-> {
+interface LineStringInputProps
+  extends Omit<ShapeInputShellProps, "shape" | "multi"> {
   snapToRoads?: boolean;
 }
 

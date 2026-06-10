@@ -1,10 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import {
-  Basic,
-  StringMode,
-  WithSchema,
-} from "./monaco-json-input.stories";
+import { Basic, StringMode, WithSchema } from "./monaco-json-input.stories";
 
 const waitForEditorText = async (
   container: HTMLElement,

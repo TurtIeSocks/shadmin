@@ -135,7 +135,7 @@ function CommentsThread(props: CommentsThreadProps) {
       </div>
     </div>
   );
-};
+}
 
 interface CommentsThreadProps {
   /** Comments sub-resource name (e.g. "comments"). */

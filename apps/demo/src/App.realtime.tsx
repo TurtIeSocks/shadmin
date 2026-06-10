@@ -19,7 +19,7 @@ const locks = inMemoryLockProvider({ publisher: transport });
 const baseDP = realtimeDataProvider(
   localStorageDataProvider(realtimeSeed),
   transport,
-  { locks }
+  { locks },
 );
 const dataProvider = addEventsForMutations(baseDP, baseDP);
 

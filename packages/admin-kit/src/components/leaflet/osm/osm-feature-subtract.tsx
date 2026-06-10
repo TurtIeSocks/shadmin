@@ -5,10 +5,7 @@ import {
   type OsmFeatureOperatorProps,
 } from "./osm-feature-operator";
 
-type OsmFeatureSubtractProps = Omit<
-  OsmFeatureOperatorProps,
-  "mode" | "icon"
->;
+type OsmFeatureSubtractProps = Omit<OsmFeatureOperatorProps, "mode" | "icon">;
 
 const OsmFeatureSubtract = (props: OsmFeatureSubtractProps) => (
   <OsmFeatureOperator

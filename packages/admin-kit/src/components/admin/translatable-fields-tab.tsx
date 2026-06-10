@@ -33,10 +33,8 @@ function TranslatableFieldsTab(props: TranslatableFieldsTabProps) {
   );
 }
 
-interface TranslatableFieldsTabProps extends Omit<
-  React.ComponentProps<typeof TabsTrigger>,
-  "value"
-> {
+interface TranslatableFieldsTabProps
+  extends Omit<React.ComponentProps<typeof TabsTrigger>, "value"> {
   locale: string;
   groupKey?: string;
 }

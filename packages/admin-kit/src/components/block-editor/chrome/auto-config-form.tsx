@@ -44,7 +44,11 @@ interface ShapeLike {
  *
  * Emits a single-key patch per change via `onChange`.
  */
-export function AutoConfigForm({ schema, attrs, onChange }: AutoConfigFormProps) {
+export function AutoConfigForm({
+  schema,
+  attrs,
+  onChange,
+}: AutoConfigFormProps) {
   const shape = (schema as unknown as ShapeLike).shape ?? {};
 
   return (
@@ -79,10 +83,7 @@ export function AutoConfigForm({ schema, attrs, onChange }: AutoConfigFormProps)
 
         if (field instanceof z.ZodBoolean) {
           return (
-            <div
-              key={key}
-              className="flex items-center justify-between gap-2"
-            >
+            <div key={key} className="flex items-center justify-between gap-2">
               <Label className="text-xs capitalize" htmlFor={`cfg-${key}`}>
                 {key}
               </Label>

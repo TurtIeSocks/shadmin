@@ -55,8 +55,4 @@ const Resource = Object.assign(
   },
 ) satisfies ResourceComponent;
 
-export {
-  Resource,
-  type ResourceProps,
-  type ResourceDefinitionWithGroup,
-};
+export { Resource, type ResourceProps, type ResourceDefinitionWithGroup };

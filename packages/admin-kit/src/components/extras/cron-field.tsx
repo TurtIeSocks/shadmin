@@ -5,10 +5,9 @@ import type { UnknownRecord } from "@/lib/unknown-types";
 import { describeCron } from "./cron-utils";
 import { cn } from "@/lib/utils";
 
-interface CronFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {
+interface CronFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLSpanElement> {
   /** When true, render the raw cron expression below the human phrase. */
   showExpression?: boolean;
 }

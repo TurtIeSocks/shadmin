@@ -47,10 +47,8 @@ type SupabaseAuthProvider =
   | "twitter"
   | "workos";
 
-interface SocialAuthButtonProps extends Omit<
-  React.ComponentProps<typeof Button>,
-  "onClick"
-> {
+interface SocialAuthButtonProps
+  extends Omit<React.ComponentProps<typeof Button>, "onClick"> {
   provider: SupabaseAuthProvider;
   redirect?: string;
 }
@@ -119,30 +117,14 @@ const providerButton =
 
 const AppleButton = providerButton("apple", "Apple", AppleIcon);
 const AzureButton = providerButton("azure", "Azure", AzureIcon);
-const BitbucketButton = providerButton(
-  "bitbucket",
-  "Bitbucket",
-  BitbucketIcon,
-);
+const BitbucketButton = providerButton("bitbucket", "Bitbucket", BitbucketIcon);
 const DiscordButton = providerButton("discord", "Discord", DiscordIcon);
-const FacebookButton = providerButton(
-  "facebook",
-  "Facebook",
-  FacebookIcon,
-);
+const FacebookButton = providerButton("facebook", "Facebook", FacebookIcon);
 const GithubButton = providerButton("github", "Github", GithubIcon);
 const GitlabButton = providerButton("gitlab", "Gitlab", GitlabIcon);
 const GoogleButton = providerButton("google", "Google", GoogleIcon);
-const KeycloakButton = providerButton(
-  "keycloak",
-  "Keycloak",
-  KeycloakIcon,
-);
-const LinkedInButton = providerButton(
-  "linkedin",
-  "LinkedIn",
-  LinkedinIcon,
-);
+const KeycloakButton = providerButton("keycloak", "Keycloak", KeycloakIcon);
+const LinkedInButton = providerButton("linkedin", "LinkedIn", LinkedinIcon);
 const NotionButton = providerButton("notion", "Notion", NotionIcon);
 const SlackButton = providerButton("slack", "Slack", SlackIcon);
 const SpotifyButton = providerButton("spotify", "Spotify", SpotifyIcon);
@@ -150,4 +132,24 @@ const TwitchButton = providerButton("twitch", "Twitch", TwitchIcon);
 const TwitterButton = providerButton("twitter", "Twitter", TwitterIcon);
 const WorkosButton = providerButton("workos", "WorkOS", WorkosIcon);
 
-export { type SupabaseAuthProvider, type SocialAuthButtonProps, SocialAuthButton, AppleButton, AzureButton, BitbucketButton, DiscordButton, FacebookButton, GithubButton, GitlabButton, GoogleButton, KeycloakButton, LinkedInButton, NotionButton, SlackButton, SpotifyButton, TwitchButton, TwitterButton, WorkosButton };
+export {
+  type SupabaseAuthProvider,
+  type SocialAuthButtonProps,
+  SocialAuthButton,
+  AppleButton,
+  AzureButton,
+  BitbucketButton,
+  DiscordButton,
+  FacebookButton,
+  GithubButton,
+  GitlabButton,
+  GoogleButton,
+  KeycloakButton,
+  LinkedInButton,
+  NotionButton,
+  SlackButton,
+  SpotifyButton,
+  TwitchButton,
+  TwitterButton,
+  WorkosButton,
+};

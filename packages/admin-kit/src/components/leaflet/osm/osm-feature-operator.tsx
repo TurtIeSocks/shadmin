@@ -144,4 +144,8 @@ const OsmFeatureOperator = ({
 
 const formatKm2 = (m2: number) => (Math.round(m2 / 1000) / 1000).toFixed(3);
 
-export { type OsmFeatureMode, type OsmFeatureOperatorProps, OsmFeatureOperator };
+export {
+  type OsmFeatureMode,
+  type OsmFeatureOperatorProps,
+  OsmFeatureOperator,
+};

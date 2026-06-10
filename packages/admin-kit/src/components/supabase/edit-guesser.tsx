@@ -41,7 +41,7 @@ function SupabaseEditGuesser(props: SupabaseEditGuesserProps) {
       <SupabaseEditGuesserView {...rest} />
     </EditBase>
   );
-};
+}
 
 const SupabaseEditGuesserView = (
   props: EditViewProps & { enableLog?: boolean },

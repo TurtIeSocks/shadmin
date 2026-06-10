@@ -5,9 +5,8 @@ import type { UnknownRecord } from "./unknown-types";
 export type SortOrder = "ASC" | "DESC";
 export type TextAlign = "left" | "center" | "right" | "justify" | "inherit";
 
-export interface FieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
-> extends Omit<BaseFieldProps<RecordType>, "resource"> {
+export interface FieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends Omit<BaseFieldProps<RecordType>, "resource"> {
   /**
    * A class name to apply to the root div element
    */

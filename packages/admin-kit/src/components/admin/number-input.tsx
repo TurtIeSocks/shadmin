@@ -152,8 +152,7 @@ function NumberInput(props: NumberInputProps) {
 }
 
 interface NumberInputProps
-  extends
-    InputProps,
+  extends InputProps,
     Omit<
       React.ComponentProps<"input">,
       "defaultValue" | "onBlur" | "onChange" | "type"

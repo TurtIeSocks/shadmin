@@ -8,7 +8,11 @@ import {
 import type { Range } from "@tiptap/core";
 import { NodeSelection } from "@tiptap/pm/state";
 import { debounce } from "lodash";
-import { Popover, PopoverAnchor, PopoverContent } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverAnchor,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { useBlockEditor } from "./use-block-editor";
@@ -289,7 +293,10 @@ function BlockSelectionLayer({
           className="w-auto border-0 bg-transparent p-0 shadow-none"
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
-          <BlockToolbar editor={editor} onConfigure={() => setConfiguring(true)} />
+          <BlockToolbar
+            editor={editor}
+            onConfigure={() => setConfiguring(true)}
+          />
         </PopoverContent>
       </Popover>
 
@@ -345,7 +352,9 @@ function BlockConfigPopover({
         <BlockConfigBody
           block={block}
           attrs={attrs}
-          onChange={(patch) => editor.commands.updateAttributes(block.name, patch)}
+          onChange={(patch) =>
+            editor.commands.updateAttributes(block.name, patch)
+          }
         />
       </PopoverContent>
     </Popover>

@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  EmptyValue,
-} from "./shapes/multi-line-string-field.stories";
+import { Basic, EmptyValue } from "./shapes/multi-line-string-field.stories";
 
 const findAsync = async (
   container: Element,

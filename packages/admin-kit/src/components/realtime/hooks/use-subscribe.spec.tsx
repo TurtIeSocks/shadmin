@@ -5,7 +5,13 @@ import { RealtimeStoryAdmin } from "@/test/_test-helpers";
 import { fakeTransport } from "@/components/realtime/transports/fake-transport";
 import { useSubscribe } from "./use-subscribe";
 
-function CountingProbe({ topic, enabled }: { topic: string; enabled?: boolean }) {
+function CountingProbe({
+  topic,
+  enabled,
+}: {
+  topic: string;
+  enabled?: boolean;
+}) {
   const [count, setCount] = useState(0);
   useSubscribe(topic, () => setCount((c) => c + 1), { enabled });
   return <div data-testid="count">{count}</div>;
@@ -17,7 +23,7 @@ describe("useSubscribe", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <CountingProbe topic="resource/posts" />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await transport.publish("resource/posts", { type: "created", payload: {} });
     await expect.element(screen.getByTestId("count")).toHaveTextContent("1");
@@ -28,7 +34,7 @@ describe("useSubscribe", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <CountingProbe topic="resource/posts" enabled={false} />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await transport.publish("resource/posts", { type: "created", payload: {} });
     await expect.element(screen.getByTestId("count")).toHaveTextContent("0");
@@ -47,12 +53,12 @@ describe("useSubscribe", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <Latest cb={a} />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     screen.rerender(
       <RealtimeStoryAdmin transport={transport}>
         <Latest cb={b} />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await transport.publish("x", { type: "created", payload: {} });
     expect(a).not.toHaveBeenCalled();

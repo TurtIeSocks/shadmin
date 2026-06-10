@@ -21,7 +21,7 @@ describe("useSubscribeCallback", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <ImperativeProbe />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await transport.publish("x", { type: "created", payload: {} });
     await expect.element(screen.getByTestId("value")).toHaveTextContent("yes");

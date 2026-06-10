@@ -143,7 +143,7 @@ function MdxInput(props: MdxInputProps) {
       </FieldError>
     </Field>
   );
-};
+}
 
 type EditorProps = {
   editorRef: React.RefObject<MDXEditorMethods | null>;

@@ -30,11 +30,8 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *     }
  * />
  */
-interface ImageFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
+interface ImageFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "defaultValue"> {
   defaultValue?: UnknownValue;
   src?: string;
@@ -105,7 +102,7 @@ function ImageField<RecordType extends UnknownRecord = UnknownRecord>(
       <img title={titleValue} alt={titleValue} src={value?.toString()} />
     </span>
   );
-};
+}
 
 // What? TypeScript loses the displayName if we don't set it explicitly
 ImageField.displayName = "ImageField";

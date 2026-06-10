@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomSource,
-} from "./filter-live-search.stories";
+import { Basic, CustomSource } from "./filter-live-search.stories";
 
 describe("<FilterLiveSearch />", () => {
   it("renders a search input with the default placeholder", async () => {

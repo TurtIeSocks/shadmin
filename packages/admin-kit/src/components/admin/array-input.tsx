@@ -116,10 +116,7 @@ function ArrayInput(props: ArrayInputProps) {
   );
 }
 
-interface ArrayInputProps extends Omit<
-  InputProps,
-  "disabled" | "readOnly"
-> {
+interface ArrayInputProps extends Omit<InputProps, "disabled" | "readOnly"> {
   className?: string;
   children: React.ReactNode;
   isFetching?: boolean;

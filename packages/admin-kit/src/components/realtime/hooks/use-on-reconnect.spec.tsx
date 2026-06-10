@@ -17,7 +17,7 @@ describe("useOnReconnect", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <Probe />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     transport.simulateReconnect();
     await expect.element(screen.getByTestId("count")).toHaveTextContent("1");

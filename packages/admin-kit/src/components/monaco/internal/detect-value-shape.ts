@@ -6,11 +6,7 @@ function detectValueShape(value: unknown): ValueShape | null {
   return "object";
 }
 
-function toEditorText(
-  value: unknown,
-  shape: ValueShape,
-  indent = 2,
-): string {
+function toEditorText(value: unknown, shape: ValueShape, indent = 2): string {
   if (shape === "string") {
     return typeof value === "string" ? value : "";
   }

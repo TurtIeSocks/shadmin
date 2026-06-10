@@ -112,7 +112,7 @@ export const ReviewList = () => {
       <SidebarProvider
         open={!!match}
         style={{
-          // @ts-ignore
+          // @ts-expect-error
           "--sidebar-width": "25rem",
           "--sidebar-width-mobile": "20rem",
         }}

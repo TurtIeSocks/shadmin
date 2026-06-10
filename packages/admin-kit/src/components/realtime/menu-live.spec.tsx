@@ -8,7 +8,9 @@ describe("<MenuLiveItemLink>", () => {
     const screen = render(<Basic />);
     await expect.element(screen.getByText("Posts")).toBeVisible();
     // Badge should not exist when count is 0
-    expect(screen.container.querySelector('[data-testid="menu-live-badge"]')).toBeNull();
+    expect(
+      screen.container.querySelector('[data-testid="menu-live-badge"]'),
+    ).toBeNull();
   });
 
   it("shows the badge after a created event on the resource topic", async () => {

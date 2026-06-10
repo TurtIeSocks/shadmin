@@ -70,6 +70,6 @@ function ForgotPasswordForm() {
       </div>
     </>
   );
-};
+}
 
 export { ForgotPasswordForm };

@@ -1,4 +1,9 @@
-import { DateField, RecordField, Show, TextField } from "shadcn-admin-kit/components/admin";
+import {
+  DateField,
+  RecordField,
+  Show,
+  TextField,
+} from "shadcn-admin-kit/components/admin";
 import { DurationField } from "shadcn-admin-kit/components/extras/duration-field";
 
 export const PlanningShow = () => (

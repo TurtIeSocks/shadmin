@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Empty,
-  ExprOnly,
-  Invalid,
-} from "./cron-field.stories";
+import { Basic, Empty, ExprOnly, Invalid } from "./cron-field.stories";
 
 describe("<CronField />", () => {
   it("renders a human phrase for a valid expression", async () => {

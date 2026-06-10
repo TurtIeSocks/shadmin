@@ -23,10 +23,7 @@ import {
  *   </Card>
  * );
  */
-interface FilterLiveSearchProps extends Omit<
-  SearchInputProps,
-  "source"
-> {
+interface FilterLiveSearchProps extends Omit<SearchInputProps, "source"> {
   source?: string;
 }
 

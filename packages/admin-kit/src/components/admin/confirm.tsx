@@ -170,10 +170,11 @@ function Confirm(props: ConfirmProps) {
  * Radix `Dialog.Root`-level props (`modal`, `defaultOpen`, `onOpenChange`)
  * are also accepted and forwarded to the root `<Dialog>`.
  */
-interface ConfirmProps extends Omit<
-  React.ComponentProps<typeof DialogPrimitive.Content>,
-  "title" | "content" | "onClose"
-> {
+interface ConfirmProps
+  extends Omit<
+    React.ComponentProps<typeof DialogPrimitive.Content>,
+    "title" | "content" | "onClose"
+  > {
   cancel?: string;
   className?: string;
   confirm?: string;

@@ -22,9 +22,9 @@ interface BulkUpdateWithUndoButtonProps<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
 > extends Omit<
-  UseBulkUpdateControllerParams<RecordType, MutationOptionsError>,
-  "mutationMode"
-> {
+    UseBulkUpdateControllerParams<RecordType, MutationOptionsError>,
+    "mutationMode"
+  > {
   className?: string;
   data?: Partial<RecordType>;
   icon?: React.ReactNode;
@@ -98,9 +98,7 @@ function BulkUpdateButton(props: BulkUpdateButtonProps) {
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkupdatebutton/ BulkUpdateButton documentation}
  */
-function BulkUpdateWithConfirmButton(
-  props: BulkUpdateWithConfirmButtonProps,
-) {
+function BulkUpdateWithConfirmButton(props: BulkUpdateWithConfirmButtonProps) {
   const {
     className,
     confirmTitle = "ra.message.bulk_update_title",
@@ -213,9 +211,7 @@ function BulkUpdateWithConfirmButton(
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkupdatebutton/ BulkUpdateButton documentation}
  */
-function BulkUpdateWithUndoButton(
-  props: BulkUpdateWithUndoButtonProps,
-) {
+function BulkUpdateWithUndoButton(props: BulkUpdateWithUndoButtonProps) {
   const {
     className,
     data = defaultData,

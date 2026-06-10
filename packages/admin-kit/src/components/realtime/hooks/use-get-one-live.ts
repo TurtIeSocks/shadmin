@@ -7,7 +7,7 @@ import { useOnReconnect } from "./use-on-reconnect";
 export function useGetOneLive<RecordType extends RaRecord = RaRecord>(
   resource: string,
   params: GetOneParams<RecordType>,
-  options?: Parameters<typeof useGetOne<RecordType>>[2]
+  options?: Parameters<typeof useGetOne<RecordType>>[2],
 ): ReturnType<typeof useGetOne<RecordType>> {
   const queryClient = useQueryClient();
   const result = useGetOne<RecordType>(resource, params, options);

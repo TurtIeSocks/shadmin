@@ -41,15 +41,21 @@ function walk(dir) {
         `\\]\\((\\./)?${escaped}(\\.(md|mdx))?(/)?(#[^)]*)?\\)`,
         "g",
       );
-      stripped = stripped.replace(re, (_match, _lead, ext, _extName, slash, anchor) => {
-        replacements++;
-        const trailingSlash = slash ?? "";
-        const trailingAnchor = anchor ?? "";
-        const extSuffix = ext ?? "";
-        return `](./${newStem}${extSuffix}${trailingSlash}${trailingAnchor})`;
-      });
+      stripped = stripped.replace(
+        re,
+        (_match, _lead, ext, _extName, slash, anchor) => {
+          replacements++;
+          const trailingSlash = slash ?? "";
+          const trailingAnchor = anchor ?? "";
+          const extSuffix = ext ?? "";
+          return `](./${newStem}${extSuffix}${trailingSlash}${trailingAnchor})`;
+        },
+      );
     }
-    const out = stripped.replace(/__CODEBLOCK_(\d+)__/g, (_, i) => blocks[Number(i)]);
+    const out = stripped.replace(
+      /__CODEBLOCK_(\d+)__/g,
+      (_, i) => blocks[Number(i)],
+    );
     if (out !== src) {
       writeFileSync(full, out);
       filesChanged++;

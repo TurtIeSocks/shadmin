@@ -20,11 +20,8 @@ type PurifyOptions = DOMPurifyConfig & {
   RETURN_DOM?: false | undefined;
 };
 
-interface RichTextFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
+interface RichTextFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
   stripTags?: boolean;
   purifyOptions?: PurifyOptions;

@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  NoExport,
-  NoThemeToggle,
-} from "./theme-studio.stories";
+import { Basic, NoExport, NoThemeToggle } from "./theme-studio.stories";
 
 describe("<ThemeStudio />", () => {
   it("renders one row per CSS variable in the theme's light map", async () => {

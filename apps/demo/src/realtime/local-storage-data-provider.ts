@@ -12,7 +12,7 @@ type Store = { [resource: string]: Record[] };
  */
 export function localStorageDataProvider(
   seed: Store,
-  storageKey = "shadcn-admin-realtime-demo-data"
+  storageKey = "shadcn-admin-realtime-demo-data",
 ): DataProvider {
   function read(): Store {
     const raw = localStorage.getItem(storageKey);
@@ -52,7 +52,9 @@ export function localStorageDataProvider(
   function matchesFilter(record: Record, filter: Record): boolean {
     return Object.entries(filter).every(([key, value]) => {
       if (key === "q" && typeof value === "string") {
-        return JSON.stringify(record).toLowerCase().includes(value.toLowerCase());
+        return JSON.stringify(record)
+          .toLowerCase()
+          .includes(value.toLowerCase());
       }
       return record[key] === value;
     });
@@ -72,7 +74,8 @@ export function localStorageDataProvider(
           const av = a[field];
           const bv = b[field];
           if (av === bv) return 0;
-          const cmp = (av as number | string) < (bv as number | string) ? -1 : 1;
+          const cmp =
+            (av as number | string) < (bv as number | string) ? -1 : 1;
           return order === "DESC" ? -cmp : cmp;
         });
       }
@@ -84,7 +87,9 @@ export function localStorageDataProvider(
 
     async getOne(resource, params) {
       const store = read();
-      const record = collection(store, resource).find((r) => idEq(r.id, params.id));
+      const record = collection(store, resource).find((r) =>
+        idEq(r.id, params.id),
+      );
       if (!record) throw new Error(`Record ${resource}#${params.id} not found`);
       return { data: record as never };
     },
@@ -124,7 +129,8 @@ export function localStorageDataProvider(
       const store = read();
       const records = collection(store, resource);
       const idx = records.findIndex((r) => idEq(r.id, params.id));
-      if (idx === -1) throw new Error(`Record ${resource}#${params.id} not found`);
+      if (idx === -1)
+        throw new Error(`Record ${resource}#${params.id} not found`);
       const updated = {
         ...records[idx],
         ...(params.data as Record),
@@ -141,7 +147,8 @@ export function localStorageDataProvider(
       const patch = params.data as Record;
       params.ids.forEach((id) => {
         const idx = records.findIndex((r) => idEq(r.id, id));
-        if (idx !== -1) records[idx] = { ...records[idx], ...patch, id: records[idx].id };
+        if (idx !== -1)
+          records[idx] = { ...records[idx], ...patch, id: records[idx].id };
       });
       write(store);
       return { data: params.ids as never };
@@ -160,7 +167,7 @@ export function localStorageDataProvider(
       const store = read();
       const records = collection(store, resource);
       const remaining = records.filter(
-        (r) => !params.ids.some((id) => idEq(r.id, id))
+        (r) => !params.ids.some((id) => idEq(r.id, id)),
       );
       store[resource] = remaining;
       write(store);

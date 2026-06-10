@@ -15,9 +15,7 @@ interface SubscriptionPlan {
 
 interface SubscriptionPlanFieldProps<
   RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    FieldProps<RecordType>,
+> extends FieldProps<RecordType>,
     Omit<HTMLAttributes<HTMLSpanElement>, "color"> {
   /** Available plans to look up by id. */
   plans: readonly SubscriptionPlan[];

@@ -4,7 +4,8 @@ import { realtimeDataProvider } from "./realtime-data-provider";
 import { fakeTransport } from "./transports/fake-transport";
 import type { LockProvider } from "./types";
 
-const baseDP = () => fakeRestProvider({ posts: [{ id: 1, title: "x" }] }, false);
+const baseDP = () =>
+  fakeRestProvider({ posts: [{ id: 1, title: "x" }] }, false);
 
 describe("realtimeDataProvider", () => {
   it("delegates getList to the base data provider", async () => {
@@ -28,7 +29,10 @@ describe("realtimeDataProvider", () => {
   it("wires publish through the transport", async () => {
     const transport = fakeTransport();
     const dp = realtimeDataProvider(baseDP(), transport);
-    await dp.publish("resource/posts", { type: "created", payload: { ids: [1] } });
+    await dp.publish("resource/posts", {
+      type: "created",
+      payload: { ids: [1] },
+    });
     expect(transport.publishedEvents).toHaveLength(1);
     expect(transport.publishedEvents[0]).toEqual({
       topic: "resource/posts",
@@ -41,14 +45,17 @@ describe("realtimeDataProvider", () => {
     const dp = realtimeDataProvider(baseDP(), transport);
     const cb = vi.fn();
     dp.subscribe("resource/posts", cb);
-    await dp.publish("resource/posts", { type: "created", payload: { ids: [1] } });
+    await dp.publish("resource/posts", {
+      type: "created",
+      payload: { ids: [1] },
+    });
     expect(cb).toHaveBeenCalledTimes(1);
   });
 
   it("throws a clear error when lock is called without LockProvider", async () => {
     const dp = realtimeDataProvider(baseDP(), fakeTransport());
     await expect(
-      dp.lock("posts", { id: 1, identity: "alice" })
+      dp.lock("posts", { id: 1, identity: "alice" }),
     ).rejects.toThrow(/no LockProvider was configured/);
   });
 
@@ -66,7 +73,10 @@ describe("realtimeDataProvider", () => {
     };
     const dp = realtimeDataProvider(baseDP(), fakeTransport(), { locks });
     const result = await dp.lock("posts", { id: 1, identity: "alice" });
-    expect(locks.lock).toHaveBeenCalledWith("posts", { id: 1, identity: "alice" });
+    expect(locks.lock).toHaveBeenCalledWith("posts", {
+      id: 1,
+      identity: "alice",
+    });
     expect(result.identity).toBe("alice");
   });
 });

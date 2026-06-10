@@ -202,10 +202,7 @@ type IconButtonProps = Omit<ComponentProps<typeof Button>, "children">;
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
  */
-function AddSavedQueryIconButton({
-  className,
-  ...rest
-}: IconButtonProps) {
+function AddSavedQueryIconButton({ className, ...rest }: IconButtonProps) {
   const [open, setOpen] = useState(false);
   const translate = useTranslate();
   return (
@@ -236,10 +233,7 @@ function AddSavedQueryIconButton({
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
  */
-function RemoveSavedQueryIconButton({
-  className,
-  ...rest
-}: IconButtonProps) {
+function RemoveSavedQueryIconButton({ className, ...rest }: IconButtonProps) {
   const [open, setOpen] = useState(false);
   const translate = useTranslate();
   return (
@@ -260,7 +254,7 @@ function RemoveSavedQueryIconButton({
       <RemoveSavedQueryDialog open={open} onClose={() => setOpen(false)} />
     </>
   );
-};
+}
 
 /**
  * FilterList-style sidebar component listing all saved queries for the current

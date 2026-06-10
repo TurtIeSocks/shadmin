@@ -10,10 +10,11 @@ import {
   aspectLockedBBox,
 } from "../osm/geometry-ops";
 
-interface BBoxInputProps extends Omit<
-  ShapeInputShellProps,
-  "shape" | "multi" | "valueTransform" | "valueParse"
-> {
+interface BBoxInputProps
+  extends Omit<
+    ShapeInputShellProps,
+    "shape" | "multi" | "valueTransform" | "valueParse"
+  > {
   minBBoxArea_m2?: number;
   /**
    * Lock the stored bbox to width/height = ratio. The drawn rectangle is

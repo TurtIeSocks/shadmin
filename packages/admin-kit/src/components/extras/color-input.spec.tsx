@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-  WithSwatches,
-} from "./color-input.stories";
+import { Basic, Disabled, WithSwatches } from "./color-input.stories";
 
 describe("<ColorInput />", () => {
   it("renders a color picker trigger bound to the source value", async () => {

@@ -1,4 +1,8 @@
-import { Create, SimpleForm, TextInput } from "shadcn-admin-kit/components/admin";
+import {
+  Create,
+  SimpleForm,
+  TextInput,
+} from "shadcn-admin-kit/components/admin";
 import { required } from "ra-core";
 
 export const CategoryCreate = () => (

@@ -1,5 +1,9 @@
 import { Admin } from "@/components/admin";
-import { type AssistantTransport, Assistant, echoTransport } from "@/components/extras";
+import {
+  type AssistantTransport,
+  Assistant,
+  echoTransport,
+} from "@/components/extras";
 import {
   type DataProvider,
   memoryStore,

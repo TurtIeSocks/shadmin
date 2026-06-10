@@ -1,9 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import {
-  RecordListResolved,
-  RecordListEmpty,
-} from "./data-blocks.stories";
+import { RecordListResolved, RecordListEmpty } from "./data-blocks.stories";
 
 const block = (c: HTMLElement) =>
   c.querySelector('[data-block="recordList"]') as HTMLElement;

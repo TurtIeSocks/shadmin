@@ -243,6 +243,6 @@ function JobMonitor(props: JobMonitorProps) {
       </CardContent>
     </Card>
   );
-};
+}
 
 export { type JobStatus, type JobRecord, type JobMonitorProps, JobMonitor };

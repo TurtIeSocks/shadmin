@@ -61,7 +61,7 @@ function SupabaseListGuesser(props: SupabaseListGuesserProps) {
       <SupabaseListGuesserView {...rest} />
     </ListBase>
   );
-};
+}
 
 const SupabaseListGuesserView = (
   props: ListViewProps & { enableLog?: boolean },

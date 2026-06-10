@@ -58,4 +58,10 @@ const combineValidators =
     return undefined;
   };
 
-export { type GeometryValidator, validateMinVertices, validateMaxVertices, validateMinAreaM2, combineValidators };
+export {
+  type GeometryValidator,
+  validateMinVertices,
+  validateMaxVertices,
+  validateMinAreaM2,
+  combineValidators,
+};

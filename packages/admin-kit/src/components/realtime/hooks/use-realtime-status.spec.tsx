@@ -15,8 +15,10 @@ describe("useRealtimeStatus", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport}>
         <Probe />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
-    await expect.element(screen.getByTestId("status")).toHaveTextContent("idle");
+    await expect
+      .element(screen.getByTestId("status"))
+      .toHaveTextContent("idle");
   });
 });

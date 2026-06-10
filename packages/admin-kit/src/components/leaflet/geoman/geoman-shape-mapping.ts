@@ -108,4 +108,9 @@ const geometryToLayer = (
   });
 };
 
-export { geojsonTypeToGeomanShape, layerToGeometry, geometryToLatLngs, geometryToLayer };
+export {
+  geojsonTypeToGeomanShape,
+  layerToGeometry,
+  geometryToLatLngs,
+  geometryToLayer,
+};

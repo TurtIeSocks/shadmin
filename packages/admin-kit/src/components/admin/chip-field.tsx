@@ -76,10 +76,9 @@ ChipFieldImpl.displayName = "ChipFieldImpl";
  */
 const ChipField = genericMemo(ChipFieldImpl);
 
-interface ChipFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, Omit<BadgeProps, "children"> {
+interface ChipFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    Omit<BadgeProps, "children"> {
   variant?: "default" | "outline" | "secondary" | "destructive";
 }
 

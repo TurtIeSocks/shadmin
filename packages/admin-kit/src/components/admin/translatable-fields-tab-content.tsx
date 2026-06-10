@@ -106,7 +106,4 @@ interface TranslatableFieldsTabContentProps {
   resource?: string;
 }
 
-export {
-  TranslatableFieldsTabContent,
-  type TranslatableFieldsTabContentProps,
-};
+export { TranslatableFieldsTabContent, type TranslatableFieldsTabContentProps };

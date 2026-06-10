@@ -65,10 +65,9 @@ EmailFieldImpl.displayName = "EmailFieldImpl";
  */
 const EmailField = genericMemo(EmailFieldImpl);
 
-interface EmailFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, AnchorHTMLAttributes<HTMLAnchorElement> {}
+interface EmailFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    AnchorHTMLAttributes<HTMLAnchorElement> {}
 
 // useful to prevent click bubbling in a DataTable with rowClick
 const stopPropagation = (e: React.MouseEvent<HTMLAnchorElement>) =>

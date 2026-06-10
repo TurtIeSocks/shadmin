@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { Image as ImageIcon } from "lucide-react";
-import { defineBlock, type BlockRenderProps, type BlockConfigProps } from "../define-block";
+import {
+  defineBlock,
+  type BlockRenderProps,
+  type BlockConfigProps,
+} from "../define-block";
 import { BlockEmpty } from "./block-states";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -14,7 +18,10 @@ const schema = z.object({
 type ImageAttrs = z.infer<typeof schema>;
 
 function ImageRender({ attrs }: BlockRenderProps<ImageAttrs>) {
-  if (!attrs.src) return <BlockEmpty label="Add an image (configure to upload or paste a URL)" />;
+  if (!attrs.src)
+    return (
+      <BlockEmpty label="Add an image (configure to upload or paste a URL)" />
+    );
   return (
     <div className="flex justify-center">
       <img
@@ -60,7 +67,10 @@ function ImageConfig({ attrs, onChange }: BlockConfigProps<ImageAttrs>) {
       </div>
       <div className="flex flex-col gap-1">
         <Label className="text-xs">Alt text</Label>
-        <Input value={attrs.alt} onChange={(e) => onChange({ alt: e.target.value })} />
+        <Input
+          value={attrs.alt}
+          onChange={(e) => onChange({ alt: e.target.value })}
+        />
       </div>
       <div className="flex flex-col gap-1">
         <Label className="text-xs">Width: {attrs.widthPct}%</Label>

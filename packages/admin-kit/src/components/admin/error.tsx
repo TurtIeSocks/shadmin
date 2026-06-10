@@ -133,7 +133,8 @@ function Error(props: InternalErrorProps) {
 }
 
 interface InternalErrorProps
-  extends Omit<HtmlHTMLAttributes<HTMLDivElement>, "title">, FallbackProps {
+  extends Omit<HtmlHTMLAttributes<HTMLDivElement>, "title">,
+    FallbackProps {
   className?: string;
   errorInfo?: ErrorInfo;
   errorComponent?: ComponentType<ErrorProps>;
@@ -144,10 +145,8 @@ interface InternalErrorProps
   title?: ReactNode | string | false;
 }
 
-interface ErrorProps extends Pick<
-  FallbackProps,
-  "error" | "resetErrorBoundary"
-> {
+interface ErrorProps
+  extends Pick<FallbackProps, "error" | "resetErrorBoundary"> {
   errorInfo?: ErrorInfo;
   /**
    * When provided, injects a `<Title>` portal to update the app-bar page title.

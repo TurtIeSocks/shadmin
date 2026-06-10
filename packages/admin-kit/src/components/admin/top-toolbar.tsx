@@ -36,11 +36,7 @@ type TopToolbarProps = HTMLAttributes<HTMLDivElement> & {
  *   </List>
  * );
  */
-function TopToolbar({
-  children,
-  className,
-  ...rest
-}: TopToolbarProps) {
+function TopToolbar({ children, className, ...rest }: TopToolbarProps) {
   return (
     <div
       className={cn("flex items-center justify-end gap-2 mb-2", className)}

@@ -1,4 +1,11 @@
-import type { Lock, LockParams, UnlockParams, GetLockParams, LockProvider, RealtimeTransport } from "../types";
+import type {
+  Lock,
+  LockParams,
+  UnlockParams,
+  GetLockParams,
+  LockProvider,
+  RealtimeTransport,
+} from "../types";
 import { LockConflictError } from "../types";
 import { lockTopic, lockResourceTopic } from "../topics";
 
@@ -7,7 +14,7 @@ export interface InMemoryLockProviderOptions {
 }
 
 export function inMemoryLockProvider<R extends string = string>(
-  options?: InMemoryLockProviderOptions
+  options?: InMemoryLockProviderOptions,
 ): LockProvider<R> {
   const store = new Map<string, Lock>();
 
@@ -53,7 +60,7 @@ export function inMemoryLockProvider<R extends string = string>(
 
     if (!existing) {
       throw new Error(
-        `inMemoryLockProvider: unlock() called but no lock exists for ${resource}/${String(params.id)}`
+        `inMemoryLockProvider: unlock() called but no lock exists for ${resource}/${String(params.id)}`,
       );
     }
 
@@ -75,7 +82,10 @@ export function inMemoryLockProvider<R extends string = string>(
     return existing;
   }
 
-  async function getLock(resource: R, params: GetLockParams): Promise<Lock | null> {
+  async function getLock(
+    resource: R,
+    params: GetLockParams,
+  ): Promise<Lock | null> {
     return store.get(key(resource, params.id)) ?? null;
   }
 

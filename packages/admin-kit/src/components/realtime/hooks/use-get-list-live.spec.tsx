@@ -23,7 +23,7 @@ describe("useGetListLive", () => {
     const screen = render(
       <RealtimeStoryAdmin transport={transport} baseDataProvider={baseDP}>
         <ListProbe />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
 
     await expect.element(screen.getByTestId("count")).toHaveTextContent("1");

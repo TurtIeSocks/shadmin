@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomLimit,
-  Hidden,
-} from "./data-provider-devtools.stories";
+import { Basic, CustomLimit, Hidden } from "./data-provider-devtools.stories";
 
 describe("<DataProviderDevtools />", () => {
   it("renders the floating panel by default with logged calls", async () => {

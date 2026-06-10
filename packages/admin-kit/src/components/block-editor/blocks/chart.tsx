@@ -82,7 +82,8 @@ function ChartRender({ attrs }: BlockRenderProps<ChartAttrs>) {
     { enabled },
   );
 
-  if (!enabled) return <BlockEmpty label="Pick a resource and category to chart" />;
+  if (!enabled)
+    return <BlockEmpty label="Pick a resource and category to chart" />;
   if (isPending) return <BlockSkeleton />;
   if (error) return <BlockError label="Chart data unavailable" />;
 

@@ -324,7 +324,7 @@ function SelectInput(props: SelectInputProps) {
                     disabled={isDisabled}
                   >
                     {renderMenuItemOption(
-                      !!createItem && choice?.id === createItem.id
+                      createItem && choice?.id === createItem.id
                         ? createItem
                         : choice,
                     )}

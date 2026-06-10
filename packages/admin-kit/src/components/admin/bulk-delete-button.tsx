@@ -58,9 +58,7 @@ type BulkDeleteButtonProps<
 function BulkDeleteButton<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
->(
-  props: BulkDeleteButtonProps<RecordType, MutationOptionsError>,
-) {
+>(props: BulkDeleteButtonProps<RecordType, MutationOptionsError>) {
   const { mutationMode = "undoable" } = props;
   if (mutationMode === "undoable") {
     return (
@@ -156,9 +154,7 @@ type BulkDeleteWithConfirmButtonProps<
 function BulkDeleteWithConfirmButton<
   RecordType extends RaRecord = RaRecord,
   MutationOptionsError = UnknownValue,
->(
-  props: BulkDeleteWithConfirmButtonProps<RecordType, MutationOptionsError>,
-) {
+>(props: BulkDeleteWithConfirmButtonProps<RecordType, MutationOptionsError>) {
   const {
     icon = defaultIcon,
     label: labelProp,

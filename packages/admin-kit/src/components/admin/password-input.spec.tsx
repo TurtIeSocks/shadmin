@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Disabled,
-  InitiallyVisible,
-} from "./password-input.stories";
+import { Basic, Disabled, InitiallyVisible } from "./password-input.stories";
 
 describe("<PasswordInput />", () => {
   it("renders a masked password input with the humanized field label", async () => {

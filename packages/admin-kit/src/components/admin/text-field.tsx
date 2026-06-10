@@ -53,9 +53,8 @@ function TextField<RecordType extends UnknownRecord = UnknownRecord>({
   );
 }
 
-interface TextFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLSpanElement> {}
+interface TextFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLSpanElement> {}
 
 export { TextField, type TextFieldProps };

@@ -3,10 +3,8 @@ import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Notification } from "@/components/admin/notification";
 
-interface AuthLayoutProps extends Omit<
-  HTMLAttributes<HTMLDivElement>,
-  "title"
-> {
+interface AuthLayoutProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   /**
    * Content rendered in the main pane — typically a login, signup or
    * password-reset form.

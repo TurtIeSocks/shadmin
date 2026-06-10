@@ -78,11 +78,10 @@ function CronInput(props: CronInputProps) {
       </FieldError>
     </Field>
   );
-};
+}
 
 interface CronInputProps
-  extends
-    InputProps,
+  extends InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   disabled?: boolean;
 }

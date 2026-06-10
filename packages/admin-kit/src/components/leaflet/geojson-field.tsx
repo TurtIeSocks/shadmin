@@ -7,10 +7,7 @@ import {
   type ShapeFieldShellProps,
 } from "./shapes/shape-field-shell";
 
-interface GeoJsonFieldProps extends Omit<
-  ShapeFieldShellProps,
-  "pathOptions"
-> {
+interface GeoJsonFieldProps extends Omit<ShapeFieldShellProps, "pathOptions"> {
   /**
    * Per-geometry-type path styling. Reserved for v2; v1 falls back to
    * `pathOptions` for every shape.

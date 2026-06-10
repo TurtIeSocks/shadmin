@@ -13,7 +13,11 @@ export interface BlockConfigBodyProps {
  * is provided; otherwise (omitted or `"auto"`) derives a form from the block's
  * Zod schema via {@link AutoConfigForm}.
  */
-export function BlockConfigBody({ block, attrs, onChange }: BlockConfigBodyProps) {
+export function BlockConfigBody({
+  block,
+  attrs,
+  onChange,
+}: BlockConfigBodyProps) {
   if (!block.config || block.config === "auto") {
     return (
       <AutoConfigForm schema={block.schema} attrs={attrs} onChange={onChange} />

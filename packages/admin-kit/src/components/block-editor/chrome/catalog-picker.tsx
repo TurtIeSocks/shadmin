@@ -26,7 +26,11 @@ const GROUP_LABELS: Record<string, string> = {
  * search query (cmdk matches each item's `value`), and fires `onSelect` with the
  * chosen block's name. Insertion is performed by the caller, not here.
  */
-export function CatalogPicker({ registry, onSelect, onClose }: CatalogPickerProps) {
+export function CatalogPicker({
+  registry,
+  onSelect,
+  onClose,
+}: CatalogPickerProps) {
   return (
     <Command
       className="w-72 rounded-md border shadow-md"

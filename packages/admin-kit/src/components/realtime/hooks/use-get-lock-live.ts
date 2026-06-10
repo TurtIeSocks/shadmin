@@ -7,8 +7,13 @@ import { useOnReconnect } from "./use-on-reconnect";
 
 export function useGetLockLive(
   resource: string,
-  params: GetLockParams
-): { data: Lock | null | undefined; isLoading: boolean; isPending: boolean; error: Error | null } {
+  params: GetLockParams,
+): {
+  data: Lock | null | undefined;
+  isLoading: boolean;
+  isPending: boolean;
+  error: Error | null;
+} {
   const queryClient = useQueryClient();
   const result = useGetLock(resource, params);
 

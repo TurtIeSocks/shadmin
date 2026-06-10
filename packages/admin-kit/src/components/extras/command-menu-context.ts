@@ -34,9 +34,7 @@ interface CommandMenuContextValue {
   registeredCommands: CommandAction[];
 }
 
-const CommandMenuContext = createContext<CommandMenuContextValue | null>(
-  null,
-);
+const CommandMenuContext = createContext<CommandMenuContextValue | null>(null);
 
 const useCommandMenu = () => {
   const ctx = use(CommandMenuContext);

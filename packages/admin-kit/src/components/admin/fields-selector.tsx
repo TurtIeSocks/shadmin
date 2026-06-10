@@ -150,8 +150,4 @@ function FieldsSelector({
   );
 }
 
-export {
-  FieldsSelector,
-  type FieldsSelectorProps,
-  type SelectableField,
-};
+export { FieldsSelector, type FieldsSelectorProps, type SelectableField };

@@ -5,9 +5,12 @@ import { useGetLocks } from "./use-get-locks";
 import { useSubscribe } from "./use-subscribe";
 import { useOnReconnect } from "./use-on-reconnect";
 
-export function useGetLocksLive(
-  resource: string
-): { data: Lock[] | undefined; isLoading: boolean; isPending: boolean; error: Error | null } {
+export function useGetLocksLive(resource: string): {
+  data: Lock[] | undefined;
+  isLoading: boolean;
+  isPending: boolean;
+  error: Error | null;
+} {
   const queryClient = useQueryClient();
   const result = useGetLocks(resource);
 

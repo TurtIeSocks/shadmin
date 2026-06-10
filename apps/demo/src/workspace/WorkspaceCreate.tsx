@@ -1,5 +1,9 @@
 import { required } from "ra-core";
-import { Create, SimpleForm, TextInput } from "shadcn-admin-kit/components/admin";
+import {
+  Create,
+  SimpleForm,
+  TextInput,
+} from "shadcn-admin-kit/components/admin";
 
 export const WorkspaceCreate = () => (
   <Create>

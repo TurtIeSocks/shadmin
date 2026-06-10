@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  MissingCoordinates,
-} from "./lat-lng-field.stories";
+import { Basic, MissingCoordinates } from "./lat-lng-field.stories";
 
 describe("<LatLngField />", () => {
   it("renders a Leaflet map container when coordinates exist", async () => {

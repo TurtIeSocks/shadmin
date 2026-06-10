@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  NoLink,
-  ShowLink,
-} from "./simple-list-item.stories";
+import { Basic, NoLink, ShowLink } from "./simple-list-item.stories";
 
 describe("<SimpleListItem />", () => {
   it("renders the item's children", async () => {

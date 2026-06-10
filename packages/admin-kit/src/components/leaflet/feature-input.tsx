@@ -6,10 +6,11 @@ import {
 } from "./shapes/shape-input-shell";
 import type { ShapeKind } from "./types";
 
-interface FeatureInputProps extends Omit<
-  ShapeInputShellProps,
-  "shape" | "multi" | "collection" | "valueTransform" | "valueParse"
-> {
+interface FeatureInputProps
+  extends Omit<
+    ShapeInputShellProps,
+    "shape" | "multi" | "collection" | "valueTransform" | "valueParse"
+  > {
   /** Default geometry type when the user starts drawing. Defaults to `"Polygon"`. */
   shape?: Exclude<ShapeKind, "GeometryCollection">;
 }
@@ -19,10 +20,7 @@ interface FeatureInputProps extends Omit<
  * but persists `{ type: "Feature", geometry, properties }`, preserving
  * `properties` across edits.
  */
-function FeatureInput({
-  shape = "Polygon",
-  ...rest
-}: FeatureInputProps) {
+function FeatureInput({ shape = "Polygon", ...rest }: FeatureInputProps) {
   return (
     <ShapeInputShell
       {...rest}

@@ -21,7 +21,9 @@ vi.mock("ra-supabase-core", () => ({
   useSetPassword: () => [{} as never, { mutateAsync }],
   useSupabaseAccessToken: ({
     parameterName,
-  }: { parameterName?: string } = {}) =>
+  }: {
+    parameterName?: string;
+  } = {}) =>
     tokenValues[
       (parameterName ?? "access_token") as "access_token" | "refresh_token"
     ],

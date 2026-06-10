@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  WithoutCreate,
-  ResourceSpecificLabel,
-} from "./empty.stories";
+import { Basic, WithoutCreate, ResourceSpecificLabel } from "./empty.stories";
 
 describe("<Empty />", () => {
   it("renders the default empty-state message and a create link", async () => {

@@ -6,11 +6,7 @@ import {
   useResourceContext,
   ValidationError,
 } from "ra-core";
-import {
-  FieldError,
-  FieldLegend,
-  FieldSet,
-} from "@/components/ui/field";
+import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { cn } from "@/lib/utils";
 
@@ -47,7 +43,10 @@ function RatingInput(props: RatingInputProps) {
   const currentValue = (field.value as number | null | undefined) ?? 0;
 
   return (
-    <FieldSet className={cn("gap-3", className)} data-invalid={invalid || undefined}>
+    <FieldSet
+      className={cn("gap-3", className)}
+      data-invalid={invalid || undefined}
+    >
       {label !== false && (
         <FieldLegend variant="label">
           <FieldTitle
@@ -97,7 +96,7 @@ function RatingInput(props: RatingInputProps) {
       </FieldError>
     </FieldSet>
   );
-};
+}
 
 const Star = ({ filled, half }: { filled: boolean; half: boolean }) => (
   <svg
@@ -121,8 +120,7 @@ const Star = ({ filled, half }: { filled: boolean; half: boolean }) => (
 );
 
 interface RatingInputProps
-  extends
-    InputProps,
+  extends InputProps,
     Omit<React.ComponentProps<"div">, "defaultValue" | "onBlur" | "onChange"> {
   max?: number;
   allowHalf?: boolean;

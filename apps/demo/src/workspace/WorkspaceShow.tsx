@@ -1,7 +1,17 @@
 import { useEffect, useMemo } from "react";
 import { useRecordContext } from "ra-core";
-import { RecordField, Show, SimpleShowLayout } from "shadcn-admin-kit/components/admin";
-import { Assistant, type AssistantTransport, PresenceBar, type PresenceState, type PresenceTransport } from "shadcn-admin-kit/components/extras";
+import {
+  RecordField,
+  Show,
+  SimpleShowLayout,
+} from "shadcn-admin-kit/components/admin";
+import {
+  Assistant,
+  type AssistantTransport,
+  PresenceBar,
+  type PresenceState,
+  type PresenceTransport,
+} from "shadcn-admin-kit/components/extras";
 import { MdxField } from "shadcn-admin-kit/components/mdx-editor";
 import "@mdxeditor/editor/style.css";
 import type { WorkspaceDocument } from "./documents-seed";

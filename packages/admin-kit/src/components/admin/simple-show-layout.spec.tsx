@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomClassName,
-} from "./simple-show-layout.stories";
+import { Basic, CustomClassName } from "./simple-show-layout.stories";
 
 describe("<SimpleShowLayout />", () => {
   it("renders each child field with the record's data", async () => {

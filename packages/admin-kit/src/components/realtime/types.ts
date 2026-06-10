@@ -15,7 +15,9 @@ export interface RealtimeEvent<P = unknown> {
   meta?: Record<string, unknown>;
 }
 
-export type SubscriptionCallback<P = unknown> = (event: RealtimeEvent<P>) => void;
+export type SubscriptionCallback<P = unknown> = (
+  event: RealtimeEvent<P>,
+) => void;
 export type Unsubscribe = () => void;
 
 export interface Lock {
@@ -50,7 +52,7 @@ export class LockConflictError extends Error {
   readonly kind = "LockConflictError" as const;
   constructor(public readonly existingLock: Lock) {
     super(
-      `Resource ${existingLock.resource}/${String(existingLock.recordId)} is locked by ${String(existingLock.identity)}`
+      `Resource ${existingLock.resource}/${String(existingLock.recordId)} is locked by ${String(existingLock.identity)}`,
     );
   }
 }
@@ -78,11 +80,11 @@ export interface RealtimeTransportError {
 export interface RealtimeTransport {
   subscribe<P = unknown>(
     topic: string,
-    cb: SubscriptionCallback<P>
+    cb: SubscriptionCallback<P>,
   ): Unsubscribe;
   publish<P = unknown>(
     topic: string,
-    event: Omit<RealtimeEvent<P>, "topic">
+    event: Omit<RealtimeEvent<P>, "topic">,
   ): Promise<void>;
   connect?(): void;
   disconnect?(): void;
@@ -101,11 +103,11 @@ export interface RealtimeDataProvider<R extends string = string>
   extends DataProvider<R> {
   subscribe<P = unknown>(
     topic: string,
-    cb: SubscriptionCallback<P>
+    cb: SubscriptionCallback<P>,
   ): Unsubscribe;
   publish<P = unknown>(
     topic: string,
-    event: Omit<RealtimeEvent<P>, "topic">
+    event: Omit<RealtimeEvent<P>, "topic">,
   ): Promise<void>;
   lock(resource: R, params: LockParams): Promise<Lock>;
   unlock(resource: R, params: UnlockParams): Promise<Lock>;

@@ -137,4 +137,10 @@ function buildOverpassQueryFromSources(
   return `[out:json][timeout:25];\n(\n${lines.join("\n")}\n);\nout geom;`;
 }
 
-export { type OsmTagFilter, type OsmPresetDef, OSM_PRESETS, type OsmPresetName, buildOverpassQueryFromSources };
+export {
+  type OsmTagFilter,
+  type OsmPresetDef,
+  OSM_PRESETS,
+  type OsmPresetName,
+  buildOverpassQueryFromSources,
+};

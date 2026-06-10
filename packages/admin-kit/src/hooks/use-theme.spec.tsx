@@ -2,10 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { render, renderHook } from "vitest-browser-react";
 import { useState, type PropsWithChildren } from "react";
 
-import {
-  ThemeProviderContext,
-  type Theme,
-} from "@/lib/themes/theme-context";
+import { ThemeProviderContext, type Theme } from "@/lib/themes/theme-context";
 import { useResolvedTheme, useTheme } from "./use-theme";
 
 const wrapper =
@@ -46,11 +43,12 @@ describe("useTheme", () => {
       );
     };
     const screen = render(<Probe />, { wrapper: wrapper("light") });
-    await expect.element(screen.getByTestId("theme")).toHaveTextContent("light");
+    await expect
+      .element(screen.getByTestId("theme"))
+      .toHaveTextContent("light");
     await screen.getByRole("button", { name: "switch" }).click();
     await expect.element(screen.getByTestId("theme")).toHaveTextContent("dark");
   });
-
 });
 
 describe("useResolvedTheme", () => {
@@ -62,21 +60,19 @@ describe("useResolvedTheme", () => {
   });
 
   it("resolves 'system' to 'dark' when prefers-color-scheme is dark", () => {
-    const matchMediaSpy = vi
-      .spyOn(window, "matchMedia")
-      .mockImplementation(
-        (query: string) =>
-          ({
-            matches: query === "(prefers-color-scheme: dark)",
-            media: query,
-            onchange: null,
-            addListener: () => {},
-            removeListener: () => {},
-            addEventListener: () => {},
-            removeEventListener: () => {},
-            dispatchEvent: () => false,
-          }) as MediaQueryList,
-      );
+    const matchMediaSpy = vi.spyOn(window, "matchMedia").mockImplementation(
+      (query: string) =>
+        ({
+          matches: query === "(prefers-color-scheme: dark)",
+          media: query,
+          onchange: null,
+          addListener: () => {},
+          removeListener: () => {},
+          addEventListener: () => {},
+          removeEventListener: () => {},
+          dispatchEvent: () => false,
+        }) as MediaQueryList,
+    );
 
     try {
       const { result } = renderHook(() => useResolvedTheme(), {
@@ -89,21 +85,19 @@ describe("useResolvedTheme", () => {
   });
 
   it("resolves 'system' to 'light' when prefers-color-scheme is light", () => {
-    const matchMediaSpy = vi
-      .spyOn(window, "matchMedia")
-      .mockImplementation(
-        (query: string) =>
-          ({
-            matches: false,
-            media: query,
-            onchange: null,
-            addListener: () => {},
-            removeListener: () => {},
-            addEventListener: () => {},
-            removeEventListener: () => {},
-            dispatchEvent: () => false,
-          }) as MediaQueryList,
-      );
+    const matchMediaSpy = vi.spyOn(window, "matchMedia").mockImplementation(
+      (query: string) =>
+        ({
+          matches: false,
+          media: query,
+          onchange: null,
+          addListener: () => {},
+          removeListener: () => {},
+          addEventListener: () => {},
+          removeEventListener: () => {},
+          dispatchEvent: () => false,
+        }) as MediaQueryList,
+    );
 
     try {
       const { result } = renderHook(() => useResolvedTheme(), {

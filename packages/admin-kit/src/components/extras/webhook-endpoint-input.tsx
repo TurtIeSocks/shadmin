@@ -147,7 +147,7 @@ function WebhookEndpointInput(props: WebhookEndpointInputProps) {
       </FieldError>
     </Field>
   );
-};
+}
 
 interface WebhookEndpointInputProps extends InputProps {
   /** Available event-type strings to surface as checkboxes. */

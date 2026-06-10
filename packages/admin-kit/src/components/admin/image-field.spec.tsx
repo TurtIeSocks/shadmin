@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  Title,
-  Empty,
-  Multiple,
-} from "./image-field.stories";
+import { Basic, Title, Empty, Multiple } from "./image-field.stories";
 
 describe("<ImageField />", () => {
   it("should render an image input", async () => {

@@ -34,10 +34,7 @@ type CancelButtonProps = React.ComponentProps<"button"> & {
   ref?: Ref<HTMLButtonElement>;
 };
 
-function CancelButton({
-  ref,
-  ...props
-}: CancelButtonProps) {
+function CancelButton({ ref, ...props }: CancelButtonProps) {
   const navigate = useNavigate();
   return (
     <Button

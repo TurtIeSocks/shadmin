@@ -1,9 +1,7 @@
 import { createContext, use } from "react";
 import { z } from "zod";
 
-const CsvImportContext = createContext<CsvImportContextValue | null>(
-  null,
-);
+const CsvImportContext = createContext<CsvImportContextValue | null>(null);
 
 interface CsvImportContextValue {
   parsedRows: Array<Record<string, unknown>>;

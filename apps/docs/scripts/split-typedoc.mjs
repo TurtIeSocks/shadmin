@@ -61,10 +61,7 @@ function renderType(t) {
       if (t.declaration?.signatures?.[0]) {
         const sig = t.declaration.signatures[0];
         const params = (sig.parameters ?? [])
-          .map(
-            /** @param {any} p */ (p) =>
-              `${p.name}: ${renderType(p.type)}`,
-          )
+          .map(/** @param {any} p */ (p) => `${p.name}: ${renderType(p.type)}`)
           .join(", ");
         const ret = renderType(sig.type);
         return `(${params}) => ${ret}`;

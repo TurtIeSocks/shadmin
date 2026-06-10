@@ -1,6 +1,17 @@
 import { useRecordContext, Translate } from "ra-core";
 import { z } from "zod";
-import { BooleanField, ColumnsButton, DataTable, ExportButton, FilterList, FilterListItem, FilterLiveSearch, List, ListPagination, CreateButton } from "shadcn-admin-kit/components/admin";
+import {
+  BooleanField,
+  ColumnsButton,
+  DataTable,
+  ExportButton,
+  FilterList,
+  FilterListItem,
+  FilterLiveSearch,
+  List,
+  ListPagination,
+  CreateButton,
+} from "shadcn-admin-kit/components/admin";
 import { InPlaceEditor } from "shadcn-admin-kit/components/extras";
 import { CsvImport } from "shadcn-admin-kit/components/csv-import";
 import { Badge } from "shadcn-admin-kit/components/ui/badge";

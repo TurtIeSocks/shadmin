@@ -483,9 +483,7 @@ function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
                       return (
                         <CommandItem
                           key={
-                            isCreateItem
-                              ? "__create__"
-                              : getChoiceValue(choice)
+                            isCreateItem ? "__create__" : getChoiceValue(choice)
                           }
                           value={
                             isCreateItem

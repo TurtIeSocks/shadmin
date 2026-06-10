@@ -17,7 +17,12 @@ export const ToggleStory = () => (
           {
             type: "toggle",
             attrs: { summary: "More details", open: true },
-            content: [{ type: "paragraph", content: [{ type: "text", text: "Hidden body" }] }],
+            content: [
+              {
+                type: "paragraph",
+                content: [{ type: "text", text: "Hidden body" }],
+              },
+            ],
           },
         ],
       }}
@@ -36,7 +41,12 @@ export const ImageStory = () => (
       blocks={[imageBlock]}
       value={{
         type: "doc",
-        content: [{ type: "image", attrs: { src: RED_DOT, alt: "A red dot", widthPct: 50 } }],
+        content: [
+          {
+            type: "image",
+            attrs: { src: RED_DOT, alt: "A red dot", widthPct: 50 },
+          },
+        ],
       }}
     />
   </ThemeProvider>
@@ -47,7 +57,12 @@ export const ImageEmptyStory = () => (
     <BlockEditor
       editable={false}
       blocks={[imageBlock]}
-      value={{ type: "doc", content: [{ type: "image", attrs: { src: "", alt: "", widthPct: 100 } }] }}
+      value={{
+        type: "doc",
+        content: [
+          { type: "image", attrs: { src: "", alt: "", widthPct: 100 } },
+        ],
+      }}
     />
   </ThemeProvider>
 );
@@ -59,7 +74,12 @@ export const EmbedStory = () => (
       blocks={[embedBlock]}
       value={{
         type: "doc",
-        content: [{ type: "embed", attrs: { url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" } }],
+        content: [
+          {
+            type: "embed",
+            attrs: { url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+          },
+        ],
       }}
     />
   </ThemeProvider>
@@ -70,7 +90,10 @@ export const EmbedUnsupportedStory = () => (
     <BlockEditor
       editable={false}
       blocks={[embedBlock]}
-      value={{ type: "doc", content: [{ type: "embed", attrs: { url: "https://evil.com/x" } }] }}
+      value={{
+        type: "doc",
+        content: [{ type: "embed", attrs: { url: "https://evil.com/x" } }],
+      }}
     />
   </ThemeProvider>
 );

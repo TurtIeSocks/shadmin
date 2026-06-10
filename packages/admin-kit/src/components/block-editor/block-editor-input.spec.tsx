@@ -15,7 +15,9 @@ describe("<BlockEditorInput />", () => {
     await expect
       .element(screen.getByText("Body", { exact: true }))
       .toBeInTheDocument();
-    await expect.element(pm(screen.container)).toHaveTextContent("Initial content");
+    await expect
+      .element(pm(screen.container))
+      .toHaveTextContent("Initial content");
   });
 
   it("shows a validation error when required and empty", async () => {

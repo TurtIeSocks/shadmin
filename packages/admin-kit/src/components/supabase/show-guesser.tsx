@@ -29,7 +29,7 @@ function SupabaseShowGuesser(props: SupabaseShowGuesserProps) {
       <SupabaseShowGuesserView {...rest} />
     </ShowBase>
   );
-};
+}
 
 const SupabaseShowGuesserView = (
   props: Omit<ShowViewProps, "children"> & { enableLog?: boolean },

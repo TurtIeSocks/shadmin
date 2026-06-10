@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomLabel,
-  WithRender,
-} from "./record-field.stories";
+import { Basic, CustomLabel, WithRender } from "./record-field.stories";
 
 describe("<RecordField />", () => {
   it("renders the source label and value for each field", async () => {

@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  CustomTabs,
-  HideActions,
-} from "./job-monitor.stories";
+import { Basic, CustomTabs, HideActions } from "./job-monitor.stories";
 
 describe("<JobMonitor />", () => {
   it("renders default tabs with badge counts", async () => {

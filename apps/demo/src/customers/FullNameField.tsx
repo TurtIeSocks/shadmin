@@ -1,5 +1,9 @@
 import { useRecordContext } from "ra-core";
-import { Avatar, AvatarImage, AvatarFallback } from "shadcn-admin-kit/components/ui/avatar";
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "shadcn-admin-kit/components/ui/avatar";
 import { TextField } from "shadcn-admin-kit/components/admin";
 
 export const FullNameField = () => {

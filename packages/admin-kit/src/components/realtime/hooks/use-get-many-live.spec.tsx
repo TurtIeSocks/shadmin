@@ -8,7 +8,7 @@ import { useGetManyLive } from "./use-get-many-live";
 function ManyProbe() {
   const { data, isPending } = useGetManyLive<{ id: number; title: string }>(
     "posts",
-    { ids: [1, 2] }
+    { ids: [1, 2] },
   );
   if (isPending) return <div data-testid="titles">loading</div>;
   return <div data-testid="titles">{data?.map((r) => r.title).join(",")}</div>;
@@ -18,13 +18,18 @@ describe("useGetManyLive", () => {
   it("refreshes when any record in the list emits an event", async () => {
     const transport = fakeTransport();
     const baseDP = fakeRestProvider(
-      { posts: [{ id: 1, title: "a" }, { id: 2, title: "b" }] },
-      false
+      {
+        posts: [
+          { id: 1, title: "a" },
+          { id: 2, title: "b" },
+        ],
+      },
+      false,
     );
     const screen = render(
       <RealtimeStoryAdmin transport={transport} baseDataProvider={baseDP}>
         <ManyProbe />
-      </RealtimeStoryAdmin>
+      </RealtimeStoryAdmin>,
     );
     await expect.element(screen.getByTestId("titles")).toHaveTextContent("a,b");
 

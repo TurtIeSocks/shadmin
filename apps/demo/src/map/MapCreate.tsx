@@ -1,5 +1,14 @@
-import { Create, SelectInput, SimpleForm, TextInput } from "shadcn-admin-kit/components/admin";
-import { GeocodingInput, LatLngInput, PointInput } from "shadcn-admin-kit/components/leaflet";
+import {
+  Create,
+  SelectInput,
+  SimpleForm,
+  TextInput,
+} from "shadcn-admin-kit/components/admin";
+import {
+  GeocodingInput,
+  LatLngInput,
+  PointInput,
+} from "shadcn-admin-kit/components/leaflet";
 import { required } from "ra-core";
 
 const NYC_CENTER: [number, number] = [40.74, -73.99];

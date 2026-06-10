@@ -31,21 +31,32 @@ const failures = [];
 const documented = components.filter((item) => lookup.has(item.slug));
 
 for (const item of documented) {
-  const storyPath = resolve(repoRoot, `packages/admin-kit/src/components/${item.sourceDir}/${item.slug}.stories.tsx`);
+  const storyPath = resolve(
+    repoRoot,
+    `packages/admin-kit/src/components/${item.sourceDir}/${item.slug}.stories.tsx`,
+  );
   if (!existsSync(storyPath)) {
-    failures.push(`${item.componentName} (${item.sourceDir}/${item.slug}): missing story file`);
+    failures.push(
+      `${item.componentName} (${item.sourceDir}/${item.slug}): missing story file`,
+    );
     continue;
   }
   const body = readFileSync(storyPath, "utf-8");
 
   if (body.includes("CoverageStory") || body.includes("_coverage-story")) {
-    failures.push(`${item.componentName} (${item.sourceDir}/${item.slug}): still imports CoverageStory placeholder`);
+    failures.push(
+      `${item.componentName} (${item.sourceDir}/${item.slug}): still imports CoverageStory placeholder`,
+    );
   }
   if (!/export const Basic/.test(body)) {
-    failures.push(`${item.componentName} (${item.sourceDir}/${item.slug}): missing 'export const Basic'`);
+    failures.push(
+      `${item.componentName} (${item.sourceDir}/${item.slug}): missing 'export const Basic'`,
+    );
   }
   if (body.split("\n").length < 30) {
-    failures.push(`${item.componentName} (${item.sourceDir}/${item.slug}): story file < 30 lines (likely thin)`);
+    failures.push(
+      `${item.componentName} (${item.sourceDir}/${item.slug}): story file < 30 lines (likely thin)`,
+    );
   }
   const expectedGroup = lookup.get(item.slug);
   if (expectedGroup) {
@@ -53,12 +64,8 @@ for (const item of documented) {
     // to have a `title` field (e.g. fake calendar events) don't get
     // mistaken for the Storybook default-export title. Handles both
     // single-line (`export default { title: "X" };`) and multi-line forms.
-    const defaultExportBlock = body.match(
-      /export default \{[\s\S]*?\}/,
-    )?.[0];
-    const titleMatch = defaultExportBlock?.match(
-      /title:\s*['"]([^'"]+)['"]/,
-    );
+    const defaultExportBlock = body.match(/export default \{[\s\S]*?\}/)?.[0];
+    const titleMatch = defaultExportBlock?.match(/title:\s*['"]([^'"]+)['"]/);
     if (!titleMatch || !titleMatch[1].startsWith(`${expectedGroup}/`)) {
       failures.push(
         `${item.componentName} (${item.sourceDir}/${item.slug}): title prefix doesn't match sidebar group '${expectedGroup}'`,

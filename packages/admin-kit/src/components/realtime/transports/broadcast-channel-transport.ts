@@ -15,7 +15,7 @@ interface WireMessage {
 }
 
 export function broadcastChannelTransport(
-  config: BroadcastChannelTransportConfig
+  config: BroadcastChannelTransportConfig,
 ): RealtimeTransport {
   let channel: BroadcastChannel | null = new BroadcastChannel(config.channel);
   const subscribers = new Map<string, Set<SubscriptionCallback<unknown>>>();
@@ -39,7 +39,7 @@ export function broadcastChannelTransport(
   return {
     subscribe<P = unknown>(
       topic: string,
-      cb: SubscriptionCallback<P>
+      cb: SubscriptionCallback<P>,
     ): Unsubscribe {
       let set = subscribers.get(topic);
       if (!set) {

@@ -12,9 +12,7 @@ interface InputHelperTextProps {
   helperText?: ReactNode | false;
 }
 
-function InputHelperText({
-  helperText,
-}: InputHelperTextProps) {
+function InputHelperText({ helperText }: InputHelperTextProps) {
   const translate = useTranslate();
 
   if (helperText === false) {

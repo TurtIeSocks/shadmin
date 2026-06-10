@@ -90,8 +90,7 @@ function InfiniteList<RecordType extends RaRecord = RaRecord>(
 }
 
 interface InfiniteListProps<RecordType extends RaRecord = RaRecord>
-  extends
-    InfiniteListBaseProps<RecordType>,
+  extends InfiniteListBaseProps<RecordType>,
     InfiniteListViewProps<RecordType> {}
 
 /**

@@ -21,10 +21,13 @@ describe("sseTransport", () => {
     const cb = vi.fn();
     t.subscribe("resource/posts", cb);
     await new Promise((r) => setTimeout(r, 150));
-    await t.publish("resource/posts", { type: "created", payload: { ids: [1] } });
+    await t.publish("resource/posts", {
+      type: "created",
+      payload: { ids: [1] },
+    });
     await new Promise((r) => setTimeout(r, 150));
     expect(cb).toHaveBeenCalledWith(
-      expect.objectContaining({ topic: "resource/posts", type: "created" })
+      expect.objectContaining({ topic: "resource/posts", type: "created" }),
     );
   }, 10_000);
 
@@ -35,7 +38,7 @@ describe("sseTransport", () => {
     });
     transports.push(t);
     await expect(
-      t.publish("x", { type: "created", payload: {} })
+      t.publish("x", { type: "created", payload: {} }),
     ).rejects.toThrow(/publishUrl/);
   });
 });

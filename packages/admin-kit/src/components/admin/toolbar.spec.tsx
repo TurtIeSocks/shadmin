@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Default,
-  SaveOnly,
-  CancelAndSave,
-} from "./toolbar.stories";
+import { Default, SaveOnly, CancelAndSave } from "./toolbar.stories";
 
 describe("<Toolbar />", () => {
   it("should render a Save button by default", async () => {

@@ -77,7 +77,7 @@ function ApprovalQueue(props: ApprovalQueueProps) {
       ))}
     </div>
   );
-};
+}
 
 interface ApprovalRowInternalProps {
   record: RaRecord;

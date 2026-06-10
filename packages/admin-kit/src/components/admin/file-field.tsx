@@ -7,7 +7,8 @@ import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 
 interface FileFieldProps<RecordType extends UnknownRecord = UnknownRecord>
-  extends FieldProps<RecordType>, HTMLAttributes<HTMLElement> {
+  extends FieldProps<RecordType>,
+    HTMLAttributes<HTMLElement> {
   /**
    * The source of the link to the file, for an array of files.
    */

@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  EmptyValue,
-  WithLabel,
-} from "./lat-lng-input.stories";
+import { Basic, EmptyValue, WithLabel } from "./lat-lng-input.stories";
 
 describe("<LatLngInput />", () => {
   it("renders the map input wrapper with data-slot", async () => {

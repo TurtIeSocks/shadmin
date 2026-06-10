@@ -27,7 +27,7 @@ export function fakeTransport(config?: FakeTransportConfig): FakeTransport {
 
   function subscribe<P = unknown>(
     topic: string,
-    cb: SubscriptionCallback<P>
+    cb: SubscriptionCallback<P>,
   ): Unsubscribe {
     let set = subscribers.get(topic);
     if (!set) {
@@ -49,14 +49,12 @@ export function fakeTransport(config?: FakeTransportConfig): FakeTransport {
 
   async function publish<P = unknown>(
     topic: string,
-    event: Omit<RealtimeEvent<P>, "topic">
+    event: Omit<RealtimeEvent<P>, "topic">,
   ): Promise<void> {
     events.push({ topic, event: event as Omit<RealtimeEvent, "topic"> });
 
     if (config?.delayMs) {
-      await new Promise<void>((resolve) =>
-        setTimeout(resolve, config.delayMs)
-      );
+      await new Promise<void>((resolve) => setTimeout(resolve, config.delayMs));
     }
 
     const set = subscribers.get(topic);

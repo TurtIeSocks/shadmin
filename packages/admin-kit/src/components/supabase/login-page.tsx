@@ -112,7 +112,7 @@ function SupabaseLoginPage(props: SupabaseLoginPageProps) {
       )}
     </AuthLayout>
   );
-};
+}
 
 SupabaseLoginPage.path = "/login";
 

@@ -1,4 +1,8 @@
-import { DataTable, List, ReferenceField } from "shadcn-admin-kit/components/admin";
+import {
+  DataTable,
+  List,
+  ReferenceField,
+} from "shadcn-admin-kit/components/admin";
 import { SubscriptionPlanField } from "shadcn-admin-kit/components/extras/subscription-plan-field";
 import { PLANS } from "./plans";
 

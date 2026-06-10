@@ -3,10 +3,8 @@
 import { GeoJsonInput, type GeoJsonInputProps } from "../geojson-input";
 import type { ShapeKind } from "../types";
 
-interface GeometryCollectionInputProps extends Omit<
-  GeoJsonInputProps,
-  "shapes" | "collection"
-> {
+interface GeometryCollectionInputProps
+  extends Omit<GeoJsonInputProps, "shapes" | "collection"> {
   allowedShapes?: ShapeKind[];
 }
 

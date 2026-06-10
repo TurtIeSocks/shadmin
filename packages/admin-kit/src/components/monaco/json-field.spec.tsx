@@ -1,11 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import {
-  Basic,
-  CustomIndent,
-  Empty,
-  StringValue,
-} from "./json-field.stories";
+import { Basic, CustomIndent, Empty, StringValue } from "./json-field.stories";
 
 describe("<JsonField />", () => {
   it("renders an object value as pretty-printed JSON", async () => {

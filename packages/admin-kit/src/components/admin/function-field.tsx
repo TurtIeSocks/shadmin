@@ -29,11 +29,8 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *   </List>
  * );
  */
-interface FunctionFieldProps<
-  RecordType extends UnknownRecord = UnknownRecord,
->
-  extends
-    Omit<FieldProps<RecordType>, "source">,
+interface FunctionFieldProps<RecordType extends UnknownRecord = UnknownRecord>
+  extends Omit<FieldProps<RecordType>, "source">,
     Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
   source?: string;
   render: (record: RecordType, source?: string) => ReactNode;

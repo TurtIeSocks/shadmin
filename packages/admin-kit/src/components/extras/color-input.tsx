@@ -112,11 +112,10 @@ function ColorInput(props: ColorInputProps) {
       </FieldError>
     </Field>
   );
-};
+}
 
 interface ColorInputProps
-  extends
-    InputProps,
+  extends InputProps,
     Omit<
       React.ComponentProps<"input">,
       "defaultValue" | "onBlur" | "onChange" | "type"

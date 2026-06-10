@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  CustomLabel,
-  Default,
-} from "./skip-navigation-button.stories";
+import { CustomLabel, Default } from "./skip-navigation-button.stories";
 
 describe("<SkipNavigationButton />", () => {
   it("renders the default skip-to-content button label", async () => {

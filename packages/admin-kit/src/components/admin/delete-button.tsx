@@ -81,9 +81,7 @@ const defaultDestructiveClassName =
  *
  * @see {@link https://marmelab.com/shadcn-admin-kit/docs/deletebutton/ DeleteButton documentation}
  */
-function DeleteWithUndoButton(
-  props: Omit<DeleteButtonProps, "mutationMode">,
-) {
+function DeleteWithUndoButton(props: Omit<DeleteButtonProps, "mutationMode">) {
   const {
     label: labelProp,
     onClick,

@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  UnknownResource,
-} from "./resource-menu-item.stories";
+import { Basic, UnknownResource } from "./resource-menu-item.stories";
 
 describe("<ResourceMenuItem />", () => {
   it("renders a link to the resource list view", async () => {

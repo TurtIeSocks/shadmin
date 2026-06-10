@@ -21,7 +21,11 @@ import {
   Translate,
   WithRecord,
 } from "ra-core";
-import { Avatar, AvatarFallback, AvatarImage } from "shadcn-admin-kit/components/ui/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "shadcn-admin-kit/components/ui/avatar";
 import type { Product, Review, Customer } from "../types";
 import { Link } from "react-router";
 

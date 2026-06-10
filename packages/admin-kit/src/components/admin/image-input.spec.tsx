@@ -1,11 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import {
-  Basic,
-  WithLabel,
-  WithHelperText,
-} from "./image-input.stories";
+import { Basic, WithLabel, WithHelperText } from "./image-input.stories";
 
 describe("<ImageInput />", () => {
   it("renders the image input with the humanized field label", async () => {

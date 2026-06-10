@@ -7,12 +7,7 @@ import {
   type BlockConfigProps,
 } from "../define-block";
 import { BlockEmpty, BlockSkeleton, BlockError } from "./block-states";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const schema = z.object({
   resource: z.string().default(""),
@@ -61,7 +56,10 @@ function ReferenceRecordRender({ attrs }: BlockRenderProps<RefAttrs>) {
 }
 
 /** Custom config: a resource text field + a record id field. (Plan 2 upgrades to ReferenceInput.) */
-function ReferenceRecordConfig({ attrs, onChange }: BlockConfigProps<RefAttrs>) {
+function ReferenceRecordConfig({
+  attrs,
+  onChange,
+}: BlockConfigProps<RefAttrs>) {
   return (
     <div className="flex flex-col gap-2 p-1">
       <label className="text-xs">Resource</label>

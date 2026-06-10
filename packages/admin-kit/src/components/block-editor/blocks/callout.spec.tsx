@@ -18,7 +18,9 @@ describe("callout block", () => {
 
     // `data-variant` is carried by the inner div rendered by CalloutRender,
     // not the node-view wrapper, so query the element that actually has it.
-    const variantEl = screen.container.querySelector('[data-variant="warning"]');
+    const variantEl = screen.container.querySelector(
+      '[data-variant="warning"]',
+    );
     expect(variantEl).not.toBeNull();
     expect(callout.contains(variantEl)).toBe(true);
   });

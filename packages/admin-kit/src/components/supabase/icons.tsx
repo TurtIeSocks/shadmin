@@ -309,4 +309,21 @@ const WorkosIcon = (props: IconProps) => (
   </Svg>
 );
 
-export { GoogleIcon, FacebookIcon, TwitterIcon, AppleIcon, GithubIcon, GitlabIcon, BitbucketIcon, DiscordIcon, AzureIcon, KeycloakIcon, LinkedinIcon, NotionIcon, SlackIcon, SpotifyIcon, TwitchIcon, WorkosIcon };
+export {
+  GoogleIcon,
+  FacebookIcon,
+  TwitterIcon,
+  AppleIcon,
+  GithubIcon,
+  GitlabIcon,
+  BitbucketIcon,
+  DiscordIcon,
+  AzureIcon,
+  KeycloakIcon,
+  LinkedinIcon,
+  NotionIcon,
+  SlackIcon,
+  SpotifyIcon,
+  TwitchIcon,
+  WorkosIcon,
+};

@@ -10,7 +10,7 @@
 //   items.push(...granular);
 
 import { readFileSync, statSync } from "node:fs";
-import { basename, dirname, extname, join, relative, resolve } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 
 const SOURCE_EXTS = [".tsx", ".ts"];
 
@@ -18,12 +18,7 @@ const SOURCE_EXTS = [".tsx", ".ts"];
 // Imports of these resolve to `@shadcn-admin-kit/<name>` items shipped here.
 // Everything else under components/ui/ is assumed to be a shadcn upstream item
 // referenced by plain name (e.g. "popover", "dialog").
-const OUR_UI_ITEMS = new Set([
-  "slot",
-  "combobox",
-  "color-picker",
-  "direction",
-]);
+const OUR_UI_ITEMS = new Set(["slot", "combobox", "color-picker", "direction"]);
 
 // hooks/ files authored in this repo. Same treatment as OUR_UI_ITEMS for ui/.
 // Anything not listed resolves to a shadcn upstream hook reference (e.g.

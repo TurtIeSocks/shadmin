@@ -2,14 +2,18 @@ import type { ComponentType } from "react";
 import type { LucideIcon } from "lucide-react";
 import type { z } from "zod";
 
-export interface BlockRenderProps<A extends Record<string, unknown> = Record<string, unknown>> {
+export interface BlockRenderProps<
+  A extends Record<string, unknown> = Record<string, unknown>,
+> {
   attrs: A;
   mode: "edit" | "read";
   selected?: boolean;
   updateAttrs?: (patch: Partial<A>) => void;
 }
 
-export interface BlockConfigProps<A extends Record<string, unknown> = Record<string, unknown>> {
+export interface BlockConfigProps<
+  A extends Record<string, unknown> = Record<string, unknown>,
+> {
   attrs: A;
   onChange: (patch: Partial<A>) => void;
 }
