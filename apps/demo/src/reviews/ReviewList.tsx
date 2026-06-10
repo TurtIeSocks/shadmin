@@ -28,7 +28,7 @@ import { FullNameField } from "../customers/FullNameField";
 import { ReviewEdit } from "./ReviewEdit";
 import { BulkApproveButton } from "./BulkApproveButton";
 import { BulkRejectButton } from "./BulkRejectButton";
-import { useIsMobile } from "../../hooks/use-mobile";
+import { useIsMobile } from "shadcn-admin-kit/hooks/use-mobile";
 import type { Review } from "../types";
 
 const filters = [
