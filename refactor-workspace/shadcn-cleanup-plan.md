@@ -170,8 +170,11 @@ Branch `c/nostalgic-almeida-09c189`. 5 commits, not pushed/merged. Verified: typ
 - ✅ Fork teardown — deleted `admin/form.tsx`, `hooks/use-form-field.ts` + their tests/story; `Form` kept exported; `input-helper-text` → `FieldDescription`; registry config + `registry.json` regenerated with the `field` dep. (`c3f069cbc`)
 - ✅ Second fork — `admin/spinner.tsx` deduped onto `ui/spinner` (wrapper preserving size/show API). (`brjtdps15` commit)
 
+**DONE (cont.)**
+- ✅ **Icon cleanup** (`57f699dec`) — KEY FINDING: this project's Button is byte-identical to upstream shadcn radix (`add button --diff` = no changes) and **does not consume `data-icon`** (zero CSS references it). So instead of scattering inert `data-icon` attrs, did the match-upstream cleanup: removed manual `mr-*`/`ml-*` (double-spacing) + redundant `size-4` on button-child icons, and removed the inert `data-icon` attrs added in Phase 1. 16 files; non-Button icons (CommandItem/Badge/headings/avatars) left untouched. Visually verified on the orders list; 49 specs pass.
+
 **DEFERRED (recommended follow-ups, not blocking)**
-- ⏭️ **`data-icon` broad adoption** (~30 button files) + dropping manual icon `size-*`. Cosmetic convention; large blast radius; wants visual review. Done opportunistically only on the spinner buttons so far.
+- ⏭️ Redundant `size-4` on button icons in files *not* otherwise touched (harmless; pure churn to chase).
 - ⏭️ **Manual disabled styling tail** — `list-pagination.tsx:171`, `filter-button.tsx:360` (case-by-case: only strip if the element is a shadcn `Button`/disabled-aware). `file-input` dropzone `cursor-not-allowed` intentionally left.
 - ⏭️ **`ui/color-picker/`** — non-shadcn custom component; only nit-fixed. Consider replacing with a registry component.
 - ⏭️ **Field-display read views** (`labeled.tsx`, `*-field.tsx`) — not touched; a separate `Field`-alignment pass.
