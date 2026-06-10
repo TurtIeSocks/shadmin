@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { ResourceContextProvider, RecordContextProvider } from "ra-core";
-import { RealtimeStoryAdmin } from "@/stories/_test-helpers";
+import { RealtimeStoryAdmin } from "@/test/_test-helpers";
 import { fakeTransport } from "@/components/realtime/transports/fake-transport";
 import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
 import { useLockOnMount } from "./use-lock-on-mount";

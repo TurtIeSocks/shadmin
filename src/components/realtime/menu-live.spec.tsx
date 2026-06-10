@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic } from "@/stories/realtime/menu-live.stories";
-import { menuTransport } from "@/stories/realtime/menu-live-fixtures";
+import { Basic } from "./menu-live.stories";
+import { menuTransport } from "@/components/realtime/__fixtures__/menu-live-fixtures";
 
 describe("<MenuLiveItemLink>", () => {
   it("does not show a badge initially", async () => {

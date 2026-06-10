@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   CustomSource,
-} from "@/stories/admin/filter-live-search.stories";
+} from "./filter-live-search.stories";
 
 describe("<FilterLiveSearch />", () => {
   it("renders a search input with the default placeholder", async () => {

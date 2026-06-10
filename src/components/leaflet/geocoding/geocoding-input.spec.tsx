@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { userEvent } from "@vitest/browser/context";
 import { render } from "vitest-browser-react";
 
-import { GeocodingInputBasic } from "@/stories/leaflet/leaflet-geocoding.stories";
+import { GeocodingInputBasic } from "./leaflet-geocoding.stories";
 
 describe("<GeocodingInput />", () => {
   it("renders an input with the placeholder", async () => {

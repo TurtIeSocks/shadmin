@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { NoDelay } from "@/stories/admin/linear-progress.stories";
+import { NoDelay } from "./linear-progress.stories";
 
 describe("<LinearProgress />", () => {
   it("renders the progress bar immediately when timeout is 0", async () => {

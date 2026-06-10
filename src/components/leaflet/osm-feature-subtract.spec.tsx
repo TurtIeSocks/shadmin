@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/leaflet/osm-feature-subtract.stories";
+import { Basic } from "./osm/osm-feature-subtract.stories";
 
 /**
  * Pure render assertion: live Overpass API calls don't fire until the user

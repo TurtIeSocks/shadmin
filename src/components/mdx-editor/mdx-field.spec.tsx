@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Dark, Empty } from "@/stories/mdx-editor/mdx-field.stories";
+import { Basic, Dark, Empty } from "./mdx-field.stories";
 
 const getEditorElement = (container: HTMLElement) =>
   container.querySelector(".mdxeditor [contenteditable]");

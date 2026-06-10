@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Empty } from "@/stories/admin/email-field.stories";
+import { Basic, Empty } from "./email-field.stories";
 
 describe("<EmailField />", () => {
   it("renders an anchor with the mailto: href and the email as text", async () => {

@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   WithTestPing,
-} from "@/stories/extras/webhook-endpoint-input.stories";
+} from "./webhook-endpoint-input.stories";
 
 describe("<WebhookEndpointInput />", () => {
   it("renders URL + secret inputs bound to the composite", async () => {

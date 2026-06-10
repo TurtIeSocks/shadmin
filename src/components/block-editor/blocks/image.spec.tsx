@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { ImageStory, ImageEmptyStory } from "@/stories/block-editor/blocks-2.stories";
+import { ImageStory, ImageEmptyStory } from "./blocks-2.stories";
 
 describe("image block", () => {
   it("renders an img with the src and alt at the configured width", async () => {

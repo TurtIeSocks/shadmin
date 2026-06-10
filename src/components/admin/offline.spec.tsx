@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomChildren } from "@/stories/admin/offline.stories";
+import { Basic, CustomChildren } from "./offline.stories";
 
 describe("<Offline />", () => {
   it("renders the offline banner when navigator is offline", async () => {

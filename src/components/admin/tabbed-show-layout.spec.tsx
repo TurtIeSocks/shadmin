@@ -6,7 +6,7 @@ import {
   ThreeTabs,
   WithCount,
   CustomLabel,
-} from "@/stories/admin/tabbed-show-layout.stories";
+} from "./tabbed-show-layout.stories";
 
 describe("<TabbedShowLayout />", () => {
   it("should render tab headers", async () => {

@@ -7,7 +7,7 @@
  *
  * Fails (exit 1) when any documented component is missing its spec file, still
  * contains the placeholder `expect(true).toBe(true)` pattern, or does not import
- * from the corresponding stories file under `@/stories/<sourceDir>/<slug>.stories`.
+ * from the colocated sibling stories file `./<slug>.stories`.
  *
  * Run via `pnpm run check-specs` from the `docs/` workspace.
  */
@@ -45,9 +45,12 @@ for (const item of documented) {
       `${item.componentName} (${item.sourceDir}/${item.slug}): contains tautological expect(true).toBe(true)`,
     );
   }
-  if (!body.includes(`@/stories/${item.sourceDir}/${item.slug}.stories`)) {
+  const importsStory =
+    body.includes(`./${item.slug}.stories`) ||
+    body.includes(`@/components/${item.sourceDir}/${item.slug}.stories`);
+  if (!importsStory) {
     failures.push(
-      `${item.componentName} (${item.sourceDir}/${item.slug}): does not import from corresponding stories file`,
+      `${item.componentName} (${item.sourceDir}/${item.slug}): does not import from colocated stories file`,
     );
   }
 }

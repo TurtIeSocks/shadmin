@@ -5,7 +5,7 @@ import {
   Basic,
   CustomStoreKey,
   WithStoredOrder,
-} from "@/stories/extras/layout-builder.stories";
+} from "./layout-builder.stories";
 
 describe("<LayoutBuilder />", () => {
   it("renders one row per available field", async () => {

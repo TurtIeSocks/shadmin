@@ -5,7 +5,7 @@ import {
   Basic,
   WithChildren,
   WithRenderProp,
-} from "@/stories/admin/single-field-list.stories";
+} from "./single-field-list.stories";
 
 describe("<SingleFieldList />", () => {
   it("renders the default record representation for each item", async () => {

@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   HoursMinutesOnly,
-} from "@/stories/extras/duration-input.stories";
+} from "./duration-input.stories";
 
 describe("<DurationInput />", () => {
   it("renders separate inputs for each unit (default d/h/m/s)", async () => {

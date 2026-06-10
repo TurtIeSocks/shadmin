@@ -5,7 +5,7 @@ import {
   Default,
   SaveOnly,
   CancelAndSave,
-} from "@/stories/admin/toolbar.stories";
+} from "./toolbar.stories";
 
 describe("<Toolbar />", () => {
   it("should render a Save button by default", async () => {

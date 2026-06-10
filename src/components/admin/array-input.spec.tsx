@@ -8,7 +8,7 @@ import { render } from "vitest-browser-react";
 import { FormProvider, useForm } from "react-hook-form";
 import { ArrayInput } from "./array-input";
 import { useContext, useEffect } from "react";
-import { Basic as BasicStory } from "@/stories/admin/array-input.stories";
+import { Basic as BasicStory } from "./array-input.stories";
 
 function TestChild({ source }: { source: string }) {
   const arrayContext = useContext(ArrayInputContext);

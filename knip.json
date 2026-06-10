@@ -10,7 +10,7 @@
     "src/components/rich-text-input/**/*.{ts,tsx}!",
     "src/components/ui/**/*.{ts,tsx}!",
     "src/components/**/*.spec.{ts,tsx}",
-    "src/stories/**/*.stories.{ts,tsx}",
+    "src/components/**/*.stories.{ts,tsx}",
     "src/demo/**/*.{ts,tsx}",
     "src/examples/**/*.{ts,tsx}",
     "src/lib/**/*.{ts,tsx}!",

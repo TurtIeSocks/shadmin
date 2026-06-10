@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/infinite-pagination.stories";
+import { Basic } from "./infinite-pagination.stories";
 
 describe("<InfinitePagination />", () => {
   it("displays the first page of records", async () => {

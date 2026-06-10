@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   CustomClassName,
-} from "@/stories/admin/simple-show-layout.stories";
+} from "./simple-show-layout.stories";
 
 describe("<SimpleShowLayout />", () => {
   it("renders each child field with the record's data", async () => {

@@ -6,7 +6,7 @@ import {
   Title,
   Empty,
   Multiple,
-} from "@/stories/admin/image-field.stories";
+} from "./image-field.stories";
 
 describe("<ImageField />", () => {
   it("should render an image input", async () => {

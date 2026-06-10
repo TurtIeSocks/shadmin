@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, NoFilters } from "@/stories/admin/filter-form.stories";
+import { Basic, NoFilters } from "./filter-form.stories";
 
 describe("<FilterForm />", () => {
   it("renders the always-on Search filter field", async () => {

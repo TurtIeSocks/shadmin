@@ -5,7 +5,7 @@ import {
   Basic,
   PolygonOnly,
   Seeded,
-} from "@/stories/leaflet/feature-collection-input.stories";
+} from "./feature-collection-input.stories";
 
 const findAsync = async (
   container: Element,

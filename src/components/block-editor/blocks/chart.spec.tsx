@@ -4,7 +4,7 @@ import { aggregate } from "@/components/block-editor/blocks/chart";
 import {
   ChartResolved,
   ChartEmpty,
-} from "@/stories/block-editor/data-blocks.stories";
+} from "./data-blocks.stories";
 
 describe("aggregate (client-side group-by)", () => {
   const rows = [

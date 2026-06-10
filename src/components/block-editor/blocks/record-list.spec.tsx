@@ -3,7 +3,7 @@ import { render } from "vitest-browser-react";
 import {
   RecordListResolved,
   RecordListEmpty,
-} from "@/stories/block-editor/data-blocks.stories";
+} from "./data-blocks.stories";
 
 const block = (c: HTMLElement) =>
   c.querySelector('[data-block="recordList"]') as HTMLElement;

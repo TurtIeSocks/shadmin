@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomText } from "@/stories/admin/access-denied.stories";
+import { Basic, CustomText } from "./access-denied.stories";
 
 describe("<AccessDenied />", () => {
   it("renders the default access-denied message", async () => {

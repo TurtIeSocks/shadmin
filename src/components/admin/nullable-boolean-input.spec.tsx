@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   Label,
-} from "@/stories/admin/nullable-boolean-input.stories";
+} from "./nullable-boolean-input.stories";
 
 describe("<NullableBooleanInput />", () => {
   it("renders the select trigger with the humanized field label", async () => {

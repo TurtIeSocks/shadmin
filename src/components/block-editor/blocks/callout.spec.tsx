@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { CalloutStory } from "@/stories/block-editor/blocks.stories";
+import { CalloutStory } from "./blocks.stories";
 
 describe("callout block", () => {
   it("renders the callout with its inner prose and variant class", async () => {

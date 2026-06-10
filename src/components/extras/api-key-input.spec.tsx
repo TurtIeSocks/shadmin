@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Disabled } from "@/stories/extras/api-key-input.stories";
+import { Basic, Disabled } from "./api-key-input.stories";
 
 describe("<ApiKeyInput />", () => {
   it("renders a rotate button labelled with the source name", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, NewTab, Empty } from "@/stories/admin/url-field.stories";
+import { Basic, NewTab, Empty } from "./url-field.stories";
 
 describe("<UrlField />", () => {
   it("renders the URL as a clickable anchor", async () => {

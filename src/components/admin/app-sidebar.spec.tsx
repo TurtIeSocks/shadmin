@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithGroups } from "@/stories/admin/app-sidebar.stories";
+import { Basic, WithGroups } from "./app-sidebar.stories";
 
 describe("<AppSidebar />", () => {
   it("renders a navigation link for the registered resource", async () => {

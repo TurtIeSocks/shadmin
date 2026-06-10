@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Secondary, Empty } from "@/stories/admin/chip-field.stories";
+import { Basic, Secondary, Empty } from "./chip-field.stories";
 
 describe("<ChipField />", () => {
   it("renders the source value inside a chip", async () => {

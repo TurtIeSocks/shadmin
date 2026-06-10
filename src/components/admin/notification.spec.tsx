@@ -8,7 +8,7 @@ import {
 import { toast } from "sonner";
 
 import { Notification } from "@/components/admin/notification";
-import { Undoable } from "@/stories/admin/notification.stories";
+import { Undoable } from "./notification.stories";
 
 const CustomDurationNotifyButton = ({
   autoHideDuration,

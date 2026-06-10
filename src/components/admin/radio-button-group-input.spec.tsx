@@ -6,7 +6,7 @@ import {
   Disabled,
   Label,
   HelperText,
-} from "@/stories/admin/radio-button-group-input.stories";
+} from "./radio-button-group-input.stories";
 
 describe("<RadioButtonGroupInput />", () => {
   it("renders one radio per choice", async () => {

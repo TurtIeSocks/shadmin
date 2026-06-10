@@ -5,7 +5,7 @@ import {
   Basic,
   Failed,
   Pending,
-} from "@/stories/extras/webhook-endpoint-field.stories";
+} from "./webhook-endpoint-field.stories";
 
 describe("<WebhookEndpointField />", () => {
   it("renders the URL and an OK status badge for a successful last delivery", async () => {

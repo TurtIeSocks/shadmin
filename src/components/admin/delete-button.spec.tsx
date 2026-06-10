@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/admin/delete-button.stories";
+} from "./delete-button.stories";
 
 describe("<DeleteButton />", () => {
   it("should render with the default label", async () => {

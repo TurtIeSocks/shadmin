@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/confirm.stories";
+import { Basic } from "./confirm.stories";
 
 describe("<Confirm />", () => {
   it("renders the trigger button while the dialog is closed by default", async () => {

@@ -3,7 +3,7 @@ import { render } from "vitest-browser-react";
 import {
   PolygonFieldBasic,
   PolygonInputBasic,
-} from "@/stories/leaflet/leaflet-shapes.stories";
+} from "../leaflet-shapes.stories";
 
 const findAsync = async (
   container: HTMLElement,

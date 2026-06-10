@@ -11,7 +11,7 @@ import defaultMessages from "ra-language-english";
 
 import { SelectAllButton } from "@/components/admin/select-all-button";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { Basic, CustomLabel } from "@/stories/admin/select-all-button.stories";
+import { Basic, CustomLabel } from "./select-all-button.stories";
 
 const ContextHarness = ({
   selectedIds,

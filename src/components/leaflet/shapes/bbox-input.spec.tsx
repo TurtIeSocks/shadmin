@@ -3,7 +3,7 @@ import { render } from "vitest-browser-react";
 import { useFormContext } from "react-hook-form";
 
 import { BBoxInput } from "@/components/leaflet";
-import { StoryAdmin } from "@/stories/_test-helpers";
+import { StoryAdmin } from "@/test/_test-helpers";
 
 const ValueProbe = () => {
   const form = useFormContext();

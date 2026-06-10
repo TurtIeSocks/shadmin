@@ -5,7 +5,7 @@ import {
   Basic,
   CustomTabs,
   HideActions,
-} from "@/stories/extras/job-monitor.stories";
+} from "./job-monitor.stories";
 
 describe("<JobMonitor />", () => {
   it("renders default tabs with badge counts", async () => {

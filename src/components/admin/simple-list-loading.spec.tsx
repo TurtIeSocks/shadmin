@@ -5,7 +5,7 @@ import {
   Basic,
   FewLines,
   FullLayout,
-} from "@/stories/admin/simple-list-loading.stories";
+} from "./simple-list-loading.stories";
 
 describe("<SimpleListLoading />", () => {
   it("renders the default number of skeleton rows", async () => {

@@ -5,7 +5,7 @@ import {
   Default,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/admin/clone-button.stories";
+} from "./clone-button.stories";
 
 describe("<CloneButton />", () => {
   it("renders the default Clone link", async () => {

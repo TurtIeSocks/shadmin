@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   WithOmit,
-} from "@/stories/admin/simple-form-configurable.stories";
+} from "./simple-form-configurable.stories";
 
 describe("<SimpleFormConfigurable />", () => {
   it("renders every declared input plus the Save button", async () => {

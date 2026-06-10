@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/list-toolbar.stories";
+import { Basic } from "./list-toolbar.stories";
 
 describe("<ListToolbar />", () => {
   it("renders the filter form input alongside the export action", async () => {

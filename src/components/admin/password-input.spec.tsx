@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   InitiallyVisible,
-} from "@/stories/admin/password-input.stories";
+} from "./password-input.stories";
 
 describe("<PasswordInput />", () => {
   it("renders a masked password input with the humanized field label", async () => {

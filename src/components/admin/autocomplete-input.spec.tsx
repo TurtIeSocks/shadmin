@@ -6,7 +6,7 @@ import {
   Create,
   InsideArrayInputWithValidation,
   WithMismatchedOptionTextAndValue,
-} from "@/stories/admin/autocomplete-input.stories";
+} from "./autocomplete-input.stories";
 
 describe("<AutocompleteInput />", () => {
   it("should display the choices and a create option if supported", async () => {

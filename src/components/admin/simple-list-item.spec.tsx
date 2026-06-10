@@ -5,7 +5,7 @@ import {
   Basic,
   NoLink,
   ShowLink,
-} from "@/stories/admin/simple-list-item.stories";
+} from "./simple-list-item.stories";
 
 describe("<SimpleListItem />", () => {
   it("renders the item's children", async () => {

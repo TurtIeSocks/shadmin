@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { SelectedCallout } from "@/stories/block-editor/block-editor.stories";
+import { SelectedCallout } from "../block-editor.stories";
 
 /**
  * `SelectedCallout` mounts a doc with one callout and programmatically

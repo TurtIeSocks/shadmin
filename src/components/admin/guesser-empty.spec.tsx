@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, English } from "@/stories/admin/guesser-empty.stories";
+import { Basic, English } from "./guesser-empty.stories";
 
 describe("<GuesserEmpty />", () => {
   it("falls back to the raw translation keys when no i18n provider is available", async () => {

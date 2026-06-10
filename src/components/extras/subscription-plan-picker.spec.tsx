@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   RecommendedTier,
-} from "@/stories/extras/subscription-plan-picker.stories";
+} from "./subscription-plan-picker.stories";
 
 describe("<SubscriptionPlanPicker />", () => {
   it("renders a card per plan", async () => {

@@ -5,7 +5,7 @@ import {
   Basic,
   Empty,
   Resolvable,
-} from "@/stories/extras/comments-thread.stories";
+} from "./comments-thread.stories";
 
 describe("<CommentsThread />", () => {
   it("renders one card per comment matching the parent", async () => {

@@ -5,7 +5,7 @@ import {
   Default,
   FirstRecord,
   LastRecord,
-} from "@/stories/admin/prev-next-buttons.stories";
+} from "./prev-next-buttons.stories";
 
 describe("<PrevNextButtons />", () => {
   it("renders previous and next navigation when there is a record on each side", async () => {

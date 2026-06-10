@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/fields-selector.stories";
+import { Basic } from "./fields-selector.stories";
 
 describe("<FieldsSelector />", () => {
   it("renders one toggle per available field", async () => {

@@ -8,7 +8,7 @@ import {
   Week,
   Interactions,
   Drag,
-} from "@/stories/extras/calendar-list.stories";
+} from "./calendar-list.stories";
 
 describe("<CalendarList />", () => {
   it("renders the current month header", async () => {

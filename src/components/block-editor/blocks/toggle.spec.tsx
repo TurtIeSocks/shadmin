@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { ToggleStory } from "@/stories/block-editor/blocks-2.stories";
+import { ToggleStory } from "./blocks-2.stories";
 
 describe("toggle block", () => {
   it("renders the summary and its inner prose", async () => {

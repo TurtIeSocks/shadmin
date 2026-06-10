@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithHelperText } from "@/stories/admin/datagrid-input.stories";
+import { Basic, WithHelperText } from "./datagrid-input.stories";
 
 describe("<DatagridInput />", () => {
   it("renders one row per choice", async () => {

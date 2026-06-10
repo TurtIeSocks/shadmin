@@ -6,7 +6,7 @@ import {
   Outline,
   Secondary,
   Empty,
-} from "@/stories/admin/badge-field.stories";
+} from "./badge-field.stories";
 
 describe("<BadgeField />", () => {
   it("renders the source value inside a badge", async () => {

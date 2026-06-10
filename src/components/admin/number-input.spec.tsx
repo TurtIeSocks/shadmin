@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Disabled, Step } from "@/stories/admin/number-input.stories";
+import { Basic, Disabled, Step } from "./number-input.stories";
 
 describe("<NumberInput />", () => {
   it("renders a number input with the humanized field label", async () => {

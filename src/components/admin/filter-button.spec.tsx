@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/filter-button.stories";
+import { Basic } from "./filter-button.stories";
 
 describe("<FilterButton />", () => {
   it("should render the add filter button", async () => {

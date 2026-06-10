@@ -5,7 +5,7 @@ import {
   NoForgotPassword,
   SocialOnly,
   WithSocialProviders,
-} from "@/stories/supabase/login-page.stories";
+} from "./login-page.stories";
 
 describe("<SupabaseLoginPage />", () => {
   it("renders email/password form by default", async () => {

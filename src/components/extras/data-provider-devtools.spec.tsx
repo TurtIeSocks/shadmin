@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLimit,
   Hidden,
-} from "@/stories/extras/data-provider-devtools.stories";
+} from "./data-provider-devtools.stories";
 
 describe("<DataProviderDevtools />", () => {
   it("renders the floating panel by default with logged calls", async () => {

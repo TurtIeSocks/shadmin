@@ -4,8 +4,8 @@ import { render } from "vitest-browser-react";
 import { useWatch } from "react-hook-form";
 
 import { SimplifyInput } from "@/components/leaflet";
-import { StoryAdmin } from "@/stories/_test-helpers";
-import { Basic } from "@/stories/leaflet/simplify-input.stories";
+import { StoryAdmin } from "@/test/_test-helpers";
+import { Basic } from "./simplify-input.stories";
 
 interface ErrBoundaryState {
   err: Error | null;

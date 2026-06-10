@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   EmptyValue,
-} from "@/stories/leaflet/multi-polygon-field.stories";
+} from "./shapes/multi-polygon-field.stories";
 
 const findAsync = async (
   container: Element,

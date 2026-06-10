@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithSort } from "@/stories/admin/reference-many-field.stories";
+import { Basic, WithSort } from "./reference-many-field.stories";
 
 describe("<ReferenceManyField />", () => {
   it("renders each related record once data resolves", async () => {

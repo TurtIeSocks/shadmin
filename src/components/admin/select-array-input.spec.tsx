@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   Label,
-} from "@/stories/admin/select-array-input.stories";
+} from "./select-array-input.stories";
 
 describe("<SelectArrayInput />", () => {
   it("renders a combobox trigger and shows the initially-selected choices", async () => {

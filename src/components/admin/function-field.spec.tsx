@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Formatted } from "@/stories/admin/function-field.stories";
+import { Basic, Formatted } from "./function-field.stories";
 
 describe("<FunctionField />", () => {
   it("renders the value returned by the render prop", async () => {

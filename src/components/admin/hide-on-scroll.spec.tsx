@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/hide-on-scroll.stories";
+import { Basic } from "./hide-on-scroll.stories";
 
 describe("<HideOnScroll />", () => {
   it("renders its header child by default", async () => {

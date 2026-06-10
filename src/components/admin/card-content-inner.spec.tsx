@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/card-content-inner.stories";
+import { Basic } from "./card-content-inner.stories";
 
 describe("<CardContentInner />", () => {
   it("renders the section headings stacked inside a single card", async () => {

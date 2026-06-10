@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithCustomItems } from "@/stories/admin/user-menu.stories";
+import { Basic, WithCustomItems } from "./user-menu.stories";
 
 describe("<UserMenu />", () => {
   it("renders the identity-based avatar button", async () => {

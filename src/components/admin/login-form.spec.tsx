@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/login-form.stories";
+import { Basic } from "./login-form.stories";
 
 describe("<LoginForm />", () => {
   it("renders the email and password fields with a sign-in button", async () => {

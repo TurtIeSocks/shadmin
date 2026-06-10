@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, WithDescription } from "@/stories/extras/kanban-board.stories";
+import { Basic, WithDescription } from "./kanban-board.stories";
 import {
   type DataProvider,
   memoryStore,

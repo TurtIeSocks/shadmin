@@ -6,7 +6,7 @@ import {
   CommitWithErrors,
   MapStep,
   PreviewStep,
-} from "@/stories/csv-import/csv-import.stories";
+} from "./csv-import.stories";
 
 describe("<CsvImport />", () => {
   it("renders an Import button", async () => {

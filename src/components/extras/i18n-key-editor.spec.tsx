@@ -5,7 +5,7 @@ import {
   Basic,
   Hidden,
   NoExport,
-} from "@/stories/extras/i18n-key-editor.stories";
+} from "./i18n-key-editor.stories";
 
 describe("<I18nKeyEditor />", () => {
   it("renders the floating panel by default", async () => {

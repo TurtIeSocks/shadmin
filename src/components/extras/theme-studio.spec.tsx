@@ -5,7 +5,7 @@ import {
   Basic,
   NoExport,
   NoThemeToggle,
-} from "@/stories/extras/theme-studio.stories";
+} from "./theme-studio.stories";
 
 describe("<ThemeStudio />", () => {
   it("renders one row per CSS variable in the theme's light map", async () => {

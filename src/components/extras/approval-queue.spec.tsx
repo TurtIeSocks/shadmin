@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, RequireReason } from "@/stories/extras/approval-queue.stories";
+import { Basic, RequireReason } from "./approval-queue.stories";
 
 describe("<ApprovalQueue />", () => {
   it("renders one row per pending record", async () => {

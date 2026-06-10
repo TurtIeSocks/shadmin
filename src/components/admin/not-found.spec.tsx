@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/not-found.stories";
+import { Basic } from "./not-found.stories";
 
 describe("<NotFound />", () => {
   it("renders the not-found heading and a back button", async () => {

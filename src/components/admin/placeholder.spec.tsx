@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
 import { Placeholder } from "@/components/admin/placeholder";
-import { Basic } from "@/stories/admin/placeholder.stories";
+import { Basic } from "./placeholder.stories";
 
 describe("<Placeholder />", () => {
   it("renders the placeholder span with the custom className", async () => {

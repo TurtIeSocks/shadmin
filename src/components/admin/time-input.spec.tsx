@@ -7,7 +7,7 @@ import {
   Label,
   Disabled,
   ReadOnly,
-} from "@/stories/admin/time-input.stories";
+} from "./time-input.stories";
 
 describe("<TimeInput />", () => {
   it("renders a native time input with the source-derived label", async () => {

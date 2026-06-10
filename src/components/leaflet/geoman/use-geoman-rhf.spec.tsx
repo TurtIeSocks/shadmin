@@ -6,7 +6,7 @@ import { GeomanControls } from "react-leaflet-geoman-v2";
 import type L from "leaflet";
 
 import { useGeomanRHF } from "@/components/leaflet";
-import { StoryAdmin } from "@/stories/_test-helpers";
+import { StoryAdmin } from "@/test/_test-helpers";
 import { DEFAULT_TILE_URL } from "@/components/leaflet/shared";
 
 // Box used to smuggle the live feature group ref out of the hook so tests can

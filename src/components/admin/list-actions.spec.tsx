@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomChildren } from "@/stories/admin/list-actions.stories";
+import { Basic, CustomChildren } from "./list-actions.stories";
 
 describe("<ListActions />", () => {
   it("renders create and export action buttons by default", async () => {

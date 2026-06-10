@@ -3102,8 +3102,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
-      "dependencies": ["class-variance-authority", "lucide-react"]
+      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "spinner"]
     },
     {
       "name": "tabbed-form",

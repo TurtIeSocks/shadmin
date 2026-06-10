@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Loading, ErrorState } from "@/stories/admin/auth-callback.stories";
+import { Loading, ErrorState } from "./auth-callback.stories";
 
 describe("<AuthCallback />", () => {
   it("renders the loading state while the callback is pending", async () => {

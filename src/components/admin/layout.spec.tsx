@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, ErrorState } from "@/stories/admin/layout.stories";
+import { Basic, ErrorState } from "./layout.stories";
 
 describe("<Layout />", () => {
   it("renders the children inside the layout", async () => {

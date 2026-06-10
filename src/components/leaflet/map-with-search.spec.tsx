@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/leaflet/map-with-search.stories";
+import { Basic } from "./geocoding/map-with-search.stories";
 
 /**
  * Composite component: combines a draggable LatLngInput map with a

@@ -5,7 +5,7 @@ import {
   Basic,
   WithLabel,
   WithHelperText,
-} from "@/stories/admin/image-input.stories";
+} from "./image-input.stories";
 
 describe("<ImageInput />", () => {
   it("renders the image input with the humanized field label", async () => {

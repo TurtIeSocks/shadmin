@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, ReadOnly } from "@/stories/extras/permission-matrix.stories";
+import { Basic, ReadOnly } from "./permission-matrix.stories";
 
 describe("<PermissionMatrix />", () => {
   it("renders one tab per role", async () => {

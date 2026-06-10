@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic } from "@/stories/realtime/list-live.stories";
-import { basicDataProvider, basicTransport } from "@/stories/realtime/list-live-fixtures";
+import { Basic } from "./list-live.stories";
+import { basicDataProvider, basicTransport } from "@/components/realtime/__fixtures__/list-live-fixtures";
 
 describe("<ListLive>", () => {
   it("renders rows", async () => {

@@ -5,7 +5,7 @@ import {
   Default,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/admin/list-button.stories";
+} from "./list-button.stories";
 
 describe("<ListButton />", () => {
   it("renders the default list-button label", async () => {

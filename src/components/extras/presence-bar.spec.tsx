@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic } from "@/stories/extras/presence-bar.stories";
+import { Basic } from "./presence-bar.stories";
 
 describe("<PresenceBar />", () => {
   it("renders avatars for other users subscribed to the topic", async () => {

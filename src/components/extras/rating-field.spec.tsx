@@ -7,7 +7,7 @@ import {
   Half,
   MaxTen,
   WithCount,
-} from "@/stories/extras/rating-field.stories";
+} from "./rating-field.stories";
 
 describe("<RatingField />", () => {
   it("renders 5 stars with 3 filled by default", async () => {

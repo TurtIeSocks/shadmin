@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
 
-import { WithMismatchedOptionTextAndValue } from "@/stories/admin/autocomplete-array-input.stories";
+import { WithMismatchedOptionTextAndValue } from "./autocomplete-array-input.stories";
 
 describe("<AutocompleteArrayInput />", () => {
   it("should filter choices by their text label", async () => {

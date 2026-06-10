@@ -5,7 +5,7 @@ import {
   CustomIndent,
   Empty,
   StringValue,
-} from "@/stories/monaco/json-field.stories";
+} from "./json-field.stories";
 
 describe("<JsonField />", () => {
   it("renders an object value as pretty-printed JSON", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, FewItems } from "@/stories/admin/list-pagination.stories";
+import { Basic, FewItems } from "./list-pagination.stories";
 
 describe("<ListPagination />", () => {
   it("renders the page-range info for the current page", async () => {

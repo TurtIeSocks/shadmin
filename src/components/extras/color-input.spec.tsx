@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   WithSwatches,
-} from "@/stories/extras/color-input.stories";
+} from "./color-input.stories";
 
 describe("<ColorInput />", () => {
   it("renders a color picker trigger bound to the source value", async () => {

@@ -5,7 +5,7 @@ import {
   Basic,
   Disabled,
   NoSelection,
-} from "@/stories/extras/bulk-edit-drawer.stories";
+} from "./bulk-edit-drawer.stories";
 
 describe("<BulkEditDrawer />", () => {
   it("renders a trigger button with the supplied label", async () => {

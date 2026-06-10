@@ -6,7 +6,7 @@ import {
   FirstApproverPending,
   SelfApprovalBlocked,
   ThresholdReached,
-} from "@/stories/extras/dual-approval-button.stories";
+} from "./dual-approval-button.stories";
 
 describe("<DualApprovalButton />", () => {
   it("renders an enabled approve button with 0/2 count", async () => {

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Audit every public-API React component (per {@link getPublicComponents}) for
- * a sibling Storybook story file under `src/stories/<sourceDir>/<slug>.stories.tsx`.
+ * a sibling Storybook story file under `src/components/<sourceDir>/<slug>.stories.tsx`
+ * (colocated next to the component and its spec).
  *
  * Fails (exit 1) when any documented component is missing its story file, still
  * uses the deprecated `CoverageStory` placeholder, lacks an `export const Basic`,
@@ -30,7 +31,7 @@ const failures = [];
 const documented = components.filter((item) => lookup.has(item.slug));
 
 for (const item of documented) {
-  const storyPath = resolve(repoRoot, `src/stories/${item.sourceDir}/${item.slug}.stories.tsx`);
+  const storyPath = resolve(repoRoot, `src/components/${item.sourceDir}/${item.slug}.stories.tsx`);
   if (!existsSync(storyPath)) {
     failures.push(`${item.componentName} (${item.sourceDir}/${item.slug}): missing story file`);
     continue;

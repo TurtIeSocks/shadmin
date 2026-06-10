@@ -5,7 +5,7 @@ import {
   Basic,
   WithAside,
   WithoutHeading,
-} from "@/stories/admin/auth-layout.stories";
+} from "./auth-layout.stories";
 
 describe("<AuthLayout />", () => {
   it("renders the title and child content", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { ShapeFieldShell } from "@/components/leaflet/shapes/shape-field-shell";
-import { StoryAdmin } from "@/stories/_test-helpers";
+import { StoryAdmin } from "@/test/_test-helpers";
 
 const point = {
   type: "Point",

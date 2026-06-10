@@ -6,7 +6,7 @@ import {
   Currency,
   Percent,
   Empty,
-} from "@/stories/admin/number-field.stories";
+} from "./number-field.stories";
 
 describe("<NumberField />", () => {
   it("renders a number formatted with the default locale", async () => {

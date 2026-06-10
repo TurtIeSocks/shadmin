@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLabel,
   WithRender,
-} from "@/stories/admin/record-field.stories";
+} from "./record-field.stories";
 
 describe("<RecordField />", () => {
   it("renders the source label and value for each field", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, SingleAction } from "@/stories/admin/top-toolbar.stories";
+import { Basic, SingleAction } from "./top-toolbar.stories";
 
 describe("<TopToolbar />", () => {
   it("renders create and export buttons when used inside an Admin list", async () => {

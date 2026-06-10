@@ -6,7 +6,7 @@ import {
   NeverUsed,
   WithLastUsed,
   WithScopes,
-} from "@/stories/extras/api-key-field.stories";
+} from "./api-key-field.stories";
 
 describe("<ApiKeyField />", () => {
   it("masks the key by default showing only the last 4 characters", async () => {

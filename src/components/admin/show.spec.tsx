@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomTitle, NoActions } from "@/stories/admin/show.stories";
+import { Basic, CustomTitle, NoActions } from "./show.stories";
 
 describe("<Show />", () => {
   it("renders the record's fields once loaded", async () => {

@@ -5,7 +5,7 @@ import {
   Basic,
   ExternalChanges,
   Validation,
-} from "@/stories/block-editor/block-editor-input.stories";
+} from "./block-editor-input.stories";
 
 const pm = (c: HTMLElement) => c.querySelector(".ProseMirror") as HTMLElement;
 

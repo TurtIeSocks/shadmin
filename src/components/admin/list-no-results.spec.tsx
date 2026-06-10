@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   NoFilters,
   WithFilters,
-} from "@/stories/admin/list-no-results.stories";
+} from "./list-no-results.stories";
 
 describe("<ListNoResults />", () => {
   it("renders the no-results message when no filters are active", async () => {

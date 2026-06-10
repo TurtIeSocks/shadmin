@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Default, Grouped } from "@/stories/admin/menu.stories";
+import { Default, Grouped } from "./menu.stories";
 
 describe("<Menu />", () => {
   it("renders a link to each registered resource", async () => {

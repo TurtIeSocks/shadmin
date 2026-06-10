@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
-import { Held } from "@/stories/realtime/lock-status.stories";
+import { Held } from "./lock-status.stories";
 
 describe("<LockStatus>", () => {
   it("renders the holder identity when locked", async () => {

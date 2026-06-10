@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Empty } from "@/stories/admin/text-array-field.stories";
+import { Basic, Empty } from "./text-array-field.stories";
 
 describe("<TextArrayField />", () => {
   it("renders each array value as a badge", async () => {

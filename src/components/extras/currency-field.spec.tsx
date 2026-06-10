@@ -7,7 +7,7 @@ import {
   Empty,
   Eur,
   MinorUnits,
-} from "@/stories/extras/currency-field.stories";
+} from "./currency-field.stories";
 
 describe("<CurrencyField />", () => {
   it("formats a number with USD by default", async () => {

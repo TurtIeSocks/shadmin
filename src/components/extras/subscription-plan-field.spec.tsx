@@ -5,7 +5,7 @@ import {
   Basic,
   Free,
   Unknown,
-} from "@/stories/extras/subscription-plan-field.stories";
+} from "./subscription-plan-field.stories";
 
 describe("<SubscriptionPlanField />", () => {
   it("renders the matched plan's name and price", async () => {

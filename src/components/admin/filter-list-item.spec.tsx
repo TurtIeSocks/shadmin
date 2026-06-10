@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/filter-list-item.stories";
+import { Basic } from "./filter-list-item.stories";
 
 describe("<FilterListItem />", () => {
   it("renders the label of each filter item in the sidebar", async () => {

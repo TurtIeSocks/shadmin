@@ -5,7 +5,7 @@ import {
   Basic,
   CustomTitle,
   NoBreadcrumb,
-} from "@/stories/admin/create.stories";
+} from "./create.stories";
 
 describe("<Create />", () => {
   it("renders the create form with empty inputs and a Save button", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/check-for-application-update.stories";
+import { Basic } from "./check-for-application-update.stories";
 
 describe("<CheckForApplicationUpdate />", () => {
   it("renders the inlined update notification provided by the story", async () => {

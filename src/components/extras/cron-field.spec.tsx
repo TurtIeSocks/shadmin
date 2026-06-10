@@ -6,7 +6,7 @@ import {
   Empty,
   ExprOnly,
   Invalid,
-} from "@/stories/extras/cron-field.stories";
+} from "./cron-field.stories";
 
 describe("<CronField />", () => {
   it("renders a human phrase for a valid expression", async () => {

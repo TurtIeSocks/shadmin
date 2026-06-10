@@ -6,7 +6,7 @@ import {
   Basic,
   Disabled,
   MinorUnits,
-} from "@/stories/extras/currency-input.stories";
+} from "./currency-input.stories";
 
 describe("<CurrencyInput />", () => {
   it("renders a number input with the USD symbol", async () => {

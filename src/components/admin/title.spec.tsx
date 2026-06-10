@@ -5,7 +5,7 @@ import {
   Basic,
   TranslatedTitle,
   ReactElementTitle,
-} from "@/stories/admin/title.stories";
+} from "./title.stories";
 
 describe("<Title />", () => {
   it("renders the title text inside the portal", async () => {

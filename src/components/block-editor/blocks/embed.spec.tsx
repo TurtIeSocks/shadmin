@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { toEmbedSrc } from "@/components/block-editor/blocks/embed";
-import { EmbedStory, EmbedUnsupportedStory } from "@/stories/block-editor/blocks-2.stories";
+import { EmbedStory, EmbedUnsupportedStory } from "./blocks-2.stories";
 
 describe("toEmbedSrc (allowlist parser)", () => {
   it("maps YouTube watch + short URLs to the nocookie embed URL", () => {

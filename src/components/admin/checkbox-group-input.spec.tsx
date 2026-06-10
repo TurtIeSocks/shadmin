@@ -6,7 +6,7 @@ import {
   Disabled,
   Label,
   HelperText,
-} from "@/stories/admin/checkbox-group-input.stories";
+} from "./checkbox-group-input.stories";
 
 describe("<CheckboxGroupInput />", () => {
   it("renders one checkbox per choice", async () => {

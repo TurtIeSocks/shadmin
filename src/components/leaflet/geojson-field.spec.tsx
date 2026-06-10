@@ -4,7 +4,7 @@ import {
   GeoJsonFieldEmpty,
   GeoJsonFieldPoint,
   GeoJsonFieldPolygon,
-} from "@/stories/leaflet/leaflet-shapes.stories";
+} from "./leaflet-shapes.stories";
 
 const findAsync = async (
   container: Element,

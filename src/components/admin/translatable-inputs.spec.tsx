@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/translatable-inputs.stories";
+import { Basic } from "./translatable-inputs.stories";
 
 describe("<TranslatableInputs />", () => {
   it("renders a tab for each declared locale", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithLink } from "@/stories/admin/reference-field.stories";
+import { Basic, WithLink } from "./reference-field.stories";
 
 describe("<ReferenceField />", () => {
   it("renders the referenced record's representation once loaded", async () => {

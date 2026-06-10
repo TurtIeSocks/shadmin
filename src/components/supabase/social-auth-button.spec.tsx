@@ -17,7 +17,7 @@ import {
   CustomProvider,
   Github,
   Google,
-} from "@/stories/supabase/social-auth-button.stories";
+} from "./social-auth-button.stories";
 
 describe("<SocialAuthButton />", () => {
   it("renders the GithubButton with the translated label", async () => {

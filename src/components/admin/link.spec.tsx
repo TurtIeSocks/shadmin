@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomClass } from "@/stories/admin/link.stories";
+import { Basic, CustomClass } from "./link.stories";
 
 describe("<Link />", () => {
   it("renders the link with its label and href", async () => {

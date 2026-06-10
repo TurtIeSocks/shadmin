@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Default,
   WithConfirm,
-} from "@/stories/admin/bulk-update-button.stories";
+} from "./bulk-update-button.stories";
 
 describe("<BulkUpdateButton />", () => {
   it("renders the labeled bulk update button", async () => {

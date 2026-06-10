@@ -6,7 +6,7 @@ import {
   Disabled,
   Label,
   ReadOnly,
-} from "@/stories/admin/boolean-input.stories";
+} from "./boolean-input.stories";
 
 describe("<BooleanInput />", () => {
   it("renders the switch with the humanized field label", async () => {

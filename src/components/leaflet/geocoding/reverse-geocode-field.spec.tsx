@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { ReverseGeocodeFieldBasic } from "@/stories/leaflet/leaflet-geocoding.stories";
+import { ReverseGeocodeFieldBasic } from "./leaflet-geocoding.stories";
 
 describe("<ReverseGeocodeField />", () => {
   beforeEach(() => vi.restoreAllMocks());

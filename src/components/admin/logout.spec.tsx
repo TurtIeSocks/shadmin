@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/logout.stories";
+import { Basic } from "./logout.stories";
 
 describe("<Logout />", () => {
   it("exposes a logout menu item once the dropdown is opened", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { ShapeInputShell } from "@/components/leaflet/shapes/shape-input-shell";
-import { StoryAdmin } from "@/stories/_test-helpers";
+import { StoryAdmin } from "@/test/_test-helpers";
 
 describe("<ShapeInputShell />", () => {
   it("renders inside a form with label + helper text", async () => {

@@ -5,7 +5,7 @@ import {
   Basic,
   DisableAdd,
   DisableRemove,
-} from "@/stories/admin/simple-form-iterator.stories";
+} from "./simple-form-iterator.stories";
 
 describe("<SimpleFormIterator />", () => {
   it("renders one row per existing item plus an Add button", async () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic } from "@/stories/extras/tree-list.stories";
+import { Basic } from "./tree-list.stories";
 
 describe("<TreeList />", () => {
   it("renders root nodes and nested children with correct depth", async () => {

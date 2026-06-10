@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, WithTertiaryText } from "@/stories/admin/simple-list.stories";
+import { Basic, WithTertiaryText } from "./simple-list.stories";
 
 describe("<SimpleList />", () => {
   it("renders the primary and secondary text for each record", async () => {

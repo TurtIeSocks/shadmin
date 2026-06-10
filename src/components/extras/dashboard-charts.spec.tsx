@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { DollarSignIcon } from "lucide-react";
-import { Basic, Loading } from "@/stories/extras/dashboard-charts.stories";
+import { Basic, Loading } from "./dashboard-charts.stories";
 import { BarChart, DonutChart, MetricCard, TrendChart } from "@/components/extras";
 
 const trendData = [

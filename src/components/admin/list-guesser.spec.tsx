@@ -4,7 +4,7 @@ import { CoreAdminContext, type DataProvider } from "ra-core";
 import { MemoryRouter } from "react-router";
 import { ListGuesser } from "./list-guesser";
 import { i18nProvider } from "@/lib/i18n-provider";
-import { Basic as BasicStory } from "@/stories/admin/list-guesser.stories";
+import { Basic as BasicStory } from "./list-guesser.stories";
 
 const dataProvider = {
   getList: async () => ({ data: [], total: 0 }),

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Loading, Idle } from "@/stories/admin/loading-indicator.stories";
+import { Loading, Idle } from "./loading-indicator.stories";
 
 describe("<LoadingIndicator />", () => {
   it("renders the loading status icon when fetches are pending", async () => {

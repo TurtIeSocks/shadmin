@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, LongPlaceholder } from "@/stories/admin/search-input.stories";
+import { Basic, LongPlaceholder } from "./search-input.stories";
 
 describe("<SearchInput />", () => {
   it("renders a text input with the default 'Search' placeholder", async () => {

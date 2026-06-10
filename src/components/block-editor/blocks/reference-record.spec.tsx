@@ -4,7 +4,7 @@ import {
   ResolvedRecord,
   EmptyRecord,
   MissingRecord,
-} from "@/stories/block-editor/reference-record.stories";
+} from "./reference-record.stories";
 
 const block = (c: HTMLElement) =>
   c.querySelector('[data-block="referenceRecord"]') as HTMLElement;

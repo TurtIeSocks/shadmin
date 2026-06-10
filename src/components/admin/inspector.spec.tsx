@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/inspector.stories";
+import { Basic } from "./inspector.stories";
 
 describe("<Inspector />", () => {
   it("renders the configurable content but not the inspector panel by default", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Disabled } from "@/stories/admin/text-input.stories";
+import { Basic, Disabled } from "./text-input.stories";
 
 describe("<TextInput />", () => {
   it("renders an input pre-filled from the record context", async () => {

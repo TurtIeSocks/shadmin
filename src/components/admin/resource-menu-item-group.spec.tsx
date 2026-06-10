@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/resource-menu-item-group.stories";
+import { Basic } from "./resource-menu-item-group.stories";
 
 describe("<ResourceMenuItemGroup />", () => {
   it("renders a labeled resource menu group", async () => {

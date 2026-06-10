@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Seeded } from "@/stories/leaflet/feature-input.stories";
+import { Basic, Seeded } from "./feature-input.stories";
 
 describe("<FeatureInput />", () => {
   it("renders the labeled map input with a Leaflet container", async () => {

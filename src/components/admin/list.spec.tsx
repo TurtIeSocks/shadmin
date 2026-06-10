@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomPerPage } from "@/stories/admin/list.stories";
+import { Basic, CustomPerPage } from "./list.stories";
 
 describe("<List />", () => {
   it("renders the resource title and the records returned by the data provider", async () => {

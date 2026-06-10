@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   EmptyValue,
-} from "@/stories/leaflet/multi-line-string-field.stories";
+} from "./shapes/multi-line-string-field.stories";
 
 const findAsync = async (
   container: Element,

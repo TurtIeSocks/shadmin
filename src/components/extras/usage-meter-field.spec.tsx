@@ -7,7 +7,7 @@ import {
   CustomThresholds,
   NoLimit,
   Warning,
-} from "@/stories/extras/usage-meter-field.stories";
+} from "./usage-meter-field.stories";
 
 describe("<UsageMeterField />", () => {
   it("renders a progress bar with used/limit text in default state", async () => {

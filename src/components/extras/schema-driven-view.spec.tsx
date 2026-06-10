@@ -6,7 +6,7 @@ import {
   ListMode,
   Show,
   WithOverride,
-} from "@/stories/extras/schema-driven-view.stories";
+} from "./schema-driven-view.stories";
 
 describe("<SchemaDrivenView />", () => {
   it("renders one field per property in show mode", async () => {

@@ -6,7 +6,7 @@ import {
   Multiline,
   Empty,
   NullWithoutEmpty,
-} from "@/stories/admin/text-field.stories";
+} from "./text-field.stories";
 
 describe("<TextField />", () => {
   it("renders the source value from the record", async () => {

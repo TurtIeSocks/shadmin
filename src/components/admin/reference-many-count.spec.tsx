@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/reference-many-count.stories";
+import { Basic } from "./reference-many-count.stories";
 
 describe("<ReferenceManyCount />", () => {
   it("renders the count of related records for each row", async () => {

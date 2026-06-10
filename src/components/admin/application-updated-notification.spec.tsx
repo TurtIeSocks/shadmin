@@ -5,7 +5,7 @@ import { CoreAdminContext } from "ra-core";
 import {
   Basic,
   CustomLabels,
-} from "@/stories/admin/application-updated-notification.stories";
+} from "./application-updated-notification.stories";
 import { ApplicationUpdatedNotification } from "@/components/admin/application-updated-notification";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { i18nProvider } from "@/lib/i18n-provider";

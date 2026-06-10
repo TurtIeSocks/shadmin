@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/leaflet/polygon-input.stories";
+import { Basic } from "./shapes/polygon-input.stories";
 
 describe("<PolygonInput />", () => {
   it("renders the labeled map input with a Leaflet container", async () => {

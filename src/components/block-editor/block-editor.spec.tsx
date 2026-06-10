@@ -4,7 +4,7 @@ import {
   Basic,
   ReadOnly,
   WithCallout,
-} from "@/stories/block-editor/block-editor.stories";
+} from "./block-editor.stories";
 
 const pm = (c: HTMLElement) => c.querySelector(".ProseMirror") as HTMLElement;
 

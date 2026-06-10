@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import { Basic, FixedHeight } from "@/stories/monaco/monaco-json-field.stories";
+import { Basic, FixedHeight } from "./monaco-json-field.stories";
 
 const waitForEditorText = async (
   container: HTMLElement,

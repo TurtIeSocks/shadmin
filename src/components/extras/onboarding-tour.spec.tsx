@@ -4,7 +4,7 @@ import { userEvent } from "@vitest/browser/context";
 import {
   Basic,
   CustomPlacement,
-} from "@/stories/extras/onboarding-tour.stories";
+} from "./onboarding-tour.stories";
 
 describe("<OnboardingTour />", () => {
   it("should render the tour when not yet completed", async () => {

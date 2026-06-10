@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { useEffect } from "react";
-import { RealtimeStoryAdmin } from "@/stories/_test-helpers";
+import { RealtimeStoryAdmin } from "@/test/_test-helpers";
 import { fakeTransport } from "@/components/realtime/transports/fake-transport";
 import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
 import { useUnlock } from "./use-unlock";

@@ -7,7 +7,7 @@ import {
   HiddenLabel,
   FullWidth,
   NoDoubleLabel,
-} from "@/stories/admin/labeled.stories";
+} from "./labeled.stories";
 
 describe("<Labeled />", () => {
   it("should render the field value", async () => {

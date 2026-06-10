@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { userEvent } from "@vitest/browser/context";
-import { Basic } from "@/stories/extras/assistant.stories";
+import { Basic } from "./assistant.stories";
 
 describe("<Assistant />", () => {
   it("opens the panel and echoes user input", async () => {

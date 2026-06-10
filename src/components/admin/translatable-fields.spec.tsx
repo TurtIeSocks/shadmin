@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/translatable-fields.stories";
+import { Basic } from "./translatable-fields.stories";
 
 describe("<TranslatableFields />", () => {
   it("renders the value for the default locale", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, AddButtonOnly } from "@/stories/admin/saved-queries.stories";
+import { Basic, AddButtonOnly } from "./saved-queries.stories";
 
 describe("<SavedQueries />", () => {
   it("renders Add and Remove saved-query icon buttons in the list actions", async () => {

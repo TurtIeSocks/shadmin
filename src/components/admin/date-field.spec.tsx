@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, ShowTime } from "@/stories/admin/date-field.stories";
+import { Basic, ShowTime } from "./date-field.stories";
 
 describe("<DateField />", () => {
   it("renders the formatted date for the record source", async () => {

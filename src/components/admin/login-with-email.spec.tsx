@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/login-with-email.stories";
+import { Basic } from "./login-with-email.stories";
 
 describe("<LoginWithEmail />", () => {
   it("renders the email and password fields and the sign in button", async () => {

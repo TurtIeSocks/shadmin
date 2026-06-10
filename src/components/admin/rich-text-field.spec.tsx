@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
 import { RichTextField } from "./rich-text-field";
-import { Basic } from "@/stories/admin/rich-text-field.stories";
+import { Basic } from "./rich-text-field.stories";
 
 describe("RichTextField", () => {
   it("renders the Basic story", async () => {

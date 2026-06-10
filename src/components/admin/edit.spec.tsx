@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomTitle, NoActions } from "@/stories/admin/edit.stories";
+import { Basic, CustomTitle, NoActions } from "./edit.stories";
 
 describe("<Edit />", () => {
   it("loads the record into the form fields", async () => {

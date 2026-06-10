@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   EmptyValue,
-} from "@/stories/leaflet/feature-collection-field.stories";
+} from "./feature-collection-field.stories";
 
 const findAsync = async (
   container: Element,

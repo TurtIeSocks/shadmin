@@ -5,7 +5,7 @@ import {
   Basic,
   CustomChildren,
   Empty,
-} from "@/stories/admin/bulk-actions-toolbar.stories";
+} from "./bulk-actions-toolbar.stories";
 
 describe("<BulkActionsToolbar />", () => {
   it("renders a count of selected rows", async () => {

@@ -5,7 +5,7 @@ import {
   Basic,
   CustomLabel,
   ResourceSpecificLabel,
-} from "@/stories/admin/sort-button.stories";
+} from "./sort-button.stories";
 
 describe("<SortButton />", () => {
   it("should render with the default label", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Sequence } from "@/stories/admin/keyboard-shortcut.stories";
+import { Basic, Sequence } from "./keyboard-shortcut.stories";
 
 describe("<KeyboardShortcut />", () => {
   it("renders mapped keys as kbd glyphs", async () => {

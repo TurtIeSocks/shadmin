@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, NoIcon } from "@/stories/admin/menu-item-link.stories";
+import { Basic, NoIcon } from "./menu-item-link.stories";
 
 describe("<MenuItemLink />", () => {
   it("renders a sidebar link with the primary text", async () => {

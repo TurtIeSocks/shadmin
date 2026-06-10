@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/select-input.stories";
+import { Basic } from "./select-input.stories";
 
 describe("<SelectInput />", () => {
   it("renders a combobox trigger that opens the choice list", async () => {

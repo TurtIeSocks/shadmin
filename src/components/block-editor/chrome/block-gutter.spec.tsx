@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { WithCallout } from "@/stories/block-editor/block-editor.stories";
+import { WithCallout } from "../block-editor.stories";
 
 /**
  * The gutter's ⊕ button lives inside the drag-handle extension's portal, which

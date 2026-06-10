@@ -6,7 +6,7 @@ import {
   DaysHours,
   Empty,
   Relative,
-} from "@/stories/extras/duration-field.stories";
+} from "./duration-field.stories";
 
 describe("<DurationField />", () => {
   it("renders '2h 30m' for PT2H30M", async () => {

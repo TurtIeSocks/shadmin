@@ -70,7 +70,7 @@ vi.mock("ra-supabase-core", () => ({
   useRedirectIfAuthenticated: () => {},
 }));
 
-import { Basic } from "@/stories/supabase/admin-guesser.stories";
+import { Basic } from "./admin-guesser.stories";
 
 describe("<AdminGuesser />", () => {
   it("renders the admin layout for the Basic story", async () => {

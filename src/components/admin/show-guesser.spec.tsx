@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/show-guesser.stories";
+import { Basic } from "./show-guesser.stories";
 
 describe("<ShowGuesser />", () => {
   it("guesses fields from the record shape and renders their values", async () => {

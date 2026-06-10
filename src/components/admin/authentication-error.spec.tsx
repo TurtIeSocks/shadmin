@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   CustomText,
-} from "@/stories/admin/authentication-error.stories";
+} from "./authentication-error.stories";
 
 describe("<AuthenticationError />", () => {
   it("renders the default authentication-error heading", async () => {

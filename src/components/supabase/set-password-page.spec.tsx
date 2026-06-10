@@ -24,7 +24,7 @@ vi.mock("ra-supabase-core", () => ({
 import {
   MissingTokens,
   WithTokens,
-} from "@/stories/supabase/set-password-page.stories";
+} from "./set-password-page.stories";
 
 describe("<SetPasswordPage />", () => {
   it("renders the password and confirm fields when tokens are present", async () => {

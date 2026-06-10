@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, Empty } from "@/stories/block-editor/block-doc-field.stories";
+import { Basic, Empty } from "./block-doc-field.stories";
 
 const pm = (c: HTMLElement) => c.querySelector(".ProseMirror") as HTMLElement;
 

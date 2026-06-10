@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import {
   Basic,
   WithRenderProp,
-} from "@/stories/admin/reference-one-field.stories";
+} from "./reference-one-field.stories";
 
 describe("<ReferenceOneField />", () => {
   it("renders the related record's referenced value once loaded", async () => {

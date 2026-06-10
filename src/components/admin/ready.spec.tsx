@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/ready.stories";
+import { Basic } from "./ready.stories";
 
 describe("<Ready />", () => {
   it("renders the welcome heading and helper links", async () => {

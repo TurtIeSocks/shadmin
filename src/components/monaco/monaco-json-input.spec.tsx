@@ -4,7 +4,7 @@ import {
   Basic,
   StringMode,
   WithSchema,
-} from "@/stories/monaco/monaco-json-input.stories";
+} from "./monaco-json-input.stories";
 
 const waitForEditorText = async (
   container: HTMLElement,

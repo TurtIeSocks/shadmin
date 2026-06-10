@@ -12,7 +12,7 @@ import {
   NoLabel,
   Disabled,
   ReadOnly,
-} from "@/stories/admin/date-time-input.stories";
+} from "./date-time-input.stories";
 
 describe("<DateInput />", () => {
   it("should render a datetime input", async () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/toggle-filter-button.stories";
+import { Basic } from "./toggle-filter-button.stories";
 
 describe("<ToggleFilterButton />", () => {
   it("renders one button per filter preset", async () => {

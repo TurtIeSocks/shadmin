@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/file-input.stories";
+import { Basic } from "./file-input.stories";
 
 describe("<FileInput />", () => {
   it("renders the file input with the humanized field label", async () => {

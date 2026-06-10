@@ -5,7 +5,7 @@ import {
   Basic,
   EmptyValue,
   WithLabel,
-} from "@/stories/leaflet/lat-lng-input.stories";
+} from "./lat-lng-input.stories";
 
 describe("<LatLngInput />", () => {
   it("renders the map input wrapper with data-slot", async () => {

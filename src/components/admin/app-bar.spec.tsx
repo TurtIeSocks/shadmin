@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/app-bar.stories";
+import { Basic } from "./app-bar.stories";
 
 describe("<AppBar />", () => {
   it("renders the default toolbar (refresh + theme toggle) inside the header", async () => {

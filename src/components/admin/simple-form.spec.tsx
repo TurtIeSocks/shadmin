@@ -5,7 +5,7 @@ import {
   Basic,
   NoToolbar,
   CustomToolbar,
-} from "@/stories/admin/simple-form.stories";
+} from "./simple-form.stories";
 
 describe("<SimpleForm />", () => {
   it("renders every declared input plus the default Save button", async () => {

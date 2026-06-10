@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Empty, WithTitle } from "@/stories/admin/title-portal.stories";
+import { Empty, WithTitle } from "./title-portal.stories";
 import { TITLE_PORTAL_ID } from "@/lib/title-portal-id";
 
 describe("<TitlePortal />", () => {

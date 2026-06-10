@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/theme-mode-toggle.stories";
+import { Basic } from "./theme-mode-toggle.stories";
 
 describe("<ThemeModeToggle />", () => {
   it("renders the theme toggle button", async () => {

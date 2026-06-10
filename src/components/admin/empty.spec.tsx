@@ -5,7 +5,7 @@ import {
   Basic,
   WithoutCreate,
   ResourceSpecificLabel,
-} from "@/stories/admin/empty.stories";
+} from "./empty.stories";
 
 describe("<Empty />", () => {
   it("renders the default empty-state message and a create link", async () => {

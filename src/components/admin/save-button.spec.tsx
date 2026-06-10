@@ -6,7 +6,7 @@ import {
   Disabled,
   CustomLabel,
   DisabledWhenPristine,
-} from "@/stories/admin/save-button.stories";
+} from "./save-button.stories";
 
 describe("<SaveButton />", () => {
   it("renders a Save button by default", async () => {

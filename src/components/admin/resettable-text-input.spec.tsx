@@ -7,7 +7,7 @@ import {
   Empty,
   Label,
   ClearAlwaysVisible,
-} from "@/stories/admin/resettable-text-input.stories";
+} from "./resettable-text-input.stories";
 
 describe("<ResettableTextInput />", () => {
   it("renders a text input with the humanized field label", async () => {

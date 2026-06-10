@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic } from "@/stories/admin/columns-button.stories";
+import { Basic } from "./columns-button.stories";
 
 describe("<ColumnsButton />", () => {
   it("renders a Columns trigger button", async () => {

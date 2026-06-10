@@ -11,7 +11,7 @@ vi.mock("ra-supabase-core", () => ({
   useResetPassword: () => [{} as never, { mutateAsync }],
 }));
 
-import { Default } from "@/stories/supabase/forgot-password-page.stories";
+import { Default } from "./forgot-password-page.stories";
 
 describe("<ForgotPasswordPage />", () => {
   it("renders the password-reset form with email field and submit button", async () => {
