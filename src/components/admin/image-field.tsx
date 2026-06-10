@@ -24,7 +24,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *     source="avatar_url"
  *     className="[&_img]:w-8 [&_img]:h-8 [&_img]:rounded-full"
  *     empty={
- *         <div className="size-8 rounded-full bg-gray-200 flex items-center justify-center">
+ *         <div className="size-8 rounded-full bg-muted flex items-center justify-center">
  *           👤
  *         </div>
  *     }

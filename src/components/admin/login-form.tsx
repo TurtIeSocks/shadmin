@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Form, required, useLogin, useNotify, useTranslate } from "ra-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
-import { Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { notifyAuthError } from "@/lib/notify-auth-error";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { TextInput } from "@/components/admin/text-input";
 
 interface LoginFormProps {
@@ -61,7 +61,7 @@ function LoginForm(props: LoginFormProps) {
 
   return (
     <Form
-      className={cn("space-y-8", className)}
+      className={cn("flex flex-col gap-8", className)}
       onSubmit={handleSubmit}
       mode="onChange"
       noValidate
@@ -82,7 +82,7 @@ function LoginForm(props: LoginFormProps) {
         validate={required()}
       />
       <Button type="submit" className="cursor-pointer" disabled={loading}>
-        {loading ? <Loader2 className="animate-spin" /> : null}
+        {loading ? <Spinner data-icon="inline-start" /> : null}
         {translate("ra.auth.sign_in", { _: "Sign in" })}
       </Button>
     </Form>

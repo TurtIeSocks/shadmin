@@ -1,7 +1,8 @@
 import type { ReactNode, Ref } from "react";
 import { useRefresh, useLoading, useTranslate } from "ra-core";
 import { Button } from "@/components/ui/button";
-import { LoaderCircle, RotateCw } from "lucide-react";
+import { Spinner } from "@/components/ui/spinner";
+import { RotateCw } from "lucide-react";
 
 const defaultIcon = <RotateCw />;
 
@@ -50,7 +51,7 @@ function RefreshButton({
       aria-label={ariaLabel}
       disabled={loading}
     >
-      {loading ? <LoaderCircle className="animate-spin" /> : icon}
+      {loading ? <Spinner data-icon="inline-start" /> : icon}
     </Button>
   );
 }

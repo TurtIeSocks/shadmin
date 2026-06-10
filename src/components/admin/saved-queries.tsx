@@ -90,8 +90,8 @@ function AddSavedQueryDialog({
             })}
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleFormSubmit} className="space-y-4">
-          <div className="space-y-2">
+        <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
             <Label htmlFor="name">
               {translate("ra.saved_queries.query_name", {
                 _: "Query name",

@@ -9,6 +9,7 @@ import {
 } from "ra-core";
 
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
 interface PrevNextButtonsProps<RecordType extends RaRecord = RaRecord>
@@ -57,7 +58,7 @@ function PrevNextButtons<RecordType extends RaRecord = RaRecord>(
         role="navigation"
         className={cn("inline-flex items-center gap-2 min-h-[34px]", className)}
       >
-        <div className="h-1 w-24 animate-pulse rounded bg-muted" />
+        <Skeleton className="h-1 w-24" />
       </div>
     );
   }

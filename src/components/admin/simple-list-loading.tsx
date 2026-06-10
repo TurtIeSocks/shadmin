@@ -57,7 +57,7 @@ function SimpleListLoading({
           {hasLeftAvatarOrIcon && (
             <Skeleton className="size-10 shrink-0 rounded-full" />
           )}
-          <div className="flex-1 space-y-2 min-w-0">
+          <div className="flex flex-col flex-1 gap-2 min-w-0">
             <div className="flex items-center justify-between gap-2">
               <Skeleton className="h-4 w-2/3" />
               {hasTertiaryText && <Skeleton className="h-3 w-12 shrink-0" />}

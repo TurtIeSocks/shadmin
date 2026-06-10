@@ -86,7 +86,7 @@ function ColorPicker<TMode extends ColorMode | undefined>({
     return (
       <span
         className={cn(
-          "relative inline-block h-5 w-5 shrink-0 rounded border cursor-pointer outline-hidden focus-within:ring-2 focus-within:ring-ring",
+          "relative inline-block size-5 shrink-0 rounded border cursor-pointer outline-hidden focus-within:ring-2 focus-within:ring-ring",
           className,
         )}
         style={{ backgroundColor: value }}
@@ -114,7 +114,7 @@ function ColorPicker<TMode extends ColorMode | undefined>({
     return (
       <span
         aria-hidden="true"
-        className={cn("inline-block h-5 w-5 rounded border", className)}
+        className={cn("inline-block size-5 rounded border", className)}
         style={{ backgroundColor: value }}
         data-slot="color-picker-fallback"
       />
@@ -168,7 +168,7 @@ function ColorPicker<TMode extends ColorMode | undefined>({
         >
           <span
             aria-hidden="true"
-            className="block h-5 w-5 rounded border"
+            className="block size-5 rounded border"
             style={{ backgroundColor: value }}
           />
         </button>
@@ -192,7 +192,7 @@ function ColorPicker<TMode extends ColorMode | undefined>({
                 onClick={handleEyeDropper}
                 aria-label="Pick color from screen"
                 data-slot="color-picker-eyedropper"
-                className="flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded border bg-muted/40 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                className="flex size-5 shrink-0 cursor-pointer items-center justify-center rounded border bg-muted/40 text-muted-foreground transition hover:bg-muted hover:text-foreground"
               >
                 <svg
                   viewBox="0 0 16 16"
@@ -201,7 +201,7 @@ function ColorPicker<TMode extends ColorMode | undefined>({
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-3 w-3"
+                  className="size-3"
                   aria-hidden="true"
                 >
                   <path d="m11.5 1.5 3 3-2 2-3-3z" />
@@ -830,7 +830,7 @@ function LcPad({
       />
       <div
         aria-hidden="true"
-        className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow ring-1 ring-black/40 pointer-events-none"
+        className="absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow ring-1 ring-black/40 pointer-events-none"
         style={{ left: `${markerX}%`, top: `${markerY}%` }}
       />
     </div>
@@ -1004,7 +1004,7 @@ function PresetPalette({
           type="button"
           aria-label={`preset ${p.name}`}
           onClick={() => onPick({ l: p.l, c: p.c, h: p.h, a: 1 })}
-          className="h-5 w-5 shrink-0 cursor-pointer rounded border transition hover:scale-110"
+          className="size-5 shrink-0 cursor-pointer rounded border transition hover:scale-110"
           style={{ backgroundColor: `oklch(${p.l} ${p.c} ${p.h})` }}
         />
       ))}

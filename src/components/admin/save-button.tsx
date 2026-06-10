@@ -13,11 +13,11 @@ import {
   useTranslate,
   warning,
 } from "ra-core";
-import { Loader2, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import { useFormContext, useFormState } from "react-hook-form";
 import type { UseMutationOptions } from "@tanstack/react-query";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 
 /**
@@ -118,19 +118,16 @@ function SaveButton<RecordType extends RaRecord = RaRecord>(
       aria-label={
         typeof displayedLabel === "string" ? displayedLabel : undefined
       }
-      className={cn(
-        disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
-        className,
-      )}
+      className={className}
       {...rest}
     >
-      {isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : icon}
+      {isSubmitting ? <Spinner data-icon="inline-start" /> : icon}
       {displayedLabel}
     </Button>
   );
 }
 
-const defaultIcon = <Save className="size-4" />;
+const defaultIcon = <Save data-icon="inline-start" />;
 
 interface Props<
   RecordType extends RaRecord = RaRecord,

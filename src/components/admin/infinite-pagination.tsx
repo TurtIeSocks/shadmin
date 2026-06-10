@@ -5,8 +5,8 @@ import {
   useListContext,
   useTranslate,
 } from "ra-core";
-import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 
 interface InfinitePaginationProps {
@@ -90,7 +90,7 @@ function InfinitePagination({
       >
         {isFetchingNextPage ? (
           <>
-            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+            <Spinner data-icon="inline-start" aria-hidden="true" />
             {translate("ra.action.loading", { _: "Loading..." })}
           </>
         ) : (

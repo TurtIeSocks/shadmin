@@ -1085,7 +1085,7 @@ function DataTableLoading({
             {hasBulkActions && <TableHead className="w-8" />}
             {Array.from({ length: nbChildren }).map((_, i) => (
               <TableHead key={i}>
-                <div className="h-4 w-24 animate-pulse rounded bg-muted" />
+                <Skeleton className="h-4 w-24" />
               </TableHead>
             ))}
           </TableRow>
@@ -1096,7 +1096,7 @@ function DataTableLoading({
               {hasBulkActions && <TableCell />}
               {Array.from({ length: nbChildren }).map((_, colIdx) => (
                 <TableCell key={colIdx}>
-                  <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                  <Skeleton className="h-4 w-3/4" />
                 </TableCell>
               ))}
             </TableRow>

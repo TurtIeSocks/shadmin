@@ -5,9 +5,10 @@ import {
   useTimeout,
   useCreatePath,
 } from "ra-core";
-import { CircleX, LoaderCircle } from "lucide-react";
+import { CircleX } from "lucide-react";
 
 import { Link } from "react-router";
+import { Spinner } from "@/components/ui/spinner";
 import type { UnknownValue } from "@/lib/unknown-types";
 
 /**
@@ -58,7 +59,7 @@ function Count(props: CountProps) {
 
   const body = isPending ? (
     oneSecondHasPassed ? (
-      <LoaderCircle className="animate-spin" />
+      <Spinner />
     ) : (
       ""
     )

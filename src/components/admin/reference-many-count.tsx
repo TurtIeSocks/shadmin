@@ -9,9 +9,10 @@ import {
   useTimeout,
   useTranslate,
 } from "ra-core";
-import { CircleX, LoaderCircle } from "lucide-react";
+import { CircleX } from "lucide-react";
 import get from "lodash/get";
 import { Link } from "react-router";
+import { Spinner } from "@/components/ui/spinner";
 import { Offline } from "@/components/admin/offline";
 
 const defaultOffline = <Offline />;
@@ -92,7 +93,7 @@ function ReferenceManyCount<RecordType extends RaRecord = RaRecord>(
       offline
     ) : isPending ? (
       timeoutReached ? (
-        <LoaderCircle className="size-4 animate-spin" />
+        <Spinner />
       ) : (
         ""
       )

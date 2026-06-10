@@ -1,6 +1,6 @@
-import { Loader2 } from "lucide-react";
 import { useLoading, useTranslate } from "ra-core";
 import { cn } from "@/lib/utils";
+import { Spinner } from "@/components/ui/spinner";
 import { RefreshIconButton } from "@/components/admin/refresh-icon-button";
 
 interface LoadingIndicatorProps {
@@ -34,10 +34,9 @@ function LoadingIndicator(props: LoadingIndicatorProps) {
         )}
       />
       {loading && (
-        <Loader2
-          role="status"
+        <Spinner
           aria-label={translate("ra.page.loading", { _: "Loading" })}
-          className="absolute inset-0 size-4 animate-spin text-muted-foreground"
+          className="absolute inset-0 text-muted-foreground"
         />
       )}
     </div>

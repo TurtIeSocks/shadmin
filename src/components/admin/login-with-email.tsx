@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Form, required, useLogin, useNotify, useTranslate } from "ra-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
-import { Loader2, LogIn } from "lucide-react";
+import { LogIn } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { notifyAuthError } from "@/lib/notify-auth-error";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { TextInput } from "@/components/admin/text-input";
 import { PasswordInput } from "@/components/admin/password-input";
 
@@ -101,7 +102,7 @@ function LoginWithEmail(props: LoginWithEmailProps) {
     <Form
       mode="onChange"
       noValidate
-      className={cn("space-y-8", className)}
+      className={cn("flex flex-col gap-8", className)}
       onSubmit={handleSubmit}
     >
       <TextInput
@@ -118,7 +119,11 @@ function LoginWithEmail(props: LoginWithEmailProps) {
         validate={required()}
       />
       <Button type="submit" className="cursor-pointer" disabled={loading}>
-        {loading ? <Loader2 className="animate-spin" /> : <LogIn />}
+        {loading ? (
+          <Spinner data-icon="inline-start" />
+        ) : (
+          <LogIn data-icon="inline-start" />
+        )}
         {submitLabel ?? translate("ra.auth.sign_in", { _: "Sign in" })}
       </Button>
     </Form>
