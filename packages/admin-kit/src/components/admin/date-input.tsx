@@ -131,7 +131,7 @@ function DateInput(props: DateInputProps) {
       // Resets the flag to ensure futures changes are handled
       wasLastChangedByInput.current = false;
     }
-  }, [setInputKey, field.value]);
+  }, [field.value]);
 
   const { onBlur: onBlurFromField } = field;
   const hasFocus = React.useRef(false);

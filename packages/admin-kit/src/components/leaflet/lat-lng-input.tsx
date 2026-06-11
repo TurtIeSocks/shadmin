@@ -57,6 +57,7 @@ interface RecenterOnChangeProps {
 
 function RecenterOnChange({ position }: RecenterOnChangeProps) {
   const map = useMap();
+  // biome-ignore lint/correctness/useExhaustiveDependencies: map from useMap() is stable; recenter only when the lat/lng coords change, not on map identity
   useEffect(() => {
     map.setView(position, map.getZoom(), { animate: true });
   }, [position[0], position[1]]);

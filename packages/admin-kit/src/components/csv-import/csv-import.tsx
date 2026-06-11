@@ -194,6 +194,7 @@ const CsvImportMapStep = () => {
 
   // Auto-match on first render when mapping is empty
   const headersKey = headers.join("|");
+  // biome-ignore lint/correctness/useExhaustiveDependencies: auto-match runs once per header set; headersKey/fields.length are the stable keys, while headers/fields/mapping are recreated each render and would loop (the effect calls setMapping)
   useEffect(() => {
     if (Object.keys(mapping).length > 0 || fields.length === 0) return;
     const next: Record<string, string> = {};

@@ -87,7 +87,7 @@ function TimeInput({
       setInputKey((r) => r + 1);
       wasLastChangedByInput.current = false;
     }
-  }, [setInputKey, field.value]);
+  }, [field.value]);
 
   const { onBlur: onBlurFromField } = field;
   const hasFocus = React.useRef(false);
@@ -284,6 +284,7 @@ function useForkRef<Instance>(
     return () => {
       cleanups.forEach((refCleanup) => refCleanup?.());
     };
+    // biome-ignore lint/correctness/useExhaustiveDependencies: variadic refs array is intentionally spread as the dependency list (useForkRef pattern) so the effect re-runs when any individual ref changes; Biome cannot statically verify a non-literal.
   }, refs);
 
   return React.useMemo(() => {
@@ -301,5 +302,6 @@ function useForkRef<Instance>(
         cleanupRef.current = refEffect(value);
       }
     };
+    // biome-ignore lint/correctness/useExhaustiveDependencies: variadic refs array is intentionally spread as the dependency list (useForkRef pattern); Biome cannot statically verify a non-literal.
   }, refs);
 }

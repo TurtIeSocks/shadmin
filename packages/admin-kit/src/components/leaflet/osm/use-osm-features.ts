@@ -31,10 +31,12 @@ const useOsmFeatures = (
 ) => {
   const presetsKey = sources.presets?.join("|") ?? "";
   const tagsKey = sources.tags?.join("|") ?? "";
+  // biome-ignore lint/correctness/useExhaustiveDependencies: key on the joined string so a new array with identical contents doesn't produce a fresh memo; sources.presets is read fresh inside
   const presets = useMemo<ReadonlyArray<OsmPresetName>>(
     () => sources.presets ?? [],
     [presetsKey],
   );
+  // biome-ignore lint/correctness/useExhaustiveDependencies: key on the joined string so a new array with identical contents doesn't produce a fresh memo; sources.tags is read fresh inside
   const tags = useMemo<ReadonlyArray<OsmTagInput>>(
     () => sources.tags ?? [],
     [tagsKey],

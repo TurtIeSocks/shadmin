@@ -60,12 +60,14 @@ function ShowViewGuesser(
   const hasInferredRef = useRef(false);
   const { enableLog = import.meta.env.DEV, ...rest } = props;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset effect is intentionally keyed on resource only — it clears the inferred view so the next effect re-derives it when the resource changes.
   useEffect(() => {
     hasInferredRef.current = false;
     setChild(null);
   }, [resource]);
 
   const hasRecord = !!record;
+  // biome-ignore lint/correctness/useExhaustiveDependencies: the guesser derives the default fields once from the first record shape (gated by hasInferredRef); intentionally not reactive to later record mutations, which would regenerate the UI and re-spam the console log.
   useEffect(() => {
     if (hasInferredRef.current || !hasRecord || !record) return;
     hasInferredRef.current = true;

@@ -60,6 +60,7 @@ function InfinitePagination({
     },
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: isPending must stay so the effect re-runs once the sentinel mounts (the component renders null while pending, so on the first pass sentinelRef is empty and the observer cannot attach). fetchNextPage/hasNextPage/isFetchingNextPage are read through the stable useEvent handler and listed to re-attach the observer when paging state changes.
   useEffect(() => {
     const element = sentinelRef.current;
     if (!element) return;

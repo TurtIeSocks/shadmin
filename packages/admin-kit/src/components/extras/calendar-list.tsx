@@ -251,6 +251,7 @@ const CalendarList = <R extends RaRecord = RaRecord>({
   const rangeStartISO = range.start.toISOString();
   const rangeEndISO = range.end.toISOString();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: filterValues is read imperatively to diff against the new range; depending on it would re-run this filter-sync effect on every filter change and loop (it calls setFilters)
   useEffect(() => {
     if (!setFilters) return;
     const current = filterValues as Record<string, unknown>;

@@ -211,10 +211,11 @@ function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
   const [filterValue, setFilterValue] = React.useState("");
 
   // Prop 10: Reset filter when field.value changes externally (e.g. form reset).
+  // biome-ignore lint/correctness/useExhaustiveDependencies: field.value is the intentional trigger (reset on external value change); the body only cancels/clears and does not read it.
   useEffect(() => {
     debouncedSetFilters.cancel();
     setFilterValue("");
-  }, [field.value]);
+  }, [field.value, debouncedSetFilters]);
 
   // Equality helper: use isOptionEqualToValue when provided, else areIdsEqual.
   const isEqual = useCallback(

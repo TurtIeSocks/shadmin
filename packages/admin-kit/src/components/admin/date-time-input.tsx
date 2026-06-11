@@ -99,7 +99,7 @@ function DateTimeInput({
       // Resets the flag to ensure futures changes are handled
       wasLastChangedByInput.current = false;
     }
-  }, [setInputKey, field.value]);
+  }, [field.value]);
 
   const { onBlur: onBlurFromField } = field;
   const hasFocus = React.useRef(false);
@@ -314,6 +314,7 @@ function useForkRef<Instance>(
     return () => {
       cleanups.forEach((refCleanup) => refCleanup?.());
     };
+    // biome-ignore lint/correctness/useExhaustiveDependencies: variadic refs array is intentionally spread as the dependency list (useForkRef pattern) so the effect re-runs when any individual ref changes; Biome cannot statically verify a non-literal.
   }, refs);
 
   return React.useMemo(() => {
@@ -332,6 +333,7 @@ function useForkRef<Instance>(
       }
     };
     // TODO: uncomment once we enable eslint-plugin-react-compiler -- intentionally ignoring that the dependency array must be an array literal
+    // biome-ignore lint/correctness/useExhaustiveDependencies: see TODO above -- variadic refs array is intentionally the non-literal dependency list (useForkRef pattern); Biome cannot statically verify it.
   }, refs);
 }
 

@@ -506,7 +506,6 @@ const CommandMenu = ({
       open,
       close,
       toggle,
-      setQuery,
       registerCommand,
       unregisterCommand,
       registeredCommands,

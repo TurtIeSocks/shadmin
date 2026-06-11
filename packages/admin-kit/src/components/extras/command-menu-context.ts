@@ -55,6 +55,7 @@ const useCommandMenu = () => {
  */
 const useRegisterCommand = (action: CommandAction) => {
   const { registerCommand, unregisterCommand } = useCommandMenu();
+  // biome-ignore lint/correctness/useExhaustiveDependencies: register/unregister are stable; keying solely on action.id is intentional (see doc above) so inline action objects don't re-register every render
   useEffect(() => {
     registerCommand(action);
     return () => unregisterCommand(action.id);

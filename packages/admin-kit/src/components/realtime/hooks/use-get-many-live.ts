@@ -19,6 +19,7 @@ export function useGetManyLive<RecordType extends RaRecord = RaRecord>(
 
   const idsKey = JSON.stringify(params.ids);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: queryClient is stable and params.ids is keyed via the serialized idsKey; depending on the raw params.ids array would re-subscribe on every render
   useEffect(() => {
     if (!dataProvider || typeof dataProvider.subscribe !== "function") return;
     const unsubs = params.ids.map((id) =>

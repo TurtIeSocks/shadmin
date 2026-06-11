@@ -158,7 +158,7 @@ function FilterButton(props: FilterButtonProps) {
       }, 50);
       setOpen(false);
     },
-    [showFilter, setOpen],
+    [showFilter],
   );
 
   const handleRemove = useCallback(
@@ -166,7 +166,7 @@ function FilterButton(props: FilterButtonProps) {
       hideFilter(source);
       setOpen(false);
     },
-    [hideFilter, setOpen],
+    [hideFilter],
   );
 
   // add query dialog state

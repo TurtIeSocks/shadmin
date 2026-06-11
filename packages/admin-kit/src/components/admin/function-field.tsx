@@ -48,6 +48,7 @@ function FunctionField<RecordType extends UnknownRecord = UnknownRecord>(
           {render(record, source)}
         </span>
       ) : null,
+    // biome-ignore lint/correctness/useExhaustiveDependencies: rest is a rest-spread object (fresh identity each render) but is genuinely read inside the memo via sanitizeFieldRestProps; it must stay so the rendered span reflects the latest pass-through props.
     [className, record, source, render, rest],
   );
 }

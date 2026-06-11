@@ -196,10 +196,11 @@ function AutocompleteInput(props: AutocompleteInputProps) {
   useEffect(() => () => debouncedSetFilters.cancel(), [debouncedSetFilters]);
 
   // Prop 10: Reset filter when field.value changes externally (e.g. form reset).
+  // biome-ignore lint/correctness/useExhaustiveDependencies: field.value is the intentional trigger (reset on external value change); the body only cancels/clears and does not read it.
   useEffect(() => {
     debouncedSetFilters.cancel();
     setFilterValue("");
-  }, [field.value]);
+  }, [field.value, debouncedSetFilters]);
 
   const [open, setOpen] = React.useState(false);
   const listboxId = React.useId();
@@ -265,7 +266,6 @@ function AutocompleteInput(props: AutocompleteInputProps) {
       setFilters,
       filterToQuery,
       debouncedSetFilters,
-      setOpen,
     ],
   );
 

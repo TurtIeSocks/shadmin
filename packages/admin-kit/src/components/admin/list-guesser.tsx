@@ -96,12 +96,14 @@ function ListViewGuesser(
   const hasInferredRef = useRef(false);
   const { enableLog = process.env.NODE_ENV === "development", ...rest } = props;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset effect is intentionally keyed on resource only — it clears the inferred view so the next effect re-derives it when the resource changes.
   useEffect(() => {
     hasInferredRef.current = false;
     setChild(null);
   }, [resource]);
 
   const hasData = (data?.length ?? 0) > 0;
+  // biome-ignore lint/correctness/useExhaustiveDependencies: the guesser derives the default columns once from the first non-empty data page (gated by hasInferredRef); intentionally not reactive to later data changes, which would regenerate the UI and re-spam the console log.
   useEffect(() => {
     if (hasInferredRef.current || !hasData) return;
     if (!resource) {

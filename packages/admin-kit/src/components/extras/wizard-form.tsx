@@ -168,6 +168,7 @@ function WizardErrorJumper() {
   const { goTo, totalSteps } = useWizard();
   const submitCount = form.formState.submitCount;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: submitCount is the canonical submission signal; errors/goTo are read imperatively and must not retrigger this jump-to-error effect
   useEffect(() => {
     if (submitCount === 0) return;
     if (!formGroups) return;

@@ -33,6 +33,7 @@ export function useLockOnMount(options: UseLockOnMountOptions = {}): {
   const id = options.id ?? ctxRecord?.id;
   const identity = options.identity ?? ctxIdentity?.id;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only the resource/id/identity triple drives the lock-on-mount; lock/unlock are recreated on identity changes and options is a fresh object each render, so depending on them would re-lock spuriously
   useEffect(() => {
     if (!resource || id == null || identity == null) return;
     let cancelled = false;
@@ -60,7 +61,6 @@ export function useLockOnMount(options: UseLockOnMountOptions = {}): {
         heldRef.current = null;
       }
     };
-    // lock/unlock/options are stable enough — only the identity triple drives the effect.
   }, [resource, id, identity]);
 
   return { lock: held, isLocking, lockError: error };

@@ -65,6 +65,7 @@ function SimpleFormConfigurable({
     omit,
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: this effect re-initializes the persisted input list only when availableInputs is empty (first render or preferences cleared). It intentionally omits children/translate/omit and the store setters so a later child or translation change cannot clobber the user's saved input order and visibility.
   useEffect(() => {
     // first render, or the preferences have been cleared
     const inputs: SelectableField[] = [];

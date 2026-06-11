@@ -180,14 +180,7 @@ function DataTable<RecordType extends RaRecord = RaRecord>(
             isRowExpandable: isRowExpandable as (record: RaRecord) => boolean,
           }
         : null,
-    [
-      expand,
-      expandedIds,
-      toggleExpand,
-      setExpandedIds,
-      expandSingle,
-      isRowExpandable,
-    ],
+    [expand, expandedIds, toggleExpand, expandSingle, isRowExpandable],
   );
   const resourceFromContext = useResourceContext(props);
   const storeKey = props.storeKey || `${resourceFromContext}.datatable`;

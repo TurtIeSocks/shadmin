@@ -124,6 +124,7 @@ function DatagridInput<RecordType extends RaRecord = RaRecord>(
     }),
     [
       availableChoices,
+      // biome-ignore lint/correctness/useExhaustiveDependencies: choicesContext is a rest-spread of useChoicesContext() recreated each render; it is intentionally spread into listContext and cannot be wrapped in its own useMemo at this call site.
       choicesContext,
       fieldValue,
       onSelect,

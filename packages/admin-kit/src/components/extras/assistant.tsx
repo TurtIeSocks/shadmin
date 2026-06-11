@@ -35,6 +35,7 @@ const Assistant = ({
   const [streaming, setStreaming] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll-to-bottom must fire when messages grow or streaming toggles; only the ref is captured but messages/streaming are the intended triggers
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, streaming]);
