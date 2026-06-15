@@ -11,8 +11,6 @@ import { Why } from "./components/Why";
 import { Backends } from "./components/Backends";
 import { Open } from "./components/Open";
 import { ByDevelopers } from "./components/ByDevelopers";
-import { Users } from "./components/Users";
-
 function App() {
   return (
     <>
@@ -28,7 +26,6 @@ function App() {
         <Why />
         <ByDevelopers />
         <Pricing />
-        <Users />
         <CallToAction />
       </main>
       <Footer />
