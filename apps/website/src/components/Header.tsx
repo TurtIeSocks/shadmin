@@ -88,7 +88,7 @@ function MobileOverlay({
           exit="hidden"
           variants={overlayVariants}
           transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 backdrop-blur-2xl bg-background/80"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 backdrop-blur-2xl bg-background/80 md:hidden"
           onClick={(e) => {
             if (e.target === e.currentTarget) onClose();
           }}
@@ -149,6 +149,17 @@ function MobileOverlay({
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close the mobile overlay if the viewport grows to desktop while it's open
+  // (otherwise the md:hidden hamburger that closes it disappears).
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = () => {
+      if (mq.matches) setMobileOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <>
