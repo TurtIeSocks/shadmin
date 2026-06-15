@@ -155,6 +155,7 @@ const main = async () => {
         files: builtBlock.files.map((f) => f.path),
         packageJson,
         repoRoot,
+        blockName: block.name,
       });
       items.push(...granular);
     }

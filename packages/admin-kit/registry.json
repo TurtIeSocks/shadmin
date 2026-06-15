@@ -762,6 +762,10 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/resolve-label.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/sanitize-input-rest-props.ts",
           "type": "registry:lib"
         },
@@ -827,28 +831,6 @@
       ],
       "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
       "dependencies": ["lucide-react", "ra-core"]
-    },
-    {
-      "name": "admin",
-      "type": "registry:component",
-      "title": "Admin",
-      "files": [
-        {
-          "path": "src/components/admin/admin.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/auth-callback",
-        "@shadcn-admin-kit/layout",
-        "@shadcn-admin-kit/lib-i18n-provider",
-        "@shadcn-admin-kit/login-page",
-        "@shadcn-admin-kit/not-found",
-        "@shadcn-admin-kit/ready",
-        "@shadcn-admin-kit/theme-provider",
-        "@shadcn-admin-kit/theme-types"
-      ],
-      "dependencies": ["ra-core"]
     },
     {
       "name": "app-bar",
@@ -3601,6 +3583,17 @@
         }
       ],
       "dependencies": ["ra-core"]
+    },
+    {
+      "name": "lib-resolve-label",
+      "type": "registry:lib",
+      "title": "Lib Resolve Label",
+      "files": [
+        {
+          "path": "src/lib/resolve-label.ts",
+          "type": "registry:lib"
+        }
+      ]
     },
     {
       "name": "lib-sanitize-input-rest-props",

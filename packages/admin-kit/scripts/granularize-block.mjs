@@ -147,6 +147,7 @@ export const granularizeBlock = ({
   files,
   packageJson,
   repoRoot,
+  blockName,
   extraRegistryDependencies = [],
   extraDependencies = [],
 }) => {
@@ -156,6 +157,12 @@ export const granularizeBlock = ({
     const absFile = resolve(repoRoot, file);
     const itemRef = fileToItemRef(absFile, repoRoot);
     if (!itemRef || itemRef.kind !== "ours") continue;
+    // Skip a granular item whose derived name collides with the monolith block
+    // (e.g. components/admin/admin.tsx -> "admin", same as the "admin" block).
+    // The file still ships inside the monolith; any "@shadcn-admin-kit/<blockName>"
+    // dependency resolves to that block, so emitting a duplicate item here would
+    // make build-registry.mjs write dist/r/<blockName>.json twice and corrupt it.
+    if (itemRef.name === blockName) continue;
 
     const src = readFileSync(absFile, "utf8");
     const imports = parseImports(src);

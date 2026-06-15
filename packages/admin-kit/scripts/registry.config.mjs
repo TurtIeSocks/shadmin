@@ -93,6 +93,7 @@ export const blocks = [
       { path: "src/lib/field-types.ts", type: "registry:lib" },
       { path: "src/lib/i18n-provider.ts", type: "registry:lib" },
       { path: "src/lib/notify-auth-error.ts", type: "registry:lib" },
+      { path: "src/lib/resolve-label.ts", type: "registry:lib" },
       { path: "src/lib/sanitize-input-rest-props.ts", type: "registry:lib" },
       { path: "src/lib/title-portal-id.ts", type: "registry:lib" },
       { path: "src/lib/unknown-types.ts", type: "registry:lib" },
