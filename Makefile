@@ -25,7 +25,7 @@ build-demo: ## Build the demo
 build-registry: ## Build the UI registry
 	pnpm exec turbo run registry:build --filter=shadmin
 	rm -rf ./public/r
-	cp -r packages/admin-kit/dist/r ./public/r
+	cp -r packages/shadmin/dist/r ./public/r
 
 test:
 	pnpm exec turbo run test
@@ -37,13 +37,13 @@ test-browser: ## Run tests in browser mode
 	pnpm --filter shadmin run test:browser
 
 test-registry: ## Test the UI registry
-	cd packages/admin-kit && ./scripts/test-registry.sh
+	cd packages/shadmin && ./scripts/test-registry.sh
 
 serve-registry: ## Serve the UI registry locally
 	python3 -m http.server -d ./public 8080
 
 clear-registry: ## Clear the UI registry
-	rm -rf ./public/r packages/admin-kit/dist/r
+	rm -rf ./public/r packages/shadmin/dist/r
 
 storybook: ## Start the storybook
 	pnpm --filter shadmin run storybook

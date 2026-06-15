@@ -3,7 +3,7 @@
  * Audit every documented public-API React component (per {@link getPublicComponents}
  * intersected with the docs sidebar — matches the precedent of check-docs and
  * check-stories) for a sibling spec file under
- * `packages/admin-kit/src/components/<sourceDir>/<slug>.spec.tsx`.
+ * `packages/shadmin/src/components/<sourceDir>/<slug>.spec.tsx`.
  *
  * Fails (exit 1) when any documented component is missing its spec file, still
  * contains the placeholder `expect(true).toBe(true)` pattern, or does not import
@@ -30,7 +30,7 @@ const failures = [];
 for (const item of documented) {
   const specPath = resolve(
     repoRoot,
-    `packages/admin-kit/src/components/${item.sourceDir}/${item.slug}.spec.tsx`,
+    `packages/shadmin/src/components/${item.sourceDir}/${item.slug}.spec.tsx`,
   );
   if (!existsSync(specPath)) {
     failures.push(

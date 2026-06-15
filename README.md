@@ -47,7 +47,7 @@ Check the [Quick Start Guide](https://shadmin.turtlesocks.dev/docs/Quick-Start-G
 
 ## Exploring Components
 
-`shadmin` provides a set of components that you can use to build your Admin app. The components are organized in the [`packages/admin-kit/src/components/admin`](./packages/admin-kit/src/components/admin/) directory, and you can find the documentation for each component in its respective file.
+`shadmin` provides a set of components that you can use to build your Admin app. The components are organized in the [`packages/shadmin/src/components/admin`](./packages/shadmin/src/components/admin/) directory, and you can find the documentation for each component in its respective file.
 
 ## Usage
 
@@ -226,7 +226,7 @@ export const App = () => (
 
 Now, when a user browses to `/settings` or `/profile`, the components you defined will appear in the main part of the screen.
 
-**Tip:** Custom routes don’t automatically appear in the menu. You'll need to customize the [`<AppSidebar>` component](./packages/admin-kit/src/components/admin/app-sidebar.tsx) if you want custom routes to be accessible from the menu.
+**Tip:** Custom routes don’t automatically appear in the menu. You'll need to customize the [`<AppSidebar>` component](./packages/shadmin/src/components/admin/app-sidebar.tsx) if you want custom routes to be accessible from the menu.
 
 ## Contributing
 

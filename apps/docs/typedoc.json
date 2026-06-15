@@ -1,15 +1,15 @@
 {
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": [
-    "../../packages/admin-kit/src/components/admin/index.ts",
-    "../../packages/admin-kit/src/components/extras/index.ts",
-    "../../packages/admin-kit/src/components/leaflet/index.ts",
-    "../../packages/admin-kit/src/components/supabase/index.ts",
-    "../../packages/admin-kit/src/components/csv-import/index.ts",
-    "../../packages/admin-kit/src/components/mdx-editor/index.ts",
-    "../../packages/admin-kit/src/components/rich-text-input/index.ts"
+    "../../packages/shadmin/src/components/admin/index.ts",
+    "../../packages/shadmin/src/components/extras/index.ts",
+    "../../packages/shadmin/src/components/leaflet/index.ts",
+    "../../packages/shadmin/src/components/supabase/index.ts",
+    "../../packages/shadmin/src/components/csv-import/index.ts",
+    "../../packages/shadmin/src/components/mdx-editor/index.ts",
+    "../../packages/shadmin/src/components/rich-text-input/index.ts"
   ],
-  "tsconfig": "../../packages/admin-kit/tsconfig.json",
+  "tsconfig": "../../packages/shadmin/tsconfig.json",
   "json": "./public-api.typedoc.json",
   "excludePrivate": true,
   "excludeInternal": true,

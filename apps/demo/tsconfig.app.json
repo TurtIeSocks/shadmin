@@ -4,9 +4,9 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "baseUrl": ".",
     "paths": {
-      "shadmin/*": ["../../packages/admin-kit/src/*"],
-      "@/*": ["../../packages/admin-kit/src/*"]
+      "shadmin/*": ["../../packages/shadmin/src/*"],
+      "@/*": ["../../packages/shadmin/src/*"]
     }
   },
-  "include": ["src", "../../packages/admin-kit/src"]
+  "include": ["src", "../../packages/shadmin/src"]
 }

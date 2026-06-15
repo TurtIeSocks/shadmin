@@ -329,7 +329,7 @@ export const PostCreate = () => (
 );
 ```
 
-Shadcn-admin-kit will ignore the Input default values if the Form already defines a global `defaultValues` (form > input).
+Shadmin will ignore the Input default values if the Form already defines a global `defaultValues` (form > input).
 
 :::tip
 Per-input default values cannot be functions. For default values computed at render time, set the `defaultValues` at the form level.

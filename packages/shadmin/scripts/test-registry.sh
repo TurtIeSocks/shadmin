@@ -2,7 +2,7 @@
 
 # End-to-end registry install test.
 #
-# Run from the package root: cd packages/admin-kit && ./scripts/test-registry.sh
+# Run from the package root: cd packages/shadmin && ./scripts/test-registry.sh
 # (this is what `make test-registry` does).
 #
 # Builds the registry, serves it on http://localhost:8080, scaffolds a fresh
@@ -22,7 +22,7 @@ cleanup() {
 trap cleanup EXIT
 
 # The demo app's vite.config.ts and tsconfig.app.json alias
-# `shadmin/*` and `@/*` to ../../packages/admin-kit/src — wrong for a
+# `shadmin/*` and `@/*` to ../../packages/shadmin/src — wrong for a
 # standalone consumer, so the scaffold gets plain versions generated here.
 write_standalone_configs() {
   local target_dir=$1

@@ -4,7 +4,7 @@
   "ignoreDependencies": ["@types/*"],
   "ignoreExportsUsedInFile": true,
   "workspaces": {
-    "packages/admin-kit": {
+    "packages/shadmin": {
       "entry": [
         "src/components/admin/**/*.{ts,tsx}!",
         "src/components/extras/**/*.{ts,tsx}!",

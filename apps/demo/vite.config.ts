@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const adminKitSrc = path.resolve(__dirname, "../../packages/admin-kit/src");
+const shadminSrc = path.resolve(__dirname, "../../packages/shadmin/src");
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,9 +11,9 @@ export default defineConfig({
   resolve: {
     alias: [
       // package-name imports used by demo source
-      { find: /^shadmin\/(.+)$/, replacement: `${adminKitSrc}/$1` },
+      { find: /^shadmin\/(.+)$/, replacement: `${shadminSrc}/$1` },
       // the library's own internal `@/` imports (shadcn registry form)
-      { find: "@", replacement: adminKitSrc },
+      { find: "@", replacement: shadminSrc },
     ],
   },
   base: "./",

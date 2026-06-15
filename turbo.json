@@ -17,8 +17,8 @@
     "check-coverage": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/packages/admin-kit/src/**",
-        "$TURBO_ROOT$/packages/admin-kit/registry.json",
+        "$TURBO_ROOT$/packages/shadmin/src/**",
+        "$TURBO_ROOT$/packages/shadmin/registry.json",
         "$TURBO_ROOT$/apps/demo/src/**"
       ]
     },

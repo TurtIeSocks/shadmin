@@ -602,7 +602,7 @@ Notice we display some custom UI when there is no filter. This is because otherw
 
 By default, when users change the list parameters (sort, pagination, filters), shadmin stores them in localStorage so that users can come back to the list and find it in the same state as when they left it, using the internal [Store](https://marmelab.com/ra-core/store/).
 
-Shadcn-admin-kit uses the current resource as the identifier to store the list parameters (under the key `${resource}.listParams`).
+Shadmin uses the current resource as the identifier to store the list parameters (under the key `${resource}.listParams`).
 
 If you want to display multiple lists of the same resource and keep distinct store states for each of them (filters, sorting and pagination), you must give each list a unique `storeKey` property. You can also disable the persistence of list parameters and selection in the store by setting the `storeKey` prop to `false`.
 

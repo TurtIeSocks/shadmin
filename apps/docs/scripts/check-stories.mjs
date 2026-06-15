@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Audit every public-API React component (per {@link getPublicComponents}) for
- * a sibling Storybook story file under `packages/admin-kit/src/components/<sourceDir>/<slug>.stories.tsx`
+ * a sibling Storybook story file under `packages/shadmin/src/components/<sourceDir>/<slug>.stories.tsx`
  * (colocated next to the component and its spec).
  *
  * Fails (exit 1) when any documented component is missing its story file, still
@@ -33,7 +33,7 @@ const documented = components.filter((item) => lookup.has(item.slug));
 for (const item of documented) {
   const storyPath = resolve(
     repoRoot,
-    `packages/admin-kit/src/components/${item.sourceDir}/${item.slug}.stories.tsx`,
+    `packages/shadmin/src/components/${item.sourceDir}/${item.slug}.stories.tsx`,
   );
   if (!existsSync(storyPath)) {
     failures.push(

@@ -14,7 +14,7 @@ This documentation will explain the following concepts:
 
 ## The `dataProvider`
 
-Shadcn-admin-kit streamlines data fetching for administrative interfaces through its Data Provider object, which unifies interactions across diverse APIs such as REST and GraphQL. This abstraction allows developers to focus on UI development rather than intricate API calls. It employs specialized hooks, like `useGetList` and `useGetOne`, and integrates [TanStack Query](https://tanstack.com/query/latest) to manage data efficiently, offering features such as caching and optimistic updates.
+Shadmin streamlines data fetching for administrative interfaces through its Data Provider object, which unifies interactions across diverse APIs such as REST and GraphQL. This abstraction allows developers to focus on UI development rather than intricate API calls. It employs specialized hooks, like `useGetList` and `useGetOne`, and integrates [TanStack Query](https://tanstack.com/query/latest) to manage data efficiently, offering features such as caching and optimistic updates.
 
 The framework also simplifies working with relational APIs and incorporates real-time capabilities for collaborative applications. Authentication is handled by an `authProvider`, which manages user logins and tokens, subsequently utilized by the `dataProvider` for secure API requests.
 
@@ -194,9 +194,9 @@ To learn more about writing a Data Provider, refer to the [Data Provider Writing
 
 ## Querying The API
 
-Shadcn-admin-kit provides special hooks to emit read and write queries to the `dataProvider`, which in turn sends requests to your API. Under the hood, it uses React Query to call the `dataProvider` and cache the results.
+Shadmin provides special hooks to emit read and write queries to the `dataProvider`, which in turn sends requests to your API. Under the hood, it uses React Query to call the `dataProvider` and cache the results.
 
-Shadcn-admin-kit provides one query hook for each of the Data Provider read methods. They are useful shortcuts that make your code more readable and more robust. The query hooks execute on mount. They return an object with the following properties: { data, isPending, error }. Query hooks are:
+Shadmin provides one query hook for each of the Data Provider read methods. They are useful shortcuts that make your code more readable and more robust. The query hooks execute on mount. They return an object with the following properties: { data, isPending, error }. Query hooks are:
 
 - `useGetList` calls `dataProvider.getList()`
 - `useGetOne` calls `dataProvider.getOne()`
@@ -232,7 +232,7 @@ const UserProfile = ({ userId }) => {
 };
 ```
 
-Shadcn-admin-kit also provides one mutation hook for each of the Data Provider write methods. These hooks execute the query when you call a callback. They return an array with the following items: `[mutate, { data, isPending, error }]`. `mutate` is a callback that you can call to execute the mutation.
+Shadmin also provides one mutation hook for each of the Data Provider write methods. These hooks execute the query when you call a callback. They return an array with the following items: `[mutate, { data, isPending, error }]`. `mutate` is a callback that you can call to execute the mutation.
 
 Mutation hooks are:
 

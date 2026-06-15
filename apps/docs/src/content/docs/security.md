@@ -156,7 +156,7 @@ const authProvider = {
 
 `canAccess` can be asynchronous, so if the `authProvider` needs to fetch the permissions from a server or refresh a token, it can return a promise.
 
-**Tip**: Shadcn-admin-kit calls `dataProvider.canAccess()` before rendering all page components, so if the call is slow, user navigation may be delayed. If you can, fetch user permissions on login and store them locally to keep access control fast.
+**Tip**: Shadmin calls `dataProvider.canAccess()` before rendering all page components, so if the call is slow, user navigation may be delayed. If you can, fetch user permissions on login and store them locally to keep access control fast.
 
 The page components (`<List>`, `<Create>`, `<Edit>`, and `<Show>`) have built-in access control. Before rendering them, shadmin calls `authProvider.canAccess()` with the appropriate action and resource parameters.
 
