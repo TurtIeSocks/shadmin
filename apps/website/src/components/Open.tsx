@@ -1,36 +1,49 @@
+import { AuroraBackground } from "@/components/aurora/AuroraBackground";
+import { GlassPanel } from "@/components/aurora/GlassPanel";
+import { GradientText } from "@/components/aurora/GradientText";
+import { Reveal, RevealItem } from "@/components/aurora/Reveal";
+
+const stats = [
+  { value: "165", label: "Components" },
+  { value: "11", label: "Blocks" },
+  { value: "100%", label: "Open source (MIT)" },
+];
+
 export function Open() {
   return (
-    <div className="relative bg-white py-12 sm:py-24">
-      <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
-        <p className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-          Open source, Open Code
-        </p>
-        <p className="mx-auto mt-5 max-w-prose text-xl text-muted-foreground mb-10">
-          Don't get locked-in to proprietary, black-box solutions. With Shadcn
-          Admin Kit you have always 100% control over your project.
-        </p>
+    <section
+      id="open"
+      aria-label="Open Source Stats"
+      className="relative isolate overflow-hidden py-24 md:py-32"
+    >
+      <AuroraBackground />
+      <div className="relative mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
+        <Reveal>
+          <RevealItem>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Open source,{" "}
+              <GradientText>Open Code</GradientText>
+            </p>
+            <p className="mx-auto mt-5 max-w-prose text-xl text-muted-foreground mb-10">
+              Don't get locked-in to proprietary, black-box solutions. With
+              Shadmin you always have 100% control over your project.
+            </p>
+          </RevealItem>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <div className="rounded-lg border text-card-foreground shadow-sm text-center p-6 bg-black">
-            <div className="p-6 pt-6">
-              <div className="text-4xl font-bold mb-2 text-white">50</div>
-              <p className="text-white">components</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+            {stats.map((stat) => (
+              <RevealItem key={stat.label}>
+                <GlassPanel className="text-center p-8">
+                  <div className="text-5xl font-bold mb-3">
+                    <GradientText>{stat.value}</GradientText>
+                  </div>
+                  <p className="text-muted-foreground font-medium">{stat.label}</p>
+                </GlassPanel>
+              </RevealItem>
+            ))}
           </div>
-          <div className="rounded-lg border text-card-foreground shadow-sm text-center p-6 bg-black">
-            <div className="p-6 pt-6">
-              <div className="text-4xl font-bold mb-2 text-white">50+</div>
-              <p className="text-white">supported backends</p>
-            </div>
-          </div>
-          <div className="rounded-lg border text-card-foreground shadow-sm text-center p-6 bg-black">
-            <div className="p-6 pt-6">
-              <div className="text-4xl font-bold mb-2 text-white">30+</div>
-              <p className="text-white">languages</p>
-            </div>
-          </div>
-        </div>
+        </Reveal>
       </div>
-    </div>
+    </section>
   );
 }
