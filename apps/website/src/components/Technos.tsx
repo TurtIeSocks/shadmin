@@ -70,20 +70,12 @@ export function Technos() {
               {technos.map((techno) => (
                 <RevealItem key={techno.name}>
                   <div className="flex flex-col items-center gap-2 group cursor-default">
-                    <span
-                      role="img"
-                      aria-label={techno.name}
-                      style={{
-                        maskImage: `url(${techno.logo})`,
-                        WebkitMaskImage: `url(${techno.logo})`,
-                        maskRepeat: "no-repeat",
-                        WebkitMaskRepeat: "no-repeat",
-                        maskPosition: "center",
-                        WebkitMaskPosition: "center",
-                        maskSize: "contain",
-                        WebkitMaskSize: "contain",
-                      }}
-                      className="size-14 bg-foreground/55 transition duration-300 group-hover:bg-foreground"
+                    <img
+                      alt={techno.name}
+                      src={techno.logo}
+                      width={64}
+                      height={64}
+                      className="size-14 object-contain opacity-65 brightness-0 transition duration-300 group-hover:opacity-100 dark:brightness-0 dark:invert"
                     />
                     <p className="text-sm text-muted-foreground transition duration-300 group-hover:text-foreground">
                       {techno.name}
