@@ -49,16 +49,6 @@ export default defineConfig({
         alt: "Shadmin",
       },
       head: [
-        // add Umami analytics script tag.
-        {
-          tag: "script",
-          attrs: {
-            src: "https://gursikso.marmelab.com/script.js",
-            "data-website-id": "de7d7ee2-edef-4865-98f9-9dbfff042997",
-            defer: true,
-            async: true,
-          },
-        },
         {
           tag: "script",
           content: `window.addEventListener('load', () => document.querySelector('.site-title').href = 'https://shadmin.turtlesocks.dev/')`,
@@ -78,14 +68,14 @@ export default defineConfig({
       [
         rehypeAstroRelativeMarkdownLinks,
         {
-          base: "/shadmin/docs/",
+          base: "/docs/",
           collectionBase: false,
         },
       ],
     ],
   },
   redirects: {
-    "/": "/shadmin/docs/install",
+    "/": "/docs/install",
     ...legacyRedirects,
   },
   vite: {
@@ -93,8 +83,8 @@ export default defineConfig({
     // @ts-expect-error
     plugins: [tailwindcss(), inlineChangelogPlugin],
   },
-  base: "/shadmin/docs/",
-  site: "https://marmelab.com",
+  base: "/docs/",
+  site: "https://shadmin.turtlesocks.dev",
   build: {
     assets: "astro-assets",
   },

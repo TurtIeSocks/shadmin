@@ -12,7 +12,6 @@ import { Backends } from "./components/Backends";
 import { Open } from "./components/Open";
 import { ByDevelopers } from "./components/ByDevelopers";
 import { Users } from "./components/Users";
-import { Chatwoot } from "./components/Chatwoot";
 
 function App() {
   return (
@@ -33,11 +32,6 @@ function App() {
         <CallToAction />
       </main>
       <Footer />
-      <Chatwoot
-        baseUrl={import.meta.env.VITE_CHATWOOT_URL}
-        websiteToken={import.meta.env.VITE_CHATWOOT_WEBSITE_TOKEN}
-        production={import.meta.env.PROD}
-      />
     </>
   );
 }

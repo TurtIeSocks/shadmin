@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const renameMap = JSON.parse(readFileSync("/tmp/rename-map.json", "utf-8"));
 
-const BASE = "/shadmin/docs";
+const BASE = "/docs";
 
 const redirects = {};
 for (const r of renameMap) {

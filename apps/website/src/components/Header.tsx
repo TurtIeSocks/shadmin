@@ -47,16 +47,6 @@ export function Header() {
                     E-Commerce
                   </a>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="m-1">
-                  <a
-                    href="https://marmelab.com/atomic-crm-demo/"
-                    target="_blank"
-                    className="flex-1"
-                    rel="noopener noreferrer"
-                  >
-                    CRM
-                  </a>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <NavLink href="#pricing">Pricing</NavLink>
@@ -107,16 +97,6 @@ export function Header() {
                     rel="noopener noreferrer"
                   >
                     Demo E-Commerce
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="m-1">
-                  <a
-                    href="https://marmelab.com/atomic-crm-demo/"
-                    target="_blank"
-                    className="flex-1"
-                    rel="noopener noreferrer"
-                  >
-                    Demo CRM
                   </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="m-1">
