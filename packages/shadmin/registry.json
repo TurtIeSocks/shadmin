@@ -770,6 +770,10 @@
           "type": "registry:lib"
         },
         {
+          "path": "src/lib/themes/aurora-theme.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/themes/bw-theme.ts",
           "type": "registry:lib"
         },
@@ -3542,6 +3546,18 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-unknown-types"]
+    },
+    {
+      "name": "aurora-theme",
+      "type": "registry:lib",
+      "title": "Aurora Theme",
+      "files": [
+        {
+          "path": "src/lib/themes/aurora-theme.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "registryDependencies": ["@shadmin/theme-types"]
     },
     {
       "name": "bw-theme",

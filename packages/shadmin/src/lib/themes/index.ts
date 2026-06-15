@@ -1,3 +1,4 @@
+export * from "./aurora-theme";
 export * from "./bw-theme";
 export * from "./default-theme";
 export * from "./house-theme";

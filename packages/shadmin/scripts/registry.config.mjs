@@ -98,6 +98,7 @@ export const blocks = [
       { path: "src/lib/title-portal-id.ts", type: "registry:lib" },
       { path: "src/lib/unknown-types.ts", type: "registry:lib" },
       { path: "src/lib/utils.ts", type: "registry:lib" },
+      { path: "src/lib/themes/aurora-theme.ts", type: "registry:lib" },
       { path: "src/lib/themes/bw-theme.ts", type: "registry:lib" },
       { path: "src/lib/themes/default-theme.ts", type: "registry:lib" },
       { path: "src/lib/themes/house-theme.ts", type: "registry:lib" },
