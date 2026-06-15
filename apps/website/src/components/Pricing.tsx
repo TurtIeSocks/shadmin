@@ -1,21 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { Container } from "./Container";
+import { GlassPanel } from "./aurora/GlassPanel";
+import { GradientText } from "./aurora/GradientText";
+import { Eyebrow } from "./aurora/Eyebrow";
+import { Reveal } from "./aurora/Reveal";
 
-const tiers = [
-  {
-    name: "Open-Source",
-    id: "free-tier",
-    href: "https://shadmin.turtlesocks.dev/docs/install",
-    price: "$0",
-    priceFreq: "/month",
-    description: "The one and only tier",
-    features: [
-      "Unlimited users",
-      "Unlimited projects",
-      "Free SSO",
-      "Host on Supabase or your own infrastructure",
-    ],
-  },
+const features = [
+  "Unlimited users",
+  "Unlimited projects",
+  "Free SSO",
+  "Host on Supabase or your own infrastructure",
 ];
 
 export function Pricing() {
@@ -23,62 +18,46 @@ export function Pricing() {
     <section
       id="pricing"
       aria-label="Pricing"
-      className="bg-black py-24 sm:py-32"
+      className="py-24 md:py-32"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-white uppercase">
-            Pricing
+      <Container>
+        <Reveal className="flex flex-col items-center text-center gap-4 mb-12">
+          <Eyebrow>Pricing</Eyebrow>
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl text-foreground">
+            Free as in <GradientText>beer</GradientText>
           </h2>
-          <p className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-            Free as in beer
+          <p className="max-w-2xl text-lg text-muted-foreground">
+            Free and open source under the MIT license — no tiers, no seats, no catch.
           </p>
-        </div>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-300">
-          Shadmin is open-source and free to use.
-          <br />
-          We already make a living with{" "}
-          <a href="https://marmelab.com/react-admin">react-admin</a>.
-        </p>
-        <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          <div></div>
-          {tiers.map((tier) => (
-            <div
-              key={tier.id}
-              className="ring-1 ring-black/10 rounded-3xl p-8 xl:p-10 bg-white"
-            >
-              <div className="flex items-center justify-between gap-x-4">
-                <h3 id={tier.id} className="text-2xl font-semibold leading-8">
-                  {tier.name}
-                </h3>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-gray-700">
-                {tier.description}
-              </p>
-              <p className="mt-6 flex items-baseline gap-x-1">
-                <span className="text-4xl font-bold tracking-tight">
-                  {tier.price}
-                </span>
-                <span className="text-sm">{tier.priceFreq}</span>
-              </p>
-
-              <ul className="mt-8 space-y-2 text-sm leading-6 text-gray-700 xl:mt-10">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex gap-x-3">
-                    <Check aria-hidden="true" className="h-6 w-5 flex-none" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Button asChild className="mt-10 w-full" size="lg">
-                <a href={tier.href} aria-describedby={tier.id}>
-                  Get started
-                </a>
-              </Button>
+        </Reveal>
+        <Reveal className="flex justify-center">
+          <GlassPanel bezel className="w-full max-w-sm p-8">
+            <div className="flex flex-col gap-2">
+              <h3 className="text-2xl font-semibold text-foreground">Open-Source</h3>
+              <p className="text-sm text-muted-foreground">The one and only tier</p>
             </div>
-          ))}
-        </div>
-      </div>
+            <p className="mt-6 flex items-baseline gap-x-1">
+              <span className="text-4xl font-bold tracking-tight text-foreground">
+                <GradientText>$0</GradientText>
+              </span>
+              <span className="text-sm text-muted-foreground">/month</span>
+            </p>
+            <ul className="mt-8 space-y-2 text-sm text-muted-foreground xl:mt-10">
+              {features.map((feature) => (
+                <li key={feature} className="flex gap-x-3">
+                  <Check aria-hidden="true" className="h-6 w-5 flex-none text-foreground" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <Button asChild className="mt-10 w-full" size="lg">
+              <a href="https://shadmin.turtlesocks.dev/docs/install" aria-describedby="free-tier">
+                Get started
+              </a>
+            </Button>
+          </GlassPanel>
+        </Reveal>
+      </Container>
     </section>
   );
 }
