@@ -5,7 +5,8 @@ export function CallToAction() {
   return (
     <section className="px-6 py-12 md:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="bg-aurora rounded-[2.5rem] py-24 md:py-32 px-6 md:px-12 text-center relative overflow-hidden">
+        <div className="bezel rounded-[2.75rem]">
+          <div className="bg-aurora rounded-[2.25rem] py-24 md:py-32 px-6 md:px-12 text-center relative overflow-hidden">
           <Reveal className="relative z-10 flex flex-col items-center gap-8">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl max-w-2xl mx-auto">
               Generate a beautiful admin panel in just a few lines of code.
@@ -22,6 +23,7 @@ export function CallToAction() {
               Get started
             </MagneticButton>
           </Reveal>
+          </div>
         </div>
       </div>
     </section>

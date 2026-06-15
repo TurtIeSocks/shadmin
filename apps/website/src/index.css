@@ -177,3 +177,27 @@
   --background: oklch(0.06 0.012 290);
   --foreground: oklch(0.97 0.01 290);
 }
+
+/* Aurora orb drift — slow, GPU-safe (transform only); see PageAurora. */
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(var(--dx, 30px), var(--dy, -20px)) scale(1.06);
+  }
+}
+
+.aurora-orb {
+  animation-name: aurora-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-orb {
+    animation: none;
+  }
+}

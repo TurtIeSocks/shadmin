@@ -4,7 +4,6 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Deploy } from "./components/Deploy";
-import { Pricing } from "./components/Pricing";
 import { AdvancedCapabilities } from "./components/AdvancedCapabilities";
 import { Technos } from "./components/Technos";
 import { Why } from "./components/Why";
@@ -28,7 +27,6 @@ function App() {
         <Open />
         <Why />
         <ByDevelopers />
-        <Pricing />
         <CallToAction />
       </main>
       <Footer />
