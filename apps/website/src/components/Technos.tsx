@@ -13,7 +13,14 @@ import TailwindLogo from "/img/tailwind-logo.svg";
 import RadixUILogo from "/img/radix-ui-logo.svg";
 import ReactHookFormLogo from "/img/react-hook-form-logo.svg";
 
-const technos = [
+interface Techno {
+  name: string;
+  logo: string;
+  /** Render the SVG as-is (no brightness silhouette) — for multi-tone logos. */
+  raw?: boolean;
+}
+
+const technos: Techno[] = [
   {
     name: "React",
     logo: ReactLogo,
@@ -37,6 +44,7 @@ const technos = [
   {
     name: "TanStack Query",
     logo: ReactQueryLogo,
+    raw: true,
   },
   {
     name: "React Hook Form",
@@ -75,7 +83,12 @@ export function Technos() {
                       src={techno.logo}
                       width={64}
                       height={64}
-                      className="size-14 object-contain opacity-65 brightness-0 transition duration-300 group-hover:opacity-100 dark:brightness-0 dark:invert"
+                      className={
+                        "size-14 object-contain opacity-65 transition duration-300 group-hover:opacity-100 " +
+                        (techno.raw
+                          ? "grayscale group-hover:grayscale-0"
+                          : "brightness-0 dark:invert")
+                      }
                     />
                     <p className="text-sm text-muted-foreground transition duration-300 group-hover:text-foreground">
                       {techno.name}
