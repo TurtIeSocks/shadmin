@@ -104,11 +104,11 @@ export function Features() {
                 )}
               >
                 <div className="flex flex-col gap-3">
-                  <span className="inline-flex size-10 items-center justify-center rounded-xl bg-aurora/10">
+                  <span className="inline-flex size-10 items-center justify-center rounded-xl bg-aurora">
                     <feature.icon
                       aria-hidden="true"
                       className={cn(
-                        "text-aurora",
+                        "text-white",
                         feature.emphasis ? "size-6" : "size-5",
                       )}
                     />

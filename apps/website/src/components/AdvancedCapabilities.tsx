@@ -67,10 +67,10 @@ export function AdvancedCapabilities() {
             <dl className="space-y-3">
               {features.map((feature) => (
                 <div key={feature.name} className="flex gap-3 items-start">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-aurora/10">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-aurora">
                     <Check
                       aria-hidden="true"
-                      className="size-3 text-aurora"
+                      className="size-3 text-white"
                     />
                   </span>
                   <div>
