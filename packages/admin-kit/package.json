@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "registry:generate": "node ./scripts/generate-registry.mjs",
-    "registry:build": "node ./scripts/build_registry.mjs",
+    "registry:build": "node ./scripts/build-registry.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest run --browser.headless",
