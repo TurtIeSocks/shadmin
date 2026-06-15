@@ -1,4 +1,8 @@
 import { Container } from "./Container";
+import { GlassPanel } from "@/components/aurora/GlassPanel";
+import { GradientText } from "@/components/aurora/GradientText";
+import { Eyebrow } from "@/components/aurora/Eyebrow";
+import { Reveal, RevealItem } from "@/components/aurora/Reveal";
 
 import TypeScriptLogo from "/img/ts-logo.svg";
 import ReactLogo from "/img/react-logo.svg";
@@ -46,39 +50,42 @@ const technos = [
 
 export function Technos() {
   return (
-    <section id="techno" aria-label="Logo clous" className="bg-black py-24">
+    <section id="techno" aria-label="Logo cloud" className="py-24 md:py-32">
       <Container>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-x-8 gap-y-16 justify-items-center">
-            <div className="mx-auto w-full max-w-xl lg:mx-0">
-              <h2 className="text-3xl font-bold tracking-tight text-primary-foreground text-center">
-                Built on the Shoulders Of Giants
-              </h2>
-              <p className="mt-8 text-lg leading-8 text-primary-foreground/80 text-center">
-                Shadmin leverages first-class libraries, acclaimed by
-                the React community for their robustness, documentation and
-                performance.
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center gap-y-12 md:gap-y-14 gap-x-6 md:gap-x-12 justify-center justify-items-center">
-              {technos.map((techno) => (
-                <div
-                  key={techno.name}
-                  className="flex flex-col items-center place-content-between gap-2"
-                >
-                  <img
-                    alt={techno.name}
-                    src={techno.logo}
-                    width={64}
-                    height={64}
-                    className="size-14"
-                  />
-                  <p className="text-primary-foreground/80">{techno.name}</p>
-                </div>
-              ))}
-            </div>
+        <Reveal className="flex flex-col items-center gap-12">
+          <div className="flex flex-col items-center gap-4 text-center">
+            <Eyebrow>The Stack</Eyebrow>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">
+              Built on tools you{" "}
+              <GradientText>trust</GradientText>
+            </h2>
+            <p className="mt-2 max-w-xl text-lg leading-8 text-muted-foreground">
+              Shadmin leverages first-class libraries, acclaimed by the React
+              community for their robustness, documentation and performance.
+            </p>
           </div>
-        </div>
+
+          <GlassPanel className="w-full max-w-4xl px-8 py-8">
+            <Reveal stagger className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-14 md:gap-y-10">
+              {technos.map((techno) => (
+                <RevealItem key={techno.name}>
+                  <div className="flex flex-col items-center gap-2 group cursor-default">
+                    <img
+                      alt={techno.name}
+                      src={techno.logo}
+                      width={64}
+                      height={64}
+                      className="size-14 opacity-60 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
+                    />
+                    <p className="text-sm text-muted-foreground transition duration-300 group-hover:text-foreground">
+                      {techno.name}
+                    </p>
+                  </div>
+                </RevealItem>
+              ))}
+            </Reveal>
+          </GlassPanel>
+        </Reveal>
       </Container>
     </section>
   );
