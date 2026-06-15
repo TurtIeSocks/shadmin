@@ -31,7 +31,7 @@ import { useEffect } from "react";
  *
  * Returns `null` when the list is empty (total === 0).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listpagination/ ListPagination documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list-pagination ListPagination documentation}
  *
  * @example
  * import { List, ListPagination } from '@/components/admin';

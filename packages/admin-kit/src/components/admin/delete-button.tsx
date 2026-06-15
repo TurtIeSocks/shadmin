@@ -52,7 +52,7 @@ type DeleteButtonProps = {
  *
  * Automatically redirects after deletion and reads the resource and record from context.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/deletebutton/ DeleteButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/delete-button DeleteButton documentation}
  *
  * @example
  * import { DeleteButton, Edit } from '@/components/admin';
@@ -79,7 +79,7 @@ const defaultDestructiveClassName =
  *
  * Equivalent to `<DeleteButton mutationMode="undoable">`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/deletebutton/ DeleteButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/delete-button DeleteButton documentation}
  */
 function DeleteWithUndoButton(props: Omit<DeleteButtonProps, "mutationMode">) {
   const {
@@ -158,7 +158,7 @@ function DeleteWithUndoButton(props: Omit<DeleteButtonProps, "mutationMode">) {
  *
  * Equivalent to `<DeleteButton mutationMode="pessimistic">` (or `optimistic`).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/deletebutton/ DeleteButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/delete-button DeleteButton documentation}
  */
 type DeleteWithConfirmButtonProps = Omit<DeleteButtonProps, "mutationMode"> & {
   mutationMode?: Exclude<MutationMode, "undoable">;

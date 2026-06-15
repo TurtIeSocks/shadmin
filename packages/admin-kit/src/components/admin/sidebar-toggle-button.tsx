@@ -21,7 +21,7 @@ interface SidebarToggleButtonProps {
  * a custom layout that needs to expose the sidebar toggle outside the
  * default header slot.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/sidebartogglebutton/ SidebarToggleButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/sidebar-toggle-button SidebarToggleButton documentation}
  *
  * @example
  * import { SidebarToggleButton } from "@/components/admin";

@@ -1,5 +1,5 @@
-import { List } from "shadcn-admin-kit/components/admin";
-import { SchemaDrivenView } from "shadcn-admin-kit/components/extras/schema-driven-view";
+import { List } from "shadmin/components/admin";
+import { SchemaDrivenView } from "shadmin/components/extras/schema-driven-view";
 import { PRODUCT_SCHEMA } from "./product-schema";
 
 /**

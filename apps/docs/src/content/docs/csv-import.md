@@ -7,7 +7,7 @@ title: "CsvImport"
 `<CsvImport>` lives in a separate registry block (`csv-import`) to keep the optional `papaparse` and `zod` dependencies out of the core admin install. Add the block with:
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/csv-import.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/csv-import.json
 ```
 
 ## Sample data

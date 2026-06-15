@@ -24,7 +24,7 @@ import { ReferenceArrayInput } from "@/components/admin/reference-array-input";
  * Inspects the record to infer field types and automatically creates appropriate inputs.
  * Useful for rapid prototyping. Logs generated code to console.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/edit/#scaffolding-an-edit-page EditGuesser documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/edit#scaffolding-an-edit-page EditGuesser documentation}
  *
  * @example
  * import { Admin, EditGuesser } from '@/components/admin';

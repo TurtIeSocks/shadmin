@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { RecordContextProvider, type RaRecord } from "ra-core";
-import { List } from "shadcn-admin-kit/components/admin";
+import { List } from "shadmin/components/admin";
 import {
   CalendarList,
   KanbanBoard,
   type KanbanColumnDef,
-} from "shadcn-admin-kit/components/extras";
-import { DurationField } from "shadcn-admin-kit/components/extras/duration-field";
-import { Button } from "shadcn-admin-kit/components/ui/button";
+} from "shadmin/components/extras";
+import { DurationField } from "shadmin/components/extras/duration-field";
+import { Button } from "shadmin/components/ui/button";
 
 const COLUMNS: KanbanColumnDef[] = [
   { id: "todo", label: "To do" },

@@ -18,7 +18,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  * state internally so users can type incomplete numbers (e.g. '-' or '0.') before the value is parsed.
  * Supports min/max constraints and step increments.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/numberinput/ NumberInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/number-input NumberInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, NumberInput, TextInput } from '@/components/admin';

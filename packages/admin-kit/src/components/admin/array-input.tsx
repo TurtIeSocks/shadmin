@@ -22,7 +22,7 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
  * repeatable embedded data. Requires a form iterator child (typically `<SimpleFormIterator>`)
  * to render and manage individual array items.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/arrayinput/ ArrayInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/array-input ArrayInput documentation}
  *
  * @example
  * import {

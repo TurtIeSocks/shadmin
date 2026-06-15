@@ -16,7 +16,7 @@ interface PasswordInputProps
  * Wraps `<TextInput>` and forces `type="password"`. Set `initiallyVisible` to
  * render the password in plain text on first render.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/passwordinput/ PasswordInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/password-input PasswordInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, PasswordInput } from '@/components/admin';

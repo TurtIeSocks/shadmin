@@ -37,7 +37,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * countries. Supports creating new options on the fly with the `create` or `onCreate` props.
  * Wrap in `<ReferenceInput>` to select from related resources.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/selectinput/ SelectInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/select-input SelectInput documentation}
  * @see {@link https://ui.shadcn.com/docs/components/select Select documentation}
  *
  * @example

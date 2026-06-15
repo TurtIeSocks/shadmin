@@ -47,7 +47,7 @@ type NullableBooleanInputProps = InputProps & {
  * Renders a dropdown with three options (default labels: "", "Yes", "No"). The labels can
  * be customized via `nullLabel`, `trueLabel`, and `falseLabel` props.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/nullablebooleaninput/ NullableBooleanInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/nullable-boolean-input NullableBooleanInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, NullableBooleanInput } from '@/components/admin';

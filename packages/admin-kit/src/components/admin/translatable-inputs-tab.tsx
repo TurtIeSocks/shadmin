@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  * Single tab that selects a locale in a `<TranslatableInputs>` component.
  * Highlights in `text-destructive` when its form group has invalid inputs.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-inputs TranslatableInputs documentation}
  */
 function TranslatableInputsTab(props: TranslatableInputsTabProps) {
   const { groupKey = "", locale, className, ...rest } = props;

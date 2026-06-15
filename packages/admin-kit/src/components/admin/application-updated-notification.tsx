@@ -34,7 +34,7 @@ interface ApplicationUpdatedNotificationProps
  * [`<CheckForApplicationUpdate>`](./CheckForApplicationUpdate.md), but it can
  * also be used standalone to advertise an available update.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/applicationupdatednotification/ ApplicationUpdatedNotification documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/application-updated-notification ApplicationUpdatedNotification documentation}
  *
  * @example
  * import { ApplicationUpdatedNotification } from "@/components/admin/application-updated-notification";

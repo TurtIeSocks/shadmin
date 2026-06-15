@@ -10,10 +10,10 @@ import {
   TabbedForm,
   TextInput,
   TranslatableInputs,
-} from "shadcn-admin-kit/components/admin";
-import { MonacoJsonInput } from "shadcn-admin-kit/components/monaco";
-import { CurrencyInput } from "shadcn-admin-kit/components/extras/currency-input";
-import { RatingField } from "shadcn-admin-kit/components/extras/rating-field";
+} from "shadmin/components/admin";
+import { MonacoJsonInput } from "shadmin/components/monaco";
+import { CurrencyInput } from "shadmin/components/extras/currency-input";
+import { RatingField } from "shadmin/components/extras/rating-field";
 import {
   RecordContextProvider,
   required,
@@ -25,7 +25,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "shadcn-admin-kit/components/ui/avatar";
+} from "shadmin/components/ui/avatar";
 import type { Product, Review, Customer } from "../types";
 import { Link } from "react-router";
 

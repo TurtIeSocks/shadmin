@@ -11,7 +11,7 @@ type TitlePortalProps = HTMLAttributes<HTMLDivElement>;
  * are teleported. The default Layout includes it inside `<AppBar>`, but it
  * can also be used directly when composing a custom header.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/titleportal/ TitlePortal documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/title-portal TitlePortal documentation}
  *
  * @example
  * import { TitlePortal, Title } from "@/components/admin";

@@ -19,7 +19,7 @@ interface RefreshButtonProps {
  * When clicked, reloads data from the server. Shows a spinner animation during loading.
  * Included in the default top app bar. Hidden on small screens.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/refreshbutton/ RefreshButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/refresh-button RefreshButton documentation}
  */
 function RefreshButton({
   ref,

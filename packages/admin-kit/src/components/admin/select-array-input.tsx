@@ -36,7 +36,7 @@ import { cn } from "@/lib/utils";
  * `<AutocompleteArrayInput>`, this input is not searchable. Wrap in `<ReferenceArrayInput>` to
  * select from related resources.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/selectarrayinput/ SelectArrayInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/select-array-input SelectArrayInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, SelectArrayInput } from '@/components/admin';

@@ -4,11 +4,11 @@ import {
   ReferenceField,
   SimpleForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
-import { RatingField } from "shadcn-admin-kit/components/extras/rating-field";
+} from "shadmin/components/admin";
+import { RatingField } from "shadmin/components/extras/rating-field";
 
 import { EditBase } from "ra-core";
-import { cn } from "shadcn-admin-kit/lib/utils";
+import { cn } from "shadmin/lib/utils";
 
 import { FullNameField } from "../customers/FullNameField";
 

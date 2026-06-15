@@ -49,7 +49,7 @@ EmailFieldImpl.displayName = "EmailFieldImpl";
  * Click events are prevented from bubbling up, making it safe to use in DataTable rows with rowClick.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/emailfield/ EmailField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/email-field EmailField documentation}
  *
  * @example
  * import { List, DataTable, EmailField } from '@/components/admin';

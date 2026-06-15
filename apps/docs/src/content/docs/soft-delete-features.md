@@ -2,7 +2,7 @@
 title: "Soft Delete"
 ---
 
-Shadcn Admin Kit provides hooks and components to let users "delete" records without actually removing them from your database.
+Shadmin provides hooks and components to let users "delete" records without actually removing them from your database.
 
 Use it to:
 

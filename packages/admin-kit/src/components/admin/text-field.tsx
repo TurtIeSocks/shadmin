@@ -8,7 +8,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  *
  * This is the default field component used in DataTable columns and RecordField components.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/textfield/ TextField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/text-field TextField documentation}
  *
  * @example
  * import { List, DataTable, TextField } from '@/components/admin';

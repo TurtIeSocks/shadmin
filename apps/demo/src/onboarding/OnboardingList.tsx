@@ -6,7 +6,7 @@ import {
   ExportButton,
   List,
   ListPagination,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: "medium",

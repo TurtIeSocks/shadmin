@@ -42,7 +42,7 @@ type DatagridInputProps = Omit<
  * supports row selection and pagination but does not yet integrate filter
  * contexts or the create-suggestion flow.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datagridinput/ DatagridInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/datagrid-input DatagridInput documentation}
  */
 function DatagridInput<RecordType extends RaRecord = RaRecord>(
   props: DatagridInputProps,

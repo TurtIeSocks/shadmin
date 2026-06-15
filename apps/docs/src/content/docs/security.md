@@ -2,7 +2,7 @@
 title: Security & Auth Providers
 ---
 
-Shadcn-Admin-Kit supports both authentication and authorization, allowing you to secure your admin app with your preferred authentication strategy. Since there are many strategies (e.g., OAuth, MFA, passwordless, magic link), shadcn-admin-kit delegates this logic to an authProvider.
+Shadcn-Admin-Kit supports both authentication and authorization, allowing you to secure your admin app with your preferred authentication strategy. Since there are many strategies (e.g., OAuth, MFA, passwordless, magic link), shadmin delegates this logic to an authProvider.
 
 This documentation will explain the following concepts:
 
@@ -15,7 +15,7 @@ This documentation will explain the following concepts:
 
 ## The `authProvider`
 
-The `authProvider` acts as a bridge between shadcn-admin-kit and the authentication backend.
+The `authProvider` acts as a bridge between shadmin and the authentication backend.
 
 An Auth Provider must implement the following methods:
 
@@ -52,7 +52,7 @@ You can use an existing Auth Provider from the List of Available Auth Providers 
 
 ## Setup
 
-Once you set an `<Admin authProvider>`, shadcn-admin-kit enables authentication automatically. For example, to use Auth0, you can set up the `authProvider` like this:
+Once you set an `<Admin authProvider>`, shadmin enables authentication automatically. For example, to use Auth0, you can set up the `authProvider` like this:
 
 ```js
 import { BrowserRouter } from "react-router";
@@ -89,20 +89,20 @@ Check out the [Auth Provider Setup](./security.md#setup) documentation for more 
 
 The community has built a few open-source Auth Providers that may fit your need:
 
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/appwrite.svg" title="Appwrite Logo" class="w-4 h-4 inline mr-1"/> **[Appwrite](https://appwrite.io/)**: [marmelab/ra-appwrite](https://github.com/marmelab/ra-appwrite)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/auth0.svg" title="auth0 Logo" class="w-4 h-4 inline mr-1"/> **[Auth0 by Okta](https://auth0.com/)**: [marmelab/ra-auth-auth0](https://github.com/marmelab/ra-auth-auth0/blob/main/packages/ra-auth-auth0/Readme.md)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/amplify.svg" title="amplify Logo" class="w-4 h-4 inline mr-1"/> **[AWS Amplify](https://docs.amplify.aws)**: [MrHertal/react-admin-amplify](https://github.com/MrHertal/react-admin-amplify)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/aws.png" title="cognito Logo" class="w-4 h-4 inline mr-1"/> **[AWS Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/setting-up-the-javascript-sdk.html)**: [marmelab/ra-auth-cognito](https://github.com/marmelab/ra-auth-cognito/blob/main/packages/ra-auth-cognito/Readme.md)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/microsoft.svg" title="azure Logo" class="w-4 h-4 inline mr-1"/> **[Microsoft Entra ID (using MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser)**: [marmelab/ra-auth-msal](https://github.com/marmelab/ra-auth-msal/blob/main/packages/ra-auth-msal/Readme.md) ([Tutorial](https://marmelab.com/blog/2023/09/13/active-directory-integration-tutorial.html))
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/casdoor.svg" title="casdoor Logo" class="w-4 h-4 inline mr-1"/> **[Casdoor](https://casdoor.com/)**: [NMB-Lab/reactadmin-casdoor-authprovider](https://github.com/NMB-Lab/reactadmin-casdoor-authprovider)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/directus.svg" title="directus Logo" class="w-4 h-4 inline mr-1"/> **[Directus](https://directus.io/)**: [marmelab/ra-directus](https://github.com/marmelab/ra-directus/blob/main/packages/ra-directus/Readme.md)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/firebase.png" title="firebase Logo" class="w-4 h-4 inline mr-1"/> **[Firebase Auth (Google, Facebook, GitHub, etc.)](https://firebase.google.com/docs/auth/web/firebaseui)**: [benwinding/react-admin-firebase](https://github.com/benwinding/react-admin-firebase#auth-provider)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/google.svg" title="google Logo" class="w-4 h-4 inline mr-1"/> **[Google Identity & Google Workspace](https://developers.google.com/identity/gsi/web/guides/overview)**: [marmelab/ra-auth-google](https://github.com/marmelab/ra-auth-google/blob/main/packages/ra-auth-google/Readme.md)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/keycloak.svg" title="keycloak Logo" class="w-4 h-4 inline mr-1"/> **[Keycloak](https://www.keycloak.org/)**: [marmelab/ra-keycloak](https://github.com/marmelab/ra-keycloak/blob/main/packages/ra-keycloak/Readme.md)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/loopback4.svg" title="loopback Logo" class="w-4 h-4 inline mr-1"/> **[Loopback](https://loopback.io/doc/en/lb4/Authentication-overview.html)**: [appsmith dev.to tutorial](https://dev.to/appsmith/building-an-admin-dashboard-with-react-admin-86i#adding-authentication-to-reactadmin)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/openid.svg" title="openid Logo" class="w-4 h-4 inline mr-1"/> **[OpenID Connect (OIDC)](https://openid.net/connect/)**: [marmelab/ra-example-oauth](https://github.com/marmelab/ra-example-oauth)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/supabase.svg" title="supabase Logo" class="w-4 h-4 inline mr-1"/> **[Supabase](https://supabase.io/)**: [marmelab/ra-supabase](https://github.com/marmelab/ra-supabase/blob/main/packages/ra-supabase/README.md)
-- <img src="/shadcn-admin-kit/docs/images/backend-logos/surrealdb.svg" title="surrealdb Logo" class="w-4 h-4 inline mr-1"/> **[SurrealDB](https://surrealdb.com/)**: [djedi23/ra-surrealdb](https://github.com/djedi23/ra-surrealdb)
+- <img src="/shadmin/docs/images/backend-logos/appwrite.svg" title="Appwrite Logo" class="w-4 h-4 inline mr-1"/> **[Appwrite](https://appwrite.io/)**: [marmelab/ra-appwrite](https://github.com/marmelab/ra-appwrite)
+- <img src="/shadmin/docs/images/backend-logos/auth0.svg" title="auth0 Logo" class="w-4 h-4 inline mr-1"/> **[Auth0 by Okta](https://auth0.com/)**: [marmelab/ra-auth-auth0](https://github.com/marmelab/ra-auth-auth0/blob/main/packages/ra-auth-auth0/Readme.md)
+- <img src="/shadmin/docs/images/backend-logos/amplify.svg" title="amplify Logo" class="w-4 h-4 inline mr-1"/> **[AWS Amplify](https://docs.amplify.aws)**: [MrHertal/react-admin-amplify](https://github.com/MrHertal/react-admin-amplify)
+- <img src="/shadmin/docs/images/backend-logos/aws.png" title="cognito Logo" class="w-4 h-4 inline mr-1"/> **[AWS Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/setting-up-the-javascript-sdk.html)**: [marmelab/ra-auth-cognito](https://github.com/marmelab/ra-auth-cognito/blob/main/packages/ra-auth-cognito/Readme.md)
+- <img src="/shadmin/docs/images/backend-logos/microsoft.svg" title="azure Logo" class="w-4 h-4 inline mr-1"/> **[Microsoft Entra ID (using MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser)**: [marmelab/ra-auth-msal](https://github.com/marmelab/ra-auth-msal/blob/main/packages/ra-auth-msal/Readme.md) ([Tutorial](https://marmelab.com/blog/2023/09/13/active-directory-integration-tutorial.html))
+- <img src="/shadmin/docs/images/backend-logos/casdoor.svg" title="casdoor Logo" class="w-4 h-4 inline mr-1"/> **[Casdoor](https://casdoor.com/)**: [NMB-Lab/reactadmin-casdoor-authprovider](https://github.com/NMB-Lab/reactadmin-casdoor-authprovider)
+- <img src="/shadmin/docs/images/backend-logos/directus.svg" title="directus Logo" class="w-4 h-4 inline mr-1"/> **[Directus](https://directus.io/)**: [marmelab/ra-directus](https://github.com/marmelab/ra-directus/blob/main/packages/ra-directus/Readme.md)
+- <img src="/shadmin/docs/images/backend-logos/firebase.png" title="firebase Logo" class="w-4 h-4 inline mr-1"/> **[Firebase Auth (Google, Facebook, GitHub, etc.)](https://firebase.google.com/docs/auth/web/firebaseui)**: [benwinding/react-admin-firebase](https://github.com/benwinding/react-admin-firebase#auth-provider)
+- <img src="/shadmin/docs/images/backend-logos/google.svg" title="google Logo" class="w-4 h-4 inline mr-1"/> **[Google Identity & Google Workspace](https://developers.google.com/identity/gsi/web/guides/overview)**: [marmelab/ra-auth-google](https://github.com/marmelab/ra-auth-google/blob/main/packages/ra-auth-google/Readme.md)
+- <img src="/shadmin/docs/images/backend-logos/keycloak.svg" title="keycloak Logo" class="w-4 h-4 inline mr-1"/> **[Keycloak](https://www.keycloak.org/)**: [marmelab/ra-keycloak](https://github.com/marmelab/ra-keycloak/blob/main/packages/ra-keycloak/Readme.md)
+- <img src="/shadmin/docs/images/backend-logos/loopback4.svg" title="loopback Logo" class="w-4 h-4 inline mr-1"/> **[Loopback](https://loopback.io/doc/en/lb4/Authentication-overview.html)**: [appsmith dev.to tutorial](https://dev.to/appsmith/building-an-admin-dashboard-with-react-admin-86i#adding-authentication-to-reactadmin)
+- <img src="/shadmin/docs/images/backend-logos/openid.svg" title="openid Logo" class="w-4 h-4 inline mr-1"/> **[OpenID Connect (OIDC)](https://openid.net/connect/)**: [marmelab/ra-example-oauth](https://github.com/marmelab/ra-example-oauth)
+- <img src="/shadmin/docs/images/backend-logos/supabase.svg" title="supabase Logo" class="w-4 h-4 inline mr-1"/> **[Supabase](https://supabase.io/)**: [marmelab/ra-supabase](https://github.com/marmelab/ra-supabase/blob/main/packages/ra-supabase/README.md)
+- <img src="/shadmin/docs/images/backend-logos/surrealdb.svg" title="surrealdb Logo" class="w-4 h-4 inline mr-1"/> **[SurrealDB](https://surrealdb.com/)**: [djedi23/ra-surrealdb](https://github.com/djedi23/ra-surrealdb)
 
 If you need to use an auth backend that isn't listed here, you can create your own authProvider by implementing the methods described above. Check out the [Writing an Auth Provider](https://marmelab.com/ra-core/authproviderwriting/) guide for more details.
 
@@ -116,7 +116,7 @@ With Access Control, the `authProvider` is responsible for checking if the user 
 - Attribute-Based Access Control (ABAC)
 - Access Control List (ACL).
 
-Use the `authProvider` to integrate shadcn-admin-kit with popular authorization solutions like Okta, Casbin, Cerbos, and more.
+Use the `authProvider` to integrate shadmin with popular authorization solutions like Okta, Casbin, Cerbos, and more.
 
 To use Access Control, the `authProvider` must implement a `canAccess` method with the following signature:
 
@@ -158,7 +158,7 @@ const authProvider = {
 
 **Tip**: Shadcn-admin-kit calls `dataProvider.canAccess()` before rendering all page components, so if the call is slow, user navigation may be delayed. If you can, fetch user permissions on login and store them locally to keep access control fast.
 
-The page components (`<List>`, `<Create>`, `<Edit>`, and `<Show>`) have built-in access control. Before rendering them, shadcn-admin-kit calls `authProvider.canAccess()` with the appropriate action and resource parameters.
+The page components (`<List>`, `<Create>`, `<Edit>`, and `<Show>`) have built-in access control. Before rendering them, shadmin calls `authProvider.canAccess()` with the appropriate action and resource parameters.
 
 ```jsx
 <Resource
@@ -174,7 +174,7 @@ The page components (`<List>`, `<Create>`, `<Edit>`, and `<Show>`) have built-in
 />
 ```
 
-If the `authProvider` doesn’t implement the `canAccess` method, shadcn-admin-kit assumes the user can access all pages.
+If the `authProvider` doesn’t implement the `canAccess` method, shadmin assumes the user can access all pages.
 
 To learn more about implementing access control, check out the [Access Control Guide](https://marmelab.com/ra-core/permissions/#access-control).
 

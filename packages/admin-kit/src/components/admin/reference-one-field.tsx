@@ -49,7 +49,7 @@ interface ReferenceOneFieldProps<
  * Fetches the related record whose `target` field matches the current record's `id` (or `source`).
  * Renders the children inside a `RecordContext` populated with the referenced record.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/referenceonefield/ ReferenceOneField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/reference-one-field ReferenceOneField documentation}
  *
  * @example
  * import { Show, RecordField, ReferenceOneField, TextField } from '@/components/admin';

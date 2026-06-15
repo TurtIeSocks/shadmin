@@ -34,7 +34,7 @@ interface RecordFieldProps<RecordType extends UnknownRecord = UnknownRecord>
  * It can render children, use a custom field component, or display a TextField by default.
  * To be used with RecordContext, e.g. inside Show, or inside ArrayField to display array items.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/recordfield/ RecordField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/record-field RecordField documentation}
  *
  * @example
  * import { NumberField, RecordField, Show } from '@/components/admin';

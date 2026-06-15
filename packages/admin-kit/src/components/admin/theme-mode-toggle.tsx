@@ -17,7 +17,7 @@ import { useTheme } from "@/hooks/use-theme";
  * User's selection is persisted using the store.
  * Automatically included in the default Layout component header.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/thememodetoggle ThemeModeToggle documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/theme-mode-toggle ThemeModeToggle documentation}
  */
 interface ThemeModeToggleProps {
   ref?: Ref<HTMLButtonElement>;

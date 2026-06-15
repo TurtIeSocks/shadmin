@@ -13,7 +13,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * This component is used inside ArrayField, ReferenceArrayField, or ReferenceManyField to display
  * records in a compact inline format. By default, it renders each record with its record representation.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/singlefieldlist/ SingleFieldList documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/single-field-list SingleFieldList documentation}
  *
  * @example
  * import {

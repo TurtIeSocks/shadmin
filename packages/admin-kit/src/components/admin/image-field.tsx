@@ -15,7 +15,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
 /**
  * Displays an image or a list of images from a record field inside an img element or a ul of img elements.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/imagefield/ ImageField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/image-field ImageField documentation}
  *
  * @example
  * import { ImageField } from '@/components/admin';

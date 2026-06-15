@@ -51,7 +51,7 @@ type ResourceMenuItemProps = {
  * the current user does not have `list` access via `useCanAccess`. Shows a
  * `<Skeleton>` while the permission check is pending.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/resourcemenuitem/ ResourceMenuItem documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/resource-menu-item ResourceMenuItem documentation}
  *
  * @example
  * import { ResourceMenuItem } from "@/components/admin";

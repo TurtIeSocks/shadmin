@@ -28,7 +28,7 @@ import {
  * Renders a ghost icon `<Button>` with a {@link Settings} icon and a tooltip
  * showing the translated label.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/inspector Inspector documentation}
  *
  * @example
  * import { InspectorButton } from "@/components/admin";

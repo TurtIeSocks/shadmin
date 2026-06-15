@@ -37,7 +37,7 @@ type AppBarProps = HTMLAttributes<HTMLElement> & {
  * Visually identical to the previous inline `<header>` in `<Layout>`; this
  * component simply extracts the markup for reuse in custom layouts.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/appbar/ AppBar documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/app-bar AppBar documentation}
  *
  * @example
  * import { AppBar, TitlePortal } from "@/components/admin";

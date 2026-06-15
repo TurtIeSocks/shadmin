@@ -36,7 +36,7 @@ interface KeyboardShortcutProps extends React.HTMLAttributes<HTMLDivElement> {
  * sequential key chords (e.g. `"mod+k"`, `"shift+ctrl+a>b"`). Renders
  * nothing when no shortcut is provided.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/keyboardshortcut/ KeyboardShortcut documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/keyboard-shortcut KeyboardShortcut documentation}
  *
  * @example
  * <KeyboardShortcut keyboardShortcut="mod+k" />

@@ -1,16 +1,16 @@
 {
-  "name": "shadcn-admin-kit-monorepo",
+  "name": "shadmin-monorepo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "turbo run dev --filter=shadcn-admin-kit-demo",
+    "dev": "turbo run dev --filter=shadmin-demo",
     "lint": "biome check .",
     "format": "biome check --write .",
     "build": "turbo run build",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "storybook": "pnpm --filter shadcn-admin-kit run storybook",
+    "storybook": "pnpm --filter shadmin run storybook",
     "knip": "knip"
   },
   "devDependencies": {

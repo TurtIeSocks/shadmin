@@ -70,7 +70,7 @@ type UpdateButtonProps<
  * it shows a confirmation dialog before firing the mutation. Must be used inside a
  * `RecordContext` and `ResourceContext`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/updatebutton/ UpdateButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/update-button UpdateButton documentation}
  *
  * @example
  * import { UpdateButton } from '@/components/admin';
@@ -94,7 +94,7 @@ function UpdateButton(props: UpdateButtonProps) {
 /**
  * Update button variant that asks the user to confirm before firing the mutation.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/updatebutton/ UpdateButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/update-button UpdateButton documentation}
  */
 function UpdateWithConfirmButton(props: UpdateWithConfirmButtonProps) {
   const {
@@ -235,7 +235,7 @@ function UpdateWithConfirmButton(props: UpdateWithConfirmButtonProps) {
 /**
  * Update button variant that fires immediately with undo capability.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/updatebutton/ UpdateButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/update-button UpdateButton documentation}
  */
 function UpdateWithUndoButton(props: UpdateWithUndoButtonProps) {
   const {

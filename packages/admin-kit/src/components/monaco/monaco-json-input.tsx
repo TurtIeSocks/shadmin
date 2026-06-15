@@ -18,7 +18,7 @@ const LazyInner = lazy(() =>
  * Monaco is lazy-loaded — first mount shows a skeleton while the
  * chunk loads, subsequent mounts are instant.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/monaco-json-input/ MonacoJsonInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/monaco-json-input MonacoJsonInput documentation}
  *
  * @example
  * import { Edit, SimpleForm } from '@/components/admin';

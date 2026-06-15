@@ -1,8 +1,8 @@
-import { BooleanInput } from "shadcn-admin-kit/components/admin/boolean-input";
-import { Edit } from "shadcn-admin-kit/components/admin/edit";
-import { SimpleForm } from "shadcn-admin-kit/components/admin/simple-form";
-import { TextInput } from "shadcn-admin-kit/components/admin/text-input";
-import { PhoneInput } from "shadcn-admin-kit/components/extras/phone-input";
+import { BooleanInput } from "shadmin/components/admin/boolean-input";
+import { Edit } from "shadmin/components/admin/edit";
+import { SimpleForm } from "shadmin/components/admin/simple-form";
+import { TextInput } from "shadmin/components/admin/text-input";
+import { PhoneInput } from "shadmin/components/extras/phone-input";
 import { required } from "ra-core";
 
 export const CustomerEdit = () => (

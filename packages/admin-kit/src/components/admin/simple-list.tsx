@@ -63,7 +63,7 @@ interface SimpleListProps<RecordType extends RaRecord = RaRecord> {
  * `leftAvatar`, `leftIcon`, `rightIcon`) and links to the edit (default) or show page of
  * the record. Pass `linkType={false}` to disable the link.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/simplelist/ SimpleList documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/simple-list SimpleList documentation}
  *
  * @example
  * import { List, SimpleList } from "@/components/admin";

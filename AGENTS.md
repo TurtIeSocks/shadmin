@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Shadcn Admin Kit is a component library for building admin apps using shadcn/ui. It wraps ra-core (react-admin's headless core) with shadcn/ui components, providing CRUD views, data tables, form inputs, auth, i18n, and theming. The demo app in `apps/demo/` showcases all features with fake data.
+Shadmin is a component library for building admin apps using shadcn/ui. It wraps ra-core (react-admin's headless core) with shadcn/ui components, providing CRUD views, data tables, form inputs, auth, i18n, and theming. The demo app in `apps/demo/` showcases all features with fake data.
 
 ## Repository Layout
 
@@ -27,7 +27,7 @@ make lint              # Biome (same as `pnpm run lint`; `pnpm run format` write
 make storybook         # Start Storybook on port 6006
 ```
 
-Run a single test file: `pnpm --filter shadcn-admin-kit exec vitest run --browser.headless src/components/admin/some-component.spec.tsx` (path relative to `packages/admin-kit/`)
+Run a single test file: `pnpm --filter shadmin exec vitest run --browser.headless src/components/admin/some-component.spec.tsx` (path relative to `packages/admin-kit/`)
 
 ## Architecture
 

@@ -2,7 +2,7 @@
 title: CustomRoutes
 ---
 
-`<CustomRoutes>` lets you define custom pages in your shadcn-admin-kit application, using react-router `<Routes>` elements.
+`<CustomRoutes>` lets you define custom pages in your shadmin application, using react-router `<Routes>` elements.
 
 ## Usage
 

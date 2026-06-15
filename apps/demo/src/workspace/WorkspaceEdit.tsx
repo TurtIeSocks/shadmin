@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from "react";
 import { useInput, useRecordContext, required } from "ra-core";
-import { Edit, SimpleForm, TextInput } from "shadcn-admin-kit/components/admin";
+import { Edit, SimpleForm, TextInput } from "shadmin/components/admin";
 import {
   PermissionMatrix,
   type PermissionsState,
-} from "shadcn-admin-kit/components/extras";
-import { MdxInput } from "shadcn-admin-kit/components/mdx-editor";
+} from "shadmin/components/extras";
+import { MdxInput } from "shadmin/components/mdx-editor";
 import "@mdxeditor/editor/style.css";
 import type { DocumentPermission, WorkspaceDocument } from "./documents-seed";
 

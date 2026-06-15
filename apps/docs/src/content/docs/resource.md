@@ -2,7 +2,7 @@
 title: Resource
 ---
 
-`<Resource>` components define the CRUD routes of a shadcn-admin-kit application.
+`<Resource>` components define the CRUD routes of a shadmin application.
 
 A _resource_ is a string that refers to an entity type (like ‘products’, ‘subscribers’, or ‘tags’). _Records_ are objects with an `id` field, and two records of the same resource have the same field structure (e.g. all posts records have a title, a publication date, etc.).
 
@@ -59,7 +59,7 @@ const App = () => (
 );
 ```
 
-The shadcn-admin-kit `<Resource>` wraps the headless `ra-core` resource component. It keeps the same routing behavior and adds the `group` prop used by the default sidebar menu.
+The shadmin `<Resource>` wraps the headless `ra-core` resource component. It keeps the same routing behavior and adds the `group` prop used by the default sidebar menu.
 
 The routes call the following dataProvider methods:
 
@@ -89,7 +89,7 @@ To learn more about these props, refer to [the `<Resource>` component documentat
 
 ## Lazy Loading
 
-If you need to speed up the initial loading of your application, you may want to enable code splitting using [`React.lazy()`](https://react.dev/reference/react/lazy). The default Shadcn Admin Kit layout uses [`Suspense`](https://react.dev/reference/react/Suspense), so there is no special setup required to use lazy loaded components in `<Resource>`.
+If you need to speed up the initial loading of your application, you may want to enable code splitting using [`React.lazy()`](https://react.dev/reference/react/lazy). The default Shadmin layout uses [`Suspense`](https://react.dev/reference/react/Suspense), so there is no special setup required to use lazy loaded components in `<Resource>`.
 
 ```tsx
 // in src/App.js
@@ -109,7 +109,7 @@ const App = () => (
 );
 ```
 
-When users navigate to the `/orders` route, Shadcn Admin Kit will display the [`<Loading>`](./loading) component while the `OrderList` component is being loaded.
+When users navigate to the `/orders` route, Shadmin will display the [`<Loading>`](./loading) component while the `OrderList` component is being loaded.
 
 ![Loading](./images/loading.png)
 

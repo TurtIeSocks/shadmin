@@ -16,8 +16,8 @@ export const Basic = () => (
 export const External = () => (
   <ThemeProvider>
     <MemoryRouter>
-      <Link to="https://marmelab.com/shadcn-admin-kit" target="_blank">
-        Shadcn Admin Kit docs
+      <Link to="https://shadmin.turtlesocks.dev" target="_blank">
+        Shadmin docs
       </Link>
     </MemoryRouter>
   </ThemeProvider>

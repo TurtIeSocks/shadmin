@@ -8,7 +8,7 @@ import { Spinner } from "./spinner";
  * Automatically shown by the default Layout when page loading takes more than 1 second.
  * Works as a fallback for React Suspense boundaries.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loading/ Loading documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/loading Loading documentation}
  */
 function Loading(props: LoadingProps) {
   const {

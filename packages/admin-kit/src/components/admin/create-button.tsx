@@ -25,7 +25,7 @@ const defaultIcon = <Plus />;
  *
  * Automatically uses the current resource unless overridden.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/createbutton/ CreateButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/create-button CreateButton documentation}
  *
  * @example
  * import { CreateButton, List, ExportButton } from '@/components/admin';

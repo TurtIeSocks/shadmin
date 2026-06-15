@@ -9,10 +9,10 @@ import {
   useResourceContext,
 } from "ra-core";
 
-import { WizardForm } from "shadcn-admin-kit/components/extras/wizard-form";
-import { TextInput } from "shadcn-admin-kit/components/admin/text-input";
-import { BooleanInput } from "shadcn-admin-kit/components/admin/boolean-input";
-import { NumberInput } from "shadcn-admin-kit/components/admin/number-input";
+import { WizardForm } from "shadmin/components/extras/wizard-form";
+import { TextInput } from "shadmin/components/admin/text-input";
+import { BooleanInput } from "shadmin/components/admin/boolean-input";
+import { NumberInput } from "shadmin/components/admin/number-input";
 
 /**
  * Create view for the demo "onboardings" resource. Showcases <WizardForm> as

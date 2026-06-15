@@ -25,7 +25,7 @@ type CreateProps = CreateViewProps & CreateBaseProps;
  * Combines data fetching, form context, and UI layout for creating new records. Renders breadcrumb
  * navigation, page title, and wraps your form components.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/create/ Create documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/create Create documentation}
  *
  * @example
  * import { Create, SimpleForm, TextInput } from '@/components/admin';

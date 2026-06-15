@@ -29,7 +29,7 @@ type CloneButtonProps = {
  * Used to clone the current record. Reads the resource from `ResourceContext` and the record
  * from `RecordContext` by default.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/clonebutton/ CloneButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/clone-button CloneButton documentation}
  *
  * @example
  * import { CloneButton, Show } from '@/components/admin';

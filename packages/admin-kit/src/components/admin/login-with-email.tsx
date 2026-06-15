@@ -47,7 +47,7 @@ interface LoginWithEmailProps {
  * `{ email, password }`. Providing the `onSubmit` prop overrides this behavior
  * so consumers can perform their own sign-in flow against a custom backend.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loginwithemail/ LoginWithEmail documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/login-with-email LoginWithEmail documentation}
  *
  * @example
  * import { AuthLayout } from "@/components/admin/auth-layout";

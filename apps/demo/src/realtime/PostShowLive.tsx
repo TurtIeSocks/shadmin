@@ -1,5 +1,5 @@
-import { SimpleShowLayout, TextField } from "shadcn-admin-kit/components/admin";
-import { ShowLive, LockStatus } from "shadcn-admin-kit/components/realtime";
+import { SimpleShowLayout, TextField } from "shadmin/components/admin";
+import { ShowLive, LockStatus } from "shadmin/components/realtime";
 
 export function PostShowLive() {
   return (

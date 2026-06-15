@@ -193,7 +193,7 @@ const HotspotSvg = () => {
         className="mx-auto rounded-2xl shadow-lg ring-1 ring-gray-900/10"
       >
         <title id="hotspot-screenshot-title">
-          Shadcn Admin Kit dashboard screenshot
+          Shadmin dashboard screenshot
         </title>
         <image
           href={HeroScreenshot}

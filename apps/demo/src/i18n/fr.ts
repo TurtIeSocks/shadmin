@@ -26,10 +26,10 @@ const customFrenchMessages: TranslationMessages = {
           "par %{customer_name}, un poster |||| par %{customer_name}, %{nb_items} posters",
       },
       welcome: {
-        title: "Bienvenue sur la démo e-commerce de shadcn-admin-kit",
+        title: "Bienvenue sur la démo e-commerce de shadmin",
         subtitle:
           "Ceci est le back-office d'un magasin de posters imaginaire. N'hésitez pas à explorer et à modifier les données. La démo s'exécute en local dans votre navigateur, et se remet à zéro chaque fois que vous rechargez la page.",
-        ra_button: "Site web de shadcn-admin-kit",
+        ra_button: "Site web de shadmin",
         demo_button: "Code source de cette démo",
       },
     },

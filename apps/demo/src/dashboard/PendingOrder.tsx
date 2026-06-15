@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Avatar, AvatarImage } from "shadcn-admin-kit/components/ui/avatar";
+import { Avatar, AvatarImage } from "shadmin/components/ui/avatar";
 import { useTranslate, useReference } from "ra-core";
 
 import { Customer, Order } from "../types";

@@ -30,7 +30,7 @@ export const FrameworkCard = ({ href, logo, name, borderHover, bgHover, shadow }
   a:has(.framework-card-icon):hover .framework-card-icon { background-color: var(--bg-hover); }
 `}</style>
 
-`shadcn-admin-kit` is a React library of components for admin apps. You can install it with any React framework:
+`shadmin` is a React library of components for admin apps. You can install it with any React framework:
 
 <div class="not-content grid grid-cols-2 md:grid-cols-4 gap-4 my-8">
   <FrameworkCard href="#install-with-nextjs" logo={nextLogo.src} name="Next.js" borderHover="#d1d5db" bgHover="#f3f4f6" shadow="rgba(156,163,175,0.2)" />
@@ -51,11 +51,11 @@ npx create-next-app@latest
 Success! Created my-app at /path/to/my-app
 ```
 
-Next, go to your project directory and pull the `shadcn-admin-kit` components using the `shadcn` command:
+Next, go to your project directory and pull the `shadmin` components using the `shadcn` command:
 
 ```bash
 cd my-app
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/admin.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/admin.json
 ✔ You need to create a components.json file to add components. Proceed? … yes
 ✔ Which color would you like to use as the base color? › Neutral
 ✔ Writing components.json.
@@ -101,13 +101,13 @@ export default function Page() {
 
 Finally, run `npm run dev` and go to `http://localhost:3000/admin` to access your admin app.
 
-![Welcome to shadcn-admin-kit!](./images/welcome.png)
+![Welcome to shadmin!](./images/welcome.png)
 
 Next step: Read the [Quick Start Guide](./Quick-Start-Guide.mdx) to learn how to use the components in your admin app.
 
 ## Install with Vite.js
 
-`shadcn-admin-kit` is built on React, so you need to create a Vite single-page app to use it.
+`shadmin` is built on React, so you need to create a Vite single-page app to use it.
 
 ```shell
 npm create vite@latest my-app -- --template react-ts
@@ -202,10 +202,10 @@ yarn shadcn init
 
 You will be asked a few questions to configure `components.json`.
 
-You can now start adding components to your project. Let's start with the `shadcn-admin-kit` components.
+You can now start adding components to your project. Let's start with the `shadmin` components.
 
 ```shell
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/admin.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/admin.json
 ```
 
 The main entry point of your new application is `main.tsx`, which renders the `App` component into the DOM.
@@ -224,7 +224,7 @@ createRoot(document.getElementById("root")!).render(
 );
 ```
 
-The `<App>` component currently renders a default Vite application. You can replace all its content by the following to serve your new `shadcn-admin-kit` application.
+The `<App>` component currently renders a default Vite application. You can replace all its content by the following to serve your new `shadmin` application.
 
 ```tsx
 // src/App.tsx
@@ -249,13 +249,13 @@ yarn dev
 
 You should see this:
 
-![Welcome to shadcn-admin-kit!](./images/welcome.png)
+![Welcome to shadmin!](./images/welcome.png)
 
 Next step: Read the [Quick Start Guide](./Quick-Start-Guide.mdx) to learn how to use the components in your admin app.
 
 ## Install with React-Router
 
-You can setup a Shadcn Admin Kit application with React-Router v7 (a.k.a. Remix v3) as follows. First, creating a new React Router project with the following command:
+You can setup a Shadmin application with React-Router v7 (a.k.a. Remix v3) as follows. First, creating a new React Router project with the following command:
 
 ```shell
 npx create-react-router@latest 
@@ -274,10 +274,10 @@ cd my-app
 npx shadcn@latest init
 ```
 
-Next, install the Shadcn Admin Kit components:
+Next, install the Shadmin components:
 
 ```shell
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/admin.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/admin.json
 ```
 
 This will add some components to the `app/components/admin` and `app/components/ui` directories, as well as some utilities inside the `app/hooks/` and `app/lib/` directories.
@@ -286,7 +286,7 @@ This will add some components to the `app/components/admin` and `app/components/
 The `shadcn` CLI tool has [known issues](https://github.com/shadcn-ui/ui/issues/8778) with Windows. If you are using Windows and encounter problems, please switch to a WSL terminal or use a different OS.
 :::
 
-Shadcn Admin Kit depends on the `react-router-dom` package. It used to be a direct dependency of `react-router`, but it's not anymore in v7 so you'll have to add it manually. Check the version of React Router that has been installed by `create-react-router` and **use the exact same version**. At the time of writing this tutorial, it is `7.10.1`.
+Shadmin depends on the `react-router-dom` package. It used to be a direct dependency of `react-router`, but it's not anymore in v7 so you'll have to add it manually. Check the version of React Router that has been installed by `create-react-router` and **use the exact same version**. At the time of writing this tutorial, it is `7.10.1`.
 
 ```shell
 npm add react-router-dom@7.10.1
@@ -324,7 +324,7 @@ export default App;
 ```
 
 :::note
-The convention for react-router applications is to use `~/` as prefix for imports, while other frameworks use `@/`. The Shadcn Admin Kit documentation uses `@/` everywhere, make sure to adapt the import paths accordingly.
+The convention for react-router applications is to use `~/` as prefix for imports, while other frameworks use `@/`. The Shadmin documentation uses `@/` everywhere, make sure to adapt the import paths accordingly.
 :::
 
 Edit the `tsconfig.json` file to avoid an [unsolved shadcn/ui bug](https://github.com/shadcn-ui/ui/issues/6618):
@@ -350,7 +350,7 @@ yarn dev
 
 Now go to `http://localhost:5173/admin` in your browser. You should see this:
 
-![Welcome to shadcn-admin-kit!](./images/welcome.png)
+![Welcome to shadmin!](./images/welcome.png)
 
 :::tip
 If you're getting a `ReferenceError: document is not defined`error at this stage, it's probably because the versions of `react-router` and `react-router-dom` are mismatched. Make sure to use the exact same version for both packages.
@@ -360,7 +360,7 @@ Next step: Read the [Quick Start Guide](./Quick-Start-Guide.mdx) to learn how to
 
 ## Install with Tanstack Start
 
-You can setup a Shadcn Admin Kit application with Tanstack Start as follows. First, create a new Tanstack Start project with the following command:
+You can setup a Shadmin application with Tanstack Start as follows. First, create a new Tanstack Start project with the following command:
 
 ```shell
 npx @tanstack/cli create
@@ -404,13 +404,13 @@ npx shadcn@latest init
 
 You will be asked a few questions to configure `components.json`.
 
-Now that shadcn is set up, let's start with the `shadcn-admin-kit` components.
+Now that shadcn is set up, let's start with the `shadmin` components.
 
 ```shell
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/admin.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/admin.json
 ```
 
-Last but not least, you need to add `ra-router-tanstack` to your project, so that your `shadcn-admin-kit` application can make use of the tanstack router:
+Last but not least, you need to add `ra-router-tanstack` to your project, so that your `shadmin` application can make use of the tanstack router:
 
 ```shell
 npm install ra-router-tanstack
@@ -430,9 +430,9 @@ export function App() {
 }
 ```
 
-When you run `npm run dev` and visit [http://localhost:3000](http://localhost:3000/), you should see the Shadcn Admin Kit welcome screen:
+When you run `npm run dev` and visit [http://localhost:3000](http://localhost:3000/), you should see the Shadmin welcome screen:
 
-![Welcome to shadcn-admin-kit!](./images/welcome-tanstack-start.png)
+![Welcome to shadmin!](./images/welcome-tanstack-start.png)
 
 :::tip
 You'll notice that the welcome screen includes a header bar from Tanstack Start. If you want to remove it, you can edit the `RootDocument` component in `src/routes/__root.tsx` and remove the `<Header />` component.

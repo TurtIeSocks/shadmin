@@ -232,7 +232,7 @@ By default, `<ReferenceManyToManyInputBase>` displays at most 25 entries from th
 
 `<ReferenceManyToManyInputBase>` displays a list of possible values from the reference table (e.g. `venues`) as suggestions in the input. It uses the `getList()` dataProvider call to fetch these possible values.
 
-By default, Shadcn Admin Kit displays at most 25 possible values from the reference table (e.g. 25 `venues`). You can change the limit by setting the `perPageChoices` prop:
+By default, Shadmin displays at most 25 possible values from the reference table (e.g. 25 `venues`). You can change the limit by setting the `perPageChoices` prop:
 
 ```tsx
 <ReferenceManyToManyInputBase
@@ -446,7 +446,7 @@ dataProvider.create("performances", {
 
 ## I18N
 
-This component uses specific translations for displaying notifications. As for all translations in Shadcn Admin Kit, it's possible to customize the messages.
+This component uses specific translations for displaying notifications. As for all translations in Shadmin, it's possible to customize the messages.
 
 To create your own translations, you can use the TypeScript types to see the structure and see which keys are overridable.
 

@@ -36,7 +36,7 @@ import { cn } from "@/lib/utils";
  * delegates pagination to `<InfinitePagination>`, which fetches the next page as
  * the user scrolls (or clicks the "Load more" button).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/infinitelist/ InfiniteList documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/infinite-list InfiniteList documentation}
  *
  * @example
  * import { DataTable, InfiniteList } from "@/components/admin";

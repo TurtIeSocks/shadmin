@@ -18,7 +18,7 @@ interface LinkProps extends RouterLinkProps {
  * default underline-on-hover treatment so consumers don't need to repeat
  * Tailwind utility classes for every navigation link.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/link/ Link documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/link Link documentation}
  *
  * @example
  * import { Link } from "@/components/admin";

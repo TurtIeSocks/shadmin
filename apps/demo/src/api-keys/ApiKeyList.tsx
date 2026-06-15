@@ -1,5 +1,5 @@
-import { DataTable, List } from "shadcn-admin-kit/components/admin";
-import { ApiKeyField } from "shadcn-admin-kit/components/extras/api-key-field";
+import { DataTable, List } from "shadmin/components/admin";
+import { ApiKeyField } from "shadmin/components/extras/api-key-field";
 
 export const ApiKeyList = () => (
   <List>

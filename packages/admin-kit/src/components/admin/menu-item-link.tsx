@@ -105,7 +105,7 @@ type MenuItemLinkProps = {
  * The active state is derived from `useMatch`; when the current pathname
  * starts with `to`, the item is highlighted.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/menuitemlink/ MenuItemLink documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/menu-item-link MenuItemLink documentation}
  *
  * @example
  * import { Settings } from "lucide-react";

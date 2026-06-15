@@ -34,7 +34,7 @@ interface ListActionsProps
  * filters are configured), `<CreateButton>` (when the resource exposes
  * a create route) and `<ExportButton>` (unless `exporter` is `false`).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listactions/ ListActions documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list-actions ListActions documentation}
  *
  * @example
  * import { CreateButton, ExportButton, List, ListActions } from "@/components/admin";

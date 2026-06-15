@@ -7,7 +7,7 @@ import { useTranslate, useSetInspectorTitle } from "ra-core";
  * renders a hint message inviting the user to hover the application UI to find
  * a {@link Configurable} element.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/inspector Inspector documentation}
  */
 function InspectorRoot() {
   const translate = useTranslate();

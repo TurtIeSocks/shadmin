@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "Shadcn Admin Kit",
-  "homepage": "https://marmelab.com/shadcn-admin-kit/",
+  "name": "Shadmin",
+  "homepage": "https://shadmin.turtlesocks.dev/",
   "items": [
     {
       "name": "admin",
       "type": "registry:block",
-      "title": "Shadcn Admin Kit Main Block",
+      "title": "Shadmin Main Block",
       "description": "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
       "registryDependencies": [
         "accordion",
@@ -829,7 +829,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -843,13 +843,13 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/locales-menu-button",
-        "@shadcn-admin-kit/refresh-button",
-        "@shadcn-admin-kit/sidebar-toggle-button",
-        "@shadcn-admin-kit/theme-mode-toggle",
-        "@shadcn-admin-kit/title-portal",
-        "@shadcn-admin-kit/user-menu"
+        "@shadmin/lib-utils",
+        "@shadmin/locales-menu-button",
+        "@shadmin/refresh-button",
+        "@shadmin/sidebar-toggle-button",
+        "@shadmin/theme-mode-toggle",
+        "@shadmin/title-portal",
+        "@shadmin/user-menu"
       ]
     },
     {
@@ -862,7 +862,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/menu", "sidebar"],
+      "registryDependencies": ["@shadmin/menu", "sidebar"],
       "dependencies": ["lucide-react", "react-router"]
     },
     {
@@ -875,7 +875,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button", "card"],
+      "registryDependencies": ["@shadmin/lib-utils", "button", "card"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -888,7 +888,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"],
+      "registryDependencies": ["@shadmin/lib-unknown-types"],
       "dependencies": ["ra-core"]
     },
     {
@@ -902,8 +902,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
         "field",
         "skeleton"
       ],
@@ -919,10 +919,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/auth-error",
-        "@shadcn-admin-kit/loading"
-      ],
+      "registryDependencies": ["@shadmin/auth-error", "@shadmin/loading"],
       "dependencies": ["ra-core"]
     },
     {
@@ -935,7 +932,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
       "dependencies": ["lucide-react", "ra-core", "react-router"]
     },
     {
@@ -948,10 +945,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/notification"
-      ]
+      "registryDependencies": ["@shadmin/lib-utils", "@shadmin/notification"]
     },
     {
       "name": "authentication-error",
@@ -963,10 +957,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/access-denied",
-        "@shadcn-admin-kit/title"
-      ],
+      "registryDependencies": ["@shadmin/access-denied", "@shadmin/title"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -980,9 +971,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-are-ids-equal",
-        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-are-ids-equal",
+        "@shadmin/lib-unknown-types",
         "badge",
         "command",
         "field",
@@ -1001,10 +992,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-are-ids-equal",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-are-ids-equal",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button",
         "command",
         "field",
@@ -1022,7 +1013,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-field-types", "badge"],
+      "registryDependencies": ["@shadmin/lib-field-types", "badge"],
       "dependencies": ["ra-core"]
     },
     {
@@ -1036,8 +1027,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-utils",
         "tooltip"
       ],
       "dependencies": ["lucide-react", "ra-core"]
@@ -1053,8 +1044,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-unknown-types",
         "field",
         "switch"
       ],
@@ -1090,9 +1081,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/bulk-delete-button",
-        "@shadcn-admin-kit/bulk-export-button",
-        "@shadcn-admin-kit/select-all-button",
+        "@shadmin/bulk-delete-button",
+        "@shadmin/bulk-export-button",
+        "@shadmin/select-all-button",
         "button",
         "card"
       ],
@@ -1109,9 +1100,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/confirm",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/confirm",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button"
       ],
       "dependencies": ["inflection", "lucide-react", "ra-core"]
@@ -1140,8 +1131,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/confirm",
-        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadmin/confirm",
+        "@shadmin/lib-unknown-types",
         "button"
       ],
       "dependencies": ["inflection", "lucide-react", "ra-core"]
@@ -1169,7 +1160,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"]
     },
     {
       "name": "check-for-application-update",
@@ -1181,9 +1172,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/application-updated-notification"
-      ]
+      "registryDependencies": ["@shadmin/application-updated-notification"]
     },
     {
       "name": "checkbox-group-input",
@@ -1196,8 +1185,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
         "checkbox",
         "field",
         "skeleton"
@@ -1215,9 +1204,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "badge"
       ],
       "dependencies": ["ra-core"]
@@ -1232,7 +1221,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
       "dependencies": ["lucide-react", "ra-core", "react-router"]
     },
     {
@@ -1246,8 +1235,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/field-toggle",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/field-toggle",
+        "@shadmin/lib-utils",
         "button",
         "input",
         "popover",
@@ -1266,7 +1255,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -1292,10 +1281,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "spinner"
-      ],
+      "registryDependencies": ["@shadmin/lib-unknown-types", "spinner"],
       "dependencies": ["lucide-react", "ra-core", "react-router"]
     },
     {
@@ -1321,10 +1307,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/breadcrumb",
-        "@shadcn-admin-kit/lib-utils"
-      ],
+      "registryDependencies": ["@shadmin/breadcrumb", "@shadmin/lib-utils"],
       "dependencies": ["ra-core", "react-router"]
     },
     {
@@ -1337,7 +1320,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/menu-item-link"],
+      "registryDependencies": ["@shadmin/menu-item-link"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -1351,11 +1334,11 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/bulk-actions-toolbar",
-        "@shadcn-admin-kit/columns-button",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/number-field",
+        "@shadmin/bulk-actions-toolbar",
+        "@shadmin/columns-button",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/number-field",
         "alert",
         "button",
         "checkbox",
@@ -1377,9 +1360,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/data-table",
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/data-table",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core"]
     },
@@ -1394,8 +1377,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
       ],
       "dependencies": ["ra-core"]
     },
@@ -1410,8 +1393,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
         "field",
         "input"
       ],
@@ -1428,8 +1411,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
         "field",
         "input"
       ],
@@ -1445,7 +1428,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/confirm", "button"],
+      "registryDependencies": ["@shadmin/confirm", "button"],
       "dependencies": ["inflection", "lucide-react", "ra-core"]
     },
     {
@@ -1483,13 +1466,13 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/autocomplete-input",
-        "@shadcn-admin-kit/boolean-input",
-        "@shadcn-admin-kit/edit",
-        "@shadcn-admin-kit/reference-array-input",
-        "@shadcn-admin-kit/reference-input",
-        "@shadcn-admin-kit/simple-form",
-        "@shadcn-admin-kit/text-input"
+        "@shadmin/autocomplete-input",
+        "@shadmin/boolean-input",
+        "@shadmin/edit",
+        "@shadmin/reference-array-input",
+        "@shadmin/reference-input",
+        "@shadmin/simple-form",
+        "@shadmin/text-input"
       ],
       "dependencies": ["inflection", "ra-core"]
     },
@@ -1504,10 +1487,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/breadcrumb",
-        "@shadcn-admin-kit/delete-button",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/show-button"
+        "@shadmin/breadcrumb",
+        "@shadmin/delete-button",
+        "@shadmin/lib-utils",
+        "@shadmin/show-button"
       ],
       "dependencies": ["ra-core", "react-router"]
     },
@@ -1522,9 +1505,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core"]
     },
@@ -1538,10 +1521,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/create-button",
-        "@shadcn-admin-kit/lib-utils"
-      ],
+      "registryDependencies": ["@shadmin/create-button", "@shadmin/lib-utils"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -1554,11 +1534,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/title",
-        "accordion",
-        "button"
-      ],
+      "registryDependencies": ["@shadmin/title", "accordion", "button"],
       "dependencies": ["lucide-react", "ra-core"],
       "devDependencies": ["react-error-boundary"]
     },
@@ -1572,7 +1548,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types", "button"],
+      "registryDependencies": ["@shadmin/lib-unknown-types", "button"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -1585,7 +1561,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "switch"],
+      "registryDependencies": ["@shadmin/lib-utils", "switch"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -1598,7 +1574,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/field-toggle", "button"],
+      "registryDependencies": ["@shadmin/field-toggle", "button"],
       "dependencies": ["ra-core"]
     },
     {
@@ -1612,9 +1588,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["lodash", "ra-core"]
     },
@@ -1629,9 +1605,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button",
         "field"
       ],
@@ -1648,9 +1624,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/saved-queries",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/saved-queries",
         "button",
         "dropdown-menu"
       ],
@@ -1673,8 +1649,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core"]
@@ -1690,8 +1666,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core"]
@@ -1706,7 +1682,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["ra-core"]
     },
     {
@@ -1720,8 +1696,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/filter-list-section",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/filter-list-section",
+        "@shadmin/lib-utils"
       ]
     },
     {
@@ -1734,7 +1710,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/search-input"],
+      "registryDependencies": ["@shadmin/search-input"],
       "dependencies": ["ra-core"]
     },
     {
@@ -1748,9 +1724,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core"]
     },
@@ -1776,7 +1752,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"]
     },
     {
       "name": "icon-button-with-tooltip",
@@ -1802,9 +1778,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["lodash", "ra-core"]
     },
@@ -1818,10 +1794,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/file-input",
-        "@shadcn-admin-kit/image-field"
-      ]
+      "registryDependencies": ["@shadmin/file-input", "@shadmin/image-field"]
     },
     {
       "name": "infinite-list",
@@ -1834,14 +1807,14 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/breadcrumb",
-        "@shadcn-admin-kit/create-button",
-        "@shadcn-admin-kit/empty",
-        "@shadcn-admin-kit/export-button",
-        "@shadcn-admin-kit/filter-button",
-        "@shadcn-admin-kit/filter-form",
-        "@shadcn-admin-kit/infinite-pagination",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/breadcrumb",
+        "@shadmin/create-button",
+        "@shadmin/empty",
+        "@shadmin/export-button",
+        "@shadmin/filter-button",
+        "@shadmin/filter-form",
+        "@shadmin/infinite-pagination",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core", "react-router"]
     },
@@ -1855,11 +1828,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "button",
-        "spinner"
-      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button", "spinner"],
       "dependencies": ["ra-core"]
     },
     {
@@ -1911,8 +1880,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/inspector-root",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/inspector-root",
+        "@shadmin/lib-utils",
         "button"
       ],
       "dependencies": ["lucide-react", "ra-core"]
@@ -1927,7 +1896,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"]
     },
     {
       "name": "labeled",
@@ -1939,7 +1908,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["ra-core"]
     },
     {
@@ -1953,15 +1922,15 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/app-bar",
-        "@shadcn-admin-kit/app-sidebar",
-        "@shadcn-admin-kit/error",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/loading",
-        "@shadcn-admin-kit/menu",
-        "@shadcn-admin-kit/notification",
-        "@shadcn-admin-kit/skip-navigation-button",
+        "@shadmin/app-bar",
+        "@shadmin/app-sidebar",
+        "@shadmin/error",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/loading",
+        "@shadmin/menu",
+        "@shadmin/notification",
+        "@shadmin/skip-navigation-button",
         "sidebar"
       ],
       "dependencies": ["ra-core"],
@@ -1977,7 +1946,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["ra-core"]
     },
     {
@@ -1990,7 +1959,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["react-router"]
     },
     {
@@ -2004,10 +1973,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/create-button",
-        "@shadcn-admin-kit/export-button",
-        "@shadcn-admin-kit/filter-button",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/create-button",
+        "@shadmin/export-button",
+        "@shadmin/filter-button",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2021,7 +1990,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
       "dependencies": ["lucide-react", "ra-core", "react-router"]
     },
     {
@@ -2035,14 +2004,14 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/array-field",
-        "@shadcn-admin-kit/badge-field",
-        "@shadcn-admin-kit/data-table",
-        "@shadcn-admin-kit/guesser-empty",
-        "@shadcn-admin-kit/list",
-        "@shadcn-admin-kit/reference-array-field",
-        "@shadcn-admin-kit/reference-field",
-        "@shadcn-admin-kit/single-field-list"
+        "@shadmin/array-field",
+        "@shadmin/badge-field",
+        "@shadmin/data-table",
+        "@shadmin/guesser-empty",
+        "@shadmin/list",
+        "@shadmin/reference-array-field",
+        "@shadmin/reference-field",
+        "@shadmin/single-field-list"
       ],
       "dependencies": ["inflection", "ra-core", "react-router"]
     },
@@ -2057,8 +2026,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button"
       ],
       "dependencies": ["ra-core"]
@@ -2074,7 +2043,7 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-utils",
         "button",
         "pagination",
         "select"
@@ -2092,9 +2061,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/filter-form",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/list-actions"
+        "@shadmin/filter-form",
+        "@shadmin/lib-utils",
+        "@shadmin/list-actions"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2109,14 +2078,14 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/breadcrumb",
-        "@shadcn-admin-kit/create-button",
-        "@shadcn-admin-kit/empty",
-        "@shadcn-admin-kit/export-button",
-        "@shadcn-admin-kit/filter-button",
-        "@shadcn-admin-kit/filter-form",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/list-pagination"
+        "@shadmin/breadcrumb",
+        "@shadmin/create-button",
+        "@shadmin/empty",
+        "@shadmin/export-button",
+        "@shadmin/filter-button",
+        "@shadmin/filter-form",
+        "@shadmin/lib-utils",
+        "@shadmin/list-pagination"
       ],
       "dependencies": ["ra-core", "react-router"]
     },
@@ -2131,8 +2100,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/refresh-icon-button",
+        "@shadmin/lib-utils",
+        "@shadmin/refresh-icon-button",
         "spinner"
       ],
       "dependencies": ["ra-core"]
@@ -2148,8 +2117,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/spinner",
+        "@shadmin/lib-utils",
+        "@shadmin/spinner",
         "input",
         "label"
       ],
@@ -2165,7 +2134,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/spinner"],
+      "registryDependencies": ["@shadmin/spinner"],
       "dependencies": ["ra-core"]
     },
     {
@@ -2178,11 +2147,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "button",
-        "dropdown-menu"
-      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button", "dropdown-menu"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -2196,9 +2161,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-notify-auth-error",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/text-input",
+        "@shadmin/lib-notify-auth-error",
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
         "button",
         "spinner"
       ],
@@ -2214,10 +2179,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/auth-layout",
-        "@shadcn-admin-kit/login-form"
-      ],
+      "registryDependencies": ["@shadmin/auth-layout", "@shadmin/login-form"],
       "dependencies": ["ra-core", "react-router"]
     },
     {
@@ -2231,10 +2193,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-notify-auth-error",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/password-input",
-        "@shadcn-admin-kit/text-input",
+        "@shadmin/lib-notify-auth-error",
+        "@shadmin/lib-utils",
+        "@shadmin/password-input",
+        "@shadmin/text-input",
         "button",
         "spinner"
       ],
@@ -2250,7 +2212,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "dropdown-menu"],
+      "registryDependencies": ["@shadmin/lib-utils", "dropdown-menu"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -2264,7 +2226,7 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/keyboard-shortcut",
+        "@shadmin/keyboard-shortcut",
         "sidebar",
         "tooltip"
       ],
@@ -2281,12 +2243,12 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/dashboard-menu-item",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/menu-item-link",
-        "@shadcn-admin-kit/resource",
-        "@shadcn-admin-kit/resource-menu-item",
-        "@shadcn-admin-kit/resource-menu-item-group",
+        "@shadmin/dashboard-menu-item",
+        "@shadmin/lib-utils",
+        "@shadmin/menu-item-link",
+        "@shadmin/resource",
+        "@shadmin/resource-menu-item",
+        "@shadmin/resource-menu-item-group",
         "sidebar"
       ],
       "dependencies": ["ra-core"]
@@ -2301,11 +2263,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/loading",
-        "@shadcn-admin-kit/title",
-        "button"
-      ],
+      "registryDependencies": ["@shadmin/loading", "@shadmin/title", "button"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -2318,7 +2276,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/use-theme"],
+      "registryDependencies": ["@shadmin/use-theme"],
       "dependencies": ["ra-core", "sonner"]
     },
     {
@@ -2332,8 +2290,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
         "field",
         "select"
       ],
@@ -2350,8 +2308,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2365,11 +2323,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "field",
-        "input"
-      ],
+      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
       "dependencies": ["ra-core"]
     },
     {
@@ -2382,7 +2336,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["lucide-react", "ra-core"]
     },
     {
@@ -2396,8 +2350,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/text-input",
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
         "button"
       ],
       "dependencies": ["lucide-react", "ra-core"]
@@ -2412,7 +2366,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"]
     },
     {
       "name": "prev-next-buttons",
@@ -2424,11 +2378,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "button",
-        "skeleton"
-      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button", "skeleton"],
       "dependencies": ["lucide-react", "ra-core", "react-router"]
     },
     {
@@ -2442,9 +2392,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-sanitize-input-rest-props",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-sanitize-input-rest-props",
+        "@shadmin/lib-utils",
         "field",
         "radio-group",
         "skeleton"
@@ -2474,10 +2424,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/text-field"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/text-field"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2492,10 +2442,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/linear-progress",
-        "@shadcn-admin-kit/offline",
-        "@shadcn-admin-kit/single-field-list"
+        "@shadmin/lib-field-types",
+        "@shadmin/linear-progress",
+        "@shadmin/offline",
+        "@shadmin/single-field-list"
       ],
       "dependencies": ["@tanstack/react-query", "ra-core"]
     },
@@ -2510,8 +2460,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/autocomplete-array-input",
-        "@shadcn-admin-kit/offline"
+        "@shadmin/autocomplete-array-input",
+        "@shadmin/offline"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2526,9 +2476,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/offline"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/offline"
       ],
       "dependencies": ["@tanstack/react-query", "ra-core", "react-router"]
     },
@@ -2543,8 +2493,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/autocomplete-input",
-        "@shadcn-admin-kit/offline"
+        "@shadmin/autocomplete-input",
+        "@shadmin/offline"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2559,9 +2509,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/offline",
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/offline",
         "spinner"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"]
@@ -2576,10 +2526,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/offline"
-      ],
+      "registryDependencies": ["@shadmin/lib-field-types", "@shadmin/offline"],
       "dependencies": ["ra-core"]
     },
     {
@@ -2593,10 +2540,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/offline",
-        "@shadcn-admin-kit/reference-field"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/offline",
+        "@shadmin/reference-field"
       ],
       "dependencies": ["@tanstack/react-query", "ra-core"]
     },
@@ -2624,7 +2571,7 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-resolve-label",
+        "@shadmin/lib-resolve-label",
         "button",
         "tooltip"
       ],
@@ -2641,8 +2588,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/text-input",
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
         "button"
       ],
       "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
@@ -2658,8 +2605,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/resource-menu-item",
+        "@shadmin/lib-utils",
+        "@shadmin/resource-menu-item",
         "collapsible",
         "sidebar"
       ],
@@ -2701,9 +2648,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["dompurify", "html-react-parser", "ra-core"]
     },
@@ -2718,7 +2665,7 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadmin/lib-unknown-types",
         "button",
         "spinner"
       ],
@@ -2740,8 +2687,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/filter-list",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/filter-list",
+        "@shadmin/lib-utils",
         "button",
         "dialog",
         "input",
@@ -2760,8 +2707,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/text-input",
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
         "button"
       ],
       "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
@@ -2776,7 +2723,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "button"],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
       "dependencies": ["ra-core"]
     },
     {
@@ -2790,8 +2737,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
         "badge",
         "button",
         "checkbox",
@@ -2812,8 +2759,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2828,9 +2775,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "field",
         "select",
         "skeleton"
@@ -2861,16 +2808,16 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/array-field",
-        "@shadcn-admin-kit/badge-field",
-        "@shadcn-admin-kit/date-field",
-        "@shadcn-admin-kit/number-field",
-        "@shadcn-admin-kit/record-field",
-        "@shadcn-admin-kit/reference-array-field",
-        "@shadcn-admin-kit/reference-field",
-        "@shadcn-admin-kit/show",
-        "@shadcn-admin-kit/simple-show-layout",
-        "@shadcn-admin-kit/single-field-list"
+        "@shadmin/array-field",
+        "@shadmin/badge-field",
+        "@shadmin/date-field",
+        "@shadmin/number-field",
+        "@shadmin/record-field",
+        "@shadmin/reference-array-field",
+        "@shadmin/reference-field",
+        "@shadmin/show",
+        "@shadmin/simple-show-layout",
+        "@shadmin/single-field-list"
       ],
       "dependencies": ["inflection", "ra-core"]
     },
@@ -2885,9 +2832,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/breadcrumb",
-        "@shadcn-admin-kit/edit-button",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/breadcrumb",
+        "@shadmin/edit-button",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core", "react-router"]
     },
@@ -2901,11 +2848,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "sidebar",
-        "tooltip"
-      ],
+      "registryDependencies": ["@shadmin/lib-utils", "sidebar", "tooltip"],
       "dependencies": ["ra-core"]
     },
     {
@@ -2919,9 +2862,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/configurable",
-        "@shadcn-admin-kit/fields-selector",
-        "@shadcn-admin-kit/simple-form"
+        "@shadmin/configurable",
+        "@shadmin/fields-selector",
+        "@shadmin/simple-form"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2936,10 +2879,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/confirm",
-        "@shadcn-admin-kit/icon-button-with-tooltip",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/confirm",
+        "@shadmin/icon-button-with-tooltip",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button",
         "tooltip"
       ],
@@ -2956,9 +2899,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/cancel-button",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/save-button"
+        "@shadmin/cancel-button",
+        "@shadmin/lib-utils",
+        "@shadmin/save-button"
       ],
       "dependencies": ["ra-core"]
     },
@@ -2972,7 +2915,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["ra-core", "react-router"]
     },
     {
@@ -2985,7 +2928,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "skeleton"],
+      "registryDependencies": ["@shadmin/lib-utils", "skeleton"],
       "dependencies": ["ra-core"]
     },
     {
@@ -2999,10 +2942,10 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/list-no-results",
-        "@shadcn-admin-kit/simple-list-item",
-        "@shadcn-admin-kit/simple-list-loading"
+        "@shadmin/lib-utils",
+        "@shadmin/list-no-results",
+        "@shadmin/simple-list-item",
+        "@shadmin/simple-list-loading"
       ],
       "dependencies": ["ra-core"]
     },
@@ -3016,10 +2959,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/labeled",
-        "@shadcn-admin-kit/lib-utils"
-      ],
+      "registryDependencies": ["@shadmin/labeled", "@shadmin/lib-utils"],
       "dependencies": ["ra-core"]
     },
     {
@@ -3033,8 +2973,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "badge"
       ],
       "dependencies": ["ra-core"]
@@ -3050,8 +2990,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-resolve-label",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-resolve-label",
+        "@shadmin/lib-utils",
         "button"
       ],
       "dependencies": ["ra-core"]
@@ -3084,7 +3024,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "spinner"]
+      "registryDependencies": ["@shadmin/lib-utils", "spinner"]
     },
     {
       "name": "tabbed-form",
@@ -3097,9 +3037,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/simple-form",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/simple-form",
         "tabs"
       ],
       "dependencies": ["ra-core", "react-router"]
@@ -3115,8 +3055,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/labeled",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/labeled",
+        "@shadmin/lib-utils",
         "tabs"
       ],
       "dependencies": ["ra-core", "react-router"]
@@ -3132,9 +3072,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "badge"
       ],
       "dependencies": ["ra-core"]
@@ -3150,7 +3090,7 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
+        "@shadmin/input-helper-text",
         "badge",
         "command",
         "field",
@@ -3169,8 +3109,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
       ],
       "dependencies": ["ra-core"]
     },
@@ -3185,9 +3125,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "@shadcn-admin-kit/lib-sanitize-input-rest-props",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-sanitize-input-rest-props",
+        "@shadmin/lib-utils",
         "field",
         "input",
         "textarea"
@@ -3205,8 +3145,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/use-theme",
+        "@shadmin/lib-utils",
+        "@shadmin/use-theme",
         "button",
         "dropdown-menu"
       ],
@@ -3223,9 +3163,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/theme-context",
-        "@shadcn-admin-kit/theme-types",
-        "@shadcn-admin-kit/themes-context"
+        "@shadmin/theme-context",
+        "@shadmin/theme-types",
+        "@shadmin/themes-context"
       ],
       "dependencies": ["ra-core"]
     },
@@ -3239,11 +3179,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadcn-admin-kit/input-helper-text",
-        "field",
-        "input"
-      ],
+      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
       "dependencies": ["clsx", "ra-core"]
     },
     {
@@ -3257,8 +3193,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-title-portal-id",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-title-portal-id",
+        "@shadmin/lib-utils"
       ]
     },
     {
@@ -3272,8 +3208,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-title-portal-id",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-title-portal-id",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core"]
     },
@@ -3288,8 +3224,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
         "button"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core"]
@@ -3305,9 +3241,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/delete-button",
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/save-button"
+        "@shadmin/delete-button",
+        "@shadmin/lib-utils",
+        "@shadmin/save-button"
       ]
     },
     {
@@ -3320,7 +3256,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"]
     },
     {
       "name": "translatable-fields-tab-content",
@@ -3332,7 +3268,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "label", "tabs"],
+      "registryDependencies": ["@shadmin/lib-utils", "label", "tabs"],
       "dependencies": ["ra-core"]
     },
     {
@@ -3359,8 +3295,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/translatable-fields-tab",
+        "@shadmin/lib-utils",
+        "@shadmin/translatable-fields-tab",
         "tabs"
       ],
       "dependencies": ["ra-core"]
@@ -3376,9 +3312,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/translatable-fields-tab-content",
-        "@shadcn-admin-kit/translatable-fields-tabs",
+        "@shadmin/lib-utils",
+        "@shadmin/translatable-fields-tab-content",
+        "@shadmin/translatable-fields-tabs",
         "tabs"
       ],
       "dependencies": ["ra-core"]
@@ -3393,7 +3329,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "tabs"],
+      "registryDependencies": ["@shadmin/lib-utils", "tabs"],
       "dependencies": ["ra-core"]
     },
     {
@@ -3406,7 +3342,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-utils", "tabs"],
+      "registryDependencies": ["@shadmin/lib-utils", "tabs"],
       "dependencies": ["inflection", "ra-core"]
     },
     {
@@ -3420,8 +3356,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/translatable-inputs-tab",
+        "@shadmin/lib-utils",
+        "@shadmin/translatable-inputs-tab",
         "tabs"
       ],
       "dependencies": ["ra-core"]
@@ -3437,9 +3373,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-utils",
-        "@shadcn-admin-kit/translatable-inputs-tab-content",
-        "@shadcn-admin-kit/translatable-inputs-tabs",
+        "@shadmin/lib-utils",
+        "@shadmin/translatable-inputs-tab-content",
+        "@shadmin/translatable-inputs-tabs",
         "tabs"
       ],
       "dependencies": ["ra-core"]
@@ -3455,8 +3391,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/confirm",
-        "@shadcn-admin-kit/lib-unknown-types",
+        "@shadmin/confirm",
+        "@shadmin/lib-unknown-types",
         "button"
       ],
       "dependencies": ["inflection", "lucide-react", "ra-core"]
@@ -3472,9 +3408,9 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types",
-        "@shadcn-admin-kit/lib-utils"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core"]
     },
@@ -3489,7 +3425,7 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/logout",
+        "@shadmin/logout",
         "avatar",
         "button",
         "dropdown-menu",
@@ -3508,8 +3444,8 @@
         }
       ],
       "registryDependencies": [
-        "@shadcn-admin-kit/lib-field-types",
-        "@shadcn-admin-kit/lib-unknown-types"
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
       ]
     },
     {
@@ -3534,7 +3470,7 @@
           "type": "registry:hook"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/theme-context"]
+      "registryDependencies": ["@shadmin/theme-context"]
     },
     {
       "name": "lib-are-ids-equal",
@@ -3557,7 +3493,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"],
+      "registryDependencies": ["@shadmin/lib-unknown-types"],
       "dependencies": ["ra-core"]
     },
     {
@@ -3605,7 +3541,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/lib-unknown-types"]
+      "registryDependencies": ["@shadmin/lib-unknown-types"]
     },
     {
       "name": "bw-theme",
@@ -3617,7 +3553,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+      "registryDependencies": ["@shadmin/theme-types"]
     },
     {
       "name": "default-theme",
@@ -3629,7 +3565,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+      "registryDependencies": ["@shadmin/theme-types"]
     },
     {
       "name": "house-theme",
@@ -3641,7 +3577,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+      "registryDependencies": ["@shadmin/theme-types"]
     },
     {
       "name": "nano-theme",
@@ -3653,7 +3589,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+      "registryDependencies": ["@shadmin/theme-types"]
     },
     {
       "name": "radiant-theme",
@@ -3665,7 +3601,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+      "registryDependencies": ["@shadmin/theme-types"]
     },
     {
       "name": "theme-context",
@@ -3699,7 +3635,7 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadcn-admin-kit/theme-types"]
+      "registryDependencies": ["@shadmin/theme-types"]
     },
     {
       "name": "lib-title-portal-id",
@@ -3739,9 +3675,9 @@
       "name": "rich-text-input",
       "type": "registry:block",
       "title": "RichTextInput",
-      "description": "Optional rich text input for Shadcn Admin Kit. Includes the full Minimal TipTap block.",
+      "description": "Optional rich text input for Shadmin. Includes the full Minimal TipTap block.",
       "registryDependencies": [
-        "@shadcn-admin-kit/admin",
+        "@shadmin/admin",
         "button",
         "dialog",
         "dropdown-menu",
@@ -4000,9 +3936,9 @@
       "name": "block-editor",
       "type": "registry:block",
       "title": "BlockEditor",
-      "description": "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadcn Admin Kit, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
+      "description": "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadmin, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
       "registryDependencies": [
-        "@shadcn-admin-kit/admin",
+        "@shadmin/admin",
         "button",
         "card",
         "command",
@@ -4141,8 +4077,8 @@
       "name": "mdx-editor",
       "type": "registry:block",
       "title": "MdxEditor",
-      "description": "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadcn Admin Kit, powered by MDXEditor.",
-      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "description": "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadmin, powered by MDXEditor.",
+      "registryDependencies": ["@shadmin/admin"],
       "dependencies": ["@mdxeditor/editor"],
       "files": [
         {
@@ -4167,9 +4103,9 @@
       "name": "leaflet-admin",
       "type": "registry:block",
       "title": "LeafletAdmin",
-      "description": "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadcn Admin Kit.",
+      "description": "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadmin.",
       "registryDependencies": [
-        "@shadcn-admin-kit/admin",
+        "@shadmin/admin",
         "slider",
         "toggle",
         "toggle-group"
@@ -4396,8 +4332,8 @@
       "name": "csv-import",
       "type": "registry:block",
       "title": "CsvImport",
-      "description": "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadcn Admin Kit. Validates rows against a zod schema and batches inserts via the data provider.",
-      "registryDependencies": ["@shadcn-admin-kit/admin", "button", "progress"],
+      "description": "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadmin. Validates rows against a zod schema and batches inserts via the data provider.",
+      "registryDependencies": ["@shadmin/admin", "button", "progress"],
       "dependencies": ["papaparse", "zod"],
       "devDependencies": ["@types/papaparse"],
       "files": [
@@ -4418,13 +4354,9 @@
     {
       "name": "extras",
       "type": "registry:block",
-      "title": "Shadcn Admin Kit Extras",
-      "description": "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadcn Admin Kit.",
-      "registryDependencies": [
-        "@shadcn-admin-kit/admin",
-        "alert-dialog",
-        "progress"
-      ],
+      "title": "Shadmin Extras",
+      "description": "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
+      "registryDependencies": ["@shadmin/admin", "alert-dialog", "progress"],
       "dependencies": [
         "@dnd-kit/core",
         "@dnd-kit/sortable",
@@ -4655,8 +4587,8 @@
       "name": "monaco",
       "type": "registry:block",
       "title": "Monaco JSON Field & Input",
-      "description": "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadcn Admin Kit.",
-      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "description": "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadmin.",
+      "registryDependencies": ["@shadmin/admin"],
       "dependencies": ["@monaco-editor/react", "monaco-editor"],
       "files": [
         {
@@ -4721,8 +4653,8 @@
       "name": "supabase",
       "type": "registry:block",
       "title": "Supabase Admin",
-      "description": "Optional Supabase integration for Shadcn Admin Kit: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
-      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "description": "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
+      "registryDependencies": ["@shadmin/admin"],
       "dependencies": [
         "@supabase/supabase-js",
         "openapi-types",
@@ -4826,7 +4758,7 @@
     {
       "name": "realtime",
       "type": "registry:block",
-      "title": "Shadcn Admin Kit Realtime",
+      "title": "Shadmin Realtime",
       "description": "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live List/Edit/Show views, menu badges, record locks.",
       "registryDependencies": ["admin"],
       "dependencies": [
@@ -4974,8 +4906,8 @@
     {
       "name": "example-admin",
       "type": "registry:block",
-      "title": "Example Admin built with Shadcn Admin Kit",
-      "registryDependencies": ["@shadcn-admin-kit/admin"],
+      "title": "Example Admin built with Shadmin",
+      "registryDependencies": ["@shadmin/admin"],
       "dependencies": [],
       "files": [
         {

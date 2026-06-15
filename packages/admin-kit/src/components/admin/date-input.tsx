@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
  * a native browser date picker (appearance varies by browser). Automatically handles date parsing
  * from ISO strings, Date objects, or timestamps.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/dateinput/ DateInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/date-input DateInput documentation}
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date MDN documentation for input type="date"}
  *
  * @example

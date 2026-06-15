@@ -22,7 +22,7 @@ type SkipNavigationButtonProps = Omit<
  * Place this component at the top of the page (e.g., in the layout) so it is the
  * first focusable element when navigating with the keyboard.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/skipnavigationbutton/ SkipNavigationButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/skip-navigation-button SkipNavigationButton documentation}
  *
  * @example
  * import { SkipNavigationButton } from '@/components/admin';

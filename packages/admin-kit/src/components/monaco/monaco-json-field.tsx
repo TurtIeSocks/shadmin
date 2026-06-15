@@ -14,7 +14,7 @@ const LazyInner = lazy(() =>
  *
  * Monaco is lazy-loaded.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/monaco-json-field/ MonacoJsonField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/monaco-json-field MonacoJsonField documentation}
  *
  * @example
  * import { Show, SimpleShowLayout } from '@/components/admin';

@@ -30,7 +30,7 @@ type ButtonProps = React.ComponentProps<typeof Button>;
  *
  * Displays current sort field and order, and toggles between ASC and DESC when clicking the same field again.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/sortbutton/ SortButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/sort-button SortButton documentation}
  *
  * @example
  * import { SortButton } from '@/components/admin';

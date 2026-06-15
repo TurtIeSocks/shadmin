@@ -33,20 +33,20 @@ const inlineChangelogPlugin = {
 export default defineConfig({
   integrations: [
     starlight({
-      title: "Shadcn Admin Kit",
+      title: "Shadmin",
       customCss: ["./src/styles/global.css"],
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/marmelab/shadcn-admin-kit",
+          href: "https://github.com/TurtIeSocks/shadmin",
         },
       ],
       favicon: "/icon.png",
       logo: {
         light: "./public/logo-light.svg",
         dark: "./public/logo-dark.svg",
-        alt: "Shadcn Admin Kit",
+        alt: "Shadmin",
       },
       head: [
         // add Umami analytics script tag.
@@ -61,7 +61,7 @@ export default defineConfig({
         },
         {
           tag: "script",
-          content: `window.addEventListener('load', () => document.querySelector('.site-title').href = 'https://marmelab.com/shadcn-admin-kit/')`,
+          content: `window.addEventListener('load', () => document.querySelector('.site-title').href = 'https://shadmin.turtlesocks.dev/')`,
         },
       ],
       sidebar,
@@ -78,14 +78,14 @@ export default defineConfig({
       [
         rehypeAstroRelativeMarkdownLinks,
         {
-          base: "/shadcn-admin-kit/docs/",
+          base: "/shadmin/docs/",
           collectionBase: false,
         },
       ],
     ],
   },
   redirects: {
-    "/": "/shadcn-admin-kit/docs/install",
+    "/": "/shadmin/docs/install",
     ...legacyRedirects,
   },
   vite: {
@@ -93,7 +93,7 @@ export default defineConfig({
     // @ts-expect-error
     plugins: [tailwindcss(), inlineChangelogPlugin],
   },
-  base: "/shadcn-admin-kit/docs/",
+  base: "/shadmin/docs/",
   site: "https://marmelab.com",
   build: {
     assets: "astro-assets",

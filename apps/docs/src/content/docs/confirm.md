@@ -2,7 +2,7 @@
 title: "Confirm"
 ---
 
-`<Confirm>` is a generic confirmation dialog component, used by Shadcn Admin Kit internally for destructive actions. You can use it in your own custom actions as well.
+`<Confirm>` is a generic confirmation dialog component, used by Shadmin internally for destructive actions. You can use it in your own custom actions as well.
 
 ![Confirm](./images/confirm.jpg)
 

@@ -5,8 +5,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "shadcn-admin-kit/components/ui/table";
-import { Label } from "shadcn-admin-kit/components/ui/label";
+} from "shadmin/components/ui/table";
+import { Label } from "shadmin/components/ui/label";
 import { useTranslate, useGetMany, useRecordContext } from "ra-core";
 import { Link } from "react-router";
 

@@ -1,5 +1,5 @@
-import { buttonVariants } from "shadcn-admin-kit/components/ui/button";
-import { Card } from "shadcn-admin-kit/components/ui/card";
+import { buttonVariants } from "shadmin/components/ui/button";
+import { Card } from "shadmin/components/ui/card";
 import { House, Code } from "lucide-react";
 import { useTranslate } from "ra-core";
 
@@ -21,7 +21,7 @@ const Welcome = () => {
             className={buttonVariants({
               variant: "outline",
             })}
-            href="https://marmelab.com/shadcn-admin-kit/"
+            href="https://shadmin.turtlesocks.dev/"
           >
             <House className="mr-2 size-4" />
             {translate("pos.dashboard.welcome.ra_button")}
@@ -30,7 +30,7 @@ const Welcome = () => {
             className={buttonVariants({
               variant: "outline",
             })}
-            href="https://github.com/marmelab/shadcn-admin-kit/tree/main/src/demo"
+            href="https://github.com/TurtIeSocks/shadmin/tree/main/src/demo"
           >
             <Code className="mr-2 size-4" />
             {translate("pos.dashboard.welcome.demo_button")}

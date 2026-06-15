@@ -25,7 +25,7 @@ interface SubscriptionPlanFieldProps<
  * Displays the user's current subscription plan as a compact badge showing
  * plan name + price. Looks up the plan from a `plans` array by id.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/subscription-plan-field/ SubscriptionPlanField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/subscription-plan-field SubscriptionPlanField documentation}
  *
  * @example
  * import { SubscriptionPlanField } from '@/components/admin';

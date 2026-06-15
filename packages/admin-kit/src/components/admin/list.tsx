@@ -33,7 +33,7 @@ import { FilterForm } from "@/components/admin/filter-form";
  * action buttons, inline filters, pagination), then renders its children
  * (usually a <DataTable>).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/list/ List documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list List documentation}
  *
  * @example
  * import { DataTable, List } from "@/components/admin";

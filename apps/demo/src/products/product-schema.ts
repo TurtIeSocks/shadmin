@@ -1,4 +1,4 @@
-import type { JsonSchema } from "shadcn-admin-kit/components/extras/schema-driven-view";
+import type { JsonSchema } from "shadmin/components/extras/schema-driven-view";
 
 /**
  * Flat JSON Schema describing a Product for the SchemaDrivenView demo.

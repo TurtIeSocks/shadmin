@@ -26,7 +26,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  * Automatically handles form submission, validation, and loading states. Shows a spinner during
  * save operations and can be disabled when the form is pristine or invalid.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savebutton/ SaveButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/save-button SaveButton documentation}
  *
  * @example
  * import { SimpleForm, SaveButton } from '@/components/admin';

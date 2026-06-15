@@ -24,7 +24,7 @@ import {
  * user actually touched are passed to `useUpdateMany`. Untouched fields are
  * preserved on each record.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulk-edit-drawer/ BulkEditDrawer documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-edit-drawer BulkEditDrawer documentation}
  *
  * @example
  * import { BulkEditDrawer, NumberInput, SelectInput } from '@/components/admin';

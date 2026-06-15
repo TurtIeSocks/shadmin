@@ -50,14 +50,14 @@ export function Why() {
   return (
     <section
       id="why"
-      aria-label="Why choose Shadcn Admin Kit"
+      aria-label="Why choose Shadmin"
       className="py-20"
     >
       <Container>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <p className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-              Why choose Shadcn Admin Kit?
+              Why choose Shadmin?
             </p>
           </div>
           <div className="mx-auto mt-12 max-w-2xl sm:mt-16 lg:mt-20 lg:max-w-4xl">

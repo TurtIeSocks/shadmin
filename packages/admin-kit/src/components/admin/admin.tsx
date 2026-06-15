@@ -6,7 +6,6 @@ import {
   type CoreAdminProps,
   localStorageStore,
 } from "ra-core";
-import { useEffect } from "react";
 import { i18nProvider as defaultI18nProvider } from "@/lib/i18n-provider";
 import { Layout } from "@/components/admin/layout";
 import { LoginPage } from "@/components/admin/login-page";
@@ -19,7 +18,7 @@ import { AuthCallback } from "@/components/admin/auth-callback";
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
  *
- * The shadcn-admin-kit extension adds the `theme` / `lightTheme` / `darkTheme`
+ * The shadmin extension adds the `theme` / `lightTheme` / `darkTheme`
  * trio so a named {@link AdminTheme} palette can be selected at the root.
  */
 interface AdminProps extends CoreAdminProps {
@@ -61,7 +60,7 @@ const defaultStore = localStorageStore();
 /**
  * Provider half of `<Admin>`.
  *
- * Wraps `CoreAdminContext` and applies shadcn-admin-kit's default `store`
+ * Wraps `CoreAdminContext` and applies shadmin's default `store`
  * and `i18nProvider`. Use this directly when you need to interleave a
  * context-providing wrapper (for example the `<CommandMenu>` palette from
  * `@/components/extras/command-menu`) between the data providers and the
@@ -98,9 +97,9 @@ function AdminContext({
 /**
  * UI half of `<Admin>`.
  *
- * Wraps `CoreAdminUI` with the {@link ThemeProvider} and the shadcn-admin-kit
- * default pages (login, not-found, ready, auth-callback). Telemetry pings are
- * emitted from here in production builds unless `disableTelemetry` is set.
+ * Wraps `CoreAdminUI` with the {@link ThemeProvider} and the shadmin
+ * default pages (login, not-found, ready, auth-callback). ra-core telemetry is
+ * force-disabled here so the kit never pings an external endpoint.
  *
  * Must be rendered inside an {@link AdminContext}.
  */
@@ -109,48 +108,33 @@ function AdminUI(props: AdminUIProps) {
     authCallbackPage = AuthCallback,
     catchAll = NotFound,
     darkTheme,
-    disableTelemetry = false,
     layout = Layout,
     lightTheme,
     loginPage = LoginPage,
     ready = Ready,
     theme,
-    title = "Shadcn Admin",
+    title = "Shadmin",
     ...rest
   } = props;
-
-  useEffect(() => {
-    if (
-      disableTelemetry ||
-      process.env.NODE_ENV !== "production" ||
-      typeof window === "undefined" ||
-      typeof window.location === "undefined" ||
-      typeof Image === "undefined"
-    ) {
-      return;
-    }
-    const img = new Image();
-    img.src = `https://shadcn-admin-kit-telemetry.marmelab.com/shadcn-admin-kit-telemetry?domain=${window.location.hostname}`;
-  }, [disableTelemetry]);
 
   return (
     <ThemeProvider theme={theme} lightTheme={lightTheme} darkTheme={darkTheme}>
       <CoreAdminUI
         authCallbackPage={authCallbackPage}
         catchAll={catchAll}
-        disableTelemetry // Disable telemetry in CoreAdminUI to avoid double logging
         layout={layout}
         loginPage={loginPage}
         ready={ready}
         title={title}
         {...rest}
+        disableTelemetry // forced off: the kit never pings an external telemetry endpoint
       />
     </ThemeProvider>
   );
 }
 
 /**
- * Root component of a shadcn-admin-kit application.
+ * Root component of a shadmin application.
  *
  * Creates context providers to allow its children to access the app configuration.
  * Renders the main routes and layout, and delegates content area rendering to Resource children.
@@ -161,7 +145,7 @@ function AdminUI(props: AdminUIProps) {
  * `<CommandMenu>` palette from `@/components/extras/command-menu`) between
  * the providers and the routed UI.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/admin/ Admin documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/admin Admin documentation}
  *
  * @example
  * // Basic usage with dataProvider and Resources

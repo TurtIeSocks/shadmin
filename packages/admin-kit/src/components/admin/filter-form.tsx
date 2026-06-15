@@ -31,7 +31,7 @@ interface FilterElementProps {
  *
  * To be used in conjunction with FilterButton.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/list/#filter-button--form-combo FilterForm documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list#filter-button--form-combo FilterForm documentation}
  */
 function FilterForm(inProps: FilterFormProps) {
   const { filters: filtersProps, ...rest } = inProps;

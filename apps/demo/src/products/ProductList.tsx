@@ -10,11 +10,11 @@ import {
   ReferenceInput,
   TextField,
   ToggleFilterButton,
-} from "shadcn-admin-kit/components/admin";
-import { BulkEditDrawer } from "shadcn-admin-kit/components/extras/bulk-edit-drawer";
-import { CurrencyField } from "shadcn-admin-kit/components/extras/currency-field";
-import { CurrencyInput } from "shadcn-admin-kit/components/extras/currency-input";
-import { Checkbox } from "shadcn-admin-kit/components/ui/checkbox";
+} from "shadmin/components/admin";
+import { BulkEditDrawer } from "shadmin/components/extras/bulk-edit-drawer";
+import { CurrencyField } from "shadmin/components/extras/currency-field";
+import { CurrencyInput } from "shadmin/components/extras/currency-input";
+import { Checkbox } from "shadmin/components/ui/checkbox";
 import {
   RecordContextProvider,
   useGetList,
@@ -25,7 +25,7 @@ import {
 import { Link } from "react-router";
 import { DollarSign, ChartNoAxesColumn, Bookmark } from "lucide-react";
 import { humanize } from "inflection";
-import { cn } from "shadcn-admin-kit/lib/utils";
+import { cn } from "shadmin/lib/utils";
 import type { Product, Category } from "../types";
 
 export const ProductList = () => {

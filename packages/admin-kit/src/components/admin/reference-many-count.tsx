@@ -40,7 +40,7 @@ interface ReferenceManyCountProps<RecordType extends RaRecord = RaRecord>
  * Calls dataProvider.getList() to compute the the number of records in a related resource that have a foreign key pointing to the current record.
  * It can optionally link to a filtered list of those records.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/referencemanycount/ ReferenceManyCount documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/reference-many-count ReferenceManyCount documentation}
  *
  * @example
  * import { List, DataTable, ReferenceManyCount } from '@/components/admin';

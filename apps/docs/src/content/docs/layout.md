@@ -81,7 +81,7 @@ export const Layout = (props: { children: ReactNode }) => {
 | `menu`    | Optional | `ComponentType<MenuProps>`     | `<Menu />`       | Replace the menu component rendered inside the sidebar  |
 | `sidebar` | Optional | `ComponentType<{ children? }>` | `<AppSidebar />` | Replace the entire sidebar component                    |
 
-When rendering the `<Layout>` component, Shadcn Admin Kit passes it a single prop, `children`, which is the main content of the page (the current resource view, depending on the current route).
+When rendering the `<Layout>` component, Shadmin passes it a single prop, `children`, which is the main content of the page (the current resource view, depending on the current route).
 
 ## `appBar`
 

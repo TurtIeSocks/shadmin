@@ -46,7 +46,7 @@ interface AppSidebarProps {
  *
  * Included in the default Layout component.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/appsidebar AppSidebar documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/app-sidebar AppSidebar documentation}
  * @see {@link https://ui.shadcn.com/docs/components/sidebar shadcn/ui Sidebar component}
  * @see layout.tsx
  */

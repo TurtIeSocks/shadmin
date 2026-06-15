@@ -37,7 +37,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * Powered by react-dropzone with support for multiple files, file type restrictions (accept), and
  * size constraints. Pass a child component (typically `<FileField>`) to render file previews.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/fileinput/ FileInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/file-input FileInput documentation}
  * @see {@link https://react-dropzone.js.org/ React Dropzone documentation}
  *
  * @example

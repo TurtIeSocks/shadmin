@@ -27,7 +27,7 @@ interface FileFieldProps<RecordType extends UnknownRecord = UnknownRecord>
  * It supports arrays of files and prevents click bubbling in DataTable rows.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filefield/ FileField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/file-field FileField documentation}
  *
  * @example
  * import { FileField } from '@/components/admin/file-field';

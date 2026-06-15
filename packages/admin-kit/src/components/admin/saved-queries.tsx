@@ -200,7 +200,7 @@ type IconButtonProps = Omit<ComponentProps<typeof Button>, "children">;
  * Drop into a list toolbar to let users save the current query (filters,
  * sort, pagination) under a name. Renders a small plus-circle icon.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/saved-queries SavedQueries documentation}
  */
 function AddSavedQueryIconButton({ className, ...rest }: IconButtonProps) {
   const [open, setOpen] = useState(false);
@@ -231,7 +231,7 @@ function AddSavedQueryIconButton({ className, ...rest }: IconButtonProps) {
  * Drop into a list toolbar (typically alongside a `<SavedQueriesList>`
  * trigger) to let users delete the currently-selected saved query.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/saved-queries SavedQueries documentation}
  */
 function RemoveSavedQueryIconButton({ className, ...rest }: IconButtonProps) {
   const [open, setOpen] = useState(false);
@@ -265,7 +265,7 @@ function RemoveSavedQueryIconButton({ className, ...rest }: IconButtonProps) {
  * Rendered inside a `<FilterList>` wrapper so it fits naturally alongside other
  * filter sidebar sections.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/savedqueries/ SavedQueries documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/saved-queries SavedQueries documentation}
  *
  * @example
  * import { Card } from "@/components/ui/card";

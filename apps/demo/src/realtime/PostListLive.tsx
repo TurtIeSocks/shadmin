@@ -1,5 +1,5 @@
-import { DataTable } from "shadcn-admin-kit/components/admin/data-table";
-import { ListLive } from "shadcn-admin-kit/components/realtime";
+import { DataTable } from "shadmin/components/admin/data-table";
+import { ListLive } from "shadmin/components/realtime";
 
 export function PostListLive() {
   return (

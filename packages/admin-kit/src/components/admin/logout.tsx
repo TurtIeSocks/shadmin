@@ -26,7 +26,7 @@ interface LogoutProps {
  * Calls `useLogout()` on click and renders nothing when the user is not
  * authenticated.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/logout/ Logout documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/logout Logout documentation}
  */
 function Logout({ className, redirectTo, icon }: LogoutProps) {
   const { authenticated } = useAuthState();

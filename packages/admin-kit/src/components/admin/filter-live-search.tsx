@@ -11,7 +11,7 @@ import {
  * Triggers a search on change (with debounce). Designed to be used in the
  * aside of a `<List>` view, alongside `<FilterList>` and `<FilterListItem>`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterlivesearch/ FilterLiveSearch documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/filter-live-search FilterLiveSearch documentation}
  *
  * @example
  * import { Card } from "@/components/ui/card";

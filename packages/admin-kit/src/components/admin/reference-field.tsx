@@ -63,7 +63,7 @@ interface ReferenceFieldViewProps<
  * It supports linking to the related record's show or edit page.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/referencefield/ ReferenceField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/reference-field ReferenceField documentation}
  *
  * @example
  * import { List, DataTable, ReferenceField } from '@/components/admin';

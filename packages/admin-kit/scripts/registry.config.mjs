@@ -6,8 +6,8 @@
 
 export const registryMetadata = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
-  name: "Shadcn Admin Kit",
-  homepage: "https://marmelab.com/shadcn-admin-kit/",
+  name: "Shadmin",
+  homepage: "https://shadmin.turtlesocks.dev/",
 };
 
 /**
@@ -22,12 +22,12 @@ export const blocks = [
   {
     name: "admin",
     type: "registry:block",
-    title: "Shadcn Admin Kit Main Block",
+    title: "Shadmin Main Block",
     description:
       "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
     // Auto-emit one granular registry item per file in this block alongside
     // the monolith. Lets consumers install single components (e.g.
-    // `shadcn add @shadcn-admin-kit/data-table`) instead of the full block.
+    // `shadcn add @shadmin/data-table`) instead of the full block.
     granularize: true,
     registryDependencies: [
       "accordion",
@@ -114,9 +114,9 @@ export const blocks = [
     type: "registry:block",
     title: "RichTextInput",
     description:
-      "Optional rich text input for Shadcn Admin Kit. Includes the full Minimal TipTap block.",
+      "Optional rich text input for Shadmin. Includes the full Minimal TipTap block.",
     registryDependencies: [
-      "@shadcn-admin-kit/admin",
+      "@shadmin/admin",
       "button",
       "dialog",
       "dropdown-menu",
@@ -157,9 +157,9 @@ export const blocks = [
     type: "registry:block",
     title: "BlockEditor",
     description:
-      "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadcn Admin Kit, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
+      "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadmin, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
     registryDependencies: [
-      "@shadcn-admin-kit/admin",
+      "@shadmin/admin",
       "button",
       "card",
       "command",
@@ -190,8 +190,8 @@ export const blocks = [
     type: "registry:block",
     title: "MdxEditor",
     description:
-      "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadcn Admin Kit, powered by MDXEditor.",
-    registryDependencies: ["@shadcn-admin-kit/admin"],
+      "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadmin, powered by MDXEditor.",
+    registryDependencies: ["@shadmin/admin"],
     dependencies: ["@mdxeditor/editor"],
     sourceDirs: [{ path: "src/components/mdx-editor", recursive: false }],
   },
@@ -200,9 +200,9 @@ export const blocks = [
     type: "registry:block",
     title: "LeafletAdmin",
     description:
-      "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadcn Admin Kit.",
+      "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadmin.",
     registryDependencies: [
-      "@shadcn-admin-kit/admin",
+      "@shadmin/admin",
       "slider",
       "toggle",
       "toggle-group",
@@ -229,8 +229,8 @@ export const blocks = [
     type: "registry:block",
     title: "CsvImport",
     description:
-      "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadcn Admin Kit. Validates rows against a zod schema and batches inserts via the data provider.",
-    registryDependencies: ["@shadcn-admin-kit/admin", "button", "progress"],
+      "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadmin. Validates rows against a zod schema and batches inserts via the data provider.",
+    registryDependencies: ["@shadmin/admin", "button", "progress"],
     dependencies: ["papaparse", "zod"],
     devDependencies: ["@types/papaparse"],
     sourceDirs: [{ path: "src/components/csv-import", recursive: false }],
@@ -238,11 +238,11 @@ export const blocks = [
   {
     name: "extras",
     type: "registry:block",
-    title: "Shadcn Admin Kit Extras",
+    title: "Shadmin Extras",
     description:
-      "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadcn Admin Kit.",
+      "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
     registryDependencies: [
-      "@shadcn-admin-kit/admin",
+      "@shadmin/admin",
       "alert-dialog",
       "progress",
     ],
@@ -263,8 +263,8 @@ export const blocks = [
     type: "registry:block",
     title: "Monaco JSON Field & Input",
     description:
-      "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadcn Admin Kit.",
-    registryDependencies: ["@shadcn-admin-kit/admin"],
+      "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadmin.",
+    registryDependencies: ["@shadmin/admin"],
     dependencies: ["@monaco-editor/react", "monaco-editor"],
     sourceDirs: [{ path: "src/components/monaco", recursive: true }],
   },
@@ -273,8 +273,8 @@ export const blocks = [
     type: "registry:block",
     title: "Supabase Admin",
     description:
-      "Optional Supabase integration for Shadcn Admin Kit: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
-    registryDependencies: ["@shadcn-admin-kit/admin"],
+      "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
+    registryDependencies: ["@shadmin/admin"],
     dependencies: [
       "@supabase/supabase-js",
       "openapi-types",
@@ -291,7 +291,7 @@ export const blocks = [
   {
     name: "realtime",
     type: "registry:block",
-    title: "Shadcn Admin Kit Realtime",
+    title: "Shadmin Realtime",
     description:
       "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live List/Edit/Show views, menu badges, record locks.",
     registryDependencies: ["admin"],
@@ -302,8 +302,8 @@ export const blocks = [
   {
     name: "example-admin",
     type: "registry:block",
-    title: "Example Admin built with Shadcn Admin Kit",
-    registryDependencies: ["@shadcn-admin-kit/admin"],
+    title: "Example Admin built with Shadmin",
+    registryDependencies: ["@shadmin/admin"],
     dependencies: [],
     extraFiles: [
       { path: "src/examples/example-admin.tsx", type: "registry:component" },

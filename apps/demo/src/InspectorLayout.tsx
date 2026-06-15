@@ -1,24 +1,24 @@
 import type { ErrorInfo } from "react";
 import { Suspense, useState } from "react";
-import { cn } from "shadcn-admin-kit/lib/utils";
+import { cn } from "shadmin/lib/utils";
 import type { CoreLayoutProps } from "ra-core";
 import { ErrorBoundary } from "react-error-boundary";
 import {
   SidebarProvider,
   SidebarTrigger,
-} from "shadcn-admin-kit/components/ui/sidebar";
-import { UserMenu } from "shadcn-admin-kit/components/admin/user-menu";
-import { ThemeModeToggle } from "shadcn-admin-kit/components/admin/theme-mode-toggle";
-import { Notification } from "shadcn-admin-kit/components/admin/notification";
+} from "shadmin/components/ui/sidebar";
+import { UserMenu } from "shadmin/components/admin/user-menu";
+import { ThemeModeToggle } from "shadmin/components/admin/theme-mode-toggle";
+import { Notification } from "shadmin/components/admin/notification";
 import { DemoSidebar } from "./DemoSidebar";
-import { RefreshButton } from "shadcn-admin-kit/components/admin/refresh-button";
-import { LocalesMenuButton } from "shadcn-admin-kit/components/admin/locales-menu-button";
-import { Error } from "shadcn-admin-kit/components/admin/error";
-import { Loading } from "shadcn-admin-kit/components/admin/loading";
-import { InspectorButton } from "shadcn-admin-kit/components/admin/inspector-button";
-import { Inspector } from "shadcn-admin-kit/components/admin/inspector";
-import { CommandMenu } from "shadcn-admin-kit/components/extras/command-menu";
-import { DataProviderDevtools } from "shadcn-admin-kit/components/extras/data-provider-devtools";
+import { RefreshButton } from "shadmin/components/admin/refresh-button";
+import { LocalesMenuButton } from "shadmin/components/admin/locales-menu-button";
+import { Error } from "shadmin/components/admin/error";
+import { Loading } from "shadmin/components/admin/loading";
+import { InspectorButton } from "shadmin/components/admin/inspector-button";
+import { Inspector } from "shadmin/components/admin/inspector";
+import { CommandMenu } from "shadmin/components/extras/command-menu";
+import { DataProviderDevtools } from "shadmin/components/extras/data-provider-devtools";
 import { LayoutBuilderButton, ThemeStudioButton } from "./admin-tools-drawer";
 import { I18nKeyEditorButton } from "./i18n-tools-menu";
 
@@ -36,7 +36,7 @@ import { I18nKeyEditorButton } from "./i18n-tools-menu";
  * <Notification />, so both `position: fixed` overlays sit above the layout
  * flow without affecting it.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/inspector Inspector documentation}
  */
 export const InspectorLayout = (props: CoreLayoutProps) => {
   const [errorInfo, setErrorInfo] = useState<ErrorInfo | undefined>(undefined);

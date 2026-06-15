@@ -4,8 +4,8 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
-} from "shadcn-admin-kit/components/admin";
-import { WebhookEndpointField } from "shadcn-admin-kit/components/extras/webhook-endpoint-field";
+} from "shadmin/components/admin";
+import { WebhookEndpointField } from "shadmin/components/extras/webhook-endpoint-field";
 
 export const WebhookShow = () => (
   <Show>

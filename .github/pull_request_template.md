@@ -16,4 +16,4 @@ _Describe the steps required to test the changes_
 - [ ] The PR includes one or several **stories** (if not possible, describe why)
 - [ ] The **documentation** is up to date
 
-Also, please make sure to read the [contributing guidelines](https://github.com/marmelab/shadcn-admin-kit#contributing).
+Also, please make sure to read the [contributing guidelines](https://github.com/TurtIeSocks/shadmin#contributing).

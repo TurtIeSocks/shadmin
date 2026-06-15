@@ -44,7 +44,7 @@ export function Backends() {
                   Connect to Any Backend
                 </p>
                 <p className="my-10 text-lg leading-8 text-muted-foreground">
-                  Shadcn Admin Kit is designed to fit seamlessly with the tools
+                  Shadmin is designed to fit seamlessly with the tools
                   you already know and love. As a single-page app, it connects
                   to any backend—REST, GraphQL, or custom APIs—and works with
                   any authentication provider.
@@ -71,7 +71,7 @@ export function Backends() {
                 </div>
                 <Button asChild className="mt-6 lg:my-6">
                   <a
-                    href="https://marmelab.com/shadcn-admin-kit/docs/dataproviders/"
+                    href="https://shadmin.turtlesocks.dev/docs/data-providers"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

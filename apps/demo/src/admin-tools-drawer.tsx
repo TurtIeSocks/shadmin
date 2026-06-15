@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { LayoutIcon, PaletteIcon } from "lucide-react";
 
-import { LayoutBuilder } from "shadcn-admin-kit/components/extras/layout-builder";
-import { ThemeStudio } from "shadcn-admin-kit/components/extras/theme-studio";
-import { Button } from "shadcn-admin-kit/components/ui/button";
+import { LayoutBuilder } from "shadmin/components/extras/layout-builder";
+import { ThemeStudio } from "shadmin/components/extras/theme-studio";
+import { Button } from "shadmin/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "shadcn-admin-kit/components/ui/sheet";
+} from "shadmin/components/ui/sheet";
 
 /**
  * Header button that opens the ThemeStudio inside a side sheet.

@@ -32,7 +32,7 @@ import { Translate } from "ra-core";
  * CRUD pages already include a Breadcrumb by default; set `disableBreadcrumb` to hide the
  * breadcrumb and/or provide your own.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/breadcrumb/ Breadcrumb documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/breadcrumb Breadcrumb documentation}
  * @see {@link https://ui.shadcn.com/docs/components/breadcrumb Breadcrumb UI documentation}
  *
  * @example

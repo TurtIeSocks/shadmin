@@ -4,9 +4,9 @@ import {
   ExportButton,
   List,
   ListPagination,
-} from "shadcn-admin-kit/components/admin";
-import { LatLngField } from "shadcn-admin-kit/components/leaflet";
-import { Badge } from "shadcn-admin-kit/components/ui/badge";
+} from "shadmin/components/admin";
+import { LatLngField } from "shadmin/components/leaflet";
+import { Badge } from "shadmin/components/ui/badge";
 import { useRecordContext } from "ra-core";
 import type { Place } from "./places-seed";
 

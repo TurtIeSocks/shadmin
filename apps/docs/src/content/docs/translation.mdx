@@ -9,21 +9,21 @@ import video from './images/translation.mp4';
     Your browser does not support the video tag.
 </video>
 
-The Shadcn Admin Kit user interface uses English as the default language. But you can also display the UI and content in other languages, allow changing language at runtime, and even lazy-loading optional languages to avoid increasing the bundle size with all translations.
+The Shadmin user interface uses English as the default language. But you can also display the UI and content in other languages, allow changing language at runtime, and even lazy-loading optional languages to avoid increasing the bundle size with all translations.
 
-Shadcn Admin Kit supports [over 35 translations](https://marmelab.com/ra-core/translationlocales/) out of the box, and you can [update or complete them](https://marmelab.com/ra-core/translationtranslating/) as needed.
+Shadmin supports [over 35 translations](https://marmelab.com/ra-core/translationlocales/) out of the box, and you can [update or complete them](https://marmelab.com/ra-core/translationtranslating/) as needed.
 
 You will use translation features mostly via the `i18nProvider`, the [`<Translate>`](https://marmelab.com/ra-core/translate/) component and a set of hooks ([`useTranslate`](https://marmelab.com/ra-core/usetranslate/), [`useLocaleState`](https://marmelab.com/ra-core/uselocalestate/)).
 
 We'll use a bit of custom vocabulary in this section:
 
 - "i18n" is a shorter way to write "internationalization" (an "i" followed by 18 letters followed by "n")
-- "locale" is a concept similar to language, but it also includes the concept of country. For instance, there are several English locales (like `en_us` and `en_gb`) because US and UK citizens don't use exactly the same language. For Shadcn Admin Kit, the "locale" is just a key for your i18nProvider, so it can have any value you want.
+- "locale" is a concept similar to language, but it also includes the concept of country. For instance, there are several English locales (like `en_us` and `en_gb`) because US and UK citizens don't use exactly the same language. For Shadmin, the "locale" is just a key for your i18nProvider, so it can have any value you want.
 - "translation key" is a string that is used to identify a piece of text in your application, e.g. "ra.action.save" for a save button label
 
 ## Anatomy Of An `i18nProvider`
 
-Just like for data fetching and authentication, Shadcn Admin Kit is agnostic to your translation backend. It relies on a provider for internationalization. It's called the `i18nProvider`, and it manages translation and language changes.
+Just like for data fetching and authentication, Shadmin is agnostic to your translation backend. It relies on a provider for internationalization. It's called the `i18nProvider`, and it manages translation and language changes.
 
 It should be an object with the following methods:
 
@@ -39,7 +39,7 @@ export const i18nProvider = {
 };
 ```
 
-Use the `<Admin i18nProvider>` prop to define the `i18nProvider` of a Shadcn Admin Kit app:
+Use the `<Admin i18nProvider>` prop to define the `i18nProvider` of a Shadmin app:
 
 ```tsx
 import { i18nProvider } from './i18nProvider';
@@ -55,7 +55,7 @@ If you want to add or update translations, you’ll have to provide your own `i1
 
 ## Translation Keys
 
-Shadcn Admin Kit components use translation keys for their text and rely on the `i18nProvider` to translate them.
+Shadmin components use translation keys for their text and rely on the `i18nProvider` to translate them.
 
 For instance, the following save button renders the word 'Save' in English and 'Enregistrer' in French. This is because the button actually renders the return value of the `i18nProvider.translate('ra.action.save')` method:
 
@@ -93,7 +93,7 @@ Check the [Translating the UI](https://marmelab.com/ra-core/translationtranslati
 
 ## `ra-i18n-polyglot`
 
-Although you can build an `i18nProvider` from scratch, Shadcn Admin Kit provides a package called `ra-i18n-polyglot` that leverages [the Polyglot.js library](https://airbnb.io/polyglot.js/) to build an `i18nProvider` based on a dictionary of translations.
+Although you can build an `i18nProvider` from scratch, Shadmin provides a package called `ra-i18n-polyglot` that leverages [the Polyglot.js library](https://airbnb.io/polyglot.js/) to build an `i18nProvider` based on a dictionary of translations.
 
 ```tsx
 // in src/i18nProvider.js
@@ -127,7 +127,7 @@ Check [the translation setup documentation](https://marmelab.com/ra-core/transla
 
 ## `ra-i18n-i18next`
 
-Shadcn Admin Kit also provides a package called `ra-i18n-i18next` that leverages [the i18next library](https://www.i18next.com/) to build an `i18nProvider` based on a dictionary of translations.
+Shadmin also provides a package called `ra-i18n-i18next` that leverages [the i18next library](https://www.i18next.com/) to build an `i18nProvider` based on a dictionary of translations.
 
 You might prefer this package over `ra-i18n-polyglot` when:
 
@@ -195,7 +195,7 @@ Translation files match a translation key to a translated text. They look like t
 
 ```js
 const englishMessages = {
-    // Shadcn Admin Kit components
+    // Shadmin components
     ra: {
         action: {
             cancel: 'Cancel',
@@ -253,13 +253,13 @@ const englishMessages = {
 
 **Tip**: The default (English) messages are available in [the `ra-language-english` package source](https://github.com/marmelab/react-admin/blob/master/packages/ra-language-english/src/index.ts).
 
-When building an internationalized app with Shadcn Admin Kit, the usual workflow is therefore to let developers write the main translation file. Then, pass this file to a team of translators, with the task to translate it. They can use any software they want for that (even software using Gettext/PO files, as it's possible to convert POT to and from JSON). Finally, aggregate all the translations into an `i18nProvider`.
+When building an internationalized app with Shadmin, the usual workflow is therefore to let developers write the main translation file. Then, pass this file to a team of translators, with the task to translate it. They can use any software they want for that (even software using Gettext/PO files, as it's possible to convert POT to and from JSON). Finally, aggregate all the translations into an `i18nProvider`.
 
-Check [the translation setup documentation](https://marmelab.com/ra-core/translationsetup/) to understand how to build your own translation file, the [list of available translations](https://marmelab.com/ra-core/translationlocales/) to find a translation for your language, and [Translating the UI](https://marmelab.com/ra-core/translationtranslating/) to understand how to translate Shadcn Admin Kit components.
+Check [the translation setup documentation](https://marmelab.com/ra-core/translationsetup/) to understand how to build your own translation file, the [list of available translations](https://marmelab.com/ra-core/translationlocales/) to find a translation for your language, and [Translating the UI](https://marmelab.com/ra-core/translationtranslating/) to understand how to translate Shadmin components.
 
 ## Localization
 
-For numeric and temporal values, Shadcn Admin Kit benefits from the Single-Page Application architecture. As the application executes in the browser, it uses the browser's locale by default to format numbers and dates.
+For numeric and temporal values, Shadmin benefits from the Single-Page Application architecture. As the application executes in the browser, it uses the browser's locale by default to format numbers and dates.
 
 For instance, you can format dates using the `Intl.DateTimeFormat` API in your custom components:
 

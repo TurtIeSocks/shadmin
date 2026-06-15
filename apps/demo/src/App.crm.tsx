@@ -1,5 +1,5 @@
-import { Admin, Resource } from "shadcn-admin-kit/components/admin";
-import { defaultTheme } from "shadcn-admin-kit/lib/themes";
+import { Admin, Resource } from "shadmin/components/admin";
+import { defaultTheme } from "shadmin/lib/themes";
 import { CustomRoutes } from "ra-core";
 import { Route } from "react-router";
 

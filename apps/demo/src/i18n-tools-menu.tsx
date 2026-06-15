@@ -2,8 +2,8 @@ import { useState } from "react";
 import { LanguagesIcon } from "lucide-react";
 import { useTranslate } from "ra-core";
 
-import { I18nKeyEditor } from "shadcn-admin-kit/components/extras/i18n-key-editor";
-import { Button } from "shadcn-admin-kit/components/ui/button";
+import { I18nKeyEditor } from "shadmin/components/extras/i18n-key-editor";
+import { Button } from "shadmin/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "shadcn-admin-kit/components/ui/dialog";
+} from "shadmin/components/ui/dialog";
 
 import { i18nProvider } from "./i18nProvider";
 

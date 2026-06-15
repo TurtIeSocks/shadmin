@@ -1,11 +1,11 @@
-import { Field, FieldLabel } from "shadcn-admin-kit/components/ui/field";
+import { Field, FieldLabel } from "shadmin/components/ui/field";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "shadcn-admin-kit/components/ui/select";
+} from "shadmin/components/ui/select";
 import { lazy } from "react";
 
 const demos = {

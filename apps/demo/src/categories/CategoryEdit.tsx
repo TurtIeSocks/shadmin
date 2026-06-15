@@ -3,8 +3,8 @@ import {
   ReferenceManyField,
   SimpleForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
-import { ColorInput } from "shadcn-admin-kit/components/extras/color-input";
+} from "shadmin/components/admin";
+import { ColorInput } from "shadmin/components/extras/color-input";
 import { required, Translate } from "ra-core";
 import { Link } from "react-router";
 

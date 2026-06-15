@@ -10,7 +10,7 @@ import { Button } from "../ui/button";
  *
  * Commonly used in form toolbars alongside SaveButton.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/cancelbutton/ CancelButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/cancel-button CancelButton documentation}
  *
  * @example
  * import { CancelButton, SaveButton, SimpleForm } from '@/components/admin';

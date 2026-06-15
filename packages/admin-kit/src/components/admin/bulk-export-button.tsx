@@ -14,7 +14,7 @@ import { Button } from "../ui/button";
  *
  * To be used inside the <DataTable bulkActionsButtons> prop.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkexportbutton/ BulkExportButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-export-button BulkExportButton documentation}
  *
  * @example
  * import { BulkDeleteButton, BulkExportButton, DataTable, List } from '@/components/admin';

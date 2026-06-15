@@ -9,7 +9,7 @@ Use `<MdxField>` to display a markdown string from a record as read-only rich co
 `<MdxField>` is shipped together with `<MdxInput>` in the `mdx-editor` registry block:
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/mdx-editor.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/mdx-editor.json
 ```
 
 You must also import the MDXEditor stylesheet once in your app:

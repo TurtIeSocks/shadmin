@@ -50,7 +50,7 @@ const emptyArray: string[] = [];
  * Users type text and press Enter to add items, or press Backspace
  * when the input is empty to remove the last item.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/textarrayinput/ TextArrayInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/text-array-input TextArrayInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, TextArrayInput } from '@/components/admin';

@@ -2,8 +2,8 @@ import {
   DataTable,
   List,
   ReferenceField,
-} from "shadcn-admin-kit/components/admin";
-import { SubscriptionPlanField } from "shadcn-admin-kit/components/extras/subscription-plan-field";
+} from "shadmin/components/admin";
+import { SubscriptionPlanField } from "shadmin/components/extras/subscription-plan-field";
 import { PLANS } from "./plans";
 
 export const SubscriptionList = () => (

@@ -12,7 +12,7 @@ import { SaveButton } from "@/components/admin/save-button";
  *
  * Automatically includes a toolbar with Cancel and Save buttons unless you provide a custom toolbar.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/simpleform/ SimpleForm documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/simple-form SimpleForm documentation}
  *
  * @example
  * import { Create, SimpleForm, TextInput } from '@/components/admin';

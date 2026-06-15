@@ -2,7 +2,7 @@
 title: "Themes"
 ---
 
-Shadcn Admin Kit ships with a small library of named themes — palettes of CSS variables that the `<ThemeProvider>` applies to the document root at runtime. Each theme covers both light and dark modes, and the active palette is a config-time choice: pass it to `<Admin>` once and only the light/dark mode toggles at runtime.
+Shadmin ships with a small library of named themes — palettes of CSS variables that the `<ThemeProvider>` applies to the document root at runtime. Each theme covers both light and dark modes, and the active palette is a config-time choice: pass it to `<Admin>` once and only the light/dark mode toggles at runtime.
 
 The five built-in themes are:
 
@@ -45,7 +45,7 @@ If you omit all theme props, your existing `src/index.css` `:root` and `.dark` b
 
 ### `defaultTheme`
 
-The neutral baseline that mirrors `src/index.css` exactly. Choose this (or no theme at all) to preserve the historical visual identity of shadcn-admin-kit.
+The neutral baseline that mirrors `src/index.css` exactly. Choose this (or no theme at all) to preserve the historical visual identity of shadmin.
 
 - **Light**: white background, near-black text and primary.
 - **Dark**: near-black background, near-white text.
@@ -154,4 +154,4 @@ export const oceanTheme: AdminTheme = {
 
 `ThemeProvider` will write each entry to `documentElement.style` via `setProperty(key, value)` when the matching mode is active, and clean those overrides up when the theme changes or the provider unmounts.
 
-For the full list of variables shadcn-admin-kit understands, see the `:root` and `.dark` blocks in `src/index.css`. The `defaultTheme` export contains every key — copy it as a starting point and adjust values to taste.
+For the full list of variables shadmin understands, see the `:root` and `.dark` blocks in `src/index.css`. The `defaultTheme` export contains every key — copy it as a starting point and adjust values to taste.

@@ -10,7 +10,7 @@ import { TranslatableFieldsTab } from "@/components/admin/translatable-fields-ta
  * Reads the list of locales from the `TranslatableContext` and renders one
  * `<TranslatableFieldsTab>` per locale, wrapped in a shadcn `<TabsList>`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatablefields/ TranslatableFields documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-fields TranslatableFields documentation}
  *
  * @example
  * <TranslatableFields

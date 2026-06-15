@@ -4,7 +4,7 @@ import {
   ExportButton,
   List,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import type { WorkspaceDocument } from "./documents-seed";
 
 const filters = [

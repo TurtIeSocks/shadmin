@@ -411,7 +411,7 @@ You can also use `mutationOptions` to override success or error side effects.
 
 ## Success and Error Side Effects
 
-By default, when the save action succeeds, Shadcn Admin Kit shows a notification, and redirects to the list page.
+By default, when the save action succeeds, Shadmin shows a notification, and redirects to the list page.
 
 You can override this behavior and pass custom success side effects by providing a `mutationOptions` prop with an `onSuccess` key:
 
@@ -486,7 +486,7 @@ const PostEdit = () => {
 If you want to have different success side effects based on the button clicked by the user (e.g. if the creation form displays two submit buttons, one to "save and redirect to the list", and another to "save and display an empty form"), you can set the `mutationOptions` prop on [the `<SaveButton>` component](./save-button), too.
 :::
 
-Similarly, you can override the failure side effects with an `onError` option. By default, when the save action fails at the dataProvider level, Shadcn Admin Kit shows a notification error.
+Similarly, you can override the failure side effects with an `onError` option. By default, when the save action fails at the dataProvider level, Shadmin shows a notification error.
 
 ```jsx
 import { Edit, SimpleForm } from "@/components/admin";
@@ -546,7 +546,7 @@ Once the `dataProvider.update()` request returns successfully, users see a succe
 
 To customize the notification message, you can set custom translation for these keys in your i18nProvider.
 
-**Tip**: If you choose to use a custom translation, be aware that Shadcn Admin Kit uses the same translation message for the `<BulkUpdateButton>`, so the message must support [pluralization](https://marmelab.com/ra-core/translationtranslating/#interpolation-pluralization-and-default-translation):
+**Tip**: If you choose to use a custom translation, be aware that Shadmin uses the same translation message for the `<BulkUpdateButton>`, so the message must support [pluralization](https://marmelab.com/ra-core/translationtranslating/#interpolation-pluralization-and-default-translation):
 
 ```jsx
 const englishMessages = {
@@ -585,7 +585,7 @@ const OrderEdit = () => {
 ```
 
 :::tip
-In `optimistic` and `undoable` mutation modes, Shadcn Admin Kit calls the `onSuccess` callback method with no argument. In `pessimistic` mode, it calls it with the response returned by the dataProvider as argument.
+In `optimistic` and `undoable` mutation modes, Shadmin calls the `onSuccess` callback method with no argument. In `pessimistic` mode, it calls it with the response returned by the dataProvider as argument.
 :::
 
 You can do the same for error notifications, by passing a custom `onError` callback.
@@ -615,13 +615,13 @@ The `redirect` prop is ignored if you set [the `mutationOptions` prop](#mutation
 
 ## Mutation Mode
 
-The `<Edit>` view exposes two buttons, Save and Delete, which perform "mutations" (i.e. they alter the data). Shadcn Admin Kit offers three modes for mutations. The mode determines when the side effects (redirection, notifications, etc.) are executed:
+The `<Edit>` view exposes two buttons, Save and Delete, which perform "mutations" (i.e. they alter the data). Shadmin offers three modes for mutations. The mode determines when the side effects (redirection, notifications, etc.) are executed:
 
 - `pessimistic`: The mutation is passed to the dataProvider first. When the dataProvider returns successfully, the mutation is applied locally, and the side effects are executed.
 - `optimistic`: The mutation is applied locally and the side effects are executed immediately. Then the mutation is passed to the dataProvider. If the dataProvider returns successfully, nothing happens (as the mutation was already applied locally). If the dataProvider returns in error, the page is refreshed and an error notification is shown.
 - `undoable` (default): The mutation is applied locally and the side effects are executed immediately. Then a notification is shown with an undo button. If the user clicks on undo, the mutation is never sent to the dataProvider, and the page is refreshed. Otherwise, after a 5 seconds delay, the mutation is passed to the dataProvider. If the dataProvider returns successfully, nothing happens (as the mutation was already applied locally). If the dataProvider returns in error, the page is refreshed and an error notification is shown.
 
-By default, pages using `<Edit>` use the `undoable` mutation mode. This is part of the "optimistic rendering" strategy of Shadcn Admin Kit; it makes user interactions more reactive.
+By default, pages using `<Edit>` use the `undoable` mutation mode. This is part of the "optimistic rendering" strategy of Shadmin; it makes user interactions more reactive.
 
 You can change this default by setting the `mutationMode` prop - and this affects both the Save and Delete buttons. For instance, to remove the ability to undo the changes, use the `optimistic` mode:
 
@@ -775,7 +775,7 @@ Should you use the location `state` or the location `search`? The latter modifie
 
 Edition forms often contain linked inputs, e.g. country and city (the choices of the latter depending on the value of the former).
 
-Shadcn Admin Kit relies on [react-hook-form](https://react-hook-form.com/) for form handling. You can grab the current form values using react-hook-form's [useWatch](https://react-hook-form.com/docs/usewatch) hook.
+Shadmin relies on [react-hook-form](https://react-hook-form.com/) for form handling. You can grab the current form values using react-hook-form's [useWatch](https://react-hook-form.com/docs/usewatch) hook.
 
 ```jsx
 import { Edit, SimpleForm, SelectInput } from "@/components/admin";
@@ -948,7 +948,7 @@ Access control is disabled when you use the `disableAuthentication` prop.
 
 ## Live Updates
 
-Shadcn Admin Kit offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
+Shadmin offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
 
 If you want to subscribe to live updates the record, you can rely on the [`useSubscribeToRecord`](https://marmelab.com/ra-core/usesubscribetorecord/) hook.
 
@@ -1059,7 +1059,7 @@ To trigger warning with `<EditLiveUpdate>` with the record changes, the API has 
 
 ## Locking Edition
 
-Shadcn Admin Kit offers [Content locking features](./realtime-features) to automatically place a lock on a record when a user is editing it, preventing other users from editing the same record concurrently.
+Shadmin offers [Content locking features](./realtime-features) to automatically place a lock on a record when a user is editing it, preventing other users from editing the same record concurrently.
 
 To avoid concurrent edition of the same record by multiple users, you can use [the `useLockOnCall` hook](https://marmelab.com/ra-core/uselockoncall/) inside your `<Edit>` view.
 

@@ -142,7 +142,7 @@ import {
 </ReferenceArrayInput>;
 ```
 
-In a Filter form, Shadcn Admin Kit uses the `label` prop to set the Filter label. So in this case, the `label` prop is not ignored, but you also have to set it on the child input.
+In a Filter form, Shadmin uses the `label` prop to set the Filter label. So in this case, the `label` prop is not ignored, but you also have to set it on the child input.
 
 ```jsx
 const filters = [

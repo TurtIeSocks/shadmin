@@ -3,8 +3,8 @@ import {
   TableBody,
   TableCell,
   TableRow,
-} from "shadcn-admin-kit/components/ui/table";
-import { Label } from "shadcn-admin-kit/components/ui/label";
+} from "shadmin/components/ui/table";
+import { Label } from "shadmin/components/ui/label";
 import { useRecordContext, useTranslate } from "ra-core";
 
 import { Order } from "../types";

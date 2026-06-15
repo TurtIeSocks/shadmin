@@ -69,7 +69,7 @@ const getResourceMenuGroups = (
  * `<Menu>` is the building block of the default `<AppSidebar>`. Pass
  * children to replace the auto-generated entries with a custom list.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/menu/ Menu documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/menu Menu documentation}
  *
  * @example // Use the default resource-based menu
  * import { Menu } from "@/components/admin";

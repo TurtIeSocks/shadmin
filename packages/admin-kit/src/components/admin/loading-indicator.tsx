@@ -17,7 +17,7 @@ interface LoadingIndicatorProps {
  * When loading, shows a spinner with the refresh button overlaid at
  * opacity-0 so the layout does not shift.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loadingindicator/ LoadingIndicator documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/loading-indicator LoadingIndicator documentation}
  */
 function LoadingIndicator(props: LoadingIndicatorProps) {
   const { className, onClick } = props;

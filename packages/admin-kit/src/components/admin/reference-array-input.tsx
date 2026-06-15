@@ -29,7 +29,7 @@ interface ReferenceArrayInputProps
  * Use it to edit one-to-many or many-to-many relationships, where the current record
  * has an array of foreign keys to another resource.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/referencearrayinput/ ReferenceArrayInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/reference-array-input ReferenceArrayInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, TextInput, ReferenceArrayInput } from '@/components/admin';

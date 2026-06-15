@@ -25,7 +25,7 @@ function GithubMark({ className }: { className?: string }) {
  * Provides helpful links to documentation, demo, and GitHub repository.
  * Automatically shown when the admin app has no Resource children defined.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/ready/ Ready documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/ready Ready documentation}
  */
 function Ready() {
   return (
@@ -38,7 +38,7 @@ function Ready() {
         }}
       >
         <ScanFace className="size-32 mb-4" />
-        <h1 className="text-3xl mb-4">Welcome to shadcn-admin-kit</h1>
+        <h1 className="text-3xl mb-4">Welcome to Shadmin</h1>
         <div className="text-lg opacity-75">
           Your application is properly configured.
           <br />
@@ -48,19 +48,19 @@ function Ready() {
       </div>
       <div className="flex h-[20vh] bg-muted text-foreground items-center justify-evenly">
         <div className="text-xl">
-          <a href="https://marmelab.com/shadcn-admin-kit/docs">
+          <a href="https://shadmin.turtlesocks.dev/docs">
             <BookOpenText className="inline mr-4 size-10" />
             Documentation
           </a>
         </div>
         <div className="text-xl">
-          <a href="http://marmelab.com/shadcn-admin-kit/demo">
+          <a href="https://shadmin.turtlesocks.dev/demo">
             <ChevronsLeftRight className="inline mr-4 size-10" />
             Demo
           </a>
         </div>
         <div className="text-xl">
-          <a href="https://github.com/marmelab/shadcn-admin-kit">
+          <a href="https://github.com/TurtIeSocks/shadmin">
             <GithubMark className="inline mr-4 size-10" />
             GitHub
           </a>

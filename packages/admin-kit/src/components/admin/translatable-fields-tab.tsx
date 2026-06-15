@@ -11,7 +11,7 @@ import { TabsTrigger } from "@/components/ui/tabs";
  * name (e.g. `ra.locales.en`), falling back to the capitalized locale code
  * when no translation key is found.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatablefields/ TranslatableFields documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-fields TranslatableFields documentation}
  *
  * @example
  * <TranslatableFieldsTab locale="fr" />

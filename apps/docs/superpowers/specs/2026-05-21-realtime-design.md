@@ -1,4 +1,4 @@
-# Realtime extension for shadcn-admin-kit
+# Realtime extension for shadmin
 
 **Status:** Design, approved (2026-05-21).
 **Owner:** Rin
@@ -6,7 +6,7 @@
 
 ## 1. Summary
 
-Add a realtime subsystem to shadcn-admin-kit: a `DataProvider` extension, pluggable transports (WebSocket, SSE, BroadcastChannel, in-memory fake), a full hook surface (`useSubscribe`, `usePublish`, `useGetListLive`, `useGetOneLive`, `useGetManyLive`, lock hooks), and drop-in component wrappers (`<ListLive>`, `<EditLive>`, `<ShowLive>`, `<MenuLive>`, `<LockOnMount>`, `<LockStatus>`). All files live under a new `src/components/realtime/` feature folder. Record locking is part of v1, but its REST plumbing is plugged in through an optional `LockProvider` so backends without lock support can still use the rest of the surface.
+Add a realtime subsystem to shadmin: a `DataProvider` extension, pluggable transports (WebSocket, SSE, BroadcastChannel, in-memory fake), a full hook surface (`useSubscribe`, `usePublish`, `useGetListLive`, `useGetOneLive`, `useGetManyLive`, lock hooks), and drop-in component wrappers (`<ListLive>`, `<EditLive>`, `<ShowLive>`, `<MenuLive>`, `<LockOnMount>`, `<LockStatus>`). All files live under a new `src/components/realtime/` feature folder. Record locking is part of v1, but its REST plumbing is plugged in through an optional `LockProvider` so backends without lock support can still use the rest of the surface.
 
 This is a cleanroom implementation. The design draws on standard industry vocabulary (pub/sub, topics, subscribe/publish, locks) and on whatever is publicly observable in the react-admin documentation. No upstream proprietary source is used.
 
@@ -14,7 +14,7 @@ The kit ships only the client side. Server protocol is specified at the wire-for
 
 ## 2. Goals
 
-- Provide an ergonomic, familiar surface for users coming from any react-admin background, so apps moving onto shadcn-admin-kit don't have to rebuild their realtime layer.
+- Provide an ergonomic, familiar surface for users coming from any react-admin background, so apps moving onto shadmin don't have to rebuild their realtime layer.
 - Make transport selection / replacement a one-line change.
 - Surface a clean type contract throughout — zero `any` in this kit's own code; ra-core's loose types are not propagated.
 - Demonstrate the full feature in the demo app using `BroadcastChannel` (no real backend needed).
@@ -750,7 +750,7 @@ Add a new top-level block to `registry.json`:
 {
   "name": "realtime",
   "type": "registry:block",
-  "title": "Shadcn Admin Kit Realtime",
+  "title": "Shadmin Realtime",
   "description": "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live views, menu badges, record locks.",
   "registryDependencies": ["admin"],
   "dependencies": ["ra-core", "@tanstack/react-query", "react"],

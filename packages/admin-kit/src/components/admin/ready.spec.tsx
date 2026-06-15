@@ -8,7 +8,7 @@ describe("<Ready />", () => {
     const screen = render(<Basic />);
     await expect
       .element(
-        screen.getByRole("heading", { name: /welcome to shadcn-admin-kit/i }),
+        screen.getByRole("heading", { name: /welcome to shadmin/i }),
       )
       .toBeInTheDocument();
     await expect

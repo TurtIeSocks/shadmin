@@ -3,7 +3,7 @@ import {
   SelectArrayInput,
   SimpleForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 
 const SCOPE_CHOICES = [
   { id: "read:orders", name: "Read orders" },

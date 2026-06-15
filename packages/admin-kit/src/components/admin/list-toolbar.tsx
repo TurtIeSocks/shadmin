@@ -27,7 +27,7 @@ interface ListToolbarProps {
  * as a single React element — they are exposed through `<FilterContext>` so
  * the children of `<ListActions>` automatically pick them up.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listtoolbar/ ListToolbar documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list-toolbar ListToolbar documentation}
  */
 function ListToolbar(props: ListToolbarProps) {
   const { filters, actions, className, exporter, hasCreate } = props;

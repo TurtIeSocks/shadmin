@@ -51,7 +51,7 @@ const buildMatchMedia =
  * Useful for Storybook and SSR-style tests to verify responsive layouts
  * without resizing the actual viewport.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/devicetestwrapper/ DeviceTestWrapper documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/device-test-wrapper DeviceTestWrapper documentation}
  *
  * @example
  * <DeviceTestWrapper width="sm">

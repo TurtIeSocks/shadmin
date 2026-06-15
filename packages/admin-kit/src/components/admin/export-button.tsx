@@ -19,7 +19,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * Respects current filters and sort order, with configurable maximum results.
  * Use a custom exporter to customize the result and fetch related records.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/exportbutton/ ExportButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/export-button ExportButton documentation}
  *
  * @example
  * import { CreateButton, ExportButton, TopToolbar } from '@/components/admin';

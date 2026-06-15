@@ -83,7 +83,7 @@ DateFieldImpl.displayName = "DateFieldImpl";
  * It supports showing date only, time only, or both, with custom locales and formatting options.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datefield/ DateField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/date-field DateField documentation}
  *
  * @example
  * import {

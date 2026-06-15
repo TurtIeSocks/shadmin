@@ -55,7 +55,7 @@ export function Technos() {
                 Built on the Shoulders Of Giants
               </h2>
               <p className="mt-8 text-lg leading-8 text-primary-foreground/80 text-center">
-                Shadcn Admin Kit leverages first-class libraries, acclaimed by
+                Shadmin leverages first-class libraries, acclaimed by
                 the React community for their robustness, documentation and
                 performance.
               </p>

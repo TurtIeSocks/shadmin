@@ -105,7 +105,7 @@ RichTextFieldImpl.displayName = "RichTextFieldImpl";
  *
  * Pass `stripTags` to render the value as plain text with all markup removed.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/richtextfield/ RichTextField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/rich-text-field RichTextField documentation}
  *
  * @example
  * import { Show, RecordField, RichTextField } from '@/components/admin';

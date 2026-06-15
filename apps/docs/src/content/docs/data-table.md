@@ -168,7 +168,7 @@ export const PostList = () => (
 );
 ```
 
-Shadcn Admin Kit provides two bulk action buttons that you can use in data tables:
+Shadmin provides two bulk action buttons that you can use in data tables:
 
 - [`<BulkDeleteButton>`](./bulk-delete-button) (enabled by default)
 - [`<BulkExportButton>`](./bulk-export-button) to export only the selection

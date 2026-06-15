@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useGetList, Translate } from "ra-core";
 import { subDays, startOfDay } from "date-fns";
-import { Breadcrumb, BreadcrumbPage } from "shadcn-admin-kit/components/admin";
-import { JobMonitor } from "shadcn-admin-kit/components/extras/job-monitor";
+import { Breadcrumb, BreadcrumbPage } from "shadmin/components/admin";
+import { JobMonitor } from "shadmin/components/extras/job-monitor";
 
 import Welcome from "./Welcome";
 import MonthlyRevenue from "./MonthlyRevenue";

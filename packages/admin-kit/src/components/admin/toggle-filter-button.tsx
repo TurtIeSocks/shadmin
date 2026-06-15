@@ -13,7 +13,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * Renders a button that applies or removes a filter when clicked. Shows a close icon when the
  * filter is active. Useful for quick filter presets like status or category.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/togglefilterbutton/ ToggleFilterButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/toggle-filter-button ToggleFilterButton documentation}
  *
  * @example
  * import { ToggleFilterButton } from '@/components/admin';

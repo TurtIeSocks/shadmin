@@ -10,9 +10,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "shadcn-admin-kit/components/ui/sidebar";
-import { DashboardMenuItem } from "shadcn-admin-kit/components/admin/dashboard-menu-item";
-import { ResourceMenuItemGroup } from "shadcn-admin-kit/components/admin/resource-menu-item-group";
+} from "shadmin/components/ui/sidebar";
+import { DashboardMenuItem } from "shadmin/components/admin/dashboard-menu-item";
+import { ResourceMenuItemGroup } from "shadmin/components/admin/resource-menu-item-group";
 
 /**
  * Demo sidebar that hand-composes `<ResourceMenuItemGroup>` instead of

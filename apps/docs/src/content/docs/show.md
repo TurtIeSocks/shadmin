@@ -225,7 +225,7 @@ export const PostShow = () => (
 
 ## Live Updates
 
-Shadcn Admin Kit offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
+Shadmin offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
 
 If you want to subscribe to live updates the record, you can rely on the [`useSubscribeToRecord`](https://marmelab.com/ra-core/usesubscribetorecord/) hook.
 

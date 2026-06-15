@@ -22,7 +22,7 @@ interface LoadingInputProps {
  * while the real data loads, avoiding visual jumps. The input is disabled and a
  * spinner appears inside it once the `timeout` (default `1000`ms) has elapsed.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loadinginput/ LoadingInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/loading-input LoadingInput documentation}
  *
  * @example
  * import { LoadingInput } from '@/components/admin';

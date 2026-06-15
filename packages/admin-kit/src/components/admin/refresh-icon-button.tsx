@@ -25,7 +25,7 @@ type RefreshIconButtonProps = {
  *
  * Shows a tooltip with the translated label. Use it in toolbars where space is limited.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/refreshiconbutton/ RefreshIconButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/refresh-icon-button RefreshIconButton documentation}
  *
  * @example
  * import { RefreshIconButton } from '@/components/admin';

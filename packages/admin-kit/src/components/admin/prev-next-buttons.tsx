@@ -25,7 +25,7 @@ interface PrevNextButtonsProps<RecordType extends RaRecord = RaRecord>
  * the current index out of the total. Must be used within a `RecordContext`,
  * typically inside a `<Show>` or `<Edit>` view.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/prevnextbuttons/ PrevNextButtons documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/prev-next-buttons PrevNextButtons documentation}
  *
  * @example
  * import { Edit, PrevNextButtons } from '@/components/admin';

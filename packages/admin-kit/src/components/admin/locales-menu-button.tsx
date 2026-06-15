@@ -17,7 +17,7 @@ import { useLocales, useLocaleState, useTranslate } from "ra-core";
  * User's language selection is persisted using the store.
  * Returns null if only one language is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/localesmenubutton LocalesMenuButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/locales-menu-button LocalesMenuButton documentation}
  * @see {@link https://marmelab.com/ra-core/translationsetup/ i18nProvider setup}
  */
 interface LocalesMenuButtonProps {

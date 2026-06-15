@@ -1,7 +1,7 @@
-import { Card, CardContent } from "shadcn-admin-kit/components/ui/card";
+import { Card, CardContent } from "shadmin/components/ui/card";
 import { useTranslate } from "ra-core";
 import { format, subDays } from "date-fns";
-import { TrendChart } from "shadcn-admin-kit/components/extras/dashboard-charts";
+import { TrendChart } from "shadmin/components/extras/dashboard-charts";
 import { Order } from "../types";
 
 const lastDay = new Date();

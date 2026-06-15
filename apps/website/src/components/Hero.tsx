@@ -21,7 +21,7 @@ export function Hero() {
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Button asChild size="lg">
                   <a
-                    href="https://marmelab.com/shadcn-admin-kit/docs/install/"
+                    href="https://shadmin.turtlesocks.dev/docs/install"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -30,7 +30,7 @@ export function Hero() {
                 </Button>
                 <Button asChild variant="ghost" size="lg">
                   <a
-                    href="https://marmelab.com/shadcn-admin-kit/demo"
+                    href="https://shadmin.turtlesocks.dev/demo"
                     // className="text-sm font-semibold leading-6 text-gray-900"
                     target="_blank"
                     rel="noopener noreferrer"

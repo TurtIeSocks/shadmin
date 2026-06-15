@@ -11,7 +11,7 @@ export default defineConfig({
   resolve: {
     alias: [
       // package-name imports used by demo source
-      { find: /^shadcn-admin-kit\/(.+)$/, replacement: `${adminKitSrc}/$1` },
+      { find: /^shadmin\/(.+)$/, replacement: `${adminKitSrc}/$1` },
       // the library's own internal `@/` imports (shadcn registry form)
       { find: "@", replacement: adminKitSrc },
     ],

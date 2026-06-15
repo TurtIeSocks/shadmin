@@ -13,7 +13,7 @@ import {
 /**
  * Displays a boolean value as a colored check or close icon.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/booleanfield/ BooleanField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/boolean-field BooleanField documentation}
  *
  * @example
  * import { Show, SimpleShowLayout, BooleanField } from '@/components/admin';

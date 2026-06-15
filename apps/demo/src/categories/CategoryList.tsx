@@ -1,6 +1,6 @@
-import { DataTable, List } from "shadcn-admin-kit/components/admin";
-import { ColorField } from "shadcn-admin-kit/components/extras/color-field";
-import { TreeList } from "shadcn-admin-kit/components/extras/tree-list";
+import { DataTable, List } from "shadmin/components/admin";
+import { ColorField } from "shadmin/components/extras/color-field";
+import { TreeList } from "shadmin/components/extras/tree-list";
 
 /**
  * Categories list rendered as a table with a color swatch column, paired with

@@ -6,7 +6,7 @@
 
 **Architecture:** Each block is a `BlockDefinition` created with `defineBlock`. Content blocks (`toggle`) use `content:"block+"` + `<NodeViewContent/>` like `callout`. Atom/data blocks (`image`, `embed`, `record-list`, `chart`) render from `attrs`, data blocks resolving live via ra-core hooks (`useGetList`) and reusing the shared `BlockEmpty/BlockSkeleton/BlockError` states like `referenceRecord`. All blocks ship in the single `block-editor` registry item.
 
-**Tech Stack:** React 19, TipTap v3, Zod v4, ra-core (`useGetList`), recharts (already a dep, provided via `@shadcn-admin-kit/admin`), shadcn ui primitives (`slider`, `table`, `collapsible`/native `details`), Vitest browser provider, `vitest-browser-react`.
+**Tech Stack:** React 19, TipTap v3, Zod v4, ra-core (`useGetList`), recharts (already a dep, provided via `@shadmin/admin`), shadcn ui primitives (`slider`, `table`, `collapsible`/native `details`), Vitest browser provider, `vitest-browser-react`.
 
 **Spec:** `docs/superpowers/specs/2026-05-29-block-editor-design.md` (Plan 2 scope). **Builds on:** Plan 1 (`docs/superpowers/plans/2026-05-29-block-editor.md`, shipped).
 
@@ -14,7 +14,7 @@
 
 ## Assumptions / design calls (delegate-made)
 
-1. **No separate `block-editor-data` registry item.** Its only rationale was isolating recharts/ra-core deps, but both already ship via the `@shadcn-admin-kit/admin` registryDependency that `block-editor` requires. All five blocks live in the single `block-editor` item. Data blocks are exported as a `dataBlocks` array so consumers opt in explicitly via the `blocks` prop (`blocks={[...defaultBlocks, ...dataBlocks]}`); tree-shaking drops unused blocks.
+1. **No separate `block-editor-data` registry item.** Its only rationale was isolating recharts/ra-core deps, but both already ship via the `@shadmin/admin` registryDependency that `block-editor` requires. All five blocks live in the single `block-editor` item. Data blocks are exported as a `dataBlocks` array so consumers opt in explicitly via the `blocks` prop (`blocks={[...defaultBlocks, ...dataBlocks]}`); tree-shaking drops unused blocks.
 2. **`image` uses config-driven width, not drag-resize, in v2.** A file picker (→ base64) / URL input + alt + a width slider in the config popover. Robust + testable + no new API surface (no app-level `uploadFn` channel needed). Pointer drag-resize (porting `rich-text-input`'s `use-drag-resize`) is a deferred polish follow-up.
 3. **`embed` is allowlist-only and never injects user HTML.** It parses the URL, extracts a strictly-validated video id for YouTube/Vimeo, and builds a known-safe iframe `src` itself. Non-allowlisted URLs render a safe placeholder, not an iframe. (See Task 3 — security.)
 4. **`record-list`/`chart` aggregate client-side** from a single `useGetList` page (default `perPage` 100 for chart, 5 for list). No server-side aggregation. Good enough for embedded summaries; documented as such.
@@ -1155,7 +1155,7 @@ Expected: PASS.
 
 - [ ] **Step 6: Update the registry deps + regenerate**
 
-In `scripts/registry.config.mjs`, the `block-editor` entry: add `ra-core` and `recharts` to `dependencies` (chart + data blocks import them directly; they also arrive via the `@shadcn-admin-kit/admin` registryDependency, but listing them is explicit and safe). Keep the array alphabetically sorted to match the file's convention.
+In `scripts/registry.config.mjs`, the `block-editor` entry: add `ra-core` and `recharts` to `dependencies` (chart + data blocks import them directly; they also arrive via the `@shadmin/admin` registryDependency, but listing them is explicit and safe). Keep the array alphabetically sorted to match the file's convention.
 
 Then:
 ```bash
@@ -1202,7 +1202,7 @@ git commit -m "feat(block-editor): dataBlocks export, registry deps, docs + demo
 | `embed` (media, sanitized) | 3 (allowlist-construct, never raw HTML) |
 | `record-list` (data, `useGetList`) | 4 |
 | `chart` (data, recharts) | 5 |
-| `block-editor-data` opt-in item | 6 (realized as `dataBlocks` array, NOT a separate registry item — see Assumptions; rationale: recharts/ra-core already ship via the required `@shadcn-admin-kit/admin` registry dep) |
+| `block-editor-data` opt-in item | 6 (realized as `dataBlocks` array, NOT a separate registry item — see Assumptions; rationale: recharts/ra-core already ship via the required `@shadmin/admin` registry dep) |
 | Embed sanitization (security) | 3 |
 | Docs + demo | 6 |
 

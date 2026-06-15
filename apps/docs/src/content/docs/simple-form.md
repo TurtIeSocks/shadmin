@@ -163,7 +163,7 @@ export const UserCreate = () => (
 ```
 
 :::tip
-If you pass a function as a message, Shadcn Admin Kit calls this function with `{ args, value, values,translate, ...props }` as argument. For instance:
+If you pass a function as a message, Shadmin calls this function with `{ args, value, values,translate, ...props }` as argument. For instance:
 
 ```jsx
 const message = ({ translate }) => translate("myroot.validation.email_invalid");
@@ -222,7 +222,7 @@ export const UserCreate = () => (
 Input validation functions receive the current field value and the values of all fields of the current record. This allows for complex validation scenarios (e.g. validate that two passwords are the same).
 
 :::tip
-If your admin has multi-language support, validator functions should return message _identifiers_ rather than messages themselves. Shadcn Admin Kit automatically passes these identifiers to the translation function:
+If your admin has multi-language support, validator functions should return message _identifiers_ rather than messages themselves. Shadmin automatically passes these identifiers to the translation function:
 
 ```jsx
 // in validators/required.js
@@ -337,7 +337,7 @@ Per-input default values cannot be functions. For default values computed at ren
 
 ## Warn On Unsaved Changes
 
-Shadcn Admin Kit keeps track of the form state, so it can detect when the user leaves an `Edit` or `Create` page with unsaved changes. To avoid data loss, you can use this ability to ask the user to confirm before leaving a page with unsaved changes.
+Shadmin keeps track of the form state, so it can detect when the user leaves an `Edit` or `Create` page with unsaved changes. To avoid data loss, you can use this ability to ask the user to confirm before leaving a page with unsaved changes.
 
 Warning about unsaved changes is an opt-in feature: you must set the `warnWhenUnsavedChanges` prop in the form component to enable it:
 
@@ -354,7 +354,7 @@ export const TagEdit = () => (
 ```
 
 :::note
-Due to limitations in react-router, this feature only works if you use the default router provided by Shadcn Admin Kit, or if you use a [Data Router](https://reactrouter.com/en/6.22.3/routers/picking-a-router).
+Due to limitations in react-router, this feature only works if you use the default router provided by Shadmin, or if you use a [Data Router](https://reactrouter.com/en/6.22.3/routers/picking-a-router).
 :::
 
 ## Toolbar

@@ -40,7 +40,7 @@ import { cn } from "@/lib/utils";
 /**
  * Renders a button that lets users show / hide columns in a DataTable
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/columnsbutton/ ColumnsButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/columns-button ColumnsButton documentation}
  *
  * @example
  * import { List, DataTable, EditButton, CreateButton, ExportButton, ColumnsButton } from '@/components/admin';

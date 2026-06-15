@@ -12,7 +12,7 @@ export function CallToAction() {
         </p>
         <Button asChild className="mt-10" size="lg" variant="outline">
           <a
-            href="https://marmelab.com/shadcn-admin-kit/docs"
+            href="https://shadmin.turtlesocks.dev/docs"
             target="_blank"
             rel="noopener noreferrer"
           >

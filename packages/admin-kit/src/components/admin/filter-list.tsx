@@ -12,7 +12,7 @@ import { FilterListSection } from "@/components/admin/filter-list-section";
  * - `icon`: An icon React element.
  *
  * @see FilterListItem
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterlist/ FilterList documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/filter-list FilterList documentation}
  *
  * @example
  * import { Card } from "@/components/ui/card";

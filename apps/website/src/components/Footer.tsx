@@ -1,7 +1,7 @@
 const navigation = [
   {
     name: "GitHub",
-    href: "https://github.com/marmelab/shadcn-admin-kit",
+    href: "https://github.com/TurtIeSocks/shadmin",
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg
         aria-hidden="true"

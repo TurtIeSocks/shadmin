@@ -4,8 +4,8 @@ import {
   SelectInput,
   SimpleForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
-import { DurationInput } from "shadcn-admin-kit/components/extras/duration-input";
+} from "shadmin/components/admin";
+import { DurationInput } from "shadmin/components/extras/duration-input";
 import { required } from "ra-core";
 
 const STATUS_CHOICES = [

@@ -3,8 +3,8 @@ import {
   RecordField,
   Show,
   TextField,
-} from "shadcn-admin-kit/components/admin";
-import { DurationField } from "shadcn-admin-kit/components/extras/duration-field";
+} from "shadmin/components/admin";
+import { DurationField } from "shadmin/components/extras/duration-field";
 
 export const PlanningShow = () => (
   <Show>

@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
  * Phone input that stores E.164 (`+14155552671`) and renders a country
  * selector plus a national-format text input.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/phone-input/ PhoneInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/phone-input PhoneInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, PhoneInput } from '@/components/admin';

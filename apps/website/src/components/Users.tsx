@@ -252,7 +252,7 @@ export function Users() {
         <div className="w-full text-center">
           <Button asChild size="lg" className="mt-16 md:mt-12">
             <a
-              href="https://github.com/marmelab/shadcn-admin-kit"
+              href="https://github.com/TurtIeSocks/shadmin"
               target="_blank"
               rel="noopener noreferrer"
             >

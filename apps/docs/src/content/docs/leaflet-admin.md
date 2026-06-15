@@ -5,7 +5,7 @@ title: "Leaflet"
 The `leaflet-admin` block provides Leaflet-based components for displaying and editing geographic data.
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/leaflet-admin.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/leaflet-admin.json
 ```
 
 ## Components

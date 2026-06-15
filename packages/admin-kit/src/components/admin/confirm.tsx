@@ -21,7 +21,7 @@ import {
  * Used internally for delete operations and other confirmations.
  * Supports custom icons, button labels, and loading states.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/confirm Confirm documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/confirm Confirm documentation}
  *
  * @example
  * import { useState } from "react";

@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
  * its `id` to the form field. Highlights the current plan and (optionally)
  * a recommended plan.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/subscription-plan-picker/ SubscriptionPlanPicker documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/subscription-plan-picker SubscriptionPlanPicker documentation}
  *
  * @example
  * import { SubscriptionPlanPicker } from '@/components/admin';

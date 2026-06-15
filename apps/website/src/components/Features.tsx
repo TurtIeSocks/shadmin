@@ -59,7 +59,7 @@ export function Features() {
   return (
     <section
       id="features"
-      aria-label="Shadcn Admin Kit Essential Features"
+      aria-label="Shadmin Essential Features"
       className="relative bg-white py-24 sm:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
@@ -70,7 +70,7 @@ export function Features() {
           Beyond UI Elements
         </p>
         <p className="mx-auto mt-5 max-w-prose text-xl text-muted-foreground">
-          With Shadcn Admin Kit, all the essential features come preconfigured
+          With Shadmin, all the essential features come preconfigured
           with proven best practices. Spend less time on repetitive setup and
           more on what makes your app unique: your business logic.
         </p>

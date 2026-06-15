@@ -13,7 +13,7 @@ interface PlaceholderProps {
  * Renders an inline-flex span filled with the muted background colour so
  * a row of fields keeps its height during a fetch.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/placeholder/ Placeholder documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/placeholder Placeholder documentation}
  *
  * @example
  * import { Placeholder } from "@/components/admin/placeholder";

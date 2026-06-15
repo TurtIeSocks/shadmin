@@ -7,8 +7,8 @@ import {
   ImageInput,
   ImageField,
   TranslatableInputs,
-} from "shadcn-admin-kit/components/admin";
-import { CurrencyInput } from "shadcn-admin-kit/components/extras/currency-input";
+} from "shadmin/components/admin";
+import { CurrencyInput } from "shadmin/components/extras/currency-input";
 import { required } from "ra-core";
 
 export const ProductCreate = () => (

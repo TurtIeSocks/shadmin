@@ -16,7 +16,7 @@ interface DurationFieldProps<RecordType extends UnknownRecord = UnknownRecord>
  * Displays an ISO-8601 duration string as a compact ("2h 30m") or relative
  * ("2 hours 30 minutes") human-readable value.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/durationfield/ DurationField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/duration-field DurationField documentation}
  *
  * @example
  * import { DurationField } from '@/components/admin';

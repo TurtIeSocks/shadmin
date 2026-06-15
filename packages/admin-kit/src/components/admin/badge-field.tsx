@@ -13,7 +13,7 @@ type BadgeProps = React.ComponentProps<typeof Badge>;
  * Use it to highlight status values, tags, or categorical information.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/badgefield/ BadgeField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/badge-field BadgeField documentation}
  * @see {@link https://ui.shadcn.com/docs/components/badge Badge documentation}
  *
  * @example

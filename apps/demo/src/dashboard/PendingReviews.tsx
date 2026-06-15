@@ -1,10 +1,10 @@
-import { Avatar, AvatarImage } from "shadcn-admin-kit/components/ui/avatar";
-import { buttonVariants } from "shadcn-admin-kit/components/ui/button";
+import { Avatar, AvatarImage } from "shadmin/components/ui/avatar";
+import { buttonVariants } from "shadmin/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { Link } from "react-router";
 
 import { WithRecord, useGetList, useTranslate } from "ra-core";
-import { ReferenceField } from "shadcn-admin-kit/components/admin/reference-field";
+import { ReferenceField } from "shadmin/components/admin/reference-field";
 
 import CardWithIcon from "./CardWithIcon";
 //import StarRatingField from "../reviews/StarRatingField";

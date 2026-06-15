@@ -11,23 +11,23 @@ import {
   ReferenceInput,
   SingleFieldList,
   AutocompleteInput,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
   SidebarProvider,
-} from "shadcn-admin-kit/components/ui/sidebar";
-import { Button } from "shadcn-admin-kit/components/ui/button";
-import { Card, CardContent } from "shadcn-admin-kit/components/ui/card";
-import { cn } from "shadcn-admin-kit/lib/utils";
+} from "shadmin/components/ui/sidebar";
+import { Button } from "shadmin/components/ui/button";
+import { Card, CardContent } from "shadmin/components/ui/card";
+import { cn } from "shadmin/lib/utils";
 
-import { RatingField } from "shadcn-admin-kit/components/extras/rating-field";
+import { RatingField } from "shadmin/components/extras/rating-field";
 import { FullNameField } from "../customers/FullNameField";
 import { ReviewEdit } from "./ReviewEdit";
 import { BulkApproveButton } from "./BulkApproveButton";
 import { BulkRejectButton } from "./BulkRejectButton";
-import { useIsMobile } from "shadcn-admin-kit/hooks/use-mobile";
+import { useIsMobile } from "shadmin/hooks/use-mobile";
 import type { Review } from "../types";
 
 const filters = [

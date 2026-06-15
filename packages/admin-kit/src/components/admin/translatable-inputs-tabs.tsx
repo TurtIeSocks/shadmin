@@ -11,7 +11,7 @@ import { TranslatableInputsTab } from "@/components/admin/translatable-inputs-ta
  * `<TranslatableInputsTab>` per locale, wrapped in a shadcn `<TabsList>`.
  * Each tab reflects the validation state of the inputs for its locale.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-inputs TranslatableInputs documentation}
  *
  * @example
  * <TranslatableInputs

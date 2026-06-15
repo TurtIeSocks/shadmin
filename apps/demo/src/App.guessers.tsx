@@ -1,9 +1,9 @@
 import { dataProvider } from "./dataProvider";
-import { Admin } from "shadcn-admin-kit/components/admin/admin";
-import { ListGuesser } from "shadcn-admin-kit/components/admin/list-guesser";
-import { ShowGuesser } from "shadcn-admin-kit/components/admin/show-guesser";
-import { EditGuesser } from "shadcn-admin-kit/components/admin/edit-guesser";
-import { Resource } from "shadcn-admin-kit/components/admin/resource";
+import { Admin } from "shadmin/components/admin/admin";
+import { ListGuesser } from "shadmin/components/admin/list-guesser";
+import { ShowGuesser } from "shadmin/components/admin/show-guesser";
+import { EditGuesser } from "shadmin/components/admin/edit-guesser";
+import { Resource } from "shadmin/components/admin/resource";
 
 function App() {
   return (

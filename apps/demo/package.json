@@ -1,5 +1,5 @@
 {
-  "name": "shadcn-admin-kit-demo",
+  "name": "shadmin-demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -24,7 +24,7 @@
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.1.0",
     "react-router": "^7.12.0",
-    "shadcn-admin-kit": "workspace:*",
+    "shadmin": "workspace:*",
     "zod": "^4.4.3"
   },
   "devDependencies": {

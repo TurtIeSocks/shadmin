@@ -4,15 +4,15 @@ import {
   RecordField,
   Show,
   SimpleShowLayout,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import {
   Assistant,
   type AssistantTransport,
   PresenceBar,
   type PresenceState,
   type PresenceTransport,
-} from "shadcn-admin-kit/components/extras";
-import { MdxField } from "shadcn-admin-kit/components/mdx-editor";
+} from "shadmin/components/extras";
+import { MdxField } from "shadmin/components/mdx-editor";
 import "@mdxeditor/editor/style.css";
 import type { WorkspaceDocument } from "./documents-seed";
 

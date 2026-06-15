@@ -1,12 +1,12 @@
 import { WithListContext } from "ra-core";
-import { List } from "shadcn-admin-kit/components/admin";
+import { List } from "shadmin/components/admin";
 import {
   BarChart,
   DonutChart,
   MetricCard,
   PivotGrid,
   TrendChart,
-} from "shadcn-admin-kit/components/extras";
+} from "shadmin/components/extras";
 import { DollarSignIcon, TrendingUpIcon, UsersIcon } from "lucide-react";
 import type { Report } from "./reports-seed";
 

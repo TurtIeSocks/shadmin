@@ -8,7 +8,7 @@
 type ThemeVars = Record<string, string>;
 
 /**
- * Shape of a named theme accepted by shadcn-admin-kit's `<ThemeProvider>` and `<Admin>`.
+ * Shape of a named theme accepted by shadmin's `<ThemeProvider>` and `<Admin>`.
  *
  * Each theme is a pair of CSS variable maps applied at runtime to
  * `document.documentElement`. Light variables are applied in light mode, dark

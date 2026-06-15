@@ -14,7 +14,7 @@ import type { ComponentProps } from "react";
  * Leverages shadcn's Switch component for a native-looking toggle. Note: this input doesn't
  * support `null` values—use `<SelectInput>` for nullable booleans.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/booleaninput/ BooleanInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/boolean-input BooleanInput documentation}
  * @see {@link https://ui.shadcn.com/docs/components/switch Switch documentation}
  *
  * @example

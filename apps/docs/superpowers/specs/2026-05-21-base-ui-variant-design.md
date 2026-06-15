@@ -1,4 +1,4 @@
-# Base-UI Variant of the Shadcn Admin Kit Registry
+# Base-UI Variant of the Shadmin Registry
 
 **Status:** Rejected (kept as decision record)
 **Date:** 2026-05-21
@@ -154,7 +154,7 @@ public/r/
 substitutes `{style}` when resolving items:
 
 ```
-https://marmelab.com/shadcn-admin-kit/r/{style}/{name}.json
+https://shadmin.turtlesocks.dev/r/{style}/{name}.json
 ```
 
 Granular admin items (output of the existing `granularizeBlock` generator) are
@@ -168,9 +168,9 @@ The granular generator's import classifier currently treats all
 names like `"popover"`). After this change every ui file is OURS (already
 customized in the registry refactor — e.g. primitive namespace re-exports,
 `slot.tsx`). The classifier updates so all ui imports resolve to
-`@shadcn-admin-kit/<name>` instead of shadcn upstream names. This is what
+`@shadmin/<name>` instead of shadcn upstream names. This is what
 threads the consumer's `style` choice through the dependency graph: installing
-`@shadcn-admin-kit/data-table` pulls our per-style ui items, not shadcn
+`@shadmin/data-table` pulls our per-style ui items, not shadcn
 upstream's. Existing `OUR_UI_ITEMS` carve-out (slot, combobox, color-picker,
 direction) becomes the new default for every ui file.
 
@@ -240,8 +240,8 @@ Catalog (`public/r/registry.json`):
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "Shadcn Admin Kit",
-  "homepage": "https://marmelab.com/shadcn-admin-kit/",
+  "name": "Shadmin",
+  "homepage": "https://shadmin.turtlesocks.dev/",
   "items": [...]
 }
 ```
@@ -273,12 +273,12 @@ source file for the chosen style.
 {
   "style": "base-ui",
   "registries": {
-    "@shadcn-admin-kit": "https://marmelab.com/shadcn-admin-kit/r/{style}/{name}.json"
+    "@shadmin": "https://shadmin.turtlesocks.dev/r/{style}/{name}.json"
   }
 }
 
 # Install popover (base-ui variant)
-pnpm dlx shadcn@latest add @shadcn-admin-kit/popover
+pnpm dlx shadcn@latest add @shadmin/popover
 # → fetches from /r/base-ui/popover.json
 # → file lands at @/components/ui/popover.tsx
 ```
@@ -312,7 +312,7 @@ ui items after flipping `style`.
    is a refactor checkpoint; behavior must not change.
 4. Update ESLint rule per the "ESLint" section above.
 5. Update `scripts/granularize-block.mjs` so all `@/components/ui/*` imports
-   resolve to `@shadcn-admin-kit/<name>` items (drop the `OUR_UI_ITEMS`
+   resolve to `@shadmin/<name>` items (drop the `OUR_UI_ITEMS`
    carve-out; everything in `bases/<backend>/ui/` is ours now). Regenerate
    `registry.json` and verify granular admin items reference our ui items
    instead of shadcn upstream.

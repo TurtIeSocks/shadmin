@@ -1,11 +1,11 @@
 import { Resource } from "ra-core";
-import { Admin } from "shadcn-admin-kit/components/admin";
+import { Admin } from "shadmin/components/admin";
 import {
   realtimeDataProvider,
   addEventsForMutations,
   broadcastChannelTransport,
   inMemoryLockProvider,
-} from "shadcn-admin-kit/components/realtime";
+} from "shadmin/components/realtime";
 import { realtimeSeed } from "./realtime/seed";
 import { localStorageDataProvider } from "./realtime/local-storage-data-provider";
 import { PostListLive } from "./realtime/PostListLive";

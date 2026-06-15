@@ -57,7 +57,7 @@ interface ReferenceArrayFieldViewProps {
  * It supports custom sorting, filtering, and rendering with DataTable or other list components.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/referencearrayfield/ ReferenceArrayField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/reference-array-field ReferenceArrayField documentation}
  *
  * @example
  * import { List, DataTable, ReferenceArrayField } from '@/components/admin';

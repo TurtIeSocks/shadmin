@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  * children. Used internally by `<FilterList>`, but can also be used standalone
  * to make custom widgets look nicer alongside a filter list.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterlistsection/ FilterListSection documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/filter-list-section FilterListSection documentation}
  *
  * @example
  * import { Card } from "@/components/ui/card";

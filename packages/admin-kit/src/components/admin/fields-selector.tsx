@@ -46,7 +46,7 @@ interface SelectableField {
  * Renders a list of {@link FieldToggle} rows (drag-and-drop reorderable) plus
  * Hide All / Show All buttons.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/inspector Inspector documentation}
  */
 function FieldsSelector({
   name = "columns",

@@ -8,7 +8,7 @@ Loading indicator used for slow element or page loads. It displays a spinner and
 
 ## Usage
 
-The default Shadcn Admin Kit [`<Layout>`](./layout) displays the Loading component in the main content area when a page component is loading and the loading takes more than 1 second. This is done automatically using React Suspense and requires no special setup.
+The default Shadmin [`<Layout>`](./layout) displays the Loading component in the main content area when a page component is loading and the loading takes more than 1 second. This is done automatically using React Suspense and requires no special setup.
 
 For example, if you [use code splitting to lazy load your resource views](./resource.md#lazy-loading), the `<Loading>` component will be displayed while the component is being loaded:
 

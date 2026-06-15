@@ -20,12 +20,12 @@
    - Follow the component's usage examples for proper implementation
    - Do not overwrite ui or registry/ui components unless the user has specifically asked for it
 
-## Rules for using the shadcn-admin-kit registry
+## Rules for using the shadmin registry
 
-- The shadcn-admin-kit registry mainly consists of a single block component called `admin`, which will install the `<Admin>` component along with all the necessary components to create an admin (such as `<List>`, `<Edit>`, `<DataTable>`, `<TextField>`, `<TextInput>`, etc.).
-- The shadcn-admin-kit registry contains only the UI components, and relies on `ra-core`, a headless admin framework for React, to provide the logic and data fetching capabilities. For instance, the `<Resource>` component comes from `ra-core`.
-- If asked to bootstrap a new Admin, you can use the `example-admin` component from the shadcn-admin-kit registry to get a working example, configured with a sample dataProvider, which you can use as basis.
-- Shadcn Admin Kit requires a specific TS config to work: the `verbatimModuleSyntax` option must be set to `false`. See below for more details.
+- The shadmin registry mainly consists of a single block component called `admin`, which will install the `<Admin>` component along with all the necessary components to create an admin (such as `<List>`, `<Edit>`, `<DataTable>`, `<TextField>`, `<TextInput>`, etc.).
+- The shadmin registry contains only the UI components, and relies on `ra-core`, a headless admin framework for React, to provide the logic and data fetching capabilities. For instance, the `<Resource>` component comes from `ra-core`.
+- If asked to bootstrap a new Admin, you can use the `example-admin` component from the shadmin registry to get a working example, configured with a sample dataProvider, which you can use as basis.
+- Shadmin requires a specific TS config to work: the `verbatimModuleSyntax` option must be set to `false`. See below for more details.
 
 ### Fixing the TS config
 
@@ -45,11 +45,11 @@ Set the `verbatimModuleSyntax` option to `false` in the `tsconfig.app.json` file
 }
 ```
 
-## Rules for using the `<Admin>` component from shadcn-admin-kit
+## Rules for using the `<Admin>` component from shadmin
 
 ### `<Admin>` Is A Client-Side Component
 
-The `<Admin>` component from `shadcn-admin-kit` is a client-side component. Therefore, it must be either:
+The `<Admin>` component from `shadmin` is a client-side component. Therefore, it must be either:
 
 - Used in a Single Page Application (SPA), for instance created with Vite
 - Marked with the `"use client"` directive if used in a Server-Side Rendered (SSR) application, for instance a Next.js app.

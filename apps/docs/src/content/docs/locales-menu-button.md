@@ -6,11 +6,11 @@ Also known as the "language switcher", it displays a menu allowing users to sele
 
 ![LocalesMenuButton](./images/locales-menu-button.jpg)
 
-It leverages the [store](https://marmelab.com/shadcn-admin-kit/Store.html) so that their selection is persisted.
+It leverages the [store](https://shadmin.turtlesocks.dev/Store.html) so that their selection is persisted.
 
 ## Usage
 
-For most users, this component will be automatically added to the header of shadcn-admin-kit's default [`<Layout>`](./layout) if the `i18nProvider.getLocales()` method returns more than one locale. Check the [`i18nProvider` setup documentation](https://marmelab.com/ra-core/translationsetup/) for details.
+For most users, this component will be automatically added to the header of shadmin's default [`<Layout>`](./layout) if the `i18nProvider.getLocales()` method returns more than one locale. Check the [`i18nProvider` setup documentation](https://marmelab.com/ra-core/translationsetup/) for details.
 
 If you use the `ra-i18n-polyglot` package, you can pass the list of available locales as the third parameter of `polyglotI18nProvider`:
 

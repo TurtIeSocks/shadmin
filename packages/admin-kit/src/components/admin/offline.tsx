@@ -16,7 +16,7 @@ interface OfflineProps {
  * on `window`. When no children are provided, a default banner is rendered
  * at the top of the viewport announcing that the user is offline.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/offline/ Offline documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/offline Offline documentation}
  *
  * @example
  * import { Offline } from "@/components/admin/offline";

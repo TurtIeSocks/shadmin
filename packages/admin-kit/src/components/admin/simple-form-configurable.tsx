@@ -32,7 +32,7 @@ const EMPTY_ARRAY: SelectableField[] = [];
  * to `preferences.${resource}.simpleForm`). The user's input order and
  * selection survive page reloads.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/simpleformconfigurable/ SimpleFormConfigurable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/simple-form-configurable SimpleFormConfigurable documentation}
  *
  * @example
  * import { Edit, SimpleFormConfigurable, TextInput } from "@/components/admin";

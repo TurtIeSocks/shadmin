@@ -49,7 +49,7 @@ export default App;
 
 That's enough to display a basic list with sorting and pagination.
 
-You can find more advanced examples of `<List>` usage in the [demo](https://marmelab.com/shadcn-admin-kit/demo/).
+You can find more advanced examples of `<List>` usage in the [demo](https://shadmin.turtlesocks.dev/demo).
 
 ## Props
 
@@ -152,7 +152,7 @@ export const PostList = () => (
 
 ![List children](./images/users-list-items.png)
 
-shadcn-admin-kit provides several components that can read and display a list of records from a `ListContext`, each with a different layout:
+shadmin provides several components that can read and display a list of records from a `ListContext`, each with a different layout:
 
 - [`<DataTable>`](./data-table) displays records in a table
 - [`<SingleFieldList>`](./single-field-list) displays records inline, showing one field per record
@@ -371,7 +371,7 @@ For more details about customizing filters, see the [Filtering the List](https:/
 
 ## Exported Data
 
-Among the default list actions, shadcn-admin-kit includes an `<ExportButton>`.
+Among the default list actions, shadmin includes an `<ExportButton>`.
 
 By default, clicking this button will:
 
@@ -386,7 +386,7 @@ The `<ExportButton>` is disabled when there is no record in the current `<List>`
 :::
 
 :::tip
-For CSV conversion, you can import [jsonexport](https://github.com/kauegimenes/jsonexport#browser-import-examples), a JSON to CSV converter which is already a shadcn-admin-kit dependency. And for CSV download, take advantage of shadcn-admin-kit's `downloadCSV` function.
+For CSV conversion, you can import [jsonexport](https://github.com/kauegimenes/jsonexport#browser-import-examples), a JSON to CSV converter which is already a shadmin dependency. And for CSV download, take advantage of shadmin's `downloadCSV` function.
 
 Here is an example for a Posts exporter, omitting, adding, and reordering fields:
 
@@ -462,7 +462,7 @@ The `<ExportButton>` limits the main request to the `dataProvider` to 1,000 reco
 :::
 
 :::tip
-shadcn-admin-kit also provides a `<BulkExportButton>` component that depends on the `exporter`, and that you can use in the `bulkActionButtons` prop of the `<DataTable>` component.
+shadmin also provides a `<BulkExportButton>` component that depends on the `exporter`, and that you can use in the `bulkActionButtons` prop of the `<DataTable>` component.
 :::
 
 :::tip
@@ -485,9 +485,9 @@ import { List } from "@/components/admin";
 const PostList = () => <List queryOptions={{ meta: { foo: "bar" } }}>...</List>;
 ```
 
-With this option, shadcn-admin-kit will call `dataProvider.getList()` on mount with the `meta: { foo: 'bar' }` option.
+With this option, shadmin will call `dataProvider.getList()` on mount with the `meta: { foo: 'bar' }` option.
 
-You can also use the `queryOptions` prop to override the default error side effect. By default, when the `dataProvider.getList()` call fails, shadcn-admin-kit shows an error notification. Here is how to show a custom notification instead:
+You can also use the `queryOptions` prop to override the default error side effect. By default, when the `dataProvider.getList()` call fails, shadmin shows an error notification. Here is how to show a custom notification instead:
 
 ```tsx
 import { useNotify, useRedirect, List } from "@/components/admin";
@@ -571,7 +571,7 @@ const Facets = () => {
 };
 ```
 
-You might want to allow data to be fetched only when at least some filters have been set. You can leverage TanStack react-query `enabled` option for that. It accepts a function that receives the query as its only parameter. As shadcn-admin-kit always format the `queryKey` as `[ResourceName, DataProviderMethod, DataProviderParams]`, you can check that there is at least a filter in this function:
+You might want to allow data to be fetched only when at least some filters have been set. You can leverage TanStack react-query `enabled` option for that. It accepts a function that receives the query as its only parameter. As shadmin always format the `queryKey` as `[ResourceName, DataProviderMethod, DataProviderParams]`, you can check that there is at least a filter in this function:
 
 ```tsx
 export const PostList = () => (
@@ -600,7 +600,7 @@ Notice we display some custom UI when there is no filter. This is because otherw
 
 ## Parameters Persistence
 
-By default, when users change the list parameters (sort, pagination, filters), shadcn-admin-kit stores them in localStorage so that users can come back to the list and find it in the same state as when they left it, using the internal [Store](https://marmelab.com/ra-core/store/).
+By default, when users change the list parameters (sort, pagination, filters), shadmin stores them in localStorage so that users can come back to the list and find it in the same state as when they left it, using the internal [Store](https://marmelab.com/ra-core/store/).
 
 Shadcn-admin-kit uses the current resource as the identifier to store the list parameters (under the key `${resource}.listParams`).
 
@@ -695,7 +695,7 @@ When the data provider returns no records, `<ListGuesser>` renders an empty stat
 
 ## Live Updates
 
-Shadcn Admin Kit offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
+Shadmin offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
 
 If you want to subscribe to live updates on the list of records, add [the `<ListLiveUpdate>` component](https://marmelab.com/ra-core/listliveupdate/) in your `<List>` children.
 
@@ -719,7 +719,7 @@ This feature requires a valid [Enterprise Edition](https://marmelab.com/ra-enter
 
 ## Rendering An Empty List
 
-When there is no data, shadcn-admin-kit displays a special page inviting the user to create the first record. This page can be customized using [the `empty` prop](#empty).
+When there is no data, shadmin displays a special page inviting the user to create the first record. This page can be customized using [the `empty` prop](#empty).
 
 You can set the `empty` props value to `false` to disable the empty page and render the list layout instead.
 
@@ -781,7 +781,7 @@ If you need to set the list parameters to render a list of records _related to a
 
 :::
 
-If the `<List>` children allow to _modify_ the list state (i.e. if they let users change the sort order, the filters, the selection, or the pagination), then you should also use the [`disableSyncWithLocation`](#disablesyncwithlocation) prop to prevent shadcn-admin-kit from changing the URL. This is the case e.g. if you use a `<DataTable>`, which lets users sort the list by clicking on column headers.
+If the `<List>` children allow to _modify_ the list state (i.e. if they let users change the sort order, the filters, the selection, or the pagination), then you should also use the [`disableSyncWithLocation`](#disablesyncwithlocation) prop to prevent shadmin from changing the URL. This is the case e.g. if you use a `<DataTable>`, which lets users sort the list by clicking on column headers.
 
 ```tsx
 import { List, DataTable, DateField } from "@/components/admin";

@@ -5,7 +5,7 @@
  * `<FilterLiveForm>` wraps form inputs and automatically pushes their values to
  * the surrounding `<ListContext>` filter state on each change.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterliveform/ FilterLiveForm documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/filter-live-form FilterLiveForm documentation}
  *
  * @example
  * import { Card } from "@/components/ui/card";

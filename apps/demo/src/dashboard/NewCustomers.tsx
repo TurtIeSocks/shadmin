@@ -1,5 +1,5 @@
-import { Avatar, AvatarImage } from "shadcn-admin-kit/components/ui/avatar";
-import { buttonVariants } from "shadcn-admin-kit/components/ui/button";
+import { Avatar, AvatarImage } from "shadmin/components/ui/avatar";
+import { buttonVariants } from "shadmin/components/ui/button";
 import { UserPlus } from "lucide-react";
 import { Link } from "react-router";
 import { ListBase, WithListContext, useTranslate } from "ra-core";

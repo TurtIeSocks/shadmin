@@ -4,9 +4,9 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
-} from "shadcn-admin-kit/components/admin";
-import { ApiKeyField } from "shadcn-admin-kit/components/extras/api-key-field";
-import { ApiKeyInput } from "shadcn-admin-kit/components/extras/api-key-input";
+} from "shadmin/components/admin";
+import { ApiKeyField } from "shadmin/components/extras/api-key-field";
+import { ApiKeyInput } from "shadmin/components/extras/api-key-input";
 
 export const ApiKeyShow = () => (
   <Show>

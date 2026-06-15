@@ -31,7 +31,7 @@ interface SimpleListLoadingProps {
  *
  * Mirrors the layout of `<SimpleList>` so the page does not jump when the data arrives.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/simplelistloading/ SimpleListLoading documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/simple-list-loading SimpleListLoading documentation}
  *
  * @example
  * import { SimpleListLoading } from "@/components/admin";

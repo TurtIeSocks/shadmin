@@ -58,7 +58,7 @@ ChipFieldImpl.displayName = "ChipFieldImpl";
  * Useful for highlighting status values, tags, or categorical information.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/chipfield/ ChipField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/chip-field ChipField documentation}
  *
  * @example
  * import { List, DataTable, ChipField } from '@/components/admin';

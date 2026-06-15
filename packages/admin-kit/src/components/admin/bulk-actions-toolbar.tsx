@@ -28,7 +28,7 @@ function BulkActionsToolbarChildren() {
  * Shows the number of selected rows and provides bulk action buttons. Automatically hidden
  * when no rows are selected. Positioned at the bottom center of the screen.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkactionstoolbar/ BulkActionsToolbar documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-actions-toolbar BulkActionsToolbar documentation}
  *
  * @example
  * import { BulkActionsToolbar, BulkDeleteButton } from '@/components/admin';

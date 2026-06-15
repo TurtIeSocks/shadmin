@@ -43,7 +43,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * This input allows editing array values with a searchable dropdown interface and displays selected items as removable badges.
  * Works seamlessly inside ReferenceArrayInput for editing many-to-many relationships.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/autocompletearrayinput/ AutocompleteArrayInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/autocomplete-array-input AutocompleteArrayInput documentation}
  *
  * @example
  * import {

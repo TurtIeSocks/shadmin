@@ -37,7 +37,7 @@ export function Deploy() {
                   Host Anywhere
                 </p>
                 <p className="my-10 text-lg leading-8 text-muted-foreground">
-                  Shadcn Admin Kit apps are lightweight, static assets you can
+                  Shadmin apps are lightweight, static assets you can
                   host almost anywhere—for close to nothing. When you go to
                   production, you own your app. No hidden fees, no SSO paywalls,
                   and no surprises.

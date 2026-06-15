@@ -8,7 +8,7 @@ import { ImageField } from "@/components/admin/image-field";
  * `<FileInput>` that defaults `accept` to `{ "image/*": [] }` and renders
  * an `<ImageField>` thumbnail preview when no child is provided.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/imageinput/ ImageInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/image-input ImageInput documentation}
  * @see {@link https://github.com/marmelab/react-admin/blob/master/packages/ra-ui-materialui/src/input/ImageInput.tsx ra-ui-materialui ImageInput}
  *
  * @example

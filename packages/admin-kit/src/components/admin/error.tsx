@@ -22,7 +22,7 @@ import { Title } from "./title";
  * Displays the error message and a back button.
  * In development mode, also shows the component stack trace in an expandable accordion.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/error Error documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/error Error documentation}
  */
 function Error(props: InternalErrorProps) {
   const {
@@ -94,16 +94,16 @@ function Error(props: InternalErrorProps) {
                 Check the{" "}
                 <a
                   className="text-primary underline-offset-4 hover:underline"
-                  href="https://marmelab.com/shadcn-admin-kit/docs"
+                  href="https://shadmin.turtlesocks.dev/docs"
                 >
-                  shadcn-admin-kit documentation
+                  shadmin documentation
                 </a>
               </li>
               <li>
                 Search on{" "}
                 <a
                   className="text-primary underline-offset-4 hover:underline"
-                  href="https://stackoverflow.com/questions/tagged/shadcn-admin-kit"
+                  href="https://stackoverflow.com/questions/tagged/shadmin"
                 >
                   StackOverflow
                 </a>{" "}
@@ -113,7 +113,7 @@ function Error(props: InternalErrorProps) {
                 Get help from the core team via{" "}
                 <a
                   className="text-primary underline-offset-4 hover:underline"
-                  href="https://marmelab.com/shadcn-admin-kit/"
+                  href="https://shadmin.turtlesocks.dev/"
                 >
                   Shadcn Enterprise Edition
                 </a>

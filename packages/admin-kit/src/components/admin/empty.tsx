@@ -21,7 +21,7 @@ interface EmptyProps {
  * Displays a centered illustration, an empty-state message and (when the
  * resource has a create route) an invitation with a `<CreateButton>`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/empty/ Empty documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/empty Empty documentation}
  *
  * @example
  * import { List, Empty } from "@/components/admin";

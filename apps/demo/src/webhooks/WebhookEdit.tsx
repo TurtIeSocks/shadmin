@@ -2,8 +2,8 @@ import {
   Edit,
   SelectInput,
   SimpleForm,
-} from "shadcn-admin-kit/components/admin";
-import { WebhookEndpointInput } from "shadcn-admin-kit/components/extras/webhook-endpoint-input";
+} from "shadmin/components/admin";
+import { WebhookEndpointInput } from "shadmin/components/extras/webhook-endpoint-input";
 import { EVENT_TYPES } from "./event-types";
 
 export const WebhookEdit = () => (

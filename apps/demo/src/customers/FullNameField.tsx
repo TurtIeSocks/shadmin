@@ -3,8 +3,8 @@ import {
   Avatar,
   AvatarImage,
   AvatarFallback,
-} from "shadcn-admin-kit/components/ui/avatar";
-import { TextField } from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/ui/avatar";
+import { TextField } from "shadmin/components/admin";
 
 export const FullNameField = () => {
   const record = useRecordContext();

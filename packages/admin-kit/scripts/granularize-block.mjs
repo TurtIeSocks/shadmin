@@ -15,7 +15,7 @@ import { dirname, join, relative, resolve } from "node:path";
 const SOURCE_EXTS = [".tsx", ".ts"];
 
 // ui/ files authored in this repo (not pulled from shadcn upstream).
-// Imports of these resolve to `@shadcn-admin-kit/<name>` items shipped here.
+// Imports of these resolve to `@shadmin/<name>` items shipped here.
 // Everything else under components/ui/ is assumed to be a shadcn upstream item
 // referenced by plain name (e.g. "popover", "dialog").
 const OUR_UI_ITEMS = new Set(["slot", "combobox", "color-picker", "direction"]);
@@ -159,7 +159,7 @@ export const granularizeBlock = ({
     if (!itemRef || itemRef.kind !== "ours") continue;
     // Skip a granular item whose derived name collides with the monolith block
     // (e.g. components/admin/admin.tsx -> "admin", same as the "admin" block).
-    // The file still ships inside the monolith; any "@shadcn-admin-kit/<blockName>"
+    // The file still ships inside the monolith; any "@shadmin/<blockName>"
     // dependency resolves to that block, so emitting a duplicate item here would
     // make build-registry.mjs write dist/r/<blockName>.json twice and corrupt it.
     if (itemRef.name === blockName) continue;
@@ -180,7 +180,7 @@ export const granularizeBlock = ({
         if (depRef.kind === "shadcn") {
           registryDeps.add(depRef.name);
         } else if (depRef.name !== itemRef.name) {
-          registryDeps.add(`@shadcn-admin-kit/${depRef.name}`);
+          registryDeps.add(`@shadmin/${depRef.name}`);
         }
         continue;
       }

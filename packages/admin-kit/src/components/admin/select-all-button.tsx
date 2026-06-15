@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  *
  * To be used inside the <DataTable bulkActionsButtons> prop or in BulkActionsToolbar.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/selectallbutton/ SelectAllButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/select-all-button SelectAllButton documentation}
  *
  * @example
  * import { BulkActionsToolbar, BulkDeleteButton, SelectAllButton } from '@/components/admin';

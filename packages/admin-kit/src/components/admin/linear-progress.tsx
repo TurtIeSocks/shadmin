@@ -26,7 +26,7 @@ interface LinearProgressProps extends HTMLAttributes<HTMLDivElement> {
  * an input or a field in a form layout while data is loading. Avoids
  * visual jumps when finally replaced by the resolved value.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/linearprogress/ LinearProgress documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/linear-progress LinearProgress documentation}
  *
  * @example
  * import { LinearProgress } from "@/components/admin/linear-progress";

@@ -54,7 +54,7 @@ const arePropsEqual = (
  * - `value`: An object to be merged into the filter value when enabling the
  *   filter (e.g. `{ is_published: true, published_at_gte: "2020-07-08" }`).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterlistitem/ FilterListItem documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/filter-list-item FilterListItem documentation}
  *
  * @example
  * import { Card } from "@/components/ui/card";

@@ -19,7 +19,7 @@ import {
  * Supports different notification types (info, success, warning, error) and undoable mutations.
  * Automatically adapts to the current theme (light/dark).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/notification Notification documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/notification Notification documentation}
  * @see {@link https://marmelab.com/ra-core/usenotify/ useNotify hook}
  *
  * @example

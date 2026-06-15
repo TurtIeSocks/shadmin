@@ -5,8 +5,8 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
-} from "shadcn-admin-kit/components/admin";
-import { DualApprovalButton } from "shadcn-admin-kit/components/extras/dual-approval-button";
+} from "shadmin/components/admin";
+import { DualApprovalButton } from "shadmin/components/extras/dual-approval-button";
 
 // DualApprovalButton expects a single `approvers` array on the record (its
 // default `approverSource`). The seed uses two scalar fields (`approved_by_1`,

@@ -11,7 +11,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * Useful for composing multiple record fields, or for displaying transformed data.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/functionfield/ FunctionField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/function-field FunctionField documentation}
  *
  * @example
  * import { List, DataTable, FunctionField } from '@/components/admin';

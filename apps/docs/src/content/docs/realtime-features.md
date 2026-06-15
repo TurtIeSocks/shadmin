@@ -2,7 +2,7 @@
 title: Real-time
 ---
 
-Shadcn Admin Kit provides hooks and components for collaborative applications where several people work in parallel. It supports:
+Shadmin provides hooks and components for collaborative applications where several people work in parallel. It supports:
 
 - publishing and subscribing to real-time events,
 - updating views when another user pushes a change,
@@ -46,7 +46,7 @@ Use the following hooks to publish and subscribe to real-time events:
 - [`useSubscribe`](https://marmelab.com/ra-core/usesubscribe/)
 - [`useSubscribeCallback`](https://marmelab.com/ra-core/usesubscribecallback/)
 
-Shadcn Admin Kit goes beyond generic events and provides hooks to subscribe to [CRUD events](#crud-events), i.e. changes on records and record lists:
+Shadmin goes beyond generic events and provides hooks to subscribe to [CRUD events](#crud-events), i.e. changes on records and record lists:
 
 - [`useSubscribeToRecord`](https://marmelab.com/ra-core/usesubscribetorecord/)
 - [`useSubscribeToRecordList`](https://marmelab.com/ra-core/usesubscribetorecordlist/)
@@ -465,7 +465,7 @@ For CRUD operations, `@react-admin/ra-core-ee` expects events to use the types '
 
 ### CRUD Events
 
-Realtime features have deep integration with Shadcn Admin Kit, where most of the logic concerns Creation, Update or Deletion (CRUD) of records. To enable this integration, your real-time backend should publish the following events:
+Realtime features have deep integration with Shadmin, where most of the logic concerns Creation, Update or Deletion (CRUD) of records. To enable this integration, your real-time backend should publish the following events:
 
 - when a new record is created:
 
@@ -560,7 +560,7 @@ The `lock` resource should contain the following fields:
 
 Please note that the `identity` and the `createdAt` formats depend on your API.
 
-Here is how to use it in your Shadcn Admin Kit application:
+Here is how to use it in your Shadmin application:
 
 ```tsx
 import { CoreAdmin } from "ra-core";

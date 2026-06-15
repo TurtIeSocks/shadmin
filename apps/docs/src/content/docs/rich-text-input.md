@@ -11,7 +11,7 @@ Use `<RichTextInput>` to edit rich text content in a WYSIWYG editor (TipTap) and
 This is an optional component and is not included in the `admin` registry block by default. Install it with:
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/rich-text-input.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/rich-text-input.json
 ```
 
 ## Usage

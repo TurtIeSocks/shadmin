@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
  * Creates a {@link PreferenceKeyContextProvider} so that both the child and the
  * editor can read and write user preferences scoped to `preferences.${preferenceKey}`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/inspector Inspector documentation}
  *
  * @example
  * import { Configurable, FieldsSelector } from "@/components/admin";

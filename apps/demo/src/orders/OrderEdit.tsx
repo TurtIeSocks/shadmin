@@ -4,13 +4,13 @@ import {
   RecordField,
   ReferenceField,
   SimpleForm,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import {
   BlockEditorInput,
   dataBlocks,
   defaultBlocks,
-} from "shadcn-admin-kit/components/block-editor";
-import { StatusTransitionButton } from "shadcn-admin-kit/components/extras/status-transition-button";
+} from "shadmin/components/block-editor";
+import { StatusTransitionButton } from "shadmin/components/extras/status-transition-button";
 import { RecordRepresentation } from "ra-core";
 import { Link } from "react-router";
 import { Basket } from "./Basket";

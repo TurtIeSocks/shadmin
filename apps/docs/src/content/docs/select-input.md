@@ -39,7 +39,7 @@ The form value for the source must be the selected value, e.g.
 ```
 
 :::tip
-Shadcn Admin Kit includes other components to edit such values:
+Shadmin includes other components to edit such values:
 
 - [`<AutocompleteInput>`](./autocomplete-input) renders a list of suggestions in an autocomplete input
 - [`<RadioButtonGroupInput>`](./radio-button-group-input) renders a list of radio buttons

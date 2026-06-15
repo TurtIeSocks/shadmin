@@ -6,11 +6,11 @@ Lets users switch between light and dark UI themes.
 
 ![ThemeModeToggle](./images/theme-mode-toggle.jpg)
 
-It leverages the [store](https://marmelab.com/shadcn-admin-kit/Store.html) so that their selection is persisted.
+It leverages the [store](https://shadmin.turtlesocks.dev/Store.html) so that their selection is persisted.
 
 ## Usage
 
-For most users, this component will be automatically added to the header of shadcn-admin-kit's default [`<Layout>`](./layout).
+For most users, this component will be automatically added to the header of shadmin's default [`<Layout>`](./layout).
 
 For custom layouts, or to put the theme switcher in a settings menu, simply render the component without props:
 
@@ -22,7 +22,7 @@ import { ThemeModeToggle } from "@/components/admin";
 
 ## Setting The Preferred Theme
 
-Shadcn Admin Kit defaults to the system theme mode. You can force another default theme by passing the `defaultThemeMode` prop to the [`<Admin>`](./admin) component:
+Shadmin defaults to the system theme mode. You can force another default theme by passing the `defaultThemeMode` prop to the [`<Admin>`](./admin) component:
 
 ```tsx
 import { Admin } from "@/components/admin";
@@ -36,7 +36,7 @@ const App = () => (
 
 ## Customizing the Themes
 
-Shadcn Admin Kit leverages [Shadcn/ui Theming](https://ui.shadcn.com/docs/theming) to provide light and dark themes out of the box using CSS variables. You can customize these themes by editing the `src/index.css` file in your project.
+Shadmin leverages [Shadcn/ui Theming](https://ui.shadcn.com/docs/theming) to provide light and dark themes out of the box using CSS variables. You can customize these themes by editing the `src/index.css` file in your project.
 
 ```css
 :root {

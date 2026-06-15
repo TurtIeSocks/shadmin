@@ -21,12 +21,12 @@ export function Header() {
               <Logo className="h-8 w-auto" />
             </a>
             <h1 className="text-xl md:text-2xl font-extrabold leading-none tracking-tight text-slate-900 font-heading">
-              shadcn-admin-kit
+              shadmin
             </h1>
           </div>
           <div className="hidden md:flex items-center gap-x-0 lg:gap-x-2 xl:gap-x-6">
             <NavLink href="#features">Features</NavLink>
-            <NavLink href="https://marmelab.com/shadcn-admin-kit/docs/install/">
+            <NavLink href="https://shadmin.turtlesocks.dev/docs/install">
               Doc
             </NavLink>
             <DropdownMenu>
@@ -39,7 +39,7 @@ export function Header() {
               >
                 <DropdownMenuItem className="m-1">
                   <a
-                    href="https://marmelab.com/shadcn-admin-kit/demo"
+                    href="https://shadmin.turtlesocks.dev/demo"
                     target="_blank"
                     className="flex-1"
                     rel="noopener noreferrer"
@@ -62,7 +62,7 @@ export function Header() {
             <NavLink href="#pricing">Pricing</NavLink>
             <Button asChild>
               <a
-                href="https://github.com/marmelab/shadcn-admin-kit"
+                href="https://github.com/TurtIeSocks/shadmin"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -93,7 +93,7 @@ export function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem className="m-1">
                   <a
-                    href="https://marmelab.com/shadcn-admin-kit/docs/install/"
+                    href="https://shadmin.turtlesocks.dev/docs/install"
                     className="flex-1"
                   >
                     Doc
@@ -101,7 +101,7 @@ export function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem className="m-1">
                   <a
-                    href="https://marmelab.com/shadcn-admin-kit/demo"
+                    href="https://shadmin.turtlesocks.dev/demo"
                     target="_blank"
                     className="flex-1"
                     rel="noopener noreferrer"
@@ -127,7 +127,7 @@ export function Header() {
                 <div className="w-full p-1">
                   <Button asChild className="w-full">
                     <a
-                      href="https://github.com/marmelab/shadcn-admin-kit"
+                      href="https://github.com/TurtIeSocks/shadmin"
                       target="_blank"
                       className="flex-1"
                       rel="noopener noreferrer"

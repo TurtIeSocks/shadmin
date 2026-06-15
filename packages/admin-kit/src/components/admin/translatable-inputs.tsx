@@ -15,7 +15,7 @@ import { TranslatableInputsTabs } from "@/components/admin/translatable-inputs-t
  * Children automatically get their `source` rewritten to `source.${locale}`
  * via a `SourceContext`, so plain `<TextInput source="name" />` works.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-inputs TranslatableInputs documentation}
  */
 function TranslatableInputs(props: TranslatableInputsProps) {
   const {

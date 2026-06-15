@@ -2,7 +2,7 @@
 title: "Migrating from ra-ui-materialui"
 ---
 
-Shadcn Admin Kit re-implements the UI surface of [`ra-ui-materialui`](https://marmelab.com/react-admin/) on top of shadcn/ui primitives while
+Shadmin re-implements the UI surface of [`ra-ui-materialui`](https://marmelab.com/react-admin/) on top of shadcn/ui primitives while
 reusing [`ra-core`](https://marmelab.com/react-admin/) for headless logic (data, auth, routing, i18n, state). Most upstream APIs translate
 directly: the hooks are unchanged and component prop names are preserved whenever possible. This page documents the additions and intentional
 deviations made during the port, plus the components that have no upstream equivalent.
@@ -13,7 +13,7 @@ If you are coming from `react-admin` / `ra-ui-materialui`, the short version is:
   `ra-core` and behave the same.
 - **Components**: same names, same prop shapes most of the time. Some MUI-specific props (e.g. `sx`, `slotProps`, MUI theme overrides) have no
   equivalent — see the per-component notes below.
-- **Themes**: instead of MUI theme objects, shadcn-admin-kit themes are plain objects mapping CSS custom property names to
+- **Themes**: instead of MUI theme objects, shadmin themes are plain objects mapping CSS custom property names to
   [oklch](https://oklch.com) values. They are applied at runtime via `documentElement.style.setProperty(...)`.
 - **Imports**: every component is exported as a named export from `@/components/admin`.
 
@@ -51,7 +51,7 @@ import { TranslatableInputs, TextInput } from "@/components/admin";
 Components added: `defaultTheme`, `bwTheme`, `nanoTheme`, `radiantTheme`, `houseTheme`, plus `ThemesContext`, `useThemesContext` and the
 `AdminTheme` type.
 
-**Key difference**: shadcn-admin-kit themes are plain JS objects mapping CSS variable names → oklch values, applied at runtime by
+**Key difference**: shadmin themes are plain JS objects mapping CSS variable names → oklch values, applied at runtime by
 `<ThemeProvider>` via `documentElement.style.setProperty(...)`. They do not contain MUI-specific component overrides. Where the upstream
 `ra-ui-materialui` themes could re-style individual MUI components, shadcn themes are limited to the palette + border radius. Differences in
 component appearance across themes are therefore confined to colours and corner radii.
@@ -153,7 +153,7 @@ These are the spots where porting code from `ra-ui-materialui` will require a sm
 
 ### `mutationMode` prop vs separate `*WithConfirm*` / `*WithUndo*` exports
 
-Both forms are supported. Shadcn Admin Kit exposes a single `<DeleteButton>` dispatcher that internally renders `<DeleteWithUndoButton>` or
+Both forms are supported. Shadmin exposes a single `<DeleteButton>` dispatcher that internally renders `<DeleteWithUndoButton>` or
 `<DeleteWithConfirmButton>` based on the `mutationMode` prop. The dedicated named exports are also available for direct use.
 
 ```tsx
@@ -183,7 +183,7 @@ Both filter patterns from `ra-ui-materialui` are supported:
 - `<FilterForm>` — a top-of-list toolbar form, driven by the `filters` prop of `<List>`. Filters get inlined above the data table.
 - `<FilterList>` / `<FilterListItem>` / `<FilterLiveSearch>` — a sidebar of chip-style toggle filters and a live search box.
 
-**Important difference from `ra-ui-materialui`**: `<List>` in Shadcn Admin Kit does **not** have an `aside` prop. Render the sidebar as a flex
+**Important difference from `ra-ui-materialui`**: `<List>` in Shadmin does **not** have an `aside` prop. Render the sidebar as a flex
 sibling inside the `<List>` children instead.
 
 ```tsx
@@ -230,11 +230,11 @@ export const PostList = () => (
 ```
 
 A real example of this pattern lives in
-[`src/demo/customers/CustomerList.tsx`](https://github.com/marmelab/shadcn-admin-kit/blob/main/src/demo/customers/CustomerList.tsx).
+[`src/demo/customers/CustomerList.tsx`](https://github.com/TurtIeSocks/shadmin/blob/main/src/demo/customers/CustomerList.tsx).
 
 ### `<Empty>` vs `<ListNoResults>`
 
-Shadcn Admin Kit splits the empty-state UI of `ra-ui-materialui` into two components for clarity:
+Shadmin splits the empty-state UI of `ra-ui-materialui` into two components for clarity:
 
 - `<Empty>` — shown when the resource has no records **and** no filters are active. This is the cue to invite the user to create the first
   record.
@@ -295,7 +295,7 @@ No code changes are required when upgrading.
 
 ## Beyond `ra-ui-materialui`
 
-Shadcn Admin Kit ships several component families that have no upstream equivalent. They are not migration concerns, but worth knowing about
+Shadmin ships several component families that have no upstream equivalent. They are not migration concerns, but worth knowing about
 when you plan a port — you may be able to drop a hand-rolled feature in favour of a built-in.
 
 ### Map (Leaflet) stack

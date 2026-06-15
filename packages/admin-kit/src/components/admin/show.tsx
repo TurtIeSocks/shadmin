@@ -28,7 +28,7 @@ interface ShowProps extends ShowViewProps, ShowBaseProps {}
  * Combines data fetching and UI layout for displaying record details. Inside, use
  * RecordField to display individual fields with labels.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/show/ Show documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/show Show documentation}
  *
  * @example
  * import { RecordField, NumberField, ReferenceField, Show } from "@/components/admin";

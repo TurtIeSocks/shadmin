@@ -17,7 +17,7 @@ interface HideOnScrollProps {
  * threshold and reveals them again when scrolling back up. Useful for
  * collapsible top bars and floating headers.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/hideonscroll/ HideOnScroll documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/hide-on-scroll HideOnScroll documentation}
  *
  * @example
  * import { HideOnScroll } from "@/components/admin/hide-on-scroll";

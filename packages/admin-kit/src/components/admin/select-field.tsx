@@ -17,7 +17,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * Supports custom optionText and optionValue properties, and automatic translation of choice labels.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/selectfield/ SelectField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/select-field SelectField documentation}
  *
  * @example
  * import { List, DataTable, SelectField } from '@/components/admin';

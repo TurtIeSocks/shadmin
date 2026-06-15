@@ -45,7 +45,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * This input allows editing scalar values with a searchable dropdown interface. It supports creating
  * new choices on the fly and works seamlessly inside ReferenceInput for editing foreign key relationships.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/autocompleteinput/ AutocompleteInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/autocomplete-input AutocompleteInput documentation}
  *
  * @example
  * import {

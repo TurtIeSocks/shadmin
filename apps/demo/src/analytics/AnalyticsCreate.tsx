@@ -4,7 +4,7 @@ import {
   SelectInput,
   SimpleForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import { required } from "ra-core";
 
 const REGION_CHOICES = [

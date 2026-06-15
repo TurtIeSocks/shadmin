@@ -26,7 +26,7 @@ type ResettableTextInputProps = TextInputProps & {
  * (unless `clearAlwaysVisible` is set). Clicking it sets the value back to an
  * empty string.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/resettabletextinput/ ResettableTextInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/resettable-text-input ResettableTextInput documentation}
  * @see {@link https://github.com/marmelab/react-admin/blob/master/packages/ra-ui-materialui/src/input/ResettableTextField.tsx ra-ui-materialui ResettableTextField}
  *
  * @example

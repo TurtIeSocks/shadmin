@@ -2,7 +2,7 @@
 title: Admin
 ---
 
-`<Admin>` is the root component of a `shadcn-admin-kit` application. It creates a series of context providers to allow its children to access the app configuration. It renders the main routes and layout. It delegates the rendering of the content area to its `<Resource>` children.
+`<Admin>` is the root component of a `shadmin` application. It creates a series of context providers to allow its children to access the app configuration. It renders the main routes and layout. It delegates the rendering of the content area to its `<Resource>` children.
 
 ## Usage
 
@@ -68,8 +68,8 @@ To learn more about these props, refer to [the `<CoreAdmin>` component documenta
 
 `<Admin>` is a thin composition of two lower-level components exported from the same module:
 
-- `<AdminContext>` — the **provider half**. Wraps `CoreAdminContext` and applies shadcn-admin-kit's default `store` (`localStorageStore()`) and `i18nProvider`.
-- `<AdminUI>` — the **UI half**. Wraps `CoreAdminUI` with the `<ThemeProvider>` (accepting `theme` / `lightTheme` / `darkTheme`) and shadcn-admin-kit's default pages (login, not-found, ready, auth-callback). Telemetry pings are emitted from here in production builds unless `disableTelemetry` is set.
+- `<AdminContext>` — the **provider half**. Wraps `CoreAdminContext` and applies shadmin's default `store` (`localStorageStore()`) and `i18nProvider`.
+- `<AdminUI>` — the **UI half**. Wraps `CoreAdminUI` with the `<ThemeProvider>` (accepting `theme` / `lightTheme` / `darkTheme`) and shadmin's default pages (login, not-found, ready, auth-callback). Telemetry pings are emitted from here in production builds unless `disableTelemetry` is set.
 
 Reach for the pair when you need to inject a wrapping component between the providers and the routed UI — for example to mount the cmd+K [`<CommandMenu>`](./command-menu) palette:
 

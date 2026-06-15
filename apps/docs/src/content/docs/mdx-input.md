@@ -9,7 +9,7 @@ Use `<MdxInput>` to edit markdown content in a WYSIWYG editor (powered by [MDXEd
 This is an optional component and is not included in the `admin` registry block by default. Install it with:
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/mdx-editor.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/mdx-editor.json
 ```
 
 You must also import the MDXEditor stylesheet once in your app:

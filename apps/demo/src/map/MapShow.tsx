@@ -2,7 +2,7 @@ import {
   RecordField,
   Show,
   TabbedShowLayout,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import {
   BBoxField,
   FeatureCollectionField,
@@ -16,7 +16,7 @@ import {
   PointField,
   PolygonField,
   ReverseGeocodeField,
-} from "shadcn-admin-kit/components/leaflet";
+} from "shadmin/components/leaflet";
 
 const NYC_CENTER: [number, number] = [40.74, -73.99];
 

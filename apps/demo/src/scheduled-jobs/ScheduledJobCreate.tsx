@@ -2,8 +2,8 @@ import {
   Create,
   SimpleForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
-import { CronInput } from "shadcn-admin-kit/components/extras/cron-input";
+} from "shadmin/components/admin";
+import { CronInput } from "shadmin/components/extras/cron-input";
 
 export const ScheduledJobCreate = () => (
   <Create>

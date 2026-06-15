@@ -27,7 +27,7 @@ type ShowButtonProps = {
  *
  * Works within RecordContext to automatically get the record ID.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/showbutton/ ShowButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/show-button ShowButton documentation}
  *
  * @example
  * import { ShowButton } from '@/components/admin';

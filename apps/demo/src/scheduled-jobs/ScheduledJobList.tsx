@@ -1,5 +1,5 @@
-import { DataTable, List } from "shadcn-admin-kit/components/admin";
-import { CronField } from "shadcn-admin-kit/components/extras/cron-field";
+import { DataTable, List } from "shadmin/components/admin";
+import { CronField } from "shadmin/components/extras/cron-field";
 
 export const ScheduledJobList = () => (
   <List>

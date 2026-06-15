@@ -16,7 +16,7 @@ interface CardContentInnerProps {
  * and wastes space. `CardContentInner` zeroes out vertical padding for
  * inner items and keeps it for the first and last children.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/cardcontentinner/ CardContentInner documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/card-content-inner CardContentInner documentation}
  *
  * @example
  * import { Card } from "@/components/ui/card";

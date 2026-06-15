@@ -47,7 +47,7 @@ interface CheckForApplicationUpdateProps {
  * Pair it with [`<ApplicationUpdatedNotification>`](./ApplicationUpdatedNotification.md)
  * (the default) to offer a "reload" action when an update is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/checkforapplicationupdate/ CheckForApplicationUpdate documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/check-for-application-update CheckForApplicationUpdate documentation}
  *
  * @example
  * import { CheckForApplicationUpdate } from "@/components/admin/check-for-application-update";

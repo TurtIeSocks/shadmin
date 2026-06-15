@@ -1,5 +1,5 @@
-import { DataTable, List } from "shadcn-admin-kit/components/admin";
-import { WebhookEndpointField } from "shadcn-admin-kit/components/extras/webhook-endpoint-field";
+import { DataTable, List } from "shadmin/components/admin";
+import { WebhookEndpointField } from "shadmin/components/extras/webhook-endpoint-field";
 
 export const WebhookList = () => (
   <List>

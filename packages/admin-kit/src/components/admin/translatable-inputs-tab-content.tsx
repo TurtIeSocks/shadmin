@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
  * - a `<RecordContextProvider>` with the record filtered to the current
  *   locale (so initial values resolve correctly).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatableinputs/ TranslatableInputs documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-inputs TranslatableInputs documentation}
  */
 function TranslatableInputsTabContent(
   props: TranslatableInputsTabContentProps,

@@ -52,7 +52,7 @@ interface SimpleListItemProps<RecordType extends RaRecord = RaRecord> {
  * the item is wrapped in a `<Link>` to the edit (default) or show page
  * of the record.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/simplelistitem/ SimpleListItem documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/simple-list-item SimpleListItem documentation}
  *
  * @example
  * import { SimpleListItem } from "@/components/admin";

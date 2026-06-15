@@ -24,7 +24,7 @@ const UNIT_LABEL: Record<Unit, string> = {
 /**
  * Edits an ISO-8601 duration string via per-unit numeric inputs.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/durationinput/ DurationInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/duration-input DurationInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, DurationInput } from '@/components/admin';

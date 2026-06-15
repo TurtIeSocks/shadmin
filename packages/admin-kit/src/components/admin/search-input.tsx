@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  *
  * It automatically uses the 'q' source for full-text search by default.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/searchinput/ SearchInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/search-input SearchInput documentation}
  *
  * @example
  * import { List, DataTable, SearchInput } from '@/components/admin';

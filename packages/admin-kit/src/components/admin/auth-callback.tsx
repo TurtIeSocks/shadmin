@@ -9,7 +9,7 @@ import { Loading } from "@/components/admin/loading";
  * It displays a loading indicator while processing the authentication response,
  * then redirects to the admin app or shows an error message if authentication fails.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/authcallback/ AuthCallback documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/auth-callback AuthCallback documentation}
  *
  * @example
  * import { Admin } from "@/components/admin";

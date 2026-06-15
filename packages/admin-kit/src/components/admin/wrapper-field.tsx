@@ -10,7 +10,7 @@ import type { UnknownRecord } from "@/lib/unknown-types";
  * Useful when you need to render multiple fields together but still want the parent
  * to display a single label or sortable header.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/wrapperfield/ WrapperField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/wrapper-field WrapperField documentation}
  *
  * @example
  * import { Show, SimpleShowLayout, WrapperField, TextField } from '@/components/admin';

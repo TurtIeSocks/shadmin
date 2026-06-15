@@ -1,7 +1,7 @@
 import { useRecordContext } from "ra-core";
-import { Show } from "shadcn-admin-kit/components/admin";
-import { RecordTimeline } from "shadcn-admin-kit/components/extras";
-import { DiffViewer } from "shadcn-admin-kit/components/extras/diff-viewer";
+import { Show } from "shadmin/components/admin";
+import { RecordTimeline } from "shadmin/components/extras";
+import { DiffViewer } from "shadmin/components/extras/diff-viewer";
 import type { Report, ReportTimelineEntry } from "./reports-seed";
 
 const currency = (v: unknown) =>

@@ -10,7 +10,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * DataTable to display array data.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/arrayfield/ ArrayField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/array-field ArrayField documentation}
  *
  * @example
  * import {

@@ -1,5 +1,5 @@
-import { List } from "shadcn-admin-kit/components/admin";
-import { ApprovalQueue } from "shadcn-admin-kit/components/extras/approval-queue";
+import { List } from "shadmin/components/admin";
+import { ApprovalQueue } from "shadmin/components/extras/approval-queue";
 
 // ApprovalQueue reads from ListContext and renders one card per record, so we
 // scope the surrounding List to pending items only. titleSource="reason" gives

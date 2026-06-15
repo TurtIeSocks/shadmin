@@ -11,16 +11,16 @@ import {
   TextInput,
   ReferenceInput,
   AutocompleteInput,
-} from "shadcn-admin-kit/components/admin";
-import { BulkEditDrawer } from "shadcn-admin-kit/components/extras/bulk-edit-drawer";
-import { CurrencyField } from "shadcn-admin-kit/components/extras/currency-field";
+} from "shadmin/components/admin";
+import { BulkEditDrawer } from "shadmin/components/extras/bulk-edit-drawer";
+import { CurrencyField } from "shadmin/components/extras/currency-field";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "shadcn-admin-kit/components/ui/tabs";
-import { Badge } from "shadcn-admin-kit/components/ui/badge";
+} from "shadmin/components/ui/tabs";
+import { Badge } from "shadmin/components/ui/badge";
 
 import { AddressField } from "../customers/AddressField";
 import { FullNameField } from "../customers/FullNameField";

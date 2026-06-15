@@ -9,7 +9,7 @@ Use `<BlockEditorInput>` to edit structured content in a block editor (TipTap) a
 This is an optional component and is not included in the `admin` registry block by default. Install it with:
 
 ```bash
-npx shadcn@latest add https://marmelab.com/shadcn-admin-kit/r/block-editor-input.json
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/block-editor-input.json
 ```
 
 ## Usage

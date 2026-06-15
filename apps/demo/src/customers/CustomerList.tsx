@@ -11,11 +11,11 @@ import {
   List,
   ListPagination,
   CreateButton,
-} from "shadcn-admin-kit/components/admin";
-import { InPlaceEditor } from "shadcn-admin-kit/components/extras";
-import { CsvImport } from "shadcn-admin-kit/components/csv-import";
-import { Badge } from "shadcn-admin-kit/components/ui/badge";
-import { Card } from "shadcn-admin-kit/components/ui/card";
+} from "shadmin/components/admin";
+import { InPlaceEditor } from "shadmin/components/extras";
+import { CsvImport } from "shadmin/components/csv-import";
+import { Badge } from "shadmin/components/ui/badge";
+import { Card } from "shadmin/components/ui/card";
 import { Clock, DollarSign, Mail, Users } from "lucide-react";
 import {
   endOfYesterday,
@@ -27,7 +27,7 @@ import {
 import segments from "../segments/data";
 
 import { FullNameField } from "./FullNameField";
-import { useIsMobile } from "shadcn-admin-kit/hooks/use-mobile";
+import { useIsMobile } from "shadmin/hooks/use-mobile";
 
 const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: "medium",

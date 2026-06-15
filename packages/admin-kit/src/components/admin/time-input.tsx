@@ -13,7 +13,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  * Renders a native browser time picker. The value can be a Date object or a string.
  * Returns a string formatted as "HH:mm" by default.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/timeinput/ TimeInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/time-input TimeInput documentation}
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time MDN documentation for input type="time"}
  *
  * @example

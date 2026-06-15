@@ -4,7 +4,7 @@ import {
   SelectInput,
   TabbedForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import {
   BBoxInput,
   FeatureCollectionInput,
@@ -22,7 +22,7 @@ import {
   PointInput,
   PolygonInput,
   SimplifyInput,
-} from "shadcn-admin-kit/components/leaflet";
+} from "shadmin/components/leaflet";
 import { required } from "ra-core";
 
 const NYC_CENTER: [number, number] = [40.74, -73.99];

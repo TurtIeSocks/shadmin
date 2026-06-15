@@ -118,7 +118,7 @@ const useDataTableExpandContext = () => use(DataTableExpandContext);
  * Displays records in a table with built-in support for column sorting, bulk selection, row clicks,
  * and column visibility controls. Use DataTable.Col to define columns.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  *
  * @example
  * import { List, DataTable, ReferenceField, EditButton } from '@/components/admin';
@@ -305,7 +305,7 @@ function ExpandAllButton() {
  * Header row of a DataTable, including the select-page checkbox column.
  * Used internally by `<DataTable>`; also exported for custom DataTable compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableHead({ children }: { children: ReactNode }) {
   const data = useDataTableDataContext();
@@ -374,7 +374,7 @@ function DataTableHead({ children }: { children: ReactNode }) {
  * Body of a DataTable. Renders one `<DataTableRow>` per record in the current page.
  * Used internally by `<DataTable>`; also exported for custom DataTable compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableBody<RecordType extends RaRecord = RaRecord>({
   children,
@@ -440,7 +440,7 @@ function DataTableBody<RecordType extends RaRecord = RaRecord>({
  * A row in a DataTable. Wires up row click navigation and renders a row-selection checkbox when bulk actions are enabled.
  * Used internally by `<DataTableBody>`; also exported for custom DataTable compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableRow({
   children,
@@ -600,7 +600,7 @@ function isPromise<T>(value: UnknownValue): value is Promise<T> {
  * Default empty-state placeholder rendered when a DataTable has no records.
  * Used internally by `<DataTable>`; also exported for custom empty states.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableEmpty() {
   return (
@@ -764,7 +764,7 @@ const reorderChildren = (children: ReactNode, columnRanks: number[]) =>
  * Header cell of a DataTable. Renders a column label with a click-to-sort affordance.
  * Used internally by `<DataTableColumn>`; also exported for custom header compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableHeadCell<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
@@ -864,7 +864,7 @@ const oppositeOrder: Record<SortPayload["order"], SortPayload["order"]> = {
  * Body cell of a DataTable. Resolves the cell value from `children`, `render`, `field`, or `source`.
  * Used internally by `<DataTableColumn>`; also exported for custom cell compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableCell<
   RecordType extends RaRecord<Identifier> = RaRecord<Identifier>,
@@ -963,7 +963,7 @@ interface DataTableNumberColumnProps<
  * Wrapper element for a DataTable. Provides standard rounded border styling.
  * Used internally by `<DataTable>`; also exported for custom DataTable compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableRoot({
   children,
@@ -979,7 +979,7 @@ function DataTableRoot({
  * Checkbox in the DataTable header that selects/deselects all rows on the current page.
  * Used internally by `<DataTableHead>`; also exported for custom header compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function SelectPageCheckbox({ className }: { className?: string }) {
   const data = useDataTableDataContext();
@@ -1020,7 +1020,7 @@ function SelectPageCheckbox({ className }: { className?: string }) {
  * Checkbox in a DataTable row that selects/deselects that row.
  * Used internally by `<DataTableRow>`; also exported for custom row compositions.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function SelectRowCheckbox({ className }: { className?: string }) {
   const record = useRecordContext();
@@ -1056,7 +1056,7 @@ interface DataTableLoadingProps {
  * Renders `nbFakeLines` rows of grey placeholders for `nbChildren` columns.
  * Waits 1 second before showing (via `useTimeout`) to avoid flashes for fast loads.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/datatable/ DataTable documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/data-table DataTable documentation}
  */
 function DataTableLoading({
   className,

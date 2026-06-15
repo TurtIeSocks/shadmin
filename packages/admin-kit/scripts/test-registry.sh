@@ -22,7 +22,7 @@ cleanup() {
 trap cleanup EXIT
 
 # The demo app's vite.config.ts and tsconfig.app.json alias
-# `shadcn-admin-kit/*` and `@/*` to ../../packages/admin-kit/src — wrong for a
+# `shadmin/*` and `@/*` to ../../packages/admin-kit/src — wrong for a
 # standalone consumer, so the scaffold gets plain versions generated here.
 write_standalone_configs() {
   local target_dir=$1
@@ -107,7 +107,7 @@ EOF
 }
 
 # Consumer-side sources. They import from `@/...` — the alias `shadcn add`
-# output satisfies — never from the `shadcn-admin-kit` package.
+# output satisfies — never from the `shadmin` package.
 write_app_sources() {
   local target_dir=$1
   local app_variant=$2
@@ -235,7 +235,7 @@ cd ./temp
 pnpm install
 
 echo "Configuring custom registry alias for namespaced dependencies"
-node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadcn-admin-kit': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
+node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadmin': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
 
 echo "Adding registry components"
 pnpm dlx shadcn@3.8.5 add -y http://localhost:8080/r/admin.json
@@ -253,7 +253,7 @@ cd ./temp-rich-text-input
 pnpm install
 
 echo "Configuring custom registry alias for namespaced dependencies"
-node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadcn-admin-kit': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
+node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadmin': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
 
 echo "Adding admin and rich-text-input registry components"
 pnpm dlx shadcn@3.8.5 add -y http://localhost:8080/r/admin.json http://localhost:8080/r/rich-text-input.json

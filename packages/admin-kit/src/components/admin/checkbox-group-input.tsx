@@ -28,7 +28,7 @@ import { InputHelperText } from "@/components/admin/input-helper-text";
  * to pick several at once. The form value is an array of choice ids. For longer lists, prefer
  * `<SelectArrayInput>` or `<AutocompleteArrayInput>`. Set `row` to `true` for horizontal layout.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/checkboxgroupinput/ CheckboxGroupInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/checkbox-group-input CheckboxGroupInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, TextInput, CheckboxGroupInput } from '@/components/admin';

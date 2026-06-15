@@ -16,8 +16,8 @@ import { LoginForm } from "@/components/admin/login-form";
  * Already-authenticated users land on the dashboard (`/`) instead of seeing
  * the login form.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loginpage LoginPage documentation}
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/security Security documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/login-page LoginPage documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/security Security documentation}
  */
 interface LoginPageProps extends HTMLAttributes<HTMLDivElement> {
   redirectTo?: string;

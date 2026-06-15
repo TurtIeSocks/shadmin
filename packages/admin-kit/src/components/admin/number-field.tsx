@@ -10,7 +10,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  * It supports custom locales and formatting options for currencies, percentages, and more.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/numberfield/ NumberField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/number-field NumberField documentation}
  *
  * @example
  * import { Show, RecordField, NumberField } from '@/components/admin';

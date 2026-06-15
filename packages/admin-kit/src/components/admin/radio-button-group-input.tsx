@@ -38,7 +38,7 @@ interface RadioButtonGroupInputProps
  * see all at once, like status, priority, or category fields. For longer lists, prefer
  * `<SelectInput>`. Set `row` to `true` for horizontal layout.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/radiobuttongroupinput/ RadioButtonGroupInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/radio-button-group-input RadioButtonGroupInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, TextInput, RadioButtonGroupInput } from '@/components/admin';

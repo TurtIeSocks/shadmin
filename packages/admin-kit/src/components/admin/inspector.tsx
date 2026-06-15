@@ -25,7 +25,7 @@ import { InspectorRoot } from "./inspector-root";
  * The panel is draggable by its title bar and its position is persisted via
  * `useStore('ra.inspector.position')`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inspector/ Inspector documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/inspector Inspector documentation}
  */
 function Inspector({ className }: InspectorProps = {}) {
   const { isEnabled, disable, title, titleOptions, editor, preferenceKey } =

@@ -3,7 +3,7 @@ import {
   Create,
   SimpleForm,
   TextInput,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 
 export const WorkspaceCreate = () => (
   <Create>

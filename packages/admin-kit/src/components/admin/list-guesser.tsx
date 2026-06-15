@@ -27,7 +27,7 @@ import { GuesserEmpty } from "@/components/admin/guesser-empty";
  * Inspects the first record to infer field types and automatically creates appropriate columns.
  * Useful for rapid prototyping. Logs generated code to console.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/list/#scaffolding-a-list-page ListGuesser documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list#scaffolding-a-list-page ListGuesser documentation}
  *
  * @example
  * import { Admin, ListGuesser } from '@/components/admin';

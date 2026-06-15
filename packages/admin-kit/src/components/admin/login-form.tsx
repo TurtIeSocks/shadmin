@@ -28,7 +28,7 @@ interface LoginFormProps {
  * authentication errors through `useNotify()`. Returns the form on its own
  * — consumers are expected to provide the surrounding card / layout.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/loginform/ LoginForm documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/login-form LoginForm documentation}
  *
  * @example
  * import { AuthLayout } from "@/components/admin/auth-layout";

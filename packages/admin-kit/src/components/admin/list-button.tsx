@@ -27,7 +27,7 @@ type ListButtonProps = {
  * Reads the resource from `ResourceContext` by default. Commonly used in the actions of an
  * `<Edit>` or `<Show>` view to navigate back to the list.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listbutton/ ListButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list-button ListButton documentation}
  *
  * @example
  * import { Edit, ListButton } from '@/components/admin';

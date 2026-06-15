@@ -4,9 +4,9 @@ import {
   ReferenceInput,
   SelectInput,
   SimpleForm,
-} from "shadcn-admin-kit/components/admin";
-import { SubscriptionPlanPicker } from "shadcn-admin-kit/components/extras/subscription-plan-picker";
-import { UsageMeterField } from "shadcn-admin-kit/components/extras/usage-meter-field";
+} from "shadmin/components/admin";
+import { SubscriptionPlanPicker } from "shadmin/components/extras/subscription-plan-picker";
+import { UsageMeterField } from "shadmin/components/extras/usage-meter-field";
 import { PLANS } from "./plans";
 
 export const SubscriptionEdit = () => (

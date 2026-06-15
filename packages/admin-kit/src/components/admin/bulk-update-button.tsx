@@ -64,7 +64,7 @@ type BulkUpdateButtonProps<
  * a confirmation dialog is shown before the mutation fires. Must be used inside a
  * `ListContext` (e.g., inside a `<DataTable bulkActionsButtons>`).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkupdatebutton/ BulkUpdateButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-update-button BulkUpdateButton documentation}
  *
  * @example
  * import { BulkUpdateButton, DataTable, List } from '@/components/admin';
@@ -96,7 +96,7 @@ function BulkUpdateButton(props: BulkUpdateButtonProps) {
 /**
  * Bulk update button variant that asks the user to confirm before firing the mutation.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkupdatebutton/ BulkUpdateButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-update-button BulkUpdateButton documentation}
  */
 function BulkUpdateWithConfirmButton(props: BulkUpdateWithConfirmButtonProps) {
   const {
@@ -209,7 +209,7 @@ function BulkUpdateWithConfirmButton(props: BulkUpdateWithConfirmButtonProps) {
 /**
  * Bulk update button variant that fires immediately with undo capability.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkupdatebutton/ BulkUpdateButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-update-button BulkUpdateButton documentation}
  */
 function BulkUpdateWithUndoButton(props: BulkUpdateWithUndoButtonProps) {
   const {

@@ -30,7 +30,7 @@ const defaultOptions: IntersectionObserverInit = { threshold: 0 };
  * Must be used inside an `<InfinitePaginationContext>` — typically as a child
  * of `<InfiniteList>`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/infinitepagination/ InfinitePagination documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/infinite-pagination InfinitePagination documentation}
  *
  * @example
  * import { InfiniteList, InfinitePagination } from "@/components/admin";

@@ -42,7 +42,7 @@ export function AdvancedCapabilities() {
   return (
     <section
       id="advanced-capabilities"
-      aria-label="Shadcn Admin Kit Advanced Capabilities"
+      aria-label="Shadmin Advanced Capabilities"
     >
       <div className="overflow-hidden bg-black py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -53,7 +53,7 @@ export function AdvancedCapabilities() {
                   Advanced Capabilities
                 </p>
                 <p className="mt-6 text-lg leading-8 text-white">
-                  Beyond the basics, Shadcn Admin Kit offers sophisticated
+                  Beyond the basics, Shadmin offers sophisticated
                   features to reduce development costs and enhance the developer
                   experience.
                 </p>
@@ -76,7 +76,7 @@ export function AdvancedCapabilities() {
                 </dl>
                 <Button variant="outline" asChild>
                   <a
-                    href="https://marmelab.com/shadcn-admin-kit/docs/install/"
+                    href="https://shadmin.turtlesocks.dev/docs/install"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

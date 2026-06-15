@@ -18,7 +18,7 @@ import { TranslatableFieldsTabs } from "@/components/admin/translatable-fields-t
  * automatically get their `source` rewritten to `source.${locale}` via a
  * `SourceContext`, so plain `<TextField source="name" />` works.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatablefields/ TranslatableFields documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-fields TranslatableFields documentation}
  */
 function TranslatableFields(props: TranslatableFieldsProps) {
   const {

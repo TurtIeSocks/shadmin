@@ -57,7 +57,7 @@ interface FilterElementProps {
  * Displays available filters, saved queries, and options to save or clear current filters.
  * Works with the FilterForm to provide a complete filtering UI.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterbutton/ FilterButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/filter-button FilterButton documentation}
  */
 interface FilterButtonProps extends HtmlHTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -318,7 +318,7 @@ function FilterButton(props: FilterButtonProps) {
  * A menu item rendered inside the `<FilterButton>` dropdown for toggling an
  * optional filter's visibility in the `<FilterForm>`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/filterbutton/ FilterButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/filter-button FilterButton documentation}
  */
 function FilterButtonMenuItem(props: FilterButtonMenuItemProps) {
   const { filter, onShow, onHide, displayed, autoFocus, ref } = props;

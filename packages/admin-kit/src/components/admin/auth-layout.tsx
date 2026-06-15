@@ -37,7 +37,7 @@ interface AuthLayoutProps
  * the left. Mounts the `<Notification>` component at the root so error
  * and info messages triggered with `useNotify()` are displayed.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/authlayout/ AuthLayout documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/auth-layout AuthLayout documentation}
  */
 function AuthLayout(props: AuthLayoutProps) {
   const { children, title, subtitle, aside, className, ...rest } = props;

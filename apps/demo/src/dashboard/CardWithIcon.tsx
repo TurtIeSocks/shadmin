@@ -1,5 +1,5 @@
 import { createElement, type ReactNode, type FC } from "react";
-import { Card } from "shadcn-admin-kit/components/ui/card";
+import { Card } from "shadmin/components/ui/card";
 import { Link, type To } from "react-router";
 
 interface Props {

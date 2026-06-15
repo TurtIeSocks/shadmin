@@ -5,13 +5,13 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
-} from "shadcn-admin-kit/components/admin";
+} from "shadmin/components/admin";
 import {
   BlockDocField,
   dataBlocks,
   defaultBlocks,
-} from "shadcn-admin-kit/components/block-editor";
-import { CommentsThread } from "shadcn-admin-kit/components/extras/comments-thread";
+} from "shadmin/components/block-editor";
+import { CommentsThread } from "shadmin/components/extras/comments-thread";
 
 export const OrderShow = () => (
   <Show>

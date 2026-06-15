@@ -17,7 +17,7 @@ interface AuthenticationErrorProps extends HTMLAttributes<HTMLDivElement> {
  * because of an expired session). Mirrors {@link AccessDenied} but uses a
  * warning triangle icon and different default texts.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/authenticationerror/ AuthenticationError documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/authentication-error AuthenticationError documentation}
  */
 function AuthenticationError({
   icon = <TriangleAlert className="size-32" />,

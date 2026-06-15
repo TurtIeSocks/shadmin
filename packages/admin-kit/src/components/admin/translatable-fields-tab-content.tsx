@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
  * inline `<Label>` derived from its `source` (deviation from upstream which
  * uses MUI's `<Labeled>` — no equivalent component exists in this kit).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/translatablefields/ TranslatableFields documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/translatable-fields TranslatableFields documentation}
  */
 function TranslatableFieldsTabContent(
   props: TranslatableFieldsTabContentProps,

@@ -6,8 +6,8 @@ import {
   RecordField,
   Show,
   SimpleShowLayout,
-} from "shadcn-admin-kit/components/admin";
-import { OnboardingTour } from "shadcn-admin-kit/components/extras/onboarding-tour";
+} from "shadmin/components/admin";
+import { OnboardingTour } from "shadmin/components/extras/onboarding-tour";
 
 const tourSteps = [
   {

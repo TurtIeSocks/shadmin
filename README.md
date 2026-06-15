@@ -1,6 +1,6 @@
-# Shadcn Admin Kit
+# Shadmin
 
-![Screenshot](./public/shadcn-admin-kit.webp)
+![Screenshot](./public/shadmin.webp)
 
 A component kit to build your Admin app with [shadcn/ui](https://ui.shadcn.com/).
 
@@ -9,8 +9,8 @@ A component kit to build your Admin app with [shadcn/ui](https://ui.shadcn.com/)
 
 [Online Demo]: https://img.shields.io/badge/Online_Demo-blue?style=for-the-badge
 [Documentation]: https://img.shields.io/badge/Documentation-blueviolet?style=for-the-badge
-[OnlineDemoLink]: https://marmelab.com/shadcn-admin-kit/demo "Online Demo"
-[DocumentationLink]: https://marmelab.com/shadcn-admin-kit/docs "Documentation"
+[OnlineDemoLink]: https://shadmin.turtlesocks.dev/demo "Online Demo"
+[DocumentationLink]: https://shadmin.turtlesocks.dev/docs "Documentation"
 
 ## Features
 
@@ -43,21 +43,21 @@ A component kit to build your Admin app with [shadcn/ui](https://ui.shadcn.com/)
 
 ## Getting started
 
-Check the [Quick Start Guide](https://marmelab.com/shadcn-admin-kit/docs/quick-start-guide/) for a step-by-step guide to set up your first Admin app with `shadcn-admin-kit`.
+Check the [Quick Start Guide](https://shadmin.turtlesocks.dev/docs/Quick-Start-Guide) for a step-by-step guide to set up your first Admin app with `shadmin`.
 
 ## Exploring Components
 
-`shadcn-admin-kit` provides a set of components that you can use to build your Admin app. The components are organized in the [`packages/admin-kit/src/components/admin`](./packages/admin-kit/src/components/admin/) directory, and you can find the documentation for each component in its respective file.
+`shadmin` provides a set of components that you can use to build your Admin app. The components are organized in the [`packages/admin-kit/src/components/admin`](./packages/admin-kit/src/components/admin/) directory, and you can find the documentation for each component in its respective file.
 
 ## Usage
 
-Read the [documentation](https://marmelab.com/shadcn-admin-kit/docs/install/) to learn how to use `shadcn-admin-kit` in your project. The following sections provide a brief overview of the main concepts.
+Read the [documentation](https://shadmin.turtlesocks.dev/docs/install) to learn how to use `shadmin` in your project. The following sections provide a brief overview of the main concepts.
 
 ### Use `<Admin>` As Root Component
 
 The entry point of your application is the `<Admin>` component. It allows to configure the application adapters, routes, and UI.
 
-You'll need to specify a Data Provider to let the Admin know how to fetch data from your API. A Data Provider is an abstraction that allows you to connect your Admin to any API, whether it's REST, GraphQL, or any other protocol. You can choose from any of the [50+ Data Providers](https://marmelab.com/shadcn-admin-kit/docs/dataproviders/#supported-data-provider-backends), and you can even [build your own](https://marmelab.com/ra-core/dataproviderwriting/).
+You'll need to specify a Data Provider to let the Admin know how to fetch data from your API. A Data Provider is an abstraction that allows you to connect your Admin to any API, whether it's REST, GraphQL, or any other protocol. You can choose from any of the [50+ Data Providers](https://shadmin.turtlesocks.dev/docs/data-providers#supported-data-provider-backends), and you can even [build your own](https://marmelab.com/ra-core/dataproviderwriting/).
 
 The following example uses a simple REST adapter called `ra-data-simple-rest`:
 
@@ -74,7 +74,7 @@ export const App = () => (
 
 ### Declare Resources
 
-Then, you'll need to declare the routes of the application. `shadcn-admin-kit` allows to define CRUD routes (list, edit, create, show), and custom routes. Use the `<Resource>` component from `ra-core` (which was automatically added to your dependencies) to define CRUD routes.
+Then, you'll need to declare the routes of the application. `shadmin` allows to define CRUD routes (list, edit, create, show), and custom routes. Use the `<Resource>` component from `ra-core` (which was automatically added to your dependencies) to define CRUD routes.
 
 For each resource, you can specify a `name` (which will map to the API endpoint) and the `list`, `edit`, `create` and `show` components to use.
 
@@ -123,7 +123,7 @@ export const CategoryList = () => (
 
 ### Adding Authentication
 
-You can configure authentication in your Admin by using the `authProvider` prop. There are many [authProviders](https://marmelab.com/shadcn-admin-kit/docs/security/#supported-auth-backends) you can choose from, and you can also [build your own](https://marmelab.com/ra-core/authproviderwriting/).
+You can configure authentication in your Admin by using the `authProvider` prop. There are many [authProviders](https://shadmin.turtlesocks.dev/docs/security#supported-auth-backends) you can choose from, and you can also [build your own](https://marmelab.com/ra-core/authproviderwriting/).
 
 Once your authProvider is set up, you can pass it to the `authProvider` prop, and the `<Admin>` component will automatically display the login page when the user is not authenticated.
 
@@ -198,7 +198,7 @@ export const ProductList = () => {
 
 ### Adding Custom Routes
 
-To register your own routes, pass one or several [`<CustomRoutes>`](https://marmelab.com/shadcn-admin-kit/docs/customroutes/) elements as children of `<Admin>`. Declare as many [react-router](https://reactrouter.com/en/6/start/concepts#defining-routes) `<Route>` as you want inside them.
+To register your own routes, pass one or several [`<CustomRoutes>`](https://shadmin.turtlesocks.dev/docs/custom-routes) elements as children of `<Admin>`. Declare as many [react-router](https://reactrouter.com/en/6/start/concepts#defining-routes) `<Route>` as you want inside them.
 
 ```tsx
 // in src/App.tsx

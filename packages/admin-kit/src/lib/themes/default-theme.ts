@@ -6,7 +6,7 @@ import type { AdminTheme } from "./theme-types";
  * Light mode uses a near-white background with near-black text; dark mode
  * inverts the relationship. Chart colors lean toward the shadcn defaults.
  * Choosing this theme (or not passing one at all) preserves the historical
- * visual identity of shadcn-admin-kit.
+ * visual identity of shadmin.
  */
 const defaultTheme: AdminTheme = {
   name: "default",

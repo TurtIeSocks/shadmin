@@ -16,7 +16,7 @@ import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";
  *
  * Click events are prevented from bubbling up, making it safe to use in DataTable rows with rowClick.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/urlfield/ UrlField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/url-field UrlField documentation}
  *
  * @example
  * import { List, DataTable, UrlField } from '@/components/admin';

@@ -1,8 +1,8 @@
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
 
-import { SimpleForm, ThemeProvider } from "shadcn-admin-kit/components/admin";
-import { RichTextInput } from "shadcn-admin-kit/components/rich-text-input";
-import { i18nProvider } from "shadcn-admin-kit/lib/i18n-provider";
+import { SimpleForm, ThemeProvider } from "shadmin/components/admin";
+import { RichTextInput } from "shadmin/components/rich-text-input";
+import { i18nProvider } from "shadmin/lib/i18n-provider";
 
 const record = {
   id: 1,

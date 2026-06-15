@@ -14,7 +14,7 @@ type BadgeProps = ComponentProps<typeof Badge>;
  * Useful for displaying tags, genres, or any other array of short strings.
  * To be used with RecordField or DataTable.Col components, or anywhere a RecordContext is available.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/textarrayfield/ TextArrayField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/text-array-field TextArrayField documentation}
  *
  * @example
  * // const post = { id: 123, genres: ['Fiction', 'Historical Fiction'] };

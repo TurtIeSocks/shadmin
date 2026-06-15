@@ -34,7 +34,7 @@ type DashboardMenuItemProps = {
  * translated label (`ra.page.dashboard`). The default `<AppSidebar>` uses
  * this component when an `<Admin dashboard>` is configured.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/dashboardmenuitem/ DashboardMenuItem documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/dashboard-menu-item DashboardMenuItem documentation}
  *
  * @example
  * import { DashboardMenuItem } from "@/components/admin";

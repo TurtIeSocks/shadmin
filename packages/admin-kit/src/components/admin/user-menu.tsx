@@ -31,7 +31,7 @@ type UserMenuProps = {
  * Displays the user's avatar and name from the identity provider, and includes a logout option.
  * Only displays in applications using authentication.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/usermenu UserMenu documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/user-menu UserMenu documentation}
  */
 function UserMenu({ children, label, icon }: UserMenuProps) {
   const authProvider = useAuthProvider();

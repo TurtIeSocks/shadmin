@@ -15,7 +15,7 @@ interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {
  * Full-page error screen displayed when the current user does not have
  * permission to access a resource.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/accessdenied/ AccessDenied documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/access-denied AccessDenied documentation}
  */
 function AccessDenied({
   icon = <Lock className="size-32" />,

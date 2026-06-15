@@ -6,7 +6,7 @@ import {
   Translate,
   type Identifier,
 } from "ra-core";
-import { Button } from "shadcn-admin-kit/components/ui/button";
+import { Button } from "shadmin/components/ui/button";
 import { ThumbsUp } from "lucide-react";
 
 const noSelection: Identifier[] = [];

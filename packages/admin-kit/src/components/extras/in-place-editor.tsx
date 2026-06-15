@@ -58,7 +58,7 @@ interface InPlaceEditorProps<
  * `editing` → submit → `saving` → success → `reading`. Pressing Escape or
  * (when `cancelOnBlur` is true) blurring the input returns to `reading`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/inplaceeditor/ InPlaceEditor documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/in-place-editor InPlaceEditor documentation}
  *
  * @example
  * import { InPlaceEditor } from '@/components/admin';

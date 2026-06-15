@@ -38,7 +38,7 @@ interface ReferenceManyFieldViewProps<
  * This field fetches records from a related resource where the foreign key points to the current record.
  * It provides a ListContext to its children, enabling list rendering with DataTable or custom components.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/referencemanyfield/ ReferenceManyField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/reference-many-field ReferenceManyField documentation}
  *
  * @example
  * import { Show, ReferenceManyField, DataTable, DateField, RecordField } from '@/components/admin';

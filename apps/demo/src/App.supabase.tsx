@@ -24,7 +24,7 @@ import {
   ForgotPasswordPage,
   SetPasswordPage,
   SocialAuthButton,
-} from "shadcn-admin-kit/components/supabase";
+} from "shadmin/components/supabase";
 
 const SUPABASE_URL =
   import.meta.env.VITE_SUPABASE_URL ?? "https://<your-project>.supabase.co";

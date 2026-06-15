@@ -17,7 +17,7 @@ interface PhoneFieldProps<RecordType extends UnknownRecord = UnknownRecord>
  * Displays an E.164 phone number as a formatted label, optionally wrapped in
  * a `tel:` link.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/phone-field/ PhoneField documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/phone-field PhoneField documentation}
  *
  * @example
  * import { Show, RecordField, PhoneField } from '@/components/admin';

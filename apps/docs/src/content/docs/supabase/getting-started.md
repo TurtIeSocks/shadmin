@@ -2,7 +2,7 @@
 title: "Supabase Integration"
 ---
 
-Shadcn Admin Kit ships an opt-in set of components for projects backed by [Supabase](https://supabase.com/). With a Supabase URL and API key you get a fully wired admin — data provider, auth provider, social-auth login, and auto-generated CRUD views — in a single line of JSX.
+Shadmin ships an opt-in set of components for projects backed by [Supabase](https://supabase.com/). With a Supabase URL and API key you get a fully wired admin — data provider, auth provider, social-auth login, and auto-generated CRUD views — in a single line of JSX.
 
 ## Installation
 

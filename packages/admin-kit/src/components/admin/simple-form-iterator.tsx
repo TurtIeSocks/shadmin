@@ -49,7 +49,7 @@ type GetItemLabelFunc = (index: number) => string | ReactElement;
  * Renders a list of form items with add, remove, and reorder controls. Use inside ArrayInput
  * for arrays of objects or scalar values. Supports inline layouts and custom buttons.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/arrayinput/ ArrayInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/array-input ArrayInput documentation}
  *
  * @example
  * import { ArrayInput, SimpleFormIterator, TextInput } from '@/components/admin';

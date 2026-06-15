@@ -1,11 +1,11 @@
 ---
-name: shadcn-admin-kit
-description: This skill should be used when building, modifying, or debugging an admin application with shadcn-admin-kit — including creating resources, lists, forms, data fetching, authentication, relationships between entities, custom pages, or any CRUD admin interface built with this kit.
+name: shadmin
+description: This skill should be used when building, modifying, or debugging an admin application with shadmin — including creating resources, lists, forms, data fetching, authentication, relationships between entities, custom pages, or any CRUD admin interface built with this kit.
 ---
 
-# Shadcn Admin Kit Development Guide
+# Shadmin Development Guide
 
-Shadcn Admin Kit is a component library for building admin/CRUD applications using React, TypeScript, and shadcn/ui. It provides 98+ pre-built components on top of **ra-core** (from react-admin), combining react-admin's proven data layer with modern shadcn/ui components styled via Tailwind CSS. Before writing custom code, always check if shadcn-admin-kit already provides a component or hook for the task. Full documentation: https://marmelab.com/shadcn-admin-kit/docs
+Shadmin is a component library for building admin/CRUD applications using React, TypeScript, and shadcn/ui. It provides 98+ pre-built components on top of **ra-core** (from react-admin), combining react-admin's proven data layer with modern shadcn/ui components styled via Tailwind CSS. Before writing custom code, always check if shadmin already provides a component or hook for the task. Full documentation: https://shadmin.turtlesocks.dev/docs
 
 **Tech Stack**: React Router v7, TanStack Query, React Hook Form, Zod, ra-core, shadcn/ui (Radix UI), Lucide icons, Tailwind CSS v4.
 
@@ -28,7 +28,7 @@ import { Resource, CustomRoutes, useGetList, useRecordContext } from "ra-core";
 
 ## Providers (Backend Abstraction)
 
-Shadcn Admin Kit never calls APIs directly. All communication goes through **providers** — adapters that translate standardized calls into API-specific requests. The three main providers are:
+Shadmin never calls APIs directly. All communication goes through **providers** — adapters that translate standardized calls into API-specific requests. The three main providers are:
 
 - **dataProvider**: All CRUD operations (`getList`, `getOne`, `create`, `update`, `delete`, `getMany`, `getManyReference`, `updateMany`, `deleteMany`). See [DataProviders](https://marmelab.com/react-admin/DataProviders.html) and [50+ existing adapters](https://marmelab.com/react-admin/DataProviderList.html).
 - **authProvider**: Authentication and authorization. See [Authentication](https://marmelab.com/react-admin/Authentication.html).
@@ -38,7 +38,7 @@ Shadcn Admin Kit never calls APIs directly. All communication goes through **pro
 
 ## Composition (Not God Components)
 
-Shadcn Admin Kit uses composition over configuration. Override behavior by passing child components, not by setting dozens of props:
+Shadmin uses composition over configuration. Override behavior by passing child components, not by setting dozens of props:
 
 ```jsx
 <Edit actions={<MyCustomActions />}>
@@ -184,7 +184,7 @@ Fetching all the data (including relationships) upfront for a given page is an a
 </ReferenceArrayField>;
 ```
 
-See [ReferenceField](https://marmelab.com/shadcn-admin-kit/docs/referencefield/), [ReferenceManyField](https://marmelab.com/shadcn-admin-kit/docs/referencemanyfield/), [ReferenceArrayField](https://marmelab.com/shadcn-admin-kit/docs/referencearrayfield/).
+See [ReferenceField](https://shadmin.turtlesocks.dev/docs/reference-field), [ReferenceManyField](https://shadmin.turtlesocks.dev/docs/reference-many-field), [ReferenceArrayField](https://shadmin.turtlesocks.dev/docs/reference-array-field).
 
 ### Editing Related Records (Inputs)
 
@@ -200,11 +200,11 @@ See [ReferenceField](https://marmelab.com/shadcn-admin-kit/docs/referencefield/)
 <ReferenceArrayInput source="tag_ids" reference="tags" />;
 ```
 
-See [ReferenceInput](https://marmelab.com/shadcn-admin-kit/docs/referenceinput/), [ReferenceArrayInput](https://marmelab.com/shadcn-admin-kit/docs/referencearrayinput/).
+See [ReferenceInput](https://shadmin.turtlesocks.dev/docs/reference-input), [ReferenceArrayInput](https://shadmin.turtlesocks.dev/docs/reference-array-input).
 
 ## Forms
 
-Forms are built on React Hook Form with Zod validation. Use `<SimpleForm>` for single-column layouts. See [SimpleForm](https://marmelab.com/shadcn-admin-kit/docs/simpleform/).
+Forms are built on React Hook Form with Zod validation. Use `<SimpleForm>` for single-column layouts. See [SimpleForm](https://shadmin.turtlesocks.dev/docs/simple-form).
 
 Pass validators to input components: `required()`, `minLength(min)`, `maxLength(max)`, `minValue(min)`, `maxValue(max)`, `number()`, `email()`, `regex(pattern, message)`, or a custom function returning an error string.
 
@@ -254,7 +254,7 @@ export default {
 };
 ```
 
-See [Resource](https://marmelab.com/shadcn-admin-kit/docs/resource/), [RecordRepresentation](https://marmelab.com/ra-core/recordrepresentation/).
+See [Resource](https://shadmin.turtlesocks.dev/docs/resource), [RecordRepresentation](https://marmelab.com/ra-core/recordrepresentation/).
 
 ## Key Components
 
@@ -383,9 +383,9 @@ Notifications use [Sonner](https://sonner.emilkowal.ski/) for toast messages.
 
 ## Differences from React-Admin
 
-Shadcn Admin Kit shares the same **ra-core** foundation as react-admin but differs in:
+Shadmin shares the same **ra-core** foundation as react-admin but differs in:
 
-| Aspect        | React-Admin         | Shadcn Admin Kit        |
+| Aspect        | React-Admin         | Shadmin        |
 | ------------- | ------------------- | ----------------------- |
 | UI Framework  | Material-UI         | shadcn/ui (Radix)       |
 | Styling       | CSS-in-JS (Emotion) | Tailwind CSS            |

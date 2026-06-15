@@ -47,7 +47,7 @@ interface LayoutProps extends CoreLayoutProps {
  * Accepts slot props (`appBar`, `menu`, `sidebar`, `error`) to replace individual sub-components
  * without re-implementing the full layout.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/layout/ Layout documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/layout Layout documentation}
  */
 function Layout(props: LayoutProps) {
   const { appBar, menu, sidebar, error, ...rest } = props;

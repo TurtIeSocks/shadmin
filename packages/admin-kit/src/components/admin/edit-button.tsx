@@ -29,7 +29,7 @@ const defaultIcon = <Pencil />;
  *
  * Works within RecordContext to automatically get the record ID.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/editbutton/ EditButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/edit-button EditButton documentation}
  *
  * @example
  * import { DataTable, EditButton } from '@/components/admin';

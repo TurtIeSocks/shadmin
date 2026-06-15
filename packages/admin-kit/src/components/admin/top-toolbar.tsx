@@ -13,7 +13,7 @@ type TopToolbarProps = HTMLAttributes<HTMLDivElement> & {
  * `ra-ui-materialui` for API parity. Useful as the `actions` prop of
  * `<List>`, `<Show>`, `<Edit>`, etc.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/toptoolbar/ TopToolbar documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/top-toolbar TopToolbar documentation}
  *
  * @example
  * import {

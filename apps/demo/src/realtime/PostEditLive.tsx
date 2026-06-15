@@ -1,5 +1,5 @@
-import { SimpleForm, TextInput } from "shadcn-admin-kit/components/admin";
-import { EditLive, LockOnMount } from "shadcn-admin-kit/components/realtime";
+import { SimpleForm, TextInput } from "shadmin/components/admin";
+import { EditLive, LockOnMount } from "shadmin/components/realtime";
 
 export function PostEditLive() {
   return (

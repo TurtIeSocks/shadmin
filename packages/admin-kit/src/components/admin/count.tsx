@@ -18,7 +18,7 @@ import type { UnknownValue } from "@/lib/unknown-types";
  * Displays a loading spinner while fetching and an error icon on failure.
  * By default, uses the current resource from ResourceContext.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/count/ Count documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/count Count documentation}
  *
  * @example
  * import { Count } from '@/components/admin';

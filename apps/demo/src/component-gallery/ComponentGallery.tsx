@@ -17,17 +17,17 @@ import {
   TopToolbar,
   UrlField,
   WrapperField,
-} from "shadcn-admin-kit/components/admin";
-import { Badge } from "shadcn-admin-kit/components/ui/badge";
-import { Button as UiButton } from "shadcn-admin-kit/components/ui/button";
+} from "shadmin/components/admin";
+import { Badge } from "shadmin/components/ui/badge";
+import { Button as UiButton } from "shadmin/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "shadcn-admin-kit/components/ui/card";
-import { Input } from "shadcn-admin-kit/components/ui/input";
+} from "shadmin/components/ui/card";
+import { Input } from "shadmin/components/ui/input";
 import { RecordContextProvider } from "ra-core";
 
 interface GalleryComponent {

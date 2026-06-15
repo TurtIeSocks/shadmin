@@ -1,5 +1,5 @@
 import { useTranslate } from "ra-core";
-import { Card, CardContent } from "shadcn-admin-kit/components/ui/card";
+import { Card, CardContent } from "shadmin/components/ui/card";
 
 import { Order } from "../types";
 import { PendingOrder } from "./PendingOrder";

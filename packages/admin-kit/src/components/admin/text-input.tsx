@@ -28,7 +28,7 @@ type TextInputProps = InputProps & {
  * for longer content like descriptions or comments. Wraps shadcn's `<Input>` or `<Textarea>`
  * component depending on the `multiline` prop.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/textinput/ TextInput documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/text-input TextInput documentation}
  *
  * @example
  * import { Edit, SimpleForm, TextInput } from '@/components/admin';

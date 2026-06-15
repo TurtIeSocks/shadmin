@@ -32,7 +32,7 @@ type TitleProps = {
  * Strings are translated through the i18n provider; React elements are
  * rendered as-is.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/title/ Title documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/title Title documentation}
  *
  * @example
  * import { Title } from "@/components/admin";

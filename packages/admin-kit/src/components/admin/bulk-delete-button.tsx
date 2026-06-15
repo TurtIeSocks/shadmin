@@ -35,7 +35,7 @@ type BulkDeleteButtonProps<
  * a confirmation dialog is shown before firing. Use within the `bulkActionsButtons` prop of
  * `<DataTable>` or inside `<BulkActionsToolbar>`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-delete-button BulkDeleteButton documentation}
  *
  * @example
  * import { BulkDeleteButton, BulkExportButton, DataTable, List } from '@/components/admin';
@@ -79,7 +79,7 @@ function BulkDeleteButton<
  *
  * Equivalent to `<BulkDeleteButton mutationMode="undoable">`.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-delete-button BulkDeleteButton documentation}
  */
 function BulkDeleteWithUndoButton<
   RecordType extends RaRecord = RaRecord,
@@ -149,7 +149,7 @@ type BulkDeleteWithConfirmButtonProps<
  *
  * Equivalent to `<BulkDeleteButton mutationMode="pessimistic">` (or `optimistic`).
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/bulkdeletebutton/ BulkDeleteButton documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/bulk-delete-button BulkDeleteButton documentation}
  */
 function BulkDeleteWithConfirmButton<
   RecordType extends RaRecord = RaRecord,

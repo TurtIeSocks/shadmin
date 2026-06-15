@@ -5,9 +5,9 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
-} from "shadcn-admin-kit/components/admin";
-import { SubscriptionPlanField } from "shadcn-admin-kit/components/extras/subscription-plan-field";
-import { UsageMeterField } from "shadcn-admin-kit/components/extras/usage-meter-field";
+} from "shadmin/components/admin";
+import { SubscriptionPlanField } from "shadmin/components/extras/subscription-plan-field";
+import { UsageMeterField } from "shadmin/components/extras/usage-meter-field";
 import { PLANS } from "./plans";
 
 export const SubscriptionShow = () => (

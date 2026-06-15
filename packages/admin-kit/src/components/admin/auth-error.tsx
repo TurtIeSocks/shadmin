@@ -18,7 +18,7 @@ interface AuthErrorProps {
  * `<Admin>` component, and as the fallback rendered by `<AuthCallback>`
  * when an OAuth callback errors out.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/autherror/ AuthError documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/auth-error AuthError documentation}
  *
  * @example
  * import { Admin } from "@/components/admin";

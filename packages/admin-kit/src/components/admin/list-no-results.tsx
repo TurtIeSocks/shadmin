@@ -22,7 +22,7 @@ interface ListNoResultsProps {
  * displays a translated message and, when filters are active, a button
  * to clear them.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/listnoresults/ ListNoResults documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/list-no-results ListNoResults documentation}
  */
 function ListNoResults(props: ListNoResultsProps) {
   const { className } = props;

@@ -29,7 +29,7 @@ interface EditProps extends EditViewProps, EditBaseProps {}
  * Combines data fetching, form context, and UI layout for editing records. Renders breadcrumb,
  * page title, Show and Delete buttons, and wraps your form components.
  *
- * @see {@link https://marmelab.com/shadcn-admin-kit/docs/edit/ Edit documentation}
+ * @see {@link https://shadmin.turtlesocks.dev/docs/edit Edit documentation}
  *
  * @example
  * import { Edit, SimpleForm, BooleanInput, TextInput } from "@/components/admin";

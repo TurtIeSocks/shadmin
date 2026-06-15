@@ -5,7 +5,7 @@ const tiers = [
   {
     name: "Open-Source",
     id: "free-tier",
-    href: "https://marmelab.com/shadcn-admin-kit/docs/install/",
+    href: "https://shadmin.turtlesocks.dev/docs/install",
     price: "$0",
     priceFreq: "/month",
     description: "The one and only tier",
@@ -35,7 +35,7 @@ export function Pricing() {
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-300">
-          Shadcn Admin Kit is open-source and free to use.
+          Shadmin is open-source and free to use.
           <br />
           We already make a living with{" "}
           <a href="https://marmelab.com/react-admin">react-admin</a>.

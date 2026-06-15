@@ -1,4 +1,4 @@
-import type { SubscriptionPlan } from "shadcn-admin-kit/components/extras/subscription-plan-field";
+import type { SubscriptionPlan } from "shadmin/components/extras/subscription-plan-field";
 
 export const PLANS: readonly SubscriptionPlan[] = [
   {
