@@ -1,3 +1,4 @@
+import { ThemeToggle } from "./components/aurora/ThemeToggle";
 import { CallToAction } from "./components/CallToAction";
 import { Features } from "./components/Features";
 import { Footer } from "./components/Footer";
@@ -16,6 +17,7 @@ import { Users } from "./components/Users";
 function App() {
   return (
     <>
+      <div className="fixed right-4 top-4 z-[100]"><ThemeToggle /></div>
       <Header />
       <main>
         <Hero />
