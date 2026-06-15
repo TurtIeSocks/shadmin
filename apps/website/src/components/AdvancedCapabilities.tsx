@@ -1,5 +1,9 @@
 import { Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { GlassPanel } from "@/components/aurora/GlassPanel";
+import { GradientText } from "@/components/aurora/GradientText";
+import { MagneticButton } from "@/components/aurora/MagneticButton";
+import { Reveal } from "@/components/aurora/Reveal";
+import { Container } from "./Container";
 
 import featuresScreenshot from "/img/features-screenshot.jpeg";
 
@@ -43,56 +47,66 @@ export function AdvancedCapabilities() {
     <section
       id="advanced-capabilities"
       aria-label="Shadmin Advanced Capabilities"
+      className="py-24 md:py-32"
     >
-      <div className="overflow-hidden bg-black py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-16 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 items-center">
-            <div>
-              <div className="lg:max-w-lg">
-                <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  Advanced Capabilities
-                </p>
-                <p className="mt-6 text-lg leading-8 text-white">
-                  Beyond the basics, Shadmin offers sophisticated
-                  features to reduce development costs and enhance the developer
-                  experience.
-                </p>
-                <dl className="my-10 max-w-xl space-y-2 text-base leading-7 text-white lg:max-w-none">
-                  {features.map((feature) => (
-                    <div key={feature.name} className="relative pl-9">
-                      <dt className="font-bold">
-                        <Check
-                          aria-hidden="true"
-                          className="absolute left-1 top-1 size-5 text-white"
-                        />
-                        {feature.name}
-                      </dt>
-
-                      <dd className="inline opacity-80">
-                        {feature.description}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <Button variant="outline" asChild>
-                  <a
-                    href="https://shadmin.turtlesocks.dev/docs/install"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Learn More
-                  </a>
-                </Button>
-              </div>
+      <Container>
+        <Reveal className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left: copy + list + CTA */}
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                Advanced{" "}
+                <GradientText>Capabilities</GradientText>
+              </h2>
+              <p className="text-lg leading-8 text-muted-foreground">
+                Beyond the basics, Shadmin offers sophisticated features to
+                reduce development costs and enhance the developer experience.
+              </p>
             </div>
+
+            <dl className="space-y-3">
+              {features.map((feature) => (
+                <div key={feature.name} className="flex gap-3 items-start">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-aurora/10">
+                    <Check
+                      aria-hidden="true"
+                      className="size-3 text-aurora"
+                    />
+                  </span>
+                  <div>
+                    <dt className="inline font-semibold text-foreground">
+                      {feature.name}
+                    </dt>
+                    <dd className="inline text-muted-foreground">
+                      {" "}
+                      — {feature.description}
+                    </dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+
+            <div>
+              <MagneticButton
+                href="https://shadmin.turtlesocks.dev/docs/install"
+                external
+                variant="aurora"
+              >
+                Learn More
+              </MagneticButton>
+            </div>
+          </div>
+
+          {/* Right: bezel screenshot */}
+          <GlassPanel bezel>
             <img
               alt="Features screenshot"
               src={featuresScreenshot}
-              className="w-full rounded-xl shadow-xl ring-1 ring-white/10 md:-ml-4 lg:ml-0 lg:-order-1"
+              className="w-full rounded-[calc(2rem-1rem)] block"
             />
-          </div>
-        </div>
-      </div>
+          </GlassPanel>
+        </Reveal>
+      </Container>
     </section>
   );
 }
