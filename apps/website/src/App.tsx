@@ -11,9 +11,12 @@ import { Why } from "./components/Why";
 import { Backends } from "./components/Backends";
 import { Open } from "./components/Open";
 import { ByDevelopers } from "./components/ByDevelopers";
+import { PageAurora } from "./components/aurora/PageAurora";
+
 function App() {
   return (
     <>
+      <PageAurora />
       <Header />
       <main>
         <Hero />

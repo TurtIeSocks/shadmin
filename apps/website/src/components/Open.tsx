@@ -1,4 +1,3 @@
-import { AuroraBackground } from "@/components/aurora/AuroraBackground";
 import { GlassPanel } from "@/components/aurora/GlassPanel";
 import { GradientText } from "@/components/aurora/GradientText";
 import { Reveal, RevealItem } from "@/components/aurora/Reveal";
@@ -14,9 +13,8 @@ export function Open() {
     <section
       id="open"
       aria-label="Open Source Stats"
-      className="relative isolate overflow-hidden py-24 md:py-32"
+      className="relative py-24 md:py-32"
     >
-      <AuroraBackground />
       <div className="relative mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
         <Reveal>
           <RevealItem>

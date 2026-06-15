@@ -2,7 +2,6 @@ import VercelLogo from "/img/logo-vercel.svg";
 import NetlifyLogo from "/img/netlify-logo.svg";
 import GitHubPagesLogo from "/img/github-logo.svg";
 import CloudflareLogo from "/img/cloudflare-logo.svg";
-import { AuroraBackground } from "@/components/aurora/AuroraBackground";
 import { GlassPanel } from "@/components/aurora/GlassPanel";
 import { GradientText } from "@/components/aurora/GradientText";
 import { Eyebrow } from "@/components/aurora/Eyebrow";
@@ -20,9 +19,8 @@ export function Deploy() {
     <section
       id="hosts"
       aria-label="Hosting backends"
-      className="relative isolate overflow-hidden py-24 md:py-32"
+      className="relative py-24 md:py-32"
     >
-      <AuroraBackground />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-16 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 items-center">

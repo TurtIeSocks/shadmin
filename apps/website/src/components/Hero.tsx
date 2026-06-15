@@ -1,5 +1,4 @@
 import HeroScreenshot from "/img/hero-screenshot.jpeg";
-import { AuroraBackground } from "@/components/aurora/AuroraBackground";
 import { Eyebrow } from "@/components/aurora/Eyebrow";
 import { GlassPanel } from "@/components/aurora/GlassPanel";
 import { GradientText } from "@/components/aurora/GradientText";
@@ -9,9 +8,7 @@ import HotspotSvg from "./HotspotSvg";
 
 export function Hero() {
   return (
-    <div className="relative isolate overflow-hidden py-24 md:py-32 text-center">
-      <AuroraBackground />
-
+    <div className="relative py-24 md:py-32 text-center">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Copy block */}
         <Reveal stagger className="mx-auto max-w-3xl flex flex-col items-center gap-6">

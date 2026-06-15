@@ -4,7 +4,6 @@ import FirebaseLogo from "/img/firebase-logo.svg";
 import StrapiLogo from "/img/strapi-logo.svg";
 import HasuraLogo from "/img/hasura-logo.svg";
 import DataProviderSchema from "/img/dataProvider-schema.svg";
-import { AuroraBackground } from "@/components/aurora/AuroraBackground";
 import { GlassPanel } from "@/components/aurora/GlassPanel";
 import { GradientText } from "@/components/aurora/GradientText";
 import { Eyebrow } from "@/components/aurora/Eyebrow";
@@ -24,9 +23,8 @@ export function Backends() {
     <section
       id="backends"
       aria-label="Supported Backends"
-      className="relative isolate overflow-hidden py-24 md:py-32"
+      className="relative py-24 md:py-32"
     >
-      <AuroraBackground />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-16 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 items-center">
