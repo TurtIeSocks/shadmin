@@ -1,26 +1,35 @@
 import vscodeScreenshot from "/img/vscode.webp";
+import { Container } from "./Container";
+import { GlassPanel } from "./aurora/GlassPanel";
+import { GradientText } from "./aurora/GradientText";
+import { Reveal, RevealItem } from "./aurora/Reveal";
 
 export function ByDevelopers() {
   return (
-    <div className="relative bg-white py-12 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-16 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 items-center">
-          <div className="mx-auto max-w-md px-6 text-center lg:text-start sm:max-w-3xl lg:max-w-7xl lg:px-8">
-            <p className="mt-2 text-4xl font-bold tracking-tight text-black sm:text-5xl">
-              Built by developers for developers
-            </p>
-            <p className="mx-auto mt-5 max-w-prose text-xl text-muted-foreground mb-10">
+    <section aria-label="Built by developers" className="py-24 md:py-32">
+      <Container>
+        <Reveal className="grid grid-cols-1 gap-x-16 gap-y-12 items-center lg:grid-cols-2">
+          <RevealItem className="max-w-md mx-auto lg:mx-0">
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl text-foreground">
+              Built by developers{" "}
+              <GradientText>for developers</GradientText>
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground">
               Composability, separation of concerns, clean code, strong typing
               and smart auto-completion ensure a pleasant DX.
             </p>
-          </div>
-          <img
-            alt="VSCode Screenshot"
-            src={vscodeScreenshot}
-            className="w-full rounded-xl shadow-xl ring-1 ring-white/10 mx-auto"
-          />
-        </div>
-      </div>
-    </div>
+          </RevealItem>
+          <RevealItem>
+            <GlassPanel bezel className="overflow-hidden">
+              <img
+                alt="VSCode Screenshot"
+                src={vscodeScreenshot}
+                className="w-full rounded-[calc(2rem-0.5rem)]"
+              />
+            </GlassPanel>
+          </RevealItem>
+        </Reveal>
+      </Container>
+    </section>
   );
 }
