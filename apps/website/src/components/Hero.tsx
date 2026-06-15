@@ -176,7 +176,7 @@ export function Hero() {
         </Reveal>
 
         {/* Coded dashboard mockup */}
-        <Reveal className="mt-16 sm:mt-24">
+        <Reveal className="mt-16 sm:mt-24 mx-auto max-w-5xl">
           <GlassPanel bezel>
             <DashboardMockup />
           </GlassPanel>

@@ -71,10 +71,11 @@ export function Backends() {
               </div>
             </RevealItem>
             <RevealItem>
-              <GlassPanel bezel className="w-full mx-auto max-w-md p-8">
-                <div className="flex flex-col items-center gap-0">
+              <div className="mx-auto w-full max-w-md">
+                <GlassPanel bezel className="p-6">
+                  <div className="flex flex-col items-center gap-0">
                   {/* Your App node */}
-                  <div className="w-full max-w-xs rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
+                  <div className="w-full rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
                     <LayoutDashboard className="size-5 text-foreground shrink-0" aria-hidden="true" />
                     <span className="font-semibold text-foreground">Your App</span>
                   </div>
@@ -89,7 +90,7 @@ export function Backends() {
                   </div>
 
                   {/* dataProvider node */}
-                  <div className="w-full max-w-xs rounded-xl bg-aurora px-6 py-4 flex items-center justify-center">
+                  <div className="w-full rounded-xl bg-aurora px-6 py-4 flex items-center justify-center">
                     <span className="font-bold text-white tracking-wide">dataProvider</span>
                   </div>
 
@@ -103,12 +104,13 @@ export function Backends() {
                   </div>
 
                   {/* Your Backend node */}
-                  <div className="w-full max-w-xs rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
+                  <div className="w-full rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
                     <Database className="size-5 text-foreground shrink-0" aria-hidden="true" />
                     <span className="font-semibold text-foreground">Your Backend</span>
                   </div>
                 </div>
-              </GlassPanel>
+                </GlassPanel>
+              </div>
             </RevealItem>
           </div>
         </Reveal>
