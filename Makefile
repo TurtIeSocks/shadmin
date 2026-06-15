@@ -37,7 +37,7 @@ test-browser: ## Run tests in browser mode
 	pnpm --filter shadcn-admin-kit run test:browser
 
 test-registry: ## Test the UI registry
-	cd packages/admin-kit && ./scripts/test_registry.sh
+	cd packages/admin-kit && ./scripts/test-registry.sh
 
 serve-registry: ## Serve the UI registry locally
 	python3 -m http.server -d ./public 8080

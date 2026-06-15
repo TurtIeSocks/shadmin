@@ -2,7 +2,7 @@
 
 # End-to-end registry install test.
 #
-# Run from the package root: cd packages/admin-kit && ./scripts/test_registry.sh
+# Run from the package root: cd packages/admin-kit && ./scripts/test-registry.sh
 # (this is what `make test-registry` does).
 #
 # Builds the registry, serves it on http://localhost:8080, scaffolds a fresh
@@ -75,6 +75,26 @@ EOF
     }
   },
   "include": ["src"]
+}
+EOF
+
+  # shadcn reads compilerOptions.paths from the ROOT tsconfig.json to decide
+  # where to write `@/...` files. The demo's references-only root has no paths,
+  # so shadcn would dump everything into a literal `@/` folder. Override it with
+  # a root that carries the alias (and keeps references so `tsc -b` still works).
+  cat > "$target_dir/tsconfig.json" <<'EOF'
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }
 EOF
 
@@ -214,8 +234,11 @@ echo "Installing dependencies"
 cd ./temp
 pnpm install
 
+echo "Configuring custom registry alias for namespaced dependencies"
+node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadcn-admin-kit': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
+
 echo "Adding registry components"
-pnpm dlx shadcn@latest add -y http://localhost:8080/r/admin.json
+pnpm dlx shadcn@3.8.5 add -y http://localhost:8080/r/admin.json
 
 echo "Building generated admin app"
 pnpm run build
@@ -233,7 +256,7 @@ echo "Configuring custom registry alias for namespaced dependencies"
 node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadcn-admin-kit': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
 
 echo "Adding admin and rich-text-input registry components"
-pnpm dlx shadcn@latest add -y http://localhost:8080/r/admin.json http://localhost:8080/r/rich-text-input.json
+pnpm dlx shadcn@3.8.5 add -y http://localhost:8080/r/admin.json http://localhost:8080/r/rich-text-input.json
 
 echo "Building generated rich-text-input app"
 pnpm run build
