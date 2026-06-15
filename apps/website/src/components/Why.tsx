@@ -21,7 +21,7 @@ const features = [
   {
     name: "Battle-tested foundation",
     description:
-      "Built on the battle-tested ra-core foundation — a rich library of hooks maintained by experienced open-source developers with 80k+ stars.",
+      "Built on the battle-tested ra-core foundation — a rich library of hooks maintained by experienced open-source developers.",
     icon: GraduationCap,
   },
   {
