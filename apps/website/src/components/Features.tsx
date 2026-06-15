@@ -7,6 +7,13 @@ import {
   Earth,
   Palette,
   BugOff,
+  MapPin,
+  RadioTower,
+  FileSpreadsheet,
+  Pilcrow,
+  Command,
+  CalendarDays,
+  ShieldCheck,
 } from "lucide-react";
 import { GlassPanel } from "@/components/aurora/GlassPanel";
 import { GradientText } from "@/components/aurora/GradientText";
@@ -63,6 +70,48 @@ const features = [
     name: "Resilient UI",
     description: "Gracefully manages loading, empty, and error states",
     icon: BugOff,
+    emphasis: false,
+  },
+  {
+    name: "Data Maps",
+    description: "Interactive Leaflet maps with geospatial data layers",
+    icon: MapPin,
+    emphasis: true,
+  },
+  {
+    name: "Realtime",
+    description: "Live updates and reactive data with any realtime backend",
+    icon: RadioTower,
+    emphasis: false,
+  },
+  {
+    name: "CSV Import / Export",
+    description: "Bulk data import and export with spreadsheet support",
+    icon: FileSpreadsheet,
+    emphasis: false,
+  },
+  {
+    name: "Rich Text Editor",
+    description: "WYSIWYG editing with full formatting and media support",
+    icon: Pilcrow,
+    emphasis: false,
+  },
+  {
+    name: "Command Menu",
+    description: "⌘K command palette for instant keyboard-driven navigation",
+    icon: Command,
+    emphasis: false,
+  },
+  {
+    name: "Kanban & Scheduling",
+    description: "Drag-and-drop boards and calendar views for task planning",
+    icon: CalendarDays,
+    emphasis: false,
+  },
+  {
+    name: "Roles & Permissions",
+    description: "Fine-grained RBAC with per-resource and per-action controls",
+    icon: ShieldCheck,
     emphasis: false,
   },
 ];
