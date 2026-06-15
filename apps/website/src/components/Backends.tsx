@@ -3,7 +3,7 @@ import AppwriteLogo from "/img/appwrite-logo.svg";
 import FirebaseLogo from "/img/firebase-logo.svg";
 import StrapiLogo from "/img/strapi-logo.svg";
 import HasuraLogo from "/img/hasura-logo.svg";
-import DataProviderSchema from "/img/dataProvider-schema.svg";
+import { LayoutDashboard, ChevronDown, Database } from "lucide-react";
 import { GlassPanel } from "@/components/aurora/GlassPanel";
 import { GradientText } from "@/components/aurora/GradientText";
 import { Eyebrow } from "@/components/aurora/Eyebrow";
@@ -71,12 +71,43 @@ export function Backends() {
               </div>
             </RevealItem>
             <RevealItem>
-              <GlassPanel bezel className="w-full mx-auto max-w-md p-4">
-                <img
-                  alt="DataProvider Schema"
-                  src={DataProviderSchema}
-                  className="w-full"
-                />
+              <GlassPanel bezel className="w-full mx-auto max-w-md p-8">
+                <div className="flex flex-col items-center gap-0">
+                  {/* Your App node */}
+                  <div className="w-full max-w-xs rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
+                    <LayoutDashboard className="size-5 text-foreground shrink-0" aria-hidden="true" />
+                    <span className="font-semibold text-foreground">Your App</span>
+                  </div>
+
+                  {/* Connector 1 */}
+                  <div className="flex flex-col items-center gap-1 py-2">
+                    <div className="w-px h-4 bg-border" />
+                    <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">
+                      useGetList('posts')
+                    </span>
+                    <ChevronDown className="size-4 text-muted-foreground" aria-hidden="true" />
+                  </div>
+
+                  {/* dataProvider node */}
+                  <div className="w-full max-w-xs rounded-xl bg-aurora px-6 py-4 flex items-center justify-center">
+                    <span className="font-bold text-white tracking-wide">dataProvider</span>
+                  </div>
+
+                  {/* Connector 2 */}
+                  <div className="flex flex-col items-center gap-1 py-2">
+                    <ChevronDown className="size-4 text-muted-foreground" aria-hidden="true" />
+                    <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">
+                      REST · GraphQL · any API
+                    </span>
+                    <div className="w-px h-4 bg-border" />
+                  </div>
+
+                  {/* Your Backend node */}
+                  <div className="w-full max-w-xs rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
+                    <Database className="size-5 text-foreground shrink-0" aria-hidden="true" />
+                    <span className="font-semibold text-foreground">Your Backend</span>
+                  </div>
+                </div>
               </GlassPanel>
             </RevealItem>
           </div>
