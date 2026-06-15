@@ -3,12 +3,49 @@
 @import "@astrojs/starlight-tailwind";
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
+@import "../../../../packages/shadmin/src/styles/aurora.css";
 
 :root {
   --sl-sidebar-width: 21.25rem;
   --sl-text-h2: 1.5rem;
   --sl-text-h3: 1.25rem;
   --sl-text-h4: 1.125rem;
+  --sl-font: Geist, sans-serif;
+}
+
+/* Aurora violet accent ramp */
+:root {
+  /* Starlight DARK (default) */
+  --sl-color-accent-low: #2a2456;
+  --sl-color-accent: #7f77dd;
+  --sl-color-accent-high: #c7c2f0;
+}
+:root[data-theme="light"] {
+  --sl-color-accent-low: #e9e7fb;
+  --sl-color-accent: #5b51c4;
+  --sl-color-accent-high: #312a6b;
+}
+
+/* Bridge aurora.css glass vars (.dark) to Starlight's [data-theme] system */
+:root {
+  /* Starlight dark default → DARK glass */
+  --glass-bg: rgba(255,255,255,.05);
+  --glass-border: rgba(255,255,255,.09);
+  --glass-blur: 14px;
+  --glass-shadow: 0 20px 50px rgba(0,0,0,.45);
+  --glass-inset: inset 0 1px 0 rgba(255,255,255,.12);
+  --orb-1: rgba(212,83,126,.55); --orb-2: rgba(127,119,221,.55);
+  --orb-3: rgba(29,158,117,.42); --orb-4: rgba(55,138,221,.4);
+}
+:root[data-theme="light"] {
+  /* LIGHT glass */
+  --glass-bg: rgba(255,255,255,.6);
+  --glass-border: rgba(255,255,255,.85);
+  --glass-blur: 16px;
+  --glass-shadow: 0 16px 40px rgba(31,38,80,.1);
+  --glass-inset: inset 0 1px 0 rgba(255,255,255,.9);
+  --orb-1: rgba(212,83,126,.3); --orb-2: rgba(127,119,221,.32);
+  --orb-3: rgba(29,158,117,.24); --orb-4: rgba(55,138,221,.22);
 }
 
 img.icon {
@@ -32,13 +69,18 @@ img.icon {
 }
 
 .site-title {
-  color: var(--sl-color-white);
   gap: 10px;
+  background: var(--aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .site-title img {
   width: 32px;
   height: 32px;
+  /* keep logo visible — background-clip:text on parent can blank children */
+  filter: none;
 }
 
 /* 
