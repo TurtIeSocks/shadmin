@@ -1,4 +1,7 @@
 import { Container } from "./Container";
+import { GlassPanel } from "./aurora/GlassPanel";
+import { GradientText } from "./aurora/GradientText";
+import { Reveal, RevealItem } from "./aurora/Reveal";
 import {
   BicepsFlexed,
   Plug,
@@ -12,19 +15,19 @@ const features = [
   {
     name: "Get a head start",
     description:
-      "Kickstart your project with pre-built components—no need to reinvent the wheel.",
+      "Kickstart your project with pre-built components — no need to reinvent the wheel.",
     icon: LayoutPanelLeft,
   },
   {
-    name: "Trusted expertise",
+    name: "Battle-tested foundation",
     description:
-      'Maintained by senior developers with proven open-source expertise (80k+ stars), who already authored <a href="https://github.com/marmelab/react-admin" class="underline">react-admin</a>.',
+      "Built on the battle-tested ra-core foundation — a rich library of hooks maintained by experienced open-source developers with 80k+ stars.",
     icon: GraduationCap,
   },
   {
     name: "Headless",
     description:
-      'Based on <a href="https://marmelab.com/ra-core/" class="underline">ra-core</a>, a rich library of hooks that can be used with any React component.',
+      "Based on ra-core, a rich library of hooks that can be used with any React component.",
     icon: Plug,
   },
   {
@@ -41,7 +44,7 @@ const features = [
   },
   {
     name: "AI ready",
-    description: "Shadcn admin kit comes with an MCP server.",
+    description: "Shadmin comes with an MCP server.",
     icon: Sparkles,
   },
 ];
@@ -51,37 +54,38 @@ export function Why() {
     <section
       id="why"
       aria-label="Why choose Shadmin"
-      className="py-20"
+      className="py-24 md:py-32"
     >
       <Container>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
-            <p className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-              Why choose Shadmin?
-            </p>
-          </div>
-          <div className="mx-auto mt-12 max-w-2xl sm:mt-16 lg:mt-20 lg:max-w-4xl">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-x-12 lg:gap-y-16">
-              {features.map((feature) => (
-                <div key={feature.name} className="relative pl-16">
-                  <dt className="text-xl font-semibold leading-7 text-gray-900">
-                    <div className="absolute left-0 top-0 flex size-10 items-center justify-center rounded-lg bg-black">
-                      <feature.icon
-                        aria-hidden="true"
-                        className="size-6 text-white"
-                      />
-                    </div>
-                    {feature.name}
-                  </dt>
-                  <dd
-                    className="mt-2 text-gray-600"
-                    dangerouslySetInnerHTML={{ __html: feature.description }}
-                  />
-                </div>
-              ))}
-            </dl>
-          </div>
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
+            Why choose <GradientText>Shadmin</GradientText>?
+          </h2>
         </div>
+        <Reveal stagger className="grid max-w-xl grid-cols-1 gap-6 mx-auto lg:max-w-none lg:grid-cols-2 xl:grid-cols-3">
+          {features.map((feature) => (
+            <RevealItem key={feature.name}>
+              <GlassPanel className="p-6 h-full">
+                <div className="flex items-start gap-4">
+                  <div className="shrink-0 flex size-10 items-center justify-center rounded-lg bg-aurora">
+                    <feature.icon
+                      aria-hidden="true"
+                      className="size-5 text-white"
+                    />
+                  </div>
+                  <div>
+                    <dt className="text-base font-semibold text-foreground">
+                      {feature.name}
+                    </dt>
+                    <dd className="mt-1 text-sm text-muted-foreground">
+                      {feature.description}
+                    </dd>
+                  </div>
+                </div>
+              </GlassPanel>
+            </RevealItem>
+          ))}
+        </Reveal>
       </Container>
     </section>
   );
