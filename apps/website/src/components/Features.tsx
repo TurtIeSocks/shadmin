@@ -176,20 +176,23 @@ const features: Feature[] = [
 
 // ── Mini-visuals (each fills its card via h-full) ──────────────────────────────
 
+const MAP_CELLS = Array.from({ length: 8 * 7 }, (_, i) => ({
+  id: i,
+  pin: [12, 26, 43, 51].includes(i),
+}));
+
 function MapVisual() {
-  const pins = new Set([12, 26, 43, 51]);
-  const cells = 8 * 7;
   return (
     <div className="grid h-full grid-cols-8 grid-rows-7 place-items-center gap-1.5">
-      {Array.from({ length: cells }).map((_, i) => (
+      {MAP_CELLS.map((cell) => (
         <span
-          key={i}
+          key={cell.id}
           className={cn(
             "rounded-full",
-            pins.has(i) ? "size-2.5 bg-aurora" : "size-1.5 bg-foreground/10",
+            cell.pin ? "size-2.5 bg-aurora" : "size-1.5 bg-foreground/10",
           )}
           style={
-            pins.has(i)
+            cell.pin
               ? { boxShadow: "0 0 8px 2px rgba(127,119,221,0.45)" }
               : undefined
           }
@@ -201,16 +204,16 @@ function MapVisual() {
 
 function DataTableVisual() {
   const rows = [
-    { w: "w-20", color: "#22c55e" },
-    { w: "w-14", color: "#22c55e" },
-    { w: "w-24", color: "#f59e0b" },
-    { w: "w-16", color: "#ef4444" },
+    { id: "row-1", w: "w-20", color: "#22c55e" },
+    { id: "row-2", w: "w-14", color: "#22c55e" },
+    { id: "row-3", w: "w-24", color: "#f59e0b" },
+    { id: "row-4", w: "w-16", color: "#ef4444" },
   ];
   return (
     <div className="flex h-full flex-col justify-between gap-2">
-      {rows.map((row, i) => (
+      {rows.map((row) => (
         <div
-          key={i}
+          key={row.id}
           className="flex flex-1 items-center gap-3 rounded-lg bg-foreground/5 px-3"
         >
           <span className="size-5 shrink-0 rounded-full bg-foreground/10" />
@@ -241,7 +244,7 @@ function AIVisual() {
       <div className="flex flex-1 flex-col justify-center gap-2">
         {lines.map((w, i) => (
           <span
-            key={i}
+            key={w}
             className={cn(
               "h-2 rounded",
               i % 2 === 0 ? "bg-foreground/15" : "bg-foreground/10",
@@ -269,18 +272,19 @@ function CommandMenuVisual() {
 }
 
 function ThemingVisual() {
-  const swatches: { className?: string; style?: CSSProperties }[] = [
-    { className: "bg-aurora" },
-    { style: { backgroundColor: "#7f77dd" } },
-    { style: { backgroundColor: "#d4537e" } },
-    { style: { backgroundColor: "#1d9e75" } },
-    { style: { backgroundColor: "#378add" } },
-  ];
+  const swatches: { id: string; className?: string; style?: CSSProperties }[] =
+    [
+      { id: "sw-aurora", className: "bg-aurora" },
+      { id: "sw-violet", style: { backgroundColor: "#7f77dd" } },
+      { id: "sw-magenta", style: { backgroundColor: "#d4537e" } },
+      { id: "sw-green", style: { backgroundColor: "#1d9e75" } },
+      { id: "sw-blue", style: { backgroundColor: "#378add" } },
+    ];
   return (
     <div className="flex h-full items-center gap-2">
-      {swatches.map((s, i) => (
+      {swatches.map((s) => (
         <span
-          key={i}
+          key={s.id}
           className={cn("size-7 shrink-0 rounded-lg", s.className)}
           style={s.style}
         />
@@ -303,28 +307,28 @@ function FormVisual() {
   );
 }
 
-const ROLES = ["Admin", "Editor", "Viewer"];
-const GRANTS = [
-  [true, true, true],
-  [true, true, false],
-  [true, false, false],
+const PERMS = ["create", "read", "update"];
+const ROLE_MATRIX = [
+  { role: "Admin", grants: [true, true, true] },
+  { role: "Editor", grants: [true, true, false] },
+  { role: "Viewer", grants: [true, false, false] },
 ];
 
 function RolesVisual() {
   return (
     <div className="flex h-full flex-col justify-center gap-2">
-      {ROLES.map((role, i) => (
+      {ROLE_MATRIX.map(({ role, grants }) => (
         <div key={role} className="flex items-center gap-3">
           <span className="w-14 shrink-0 text-[11px] text-muted-foreground">
             {role}
           </span>
           <div className="flex gap-1.5">
-            {GRANTS[i].map((on, j) => (
+            {PERMS.map((perm, j) => (
               <span
-                key={j}
+                key={perm}
                 className={cn(
                   "size-3.5 rounded",
-                  on ? "bg-aurora" : "bg-foreground/10",
+                  grants[j] ? "bg-aurora" : "bg-foreground/10",
                 )}
               />
             ))}

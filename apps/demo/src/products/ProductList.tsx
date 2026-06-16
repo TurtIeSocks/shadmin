@@ -211,14 +211,13 @@ const SidebarFilters = () => {
         icon={<Bookmark size={16} />}
         label="resources.products.filters.categories"
       >
-        {data &&
-          data.map((record) => (
-            <ToggleFilterButton
-              label={humanize(record.name)}
-              key={record.id}
-              value={{ category_id: record.id }}
-            />
-          ))}
+        {data?.map((record) => (
+          <ToggleFilterButton
+            label={humanize(record.name)}
+            key={record.id}
+            value={{ category_id: record.id }}
+          />
+        ))}
       </FilterCategory>
     </div>
   );

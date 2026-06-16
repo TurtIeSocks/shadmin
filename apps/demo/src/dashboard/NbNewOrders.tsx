@@ -1,7 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import { useTranslate } from "ra-core";
 
-import CardWithIcon from "./CardWithIcon";
+import { CardWithIcon } from "./CardWithIcon";
 
 interface Props {
   value?: number;

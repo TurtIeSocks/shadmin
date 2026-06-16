@@ -43,19 +43,19 @@ const AuthAside = () => (
   </div>
 );
 
-export const SupabaseApp = () => (
-  <AdminGuesser instanceUrl={SUPABASE_URL} apiKey={SUPABASE_ANON_KEY}>
-    <CustomRoutes noLayout>
-      <Route
-        path={ForgotPasswordPage.path}
-        element={<ForgotPasswordPage aside={<AuthAside />} />}
-      />
-      <Route
-        path={SetPasswordPage.path}
-        element={<SetPasswordPage aside={<AuthAside />} />}
-      />
-    </CustomRoutes>
-  </AdminGuesser>
-);
-
-export default SupabaseApp;
+export default function SupabaseApp() {
+  return (
+    <AdminGuesser instanceUrl={SUPABASE_URL} apiKey={SUPABASE_ANON_KEY}>
+      <CustomRoutes noLayout>
+        <Route
+          path={ForgotPasswordPage.path}
+          element={<ForgotPasswordPage aside={<AuthAside />} />}
+        />
+        <Route
+          path={SetPasswordPage.path}
+          element={<SetPasswordPage aside={<AuthAside />} />}
+        />
+      </CustomRoutes>
+    </AdminGuesser>
+  );
+}

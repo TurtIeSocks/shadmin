@@ -163,7 +163,7 @@ for (const { componentName, iface } of walk(doc)) {
 
   writeFileSync(
     resolve(propsDir, `${componentName}.json`),
-    JSON.stringify({ name: componentName, props }, null, 2) + "\n",
+    `${JSON.stringify({ name: componentName, props }, null, 2)}\n`,
   );
   written++;
 }

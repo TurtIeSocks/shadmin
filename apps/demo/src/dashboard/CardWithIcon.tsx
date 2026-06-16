@@ -30,5 +30,3 @@ export const CardWithIcon = ({
     {children}
   </Card>
 );
-
-export default CardWithIcon;

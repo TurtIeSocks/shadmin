@@ -32,7 +32,7 @@ const fakeAuthProvider = {
   getIdentity: async () => ({ id: "alice", fullName: "Alice (demo)" }),
 };
 
-export function App() {
+export default function App() {
   return (
     <Admin dataProvider={dataProvider} authProvider={fakeAuthProvider}>
       <Resource
@@ -44,5 +44,3 @@ export function App() {
     </Admin>
   );
 }
-
-export default App;

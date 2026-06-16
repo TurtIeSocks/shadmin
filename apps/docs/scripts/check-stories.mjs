@@ -66,7 +66,7 @@ for (const item of documented) {
     // single-line (`export default { title: "X" };`) and multi-line forms.
     const defaultExportBlock = body.match(/export default \{[\s\S]*?\}/)?.[0];
     const titleMatch = defaultExportBlock?.match(/title:\s*['"]([^'"]+)['"]/);
-    if (!titleMatch || !titleMatch[1].startsWith(`${expectedGroup}/`)) {
+    if (!titleMatch?.[1].startsWith(`${expectedGroup}/`)) {
       failures.push(
         `${item.componentName} (${item.sourceDir}/${item.slug}): title prefix doesn't match sidebar group '${expectedGroup}'`,
       );

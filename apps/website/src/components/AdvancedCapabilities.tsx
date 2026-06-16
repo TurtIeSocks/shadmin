@@ -192,6 +192,7 @@ export function AdvancedCapabilities() {
                             <svg
                               viewBox="0 0 8 8"
                               className="size-2 text-white fill-current"
+                              aria-hidden="true"
                             >
                               <path
                                 d="M1 4l2 2 4-4"

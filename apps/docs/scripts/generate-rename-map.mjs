@@ -40,7 +40,7 @@ function walk(dir, prefix = "") {
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) {
       if (entry === "images") continue;
-      walk(full, prefix + entry + "/");
+      walk(full, `${prefix + entry}/`);
       continue;
     }
     const m = entry.match(/^(.+)\.(md|mdx)$/i);
@@ -51,7 +51,7 @@ function walk(dir, prefix = "") {
     if (kebab !== base) {
       renames.push({
         from: prefix + entry,
-        to: prefix + kebab + "." + ext.toLowerCase(),
+        to: `${prefix + kebab}.${ext.toLowerCase()}`,
       });
     }
   }

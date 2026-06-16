@@ -123,7 +123,7 @@ export const CustomerList = () => {
 
 const SegmentList = () => {
   const record = useRecordContext();
-  if (!record || !record.groups) {
+  if (!record?.groups) {
     return null;
   }
   return (
