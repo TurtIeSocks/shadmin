@@ -10,8 +10,8 @@ interface GlassPanelProps {
 export function GlassPanel({ children, bezel = false, className }: GlassPanelProps) {
   if (bezel) {
     return (
-      <div className="bezel">
-        <div className={cn("glass rounded-[calc(2rem-0.5rem)]", className)}>
+      <div className="bezel h-full">
+        <div className={cn("glass rounded-[calc(2rem-0.5rem)] h-full", className)}>
           {children}
         </div>
       </div>

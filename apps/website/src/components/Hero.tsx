@@ -131,25 +131,41 @@ function DashboardMockup() {
             <span className="text-[9px] text-muted-foreground uppercase tracking-wide">
               Recent orders
             </span>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
+              {/* Column headers */}
+              <div className="grid grid-cols-[1.25rem_minmax(0,1fr)_4rem_3.5rem_3rem_5rem] items-center gap-3 px-1 text-[8px] uppercase tracking-wide text-muted-foreground">
+                <span />
+                <span>Customer</span>
+                <span>Items</span>
+                <span>Date</span>
+                <span className="text-right">Total</span>
+                <span>Status</span>
+              </div>
               {[
-                { name: "Alice Kim", amt: "$129", status: "Paid", color: "#22c55e" },
-                { name: "Ben Moss", amt: "$89", status: "Paid", color: "#22c55e" },
-                { name: "Clara Sol", amt: "$420", status: "Pending", color: "#f59e0b" },
-                { name: "Dan Tran", amt: "$57", status: "Refunded", color: "#ef4444" },
+                { name: "Alice Kim", items: "3 items", date: "Jun 12", amt: "$129", status: "Paid", color: "#22c55e" },
+                { name: "Ben Moss", items: "1 item", date: "Jun 11", amt: "$89", status: "Paid", color: "#22c55e" },
+                { name: "Clara Sol", items: "5 items", date: "Jun 10", amt: "$420", status: "Pending", color: "#f59e0b" },
+                { name: "Dan Tran", items: "2 items", date: "Jun 8", amt: "$57", status: "Refunded", color: "#ef4444" },
               ].map((o) => (
-                <div key={o.name} className="flex items-center gap-2 text-[10px]">
+                <div
+                  key={o.name}
+                  className="grid grid-cols-[1.25rem_minmax(0,1fr)_4rem_3.5rem_3rem_5rem] items-center gap-3 text-[10px]"
+                >
                   <span className="size-5 shrink-0 rounded-full bg-foreground/10 flex items-center justify-center text-[8px] font-medium text-foreground">
                     {o.name
                       .split(" ")
                       .map((p) => p[0])
                       .join("")}
                   </span>
-                  <span className="flex-1 truncate text-foreground">{o.name}</span>
-                  <span className="text-muted-foreground tabular-nums">{o.amt}</span>
-                  <span className="inline-flex w-16 items-center justify-end gap-1">
+                  <span className="truncate text-foreground">{o.name}</span>
+                  <span className="text-muted-foreground">{o.items}</span>
+                  <span className="text-muted-foreground">{o.date}</span>
+                  <span className="text-right text-muted-foreground tabular-nums">
+                    {o.amt}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
                     <span
-                      className="size-1.5 rounded-full"
+                      className="size-1.5 rounded-full shrink-0"
                       style={{ backgroundColor: o.color }}
                       aria-hidden="true"
                     />
