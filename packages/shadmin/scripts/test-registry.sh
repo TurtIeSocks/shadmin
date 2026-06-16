@@ -121,7 +121,7 @@ EOF
 
   case "$app_variant" in
     guessers)
-      cat > "$target_dir/src/App.tsx" <<'EOF'
+      cat > "$target_dir/src/app.tsx" <<'EOF'
 import { dataProvider } from "./dataProvider";
 import { Admin } from "@/components/admin/admin";
 import { ListGuesser } from "@/components/admin/list-guesser";
@@ -154,7 +154,7 @@ export default App;
 EOF
       ;;
     rich-text)
-      cat > "$target_dir/src/App.tsx" <<'EOF'
+      cat > "$target_dir/src/app.tsx" <<'EOF'
 import { CoreAdminContext, RecordContextProvider } from "ra-core";
 
 import { SimpleForm, ThemeProvider } from "@/components/admin";
@@ -214,8 +214,10 @@ setup_temp_app() {
   cp ../../public/favicon.ico "$target_dir/public/favicon.ico"
 
   mkdir "$target_dir/src"
-  # the library stylesheet is standalone (tailwind entry + theme variables)
+  # the library stylesheet is standalone (tailwind entry + theme variables).
+  # index.css `@import`s ./styles/aurora.css, so the styles dir must come too.
   cp ./src/index.css ./src/vite-env.d.ts "$target_dir/src"
+  cp -R ./src/styles "$target_dir/src/styles"
   cp ../../apps/demo/src/main.tsx "$target_dir/src"
   write_app_sources "$target_dir" "$app_variant"
 }
