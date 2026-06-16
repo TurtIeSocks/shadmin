@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useRef, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface MagneticButtonProps {
@@ -12,6 +12,11 @@ interface MagneticButtonProps {
   className?: string;
 }
 
+/**
+ * Pill CTA with a restrained hover (subtle scale + a small icon nudge) — calm
+ * enough for a dashboard/dev-tool audience. (Kept the name for import stability;
+ * the cursor-follow "magnetic" effect was dialed back as too much.)
+ */
 export function MagneticButton({
   href,
   children,
@@ -20,30 +25,15 @@ export function MagneticButton({
   external = false,
   className,
 }: MagneticButtonProps) {
-  const ref = useRef<HTMLAnchorElement>(null);
   const reduce = useReducedMotion();
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-
-  const onMove = (e: React.MouseEvent) => {
-    if (reduce || !ref.current) return;
-    const r = ref.current.getBoundingClientRect();
-    setPos({
-      x: (e.clientX - (r.left + r.width / 2)) * 0.25,
-      y: (e.clientY - (r.top + r.height / 2)) * 0.25,
-    });
-  };
-  const reset = () => setPos({ x: 0, y: 0 });
 
   return (
     <motion.a
-      ref={ref}
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      onMouseMove={onMove}
-      onMouseLeave={reset}
-      animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: "spring", stiffness: 200, damping: 15, mass: 0.3 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={reduce ? undefined : { scale: 1.02 }}
+      whileTap={reduce ? undefined : { scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className={cn(
         "group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-2 text-sm font-medium",
         variant === "aurora" ? "bg-aurora text-white" : "glass text-foreground",
@@ -52,7 +42,7 @@ export function MagneticButton({
     >
       {children}
       {icon && (
-        <span className="flex size-7 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+        <span className="flex size-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5">
           <ArrowUpRight className="size-4" />
         </span>
       )}

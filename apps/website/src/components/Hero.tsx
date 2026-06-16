@@ -34,7 +34,7 @@ const CHART_POINTS =
 
 function DashboardMockup() {
   return (
-    <div className="rounded-[calc(2rem-0.5rem)] overflow-hidden bg-background/60 border border-border flex">
+    <div className="rounded-3xl overflow-hidden bg-background/60 border border-border flex min-h-120">
       {/* Sidebar */}
       <aside className="hidden sm:flex flex-col gap-1 w-44 shrink-0 border-r border-border bg-background/40 px-2 py-3">
         {/* Logo */}
@@ -99,7 +99,7 @@ function DashboardMockup() {
             </span>
             <svg
               viewBox="0 0 320 80"
-              className="w-full h-full max-h-16"
+              className="w-full h-full"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
@@ -124,6 +124,40 @@ function DashboardMockup() {
                 strokeLinecap="round"
               />
             </svg>
+          </div>
+
+          {/* Recent orders */}
+          <div className="rounded-lg bg-foreground/5 border border-border px-2.5 py-2 flex flex-col gap-2 flex-1">
+            <span className="text-[9px] text-muted-foreground uppercase tracking-wide">
+              Recent orders
+            </span>
+            <div className="flex flex-col gap-2">
+              {[
+                { name: "Alice Kim", amt: "$129", status: "Paid", color: "#22c55e" },
+                { name: "Ben Moss", amt: "$89", status: "Paid", color: "#22c55e" },
+                { name: "Clara Sol", amt: "$420", status: "Pending", color: "#f59e0b" },
+                { name: "Dan Tran", amt: "$57", status: "Refunded", color: "#ef4444" },
+              ].map((o) => (
+                <div key={o.name} className="flex items-center gap-2 text-[10px]">
+                  <span className="size-5 shrink-0 rounded-full bg-foreground/10 flex items-center justify-center text-[8px] font-medium text-foreground">
+                    {o.name
+                      .split(" ")
+                      .map((p) => p[0])
+                      .join("")}
+                  </span>
+                  <span className="flex-1 truncate text-foreground">{o.name}</span>
+                  <span className="text-muted-foreground tabular-nums">{o.amt}</span>
+                  <span className="inline-flex w-16 items-center justify-end gap-1">
+                    <span
+                      className="size-1.5 rounded-full"
+                      style={{ backgroundColor: o.color }}
+                      aria-hidden="true"
+                    />
+                    <span className="text-muted-foreground">{o.status}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </main>
