@@ -78,7 +78,7 @@ export const sidebar = [
   {
     label: "Data Display",
     items: [
-      "datadisplay",
+      "data-display",
       "array-field",
       "badge-field",
       "boolean-field",
@@ -138,7 +138,7 @@ export const sidebar = [
   {
     label: "Data Edition",
     items: [
-      "dataedition",
+      "data-edition",
       "array-input",
       "autocomplete-array-input",
       "autocomplete-input",

@@ -7,7 +7,7 @@ It's ideal to ensure users don't lose their already filled data in an edit or a 
 
 This component prevents data loss in forms by automatically saving the form data in the store when users update it. When users return to the page, it reapplies the saved data to the form.
 
-![AutoPersistInStoreBase in action](./images/AutoPersistInStore.png)
+![AutoPersistInStoreBase in action](./images/auto-persist-in-store.png)
 
 The temporary form data is saved as soon as the user makes a change, and it is removed when the user submits the form. Users can opt out of the prefilling by clicking the "Cancel" button in the notification.
 

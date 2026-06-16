@@ -720,7 +720,7 @@ Per-component / per-hook `.md` page under `docs/src/content/docs/`, following th
 
 Pages to add (full list):
 
-- `Realtime.md` — overview, architecture diagram, transport decision tree, custom-transport guide, server protocol reference.
+- `realtime.md` — overview, architecture diagram, transport decision tree, custom-transport guide, server protocol reference.
 - `realtime-data-provider.md`
 - `add-events-for-mutations.md`
 - `websocket-transport.md`
@@ -735,12 +735,12 @@ Pages to add (full list):
 
 Also:
 
-- Append a "Realtime" paragraph to `docs/src/content/docs/Guides-And-Concepts.md` linking to `Realtime.md`.
+- Append a "Realtime" paragraph to `docs/src/content/docs/guides-and-concepts.md` linking to `realtime.md`.
 - Append a Realtime section to `AGENTS.md` documenting the new `realtime/` folder and the layering rule `realtime → admin → ui`.
 - Add a one-bullet "Realtime" item to `README.md` Features section.
 - Add an `[Unreleased]` entry to `CHANGELOG.md`.
 
-The Astro docs site's Mermaid-or-equivalent capability for `Realtime.md` diagrams is verified at implementation time. Fall back to ASCII if Mermaid is unavailable.
+The Astro docs site's Mermaid-or-equivalent capability for `realtime.md` diagrams is verified at implementation time. Fall back to ASCII if Mermaid is unavailable.
 
 ## 16. Registry
 
@@ -758,7 +758,7 @@ Add a new top-level block to `registry.json`:
   "files": [
     // every file under src/components/realtime/, including .ts and .tsx
     // plus src/stories/realtime/*.stories.tsx
-    // plus docs/src/content/docs/Realtime.md and per-component pages
+    // plus docs/src/content/docs/realtime.md and per-component pages
   ]
 }
 ```

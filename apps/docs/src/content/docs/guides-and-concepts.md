@@ -18,4 +18,4 @@ To learn more about the features and architecture of Shadcn-Admin-Kit, you can r
 
 ## Realtime
 
-The realtime subsystem adds live data updates, pub-sub subscriptions, and record locking to any admin app. It ships drop-in replacements for `<List>`, `<Edit>`, and `<Show>` as well as a full suite of hooks for lower-level control. See the [Realtime overview](./Realtime.md) to get started.
+The realtime subsystem adds live data updates, pub-sub subscriptions, and record locking to any admin app. It ships drop-in replacements for `<List>`, `<Edit>`, and `<Show>` as well as a full suite of hooks for lower-level control. See the [Realtime overview](./realtime.md) to get started.

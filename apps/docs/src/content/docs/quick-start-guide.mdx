@@ -822,7 +822,7 @@ export const PostEdit = () => (
 );
 ```
 
-If you've understood the `<List>` component, the `<Edit>` component will be no surprise. It's responsible for fetching the record and displaying the page title. It passes the record down to the [`<SimpleForm>`](./simple-form) component, which is responsible for the form layout, default values, and validation. Just like `<DataTable>`, `<SimpleForm>` uses its children to determine the form inputs to display. It expects [_input components_](./DataEdition.mdx#inputs) as children. `<TextInput>` and `<ReferenceInput>` are such inputs.
+If you've understood the `<List>` component, the `<Edit>` component will be no surprise. It's responsible for fetching the record and displaying the page title. It passes the record down to the [`<SimpleForm>`](./simple-form) component, which is responsible for the form layout, default values, and validation. Just like `<DataTable>`, `<SimpleForm>` uses its children to determine the form inputs to display. It expects [_input components_](./data-edition.mdx#inputs) as children. `<TextInput>` and `<ReferenceInput>` are such inputs.
 
 The `<ReferenceInput>` takes the same props as the `<ReferenceField>` (used earlier in the `<PostList>` page). `<ReferenceInput>` uses these props to fetch the API for possible references related to the current record (in this case, possible `users` for the current `post`). It then creates a context with the possible choices and renders an `<AutocompleteInput>`, which is responsible for displaying the choices and letting the user select one.
 
@@ -1241,4 +1241,4 @@ const App = () => (
 
 `shadmin` was built with customization in mind. You can replace any `shadmin` component with a component of your own, for instance, to display a custom list layout or a different edit form for a given resource.
 
-Now that you've completed the tutorial, continue your journey with the [Guides and Concepts](./Guides-And-Concepts.md) section.
+Now that you've completed the tutorial, continue your journey with the [Guides and Concepts](./guides-and-concepts.md) section.
