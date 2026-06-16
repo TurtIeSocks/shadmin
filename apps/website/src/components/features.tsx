@@ -444,8 +444,8 @@ export function Features() {
                   {Visual && (
                     <div
                       className={cn(
-                        "mt-4 min-h-0",
-                        feature.flexRow ? "mx-auto" : "flex-1",
+                        "min-h-0",
+                        feature.flexRow ? "mx-auto self-center" : "mt-4 flex-1",
                       )}
                     >
                       <Visual />

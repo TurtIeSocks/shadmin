@@ -17,8 +17,7 @@ export function CallToAction() {
               <MagneticButton
                 href="https://shadmin.turtlesocks.dev/docs/install"
                 external
-                variant="ghost"
-                className="bg-white text-[#1a1830] border-transparent hover:bg-white/90"
+                variant="white"
               >
                 Get started
               </MagneticButton>

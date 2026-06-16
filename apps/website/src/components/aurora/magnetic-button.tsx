@@ -6,11 +6,26 @@ import { cn } from "@/lib/utils";
 interface MagneticButtonProps {
   href: string;
   children: ReactNode;
-  variant?: "aurora" | "ghost";
+  variant?: "aurora" | "ghost" | "white";
   icon?: boolean;
   external?: boolean;
   className?: string;
 }
+
+// Pill background + label color per variant.
+const PILL: Record<NonNullable<MagneticButtonProps["variant"]>, string> = {
+  aurora: "bg-aurora text-white",
+  ghost: "glass text-foreground",
+  white: "bg-white text-[#1a1830] hover:bg-white/90",
+};
+
+// Trailing arrow chip. On the white pill a bg-white/15 chip would vanish, so the
+// arrow rides an aurora chip and turns white — keeping button + arrow both white.
+const ICON_CHIP: Record<NonNullable<MagneticButtonProps["variant"]>, string> = {
+  aurora: "bg-white/15",
+  ghost: "bg-white/15",
+  white: "bg-aurora text-white",
+};
 
 /**
  * Pill CTA with a restrained hover (subtle scale + a small icon nudge) — calm
@@ -36,13 +51,18 @@ export function MagneticButton({
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className={cn(
         "group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-2 text-sm font-medium",
-        variant === "aurora" ? "bg-aurora text-white" : "glass text-foreground",
+        PILL[variant],
         className,
       )}
     >
       {children}
       {icon && (
-        <span className="flex size-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5">
+        <span
+          className={cn(
+            "flex size-7 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5",
+            ICON_CHIP[variant],
+          )}
+        >
           <ArrowUpRight className="size-4" />
         </span>
       )}

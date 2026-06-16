@@ -186,18 +186,18 @@ function DashboardMockup() {
             </span>
             <div className="flex flex-col gap-1">
               {/* Column headers */}
-              <div className="grid grid-cols-[1.25rem_minmax(0,1fr)_4rem_3.5rem_3rem_5rem] items-center gap-3 px-1 text-[8px] uppercase tracking-wide text-muted-foreground">
+              <div className="grid grid-cols-[1.25rem_minmax(0,1fr)_3rem_5rem] sm:grid-cols-[1.25rem_minmax(0,1fr)_4rem_3.5rem_3rem_5rem] items-center gap-3 px-1 text-[8px] uppercase tracking-wide text-muted-foreground">
                 <span />
                 <span>Customer</span>
-                <span>Items</span>
-                <span>Date</span>
+                <span className="hidden sm:block">Items</span>
+                <span className="hidden sm:block">Date</span>
                 <span className="text-right">Total</span>
                 <span>Status</span>
               </div>
               {ORDERS.map((o) => (
                 <div
                   key={o.name}
-                  className="grid grid-cols-[1.25rem_minmax(0,1fr)_4rem_3.5rem_3rem_5rem] items-center gap-3 text-[10px]"
+                  className="grid grid-cols-[1.25rem_minmax(0,1fr)_3rem_5rem] sm:grid-cols-[1.25rem_minmax(0,1fr)_4rem_3.5rem_3rem_5rem] items-center gap-3 text-[10px]"
                 >
                   <span className="size-5 shrink-0 rounded-full bg-foreground/10 flex items-center justify-center text-[8px] font-medium text-foreground">
                     {o.name
@@ -206,8 +206,12 @@ function DashboardMockup() {
                       .join("")}
                   </span>
                   <span className="truncate text-foreground">{o.name}</span>
-                  <span className="text-muted-foreground">{o.items}</span>
-                  <span className="text-muted-foreground">{o.date}</span>
+                  <span className="hidden text-muted-foreground sm:block">
+                    {o.items}
+                  </span>
+                  <span className="hidden text-muted-foreground sm:block">
+                    {o.date}
+                  </span>
                   <span className="text-right text-muted-foreground tabular-nums">
                     {o.amt}
                   </span>
