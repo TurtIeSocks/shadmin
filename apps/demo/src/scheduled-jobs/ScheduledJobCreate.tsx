@@ -1,8 +1,4 @@
-import {
-  Create,
-  SimpleForm,
-  TextInput,
-} from "shadmin/components/admin";
+import { Create, SimpleForm, TextInput } from "shadmin/components/admin";
 import { CronInput } from "shadmin/components/extras/cron-input";
 
 export const ScheduledJobCreate = () => (

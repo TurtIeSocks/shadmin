@@ -11,298 +11,192 @@ export const legacyRedirects = {
   "/docs/authcallback": "/docs/auth-callback",
   "/docs/autherror": "/docs/auth-error",
   "/docs/authlayout": "/docs/auth-layout",
-  "/docs/authenticationerror":
-    "/docs/authentication-error",
-  "/docs/autopersistinstorebase":
-    "/docs/auto-persist-in-store-base",
-  "/docs/autocompletearrayinput":
-    "/docs/autocomplete-array-input",
-  "/docs/autocompleteinput":
-    "/docs/autocomplete-input",
+  "/docs/authenticationerror": "/docs/authentication-error",
+  "/docs/autopersistinstorebase": "/docs/auto-persist-in-store-base",
+  "/docs/autocompletearrayinput": "/docs/autocomplete-array-input",
+  "/docs/autocompleteinput": "/docs/autocomplete-input",
   "/docs/bboxfield": "/docs/bbox-field",
   "/docs/bboxinput": "/docs/bbox-input",
   "/docs/badgefield": "/docs/badge-field",
   "/docs/booleanfield": "/docs/boolean-field",
   "/docs/booleaninput": "/docs/boolean-input",
-  "/docs/bulkactionstoolbar":
-    "/docs/bulk-actions-toolbar",
-  "/docs/bulkdeletebutton":
-    "/docs/bulk-delete-button",
-  "/docs/bulkexportbutton":
-    "/docs/bulk-export-button",
-  "/docs/bulkupdatebutton":
-    "/docs/bulk-update-button",
+  "/docs/bulkactionstoolbar": "/docs/bulk-actions-toolbar",
+  "/docs/bulkdeletebutton": "/docs/bulk-delete-button",
+  "/docs/bulkexportbutton": "/docs/bulk-export-button",
+  "/docs/bulkupdatebutton": "/docs/bulk-update-button",
   "/docs/calendarlist": "/docs/calendar-list",
   "/docs/cancelbutton": "/docs/cancel-button",
-  "/docs/cardcontentinner":
-    "/docs/card-content-inner",
-  "/docs/checkforapplicationupdate":
-    "/docs/check-for-application-update",
-  "/docs/checkboxgroupinput":
-    "/docs/checkbox-group-input",
+  "/docs/cardcontentinner": "/docs/card-content-inner",
+  "/docs/checkforapplicationupdate": "/docs/check-for-application-update",
+  "/docs/checkboxgroupinput": "/docs/checkbox-group-input",
   "/docs/chipfield": "/docs/chip-field",
   "/docs/clonebutton": "/docs/clone-button",
-  "/docs/columnsbutton":
-    "/docs/columns-button",
+  "/docs/columnsbutton": "/docs/columns-button",
   "/docs/commandmenu": "/docs/command-menu",
   "/docs/createbutton": "/docs/create-button",
   "/docs/csvimport": "/docs/csv-import",
   "/docs/customroutes": "/docs/custom-routes",
-  "/docs/dashboardcharts":
-    "/docs/dashboard-charts",
-  "/docs/dashboardmenuitem":
-    "/docs/dashboard-menu-item",
-  "/docs/dataproviders":
-    "/docs/data-providers",
+  "/docs/dashboardcharts": "/docs/dashboard-charts",
+  "/docs/dashboardmenuitem": "/docs/dashboard-menu-item",
+  "/docs/dataproviders": "/docs/data-providers",
   "/docs/datatable": "/docs/data-table",
-  "/docs/datagridinput":
-    "/docs/datagrid-input",
+  "/docs/datagridinput": "/docs/datagrid-input",
   "/docs/datefield": "/docs/date-field",
   "/docs/dateinput": "/docs/date-input",
-  "/docs/datetimeinput":
-    "/docs/date-time-input",
+  "/docs/datetimeinput": "/docs/date-time-input",
   "/docs/deletebutton": "/docs/delete-button",
-  "/docs/devicetestwrapper":
-    "/docs/device-test-wrapper",
+  "/docs/devicetestwrapper": "/docs/device-test-wrapper",
   "/docs/diffviewer": "/docs/diff-viewer",
   "/docs/editbutton": "/docs/edit-button",
   "/docs/emailfield": "/docs/email-field",
   "/docs/exportbutton": "/docs/export-button",
-  "/docs/featurecollectionfield":
-    "/docs/feature-collection-field",
-  "/docs/featurecollectioninput":
-    "/docs/feature-collection-input",
+  "/docs/featurecollectionfield": "/docs/feature-collection-field",
+  "/docs/featurecollectioninput": "/docs/feature-collection-input",
   "/docs/featurefield": "/docs/feature-field",
   "/docs/featureinput": "/docs/feature-input",
-  "/docs/fieldsselector":
-    "/docs/fields-selector",
+  "/docs/fieldsselector": "/docs/fields-selector",
   "/docs/filefield": "/docs/file-field",
   "/docs/fileinput": "/docs/file-input",
   "/docs/filterbutton": "/docs/filter-button",
   "/docs/filterform": "/docs/filter-form",
   "/docs/filterlist": "/docs/filter-list",
-  "/docs/filterlistitem":
-    "/docs/filter-list-item",
-  "/docs/filterlistsection":
-    "/docs/filter-list-section",
-  "/docs/filterliveform":
-    "/docs/filter-live-form",
-  "/docs/filterlivesearch":
-    "/docs/filter-live-search",
-  "/docs/functionfield":
-    "/docs/function-field",
+  "/docs/filterlistitem": "/docs/filter-list-item",
+  "/docs/filterlistsection": "/docs/filter-list-section",
+  "/docs/filterliveform": "/docs/filter-live-form",
+  "/docs/filterlivesearch": "/docs/filter-live-search",
+  "/docs/functionfield": "/docs/function-field",
   "/docs/geojsonfield": "/docs/geojson-field",
   "/docs/geojsoninput": "/docs/geojson-input",
-  "/docs/geocodinginput":
-    "/docs/geocoding-input",
-  "/docs/geometrycollectionfield":
-    "/docs/geometry-collection-field",
-  "/docs/geometrycollectioninput":
-    "/docs/geometry-collection-input",
-  "/docs/hideonscroll":
-    "/docs/hide-on-scroll",
+  "/docs/geocodinginput": "/docs/geocoding-input",
+  "/docs/geometrycollectionfield": "/docs/geometry-collection-field",
+  "/docs/geometrycollectioninput": "/docs/geometry-collection-input",
+  "/docs/hideonscroll": "/docs/hide-on-scroll",
   "/docs/imagefield": "/docs/image-field",
   "/docs/imageinput": "/docs/image-input",
-  "/docs/inplaceeditor":
-    "/docs/in-place-editor",
+  "/docs/inplaceeditor": "/docs/in-place-editor",
   "/docs/infinitelist": "/docs/infinite-list",
-  "/docs/infinitepagination":
-    "/docs/infinite-pagination",
+  "/docs/infinitepagination": "/docs/infinite-pagination",
   "/docs/kanbanboard": "/docs/kanban-board",
-  "/docs/keyboardshortcut":
-    "/docs/keyboard-shortcut",
+  "/docs/keyboardshortcut": "/docs/keyboard-shortcut",
   "/docs/latlngfield": "/docs/lat-lng-field",
   "/docs/latlnginput": "/docs/lat-lng-input",
   "/docs/leafletadmin": "/docs/leaflet-admin",
   "/docs/leafletosm": "/docs/leaflet-osm",
-  "/docs/linestringfield":
-    "/docs/line-string-field",
-  "/docs/linestringinput":
-    "/docs/line-string-input",
-  "/docs/linearprogress":
-    "/docs/linear-progress",
+  "/docs/linestringfield": "/docs/line-string-field",
+  "/docs/linestringinput": "/docs/line-string-input",
+  "/docs/linearprogress": "/docs/linear-progress",
   "/docs/listactions": "/docs/list-actions",
   "/docs/listbutton": "/docs/list-button",
-  "/docs/listnoresults":
-    "/docs/list-no-results",
-  "/docs/listpagination":
-    "/docs/list-pagination",
+  "/docs/listnoresults": "/docs/list-no-results",
+  "/docs/listpagination": "/docs/list-pagination",
   "/docs/listtoolbar": "/docs/list-toolbar",
-  "/docs/loadingindicator":
-    "/docs/loading-indicator",
+  "/docs/loadingindicator": "/docs/loading-indicator",
   "/docs/loadinginput": "/docs/loading-input",
   "/docs/loadingpage": "/docs/loading-page",
-  "/docs/localesmenubutton":
-    "/docs/locales-menu-button",
+  "/docs/localesmenubutton": "/docs/locales-menu-button",
   "/docs/loginform": "/docs/login-form",
   "/docs/loginpage": "/docs/login-page",
-  "/docs/loginwithemail":
-    "/docs/login-with-email",
-  "/docs/mapwithsearch":
-    "/docs/map-with-search",
+  "/docs/loginwithemail": "/docs/login-with-email",
+  "/docs/mapwithsearch": "/docs/map-with-search",
   "/docs/mdxfield": "/docs/mdx-field",
   "/docs/mdxinput": "/docs/mdx-input",
-  "/docs/menuitemlink":
-    "/docs/menu-item-link",
-  "/docs/multilinestringfield":
-    "/docs/multi-line-string-field",
-  "/docs/multilinestringinput":
-    "/docs/multi-line-string-input",
-  "/docs/multipointfield":
-    "/docs/multi-point-field",
-  "/docs/multipointinput":
-    "/docs/multi-point-input",
-  "/docs/multipolygonfield":
-    "/docs/multi-polygon-field",
-  "/docs/multipolygoninput":
-    "/docs/multi-polygon-input",
+  "/docs/menuitemlink": "/docs/menu-item-link",
+  "/docs/multilinestringfield": "/docs/multi-line-string-field",
+  "/docs/multilinestringinput": "/docs/multi-line-string-input",
+  "/docs/multipointfield": "/docs/multi-point-field",
+  "/docs/multipointinput": "/docs/multi-point-input",
+  "/docs/multipolygonfield": "/docs/multi-polygon-field",
+  "/docs/multipolygoninput": "/docs/multi-polygon-input",
   "/docs/notfound": "/docs/not-found",
-  "/docs/nullablebooleaninput":
-    "/docs/nullable-boolean-input",
+  "/docs/nullablebooleaninput": "/docs/nullable-boolean-input",
   "/docs/numberfield": "/docs/number-field",
   "/docs/numberinput": "/docs/number-input",
-  "/docs/onboardingtour":
-    "/docs/onboarding-tour",
-  "/docs/osmfeatureadd":
-    "/docs/osm-feature-add",
-  "/docs/osmfeaturesubtract":
-    "/docs/osm-feature-subtract",
-  "/docs/passwordinput":
-    "/docs/password-input",
-  "/docs/permissionmatrix":
-    "/docs/permission-matrix",
+  "/docs/onboardingtour": "/docs/onboarding-tour",
+  "/docs/osmfeatureadd": "/docs/osm-feature-add",
+  "/docs/osmfeaturesubtract": "/docs/osm-feature-subtract",
+  "/docs/passwordinput": "/docs/password-input",
+  "/docs/permissionmatrix": "/docs/permission-matrix",
   "/docs/pivotgrid": "/docs/pivot-grid",
   "/docs/pointfield": "/docs/point-field",
   "/docs/pointinput": "/docs/point-input",
   "/docs/polygonfield": "/docs/polygon-field",
   "/docs/polygoninput": "/docs/polygon-input",
   "/docs/presencebar": "/docs/presence-bar",
-  "/docs/prevnextbuttons":
-    "/docs/prev-next-buttons",
-  "/docs/radiobuttongroupinput":
-    "/docs/radio-button-group-input",
-  "/docs/realtimefeatures":
-    "/docs/realtime-features",
+  "/docs/prevnextbuttons": "/docs/prev-next-buttons",
+  "/docs/radiobuttongroupinput": "/docs/radio-button-group-input",
+  "/docs/realtimefeatures": "/docs/realtime-features",
   "/docs/recordfield": "/docs/record-field",
-  "/docs/recordtimeline":
-    "/docs/record-timeline",
-  "/docs/referencearrayfield":
-    "/docs/reference-array-field",
-  "/docs/referencearrayinput":
-    "/docs/reference-array-input",
-  "/docs/referenceerror":
-    "/docs/reference-error",
-  "/docs/referencefield":
-    "/docs/reference-field",
-  "/docs/referenceinput":
-    "/docs/reference-input",
-  "/docs/referencemanycount":
-    "/docs/reference-many-count",
-  "/docs/referencemanyfield":
-    "/docs/reference-many-field",
-  "/docs/referencemanyinputbase":
-    "/docs/reference-many-input-base",
+  "/docs/recordtimeline": "/docs/record-timeline",
+  "/docs/referencearrayfield": "/docs/reference-array-field",
+  "/docs/referencearrayinput": "/docs/reference-array-input",
+  "/docs/referenceerror": "/docs/reference-error",
+  "/docs/referencefield": "/docs/reference-field",
+  "/docs/referenceinput": "/docs/reference-input",
+  "/docs/referencemanycount": "/docs/reference-many-count",
+  "/docs/referencemanyfield": "/docs/reference-many-field",
+  "/docs/referencemanyinputbase": "/docs/reference-many-input-base",
   "/docs/referencemanytomanyfieldbase":
     "/docs/reference-many-to-many-field-base",
   "/docs/referencemanytomanyinputbase":
     "/docs/reference-many-to-many-input-base",
-  "/docs/referenceonefield":
-    "/docs/reference-one-field",
-  "/docs/referenceoneinputbase":
-    "/docs/reference-one-input-base",
-  "/docs/refreshbutton":
-    "/docs/refresh-button",
-  "/docs/refreshiconbutton":
-    "/docs/refresh-icon-button",
-  "/docs/resettabletextinput":
-    "/docs/resettable-text-input",
-  "/docs/resourcemenuitem":
-    "/docs/resource-menu-item",
-  "/docs/resourcemenuitemgroup":
-    "/docs/resource-menu-item-group",
-  "/docs/reversegeocodefield":
-    "/docs/reverse-geocode-field",
-  "/docs/richtextfield":
-    "/docs/rich-text-field",
-  "/docs/richtextinput":
-    "/docs/rich-text-input",
+  "/docs/referenceonefield": "/docs/reference-one-field",
+  "/docs/referenceoneinputbase": "/docs/reference-one-input-base",
+  "/docs/refreshbutton": "/docs/refresh-button",
+  "/docs/refreshiconbutton": "/docs/refresh-icon-button",
+  "/docs/resettabletextinput": "/docs/resettable-text-input",
+  "/docs/resourcemenuitem": "/docs/resource-menu-item",
+  "/docs/resourcemenuitemgroup": "/docs/resource-menu-item-group",
+  "/docs/reversegeocodefield": "/docs/reverse-geocode-field",
+  "/docs/richtextfield": "/docs/rich-text-field",
+  "/docs/richtextinput": "/docs/rich-text-input",
   "/docs/savebutton": "/docs/save-button",
   "/docs/savedqueries": "/docs/saved-queries",
   "/docs/searchinput": "/docs/search-input",
-  "/docs/selectallbutton":
-    "/docs/select-all-button",
-  "/docs/selectarrayinput":
-    "/docs/select-array-input",
+  "/docs/selectallbutton": "/docs/select-all-button",
+  "/docs/selectarrayinput": "/docs/select-array-input",
   "/docs/selectfield": "/docs/select-field",
   "/docs/selectinput": "/docs/select-input",
   "/docs/showbutton": "/docs/show-button",
-  "/docs/sidebartogglebutton":
-    "/docs/sidebar-toggle-button",
+  "/docs/sidebartogglebutton": "/docs/sidebar-toggle-button",
   "/docs/simpleform": "/docs/simple-form",
-  "/docs/simpleformconfigurable":
-    "/docs/simple-form-configurable",
-  "/docs/simpleformiterator":
-    "/docs/simple-form-iterator",
+  "/docs/simpleformconfigurable": "/docs/simple-form-configurable",
+  "/docs/simpleformiterator": "/docs/simple-form-iterator",
   "/docs/simplelist": "/docs/simple-list",
-  "/docs/simplelistitem":
-    "/docs/simple-list-item",
-  "/docs/simplelistloading":
-    "/docs/simple-list-loading",
-  "/docs/simpleshowlayout":
-    "/docs/simple-show-layout",
-  "/docs/simplifyinput":
-    "/docs/simplify-input",
-  "/docs/singlefieldlist":
-    "/docs/single-field-list",
-  "/docs/skipnavigationbutton":
-    "/docs/skip-navigation-button",
-  "/docs/softdeletefeatures":
-    "/docs/soft-delete-features",
+  "/docs/simplelistitem": "/docs/simple-list-item",
+  "/docs/simplelistloading": "/docs/simple-list-loading",
+  "/docs/simpleshowlayout": "/docs/simple-show-layout",
+  "/docs/simplifyinput": "/docs/simplify-input",
+  "/docs/singlefieldlist": "/docs/single-field-list",
+  "/docs/skipnavigationbutton": "/docs/skip-navigation-button",
+  "/docs/softdeletefeatures": "/docs/soft-delete-features",
   "/docs/sortbutton": "/docs/sort-button",
   "/docs/tabbedform": "/docs/tabbed-form",
-  "/docs/tabbedshowlayout":
-    "/docs/tabbed-show-layout",
-  "/docs/textarrayfield":
-    "/docs/text-array-field",
-  "/docs/textarrayinput":
-    "/docs/text-array-input",
+  "/docs/tabbedshowlayout": "/docs/tabbed-show-layout",
+  "/docs/textarrayfield": "/docs/text-array-field",
+  "/docs/textarrayinput": "/docs/text-array-input",
   "/docs/textfield": "/docs/text-field",
   "/docs/textinput": "/docs/text-input",
-  "/docs/thememodetoggle":
-    "/docs/theme-mode-toggle",
+  "/docs/thememodetoggle": "/docs/theme-mode-toggle",
   "/docs/timeinput": "/docs/time-input",
   "/docs/titleportal": "/docs/title-portal",
-  "/docs/togglefilterbutton":
-    "/docs/toggle-filter-button",
+  "/docs/togglefilterbutton": "/docs/toggle-filter-button",
   "/docs/toptoolbar": "/docs/top-toolbar",
-  "/docs/translatablefields":
-    "/docs/translatable-fields",
-  "/docs/translatableinputs":
-    "/docs/translatable-inputs",
+  "/docs/translatablefields": "/docs/translatable-fields",
+  "/docs/translatableinputs": "/docs/translatable-inputs",
   "/docs/treelist": "/docs/tree-list",
   "/docs/updatebutton": "/docs/update-button",
   "/docs/urlfield": "/docs/url-field",
-  "/docs/usegeomanrhf":
-    "/docs/use-geoman-rhf",
+  "/docs/usegeomanrhf": "/docs/use-geoman-rhf",
   "/docs/usermenu": "/docs/user-menu",
   "/docs/wizardform": "/docs/wizard-form",
   "/docs/wrapperfield": "/docs/wrapper-field",
-  "/docs/supabase/adminguesser":
-    "/docs/supabase/admin-guesser",
-  "/docs/supabase/createguesser":
-    "/docs/supabase/create-guesser",
-  "/docs/supabase/editguesser":
-    "/docs/supabase/edit-guesser",
-  "/docs/supabase/forgotpasswordpage":
-    "/docs/supabase/forgot-password-page",
-  "/docs/supabase/listguesser":
-    "/docs/supabase/list-guesser",
-  "/docs/supabase/loginpage":
-    "/docs/supabase/login-page",
-  "/docs/supabase/setpasswordpage":
-    "/docs/supabase/set-password-page",
-  "/docs/supabase/showguesser":
-    "/docs/supabase/show-guesser",
-  "/docs/supabase/socialauthbutton":
-    "/docs/supabase/social-auth-button",
+  "/docs/supabase/adminguesser": "/docs/supabase/admin-guesser",
+  "/docs/supabase/createguesser": "/docs/supabase/create-guesser",
+  "/docs/supabase/editguesser": "/docs/supabase/edit-guesser",
+  "/docs/supabase/forgotpasswordpage": "/docs/supabase/forgot-password-page",
+  "/docs/supabase/listguesser": "/docs/supabase/list-guesser",
+  "/docs/supabase/loginpage": "/docs/supabase/login-page",
+  "/docs/supabase/setpasswordpage": "/docs/supabase/set-password-page",
+  "/docs/supabase/showguesser": "/docs/supabase/show-guesser",
+  "/docs/supabase/socialauthbutton": "/docs/supabase/social-auth-button",
 };

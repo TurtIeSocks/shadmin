@@ -3,10 +3,7 @@ import { Suspense, useState } from "react";
 import { cn } from "shadmin/lib/utils";
 import type { CoreLayoutProps } from "ra-core";
 import { ErrorBoundary } from "react-error-boundary";
-import {
-  SidebarProvider,
-  SidebarTrigger,
-} from "shadmin/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "shadmin/components/ui/sidebar";
 import { UserMenu } from "shadmin/components/admin/user-menu";
 import { ThemeModeToggle } from "shadmin/components/admin/theme-mode-toggle";
 import { Notification } from "shadmin/components/admin/notification";

@@ -242,11 +242,7 @@ export const blocks = [
     title: "Shadmin Extras",
     description:
       "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
-    registryDependencies: [
-      "@shadmin/admin",
-      "alert-dialog",
-      "progress",
-    ],
+    registryDependencies: ["@shadmin/admin", "alert-dialog", "progress"],
     dependencies: [
       "@dnd-kit/core",
       "@dnd-kit/sortable",

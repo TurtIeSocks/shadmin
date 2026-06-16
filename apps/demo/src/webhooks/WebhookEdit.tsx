@@ -1,8 +1,4 @@
-import {
-  Edit,
-  SelectInput,
-  SimpleForm,
-} from "shadmin/components/admin";
+import { Edit, SelectInput, SimpleForm } from "shadmin/components/admin";
 import { WebhookEndpointInput } from "shadmin/components/extras/webhook-endpoint-input";
 import { EVENT_TYPES } from "./event-types";
 

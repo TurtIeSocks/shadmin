@@ -32,7 +32,11 @@ function HamburgerIcon({ open }: { open: boolean }) {
           !reduce && "duration-300",
           open ? "translate-y-[9px] rotate-45" : "",
         )}
-        style={!reduce ? { transitionTimingFunction: `cubic-bezier(${EASE.join(",")})` } : {}}
+        style={
+          !reduce
+            ? { transitionTimingFunction: `cubic-bezier(${EASE.join(",")})` }
+            : {}
+        }
       />
       <span
         className={cn(
@@ -47,7 +51,11 @@ function HamburgerIcon({ open }: { open: boolean }) {
           !reduce && "duration-300",
           open ? "-translate-y-[9px] -rotate-45" : "",
         )}
-        style={!reduce ? { transitionTimingFunction: `cubic-bezier(${EASE.join(",")})` } : {}}
+        style={
+          !reduce
+            ? { transitionTimingFunction: `cubic-bezier(${EASE.join(",")})` }
+            : {}
+        }
       />
     </span>
   );
@@ -56,7 +64,10 @@ function HamburgerIcon({ open }: { open: boolean }) {
 function MobileOverlay({
   open,
   onClose,
-}: { open: boolean; onClose: () => void }) {
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
   const reduce = useReducedMotion();
 
   useEffect(() => {
@@ -100,7 +111,10 @@ function MobileOverlay({
                 ? undefined
                 : {
                     visible: {
-                      transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+                      transition: {
+                        staggerChildren: 0.07,
+                        delayChildren: 0.05,
+                      },
                     },
                   }
             }

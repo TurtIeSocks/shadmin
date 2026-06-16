@@ -19,8 +19,7 @@ export function Open() {
         <Reveal>
           <RevealItem>
             <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Open source,{" "}
-              <GradientText>Open Code</GradientText>
+              Open source, <GradientText>Open Code</GradientText>
             </p>
             <p className="mx-auto mt-5 max-w-prose text-xl text-muted-foreground mb-10">
               Don't get locked-in to proprietary, black-box solutions. With
@@ -35,7 +34,9 @@ export function Open() {
                   <div className="text-5xl font-bold mb-3">
                     <GradientText>{stat.value}</GradientText>
                   </div>
-                  <p className="text-muted-foreground font-medium">{stat.label}</p>
+                  <p className="text-muted-foreground font-medium">
+                    {stat.label}
+                  </p>
                 </GlassPanel>
               </RevealItem>
             ))}

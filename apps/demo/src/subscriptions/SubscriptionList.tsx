@@ -1,8 +1,4 @@
-import {
-  DataTable,
-  List,
-  ReferenceField,
-} from "shadmin/components/admin";
+import { DataTable, List, ReferenceField } from "shadmin/components/admin";
 import { SubscriptionPlanField } from "shadmin/components/extras/subscription-plan-field";
 import { PLANS } from "./plans";
 

@@ -32,8 +32,7 @@ export function Backends() {
               <div className="lg:max-w-lg">
                 <Eyebrow className="mb-4">Effortless Integration</Eyebrow>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  Connect to{" "}
-                  <GradientText>Any Backend</GradientText>
+                  Connect to <GradientText>Any Backend</GradientText>
                 </p>
                 <p className="my-10 text-lg leading-8 text-muted-foreground">
                   Shadmin is designed to fit seamlessly with the tools you
@@ -74,41 +73,59 @@ export function Backends() {
               <div className="mx-auto w-full max-w-md">
                 <GlassPanel bezel className="p-6">
                   <div className="flex flex-col items-center gap-0">
-                  {/* Your App node */}
-                  <div className="w-full rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
-                    <LayoutDashboard className="size-5 text-foreground shrink-0" aria-hidden="true" />
-                    <span className="font-semibold text-foreground">Your App</span>
-                  </div>
+                    {/* Your App node */}
+                    <div className="w-full rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
+                      <LayoutDashboard
+                        className="size-5 text-foreground shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span className="font-semibold text-foreground">
+                        Your App
+                      </span>
+                    </div>
 
-                  {/* Connector 1 */}
-                  <div className="flex flex-col items-center gap-1 py-2">
-                    <div className="w-px h-4 bg-border" />
-                    <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">
-                      useGetList('posts')
-                    </span>
-                    <ChevronDown className="size-4 text-muted-foreground" aria-hidden="true" />
-                  </div>
+                    {/* Connector 1 */}
+                    <div className="flex flex-col items-center gap-1 py-2">
+                      <div className="w-px h-4 bg-border" />
+                      <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">
+                        useGetList('posts')
+                      </span>
+                      <ChevronDown
+                        className="size-4 text-muted-foreground"
+                        aria-hidden="true"
+                      />
+                    </div>
 
-                  {/* dataProvider node */}
-                  <div className="w-full rounded-xl bg-aurora px-6 py-4 flex items-center justify-center">
-                    <span className="font-bold text-white tracking-wide">dataProvider</span>
-                  </div>
+                    {/* dataProvider node */}
+                    <div className="w-full rounded-xl bg-aurora px-6 py-4 flex items-center justify-center">
+                      <span className="font-bold text-white tracking-wide">
+                        dataProvider
+                      </span>
+                    </div>
 
-                  {/* Connector 2 */}
-                  <div className="flex flex-col items-center gap-1 py-2">
-                    <ChevronDown className="size-4 text-muted-foreground" aria-hidden="true" />
-                    <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">
-                      REST · GraphQL · any API
-                    </span>
-                    <div className="w-px h-4 bg-border" />
-                  </div>
+                    {/* Connector 2 */}
+                    <div className="flex flex-col items-center gap-1 py-2">
+                      <ChevronDown
+                        className="size-4 text-muted-foreground"
+                        aria-hidden="true"
+                      />
+                      <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-foreground/5 border border-border text-muted-foreground">
+                        REST · GraphQL · any API
+                      </span>
+                      <div className="w-px h-4 bg-border" />
+                    </div>
 
-                  {/* Your Backend node */}
-                  <div className="w-full rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
-                    <Database className="size-5 text-foreground shrink-0" aria-hidden="true" />
-                    <span className="font-semibold text-foreground">Your Backend</span>
+                    {/* Your Backend node */}
+                    <div className="w-full rounded-xl bg-foreground/5 border border-border px-6 py-4 flex items-center gap-3">
+                      <Database
+                        className="size-5 text-foreground shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span className="font-semibold text-foreground">
+                        Your Backend
+                      </span>
+                    </div>
                   </div>
-                </div>
                 </GlassPanel>
               </div>
             </RevealItem>

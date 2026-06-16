@@ -28,14 +28,13 @@ export function Deploy() {
               <div className="lg:max-w-lg">
                 <Eyebrow className="mb-4">Zero Lock-In</Eyebrow>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  Host{" "}
-                  <GradientText>Anywhere</GradientText>
+                  Host <GradientText>Anywhere</GradientText>
                 </p>
                 <p className="my-10 text-lg leading-8 text-muted-foreground">
                   Shadmin apps are lightweight, static assets you can host
                   almost anywhere—for close to nothing. When you go to
-                  production, you own your app. No hidden fees, no SSO
-                  paywalls, and no surprises.
+                  production, you own your app. No hidden fees, no SSO paywalls,
+                  and no surprises.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {hosts.map((host) => (
@@ -69,7 +68,8 @@ export function Deploy() {
                 </div>
                 <div className="rounded-md bg-foreground/5 border border-border p-4 font-mono text-sm text-foreground">
                   <span className="text-muted-foreground select-none">$ </span>
-                  npx shadcn@latest add https://shadmin.turtlesocks.dev/r/admin.json
+                  npx shadcn@latest add
+                  https://shadmin.turtlesocks.dev/r/admin.json
                 </div>
               </GlassPanel>
             </RevealItem>

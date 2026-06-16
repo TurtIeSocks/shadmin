@@ -1,8 +1,4 @@
-import {
-  Create,
-  SimpleForm,
-  TextInput,
-} from "shadmin/components/admin";
+import { Create, SimpleForm, TextInput } from "shadmin/components/admin";
 import { required } from "ra-core";
 
 export const CategoryCreate = () => (

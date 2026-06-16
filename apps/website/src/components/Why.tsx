@@ -62,7 +62,10 @@ export function Why() {
             Why choose <GradientText>Shadmin</GradientText>?
           </h2>
         </div>
-        <Reveal stagger className="grid max-w-xl grid-cols-1 gap-6 mx-auto lg:max-w-none lg:grid-cols-2 xl:grid-cols-3">
+        <Reveal
+          stagger
+          className="grid max-w-xl grid-cols-1 gap-6 mx-auto lg:max-w-none lg:grid-cols-2 xl:grid-cols-3"
+        >
           {features.map((feature) => (
             <RevealItem key={feature.name}>
               <GlassPanel className="p-6 h-full">

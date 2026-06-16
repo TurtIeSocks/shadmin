@@ -53,8 +53,7 @@ export function AdvancedCapabilities() {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Advanced{" "}
-                <GradientText>Capabilities</GradientText>
+                Advanced <GradientText>Capabilities</GradientText>
               </h2>
               <p className="text-lg leading-8 text-muted-foreground">
                 Beyond the basics, Shadmin offers sophisticated features to
@@ -66,10 +65,7 @@ export function AdvancedCapabilities() {
               {features.map((feature) => (
                 <div key={feature.name} className="flex gap-3 items-start">
                   <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-aurora">
-                    <Check
-                      aria-hidden="true"
-                      className="size-3 text-white"
-                    />
+                    <Check aria-hidden="true" className="size-3 text-white" />
                   </span>
                   <div>
                     <dt className="inline font-semibold text-foreground">
@@ -100,11 +96,17 @@ export function AdvancedCapabilities() {
             <div className="rounded-[calc(2rem-0.5rem)] overflow-hidden bg-background/60 border border-border text-xs">
               {/* App window header */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-                <span className="font-semibold text-sm text-foreground">Orders</span>
+                <span className="font-semibold text-sm text-foreground">
+                  Orders
+                </span>
                 <div className="flex items-center gap-2">
                   <span className="text-muted-foreground">3 selected</span>
-                  <span className="px-2 py-0.5 rounded border border-border text-muted-foreground cursor-default">Filter</span>
-                  <span className="px-2 py-0.5 rounded border border-border text-muted-foreground cursor-default">Export</span>
+                  <span className="px-2 py-0.5 rounded border border-border text-muted-foreground cursor-default">
+                    Filter
+                  </span>
+                  <span className="px-2 py-0.5 rounded border border-border text-muted-foreground cursor-default">
+                    Export
+                  </span>
                 </div>
               </div>
 
@@ -113,25 +115,73 @@ export function AdvancedCapabilities() {
                 <thead>
                   <tr className="border-b border-border bg-foreground/5">
                     <th className="w-8 px-3 py-2 text-left">
-                      <span className="inline-flex size-3.5 items-center justify-center rounded border border-border bg-aurora" aria-hidden="true" />
+                      <span
+                        className="inline-flex size-3.5 items-center justify-center rounded border border-border bg-aurora"
+                        aria-hidden="true"
+                      />
                     </th>
-                    <th className="px-3 py-2 text-left font-medium text-muted-foreground">Customer</th>
-                    <th className="px-3 py-2 text-left font-medium text-muted-foreground">Product</th>
-                    <th className="px-3 py-2 text-left font-medium text-muted-foreground">Status</th>
+                    <th className="px-3 py-2 text-left font-medium text-muted-foreground">
+                      Customer
+                    </th>
+                    <th className="px-3 py-2 text-left font-medium text-muted-foreground">
+                      Product
+                    </th>
+                    <th className="px-3 py-2 text-left font-medium text-muted-foreground">
+                      Status
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {/* Selected rows */}
                   {[
-                    { initials: "AK", name: "Alice Kim", product: "Pro Plan", status: "Approved", statusColor: "#22c55e", selected: true },
-                    { initials: "BM", name: "Ben Moss", product: "Starter", status: "Approved", statusColor: "#22c55e", selected: true },
-                    { initials: "CS", name: "Clara Sol", product: "Enterprise", status: "Pending", statusColor: "#f59e0b", selected: true },
-                    { initials: "DT", name: "Dan Tran", product: "Pro Plan", status: "Pending", statusColor: "#f59e0b", selected: false },
-                    { initials: "EL", name: "Eva Lee", product: "Starter", status: "Rejected", statusColor: "#ef4444", selected: false },
+                    {
+                      initials: "AK",
+                      name: "Alice Kim",
+                      product: "Pro Plan",
+                      status: "Approved",
+                      statusColor: "#22c55e",
+                      selected: true,
+                    },
+                    {
+                      initials: "BM",
+                      name: "Ben Moss",
+                      product: "Starter",
+                      status: "Approved",
+                      statusColor: "#22c55e",
+                      selected: true,
+                    },
+                    {
+                      initials: "CS",
+                      name: "Clara Sol",
+                      product: "Enterprise",
+                      status: "Pending",
+                      statusColor: "#f59e0b",
+                      selected: true,
+                    },
+                    {
+                      initials: "DT",
+                      name: "Dan Tran",
+                      product: "Pro Plan",
+                      status: "Pending",
+                      statusColor: "#f59e0b",
+                      selected: false,
+                    },
+                    {
+                      initials: "EL",
+                      name: "Eva Lee",
+                      product: "Starter",
+                      status: "Rejected",
+                      statusColor: "#ef4444",
+                      selected: false,
+                    },
                   ].map((row) => (
                     <tr
                       key={row.name}
-                      className={row.selected ? "bg-foreground/5 border-b border-border" : "border-b border-border"}
+                      className={
+                        row.selected
+                          ? "bg-foreground/5 border-b border-border"
+                          : "border-b border-border"
+                      }
                     >
                       <td className="px-3 py-2.5">
                         <span
@@ -139,22 +189,45 @@ export function AdvancedCapabilities() {
                           aria-hidden="true"
                         >
                           {row.selected && (
-                            <svg viewBox="0 0 8 8" className="size-2 text-white fill-current"><path d="M1 4l2 2 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            <svg
+                              viewBox="0 0 8 8"
+                              className="size-2 text-white fill-current"
+                            >
+                              <path
+                                d="M1 4l2 2 4-4"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
                           )}
                         </span>
                       </td>
                       <td className="px-3 py-2.5">
                         <div className="flex items-center gap-2">
-                          <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-foreground/10 font-medium text-foreground" style={{ fontSize: "0.6rem" }}>
+                          <span
+                            className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-foreground/10 font-medium text-foreground"
+                            style={{ fontSize: "0.6rem" }}
+                          >
                             {row.initials}
                           </span>
-                          <span className="text-foreground font-medium">{row.name}</span>
+                          <span className="text-foreground font-medium">
+                            {row.name}
+                          </span>
                         </div>
                       </td>
-                      <td className="px-3 py-2.5 text-muted-foreground">{row.product}</td>
+                      <td className="px-3 py-2.5 text-muted-foreground">
+                        {row.product}
+                      </td>
                       <td className="px-3 py-2.5">
                         <span className="inline-flex items-center gap-1.5">
-                          <span className="size-1.5 rounded-full shrink-0" style={{ backgroundColor: row.statusColor }} aria-hidden="true" />
+                          <span
+                            className="size-1.5 rounded-full shrink-0"
+                            style={{ backgroundColor: row.statusColor }}
+                            aria-hidden="true"
+                          />
                           <span className="text-foreground">{row.status}</span>
                         </span>
                       </td>
@@ -166,8 +239,18 @@ export function AdvancedCapabilities() {
               {/* Bulk action bar */}
               <div className="flex items-center gap-3 px-4 py-2.5 border-t border-border bg-foreground/5">
                 <span className="text-muted-foreground">3 selected</span>
-                <button type="button" className="px-2.5 py-1 rounded text-xs font-medium bg-aurora text-white cursor-default">Approve</button>
-                <button type="button" className="px-2.5 py-1 rounded text-xs font-medium border border-border text-muted-foreground cursor-default">Reject</button>
+                <button
+                  type="button"
+                  className="px-2.5 py-1 rounded text-xs font-medium bg-aurora text-white cursor-default"
+                >
+                  Approve
+                </button>
+                <button
+                  type="button"
+                  className="px-2.5 py-1 rounded text-xs font-medium border border-border text-muted-foreground cursor-default"
+                >
+                  Reject
+                </button>
               </div>
             </div>
           </GlassPanel>

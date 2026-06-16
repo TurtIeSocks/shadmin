@@ -10,8 +10,7 @@ export function ByDevelopers() {
         <Reveal className="grid grid-cols-1 gap-x-16 gap-y-12 items-center lg:grid-cols-2">
           <RevealItem className="max-w-md mx-auto lg:mx-0">
             <h2 className="text-4xl font-bold tracking-tight sm:text-5xl text-foreground">
-              Built by developers{" "}
-              <GradientText>for developers</GradientText>
+              Built by developers <GradientText>for developers</GradientText>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground">
               Composability, separation of concerns, clean code, strong typing
@@ -24,11 +23,25 @@ export function ByDevelopers() {
                 {/* Title bar */}
                 <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-foreground/5">
                   <div className="flex items-center gap-1.5">
-                    <span className="size-3 rounded-full" style={{ backgroundColor: "#ed6a5e" }} aria-hidden="true" />
-                    <span className="size-3 rounded-full" style={{ backgroundColor: "#f4bf4f" }} aria-hidden="true" />
-                    <span className="size-3 rounded-full" style={{ backgroundColor: "#61c554" }} aria-hidden="true" />
+                    <span
+                      className="size-3 rounded-full"
+                      style={{ backgroundColor: "#ed6a5e" }}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="size-3 rounded-full"
+                      style={{ backgroundColor: "#f4bf4f" }}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="size-3 rounded-full"
+                      style={{ backgroundColor: "#61c554" }}
+                      aria-hidden="true"
+                    />
                   </div>
-                  <span className="font-mono text-xs text-muted-foreground ml-2">App.tsx</span>
+                  <span className="font-mono text-xs text-muted-foreground ml-2">
+                    App.tsx
+                  </span>
                 </div>
 
                 {/* Code block */}
@@ -38,28 +51,23 @@ export function ByDevelopers() {
                     {" { "}
                     <span className="text-foreground">{"Admin, Resource"}</span>
                     {" } "}
-                    <span style={{ color: "#7f77dd" }}>{"from"}</span>
-                    {" "}
+                    <span style={{ color: "#7f77dd" }}>{"from"}</span>{" "}
                     <span style={{ color: "#1d9e75" }}>{'"shadmin"'}</span>
                     {";\n\n"}
-                    <span style={{ color: "#7f77dd" }}>{"export const"}</span>
-                    {" "}
+                    <span style={{ color: "#7f77dd" }}>{"export const"}</span>{" "}
                     <span className="text-foreground">{"App"}</span>
                     {" = () => (\n  "}
-                    <span style={{ color: "#d4537e" }}>{"<Admin"}</span>
-                    {" "}
+                    <span style={{ color: "#d4537e" }}>{"<Admin"}</span>{" "}
                     <span className="text-foreground">{"dataProvider"}</span>
                     {"={"}
                     <span className="text-foreground">{"dataProvider"}</span>
                     {"}"}
                     <span style={{ color: "#d4537e" }}>{">"}</span>
                     {"\n    "}
-                    <span style={{ color: "#d4537e" }}>{"<Resource"}</span>
-                    {" "}
+                    <span style={{ color: "#d4537e" }}>{"<Resource"}</span>{" "}
                     <span className="text-foreground">{"name"}</span>
                     {"="}
-                    <span style={{ color: "#1d9e75" }}>{'"products"'}</span>
-                    {" "}
+                    <span style={{ color: "#1d9e75" }}>{'"products"'}</span>{" "}
                     <span className="text-foreground">{"list"}</span>
                     {"={"}
                     <span className="text-foreground">{"ProductList"}</span>
@@ -70,12 +78,10 @@ export function ByDevelopers() {
                     {"} "}
                     <span style={{ color: "#d4537e" }}>{"/>"}</span>
                     {"\n    "}
-                    <span style={{ color: "#d4537e" }}>{"<Resource"}</span>
-                    {" "}
+                    <span style={{ color: "#d4537e" }}>{"<Resource"}</span>{" "}
                     <span className="text-foreground">{"name"}</span>
                     {"="}
-                    <span style={{ color: "#1d9e75" }}>{'"orders"'}</span>
-                    {" "}
+                    <span style={{ color: "#1d9e75" }}>{'"orders"'}</span>{" "}
                     <span className="text-foreground">{"list"}</span>
                     {"={"}
                     <span className="text-foreground">{"OrderList"}</span>

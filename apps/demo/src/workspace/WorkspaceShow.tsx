@@ -1,10 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useRecordContext } from "ra-core";
-import {
-  RecordField,
-  Show,
-  SimpleShowLayout,
-} from "shadmin/components/admin";
+import { RecordField, Show, SimpleShowLayout } from "shadmin/components/admin";
 import {
   Assistant,
   type AssistantTransport,

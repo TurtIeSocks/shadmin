@@ -7,9 +7,7 @@ describe("<Ready />", () => {
   it("renders the welcome heading and helper links", async () => {
     const screen = render(<Basic />);
     await expect
-      .element(
-        screen.getByRole("heading", { name: /welcome to shadmin/i }),
-      )
+      .element(screen.getByRole("heading", { name: /welcome to shadmin/i }))
       .toBeInTheDocument();
     await expect
       .element(screen.getByRole("link", { name: /documentation/i }))

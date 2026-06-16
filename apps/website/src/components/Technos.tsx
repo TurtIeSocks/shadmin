@@ -64,8 +64,7 @@ export function Technos() {
           <div className="flex flex-col items-center gap-4 text-center">
             <Eyebrow>The Stack</Eyebrow>
             <h2 className="text-3xl font-bold tracking-tight text-foreground">
-              Built on tools you{" "}
-              <GradientText>trust</GradientText>
+              Built on tools you <GradientText>trust</GradientText>
             </h2>
             <p className="mt-2 max-w-xl text-lg leading-8 text-muted-foreground">
               Shadmin leverages first-class libraries, acclaimed by the React
@@ -74,7 +73,10 @@ export function Technos() {
           </div>
 
           <GlassPanel className="w-full max-w-4xl px-8 py-8">
-            <Reveal stagger className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-14 md:gap-y-10">
+            <Reveal
+              stagger
+              className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-14 md:gap-y-10"
+            >
               {technos.map((techno) => (
                 <RevealItem key={techno.name} className="basis-1/6">
                   <div className="flex flex-col items-center gap-2 group cursor-default">

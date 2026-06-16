@@ -4,10 +4,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-8 md:flex md:items-center md:justify-between lg:px-8">
         {/* Left: logo dot + wordmark */}
         <div className="flex items-center gap-2.5 justify-center md:justify-start">
-          <span
-            className="bg-aurora size-3 rounded-full"
-            aria-hidden="true"
-          />
+          <span className="bg-aurora size-3 rounded-full" aria-hidden="true" />
           <span className="text-sm font-semibold tracking-tight text-foreground">
             shadmin
           </span>

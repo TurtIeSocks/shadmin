@@ -1,8 +1,4 @@
-import {
-  RecordField,
-  Show,
-  TabbedShowLayout,
-} from "shadmin/components/admin";
+import { RecordField, Show, TabbedShowLayout } from "shadmin/components/admin";
 import {
   BBoxField,
   FeatureCollectionField,

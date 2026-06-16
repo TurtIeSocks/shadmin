@@ -10,10 +10,38 @@ import { cn } from "@/lib/utils";
  * via the shared --orb-* tokens. Honors prefers-reduced-motion.
  */
 const ORBS = [
-  { pos: "left-[-12%] top-[-10%] size-[34rem]", orb: 1, dur: "28s", delay: "0s", dx: "36px", dy: "28px" },
-  { pos: "right-[-14%] top-[6%] size-[30rem]", orb: 2, dur: "34s", delay: "-7s", dx: "-44px", dy: "36px" },
-  { pos: "left-[6%] top-[58%] size-[28rem]", orb: 3, dur: "31s", delay: "-14s", dx: "38px", dy: "-30px" },
-  { pos: "right-[0%] bottom-[-10%] size-[32rem]", orb: 4, dur: "26s", delay: "-4s", dx: "-32px", dy: "-38px" },
+  {
+    pos: "left-[-12%] top-[-10%] size-[34rem]",
+    orb: 1,
+    dur: "28s",
+    delay: "0s",
+    dx: "36px",
+    dy: "28px",
+  },
+  {
+    pos: "right-[-14%] top-[6%] size-[30rem]",
+    orb: 2,
+    dur: "34s",
+    delay: "-7s",
+    dx: "-44px",
+    dy: "36px",
+  },
+  {
+    pos: "left-[6%] top-[58%] size-[28rem]",
+    orb: 3,
+    dur: "31s",
+    delay: "-14s",
+    dx: "38px",
+    dy: "-30px",
+  },
+  {
+    pos: "right-[0%] bottom-[-10%] size-[32rem]",
+    orb: 4,
+    dur: "26s",
+    delay: "-4s",
+    dx: "-32px",
+    dy: "-38px",
+  },
 ];
 
 export function PageAurora() {
