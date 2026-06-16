@@ -22,17 +22,10 @@ import { ThemeModeToggle } from "@/components/admin";
 
 ## Setting The Preferred Theme
 
-Shadmin defaults to the system theme mode. You can force another default theme by passing the `defaultThemeMode` prop to the [`<Admin>`](./admin) component:
-
-```tsx
-import { Admin } from "@/components/admin";
-
-const App = () => (
-  <Admin defaultThemeMode="dark" dataProvider={dataProvider}>
-    ...
-  </Admin>
-);
-```
+Shadmin defaults to the **system** theme mode — it follows the operating
+system's light/dark setting. Once a user picks a mode with the toggle, their
+choice is persisted via the [store](https://shadmin.turtlesocks.dev/Store.html)
+and survives reloads.
 
 ## Customizing the Themes
 
