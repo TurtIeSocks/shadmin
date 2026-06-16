@@ -4,7 +4,7 @@ import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { EXTERNAL_LINK } from "@/lib/external-link";
 
-interface MagneticButtonProps {
+export interface MagneticButtonProps {
   href: string;
   children: ReactNode;
   variant?: "aurora" | "ghost" | "white";

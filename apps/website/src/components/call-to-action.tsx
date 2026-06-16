@@ -1,5 +1,20 @@
-import { MagneticButton } from "@/components/aurora/magnetic-button";
+import {
+  MagneticButton,
+  MagneticButtonProps,
+} from "@/components/aurora/magnetic-button";
 import { Reveal } from "@/components/aurora/reveal";
+
+export function GetStarted({ variant }: Pick<MagneticButtonProps, "variant">) {
+  return (
+    <MagneticButton
+      href="https://shadmin.turtlesocks.dev/docs/install"
+      external
+      variant={variant}
+    >
+      Get started
+    </MagneticButton>
+  );
+}
 
 export function CallToAction() {
   return (
@@ -14,13 +29,7 @@ export function CallToAction() {
               <p className="mx-auto max-w-2xl text-lg leading-8 text-white/80">
                 Then customize every detail to fit your unique requirements.
               </p>
-              <MagneticButton
-                href="https://shadmin.turtlesocks.dev/docs/install"
-                external
-                variant="white"
-              >
-                Get started
-              </MagneticButton>
+              <GetStarted variant="white" />
             </Reveal>
           </div>
         </div>

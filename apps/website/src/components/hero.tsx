@@ -12,6 +12,7 @@ import { GlassPanel } from "@/components/aurora/glass-panel";
 import { GradientText } from "@/components/aurora/gradient-text";
 import { MagneticButton } from "@/components/aurora/magnetic-button";
 import { Reveal, RevealItem } from "@/components/aurora/reveal";
+import { GetStarted } from "./call-to-action";
 
 const NAV_ITEMS = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },
@@ -262,13 +263,7 @@ export function Hero() {
 
           <RevealItem>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <MagneticButton
-                href="https://shadmin.turtlesocks.dev/docs/install"
-                external
-                variant="aurora"
-              >
-                Get started
-              </MagneticButton>
+              <GetStarted variant="aurora" />
               <MagneticButton
                 href="https://shadmin.turtlesocks.dev/demo"
                 external
