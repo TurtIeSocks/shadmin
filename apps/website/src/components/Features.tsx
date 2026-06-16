@@ -38,6 +38,7 @@ interface Feature {
   size: Size;
   col: 1 | 2 | 3;
   row: number;
+  flexRow?: boolean;
 }
 
 const features: Feature[] = [
@@ -137,6 +138,7 @@ const features: Feature[] = [
     size: "wide",
     col: 1,
     row: 8,
+    flexRow: true,
   },
   {
     name: "CSV Import / Export",
@@ -290,12 +292,10 @@ function ThemingVisual() {
 function FormVisual() {
   return (
     <div className="flex h-full flex-col justify-center gap-2.5">
-      {[0, 1].map((i) => (
-        <div key={i} className="flex items-center gap-2.5">
-          <span className="h-2 w-14 shrink-0 rounded bg-foreground/15" />
-          <span className="h-6 flex-1 rounded-md border border-border bg-background/60" />
-        </div>
-      ))}
+      <div className="flex items-center gap-2.5">
+        <span className="h-2 w-14 shrink-0 rounded bg-foreground/15" />
+        <span className="h-6 flex-1 rounded-md border border-border bg-background/60" />
+      </div>
       <div className="flex justify-end">
         <span className="h-6 w-16 rounded-md bg-aurora" />
       </div>
@@ -303,22 +303,23 @@ function FormVisual() {
   );
 }
 
+const ROLES = ["Admin", "Editor", "Viewer"];
+const GRANTS = [
+  [true, true, true],
+  [true, true, false],
+  [true, false, false],
+];
+
 function RolesVisual() {
-  const roles = ["Admin", "Editor", "Viewer"];
-  const grants = [
-    [true, true, true],
-    [true, true, false],
-    [true, false, false],
-  ];
   return (
     <div className="flex h-full flex-col justify-center gap-2">
-      {roles.map((role, i) => (
+      {ROLES.map((role, i) => (
         <div key={role} className="flex items-center gap-3">
           <span className="w-14 shrink-0 text-[11px] text-muted-foreground">
             {role}
           </span>
           <div className="flex gap-1.5">
-            {grants[i].map((on, j) => (
+            {GRANTS[i].map((on, j) => (
               <span
                 key={j}
                 className={cn(
@@ -410,7 +411,12 @@ export function Features() {
               >
                 <GlassPanel
                   bezel={big}
-                  className="group flex h-full flex-col overflow-hidden p-5 transition duration-300 hover:-translate-y-1"
+                  className={cn(
+                    "group flex h-full overflow-hidden p-5 transition duration-300 hover:-translate-y-1",
+                    feature.flexRow
+                      ? "flex-row justify-between w-full"
+                      : "flex-col",
+                  )}
                 >
                   <div className="flex flex-col gap-2">
                     <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-aurora">
@@ -432,7 +438,12 @@ export function Features() {
                     </p>
                   </div>
                   {Visual && (
-                    <div className="mt-4 min-h-0 flex-1">
+                    <div
+                      className={cn(
+                        "mt-4 min-h-0",
+                        feature.flexRow ? "mx-auto" : "flex-1",
+                      )}
+                    >
                       <Visual />
                     </div>
                   )}
