@@ -116,10 +116,6 @@ const fileToItemRef = (absFile, repoRoot) => {
     return { kind: "shadcn", name };
   }
 
-  if (noExt.startsWith("lib/themes/")) {
-    return { kind: "ours", name: noExt.slice("lib/themes/".length) };
-  }
-
   if (noExt.startsWith("lib/")) {
     return {
       kind: "ours",

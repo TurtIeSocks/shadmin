@@ -6,7 +6,6 @@ import { Admin, AdminContext, AdminUI } from "@/components/admin/admin";
 import { ListGuesser } from "@/components/admin/list-guesser";
 import { ShowGuesser } from "@/components/admin/show-guesser";
 import { EditGuesser } from "@/components/admin/edit-guesser";
-import { bwTheme } from "@/lib/themes/bw-theme";
 
 export default {
   title: "Application configuration/Admin",
@@ -55,7 +54,7 @@ export const CustomTitle = () => (
 
 export const WithTheme = () => (
   <TestMemoryRouter initialEntries={["/posts"]}>
-    <Admin dataProvider={dataProvider} theme={bwTheme}>
+    <Admin dataProvider={dataProvider}>
       <Resource name="posts" list={ListGuesser} />
     </Admin>
   </TestMemoryRouter>
