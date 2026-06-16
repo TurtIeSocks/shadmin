@@ -95,7 +95,7 @@ export function AdvancedCapabilities() {
               content instead of stretching to the tall feature list) */}
           <div>
             <GlassPanel bezel>
-              <div className="rounded-[calc(2rem-0.5rem)] overflow-hidden bg-background/60 border border-border text-xs">
+              <div className="rounded-3xl overflow-hidden bg-background/60 border border-border text-xs">
                 {/* App window header */}
                 <div className="flex items-center justify-between px-4 py-3 border-b border-border">
                   <span className="font-semibold text-sm text-foreground">

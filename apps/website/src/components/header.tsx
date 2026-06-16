@@ -30,7 +30,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
         className={cn(
           "block h-0.5 w-full rounded-full bg-current origin-center transition-transform",
           !reduce && "duration-300",
-          open ? "translate-y-[9px] rotate-45" : "",
+          open ? "translate-y-2.25 rotate-45" : "",
         )}
         style={
           !reduce
@@ -49,7 +49,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
         className={cn(
           "block h-0.5 w-full rounded-full bg-current origin-center transition-transform",
           !reduce && "duration-300",
-          open ? "-translate-y-[9px] -rotate-45" : "",
+          open ? "-translate-y-2.25 -rotate-45" : "",
         )}
         style={
           !reduce
