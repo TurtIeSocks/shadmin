@@ -24,15 +24,20 @@ import { Eyebrow } from "@/components/aurora/Eyebrow";
 import { Reveal, RevealItem } from "@/components/aurora/Reveal";
 import { cn } from "@/lib/utils";
 
-// span: undefined = 1×1, "wide" = 2×1, "tall" = 1×2, "hero" = 2×2.
-// Cell budget tiles to whole rows: 2 heroes(4) + 1 tall(2) + 1 wide(2) + 12×1 = 24 = 8 rows × 3 cols.
-type Span = "wide" | "tall" | "hero" | undefined;
+// Hand-placed Tetris bento. Each card is explicitly positioned on a 3-col grid
+// (9 rows = 27 cells) so big pieces zig-zag through every column — no column is
+// ever made up entirely of 1×1 cards. Sizes: hero 2×2, tall 1×2, wide 2×1, single 1×1.
+//   2 hero(8) + 1 tall(2) + 4 wide(8) + 9 single(9) = 27 = 9 rows × 3 cols.
+// Placement classes are md-only; below md the cards stack/flow normally.
+type Size = "hero" | "tall" | "wide" | "single";
 
 interface Feature {
   name: string;
   description: string;
   icon: React.ElementType;
-  span: Span;
+  size: Size;
+  col: 1 | 2 | 3;
+  row: number;
 }
 
 const features: Feature[] = [
@@ -40,98 +45,130 @@ const features: Feature[] = [
     name: "Data Maps",
     description: "Interactive Leaflet maps with geospatial data layers",
     icon: MapPin,
-    span: "hero",
+    size: "hero",
+    col: 1,
+    row: 1,
+  },
+  {
+    name: "Data Fetching",
+    description: "Efficient hooks for robust API interactions",
+    icon: ArrowDownUp,
+    size: "single",
+    col: 3,
+    row: 1,
   },
   {
     name: "Lists & Data Tables",
     description: "Flexible lists & tables for displaying data collections",
     icon: AlignJustify,
-    span: "tall",
+    size: "tall",
+    col: 3,
+    row: 2,
+  },
+  {
+    name: "Command Menu",
+    description: "A ⌘K command palette for instant keyboard-driven navigation",
+    icon: Command,
+    size: "wide",
+    col: 1,
+    row: 3,
+  },
+  {
+    name: "Authentication",
+    description: "Secure auth flows and user management",
+    icon: KeyRound,
+    size: "single",
+    col: 1,
+    row: 4,
   },
   {
     name: "AI-Ready",
     description:
       "Ships with an MCP server — scaffold and edit admin UIs with AI",
     icon: Sparkles,
-    span: "hero",
-  },
-  {
-    name: "Data Fetching",
-    description: "Efficient hooks for robust API interactions",
-    icon: ArrowDownUp,
-    span: undefined,
-  },
-  {
-    name: "Authentication",
-    description: "Secure auth flows and user management",
-    icon: KeyRound,
-    span: undefined,
-  },
-  {
-    name: "Command Menu",
-    description: "A ⌘K command palette for instant keyboard-driven navigation",
-    icon: Command,
-    span: "wide",
+    size: "hero",
+    col: 2,
+    row: 4,
   },
   {
     name: "Search & Filtering",
     description: "Search-as-you-type and combined filters",
     icon: ScanSearch,
-    span: undefined,
+    size: "single",
+    col: 1,
+    row: 5,
   },
   {
     name: "Flexible Theming",
     description: "Theme presets, light/dark mode & granular styling",
     icon: Palette,
-    span: undefined,
+    size: "wide",
+    col: 1,
+    row: 6,
   },
   {
     name: "I18n",
     description: "Internationalization for global applications",
     icon: Earth,
-    span: undefined,
+    size: "single",
+    col: 3,
+    row: 6,
   },
   {
     name: "Realtime",
     description: "Live updates with any realtime backend",
     icon: RadioTower,
-    span: undefined,
-  },
-  {
-    name: "CSV Import / Export",
-    description: "Bulk data import and export with spreadsheet support",
-    icon: FileSpreadsheet,
-    span: undefined,
-  },
-  {
-    name: "Rich Text Editor",
-    description: "WYSIWYG editing with full formatting and media",
-    icon: Pilcrow,
-    span: undefined,
-  },
-  {
-    name: "Kanban & Scheduling",
-    description: "Drag-and-drop boards and calendar views",
-    icon: CalendarDays,
-    span: undefined,
-  },
-  {
-    name: "Roles & Permissions",
-    description: "Fine-grained RBAC, per-resource and per-action",
-    icon: ShieldCheck,
-    span: undefined,
+    size: "single",
+    col: 1,
+    row: 7,
   },
   {
     name: "Forms & Validation",
     description: "Data-bound inputs, adaptable layouts, dynamic fields",
     icon: NotepadText,
-    span: undefined,
+    size: "wide",
+    col: 2,
+    row: 7,
+  },
+  {
+    name: "Roles & Permissions",
+    description: "Fine-grained RBAC, per-resource and per-action",
+    icon: ShieldCheck,
+    size: "wide",
+    col: 1,
+    row: 8,
+  },
+  {
+    name: "CSV Import / Export",
+    description: "Bulk data import and export with spreadsheet support",
+    icon: FileSpreadsheet,
+    size: "single",
+    col: 3,
+    row: 8,
+  },
+  {
+    name: "Rich Text Editor",
+    description: "WYSIWYG editing with full formatting and media",
+    icon: Pilcrow,
+    size: "single",
+    col: 1,
+    row: 9,
+  },
+  {
+    name: "Kanban & Scheduling",
+    description: "Drag-and-drop boards and calendar views",
+    icon: CalendarDays,
+    size: "single",
+    col: 2,
+    row: 9,
   },
   {
     name: "Resilient UI",
     description: "Gracefully manages loading, empty, and error states",
     icon: BugOff,
-    span: undefined,
+    size: "single",
+    col: 3,
+    row: 9,
   },
 ];
 
@@ -250,22 +287,89 @@ function ThemingVisual() {
   );
 }
 
+function FormVisual() {
+  return (
+    <div className="flex h-full flex-col justify-center gap-2.5">
+      {[0, 1].map((i) => (
+        <div key={i} className="flex items-center gap-2.5">
+          <span className="h-2 w-14 shrink-0 rounded bg-foreground/15" />
+          <span className="h-6 flex-1 rounded-md border border-border bg-background/60" />
+        </div>
+      ))}
+      <div className="flex justify-end">
+        <span className="h-6 w-16 rounded-md bg-aurora" />
+      </div>
+    </div>
+  );
+}
+
+function RolesVisual() {
+  const roles = ["Admin", "Editor", "Viewer"];
+  const grants = [
+    [true, true, true],
+    [true, true, false],
+    [true, false, false],
+  ];
+  return (
+    <div className="flex h-full flex-col justify-center gap-2">
+      {roles.map((role, i) => (
+        <div key={role} className="flex items-center gap-3">
+          <span className="w-14 shrink-0 text-[11px] text-muted-foreground">
+            {role}
+          </span>
+          <div className="flex gap-1.5">
+            {grants[i].map((on, j) => (
+              <span
+                key={j}
+                className={cn(
+                  "size-3.5 rounded",
+                  on ? "bg-aurora" : "bg-foreground/10",
+                )}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const VISUALS: Record<string, () => React.ReactElement> = {
   "Data Maps": MapVisual,
   "Lists & Data Tables": DataTableVisual,
   "AI-Ready": AIVisual,
   "Command Menu": CommandMenuVisual,
   "Flexible Theming": ThemingVisual,
+  "Forms & Validation": FormVisual,
+  "Roles & Permissions": RolesVisual,
 };
 
-function spanClasses(span: Span) {
-  if (span === "hero") return "md:col-span-2 md:row-span-2";
-  if (span === "wide") return "md:col-span-2";
-  if (span === "tall") return "md:row-span-2";
+// Literal class maps — Tailwind can't see interpolated `md:col-start-${n}`.
+const COL_START: Record<number, string> = {
+  1: "md:col-start-1",
+  2: "md:col-start-2",
+  3: "md:col-start-3",
+};
+const ROW_START: Record<number, string> = {
+  1: "md:row-start-[1]",
+  2: "md:row-start-[2]",
+  3: "md:row-start-[3]",
+  4: "md:row-start-[4]",
+  5: "md:row-start-[5]",
+  6: "md:row-start-[6]",
+  7: "md:row-start-[7]",
+  8: "md:row-start-[8]",
+  9: "md:row-start-[9]",
+};
+
+function sizeClasses(size: Size) {
+  if (size === "hero") return "md:col-span-2 md:row-span-2";
+  if (size === "tall") return "md:row-span-2";
+  if (size === "wide") return "md:col-span-2";
   return "";
 }
 
-const isBig = (span: Span) => span === "hero" || span === "tall";
+const isBig = (size: Size) => size === "hero" || size === "tall";
 
 export function Features() {
   return (
@@ -289,15 +393,20 @@ export function Features() {
 
         <Reveal
           stagger
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:auto-rows-[13rem] md:grid-flow-dense md:grid-cols-3"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:auto-rows-[13rem] md:grid-cols-3"
         >
           {features.map((feature) => {
             const Visual = VISUALS[feature.name];
-            const big = isBig(feature.span);
+            const big = isBig(feature.size);
             return (
               <RevealItem
                 key={feature.name}
-                className={cn("h-full", spanClasses(feature.span))}
+                className={cn(
+                  "h-full",
+                  COL_START[feature.col],
+                  ROW_START[feature.row],
+                  sizeClasses(feature.size),
+                )}
               >
                 <GlassPanel
                   bezel={big}
