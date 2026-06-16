@@ -27,6 +27,41 @@ const STATS = [
   { label: "Customers", value: "12.4k" },
 ];
 
+const ORDERS = [
+  {
+    name: "Alice Kim",
+    items: "3 items",
+    date: "Jun 12",
+    amt: "$129",
+    status: "Paid",
+    color: "#22c55e",
+  },
+  {
+    name: "Ben Moss",
+    items: "1 item",
+    date: "Jun 11",
+    amt: "$89",
+    status: "Paid",
+    color: "#22c55e",
+  },
+  {
+    name: "Clara Sol",
+    items: "5 items",
+    date: "Jun 10",
+    amt: "$420",
+    status: "Pending",
+    color: "#f59e0b",
+  },
+  {
+    name: "Dan Tran",
+    items: "2 items",
+    date: "Jun 8",
+    amt: "$57",
+    status: "Refunded",
+    color: "#ef4444",
+  },
+];
+
 // Hand-authored smooth polyline for a 30-day revenue sparkline
 // viewBox: 0 0 320 80, values roughly undulating upward
 const CHART_POINTS =
@@ -39,8 +74,13 @@ function DashboardMockup() {
       <aside className="hidden sm:flex flex-col gap-1 w-44 shrink-0 border-r border-border bg-background/40 px-2 py-3">
         {/* Logo */}
         <div className="flex items-center gap-2 px-2 pb-3 mb-1 border-b border-border">
-          <span className="size-6 rounded-full bg-aurora shrink-0" aria-hidden="true" />
-          <span className="text-xs font-semibold text-foreground truncate">Acme Inc.</span>
+          <span
+            className="size-6 rounded-full bg-aurora shrink-0"
+            aria-hidden="true"
+          />
+          <span className="text-xs font-semibold text-foreground truncate">
+            Acme Inc.
+          </span>
         </div>
         {/* Nav items */}
         {NAV_ITEMS.map(({ icon: Icon, label, active }) => (
@@ -63,15 +103,26 @@ function DashboardMockup() {
       <main className="flex-1 flex flex-col min-w-0">
         {/* Topbar */}
         <div className="flex items-center gap-2 px-3 py-2 border-b border-border bg-background/40">
-          <span className="text-xs font-semibold text-foreground flex-1">Dashboard</span>
+          <span className="text-xs font-semibold text-foreground flex-1">
+            Dashboard
+          </span>
           <div className="flex items-center gap-1.5">
             <span className="size-5 rounded-full bg-foreground/8 flex items-center justify-center">
-              <Search className="size-2.5 text-muted-foreground" aria-hidden="true" />
+              <Search
+                className="size-2.5 text-muted-foreground"
+                aria-hidden="true"
+              />
             </span>
             <span className="size-5 rounded-full bg-foreground/8 flex items-center justify-center">
-              <Bell className="size-2.5 text-muted-foreground" aria-hidden="true" />
+              <Bell
+                className="size-2.5 text-muted-foreground"
+                aria-hidden="true"
+              />
             </span>
-            <span className="size-5 rounded-full bg-aurora" aria-hidden="true" />
+            <span
+              className="size-5 rounded-full bg-aurora"
+              aria-hidden="true"
+            />
           </div>
         </div>
 
@@ -87,7 +138,9 @@ function DashboardMockup() {
                 <span className="text-[9px] text-muted-foreground uppercase tracking-wide leading-none">
                   {label}
                 </span>
-                <span className="text-aurora text-sm font-bold leading-tight">{value}</span>
+                <span className="text-aurora text-sm font-bold leading-tight">
+                  {value}
+                </span>
               </div>
             ))}
           </div>
@@ -141,12 +194,7 @@ function DashboardMockup() {
                 <span className="text-right">Total</span>
                 <span>Status</span>
               </div>
-              {[
-                { name: "Alice Kim", items: "3 items", date: "Jun 12", amt: "$129", status: "Paid", color: "#22c55e" },
-                { name: "Ben Moss", items: "1 item", date: "Jun 11", amt: "$89", status: "Paid", color: "#22c55e" },
-                { name: "Clara Sol", items: "5 items", date: "Jun 10", amt: "$420", status: "Pending", color: "#f59e0b" },
-                { name: "Dan Tran", items: "2 items", date: "Jun 8", amt: "$57", status: "Refunded", color: "#ef4444" },
-              ].map((o) => (
+              {ORDERS.map((o) => (
                 <div
                   key={o.name}
                   className="grid grid-cols-[1.25rem_minmax(0,1fr)_4rem_3.5rem_3rem_5rem] items-center gap-3 text-[10px]"
@@ -186,7 +234,10 @@ export function Hero() {
     <div className="relative py-24 md:py-32 text-center">
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Copy block */}
-        <Reveal stagger className="mx-auto max-w-3xl flex flex-col items-center gap-6">
+        <Reveal
+          stagger
+          className="mx-auto max-w-3xl flex flex-col items-center gap-6"
+        >
           <RevealItem>
             <Eyebrow>Open source · shadcn registry</Eyebrow>
           </RevealItem>

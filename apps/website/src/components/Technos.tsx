@@ -76,7 +76,7 @@ export function Technos() {
           <GlassPanel className="w-full max-w-4xl px-8 py-8">
             <Reveal stagger className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 md:gap-x-14 md:gap-y-10">
               {technos.map((techno) => (
-                <RevealItem key={techno.name}>
+                <RevealItem key={techno.name} className="basis-1/6">
                   <div className="flex flex-col items-center gap-2 group cursor-default">
                     <img
                       alt={techno.name}
