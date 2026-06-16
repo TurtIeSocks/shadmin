@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, MotionProps, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -47,13 +47,19 @@ export function MagneticButton({
 }: MagneticButtonProps) {
   const reduce = useReducedMotion();
 
+  const MOTION_PROPS: MotionProps = {
+    transition: { type: "spring", stiffness: 300, damping: 25 },
+    whileHover: { scale: 1.02 },
+    whileTap: { scale: 0.98 },
+  };
+
   return (
     <motion.a
       href={href}
       {...(external ? EXTERNAL_LINK : {})}
-      whileHover={reduce ? undefined : { scale: 1.02 }}
-      whileTap={reduce ? undefined : { scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      whileHover={reduce ? undefined : MOTION_PROPS.whileHover}
+      whileTap={reduce ? undefined : MOTION_PROPS.whileTap}
+      transition={MOTION_PROPS.transition}
       className={cn(
         "group inline-flex items-center gap-2 rounded-full pl-5 pr-2 py-2 text-sm font-medium",
         PILL[variant],
