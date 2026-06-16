@@ -1,5 +1,4 @@
 import { Admin, Resource } from "shadmin/components/admin";
-import { auroraTheme } from "shadmin/lib/themes";
 import { CustomRoutes } from "ra-core";
 import { Route } from "react-router";
 
@@ -33,7 +32,6 @@ function App() {
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       dashboard={Dashboard}
-      theme={auroraTheme}
       layout={InspectorLayout}
     >
       <Resource {...orders} group="Sales" />

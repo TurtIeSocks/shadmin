@@ -18,6 +18,7 @@ import { CommandMenu } from "shadmin/components/extras/command-menu";
 import { DataProviderDevtools } from "shadmin/components/extras/data-provider-devtools";
 import { LayoutBuilderButton, ThemeStudioButton } from "./admin-tools-drawer";
 import { I18nKeyEditorButton } from "./i18n-tools-menu";
+import { ThemePaletteSwitcher } from "./theme-palette-switcher";
 
 /**
  * Demo layout that exposes the Inspector / Configurable system.
@@ -63,6 +64,7 @@ export const InspectorLayout = (props: CoreLayoutProps) => {
             <InspectorButton />
             <ThemeStudioButton />
             <LayoutBuilderButton />
+            <ThemePaletteSwitcher />
             <ThemeModeToggle />
             <RefreshButton />
             <UserMenu />

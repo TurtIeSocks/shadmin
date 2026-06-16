@@ -1,2 +1,7 @@
 @import "../../../packages/shadmin/src/index.css";
+@import "../../../packages/shadmin/src/styles/themes/aurora.css";
+@import "../../../packages/shadmin/src/styles/themes/bw.css";
+@import "../../../packages/shadmin/src/styles/themes/house.css";
+@import "../../../packages/shadmin/src/styles/themes/nano.css";
+@import "../../../packages/shadmin/src/styles/themes/radiant.css";
 @source "../../../packages/shadmin/src";
