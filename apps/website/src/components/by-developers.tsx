@@ -1,7 +1,7 @@
-import { Container } from "./Container";
-import { GlassPanel } from "./aurora/GlassPanel";
-import { GradientText } from "./aurora/GradientText";
-import { Reveal, RevealItem } from "./aurora/Reveal";
+import { Container } from "./container";
+import { GlassPanel } from "./aurora/glass-panel";
+import { GradientText } from "./aurora/gradient-text";
+import { Reveal, RevealItem } from "./aurora/reveal";
 
 export function ByDevelopers() {
   return (

@@ -1,9 +1,9 @@
 import { Check } from "lucide-react";
-import { GlassPanel } from "@/components/aurora/GlassPanel";
-import { GradientText } from "@/components/aurora/GradientText";
-import { MagneticButton } from "@/components/aurora/MagneticButton";
-import { Reveal } from "@/components/aurora/Reveal";
-import { Container } from "./Container";
+import { GlassPanel } from "@/components/aurora/glass-panel";
+import { GradientText } from "@/components/aurora/gradient-text";
+import { MagneticButton } from "@/components/aurora/magnetic-button";
+import { Reveal } from "@/components/aurora/reveal";
+import { Container } from "./container";
 
 const features = [
   {

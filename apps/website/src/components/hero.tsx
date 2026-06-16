@@ -7,11 +7,11 @@ import {
   Bell,
   Search,
 } from "lucide-react";
-import { Eyebrow } from "@/components/aurora/Eyebrow";
-import { GlassPanel } from "@/components/aurora/GlassPanel";
-import { GradientText } from "@/components/aurora/GradientText";
-import { MagneticButton } from "@/components/aurora/MagneticButton";
-import { Reveal, RevealItem } from "@/components/aurora/Reveal";
+import { Eyebrow } from "@/components/aurora/eyebrow";
+import { GlassPanel } from "@/components/aurora/glass-panel";
+import { GradientText } from "@/components/aurora/gradient-text";
+import { MagneticButton } from "@/components/aurora/magnetic-button";
+import { Reveal, RevealItem } from "@/components/aurora/reveal";
 
 const NAV_ITEMS = [
   { icon: LayoutDashboard, label: "Dashboard", active: true },

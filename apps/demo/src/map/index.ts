@@ -1,9 +1,9 @@
 import { ResourceProps } from "ra-core";
 import { MapPin } from "lucide-react";
-import { MapList } from "./MapList";
-import { MapShow } from "./MapShow";
-import { MapEdit } from "./MapEdit";
-import { MapCreate } from "./MapCreate";
+import { MapList } from "./map-list";
+import { MapShow } from "./map-show";
+import { MapEdit } from "./map-edit";
+import { MapCreate } from "./map-create";
 
 export const places: ResourceProps = {
   name: "places",

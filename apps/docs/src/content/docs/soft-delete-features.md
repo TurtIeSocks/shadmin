@@ -136,7 +136,7 @@ Once your provider has all soft-delete methods, pass it to the [`<Admin>`](./adm
 ```tsx
 // in src/App.tsx
 import { Admin } from "@/components/admin/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => <Admin dataProvider={dataProvider}>{/* ... */}</Admin>;
 ```

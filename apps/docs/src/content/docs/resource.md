@@ -96,10 +96,10 @@ If you need to speed up the initial loading of your application, you may want to
 import * as React from "react";
 import { Admin, Resource } from "@/components/admin";
 
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
-const OrderList = React.lazy(() => import("./orders/OrderList"));
-const OrderEdit = React.lazy(() => import("./orders/OrderEdit"));
+const OrderList = React.lazy(() => import("./orders/order-list"));
+const OrderEdit = React.lazy(() => import("./orders/order-edit"));
 
 const App = () => (
   <Admin dataProvider={dataProvider}>

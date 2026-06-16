@@ -1,6 +1,6 @@
-import { GlassPanel } from "@/components/aurora/GlassPanel";
-import { GradientText } from "@/components/aurora/GradientText";
-import { Reveal, RevealItem } from "@/components/aurora/Reveal";
+import { GlassPanel } from "@/components/aurora/glass-panel";
+import { GradientText } from "@/components/aurora/gradient-text";
+import { Reveal, RevealItem } from "@/components/aurora/reveal";
 
 const stats = [
   { value: "165", label: "Components" },

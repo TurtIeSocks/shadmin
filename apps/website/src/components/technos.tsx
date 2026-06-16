@@ -1,8 +1,8 @@
-import { Container } from "./Container";
-import { GlassPanel } from "@/components/aurora/GlassPanel";
-import { GradientText } from "@/components/aurora/GradientText";
-import { Eyebrow } from "@/components/aurora/Eyebrow";
-import { Reveal, RevealItem } from "@/components/aurora/Reveal";
+import { Container } from "./container";
+import { GlassPanel } from "@/components/aurora/glass-panel";
+import { GradientText } from "@/components/aurora/gradient-text";
+import { Eyebrow } from "@/components/aurora/eyebrow";
+import { Reveal, RevealItem } from "@/components/aurora/reveal";
 
 import TypeScriptLogo from "/img/ts-logo.svg";
 import ReactLogo from "/img/react-logo.svg";

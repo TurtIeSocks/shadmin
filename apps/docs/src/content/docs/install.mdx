@@ -90,7 +90,7 @@ Expose that admin app at the `/admin` URL by adding a `app/admin/page.tsx` file.
 
 import dynamic from "next/dynamic";
 
-const App = dynamic(() => import("./App"), {
+const App = dynamic(() => import("./app"), {
   ssr: false, // Required to avoid react-router related errors
 });
 
@@ -215,7 +215,7 @@ The main entry point of your new application is `main.tsx`, which renders the `A
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
+import App from "./app.tsx";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>

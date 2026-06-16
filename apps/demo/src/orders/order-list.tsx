@@ -22,8 +22,8 @@ import {
 } from "shadmin/components/ui/tabs";
 import { Badge } from "shadmin/components/ui/badge";
 
-import { AddressField } from "../customers/AddressField";
-import { FullNameField } from "../customers/FullNameField";
+import { AddressField } from "../customers/address-field";
+import { FullNameField } from "../customers/full-name-field";
 
 const storeKeyByStatus = {
   ordered: "orders.list1",

@@ -1,8 +1,8 @@
 import { CheckCircleIcon } from "lucide-react";
 import type { ResourceProps } from "ra-core";
 
-import { ApprovalQueueList } from "./ApprovalQueueList";
-import { ApprovalShow } from "./ApprovalShow";
+import { ApprovalQueueList } from "./approval-queue-list";
+import { ApprovalShow } from "./approval-show";
 
 export const approvals: ResourceProps = {
   name: "approvals",

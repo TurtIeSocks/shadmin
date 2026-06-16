@@ -1,8 +1,8 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { MagneticButton } from "@/components/aurora/MagneticButton";
-import { ThemeToggle } from "@/components/aurora/ThemeToggle";
-import { Logo } from "./Logo";
+import { MagneticButton } from "@/components/aurora/magnetic-button";
+import { ThemeToggle } from "@/components/aurora/theme-toggle";
+import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
 import GithubLogo from "/img/github-mark-white.svg";
 

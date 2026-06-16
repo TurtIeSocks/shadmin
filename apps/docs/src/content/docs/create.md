@@ -46,7 +46,7 @@ export const ProductCreate = () => (
 import { Admin } from "@/copmponents/admin";
 import { Resource } from "ra-core";
 
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { PostCreate } from "./posts";
 
 const App = () => (

@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "shadmin/components/ui/dialog";
 
-import { i18nProvider } from "./i18nProvider";
+import { i18nProvider } from "./i18n-provider";
 
 /**
  * Sample subtree that translates a mix of present + missing keys, so the

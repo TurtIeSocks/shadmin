@@ -7,7 +7,7 @@ import { SidebarProvider, SidebarTrigger } from "shadmin/components/ui/sidebar";
 import { UserMenu } from "shadmin/components/admin/user-menu";
 import { ThemeModeToggle } from "shadmin/components/admin/theme-mode-toggle";
 import { Notification } from "shadmin/components/admin/notification";
-import { DemoSidebar } from "./DemoSidebar";
+import { DemoSidebar } from "./demo-sidebar";
 import { RefreshButton } from "shadmin/components/admin/refresh-button";
 import { LocalesMenuButton } from "shadmin/components/admin/locales-menu-button";
 import { Error } from "shadmin/components/admin/error";

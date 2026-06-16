@@ -677,7 +677,7 @@ You can use `<ListGuesser>` to quickly bootstrap a List view on top of an existi
 // in src/App.js
 import { Admin, ListGuesser } from "@/components/admin";
 import { Resource } from "ra-core";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => (
   <Admin dataProvider={dataProvider}>

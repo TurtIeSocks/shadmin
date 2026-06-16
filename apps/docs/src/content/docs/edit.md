@@ -35,7 +35,7 @@ export const CustomerEdit = () => (
 import { Admin } from "@/components/admin";
 import { Resource } from "ra-core";
 
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { CustomerEdit } from "./customers";
 
 const App = () => (
@@ -678,7 +678,7 @@ You can use [`<EditGuesser>`](./EditGuesser.md) to quickly bootstrap an Edit vie
 // in src/App.js
 import { Admin, EditGuesser } from "@/components/admin";
 import { Resource } from "ra-core";
-import dataProvider from "./dataProvider";
+import dataProvider from "./data-provider";
 
 const App = () => (
   <Admin dataProvider={dataProvider}>

@@ -1,9 +1,9 @@
 import { ResourceProps } from "ra-core";
 import { BarChart3 } from "lucide-react";
-import { AnalyticsList } from "./AnalyticsList";
-import { AnalyticsShow } from "./AnalyticsShow";
-import { AnalyticsEdit } from "./AnalyticsEdit";
-import { AnalyticsCreate } from "./AnalyticsCreate";
+import { AnalyticsList } from "./analytics-list";
+import { AnalyticsShow } from "./analytics-show";
+import { AnalyticsEdit } from "./analytics-edit";
+import { AnalyticsCreate } from "./analytics-create";
 
 export { reportsSeed } from "./reports-seed";
 export type { Report } from "./reports-seed";

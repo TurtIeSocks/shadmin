@@ -14,7 +14,7 @@ import { Admin } from "@/components/admin";
 import { Resource, CustomRoutes } from "ra-core";
 import { Route } from "react-router";
 
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import posts from "./posts";
 import comments from "./comments";
 import { Settings } from "./Settings";

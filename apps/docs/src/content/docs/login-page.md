@@ -59,8 +59,8 @@ Alternatively, you can create your own login page component and pass it to the `
 ```tsx
 import { Admin } from "@/components/admin";
 import { LoginPage } from "@/components/login-page"; // Your custom login page
-import { dataProvider } from "./dataProvider";
-import { authProvider } from "./authProvider";
+import { dataProvider } from "./data-provider";
+import { authProvider } from "./auth-provider";
 
 const App = () => (
   <Admin

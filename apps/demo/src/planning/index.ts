@@ -1,9 +1,9 @@
 import { ResourceProps } from "ra-core";
 import { CalendarDays } from "lucide-react";
-import { PlanningCreate } from "./PlanningCreate";
-import { PlanningEdit } from "./PlanningEdit";
-import { PlanningList } from "./PlanningList";
-import { PlanningShow } from "./PlanningShow";
+import { PlanningCreate } from "./planning-create";
+import { PlanningEdit } from "./planning-edit";
+import { PlanningList } from "./planning-list";
+import { PlanningShow } from "./planning-show";
 
 export const planning: ResourceProps = {
   name: "tasks",

@@ -2,10 +2,10 @@ import VercelLogo from "/img/logo-vercel.svg";
 import NetlifyLogo from "/img/netlify-logo.svg";
 import GitHubPagesLogo from "/img/github-logo.svg";
 import CloudflareLogo from "/img/cloudflare-logo.svg";
-import { GlassPanel } from "@/components/aurora/GlassPanel";
-import { GradientText } from "@/components/aurora/GradientText";
-import { Eyebrow } from "@/components/aurora/Eyebrow";
-import { Reveal, RevealItem } from "@/components/aurora/Reveal";
+import { GlassPanel } from "@/components/aurora/glass-panel";
+import { GradientText } from "@/components/aurora/gradient-text";
+import { Eyebrow } from "@/components/aurora/eyebrow";
+import { Reveal, RevealItem } from "@/components/aurora/reveal";
 
 const hosts = [
   { name: "Vercel", logo: VercelLogo },

@@ -13,8 +13,8 @@ import {
 import { StatusTransitionButton } from "shadmin/components/extras/status-transition-button";
 import { RecordRepresentation } from "ra-core";
 import { Link } from "react-router";
-import { Basket } from "./Basket";
-import { Totals } from "./Totals";
+import { Basket } from "./basket";
+import { Totals } from "./totals";
 import { ORDER_TRANSITIONS } from "./order-transitions";
 import type { Order } from "../types";
 

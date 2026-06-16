@@ -2,7 +2,7 @@
 title: "Inspector"
 ---
 
-import PropsTable from "../../components/PropsTable.astro";
+import PropsTable from "../../components/props-table.astro";
 
 `<Inspector>`, `<InspectorButton>`, and `<Configurable>` form a live-edit system that lets end users customize parts of the UI at runtime. Users toggle "edit mode" via the `<InspectorButton>` (typically placed in the app header). Once edit mode is on, every `<Configurable>` element shows a hover affordance and a cogwheel that opens its own editor inside the floating `<Inspector>` panel. Changes persist in the [`Store`](https://marmelab.com/ra-core/store/), so user choices survive reloads.
 

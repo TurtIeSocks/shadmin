@@ -1,7 +1,7 @@
 import { ResourceProps } from "ra-core";
-import { ProductList } from "./ProductList";
-import { ProductEdit } from "./ProductEdit";
-import { ProductCreate } from "./ProductCreate";
+import { ProductList } from "./product-list";
+import { ProductEdit } from "./product-edit";
+import { ProductCreate } from "./product-create";
 import { Images } from "lucide-react";
 
 export const products: ResourceProps = {

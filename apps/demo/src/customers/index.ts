@@ -1,7 +1,7 @@
 import { ResourceProps } from "ra-core";
-import { CustomerList } from "./CustomerList";
-import { CustomerEdit } from "./CustomerEdit";
-import { CustomerCreate } from "./CustomerCreate";
+import { CustomerList } from "./customer-list";
+import { CustomerEdit } from "./customer-edit";
+import { CustomerCreate } from "./customer-create";
 import { Users } from "lucide-react";
 
 export const customers: ResourceProps = {

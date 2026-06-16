@@ -84,7 +84,7 @@ Now, you can use this data provider in your admin app.
 ```tsx
 // app/admin/App.tsx
 import { Admin } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => <Admin dataProvider={dataProvider}></Admin>;
 
@@ -110,7 +110,7 @@ Now, you can use this data provider in your admin app.
 ```tsx
 // src/App.tsx
 import { Admin } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => <Admin dataProvider={dataProvider}></Admin>;
 
@@ -136,7 +136,7 @@ Now, you can use this data provider in your admin app.
 ```tsx
 // app/admin/App.tsx
 import { Admin } from "~/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => <Admin basename="/admin" dataProvider={dataProvider}></Admin>;
 
@@ -163,7 +163,7 @@ Now, you can use this data provider in your admin app.
 import { tanStackRouterProvider } from "ra-router-tanstack";
 import { createFileRoute } from "@tanstack/react-router";
 import { Admin } from "@/components/admin";
-import { dataProvider } from "@/dataProvider.ts";
+import { dataProvider } from "@/data-provider.ts";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -192,7 +192,7 @@ The `<Admin>` component expects one or more [`<Resource>`](./resource) child com
 +import { Resource } from "ra-core";
 -import { Admin } from "@/components/admin";
 +import { Admin, ListGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => (
     <Admin dataProvider={dataProvider}>
@@ -209,7 +209,7 @@ export default App;
 +import { Resource } from "ra-core";
 -import { Admin } from "@/components/admin";
 +import { Admin, ListGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => (
     <Admin dataProvider={dataProvider}>
@@ -226,7 +226,7 @@ export default App;
 +import { Resource } from "ra-core";
 -import { Admin } from "~/components/admin";
 +import { Admin, ListGuesser } from "~/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => (
     <Admin basename="/admin" dataProvider={dataProvider}>
@@ -244,7 +244,7 @@ import { tanStackRouterProvider } from "ra-router-tanstack";
 import { createFileRoute } from "@tanstack/react-router";
 -import { Admin } from "@/components/admin";
 +import { Admin, ListGuesser } from "@/components/admin";
-import { dataProvider } from "@/dataProvider.ts";
+import { dataProvider } from "@/data-provider.ts";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -305,7 +305,7 @@ Next, update `App.tsx` to use this new component instead of `ListGuesser`:
 // app/admin/App.tsx
 import { Resource } from "ra-core";
 import { Admin, ListGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 +import { UserList } from "./users";
 
 const App = () => (
@@ -345,7 +345,7 @@ Next, update `App.tsx` to use this new component instead of `ListGuesser`:
 // src/App.tsx
 import { Resource } from "ra-core";
 import { Admin, ListGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 +import { UserList } from "./users";
 
 const App = () => (
@@ -385,7 +385,7 @@ Next, update `App.tsx` to use this new component instead of `ListGuesser`:
 // app/admin/App.tsx
 import { Resource } from "ra-core";
 import { Admin, ListGuesser } from "~/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 +import { UserList } from "./users";
 
 const App = () => (
@@ -426,7 +426,7 @@ import { tanStackRouterProvider } from "ra-router-tanstack";
 import { createFileRoute } from "@tanstack/react-router";
 -import { Admin, ListGuesser } from "@/components/admin";
 +import { Admin } from "@/components/admin";
-import { dataProvider } from "@/dataProvider.ts";
+import { dataProvider } from "@/data-provider.ts";
 +import { UserList } from "@/components/app/users.tsx";
 
 export const Route = createFileRoute("/")({ component: App });
@@ -574,7 +574,7 @@ In JSONPlaceholder, each `post` record includes a `userId` field, which points t
 // App.tsx
 import { Resource } from "ra-core";
 import { Admin, ListGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { UserList } from "./users";
 
 const App = () => (
@@ -618,7 +618,7 @@ export const PostList = () => (
 import { Resource } from "ra-core";
 -import { Admin, ListGuesser } from "@/components/admin";
 +import { Admin } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 +import { PostList } from "./posts";
 import { UserList } from "./users";
 
@@ -691,7 +691,7 @@ So far, the admin only has list pages. Additionally, the user list doesn't rende
 import { Resource } from "ra-core";
 -import { Admin } from "@/components/admin";
 +import { Admin, ShowGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { PostList } from "./posts";
 import { UserList } from "./users";
 
@@ -726,7 +726,7 @@ An admin interface isn't just about displaying remote data; it should also allow
 import { Resource } from "ra-core";
 -import { Admin, ShowGuesser } from "@/components/admin";
 +import { Admin, EditGuesser, ShowGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { PostList } from "./posts";
 import { UserList } from "./users";
 
@@ -789,7 +789,7 @@ Use that component as the `edit` prop of the "posts" resource instead of the gue
 import { Resource } from "ra-core";
 -import { Admin, EditGuesser, ShowGuesser } from "@/components/admin";
 +import { Admin, ShowGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 -import { PostList } from "./posts";
 +import { PostEdit, PostList } from "./posts";
 import { UserList } from "./users";
@@ -875,7 +875,7 @@ To use the new `<PostCreate>` component in the posts resource, just add it as th
 // App.tsx
 import { Resource } from "ra-core";
 import { Admin, ShowGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 -import { PostEdit, PostList } from "./posts";
 +import { PostCreate, PostEdit, PostList } from "./posts";
 import { UserList } from "./users";
@@ -968,7 +968,7 @@ The sidebar menu shows the same icon for both posts and users. Customizing the m
 import { Resource } from "ra-core";
 +import { StickyNoteIcon, UsersIcon } from "lucide-react";
 import { Admin, ShowGuesser } from "@/components/admin";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { PostCreate, PostEdit, PostList } from "./posts";
 import { UserList } from "./users";
 
@@ -1080,7 +1080,7 @@ To enable this authentication strategy, pass the `authProvider` to the `<Admin>`
 
 ```diff lang="tsx"
 // App.tsx
-+import { authProvider } from "./authProvider";
++import { authProvider } from "./auth-provider";
 
 const App = () => (
     <Admin
@@ -1228,7 +1228,7 @@ Using this provider instead of the previous `jsonServerProvider` is just a matte
 
 ```tsx
 // App.tsx
-import { dataProvider } from './dataProvider';
+import { dataProvider } from './data-provider';
 
 const App = () => (
   <Admin dataProvider={dataProvider}>

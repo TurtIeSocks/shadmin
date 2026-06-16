@@ -1,8 +1,8 @@
 import { ResourceProps } from "ra-core";
 import { DollarSign } from "lucide-react";
-import { OrderList } from "./OrderList";
-import { OrderEdit } from "./OrderEdit";
-import { OrderShow } from "./OrderShow";
+import { OrderList } from "./order-list";
+import { OrderEdit } from "./order-edit";
+import { OrderShow } from "./order-show";
 
 export const orders: ResourceProps = {
   name: "orders",

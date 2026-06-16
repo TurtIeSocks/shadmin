@@ -26,7 +26,7 @@ import {
 } from "date-fns";
 import segments from "../segments/data";
 
-import { FullNameField } from "./FullNameField";
+import { FullNameField } from "./full-name-field";
 import { useIsMobile } from "shadmin/hooks/use-mobile";
 
 const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {

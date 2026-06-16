@@ -1,9 +1,9 @@
 import { CreditCardIcon } from "lucide-react";
 import type { ResourceProps } from "ra-core";
 
-import { SubscriptionEdit } from "./SubscriptionEdit";
-import { SubscriptionList } from "./SubscriptionList";
-import { SubscriptionShow } from "./SubscriptionShow";
+import { SubscriptionEdit } from "./subscription-edit";
+import { SubscriptionList } from "./subscription-list";
+import { SubscriptionShow } from "./subscription-show";
 
 export const subscriptions: ResourceProps = {
   name: "subscriptions",

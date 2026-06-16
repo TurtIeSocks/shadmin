@@ -1,5 +1,5 @@
 import { MessageSquareText } from "lucide-react";
-import { ReviewList } from "./ReviewList";
+import { ReviewList } from "./review-list";
 
 export const reviews = {
   name: "reviews",

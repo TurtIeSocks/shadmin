@@ -4,11 +4,11 @@ import FirebaseLogo from "/img/firebase-logo.svg";
 import StrapiLogo from "/img/strapi-logo.svg";
 import HasuraLogo from "/img/hasura-logo.svg";
 import { LayoutDashboard, ChevronDown, Database } from "lucide-react";
-import { GlassPanel } from "@/components/aurora/GlassPanel";
-import { GradientText } from "@/components/aurora/GradientText";
-import { Eyebrow } from "@/components/aurora/Eyebrow";
-import { MagneticButton } from "@/components/aurora/MagneticButton";
-import { Reveal, RevealItem } from "@/components/aurora/Reveal";
+import { GlassPanel } from "@/components/aurora/glass-panel";
+import { GradientText } from "@/components/aurora/gradient-text";
+import { Eyebrow } from "@/components/aurora/eyebrow";
+import { MagneticButton } from "@/components/aurora/magnetic-button";
+import { Reveal, RevealItem } from "@/components/aurora/reveal";
 
 const backends = [
   { name: "Supabase", logo: SupabaseLogo },

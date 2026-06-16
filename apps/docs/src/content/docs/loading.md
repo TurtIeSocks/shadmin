@@ -17,10 +17,10 @@ import * as React from "react";
 import { Admin } from "@/components/admin";
 import { Resource } from "ra-core";
 
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
-const OrderList = React.lazy(() => import("./orders/OrderList"));
-const OrderEdit = React.lazy(() => import("./orders/OrderEdit"));
+const OrderList = React.lazy(() => import("./orders/order-list"));
+const OrderEdit = React.lazy(() => import("./orders/order-edit"));
 
 const App = () => (
   <Admin dataProvider={dataProvider}>

@@ -11,23 +11,23 @@ import { lazy } from "react";
 const demos = {
   default: {
     label: "Default (CRM)",
-    load: () => import("./App.crm"),
+    load: () => import("./app.crm"),
   },
   guessers: {
     label: "Guessers",
-    load: () => import("./App.guessers"),
+    load: () => import("./app.guessers"),
   },
   realtime: {
     label: "Realtime",
-    load: () => import("./App.realtime"),
+    load: () => import("./app.realtime"),
   },
   "rich-text": {
     label: "Rich Text Input",
-    load: () => import("./App.rich-text-input"),
+    load: () => import("./app.rich-text-input"),
   },
   supabase: {
     label: "Supabase (needs .env)",
-    load: () => import("./App.supabase"),
+    load: () => import("./app.supabase"),
   },
 } as const;
 

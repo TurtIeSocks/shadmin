@@ -10,7 +10,7 @@ Redirection target used by external authentication services (e.g. OAuth) after a
 
 ```tsx
 import { Admin } from "@/components/admin";
-import { authProvider } from "./authProvider";
+import { authProvider } from "./auth-provider";
 
 const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider}>

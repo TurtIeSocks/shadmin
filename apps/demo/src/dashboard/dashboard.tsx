@@ -4,13 +4,13 @@ import { subDays, startOfDay } from "date-fns";
 import { Breadcrumb, BreadcrumbPage } from "shadmin/components/admin";
 import { JobMonitor } from "shadmin/components/extras/job-monitor";
 
-import Welcome from "./Welcome";
-import MonthlyRevenue from "./MonthlyRevenue";
-import NbNewOrders from "./NbNewOrders";
-import PendingOrders from "./PendingOrders";
-import PendingReviews from "./PendingReviews";
-import NewCustomers from "./NewCustomers";
-import OrderChart from "./OrderChart";
+import Welcome from "./welcome";
+import MonthlyRevenue from "./monthly-revenue";
+import NbNewOrders from "./nb-new-orders";
+import PendingOrders from "./pending-orders";
+import PendingReviews from "./pending-reviews";
+import NewCustomers from "./new-customers";
+import OrderChart from "./order-chart";
 
 import { Order } from "../types";
 

@@ -1,5 +1,5 @@
-import { MagneticButton } from "@/components/aurora/MagneticButton";
-import { Reveal } from "@/components/aurora/Reveal";
+import { MagneticButton } from "@/components/aurora/magnetic-button";
+import { Reveal } from "@/components/aurora/reveal";
 
 export function CallToAction() {
   return (

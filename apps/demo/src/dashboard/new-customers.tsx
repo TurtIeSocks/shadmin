@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { ListBase, WithListContext, useTranslate } from "ra-core";
 import { subDays } from "date-fns";
 
-import { CardWithIcon } from "./CardWithIcon";
+import { CardWithIcon } from "./card-with-icon";
 import { Customer } from "../types";
 
 const NewCustomers = () => {

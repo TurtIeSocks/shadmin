@@ -1,9 +1,9 @@
 import { KeyIcon } from "lucide-react";
 import type { ResourceProps } from "ra-core";
 
-import { ApiKeyCreate } from "./ApiKeyCreate";
-import { ApiKeyList } from "./ApiKeyList";
-import { ApiKeyShow } from "./ApiKeyShow";
+import { ApiKeyCreate } from "./api-key-create";
+import { ApiKeyList } from "./api-key-list";
+import { ApiKeyShow } from "./api-key-show";
 
 export const apiKeys: ResourceProps = {
   name: "api_keys",

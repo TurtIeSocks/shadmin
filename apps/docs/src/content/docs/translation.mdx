@@ -42,7 +42,7 @@ export const i18nProvider = {
 Use the `<Admin i18nProvider>` prop to define the `i18nProvider` of a Shadmin app:
 
 ```tsx
-import { i18nProvider } from './i18nProvider';
+import { i18nProvider } from './i18n-provider';
 
 const App = () => (
     <Admin dataProvider={dataProvider} i18nProvider={i18nProvider}>
@@ -114,7 +114,7 @@ export const i18nProvider = polyglotI18nProvider(
 
 // in src/App.js
 import { Admin } from '@/components/admin/admin';
-import { i18nProvider } from './i18nProvider';
+import { i18nProvider } from './i18n-provider';
 
 const App = () => (
     <Admin i18nProvider={i18nProvider} dataProvider={dataProvider}>
@@ -171,7 +171,7 @@ export const useMyI18nProvider = () =>
 
 // in src/App.tsx
 import { Admin } from '@/components/admin/admin';
-import { useMyI18nProvider } from './i18nProvider';
+import { useMyI18nProvider } from './i18n-provider';
 
 const App = () => {
     const i18nProvider = useMyI18nProvider();

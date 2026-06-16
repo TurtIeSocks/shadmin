@@ -2,7 +2,7 @@ import { useTranslate } from "ra-core";
 import { Card, CardContent } from "shadmin/components/ui/card";
 
 import { Order } from "../types";
-import { PendingOrder } from "./PendingOrder";
+import { PendingOrder } from "./pending-order";
 
 interface Props {
   orders?: Order[];

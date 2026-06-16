@@ -1,10 +1,10 @@
 import { ClockIcon } from "lucide-react";
 import type { ResourceProps } from "ra-core";
 
-import { ScheduledJobCreate } from "./ScheduledJobCreate";
-import { ScheduledJobEdit } from "./ScheduledJobEdit";
-import { ScheduledJobList } from "./ScheduledJobList";
-import { ScheduledJobShow } from "./ScheduledJobShow";
+import { ScheduledJobCreate } from "./scheduled-job-create";
+import { ScheduledJobEdit } from "./scheduled-job-edit";
+import { ScheduledJobList } from "./scheduled-job-list";
+import { ScheduledJobShow } from "./scheduled-job-show";
 
 export const scheduledJobs: ResourceProps = {
   name: "scheduled_jobs",

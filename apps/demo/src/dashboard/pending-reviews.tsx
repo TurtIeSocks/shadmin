@@ -6,7 +6,7 @@ import { Link } from "react-router";
 import { WithRecord, useGetList, useTranslate } from "ra-core";
 import { ReferenceField } from "shadmin/components/admin/reference-field";
 
-import { CardWithIcon } from "./CardWithIcon";
+import { CardWithIcon } from "./card-with-icon";
 //import StarRatingField from "../reviews/StarRatingField";
 import { Customer, Review } from "../types";
 

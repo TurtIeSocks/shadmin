@@ -61,7 +61,7 @@ Components using `<Show>` can be used as the `show` prop of a `<Resource>` compo
 import { Admin } from "@/copmponents/admin";
 import { Resource } from "ra-core";
 
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { ProductShow } from "./products";
 
 const App = () => (
@@ -81,7 +81,7 @@ You can use `<ShowGuesser>` to quickly bootstrap a Show view on top of an existi
 // in src/App.js
 import { Admin, ShowGuesser } from "@/components/admin";
 import { Resource } from "ra-core";
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 
 const App = () => (
   <Admin dataProvider={dataProvider}>

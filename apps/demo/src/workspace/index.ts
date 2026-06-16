@@ -1,9 +1,9 @@
 import { FileText } from "lucide-react";
 import type { ResourceProps } from "ra-core";
-import { WorkspaceCreate } from "./WorkspaceCreate";
-import { WorkspaceEdit } from "./WorkspaceEdit";
-import { WorkspaceList } from "./WorkspaceList";
-import { WorkspaceShow } from "./WorkspaceShow";
+import { WorkspaceCreate } from "./workspace-create";
+import { WorkspaceEdit } from "./workspace-edit";
+import { WorkspaceList } from "./workspace-list";
+import { WorkspaceShow } from "./workspace-show";
 
 export { documentsSeed } from "./documents-seed";
 export type {

@@ -1,10 +1,10 @@
 import { WebhookIcon } from "lucide-react";
 import type { ResourceProps } from "ra-core";
 
-import { WebhookCreate } from "./WebhookCreate";
-import { WebhookEdit } from "./WebhookEdit";
-import { WebhookList } from "./WebhookList";
-import { WebhookShow } from "./WebhookShow";
+import { WebhookCreate } from "./webhook-create";
+import { WebhookEdit } from "./webhook-edit";
+import { WebhookList } from "./webhook-list";
+import { WebhookShow } from "./webhook-show";
 
 export const webhooks: ResourceProps = {
   name: "webhooks",

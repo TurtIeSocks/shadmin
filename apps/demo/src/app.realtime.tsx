@@ -8,9 +8,9 @@ import {
 } from "shadmin/components/realtime";
 import { realtimeSeed } from "./realtime/seed";
 import { localStorageDataProvider } from "./realtime/local-storage-data-provider";
-import { PostListLive } from "./realtime/PostListLive";
-import { PostEditLive } from "./realtime/PostEditLive";
-import { PostShowLive } from "./realtime/PostShowLive";
+import { PostListLive } from "./realtime/post-list-live";
+import { PostEditLive } from "./realtime/post-edit-live";
+import { PostShowLive } from "./realtime/post-show-live";
 
 const transport = broadcastChannelTransport({
   channel: "shadcn-admin-realtime-demo",

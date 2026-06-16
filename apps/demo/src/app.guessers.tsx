@@ -1,4 +1,4 @@
-import { dataProvider } from "./dataProvider";
+import { dataProvider } from "./data-provider";
 import { Admin } from "shadmin/components/admin/admin";
 import { ListGuesser } from "shadmin/components/admin/list-guesser";
 import { ShowGuesser } from "shadmin/components/admin/show-guesser";

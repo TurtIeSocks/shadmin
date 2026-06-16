@@ -23,10 +23,10 @@ import { Card, CardContent } from "shadmin/components/ui/card";
 import { cn } from "shadmin/lib/utils";
 
 import { RatingField } from "shadmin/components/extras/rating-field";
-import { FullNameField } from "../customers/FullNameField";
-import { ReviewEdit } from "./ReviewEdit";
-import { BulkApproveButton } from "./BulkApproveButton";
-import { BulkRejectButton } from "./BulkRejectButton";
+import { FullNameField } from "../customers/full-name-field";
+import { ReviewEdit } from "./review-edit";
+import { BulkApproveButton } from "./bulk-approve-button";
+import { BulkRejectButton } from "./bulk-reject-button";
 import { useIsMobile } from "shadmin/hooks/use-mobile";
 import type { Review } from "../types";
 

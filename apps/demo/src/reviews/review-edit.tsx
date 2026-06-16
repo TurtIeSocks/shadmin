@@ -10,7 +10,7 @@ import { RatingField } from "shadmin/components/extras/rating-field";
 import { EditBase } from "ra-core";
 import { cn } from "shadmin/lib/utils";
 
-import { FullNameField } from "../customers/FullNameField";
+import { FullNameField } from "../customers/full-name-field";
 
 export const ReviewEdit = ({
   id,

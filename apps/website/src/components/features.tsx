@@ -18,10 +18,10 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { CSSProperties } from "react";
-import { GlassPanel } from "@/components/aurora/GlassPanel";
-import { GradientText } from "@/components/aurora/GradientText";
-import { Eyebrow } from "@/components/aurora/Eyebrow";
-import { Reveal, RevealItem } from "@/components/aurora/Reveal";
+import { GlassPanel } from "@/components/aurora/glass-panel";
+import { GradientText } from "@/components/aurora/gradient-text";
+import { Eyebrow } from "@/components/aurora/eyebrow";
+import { Reveal, RevealItem } from "@/components/aurora/reveal";
 import { cn } from "@/lib/utils";
 
 // Hand-placed Tetris bento. Each card is explicitly positioned on a 3-col grid
