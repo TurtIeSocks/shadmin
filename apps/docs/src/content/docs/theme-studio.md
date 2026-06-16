@@ -2,65 +2,56 @@
 title: "ThemeStudio"
 ---
 
-Live editor for an `AdminTheme`'s CSS custom properties. Updates
-`document.documentElement` directly so changes are visible instantly.
+Live editor for the active palette's CSS custom properties. Seeds its values
+from the currently-rendered theme via `getComputedStyle` and writes edits
+straight to `document.documentElement`, so changes are visible instantly.
 
 ## Usage
 
 ```tsx
-import { ThemeProvider, defaultTheme } from "@/components/admin";
+import { ThemeProvider } from "@/components/admin";
 import { ThemeStudio } from "@/components/extras/theme-studio";
 
-<ThemeProvider lightTheme={defaultTheme}>
-  <ThemeStudio theme={defaultTheme} />
+<ThemeProvider>
+  <ThemeStudio />
 </ThemeProvider>;
 ```
 
-Each variable in the theme's `light` map renders as a text input. Editing a
-value writes the new value to `document.documentElement.style` via
-`setProperty`, so the surrounding admin UI updates immediately — no rebuild,
-no reload. Values that look like a color (e.g. `oklch(...)`, `#aabbcc`,
-`rgb(...)`, `hsl(...)`) get a swatch preview chip next to the variable name.
+ThemeStudio takes **no theme prop** — it reads the live token values off
+`:root` (over a fixed list of shadcn semantic tokens), so it always reflects
+whatever palette and mode are currently active. Editing a value writes it to
+`document.documentElement.style` via `setProperty`, so the surrounding admin UI
+updates immediately — no rebuild, no reload. Color-valued tokens (e.g.
+`oklch(...)`, `#aabbcc`, `rgb(...)`) get a swatch + color-picker; size-valued
+tokens get a numeric input plus a unit select. Requires a surrounding
+`<ThemeProvider>` for the light/dark mode toggle to work.
 
 ## Props
 
-| Prop         | Required | Type                | Default | Description                            |
-| ------------ | -------- | ------------------- | ------- | -------------------------------------- |
-| `theme`      | Required | `AdminTheme`        | -       | Theme whose `light` variant is edited. |
-| `filter`     | Optional | `"color" \| "size"` | -       | Narrows the editable variable list.    |
-| `showExport` | Optional | `boolean`           | `true`  | Whether to render the Export button.   |
-| `className`  | Optional | `string`            | -       | CSS class applied to the outer card.   |
-
-## `theme`
-
-The `AdminTheme` whose `light` variant is exposed for editing. The component
-reads `theme.light` to populate the initial variable list, and resets to
-`theme.light` if the prop reference changes.
-
-```tsx
-<ThemeStudio theme={defaultTheme} />
-```
-
-## `filter`
-
-Narrows the editable list to color or size variables:
-
-- `"color"` keeps variables whose value matches `oklch(...)`, `#rgb`,
-  `rgb(...)`, or `hsl(...)`.
-- `"size"` keeps variables whose value contains `rem`, `px`, or `%`.
-
-```tsx
-<ThemeStudio theme={defaultTheme} filter="color" />
-```
+| Prop                  | Required | Type      | Default | Description                                       |
+| --------------------- | -------- | --------- | ------- | ------------------------------------------------- |
+| `showExport`          | Optional | `boolean` | `true`  | Whether to render the Export button.              |
+| `showThemeModeToggle` | Optional | `boolean` | `true`  | Whether to render the light/dark mode toggle.     |
+| `className`           | Optional | `string`  | -       | CSS class applied to the outer card.              |
 
 ## `showExport`
 
 Toggles the Export button (default `true`). Set to `false` to hide it
-entirely — useful when the studio is embedded in a settings panel that has
-its own save flow.
+entirely — useful when the studio is embedded in a settings panel that has its
+own save flow.
 
 ```tsx
-<ThemeStudio theme={defaultTheme} showExport={false} />
+<ThemeStudio showExport={false} />
+```
+
+## `showThemeModeToggle`
+
+Toggles the built-in light/dark mode toggle in the card header (default
+`true`). The studio edits whichever mode is currently active, so flipping the
+mode lets you tune the light and dark variants separately.
+
+```tsx
+<ThemeStudio showThemeModeToggle={false} />
 ```
 
 ## `className`
@@ -69,22 +60,24 @@ Custom class applied to the outer `Card`. Combine with `cn` to tweak the
 default `max-h-[60vh] overflow-y-auto`.
 
 ```tsx
-<ThemeStudio theme={defaultTheme} className="max-h-[80vh]" />
+<ThemeStudio className="max-h-[80vh]" />
 ```
 
 ## Export
 
-The Export button copies a TypeScript `AdminTheme` snippet to the clipboard
-via `navigator.clipboard.writeText`. The snippet derives `name` from
-`theme.name` with a `-custom` suffix so the result can be pasted alongside
-the original theme without colliding on identity.
+The Export button copies a **CSS snippet** to the clipboard via
+`navigator.clipboard.writeText` — a `:root { … }` block for the edits made in
+light mode and a `.dark { … }` block for those made in dark mode (each block is
+emitted only once you've edited that mode). Paste the snippet into your
+`globals.css` to persist the changes.
 
-Edits are not persisted by the component — reload reverts to the original
-theme's values. Persistence is the caller's responsibility (typical pattern:
-copy the exported snippet into a theme module, then ship the updated theme).
+Edits are not persisted by the component — reload reverts to the stylesheet's
+values. Persistence is the caller's responsibility (typical pattern: export the
+CSS and paste it into your theme stylesheet).
 
 ## Limitations
 
-- v1 edits only the `light` variant. Dark-mode editing is deferred.
+- Edits the semantic shadcn tokens (`--background`, `--primary`, the chart and
+  sidebar tokens, `--radius`, …); it does not expose arbitrary custom variables.
 - No undo/redo — live edits stack on `document.documentElement.style`.
-- No persistence — reload reverts to the original theme.
+- No persistence — reload reverts to the stylesheet's values.

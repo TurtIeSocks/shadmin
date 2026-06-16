@@ -2,156 +2,108 @@
 title: "Themes"
 ---
 
-Shadmin ships with a small library of named themes — palettes of CSS variables that the `<ThemeProvider>` applies to the document root at runtime. Each theme covers both light and dark modes, and the active palette is a config-time choice: pass it to `<Admin>` once and only the light/dark mode toggles at runtime.
+Shadmin uses **native shadcn theming**. A theme is a set of CSS custom properties
+(`--primary`, `--background`, …) living in your stylesheet — not a runtime
+JavaScript object. The default palette ships in `src/index.css` (`:root` for
+light, `.dark` for dark) and every component renders against it.
 
-The five built-in themes are:
+Alternate palettes are distributed through the registry as `registry:theme`
+items. Installing one merges its variables into your own `globals.css`, so the
+choice is made at install time and baked into your CSS — exactly like picking a
+theme on [ui.shadcn.com/themes](https://ui.shadcn.com/themes).
 
-- **defaultTheme** — the neutral palette shipped in `src/index.css`.
-- **bwTheme** — high-contrast monochrome (black & white).
-- **nanoTheme** — dense, minimal chrome with cool slate neutrals.
-- **radiantTheme** — vivid violet/cyan/lime acid palette with generous radii.
-- **houseTheme** — warm orange/coral palette with rounded corners.
+> **Light/dark mode** is a separate concern from the palette. `<ThemeProvider>`
+> still manages the `light`/`dark`/`system` mode and toggles the `.dark` class on
+> `<html>`. See [ThemeMode Toggle](./theme-mode-toggle/). Each palette below
+> defines both its light and dark variables.
 
-## Usage
+## Built-in palettes
 
-Pass a theme to `<Admin>` via the `theme` prop:
+| Theme | Registry item | Character |
+| --- | --- | --- |
+| **aurora** | `theme-aurora` | Shadmin's signature look — violet/teal palette **plus** the aurora gradient and liquid-glass utilities (`glass`, `bezel`, `text-aurora`, `bg-aurora`). |
+| **bw** | `theme-bw` | High-contrast monochrome, no chroma, sharp `0.25rem` radius. |
+| **nano** | `theme-nano` | Cool slate neutrals, tight radius — for information-dense views. |
+| **radiant** | `theme-radiant` | Vivid violet/cyan/lime acid palette, generous radii. |
+| **house** | `theme-house` | Warm orange/coral palette with rounded corners. |
 
-```tsx
-import { Admin, radiantTheme } from "@/components/admin";
-import { Resource } from "ra-core";
+The **default** (shadcn-neutral) palette needs no install — it's already in your
+`src/index.css`.
 
-const App = () => (
-  <Admin dataProvider={dataProvider} theme={radiantTheme}>
-    <Resource name="posts" list={PostList} />
-  </Admin>
-);
+## Installing a palette
+
+Add a theme item with the shadcn CLI:
+
+```bash
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/theme-aurora.json
 ```
 
-The `theme` prop is a convenience alias for `lightTheme`. The same theme is reused in dark mode (its built-in `dark` variable map is applied). To use **different** themes in light and dark mode, pass `lightTheme` and `darkTheme` separately:
+If you've registered the shadmin namespace in `components.json` (see the
+[Registry/MCP](./mcp/) page), the short form works too:
 
-```tsx
-import { Admin, nanoTheme, bwTheme } from "@/components/admin";
-
-const App = () => (
-  <Admin dataProvider={dataProvider} lightTheme={nanoTheme} darkTheme={bwTheme}>
-    <Resource name="posts" list={PostList} />
-  </Admin>
-);
+```bash
+npx shadcn@latest add @shadmin/theme-aurora
 ```
 
-If you omit all theme props, your existing `src/index.css` `:root` and `.dark` blocks remain in effect — the inline overrides only kick in when a theme is supplied.
+The CLI rewrites your `globals.css`: the palette's variables are merged into
+`:root` and `.dark` (overwriting the matching tokens), and `theme-aurora`
+additionally appends its gradient/glass `@utility` rules and the `--aurora`
+token to `@theme inline`, so Tailwind v4 generates the real `.glass` /
+`.bg-aurora` / `.text-aurora` classes. **Installing a theme is destructive** —
+it overwrites your current token values. To switch palettes later, re-run `add`
+with a different theme.
 
-## Available Themes
+## Authoring your own palette
 
-### `defaultTheme`
+A theme is just CSS. The native approach is to edit the `:root` / `.dark`
+blocks in your own `globals.css` directly:
 
-The neutral baseline that mirrors `src/index.css` exactly. Choose this (or no theme at all) to preserve the historical visual identity of shadmin.
-
-- **Light**: white background, near-black text and primary.
-- **Dark**: near-black background, near-white text.
-- **Radius**: `0.625rem`.
-
-```tsx
-import { Admin, defaultTheme } from "@/components/admin";
-
-<Admin dataProvider={dataProvider} theme={defaultTheme}>
-  ...
-</Admin>;
+```css
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.98 0.02 220);
+  --foreground: oklch(0.2 0.05 230);
+  --primary: oklch(0.45 0.15 230);
+  --primary-foreground: oklch(0.98 0.02 220);
+  /* …the rest of the shadcn tokens */
+}
+.dark {
+  --background: oklch(0.18 0.04 230);
+  --foreground: oklch(0.95 0.02 220);
+  --primary: oklch(0.7 0.18 220);
+  --primary-foreground: oklch(0.15 0.04 230);
+  /* … */
+}
 ```
 
-### `bwTheme`
+For the full list of tokens shadmin understands, copy the `:root` and `.dark`
+blocks from `src/index.css` as a starting point and adjust values to taste. The
+[ThemeStudio](./theme-studio/) component lets you tune these live in the browser
+and copy the resulting CSS snippet back into source.
 
-Pure grayscale, no chroma anywhere in the palette. Charts step down the grayscale ramp.
+## Runtime palette switching (advanced)
 
-- **Light**: white surfaces, near-black primary.
-- **Dark**: pure black surfaces, white primary.
-- **Radius**: `0.25rem` (sharper corners than default).
+The distributed package has **no runtime palette layer** — switching at runtime
+is an app-level pattern, not a built-in. If you want a live theme picker (like
+the one in the shadmin demo), author each palette as a **scoped class** so
+several can coexist in one stylesheet, then toggle the class on `<html>`:
 
-```tsx
-import { Admin, bwTheme } from "@/components/admin";
-
-<Admin dataProvider={dataProvider} theme={bwTheme}>
-  ...
-</Admin>;
+```css
+/* src/styles/themes/aurora.css */
+.theme-aurora      { --primary: oklch(0.52 0.17 286); /* …light */ }
+.theme-aurora.dark { --primary: oklch(0.70 0.15 286); /* …dark  */ }
 ```
-
-### `nanoTheme`
-
-Cool, calm, blue-tinted slate palette. Lower chroma and a tight `--radius: 0.125rem` make this suitable for information-dense admin views.
-
-- **Light**: very pale slate-tinted off-white background, deep slate primary.
-- **Dark**: rich slate background, near-white primary.
-- **Radius**: `0.125rem`.
-
-```tsx
-import { Admin, nanoTheme } from "@/components/admin";
-
-<Admin dataProvider={dataProvider} theme={nanoTheme}>
-  ...
-</Admin>;
-```
-
-### `radiantTheme`
-
-Bold acid palette — vivid violet primary, cyan accents, magenta destructive, lime chart hues. Large radii soften the saturation.
-
-- **Light**: near-white background, deep violet primary, cyan accent, magenta destructive.
-- **Dark**: violet-tinted dark surfaces, bright violet primary.
-- **Radius**: `0.75rem`.
-
-```tsx
-import { Admin, radiantTheme } from "@/components/admin";
-
-<Admin dataProvider={dataProvider} theme={radiantTheme}>
-  ...
-</Admin>;
-```
-
-### `houseTheme`
-
-Warm, joyful palette built around orange and coral, with peachy accents.
-
-- **Light**: warm cream background, vivid orange primary, peachy accent.
-- **Dark**: deep cocoa/burgundy surfaces, bright coral primary.
-- **Radius**: `1rem`.
-
-```tsx
-import { Admin, houseTheme } from "@/components/admin";
-
-<Admin dataProvider={dataProvider} theme={houseTheme}>
-  ...
-</Admin>;
-```
-
-## Building a Custom Theme
-
-A theme is a plain TypeScript object that satisfies the `AdminTheme` interface — a `name`, optional `label`, and a `light` (and optional `dark`) map of CSS variable names to values:
 
 ```ts
-import type { AdminTheme } from "@/components/admin";
-
-export const oceanTheme: AdminTheme = {
-  name: "ocean",
-  label: "Ocean",
-  light: {
-    "--radius": "0.5rem",
-    "--background": "oklch(0.98 0.02 220)",
-    "--foreground": "oklch(0.2 0.05 230)",
-    "--primary": "oklch(0.45 0.15 230)",
-    "--primary-foreground": "oklch(0.98 0.02 220)",
-    // ...the rest of the shadcn CSS variables
-  },
-  dark: {
-    "--radius": "0.5rem",
-    "--background": "oklch(0.18 0.04 230)",
-    "--foreground": "oklch(0.95 0.02 220)",
-    "--primary": "oklch(0.7 0.18 220)",
-    "--primary-foreground": "oklch(0.15 0.04 230)",
-    // ...
-  },
-};
+// flip the active palette (clear the others first), then persist the choice
+document.documentElement.classList.remove("theme-aurora", "theme-bw" /* … */);
+document.documentElement.classList.add("theme-aurora");
 ```
 
-`ThemeProvider` will write each entry to `documentElement.style` via `setProperty(key, value)` when the matching mode is active, and clean those overrides up when the theme changes or the provider unmounts.
-
-For the full list of variables shadmin understands, see the `:root` and `.dark` blocks in `src/index.css`. The `defaultTheme` export contains every key — copy it as a starting point and adjust values to taste.
+`.theme-<name>` (specificity 0,1,0) wins the source-order tie with `:root`, and
+`.theme-<name>.dark` (0,2,0) beats the base `.dark` block in dark mode — provided
+the palette files are imported **after** `index.css`. The shadmin demo
+implements exactly this in
+[`apps/demo/src/use-theme-palette.ts`](https://github.com/TurtIeSocks/shadmin/blob/main/apps/demo/src/use-theme-palette.ts)
+and `theme-palette-switcher.tsx`. The registry `theme-*` items above are
+generated from these same scoped CSS files.

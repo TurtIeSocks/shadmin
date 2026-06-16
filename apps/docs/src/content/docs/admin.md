@@ -47,8 +47,6 @@ Here are all the props accepted by the component:
 | `basename`            | Optional | `string`       | -                    | The base path for all URLs                                      |
 | `catchAll`            | Optional | `Component`    | `NotFound`           | The fallback component for unknown routes                       |
 | `dashboard`           | Optional | `Component`    | -                    | The content of the dashboard page                               |
-| `darkTheme`           | Optional | `object`       | `default DarkTheme`  | The dark theme configuration                                    |
-| `defaultTheme`        | Optional | `boolean`      | `false`              | Flag to default to the light theme                              |
 | `disableTelemetry`    | Optional | `boolean`      | `false`              | Set to `true` to disable telemetry collection                   |
 | `error`               | Optional | `Component`    | -                    | A React component rendered in the content area in case of error |
 | `i18nProvider`        | Optional | `I18NProvider` | -                    | The internationalization provider for translations              |
@@ -59,7 +57,6 @@ Here are all the props accepted by the component:
 | `ready`               | Optional | `Component`    | `Ready`              | The content of the ready page                                   |
 | `requireAuth`         | Optional | `boolean`      | `false`              | Flag to require authentication for all routes                   |
 | `store`               | Optional | `Store`        | -                    | The Store for managing user preferences                         |
-| `theme`               | Optional | `object`       | `default LightTheme` | The main (light) theme configuration                            |
 | `title`               | Optional | `string`       | -                    | The error page title                                            |
 
 To learn more about these props, refer to [the `<CoreAdmin>` component documentation](https://marmelab.com/ra-core/coreadmin/) on the ra-core website.
@@ -69,7 +66,7 @@ To learn more about these props, refer to [the `<CoreAdmin>` component documenta
 `<Admin>` is a thin composition of two lower-level components exported from the same module:
 
 - `<AdminContext>` — the **provider half**. Wraps `CoreAdminContext` and applies shadmin's default `store` (`localStorageStore()`) and `i18nProvider`.
-- `<AdminUI>` — the **UI half**. Wraps `CoreAdminUI` with the `<ThemeProvider>` (accepting `theme` / `lightTheme` / `darkTheme`) and shadmin's default pages (login, not-found, ready, auth-callback). Telemetry pings are emitted from here in production builds unless `disableTelemetry` is set.
+- `<AdminUI>` — the **UI half**. Wraps `CoreAdminUI` with the `<ThemeProvider>` (which manages light/dark mode) and shadmin's default pages (login, not-found, ready, auth-callback). Telemetry pings are emitted from here in production builds unless `disableTelemetry` is set.
 
 Reach for the pair when you need to inject a wrapping component between the providers and the routed UI — for example to mount the cmd+K [`<CommandMenu>`](./command-menu) palette:
 
@@ -89,4 +86,4 @@ const App = () => (
 );
 ```
 
-`<AdminUI>` must be rendered inside an `<AdminContext>`. `<AdminContext>` accepts the data/auth/i18n/router props from ra-core's `CoreAdminContextProps`; `<AdminUI>` accepts the layout/page/theme props from `CoreAdminUIProps` plus the same `theme`/`lightTheme`/`darkTheme` trio as `<Admin>`.
+`<AdminUI>` must be rendered inside an `<AdminContext>`. `<AdminContext>` accepts the data/auth/i18n/router props from ra-core's `CoreAdminContextProps`; `<AdminUI>` accepts the layout/page props from `CoreAdminUIProps`.

@@ -48,23 +48,21 @@ import { TranslatableInputs, TextInput } from "@/components/admin";
 
 ### Themes
 
-Components added: `defaultTheme`, `bwTheme`, `nanoTheme`, `radiantTheme`, `houseTheme`, plus `ThemesContext`, `useThemesContext` and the
-`AdminTheme` type.
+Themes added: **aurora**, **bw**, **nano**, **radiant**, **house** — shipped as native shadcn `registry:theme` items, not JavaScript.
 
-**Key difference**: shadmin themes are plain JS objects mapping CSS variable names → oklch values, applied at runtime by
-`<ThemeProvider>` via `documentElement.style.setProperty(...)`. They do not contain MUI-specific component overrides. Where the upstream
-`ra-ui-materialui` themes could re-style individual MUI components, shadcn themes are limited to the palette + border radius. Differences in
-component appearance across themes are therefore confined to colours and corner radii.
+**Key difference**: shadmin themes are CSS, not MUI theme objects. Each palette is a set of CSS custom properties (`--primary`,
+`--background`, …) for light and dark, distributed through the registry and merged into your `globals.css` at install time. They carry no
+component-level overrides — where the upstream `ra-ui-materialui` themes could re-style individual MUI components, a shadcn theme is limited
+to the palette + border radius, so cross-theme differences are confined to colours and corner radii.
 
-```tsx
-import { Admin, radiantTheme } from "@/components/admin";
+Pick a palette with the shadcn CLI:
 
-<Admin dataProvider={dataProvider} theme={radiantTheme}>
-  {/* ... */}
-</Admin>;
+```bash
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/theme-radiant.json
 ```
 
-See the [Themes](./themes/) page for the full catalogue and the `AdminTheme` shape.
+The default (shadcn-neutral) palette is already in `src/index.css`, and `<ThemeProvider>` handles only light/dark mode. There is no
+`theme`/`lightTheme`/`darkTheme` prop and no `AdminTheme` type. See the [Themes](./themes/) page for the full catalogue and the authoring guide.
 
 ### Preferences / Inspector
 
