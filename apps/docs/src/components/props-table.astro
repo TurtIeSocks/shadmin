@@ -34,6 +34,25 @@ export interface Props {
 
 const { name } = Astro.props;
 
+// Compound abbreviations whose default split is wrong. Keep in sync with
+// scripts/generate-rename-map.mjs and scripts/split-typedoc.mjs.
+const ABBREVIATION_OVERRIDES: Record<string, string> = {
+  BBox: "bbox",
+  GeoJson: "geojson",
+};
+
+/** Component name (e.g. "InspectorButton") -> kebab props filename stem. */
+const kebabName = (name: string) => {
+  let s = name;
+  for (const [pascal, kebab] of Object.entries(ABBREVIATION_OVERRIDES)) {
+    s = s.replace(new RegExp(pascal, "g"), kebab);
+  }
+  return s
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .toLowerCase();
+};
+
 const propModules = import.meta.glob<PropsEntry>(
   "../content/docs/props/*.json",
   { eager: true, import: "default" },
@@ -47,8 +66,9 @@ const byComponent = new Map<string, PropsEntry>(
   }),
 );
 
-const entry: PropsEntry = byComponent.get(name) ?? { name, props: [] };
-const missing = !byComponent.has(name);
+const key = kebabName(name);
+const entry: PropsEntry = byComponent.get(key) ?? { name, props: [] };
+const missing = !byComponent.has(key);
 ---
 
 {

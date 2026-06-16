@@ -2,7 +2,7 @@
 /**
  * Reads the monolithic `public-api.typedoc.json` produced by `typedoc` and
  * splits it into one JSON file per component-props interface, written to
- * `docs/src/content/docs/props/<ComponentName>.json`.
+ * `docs/src/content/docs/props/<component-name>.json` (kebab-cased).
  *
  * The `<PropsTable>` Astro component reads these per-component files at build
  * time to render prop tables. Splitting up-front keeps each MDX page reading
@@ -18,6 +18,22 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const propsDir = resolve(__dirname, "../src/content/docs/props");
 mkdirSync(propsDir, { recursive: true });
+
+// Compound abbreviations whose default PascalCase -> kebab split is wrong.
+// Keep in sync with scripts/generate-rename-map.mjs and props-table.astro.
+const ABBREVIATION_OVERRIDES = { BBox: "bbox", GeoJson: "geojson" };
+
+/** Convert a PascalCase component name to a kebab-case filename stem. */
+function kebabName(name) {
+  let s = name;
+  for (const [pascal, kebab] of Object.entries(ABBREVIATION_OVERRIDES)) {
+    s = s.replace(new RegExp(pascal, "g"), kebab);
+  }
+  return s
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .toLowerCase();
+}
 
 const docPath = resolve(__dirname, "../public-api.typedoc.json");
 const doc = JSON.parse(readFileSync(docPath, "utf-8"));
@@ -162,7 +178,7 @@ for (const { componentName, iface } of walk(doc)) {
   );
 
   writeFileSync(
-    resolve(propsDir, `${componentName}.json`),
+    resolve(propsDir, `${kebabName(componentName)}.json`),
     `${JSON.stringify({ name: componentName, props }, null, 2)}\n`,
   );
   written++;
