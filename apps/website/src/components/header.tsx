@@ -77,6 +77,11 @@ function HamburgerIcon({ open }: { open: boolean }) {
   );
 }
 
+const OVERLAY_VARIANTS = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 function MobileOverlay({
   open,
   onClose,
@@ -95,11 +100,6 @@ function MobileOverlay({
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
-  const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
   const itemVariants = {
     hidden: { opacity: 0, y: reduce ? 0 : 16 },
     visible: { opacity: 1, y: 0 },
@@ -113,7 +113,7 @@ function MobileOverlay({
           initial={reduce ? false : "hidden"}
           animate="visible"
           exit="hidden"
-          variants={overlayVariants}
+          variants={OVERLAY_VARIANTS}
           transition={{ duration: 0.25 }}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 backdrop-blur-2xl bg-background/80 md:hidden"
           onClick={(e) => {
