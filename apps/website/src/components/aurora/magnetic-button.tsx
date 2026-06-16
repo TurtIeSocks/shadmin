@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { EXTERNAL_LINK } from "@/lib/external-link";
 
 interface MagneticButtonProps {
   href: string;
@@ -45,7 +46,7 @@ export function MagneticButton({
   return (
     <motion.a
       href={href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(external ? EXTERNAL_LINK : {})}
       whileHover={reduce ? undefined : { scale: 1.02 }}
       whileTap={reduce ? undefined : { scale: 0.98 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}

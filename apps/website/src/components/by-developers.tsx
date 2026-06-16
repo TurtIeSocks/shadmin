@@ -2,6 +2,7 @@ import { Container } from "./container";
 import { GlassPanel } from "./aurora/glass-panel";
 import { GradientText } from "./aurora/gradient-text";
 import { Reveal, RevealItem } from "./aurora/reveal";
+import { WindowChrome } from "./aurora/window-chrome";
 
 export function ByDevelopers() {
   return (
@@ -22,26 +23,7 @@ export function ByDevelopers() {
               <div className="rounded-[calc(2rem-0.5rem)] overflow-hidden bg-background/70 border border-border">
                 {/* Title bar */}
                 <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-foreground/5">
-                  <div className="flex items-center gap-1.5">
-                    <span
-                      className="size-3 rounded-full"
-                      style={{ backgroundColor: "#ed6a5e" }}
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="size-3 rounded-full"
-                      style={{ backgroundColor: "#f4bf4f" }}
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="size-3 rounded-full"
-                      style={{ backgroundColor: "#61c554" }}
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <span className="font-mono text-xs text-muted-foreground ml-2">
-                    App.tsx
-                  </span>
+                  <WindowChrome label="App.tsx" />
                 </div>
 
                 {/* Code block */}

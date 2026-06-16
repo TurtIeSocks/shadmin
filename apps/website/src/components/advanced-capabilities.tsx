@@ -3,6 +3,7 @@ import { GlassPanel } from "@/components/aurora/glass-panel";
 import { GradientText } from "@/components/aurora/gradient-text";
 import { MagneticButton } from "@/components/aurora/magnetic-button";
 import { Reveal } from "@/components/aurora/reveal";
+import { AuroraBadge } from "@/components/aurora/aurora-badge";
 import { Container } from "./container";
 
 const features = [
@@ -64,9 +65,9 @@ export function AdvancedCapabilities() {
             <dl className="space-y-3">
               {features.map((feature) => (
                 <div key={feature.name} className="flex gap-3 items-start">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-aurora">
+                  <AuroraBadge className="mt-0.5 size-5 rounded-full">
                     <Check aria-hidden="true" className="size-3 text-white" />
-                  </span>
+                  </AuroraBadge>
                   <div>
                     <dt className="inline font-semibold text-foreground">
                       {feature.name}

@@ -1,3 +1,5 @@
+import { EXTERNAL_LINK } from "@/lib/external-link";
+
 export function Footer() {
   return (
     <footer className="glass border-t border-border/40">
@@ -14,8 +16,7 @@ export function Footer() {
         <nav className="flex justify-center gap-6 mt-4 md:mt-0">
           <a
             href="https://github.com/TurtIeSocks/shadmin"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK}
             className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             <img
@@ -28,16 +29,14 @@ export function Footer() {
           </a>
           <a
             href="https://shadmin.turtlesocks.dev/docs/install"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK}
             className="text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             Docs
           </a>
           <a
             href="https://shadmin.turtlesocks.dev/demo"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...EXTERNAL_LINK}
             className="text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             Demo

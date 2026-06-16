@@ -2,6 +2,7 @@ import { Container } from "./container";
 import { GlassPanel } from "./aurora/glass-panel";
 import { GradientText } from "./aurora/gradient-text";
 import { Reveal, RevealItem } from "./aurora/reveal";
+import { AuroraBadge } from "./aurora/aurora-badge";
 import {
   BicepsFlexed,
   Plug,
@@ -70,12 +71,12 @@ export function Why() {
             <RevealItem key={feature.name}>
               <GlassPanel className="p-6 h-full">
                 <div className="flex items-start gap-4">
-                  <div className="shrink-0 flex size-10 items-center justify-center rounded-lg bg-aurora">
+                  <AuroraBadge className="size-10 rounded-lg">
                     <feature.icon
                       aria-hidden="true"
                       className="size-5 text-white"
                     />
-                  </div>
+                  </AuroraBadge>
                   <div>
                     <dt className="text-base font-semibold text-foreground">
                       {feature.name}

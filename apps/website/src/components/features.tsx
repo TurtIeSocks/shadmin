@@ -23,6 +23,7 @@ import { GradientText } from "@/components/aurora/gradient-text";
 import { Eyebrow } from "@/components/aurora/eyebrow";
 import { Reveal, RevealItem } from "@/components/aurora/reveal";
 import { cn } from "@/lib/utils";
+import { AuroraBadge } from "@/components/aurora/aurora-badge";
 
 // Hand-placed Tetris bento. Each card is explicitly positioned on a 3-col grid
 // (9 rows = 27 cells) so big pieces zig-zag through every column — no column is
@@ -423,12 +424,12 @@ export function Features() {
                   )}
                 >
                   <div className="flex flex-col gap-2">
-                    <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-aurora">
+                    <AuroraBadge className="size-10 rounded-xl">
                       <feature.icon
                         aria-hidden="true"
                         className={cn("text-white", big ? "size-6" : "size-5")}
                       />
-                    </span>
+                    </AuroraBadge>
                     <h3
                       className={cn(
                         "font-heading font-bold tracking-tight text-foreground",
