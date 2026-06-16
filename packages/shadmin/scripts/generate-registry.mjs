@@ -15,7 +15,13 @@ import { fileURLToPath } from "node:url";
 import prettier from "prettier";
 
 import { granularizeBlock } from "./granularize-block.mjs";
-import { blocks, registryMetadata } from "./registry.config.mjs";
+import { parseCssVars } from "./parse-css-vars.mjs";
+import {
+  AURORA_UTILITIES_CSS,
+  blocks,
+  registryMetadata,
+  themes,
+} from "./registry.config.mjs";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
@@ -116,6 +122,47 @@ const buildBlock = (block) => {
 
   item.files = files;
 
+  if (block.cssVarsFromFile) {
+    const cssText = readFileSync(join(repoRoot, block.cssVarsFromFile), "utf8");
+    item.cssVars = {
+      light: parseCssVars(cssText, ":root"),
+      dark: parseCssVars(cssText, ".dark"),
+    };
+  }
+
+  return item;
+};
+
+const buildTheme = (theme) => {
+  const cssText = readFileSync(join(repoRoot, theme.cssFile), "utf8");
+  const sel = `.theme-${theme.selector}`;
+  const cssVars = {
+    light: parseCssVars(cssText, sel),
+    dark: parseCssVars(cssText, `${sel}.dark`),
+  };
+
+  if (theme.aurora) {
+    const auroraText = readFileSync(
+      join(repoRoot, "src/styles/aurora.css"),
+      "utf8",
+    );
+    const rootVars = parseCssVars(auroraText, ":root"); // aurora + glass/orb (light)
+    const darkVars = parseCssVars(auroraText, ".dark"); // glass/orb (dark)
+    const { aurora, ...lightAdditive } = rootVars;
+    cssVars.theme = { aurora };
+    cssVars.light = { ...cssVars.light, ...lightAdditive };
+    cssVars.dark = { ...cssVars.dark, ...darkVars };
+  }
+
+  const item = {
+    name: theme.name,
+    type: "registry:theme",
+    title: theme.title,
+    cssVars,
+    files: [],
+  };
+  if (theme.description) item.description = theme.description;
+  if (theme.aurora) item.css = AURORA_UTILITIES_CSS;
   return item;
 };
 
@@ -159,6 +206,10 @@ const main = async () => {
       });
       items.push(...granular);
     }
+  }
+
+  for (const theme of themes) {
+    items.push(buildTheme(theme));
   }
   verifyFilesExist(items);
 
