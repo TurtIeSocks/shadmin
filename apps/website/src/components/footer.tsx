@@ -1,4 +1,5 @@
 import { EXTERNAL_LINK } from "@/lib/external-link";
+import { GitHubWhite } from "./icons/github";
 
 export function Footer() {
   return (
@@ -19,12 +20,7 @@ export function Footer() {
             {...EXTERNAL_LINK}
             className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
-            <img
-              src="/img/github-mark-white.svg"
-              alt=""
-              aria-hidden="true"
-              className="size-4 opacity-70"
-            />
+            <GitHubWhite className="size-4 opacity-70" />
             GitHub
           </a>
           <a

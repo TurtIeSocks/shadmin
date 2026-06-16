@@ -6,7 +6,7 @@ import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
 import { EXTERNAL_LINK } from "@/lib/external-link";
 import { AuroraBadge } from "@/components/aurora/aurora-badge";
-import GithubLogo from "/img/github-mark-white.svg";
+import { GitHubWhite } from "./icons/github";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features", external: false },
@@ -32,8 +32,8 @@ function StarOnGitHubButton() {
       variant="aurora"
       icon={false}
     >
-      <img src={GithubLogo} alt="" aria-hidden="true" className="h-4 w-4" />
       Star on GitHub
+      <GitHubWhite className="size-6" />
     </MagneticButton>
   );
 }
