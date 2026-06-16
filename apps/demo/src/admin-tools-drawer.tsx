@@ -15,8 +15,8 @@ import {
 /**
  * Header button that opens the ThemeStudio inside a side sheet.
  *
- * The sheet renders the live theme editor against the demo's `defaultTheme`,
- * letting users tweak CSS variables and copy a TypeScript snippet back to
+ * The sheet renders the live theme editor, letting users tweak the active
+ * palette's CSS variables and copy a CSS snippet (`:root` / `.dark`) back to
  * source via the built-in Export button.
  */
 export const ThemeStudioButton = () => {
