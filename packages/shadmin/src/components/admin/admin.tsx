@@ -12,32 +12,12 @@ import { LoginPage } from "@/components/admin/login-page";
 import { NotFound } from "@/components/admin/not-found";
 import { Ready } from "@/components/admin/ready";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import type { AdminTheme } from "@/lib/themes/theme-types";
 import { AuthCallback } from "@/components/admin/auth-callback";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
- *
- * The shadmin extension adds the `theme` / `lightTheme` / `darkTheme`
- * trio so a named {@link AdminTheme} palette can be selected at the root.
  */
-interface AdminProps extends CoreAdminProps {
-  /**
-   * Convenience alias for `lightTheme`. Use this when you only want to pass
-   * one named theme — its `light` and `dark` variable maps cover both modes.
-   */
-  theme?: AdminTheme;
-  /**
-   * The theme applied in light mode.
-   */
-  lightTheme?: AdminTheme;
-  /**
-   * The theme applied in dark mode.
-   *
-   * Falls back to `lightTheme` (or `theme`) if omitted.
-   */
-  darkTheme?: AdminTheme;
-}
+type AdminProps = CoreAdminProps;
 
 /**
  * Props accepted by the {@link AdminContext} component. Identical to ra-core's
@@ -49,11 +29,7 @@ type AdminContextProps = CoreAdminContextProps;
 /**
  * Props accepted by the {@link AdminUI} component.
  */
-interface AdminUIProps extends CoreAdminUIProps {
-  theme?: AdminTheme;
-  lightTheme?: AdminTheme;
-  darkTheme?: AdminTheme;
-}
+type AdminUIProps = CoreAdminUIProps;
 
 const defaultStore = localStorageStore();
 
@@ -107,18 +83,15 @@ function AdminUI(props: AdminUIProps) {
   const {
     authCallbackPage = AuthCallback,
     catchAll = NotFound,
-    darkTheme,
     layout = Layout,
-    lightTheme,
     loginPage = LoginPage,
     ready = Ready,
-    theme,
     title = "Shadmin",
     ...rest
   } = props;
 
   return (
-    <ThemeProvider theme={theme} lightTheme={lightTheme} darkTheme={darkTheme}>
+    <ThemeProvider>
       <CoreAdminUI
         authCallbackPage={authCallbackPage}
         catchAll={catchAll}
@@ -167,32 +140,6 @@ function AdminUI(props: AdminUIProps) {
  * >
  *   <Resource name="posts" list={PostList} edit={PostEdit} />
  * </Admin>
- *
- * @example
- * // With a named theme palette
- * import { Admin } from "@/components/admin";
- * import { radiantTheme } from "@/lib/themes";
- *
- * const App = () => (
- *   <Admin dataProvider={dataProvider} theme={radiantTheme}>
- *     <Resource name="posts" list={PostList} />
- *   </Admin>
- * );
- *
- * @example
- * // With distinct light and dark themes
- * import { Admin } from "@/components/admin";
- * import { nanoTheme, bwTheme } from "@/lib/themes";
- *
- * const App = () => (
- *   <Admin
- *     dataProvider={dataProvider}
- *     lightTheme={nanoTheme}
- *     darkTheme={bwTheme}
- *   >
- *     <Resource name="posts" list={PostList} />
- *   </Admin>
- * );
  */
 function Admin(props: AdminProps) {
   const {
@@ -215,9 +162,6 @@ function Admin(props: AdminProps) {
     ready,
     requireAuth,
     store,
-    theme,
-    lightTheme,
-    darkTheme,
     title,
   } = props;
 
@@ -243,9 +187,6 @@ function Admin(props: AdminProps) {
         loginPage={loginPage}
         ready={ready}
         requireAuth={requireAuth}
-        theme={theme}
-        lightTheme={lightTheme}
-        darkTheme={darkTheme}
         title={title}
       >
         {children}
