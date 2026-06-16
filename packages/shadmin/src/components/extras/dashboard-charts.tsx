@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  type ComponentProps,
   type ComponentType,
   type ReactElement,
   type ReactNode,
@@ -193,7 +194,13 @@ const TrendChart = ({
         tickFormatter={xTickFormatter}
       />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
-      <Tooltip formatter={rechartsTooltipFormatter as any} />
+      <Tooltip
+        formatter={
+          rechartsTooltipFormatter as ComponentProps<
+            typeof Tooltip
+          >["formatter"]
+        }
+      />
       <Area
         type={curveType}
         dataKey={yField}
@@ -216,7 +223,13 @@ const TrendChart = ({
         tickFormatter={xTickFormatter}
       />
       <YAxis className="text-xs" tickFormatter={yTickFormatter} />
-      <Tooltip formatter={rechartsTooltipFormatter as any} />
+      <Tooltip
+        formatter={
+          rechartsTooltipFormatter as ComponentProps<
+            typeof Tooltip
+          >["formatter"]
+        }
+      />
       <Line
         type={curveType}
         dataKey={yField}

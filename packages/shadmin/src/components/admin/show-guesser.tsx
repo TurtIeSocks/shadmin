@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Any } from "@/lib/any";
 import { useEffect, useRef, useState, isValidElement, Children } from "react";
 import type { InferredTypeMap } from "ra-core";
 import {
@@ -129,11 +130,11 @@ interface ShowGuesserProps extends Omit<ShowProps, "children"> {
 
 const showFieldTypes: InferredTypeMap = {
   show: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <SimpleShowLayout>{props.children}</SimpleShowLayout>
     ),
     representation: (
-      _props: any,
+      _props: Any,
       children: { getRepresentation: () => string }[],
     ) => `        <SimpleShowLayout>
 ${children
@@ -142,18 +143,18 @@ ${children
         </SimpleShowLayout>`,
   },
   reference: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <ReferenceField source={props.source} reference={props.reference} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <ReferenceField source="${props.source}" reference="${props.reference}" />
             </RecordField>`,
   },
   array: {
-    component: ({ children, ...props }: any) => {
+    component: ({ children, ...props }: Any) => {
       const childrenArray = Children.toArray(children);
       return (
         <RecordField source={props.source}>
@@ -163,7 +164,7 @@ ${children
                 source={
                   childrenArray.length > 0 &&
                   isValidElement(childrenArray[0]) &&
-                  (childrenArray[0].props as any).source
+                  (childrenArray[0].props as Any).source
                 }
               />
             </SingleFieldList>
@@ -171,7 +172,7 @@ ${children
         </RecordField>
       );
     },
-    representation: (props: any, children: any) =>
+    representation: (props: Any, children: Any) =>
       `<RecordField source="${props.source}">
                 <ArrayField source="${props.source}">
                     <SingleFieldList>
@@ -183,51 +184,51 @@ ${children
             </RecordField>`,
   },
   referenceArray: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <ReferenceArrayField {...props} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <ReferenceArrayField source="${props.source}" reference="${props.reference}" />
             </RecordField>`,
   },
   boolean: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField
         source={props.source}
         render={(record) => (record[props.source] ? "Yes" : "No")}
       />
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}" render={record => record[${props.source}] ? 'Yes' : 'No'} />`,
   },
   date: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <DateField source={props.source} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <DateField source="${props.source}" />
             </RecordField>`,
   },
   number: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <NumberField source={props.source} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <NumberField source="${props.source}" />
             </RecordField>`,
   },
   string: {
-    component: (props: any) => <RecordField source={props.source} />,
-    representation: (props: any) => `<RecordField source="${props.source}" />`,
+    component: (props: Any) => <RecordField source={props.source} />,
+    representation: (props: Any) => `<RecordField source="${props.source}" />`,
   },
 };
 

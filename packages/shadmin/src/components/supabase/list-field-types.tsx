@@ -1,4 +1,5 @@
 import type { InferredTypeMap } from "ra-core";
+import type { Any } from "@/lib/any";
 import { DataTable } from "@/components/admin/data-table";
 import { DateField } from "@/components/admin/date-field";
 import { NumberField } from "@/components/admin/number-field";
@@ -12,9 +13,9 @@ import { ReferenceArrayField } from "@/components/admin/reference-array-field";
  */
 const listFieldTypes: InferredTypeMap = {
   table: {
-    component: (props: any) => <DataTable {...props} />,
+    component: (props: Any) => <DataTable {...props} />,
     representation: (
-      _props: any,
+      _props: Any,
       children: { getRepresentation: () => string }[],
     ) =>
       `        <DataTable>
@@ -24,18 +25,18 @@ ${children
         </DataTable>`,
   },
   reference: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col source={props.source}>
         <ReferenceField source={props.source} reference={props.reference} />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <ReferenceField source="${props.source}" reference="${props.reference}" />
             </DataTable.Col>`,
   },
   referenceArray: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col source={props.source}>
         <ReferenceArrayField
           source={props.source}
@@ -43,58 +44,58 @@ ${children
         />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <ReferenceArrayField source="${props.source}" reference="${props.reference}" />
             </DataTable.Col>`,
   },
   date: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col source={props.source}>
         <DateField source={props.source} />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <DateField source="${props.source}" />
             </DataTable.Col>`,
   },
   number: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col source={props.source}>
         <NumberField source={props.source} />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <NumberField source="${props.source}" />
             </DataTable.Col>`,
   },
   email: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col source={props.source}>
         <EmailField source={props.source} />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <EmailField source="${props.source}" />
             </DataTable.Col>`,
   },
   url: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col source={props.source}>
         <UrlField source={props.source} />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <UrlField source="${props.source}" />
             </DataTable.Col>`,
   },
   string: {
     component: DataTable.Col,
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}" />`,
   },
 };

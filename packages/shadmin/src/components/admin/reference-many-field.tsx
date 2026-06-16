@@ -146,7 +146,7 @@ function ReferenceManyFieldView<
 
   return (
     <>
-      {render && render(listContext)}
+      {render?.(listContext)}
       {children}
       {pagination}
     </>

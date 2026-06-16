@@ -201,7 +201,7 @@ const leftPad2 = leftPad(2);
  * @returns {String} A standardized time (hh:mm), to be passed to an <input type="time" />
  */
 const convertDateToString = (value: Date) => {
-  if (!(value instanceof Date) || isNaN(value.getDate())) return "";
+  if (!(value instanceof Date) || Number.isNaN(value.getDate())) return "";
   const hh = leftPad2(value.getHours());
   const mm = leftPad2(value.getMinutes());
   return `${hh}:${mm}`;
@@ -267,6 +267,7 @@ function useForkRef<Instance>(
 
       if (typeof ref === "function") {
         const refCallback = ref;
+        // biome-ignore lint/suspicious/noConfusingVoidType: a ref callback legitimately returns void or a cleanup fn; narrowing void→undefined breaks the assignment from refCallback().
         const refCleanup: void | (() => void) = refCallback(instance);
         return typeof refCleanup === "function"
           ? refCleanup

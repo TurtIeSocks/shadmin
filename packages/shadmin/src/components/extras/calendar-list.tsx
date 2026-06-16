@@ -709,7 +709,7 @@ const CalendarAgendaView = <R extends RaRecord = RaRecord>({
       {Object.entries(grouped).map(([day, dayEvents]) => (
         <div key={day} className="flex flex-col gap-1">
           <div className="text-sm font-medium">
-            {format(parseISO(day + "T00:00:00"), "EEEE, MMMM d")}
+            {format(parseISO(`${day}T00:00:00`), "EEEE, MMMM d")}
           </div>
           <div className="flex flex-col gap-1 pl-2">
             {dayEvents.map((e) => (

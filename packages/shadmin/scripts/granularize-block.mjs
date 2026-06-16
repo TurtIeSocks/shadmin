@@ -152,7 +152,7 @@ export const granularizeBlock = ({
   for (const file of files) {
     const absFile = resolve(repoRoot, file);
     const itemRef = fileToItemRef(absFile, repoRoot);
-    if (!itemRef || itemRef.kind !== "ours") continue;
+    if (itemRef?.kind !== "ours") continue;
     // Skip a granular item whose derived name collides with the monolith block
     // (e.g. components/admin/admin.tsx -> "admin", same as the "admin" block).
     // The file still ships inside the monolith; any "@shadmin/<blockName>"

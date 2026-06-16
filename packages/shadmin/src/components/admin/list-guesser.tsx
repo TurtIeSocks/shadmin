@@ -1,4 +1,5 @@
 import * as React from "react";
+import type { Any } from "@/lib/any";
 import { useState, useEffect, useRef } from "react";
 import type { RaRecord } from "ra-core";
 import {
@@ -160,11 +161,11 @@ ${inferredChild.getRepresentation()}
 
 const listFieldTypes = {
   table: {
-    component: (props: any) => {
+    component: (props: Any) => {
       return <DataTable {...props} />;
     },
     representation: (
-      _props: any,
+      _props: Any,
       children: { getRepresentation: () => string }[],
     ) =>
       `        <DataTable>
@@ -175,18 +176,18 @@ ${children
   },
 
   reference: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col source={props.source}>
         <ReferenceField source={props.source} reference={props.reference} />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <ReferenceField source="${props.source}" reference="${props.reference}" />
             </DataTable.Col>`,
   },
   array: {
-    component: ({ children, ...props }: any) => {
+    component: ({ children, ...props }: Any) => {
       const childrenArray = React.Children.toArray(children);
       return (
         <DataTable.Col source={props.source}>
@@ -196,7 +197,7 @@ ${children
                 source={
                   childrenArray.length > 0 &&
                   React.isValidElement(childrenArray[0]) &&
-                  (childrenArray[0].props as any).source
+                  (childrenArray[0].props as Any).source
                 }
               />
             </SingleFieldList>
@@ -204,7 +205,7 @@ ${children
         </DataTable.Col>
       );
     },
-    representation: (props: any, children: any) =>
+    representation: (props: Any, children: Any) =>
       `<DataTable.Col source="${props.source}">
                <ArrayField source="${props.source}">
                     <SingleFieldList>
@@ -216,19 +217,19 @@ ${children
             </DataTable.Col>`,
   },
   referenceArray: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <DataTable.Col {...props}>
         <ReferenceArrayField {...props} />
       </DataTable.Col>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}">
                 <ReferenceArrayField source="${props.source}" reference="${props.reference}" />
             </DataTable.Col>`,
   },
   string: {
     component: DataTable.Col,
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<DataTable.Col source="${props.source}" />`,
   },
 };

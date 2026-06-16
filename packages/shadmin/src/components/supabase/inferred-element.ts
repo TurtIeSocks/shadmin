@@ -17,8 +17,8 @@ export class InferredElement extends CoreInferredElement {
 
   constructor(
     type?: InferredType,
-    props?: any,
-    children?: any,
+    props?: unknown,
+    children?: unknown,
     warning?: string,
   ) {
     super(type, props, children);

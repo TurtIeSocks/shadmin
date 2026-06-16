@@ -190,7 +190,7 @@ export const WithHelpText = ({
           <SimpleFormIterator>
             <TextInput
               source="name"
-              validate={(required(), minLength(5))}
+              validate={[required(), minLength(5)]}
               helperText="Enter at least 5 characters"
             />
           </SimpleFormIterator>
@@ -213,7 +213,7 @@ export const WithoutLabelWithHelpText = ({
             <TextInput
               source="name"
               label={false}
-              validate={(required(), minLength(5))}
+              validate={[required(), minLength(5)]}
               helperText="Enter at least 5 characters"
             />
           </SimpleFormIterator>

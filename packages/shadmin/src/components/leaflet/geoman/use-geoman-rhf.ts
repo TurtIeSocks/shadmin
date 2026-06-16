@@ -81,7 +81,7 @@ const useGeomanRHF = ({
 
     const addFCLayers = () => {
       const fc = value as GeoJSON.FeatureCollection | null | undefined;
-      if (!fc || fc.type !== "FeatureCollection") return;
+      if (fc?.type !== "FeatureCollection") return;
       fc.features?.forEach((feat) => {
         if (!feat?.geometry) return;
         const layer = geometryToLayer(feat.geometry, pathOptions, markerIcon);

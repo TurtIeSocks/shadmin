@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { Identifier } from "ra-core";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -26,7 +26,7 @@ export function LockOnMount({
   loading,
   lockedBy,
   onLockError,
-}: LockOnMountProps): ReactElement {
+}: LockOnMountProps): ReactNode {
   const { lock, isLocking, lockError } = useLockOnMount({
     resource,
     id,
@@ -55,6 +55,6 @@ export function LockOnMount({
     );
   }
 
-  if (lock) return <>{children}</>;
-  return <></>;
+  if (lock) return children;
+  return null;
 }

@@ -78,6 +78,7 @@ function ExportButton(props: ExportButtonProps) {
       getData({ maxResults, meta })
         .then(
           (data) =>
+            // biome-ignore lint/complexity/useOptionalChain: `exporter` is a union of two Exporter types; an optional call (`exporter?.(...)`) is not callable across the union, while the `&&` guard preserves callability.
             exporter &&
             exporter(
               data,

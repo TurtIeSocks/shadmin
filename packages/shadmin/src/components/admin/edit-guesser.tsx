@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Any } from "@/lib/any";
 import { useEffect, useRef, useState } from "react";
 import type { InferredTypeMap } from "ra-core";
 import {
@@ -151,9 +152,9 @@ interface EditGuesserProps extends Omit<EditProps, "children"> {
 
 const editFieldTypes: InferredTypeMap = {
   form: {
-    component: (props: any) => <SimpleForm {...props} />,
+    component: (props: Any) => <SimpleForm {...props} />,
     representation: (
-      _props: any,
+      _props: Any,
       children: { getRepresentation: () => string }[],
     ) => `        <SimpleForm>
 ${children
@@ -162,28 +163,28 @@ ${children
         </SimpleForm>`,
   },
   reference: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <ReferenceInput source={props.source} reference={props.reference}>
         <AutocompleteInput />
       </ReferenceInput>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<ReferenceInput source="${props.source}" reference="${props.reference}">
                   <AutocompleteInput />
               </ReferenceInput>`,
   },
   referenceArray: {
-    component: (props: any) => <ReferenceArrayInput {...props} />,
-    representation: (props: any) =>
+    component: (props: Any) => <ReferenceArrayInput {...props} />,
+    representation: (props: Any) =>
       `<ReferenceArrayInput source="${props.source}" reference="${props.reference}" />`,
   },
   boolean: {
-    component: (props: any) => <BooleanInput {...props} />,
-    representation: (props: any) => `<BooleanInput source="${props.source}" />`,
+    component: (props: Any) => <BooleanInput {...props} />,
+    representation: (props: Any) => `<BooleanInput source="${props.source}" />`,
   },
   string: {
-    component: (props: any) => <TextInput {...props} />,
-    representation: (props: any) => `<TextInput source="${props.source}" />`,
+    component: (props: Any) => <TextInput {...props} />,
+    representation: (props: Any) => `<TextInput source="${props.source}" />`,
   },
 };
 

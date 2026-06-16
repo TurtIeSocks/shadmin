@@ -154,7 +154,7 @@ function DateInput(props: DateInputProps) {
       const isNewValueValid =
         newValue === "" ||
         (target.valueAsDate != null &&
-          !isNaN(new Date(target.valueAsDate).getTime()));
+          !Number.isNaN(new Date(target.valueAsDate).getTime()));
 
       // Some browsers will return null for an invalid date
       // so we only change react-hook-form value if it's not null.
@@ -187,7 +187,7 @@ function DateInput(props: DateInputProps) {
     const isNewValueValid =
       newValue === "" ||
       (localInputRef.current.valueAsDate != null &&
-        !isNaN(new Date(localInputRef.current.valueAsDate).getTime()));
+        !Number.isNaN(new Date(localInputRef.current.valueAsDate).getTime()));
 
     if (isNewValueValid && field.value !== newValue) {
       field.onChange(newValue ?? "");
@@ -265,7 +265,7 @@ type DateInputProps = InputProps & {
  * @returns {String} A standardized date (yyyy-MM-dd), to be passed to an <input type="date" />
  */
 const convertDateToString = (value: Date) => {
-  if (!(value instanceof Date) || isNaN(value.getDate())) return "";
+  if (!(value instanceof Date) || Number.isNaN(value.getDate())) return "";
   const localDate = new Date(value.getTime());
   const pad = "00";
   const yyyy = localDate.getFullYear().toString();

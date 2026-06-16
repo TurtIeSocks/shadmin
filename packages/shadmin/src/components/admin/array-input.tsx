@@ -76,11 +76,7 @@ function ArrayInput(props: ArrayInputProps) {
     fieldState.error?.root?.message ?? fieldState.error?.message;
 
   if (isPending) {
-    return loading != null ? (
-      <>{loading}</>
-    ) : (
-      <Skeleton className="w-full h-9" />
-    );
+    return loading != null ? loading : <Skeleton className="w-full h-9" />;
   }
 
   return (

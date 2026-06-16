@@ -72,7 +72,6 @@ const computeTooltipPosition = (
         top: rect.top + rect.height / 2,
         left: rect.left + rect.width + margin,
       };
-    case "bottom":
     default:
       return {
         top: rect.top + rect.height + margin,

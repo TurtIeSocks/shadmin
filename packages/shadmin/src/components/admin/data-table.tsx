@@ -15,6 +15,7 @@ import type {
   HintedString,
   Identifier,
   RaRecord,
+  RowClickFunctionBase,
   SortPayload,
 } from "ra-core";
 import {
@@ -206,7 +207,9 @@ function DataTable<RecordType extends RaRecord = RaRecord>(
         <DataTableBase<RecordType>
           hasBulkActions={hasBulkActions}
           hover={hover}
-          rowClick={rowClick as any}
+          rowClick={
+            rowClick as string | false | RowClickFunctionBase<RecordType>
+          }
           loading={
             <DataTableLoadingSkeleton
               className={className}
@@ -725,7 +728,11 @@ interface DataTableProps<RecordType extends RaRecord = RaRecord>
   rowClick?:
     | string
     | false
-    | ((...args: any[]) => string | false | Promise<string | false>);
+    | RowClickFunctionBase<RecordType>
+    | ((
+        record: RecordType,
+        id: Identifier,
+      ) => string | false | Promise<string | false>);
 }
 
 function DataTableColumn<

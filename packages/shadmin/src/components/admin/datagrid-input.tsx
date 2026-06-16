@@ -153,6 +153,7 @@ function DatagridInput<RecordType extends RaRecord = RaRecord>(
               // (which enables the row checkbox column) while avoiding the
               // default bulk-actions toolbar (delete/export), which would be
               // out of place inside a form input.
+              // biome-ignore lint/complexity/noUselessFragments: deliberate non-null sentinel that flips hasBulkActions on without rendering a toolbar.
               bulkActionsToolbar={<></>}
             >
               {children}

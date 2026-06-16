@@ -105,7 +105,7 @@ function SimpleFormIterator(props: SimpleFormIteratorProps) {
           {fields.map((member, index) => (
             <RecordContextProvider
               key={member.id}
-              value={(records && records[index]) || {}}
+              value={records?.[index] || {}}
             >
               <SimpleFormIteratorItem
                 disabled={disabled}
@@ -206,7 +206,7 @@ function SimpleFormIteratorItem(props: SimpleFormIteratorItemProps) {
     if (typeof disableRemove === "boolean") {
       return disableRemove;
     }
-    return disableRemove && disableRemove(record);
+    return disableRemove?.(record);
   };
 
   const label =

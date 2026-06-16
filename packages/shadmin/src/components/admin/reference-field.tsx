@@ -96,7 +96,7 @@ function ReferenceField<
 
   return id == null ? (
     typeof empty === "string" ? (
-      <>{empty && translate(empty, { _: empty })}</>
+      empty && translate(empty, { _: empty })
     ) : (
       empty
     )
@@ -140,11 +140,9 @@ function ReferenceFieldView<ReferenceRecordType extends RaRecord = RaRecord>(
     return loading;
   }
   if (!referenceRecord && empty !== false) {
-    return typeof empty === "string" ? (
-      <>{empty && translate(empty, { _: empty })}</>
-    ) : (
-      empty
-    );
+    return typeof empty === "string"
+      ? empty && translate(empty, { _: empty })
+      : empty;
   }
 
   const child = render

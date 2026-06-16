@@ -118,7 +118,7 @@ function DateTimeInput({
     const target = event.target;
     const newValue = target.value;
     const isNewValueValid =
-      newValue === "" || !isNaN(new Date(target.value).getTime());
+      newValue === "" || !Number.isNaN(new Date(target.value).getTime());
 
     // Some browsers will return null for an invalid date
     // so we only change react-hook-form value if it's not null.
@@ -149,7 +149,7 @@ function DateTimeInput({
     // and submit it to react-hook-form
     const isNewValueValid =
       newValue === "" ||
-      !isNaN(new Date(localInputRef.current.value).getTime());
+      !Number.isNaN(new Date(localInputRef.current.value).getTime());
 
     if (isNewValueValid && field.value !== newValue) {
       field.onChange(newValue ?? "");
@@ -222,7 +222,7 @@ const leftPad2 = leftPad(2);
  * @returns {String} A standardized datetime (yyyy-MM-ddThh:mm), to be passed to an <input type="datetime-local" />
  */
 const convertDateToString = (value: Date) => {
-  if (!(value instanceof Date) || isNaN(value.getDate())) return "";
+  if (!(value instanceof Date) || Number.isNaN(value.getDate())) return "";
   const yyyy = leftPad4(value.getFullYear());
   const MM = leftPad2(value.getMonth() + 1);
   const dd = leftPad2(value.getDate());
@@ -265,7 +265,7 @@ const convertDateStringToISO = (
 ): string | null => {
   if (value == null || value === "") return null;
   const date = new Date(value);
-  return isNaN(date.getTime()) ? null : date.toISOString();
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
 };
 
 /**
@@ -297,6 +297,7 @@ function useForkRef<Instance>(
 
       if (typeof ref === "function") {
         const refCallback = ref;
+        // biome-ignore lint/suspicious/noConfusingVoidType: a ref callback legitimately returns void or a cleanup fn; narrowing void→undefined breaks the assignment from refCallback().
         const refCleanup: void | (() => void) = refCallback(instance);
         return typeof refCleanup === "function"
           ? refCleanup

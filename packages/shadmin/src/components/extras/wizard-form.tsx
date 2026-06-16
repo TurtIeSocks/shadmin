@@ -178,7 +178,7 @@ function WizardErrorJumper() {
       const groupFields = formGroups.getGroupFields(stepKeyFor(i));
       const hasError = groupFields.some((field) =>
         errorFieldNames.some(
-          (err) => field === err || field.startsWith(err + "."),
+          (err) => field === err || field.startsWith(`${err}.`),
         ),
       );
       if (hasError) {

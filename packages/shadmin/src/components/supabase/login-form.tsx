@@ -45,7 +45,7 @@ const SupabaseLoginForm = ({
               _:
                 typeof error === "string"
                   ? error
-                  : error && error.message
+                  : error?.message
                     ? error.message
                     : undefined,
             },

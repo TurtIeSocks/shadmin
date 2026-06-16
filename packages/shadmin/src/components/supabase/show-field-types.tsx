@@ -1,4 +1,5 @@
 import type { InferredTypeMap } from "ra-core";
+import type { Any } from "@/lib/any";
 import { RecordField } from "@/components/admin/record-field";
 import { DateField } from "@/components/admin/date-field";
 import { NumberField } from "@/components/admin/number-field";
@@ -12,11 +13,11 @@ import { ReferenceArrayField } from "@/components/admin/reference-array-field";
  */
 const showFieldTypes: InferredTypeMap = {
   show: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <div className="flex flex-col gap-4">{props.children}</div>
     ),
     representation: (
-      _props: any,
+      _props: Any,
       children: { getRepresentation: () => string }[],
     ) => `        <div className="flex flex-col gap-4">
 ${children
@@ -25,18 +26,18 @@ ${children
         </div>`,
   },
   reference: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <ReferenceField source={props.source} reference={props.reference} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <ReferenceField source="${props.source}" reference="${props.reference}" />
             </RecordField>`,
   },
   referenceArray: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <ReferenceArrayField
           source={props.source}
@@ -44,58 +45,58 @@ ${children
         />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <ReferenceArrayField source="${props.source}" reference="${props.reference}" />
             </RecordField>`,
   },
   date: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <DateField source={props.source} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <DateField source="${props.source}" />
             </RecordField>`,
   },
   number: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <NumberField source={props.source} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <NumberField source="${props.source}" />
             </RecordField>`,
   },
   email: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <EmailField source={props.source} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <EmailField source="${props.source}" />
             </RecordField>`,
   },
   url: {
-    component: (props: any) => (
+    component: (props: Any) => (
       <RecordField source={props.source}>
         <UrlField source={props.source} />
       </RecordField>
     ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<RecordField source="${props.source}">
                 <UrlField source="${props.source}" />
             </RecordField>`,
   },
   string: {
-    component: (props: any) => <RecordField source={props.source} />,
-    representation: (props: any) => `<RecordField source="${props.source}" />`,
+    component: (props: Any) => <RecordField source={props.source} />,
+    representation: (props: Any) => `<RecordField source="${props.source}" />`,
   },
 };
 

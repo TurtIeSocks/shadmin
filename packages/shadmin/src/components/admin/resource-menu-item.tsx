@@ -40,7 +40,7 @@ type ResourceMenuItemProps = {
    */
   onClick?: () => void;
   /** Additional props forwarded to the underlying element (dense, tooltipProps, etc.). */
-  [rest: string]: any;
+  [rest: string]: unknown;
 };
 
 /**
@@ -87,7 +87,7 @@ function ResourceMenuItem({
     return <Skeleton className="h-8 w-full" />;
   }
 
-  if (!resources || !resources[name] || !canAccess) return null;
+  if (!resources?.[name] || !canAccess) return null;
 
   const handleClick = () => {
     if (openMobile) {

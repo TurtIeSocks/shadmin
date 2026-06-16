@@ -55,8 +55,9 @@ function SelectAllButton<RecordType extends RaRecord = RaRecord>({
   // - we've hit the selection cap
   // - not all currently loaded data is selected (button only offered as an
   //   escalation from "all on this page" to "all across pages")
-  const areAllDataSelected =
-    data != null && data.every((item) => selectedIds.includes(item.id));
+  const areAllDataSelected = data?.every((item) =>
+    selectedIds.includes(item.id),
+  );
 
   if (
     total === selectedIds.length ||

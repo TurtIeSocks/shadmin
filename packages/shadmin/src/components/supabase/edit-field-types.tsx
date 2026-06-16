@@ -1,4 +1,5 @@
 import type { InferredTypeMap } from "ra-core";
+import type { Any } from "@/lib/any";
 import { SimpleForm } from "@/components/admin/simple-form";
 import { TextInput } from "@/components/admin/text-input";
 import { NumberInput } from "@/components/admin/number-input";
@@ -21,9 +22,9 @@ const ilikeFilter = (optionText: string) => (searchText: string) => ({
  */
 const editFieldTypes: InferredTypeMap = {
   form: {
-    component: (props: any) => <SimpleForm {...props} />,
+    component: (props: Any) => <SimpleForm {...props} />,
     representation: (
-      _props: any,
+      _props: Any,
       children: { getRepresentation: () => string }[],
     ) => `        <SimpleForm>
 ${children
@@ -32,9 +33,9 @@ ${children
         </SimpleForm>`,
   },
   reference: {
-    component: (props: any) => <ReferenceInput {...props} />,
+    component: (props: Any) => <ReferenceInput {...props} />,
     representation: (
-      props: any,
+      props: Any,
       children?: { getRepresentation: () => string }[],
     ) =>
       children
@@ -46,7 +47,7 @@ ${children
         : `<ReferenceInput source="${props.source}" reference="${props.reference}" />`,
   },
   autocompleteInput: {
-    component: (props: any) =>
+    component: (props: Any) =>
       props.optionText ? (
         <AutocompleteInput
           {...props}
@@ -55,7 +56,7 @@ ${children
       ) : (
         <AutocompleteInput {...props} />
       ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<AutocompleteInput${props.source ? ` source="${props.source}"` : ""}${
         props.optionText
           ? ` optionText="${props.optionText}" filterToQuery={searchText => ({ '${props.optionText}@ilike': \`%\${searchText}%\` })}`
@@ -63,9 +64,9 @@ ${children
       } />`,
   },
   referenceArray: {
-    component: (props: any) => <ReferenceArrayInput {...props} />,
+    component: (props: Any) => <ReferenceArrayInput {...props} />,
     representation: (
-      props: any,
+      props: Any,
       children?: { getRepresentation: () => string }[],
     ) =>
       children
@@ -77,7 +78,7 @@ ${children
         : `<ReferenceArrayInput source="${props.source}" reference="${props.reference}" />`,
   },
   autocompleteArrayInput: {
-    component: (props: any) =>
+    component: (props: Any) =>
       props.optionText ? (
         <AutocompleteArrayInput
           {...props}
@@ -86,7 +87,7 @@ ${children
       ) : (
         <AutocompleteArrayInput {...props} />
       ),
-    representation: (props: any) =>
+    representation: (props: Any) =>
       `<AutocompleteArrayInput${
         props.source ? ` source="${props.source}"` : ""
       }${
@@ -96,30 +97,30 @@ ${children
       } />`,
   },
   number: {
-    component: (props: any) => <NumberInput {...props} />,
-    representation: (props: any) => `<NumberInput source="${props.source}" />`,
+    component: (props: Any) => <NumberInput {...props} />,
+    representation: (props: Any) => `<NumberInput source="${props.source}" />`,
   },
   boolean: {
-    component: (props: any) => <BooleanInput {...props} />,
-    representation: (props: any) => `<BooleanInput source="${props.source}" />`,
+    component: (props: Any) => <BooleanInput {...props} />,
+    representation: (props: Any) => `<BooleanInput source="${props.source}" />`,
   },
   date: {
-    component: (props: any) => <DateInput {...props} />,
-    representation: (props: any) => `<DateInput source="${props.source}" />`,
+    component: (props: Any) => <DateInput {...props} />,
+    representation: (props: Any) => `<DateInput source="${props.source}" />`,
   },
   email: {
-    component: (props: any) => <TextInput {...props} type="email" />,
-    representation: (props: any) =>
+    component: (props: Any) => <TextInput {...props} type="email" />,
+    representation: (props: Any) =>
       `<TextInput source="${props.source}" type="email" />`,
   },
   url: {
-    component: (props: any) => <TextInput {...props} type="url" />,
-    representation: (props: any) =>
+    component: (props: Any) => <TextInput {...props} type="url" />,
+    representation: (props: Any) =>
       `<TextInput source="${props.source}" type="url" />`,
   },
   string: {
-    component: (props: any) => <TextInput {...props} />,
-    representation: (props: any) => `<TextInput source="${props.source}" />`,
+    component: (props: Any) => <TextInput {...props} />,
+    representation: (props: Any) => `<TextInput source="${props.source}" />`,
   },
 };
 

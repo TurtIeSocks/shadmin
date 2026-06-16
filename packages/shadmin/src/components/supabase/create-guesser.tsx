@@ -59,7 +59,7 @@ const SupabaseCreateGuesserView = (
     if (isPending || error || !schema) return;
     const def = schema.definitions?.[resource];
     const requiredFields = def?.required ?? [];
-    if (!def || !def.properties) {
+    if (!def?.properties) {
       throw new Error(
         `The resource ${resource} is not defined in the API schema`,
       );
