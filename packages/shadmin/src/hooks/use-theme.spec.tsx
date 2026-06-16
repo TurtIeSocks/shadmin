@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { render, renderHook } from "vitest-browser-react";
 import { useState, type PropsWithChildren } from "react";
 
-import { ThemeProviderContext, type Theme } from "@/lib/themes/theme-context";
+import { ThemeProviderContext, type Theme } from "@/lib/theme-context";
 import { useResolvedTheme, useTheme } from "./use-theme";
 
 const wrapper =

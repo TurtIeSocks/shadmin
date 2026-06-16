@@ -5,7 +5,7 @@ import {
   ThemeProviderContext,
   type ResolvedTheme,
   type Theme,
-} from "@/lib/themes/theme-context";
+} from "@/lib/theme-context";
 import { ThemesContext } from "@/lib/themes/themes-context";
 import type { AdminTheme, ThemeVars } from "@/lib/themes/theme-types";
 
