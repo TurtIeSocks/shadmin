@@ -13,11 +13,15 @@ interface MagneticButtonProps {
   className?: string;
 }
 
-// Pill background + label color per variant.
+// Pill background + label color per variant. All three carry a glass rim; only
+// ghost gets the frosted glass background (via the `glass` utility, which also
+// supplies its border). The rim color differs on the white pill: a translucent-
+// white glass border would vanish on white, so it rides a faint dark hairline
+// instead — the same white-on-white dodge the icon chip uses below.
 const PILL: Record<NonNullable<MagneticButtonProps["variant"]>, string> = {
-  aurora: "bg-aurora text-white",
+  aurora: "bg-aurora text-white border border-[color:var(--glass-border)]",
   ghost: "glass text-foreground",
-  white: "bg-white text-[#1a1830] hover:bg-white/90",
+  white: "bg-white text-[#1a1830] hover:bg-white/90 border border-black/8",
 };
 
 // Trailing arrow chip. On the white pill a bg-white/15 chip would vanish, so the
