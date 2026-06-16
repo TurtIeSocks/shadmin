@@ -14,10 +14,9 @@ import {
   SelectValue,
 } from "../ui/select";
 import { ThemeModeToggle } from "../admin";
-import { useResolvedTheme } from "@/hooks/use-theme";
-import { useThemes } from "@/lib/themes/themes-context";
 import { Separator } from "../ui/separator";
 import { ColorPicker } from "../ui/color-picker";
+import { useThemeVars, type ThemeVars } from "./theme-studio-vars";
 
 const CSS_UNITS = [
   "%",
@@ -118,29 +117,28 @@ interface ThemeStudioProps {
 }
 
 /**
- * Live editor for the active `AdminTheme`'s CSS custom properties.
+ * Live editor for the active theme's semantic CSS custom properties.
  *
- * Edits are routed through `<ThemeProvider>`'s live var state via the
- * `setLiveVar` setter on `ThemesContext`. The provider's reconcile effect
- * writes the resulting var map to `document.documentElement`, so the
- * surrounding UI reflects edits instantly — no rebuild, no reload, no race
- * with the provider's own DOM writes.
+ * Token values are seeded from `getComputedStyle(:root)` for the active mode
+ * (see `useThemeVars`). Edits are written straight to
+ * `document.documentElement.style`, which overrides any active `.theme-*`
+ * class, so the surrounding UI reflects changes instantly — no rebuild, no
+ * reload.
  *
  * Color rows mount a `<ColorPicker>` keyed by the variable name; measurement
  * rows expose a numeric input plus a unit select. The Export button copies a
- * TypeScript `AdminTheme` snippet to the clipboard so edits can be pasted
+ * CSS `:root {}` / `.dark {}` snippet to the clipboard so edits can be pasted
  * back into source.
  *
- * Requires a surrounding `<ThemeProvider>` — without one, there is no live var
- * map to edit.
+ * Requires a surrounding `<ThemeProvider>` so the active light/dark mode can be
+ * resolved.
  *
  * @example
  * ```tsx
  * import { ThemeProvider } from "@/components/admin";
- * import { defaultTheme } from "@/lib/themes";
  * import { ThemeStudio } from "@/components/extras/theme-studio";
  *
- * <ThemeProvider theme={defaultTheme}>
+ * <ThemeProvider>
  *   <ThemeStudio />
  * </ThemeProvider>;
  * ```
@@ -150,10 +148,10 @@ const ThemeStudio = ({
   showThemeModeToggle = true,
   className,
 }: ThemeStudioProps) => {
-  const { liveVars, setLiveVar, lightTheme, darkTheme } = useThemes();
+  const { vars, setVar, light, dark } = useThemeVars();
 
   const { colors, measurements } = useMemo(() => {
-    const values = Object.entries(liveVars).reduce(
+    const values = Object.entries(vars).reduce(
       (acc, [name, value]) => {
         if (isCssColor(value)) {
           acc.colors.push([name, value]);
@@ -171,7 +169,7 @@ const ThemeStudio = ({
     values.measurements.sort(([a], [b]) => a.localeCompare(b));
 
     return values;
-  }, [liveVars]);
+  }, [vars]);
 
   return (
     <Card
@@ -181,13 +179,7 @@ const ThemeStudio = ({
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-sm grow">Theme Studio</CardTitle>
         {showThemeModeToggle && <ThemeModeToggle />}
-        {showExport && (
-          <ThemeExport
-            liveVars={liveVars}
-            lightTheme={lightTheme}
-            darkTheme={darkTheme}
-          />
-        )}
+        {showExport && <ThemeExport light={light} dark={dark} />}
       </CardHeader>
       <CardContent>
         <ul className="flex flex-col gap-2">
@@ -196,17 +188,12 @@ const ThemeStudio = ({
               key={name}
               name={name}
               value={value}
-              update={setLiveVar}
+              update={setVar}
             />
           ))}
           <Separator className="my-4" />
           {colors.map(([name, value]) => (
-            <ColorInput
-              key={name}
-              name={name}
-              value={value}
-              update={setLiveVar}
-            />
+            <ColorInput key={name} name={name} value={value} update={setVar} />
           ))}
         </ul>
       </CardContent>
@@ -287,24 +274,19 @@ function MeasurementInput({ name, value, update }: CssInputProps) {
   );
 }
 
-function ThemeExport({
-  lightTheme,
-  darkTheme,
-  liveVars,
-}: Pick<
-  ReturnType<typeof useThemes>,
-  "darkTheme" | "lightTheme" | "liveVars"
->) {
+function ThemeExport({ light, dark }: { light: ThemeVars; dark: ThemeVars }) {
   const [copied, setCopied] = useState(false);
-  const mode = useResolvedTheme();
 
   const handleExport = async () => {
-    const activeTheme = mode === "dark" ? darkTheme : lightTheme;
-    const name = activeTheme?.name ?? "custom";
-    const snippet = `export const customTheme: AdminTheme = {
-  name: ${JSON.stringify(name)},
-  ${mode}: ${JSON.stringify(liveVars, null, 2)},
-};`;
+    const block = (selector: string, map: ThemeVars) => {
+      const keys = Object.keys(map);
+      if (keys.length === 0) return "";
+      const body = keys.map((k) => `  ${k}: ${map[k]};`).join("\n");
+      return `${selector} {\n${body}\n}`;
+    };
+    const snippet = [block(":root", light), block(".dark", dark)]
+      .filter(Boolean)
+      .join("\n\n");
     try {
       await navigator.clipboard.writeText(snippet);
       setCopied(true);

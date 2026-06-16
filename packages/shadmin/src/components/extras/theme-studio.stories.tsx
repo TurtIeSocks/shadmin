@@ -2,7 +2,6 @@ import type { PropsWithChildren } from "react";
 import { CoreAdminContext, memoryStore } from "ra-core";
 
 import { ThemeProvider } from "@/components/admin";
-import { defaultTheme } from "@/lib/themes";
 import { ThemeStudio } from "@/components/extras/theme-studio";
 
 export default {
@@ -16,7 +15,7 @@ export default {
 // (mirroring the order used in `<Admin>` itself).
 const Wrapper = ({ children }: PropsWithChildren) => (
   <CoreAdminContext store={memoryStore()}>
-    <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+    <ThemeProvider>{children}</ThemeProvider>
   </CoreAdminContext>
 );
 
