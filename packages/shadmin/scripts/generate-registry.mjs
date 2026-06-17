@@ -229,6 +229,22 @@ const main = async () => {
     item.author = AUTHOR;
   }
 
+  // Dedupe guard: item names are now basename-derived (granularize-block.mjs),
+  // so a future admin/<subdir>/ reorg could collide two leaf basenames. A
+  // duplicate name makes build-registry.mjs write dist/r/<name>.json twice and
+  // silently corrupt the published item — fail loud at generate time instead.
+  const seenNames = new Map();
+  for (const item of items) {
+    const prior = seenNames.get(item.name);
+    if (prior) {
+      throw new Error(
+        `Duplicate registry item name "${item.name}" (${prior} and ${item.type}). ` +
+          `Basename collision — rename or relocate one source file.`,
+      );
+    }
+    seenNames.set(item.name, item.type);
+  }
+
   verifyFilesExist(items);
 
   const registry = {

@@ -104,9 +104,13 @@ const fileToItemRef = (absFile, repoRoot) => {
   }
 
   if (noExt.startsWith("components/admin/")) {
+    // Name is the file BASENAME, decoupled from internal subdirs. This lets the
+    // source tree be organized (admin/inputs/, admin/fields/, …) while the
+    // emitted item name — and the consumer-facing install — stays flat. A
+    // global dedupe guard in generate-registry.mjs catches basename collisions.
     return {
       kind: "ours",
-      name: noExt.slice("components/admin/".length).replace(/\//g, "-"),
+      name: noExt.split("/").pop(),
     };
   }
 
