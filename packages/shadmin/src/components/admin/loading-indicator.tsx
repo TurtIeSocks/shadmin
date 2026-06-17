@@ -1,4 +1,4 @@
-import { useLoading, useTranslate } from "ra-core";
+import { useLoading, useTranslate } from "shadmin-core";
 import { cn } from "@/lib/utils";
 import { Spinner } from "@/components/ui/spinner";
 import { RefreshIconButton } from "@/components/admin/refresh-icon-button";

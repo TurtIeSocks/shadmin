@@ -1,4 +1,4 @@
-import { Translate, useTimeout } from "ra-core";
+import { Translate, useTimeout } from "shadmin-core";
 import { Spinner } from "./spinner";
 
 /**

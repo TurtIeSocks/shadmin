@@ -4,7 +4,7 @@ import {
   RecordContextProvider,
   ResourceContextProvider,
   required,
-} from "ra-core";
+} from "shadmin-core";
 
 import { SimpleForm } from "@/components/admin/simple-form";
 import { TextInput } from "@/components/admin/text-input";

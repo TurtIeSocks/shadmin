@@ -7,7 +7,7 @@ import {
   useResourceContext,
   useTranslate,
   useTranslateLabel,
-} from "ra-core";
+} from "shadmin-core";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import {

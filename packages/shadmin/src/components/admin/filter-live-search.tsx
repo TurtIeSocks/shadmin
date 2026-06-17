@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { FilterLiveForm, useTranslate } from "ra-core";
+import { FilterLiveForm, useTranslate } from "shadmin-core";
 import {
   SearchInput,
   type SearchInputProps,

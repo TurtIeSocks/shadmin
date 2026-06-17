@@ -1,5 +1,5 @@
 import type { ReactNode, Ref } from "react";
-import { useRefresh, useLoading, useTranslate } from "ra-core";
+import { useRefresh, useLoading, useTranslate } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { RotateCw } from "lucide-react";

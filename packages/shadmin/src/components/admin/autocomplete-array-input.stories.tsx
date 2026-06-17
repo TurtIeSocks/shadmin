@@ -1,4 +1,4 @@
-import { CoreAdminContext, RecordContextProvider } from "ra-core";
+import { CoreAdminContext, RecordContextProvider } from "shadmin-core";
 import {
   AutocompleteArrayInput,
   SimpleForm,

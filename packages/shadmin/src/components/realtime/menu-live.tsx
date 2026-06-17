@@ -1,6 +1,6 @@
 import { useEffect, type ReactElement, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
-import { useStore } from "ra-core";
+import { useStore } from "shadmin-core";
 import { Badge } from "@/components/ui/badge";
 import { resourceTopic } from "./topics";
 import type { RealtimeEventType } from "./types";

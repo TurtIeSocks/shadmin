@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { House } from "lucide-react";
-import { useBasename, useTranslate } from "ra-core";
+import { useBasename, useTranslate } from "shadmin-core";
 import { MenuItemLink } from "@/components/admin/menu-item-link";
 
 const defaultLeftIcon = <House />;

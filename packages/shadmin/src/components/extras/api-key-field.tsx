@@ -3,7 +3,7 @@ import {
   sanitizeFieldRestProps,
   useFieldValue,
   useRecordContext,
-} from "ra-core";
+} from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Copy } from "lucide-react";
 import type { FieldProps } from "@/lib/field-types";

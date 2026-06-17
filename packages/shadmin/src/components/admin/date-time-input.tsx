@@ -1,6 +1,6 @@
 import * as React from "react";
-import type { InputProps } from "ra-core";
-import { useInput, FieldTitle, ValidationError } from "ra-core";
+import type { InputProps } from "shadmin-core";
+import { useInput, FieldTitle, ValidationError } from "shadmin-core";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/input-helper-text";

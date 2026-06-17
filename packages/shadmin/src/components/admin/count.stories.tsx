@@ -2,7 +2,7 @@ import {
   CoreAdminContext,
   ResourceContextProvider,
   TestMemoryRouter,
-} from "ra-core";
+} from "shadmin-core";
 import fakeRestProvider from "ra-data-fakerest";
 import { Count, ThemeProvider } from "@/components/admin";
 import { i18nProvider } from "@/lib/i18n-provider";

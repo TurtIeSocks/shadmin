@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import type { ReferenceInputBaseProps } from "ra-core";
-import { ReferenceInputBase } from "ra-core";
+import type { ReferenceInputBaseProps } from "shadmin-core";
+import { ReferenceInputBase } from "shadmin-core";
 import { AutocompleteInput } from "./autocomplete-input";
 import { Offline } from "@/components/admin/offline";
 

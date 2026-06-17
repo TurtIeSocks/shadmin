@@ -6,8 +6,8 @@ import type {
   InputProps,
   ListControllerResult,
   RaRecord,
-} from "ra-core";
-import { ListContextProvider, useChoicesContext, useInput } from "ra-core";
+} from "shadmin-core";
+import { ListContextProvider, useChoicesContext, useInput } from "shadmin-core";
 
 import { cn } from "@/lib/utils";
 import { DataTable } from "@/components/admin/data-table";

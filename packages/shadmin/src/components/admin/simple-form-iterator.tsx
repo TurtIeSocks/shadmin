@@ -6,7 +6,7 @@ import type {
   RaRecord,
   SimpleFormIteratorDisableRemoveFunction,
   SimpleFormIteratorItemBaseProps,
-} from "ra-core";
+} from "shadmin-core";
 import {
   RecordContextProvider,
   SimpleFormIteratorBase,
@@ -20,7 +20,7 @@ import {
   useSimpleFormIteratorItem,
   useTranslate,
   useWrappedSource,
-} from "ra-core";
+} from "shadmin-core";
 import type { UseFieldArrayReturn } from "react-hook-form";
 import {
   ArrowDownCircle,

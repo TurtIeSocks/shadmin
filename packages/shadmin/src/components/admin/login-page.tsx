@@ -1,5 +1,5 @@
 import { useEffect, type HTMLAttributes, type ReactNode } from "react";
-import { useCheckAuth } from "ra-core";
+import { useCheckAuth } from "shadmin-core";
 import { useNavigate } from "react-router";
 import { AuthLayout } from "@/components/admin/auth-layout";
 import { LoginForm } from "@/components/admin/login-form";

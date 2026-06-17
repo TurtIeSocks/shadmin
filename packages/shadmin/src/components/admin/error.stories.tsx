@@ -1,4 +1,4 @@
-import { CoreAdminContext } from "ra-core";
+import { CoreAdminContext } from "shadmin-core";
 import { ThemeProvider } from "@/components/admin";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { ReactNode } from "react";

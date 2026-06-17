@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { CoreAdminContext, RecordContextProvider } from "ra-core";
+import { CoreAdminContext, RecordContextProvider } from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { EmailField, ThemeProvider } from "@/components/admin";
 

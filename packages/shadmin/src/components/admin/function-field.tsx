@@ -1,5 +1,5 @@
 import { useMemo, type HTMLAttributes, type ReactNode } from "react";
-import { sanitizeFieldRestProps, useRecordContext } from "ra-core";
+import { sanitizeFieldRestProps, useRecordContext } from "shadmin-core";
 
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";

@@ -2,8 +2,8 @@ import type { ReactElement } from "react";
 import type {
   ResourceDefinition,
   ResourceProps as RaResourceProps,
-} from "ra-core";
-import { Resource as RaResource } from "ra-core";
+} from "shadmin-core";
+import { Resource as RaResource } from "shadmin-core";
 
 interface ResourceProps extends RaResourceProps {
   /**

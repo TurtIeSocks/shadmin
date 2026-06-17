@@ -4,7 +4,7 @@ import {
   type MDXEditorMethods,
   type MDXEditorProps,
 } from "@mdxeditor/editor";
-import { useFieldValue, useTranslate } from "ra-core";
+import { useFieldValue, useTranslate } from "shadmin-core";
 
 import { useTheme } from "@/hooks/use-theme";
 import type { FieldProps } from "@/lib/field-types";

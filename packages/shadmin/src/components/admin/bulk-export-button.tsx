@@ -1,11 +1,11 @@
 import { Download } from "lucide-react";
-import type { RaRecord, UseBulkExportOptions } from "ra-core";
+import type { RaRecord, UseBulkExportOptions } from "shadmin-core";
 import {
   useBulkExport,
   useGetResourceLabel,
   useResourceContext,
   useResourceTranslation,
-} from "ra-core";
+} from "shadmin-core";
 
 import { Button } from "../ui/button";
 

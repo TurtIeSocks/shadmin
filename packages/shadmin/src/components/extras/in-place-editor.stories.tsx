@@ -4,7 +4,7 @@ import {
   RecordContextProvider,
   ResourceContextProvider,
   memoryStore,
-} from "ra-core";
+} from "shadmin-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { MemoryRouter } from "react-router";
 import { i18nProvider } from "@/lib/i18n-provider";

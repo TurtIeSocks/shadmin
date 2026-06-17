@@ -2,7 +2,7 @@ import {
   RecordContextProvider,
   ResourceContextProvider,
   ArrayInputContext,
-} from "ra-core";
+} from "shadmin-core";
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { FormProvider, useForm } from "react-hook-form";

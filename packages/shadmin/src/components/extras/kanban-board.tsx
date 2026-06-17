@@ -10,13 +10,13 @@ import {
   useDroppable,
 } from "@dnd-kit/core";
 import { useNavigate } from "react-router";
-import type { RaRecord } from "ra-core";
+import type { RaRecord } from "shadmin-core";
 import {
   useGetRecordRepresentation,
   useListContext,
   useResourceContext,
   useUpdate,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------

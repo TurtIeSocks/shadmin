@@ -6,7 +6,7 @@ import {
   useGetIdentity,
   useRecordContext,
   useResourceContext,
-} from "ra-core";
+} from "shadmin-core";
 import {
   Avatar,
   AvatarFallback,

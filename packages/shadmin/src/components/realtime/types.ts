@@ -1,4 +1,4 @@
-import type { DataProvider, Identifier } from "ra-core";
+import type { DataProvider, Identifier } from "shadmin-core";
 
 export type RealtimeEventType =
   | "created"

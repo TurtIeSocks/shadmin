@@ -6,13 +6,13 @@ import type {
   RaRecord,
   TransformData,
   UpdateParams,
-} from "ra-core";
+} from "shadmin-core";
 import {
   setSubmissionErrors,
   useSaveContext,
   useTranslate,
   warning,
-} from "ra-core";
+} from "shadmin-core";
 import { Save } from "lucide-react";
 import { useFormContext, useFormState } from "react-hook-form";
 import type { UseMutationOptions } from "@tanstack/react-query";

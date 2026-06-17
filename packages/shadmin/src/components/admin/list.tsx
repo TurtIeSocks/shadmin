@@ -3,7 +3,11 @@ import {
   BreadcrumbItem,
   BreadcrumbPage,
 } from "@/components/admin/breadcrumb";
-import type { ListBaseProps, ListControllerResult, RaRecord } from "ra-core";
+import type {
+  ListBaseProps,
+  ListControllerResult,
+  RaRecord,
+} from "shadmin-core";
 import {
   FilterContext,
   ListBase,
@@ -14,7 +18,7 @@ import {
   useResourceContext,
   useResourceDefinition,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import type { ElementType, ReactElement, ReactNode } from "react";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";

@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
 import type { Any } from "@/lib/any";
 import { useEffect, useRef, useState, isValidElement, Children } from "react";
-import type { InferredTypeMap } from "ra-core";
+import type { InferredTypeMap } from "shadmin-core";
 import {
   ShowBase,
   InferredElement,
   getElementsFromRecords,
   useResourceContext,
   useShowContext,
-} from "ra-core";
+} from "shadmin-core";
 import { capitalize, singularize } from "inflection";
 import type { ShowProps } from "@/components/admin/show";
 import { ShowView } from "@/components/admin/show";

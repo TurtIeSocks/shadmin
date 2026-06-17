@@ -1,4 +1,4 @@
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import type { ReactNode } from "react";
 import { isValidElement } from "react";
 import { FieldDescription } from "@/components/ui/field";

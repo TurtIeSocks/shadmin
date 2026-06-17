@@ -6,7 +6,7 @@ import {
   useRecordContext,
   useRedirect,
   useResourceContext,
-} from "ra-core";
+} from "shadmin-core";
 import fakeRestProvider from "ra-data-fakerest";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { Button } from "@/components/ui/button";

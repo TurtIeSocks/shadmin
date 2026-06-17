@@ -3,7 +3,7 @@ import {
   useListContext,
   useSavedQueries,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import type {
   ChangeEvent,
   ComponentProps,

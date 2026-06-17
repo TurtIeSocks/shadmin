@@ -2,7 +2,7 @@ import {
   RecordContextProvider,
   RecordRepresentation,
   useListContext,
-} from "ra-core";
+} from "shadmin-core";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { UnknownValue } from "@/lib/unknown-types";

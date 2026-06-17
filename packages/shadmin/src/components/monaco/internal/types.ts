@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
-import type { InputProps } from "ra-core";
+import type { InputProps } from "shadmin-core";
 import type { editor } from "monaco-editor";
 import type { FieldProps } from "@/lib/field-types";
 

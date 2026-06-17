@@ -1,5 +1,5 @@
 import fakeRestProvider from "ra-data-fakerest";
-import { Resource, TestMemoryRouter } from "ra-core";
+import { Resource, TestMemoryRouter } from "shadmin-core";
 
 import { Admin } from "@/components/admin/admin";
 import { ListGuesser } from "@/components/admin/list-guesser";

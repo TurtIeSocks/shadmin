@@ -1,10 +1,10 @@
-import type { InputProps } from "ra-core";
+import type { InputProps } from "shadmin-core";
 import {
   FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";

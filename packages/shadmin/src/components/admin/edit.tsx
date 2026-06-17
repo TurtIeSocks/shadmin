@@ -1,4 +1,4 @@
-import type { EditBaseProps } from "ra-core";
+import type { EditBaseProps } from "shadmin-core";
 import {
   EditBase,
   Translate,
@@ -9,7 +9,7 @@ import {
   useHasDashboard,
   useResourceContext,
   useResourceDefinition,
-} from "ra-core";
+} from "shadmin-core";
 import type { ElementType, ReactNode } from "react";
 import { Link } from "react-router";
 import {

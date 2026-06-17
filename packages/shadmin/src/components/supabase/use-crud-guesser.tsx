@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { ResourceProps } from "ra-core";
+import type { ResourceProps } from "shadmin-core";
 import { useAPISchema } from "ra-supabase-core";
 import { SupabaseListGuesser } from "./list-guesser";
 import { SupabaseShowGuesser } from "./show-guesser";

@@ -3,7 +3,7 @@ import {
   sanitizeFieldRestProps,
   useFieldValue,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 import * as React from "react";
 

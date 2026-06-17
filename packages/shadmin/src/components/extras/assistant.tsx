@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MessageCircleIcon, SendIcon, XIcon } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type {

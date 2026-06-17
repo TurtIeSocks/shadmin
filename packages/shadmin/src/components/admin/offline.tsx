@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { WifiOff } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 
 import { cn } from "@/lib/utils";
 

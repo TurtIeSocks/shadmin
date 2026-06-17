@@ -6,7 +6,7 @@ import {
   type UsePrevNextControllerProps,
   usePrevNextController,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";

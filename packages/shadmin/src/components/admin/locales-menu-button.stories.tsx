@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext, memoryStore } from "ra-core";
+import { CoreAdminContext, memoryStore } from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import { Globe } from "lucide-react";

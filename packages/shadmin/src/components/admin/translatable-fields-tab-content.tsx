@@ -7,7 +7,7 @@ import {
   useResourceContext,
   useTranslatableContext,
   type RaRecord,
-} from "ra-core";
+} from "shadmin-core";
 
 import { Label } from "@/components/ui/label";
 import { TabsContent } from "@/components/ui/tabs";

@@ -4,7 +4,7 @@ import {
   Form,
   RecordContextProvider,
   ResourceContextProvider,
-} from "ra-core";
+} from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import {
   Toolbar,

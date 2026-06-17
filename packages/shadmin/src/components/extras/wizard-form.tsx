@@ -16,8 +16,8 @@ import {
   FormGroupContextProvider,
   useFormGroups,
   useTranslate,
-} from "ra-core";
-import type { FormProps } from "ra-core";
+} from "shadmin-core";
+import type { FormProps } from "shadmin-core";
 import { useFormContext } from "react-hook-form";
 import { ArrowLeft, ArrowRight, CircleX } from "lucide-react";
 

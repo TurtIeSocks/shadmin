@@ -1,5 +1,5 @@
-import { Resource } from "ra-core";
-import { TestMemoryRouter } from "ra-core";
+import { Resource } from "shadmin-core";
+import { TestMemoryRouter } from "shadmin-core";
 import { Admin, SimpleForm, TextInput } from "@/components/admin";
 import { EditLive } from "@/components/realtime/edit-live";
 import { editDataProvider } from "./__fixtures__/edit-live-fixtures";

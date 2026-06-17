@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import { CoreAdminContext, type AuthProvider } from "ra-core";
+import { CoreAdminContext, type AuthProvider } from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import { MemoryRouter } from "react-router";

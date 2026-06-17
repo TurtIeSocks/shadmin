@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext, Form, RecordContextProvider } from "ra-core";
+import { CoreAdminContext, Form, RecordContextProvider } from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { ImageInput, ImageField, ThemeProvider } from "@/components/admin";
 

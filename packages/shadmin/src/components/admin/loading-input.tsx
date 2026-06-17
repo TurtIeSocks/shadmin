@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useTimeout } from "ra-core";
+import { useTimeout } from "shadmin-core";
 
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";

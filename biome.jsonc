@@ -103,6 +103,10 @@
                   "@base-ui/react/*"
                 ],
                 "message": "Import from '@/components/ui/*' instead. Primitive libraries (radix-ui, @base-ui/react) must only be referenced inside src/components/ui/ so the primitive backend can be swapped in one place."
+              },
+              {
+                "group": ["ra-core", "ra-core/*"],
+                "message": "Import admin logic from 'shadmin-core' instead. Only the shadmin-core package may import ra-core directly — it's the seam that makes the eventual in-house replacement a one-package change."
               }
             ]
           }
@@ -187,6 +191,27 @@
       // (the old code carried eslint-disable no-console for these).
       "includes": ["**/*-guesser.tsx"],
       "linter": { "rules": { "suspicious": { "noConsole": "off" } } }
+    },
+    {
+      // shadmin-core IS the ra-core seam — it must import ra-core directly.
+      // Everywhere else the noRestrictedImports rule bans ra-core in favor of
+      // "shadmin-core".
+      "includes": ["packages/shadmin-core/**"],
+      "linter": {
+        "rules": { "style": { "noRestrictedImports": "off" } }
+      }
+    },
+    {
+      // The demo app is a CONSUMER of the shadmin library, not the library
+      // itself. The ra-core import discipline (noRestrictedImports) keeps
+      // packages/shadmin's backend swappable — it's library-internal. The demo
+      // imports ra-core directly exactly as an external consumer would, so the
+      // rule does not apply. Scoped to apps/demo (the only ra-core consumer) to
+      // avoid re-enabling the linter on apps/website/src/components/ui/**.
+      "includes": ["apps/demo/**"],
+      "linter": {
+        "rules": { "style": { "noRestrictedImports": "off" } }
+      }
     }
   ]
 }

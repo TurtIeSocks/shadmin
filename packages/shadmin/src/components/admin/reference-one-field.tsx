@@ -4,8 +4,8 @@ import type {
   RaRecord,
   SortPayload,
   UseReferenceResult,
-} from "ra-core";
-import { ReferenceOneFieldBase, useTranslate } from "ra-core";
+} from "shadmin-core";
+import { ReferenceOneFieldBase, useTranslate } from "shadmin-core";
 import type { UseQueryOptions } from "@tanstack/react-query";
 
 import { ReferenceFieldView } from "./reference-field";

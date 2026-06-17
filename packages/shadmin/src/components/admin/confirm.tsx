@@ -1,5 +1,5 @@
 import { AlertCircle, CheckCircle } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import * as React from "react";
 import { type ComponentType, type MouseEventHandler, useCallback } from "react";
 import { DialogPrimitive } from "@/components/ui/dialog";
@@ -25,7 +25,7 @@ import {
  *
  * @example
  * import { useState } from "react";
- * import { useDelete, useRecordContext, useResourceContext, useRedirect } from "ra-core";
+ * import { useDelete, useRecordContext, useResourceContext, useRedirect } from "shadmin-core";
  * import { Button } from "@/components/ui/button";
  * import { Confirm } from "@/components/admin/confirm";
  *

@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext, ListContextProvider, useList } from "ra-core";
+import { CoreAdminContext, ListContextProvider, useList } from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { SingleFieldList, ThemeProvider, TextField } from "@/components/admin";
 

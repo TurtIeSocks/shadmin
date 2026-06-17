@@ -1,11 +1,11 @@
 import * as React from "react";
 import type { ReactElement, ReactNode } from "react";
-import type { InputProps, UseReferenceArrayInputParams } from "ra-core";
+import type { InputProps, UseReferenceArrayInputParams } from "shadmin-core";
 import {
   useReferenceArrayInputController,
   ResourceContextProvider,
   ChoicesContextProvider,
-} from "ra-core";
+} from "shadmin-core";
 import { AutocompleteArrayInput } from "@/components/admin/autocomplete-array-input";
 import { Offline } from "@/components/admin/offline";
 

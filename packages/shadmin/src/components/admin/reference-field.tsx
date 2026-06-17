@@ -3,14 +3,14 @@ import type {
   LinkToType,
   RaRecord,
   UseReferenceFieldControllerResult,
-} from "ra-core";
+} from "shadmin-core";
 import {
   ReferenceFieldBase,
   useFieldValue,
   useGetRecordRepresentation,
   useReferenceFieldContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import type { MouseEvent, ReactNode } from "react";
 import { Link } from "react-router";
 import type { UseQueryOptions } from "@tanstack/react-query";

@@ -4,7 +4,7 @@ import {
   RecordContextProvider,
   required,
   ResourceContextProvider,
-} from "ra-core";
+} from "shadmin-core";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { WizardForm, WizardToolbar } from "@/components/extras/wizard-form";
 import { TextInput } from "@/components/admin/text-input";

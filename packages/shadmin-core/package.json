@@ -1,0 +1,22 @@
+{
+  "name": "shadmin-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Headless, type-safe, UI-agnostic admin logic for shadmin. Currently re-exports ra-core; the in-house replacement lands here incrementally. No JSX, no shadcn deps.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "ra-core": "^5.14.0"
+  }
+}

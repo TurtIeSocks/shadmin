@@ -186,6 +186,14 @@ export const granularizeBlock = ({
       }
       const pkg = npmRoot(imp);
       if (IMPLICIT_NPM.has(pkg)) continue;
+      // shadmin-core re-exports ra-core (the seam). It's a private, unpublished
+      // workspace package, so registry items must declare the real ra-core dep
+      // their copied source needs — not the unresolvable @workspace package.
+      // When shadmin-core is published, flip this mapping to "shadmin-core".
+      if (pkg === "shadmin-core") {
+        npmDeps.add("ra-core");
+        continue;
+      }
       if (packageJson.dependencies?.[pkg]) {
         npmDeps.add(pkg);
       } else if (packageJson.devDependencies?.[pkg]) {

@@ -11,7 +11,7 @@ import {
   usePreferencesEditor,
   PreferenceKeyContextProvider,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { Settings } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

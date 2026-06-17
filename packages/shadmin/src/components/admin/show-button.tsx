@@ -2,7 +2,7 @@ import React, { type Ref } from "react";
 import { Link } from "react-router";
 import { buttonVariants } from "@/components/ui/button";
 import { Eye } from "lucide-react";
-import type { RaRecord } from "ra-core";
+import type { RaRecord } from "shadmin-core";
 import {
   useCanAccess,
   useCreatePath,
@@ -11,7 +11,7 @@ import {
   useRecordContext,
   useResourceContext,
   useResourceTranslation,
-} from "ra-core";
+} from "shadmin-core";
 
 type ShowButtonProps = {
   label?: string;

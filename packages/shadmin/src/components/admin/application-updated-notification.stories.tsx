@@ -1,4 +1,4 @@
-import { CoreAdminContext } from "ra-core";
+import { CoreAdminContext } from "shadmin-core";
 import type { ReactNode } from "react";
 
 import { ApplicationUpdatedNotification } from "@/components/admin/application-updated-notification";

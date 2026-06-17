@@ -4,7 +4,7 @@ import type {
   ChoicesProps,
   InputProps,
   SupportCreateSuggestionOptions,
-} from "ra-core";
+} from "shadmin-core";
 import {
   FieldTitle,
   useChoices,
@@ -14,7 +14,7 @@ import {
   useSupportCreateSuggestion,
   useTranslate,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";
 import { Badge } from "@/components/ui/badge";

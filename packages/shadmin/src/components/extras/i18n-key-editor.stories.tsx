@@ -3,7 +3,7 @@ import {
   TestMemoryRouter,
   memoryStore,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import fakeRestProvider from "ra-data-fakerest";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";

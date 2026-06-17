@@ -1,4 +1,4 @@
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import * as React from "react";
 import type { MouseEvent } from "react";
 

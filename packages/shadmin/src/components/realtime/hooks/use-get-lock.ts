@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DataProviderContext } from "ra-core";
+import { DataProviderContext } from "shadmin-core";
 import { useQuery } from "@tanstack/react-query";
 import type { GetLockParams, Lock, RealtimeDataProvider } from "../types";
 

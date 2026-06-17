@@ -3,7 +3,7 @@ import { Fragment, useState, type Ref } from "react";
 import { humanize, inflect } from "inflection";
 import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { RaRecord, UseBulkDeleteControllerParams } from "ra-core";
+import type { RaRecord, UseBulkDeleteControllerParams } from "shadmin-core";
 import {
   useCanAccess,
   useBulkDeleteController,
@@ -12,7 +12,7 @@ import {
   useResourceContext,
   useResourceTranslation,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 import { Confirm } from "@/components/admin/confirm";

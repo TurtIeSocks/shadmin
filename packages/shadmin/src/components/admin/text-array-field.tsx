@@ -1,5 +1,9 @@
 import type { ComponentProps, HTMLAttributes, ReactNode } from "react";
-import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
+import {
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "shadmin-core";
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";

@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode, useMemo } from "react";
-import { useListContext, useTranslate } from "ra-core";
+import { useListContext, useTranslate } from "shadmin-core";
 import { cn } from "@/lib/utils";
 
 type PivotAggregator = "count" | "sum" | "avg" | "min" | "max";

@@ -1,4 +1,4 @@
-import type { Identifier } from "ra-core";
+import type { Identifier } from "shadmin-core";
 
 export const resourceTopic = (resource: string): string =>
   `resource/${resource}`;

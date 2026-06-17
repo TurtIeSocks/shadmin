@@ -1,4 +1,4 @@
-import { useTimeout } from "ra-core";
+import { useTimeout } from "shadmin-core";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 

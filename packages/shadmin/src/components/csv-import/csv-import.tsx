@@ -10,7 +10,11 @@ import {
   useState,
 } from "react";
 import { UploadIcon } from "lucide-react";
-import { useDataProvider, useResourceContext, useTranslate } from "ra-core";
+import {
+  useDataProvider,
+  useResourceContext,
+  useTranslate,
+} from "shadmin-core";
 import { useDropzone } from "react-dropzone";
 import Papa from "papaparse";
 import { useFormContext } from "react-hook-form";

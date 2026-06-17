@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Translate, useTranslate } from "ra-core";
+import { Translate, useTranslate } from "shadmin-core";
 import { CircleAlert, Lock } from "lucide-react";
 
 import { cn } from "@/lib/utils";

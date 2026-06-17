@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext, Form, RecordContextProvider } from "ra-core";
+import { CoreAdminContext, Form, RecordContextProvider } from "shadmin-core";
 import { Send } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { SaveButton, TextInput, ThemeProvider } from "@/components/admin";

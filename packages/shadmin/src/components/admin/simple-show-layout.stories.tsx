@@ -1,5 +1,9 @@
 import React from "react";
-import { CoreAdminContext, RecordContextProvider, memoryStore } from "ra-core";
+import {
+  CoreAdminContext,
+  RecordContextProvider,
+  memoryStore,
+} from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 

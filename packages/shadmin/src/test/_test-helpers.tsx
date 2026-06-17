@@ -1,10 +1,14 @@
 import type { PropsWithChildren } from "react";
-import type { DataProvider } from "ra-core";
-import { CoreAdminContext, RecordContextProvider, memoryStore } from "ra-core";
+import type { DataProvider } from "shadmin-core";
+import {
+  CoreAdminContext,
+  RecordContextProvider,
+  memoryStore,
+} from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
-import { TestMemoryRouter } from "ra-core";
+import { TestMemoryRouter } from "shadmin-core";
 
 import { ThemeProvider, SimpleForm, Create } from "@/components/admin";
 import { realtimeDataProvider } from "@/components/realtime/realtime-data-provider";

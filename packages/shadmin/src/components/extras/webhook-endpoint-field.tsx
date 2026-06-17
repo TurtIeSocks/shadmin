@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { sanitizeFieldRestProps, useFieldValue } from "ra-core";
+import { sanitizeFieldRestProps, useFieldValue } from "shadmin-core";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import { cn } from "@/lib/utils";

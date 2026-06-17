@@ -3,7 +3,7 @@ import {
   BreadcrumbItem,
   BreadcrumbPage,
 } from "@/components/admin/breadcrumb";
-import type { CreateBaseProps } from "ra-core";
+import type { CreateBaseProps } from "shadmin-core";
 import {
   CreateBase,
   Translate,
@@ -12,7 +12,7 @@ import {
   useGetResourceLabel,
   useHasDashboard,
   useResourceContext,
-} from "ra-core";
+} from "shadmin-core";
 import type { ElementType, ReactNode } from "react";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";

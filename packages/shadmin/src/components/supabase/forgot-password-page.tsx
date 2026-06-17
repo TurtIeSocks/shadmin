@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { AuthLayout } from "@/components/admin/auth-layout";
 import { ForgotPasswordForm } from "./forgot-password-form";
 

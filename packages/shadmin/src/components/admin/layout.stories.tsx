@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import type { ReactNode } from "react";
 import { AppBar, Layout, MenuItemLink } from "@/components/admin";
 import type { ErrorProps } from "@/components/admin/error";
-import { CoreAdminContext } from "ra-core";
+import { CoreAdminContext } from "shadmin-core";
 import { Star } from "lucide-react";
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 

@@ -19,5 +19,5 @@
  *   </Card>
  * );
  */
-export { FilterLiveForm } from "ra-core";
-export type { FilterLiveFormProps } from "ra-core";
+export { FilterLiveForm } from "shadmin-core";
+export type { FilterLiveFormProps } from "shadmin-core";

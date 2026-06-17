@@ -1,7 +1,11 @@
 import { Children, useState } from "react";
 import type { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { useListContext, useResourceContext, useUpdateMany } from "ra-core";
+import {
+  useListContext,
+  useResourceContext,
+  useUpdateMany,
+} from "shadmin-core";
 
 import { Button } from "@/components/ui/button";
 import {

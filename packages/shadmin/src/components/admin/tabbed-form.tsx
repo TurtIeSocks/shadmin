@@ -1,7 +1,7 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import type { FormProps } from "ra-core";
+import type { FormProps } from "shadmin-core";
 import {
   Form,
   FormGroupContextProvider,
@@ -12,7 +12,7 @@ import {
   useLocation,
   useMatchPath,
   useRouterProvider,
-} from "ra-core";
+} from "shadmin-core";
 import type { ReactElement, ReactNode, SyntheticEvent } from "react";
 import { Children, cloneElement, isValidElement, useState } from "react";
 import { useNavigate } from "react-router";

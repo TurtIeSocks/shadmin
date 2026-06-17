@@ -1,12 +1,12 @@
 import * as React from "react";
-import type { ChoicesProps, InputProps } from "ra-core";
+import type { ChoicesProps, InputProps } from "shadmin-core";
 import {
   FieldTitle,
   useChoices,
   useChoicesContext,
   useInput,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 import { sanitizeInputRestProps } from "@/lib/sanitize-input-rest-props";
 import {

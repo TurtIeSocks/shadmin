@@ -1,4 +1,4 @@
-import { RecordContextProvider } from "ra-core";
+import { RecordContextProvider } from "shadmin-core";
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 

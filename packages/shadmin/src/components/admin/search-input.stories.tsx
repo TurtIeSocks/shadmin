@@ -4,7 +4,7 @@ import {
   FilterLiveForm,
   ListContextProvider,
   useList,
-} from "ra-core";
+} from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { SearchInput, ThemeProvider } from "@/components/admin";
 import { useWatch } from "react-hook-form";

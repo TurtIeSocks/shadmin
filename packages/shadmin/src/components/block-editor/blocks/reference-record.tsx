@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Boxes } from "lucide-react";
-import { useGetOne } from "ra-core";
+import { useGetOne } from "shadmin-core";
 import {
   defineBlock,
   type BlockRenderProps,

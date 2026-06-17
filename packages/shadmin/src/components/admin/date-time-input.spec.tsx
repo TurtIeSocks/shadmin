@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import { required } from "ra-core";
+import { required } from "shadmin-core";
 
 import {
   Basic,

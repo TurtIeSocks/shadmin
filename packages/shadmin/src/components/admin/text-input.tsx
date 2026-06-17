@@ -1,12 +1,12 @@
 import { X } from "lucide-react";
-import type { InputProps } from "ra-core";
+import type { InputProps } from "shadmin-core";
 import {
   useInput,
   useResourceContext,
   FieldTitle,
   useTranslate,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";

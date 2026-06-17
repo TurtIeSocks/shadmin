@@ -1,7 +1,7 @@
 import React from "react";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
-import { CoreAdminContext, RecordContextProvider } from "ra-core";
+import { CoreAdminContext, RecordContextProvider } from "shadmin-core";
 
 import { LatLngField, LatLngInput } from "@/components/leaflet";
 import { ThemeProvider, SimpleForm, Create } from "@/components/admin";

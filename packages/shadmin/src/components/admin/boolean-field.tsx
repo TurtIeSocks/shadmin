@@ -1,5 +1,5 @@
 import { Check, type LucideIcon, X } from "lucide-react";
-import { RaRecord, useFieldValue, useTranslate } from "ra-core";
+import { RaRecord, useFieldValue, useTranslate } from "shadmin-core";
 
 import type { FieldProps } from "@/lib/field-types";
 import { cn } from "@/lib/utils";

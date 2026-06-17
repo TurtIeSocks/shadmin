@@ -6,7 +6,7 @@ import {
   useCreatePath,
   useGetResourceLabel,
   useResourceDefinitions,
-} from "ra-core";
+} from "shadmin-core";
 import type { ReactNode } from "react";
 import { List } from "lucide-react";
 import {

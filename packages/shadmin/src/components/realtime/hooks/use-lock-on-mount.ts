@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useGetIdentity, useRecordContext, useResourceContext } from "ra-core";
-import type { Identifier } from "ra-core";
+import {
+  useGetIdentity,
+  useRecordContext,
+  useResourceContext,
+} from "shadmin-core";
+import type { Identifier } from "shadmin-core";
 import type { Lock } from "../types";
 import { useLock } from "./use-lock";
 import { useUnlock } from "./use-unlock";

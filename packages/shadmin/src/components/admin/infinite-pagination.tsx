@@ -4,7 +4,7 @@ import {
   useInfinitePaginationContext,
   useListContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";

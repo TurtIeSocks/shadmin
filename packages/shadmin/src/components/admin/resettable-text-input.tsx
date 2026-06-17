@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { X } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { useFormContext, useWatch } from "react-hook-form";
 
 import { TextInput, type TextInputProps } from "@/components/admin/text-input";

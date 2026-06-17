@@ -1,6 +1,6 @@
 import type { JSONContent } from "@tiptap/react";
 import get from "lodash/get";
-import { useRecordContext } from "ra-core";
+import { useRecordContext } from "shadmin-core";
 
 import type { UnknownRecord } from "@/lib/unknown-types";
 

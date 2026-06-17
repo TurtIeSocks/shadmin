@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { RecordContextProvider, useRecordContext } from "ra-core";
+import { RecordContextProvider, useRecordContext } from "shadmin-core";
 
 import {
   ShapeFieldShell,

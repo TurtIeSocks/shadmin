@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { InputProps } from "ra-core";
+import type { InputProps } from "shadmin-core";
 import {
   FieldTitle,
   isRequired,
@@ -7,7 +7,7 @@ import {
   sanitizeInputRestProps,
   ArrayInputBase,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { useFormContext, useFormState } from "react-hook-form";
 
 import { cn } from "@/lib/utils";

@@ -1,4 +1,4 @@
-import { Form, required, useNotify, useTranslate } from "ra-core";
+import { Form, required, useNotify, useTranslate } from "shadmin-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 import { useSetPassword, useSupabaseAccessToken } from "ra-supabase-core";
 import { Button } from "@/components/ui/button";

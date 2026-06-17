@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { ReactNode } from "react";
-import { ShowBase, useResourceContext } from "ra-core";
+import { ShowBase, useResourceContext } from "shadmin-core";
 import { useAPISchema } from "ra-supabase-core";
 import { capitalize, singularize } from "inflection";
 import {

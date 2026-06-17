@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext, Form, RecordContextProvider } from "ra-core";
+import { CoreAdminContext, Form, RecordContextProvider } from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { TextInput, ThemeProvider } from "@/components/admin";
 import { useWatch } from "react-hook-form";

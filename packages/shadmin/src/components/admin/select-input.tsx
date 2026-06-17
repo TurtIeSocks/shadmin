@@ -3,7 +3,7 @@ import type {
   ChoicesProps,
   InputProps,
   SupportCreateSuggestionOptions,
-} from "ra-core";
+} from "shadmin-core";
 import {
   FieldTitle,
   useChoices,
@@ -13,7 +13,7 @@ import {
   useSupportCreateSuggestion,
   useTranslate,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import type { ComponentProps, ReactElement } from "react";
 import { useCallback, useEffect } from "react";
 

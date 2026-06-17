@@ -4,7 +4,7 @@ import {
   RecordContextProvider,
   ResourceContextProvider,
   useTranslatableContext,
-} from "ra-core";
+} from "shadmin-core";
 
 import { TextField } from "@/components/admin/text-field";
 import { ThemeProvider } from "@/components/admin/theme-provider";

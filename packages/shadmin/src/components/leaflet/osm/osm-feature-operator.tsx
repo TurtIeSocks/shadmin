@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
-import { useNotify, useTranslate } from "ra-core";
+import { useNotify, useTranslate } from "shadmin-core";
 import { Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

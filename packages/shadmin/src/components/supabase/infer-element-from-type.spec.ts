@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { InferredTypeMap } from "ra-core";
+import type { InferredTypeMap } from "shadmin-core";
 import { exampleSchema } from "./__fixtures__";
 import { inferElementFromType } from "./infer-element-from-type";
 

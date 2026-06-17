@@ -21,7 +21,7 @@ import type {
   ChoicesProps,
   InputProps,
   SupportCreateSuggestionOptions,
-} from "ra-core";
+} from "shadmin-core";
 import {
   useChoices,
   useChoicesContext,
@@ -32,7 +32,7 @@ import {
   useEvent,
   useSupportCreateSuggestion,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { areIdsEqual } from "@/lib/are-ids-equal";
 import { InputHelperText } from "./input-helper-text";
 import type { UnknownValue } from "@/lib/unknown-types";

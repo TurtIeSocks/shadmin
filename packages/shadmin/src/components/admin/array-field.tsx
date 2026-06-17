@@ -1,6 +1,10 @@
 import type { ReactNode } from "react";
-import type { RaRecord, UseListOptions, UseFieldValueOptions } from "ra-core";
-import { ListContextProvider, useList, useFieldValue } from "ra-core";
+import type {
+  RaRecord,
+  UseListOptions,
+  UseFieldValueOptions,
+} from "shadmin-core";
+import { ListContextProvider, useList, useFieldValue } from "shadmin-core";
 import type { UnknownValue } from "@/lib/unknown-types";
 
 /**

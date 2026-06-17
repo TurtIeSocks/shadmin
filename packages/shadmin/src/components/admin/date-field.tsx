@@ -4,7 +4,7 @@ import {
   sanitizeFieldRestProps,
   useFieldValue,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord, UnknownValue } from "@/lib/unknown-types";

@@ -1,7 +1,7 @@
 import * as React from "react";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
-import { CoreAdminContext, required } from "ra-core";
+import { CoreAdminContext, required } from "shadmin-core";
 import { useWatch } from "react-hook-form";
 
 import {

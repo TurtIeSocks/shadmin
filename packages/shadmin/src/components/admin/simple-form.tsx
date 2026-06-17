@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { ReactNode } from "react";
 import { Children } from "react";
-import type { FormProps } from "ra-core";
-import { Form } from "ra-core";
+import type { FormProps } from "shadmin-core";
+import { Form } from "shadmin-core";
 import { cn } from "@/lib/utils";
 import { CancelButton } from "@/components/admin/cancel-button";
 import { SaveButton } from "@/components/admin/save-button";

@@ -5,7 +5,7 @@ import {
   type CoreAdminContextProps,
   type CoreAdminProps,
   localStorageStore,
-} from "ra-core";
+} from "shadmin-core";
 import { i18nProvider as defaultI18nProvider } from "@/lib/i18n-provider";
 import { Layout } from "@/components/admin/layout";
 import { LoginPage } from "@/components/admin/login-page";

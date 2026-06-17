@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { TriangleAlert } from "lucide-react";
-import { useDefaultTitle } from "ra-core";
+import { useDefaultTitle } from "shadmin-core";
 
 import { Title } from "@/components/admin/title";
 import { AccessDenied } from "./access-denied";

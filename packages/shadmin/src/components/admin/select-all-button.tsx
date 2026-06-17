@@ -1,6 +1,6 @@
 import type { MouseEvent, Ref } from "react";
-import type { RaRecord, UseGetListOptions } from "ra-core";
-import { Translate, useListContext } from "ra-core";
+import type { RaRecord, UseGetListOptions } from "shadmin-core";
+import { Translate, useListContext } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 

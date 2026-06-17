@@ -4,7 +4,7 @@ import {
   RecordContextProvider,
   ResourceContextProvider,
   memoryStore,
-} from "ra-core";
+} from "shadmin-core";
 import { MemoryRouter } from "react-router";
 import { Star } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";

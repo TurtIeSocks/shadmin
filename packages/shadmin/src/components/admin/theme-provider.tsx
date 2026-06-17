@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useStore } from "ra-core";
+import { useStore } from "shadmin-core";
 
 import {
   ThemeProviderContext,

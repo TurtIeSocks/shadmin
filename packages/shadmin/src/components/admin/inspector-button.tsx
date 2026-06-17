@@ -4,7 +4,7 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
-import { useTranslate, usePreferencesEditor } from "ra-core";
+import { useTranslate, usePreferencesEditor } from "shadmin-core";
 import { Settings } from "lucide-react";
 
 const defaultIcon = <Settings className="size-4" />;

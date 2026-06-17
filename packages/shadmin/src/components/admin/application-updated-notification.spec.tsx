@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import { CoreAdminContext } from "ra-core";
+import { CoreAdminContext } from "shadmin-core";
 
 import {
   Basic,

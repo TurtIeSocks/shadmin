@@ -1,5 +1,9 @@
 import type { ReactElement, ReactNode } from "react";
-import { type Identifier, useRecordContext, useResourceContext } from "ra-core";
+import {
+  type Identifier,
+  useRecordContext,
+  useResourceContext,
+} from "shadmin-core";
 import { Badge } from "@/components/ui/badge";
 import type { Lock } from "./types";
 import { useGetLockLive } from "./hooks/use-get-lock-live";

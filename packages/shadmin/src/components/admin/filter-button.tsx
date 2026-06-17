@@ -18,7 +18,7 @@ import {
   useResourceContext,
   useSavedQueries,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { useNavigate } from "react-router";
 import {
   Bookmark,

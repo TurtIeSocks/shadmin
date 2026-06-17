@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from "react";
-import { DataProviderContext, useGetIdentity } from "ra-core";
-import type { Identifier } from "ra-core";
+import { DataProviderContext, useGetIdentity } from "shadmin-core";
+import type { Identifier } from "shadmin-core";
 import type { Lock, LockParams, RealtimeDataProvider } from "../types";
 
 export function useLock<R extends string = string>(): {

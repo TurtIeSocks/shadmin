@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { RaRecord, SortPayload } from "ra-core";
+import type { RaRecord, SortPayload } from "shadmin-core";
 import type { UnknownRecord } from "@/lib/unknown-types";
 import type { FieldProps } from "@/lib/field-types";
 import {
@@ -8,7 +8,7 @@ import {
   useReferenceManyFieldController,
   useTimeout,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { CircleX } from "lucide-react";
 import get from "lodash/get";
 import { Link } from "react-router";

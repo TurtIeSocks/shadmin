@@ -1,4 +1,4 @@
-import { useTranslate, useSetInspectorTitle } from "ra-core";
+import { useTranslate, useSetInspectorTitle } from "shadmin-core";
 
 /**
  * Default empty-state content for the {@link Inspector}.

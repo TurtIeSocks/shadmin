@@ -1,4 +1,4 @@
-import { Resource, required, TestMemoryRouter } from "ra-core";
+import { Resource, required, TestMemoryRouter } from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";

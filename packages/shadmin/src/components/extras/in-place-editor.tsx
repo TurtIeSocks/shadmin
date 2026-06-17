@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useReducer, useRef } from "react";
-import type { RaRecord, UseUpdateOptions } from "ra-core";
+import type { RaRecord, UseUpdateOptions } from "shadmin-core";
 import {
   Form,
   RecordContextProvider,
@@ -9,7 +9,7 @@ import {
   useResourceContext,
   useTranslate,
   useUpdate,
-} from "ra-core";
+} from "shadmin-core";
 import type { FieldValues } from "react-hook-form";
 import isEqual from "lodash/isEqual";
 import { Check, X } from "lucide-react";

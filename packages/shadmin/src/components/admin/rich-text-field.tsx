@@ -3,7 +3,7 @@ import {
   sanitizeFieldRestProps,
   useFieldValue,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import type { HTMLAttributes } from "react";
 import DOMPurify from "dompurify";
 import type { Config as DOMPurifyConfig } from "dompurify";

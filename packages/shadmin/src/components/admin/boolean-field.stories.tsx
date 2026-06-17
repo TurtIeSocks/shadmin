@@ -1,6 +1,6 @@
 import React from "react";
-import type { RaRecord } from "ra-core";
-import { CoreAdminContext, RecordContextProvider } from "ra-core";
+import type { RaRecord } from "shadmin-core";
+import { CoreAdminContext, RecordContextProvider } from "shadmin-core";
 import { Heart, HeartOff } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { BooleanField, ThemeProvider } from "@/components/admin";

@@ -11,7 +11,7 @@ import {
   useNotificationContext,
   useTakeUndoableMutation,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 
 /**
  * Displays notifications triggered with the useNotify hook.

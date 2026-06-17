@@ -7,7 +7,7 @@ import {
   type RaRecord,
   useListContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { formatRelative } from "date-fns";
 
 interface TimelineEntry {

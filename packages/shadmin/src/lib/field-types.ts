@@ -1,4 +1,4 @@
-import type { BaseFieldProps } from "ra-core";
+import type { BaseFieldProps } from "shadmin-core";
 import type { ReactNode } from "react";
 import type { UnknownRecord } from "./unknown-types";
 

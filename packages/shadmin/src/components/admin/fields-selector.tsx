@@ -1,4 +1,4 @@
-import { usePreference, useTranslate } from "ra-core";
+import { usePreference, useTranslate } from "shadmin-core";
 
 import { Button } from "@/components/ui/button";
 

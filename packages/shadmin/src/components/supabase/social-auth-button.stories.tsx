@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CoreAdminContext, type AuthProvider } from "ra-core";
+import { CoreAdminContext, type AuthProvider } from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import { MemoryRouter } from "react-router";

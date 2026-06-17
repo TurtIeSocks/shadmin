@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import { CustomLabel, Default } from "./refresh-icon-button.stories";
 import { RefreshIconButton } from "@/components/admin/refresh-icon-button";
 import { ThemeProvider } from "@/components/admin/theme-provider";
-import { CoreAdminContext, memoryStore } from "ra-core";
+import { CoreAdminContext, memoryStore } from "shadmin-core";
 import { MemoryRouter } from "react-router";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";

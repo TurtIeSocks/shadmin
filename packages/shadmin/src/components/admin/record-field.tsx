@@ -1,12 +1,12 @@
 import type { ReactNode, ElementType, HTMLAttributes } from "react";
 import { createElement } from "react";
-import type { ExtractRecordPaths, HintedString } from "ra-core";
+import type { ExtractRecordPaths, HintedString } from "shadmin-core";
 import {
   FieldTitle,
   useRecordContext,
   useResourceContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 
 import { TextField } from "@/components/admin/text-field";

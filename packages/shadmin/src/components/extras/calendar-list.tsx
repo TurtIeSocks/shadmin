@@ -39,7 +39,7 @@ import {
   useListContext,
   useResourceContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 
 type CalendarView = "month" | "week" | "agenda";

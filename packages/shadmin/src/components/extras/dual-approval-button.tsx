@@ -3,7 +3,7 @@ import {
   useRecordContext,
   useResourceContext,
   useUpdate,
-} from "ra-core";
+} from "shadmin-core";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 

@@ -6,7 +6,7 @@ import {
   ResourceContextProvider,
   memoryStore,
   useList,
-} from "ra-core";
+} from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import { MemoryRouter } from "react-router";

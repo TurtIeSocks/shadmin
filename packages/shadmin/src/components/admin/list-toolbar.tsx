@@ -5,7 +5,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
-import { type Exporter, FilterContext } from "ra-core";
+import { type Exporter, FilterContext } from "shadmin-core";
 import { cn } from "@/lib/utils";
 import { FilterForm } from "@/components/admin/filter-form";
 import { ListActions } from "@/components/admin/list-actions";

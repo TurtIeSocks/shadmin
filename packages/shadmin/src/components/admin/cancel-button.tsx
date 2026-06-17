@@ -1,6 +1,6 @@
 import type { Ref } from "react";
 import { CircleX } from "lucide-react";
-import { Translate } from "ra-core";
+import { Translate } from "shadmin-core";
 import { useNavigate } from "react-router";
 
 import { Button } from "../ui/button";

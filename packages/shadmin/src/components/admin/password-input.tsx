@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { TextInput, type TextInputProps } from "@/components/admin/text-input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

@@ -20,7 +20,7 @@ import {
   useStore,
   useTranslate,
   type RaRecord,
-} from "ra-core";
+} from "shadmin-core";
 import { useTheme } from "@/hooks/use-theme";
 import {
   Command,

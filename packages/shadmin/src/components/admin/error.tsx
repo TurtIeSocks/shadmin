@@ -1,5 +1,5 @@
 import type { FallbackProps } from "react-error-boundary";
-import { useResetErrorBoundaryOnLocationChange, Translate } from "ra-core";
+import { useResetErrorBoundaryOnLocationChange, Translate } from "shadmin-core";
 import { CircleAlert, History } from "lucide-react";
 import {
   Accordion,

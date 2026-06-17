@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useListContext, Translate, useTranslate } from "ra-core";
+import { useListContext, Translate, useTranslate } from "shadmin-core";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BulkDeleteButton } from "@/components/admin/bulk-delete-button";

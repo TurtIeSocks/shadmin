@@ -1,7 +1,7 @@
 "use client";
 
 import type { ElementType, ReactElement } from "react";
-import { FieldTitle } from "ra-core";
+import { FieldTitle } from "shadmin-core";
 import { cn } from "@/lib/utils";
 
 /**

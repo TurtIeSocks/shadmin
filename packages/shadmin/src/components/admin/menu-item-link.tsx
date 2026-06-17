@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect } from "react";
 import { Link, useMatch, useNavigate } from "react-router";
-import { useBasename, useTranslate } from "ra-core";
+import { useBasename, useTranslate } from "shadmin-core";
 import {
   SidebarMenuButton,
   SidebarMenuItem,

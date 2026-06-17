@@ -1,12 +1,12 @@
 import type * as React from "react";
 import { useEffect, useState } from "react";
-import type { InputProps } from "ra-core";
+import type { InputProps } from "shadmin-core";
 import {
   FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import {
   AsYouType,
   getCountries,

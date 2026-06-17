@@ -1,7 +1,7 @@
 import {
   InferredElement as CoreInferredElement,
   type InferredType,
-} from "ra-core";
+} from "shadmin-core";
 
 /**
  * Extends ra-core's `InferredElement` with an optional `warning`

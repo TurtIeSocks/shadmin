@@ -1,4 +1,8 @@
-import { CoreAdminContext, RecordContextProvider, required } from "ra-core";
+import {
+  CoreAdminContext,
+  RecordContextProvider,
+  required,
+} from "shadmin-core";
 import { TextArrayInput, SimpleForm, ThemeProvider } from "@/components/admin";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { ReactNode } from "react";

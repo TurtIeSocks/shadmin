@@ -3,7 +3,7 @@ import {
   RecordContextProvider,
   TestMemoryRouter,
   memoryStore,
-} from "ra-core";
+} from "shadmin-core";
 import { QueryClient } from "@tanstack/react-query";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";

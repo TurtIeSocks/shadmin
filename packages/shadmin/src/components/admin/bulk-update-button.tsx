@@ -12,7 +12,7 @@ import {
   useResourceContext,
   useResourceTranslation,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 
 import { Button } from "@/components/ui/button";
 import { Confirm } from "@/components/admin/confirm";

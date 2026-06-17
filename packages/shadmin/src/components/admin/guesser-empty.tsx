@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { FileQuestion } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 
 interface GuesserEmptyProps {
   title?: ReactNode;

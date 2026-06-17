@@ -1,4 +1,4 @@
-import type { InferredTypeMap } from "ra-core";
+import type { InferredTypeMap } from "shadmin-core";
 import type { Any } from "@/lib/any";
 import { SimpleForm } from "@/components/admin/simple-form";
 import { TextInput } from "@/components/admin/text-input";

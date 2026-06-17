@@ -21,7 +21,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Translate } from "ra-core";
+import { Translate } from "shadmin-core";
 
 /**
  * A breadcrumb navigation component with mobile drawer support.

@@ -1,10 +1,10 @@
-import type { SortPayload } from "ra-core";
+import type { SortPayload } from "shadmin-core";
 import {
   useResourceContext,
   useGetList,
   useTimeout,
   useCreatePath,
-} from "ra-core";
+} from "shadmin-core";
 import { CircleX } from "lucide-react";
 
 import { Link } from "react-router";

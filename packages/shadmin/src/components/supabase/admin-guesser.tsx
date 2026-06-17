@@ -4,7 +4,7 @@ import {
   Resource,
   type AdminChildren,
   type CoreAdminProps,
-} from "ra-core";
+} from "shadmin-core";
 import { Route } from "react-router";
 import { createClient } from "@supabase/supabase-js";
 import { supabaseAuthProvider, supabaseDataProvider } from "ra-supabase-core";

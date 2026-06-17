@@ -5,7 +5,7 @@ import {
   useListContext,
   useResourceContext,
   useResourceDefinition,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 import { CreateButton } from "@/components/admin/create-button";
 import { ExportButton } from "@/components/admin/export-button";

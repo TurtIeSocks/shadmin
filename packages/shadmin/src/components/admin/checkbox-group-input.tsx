@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { ComponentProps } from "react";
-import type { ChoicesProps, InputProps } from "ra-core";
+import type { ChoicesProps, InputProps } from "shadmin-core";
 import {
   FieldTitle,
   useChoices,
@@ -8,7 +8,7 @@ import {
   useGetRecordRepresentation,
   useInput,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 import {
   Field,

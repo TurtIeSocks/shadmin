@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Form, required, useLogin, useNotify, useTranslate } from "ra-core";
+import {
+  Form,
+  required,
+  useLogin,
+  useNotify,
+  useTranslate,
+} from "shadmin-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 import { LogIn } from "lucide-react";
 

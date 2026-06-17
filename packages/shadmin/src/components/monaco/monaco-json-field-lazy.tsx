@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { useFieldValue } from "ra-core";
+import { useFieldValue } from "shadmin-core";
 import Editor, { loader, type Monaco } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
 import type { editor } from "monaco-editor";

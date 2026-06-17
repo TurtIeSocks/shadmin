@@ -4,7 +4,7 @@ import {
   NotificationContextProvider,
   UndoableMutationsContextProvider,
   useNotify,
-} from "ra-core";
+} from "shadmin-core";
 import { toast } from "sonner";
 
 import { Notification } from "@/components/admin/notification";

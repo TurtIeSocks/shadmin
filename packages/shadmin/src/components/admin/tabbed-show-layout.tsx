@@ -2,7 +2,7 @@
 
 import type { ReactElement, ReactNode } from "react";
 import { Children, isValidElement, useState } from "react";
-import type { RaRecord } from "ra-core";
+import type { RaRecord } from "shadmin-core";
 import {
   OptionalRecordContextProvider,
   useLocation,
@@ -11,7 +11,7 @@ import {
   useRouterProvider,
   useSplatPathBase,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { useNavigate } from "react-router";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

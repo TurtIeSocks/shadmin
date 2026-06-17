@@ -1,4 +1,4 @@
-import type { InferredTypeMap } from "ra-core";
+import type { InferredTypeMap } from "shadmin-core";
 import type { Any } from "@/lib/any";
 import { DataTable } from "@/components/admin/data-table";
 import { DateField } from "@/components/admin/date-field";

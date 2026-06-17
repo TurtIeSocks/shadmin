@@ -1,10 +1,10 @@
-import type { InputProps } from "ra-core";
+import type { InputProps } from "shadmin-core";
 import {
   FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/input-helper-text";

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useCallback, type Ref } from "react";
 import { Download } from "lucide-react";
-import type { Exporter } from "ra-core";
+import type { Exporter } from "shadmin-core";
 import {
   fetchRelatedRecords,
   useDataProvider,
@@ -9,7 +9,7 @@ import {
   useNotify,
   useListContext,
   useResourceTranslation,
-} from "ra-core";
+} from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import type { UnknownValue } from "@/lib/unknown-types";
 

@@ -1,5 +1,5 @@
-import { Resource } from "ra-core";
-import { TestMemoryRouter } from "ra-core";
+import { Resource } from "shadmin-core";
+import { TestMemoryRouter } from "shadmin-core";
 import { Admin } from "@/components/admin";
 import { SimpleShowLayout } from "@/components/admin/simple-show-layout";
 import { RecordField } from "@/components/admin/record-field";

@@ -1,4 +1,8 @@
-import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
+import {
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 import type { JsonFieldProps } from "./internal/types";
 

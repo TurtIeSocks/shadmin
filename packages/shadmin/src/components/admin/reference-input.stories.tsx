@@ -1,4 +1,4 @@
-import { Resource, TestMemoryRouter, required } from "ra-core";
+import { Resource, TestMemoryRouter, required } from "shadmin-core";
 import fakeRestProvider from "ra-data-fakerest";
 
 import { Admin } from "@/components/admin/admin";

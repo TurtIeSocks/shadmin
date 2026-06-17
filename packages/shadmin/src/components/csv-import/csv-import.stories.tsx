@@ -4,7 +4,7 @@ import {
   memoryStore,
   Resource,
   TestMemoryRouter,
-} from "ra-core";
+} from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";

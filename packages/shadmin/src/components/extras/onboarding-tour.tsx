@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode, useEffect, useLayoutEffect, useState } from "react";
-import { useStore, useTranslate } from "ra-core";
+import { useStore, useTranslate } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 
 interface TourStep {

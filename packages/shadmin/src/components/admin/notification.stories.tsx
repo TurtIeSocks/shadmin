@@ -3,7 +3,7 @@ import {
   UndoableMutationsContextProvider,
   useAddUndoableMutation,
   useNotify,
-} from "ra-core";
+} from "shadmin-core";
 import { Notification } from "@/components/admin/notification";
 import { useState } from "react";
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { ReactNode } from "react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { Separator } from "@/components/ui/separator";
 import { AuthLayout } from "@/components/admin/auth-layout";
 import { SupabaseLoginForm } from "./login-form";

@@ -5,7 +5,7 @@ import {
   RecordContextProvider,
   ResourceContextProvider,
   memoryStore,
-} from "ra-core";
+} from "shadmin-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { useWatch } from "react-hook-form";
 import { MemoryRouter } from "react-router";

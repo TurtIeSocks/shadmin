@@ -6,7 +6,7 @@ import {
   useTranslatable,
   type RaRecord,
   type UseTranslatableOptions,
-} from "ra-core";
+} from "shadmin-core";
 
 import { Tabs } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";

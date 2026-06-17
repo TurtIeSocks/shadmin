@@ -8,7 +8,7 @@ import {
   minValue,
   required,
   useRecordContext,
-} from "ra-core";
+} from "shadmin-core";
 import { useFormContext, useWatch } from "react-hook-form";
 import get from "lodash/get";
 

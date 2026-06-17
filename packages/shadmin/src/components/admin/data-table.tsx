@@ -17,7 +17,7 @@ import type {
   RaRecord,
   RowClickFunctionBase,
   SortPayload,
-} from "ra-core";
+} from "shadmin-core";
 import {
   DataTableBase,
   DataTableRenderContext,
@@ -39,7 +39,7 @@ import {
   useTimeout,
   useTranslate,
   useTranslateLabel,
-} from "ra-core";
+} from "shadmin-core";
 import { useNavigate } from "react-router";
 import {
   ArrowDownAZ,

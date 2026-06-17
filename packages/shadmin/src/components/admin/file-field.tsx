@@ -1,7 +1,11 @@
 import type { HTMLAttributes } from "react";
 import get from "lodash/get";
-import type { ExtractRecordPaths, HintedString } from "ra-core";
-import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
+import type { ExtractRecordPaths, HintedString } from "shadmin-core";
+import {
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";

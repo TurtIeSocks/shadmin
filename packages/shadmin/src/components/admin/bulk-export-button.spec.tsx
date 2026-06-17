@@ -9,7 +9,7 @@ import {
   ResourceContextProvider,
   useList,
   UseListOptions,
-} from "ra-core";
+} from "shadmin-core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import { useEffect } from "react";

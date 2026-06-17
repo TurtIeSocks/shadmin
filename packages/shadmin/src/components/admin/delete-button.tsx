@@ -7,7 +7,7 @@ import type {
   MutationMode,
   RedirectionSideEffect,
   UseDeleteOptions,
-} from "ra-core";
+} from "shadmin-core";
 import {
   useCanAccess,
   useDeleteController,
@@ -20,7 +20,7 @@ import {
   useResourceTranslation,
   useTranslate,
   useUnselect,
-} from "ra-core";
+} from "shadmin-core";
 import { Confirm } from "@/components/admin/confirm";
 
 type DeleteButtonProps = {

@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext, RecordContextProvider } from "ra-core";
+import { CoreAdminContext, RecordContextProvider } from "shadmin-core";
 
 import { ThemeProvider } from "@/components/admin";
 import { MdxField } from "@/components/mdx-editor";

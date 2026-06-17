@@ -4,7 +4,7 @@ import {
   Resource,
   TestMemoryRouter,
   useListContext,
-} from "ra-core";
+} from "shadmin-core";
 import fakeRestDataProvider from "ra-data-fakerest";
 import {
   Admin,
@@ -24,7 +24,7 @@ import { i18nProvider } from "@/lib/i18n-provider";
 import { BulkExportButton } from "@/components/admin/bulk-export-button";
 import { Button } from "@/components/ui/button";
 import { Table } from "@/components/ui/table";
-import { DataTableRenderContext } from "ra-core";
+import { DataTableRenderContext } from "shadmin-core";
 
 export default {
   title: "Data Display/DataTable",

@@ -1,4 +1,4 @@
-import { useResourceDefinitions } from "ra-core";
+import { useResourceDefinitions } from "shadmin-core";
 import { ChevronRightIcon } from "lucide-react";
 import {
   Collapsible,

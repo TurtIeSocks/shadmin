@@ -6,7 +6,7 @@ import {
   sanitizeFieldRestProps,
   useFieldValue,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { cn } from "@/lib/utils";
 
 import type { FieldProps } from "@/lib/field-types";

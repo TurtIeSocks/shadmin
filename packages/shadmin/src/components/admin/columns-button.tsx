@@ -22,7 +22,7 @@ import {
   type SortPayload,
   type HintedString,
   type ExtractRecordPaths,
-} from "ra-core";
+} from "shadmin-core";
 import { Columns, Search } from "lucide-react";
 import { PopoverPrimitive } from "@/components/ui/popover";
 import { useIsMobile } from "@/hooks/use-mobile";

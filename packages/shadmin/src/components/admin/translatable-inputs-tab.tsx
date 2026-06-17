@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useFormGroup, useTranslate } from "ra-core";
+import { useFormGroup, useTranslate } from "shadmin-core";
 import { capitalize } from "inflection";
 
 import { TabsTrigger } from "@/components/ui/tabs";

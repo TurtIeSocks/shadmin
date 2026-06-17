@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useResourceContext, useStore } from "ra-core";
+import { useResourceContext, useStore } from "shadmin-core";
 import {
   DndContext,
   PointerSensor,

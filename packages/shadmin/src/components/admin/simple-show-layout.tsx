@@ -2,8 +2,8 @@
 
 import type { ReactElement, ReactNode } from "react";
 import { Children, Fragment, isValidElement } from "react";
-import type { RaRecord } from "ra-core";
-import { OptionalRecordContextProvider } from "ra-core";
+import type { RaRecord } from "shadmin-core";
+import { OptionalRecordContextProvider } from "shadmin-core";
 import { cn } from "@/lib/utils";
 import { Labeled } from "./labeled";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext } from "ra-core";
+import { CoreAdminContext } from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { AccessDenied } from "@/components/admin/access-denied";

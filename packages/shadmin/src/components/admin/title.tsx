@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactElement } from "react";
 import { createPortal } from "react-dom";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { TITLE_PORTAL_ID } from "@/lib/title-portal-id";
 import { cn } from "@/lib/utils";
 

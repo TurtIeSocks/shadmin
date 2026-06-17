@@ -5,7 +5,7 @@ import {
   RecordContextProvider,
   required,
   ResourceContextProvider,
-} from "ra-core";
+} from "shadmin-core";
 import { ThemeProvider } from "@/components/admin/theme-provider";
 import { ArrayInput } from "@/components/admin/array-input";
 import { NumberInput } from "@/components/admin/number-input";

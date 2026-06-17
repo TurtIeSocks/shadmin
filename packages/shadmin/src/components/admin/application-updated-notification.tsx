@@ -1,5 +1,5 @@
 import { Sparkles } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import type { HTMLAttributes } from "react";
 
 import { Button } from "@/components/ui/button";

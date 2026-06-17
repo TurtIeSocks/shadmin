@@ -5,7 +5,7 @@ import {
   useListFilterContext,
   shallowEqual,
   useEvent,
-} from "ra-core";
+} from "shadmin-core";
 import matches from "lodash/matches";
 import pickBy from "lodash/pickBy";
 import { CircleX } from "lucide-react";

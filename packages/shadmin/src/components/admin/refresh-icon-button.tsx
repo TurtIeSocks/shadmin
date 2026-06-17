@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useCallback } from "react";
 import { RefreshCw } from "lucide-react";
-import { useRefresh, useTranslate } from "ra-core";
+import { useRefresh, useTranslate } from "shadmin-core";
 
 import {
   Tooltip,

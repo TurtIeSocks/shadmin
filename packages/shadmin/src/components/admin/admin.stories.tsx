@@ -1,4 +1,4 @@
-import { Resource, TestMemoryRouter } from "ra-core";
+import { Resource, TestMemoryRouter } from "shadmin-core";
 import fakeRestProvider from "ra-data-fakerest";
 
 import type { ReactNode } from "react";

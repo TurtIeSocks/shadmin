@@ -1,5 +1,10 @@
 import React from "react";
-import { DataProvider, memoryStore, Resource, TestMemoryRouter } from "ra-core";
+import {
+  DataProvider,
+  memoryStore,
+  Resource,
+  TestMemoryRouter,
+} from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import {
   Admin,

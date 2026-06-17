@@ -1,9 +1,9 @@
-import type { RaRecord } from "ra-core";
+import type { RaRecord } from "shadmin-core";
 import {
   RecordContextProvider,
   useListContext,
   useResourceContext,
-} from "ra-core";
+} from "shadmin-core";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { ListNoResults } from "@/components/admin/list-no-results";

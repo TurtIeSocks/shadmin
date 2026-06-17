@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useHasDashboard, useResourceDefinitions } from "ra-core";
+import { useHasDashboard, useResourceDefinitions } from "shadmin-core";
 import {
   SidebarGroup,
   SidebarGroupContent,

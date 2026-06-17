@@ -1,7 +1,7 @@
 import type { ComponentType, ErrorInfo, ReactNode } from "react";
 import { Suspense, useState } from "react";
 import { cn } from "@/lib/utils";
-import type { CoreLayoutProps } from "ra-core";
+import type { CoreLayoutProps } from "shadmin-core";
 import { ErrorBoundary } from "react-error-boundary";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Notification } from "@/components/admin/notification";

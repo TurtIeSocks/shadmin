@@ -1,6 +1,10 @@
 import * as React from "react";
-import type { RaRecord } from "ra-core";
-import { sanitizeFieldRestProps, useFieldValue, useTranslate } from "ra-core";
+import type { RaRecord } from "shadmin-core";
+import {
+  sanitizeFieldRestProps,
+  useFieldValue,
+  useTranslate,
+} from "shadmin-core";
 import { Badge } from "@/components/ui/badge";
 import type { FieldProps } from "@/lib/field-types";
 

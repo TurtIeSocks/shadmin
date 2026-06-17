@@ -1,6 +1,6 @@
 import type { Ref } from "react";
 import { Check, Moon, Sun } from "lucide-react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

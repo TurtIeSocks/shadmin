@@ -1,6 +1,6 @@
 "use client";
 
-import { useRecordContext } from "ra-core";
+import { useRecordContext } from "shadmin-core";
 
 import { Skeleton } from "@/components/ui/skeleton";
 

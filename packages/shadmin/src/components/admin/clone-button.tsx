@@ -2,14 +2,14 @@ import * as React from "react";
 import type { Ref } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { Copy } from "lucide-react";
-import type { RaRecord } from "ra-core";
+import type { RaRecord } from "shadmin-core";
 import {
   useCreatePath,
   useGetResourceLabel,
   useRecordContext,
   useResourceContext,
   useResourceTranslation,
-} from "ra-core";
+} from "shadmin-core";
 import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { BarChart3 } from "lucide-react";
-import { useGetList, type RaRecord } from "ra-core";
+import { useGetList, type RaRecord } from "shadmin-core";
 import {
   Bar,
   BarChart,

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { useState } from "react";
-import type { Identifier } from "ra-core";
+import type { Identifier } from "shadmin-core";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
 import { fakeTransport } from "@/components/realtime/transports/fake-transport";
 import { useSubscribeToRecord } from "./use-subscribe-to-record";

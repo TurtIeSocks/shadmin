@@ -1,5 +1,5 @@
 import { useCallback, useContext } from "react";
-import { DataProviderContext } from "ra-core";
+import { DataProviderContext } from "shadmin-core";
 import type { RealtimeDataProvider, RealtimeEvent } from "../types";
 
 export function usePublish(): <P = unknown>(

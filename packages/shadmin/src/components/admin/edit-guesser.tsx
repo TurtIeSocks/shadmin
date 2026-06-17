@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
 import type { Any } from "@/lib/any";
 import { useEffect, useRef, useState } from "react";
-import type { InferredTypeMap } from "ra-core";
+import type { InferredTypeMap } from "shadmin-core";
 import {
   EditBase,
   InferredElement,
   useResourceContext,
   useEditContext,
   getElementsFromRecords,
-} from "ra-core";
+} from "shadmin-core";
 import { capitalize, singularize } from "inflection";
 import type { EditProps } from "@/components/admin/edit";
 import { EditView } from "@/components/admin/edit";

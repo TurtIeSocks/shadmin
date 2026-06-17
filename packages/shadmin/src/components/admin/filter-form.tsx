@@ -8,7 +8,7 @@ import {
   useListContext,
   useResourceContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { MinusCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";

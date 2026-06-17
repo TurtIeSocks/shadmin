@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { Lock } from "lucide-react";
 
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { cn } from "@/lib/utils";
 
 interface AccessDeniedProps extends HTMLAttributes<HTMLDivElement> {

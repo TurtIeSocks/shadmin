@@ -11,7 +11,7 @@ import {
   useStore,
   useTranslate,
   useSetInspectorTitle,
-} from "ra-core";
+} from "shadmin-core";
 
 import { Configurable } from "./configurable";
 import { FieldsSelector, type SelectableField } from "./fields-selector";

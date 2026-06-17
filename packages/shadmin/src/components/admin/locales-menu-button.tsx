@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { useLocales, useLocaleState, useTranslate } from "ra-core";
+import { useLocales, useLocaleState, useTranslate } from "shadmin-core";
 
 /**
  * Language switcher button that displays a menu allowing users to select the interface language.

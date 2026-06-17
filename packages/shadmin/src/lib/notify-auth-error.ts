@@ -1,4 +1,4 @@
-import type { useNotify } from "ra-core";
+import type { useNotify } from "shadmin-core";
 
 type NotifyFn = ReturnType<typeof useNotify>;
 

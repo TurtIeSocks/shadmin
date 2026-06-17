@@ -3,7 +3,7 @@ import {
   useListContextWithProps,
   useResourceContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { UnknownRecord } from "@/lib/unknown-types";

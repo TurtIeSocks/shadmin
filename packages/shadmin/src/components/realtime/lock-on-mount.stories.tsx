@@ -1,4 +1,4 @@
-import { ResourceContextProvider, RecordContextProvider } from "ra-core";
+import { ResourceContextProvider, RecordContextProvider } from "shadmin-core";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
 import { LockOnMount } from "@/components/realtime/lock-on-mount";
 import { lomTransport, lomLocks } from "./__fixtures__/lock-on-mount-fixtures";

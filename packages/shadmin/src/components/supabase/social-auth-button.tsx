@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLogin, useNotify, useTranslate } from "ra-core";
+import { useLogin, useNotify, useTranslate } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {

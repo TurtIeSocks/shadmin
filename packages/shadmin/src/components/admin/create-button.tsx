@@ -7,7 +7,7 @@ import {
   useGetResourceLabel,
   useResourceContext,
   useResourceTranslation,
-} from "ra-core";
+} from "shadmin-core";
 import { Link } from "react-router";
 
 type CreateButtonProps = {

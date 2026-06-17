@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import {
   Tooltip,

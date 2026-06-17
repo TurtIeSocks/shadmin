@@ -1,4 +1,4 @@
-import { useTranslatableContext } from "ra-core";
+import { useTranslatableContext } from "shadmin-core";
 
 import { TabsList } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";

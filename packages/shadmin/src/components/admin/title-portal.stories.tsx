@@ -1,4 +1,4 @@
-import { CoreAdminContext } from "ra-core";
+import { CoreAdminContext } from "shadmin-core";
 import { MemoryRouter } from "react-router";
 import { ThemeProvider, Title, TitlePortal } from "@/components/admin";
 

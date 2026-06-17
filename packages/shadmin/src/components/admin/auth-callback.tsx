@@ -1,4 +1,4 @@
-import { useHandleAuthCallback } from "ra-core";
+import { useHandleAuthCallback } from "shadmin-core";
 
 import { AuthError } from "@/components/admin/auth-error";
 import { Loading } from "@/components/admin/loading";

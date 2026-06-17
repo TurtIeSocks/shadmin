@@ -1,5 +1,5 @@
-import { useRecordContext, useResourceContext, useUpdate } from "ra-core";
-import type { RaRecord } from "ra-core";
+import { useRecordContext, useResourceContext, useUpdate } from "shadmin-core";
+import type { RaRecord } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

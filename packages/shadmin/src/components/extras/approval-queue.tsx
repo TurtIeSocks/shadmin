@@ -5,8 +5,8 @@ import {
   useListContext,
   useResourceContext,
   useUpdate,
-} from "ra-core";
-import type { RaRecord } from "ra-core";
+} from "shadmin-core";
+import type { RaRecord } from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import polyglotI18nProvider from "ra-i18n-polyglot";
-import { I18nContextProvider } from "ra-core";
+import { I18nContextProvider } from "shadmin-core";
 import { GuesserEmpty } from "@/components/admin/guesser-empty";
 import { ThemeProvider } from "@/components/admin";
 import defaultMessages from "ra-language-english";

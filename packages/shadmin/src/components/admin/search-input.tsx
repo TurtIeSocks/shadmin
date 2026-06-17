@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useTranslate } from "ra-core";
+import { useTranslate } from "shadmin-core";
 import { useWatch, useFormContext } from "react-hook-form";
 import { Search, X } from "lucide-react";
 import type { TextInputProps } from "@/components/admin/text-input";

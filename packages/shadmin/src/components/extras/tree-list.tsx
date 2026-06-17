@@ -8,7 +8,7 @@ import {
   useListContext,
   useResourceContext,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import { useNavigate } from "react-router";
 import { cn } from "@/lib/utils";
 

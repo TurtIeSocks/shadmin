@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { GeoJSON, useMap } from "react-leaflet";
-import { useRecordContext } from "ra-core";
+import { useRecordContext } from "shadmin-core";
 import L from "leaflet";
 
 import { BaseMap, FitBoundsOnMount } from "../shared-map";

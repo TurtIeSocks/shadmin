@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FieldTitle, useResourceContext } from "ra-core";
+import { FieldTitle, useResourceContext } from "shadmin-core";
 import { GripVertical } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";

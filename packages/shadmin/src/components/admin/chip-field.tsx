@@ -3,7 +3,7 @@ import {
   sanitizeFieldRestProps,
   useFieldValue,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import type { ComponentProps } from "react";
 
 import { Badge } from "@/components/ui/badge";

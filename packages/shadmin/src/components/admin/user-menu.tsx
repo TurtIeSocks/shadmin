@@ -4,7 +4,7 @@ import {
   useGetIdentity,
   useTranslate,
   UserMenuContext,
-} from "ra-core";
+} from "shadmin-core";
 import {
   DropdownMenu,
   DropdownMenuContent,

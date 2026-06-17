@@ -1,5 +1,5 @@
 import { useCallback, type ReactNode } from "react";
-import { Translate, useAuthState, useLogout } from "ra-core";
+import { Translate, useAuthState, useLogout } from "shadmin-core";
 import { LogOut } from "lucide-react";
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";

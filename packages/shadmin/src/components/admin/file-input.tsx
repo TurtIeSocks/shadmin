@@ -6,7 +6,7 @@ import type {
   HTMLAttributes,
 } from "react";
 import { Children, isValidElement, useEffect } from "react";
-import type { InputProps } from "ra-core";
+import type { InputProps } from "shadmin-core";
 import {
   FieldTitle,
   RecordContextProvider,
@@ -14,7 +14,7 @@ import {
   useInput,
   useTranslate,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import type {
   DropzoneOptions,
   FileRejection,

@@ -5,7 +5,7 @@ import {
   useAuthenticated,
   useDefaultTitle,
   type TitleComponent,
-} from "ra-core";
+} from "shadmin-core";
 import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/admin/loading";
 import { Title } from "./title";

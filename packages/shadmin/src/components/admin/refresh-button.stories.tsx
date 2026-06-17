@@ -1,5 +1,5 @@
 import React from "react";
-import { CoreAdminContext, memoryStore, TestMemoryRouter } from "ra-core";
+import { CoreAdminContext, memoryStore, TestMemoryRouter } from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import { RefreshCcw } from "lucide-react";

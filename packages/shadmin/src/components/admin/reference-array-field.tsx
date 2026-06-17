@@ -7,8 +7,8 @@ import type {
   SortPayload,
   ExtractRecordPaths,
   HintedString,
-} from "ra-core";
-import { ReferenceArrayFieldBase, useListContext } from "ra-core";
+} from "shadmin-core";
+import { ReferenceArrayFieldBase, useListContext } from "shadmin-core";
 import type { UseQueryOptions } from "@tanstack/react-query";
 import { LinearProgress } from "@/components/admin/linear-progress";
 import { SingleFieldList } from "@/components/admin/single-field-list";

@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import type { Validator } from "ra-core";
-import { useInput, FieldTitle, ValidationError } from "ra-core";
+import type { Validator } from "shadmin-core";
+import { useInput, FieldTitle, ValidationError } from "shadmin-core";
 import { InputHelperText } from "./input-helper-text";
 import type { UnknownValue } from "@/lib/unknown-types";
 import type { ComponentProps } from "react";

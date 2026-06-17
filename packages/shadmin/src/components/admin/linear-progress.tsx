@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { useTimeout } from "ra-core";
+import { useTimeout } from "shadmin-core";
 
 import { cn } from "@/lib/utils";
 

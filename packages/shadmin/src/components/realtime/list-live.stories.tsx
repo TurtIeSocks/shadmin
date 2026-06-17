@@ -1,4 +1,4 @@
-import { Resource } from "ra-core";
+import { Resource } from "shadmin-core";
 import { Admin } from "@/components/admin";
 import { DataTable } from "@/components/admin/data-table";
 import { ListLive } from "@/components/realtime/list-live";

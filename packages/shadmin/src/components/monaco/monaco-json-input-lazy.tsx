@@ -5,7 +5,7 @@ import {
   useInput,
   useResourceContext,
   ValidationError,
-} from "ra-core";
+} from "shadmin-core";
 import { useFormContext } from "react-hook-form";
 import Editor, { type Monaco, loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";

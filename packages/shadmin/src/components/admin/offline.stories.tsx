@@ -1,4 +1,4 @@
-import { CoreAdminContext } from "ra-core";
+import { CoreAdminContext } from "shadmin-core";
 import { useEffect, type ReactNode } from "react";
 
 import { Offline } from "@/components/admin/offline";

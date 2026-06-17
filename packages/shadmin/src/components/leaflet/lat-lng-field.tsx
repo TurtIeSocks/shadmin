@@ -1,7 +1,7 @@
 "use client";
 
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import { useRecordContext } from "ra-core";
+import { useRecordContext } from "shadmin-core";
 
 import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "./shared";
 

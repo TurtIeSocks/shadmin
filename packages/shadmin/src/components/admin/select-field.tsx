@@ -1,12 +1,12 @@
 import type { HTMLAttributes } from "react";
-import type { ChoicesProps } from "ra-core";
+import type { ChoicesProps } from "shadmin-core";
 import {
   genericMemo,
   sanitizeFieldRestProps,
   useChoices,
   useFieldValue,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";

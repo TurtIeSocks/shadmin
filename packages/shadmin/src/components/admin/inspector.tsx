@@ -5,7 +5,7 @@ import {
   useTranslate,
   useRemoveItemsFromStore,
   PreferenceKeyContextProvider,
-} from "ra-core";
+} from "shadmin-core";
 import { Trash2, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

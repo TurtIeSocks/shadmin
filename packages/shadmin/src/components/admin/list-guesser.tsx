@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { Any } from "@/lib/any";
 import { useState, useEffect, useRef } from "react";
-import type { RaRecord } from "ra-core";
+import type { RaRecord } from "shadmin-core";
 import {
   ListBase,
   getElementsFromRecords,
@@ -9,7 +9,7 @@ import {
   useListContext,
   usePrevious,
   useResourceContext,
-} from "ra-core";
+} from "shadmin-core";
 import { useLocation } from "react-router";
 import type { ListProps, ListViewProps } from "@/components/admin/list";
 import { ListView } from "@/components/admin/list";

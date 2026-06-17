@@ -3,7 +3,7 @@ import {
   sanitizeFieldRestProps,
   useFieldValue,
   useRecordContext,
-} from "ra-core";
+} from "shadmin-core";
 import { Progress } from "@/components/ui/progress";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";

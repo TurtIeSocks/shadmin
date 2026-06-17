@@ -3,8 +3,8 @@ import type {
   RaRecord,
   UseReferenceManyFieldControllerParams,
   ListControllerResult,
-} from "ra-core";
-import { ReferenceManyFieldBase, useListContext } from "ra-core";
+} from "shadmin-core";
+import { ReferenceManyFieldBase, useListContext } from "shadmin-core";
 import type { FieldProps } from "@/lib/field-types";
 import { Offline } from "@/components/admin/offline";
 

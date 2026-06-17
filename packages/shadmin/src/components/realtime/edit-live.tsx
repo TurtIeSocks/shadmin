@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useResourceContext, useRecordContext } from "ra-core";
+import { useResourceContext, useRecordContext } from "shadmin-core";
 import { useQueryClient } from "@tanstack/react-query";
 import { Edit, type EditProps } from "@/components/admin/edit";
 import { useSubscribeToRecord } from "./hooks/use-subscribe-to-record";

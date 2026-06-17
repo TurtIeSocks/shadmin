@@ -2,7 +2,7 @@ import type {
   InfiniteListBaseProps,
   InfiniteListControllerResult,
   RaRecord,
-} from "ra-core";
+} from "shadmin-core";
 import {
   FilterContext,
   InfiniteListBase,
@@ -13,7 +13,7 @@ import {
   useResourceContext,
   useResourceDefinition,
   useTranslate,
-} from "ra-core";
+} from "shadmin-core";
 import type { ElementType, ReactElement, ReactNode } from "react";
 import { Link } from "react-router";
 import {

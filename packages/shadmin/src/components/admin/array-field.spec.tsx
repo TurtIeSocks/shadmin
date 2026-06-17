@@ -1,4 +1,4 @@
-import { RecordContextProvider, useListContext } from "ra-core";
+import { RecordContextProvider, useListContext } from "shadmin-core";
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { ArrayField } from "./array-field";

@@ -14,7 +14,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useListPaginationContext, Translate, useTranslate } from "ra-core";
+import {
+  useListPaginationContext,
+  Translate,
+  useTranslate,
+} from "shadmin-core";
 import type { ReactElement } from "react";
 import { useEffect } from "react";
 

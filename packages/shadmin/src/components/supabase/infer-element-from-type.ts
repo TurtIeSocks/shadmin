@@ -1,4 +1,4 @@
-import { required, type InferredTypeMap } from "ra-core";
+import { required, type InferredTypeMap } from "shadmin-core";
 import { pluralize } from "inflection";
 import type { OpenAPIV2 } from "openapi-types";
 import { InferredElement } from "./inferred-element";
