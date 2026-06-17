@@ -192,7 +192,7 @@ const ReviewListDesktop = ({ selectedRow }: { selectedRow?: number }) => {
   const createPath = useCreatePath();
   return (
     <DataTable
-      rowClick={(record: Review) => {
+      rowClick={(record: Review): false => {
         // As we display the edit view in a drawer, we don't want the default rowClick behavior that will scroll to the top of the page
         // So we navigate manually without specifying the _scrollToTop state
         navigate(
