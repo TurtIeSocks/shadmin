@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "../../../packages/shadmin/src/styles/aurora.css";
+@import "../../../packages/shadmin/src/styles/glass.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -200,4 +200,47 @@
   .aurora-orb {
     animation: none;
   }
+}
+
+/*
+ * Website brand layer — the aurora IDENTITY, formerly in the shared
+ * packages/shadmin aurora.css (now axed from the library; the glass MATERIAL
+ * comes from glass.css imported at the top). These are marketing brand, not the
+ * glass system: the signature gradient, the orb atmosphere, gradient text/chips.
+ * `bezel` is a glass-frame geometry built on glass.css's own tokens (DRY) so it
+ * tracks the same material as `.glass`.
+ */
+:root {
+  --aurora: linear-gradient(100deg, #d4537e, #7f77dd 52%, #1d9e75);
+  --orb-1: rgba(212, 83, 126, 0.3);
+  --orb-2: rgba(127, 119, 221, 0.32);
+  --orb-3: rgba(29, 158, 117, 0.24);
+  --orb-4: rgba(55, 138, 221, 0.22);
+}
+
+.dark {
+  --orb-1: rgba(212, 83, 126, 0.55);
+  --orb-2: rgba(127, 119, 221, 0.55);
+  --orb-3: rgba(29, 158, 117, 0.42);
+  --orb-4: rgba(55, 138, 221, 0.4);
+}
+
+@utility text-aurora {
+  background: var(--aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-aurora {
+  background: var(--aurora);
+}
+
+@utility bezel {
+  border-radius: 2rem;
+  padding: 0.5rem;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
 }
