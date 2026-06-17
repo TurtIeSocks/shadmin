@@ -65,6 +65,9 @@ const run = async () => {
   const rawRegistry = await readFile(registryPath, "utf8");
   const registry = JSON.parse(rawRegistry);
 
+  // Clean stale artifacts: shadcn only writes the items it knows about, so
+  // renamed/removed items from a prior build would otherwise linger in dist/r.
+  await rm(outputDir, { recursive: true, force: true });
   await mkdir(outputDir, { recursive: true });
 
   const autoBuiltItems = registry.items.filter(
