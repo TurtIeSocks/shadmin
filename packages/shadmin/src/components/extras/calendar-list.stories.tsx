@@ -10,7 +10,7 @@ import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin } from "@/components/admin";
 import { CalendarList } from "@/components/extras";
-import { List } from "@/components/admin/list";
+import { List } from "@/components/admin/list/list";
 
 // Seed events: a few records on today and surrounding days
 const today = new Date();

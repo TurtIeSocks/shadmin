@@ -11,8 +11,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "shadmin/components/ui/sidebar";
-import { DashboardMenuItem } from "shadmin/components/admin/dashboard-menu-item";
-import { ResourceMenuItemGroup } from "shadmin/components/admin/resource-menu-item-group";
+import { DashboardMenuItem } from "shadmin/components/admin/layout/dashboard-menu-item";
+import { ResourceMenuItemGroup } from "shadmin/components/admin/layout/resource-menu-item-group";
 
 /**
  * Demo sidebar that hand-composes `<ResourceMenuItemGroup>` instead of

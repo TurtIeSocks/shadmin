@@ -13,7 +13,7 @@ import type { editor } from "monaco-editor";
 
 import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { InputHelperText } from "@/components/admin/input-helper-text";
+import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import { cn } from "@/lib/utils";
 
 import type { MonacoJsonInputProps } from "./internal/types";

@@ -7,8 +7,8 @@ import {
   EditView,
   type EditProps,
   type EditViewProps,
-} from "@/components/admin/edit";
-import { Loading } from "@/components/admin/loading";
+} from "@/components/admin/views/edit";
+import { Loading } from "@/components/admin/feedback/loading";
 import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { editFieldTypes } from "./edit-field-types";

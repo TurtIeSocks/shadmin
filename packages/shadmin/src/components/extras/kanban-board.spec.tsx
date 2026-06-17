@@ -12,7 +12,7 @@ import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin } from "@/components/admin";
 import { KanbanBoard } from "@/components/extras";
-import { List } from "@/components/admin/list";
+import { List } from "@/components/admin/list/list";
 
 const COLUMNS = [
   { id: "todo", label: "To do" },

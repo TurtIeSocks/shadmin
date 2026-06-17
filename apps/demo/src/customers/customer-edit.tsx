@@ -1,7 +1,7 @@
-import { BooleanInput } from "shadmin/components/admin/boolean-input";
-import { Edit } from "shadmin/components/admin/edit";
-import { SimpleForm } from "shadmin/components/admin/simple-form";
-import { TextInput } from "shadmin/components/admin/text-input";
+import { BooleanInput } from "shadmin/components/admin/inputs/boolean-input";
+import { Edit } from "shadmin/components/admin/views/edit";
+import { SimpleForm } from "shadmin/components/admin/form/simple-form";
+import { TextInput } from "shadmin/components/admin/inputs/text-input";
 import { PhoneInput } from "shadmin/components/extras/phone-input";
 import { required } from "ra-core";
 

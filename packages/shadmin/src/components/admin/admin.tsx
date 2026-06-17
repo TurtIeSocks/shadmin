@@ -7,12 +7,12 @@ import {
   localStorageStore,
 } from "shadmin-core";
 import { i18nProvider as defaultI18nProvider } from "@/lib/i18n-provider";
-import { Layout } from "@/components/admin/layout";
-import { LoginPage } from "@/components/admin/login-page";
-import { NotFound } from "@/components/admin/not-found";
-import { Ready } from "@/components/admin/ready";
-import { ThemeProvider } from "@/components/admin/theme-provider";
-import { AuthCallback } from "@/components/admin/auth-callback";
+import { Layout } from "@/components/admin/layout/layout";
+import { LoginPage } from "@/components/admin/auth/login-page";
+import { NotFound } from "@/components/admin/feedback/not-found";
+import { Ready } from "@/components/admin/feedback/ready";
+import { ThemeProvider } from "@/components/admin/layout/theme-provider";
+import { AuthCallback } from "@/components/admin/auth/auth-callback";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useResourceContext, useRecordContext } from "shadmin-core";
 import { useQueryClient } from "@tanstack/react-query";
-import { Show, type ShowProps } from "@/components/admin/show";
+import { Show, type ShowProps } from "@/components/admin/views/show";
 import { useSubscribeToRecord } from "./hooks/use-subscribe-to-record";
 import { useOnReconnect } from "./hooks/use-on-reconnect";
 

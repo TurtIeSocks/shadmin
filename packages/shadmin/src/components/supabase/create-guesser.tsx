@@ -7,8 +7,8 @@ import {
   CreateView,
   type CreateProps,
   type CreateViewProps,
-} from "@/components/admin/create";
-import { Loading } from "@/components/admin/loading";
+} from "@/components/admin/views/create";
+import { Loading } from "@/components/admin/feedback/loading";
 import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { editFieldTypes } from "./edit-field-types";

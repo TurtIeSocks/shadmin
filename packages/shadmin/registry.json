@@ -71,259 +71,351 @@
           "target": "~/AGENTS.md"
         },
         {
-          "path": "src/components/admin/access-denied.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/admin/admin.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/app-bar.tsx",
+          "path": "src/components/admin/auth/access-denied.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/app-sidebar.tsx",
+          "path": "src/components/admin/auth/auth-callback.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/application-updated-notification.tsx",
+          "path": "src/components/admin/auth/auth-error.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/array-field.tsx",
+          "path": "src/components/admin/auth/auth-layout.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/array-input.tsx",
+          "path": "src/components/admin/auth/authentication-error.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/auth-callback.tsx",
+          "path": "src/components/admin/auth/login-form.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/auth-error.tsx",
+          "path": "src/components/admin/auth/login-page.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/auth-layout.tsx",
+          "path": "src/components/admin/auth/login-with-email.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/authentication-error.tsx",
+          "path": "src/components/admin/auth/logout.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/autocomplete-array-input.tsx",
+          "path": "src/components/admin/buttons/bulk-delete-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/autocomplete-input.tsx",
+          "path": "src/components/admin/buttons/bulk-export-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/badge-field.tsx",
+          "path": "src/components/admin/buttons/bulk-update-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/boolean-field.tsx",
+          "path": "src/components/admin/buttons/cancel-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/boolean-input.tsx",
+          "path": "src/components/admin/buttons/clone-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/breadcrumb.tsx",
+          "path": "src/components/admin/buttons/columns-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/bulk-actions-toolbar.tsx",
+          "path": "src/components/admin/buttons/create-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/bulk-delete-button.tsx",
+          "path": "src/components/admin/buttons/delete-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/bulk-export-button.tsx",
+          "path": "src/components/admin/buttons/edit-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/bulk-update-button.tsx",
+          "path": "src/components/admin/buttons/export-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/cancel-button.tsx",
+          "path": "src/components/admin/buttons/filter-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/card-content-inner.tsx",
+          "path": "src/components/admin/buttons/inspector-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/check-for-application-update.tsx",
+          "path": "src/components/admin/buttons/list-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/checkbox-group-input.tsx",
+          "path": "src/components/admin/buttons/locales-menu-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/chip-field.tsx",
+          "path": "src/components/admin/buttons/refresh-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/clone-button.tsx",
+          "path": "src/components/admin/buttons/refresh-icon-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/columns-button.tsx",
+          "path": "src/components/admin/buttons/save-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/configurable.tsx",
+          "path": "src/components/admin/buttons/select-all-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/confirm.tsx",
+          "path": "src/components/admin/buttons/show-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/count.tsx",
+          "path": "src/components/admin/buttons/sidebar-toggle-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/create-button.tsx",
+          "path": "src/components/admin/buttons/skip-navigation-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/create.tsx",
+          "path": "src/components/admin/buttons/sort-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/dashboard-menu-item.tsx",
+          "path": "src/components/admin/buttons/toggle-filter-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/data-table.tsx",
+          "path": "src/components/admin/buttons/update-button.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/datagrid-input.tsx",
+          "path": "src/components/admin/common/application-updated-notification.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/date-field.tsx",
+          "path": "src/components/admin/common/check-for-application-update.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/date-input.tsx",
+          "path": "src/components/admin/common/device-test-wrapper.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/date-time-input.tsx",
+          "path": "src/components/admin/common/icon-button-with-tooltip.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/delete-button.tsx",
+          "path": "src/components/admin/common/input-helper-text.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/device-test-wrapper.tsx",
+          "path": "src/components/admin/common/keyboard-shortcut.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/edit-button.tsx",
+          "path": "src/components/admin/common/link.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/edit-guesser.tsx",
+          "path": "src/components/admin/feedback/confirm.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/edit.tsx",
+          "path": "src/components/admin/feedback/empty.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/email-field.tsx",
+          "path": "src/components/admin/feedback/error.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/empty.tsx",
+          "path": "src/components/admin/feedback/linear-progress.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/error.tsx",
+          "path": "src/components/admin/feedback/loading-indicator.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/export-button.tsx",
+          "path": "src/components/admin/feedback/loading.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/field-toggle.tsx",
+          "path": "src/components/admin/feedback/not-found.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/fields-selector.tsx",
+          "path": "src/components/admin/feedback/notification.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/file-field.tsx",
+          "path": "src/components/admin/feedback/offline.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/file-input.tsx",
+          "path": "src/components/admin/feedback/placeholder.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/filter-button.tsx",
+          "path": "src/components/admin/feedback/ready.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/filter-form.tsx",
+          "path": "src/components/admin/feedback/spinner.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/filter-list-item.tsx",
+          "path": "src/components/admin/fields/array-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/filter-list-section.tsx",
+          "path": "src/components/admin/fields/badge-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/filter-list.tsx",
+          "path": "src/components/admin/fields/boolean-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/filter-live-search.tsx",
+          "path": "src/components/admin/fields/chip-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/function-field.tsx",
+          "path": "src/components/admin/fields/date-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/guesser-empty.tsx",
+          "path": "src/components/admin/fields/email-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/hide-on-scroll.tsx",
+          "path": "src/components/admin/fields/file-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/icon-button-with-tooltip.tsx",
+          "path": "src/components/admin/fields/function-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/image-field.tsx",
+          "path": "src/components/admin/fields/image-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/image-input.tsx",
+          "path": "src/components/admin/fields/number-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/record-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/reference-array-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/reference-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/reference-many-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/reference-one-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/rich-text-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/select-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/text-array-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/text-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/url-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/wrapper-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/simple-form-configurable.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/simple-form-iterator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/simple-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/tabbed-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/toolbar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/translatable-inputs-tab-content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/translatable-inputs-tab.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/translatable-inputs-tabs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/translatable-inputs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/guessers/edit-guesser.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/guessers/guesser-empty.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/guessers/list-guesser.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/guessers/show-guesser.tsx",
           "type": "registry:component"
         },
         {
@@ -331,211 +423,271 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/infinite-list.tsx",
+          "path": "src/components/admin/inputs/array-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/infinite-pagination.tsx",
+          "path": "src/components/admin/inputs/autocomplete-array-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/input-helper-text.tsx",
+          "path": "src/components/admin/inputs/autocomplete-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/inspector-button.tsx",
+          "path": "src/components/admin/inputs/boolean-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/inspector-root.tsx",
+          "path": "src/components/admin/inputs/checkbox-group-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/inspector.tsx",
+          "path": "src/components/admin/inputs/datagrid-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/keyboard-shortcut.tsx",
+          "path": "src/components/admin/inputs/date-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/labeled.tsx",
+          "path": "src/components/admin/inputs/date-time-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/layout.tsx",
+          "path": "src/components/admin/inputs/file-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/linear-progress.tsx",
+          "path": "src/components/admin/inputs/image-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/link.tsx",
+          "path": "src/components/admin/inputs/loading-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/list-actions.tsx",
+          "path": "src/components/admin/inputs/nullable-boolean-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/list-button.tsx",
+          "path": "src/components/admin/inputs/number-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/list-guesser.tsx",
+          "path": "src/components/admin/inputs/password-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/list-no-results.tsx",
+          "path": "src/components/admin/inputs/radio-button-group-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/list-pagination.tsx",
+          "path": "src/components/admin/inputs/reference-array-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/list-toolbar.tsx",
+          "path": "src/components/admin/inputs/reference-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/list.tsx",
+          "path": "src/components/admin/inputs/resettable-text-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/loading-indicator.tsx",
+          "path": "src/components/admin/inputs/search-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/loading-input.tsx",
+          "path": "src/components/admin/inputs/select-array-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/loading.tsx",
+          "path": "src/components/admin/inputs/select-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/locales-menu-button.tsx",
+          "path": "src/components/admin/inputs/text-array-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/login-form.tsx",
+          "path": "src/components/admin/inputs/text-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/login-page.tsx",
+          "path": "src/components/admin/inputs/time-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/login-with-email.tsx",
+          "path": "src/components/admin/inspector/configurable.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/logout.tsx",
+          "path": "src/components/admin/inspector/field-toggle.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/menu-item-link.tsx",
+          "path": "src/components/admin/inspector/fields-selector.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/menu.tsx",
+          "path": "src/components/admin/inspector/inspector-root.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/not-found.tsx",
+          "path": "src/components/admin/inspector/inspector.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/notification.tsx",
+          "path": "src/components/admin/layout/app-bar.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/nullable-boolean-input.tsx",
+          "path": "src/components/admin/layout/app-sidebar.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/number-field.tsx",
+          "path": "src/components/admin/layout/breadcrumb.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/number-input.tsx",
+          "path": "src/components/admin/layout/dashboard-menu-item.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/offline.tsx",
+          "path": "src/components/admin/layout/hide-on-scroll.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/password-input.tsx",
+          "path": "src/components/admin/layout/layout.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/placeholder.tsx",
+          "path": "src/components/admin/layout/menu-item-link.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/prev-next-buttons.tsx",
+          "path": "src/components/admin/layout/menu.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/radio-button-group-input.tsx",
+          "path": "src/components/admin/layout/resource-menu-item-group.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/ready.tsx",
+          "path": "src/components/admin/layout/resource-menu-item.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/record-field.tsx",
+          "path": "src/components/admin/layout/saved-queries.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/reference-array-field.tsx",
+          "path": "src/components/admin/layout/theme-mode-toggle.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/reference-array-input.tsx",
+          "path": "src/components/admin/layout/theme-provider.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/reference-field.tsx",
+          "path": "src/components/admin/layout/title-portal.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/reference-input.tsx",
+          "path": "src/components/admin/layout/title.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/reference-many-count.tsx",
+          "path": "src/components/admin/layout/top-toolbar.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/reference-many-field.tsx",
+          "path": "src/components/admin/layout/user-menu.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/reference-one-field.tsx",
+          "path": "src/components/admin/list/bulk-actions-toolbar.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/refresh-button.tsx",
+          "path": "src/components/admin/list/count.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/refresh-icon-button.tsx",
+          "path": "src/components/admin/list/data-table.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/resettable-text-input.tsx",
+          "path": "src/components/admin/list/filter-form.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/resource-menu-item-group.tsx",
+          "path": "src/components/admin/list/filter-list-item.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/resource-menu-item.tsx",
+          "path": "src/components/admin/list/filter-list-section.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/filter-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/filter-live-search.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/infinite-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/infinite-pagination.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/list-actions.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/list-no-results.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/list-pagination.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/list-toolbar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/prev-next-buttons.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/reference-many-count.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/simple-list-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/simple-list-loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/simple-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/single-field-list.tsx",
           "type": "registry:component"
         },
         {
@@ -543,199 +695,47 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/rich-text-field.tsx",
+          "path": "src/components/admin/views/card-content-inner.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/save-button.tsx",
+          "path": "src/components/admin/views/create.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/saved-queries.tsx",
+          "path": "src/components/admin/views/edit.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/search-input.tsx",
+          "path": "src/components/admin/views/labeled.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/select-all-button.tsx",
+          "path": "src/components/admin/views/show.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/select-array-input.tsx",
+          "path": "src/components/admin/views/simple-show-layout.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/select-field.tsx",
+          "path": "src/components/admin/views/tabbed-show-layout.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/select-input.tsx",
+          "path": "src/components/admin/views/translatable-fields-tab-content.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/show-button.tsx",
+          "path": "src/components/admin/views/translatable-fields-tab.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/show-guesser.tsx",
+          "path": "src/components/admin/views/translatable-fields-tabs.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/admin/show.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/sidebar-toggle-button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/simple-form-configurable.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/simple-form-iterator.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/simple-form.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/simple-list-item.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/simple-list-loading.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/simple-list.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/simple-show-layout.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/single-field-list.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/skip-navigation-button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/sort-button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/spinner.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/tabbed-form.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/tabbed-show-layout.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/text-array-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/text-array-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/text-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/text-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/theme-mode-toggle.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/theme-provider.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/time-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/title-portal.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/title.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/toggle-filter-button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/toolbar.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/top-toolbar.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-fields-tab-content.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-fields-tab.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-fields-tabs.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-fields.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-inputs-tab-content.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-inputs-tab.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-inputs-tabs.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/translatable-inputs.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/update-button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/url-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/user-menu.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/admin/wrapper-field.tsx",
+          "path": "src/components/admin/views/translatable-fields.tsx",
           "type": "registry:component"
         },
         {
@@ -868,7 +868,7 @@
       "title": "Access Denied",
       "files": [
         {
-          "path": "src/components/admin/access-denied.tsx",
+          "path": "src/components/admin/auth/access-denied.tsx",
           "type": "registry:component"
         }
       ],
@@ -878,99 +878,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "app-bar",
-      "type": "registry:component",
-      "title": "App Bar",
-      "files": [
-        {
-          "path": "src/components/admin/app-bar.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/locales-menu-button",
-        "@shadmin/refresh-button",
-        "@shadmin/sidebar-toggle-button",
-        "@shadmin/theme-mode-toggle",
-        "@shadmin/title-portal",
-        "@shadmin/user-menu"
-      ],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "app-sidebar",
-      "type": "registry:component",
-      "title": "App Sidebar",
-      "files": [
-        {
-          "path": "src/components/admin/app-sidebar.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/menu", "sidebar"],
-      "dependencies": ["lucide-react", "react-router"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "application-updated-notification",
-      "type": "registry:component",
-      "title": "Application Updated Notification",
-      "files": [
-        {
-          "path": "src/components/admin/application-updated-notification.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "button", "card"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "array-field",
-      "type": "registry:component",
-      "title": "Array Field",
-      "files": [
-        {
-          "path": "src/components/admin/array-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-unknown-types"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "array-input",
-      "type": "registry:component",
-      "title": "Array Input",
-      "files": [
-        {
-          "path": "src/components/admin/array-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-utils",
-        "field",
-        "skeleton"
-      ],
-      "dependencies": ["ra-core", "react-hook-form"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "auth-callback",
       "type": "registry:component",
       "title": "Auth Callback",
       "files": [
         {
-          "path": "src/components/admin/auth-callback.tsx",
+          "path": "src/components/admin/auth/auth-callback.tsx",
           "type": "registry:component"
         }
       ],
@@ -985,7 +898,7 @@
       "title": "Auth Error",
       "files": [
         {
-          "path": "src/components/admin/auth-error.tsx",
+          "path": "src/components/admin/auth/auth-error.tsx",
           "type": "registry:component"
         }
       ],
@@ -1000,7 +913,7 @@
       "title": "Auth Layout",
       "files": [
         {
-          "path": "src/components/admin/auth-layout.tsx",
+          "path": "src/components/admin/auth/auth-layout.tsx",
           "type": "registry:component"
         }
       ],
@@ -1014,7 +927,7 @@
       "title": "Authentication Error",
       "files": [
         {
-          "path": "src/components/admin/authentication-error.tsx",
+          "path": "src/components/admin/auth/authentication-error.tsx",
           "type": "registry:component"
         }
       ],
@@ -1024,12 +937,1450 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "login-form",
+      "type": "registry:component",
+      "title": "Login Form",
+      "files": [
+        {
+          "path": "src/components/admin/auth/login-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-notify-auth-error",
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
+        "button",
+        "spinner"
+      ],
+      "dependencies": ["ra-core", "react-hook-form"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "login-page",
+      "type": "registry:component",
+      "title": "Login Page",
+      "files": [
+        {
+          "path": "src/components/admin/auth/login-page.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/auth-layout", "@shadmin/login-form"],
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "login-with-email",
+      "type": "registry:component",
+      "title": "Login With Email",
+      "files": [
+        {
+          "path": "src/components/admin/auth/login-with-email.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-notify-auth-error",
+        "@shadmin/lib-utils",
+        "@shadmin/password-input",
+        "@shadmin/text-input",
+        "button",
+        "spinner"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "logout",
+      "type": "registry:component",
+      "title": "Logout",
+      "files": [
+        {
+          "path": "src/components/admin/auth/logout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "dropdown-menu"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "bulk-delete-button",
+      "type": "registry:component",
+      "title": "Bulk Delete Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/bulk-delete-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/confirm",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "button"
+      ],
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "bulk-export-button",
+      "type": "registry:component",
+      "title": "Bulk Export Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/bulk-export-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "bulk-update-button",
+      "type": "registry:component",
+      "title": "Bulk Update Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/bulk-update-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/confirm",
+        "@shadmin/lib-unknown-types",
+        "button"
+      ],
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "cancel-button",
+      "type": "registry:component",
+      "title": "Cancel Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/cancel-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "clone-button",
+      "type": "registry:component",
+      "title": "Clone Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/clone-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "columns-button",
+      "type": "registry:component",
+      "title": "Columns Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/columns-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/field-toggle",
+        "@shadmin/lib-utils",
+        "button",
+        "input",
+        "popover",
+        "tooltip",
+        "use-mobile"
+      ],
+      "dependencies": ["diacritic", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "create-button",
+      "type": "registry:component",
+      "title": "Create Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/create-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "delete-button",
+      "type": "registry:component",
+      "title": "Delete Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/delete-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/confirm", "button"],
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "edit-button",
+      "type": "registry:component",
+      "title": "Edit Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/edit-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "export-button",
+      "type": "registry:component",
+      "title": "Export Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/export-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-unknown-types", "button"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "filter-button",
+      "type": "registry:component",
+      "title": "Filter Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/filter-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/saved-queries",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [
+        "lodash",
+        "lucide-react",
+        "query-string",
+        "ra-core",
+        "react-router"
+      ],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "inspector-button",
+      "type": "registry:component",
+      "title": "Inspector Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/inspector-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "tooltip"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "list-button",
+      "type": "registry:component",
+      "title": "List Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/list-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "locales-menu-button",
+      "type": "registry:component",
+      "title": "Locales Menu Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/locales-menu-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button", "dropdown-menu"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "refresh-button",
+      "type": "registry:component",
+      "title": "Refresh Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/refresh-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "spinner"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "refresh-icon-button",
+      "type": "registry:component",
+      "title": "Refresh Icon Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/refresh-icon-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-resolve-label",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "save-button",
+      "type": "registry:component",
+      "title": "Save Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/save-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-unknown-types",
+        "button",
+        "spinner"
+      ],
+      "dependencies": [
+        "@tanstack/react-query",
+        "lucide-react",
+        "ra-core",
+        "react-hook-form"
+      ],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "select-all-button",
+      "type": "registry:component",
+      "title": "Select All Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/select-all-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "show-button",
+      "type": "registry:component",
+      "title": "Show Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/show-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "sidebar-toggle-button",
+      "type": "registry:component",
+      "title": "Sidebar Toggle Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/sidebar-toggle-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "sidebar", "tooltip"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "skip-navigation-button",
+      "type": "registry:component",
+      "title": "Skip Navigation Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/skip-navigation-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-resolve-label",
+        "@shadmin/lib-utils",
+        "button"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "sort-button",
+      "type": "registry:component",
+      "title": "Sort Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/sort-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "tooltip",
+        "use-mobile"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "toggle-filter-button",
+      "type": "registry:component",
+      "title": "Toggle Filter Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/toggle-filter-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "update-button",
+      "type": "registry:component",
+      "title": "Update Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/update-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/confirm",
+        "@shadmin/lib-unknown-types",
+        "button"
+      ],
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "application-updated-notification",
+      "type": "registry:component",
+      "title": "Application Updated Notification",
+      "files": [
+        {
+          "path": "src/components/admin/common/application-updated-notification.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button", "card"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "check-for-application-update",
+      "type": "registry:component",
+      "title": "Check For Application Update",
+      "files": [
+        {
+          "path": "src/components/admin/common/check-for-application-update.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/application-updated-notification"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "device-test-wrapper",
+      "type": "registry:component",
+      "title": "Device Test Wrapper",
+      "files": [
+        {
+          "path": "src/components/admin/common/device-test-wrapper.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "icon-button-with-tooltip",
+      "type": "registry:component",
+      "title": "Icon Button With Tooltip",
+      "files": [
+        {
+          "path": "src/components/admin/common/icon-button-with-tooltip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "tooltip"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "input-helper-text",
+      "type": "registry:component",
+      "title": "Input Helper Text",
+      "files": [
+        {
+          "path": "src/components/admin/common/input-helper-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["field"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "keyboard-shortcut",
+      "type": "registry:component",
+      "title": "Keyboard Shortcut",
+      "files": [
+        {
+          "path": "src/components/admin/common/keyboard-shortcut.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "link",
+      "type": "registry:component",
+      "title": "Link",
+      "files": [
+        {
+          "path": "src/components/admin/common/link.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "confirm",
+      "type": "registry:component",
+      "title": "Confirm",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/confirm.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "dialog"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "empty",
+      "type": "registry:component",
+      "title": "Empty",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/empty.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/create-button", "@shadmin/lib-utils"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "error",
+      "type": "registry:component",
+      "title": "Error",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/error.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/title", "accordion", "button"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "devDependencies": ["react-error-boundary"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "linear-progress",
+      "type": "registry:component",
+      "title": "Linear Progress",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/linear-progress.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "loading-indicator",
+      "type": "registry:component",
+      "title": "Loading Indicator",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/loading-indicator.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/refresh-icon-button",
+        "spinner"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "loading",
+      "type": "registry:component",
+      "title": "Loading",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/loading.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/spinner"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "not-found",
+      "type": "registry:component",
+      "title": "Not Found",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/not-found.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/loading", "@shadmin/title", "button"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "notification",
+      "type": "registry:component",
+      "title": "Notification",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/notification.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/use-theme"],
+      "dependencies": ["ra-core", "sonner"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "offline",
+      "type": "registry:component",
+      "title": "Offline",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/offline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "placeholder",
+      "type": "registry:component",
+      "title": "Placeholder",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/placeholder.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "ready",
+      "type": "registry:component",
+      "title": "Ready",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/ready.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["lucide-react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "files": [
+        {
+          "path": "src/components/admin/feedback/spinner.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "spinner"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "array-field",
+      "type": "registry:component",
+      "title": "Array Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/array-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-unknown-types"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "badge-field",
+      "type": "registry:component",
+      "title": "Badge Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/badge-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-field-types", "badge"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "boolean-field",
+      "type": "registry:component",
+      "title": "Boolean Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/boolean-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-utils",
+        "tooltip"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "chip-field",
+      "type": "registry:component",
+      "title": "Chip Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/chip-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "badge"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "date-field",
+      "type": "registry:component",
+      "title": "Date Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/date-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "email-field",
+      "type": "registry:component",
+      "title": "Email Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/email-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "file-field",
+      "type": "registry:component",
+      "title": "File Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/file-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["lodash", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "function-field",
+      "type": "registry:component",
+      "title": "Function Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/function-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "image-field",
+      "type": "registry:component",
+      "title": "Image Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/image-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["lodash", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "number-field",
+      "type": "registry:component",
+      "title": "Number Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/number-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "record-field",
+      "type": "registry:component",
+      "title": "Record Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/record-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/text-field"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reference-array-field",
+      "type": "registry:component",
+      "title": "Reference Array Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/reference-array-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/linear-progress",
+        "@shadmin/offline",
+        "@shadmin/single-field-list"
+      ],
+      "dependencies": ["@tanstack/react-query", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reference-field",
+      "type": "registry:component",
+      "title": "Reference Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/reference-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/offline"
+      ],
+      "dependencies": ["@tanstack/react-query", "ra-core", "react-router"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reference-many-field",
+      "type": "registry:component",
+      "title": "Reference Many Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/reference-many-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-field-types", "@shadmin/offline"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reference-one-field",
+      "type": "registry:component",
+      "title": "Reference One Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/reference-one-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/offline",
+        "@shadmin/reference-field"
+      ],
+      "dependencies": ["@tanstack/react-query", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "rich-text-field",
+      "type": "registry:component",
+      "title": "Rich Text Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/rich-text-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["dompurify", "html-react-parser", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "select-field",
+      "type": "registry:component",
+      "title": "Select Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/select-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "text-array-field",
+      "type": "registry:component",
+      "title": "Text Array Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/text-array-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "badge"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "text-field",
+      "type": "registry:component",
+      "title": "Text Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/text-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "url-field",
+      "type": "registry:component",
+      "title": "Url Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/url-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "wrapper-field",
+      "type": "registry:component",
+      "title": "Wrapper Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/wrapper-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "simple-form-configurable",
+      "type": "registry:component",
+      "title": "Simple Form Configurable",
+      "files": [
+        {
+          "path": "src/components/admin/form/simple-form-configurable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/configurable",
+        "@shadmin/fields-selector",
+        "@shadmin/simple-form"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "simple-form-iterator",
+      "type": "registry:component",
+      "title": "Simple Form Iterator",
+      "files": [
+        {
+          "path": "src/components/admin/form/simple-form-iterator.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/confirm",
+        "@shadmin/icon-button-with-tooltip",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "simple-form",
+      "type": "registry:component",
+      "title": "Simple Form",
+      "files": [
+        {
+          "path": "src/components/admin/form/simple-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/cancel-button",
+        "@shadmin/lib-utils",
+        "@shadmin/save-button"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "tabbed-form",
+      "type": "registry:component",
+      "title": "Tabbed Form",
+      "files": [
+        {
+          "path": "src/components/admin/form/tabbed-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/simple-form",
+        "tabs"
+      ],
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:component",
+      "title": "Toolbar",
+      "files": [
+        {
+          "path": "src/components/admin/form/toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/delete-button",
+        "@shadmin/lib-utils",
+        "@shadmin/save-button"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "translatable-inputs-tab-content",
+      "type": "registry:component",
+      "title": "Translatable Inputs Tab Content",
+      "files": [
+        {
+          "path": "src/components/admin/form/translatable-inputs-tab-content.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "tabs"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "translatable-inputs-tab",
+      "type": "registry:component",
+      "title": "Translatable Inputs Tab",
+      "files": [
+        {
+          "path": "src/components/admin/form/translatable-inputs-tab.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "tabs"],
+      "dependencies": ["inflection", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "translatable-inputs-tabs",
+      "type": "registry:component",
+      "title": "Translatable Inputs Tabs",
+      "files": [
+        {
+          "path": "src/components/admin/form/translatable-inputs-tabs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/translatable-inputs-tab",
+        "tabs"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "translatable-inputs",
+      "type": "registry:component",
+      "title": "Translatable Inputs",
+      "files": [
+        {
+          "path": "src/components/admin/form/translatable-inputs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/translatable-inputs-tab-content",
+        "@shadmin/translatable-inputs-tabs",
+        "tabs"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "edit-guesser",
+      "type": "registry:component",
+      "title": "Edit Guesser",
+      "files": [
+        {
+          "path": "src/components/admin/guessers/edit-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/autocomplete-input",
+        "@shadmin/boolean-input",
+        "@shadmin/edit",
+        "@shadmin/lib-any",
+        "@shadmin/reference-array-input",
+        "@shadmin/reference-input",
+        "@shadmin/simple-form",
+        "@shadmin/text-input"
+      ],
+      "dependencies": ["inflection", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "guesser-empty",
+      "type": "registry:component",
+      "title": "Guesser Empty",
+      "files": [
+        {
+          "path": "src/components/admin/guessers/guesser-empty.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "list-guesser",
+      "type": "registry:component",
+      "title": "List Guesser",
+      "files": [
+        {
+          "path": "src/components/admin/guessers/list-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/array-field",
+        "@shadmin/badge-field",
+        "@shadmin/data-table",
+        "@shadmin/guesser-empty",
+        "@shadmin/lib-any",
+        "@shadmin/list",
+        "@shadmin/reference-array-field",
+        "@shadmin/reference-field",
+        "@shadmin/single-field-list"
+      ],
+      "dependencies": ["inflection", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "show-guesser",
+      "type": "registry:component",
+      "title": "Show Guesser",
+      "files": [
+        {
+          "path": "src/components/admin/guessers/show-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/array-field",
+        "@shadmin/badge-field",
+        "@shadmin/date-field",
+        "@shadmin/lib-any",
+        "@shadmin/number-field",
+        "@shadmin/record-field",
+        "@shadmin/reference-array-field",
+        "@shadmin/reference-field",
+        "@shadmin/show",
+        "@shadmin/simple-show-layout",
+        "@shadmin/single-field-list"
+      ],
+      "dependencies": ["inflection", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "array-input",
+      "type": "registry:component",
+      "title": "Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "skeleton"
+      ],
+      "dependencies": ["ra-core", "react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "autocomplete-array-input",
       "type": "registry:component",
       "title": "Autocomplete Array Input",
       "files": [
         {
-          "path": "src/components/admin/autocomplete-array-input.tsx",
+          "path": "src/components/admin/inputs/autocomplete-array-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -1052,7 +2403,7 @@
       "title": "Autocomplete Input",
       "files": [
         {
-          "path": "src/components/admin/autocomplete-input.tsx",
+          "path": "src/components/admin/inputs/autocomplete-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -1071,46 +2422,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "badge-field",
-      "type": "registry:component",
-      "title": "Badge Field",
-      "files": [
-        {
-          "path": "src/components/admin/badge-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-field-types", "badge"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "boolean-field",
-      "type": "registry:component",
-      "title": "Boolean Field",
-      "files": [
-        {
-          "path": "src/components/admin/boolean-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-utils",
-        "tooltip"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "boolean-input",
       "type": "registry:component",
       "title": "Boolean Input",
       "files": [
         {
-          "path": "src/components/admin/boolean-input.tsx",
+          "path": "src/components/admin/inputs/boolean-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -1125,151 +2442,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "breadcrumb",
-      "type": "registry:component",
-      "title": "Breadcrumb",
-      "files": [
-        {
-          "path": "src/components/admin/breadcrumb.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "breadcrumb",
-        "button",
-        "drawer",
-        "separator",
-        "use-mobile"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "bulk-actions-toolbar",
-      "type": "registry:component",
-      "title": "Bulk Actions Toolbar",
-      "files": [
-        {
-          "path": "src/components/admin/bulk-actions-toolbar.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/bulk-delete-button",
-        "@shadmin/bulk-export-button",
-        "@shadmin/select-all-button",
-        "button",
-        "card"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "bulk-delete-button",
-      "type": "registry:component",
-      "title": "Bulk Delete Button",
-      "files": [
-        {
-          "path": "src/components/admin/bulk-delete-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/confirm",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "button"
-      ],
-      "dependencies": ["inflection", "lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "bulk-export-button",
-      "type": "registry:component",
-      "title": "Bulk Export Button",
-      "files": [
-        {
-          "path": "src/components/admin/bulk-export-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "bulk-update-button",
-      "type": "registry:component",
-      "title": "Bulk Update Button",
-      "files": [
-        {
-          "path": "src/components/admin/bulk-update-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/confirm",
-        "@shadmin/lib-unknown-types",
-        "button"
-      ],
-      "dependencies": ["inflection", "lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "cancel-button",
-      "type": "registry:component",
-      "title": "Cancel Button",
-      "files": [
-        {
-          "path": "src/components/admin/cancel-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "card-content-inner",
-      "type": "registry:component",
-      "title": "Card Content Inner",
-      "files": [
-        {
-          "path": "src/components/admin/card-content-inner.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "check-for-application-update",
-      "type": "registry:component",
-      "title": "Check For Application Update",
-      "files": [
-        {
-          "path": "src/components/admin/check-for-application-update.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/application-updated-notification"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "checkbox-group-input",
       "type": "registry:component",
       "title": "Checkbox Group Input",
       "files": [
         {
-          "path": "src/components/admin/checkbox-group-input.tsx",
+          "path": "src/components/admin/inputs/checkbox-group-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -1285,61 +2463,371 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "chip-field",
+      "name": "datagrid-input",
       "type": "registry:component",
-      "title": "Chip Field",
+      "title": "Datagrid Input",
       "files": [
         {
-          "path": "src/components/admin/chip-field.tsx",
+          "path": "src/components/admin/inputs/datagrid-input.tsx",
           "type": "registry:component"
         }
       ],
       "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "badge"
+        "@shadmin/data-table",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils"
       ],
       "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
+      "categories": ["shadmin", "inputs"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "clone-button",
+      "name": "date-input",
       "type": "registry:component",
-      "title": "Clone Button",
+      "title": "Date Input",
       "files": [
         {
-          "path": "src/components/admin/clone-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "columns-button",
-      "type": "registry:component",
-      "title": "Columns Button",
-      "files": [
-        {
-          "path": "src/components/admin/columns-button.tsx",
+          "path": "src/components/admin/inputs/date-input.tsx",
           "type": "registry:component"
         }
       ],
       "registryDependencies": [
-        "@shadmin/field-toggle",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "input"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "date-time-input",
+      "type": "registry:component",
+      "title": "Date Time Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/date-time-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "input"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "file-input",
+      "type": "registry:component",
+      "title": "File Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/file-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
         "button",
-        "input",
-        "popover",
-        "tooltip",
-        "use-mobile"
+        "field"
       ],
-      "dependencies": ["diacritic", "lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
+      "dependencies": ["lucide-react", "ra-core", "react-dropzone"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "image-input",
+      "type": "registry:component",
+      "title": "Image Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/image-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/file-input", "@shadmin/image-field"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "loading-input",
+      "type": "registry:component",
+      "title": "Loading Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/loading-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/spinner",
+        "input",
+        "label"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "nullable-boolean-input",
+      "type": "registry:component",
+      "title": "Nullable Boolean Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/nullable-boolean-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "select"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "number-input",
+      "type": "registry:component",
+      "title": "Number Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/number-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "password-input",
+      "type": "registry:component",
+      "title": "Password Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/password-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "radio-button-group-input",
+      "type": "registry:component",
+      "title": "Radio Button Group Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/radio-button-group-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-sanitize-input-rest-props",
+        "@shadmin/lib-utils",
+        "field",
+        "radio-group",
+        "skeleton"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reference-array-input",
+      "type": "registry:component",
+      "title": "Reference Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/reference-array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/autocomplete-array-input",
+        "@shadmin/offline"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reference-input",
+      "type": "registry:component",
+      "title": "Reference Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/reference-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/autocomplete-input",
+        "@shadmin/offline"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "resettable-text-input",
+      "type": "registry:component",
+      "title": "Resettable Text Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/resettable-text-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "search-input",
+      "type": "registry:component",
+      "title": "Search Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/search-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/text-input",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "select-array-input",
+      "type": "registry:component",
+      "title": "Select Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/select-array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "badge",
+        "button",
+        "checkbox",
+        "field",
+        "popover",
+        "skeleton"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "select-input",
+      "type": "registry:component",
+      "title": "Select Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/select-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "field",
+        "select",
+        "skeleton"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "text-array-input",
+      "type": "registry:component",
+      "title": "Text Array Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/text-array-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "badge",
+        "command",
+        "field",
+        "popover"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "text-input",
+      "type": "registry:component",
+      "title": "Text Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/text-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-sanitize-input-rest-props",
+        "@shadmin/lib-utils",
+        "field",
+        "input",
+        "textarea"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "time-input",
+      "type": "registry:component",
+      "title": "Time Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/time-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
+      "dependencies": ["clsx", "ra-core"],
+      "categories": ["shadmin", "inputs"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
@@ -1348,7 +2836,7 @@
       "title": "Configurable",
       "files": [
         {
-          "path": "src/components/admin/configurable.tsx",
+          "path": "src/components/admin/inspector/configurable.tsx",
           "type": "registry:component"
         }
       ],
@@ -1358,16 +2846,403 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "confirm",
+      "name": "field-toggle",
       "type": "registry:component",
-      "title": "Confirm",
+      "title": "Field Toggle",
       "files": [
         {
-          "path": "src/components/admin/confirm.tsx",
+          "path": "src/components/admin/inspector/field-toggle.tsx",
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["button", "dialog"],
+      "registryDependencies": ["@shadmin/lib-utils", "switch"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "fields-selector",
+      "type": "registry:component",
+      "title": "Fields Selector",
+      "files": [
+        {
+          "path": "src/components/admin/inspector/fields-selector.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/field-toggle", "button"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "inspector-root",
+      "type": "registry:component",
+      "title": "Inspector Root",
+      "files": [
+        {
+          "path": "src/components/admin/inspector/inspector-root.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "inspector",
+      "type": "registry:component",
+      "title": "Inspector",
+      "files": [
+        {
+          "path": "src/components/admin/inspector/inspector.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/inspector-root",
+        "@shadmin/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "app-bar",
+      "type": "registry:component",
+      "title": "App Bar",
+      "files": [
+        {
+          "path": "src/components/admin/layout/app-bar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/locales-menu-button",
+        "@shadmin/refresh-button",
+        "@shadmin/sidebar-toggle-button",
+        "@shadmin/theme-mode-toggle",
+        "@shadmin/title-portal",
+        "@shadmin/user-menu"
+      ],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "app-sidebar",
+      "type": "registry:component",
+      "title": "App Sidebar",
+      "files": [
+        {
+          "path": "src/components/admin/layout/app-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/menu", "sidebar"],
+      "dependencies": ["lucide-react", "react-router"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:component",
+      "title": "Breadcrumb",
+      "files": [
+        {
+          "path": "src/components/admin/layout/breadcrumb.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "breadcrumb",
+        "button",
+        "drawer",
+        "separator",
+        "use-mobile"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "dashboard-menu-item",
+      "type": "registry:component",
+      "title": "Dashboard Menu Item",
+      "files": [
+        {
+          "path": "src/components/admin/layout/dashboard-menu-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/menu-item-link"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "hide-on-scroll",
+      "type": "registry:component",
+      "title": "Hide On Scroll",
+      "files": [
+        {
+          "path": "src/components/admin/layout/hide-on-scroll.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "layout",
+      "type": "registry:component",
+      "title": "Layout",
+      "files": [
+        {
+          "path": "src/components/admin/layout/layout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/app-bar",
+        "@shadmin/app-sidebar",
+        "@shadmin/error",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "@shadmin/loading",
+        "@shadmin/menu",
+        "@shadmin/notification",
+        "@shadmin/skip-navigation-button",
+        "sidebar"
+      ],
+      "dependencies": ["ra-core"],
+      "devDependencies": ["react-error-boundary"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "menu-item-link",
+      "type": "registry:component",
+      "title": "Menu Item Link",
+      "files": [
+        {
+          "path": "src/components/admin/layout/menu-item-link.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/keyboard-shortcut",
+        "sidebar",
+        "tooltip"
+      ],
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "menu",
+      "type": "registry:component",
+      "title": "Menu",
+      "files": [
+        {
+          "path": "src/components/admin/layout/menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/dashboard-menu-item",
+        "@shadmin/lib-utils",
+        "@shadmin/menu-item-link",
+        "@shadmin/resource",
+        "@shadmin/resource-menu-item",
+        "@shadmin/resource-menu-item-group",
+        "sidebar"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "resource-menu-item-group",
+      "type": "registry:component",
+      "title": "Resource Menu Item Group",
+      "files": [
+        {
+          "path": "src/components/admin/layout/resource-menu-item-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/resource-menu-item",
+        "collapsible",
+        "sidebar"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "resource-menu-item",
+      "type": "registry:component",
+      "title": "Resource Menu Item",
+      "files": [
+        {
+          "path": "src/components/admin/layout/resource-menu-item.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["sidebar", "skeleton"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "saved-queries",
+      "type": "registry:component",
+      "title": "Saved Queries",
+      "files": [
+        {
+          "path": "src/components/admin/layout/saved-queries.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/filter-list",
+        "@shadmin/lib-utils",
+        "button",
+        "dialog",
+        "input",
+        "label"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "theme-mode-toggle",
+      "type": "registry:component",
+      "title": "Theme Mode Toggle",
+      "files": [
+        {
+          "path": "src/components/admin/layout/theme-mode-toggle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/use-theme",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:component",
+      "title": "Theme Provider",
+      "files": [
+        {
+          "path": "src/components/admin/layout/theme-provider.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-theme-context"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "title-portal",
+      "type": "registry:component",
+      "title": "Title Portal",
+      "files": [
+        {
+          "path": "src/components/admin/layout/title-portal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-title-portal-id",
+        "@shadmin/lib-utils"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "title",
+      "type": "registry:component",
+      "title": "Title",
+      "files": [
+        {
+          "path": "src/components/admin/layout/title.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-title-portal-id",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "top-toolbar",
+      "type": "registry:component",
+      "title": "Top Toolbar",
+      "files": [
+        {
+          "path": "src/components/admin/layout/top-toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "user-menu",
+      "type": "registry:component",
+      "title": "User Menu",
+      "files": [
+        {
+          "path": "src/components/admin/layout/user-menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/logout",
+        "avatar",
+        "button",
+        "dropdown-menu",
+        "skeleton"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "bulk-actions-toolbar",
+      "type": "registry:component",
+      "title": "Bulk Actions Toolbar",
+      "files": [
+        {
+          "path": "src/components/admin/list/bulk-actions-toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/bulk-delete-button",
+        "@shadmin/bulk-export-button",
+        "@shadmin/select-all-button",
+        "button",
+        "card"
+      ],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -1378,7 +3253,7 @@
       "title": "Count",
       "files": [
         {
-          "path": "src/components/admin/count.tsx",
+          "path": "src/components/admin/list/count.tsx",
           "type": "registry:component"
         }
       ],
@@ -1388,57 +3263,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "create-button",
-      "type": "registry:component",
-      "title": "Create Button",
-      "files": [
-        {
-          "path": "src/components/admin/create-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "create",
-      "type": "registry:component",
-      "title": "Create",
-      "files": [
-        {
-          "path": "src/components/admin/create.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/breadcrumb", "@shadmin/lib-utils"],
-      "dependencies": ["ra-core", "react-router"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "dashboard-menu-item",
-      "type": "registry:component",
-      "title": "Dashboard Menu Item",
-      "files": [
-        {
-          "path": "src/components/admin/dashboard-menu-item.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/menu-item-link"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "data-table",
       "type": "registry:component",
       "title": "Data Table",
       "files": [
         {
-          "path": "src/components/admin/data-table.tsx",
+          "path": "src/components/admin/list/data-table.tsx",
           "type": "registry:component"
         }
       ],
@@ -1461,338 +3291,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "datagrid-input",
-      "type": "registry:component",
-      "title": "Datagrid Input",
-      "files": [
-        {
-          "path": "src/components/admin/datagrid-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/data-table",
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "date-field",
-      "type": "registry:component",
-      "title": "Date Field",
-      "files": [
-        {
-          "path": "src/components/admin/date-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "date-input",
-      "type": "registry:component",
-      "title": "Date Input",
-      "files": [
-        {
-          "path": "src/components/admin/date-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-utils",
-        "field",
-        "input"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "date-time-input",
-      "type": "registry:component",
-      "title": "Date Time Input",
-      "files": [
-        {
-          "path": "src/components/admin/date-time-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-utils",
-        "field",
-        "input"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "delete-button",
-      "type": "registry:component",
-      "title": "Delete Button",
-      "files": [
-        {
-          "path": "src/components/admin/delete-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/confirm", "button"],
-      "dependencies": ["inflection", "lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "device-test-wrapper",
-      "type": "registry:component",
-      "title": "Device Test Wrapper",
-      "files": [
-        {
-          "path": "src/components/admin/device-test-wrapper.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "edit-button",
-      "type": "registry:component",
-      "title": "Edit Button",
-      "files": [
-        {
-          "path": "src/components/admin/edit-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "edit-guesser",
-      "type": "registry:component",
-      "title": "Edit Guesser",
-      "files": [
-        {
-          "path": "src/components/admin/edit-guesser.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/autocomplete-input",
-        "@shadmin/boolean-input",
-        "@shadmin/edit",
-        "@shadmin/lib-any",
-        "@shadmin/reference-array-input",
-        "@shadmin/reference-input",
-        "@shadmin/simple-form",
-        "@shadmin/text-input"
-      ],
-      "dependencies": ["inflection", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "edit",
-      "type": "registry:component",
-      "title": "Edit",
-      "files": [
-        {
-          "path": "src/components/admin/edit.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/breadcrumb",
-        "@shadmin/delete-button",
-        "@shadmin/lib-utils",
-        "@shadmin/show-button"
-      ],
-      "dependencies": ["ra-core", "react-router"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "email-field",
-      "type": "registry:component",
-      "title": "Email Field",
-      "files": [
-        {
-          "path": "src/components/admin/email-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "empty",
-      "type": "registry:component",
-      "title": "Empty",
-      "files": [
-        {
-          "path": "src/components/admin/empty.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/create-button", "@shadmin/lib-utils"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "error",
-      "type": "registry:component",
-      "title": "Error",
-      "files": [
-        {
-          "path": "src/components/admin/error.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/title", "accordion", "button"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "devDependencies": ["react-error-boundary"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "export-button",
-      "type": "registry:component",
-      "title": "Export Button",
-      "files": [
-        {
-          "path": "src/components/admin/export-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-unknown-types", "button"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "field-toggle",
-      "type": "registry:component",
-      "title": "Field Toggle",
-      "files": [
-        {
-          "path": "src/components/admin/field-toggle.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "switch"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "fields-selector",
-      "type": "registry:component",
-      "title": "Fields Selector",
-      "files": [
-        {
-          "path": "src/components/admin/fields-selector.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/field-toggle", "button"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "file-field",
-      "type": "registry:component",
-      "title": "File Field",
-      "files": [
-        {
-          "path": "src/components/admin/file-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["lodash", "ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "file-input",
-      "type": "registry:component",
-      "title": "File Input",
-      "files": [
-        {
-          "path": "src/components/admin/file-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "button",
-        "field"
-      ],
-      "dependencies": ["lucide-react", "ra-core", "react-dropzone"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "filter-button",
-      "type": "registry:component",
-      "title": "Filter Button",
-      "files": [
-        {
-          "path": "src/components/admin/filter-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "@shadmin/saved-queries",
-        "button",
-        "dropdown-menu"
-      ],
-      "dependencies": [
-        "lodash",
-        "lucide-react",
-        "query-string",
-        "ra-core",
-        "react-router"
-      ],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "filter-form",
       "type": "registry:component",
       "title": "Filter Form",
       "files": [
         {
-          "path": "src/components/admin/filter-form.tsx",
+          "path": "src/components/admin/list/filter-form.tsx",
           "type": "registry:component"
         }
       ],
@@ -1811,7 +3315,7 @@
       "title": "Filter List Item",
       "files": [
         {
-          "path": "src/components/admin/filter-list-item.tsx",
+          "path": "src/components/admin/list/filter-list-item.tsx",
           "type": "registry:component"
         }
       ],
@@ -1830,7 +3334,7 @@
       "title": "Filter List Section",
       "files": [
         {
-          "path": "src/components/admin/filter-list-section.tsx",
+          "path": "src/components/admin/list/filter-list-section.tsx",
           "type": "registry:component"
         }
       ],
@@ -1845,7 +3349,7 @@
       "title": "Filter List",
       "files": [
         {
-          "path": "src/components/admin/filter-list.tsx",
+          "path": "src/components/admin/list/filter-list.tsx",
           "type": "registry:component"
         }
       ],
@@ -1862,7 +3366,7 @@
       "title": "Filter Live Search",
       "files": [
         {
-          "path": "src/components/admin/filter-live-search.tsx",
+          "path": "src/components/admin/list/filter-live-search.tsx",
           "type": "registry:component"
         }
       ],
@@ -1872,107 +3376,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "function-field",
-      "type": "registry:component",
-      "title": "Function Field",
-      "files": [
-        {
-          "path": "src/components/admin/function-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "guesser-empty",
-      "type": "registry:component",
-      "title": "Guesser Empty",
-      "files": [
-        {
-          "path": "src/components/admin/guesser-empty.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "hide-on-scroll",
-      "type": "registry:component",
-      "title": "Hide On Scroll",
-      "files": [
-        {
-          "path": "src/components/admin/hide-on-scroll.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "icon-button-with-tooltip",
-      "type": "registry:component",
-      "title": "Icon Button With Tooltip",
-      "files": [
-        {
-          "path": "src/components/admin/icon-button-with-tooltip.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button", "tooltip"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "image-field",
-      "type": "registry:component",
-      "title": "Image Field",
-      "files": [
-        {
-          "path": "src/components/admin/image-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["lodash", "ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "image-input",
-      "type": "registry:component",
-      "title": "Image Input",
-      "files": [
-        {
-          "path": "src/components/admin/image-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/file-input", "@shadmin/image-field"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "infinite-list",
       "type": "registry:component",
       "title": "Infinite List",
       "files": [
         {
-          "path": "src/components/admin/infinite-list.tsx",
+          "path": "src/components/admin/list/infinite-list.tsx",
           "type": "registry:component"
         }
       ],
@@ -1996,7 +3405,7 @@
       "title": "Infinite Pagination",
       "files": [
         {
-          "path": "src/components/admin/infinite-pagination.tsx",
+          "path": "src/components/admin/list/infinite-pagination.tsx",
           "type": "registry:component"
         }
       ],
@@ -2006,161 +3415,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "input-helper-text",
-      "type": "registry:component",
-      "title": "Input Helper Text",
-      "files": [
-        {
-          "path": "src/components/admin/input-helper-text.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["field"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "inspector-button",
-      "type": "registry:component",
-      "title": "Inspector Button",
-      "files": [
-        {
-          "path": "src/components/admin/inspector-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button", "tooltip"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "inspector-root",
-      "type": "registry:component",
-      "title": "Inspector Root",
-      "files": [
-        {
-          "path": "src/components/admin/inspector-root.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "inspector",
-      "type": "registry:component",
-      "title": "Inspector",
-      "files": [
-        {
-          "path": "src/components/admin/inspector.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/inspector-root",
-        "@shadmin/lib-utils",
-        "button"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "keyboard-shortcut",
-      "type": "registry:component",
-      "title": "Keyboard Shortcut",
-      "files": [
-        {
-          "path": "src/components/admin/keyboard-shortcut.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "labeled",
-      "type": "registry:component",
-      "title": "Labeled",
-      "files": [
-        {
-          "path": "src/components/admin/labeled.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "layout",
-      "type": "registry:component",
-      "title": "Layout",
-      "files": [
-        {
-          "path": "src/components/admin/layout.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/app-bar",
-        "@shadmin/app-sidebar",
-        "@shadmin/error",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "@shadmin/loading",
-        "@shadmin/menu",
-        "@shadmin/notification",
-        "@shadmin/skip-navigation-button",
-        "sidebar"
-      ],
-      "dependencies": ["ra-core"],
-      "devDependencies": ["react-error-boundary"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "linear-progress",
-      "type": "registry:component",
-      "title": "Linear Progress",
-      "files": [
-        {
-          "path": "src/components/admin/linear-progress.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "link",
-      "type": "registry:component",
-      "title": "Link",
-      "files": [
-        {
-          "path": "src/components/admin/link.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["react-router"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "list-actions",
       "type": "registry:component",
       "title": "List Actions",
       "files": [
         {
-          "path": "src/components/admin/list-actions.tsx",
+          "path": "src/components/admin/list/list-actions.tsx",
           "type": "registry:component"
         }
       ],
@@ -2175,52 +3435,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "list-button",
-      "type": "registry:component",
-      "title": "List Button",
-      "files": [
-        {
-          "path": "src/components/admin/list-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "list-guesser",
-      "type": "registry:component",
-      "title": "List Guesser",
-      "files": [
-        {
-          "path": "src/components/admin/list-guesser.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/array-field",
-        "@shadmin/badge-field",
-        "@shadmin/data-table",
-        "@shadmin/guesser-empty",
-        "@shadmin/lib-any",
-        "@shadmin/list",
-        "@shadmin/reference-array-field",
-        "@shadmin/reference-field",
-        "@shadmin/single-field-list"
-      ],
-      "dependencies": ["inflection", "ra-core", "react-router"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "list-no-results",
       "type": "registry:component",
       "title": "List No Results",
       "files": [
         {
-          "path": "src/components/admin/list-no-results.tsx",
+          "path": "src/components/admin/list/list-no-results.tsx",
           "type": "registry:component"
         }
       ],
@@ -2239,7 +3459,7 @@
       "title": "List Pagination",
       "files": [
         {
-          "path": "src/components/admin/list-pagination.tsx",
+          "path": "src/components/admin/list/list-pagination.tsx",
           "type": "registry:component"
         }
       ],
@@ -2259,7 +3479,7 @@
       "title": "List Toolbar",
       "files": [
         {
-          "path": "src/components/admin/list-toolbar.tsx",
+          "path": "src/components/admin/list/list-toolbar.tsx",
           "type": "registry:component"
         }
       ],
@@ -2278,7 +3498,7 @@
       "title": "List",
       "files": [
         {
-          "path": "src/components/admin/list.tsx",
+          "path": "src/components/admin/list/list.tsx",
           "type": "registry:component"
         }
       ],
@@ -2297,327 +3517,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "loading-indicator",
-      "type": "registry:component",
-      "title": "Loading Indicator",
-      "files": [
-        {
-          "path": "src/components/admin/loading-indicator.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/refresh-icon-button",
-        "spinner"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "loading-input",
-      "type": "registry:component",
-      "title": "Loading Input",
-      "files": [
-        {
-          "path": "src/components/admin/loading-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/spinner",
-        "input",
-        "label"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "loading",
-      "type": "registry:component",
-      "title": "Loading",
-      "files": [
-        {
-          "path": "src/components/admin/loading.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/spinner"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "locales-menu-button",
-      "type": "registry:component",
-      "title": "Locales Menu Button",
-      "files": [
-        {
-          "path": "src/components/admin/locales-menu-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "button", "dropdown-menu"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "login-form",
-      "type": "registry:component",
-      "title": "Login Form",
-      "files": [
-        {
-          "path": "src/components/admin/login-form.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-notify-auth-error",
-        "@shadmin/lib-utils",
-        "@shadmin/text-input",
-        "button",
-        "spinner"
-      ],
-      "dependencies": ["ra-core", "react-hook-form"],
-      "categories": ["shadmin", "authentication"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "login-page",
-      "type": "registry:component",
-      "title": "Login Page",
-      "files": [
-        {
-          "path": "src/components/admin/login-page.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/auth-layout", "@shadmin/login-form"],
-      "dependencies": ["ra-core", "react-router"],
-      "categories": ["shadmin", "authentication"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "login-with-email",
-      "type": "registry:component",
-      "title": "Login With Email",
-      "files": [
-        {
-          "path": "src/components/admin/login-with-email.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-notify-auth-error",
-        "@shadmin/lib-utils",
-        "@shadmin/password-input",
-        "@shadmin/text-input",
-        "button",
-        "spinner"
-      ],
-      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
-      "categories": ["shadmin", "authentication"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "logout",
-      "type": "registry:component",
-      "title": "Logout",
-      "files": [
-        {
-          "path": "src/components/admin/logout.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "dropdown-menu"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "menu-item-link",
-      "type": "registry:component",
-      "title": "Menu Item Link",
-      "files": [
-        {
-          "path": "src/components/admin/menu-item-link.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/keyboard-shortcut",
-        "sidebar",
-        "tooltip"
-      ],
-      "dependencies": ["ra-core", "react-router"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "menu",
-      "type": "registry:component",
-      "title": "Menu",
-      "files": [
-        {
-          "path": "src/components/admin/menu.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/dashboard-menu-item",
-        "@shadmin/lib-utils",
-        "@shadmin/menu-item-link",
-        "@shadmin/resource",
-        "@shadmin/resource-menu-item",
-        "@shadmin/resource-menu-item-group",
-        "sidebar"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "not-found",
-      "type": "registry:component",
-      "title": "Not Found",
-      "files": [
-        {
-          "path": "src/components/admin/not-found.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/loading", "@shadmin/title", "button"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "notification",
-      "type": "registry:component",
-      "title": "Notification",
-      "files": [
-        {
-          "path": "src/components/admin/notification.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/use-theme"],
-      "dependencies": ["ra-core", "sonner"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "nullable-boolean-input",
-      "type": "registry:component",
-      "title": "Nullable Boolean Input",
-      "files": [
-        {
-          "path": "src/components/admin/nullable-boolean-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-utils",
-        "field",
-        "select"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "number-field",
-      "type": "registry:component",
-      "title": "Number Field",
-      "files": [
-        {
-          "path": "src/components/admin/number-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "number-input",
-      "type": "registry:component",
-      "title": "Number Input",
-      "files": [
-        {
-          "path": "src/components/admin/number-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "offline",
-      "type": "registry:component",
-      "title": "Offline",
-      "files": [
-        {
-          "path": "src/components/admin/offline.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "password-input",
-      "type": "registry:component",
-      "title": "Password Input",
-      "files": [
-        {
-          "path": "src/components/admin/password-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/text-input",
-        "button"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "placeholder",
-      "type": "registry:component",
-      "title": "Placeholder",
-      "files": [
-        {
-          "path": "src/components/admin/placeholder.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "prev-next-buttons",
       "type": "registry:component",
       "title": "Prev Next Buttons",
       "files": [
         {
-          "path": "src/components/admin/prev-next-buttons.tsx",
+          "path": "src/components/admin/list/prev-next-buttons.tsx",
           "type": "registry:component"
         }
       ],
@@ -2627,143 +3532,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "radio-button-group-input",
-      "type": "registry:component",
-      "title": "Radio Button Group Input",
-      "files": [
-        {
-          "path": "src/components/admin/radio-button-group-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-sanitize-input-rest-props",
-        "@shadmin/lib-utils",
-        "field",
-        "radio-group",
-        "skeleton"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "ready",
-      "type": "registry:component",
-      "title": "Ready",
-      "files": [
-        {
-          "path": "src/components/admin/ready.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "dependencies": ["lucide-react"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "record-field",
-      "type": "registry:component",
-      "title": "Record Field",
-      "files": [
-        {
-          "path": "src/components/admin/record-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "@shadmin/text-field"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "reference-array-field",
-      "type": "registry:component",
-      "title": "Reference Array Field",
-      "files": [
-        {
-          "path": "src/components/admin/reference-array-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/linear-progress",
-        "@shadmin/offline",
-        "@shadmin/single-field-list"
-      ],
-      "dependencies": ["@tanstack/react-query", "ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "reference-array-input",
-      "type": "registry:component",
-      "title": "Reference Array Input",
-      "files": [
-        {
-          "path": "src/components/admin/reference-array-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/autocomplete-array-input",
-        "@shadmin/offline"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "reference-field",
-      "type": "registry:component",
-      "title": "Reference Field",
-      "files": [
-        {
-          "path": "src/components/admin/reference-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/offline"
-      ],
-      "dependencies": ["@tanstack/react-query", "ra-core", "react-router"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "reference-input",
-      "type": "registry:component",
-      "title": "Reference Input",
-      "files": [
-        {
-          "path": "src/components/admin/reference-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/autocomplete-input",
-        "@shadmin/offline"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "reference-many-count",
       "type": "registry:component",
       "title": "Reference Many Count",
       "files": [
         {
-          "path": "src/components/admin/reference-many-count.tsx",
+          "path": "src/components/admin/list/reference-many-count.tsx",
           "type": "registry:component"
         }
       ],
@@ -2778,125 +3552,71 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "reference-many-field",
+      "name": "simple-list-item",
       "type": "registry:component",
-      "title": "Reference Many Field",
+      "title": "Simple List Item",
       "files": [
         {
-          "path": "src/components/admin/reference-many-field.tsx",
+          "path": "src/components/admin/list/simple-list-item.tsx",
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-field-types", "@shadmin/offline"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "reference-one-field",
-      "type": "registry:component",
-      "title": "Reference One Field",
-      "files": [
-        {
-          "path": "src/components/admin/reference-one-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/offline",
-        "@shadmin/reference-field"
-      ],
-      "dependencies": ["@tanstack/react-query", "ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "refresh-button",
-      "type": "registry:component",
-      "title": "Refresh Button",
-      "files": [
-        {
-          "path": "src/components/admin/refresh-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button", "spinner"],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "refresh-icon-button",
-      "type": "registry:component",
-      "title": "Refresh Icon Button",
-      "files": [
-        {
-          "path": "src/components/admin/refresh-icon-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-resolve-label",
-        "button",
-        "tooltip"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "resettable-text-input",
-      "type": "registry:component",
-      "title": "Resettable Text Input",
-      "files": [
-        {
-          "path": "src/components/admin/resettable-text-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/text-input",
-        "button"
-      ],
-      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "resource-menu-item-group",
-      "type": "registry:component",
-      "title": "Resource Menu Item Group",
-      "files": [
-        {
-          "path": "src/components/admin/resource-menu-item-group.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/resource-menu-item",
-        "collapsible",
-        "sidebar"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["ra-core", "react-router"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "resource-menu-item",
+      "name": "simple-list-loading",
       "type": "registry:component",
-      "title": "Resource Menu Item",
+      "title": "Simple List Loading",
       "files": [
         {
-          "path": "src/components/admin/resource-menu-item.tsx",
+          "path": "src/components/admin/list/simple-list-loading.tsx",
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["sidebar", "skeleton"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "registryDependencies": ["@shadmin/lib-utils", "skeleton"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "simple-list",
+      "type": "registry:component",
+      "title": "Simple List",
+      "files": [
+        {
+          "path": "src/components/admin/list/simple-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/list-no-results",
+        "@shadmin/simple-list-item",
+        "@shadmin/simple-list-loading"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "single-field-list",
+      "type": "registry:component",
+      "title": "Single Field List",
+      "files": [
+        {
+          "path": "src/components/admin/list/single-field-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "badge"
+      ],
+      "dependencies": ["ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -2915,207 +3635,66 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "rich-text-field",
+      "name": "card-content-inner",
       "type": "registry:component",
-      "title": "Rich Text Field",
+      "title": "Card Content Inner",
       "files": [
         {
-          "path": "src/components/admin/rich-text-field.tsx",
+          "path": "src/components/admin/views/card-content-inner.tsx",
           "type": "registry:component"
         }
       ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["dompurify", "html-react-parser", "ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "save-button",
-      "type": "registry:component",
-      "title": "Save Button",
-      "files": [
-        {
-          "path": "src/components/admin/save-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-unknown-types",
-        "button",
-        "spinner"
-      ],
-      "dependencies": [
-        "@tanstack/react-query",
-        "lucide-react",
-        "ra-core",
-        "react-hook-form"
-      ],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "saved-queries",
-      "type": "registry:component",
-      "title": "Saved Queries",
-      "files": [
-        {
-          "path": "src/components/admin/saved-queries.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/filter-list",
-        "@shadmin/lib-utils",
-        "button",
-        "dialog",
-        "input",
-        "label"
-      ],
-      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "search-input",
+      "name": "create",
       "type": "registry:component",
-      "title": "Search Input",
+      "title": "Create",
       "files": [
         {
-          "path": "src/components/admin/search-input.tsx",
+          "path": "src/components/admin/views/create.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/breadcrumb", "@shadmin/lib-utils"],
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "edit",
+      "type": "registry:component",
+      "title": "Edit",
+      "files": [
+        {
+          "path": "src/components/admin/views/edit.tsx",
           "type": "registry:component"
         }
       ],
       "registryDependencies": [
+        "@shadmin/breadcrumb",
+        "@shadmin/delete-button",
         "@shadmin/lib-utils",
-        "@shadmin/text-input",
-        "button"
+        "@shadmin/show-button"
       ],
-      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
-      "categories": ["shadmin", "inputs"],
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "select-all-button",
+      "name": "labeled",
       "type": "registry:component",
-      "title": "Select All Button",
+      "title": "Labeled",
       "files": [
         {
-          "path": "src/components/admin/select-all-button.tsx",
+          "path": "src/components/admin/views/labeled.tsx",
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils", "button"],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "select-array-input",
-      "type": "registry:component",
-      "title": "Select Array Input",
-      "files": [
-        {
-          "path": "src/components/admin/select-array-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-utils",
-        "badge",
-        "button",
-        "checkbox",
-        "field",
-        "popover",
-        "skeleton"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "select-field",
-      "type": "registry:component",
-      "title": "Select Field",
-      "files": [
-        {
-          "path": "src/components/admin/select-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "select-input",
-      "type": "registry:component",
-      "title": "Select Input",
-      "files": [
-        {
-          "path": "src/components/admin/select-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "field",
-        "select",
-        "skeleton"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "show-button",
-      "type": "registry:component",
-      "title": "Show Button",
-      "files": [
-        {
-          "path": "src/components/admin/show-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "show-guesser",
-      "type": "registry:component",
-      "title": "Show Guesser",
-      "files": [
-        {
-          "path": "src/components/admin/show-guesser.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/array-field",
-        "@shadmin/badge-field",
-        "@shadmin/date-field",
-        "@shadmin/lib-any",
-        "@shadmin/number-field",
-        "@shadmin/record-field",
-        "@shadmin/reference-array-field",
-        "@shadmin/reference-field",
-        "@shadmin/show",
-        "@shadmin/simple-show-layout",
-        "@shadmin/single-field-list"
-      ],
-      "dependencies": ["inflection", "ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -3125,7 +3704,7 @@
       "title": "Show",
       "files": [
         {
-          "path": "src/components/admin/show.tsx",
+          "path": "src/components/admin/views/show.tsx",
           "type": "registry:component"
         }
       ],
@@ -3139,137 +3718,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "sidebar-toggle-button",
-      "type": "registry:component",
-      "title": "Sidebar Toggle Button",
-      "files": [
-        {
-          "path": "src/components/admin/sidebar-toggle-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "sidebar", "tooltip"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "simple-form-configurable",
-      "type": "registry:component",
-      "title": "Simple Form Configurable",
-      "files": [
-        {
-          "path": "src/components/admin/simple-form-configurable.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/configurable",
-        "@shadmin/fields-selector",
-        "@shadmin/simple-form"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "simple-form-iterator",
-      "type": "registry:component",
-      "title": "Simple Form Iterator",
-      "files": [
-        {
-          "path": "src/components/admin/simple-form-iterator.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/confirm",
-        "@shadmin/icon-button-with-tooltip",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "button",
-        "tooltip"
-      ],
-      "dependencies": ["lodash", "lucide-react", "ra-core", "react-hook-form"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "simple-form",
-      "type": "registry:component",
-      "title": "Simple Form",
-      "files": [
-        {
-          "path": "src/components/admin/simple-form.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/cancel-button",
-        "@shadmin/lib-utils",
-        "@shadmin/save-button"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "simple-list-item",
-      "type": "registry:component",
-      "title": "Simple List Item",
-      "files": [
-        {
-          "path": "src/components/admin/simple-list-item.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core", "react-router"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "simple-list-loading",
-      "type": "registry:component",
-      "title": "Simple List Loading",
-      "files": [
-        {
-          "path": "src/components/admin/simple-list-loading.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "skeleton"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "simple-list",
-      "type": "registry:component",
-      "title": "Simple List",
-      "files": [
-        {
-          "path": "src/components/admin/simple-list.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/list-no-results",
-        "@shadmin/simple-list-item",
-        "@shadmin/simple-list-loading"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "simple-show-layout",
       "type": "registry:component",
       "title": "Simple Show Layout",
       "files": [
         {
-          "path": "src/components/admin/simple-show-layout.tsx",
+          "path": "src/components/admin/views/simple-show-layout.tsx",
           "type": "registry:component"
         }
       ],
@@ -3279,104 +3733,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "single-field-list",
-      "type": "registry:component",
-      "title": "Single Field List",
-      "files": [
-        {
-          "path": "src/components/admin/single-field-list.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "badge"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "skip-navigation-button",
-      "type": "registry:component",
-      "title": "Skip Navigation Button",
-      "files": [
-        {
-          "path": "src/components/admin/skip-navigation-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-resolve-label",
-        "@shadmin/lib-utils",
-        "button"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "sort-button",
-      "type": "registry:component",
-      "title": "Sort Button",
-      "files": [
-        {
-          "path": "src/components/admin/sort-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "button",
-        "dropdown-menu",
-        "tooltip",
-        "use-mobile"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "spinner",
-      "type": "registry:component",
-      "title": "Spinner",
-      "files": [
-        {
-          "path": "src/components/admin/spinner.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "spinner"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "tabbed-form",
-      "type": "registry:component",
-      "title": "Tabbed Form",
-      "files": [
-        {
-          "path": "src/components/admin/tabbed-form.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "@shadmin/simple-form",
-        "tabs"
-      ],
-      "dependencies": ["ra-core", "react-router"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "tabbed-show-layout",
       "type": "registry:component",
       "title": "Tabbed Show Layout",
       "files": [
         {
-          "path": "src/components/admin/tabbed-show-layout.tsx",
+          "path": "src/components/admin/views/tabbed-show-layout.tsx",
           "type": "registry:component"
         }
       ],
@@ -3390,229 +3752,12 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "text-array-field",
-      "type": "registry:component",
-      "title": "Text Array Field",
-      "files": [
-        {
-          "path": "src/components/admin/text-array-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "badge"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "text-array-input",
-      "type": "registry:component",
-      "title": "Text Array Input",
-      "files": [
-        {
-          "path": "src/components/admin/text-array-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "badge",
-        "command",
-        "field",
-        "popover"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "text-field",
-      "type": "registry:component",
-      "title": "Text Field",
-      "files": [
-        {
-          "path": "src/components/admin/text-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "text-input",
-      "type": "registry:component",
-      "title": "Text Input",
-      "files": [
-        {
-          "path": "src/components/admin/text-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/input-helper-text",
-        "@shadmin/lib-sanitize-input-rest-props",
-        "@shadmin/lib-utils",
-        "field",
-        "input",
-        "textarea"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "theme-mode-toggle",
-      "type": "registry:component",
-      "title": "Theme Mode Toggle",
-      "files": [
-        {
-          "path": "src/components/admin/theme-mode-toggle.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/use-theme",
-        "button",
-        "dropdown-menu"
-      ],
-      "dependencies": ["lucide-react", "ra-core"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "theme-provider",
-      "type": "registry:component",
-      "title": "Theme Provider",
-      "files": [
-        {
-          "path": "src/components/admin/theme-provider.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-theme-context"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "time-input",
-      "type": "registry:component",
-      "title": "Time Input",
-      "files": [
-        {
-          "path": "src/components/admin/time-input.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
-      "dependencies": ["clsx", "ra-core"],
-      "categories": ["shadmin", "inputs"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "title-portal",
-      "type": "registry:component",
-      "title": "Title Portal",
-      "files": [
-        {
-          "path": "src/components/admin/title-portal.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-title-portal-id",
-        "@shadmin/lib-utils"
-      ],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "title",
-      "type": "registry:component",
-      "title": "Title",
-      "files": [
-        {
-          "path": "src/components/admin/title.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-title-portal-id",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "toggle-filter-button",
-      "type": "registry:component",
-      "title": "Toggle Filter Button",
-      "files": [
-        {
-          "path": "src/components/admin/toggle-filter-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils",
-        "button"
-      ],
-      "dependencies": ["lodash", "lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "toolbar",
-      "type": "registry:component",
-      "title": "Toolbar",
-      "files": [
-        {
-          "path": "src/components/admin/toolbar.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/delete-button",
-        "@shadmin/lib-utils",
-        "@shadmin/save-button"
-      ],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "top-toolbar",
-      "type": "registry:component",
-      "title": "Top Toolbar",
-      "files": [
-        {
-          "path": "src/components/admin/top-toolbar.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
       "name": "translatable-fields-tab-content",
       "type": "registry:component",
       "title": "Translatable Fields Tab Content",
       "files": [
         {
-          "path": "src/components/admin/translatable-fields-tab-content.tsx",
+          "path": "src/components/admin/views/translatable-fields-tab-content.tsx",
           "type": "registry:component"
         }
       ],
@@ -3627,7 +3772,7 @@
       "title": "Translatable Fields Tab",
       "files": [
         {
-          "path": "src/components/admin/translatable-fields-tab.tsx",
+          "path": "src/components/admin/views/translatable-fields-tab.tsx",
           "type": "registry:component"
         }
       ],
@@ -3642,7 +3787,7 @@
       "title": "Translatable Fields Tabs",
       "files": [
         {
-          "path": "src/components/admin/translatable-fields-tabs.tsx",
+          "path": "src/components/admin/views/translatable-fields-tabs.tsx",
           "type": "registry:component"
         }
       ],
@@ -3661,7 +3806,7 @@
       "title": "Translatable Fields",
       "files": [
         {
-          "path": "src/components/admin/translatable-fields.tsx",
+          "path": "src/components/admin/views/translatable-fields.tsx",
           "type": "registry:component"
         }
       ],
@@ -3673,151 +3818,6 @@
       ],
       "dependencies": ["ra-core"],
       "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "translatable-inputs-tab-content",
-      "type": "registry:component",
-      "title": "Translatable Inputs Tab Content",
-      "files": [
-        {
-          "path": "src/components/admin/translatable-inputs-tab-content.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "tabs"],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "translatable-inputs-tab",
-      "type": "registry:component",
-      "title": "Translatable Inputs Tab",
-      "files": [
-        {
-          "path": "src/components/admin/translatable-inputs-tab.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": ["@shadmin/lib-utils", "tabs"],
-      "dependencies": ["inflection", "ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "translatable-inputs-tabs",
-      "type": "registry:component",
-      "title": "Translatable Inputs Tabs",
-      "files": [
-        {
-          "path": "src/components/admin/translatable-inputs-tabs.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/translatable-inputs-tab",
-        "tabs"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "translatable-inputs",
-      "type": "registry:component",
-      "title": "Translatable Inputs",
-      "files": [
-        {
-          "path": "src/components/admin/translatable-inputs.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-utils",
-        "@shadmin/translatable-inputs-tab-content",
-        "@shadmin/translatable-inputs-tabs",
-        "tabs"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "components"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "update-button",
-      "type": "registry:component",
-      "title": "Update Button",
-      "files": [
-        {
-          "path": "src/components/admin/update-button.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/confirm",
-        "@shadmin/lib-unknown-types",
-        "button"
-      ],
-      "dependencies": ["inflection", "lucide-react", "ra-core"],
-      "categories": ["shadmin", "buttons"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "url-field",
-      "type": "registry:component",
-      "title": "Url Field",
-      "files": [
-        {
-          "path": "src/components/admin/url-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types",
-        "@shadmin/lib-utils"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "fields"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "user-menu",
-      "type": "registry:component",
-      "title": "User Menu",
-      "files": [
-        {
-          "path": "src/components/admin/user-menu.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/logout",
-        "avatar",
-        "button",
-        "dropdown-menu",
-        "skeleton"
-      ],
-      "dependencies": ["ra-core"],
-      "categories": ["shadmin", "layout"],
-      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
-    },
-    {
-      "name": "wrapper-field",
-      "type": "registry:component",
-      "title": "Wrapper Field",
-      "files": [
-        {
-          "path": "src/components/admin/wrapper-field.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "@shadmin/lib-field-types",
-        "@shadmin/lib-unknown-types"
-      ],
-      "categories": ["shadmin", "fields"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {

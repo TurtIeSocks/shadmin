@@ -3,7 +3,7 @@ import type { SubmitHandler, FieldValues } from "react-hook-form";
 import { Link } from "react-router";
 import { useResetPassword } from "ra-supabase-core";
 import { Button } from "@/components/ui/button";
-import { TextInput } from "@/components/admin/text-input";
+import { TextInput } from "@/components/admin/inputs/text-input";
 
 /**
  * Form that triggers a Supabase password-reset email.

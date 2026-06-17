@@ -7,9 +7,9 @@ import {
   ListView,
   type ListProps,
   type ListViewProps,
-} from "@/components/admin/list";
-import { Loading } from "@/components/admin/loading";
-import { GuesserEmpty } from "@/components/admin/guesser-empty";
+} from "@/components/admin/list/list";
+import { Loading } from "@/components/admin/feedback/loading";
+import { GuesserEmpty } from "@/components/admin/guessers/guesser-empty";
 import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { listFieldTypes } from "./list-field-types";

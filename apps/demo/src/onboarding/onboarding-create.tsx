@@ -10,9 +10,9 @@ import {
 } from "ra-core";
 
 import { WizardForm } from "shadmin/components/extras/wizard-form";
-import { TextInput } from "shadmin/components/admin/text-input";
-import { BooleanInput } from "shadmin/components/admin/boolean-input";
-import { NumberInput } from "shadmin/components/admin/number-input";
+import { TextInput } from "shadmin/components/admin/inputs/text-input";
+import { BooleanInput } from "shadmin/components/admin/inputs/boolean-input";
+import { NumberInput } from "shadmin/components/admin/inputs/number-input";
 
 /**
  * Create view for the demo "onboardings" resource. Showcases <WizardForm> as

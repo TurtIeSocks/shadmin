@@ -1,14 +1,14 @@
 import type { InferredTypeMap } from "shadmin-core";
 import type { Any } from "@/lib/any";
-import { SimpleForm } from "@/components/admin/simple-form";
-import { TextInput } from "@/components/admin/text-input";
-import { NumberInput } from "@/components/admin/number-input";
-import { BooleanInput } from "@/components/admin/boolean-input";
-import { DateInput } from "@/components/admin/date-input";
-import { ReferenceInput } from "@/components/admin/reference-input";
-import { ReferenceArrayInput } from "@/components/admin/reference-array-input";
-import { AutocompleteInput } from "@/components/admin/autocomplete-input";
-import { AutocompleteArrayInput } from "@/components/admin/autocomplete-array-input";
+import { SimpleForm } from "@/components/admin/form/simple-form";
+import { TextInput } from "@/components/admin/inputs/text-input";
+import { NumberInput } from "@/components/admin/inputs/number-input";
+import { BooleanInput } from "@/components/admin/inputs/boolean-input";
+import { DateInput } from "@/components/admin/inputs/date-input";
+import { ReferenceInput } from "@/components/admin/inputs/reference-input";
+import { ReferenceArrayInput } from "@/components/admin/inputs/reference-array-input";
+import { AutocompleteInput } from "@/components/admin/inputs/autocomplete-input";
+import { AutocompleteArrayInput } from "@/components/admin/inputs/autocomplete-array-input";
 
 const ilikeFilter = (optionText: string) => (searchText: string) => ({
   [`${optionText}@ilike`]: `%${searchText}%`,

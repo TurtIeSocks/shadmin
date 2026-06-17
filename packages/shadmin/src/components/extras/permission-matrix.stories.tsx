@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CoreAdminContext } from "shadmin-core";
-import { ThemeProvider } from "@/components/admin/theme-provider";
+import { ThemeProvider } from "@/components/admin/layout/theme-provider";
 import {
   PermissionMatrix,
   type PermissionsState,

@@ -1,12 +1,12 @@
 import type { InferredTypeMap } from "shadmin-core";
 import type { Any } from "@/lib/any";
-import { DataTable } from "@/components/admin/data-table";
-import { DateField } from "@/components/admin/date-field";
-import { NumberField } from "@/components/admin/number-field";
-import { EmailField } from "@/components/admin/email-field";
-import { UrlField } from "@/components/admin/url-field";
-import { ReferenceField } from "@/components/admin/reference-field";
-import { ReferenceArrayField } from "@/components/admin/reference-array-field";
+import { DataTable } from "@/components/admin/list/data-table";
+import { DateField } from "@/components/admin/fields/date-field";
+import { NumberField } from "@/components/admin/fields/number-field";
+import { EmailField } from "@/components/admin/fields/email-field";
+import { UrlField } from "@/components/admin/fields/url-field";
+import { ReferenceField } from "@/components/admin/fields/reference-field";
+import { ReferenceArrayField } from "@/components/admin/fields/reference-array-field";
 
 /**
  * Column-component map for the Supabase List guesser.

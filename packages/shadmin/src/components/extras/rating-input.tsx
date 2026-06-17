@@ -7,7 +7,7 @@ import {
   ValidationError,
 } from "shadmin-core";
 import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
-import { InputHelperText } from "@/components/admin/input-helper-text";
+import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import { cn } from "@/lib/utils";
 
 /**

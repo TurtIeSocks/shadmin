@@ -1,4 +1,4 @@
-import { DataTable } from "shadmin/components/admin/data-table";
+import { DataTable } from "shadmin/components/admin/list/data-table";
 import { ListLive } from "shadmin/components/realtime";
 
 export function PostListLive() {

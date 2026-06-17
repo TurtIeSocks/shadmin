@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 
-import { Basic, CustomTitle, WithTheme } from "./admin.stories";
+import {
+  Basic,
+  CustomTitle,
+  WithTheme,
+} from "@/components/admin/admin.stories";
 
 describe("<Admin />", () => {
   it("renders the resource's list view at its route", async () => {

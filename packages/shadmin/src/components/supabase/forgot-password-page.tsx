@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { useTranslate } from "shadmin-core";
-import { AuthLayout } from "@/components/admin/auth-layout";
+import { AuthLayout } from "@/components/admin/auth/auth-layout";
 import { ForgotPasswordForm } from "./forgot-password-form";
 
 interface ForgotPasswordPageProps {

@@ -3,9 +3,9 @@ import fakeRestProvider from "ra-data-fakerest";
 
 import type { ReactNode } from "react";
 import { Admin, AdminContext, AdminUI } from "@/components/admin/admin";
-import { ListGuesser } from "@/components/admin/list-guesser";
-import { ShowGuesser } from "@/components/admin/show-guesser";
-import { EditGuesser } from "@/components/admin/edit-guesser";
+import { ListGuesser } from "@/components/admin/guessers/list-guesser";
+import { ShowGuesser } from "@/components/admin/guessers/show-guesser";
+import { EditGuesser } from "@/components/admin/guessers/edit-guesser";
 
 export default {
   title: "Application configuration/Admin",

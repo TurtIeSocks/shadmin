@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 import { Link } from "react-router";
 
 import { WithRecord, useGetList, useTranslate } from "ra-core";
-import { ReferenceField } from "shadmin/components/admin/reference-field";
+import { ReferenceField } from "shadmin/components/admin/fields/reference-field";
 
 import { CardWithIcon } from "./card-with-icon";
 //import StarRatingField from "../reviews/StarRatingField";

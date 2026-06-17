@@ -8,7 +8,7 @@ import {
 import type { UseEditorOptions } from "@tiptap/react";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { InputHelperText } from "@/components/admin/input-helper-text";
+import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import {
   MinimalTiptapEditor,
   type MinimalTiptapToolbar,

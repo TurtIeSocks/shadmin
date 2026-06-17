@@ -8,7 +8,7 @@ import {
 } from "shadmin-core";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { ColorPicker } from "@/components/ui/color-picker";
-import { InputHelperText } from "@/components/admin/input-helper-text";
+import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import { cn } from "@/lib/utils";
 
 /**

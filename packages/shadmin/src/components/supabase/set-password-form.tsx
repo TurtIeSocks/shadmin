@@ -2,7 +2,7 @@ import { Form, required, useNotify, useTranslate } from "shadmin-core";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
 import { useSetPassword, useSupabaseAccessToken } from "ra-supabase-core";
 import { Button } from "@/components/ui/button";
-import { TextInput } from "@/components/admin/text-input";
+import { TextInput } from "@/components/admin/inputs/text-input";
 
 interface FormData {
   password: string;

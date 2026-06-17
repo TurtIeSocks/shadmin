@@ -16,8 +16,8 @@ import { Check, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { TextField } from "@/components/admin/text-field";
-import { TextInput } from "@/components/admin/text-input";
+import { TextField } from "@/components/admin/fields/text-field";
+import { TextInput } from "@/components/admin/inputs/text-input";
 
 type InPlaceEditorAction =
   | { type: "edit" }

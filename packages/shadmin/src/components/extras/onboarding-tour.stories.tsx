@@ -1,7 +1,7 @@
 import { CoreAdminContext, memoryStore } from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
-import { ThemeProvider } from "@/components/admin/theme-provider";
+import { ThemeProvider } from "@/components/admin/layout/theme-provider";
 import { OnboardingTour } from "@/components/extras/onboarding-tour";
 
 export default {

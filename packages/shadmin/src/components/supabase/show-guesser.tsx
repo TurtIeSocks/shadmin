@@ -7,8 +7,8 @@ import {
   ShowView,
   type ShowProps,
   type ShowViewProps,
-} from "@/components/admin/show";
-import { Loading } from "@/components/admin/loading";
+} from "@/components/admin/views/show";
+import { Loading } from "@/components/admin/feedback/loading";
 import { InferredElement } from "./inferred-element";
 import { inferElementFromType } from "./infer-element-from-type";
 import { showFieldTypes } from "./show-field-types";

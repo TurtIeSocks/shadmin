@@ -9,7 +9,7 @@ import {
 } from "shadmin-core";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { InputHelperText } from "@/components/admin/input-helper-text";
+import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import { parseIsoDuration } from "./duration-utils";
 import { cn } from "@/lib/utils";
 

@@ -30,7 +30,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { SaveButton } from "@/components/admin/save-button";
+import { SaveButton } from "@/components/admin/buttons/save-button";
 import { cn } from "@/lib/utils";
 
 type WizardProgressMode = "steps" | "dots" | "none";

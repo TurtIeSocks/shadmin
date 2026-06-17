@@ -1,8 +1,8 @@
 import { Resource } from "shadmin-core";
 import { TestMemoryRouter } from "shadmin-core";
 import { Admin } from "@/components/admin";
-import { SimpleShowLayout } from "@/components/admin/simple-show-layout";
-import { RecordField } from "@/components/admin/record-field";
+import { SimpleShowLayout } from "@/components/admin/views/simple-show-layout";
+import { RecordField } from "@/components/admin/fields/record-field";
 import { ShowLive } from "@/components/realtime/show-live";
 import { showDataProvider } from "./__fixtures__/show-live-fixtures";
 

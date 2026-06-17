@@ -128,7 +128,7 @@ export const blocks = [
       "tailwind-merge",
       "tw-animate-css",
     ],
-    sourceDirs: [{ path: "src/components/admin", recursive: false }],
+    sourceDirs: [{ path: "src/components/admin", recursive: true }],
     extraFiles: [
       { path: "rules/AGENTS.md", type: "registry:file", target: "~/AGENTS.md" },
       { path: "src/components/ui/slot.tsx", type: "registry:ui" },

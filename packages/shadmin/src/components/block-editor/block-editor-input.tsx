@@ -7,7 +7,7 @@ import {
 } from "shadmin-core";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { InputHelperText } from "@/components/admin/input-helper-text";
+import { InputHelperText } from "@/components/admin/common/input-helper-text";
 
 import { BlockEditor } from "./block-editor";
 import { defaultBlocks } from "./blocks";
