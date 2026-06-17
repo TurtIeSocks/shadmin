@@ -83,9 +83,10 @@ const run = async () => {
       JSON.stringify({ ...registry, items: autoBuiltItems }, null, 2),
     );
 
+    // shadcn 4.x renamed `registry:build` -> `build` (same args).
     execFileSync(
       "pnpm",
-      ["exec", "shadcn", "registry:build", tempRegistryPath, "-o", outputDir],
+      ["exec", "shadcn", "build", tempRegistryPath, "-o", outputDir],
       { cwd, stdio: "inherit" },
     );
 

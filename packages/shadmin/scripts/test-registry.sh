@@ -124,9 +124,9 @@ EOF
       cat > "$target_dir/src/app.tsx" <<'EOF'
 import { dataProvider } from "./dataProvider";
 import { Admin } from "@/components/admin/admin";
-import { ListGuesser } from "@/components/admin/list-guesser";
-import { ShowGuesser } from "@/components/admin/show-guesser";
-import { EditGuesser } from "@/components/admin/edit-guesser";
+import { ListGuesser } from "@/components/admin/guessers/list-guesser";
+import { ShowGuesser } from "@/components/admin/guessers/show-guesser";
+import { EditGuesser } from "@/components/admin/guessers/edit-guesser";
 import { Resource } from "@/components/admin/resource";
 
 function App() {
@@ -240,7 +240,7 @@ echo "Configuring custom registry alias for namespaced dependencies"
 node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadmin': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
 
 echo "Adding registry components"
-pnpm dlx shadcn@3.8.5 add -y http://localhost:8080/r/admin.json
+pnpm dlx shadcn@4.11.0 add -y http://localhost:8080/r/admin.json
 
 echo "Building generated admin app"
 pnpm run build
@@ -258,7 +258,7 @@ echo "Configuring custom registry alias for namespaced dependencies"
 node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadmin': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
 
 echo "Adding admin and rich-text-input registry components"
-pnpm dlx shadcn@3.8.5 add -y http://localhost:8080/r/admin.json http://localhost:8080/r/rich-text-input.json
+pnpm dlx shadcn@4.11.0 add -y http://localhost:8080/r/admin.json http://localhost:8080/r/rich-text-input.json
 
 echo "Building generated rich-text-input app"
 pnpm run build

@@ -20,7 +20,6 @@
         "checkbox",
         "collapsible",
         "command",
-        "dialog",
         "drawer",
         "dropdown-menu",
         "field",
@@ -28,7 +27,6 @@
         "kbd",
         "label",
         "pagination",
-        "popover",
         "radio-group",
         "select",
         "separator",
@@ -39,8 +37,7 @@
         "switch",
         "table",
         "tabs",
-        "textarea",
-        "tooltip"
+        "textarea"
       ],
       "dependencies": [
         "@tanstack/react-query",
@@ -739,7 +736,19 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/ui/dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/popover.tsx",
+          "type": "registry:ui"
+        },
+        {
           "path": "src/components/ui/slot.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/tooltip.tsx",
           "type": "registry:ui"
         },
         {
@@ -1106,10 +1115,10 @@
       "registryDependencies": [
         "@shadmin/field-toggle",
         "@shadmin/lib-utils",
+        "@shadmin/popover",
+        "@shadmin/tooltip",
         "button",
         "input",
-        "popover",
-        "tooltip",
         "use-mobile"
       ],
       "dependencies": ["diacritic", "lucide-react", "ra-core"],
@@ -1213,7 +1222,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["button", "tooltip"],
+      "registryDependencies": ["@shadmin/tooltip", "button"],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "buttons"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -1275,8 +1284,8 @@
       ],
       "registryDependencies": [
         "@shadmin/lib-resolve-label",
-        "button",
-        "tooltip"
+        "@shadmin/tooltip",
+        "button"
       ],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "buttons"],
@@ -1346,7 +1355,11 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils", "sidebar", "tooltip"],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/tooltip",
+        "sidebar"
+      ],
       "dependencies": ["ra-core"],
       "categories": ["shadmin", "buttons"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -1381,9 +1394,9 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/tooltip",
         "button",
         "dropdown-menu",
-        "tooltip",
         "use-mobile"
       ],
       "dependencies": ["lucide-react", "ra-core"],
@@ -1480,7 +1493,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["button", "tooltip"],
+      "registryDependencies": ["@shadmin/tooltip", "button"],
       "dependencies": ["ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -1539,7 +1552,7 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["button", "dialog"],
+      "registryDependencies": ["@shadmin/dialog", "button"],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -1754,7 +1767,7 @@
       "registryDependencies": [
         "@shadmin/lib-field-types",
         "@shadmin/lib-utils",
-        "tooltip"
+        "@shadmin/tooltip"
       ],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "fields"],
@@ -2131,8 +2144,8 @@
         "@shadmin/icon-button-with-tooltip",
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
-        "button",
-        "tooltip"
+        "@shadmin/tooltip",
+        "button"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core", "react-hook-form"],
       "categories": ["shadmin", "components"],
@@ -2388,10 +2401,10 @@
         "@shadmin/input-helper-text",
         "@shadmin/lib-are-ids-equal",
         "@shadmin/lib-unknown-types",
+        "@shadmin/popover",
         "badge",
         "command",
-        "field",
-        "popover"
+        "field"
       ],
       "dependencies": ["cmdk", "lodash", "lucide-react", "ra-core"],
       "categories": ["shadmin", "inputs"],
@@ -2412,10 +2425,10 @@
         "@shadmin/lib-are-ids-equal",
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
+        "@shadmin/popover",
         "button",
         "command",
-        "field",
-        "popover"
+        "field"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core"],
       "categories": ["shadmin", "inputs"],
@@ -2739,11 +2752,11 @@
       "registryDependencies": [
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
+        "@shadmin/popover",
         "badge",
         "button",
         "checkbox",
         "field",
-        "popover",
         "skeleton"
       ],
       "dependencies": ["lucide-react", "ra-core"],
@@ -2784,10 +2797,10 @@
       ],
       "registryDependencies": [
         "@shadmin/input-helper-text",
+        "@shadmin/popover",
         "badge",
         "command",
-        "field",
-        "popover"
+        "field"
       ],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "inputs"],
@@ -3034,8 +3047,8 @@
       ],
       "registryDependencies": [
         "@shadmin/keyboard-shortcut",
-        "sidebar",
-        "tooltip"
+        "@shadmin/tooltip",
+        "sidebar"
       ],
       "dependencies": ["ra-core", "react-router"],
       "categories": ["shadmin", "components"],
@@ -3110,10 +3123,10 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/dialog",
         "@shadmin/filter-list",
         "@shadmin/lib-utils",
         "button",
-        "dialog",
         "input",
         "label"
       ],
@@ -3278,13 +3291,13 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
         "@shadmin/number-field",
+        "@shadmin/tooltip",
         "alert",
         "button",
         "checkbox",
         "collapsible",
         "skeleton",
-        "table",
-        "tooltip"
+        "table"
       ],
       "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"],
       "categories": ["shadmin", "components"],
@@ -3821,6 +3834,36 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "files": [
+        {
+          "path": "src/components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button"],
+      "dependencies": ["lucide-react", "radix-ui"],
+      "categories": ["shadmin", "ui"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "files": [
+        {
+          "path": "src/components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["radix-ui"],
+      "categories": ["shadmin", "ui"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "slot",
       "type": "registry:ui",
       "title": "Slot",
@@ -3830,6 +3873,21 @@
           "type": "registry:ui"
         }
       ],
+      "dependencies": ["radix-ui"],
+      "categories": ["shadmin", "ui"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "files": [
+        {
+          "path": "src/components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
       "dependencies": ["radix-ui"],
       "categories": ["shadmin", "ui"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -4006,17 +4064,14 @@
       "registryDependencies": [
         "@shadmin/admin",
         "button",
-        "dialog",
         "dropdown-menu",
         "input",
         "label",
-        "popover",
         "separator",
         "sonner",
         "switch",
         "toggle",
-        "toggle-group",
-        "tooltip"
+        "toggle-group"
       ],
       "dependencies": [
         "@tiptap/extension-code-block-lowlight",
@@ -4273,11 +4328,9 @@
         "command",
         "input",
         "label",
-        "popover",
         "select",
         "skeleton",
-        "switch",
-        "tooltip"
+        "switch"
       ],
       "dependencies": [
         "@tiptap/core",

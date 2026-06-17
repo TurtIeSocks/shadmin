@@ -20,7 +20,12 @@ import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 import { EditButton } from "@/components/admin/buttons/edit-button";
 
-interface ShowProps extends ShowViewProps, ShowBaseProps {}
+// ra-core's ShowViewProps and ShowBaseProps declare `children` non-identically;
+// omit the overlap so they combine (view wins). Surfaces only under a
+// consumer's strict `tsc -b`, not our build.
+interface ShowProps
+  extends ShowBaseProps,
+    Omit<ShowViewProps, keyof ShowBaseProps> {}
 
 /**
  * A complete show page with breadcrumb, title, and default actions.

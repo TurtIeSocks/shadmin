@@ -21,7 +21,12 @@ import { cn } from "@/lib/utils";
 import { ShowButton } from "@/components/admin/buttons/show-button";
 import { DeleteButton } from "@/components/admin/buttons/delete-button";
 
-interface EditProps extends EditViewProps, EditBaseProps {}
+// ra-core's EditViewProps and EditBaseProps declare `children` non-identically;
+// omit the overlap so they combine (view wins). Surfaces only under a
+// consumer's strict `tsc -b`, not our build.
+interface EditProps
+  extends EditBaseProps,
+    Omit<EditViewProps, keyof EditBaseProps> {}
 
 /**
  * A complete edit page with breadcrumb, title, and default actions.

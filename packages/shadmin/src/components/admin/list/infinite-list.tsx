@@ -91,7 +91,12 @@ function InfiniteList<RecordType extends RaRecord = RaRecord>(
 
 interface InfiniteListProps<RecordType extends RaRecord = RaRecord>
   extends InfiniteListBaseProps<RecordType>,
-    InfiniteListViewProps<RecordType> {}
+    // ra-core base/view props declare `children` non-identically; omit the
+    // overlap so they combine (base wins). See list.tsx.
+    Omit<
+      InfiniteListViewProps<RecordType>,
+      keyof InfiniteListBaseProps<RecordType>
+    > {}
 
 /**
  * The view component for `<InfiniteList>` pages with layout and UI.

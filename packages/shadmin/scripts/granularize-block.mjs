@@ -18,7 +18,21 @@ const SOURCE_EXTS = [".tsx", ".ts"];
 // Imports of these resolve to `@shadmin/<name>` items shipped here.
 // Everything else under components/ui/ is assumed to be a shadcn upstream item
 // referenced by plain name (e.g. "popover", "dialog").
-const OUR_UI_ITEMS = new Set(["slot", "combobox", "color-picker", "direction"]);
+// `popover`/`dialog`/`tooltip` are customized forks: they add extra
+// subcomponents and a `*Primitive` re-export that non-ui components import
+// directly (e.g. columns-button uses PopoverPrimitive.Portal, confirm uses
+// DialogPrimitive, the tiptap toolbar uses TooltipPrimitive's props type).
+// Stock shadcn primitives don't expose those, so these MUST ship as
+// @shadmin/* — consumers get OUR version, not shadcn's upstream primitive.
+// (combobox was removed; it was dead.)
+const OUR_UI_ITEMS = new Set([
+  "slot",
+  "color-picker",
+  "direction",
+  "popover",
+  "dialog",
+  "tooltip",
+]);
 
 // hooks/ files authored in this repo. Same treatment as OUR_UI_ITEMS for ui/.
 // Anything not listed resolves to a shadcn upstream hook reference (e.g.

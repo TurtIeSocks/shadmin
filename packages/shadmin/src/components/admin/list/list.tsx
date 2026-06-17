@@ -98,7 +98,10 @@ function List<RecordType extends RaRecord = RaRecord>(
 
 interface ListProps<RecordType extends RaRecord = RaRecord>
   extends ListBaseProps<RecordType>,
-    ListViewProps<RecordType> {}
+    // ra-core's ListBaseProps and ListViewProps declare `children` with
+    // non-identical types; omit the overlap so the two can be combined (base
+    // wins). Surfaces only under a consumer's strict `tsc -b`, not our build.
+    Omit<ListViewProps<RecordType>, keyof ListBaseProps<RecordType>> {}
 
 /**
  * The view component for List pages with layout and UI.
