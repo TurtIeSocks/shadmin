@@ -29,7 +29,8 @@ The heavy moves (the actual RA→core rewrite, npm-publishing core, a Base-UI tr
 | 5b | Glass mechanism | **Skin the shared `ui/` primitives** | One material file (`lib-glass`); all 163 admin components inherit glass through existing imports. Spike-proven on ONE primitive first. |
 | 6 | Glass default | **Opt-in; default = vanilla shadcn** | User requirement. Default `style-shadmin` base; glass `style-glass` `extends` it. |
 | 7 | Docs site | **`/docs` route inside `apps/website`** | One app, one design system, zero new framework; generate install+nav from the registry. |
-| 8 | Compound consolidation | **`app-sidebar` de-RA only; defer broad merges** | Merging leaf inputs/fields/menus is internal churn with no consumer payoff (granular install is a feature). De-RA-ing `app-sidebar` has real value. |
+| 8 | Compound merges (cosmetic) | **Defer** | Merging leaf inputs/fields/menus is internal churn, no consumer payoff (granular install is a feature). |
+| 9 | Structural de-RA (light wrappers) | **Library-wide, audit-driven** | NOT app-sidebar-only: **145/163 admin + ~96 other files import ra-core (~246 total)**. Isolate RA so shadcn primitives aren't buried; app-sidebar is the *worst* example, not the whole list. Audit enumerates the real offenders. |
 
 ---
 
@@ -58,7 +59,12 @@ shadmin        (one flat @shadmin registry — copy-in UI)
 - **Decouple name from path** in `granularize-block.mjs` (derive item name from **basename**, not path-join). Add a **dedupe assertion** (duplicate `ours` name → loud build failure, not silent double-write).
 - **Directory taxonomy:** `admin/{inputs,fields,buttons,layout,auth,data-table,list,edit,show,create}/`. Stories/specs move *with* their component (already excluded by `isTestOrStory` at any depth).
 - **Consumer output stays flat** — basename-strip guarantees `inputs/text-input.tsx` ships as `text-input`.
-- **Compound exports:** adopt one-file-emits-children with flat PascalCase exports (`SidebarHeader`, never `Sidebar.Header` — dot-namespaces break tree-shaking + `only-export-components`). Apply to `app-sidebar` (split into RA-free shell + light pass-through children; push the lone `<Menu/>` RA coupling into a default child). Defer other merges.
+- **Compound exports:** adopt one-file-emits-children with flat PascalCase exports (`SidebarHeader`, never `Sidebar.Header` — dot-namespaces break tree-shaking + `only-export-components`). *Cosmetic merges of leaf families are deferred* (granular install is a feature).
+
+### De-RA (structural) — library-wide
+**Scope reality:** ~246 files import `ra-core` (145/163 admin + 42 extras + 24 realtime + 18 supabase + 5 leaflet + 5 block-editor + 4 monaco + 2 mdx + 1 csv). De-RA is NOT a single-component fix. Two distinct layers:
+1. **Seam re-route (Phase 2, mechanical):** every `from "ra-core"` → `shadmin-core`. Covers all ~246 files; prep, not a swap.
+2. **Structural light-wrapper refactor (audit-driven):** isolate RA so the shadcn primitives aren't *buried* under RA glue — the `app-sidebar` pattern (RA-free shell + light pass-through children; RA coupling pushed into an injected/default child, e.g. `<Menu/>`). app-sidebar is the **worst example**, not the list. A **de-RA audit** enumerates and ranks offenders (which components bury primitives vs. are already thin). Do the top offenders pre-rewrite (makes the eventual swap clean); the long tail gets structurally de-RA'd *during* the actual RA→core rewrite (deferred). The seam re-route is the only part that touches all files now.
 
 ### Styles / base
 - **Default = `style-shadmin` (`registry:base`)** — `extends` omitted (extend shadcn primitives), `config: { style:"shadmin", iconLibrary:"lucide", tailwind:{ baseColor:"neutral" } }`, vanilla `cssVars` from `src/index.css`. Entry point: `npx shadcn init <…>/r/style-shadmin.json`.
@@ -85,11 +91,11 @@ shadmin        (one flat @shadmin registry — copy-in UI)
 
 | Phase | Work | Size | Breaking? | Gate / blocks |
 |---|---|---|---|---|
-| **0** | Cleanups, independent: delete orphan base-ui `combobox.tsx`; lint-ban primitive imports outside `ui/`. | S | internal | none |
+| **0** | Cleanups, independent: delete **dead** `combobox.tsx` (zero importers, never wired — our combobox is `autocomplete-input` on Command+Popover) + drop the now-unused `@base-ui/react` dep; lint-ban primitive imports outside `ui/`. | S | internal | none |
 | **1** | Granularizer name-decoupling: basename derivation + dedupe guard. **Pre-flight: audit current tree is basename-collision-free.** Regenerate; **assert `registry.json` byte-identical to `main`** (no moves yet ⇒ proves behavior-preserving). | S | none | precedes the move |
 | **2** | `shadmin-core` workspace pkg + seam: route all `from "ra-core"` → core (codemod). Biome boundary lint. `private`/unpublished. | M | internal | the swap seam; precedes any core work |
 | **3** | Org refactor (jointly w/ headless move): create `src/{headless,components/admin/<taxonomy>}/`, move files, rewrite intra-package imports, update `fileToItemRef` path map + `extraFiles`. Regenerate; **assert `dist/r/` filenames unchanged.** | L | internal imports; **consumer names unchanged** | after 1+2; touches shared path logic |
-| **4** | `app-sidebar` de-RA into compound family (shell RA-free, `<Menu/>` in a default child). Merge stories. | M | internal | after 3 taxonomy exists |
+| **4** | **De-RA audit + worst offenders:** enumerate/rank components that bury shadcn primitives under RA glue (app-sidebar = #1); refactor the top offenders into light wrappers (RA isolated/injected, primitives exposed), as flat-PascalCase compound families where it fits. Bulk structural de-RA of the ~246 RA-coupled files coincides with the core rewrite (deferred). | L→ongoing | internal | after 2 (seam) + 3 (taxonomy) |
 | **5** | Styles base layer: `registry:base` `style-shadmin` (vanilla) + strip glass from aurora + drop `aurora:true`. | M | `theme-aurora` loses glass | default-vanilla must precede glass |
 | **6** | Glass rebuild (spike-first): `lib-glass`, `glass-filter`, `use-glass-pointer`, skin 1→~6 primitives, ship `style-glass`. Apply across website/demo. | L | aurora utilities gone | after 5 (extends base) + 3 (settled primitive names) |
 | **7** | Docs: axe `apps/docs`; `/docs` in website; registry-driven install/nav generator; story-sourced previews; port MDX + props table; re-derive redirects. | L | `/docs/*` URLs remap | after 5+6 (glass feel exists) + stable registry surface |
