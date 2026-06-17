@@ -5324,6 +5324,30 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "style-glass",
+      "type": "registry:style",
+      "title": "Liquid Glass",
+      "categories": ["shadmin", "style"],
+      "docs": "Opt-in liquid-glass material. Import the stylesheet once in your app entry (e.g. `import \"@/styles/glass.css\"`), then either add the `glass` / `glass--l2` / `glass--l3` classes to any element, or set `data-glass` on your `<html>` element to skin cards, dialogs, popovers, menus, sheets, and the sidebar (root it on `<html>` so portaled overlays are covered too). Only the `glass--l3` refraction level needs the SVG filter — render one `<GlassFilter />` near your root if you use it. Pair `glass--interactive` with `useGlassPointer` for cursor-tracking specular. Full docs: https://shadmin.turtlesocks.dev/docs/glass",
+      "description": "Opt-in liquid-glass material for Shadmin: a layered, fallback-first backdrop-blur surface (with optional SVG refraction and pointer-tracking specular) plus a data-attribute skin for the highlight surfaces (cards, dialogs, popovers, menus, sheets, sidebar).",
+      "files": [
+        {
+          "path": "src/components/ui/glass-filter.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/hooks/use-glass-pointer.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "src/styles/glass.css",
+          "type": "registry:file",
+          "target": "~/src/styles/glass.css"
+        }
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "theme-aurora",
       "type": "registry:theme",
       "title": "Aurora Theme",

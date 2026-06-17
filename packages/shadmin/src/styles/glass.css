@@ -1,0 +1,497 @@
+/* =============================================================================
+   Shadmin — glass.css
+   Liquid-glass material for Shadmin. Opt-in: import this file once, then either
+   add the `glass` / `glass--l2` / `glass--l3` classes to any element, or set
+   `data-glass` on the document root (`<html>`) to skin the highlight surfaces
+   (cards, dialogs, popovers, menus, sheets, the sidebar). Only the `glass--l3`
+   refraction path needs the SVG filter — render one <GlassFilter /> near your
+   root if you use it.
+
+   Adapted from the `liquid-glass-css` design system. Shadmin tunes it to the
+   shadcn theming model: the DARK preset lives under `.dark` and the LIGHT preset
+   is the `:root` default (the inverse of the upstream skill, whose default is
+   dark) so glass tracks the app's light/dark mode automatically. A `tinted`
+   preset stays available via `[data-glass-theme="tinted"]`.
+
+   MENTAL MODEL: glass is a stack of ~6 optical layers —
+     1 backdrop (blur + saturate, +refraction at L3)   4 specular highlight
+     2 body tint (flat fill -> top-lit gradient)        5 inner depth
+     3 rim / edge                                       6 elevation
+   FIDELITY LEVELS stack as classes:  .glass -> .glass.glass--l2 -> .glass.glass--l3
+   COMPONENTS reuse the tokens with their own geometry (.glass-card, .glass-button, …).
+
+   REQUIRES (only for .glass--l3): an inline <svg> defs for #glass-refract — mount
+   <GlassFilter /> (src/components/ui/glass-filter.tsx) once per document. L1/L2
+   and the data-glass skin need no filter.
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   1) TOKEN BLOCK — :root is the LIGHT preset; .dark overrides to the dark preset.
+   Presets/components override these vars; they never rewrite the rules. Colors
+   use space-separated rgb channels + slash alpha so one --glass-tint ("R G B")
+   drives many alphas via rgb(var(--glass-tint) / <alpha>).
+   --------------------------------------------------------------------------- */
+:root {
+  /* layer 1 — backdrop */
+  --glass-blur: 16px;
+  --glass-saturate: 120%;
+
+  /* layer 2 — body tint (channel-trick "R G B", alpha applied per use) */
+  --glass-tint: 255 255 255;
+  --glass-tint-opacity: 0.55;
+  --glass-fill: rgb(var(--glass-tint) / var(--glass-tint-opacity));
+
+  /* layer 3 — rim / edge + corner radius. GOTCHA: a near-white rim vanishes on
+     light backdrops, so the light preset darkens it. */
+  --glass-border: rgb(0 0 0 / 0.12);
+  --glass-radius: 18px;
+
+  /* layer 4 — specular highlight (inner top light + sheen) */
+  --glass-highlight: rgb(255 255 255 / 0.7);
+
+  /* focus ring — theme-stable (dark on light so it stays visible). */
+  --glass-focus: rgb(17 19 24 / 0.6);
+
+  /* layer 5 — inner depth (inner bottom shadow -> thickness) */
+  --glass-inner-shadow: rgb(0 0 0 / 0.08);
+
+  /* layer 6 — elevation (outer drop shadow -> floats) */
+  --glass-shadow: 0 10px 30px rgb(0 0 0 / 0.16);
+
+  /* pointer-tracking specular position (set by useGlassPointer on
+     .glass--interactive). Registered with @property below so it animates. */
+  --mx: 50%;
+  --my: 50%;
+}
+
+.dark {
+  --glass-blur: 16px;
+  --glass-saturate: 140%;
+  --glass-tint: 255 255 255;
+  --glass-tint-opacity: 0.08;
+  --glass-border: rgb(255 255 255 / 0.18);
+  --glass-highlight: rgb(255 255 255 / 0.5);
+  --glass-focus: rgb(255 255 255 / 0.65);
+  --glass-inner-shadow: rgb(0 0 0 / 0.18);
+  --glass-shadow: 0 12px 40px rgb(0 0 0 / 0.45);
+}
+
+/* TINTED — colored glass (opt-in). Swap the tint HUE; every alpha-driven surface
+   recolors for free because they all read rgb(var(--glass-tint) / …). */
+[data-glass-theme="tinted"] {
+  --glass-tint: 255 122 26;
+  --glass-tint-opacity: 0.16;
+  --glass-saturate: 150%;
+  --glass-border: rgb(255 122 26 / 0.4);
+  --glass-highlight: rgb(255 196 150 / 0.55);
+  /* tint-derived focus ring so it stays legible on the orange body in both modes
+     (without this, the dark/light :root|.dark ring leaks through). */
+  --glass-focus: rgb(120 50 0 / 0.6);
+  --glass-inner-shadow: rgb(60 20 0 / 0.3);
+  --glass-shadow: 0 12px 40px rgb(120 50 0 / 0.4);
+}
+
+/* -----------------------------------------------------------------------------
+   2) BASE MATERIAL — .glass (L1: layers 1,2,3,6) — FALLBACK-FIRST
+   Ships a legible solid-ish panel so text stays readable with zero
+   backdrop-filter support; the @supports block UPGRADES to true glass.
+   isolation:isolate contains the stacking context so the ::before/::after sheen
+   anchors correctly; position:relative anchors the absolutely-placed pseudos.
+   --------------------------------------------------------------------------- */
+.glass {
+  position: relative;
+  isolation: isolate;
+  background: rgb(var(--glass-tint) / 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--glass-fill);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   3) LEVEL 2 — specular / "liquid" (adds layers 4 + 5 + gradient fill + sheen).
+   Pure CSS, cross-browser. Stacks on the base: class="glass glass--l2".
+   --------------------------------------------------------------------------- */
+.glass--l2 {
+  background: rgb(var(--glass-tint) / 0.6);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -8px 22px var(--glass-inner-shadow);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass--l2 {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--glass-tint) / 0.15),
+      rgb(var(--glass-tint) / 0.04)
+    );
+  }
+}
+
+/* Diagonal sheen on a non-interactive ::before so it never intercepts clicks. */
+.glass--l2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(158deg, var(--glass-highlight), transparent 36%);
+  opacity: 0.55;
+}
+
+/* -----------------------------------------------------------------------------
+   4) LEVEL 3 — refraction / lensing (real backdrop displacement + travelling
+   sheen). Chromium-leaning: Safari/Firefox ignore the url() and degrade to the
+   blur+saturate (an L2-grade panel). Reserve L3 for hero surfaces — it has real
+   compositing cost. Authored to build ON TOP of L2: class="glass glass--l2 glass--l3".
+   --------------------------------------------------------------------------- */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass--l3 {
+    -webkit-backdrop-filter: blur(3px) saturate(180%) url(#glass-refract);
+    backdrop-filter: blur(3px) saturate(180%) url(#glass-refract);
+  }
+}
+
+.glass--l3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    var(--glass-highlight) 45%,
+    transparent 60%
+  );
+  background-size: 220% 220%;
+  background-position: 0% 50%;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .glass--l3::after {
+    animation: glass-sheen 7s ease-in-out infinite;
+  }
+  @keyframes glass-sheen {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   5) INTERACTIVE — pointer-tracking specular (opt-in, reads --mx/--my).
+   useGlassPointer (src/hooks/use-glass-pointer.ts) writes --mx/--my on
+   pointermove; here we just paint them. @property makes them animatable.
+   Add alongside any level: class="glass glass--interactive".
+   --------------------------------------------------------------------------- */
+@property --mx {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+@property --my {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+.glass--interactive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgb(var(--glass-tint) / 0.5),
+    transparent 45%
+  );
+  opacity: 0.35;
+  transition: opacity 0.25s ease;
+}
+
+/* COMBINED: L2 + interactive — layer the pointer specular OVER the diagonal sheen
+   in one ::before so neither is lost (they would otherwise collide on ::before). */
+.glass--l2.glass--interactive::before {
+  background:
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgb(var(--glass-tint) / 0.45),
+      transparent 45%
+    ),
+    linear-gradient(158deg, var(--glass-highlight), transparent 36%);
+}
+
+.glass--interactive:hover::before {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass--interactive::before {
+    display: none;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   6) COMPONENTS — same tokens, different geometry. Compose on .glass:
+   class="glass glass-card", etc.
+   --------------------------------------------------------------------------- */
+.glass-card {
+  --glass-radius: 22px;
+  border-radius: var(--glass-radius);
+  padding: 20px 22px;
+}
+
+.glass-button {
+  --glass-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.6em 1.2em;
+  border-radius: var(--glass-radius);
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    filter 0.2s ease;
+}
+
+.glass-button:hover {
+  background-color: rgb(var(--glass-tint) / 0.16);
+  filter: brightness(1.08);
+}
+
+.glass-button:active {
+  transform: scale(0.98);
+}
+
+.glass-button:focus-visible {
+  outline: none;
+  box-shadow:
+    var(--glass-shadow),
+    0 0 0 3px var(--glass-focus);
+}
+
+.glass-button--prominent {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--glass-tint) / 0.42),
+    rgb(var(--glass-tint) / 0.22)
+  );
+  border-color: rgb(var(--glass-tint) / 0.55);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-highlight),
+    0 0 18px rgb(var(--glass-tint) / 0.35);
+}
+
+.glass-button--prominent:hover {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--glass-tint) / 0.52),
+    rgb(var(--glass-tint) / 0.3)
+  );
+  filter: brightness(1.05);
+}
+
+.glass-nav {
+  --glass-blur: 22px;
+  --glass-radius: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--glass-border);
+  border-radius: 0;
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-nav {
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+}
+
+.glass-pill {
+  --glass-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.35em 0.85em;
+  border-radius: var(--glass-radius);
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.glass-badge {
+  --glass-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.2em 0.6em;
+  border-radius: var(--glass-radius);
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.glass-modal {
+  --glass-radius: 26px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  width: min(92vw, 460px);
+  max-height: 86vh;
+  overflow: auto;
+  padding: 28px;
+  border-radius: var(--glass-radius);
+}
+
+.glass-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgb(0 0 0 / 0.45);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-scrim {
+    background: rgb(0 0 0 / 0.3);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   7) SKIN — opt-in. Set `data-glass` on the document root (`<html>` /
+   document.documentElement) and Shadmin's highlight surfaces turn to glass,
+   keyed off the shadcn primitives' own `data-slot` attributes — no component
+   edits. Rooting on `<html>` (not a mid-tree div) is deliberate: dialogs,
+   popovers, menus and sheets render through a portal to `document.body`, so a
+   descendant selector only reaches them from an ancestor that also contains the
+   portal target. `:is()` lifts specificity to two classes (0,2,0) so the skin
+   beats the primitives' single `bg-*` utility (0,1,0) regardless of
+   cascade-layer order. Scoped to the 6 container surfaces; tables/inputs/rows
+   stay solid (glassing everything hurts legibility).
+   --------------------------------------------------------------------------- */
+[data-glass] :is(
+    [data-slot="card"],
+    [data-slot="dialog-content"],
+    [data-slot="popover-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="sheet-content"],
+    [data-slot="sidebar-inner"]
+  ) {
+  background: rgb(var(--glass-tint) / 0.6);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -8px 22px var(--glass-inner-shadow);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-glass] :is(
+      [data-slot="card"],
+      [data-slot="dialog-content"],
+      [data-slot="popover-content"],
+      [data-slot="dropdown-menu-content"],
+      [data-slot="sheet-content"],
+      [data-slot="sidebar-inner"]
+    ) {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--glass-tint) / 0.15),
+      rgb(var(--glass-tint) / 0.04)
+    );
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   8) ACCESSIBILITY — honour user preferences with solid, high-contrast fallbacks.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .glass-nav,
+  .glass-scrim,
+  .glass-modal {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .glass,
+  .glass--l2,
+  .glass-card,
+  .glass-button,
+  .glass-pill,
+  .glass-badge,
+  .glass-modal {
+    background: rgb(var(--glass-tint) / 0.92);
+  }
+  .glass-button--prominent {
+    background: rgb(var(--glass-tint) / 1);
+  }
+  .glass-scrim {
+    background: rgb(0 0 0 / 0.7);
+  }
+}
+
+@media (prefers-contrast: more) {
+  .glass,
+  .glass-nav,
+  .glass-scrim,
+  .glass-modal {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .glass,
+  .glass--l2,
+  .glass-card,
+  .glass-button,
+  .glass-pill,
+  .glass-badge,
+  .glass-modal {
+    background: rgb(var(--glass-tint) / 0.95);
+    border-color: currentColor;
+  }
+  .glass--l2::before,
+  .glass--l3::after,
+  .glass--interactive::before {
+    display: none;
+  }
+}

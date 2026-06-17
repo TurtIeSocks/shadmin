@@ -215,7 +215,7 @@ setup_temp_app() {
 
   mkdir "$target_dir/src"
   # the library stylesheet is standalone (tailwind entry + theme variables).
-  # index.css `@import`s ./styles/aurora.css, so the styles dir must come too.
+  # the styles dir (themes + glass.css) comes too so theme/style imports resolve.
   cp ./src/index.css ./src/vite-env.d.ts "$target_dir/src"
   cp -R ./src/styles "$target_dir/src/styles"
   cp ../../apps/demo/src/main.tsx "$target_dir/src"
@@ -243,6 +243,17 @@ echo "Adding registry components"
 pnpm dlx shadcn@4.11.0 add -y http://localhost:8080/r/admin.json
 
 echo "Building generated admin app"
+pnpm run build
+
+echo "Adding style-glass (registry:style) on top of admin"
+pnpm dlx shadcn@4.11.0 add -y http://localhost:8080/r/style-glass.json
+
+echo "Verifying style-glass files landed at their targets"
+test -f src/components/ui/glass-filter.tsx || { echo "MISSING glass-filter.tsx"; exit 1; }
+test -f src/hooks/use-glass-pointer.ts || { echo "MISSING use-glass-pointer.ts"; exit 1; }
+test -f src/styles/glass.css || { echo "MISSING glass.css"; exit 1; }
+
+echo "Rebuilding admin app with style-glass installed"
 pnpm run build
 
 cd ..
