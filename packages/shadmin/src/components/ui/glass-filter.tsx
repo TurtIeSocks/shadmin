@@ -61,4 +61,65 @@ function GlassFilter({
   );
 }
 
-export { GlassFilter };
+export interface GlassLensFilterProps {
+  /** Filter id `.glass--lens` references. Default `glass-refract-lens`. */
+  id?: string;
+  /** Displacement-map data URL from `useGlassLens` / `makeDisplacementMap`. */
+  href: string;
+  /** Map width in px — must match the element (from `useGlassLens().size`). */
+  width: number;
+  /** Map height in px — must match the element. */
+  height: number;
+  /** Max displacement in px (feDisplacementMap scale). Default 40. */
+  scale?: number;
+}
+
+/**
+ * Mounts the per-element lens refraction filter `#glass-refract-lens` that
+ * `.glass--lens` references. Renders nothing until fed a non-empty `map`/`size`
+ * (so it's a no-op during SSR / before first measure). Pair with `useGlassLens`.
+ * For several differently-sized lens surfaces, render one per size with distinct
+ * `id`s and point each element at its id via an inline `backdrop-filter`.
+ */
+function GlassLensFilter({
+  id = "glass-refract-lens",
+  href,
+  width,
+  height,
+  scale = 40,
+}: GlassLensFilterProps): ReactElement | null {
+  if (!href || !width || !height) return null;
+  return (
+    <svg aria-hidden="true" focusable="false" style={HIDDEN_SVG_STYLE}>
+      <defs>
+        <filter
+          id={id}
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          primitiveUnits="userSpaceOnUse"
+        >
+          <feImage
+            result="map"
+            preserveAspectRatio="none"
+            href={href}
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="map"
+            scale={scale}
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+export { GlassFilter, GlassLensFilter };

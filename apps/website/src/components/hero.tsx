@@ -277,7 +277,8 @@ export function Hero() {
 
         {/* Coded dashboard mockup */}
         <Reveal className="mt-16 sm:mt-24 mx-auto max-w-5xl">
-          <GlassPanel bezel>
+          {/* Hero showpiece — L3 refraction (needs <GlassFilter/> at the root). */}
+          <GlassPanel bezel level={3}>
             <DashboardMockup />
           </GlassPanel>
         </Reveal>

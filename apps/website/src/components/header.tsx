@@ -182,7 +182,7 @@ export function Header() {
         <header
           className={cn(
             "pointer-events-auto",
-            "glass rounded-full py-2 pl-5 pr-2",
+            "glass glass--l2 rounded-full py-2 pl-5 pr-2",
             "flex items-center gap-4",
           )}
         >

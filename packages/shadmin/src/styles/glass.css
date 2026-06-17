@@ -26,6 +26,24 @@
    ============================================================================= */
 
 /* -----------------------------------------------------------------------------
+   0) TAILWIND v4 INTEGRATION (no-ops in a non-Tailwind context).
+   Namespaced tokens mirror the material defaults so Tailwind generates real
+   utilities (`backdrop-blur-glass`, `rounded-glass`) and they stay referenceable
+   as `var(--blur-glass)` etc.; the channel tint is for arbitrary-value
+   composition `rgb(var(--color-glass-tint) / .08)` (it does NOT make a working
+   `bg-glass-tint` — bare channels aren't a valid color-mix operand). The preset
+   variants let you style stock utilities per theme: `glass-light:text-zinc-900`.
+   --------------------------------------------------------------------------- */
+@theme {
+  --blur-glass: 16px;
+  --color-glass-tint: 255 255 255;
+  --radius-glass: 18px;
+}
+
+@custom-variant glass-light (&:where([data-glass-theme="light"], [data-glass-theme="light"] *));
+@custom-variant glass-tinted (&:where([data-glass-theme="tinted"], [data-glass-theme="tinted"] *));
+
+/* -----------------------------------------------------------------------------
    1) TOKEN BLOCK — :root is the LIGHT preset; .dark overrides to the dark preset.
    Presets/components override these vars; they never rewrite the rules. Colors
    use space-separated rgb channels + slash alpha so one --glass-tint ("R G B")
@@ -159,6 +177,19 @@
   .glass--l3 {
     -webkit-backdrop-filter: blur(3px) saturate(180%) url(#glass-refract);
     backdrop-filter: blur(3px) saturate(180%) url(#glass-refract);
+  }
+}
+
+/* LEVEL 3 · lens — ALTERNATIVE to .glass--l3 (use INSTEAD, not stacked):
+   class="glass glass--l2 glass--lens". Swaps turbulent frost for a precomputed
+   RADIAL displacement map (#glass-refract-lens) — iOS-accurate edge-lensing
+   (strong bend at the rim, flat centre). The map is SIZE-SPECIFIC: mount it with
+   useGlassLens() + <GlassLensFilter> (regenerates on resize). Same Chromium-only
+   degrade-to-L2 story as .glass--l3. */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass--lens {
+    -webkit-backdrop-filter: blur(2px) saturate(180%) url(#glass-refract-lens);
+    backdrop-filter: blur(2px) saturate(180%) url(#glass-refract-lens);
   }
 }
 

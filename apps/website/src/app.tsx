@@ -11,12 +11,14 @@ import { Backends } from "./components/backends";
 import { Open } from "./components/open";
 import { ByDevelopers } from "./components/by-developers";
 import { PageAurora } from "./components/aurora/page-aurora";
+import { GlassFilter } from "./components/aurora/glass-filter";
 import { GlassSeparator } from "./components/aurora/glass-separator";
 
 function App() {
   return (
     <>
       <PageAurora />
+      <GlassFilter />
       <Header />
       <main>
         <Hero />

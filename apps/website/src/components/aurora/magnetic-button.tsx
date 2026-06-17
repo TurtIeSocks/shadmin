@@ -20,7 +20,7 @@ export interface MagneticButtonProps {
 // instead — the same white-on-white dodge the icon chip uses below.
 const PILL: Record<NonNullable<MagneticButtonProps["variant"]>, string> = {
   aurora: "bg-aurora text-white border border-[color:var(--glass-border)]",
-  ghost: "glass text-foreground",
+  ghost: "glass glass--l2 text-foreground",
   white: "bg-white text-[#1a1830] hover:bg-white/90 border border-black/8",
 };
 

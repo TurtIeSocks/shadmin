@@ -16,6 +16,7 @@ export function LogoChip({
 }) {
   return (
     <GlassPanel
+      level={1}
       className={cn(
         "inline-flex items-center px-3 py-1.5 text-sm font-semibold",
         src ? "text-foreground" : "text-muted-foreground",

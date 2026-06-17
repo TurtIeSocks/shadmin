@@ -250,7 +250,10 @@ pnpm dlx shadcn@4.11.0 add -y http://localhost:8080/r/style-glass.json
 
 echo "Verifying style-glass files landed at their targets"
 test -f src/components/ui/glass-filter.tsx || { echo "MISSING glass-filter.tsx"; exit 1; }
+test -f src/components/ui/glass.tsx || { echo "MISSING glass.tsx"; exit 1; }
 test -f src/hooks/use-glass-pointer.ts || { echo "MISSING use-glass-pointer.ts"; exit 1; }
+test -f src/hooks/use-glass-lens.ts || { echo "MISSING use-glass-lens.ts"; exit 1; }
+test -f src/lib/glass-displacement-map.ts || { echo "MISSING glass-displacement-map.ts"; exit 1; }
 test -f src/styles/glass.css || { echo "MISSING glass.css"; exit 1; }
 
 echo "Rebuilding admin app with style-glass installed"

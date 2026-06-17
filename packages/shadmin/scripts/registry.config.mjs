@@ -359,9 +359,9 @@ export const blocks = [
     type: "registry:style",
     title: "Liquid Glass",
     categories: ["shadmin", "style"],
-    docs: 'Opt-in liquid-glass material. Import the stylesheet once in your app entry (e.g. `import "@/styles/glass.css"`), then either add the `glass` / `glass--l2` / `glass--l3` classes to any element, or set `data-glass` on your `<html>` element to skin cards, dialogs, popovers, menus, sheets, and the sidebar (root it on `<html>` so portaled overlays are covered too). Only the `glass--l3` refraction level needs the SVG filter — render one `<GlassFilter />` near your root if you use it. Pair `glass--interactive` with `useGlassPointer` for cursor-tracking specular. Full docs: https://shadmin.turtlesocks.dev/docs/glass',
+    docs: 'Opt-in liquid-glass material (the 6-layer model from the liquid-glass-css design system). Import the stylesheet once in your app entry (`import "@/styles/glass.css"`; it also exposes Tailwind tokens — `backdrop-blur-glass`, `rounded-glass` — and `glass-light:` / `glass-tinted:` variants). Then either set `data-glass` on `<html>` to skin cards/dialogs/popovers/menus/sheets/the sidebar (rooted on `<html>` so portaled overlays are covered), or pick a level per element: `glass` (L1) for chips, `glass glass--l2` (specular + depth — the default for visible panels), `glass glass--l2 glass--l3` for a hero (SVG refraction; mount one `<GlassFilter />` near the root; degrades to L2 off-Chromium). In React, `glassClasses({ level })` / `<GlassPanel level={2}>` compose the classes, `useGlassPointer` drives `glass--interactive` specular, and `useGlassLens` + `<GlassLensFilter>` give the size-specific iOS-accurate `glass--lens` edge refraction. Full docs: https://shadmin.turtlesocks.dev/docs/glass',
     description:
-      "Opt-in liquid-glass material for Shadmin: a layered, fallback-first backdrop-blur surface (with optional SVG refraction and pointer-tracking specular) plus a data-attribute skin for the highlight surfaces (cards, dialogs, popovers, menus, sheets, sidebar).",
+      "Opt-in liquid-glass material for Shadmin: the layered, fallback-first 6-layer model (L1 blur → L2 specular/depth → L3 SVG refraction + iOS-accurate lens variant), with Tailwind v4 tokens/variants, a data-attribute skin for the highlight surfaces, pointer-tracking specular, and thin React helpers.",
     extraFiles: [
       {
         path: "src/styles/glass.css",
@@ -369,7 +369,10 @@ export const blocks = [
         target: "~/src/styles/glass.css",
       },
       { path: "src/components/ui/glass-filter.tsx", type: "registry:ui" },
+      { path: "src/components/ui/glass.tsx", type: "registry:ui" },
       { path: "src/hooks/use-glass-pointer.ts", type: "registry:hook" },
+      { path: "src/hooks/use-glass-lens.ts", type: "registry:hook" },
+      { path: "src/lib/glass-displacement-map.ts", type: "registry:lib" },
     ],
   },
 ];
