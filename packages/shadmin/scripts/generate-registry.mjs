@@ -18,7 +18,7 @@ import { granularizeBlock } from "./granularize-block.mjs";
 import { parseCssVars } from "./parse-css-vars.mjs";
 import {
   AUTHOR,
-  AURORA_UTILITIES_CSS,
+  baseStyles,
   blocks,
   categoriesForGranular,
   registryMetadata,
@@ -149,19 +149,6 @@ const buildTheme = (theme) => {
     dark: parseCssVars(cssText, `${sel}.dark`),
   };
 
-  if (theme.aurora) {
-    const auroraText = readFileSync(
-      join(repoRoot, "src/styles/aurora.css"),
-      "utf8",
-    );
-    const rootVars = parseCssVars(auroraText, ":root"); // aurora + glass/orb (light)
-    const darkVars = parseCssVars(auroraText, ".dark"); // glass/orb (dark)
-    const { aurora, ...lightAdditive } = rootVars;
-    cssVars.theme = { aurora };
-    cssVars.light = { ...cssVars.light, ...lightAdditive };
-    cssVars.dark = { ...cssVars.dark, ...darkVars };
-  }
-
   const item = {
     name: theme.name,
     type: "registry:theme",
@@ -171,8 +158,37 @@ const buildTheme = (theme) => {
     files: [],
   };
   if (theme.description) item.description = theme.description;
-  if (theme.aurora) item.css = AURORA_UTILITIES_CSS;
   return item;
+};
+
+// `registry:base` items carry a `config` block mirroring our components.json
+// defaults. shadcn's rawConfig alias schema only allows
+// components/utils/ui/lib/hooks (no `contexts`), and rsc/tsx are consumer-side
+// flags, so we project just the supported fields.
+const componentsJson = JSON.parse(
+  readFileSync(join(repoRoot, "components.json"), "utf8"),
+);
+
+const buildStyle = (style) => {
+  const { components, utils, ui, lib, hooks } = componentsJson.aliases;
+  const cssText = readFileSync(join(repoRoot, style.cssVarsFromFile), "utf8");
+  return {
+    name: style.name,
+    type: "registry:base",
+    title: style.title,
+    description: style.description,
+    config: {
+      style: componentsJson.style,
+      tailwind: { ...componentsJson.tailwind },
+      iconLibrary: componentsJson.iconLibrary,
+      aliases: { components, utils, ui, lib, hooks },
+    },
+    cssVars: {
+      light: parseCssVars(cssText, ":root"),
+      dark: parseCssVars(cssText, ".dark"),
+    },
+    files: [],
+  };
 };
 
 const verifyFilesExist = (items) => {
@@ -224,7 +240,11 @@ const main = async () => {
     items.push(buildTheme(theme));
   }
 
-  // Stamp attribution on every item (blocks, granular, themes).
+  for (const style of baseStyles) {
+    items.push(buildStyle(style));
+  }
+
+  // Stamp attribution on every item (blocks, granular, themes, base styles).
   for (const item of items) {
     item.author = AUTHOR;
   }
