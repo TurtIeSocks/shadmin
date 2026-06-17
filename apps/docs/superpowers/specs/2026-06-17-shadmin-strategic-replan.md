@@ -106,7 +106,7 @@ shadmin        (one flat @shadmin registry — copy-in UI)
 
 ## Risks / landmines to honor in every phase
 
-- **Leaflet build broken** (`make build`/package typecheck fail on ~21 pre-existing react-leaflet v5 + geoman `PM` errors): will mask/block the "regenerate + typecheck" gates in Phases 2–4. **Fix or isolate before Phase 3**, or the green-build assertion is meaningless.
+- **Leaflet build — verified GREEN 2026-06-17** (the ~21 react-leaflet v5 / geoman `PM` errors no longer reproduce; full lint+typecheck+build+test pass on main, uncached). The Phase 2–4 typecheck/build gates are therefore real. *Caveat that remains:* don't trust a turbo-*cached* green typecheck — run `--force`/direct `tsc` when it matters.
 - **Testing gate:** the file-move (3) + compound merge (4) break story/test import paths. Each phase must re-green the suite (the 259 stories double as the docs preview corpus — don't let them rot).
 - **CI for the assert-gates:** Phases 1 & 3 hinge on "dist/r unchanged" / "registry.json byte-identical." Promote these from manual `git diff` to a committed CI check (the validators are still ephemeral in `/tmp`).
 - **Tailwind `@source` + turbo `inputs`:** every file move + `apps/docs` axe + `/docs` add changes `@source` globs and turbo cache inputs. Update them per phase.
