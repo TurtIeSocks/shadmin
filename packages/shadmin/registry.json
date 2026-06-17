@@ -7,6 +7,7 @@
       "name": "admin",
       "type": "registry:block",
       "title": "Shadmin Main Block",
+      "categories": ["shadmin", "dashboard"],
       "description": "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
       "registryDependencies": [
         "accordion",
@@ -746,6 +747,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/lib/any.ts",
+          "type": "registry:lib"
+        },
+        {
           "path": "src/lib/are-ids-equal.ts",
           "type": "registry:lib"
         },
@@ -854,7 +859,8 @@
           "sidebar-border": "oklch(1 0 0 / 10%)",
           "sidebar-ring": "oklch(0.556 0 0)"
         }
-      }
+      },
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "access-denied",
@@ -867,7 +873,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "app-bar",
@@ -887,7 +895,9 @@
         "@shadmin/theme-mode-toggle",
         "@shadmin/title-portal",
         "@shadmin/user-menu"
-      ]
+      ],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "app-sidebar",
@@ -900,7 +910,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/menu", "sidebar"],
-      "dependencies": ["lucide-react", "react-router"]
+      "dependencies": ["lucide-react", "react-router"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "application-updated-notification",
@@ -913,7 +925,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button", "card"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "array-field",
@@ -926,7 +940,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-unknown-types"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "array-input",
@@ -944,7 +960,9 @@
         "field",
         "skeleton"
       ],
-      "dependencies": ["ra-core", "react-hook-form"]
+      "dependencies": ["ra-core", "react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "auth-callback",
@@ -957,7 +975,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/auth-error", "@shadmin/loading"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "auth-error",
@@ -970,7 +990,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "auth-layout",
@@ -982,7 +1004,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils", "@shadmin/notification"]
+      "registryDependencies": ["@shadmin/lib-utils", "@shadmin/notification"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "authentication-error",
@@ -995,7 +1019,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/access-denied", "@shadmin/title"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "autocomplete-array-input",
@@ -1016,7 +1042,9 @@
         "field",
         "popover"
       ],
-      "dependencies": ["cmdk", "lodash", "lucide-react", "ra-core"]
+      "dependencies": ["cmdk", "lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "autocomplete-input",
@@ -1038,7 +1066,9 @@
         "field",
         "popover"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core"]
+      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "badge-field",
@@ -1051,7 +1081,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-field-types", "badge"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "boolean-field",
@@ -1068,7 +1100,9 @@
         "@shadmin/lib-utils",
         "tooltip"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "boolean-input",
@@ -1086,7 +1120,9 @@
         "field",
         "switch"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "breadcrumb",
@@ -1105,7 +1141,9 @@
         "separator",
         "use-mobile"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "bulk-actions-toolbar",
@@ -1124,7 +1162,9 @@
         "button",
         "card"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "bulk-delete-button",
@@ -1142,7 +1182,9 @@
         "@shadmin/lib-utils",
         "button"
       ],
-      "dependencies": ["inflection", "lucide-react", "ra-core"]
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "bulk-export-button",
@@ -1155,7 +1197,9 @@
         }
       ],
       "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "bulk-update-button",
@@ -1172,7 +1216,9 @@
         "@shadmin/lib-unknown-types",
         "button"
       ],
-      "dependencies": ["inflection", "lucide-react", "ra-core"]
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "cancel-button",
@@ -1185,7 +1231,9 @@
         }
       ],
       "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "card-content-inner",
@@ -1197,7 +1245,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "check-for-application-update",
@@ -1209,7 +1259,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/application-updated-notification"]
+      "registryDependencies": ["@shadmin/application-updated-notification"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "checkbox-group-input",
@@ -1228,7 +1280,9 @@
         "field",
         "skeleton"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "chip-field",
@@ -1246,7 +1300,9 @@
         "@shadmin/lib-utils",
         "badge"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "clone-button",
@@ -1259,7 +1315,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "columns-button",
@@ -1280,7 +1338,9 @@
         "tooltip",
         "use-mobile"
       ],
-      "dependencies": ["diacritic", "lucide-react", "ra-core"]
+      "dependencies": ["diacritic", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "configurable",
@@ -1293,7 +1353,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "confirm",
@@ -1306,7 +1368,9 @@
         }
       ],
       "registryDependencies": ["button", "dialog"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "count",
@@ -1319,7 +1383,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-unknown-types", "spinner"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "create-button",
@@ -1332,7 +1398,9 @@
         }
       ],
       "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "create",
@@ -1345,7 +1413,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/breadcrumb", "@shadmin/lib-utils"],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "dashboard-menu-item",
@@ -1358,7 +1428,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/menu-item-link"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "data-table",
@@ -1384,7 +1456,9 @@
         "table",
         "tooltip"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "datagrid-input",
@@ -1401,7 +1475,9 @@
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "date-field",
@@ -1417,7 +1493,9 @@
         "@shadmin/lib-field-types",
         "@shadmin/lib-unknown-types"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "date-input",
@@ -1435,7 +1513,9 @@
         "field",
         "input"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "date-time-input",
@@ -1453,7 +1533,9 @@
         "field",
         "input"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "delete-button",
@@ -1466,7 +1548,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/confirm", "button"],
-      "dependencies": ["inflection", "lucide-react", "ra-core"]
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "device-test-wrapper",
@@ -1477,7 +1561,9 @@
           "path": "src/components/admin/device-test-wrapper.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "edit-button",
@@ -1490,7 +1576,9 @@
         }
       ],
       "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "edit-guesser",
@@ -1506,12 +1594,15 @@
         "@shadmin/autocomplete-input",
         "@shadmin/boolean-input",
         "@shadmin/edit",
+        "@shadmin/lib-any",
         "@shadmin/reference-array-input",
         "@shadmin/reference-input",
         "@shadmin/simple-form",
         "@shadmin/text-input"
       ],
-      "dependencies": ["inflection", "ra-core"]
+      "dependencies": ["inflection", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "edit",
@@ -1529,7 +1620,9 @@
         "@shadmin/lib-utils",
         "@shadmin/show-button"
       ],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "email-field",
@@ -1546,7 +1639,9 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "empty",
@@ -1559,7 +1654,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/create-button", "@shadmin/lib-utils"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "error",
@@ -1573,7 +1670,9 @@
       ],
       "registryDependencies": ["@shadmin/title", "accordion", "button"],
       "dependencies": ["lucide-react", "ra-core"],
-      "devDependencies": ["react-error-boundary"]
+      "devDependencies": ["react-error-boundary"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "export-button",
@@ -1586,7 +1685,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-unknown-types", "button"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "field-toggle",
@@ -1599,7 +1700,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "switch"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "fields-selector",
@@ -1612,7 +1715,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/field-toggle", "button"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "file-field",
@@ -1629,7 +1734,9 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["lodash", "ra-core"]
+      "dependencies": ["lodash", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "file-input",
@@ -1648,7 +1755,9 @@
         "button",
         "field"
       ],
-      "dependencies": ["lucide-react", "ra-core", "react-dropzone"]
+      "dependencies": ["lucide-react", "ra-core", "react-dropzone"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "filter-button",
@@ -1673,7 +1782,9 @@
         "query-string",
         "ra-core",
         "react-router"
-      ]
+      ],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "filter-form",
@@ -1690,7 +1801,9 @@
         "@shadmin/lib-utils",
         "button"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core"]
+      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "filter-list-item",
@@ -1707,7 +1820,9 @@
         "@shadmin/lib-utils",
         "button"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core"]
+      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "filter-list-section",
@@ -1720,7 +1835,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "filter-list",
@@ -1735,7 +1852,9 @@
       "registryDependencies": [
         "@shadmin/filter-list-section",
         "@shadmin/lib-utils"
-      ]
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "filter-live-search",
@@ -1748,7 +1867,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/search-input"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "function-field",
@@ -1765,7 +1886,9 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "guesser-empty",
@@ -1777,7 +1900,9 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "hide-on-scroll",
@@ -1789,7 +1914,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "icon-button-with-tooltip",
@@ -1802,7 +1929,9 @@
         }
       ],
       "registryDependencies": ["button", "tooltip"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "image-field",
@@ -1819,7 +1948,9 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["lodash", "ra-core"]
+      "dependencies": ["lodash", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "image-input",
@@ -1831,7 +1962,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/file-input", "@shadmin/image-field"]
+      "registryDependencies": ["@shadmin/file-input", "@shadmin/image-field"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "infinite-list",
@@ -1853,7 +1986,9 @@
         "@shadmin/infinite-pagination",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "infinite-pagination",
@@ -1866,7 +2001,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button", "spinner"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "input-helper-text",
@@ -1879,7 +2016,9 @@
         }
       ],
       "registryDependencies": ["field"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "inspector-button",
@@ -1892,7 +2031,9 @@
         }
       ],
       "registryDependencies": ["button", "tooltip"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "inspector-root",
@@ -1904,7 +2045,9 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "inspector",
@@ -1921,7 +2064,9 @@
         "@shadmin/lib-utils",
         "button"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "keyboard-shortcut",
@@ -1933,7 +2078,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "labeled",
@@ -1946,7 +2093,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "layout",
@@ -1971,7 +2120,9 @@
         "sidebar"
       ],
       "dependencies": ["ra-core"],
-      "devDependencies": ["react-error-boundary"]
+      "devDependencies": ["react-error-boundary"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "linear-progress",
@@ -1984,7 +2135,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "link",
@@ -1997,7 +2150,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["react-router"]
+      "dependencies": ["react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "list-actions",
@@ -2015,7 +2170,9 @@
         "@shadmin/filter-button",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "list-button",
@@ -2028,7 +2185,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "list-guesser",
@@ -2045,12 +2204,15 @@
         "@shadmin/badge-field",
         "@shadmin/data-table",
         "@shadmin/guesser-empty",
+        "@shadmin/lib-any",
         "@shadmin/list",
         "@shadmin/reference-array-field",
         "@shadmin/reference-field",
         "@shadmin/single-field-list"
       ],
-      "dependencies": ["inflection", "ra-core", "react-router"]
+      "dependencies": ["inflection", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "list-no-results",
@@ -2067,7 +2229,9 @@
         "@shadmin/lib-utils",
         "button"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "list-pagination",
@@ -2085,7 +2249,9 @@
         "pagination",
         "select"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "list-toolbar",
@@ -2102,7 +2268,9 @@
         "@shadmin/lib-utils",
         "@shadmin/list-actions"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "list",
@@ -2124,7 +2292,9 @@
         "@shadmin/lib-utils",
         "@shadmin/list-pagination"
       ],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "loading-indicator",
@@ -2141,7 +2311,9 @@
         "@shadmin/refresh-icon-button",
         "spinner"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "loading-input",
@@ -2159,7 +2331,9 @@
         "input",
         "label"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "loading",
@@ -2172,7 +2346,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/spinner"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "locales-menu-button",
@@ -2185,7 +2361,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button", "dropdown-menu"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "login-form",
@@ -2204,7 +2382,9 @@
         "button",
         "spinner"
       ],
-      "dependencies": ["ra-core", "react-hook-form"]
+      "dependencies": ["ra-core", "react-hook-form"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "login-page",
@@ -2217,7 +2397,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/auth-layout", "@shadmin/login-form"],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "login-with-email",
@@ -2237,7 +2419,9 @@
         "button",
         "spinner"
       ],
-      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "authentication"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "logout",
@@ -2250,7 +2434,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "dropdown-menu"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "menu-item-link",
@@ -2267,7 +2453,9 @@
         "sidebar",
         "tooltip"
       ],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "menu",
@@ -2288,7 +2476,9 @@
         "@shadmin/resource-menu-item-group",
         "sidebar"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "not-found",
@@ -2301,7 +2491,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/loading", "@shadmin/title", "button"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "notification",
@@ -2314,7 +2506,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/use-theme"],
-      "dependencies": ["ra-core", "sonner"]
+      "dependencies": ["ra-core", "sonner"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "nullable-boolean-input",
@@ -2332,7 +2526,9 @@
         "field",
         "select"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "number-field",
@@ -2348,7 +2544,9 @@
         "@shadmin/lib-field-types",
         "@shadmin/lib-unknown-types"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "number-input",
@@ -2361,7 +2559,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "offline",
@@ -2374,7 +2574,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "password-input",
@@ -2391,7 +2593,9 @@
         "@shadmin/text-input",
         "button"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "placeholder",
@@ -2403,7 +2607,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "prev-next-buttons",
@@ -2416,7 +2622,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button", "skeleton"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "radio-button-group-input",
@@ -2436,7 +2644,9 @@
         "radio-group",
         "skeleton"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "ready",
@@ -2448,7 +2658,9 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["lucide-react"]
+      "dependencies": ["lucide-react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "record-field",
@@ -2466,7 +2678,9 @@
         "@shadmin/lib-utils",
         "@shadmin/text-field"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "reference-array-field",
@@ -2484,7 +2698,9 @@
         "@shadmin/offline",
         "@shadmin/single-field-list"
       ],
-      "dependencies": ["@tanstack/react-query", "ra-core"]
+      "dependencies": ["@tanstack/react-query", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "reference-array-input",
@@ -2500,7 +2716,9 @@
         "@shadmin/autocomplete-array-input",
         "@shadmin/offline"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "reference-field",
@@ -2517,7 +2735,9 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/offline"
       ],
-      "dependencies": ["@tanstack/react-query", "ra-core", "react-router"]
+      "dependencies": ["@tanstack/react-query", "ra-core", "react-router"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "reference-input",
@@ -2533,7 +2753,9 @@
         "@shadmin/autocomplete-input",
         "@shadmin/offline"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "reference-many-count",
@@ -2551,7 +2773,9 @@
         "@shadmin/offline",
         "spinner"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "reference-many-field",
@@ -2564,7 +2788,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-field-types", "@shadmin/offline"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "reference-one-field",
@@ -2582,7 +2808,9 @@
         "@shadmin/offline",
         "@shadmin/reference-field"
       ],
-      "dependencies": ["@tanstack/react-query", "ra-core"]
+      "dependencies": ["@tanstack/react-query", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "refresh-button",
@@ -2595,7 +2823,9 @@
         }
       ],
       "registryDependencies": ["button", "spinner"],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "refresh-icon-button",
@@ -2612,7 +2842,9 @@
         "button",
         "tooltip"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "resettable-text-input",
@@ -2629,7 +2861,9 @@
         "@shadmin/text-input",
         "button"
       ],
-      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "resource-menu-item-group",
@@ -2647,7 +2881,9 @@
         "collapsible",
         "sidebar"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "resource-menu-item",
@@ -2660,7 +2896,9 @@
         }
       ],
       "registryDependencies": ["sidebar", "skeleton"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "resource",
@@ -2672,7 +2910,9 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "rich-text-field",
@@ -2689,7 +2929,9 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["dompurify", "html-react-parser", "ra-core"]
+      "dependencies": ["dompurify", "html-react-parser", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "save-button",
@@ -2711,7 +2953,9 @@
         "lucide-react",
         "ra-core",
         "react-hook-form"
-      ]
+      ],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "saved-queries",
@@ -2731,7 +2975,9 @@
         "input",
         "label"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core"]
+      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "search-input",
@@ -2748,7 +2994,9 @@
         "@shadmin/text-input",
         "button"
       ],
-      "dependencies": ["lucide-react", "ra-core", "react-hook-form"]
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "select-all-button",
@@ -2761,7 +3009,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "button"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "select-array-input",
@@ -2783,7 +3033,9 @@
         "popover",
         "skeleton"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "select-field",
@@ -2799,7 +3051,9 @@
         "@shadmin/lib-field-types",
         "@shadmin/lib-unknown-types"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "select-input",
@@ -2819,7 +3073,9 @@
         "select",
         "skeleton"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "show-button",
@@ -2832,7 +3088,9 @@
         }
       ],
       "registryDependencies": ["button"],
-      "dependencies": ["lucide-react", "ra-core", "react-router"]
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "show-guesser",
@@ -2848,6 +3106,7 @@
         "@shadmin/array-field",
         "@shadmin/badge-field",
         "@shadmin/date-field",
+        "@shadmin/lib-any",
         "@shadmin/number-field",
         "@shadmin/record-field",
         "@shadmin/reference-array-field",
@@ -2856,7 +3115,9 @@
         "@shadmin/simple-show-layout",
         "@shadmin/single-field-list"
       ],
-      "dependencies": ["inflection", "ra-core"]
+      "dependencies": ["inflection", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "show",
@@ -2873,7 +3134,9 @@
         "@shadmin/edit-button",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "sidebar-toggle-button",
@@ -2886,7 +3149,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "sidebar", "tooltip"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "simple-form-configurable",
@@ -2903,7 +3168,9 @@
         "@shadmin/fields-selector",
         "@shadmin/simple-form"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "simple-form-iterator",
@@ -2923,7 +3190,9 @@
         "button",
         "tooltip"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core", "react-hook-form"]
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "simple-form",
@@ -2940,7 +3209,9 @@
         "@shadmin/lib-utils",
         "@shadmin/save-button"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "simple-list-item",
@@ -2953,7 +3224,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "simple-list-loading",
@@ -2966,7 +3239,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "skeleton"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "simple-list",
@@ -2984,7 +3259,9 @@
         "@shadmin/simple-list-item",
         "@shadmin/simple-list-loading"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "simple-show-layout",
@@ -2997,7 +3274,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/labeled", "@shadmin/lib-utils"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "single-field-list",
@@ -3014,7 +3293,9 @@
         "@shadmin/lib-utils",
         "badge"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "skip-navigation-button",
@@ -3031,7 +3312,9 @@
         "@shadmin/lib-utils",
         "button"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "sort-button",
@@ -3049,7 +3332,9 @@
         "tooltip",
         "use-mobile"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "spinner",
@@ -3061,7 +3346,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils", "spinner"]
+      "registryDependencies": ["@shadmin/lib-utils", "spinner"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "tabbed-form",
@@ -3079,7 +3366,9 @@
         "@shadmin/simple-form",
         "tabs"
       ],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "tabbed-show-layout",
@@ -3096,7 +3385,9 @@
         "@shadmin/lib-utils",
         "tabs"
       ],
-      "dependencies": ["ra-core", "react-router"]
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "text-array-field",
@@ -3114,7 +3405,9 @@
         "@shadmin/lib-utils",
         "badge"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "text-array-input",
@@ -3133,7 +3426,9 @@
         "field",
         "popover"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "text-field",
@@ -3149,7 +3444,9 @@
         "@shadmin/lib-field-types",
         "@shadmin/lib-unknown-types"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "text-input",
@@ -3169,7 +3466,9 @@
         "input",
         "textarea"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "theme-mode-toggle",
@@ -3187,7 +3486,9 @@
         "button",
         "dropdown-menu"
       ],
-      "dependencies": ["lucide-react", "ra-core"]
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "theme-provider",
@@ -3200,7 +3501,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-theme-context"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "time-input",
@@ -3213,7 +3516,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
-      "dependencies": ["clsx", "ra-core"]
+      "dependencies": ["clsx", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "title-portal",
@@ -3228,7 +3533,9 @@
       "registryDependencies": [
         "@shadmin/lib-title-portal-id",
         "@shadmin/lib-utils"
-      ]
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "title",
@@ -3244,7 +3551,9 @@
         "@shadmin/lib-title-portal-id",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "toggle-filter-button",
@@ -3261,7 +3570,9 @@
         "@shadmin/lib-utils",
         "button"
       ],
-      "dependencies": ["lodash", "lucide-react", "ra-core"]
+      "dependencies": ["lodash", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "toolbar",
@@ -3277,7 +3588,9 @@
         "@shadmin/delete-button",
         "@shadmin/lib-utils",
         "@shadmin/save-button"
-      ]
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "top-toolbar",
@@ -3289,7 +3602,9 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils"]
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-fields-tab-content",
@@ -3302,7 +3617,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "label", "tabs"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-fields-tab",
@@ -3315,7 +3632,9 @@
         }
       ],
       "registryDependencies": ["tabs"],
-      "dependencies": ["inflection", "ra-core"]
+      "dependencies": ["inflection", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-fields-tabs",
@@ -3332,7 +3651,9 @@
         "@shadmin/translatable-fields-tab",
         "tabs"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-fields",
@@ -3350,7 +3671,9 @@
         "@shadmin/translatable-fields-tabs",
         "tabs"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-inputs-tab-content",
@@ -3363,7 +3686,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "tabs"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-inputs-tab",
@@ -3376,7 +3701,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-utils", "tabs"],
-      "dependencies": ["inflection", "ra-core"]
+      "dependencies": ["inflection", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-inputs-tabs",
@@ -3393,7 +3720,9 @@
         "@shadmin/translatable-inputs-tab",
         "tabs"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "translatable-inputs",
@@ -3411,7 +3740,9 @@
         "@shadmin/translatable-inputs-tabs",
         "tabs"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "update-button",
@@ -3428,7 +3759,9 @@
         "@shadmin/lib-unknown-types",
         "button"
       ],
-      "dependencies": ["inflection", "lucide-react", "ra-core"]
+      "dependencies": ["inflection", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "url-field",
@@ -3445,7 +3778,9 @@
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "user-menu",
@@ -3464,7 +3799,9 @@
         "dropdown-menu",
         "skeleton"
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "layout"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "wrapper-field",
@@ -3479,7 +3816,9 @@
       "registryDependencies": [
         "@shadmin/lib-field-types",
         "@shadmin/lib-unknown-types"
-      ]
+      ],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "slot",
@@ -3491,7 +3830,9 @@
           "type": "registry:ui"
         }
       ],
-      "dependencies": ["radix-ui"]
+      "dependencies": ["radix-ui"],
+      "categories": ["shadmin", "ui"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "use-theme",
@@ -3503,7 +3844,22 @@
           "type": "registry:hook"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-theme-context"]
+      "registryDependencies": ["@shadmin/lib-theme-context"],
+      "categories": ["shadmin", "hooks"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "lib-any",
+      "type": "registry:lib",
+      "title": "Lib Any",
+      "files": [
+        {
+          "path": "src/lib/any.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-are-ids-equal",
@@ -3514,7 +3870,9 @@
           "path": "src/lib/are-ids-equal.ts",
           "type": "registry:lib"
         }
-      ]
+      ],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-field-types",
@@ -3527,7 +3885,9 @@
         }
       ],
       "registryDependencies": ["@shadmin/lib-unknown-types"],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-i18n-provider",
@@ -3539,7 +3899,9 @@
           "type": "registry:lib"
         }
       ],
-      "dependencies": ["ra-i18n-polyglot", "ra-language-english"]
+      "dependencies": ["ra-i18n-polyglot", "ra-language-english"],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-notify-auth-error",
@@ -3551,7 +3913,9 @@
           "type": "registry:lib"
         }
       ],
-      "dependencies": ["ra-core"]
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-resolve-label",
@@ -3562,7 +3926,9 @@
           "path": "src/lib/resolve-label.ts",
           "type": "registry:lib"
         }
-      ]
+      ],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-sanitize-input-rest-props",
@@ -3574,7 +3940,9 @@
           "type": "registry:lib"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-unknown-types"]
+      "registryDependencies": ["@shadmin/lib-unknown-types"],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-theme-context",
@@ -3585,7 +3953,9 @@
           "path": "src/lib/theme-context.ts",
           "type": "registry:lib"
         }
-      ]
+      ],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-title-portal-id",
@@ -3596,7 +3966,9 @@
           "path": "src/lib/title-portal-id.ts",
           "type": "registry:lib"
         }
-      ]
+      ],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-unknown-types",
@@ -3607,7 +3979,9 @@
           "path": "src/lib/unknown-types.ts",
           "type": "registry:lib"
         }
-      ]
+      ],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "lib-utils",
@@ -3619,12 +3993,15 @@
           "type": "registry:lib"
         }
       ],
-      "dependencies": ["clsx", "tailwind-merge"]
+      "dependencies": ["clsx", "tailwind-merge"],
+      "categories": ["shadmin", "library"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "rich-text-input",
       "type": "registry:block",
       "title": "RichTextInput",
+      "categories": ["shadmin", "inputs", "editor"],
       "description": "Optional rich text input for Shadmin. Includes the full Minimal TipTap block.",
       "registryDependencies": [
         "@shadmin/admin",
@@ -3880,12 +4257,14 @@
           "path": "src/components/rich-text-input/use-rich-text-input-editor.ts",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "block-editor",
       "type": "registry:block",
       "title": "BlockEditor",
+      "categories": ["shadmin", "editor"],
       "description": "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadmin, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
       "registryDependencies": [
         "@shadmin/admin",
@@ -4021,12 +4400,14 @@
           "path": "src/components/block-editor/use-block-editor.ts",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "mdx-editor",
       "type": "registry:block",
       "title": "MdxEditor",
+      "categories": ["shadmin", "inputs", "editor"],
       "description": "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadmin, powered by MDXEditor.",
       "registryDependencies": ["@shadmin/admin"],
       "dependencies": ["@mdxeditor/editor"],
@@ -4047,12 +4428,15 @@
           "path": "src/components/mdx-editor/mdx-input.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "leaflet-admin",
       "type": "registry:block",
       "title": "LeafletAdmin",
+      "categories": ["shadmin", "maps"],
+      "docs": "Import Leaflet's stylesheet once in your app entry: `import \"leaflet/dist/leaflet.css\";`. Map components are client-only — disable SSR on routes that use them. Drawing/editing uses Geoman via `react-leaflet-geoman-v2`. Full docs: https://shadmin.turtlesocks.dev/docs/leaflet-admin",
       "description": "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadmin.",
       "registryDependencies": [
         "@shadmin/admin",
@@ -4276,12 +4660,15 @@
           "path": "src/components/leaflet/types.ts",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "csv-import",
       "type": "registry:block",
       "title": "CsvImport",
+      "categories": ["shadmin", "data-import"],
+      "docs": "Place `<CsvImport>` in a List's `actions` and pass a zod `schema`. Rows validate against the schema and batch through `dataProvider.createMany` (with a `create` fallback). Full docs: https://shadmin.turtlesocks.dev/docs/csv-import",
       "description": "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadmin. Validates rows against a zod schema and batches inserts via the data provider.",
       "registryDependencies": ["@shadmin/admin", "button", "progress"],
       "dependencies": ["papaparse", "zod"],
@@ -4299,12 +4686,14 @@
           "path": "src/components/csv-import/use-csv-import.ts",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "extras",
       "type": "registry:block",
       "title": "Shadmin Extras",
+      "categories": ["shadmin"],
       "description": "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
       "registryDependencies": ["@shadmin/admin", "alert-dialog", "progress"],
       "dependencies": [
@@ -4535,12 +4924,15 @@
           "path": "src/components/ui/color-picker/index.ts",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "monaco",
       "type": "registry:block",
       "title": "Monaco JSON Field & Input",
+      "categories": ["shadmin", "inputs", "editor"],
+      "docs": "Monaco loads its editor workers at runtime — works out of the box with Vite via `@monaco-editor/react`; other bundlers may need Monaco worker config. Prefer the `*Lazy` variants to code-split the editor out of your main bundle. Full docs: https://shadmin.turtlesocks.dev/docs/monaco-json-input",
       "description": "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadmin.",
       "registryDependencies": ["@shadmin/admin"],
       "dependencies": ["@monaco-editor/react", "monaco-editor"],
@@ -4601,12 +4993,15 @@
           "path": "src/components/monaco/monaco-json-input.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "supabase",
       "type": "registry:block",
       "title": "Supabase Admin",
+      "categories": ["shadmin", "authentication", "data-providers"],
+      "docs": "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase/getting-started",
       "description": "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
       "registryDependencies": ["@shadmin/admin"],
       "dependencies": [
@@ -4707,12 +5102,14 @@
           "path": "src/components/supabase/use-crud-guesser.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "realtime",
       "type": "registry:block",
       "title": "Shadmin Realtime",
+      "categories": ["shadmin", "data-providers"],
       "description": "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live List/Edit/Show views, menu badges, record locks.",
       "registryDependencies": ["admin"],
       "dependencies": [
@@ -4855,12 +5252,14 @@
           "path": "src/components/realtime/types.ts",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "example-admin",
       "type": "registry:block",
       "title": "Example Admin built with Shadmin",
+      "categories": ["shadmin", "example"],
       "registryDependencies": ["@shadmin/admin"],
       "dependencies": [],
       "files": [
@@ -4868,12 +5267,14 @@
           "path": "src/examples/example-admin.tsx",
           "type": "registry:component"
         }
-      ]
+      ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "theme-aurora",
       "type": "registry:theme",
       "title": "Aurora Theme",
+      "categories": ["shadmin", "theme"],
       "cssVars": {
         "light": {
           "radius": "0.625rem",
@@ -4992,12 +5393,14 @@
         "@utility bg-aurora": {
           "background": "var(--aurora)"
         }
-      }
+      },
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "theme-bw",
       "type": "registry:theme",
       "title": "Black & White Theme",
+      "categories": ["shadmin", "theme"],
       "cssVars": {
         "light": {
           "radius": "0.25rem",
@@ -5069,12 +5472,14 @@
         }
       },
       "files": [],
-      "description": "High-contrast monochrome palette for Shadmin."
+      "description": "High-contrast monochrome palette for Shadmin.",
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "theme-house",
       "type": "registry:theme",
       "title": "House Theme",
+      "categories": ["shadmin", "theme"],
       "cssVars": {
         "light": {
           "radius": "1.25rem",
@@ -5146,12 +5551,14 @@
         }
       },
       "files": [],
-      "description": "Warm 'house' palette for Shadmin."
+      "description": "Warm 'house' palette for Shadmin.",
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "theme-nano",
       "type": "registry:theme",
       "title": "Nano Theme",
+      "categories": ["shadmin", "theme"],
       "cssVars": {
         "light": {
           "radius": "0",
@@ -5223,12 +5630,14 @@
         }
       },
       "files": [],
-      "description": "Compact, low-radius 'nano' palette for Shadmin."
+      "description": "Compact, low-radius 'nano' palette for Shadmin.",
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
       "name": "theme-radiant",
       "type": "registry:theme",
       "title": "Radiant Theme",
+      "categories": ["shadmin", "theme"],
       "cssVars": {
         "light": {
           "radius": "0.375rem",
@@ -5300,7 +5709,8 @@
         }
       },
       "files": [],
-      "description": "Vivid 'radiant' palette for Shadmin."
+      "description": "Vivid 'radiant' palette for Shadmin.",
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     }
   ]
 }

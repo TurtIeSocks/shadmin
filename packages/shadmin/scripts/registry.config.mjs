@@ -10,6 +10,48 @@ export const registryMetadata = {
   homepage: "https://shadmin.turtlesocks.dev/",
 };
 
+// Attribution stamped onto every emitted item (shadcn registry-item `author`).
+export const AUTHOR = "Shadmin <https://shadmin.turtlesocks.dev>";
+
+// Granular components/libs/hooks are auto-derived, so their `categories` are
+// derived too: a "shadmin" umbrella (groups the whole kit in a multi-registry
+// browse) plus one facet inferred from the item name/type. Blocks and themes
+// carry hand-authored `categories` on their config entries instead.
+const AUTH_NAMES = new Set([
+  "access-denied",
+  "auth-callback",
+  "auth-error",
+  "auth-layout",
+  "authentication-error",
+  "login-form",
+  "login-page",
+  "login-with-email",
+]);
+const LAYOUT_NAMES = new Set([
+  "app-bar",
+  "app-sidebar",
+  "breadcrumb",
+  "layout",
+  "menu",
+  "user-menu",
+  "top-toolbar",
+  "theme-mode-toggle",
+  "theme-provider",
+]);
+
+export const categoriesForGranular = (name, type) => {
+  if (type === "registry:lib") return ["shadmin", "library"];
+  if (type === "registry:hook") return ["shadmin", "hooks"];
+  if (type === "registry:ui") return ["shadmin", "ui"];
+  let facet = "components";
+  if (name.endsWith("-input")) facet = "inputs";
+  else if (name.endsWith("-field")) facet = "fields";
+  else if (name.endsWith("-button")) facet = "buttons";
+  else if (AUTH_NAMES.has(name)) facet = "authentication";
+  else if (LAYOUT_NAMES.has(name)) facet = "layout";
+  return ["shadmin", facet];
+};
+
 /**
  * Each block entry describes how to assemble one `items[]` element in registry.json.
  *
@@ -23,6 +65,7 @@ export const blocks = [
     name: "admin",
     type: "registry:block",
     title: "Shadmin Main Block",
+    categories: ["shadmin", "dashboard"],
     description:
       "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
     // Auto-emit one granular registry item per file in this block alongside
@@ -90,6 +133,7 @@ export const blocks = [
       { path: "rules/AGENTS.md", type: "registry:file", target: "~/AGENTS.md" },
       { path: "src/components/ui/slot.tsx", type: "registry:ui" },
       { path: "src/hooks/use-theme.ts", type: "registry:component" },
+      { path: "src/lib/any.ts", type: "registry:lib" },
       { path: "src/lib/are-ids-equal.ts", type: "registry:lib" },
       { path: "src/lib/field-types.ts", type: "registry:lib" },
       { path: "src/lib/i18n-provider.ts", type: "registry:lib" },
@@ -106,6 +150,7 @@ export const blocks = [
     name: "rich-text-input",
     type: "registry:block",
     title: "RichTextInput",
+    categories: ["shadmin", "inputs", "editor"],
     description:
       "Optional rich text input for Shadmin. Includes the full Minimal TipTap block.",
     registryDependencies: [
@@ -149,6 +194,7 @@ export const blocks = [
     name: "block-editor",
     type: "registry:block",
     title: "BlockEditor",
+    categories: ["shadmin", "editor"],
     description:
       "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadmin, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
     registryDependencies: [
@@ -182,6 +228,7 @@ export const blocks = [
     name: "mdx-editor",
     type: "registry:block",
     title: "MdxEditor",
+    categories: ["shadmin", "inputs", "editor"],
     description:
       "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadmin, powered by MDXEditor.",
     registryDependencies: ["@shadmin/admin"],
@@ -192,6 +239,8 @@ export const blocks = [
     name: "leaflet-admin",
     type: "registry:block",
     title: "LeafletAdmin",
+    categories: ["shadmin", "maps"],
+    docs: 'Import Leaflet\'s stylesheet once in your app entry: `import "leaflet/dist/leaflet.css";`. Map components are client-only — disable SSR on routes that use them. Drawing/editing uses Geoman via `react-leaflet-geoman-v2`. Full docs: https://shadmin.turtlesocks.dev/docs/leaflet-admin',
     description:
       "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadmin.",
     registryDependencies: [
@@ -221,6 +270,8 @@ export const blocks = [
     name: "csv-import",
     type: "registry:block",
     title: "CsvImport",
+    categories: ["shadmin", "data-import"],
+    docs: "Place `<CsvImport>` in a List's `actions` and pass a zod `schema`. Rows validate against the schema and batch through `dataProvider.createMany` (with a `create` fallback). Full docs: https://shadmin.turtlesocks.dev/docs/csv-import",
     description:
       "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadmin. Validates rows against a zod schema and batches inserts via the data provider.",
     registryDependencies: ["@shadmin/admin", "button", "progress"],
@@ -232,6 +283,7 @@ export const blocks = [
     name: "extras",
     type: "registry:block",
     title: "Shadmin Extras",
+    categories: ["shadmin"],
     description:
       "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
     registryDependencies: ["@shadmin/admin", "alert-dialog", "progress"],
@@ -251,6 +303,8 @@ export const blocks = [
     name: "monaco",
     type: "registry:block",
     title: "Monaco JSON Field & Input",
+    categories: ["shadmin", "inputs", "editor"],
+    docs: "Monaco loads its editor workers at runtime — works out of the box with Vite via `@monaco-editor/react`; other bundlers may need Monaco worker config. Prefer the `*Lazy` variants to code-split the editor out of your main bundle. Full docs: https://shadmin.turtlesocks.dev/docs/monaco-json-input",
     description:
       "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadmin.",
     registryDependencies: ["@shadmin/admin"],
@@ -261,6 +315,8 @@ export const blocks = [
     name: "supabase",
     type: "registry:block",
     title: "Supabase Admin",
+    categories: ["shadmin", "authentication", "data-providers"],
+    docs: "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase/getting-started",
     description:
       "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
     registryDependencies: ["@shadmin/admin"],
@@ -281,6 +337,7 @@ export const blocks = [
     name: "realtime",
     type: "registry:block",
     title: "Shadmin Realtime",
+    categories: ["shadmin", "data-providers"],
     description:
       "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live List/Edit/Show views, menu badges, record locks.",
     registryDependencies: ["admin"],
@@ -292,6 +349,7 @@ export const blocks = [
     name: "example-admin",
     type: "registry:block",
     title: "Example Admin built with Shadmin",
+    categories: ["shadmin", "example"],
     registryDependencies: ["@shadmin/admin"],
     dependencies: [],
     extraFiles: [

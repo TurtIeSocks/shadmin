@@ -17,8 +17,10 @@ import prettier from "prettier";
 import { granularizeBlock } from "./granularize-block.mjs";
 import { parseCssVars } from "./parse-css-vars.mjs";
 import {
+  AUTHOR,
   AURORA_UTILITIES_CSS,
   blocks,
+  categoriesForGranular,
   registryMetadata,
   themes,
 } from "./registry.config.mjs";
@@ -107,6 +109,12 @@ const buildBlock = (block) => {
     title: block.title,
   };
 
+  if (block.categories !== undefined) {
+    item.categories = [...block.categories];
+  }
+  if (block.docs !== undefined) {
+    item.docs = block.docs;
+  }
   if (block.description !== undefined) {
     item.description = block.description;
   }
@@ -158,6 +166,7 @@ const buildTheme = (theme) => {
     name: theme.name,
     type: "registry:theme",
     title: theme.title,
+    categories: ["shadmin", "theme"],
     cssVars,
     files: [],
   };
@@ -204,6 +213,9 @@ const main = async () => {
         repoRoot,
         blockName: block.name,
       });
+      for (const g of granular) {
+        g.categories = categoriesForGranular(g.name, g.type);
+      }
       items.push(...granular);
     }
   }
@@ -211,6 +223,12 @@ const main = async () => {
   for (const theme of themes) {
     items.push(buildTheme(theme));
   }
+
+  // Stamp attribution on every item (blocks, granular, themes).
+  for (const item of items) {
+    item.author = AUTHOR;
+  }
+
   verifyFilesExist(items);
 
   const registry = {
