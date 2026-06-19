@@ -248,14 +248,18 @@ echo "Adding registry components"
 # not byte-identity: admin ships no custom primitives shim import into those files.
 pnpm dlx shadcn@4.11.0 add -y --overwrite http://localhost:8080/r/admin.json
 
-echo "Verifying @shadmin/admin does NOT inject our primitives shim into stock components"
+echo "Verifying installed dialog/popover/tooltip are STOCK (no shadmin customization marker)"
 for f in dialog popover tooltip; do
-  grep -q 'from "@/components/ui/primitives"' "src/components/ui/$f.tsx" \
-    && { echo "FAIL: $f.tsx imports from our primitives shim (shadmin overrode stock)"; exit 1; }
+  # Our old custom versions re-exported the raw primitive (a bare `XPrimitive,` line in
+  # the export block); stock shadcn never does. Its presence means admin shipped a custom
+  # override instead of letting the consumer keep stock.
+  if grep -Eq '^[[:space:]]*(Dialog|Popover|Tooltip)Primitive,?[[:space:]]*$' "src/components/ui/$f.tsx"; then
+    echo "FAIL: src/components/ui/$f.tsx re-exports a *Primitive — @shadmin shipped a custom override, not stock"; exit 1;
+  fi
 done
-test -f src/components/ui/primitives.tsx -o -f src/components/ui/primitives.ts \
-  || { echo "MISSING primitives"; exit 1; }
-echo "BYO assertions passed — stock primitives.ts/tsx present; no shim injected into dialog/popover/tooltip"
+test -f src/components/ui/primitives.ts \
+  || { echo "MISSING src/components/ui/primitives.ts"; exit 1; }
+echo "BYO assertions passed — installed primitives are stock; @shadmin/primitives seam present"
 
 echo "Building generated admin app"
 pnpm run build
