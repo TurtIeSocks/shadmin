@@ -6,6 +6,8 @@ import { DocsLayout } from "@/docs/docs-layout";
 import { DocsHome } from "@/docs/docs-home";
 import { ComponentsCatalog } from "@/docs/components-catalog";
 import { ComponentPage } from "@/docs/component-page";
+// SMOKE TEST ROUTE — remove after controller verification
+import { SmokePage } from "@/docs/smoke-page";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route index element={<DocsHome />} />
           <Route path="components" element={<ComponentsCatalog />} />
           <Route path="components/:name" element={<ComponentPage />} />
+          {/* SMOKE TEST — remove after controller verification */}
+          <Route path="_smoke" element={<SmokePage />} />
         </Route>
       </Routes>
     </>
