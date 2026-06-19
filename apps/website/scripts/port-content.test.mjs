@@ -165,6 +165,47 @@ Mail <hi@example.com> for help.
     );
   });
 
+  test("brace escaping: prose {expr} escaped; inline code + fenced left alone", () => {
+    const raw = `---
+title: Test
+---
+
+They return { data, isPending, error } on mount.
+
+The key is \`%{provider}\` but plain %{provider} must escape.
+
+Inline \`{ ok: true }\` stays.
+
+\`\`\`ts
+const x = { y: 1 };
+\`\`\`
+`;
+    const result = transformContent(raw, "test");
+    // prose braces escaped
+    assert.ok(
+      result.includes("\\{ data, isPending, error \\}"),
+      "prose object braces not escaped",
+    );
+    assert.ok(
+      result.includes("plain %\\{provider\\}"),
+      "prose %{provider} not escaped",
+    );
+    // inline code preserved
+    assert.ok(
+      result.includes("`%{provider}`"),
+      "inline-code braces were wrongly escaped",
+    );
+    assert.ok(
+      result.includes("`{ ok: true }`"),
+      "inline-code object braces were wrongly escaped",
+    );
+    // fenced code preserved
+    assert.ok(
+      result.includes("const x = { y: 1 };"),
+      "fenced braces were wrongly escaped",
+    );
+  });
+
   test("idempotency: running transformContent twice equals once", () => {
     const raw = `---
 title: Test

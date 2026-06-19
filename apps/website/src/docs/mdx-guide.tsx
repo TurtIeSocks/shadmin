@@ -11,6 +11,7 @@
 import { useParams } from "react-router-dom";
 import { InstallCommand } from "./install-command";
 import { manifest } from "./manifest";
+import { MdxErrorBoundary } from "./mdx-error-boundary";
 
 interface GuideModule {
   default: React.ComponentType;
@@ -65,7 +66,9 @@ export function MdxGuide({ guides }: MdxGuideProps) {
           <InstallCommand install={item.install} />
         </div>
       )}
-      <Content />
+      <MdxErrorBoundary resetKey={slug}>
+        <Content />
+      </MdxErrorBoundary>
     </article>
   );
 }

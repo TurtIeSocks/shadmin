@@ -335,7 +335,7 @@ A hint label rendered as a menu item when the filter text is empty, letting user
 
 ## `createItemLabel`
 
-The label shown for the "Create …" menu item when the filter text is non-empty. Accepts a string (supports `%{item}` interpolation for the current filter) or a function `(filter) => ReactNode` for fully custom rendering. Defaults to the translation of `ra.action.create_item` ("Create %{item}").
+The label shown for the "Create …" menu item when the filter text is non-empty. Accepts a string (supports `%{item}` interpolation for the current filter) or a function `(filter) => ReactNode` for fully custom rendering. Defaults to the translation of `ra.action.create_item` ("Create %\{item\}").
 
 ```jsx
 <AutocompleteArrayInput

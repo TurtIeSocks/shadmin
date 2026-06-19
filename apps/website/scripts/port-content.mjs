@@ -222,10 +222,37 @@ export function transformContent(raw, _slug) {
       "[$1](mailto:$1)",
     );
 
+    // Step 8: Escape stray braces in prose. These docs are ported Markdown with
+    // NO intentional MDX expressions, so any unfenced `{...}` outside inline code
+    // is literal text (e.g. `{ data, isPending }`, `%{provider}`). MDX would
+    // otherwise evaluate it as JS and throw at runtime (compiles, but ReferenceError
+    // on render). Inline-code spans are preserved.
+    transformed = escapeBraces(transformed);
+
     out.push(transformed);
   }
 
   return out.join("\n");
+}
+
+/**
+ * Escape stray `{`/`}` in prose so MDX treats them as literal text, while
+ * preserving inline-code spans (backtick-delimited) verbatim. Idempotent:
+ * already-escaped `\{` is left alone.
+ *
+ * @param {string} line
+ * @returns {string}
+ */
+function escapeBraces(line) {
+  // Split on inline-code spans; capture group keeps them in the result at odd
+  // indices. `+ runs handle both `code` and ``co`de`` spans.
+  const parts = line.split(/(`+[^`]*`+)/);
+  return parts
+    .map((seg, i) => {
+      if (i % 2 === 1) return seg; // inline code — leave verbatim
+      return seg.replace(/(?<!\\)\{/g, "\\{").replace(/(?<!\\)\}/g, "\\}");
+    })
+    .join("");
 }
 
 /**
