@@ -57,16 +57,16 @@ type MenuItemLinkProps = {
     | string
     | { pathname: string; search?: string; hash?: string; state?: unknown };
   /**
-   * The text rendered alongside `leftIcon`. Strings are auto-translated via
+   * The text rendered alongside `icon`. Strings are auto-translated via
    * `useTranslate` (with the string itself as the fallback). Pass a ReactNode
    * to render custom content without translation lookup.
    */
-  primaryText: ReactNode;
+  label: ReactNode;
   /**
-   * Icon rendered before `primaryText`. Pass a `lucide-react` icon (or any
+   * Icon rendered before `label`. Pass a `lucide-react` icon (or any
    * ReactNode) sized to match other sidebar items.
    */
-  leftIcon?: ReactNode;
+  icon?: ReactNode;
   /**
    * Extra CSS class appended to the underlying `<SidebarMenuButton>`.
    */
@@ -114,15 +114,15 @@ type MenuItemLinkProps = {
  * const SettingsItem = () => (
  *   <MenuItemLink
  *     to="/settings"
- *     primaryText="Settings"
- *     leftIcon={<Settings />}
+ *     label="Settings"
+ *     icon={<Settings />}
  *   />
  * );
  */
 function MenuItemLink({
   to,
-  primaryText,
-  leftIcon,
+  label,
+  icon,
   className,
   onClick,
   keyboardShortcut,
@@ -133,9 +133,9 @@ function MenuItemLink({
   const basename = useBasename();
   const navigate = useNavigate();
   const finalText =
-    typeof primaryText === "string"
-      ? translate(primaryText, { _: primaryText })
-      : primaryText;
+    typeof label === "string"
+      ? translate(label, { _: label })
+      : label;
   const toPathname = typeof to === "string" ? to : to.pathname;
   const match = useMatch({
     path: toPathname,
@@ -175,7 +175,7 @@ function MenuItemLink({
   const button = (
     <SidebarMenuButton asChild isActive={!!match} className={className}>
       <Link to={to} onClick={handleClick}>
-        {leftIcon}
+        {icon}
         {finalText}
         {shortcutNode && <span className="ml-auto">{shortcutNode}</span>}
       </Link>

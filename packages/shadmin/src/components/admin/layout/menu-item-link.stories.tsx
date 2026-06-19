@@ -60,25 +60,25 @@ const SidebarWrapper = ({ children }: React.PropsWithChildren) => (
 
 export const Basic = () => (
   <SidebarWrapper>
-    <MenuItemLink to="/posts" primaryText="Posts" leftIcon={<Book />} />
+    <MenuItemLink to="/posts" label="Posts" icon={<Book />} />
   </SidebarWrapper>
 );
 
 export const Multiple = () => (
   <SidebarWrapper>
-    <MenuItemLink to="/" primaryText="Home" leftIcon={<Home />} />
-    <MenuItemLink to="/posts" primaryText="Posts" leftIcon={<Book />} />
+    <MenuItemLink to="/" label="Home" icon={<Home />} />
+    <MenuItemLink to="/posts" label="Posts" icon={<Book />} />
     <MenuItemLink
       to="/settings"
-      primaryText="Settings"
-      leftIcon={<Settings />}
+      label="Settings"
+      icon={<Settings />}
     />
   </SidebarWrapper>
 );
 
 export const NoIcon = () => (
   <SidebarWrapper>
-    <MenuItemLink to="/posts" primaryText="Posts" />
+    <MenuItemLink to="/posts" label="Posts" />
   </SidebarWrapper>
 );
 
@@ -86,14 +86,14 @@ export const WithTooltipProps = () => (
   <SidebarWrapper>
     <MenuItemLink
       to="/posts"
-      primaryText="Posts"
-      leftIcon={<Book />}
+      label="Posts"
+      icon={<Book />}
       tooltipProps={{ delayDuration: 0 }}
     />
     <MenuItemLink
       to="/settings"
-      primaryText="Settings"
-      leftIcon={<Settings />}
+      label="Settings"
+      icon={<Settings />}
       tooltipProps={{ delayDuration: 500 }}
     />
   </SidebarWrapper>
@@ -103,15 +103,15 @@ export const WithKeyboardShortcutRepresentation = () => (
   <SidebarWrapper>
     <MenuItemLink
       to="/posts"
-      primaryText="Posts"
-      leftIcon={<Book />}
+      label="Posts"
+      icon={<Book />}
       keyboardShortcut="mod+p"
       keyboardShortcutRepresentation="⌘P"
     />
     <MenuItemLink
       to="/settings"
-      primaryText="Settings"
-      leftIcon={<Settings />}
+      label="Settings"
+      icon={<Settings />}
       keyboardShortcut="mod+,"
       keyboardShortcutRepresentation="⌘,"
     />
@@ -122,14 +122,14 @@ export const WithKeyboardShortcut = () => (
   <SidebarWrapper>
     <MenuItemLink
       to="/posts"
-      primaryText="Posts"
-      leftIcon={<Book />}
+      label="Posts"
+      icon={<Book />}
       keyboardShortcut="mod+p"
     />
     <MenuItemLink
       to="/settings"
-      primaryText="Settings"
-      leftIcon={<Settings />}
+      label="Settings"
+      icon={<Settings />}
       keyboardShortcut="mod+,"
     />
   </SidebarWrapper>

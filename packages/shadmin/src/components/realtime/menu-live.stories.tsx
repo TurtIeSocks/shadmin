@@ -24,7 +24,7 @@ export const Basic = () => (
         i18nProvider={i18nProvider}
         store={memoryStore()}
       >
-        <MenuLiveItemLink to="/posts" resource="posts" primaryText="Posts" />
+        <MenuLiveItemLink to="/posts" resource="posts" label="Posts" />
       </CoreAdminContext>
     </MemoryRouter>
   </ThemeProvider>

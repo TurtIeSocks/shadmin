@@ -67,7 +67,7 @@ export const CustomSidebar = () => (
 );
 
 const StarMenu = () => (
-  <MenuItemLink to="/featured" primaryText="Featured" leftIcon={<Star />} />
+  <MenuItemLink to="/featured" label="Featured" icon={<Star />} />
 );
 
 export const CustomMenu = () => (
