@@ -5,6 +5,7 @@ import defaultMessages from "ra-language-english";
 import { MemoryRouter } from "react-router";
 import { RefreshCcw } from "lucide-react";
 import { RefreshIconButton, ThemeProvider } from "@/components/admin";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export default {
   title: "UI & Layout/RefreshIconButton",
@@ -13,17 +14,19 @@ export default {
 const Wrapper = ({ children }: React.PropsWithChildren) => (
   <MemoryRouter>
     <ThemeProvider>
-      <CoreAdminContext
-        i18nProvider={polyglotI18nProvider(
-          () => defaultMessages,
-          "en",
-          undefined,
-          { allowMissing: true },
-        )}
-        store={memoryStore()}
-      >
-        {children}
-      </CoreAdminContext>
+      <TooltipProvider>
+        <CoreAdminContext
+          i18nProvider={polyglotI18nProvider(
+            () => defaultMessages,
+            "en",
+            undefined,
+            { allowMissing: true },
+          )}
+          store={memoryStore()}
+        >
+          {children}
+        </CoreAdminContext>
+      </TooltipProvider>
     </ThemeProvider>
   </MemoryRouter>
 );

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
@@ -56,30 +55,28 @@ function IconButtonWithTooltip({
   };
 
   return (
-    <TooltipProvider>
-      <Tooltip open={open} onOpenChange={setOpen}>
-        <TooltipTrigger asChild>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            aria-label={
-              typeof translatedLabel === "string" ? translatedLabel : undefined
-            }
-            onClick={handleClick}
-            disabled={disabled}
-            onMouseEnter={handleOpen}
-            onMouseLeave={handleClose}
-            {...props}
-          >
-            {children}
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>{translatedLabel}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip open={open} onOpenChange={setOpen}>
+      <TooltipTrigger asChild>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          aria-label={
+            typeof translatedLabel === "string" ? translatedLabel : undefined
+          }
+          onClick={handleClick}
+          disabled={disabled}
+          onMouseEnter={handleOpen}
+          onMouseLeave={handleClose}
+          {...props}
+        >
+          {children}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{translatedLabel}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
 

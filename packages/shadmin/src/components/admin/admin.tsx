@@ -13,6 +13,7 @@ import { NotFound } from "@/components/admin/feedback/not-found";
 import { Ready } from "@/components/admin/feedback/ready";
 import { ThemeProvider } from "@/components/admin/layout/theme-provider";
 import { AuthCallback } from "@/components/admin/auth/auth-callback";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
@@ -92,16 +93,18 @@ function AdminUI(props: AdminUIProps) {
 
   return (
     <ThemeProvider>
-      <CoreAdminUI
-        authCallbackPage={authCallbackPage}
-        catchAll={catchAll}
-        layout={layout}
-        loginPage={loginPage}
-        ready={ready}
-        title={title}
-        {...rest}
-        disableTelemetry // forced off: the kit never pings an external telemetry endpoint
-      />
+      <TooltipProvider>
+        <CoreAdminUI
+          authCallbackPage={authCallbackPage}
+          catchAll={catchAll}
+          layout={layout}
+          loginPage={loginPage}
+          ready={ready}
+          title={title}
+          {...rest}
+          disableTelemetry // forced off: the kit never pings an external telemetry endpoint
+        />
+      </TooltipProvider>
     </ThemeProvider>
   );
 }

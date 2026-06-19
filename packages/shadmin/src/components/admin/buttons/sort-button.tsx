@@ -19,7 +19,6 @@ import {
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
@@ -92,26 +91,24 @@ function SortButtonComponent(props: SortButtonProps) {
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       {isMobile ? (
-        <TooltipProvider>
-          <Tooltip>
-            <DropdownMenuTrigger asChild>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  aria-label={buttonLabel}
-                  ref={ref}
-                  {...rest}
-                >
-                  {icon}
-                </Button>
-              </TooltipTrigger>
-            </DropdownMenuTrigger>
-            <TooltipContent>
-              <p>{buttonLabel}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Tooltip>
+          <DropdownMenuTrigger asChild>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                aria-label={buttonLabel}
+                ref={ref}
+                {...rest}
+              >
+                {icon}
+              </Button>
+            </TooltipTrigger>
+          </DropdownMenuTrigger>
+          <TooltipContent>
+            <p>{buttonLabel}</p>
+          </TooltipContent>
+        </Tooltip>
       ) : (
         <DropdownMenuTrigger asChild>
           <Button

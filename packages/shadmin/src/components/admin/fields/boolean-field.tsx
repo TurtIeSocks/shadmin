@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
@@ -45,30 +44,28 @@ function BooleanField<RecordType extends RaRecord = RaRecord>({
 
   if (looseValue || typeof value === "boolean") {
     return (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            {isTruthyValue ? (
-              TrueIcon ? (
-                <TrueIcon className={cn(baseClassName, className)} />
-              ) : (
-                <div />
-              )
-            ) : FalseIcon ? (
-              <FalseIcon className={cn(baseClassName, className)} />
+      <Tooltip>
+        <TooltipTrigger asChild>
+          {isTruthyValue ? (
+            TrueIcon ? (
+              <TrueIcon className={cn(baseClassName, className)} />
             ) : (
               <div />
-            )}
-          </TooltipTrigger>
-          <TooltipContent>
-            <RenderLabel
-              value={!!value}
-              valueLabelFalse={valueLabelFalse}
-              valueLabelTrue={valueLabelTrue}
-            />
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            )
+          ) : FalseIcon ? (
+            <FalseIcon className={cn(baseClassName, className)} />
+          ) : (
+            <div />
+          )}
+        </TooltipTrigger>
+        <TooltipContent>
+          <RenderLabel
+            value={!!value}
+            valueLabelFalse={valueLabelFalse}
+            valueLabelTrue={valueLabelTrue}
+          />
+        </TooltipContent>
+      </Tooltip>
     );
   }
 
