@@ -1,0 +1,3679 @@
+{
+  "generatedAt": null,
+  "items": [
+    {
+      "name": "admin",
+      "title": "Shadmin Main Block",
+      "description": "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
+      "type": "registry:block",
+      "category": "dashboard",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/admin",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/admin",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/admin",
+        "bun": "bunx shadcn@latest add @shadmin/admin"
+      }
+    },
+    {
+      "name": "access-denied",
+      "title": "Access Denied",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/access-denied",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/access-denied",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/access-denied",
+        "bun": "bunx shadcn@latest add @shadmin/access-denied"
+      }
+    },
+    {
+      "name": "auth-callback",
+      "title": "Auth Callback",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/auth-callback",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/auth-callback",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/auth-callback",
+        "bun": "bunx shadcn@latest add @shadmin/auth-callback"
+      }
+    },
+    {
+      "name": "auth-error",
+      "title": "Auth Error",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/auth-error",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/auth-error",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/auth-error",
+        "bun": "bunx shadcn@latest add @shadmin/auth-error"
+      }
+    },
+    {
+      "name": "auth-layout",
+      "title": "Auth Layout",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/auth-layout",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/auth-layout",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/auth-layout",
+        "bun": "bunx shadcn@latest add @shadmin/auth-layout"
+      }
+    },
+    {
+      "name": "authentication-error",
+      "title": "Authentication Error",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/authentication-error",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/authentication-error",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/authentication-error",
+        "bun": "bunx shadcn@latest add @shadmin/authentication-error"
+      }
+    },
+    {
+      "name": "login-form",
+      "title": "Login Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/login-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/login-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/login-form",
+        "bun": "bunx shadcn@latest add @shadmin/login-form"
+      }
+    },
+    {
+      "name": "login-page",
+      "title": "Login Page",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/login-page",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/login-page",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/login-page",
+        "bun": "bunx shadcn@latest add @shadmin/login-page"
+      }
+    },
+    {
+      "name": "login-with-email",
+      "title": "Login With Email",
+      "description": null,
+      "type": "registry:component",
+      "category": "authentication",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/login-with-email",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/login-with-email",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/login-with-email",
+        "bun": "bunx shadcn@latest add @shadmin/login-with-email"
+      }
+    },
+    {
+      "name": "logout",
+      "title": "Logout",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/logout",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/logout",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/logout",
+        "bun": "bunx shadcn@latest add @shadmin/logout"
+      }
+    },
+    {
+      "name": "bulk-delete-button",
+      "title": "Bulk Delete Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/bulk-delete-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/bulk-delete-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/bulk-delete-button",
+        "bun": "bunx shadcn@latest add @shadmin/bulk-delete-button"
+      }
+    },
+    {
+      "name": "bulk-export-button",
+      "title": "Bulk Export Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/bulk-export-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/bulk-export-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/bulk-export-button",
+        "bun": "bunx shadcn@latest add @shadmin/bulk-export-button"
+      }
+    },
+    {
+      "name": "bulk-update-button",
+      "title": "Bulk Update Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/bulk-update-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/bulk-update-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/bulk-update-button",
+        "bun": "bunx shadcn@latest add @shadmin/bulk-update-button"
+      }
+    },
+    {
+      "name": "cancel-button",
+      "title": "Cancel Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/cancel-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/cancel-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/cancel-button",
+        "bun": "bunx shadcn@latest add @shadmin/cancel-button"
+      }
+    },
+    {
+      "name": "clone-button",
+      "title": "Clone Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/clone-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/clone-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/clone-button",
+        "bun": "bunx shadcn@latest add @shadmin/clone-button"
+      }
+    },
+    {
+      "name": "columns-button",
+      "title": "Columns Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/columns-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/columns-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/columns-button",
+        "bun": "bunx shadcn@latest add @shadmin/columns-button"
+      }
+    },
+    {
+      "name": "create-button",
+      "title": "Create Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/create-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/create-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/create-button",
+        "bun": "bunx shadcn@latest add @shadmin/create-button"
+      }
+    },
+    {
+      "name": "delete-button",
+      "title": "Delete Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/delete-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/delete-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/delete-button",
+        "bun": "bunx shadcn@latest add @shadmin/delete-button"
+      }
+    },
+    {
+      "name": "edit-button",
+      "title": "Edit Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/edit-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/edit-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/edit-button",
+        "bun": "bunx shadcn@latest add @shadmin/edit-button"
+      }
+    },
+    {
+      "name": "export-button",
+      "title": "Export Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/export-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/export-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/export-button",
+        "bun": "bunx shadcn@latest add @shadmin/export-button"
+      }
+    },
+    {
+      "name": "filter-button",
+      "title": "Filter Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/filter-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/filter-button",
+        "bun": "bunx shadcn@latest add @shadmin/filter-button"
+      }
+    },
+    {
+      "name": "inspector-button",
+      "title": "Inspector Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/inspector-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/inspector-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/inspector-button",
+        "bun": "bunx shadcn@latest add @shadmin/inspector-button"
+      }
+    },
+    {
+      "name": "list-button",
+      "title": "List Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list-button",
+        "bun": "bunx shadcn@latest add @shadmin/list-button"
+      }
+    },
+    {
+      "name": "locales-menu-button",
+      "title": "Locales Menu Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/locales-menu-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/locales-menu-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/locales-menu-button",
+        "bun": "bunx shadcn@latest add @shadmin/locales-menu-button"
+      }
+    },
+    {
+      "name": "refresh-button",
+      "title": "Refresh Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/refresh-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/refresh-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/refresh-button",
+        "bun": "bunx shadcn@latest add @shadmin/refresh-button"
+      }
+    },
+    {
+      "name": "refresh-icon-button",
+      "title": "Refresh Icon Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/refresh-icon-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/refresh-icon-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/refresh-icon-button",
+        "bun": "bunx shadcn@latest add @shadmin/refresh-icon-button"
+      }
+    },
+    {
+      "name": "save-button",
+      "title": "Save Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/save-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/save-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/save-button",
+        "bun": "bunx shadcn@latest add @shadmin/save-button"
+      }
+    },
+    {
+      "name": "select-all-button",
+      "title": "Select All Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/select-all-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/select-all-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/select-all-button",
+        "bun": "bunx shadcn@latest add @shadmin/select-all-button"
+      }
+    },
+    {
+      "name": "show-button",
+      "title": "Show Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/show-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/show-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/show-button",
+        "bun": "bunx shadcn@latest add @shadmin/show-button"
+      }
+    },
+    {
+      "name": "sidebar-toggle-button",
+      "title": "Sidebar Toggle Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/sidebar-toggle-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/sidebar-toggle-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/sidebar-toggle-button",
+        "bun": "bunx shadcn@latest add @shadmin/sidebar-toggle-button"
+      }
+    },
+    {
+      "name": "skip-navigation-button",
+      "title": "Skip Navigation Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/skip-navigation-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/skip-navigation-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/skip-navigation-button",
+        "bun": "bunx shadcn@latest add @shadmin/skip-navigation-button"
+      }
+    },
+    {
+      "name": "sort-button",
+      "title": "Sort Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/sort-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/sort-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/sort-button",
+        "bun": "bunx shadcn@latest add @shadmin/sort-button"
+      }
+    },
+    {
+      "name": "toggle-filter-button",
+      "title": "Toggle Filter Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/toggle-filter-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/toggle-filter-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/toggle-filter-button",
+        "bun": "bunx shadcn@latest add @shadmin/toggle-filter-button"
+      }
+    },
+    {
+      "name": "update-button",
+      "title": "Update Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/update-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/update-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/update-button",
+        "bun": "bunx shadcn@latest add @shadmin/update-button"
+      }
+    },
+    {
+      "name": "application-updated-notification",
+      "title": "Application Updated Notification",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/application-updated-notification",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/application-updated-notification",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/application-updated-notification",
+        "bun": "bunx shadcn@latest add @shadmin/application-updated-notification"
+      }
+    },
+    {
+      "name": "check-for-application-update",
+      "title": "Check For Application Update",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/check-for-application-update",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/check-for-application-update",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/check-for-application-update",
+        "bun": "bunx shadcn@latest add @shadmin/check-for-application-update"
+      }
+    },
+    {
+      "name": "device-test-wrapper",
+      "title": "Device Test Wrapper",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/device-test-wrapper",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/device-test-wrapper",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/device-test-wrapper",
+        "bun": "bunx shadcn@latest add @shadmin/device-test-wrapper"
+      }
+    },
+    {
+      "name": "field-label-text",
+      "title": "Field Label Text",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/field-label-text",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/field-label-text",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/field-label-text",
+        "bun": "bunx shadcn@latest add @shadmin/field-label-text"
+      }
+    },
+    {
+      "name": "icon-button-with-tooltip",
+      "title": "Icon Button With Tooltip",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/icon-button-with-tooltip",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/icon-button-with-tooltip",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/icon-button-with-tooltip",
+        "bun": "bunx shadcn@latest add @shadmin/icon-button-with-tooltip"
+      }
+    },
+    {
+      "name": "input-helper-text",
+      "title": "Input Helper Text",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/input-helper-text",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/input-helper-text",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/input-helper-text",
+        "bun": "bunx shadcn@latest add @shadmin/input-helper-text"
+      }
+    },
+    {
+      "name": "keyboard-shortcut",
+      "title": "Keyboard Shortcut",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/keyboard-shortcut",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/keyboard-shortcut",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/keyboard-shortcut",
+        "bun": "bunx shadcn@latest add @shadmin/keyboard-shortcut"
+      }
+    },
+    {
+      "name": "link",
+      "title": "Link",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/link",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/link",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/link",
+        "bun": "bunx shadcn@latest add @shadmin/link"
+      }
+    },
+    {
+      "name": "confirm",
+      "title": "Confirm",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/confirm",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/confirm",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/confirm",
+        "bun": "bunx shadcn@latest add @shadmin/confirm"
+      }
+    },
+    {
+      "name": "empty",
+      "title": "Empty",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/empty",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/empty",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/empty",
+        "bun": "bunx shadcn@latest add @shadmin/empty"
+      }
+    },
+    {
+      "name": "error",
+      "title": "Error",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/error",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/error",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/error",
+        "bun": "bunx shadcn@latest add @shadmin/error"
+      }
+    },
+    {
+      "name": "linear-progress",
+      "title": "Linear Progress",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/linear-progress",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/linear-progress",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/linear-progress",
+        "bun": "bunx shadcn@latest add @shadmin/linear-progress"
+      }
+    },
+    {
+      "name": "loading-indicator",
+      "title": "Loading Indicator",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/loading-indicator",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/loading-indicator",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/loading-indicator",
+        "bun": "bunx shadcn@latest add @shadmin/loading-indicator"
+      }
+    },
+    {
+      "name": "loading",
+      "title": "Loading",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/loading",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/loading",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/loading",
+        "bun": "bunx shadcn@latest add @shadmin/loading"
+      }
+    },
+    {
+      "name": "not-found",
+      "title": "Not Found",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/not-found",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/not-found",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/not-found",
+        "bun": "bunx shadcn@latest add @shadmin/not-found"
+      }
+    },
+    {
+      "name": "notification",
+      "title": "Notification",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/notification",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/notification",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/notification",
+        "bun": "bunx shadcn@latest add @shadmin/notification"
+      }
+    },
+    {
+      "name": "offline",
+      "title": "Offline",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/offline",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/offline",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/offline",
+        "bun": "bunx shadcn@latest add @shadmin/offline"
+      }
+    },
+    {
+      "name": "placeholder",
+      "title": "Placeholder",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/placeholder",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/placeholder",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/placeholder",
+        "bun": "bunx shadcn@latest add @shadmin/placeholder"
+      }
+    },
+    {
+      "name": "ready",
+      "title": "Ready",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/ready",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/ready",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/ready",
+        "bun": "bunx shadcn@latest add @shadmin/ready"
+      }
+    },
+    {
+      "name": "spinner",
+      "title": "Spinner",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/spinner",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/spinner",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/spinner",
+        "bun": "bunx shadcn@latest add @shadmin/spinner"
+      }
+    },
+    {
+      "name": "array-field",
+      "title": "Array Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/array-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/array-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/array-field",
+        "bun": "bunx shadcn@latest add @shadmin/array-field"
+      }
+    },
+    {
+      "name": "badge-field",
+      "title": "Badge Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/badge-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/badge-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/badge-field",
+        "bun": "bunx shadcn@latest add @shadmin/badge-field"
+      }
+    },
+    {
+      "name": "boolean-field",
+      "title": "Boolean Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/boolean-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/boolean-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/boolean-field",
+        "bun": "bunx shadcn@latest add @shadmin/boolean-field"
+      }
+    },
+    {
+      "name": "chip-field",
+      "title": "Chip Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/chip-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/chip-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/chip-field",
+        "bun": "bunx shadcn@latest add @shadmin/chip-field"
+      }
+    },
+    {
+      "name": "date-field",
+      "title": "Date Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/date-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/date-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/date-field",
+        "bun": "bunx shadcn@latest add @shadmin/date-field"
+      }
+    },
+    {
+      "name": "email-field",
+      "title": "Email Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/email-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/email-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/email-field",
+        "bun": "bunx shadcn@latest add @shadmin/email-field"
+      }
+    },
+    {
+      "name": "file-field",
+      "title": "File Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/file-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/file-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/file-field",
+        "bun": "bunx shadcn@latest add @shadmin/file-field"
+      }
+    },
+    {
+      "name": "function-field",
+      "title": "Function Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/function-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/function-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/function-field",
+        "bun": "bunx shadcn@latest add @shadmin/function-field"
+      }
+    },
+    {
+      "name": "image-field",
+      "title": "Image Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/image-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/image-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/image-field",
+        "bun": "bunx shadcn@latest add @shadmin/image-field"
+      }
+    },
+    {
+      "name": "number-field",
+      "title": "Number Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/number-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/number-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/number-field",
+        "bun": "bunx shadcn@latest add @shadmin/number-field"
+      }
+    },
+    {
+      "name": "record-field",
+      "title": "Record Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/record-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/record-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/record-field",
+        "bun": "bunx shadcn@latest add @shadmin/record-field"
+      }
+    },
+    {
+      "name": "reference-array-field",
+      "title": "Reference Array Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-array-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-array-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-array-field",
+        "bun": "bunx shadcn@latest add @shadmin/reference-array-field"
+      }
+    },
+    {
+      "name": "reference-field",
+      "title": "Reference Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-field",
+        "bun": "bunx shadcn@latest add @shadmin/reference-field"
+      }
+    },
+    {
+      "name": "reference-many-field",
+      "title": "Reference Many Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-many-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-many-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-many-field",
+        "bun": "bunx shadcn@latest add @shadmin/reference-many-field"
+      }
+    },
+    {
+      "name": "reference-one-field",
+      "title": "Reference One Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-one-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-one-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-one-field",
+        "bun": "bunx shadcn@latest add @shadmin/reference-one-field"
+      }
+    },
+    {
+      "name": "rich-text-field",
+      "title": "Rich Text Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/rich-text-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/rich-text-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/rich-text-field",
+        "bun": "bunx shadcn@latest add @shadmin/rich-text-field"
+      }
+    },
+    {
+      "name": "select-field",
+      "title": "Select Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/select-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/select-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/select-field",
+        "bun": "bunx shadcn@latest add @shadmin/select-field"
+      }
+    },
+    {
+      "name": "text-array-field",
+      "title": "Text Array Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/text-array-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/text-array-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/text-array-field",
+        "bun": "bunx shadcn@latest add @shadmin/text-array-field"
+      }
+    },
+    {
+      "name": "text-field",
+      "title": "Text Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/text-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/text-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/text-field",
+        "bun": "bunx shadcn@latest add @shadmin/text-field"
+      }
+    },
+    {
+      "name": "url-field",
+      "title": "Url Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/url-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/url-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/url-field",
+        "bun": "bunx shadcn@latest add @shadmin/url-field"
+      }
+    },
+    {
+      "name": "wrapper-field",
+      "title": "Wrapper Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/wrapper-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/wrapper-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/wrapper-field",
+        "bun": "bunx shadcn@latest add @shadmin/wrapper-field"
+      }
+    },
+    {
+      "name": "simple-form-configurable",
+      "title": "Simple Form Configurable",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simple-form-configurable",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simple-form-configurable",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simple-form-configurable",
+        "bun": "bunx shadcn@latest add @shadmin/simple-form-configurable"
+      }
+    },
+    {
+      "name": "simple-form-iterator",
+      "title": "Simple Form Iterator",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simple-form-iterator",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simple-form-iterator",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simple-form-iterator",
+        "bun": "bunx shadcn@latest add @shadmin/simple-form-iterator"
+      }
+    },
+    {
+      "name": "simple-form",
+      "title": "Simple Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simple-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simple-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simple-form",
+        "bun": "bunx shadcn@latest add @shadmin/simple-form"
+      }
+    },
+    {
+      "name": "tabbed-form",
+      "title": "Tabbed Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/tabbed-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/tabbed-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/tabbed-form",
+        "bun": "bunx shadcn@latest add @shadmin/tabbed-form"
+      }
+    },
+    {
+      "name": "toolbar",
+      "title": "Toolbar",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/toolbar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/toolbar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/toolbar",
+        "bun": "bunx shadcn@latest add @shadmin/toolbar"
+      }
+    },
+    {
+      "name": "translatable-inputs-tab-content",
+      "title": "Translatable Inputs Tab Content",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-inputs-tab-content",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-inputs-tab-content",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-inputs-tab-content",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-inputs-tab-content"
+      }
+    },
+    {
+      "name": "translatable-inputs-tab",
+      "title": "Translatable Inputs Tab",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-inputs-tab",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-inputs-tab",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-inputs-tab",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-inputs-tab"
+      }
+    },
+    {
+      "name": "translatable-inputs-tabs",
+      "title": "Translatable Inputs Tabs",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-inputs-tabs",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-inputs-tabs",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-inputs-tabs",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-inputs-tabs"
+      }
+    },
+    {
+      "name": "translatable-inputs",
+      "title": "Translatable Inputs",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-inputs",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-inputs",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-inputs",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-inputs"
+      }
+    },
+    {
+      "name": "edit-guesser",
+      "title": "Edit Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/edit-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/edit-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/edit-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/edit-guesser"
+      }
+    },
+    {
+      "name": "guesser-empty",
+      "title": "Guesser Empty",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/guesser-empty",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/guesser-empty",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/guesser-empty",
+        "bun": "bunx shadcn@latest add @shadmin/guesser-empty"
+      }
+    },
+    {
+      "name": "list-guesser",
+      "title": "List Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/list-guesser"
+      }
+    },
+    {
+      "name": "show-guesser",
+      "title": "Show Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/show-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/show-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/show-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/show-guesser"
+      }
+    },
+    {
+      "name": "array-input",
+      "title": "Array Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/array-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/array-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/array-input",
+        "bun": "bunx shadcn@latest add @shadmin/array-input"
+      }
+    },
+    {
+      "name": "autocomplete-array-input",
+      "title": "Autocomplete Array Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/autocomplete-array-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/autocomplete-array-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/autocomplete-array-input",
+        "bun": "bunx shadcn@latest add @shadmin/autocomplete-array-input"
+      }
+    },
+    {
+      "name": "autocomplete-input",
+      "title": "Autocomplete Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/autocomplete-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/autocomplete-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/autocomplete-input",
+        "bun": "bunx shadcn@latest add @shadmin/autocomplete-input"
+      }
+    },
+    {
+      "name": "boolean-input",
+      "title": "Boolean Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/boolean-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/boolean-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/boolean-input",
+        "bun": "bunx shadcn@latest add @shadmin/boolean-input"
+      }
+    },
+    {
+      "name": "checkbox-group-input",
+      "title": "Checkbox Group Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/checkbox-group-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/checkbox-group-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/checkbox-group-input",
+        "bun": "bunx shadcn@latest add @shadmin/checkbox-group-input"
+      }
+    },
+    {
+      "name": "datagrid-input",
+      "title": "Datagrid Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/datagrid-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/datagrid-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/datagrid-input",
+        "bun": "bunx shadcn@latest add @shadmin/datagrid-input"
+      }
+    },
+    {
+      "name": "date-input",
+      "title": "Date Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/date-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/date-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/date-input",
+        "bun": "bunx shadcn@latest add @shadmin/date-input"
+      }
+    },
+    {
+      "name": "date-time-input",
+      "title": "Date Time Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/date-time-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/date-time-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/date-time-input",
+        "bun": "bunx shadcn@latest add @shadmin/date-time-input"
+      }
+    },
+    {
+      "name": "file-input",
+      "title": "File Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/file-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/file-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/file-input",
+        "bun": "bunx shadcn@latest add @shadmin/file-input"
+      }
+    },
+    {
+      "name": "image-input",
+      "title": "Image Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/image-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/image-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/image-input",
+        "bun": "bunx shadcn@latest add @shadmin/image-input"
+      }
+    },
+    {
+      "name": "loading-input",
+      "title": "Loading Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/loading-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/loading-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/loading-input",
+        "bun": "bunx shadcn@latest add @shadmin/loading-input"
+      }
+    },
+    {
+      "name": "nullable-boolean-input",
+      "title": "Nullable Boolean Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/nullable-boolean-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/nullable-boolean-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/nullable-boolean-input",
+        "bun": "bunx shadcn@latest add @shadmin/nullable-boolean-input"
+      }
+    },
+    {
+      "name": "number-input",
+      "title": "Number Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/number-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/number-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/number-input",
+        "bun": "bunx shadcn@latest add @shadmin/number-input"
+      }
+    },
+    {
+      "name": "password-input",
+      "title": "Password Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/password-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/password-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/password-input",
+        "bun": "bunx shadcn@latest add @shadmin/password-input"
+      }
+    },
+    {
+      "name": "radio-button-group-input",
+      "title": "Radio Button Group Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/radio-button-group-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/radio-button-group-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/radio-button-group-input",
+        "bun": "bunx shadcn@latest add @shadmin/radio-button-group-input"
+      }
+    },
+    {
+      "name": "reference-array-input",
+      "title": "Reference Array Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-array-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-array-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-array-input",
+        "bun": "bunx shadcn@latest add @shadmin/reference-array-input"
+      }
+    },
+    {
+      "name": "reference-input",
+      "title": "Reference Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-input",
+        "bun": "bunx shadcn@latest add @shadmin/reference-input"
+      }
+    },
+    {
+      "name": "resettable-text-input",
+      "title": "Resettable Text Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/resettable-text-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/resettable-text-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/resettable-text-input",
+        "bun": "bunx shadcn@latest add @shadmin/resettable-text-input"
+      }
+    },
+    {
+      "name": "search-input",
+      "title": "Search Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/search-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/search-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/search-input",
+        "bun": "bunx shadcn@latest add @shadmin/search-input"
+      }
+    },
+    {
+      "name": "select-array-input",
+      "title": "Select Array Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/select-array-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/select-array-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/select-array-input",
+        "bun": "bunx shadcn@latest add @shadmin/select-array-input"
+      }
+    },
+    {
+      "name": "select-input",
+      "title": "Select Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/select-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/select-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/select-input",
+        "bun": "bunx shadcn@latest add @shadmin/select-input"
+      }
+    },
+    {
+      "name": "text-array-input",
+      "title": "Text Array Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/text-array-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/text-array-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/text-array-input",
+        "bun": "bunx shadcn@latest add @shadmin/text-array-input"
+      }
+    },
+    {
+      "name": "text-input",
+      "title": "Text Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/text-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/text-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/text-input",
+        "bun": "bunx shadcn@latest add @shadmin/text-input"
+      }
+    },
+    {
+      "name": "time-input",
+      "title": "Time Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/time-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/time-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/time-input",
+        "bun": "bunx shadcn@latest add @shadmin/time-input"
+      }
+    },
+    {
+      "name": "configurable",
+      "title": "Configurable",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/configurable",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/configurable",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/configurable",
+        "bun": "bunx shadcn@latest add @shadmin/configurable"
+      }
+    },
+    {
+      "name": "field-toggle",
+      "title": "Field Toggle",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/field-toggle",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/field-toggle",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/field-toggle",
+        "bun": "bunx shadcn@latest add @shadmin/field-toggle"
+      }
+    },
+    {
+      "name": "fields-selector",
+      "title": "Fields Selector",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/fields-selector",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/fields-selector",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/fields-selector",
+        "bun": "bunx shadcn@latest add @shadmin/fields-selector"
+      }
+    },
+    {
+      "name": "inspector-root",
+      "title": "Inspector Root",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/inspector-root",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/inspector-root",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/inspector-root",
+        "bun": "bunx shadcn@latest add @shadmin/inspector-root"
+      }
+    },
+    {
+      "name": "inspector",
+      "title": "Inspector",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/inspector",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/inspector",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/inspector",
+        "bun": "bunx shadcn@latest add @shadmin/inspector"
+      }
+    },
+    {
+      "name": "app-bar",
+      "title": "App Bar",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/app-bar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/app-bar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/app-bar",
+        "bun": "bunx shadcn@latest add @shadmin/app-bar"
+      }
+    },
+    {
+      "name": "app-sidebar",
+      "title": "App Sidebar",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/app-sidebar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/app-sidebar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/app-sidebar",
+        "bun": "bunx shadcn@latest add @shadmin/app-sidebar"
+      }
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/breadcrumb",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/breadcrumb",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/breadcrumb",
+        "bun": "bunx shadcn@latest add @shadmin/breadcrumb"
+      }
+    },
+    {
+      "name": "dashboard-menu-item",
+      "title": "Dashboard Menu Item",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/dashboard-menu-item",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/dashboard-menu-item",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/dashboard-menu-item",
+        "bun": "bunx shadcn@latest add @shadmin/dashboard-menu-item"
+      }
+    },
+    {
+      "name": "hide-on-scroll",
+      "title": "Hide On Scroll",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/hide-on-scroll",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/hide-on-scroll",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/hide-on-scroll",
+        "bun": "bunx shadcn@latest add @shadmin/hide-on-scroll"
+      }
+    },
+    {
+      "name": "layout",
+      "title": "Layout",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/layout",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/layout",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/layout",
+        "bun": "bunx shadcn@latest add @shadmin/layout"
+      }
+    },
+    {
+      "name": "menu-item-link",
+      "title": "Menu Item Link",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/menu-item-link",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/menu-item-link",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/menu-item-link",
+        "bun": "bunx shadcn@latest add @shadmin/menu-item-link"
+      }
+    },
+    {
+      "name": "menu",
+      "title": "Menu",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/menu",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/menu",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/menu",
+        "bun": "bunx shadcn@latest add @shadmin/menu"
+      }
+    },
+    {
+      "name": "resource-menu-item-group",
+      "title": "Resource Menu Item Group",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/resource-menu-item-group",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/resource-menu-item-group",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/resource-menu-item-group",
+        "bun": "bunx shadcn@latest add @shadmin/resource-menu-item-group"
+      }
+    },
+    {
+      "name": "resource-menu-item",
+      "title": "Resource Menu Item",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/resource-menu-item",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/resource-menu-item",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/resource-menu-item",
+        "bun": "bunx shadcn@latest add @shadmin/resource-menu-item"
+      }
+    },
+    {
+      "name": "saved-queries",
+      "title": "Saved Queries",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/saved-queries",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/saved-queries",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/saved-queries",
+        "bun": "bunx shadcn@latest add @shadmin/saved-queries"
+      }
+    },
+    {
+      "name": "theme-mode-toggle",
+      "title": "Theme Mode Toggle",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-mode-toggle",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-mode-toggle",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-mode-toggle",
+        "bun": "bunx shadcn@latest add @shadmin/theme-mode-toggle"
+      }
+    },
+    {
+      "name": "theme-provider",
+      "title": "Theme Provider",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-provider",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-provider",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-provider",
+        "bun": "bunx shadcn@latest add @shadmin/theme-provider"
+      }
+    },
+    {
+      "name": "title-portal",
+      "title": "Title Portal",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/title-portal",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/title-portal",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/title-portal",
+        "bun": "bunx shadcn@latest add @shadmin/title-portal"
+      }
+    },
+    {
+      "name": "title",
+      "title": "Title",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/title",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/title",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/title",
+        "bun": "bunx shadcn@latest add @shadmin/title"
+      }
+    },
+    {
+      "name": "top-toolbar",
+      "title": "Top Toolbar",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/top-toolbar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/top-toolbar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/top-toolbar",
+        "bun": "bunx shadcn@latest add @shadmin/top-toolbar"
+      }
+    },
+    {
+      "name": "user-menu",
+      "title": "User Menu",
+      "description": null,
+      "type": "registry:component",
+      "category": "layout",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/user-menu",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/user-menu",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/user-menu",
+        "bun": "bunx shadcn@latest add @shadmin/user-menu"
+      }
+    },
+    {
+      "name": "bulk-actions-toolbar",
+      "title": "Bulk Actions Toolbar",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/bulk-actions-toolbar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/bulk-actions-toolbar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/bulk-actions-toolbar",
+        "bun": "bunx shadcn@latest add @shadmin/bulk-actions-toolbar"
+      }
+    },
+    {
+      "name": "count",
+      "title": "Count",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/count",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/count",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/count",
+        "bun": "bunx shadcn@latest add @shadmin/count"
+      }
+    },
+    {
+      "name": "data-table",
+      "title": "Data Table",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/data-table",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/data-table",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/data-table",
+        "bun": "bunx shadcn@latest add @shadmin/data-table"
+      }
+    },
+    {
+      "name": "filter-form",
+      "title": "Filter Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/filter-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/filter-form",
+        "bun": "bunx shadcn@latest add @shadmin/filter-form"
+      }
+    },
+    {
+      "name": "filter-list-item",
+      "title": "Filter List Item",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/filter-list-item",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-list-item",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/filter-list-item",
+        "bun": "bunx shadcn@latest add @shadmin/filter-list-item"
+      }
+    },
+    {
+      "name": "filter-list-section",
+      "title": "Filter List Section",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/filter-list-section",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-list-section",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/filter-list-section",
+        "bun": "bunx shadcn@latest add @shadmin/filter-list-section"
+      }
+    },
+    {
+      "name": "filter-list",
+      "title": "Filter List",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/filter-list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/filter-list",
+        "bun": "bunx shadcn@latest add @shadmin/filter-list"
+      }
+    },
+    {
+      "name": "filter-live-search",
+      "title": "Filter Live Search",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/filter-live-search",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-live-search",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/filter-live-search",
+        "bun": "bunx shadcn@latest add @shadmin/filter-live-search"
+      }
+    },
+    {
+      "name": "infinite-list",
+      "title": "Infinite List",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/infinite-list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/infinite-list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/infinite-list",
+        "bun": "bunx shadcn@latest add @shadmin/infinite-list"
+      }
+    },
+    {
+      "name": "infinite-pagination",
+      "title": "Infinite Pagination",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/infinite-pagination",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/infinite-pagination",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/infinite-pagination",
+        "bun": "bunx shadcn@latest add @shadmin/infinite-pagination"
+      }
+    },
+    {
+      "name": "list-actions",
+      "title": "List Actions",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list-actions",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list-actions",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list-actions",
+        "bun": "bunx shadcn@latest add @shadmin/list-actions"
+      }
+    },
+    {
+      "name": "list-no-results",
+      "title": "List No Results",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list-no-results",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list-no-results",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list-no-results",
+        "bun": "bunx shadcn@latest add @shadmin/list-no-results"
+      }
+    },
+    {
+      "name": "list-pagination",
+      "title": "List Pagination",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list-pagination",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list-pagination",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list-pagination",
+        "bun": "bunx shadcn@latest add @shadmin/list-pagination"
+      }
+    },
+    {
+      "name": "list-toolbar",
+      "title": "List Toolbar",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list-toolbar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list-toolbar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list-toolbar",
+        "bun": "bunx shadcn@latest add @shadmin/list-toolbar"
+      }
+    },
+    {
+      "name": "list",
+      "title": "List",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list",
+        "bun": "bunx shadcn@latest add @shadmin/list"
+      }
+    },
+    {
+      "name": "prev-next-buttons",
+      "title": "Prev Next Buttons",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/prev-next-buttons",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/prev-next-buttons",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/prev-next-buttons",
+        "bun": "bunx shadcn@latest add @shadmin/prev-next-buttons"
+      }
+    },
+    {
+      "name": "reference-many-count",
+      "title": "Reference Many Count",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-many-count",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-many-count",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-many-count",
+        "bun": "bunx shadcn@latest add @shadmin/reference-many-count"
+      }
+    },
+    {
+      "name": "simple-list-item",
+      "title": "Simple List Item",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simple-list-item",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simple-list-item",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simple-list-item",
+        "bun": "bunx shadcn@latest add @shadmin/simple-list-item"
+      }
+    },
+    {
+      "name": "simple-list-loading",
+      "title": "Simple List Loading",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simple-list-loading",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simple-list-loading",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simple-list-loading",
+        "bun": "bunx shadcn@latest add @shadmin/simple-list-loading"
+      }
+    },
+    {
+      "name": "simple-list",
+      "title": "Simple List",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simple-list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simple-list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simple-list",
+        "bun": "bunx shadcn@latest add @shadmin/simple-list"
+      }
+    },
+    {
+      "name": "single-field-list",
+      "title": "Single Field List",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/single-field-list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/single-field-list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/single-field-list",
+        "bun": "bunx shadcn@latest add @shadmin/single-field-list"
+      }
+    },
+    {
+      "name": "resource",
+      "title": "Resource",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/resource",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/resource",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/resource",
+        "bun": "bunx shadcn@latest add @shadmin/resource"
+      }
+    },
+    {
+      "name": "card-content-inner",
+      "title": "Card Content Inner",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/card-content-inner",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/card-content-inner",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/card-content-inner",
+        "bun": "bunx shadcn@latest add @shadmin/card-content-inner"
+      }
+    },
+    {
+      "name": "create",
+      "title": "Create",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/create",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/create",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/create",
+        "bun": "bunx shadcn@latest add @shadmin/create"
+      }
+    },
+    {
+      "name": "edit",
+      "title": "Edit",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/edit",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/edit",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/edit",
+        "bun": "bunx shadcn@latest add @shadmin/edit"
+      }
+    },
+    {
+      "name": "labeled",
+      "title": "Labeled",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/labeled",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/labeled",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/labeled",
+        "bun": "bunx shadcn@latest add @shadmin/labeled"
+      }
+    },
+    {
+      "name": "show",
+      "title": "Show",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/show",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/show",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/show",
+        "bun": "bunx shadcn@latest add @shadmin/show"
+      }
+    },
+    {
+      "name": "simple-show-layout",
+      "title": "Simple Show Layout",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simple-show-layout",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simple-show-layout",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simple-show-layout",
+        "bun": "bunx shadcn@latest add @shadmin/simple-show-layout"
+      }
+    },
+    {
+      "name": "tabbed-show-layout",
+      "title": "Tabbed Show Layout",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/tabbed-show-layout",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/tabbed-show-layout",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/tabbed-show-layout",
+        "bun": "bunx shadcn@latest add @shadmin/tabbed-show-layout"
+      }
+    },
+    {
+      "name": "translatable-fields-tab-content",
+      "title": "Translatable Fields Tab Content",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-fields-tab-content",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-fields-tab-content",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-fields-tab-content",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-fields-tab-content"
+      }
+    },
+    {
+      "name": "translatable-fields-tab",
+      "title": "Translatable Fields Tab",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-fields-tab",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-fields-tab",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-fields-tab",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-fields-tab"
+      }
+    },
+    {
+      "name": "translatable-fields-tabs",
+      "title": "Translatable Fields Tabs",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-fields-tabs",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-fields-tabs",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-fields-tabs",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-fields-tabs"
+      }
+    },
+    {
+      "name": "translatable-fields",
+      "title": "Translatable Fields",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/translatable-fields",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-fields",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-fields",
+        "bun": "bunx shadcn@latest add @shadmin/translatable-fields"
+      }
+    },
+    {
+      "name": "primitives",
+      "title": "Primitives",
+      "description": null,
+      "type": "registry:ui",
+      "category": "ui",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/primitives",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/primitives",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/primitives",
+        "bun": "bunx shadcn@latest add @shadmin/primitives"
+      }
+    },
+    {
+      "name": "slot",
+      "title": "Slot",
+      "description": null,
+      "type": "registry:ui",
+      "category": "ui",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/slot",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/slot",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/slot",
+        "bun": "bunx shadcn@latest add @shadmin/slot"
+      }
+    },
+    {
+      "name": "use-theme",
+      "title": "Use Theme",
+      "description": null,
+      "type": "registry:hook",
+      "category": "hooks",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-theme",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-theme",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-theme",
+        "bun": "bunx shadcn@latest add @shadmin/use-theme"
+      }
+    },
+    {
+      "name": "lib-any",
+      "title": "Lib Any",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-any",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-any",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-any",
+        "bun": "bunx shadcn@latest add @shadmin/lib-any"
+      }
+    },
+    {
+      "name": "lib-are-ids-equal",
+      "title": "Lib Are Ids Equal",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-are-ids-equal",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-are-ids-equal",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-are-ids-equal",
+        "bun": "bunx shadcn@latest add @shadmin/lib-are-ids-equal"
+      }
+    },
+    {
+      "name": "lib-field-types",
+      "title": "Lib Field Types",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-field-types",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-field-types",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-field-types",
+        "bun": "bunx shadcn@latest add @shadmin/lib-field-types"
+      }
+    },
+    {
+      "name": "lib-i18n-provider",
+      "title": "Lib I18n Provider",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-i18n-provider",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-i18n-provider",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-i18n-provider",
+        "bun": "bunx shadcn@latest add @shadmin/lib-i18n-provider"
+      }
+    },
+    {
+      "name": "lib-notify-auth-error",
+      "title": "Lib Notify Auth Error",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-notify-auth-error",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-notify-auth-error",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-notify-auth-error",
+        "bun": "bunx shadcn@latest add @shadmin/lib-notify-auth-error"
+      }
+    },
+    {
+      "name": "lib-resolve-label",
+      "title": "Lib Resolve Label",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-resolve-label",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-resolve-label",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-resolve-label",
+        "bun": "bunx shadcn@latest add @shadmin/lib-resolve-label"
+      }
+    },
+    {
+      "name": "lib-sanitize-input-rest-props",
+      "title": "Lib Sanitize Input Rest Props",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-sanitize-input-rest-props",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-sanitize-input-rest-props",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-sanitize-input-rest-props",
+        "bun": "bunx shadcn@latest add @shadmin/lib-sanitize-input-rest-props"
+      }
+    },
+    {
+      "name": "lib-theme-context",
+      "title": "Lib Theme Context",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-theme-context",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-theme-context",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-theme-context",
+        "bun": "bunx shadcn@latest add @shadmin/lib-theme-context"
+      }
+    },
+    {
+      "name": "lib-title-portal-id",
+      "title": "Lib Title Portal Id",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-title-portal-id",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-title-portal-id",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-title-portal-id",
+        "bun": "bunx shadcn@latest add @shadmin/lib-title-portal-id"
+      }
+    },
+    {
+      "name": "lib-unknown-types",
+      "title": "Lib Unknown Types",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-unknown-types",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-unknown-types",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-unknown-types",
+        "bun": "bunx shadcn@latest add @shadmin/lib-unknown-types"
+      }
+    },
+    {
+      "name": "lib-utils",
+      "title": "Lib Utils",
+      "description": null,
+      "type": "registry:lib",
+      "category": "library",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lib-utils",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lib-utils",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lib-utils",
+        "bun": "bunx shadcn@latest add @shadmin/lib-utils"
+      }
+    },
+    {
+      "name": "rich-text-input",
+      "title": "RichTextInput",
+      "description": "Optional rich text input for Shadmin. Includes the full Minimal TipTap block.",
+      "type": "registry:block",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/rich-text-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/rich-text-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/rich-text-input",
+        "bun": "bunx shadcn@latest add @shadmin/rich-text-input"
+      }
+    },
+    {
+      "name": "block-editor",
+      "title": "BlockEditor",
+      "description": "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadmin, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
+      "type": "registry:block",
+      "category": "editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-editor",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-editor",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-editor",
+        "bun": "bunx shadcn@latest add @shadmin/block-editor"
+      }
+    },
+    {
+      "name": "mdx-editor",
+      "title": "MdxEditor",
+      "description": "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadmin, powered by MDXEditor.",
+      "type": "registry:block",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/mdx-editor",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/mdx-editor",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/mdx-editor",
+        "bun": "bunx shadcn@latest add @shadmin/mdx-editor"
+      }
+    },
+    {
+      "name": "leaflet-admin",
+      "title": "LeafletAdmin",
+      "description": "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadmin.",
+      "type": "registry:block",
+      "category": "maps",
+      "docs": "Import Leaflet's stylesheet once in your app entry: `import \"leaflet/dist/leaflet.css\";`. Map components are client-only — disable SSR on routes that use them. Drawing/editing uses Geoman via `react-leaflet-geoman-v2`. Full docs: https://shadmin.turtlesocks.dev/docs/leaflet-admin",
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/leaflet-admin",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/leaflet-admin",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/leaflet-admin",
+        "bun": "bunx shadcn@latest add @shadmin/leaflet-admin"
+      }
+    },
+    {
+      "name": "csv-import",
+      "title": "CsvImport",
+      "description": "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadmin. Validates rows against a zod schema and batches inserts via the data provider.",
+      "type": "registry:block",
+      "category": "data-import",
+      "docs": "Place `<CsvImport>` in a List's `actions` and pass a zod `schema`. Rows validate against the schema and batch through `dataProvider.createMany` (with a `create` fallback). Full docs: https://shadmin.turtlesocks.dev/docs/csv-import",
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/csv-import",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/csv-import",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/csv-import",
+        "bun": "bunx shadcn@latest add @shadmin/csv-import"
+      }
+    },
+    {
+      "name": "extras",
+      "title": "Shadmin Extras",
+      "description": "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
+      "type": "registry:block",
+      "category": "misc",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/extras",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/extras",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/extras",
+        "bun": "bunx shadcn@latest add @shadmin/extras"
+      }
+    },
+    {
+      "name": "monaco",
+      "title": "Monaco JSON Field & Input",
+      "description": "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadmin.",
+      "type": "registry:block",
+      "category": "inputs",
+      "docs": "Monaco loads its editor workers at runtime — works out of the box with Vite via `@monaco-editor/react`; other bundlers may need Monaco worker config. Prefer the `*Lazy` variants to code-split the editor out of your main bundle. Full docs: https://shadmin.turtlesocks.dev/docs/monaco-json-input",
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/monaco",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/monaco",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/monaco",
+        "bun": "bunx shadcn@latest add @shadmin/monaco"
+      }
+    },
+    {
+      "name": "supabase",
+      "title": "Supabase Admin",
+      "description": "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
+      "type": "registry:block",
+      "category": "authentication",
+      "docs": "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase/getting-started",
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase",
+        "bun": "bunx shadcn@latest add @shadmin/supabase"
+      }
+    },
+    {
+      "name": "realtime",
+      "title": "Shadmin Realtime",
+      "description": "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live List/Edit/Show views, menu badges, record locks.",
+      "type": "registry:block",
+      "category": "data-providers",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/realtime",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/realtime",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/realtime",
+        "bun": "bunx shadcn@latest add @shadmin/realtime"
+      }
+    },
+    {
+      "name": "example-admin",
+      "title": "Example Admin built with Shadmin",
+      "description": null,
+      "type": "registry:block",
+      "category": "example",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/example-admin",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/example-admin",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/example-admin",
+        "bun": "bunx shadcn@latest add @shadmin/example-admin"
+      }
+    },
+    {
+      "name": "style-glass",
+      "title": "Liquid Glass",
+      "description": "Opt-in liquid-glass material for Shadmin: the layered, fallback-first 6-layer model (L1 blur → L2 specular/depth → L3 SVG refraction + iOS-accurate lens variant), with Tailwind v4 tokens/variants, a data-attribute skin for the highlight surfaces, pointer-tracking specular, and thin React helpers.",
+      "type": "registry:style",
+      "category": "style",
+      "docs": "Opt-in liquid-glass material (the 6-layer model from the liquid-glass-css design system). Import the stylesheet once in your app entry (`import \"@/styles/glass.css\"`; it also exposes Tailwind tokens — `backdrop-blur-glass`, `rounded-glass` — and `glass-light:` / `glass-tinted:` variants). Then either set `data-glass` on `<html>` to skin cards/dialogs/popovers/menus/sheets/the sidebar (rooted on `<html>` so portaled overlays are covered), or pick a level per element: `glass` (L1) for chips, `glass glass--l2` (specular + depth — the default for visible panels), `glass glass--l2 glass--l3` for a hero (SVG refraction; mount one `<GlassFilter />` near the root; degrades to L2 off-Chromium). In React, `glassClasses({ level })` / `<GlassPanel level={2}>` compose the classes, `useGlassPointer` drives `glass--interactive` specular, and `useGlassLens` + `<GlassLensFilter>` give the size-specific iOS-accurate `glass--lens` edge refraction. Full docs: https://shadmin.turtlesocks.dev/docs/glass",
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/style-glass",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/style-glass",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/style-glass",
+        "bun": "bunx shadcn@latest add @shadmin/style-glass"
+      }
+    },
+    {
+      "name": "theme-aurora",
+      "title": "Aurora Theme",
+      "description": "Shadmin's signature aurora palette.",
+      "type": "registry:theme",
+      "category": "theme",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-aurora",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-aurora",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-aurora",
+        "bun": "bunx shadcn@latest add @shadmin/theme-aurora"
+      }
+    },
+    {
+      "name": "theme-bw",
+      "title": "Black & White Theme",
+      "description": "High-contrast monochrome palette for Shadmin.",
+      "type": "registry:theme",
+      "category": "theme",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-bw",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-bw",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-bw",
+        "bun": "bunx shadcn@latest add @shadmin/theme-bw"
+      }
+    },
+    {
+      "name": "theme-house",
+      "title": "House Theme",
+      "description": "Warm 'house' palette for Shadmin.",
+      "type": "registry:theme",
+      "category": "theme",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-house",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-house",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-house",
+        "bun": "bunx shadcn@latest add @shadmin/theme-house"
+      }
+    },
+    {
+      "name": "theme-nano",
+      "title": "Nano Theme",
+      "description": "Compact, low-radius 'nano' palette for Shadmin.",
+      "type": "registry:theme",
+      "category": "theme",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-nano",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-nano",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-nano",
+        "bun": "bunx shadcn@latest add @shadmin/theme-nano"
+      }
+    },
+    {
+      "name": "theme-radiant",
+      "title": "Radiant Theme",
+      "description": "Vivid 'radiant' palette for Shadmin.",
+      "type": "registry:theme",
+      "category": "theme",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-radiant",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-radiant",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-radiant",
+        "bun": "bunx shadcn@latest add @shadmin/theme-radiant"
+      }
+    },
+    {
+      "name": "style-shadmin",
+      "title": "Shadmin",
+      "description": "Shadmin's base configuration: the vanilla shadcn New York style with the neutral base color, Lucide icons, and CSS-variable theming. Install first to set sensible components.json defaults, then add Shadmin components.",
+      "type": "registry:base",
+      "category": "misc",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/style-shadmin",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/style-shadmin",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/style-shadmin",
+        "bun": "bunx shadcn@latest add @shadmin/style-shadmin"
+      }
+    }
+  ],
+  "nav": [
+    {
+      "category": "dashboard",
+      "label": "Dashboard",
+      "items": [
+        {
+          "name": "admin",
+          "title": "Shadmin Main Block"
+        }
+      ]
+    },
+    {
+      "category": "layout",
+      "label": "Layout",
+      "items": [
+        {
+          "name": "app-bar",
+          "title": "App Bar"
+        },
+        {
+          "name": "app-sidebar",
+          "title": "App Sidebar"
+        },
+        {
+          "name": "breadcrumb",
+          "title": "Breadcrumb"
+        },
+        {
+          "name": "layout",
+          "title": "Layout"
+        },
+        {
+          "name": "menu",
+          "title": "Menu"
+        },
+        {
+          "name": "theme-mode-toggle",
+          "title": "Theme Mode Toggle"
+        },
+        {
+          "name": "theme-provider",
+          "title": "Theme Provider"
+        },
+        {
+          "name": "top-toolbar",
+          "title": "Top Toolbar"
+        },
+        {
+          "name": "user-menu",
+          "title": "User Menu"
+        }
+      ]
+    },
+    {
+      "category": "fields",
+      "label": "Fields",
+      "items": [
+        {
+          "name": "array-field",
+          "title": "Array Field"
+        },
+        {
+          "name": "badge-field",
+          "title": "Badge Field"
+        },
+        {
+          "name": "boolean-field",
+          "title": "Boolean Field"
+        },
+        {
+          "name": "chip-field",
+          "title": "Chip Field"
+        },
+        {
+          "name": "date-field",
+          "title": "Date Field"
+        },
+        {
+          "name": "email-field",
+          "title": "Email Field"
+        },
+        {
+          "name": "file-field",
+          "title": "File Field"
+        },
+        {
+          "name": "function-field",
+          "title": "Function Field"
+        },
+        {
+          "name": "image-field",
+          "title": "Image Field"
+        },
+        {
+          "name": "number-field",
+          "title": "Number Field"
+        },
+        {
+          "name": "record-field",
+          "title": "Record Field"
+        },
+        {
+          "name": "reference-array-field",
+          "title": "Reference Array Field"
+        },
+        {
+          "name": "reference-field",
+          "title": "Reference Field"
+        },
+        {
+          "name": "reference-many-field",
+          "title": "Reference Many Field"
+        },
+        {
+          "name": "reference-one-field",
+          "title": "Reference One Field"
+        },
+        {
+          "name": "rich-text-field",
+          "title": "Rich Text Field"
+        },
+        {
+          "name": "select-field",
+          "title": "Select Field"
+        },
+        {
+          "name": "text-array-field",
+          "title": "Text Array Field"
+        },
+        {
+          "name": "text-field",
+          "title": "Text Field"
+        },
+        {
+          "name": "url-field",
+          "title": "Url Field"
+        },
+        {
+          "name": "wrapper-field",
+          "title": "Wrapper Field"
+        }
+      ]
+    },
+    {
+      "category": "inputs",
+      "label": "Inputs",
+      "items": [
+        {
+          "name": "array-input",
+          "title": "Array Input"
+        },
+        {
+          "name": "autocomplete-array-input",
+          "title": "Autocomplete Array Input"
+        },
+        {
+          "name": "autocomplete-input",
+          "title": "Autocomplete Input"
+        },
+        {
+          "name": "boolean-input",
+          "title": "Boolean Input"
+        },
+        {
+          "name": "checkbox-group-input",
+          "title": "Checkbox Group Input"
+        },
+        {
+          "name": "datagrid-input",
+          "title": "Datagrid Input"
+        },
+        {
+          "name": "date-input",
+          "title": "Date Input"
+        },
+        {
+          "name": "date-time-input",
+          "title": "Date Time Input"
+        },
+        {
+          "name": "file-input",
+          "title": "File Input"
+        },
+        {
+          "name": "image-input",
+          "title": "Image Input"
+        },
+        {
+          "name": "loading-input",
+          "title": "Loading Input"
+        },
+        {
+          "name": "mdx-editor",
+          "title": "MdxEditor"
+        },
+        {
+          "name": "monaco",
+          "title": "Monaco JSON Field & Input"
+        },
+        {
+          "name": "nullable-boolean-input",
+          "title": "Nullable Boolean Input"
+        },
+        {
+          "name": "number-input",
+          "title": "Number Input"
+        },
+        {
+          "name": "password-input",
+          "title": "Password Input"
+        },
+        {
+          "name": "radio-button-group-input",
+          "title": "Radio Button Group Input"
+        },
+        {
+          "name": "reference-array-input",
+          "title": "Reference Array Input"
+        },
+        {
+          "name": "reference-input",
+          "title": "Reference Input"
+        },
+        {
+          "name": "resettable-text-input",
+          "title": "Resettable Text Input"
+        },
+        {
+          "name": "rich-text-input",
+          "title": "RichTextInput"
+        },
+        {
+          "name": "search-input",
+          "title": "Search Input"
+        },
+        {
+          "name": "select-array-input",
+          "title": "Select Array Input"
+        },
+        {
+          "name": "select-input",
+          "title": "Select Input"
+        },
+        {
+          "name": "text-array-input",
+          "title": "Text Array Input"
+        },
+        {
+          "name": "text-input",
+          "title": "Text Input"
+        },
+        {
+          "name": "time-input",
+          "title": "Time Input"
+        }
+      ]
+    },
+    {
+      "category": "buttons",
+      "label": "Buttons",
+      "items": [
+        {
+          "name": "bulk-delete-button",
+          "title": "Bulk Delete Button"
+        },
+        {
+          "name": "bulk-export-button",
+          "title": "Bulk Export Button"
+        },
+        {
+          "name": "bulk-update-button",
+          "title": "Bulk Update Button"
+        },
+        {
+          "name": "cancel-button",
+          "title": "Cancel Button"
+        },
+        {
+          "name": "clone-button",
+          "title": "Clone Button"
+        },
+        {
+          "name": "columns-button",
+          "title": "Columns Button"
+        },
+        {
+          "name": "create-button",
+          "title": "Create Button"
+        },
+        {
+          "name": "delete-button",
+          "title": "Delete Button"
+        },
+        {
+          "name": "edit-button",
+          "title": "Edit Button"
+        },
+        {
+          "name": "export-button",
+          "title": "Export Button"
+        },
+        {
+          "name": "filter-button",
+          "title": "Filter Button"
+        },
+        {
+          "name": "inspector-button",
+          "title": "Inspector Button"
+        },
+        {
+          "name": "list-button",
+          "title": "List Button"
+        },
+        {
+          "name": "locales-menu-button",
+          "title": "Locales Menu Button"
+        },
+        {
+          "name": "refresh-button",
+          "title": "Refresh Button"
+        },
+        {
+          "name": "refresh-icon-button",
+          "title": "Refresh Icon Button"
+        },
+        {
+          "name": "save-button",
+          "title": "Save Button"
+        },
+        {
+          "name": "select-all-button",
+          "title": "Select All Button"
+        },
+        {
+          "name": "show-button",
+          "title": "Show Button"
+        },
+        {
+          "name": "sidebar-toggle-button",
+          "title": "Sidebar Toggle Button"
+        },
+        {
+          "name": "skip-navigation-button",
+          "title": "Skip Navigation Button"
+        },
+        {
+          "name": "sort-button",
+          "title": "Sort Button"
+        },
+        {
+          "name": "toggle-filter-button",
+          "title": "Toggle Filter Button"
+        },
+        {
+          "name": "update-button",
+          "title": "Update Button"
+        }
+      ]
+    },
+    {
+      "category": "data-providers",
+      "label": "Data Providers",
+      "items": [
+        {
+          "name": "realtime",
+          "title": "Shadmin Realtime"
+        }
+      ]
+    },
+    {
+      "category": "authentication",
+      "label": "Authentication",
+      "items": [
+        {
+          "name": "access-denied",
+          "title": "Access Denied"
+        },
+        {
+          "name": "auth-callback",
+          "title": "Auth Callback"
+        },
+        {
+          "name": "auth-error",
+          "title": "Auth Error"
+        },
+        {
+          "name": "auth-layout",
+          "title": "Auth Layout"
+        },
+        {
+          "name": "authentication-error",
+          "title": "Authentication Error"
+        },
+        {
+          "name": "login-form",
+          "title": "Login Form"
+        },
+        {
+          "name": "login-page",
+          "title": "Login Page"
+        },
+        {
+          "name": "login-with-email",
+          "title": "Login With Email"
+        },
+        {
+          "name": "supabase",
+          "title": "Supabase Admin"
+        }
+      ]
+    },
+    {
+      "category": "maps",
+      "label": "Maps",
+      "items": [
+        {
+          "name": "leaflet-admin",
+          "title": "LeafletAdmin"
+        }
+      ]
+    },
+    {
+      "category": "editor",
+      "label": "Editor",
+      "items": [
+        {
+          "name": "block-editor",
+          "title": "BlockEditor"
+        }
+      ]
+    },
+    {
+      "category": "data-import",
+      "label": "Data Import",
+      "items": [
+        {
+          "name": "csv-import",
+          "title": "CsvImport"
+        }
+      ]
+    },
+    {
+      "category": "theme",
+      "label": "Theme",
+      "items": [
+        {
+          "name": "theme-aurora",
+          "title": "Aurora Theme"
+        },
+        {
+          "name": "theme-bw",
+          "title": "Black & White Theme"
+        },
+        {
+          "name": "theme-house",
+          "title": "House Theme"
+        },
+        {
+          "name": "theme-nano",
+          "title": "Nano Theme"
+        },
+        {
+          "name": "theme-radiant",
+          "title": "Radiant Theme"
+        }
+      ]
+    },
+    {
+      "category": "style",
+      "label": "Style",
+      "items": [
+        {
+          "name": "style-glass",
+          "title": "Liquid Glass"
+        }
+      ]
+    },
+    {
+      "category": "ui",
+      "label": "UI",
+      "items": [
+        {
+          "name": "primitives",
+          "title": "Primitives"
+        },
+        {
+          "name": "slot",
+          "title": "Slot"
+        }
+      ]
+    },
+    {
+      "category": "hooks",
+      "label": "Hooks",
+      "items": [
+        {
+          "name": "use-theme",
+          "title": "Use Theme"
+        }
+      ]
+    },
+    {
+      "category": "library",
+      "label": "Library",
+      "items": [
+        {
+          "name": "lib-any",
+          "title": "Lib Any"
+        },
+        {
+          "name": "lib-are-ids-equal",
+          "title": "Lib Are Ids Equal"
+        },
+        {
+          "name": "lib-field-types",
+          "title": "Lib Field Types"
+        },
+        {
+          "name": "lib-i18n-provider",
+          "title": "Lib I18n Provider"
+        },
+        {
+          "name": "lib-notify-auth-error",
+          "title": "Lib Notify Auth Error"
+        },
+        {
+          "name": "lib-resolve-label",
+          "title": "Lib Resolve Label"
+        },
+        {
+          "name": "lib-sanitize-input-rest-props",
+          "title": "Lib Sanitize Input Rest Props"
+        },
+        {
+          "name": "lib-theme-context",
+          "title": "Lib Theme Context"
+        },
+        {
+          "name": "lib-title-portal-id",
+          "title": "Lib Title Portal Id"
+        },
+        {
+          "name": "lib-unknown-types",
+          "title": "Lib Unknown Types"
+        },
+        {
+          "name": "lib-utils",
+          "title": "Lib Utils"
+        }
+      ]
+    },
+    {
+      "category": "components",
+      "label": "Components",
+      "items": [
+        {
+          "name": "application-updated-notification",
+          "title": "Application Updated Notification"
+        },
+        {
+          "name": "bulk-actions-toolbar",
+          "title": "Bulk Actions Toolbar"
+        },
+        {
+          "name": "card-content-inner",
+          "title": "Card Content Inner"
+        },
+        {
+          "name": "check-for-application-update",
+          "title": "Check For Application Update"
+        },
+        {
+          "name": "configurable",
+          "title": "Configurable"
+        },
+        {
+          "name": "confirm",
+          "title": "Confirm"
+        },
+        {
+          "name": "count",
+          "title": "Count"
+        },
+        {
+          "name": "create",
+          "title": "Create"
+        },
+        {
+          "name": "dashboard-menu-item",
+          "title": "Dashboard Menu Item"
+        },
+        {
+          "name": "data-table",
+          "title": "Data Table"
+        },
+        {
+          "name": "device-test-wrapper",
+          "title": "Device Test Wrapper"
+        },
+        {
+          "name": "edit",
+          "title": "Edit"
+        },
+        {
+          "name": "edit-guesser",
+          "title": "Edit Guesser"
+        },
+        {
+          "name": "empty",
+          "title": "Empty"
+        },
+        {
+          "name": "error",
+          "title": "Error"
+        },
+        {
+          "name": "field-label-text",
+          "title": "Field Label Text"
+        },
+        {
+          "name": "field-toggle",
+          "title": "Field Toggle"
+        },
+        {
+          "name": "fields-selector",
+          "title": "Fields Selector"
+        },
+        {
+          "name": "filter-form",
+          "title": "Filter Form"
+        },
+        {
+          "name": "filter-list",
+          "title": "Filter List"
+        },
+        {
+          "name": "filter-list-item",
+          "title": "Filter List Item"
+        },
+        {
+          "name": "filter-list-section",
+          "title": "Filter List Section"
+        },
+        {
+          "name": "filter-live-search",
+          "title": "Filter Live Search"
+        },
+        {
+          "name": "guesser-empty",
+          "title": "Guesser Empty"
+        },
+        {
+          "name": "hide-on-scroll",
+          "title": "Hide On Scroll"
+        },
+        {
+          "name": "icon-button-with-tooltip",
+          "title": "Icon Button With Tooltip"
+        },
+        {
+          "name": "infinite-list",
+          "title": "Infinite List"
+        },
+        {
+          "name": "infinite-pagination",
+          "title": "Infinite Pagination"
+        },
+        {
+          "name": "input-helper-text",
+          "title": "Input Helper Text"
+        },
+        {
+          "name": "inspector",
+          "title": "Inspector"
+        },
+        {
+          "name": "inspector-root",
+          "title": "Inspector Root"
+        },
+        {
+          "name": "keyboard-shortcut",
+          "title": "Keyboard Shortcut"
+        },
+        {
+          "name": "labeled",
+          "title": "Labeled"
+        },
+        {
+          "name": "linear-progress",
+          "title": "Linear Progress"
+        },
+        {
+          "name": "link",
+          "title": "Link"
+        },
+        {
+          "name": "list",
+          "title": "List"
+        },
+        {
+          "name": "list-actions",
+          "title": "List Actions"
+        },
+        {
+          "name": "list-guesser",
+          "title": "List Guesser"
+        },
+        {
+          "name": "list-no-results",
+          "title": "List No Results"
+        },
+        {
+          "name": "list-pagination",
+          "title": "List Pagination"
+        },
+        {
+          "name": "list-toolbar",
+          "title": "List Toolbar"
+        },
+        {
+          "name": "loading",
+          "title": "Loading"
+        },
+        {
+          "name": "loading-indicator",
+          "title": "Loading Indicator"
+        },
+        {
+          "name": "logout",
+          "title": "Logout"
+        },
+        {
+          "name": "menu-item-link",
+          "title": "Menu Item Link"
+        },
+        {
+          "name": "not-found",
+          "title": "Not Found"
+        },
+        {
+          "name": "notification",
+          "title": "Notification"
+        },
+        {
+          "name": "offline",
+          "title": "Offline"
+        },
+        {
+          "name": "placeholder",
+          "title": "Placeholder"
+        },
+        {
+          "name": "prev-next-buttons",
+          "title": "Prev Next Buttons"
+        },
+        {
+          "name": "ready",
+          "title": "Ready"
+        },
+        {
+          "name": "reference-many-count",
+          "title": "Reference Many Count"
+        },
+        {
+          "name": "resource",
+          "title": "Resource"
+        },
+        {
+          "name": "resource-menu-item",
+          "title": "Resource Menu Item"
+        },
+        {
+          "name": "resource-menu-item-group",
+          "title": "Resource Menu Item Group"
+        },
+        {
+          "name": "saved-queries",
+          "title": "Saved Queries"
+        },
+        {
+          "name": "show",
+          "title": "Show"
+        },
+        {
+          "name": "show-guesser",
+          "title": "Show Guesser"
+        },
+        {
+          "name": "simple-form",
+          "title": "Simple Form"
+        },
+        {
+          "name": "simple-form-configurable",
+          "title": "Simple Form Configurable"
+        },
+        {
+          "name": "simple-form-iterator",
+          "title": "Simple Form Iterator"
+        },
+        {
+          "name": "simple-list",
+          "title": "Simple List"
+        },
+        {
+          "name": "simple-list-item",
+          "title": "Simple List Item"
+        },
+        {
+          "name": "simple-list-loading",
+          "title": "Simple List Loading"
+        },
+        {
+          "name": "simple-show-layout",
+          "title": "Simple Show Layout"
+        },
+        {
+          "name": "single-field-list",
+          "title": "Single Field List"
+        },
+        {
+          "name": "spinner",
+          "title": "Spinner"
+        },
+        {
+          "name": "tabbed-form",
+          "title": "Tabbed Form"
+        },
+        {
+          "name": "tabbed-show-layout",
+          "title": "Tabbed Show Layout"
+        },
+        {
+          "name": "title",
+          "title": "Title"
+        },
+        {
+          "name": "title-portal",
+          "title": "Title Portal"
+        },
+        {
+          "name": "toolbar",
+          "title": "Toolbar"
+        },
+        {
+          "name": "translatable-fields",
+          "title": "Translatable Fields"
+        },
+        {
+          "name": "translatable-fields-tab",
+          "title": "Translatable Fields Tab"
+        },
+        {
+          "name": "translatable-fields-tab-content",
+          "title": "Translatable Fields Tab Content"
+        },
+        {
+          "name": "translatable-fields-tabs",
+          "title": "Translatable Fields Tabs"
+        },
+        {
+          "name": "translatable-inputs",
+          "title": "Translatable Inputs"
+        },
+        {
+          "name": "translatable-inputs-tab",
+          "title": "Translatable Inputs Tab"
+        },
+        {
+          "name": "translatable-inputs-tab-content",
+          "title": "Translatable Inputs Tab Content"
+        },
+        {
+          "name": "translatable-inputs-tabs",
+          "title": "Translatable Inputs Tabs"
+        }
+      ]
+    },
+    {
+      "category": "example",
+      "label": "Examples",
+      "items": [
+        {
+          "name": "example-admin",
+          "title": "Example Admin built with Shadmin"
+        }
+      ]
+    },
+    {
+      "category": "misc",
+      "label": "Misc",
+      "items": [
+        {
+          "name": "style-shadmin",
+          "title": "Shadmin"
+        },
+        {
+          "name": "extras",
+          "title": "Shadmin Extras"
+        }
+      ]
+    }
+  ]
+}

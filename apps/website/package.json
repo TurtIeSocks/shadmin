@@ -7,7 +7,8 @@
     "dev": "vite --port 5174",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "docs:manifest": "node scripts/generate-docs-manifest.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
