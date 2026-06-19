@@ -2,10 +2,9 @@ import { useParams, Link } from "react-router-dom";
 import { GradientText } from "@/components/aurora/gradient-text";
 import { Eyebrow } from "@/components/aurora/eyebrow";
 import { InstallCommand } from "./install-command";
-import manifest from "./registry-manifest.json";
-import type { ManifestItem } from "./types";
+import { manifest } from "./manifest";
 
-const items = manifest.items as ManifestItem[];
+const items = manifest.items;
 const itemMap = new Map(items.map((item) => [item.name, item]));
 
 function TypeBadge({ type }: { type: string }) {

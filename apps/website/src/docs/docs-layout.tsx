@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/aurora/glass-panel";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import manifest from "./registry-manifest.json";
+import { manifest } from "./manifest";
 import type { NavGroup } from "./types";
 
-const nav = manifest.nav as NavGroup[];
+const nav = manifest.nav;
 
 const GUIDES = [
   { label: "Introduction", href: "/docs" },
@@ -20,6 +20,10 @@ function SidebarNavGroup({ group }: { group: NavGroup }) {
     (item) => location.pathname === `/docs/components/${item.name}`,
   );
   const [open, setOpen] = useState(isGroupActive);
+
+  useEffect(() => {
+    if (isGroupActive) setOpen(true);
+  }, [isGroupActive]);
 
   return (
     <div className="mb-4">
@@ -65,7 +69,7 @@ function SidebarNavGroup({ group }: { group: NavGroup }) {
 
 function Sidebar() {
   return (
-    <nav className="h-full overflow-y-auto py-6 px-4">
+    <nav aria-label="Documentation" className="h-full overflow-y-auto py-6 px-4">
       {/* Guides section */}
       <div className="mb-6">
         <p className="mb-2 px-2 py-1.5 text-xs font-semibold tracking-wider uppercase text-muted-foreground">

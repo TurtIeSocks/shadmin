@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { GradientText } from "@/components/aurora/gradient-text";
 import { Eyebrow } from "@/components/aurora/eyebrow";
-import manifest from "./registry-manifest.json";
-import type { ManifestItem, NavGroup } from "./types";
+import { manifest } from "./manifest";
+import type { ManifestItem } from "./types";
 
-const items = manifest.items as ManifestItem[];
-const nav = manifest.nav as NavGroup[];
+const items = manifest.items;
+const nav = manifest.nav;
 
 // Build a lookup map for quick item retrieval
 const itemMap = new Map(items.map((item) => [item.name, item]));

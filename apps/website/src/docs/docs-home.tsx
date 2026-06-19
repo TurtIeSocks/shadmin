@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { GradientText } from "@/components/aurora/gradient-text";
 import { Eyebrow } from "@/components/aurora/eyebrow";
-import manifest from "./registry-manifest.json";
+import { manifest } from "./manifest";
 
 export function DocsHome() {
-  const totalItems = (manifest.items as unknown[]).length;
-  const totalGroups = (manifest.nav as unknown[]).length;
+  const totalItems = manifest.items.length;
+  const totalGroups = manifest.nav.length;
 
   return (
     <div className="max-w-2xl">
