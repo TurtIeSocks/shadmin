@@ -20,9 +20,12 @@ interface MdxGuideProps {
 export function MdxGuide({ guides }: MdxGuideProps) {
   const { slug } = useParams<{ slug: string }>();
 
-  // Glob keys look like "./content/install.mdx" — match by slug
-  const key = `./content/${slug}.mdx`;
-  const mod = guides[key];
+  // Match by basename — robust to the glob's path prefix (the glob is defined
+  // in app.tsx so keys look like "./docs/content/install.mdx").
+  const entry = Object.entries(guides).find(
+    ([key]) => key.replace(/\.mdx$/, "").endsWith(`/${slug}`),
+  );
+  const mod = entry?.[1];
 
   if (!mod) {
     return (
