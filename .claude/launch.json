@@ -20,12 +20,6 @@
       "port": 5174
     },
     {
-      "name": "docs",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["-C", "apps/docs", "dev"],
-      "port": 4321
-    },
-    {
       "name": "test-browser",
       "runtimeExecutable": "make",
       "runtimeArgs": ["test-browser"],

@@ -10,11 +10,7 @@ import { GitHubWhite } from "./icons/github";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features", external: false },
-  {
-    label: "Docs",
-    href: "https://shadmin.turtlesocks.dev/docs/install",
-    external: true,
-  },
+  { label: "Docs", href: "/docs", external: false },
   {
     label: "Demo",
     href: "https://shadmin.turtlesocks.dev/demo",

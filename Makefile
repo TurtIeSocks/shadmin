@@ -53,26 +53,15 @@ run-website: ## Run the website in development mode
 
 start-website: run-website
 
-build-website: ## Build the website
+build-website: ## Build the website (incl. /docs SPA) -> ./public
 	pnpm exec turbo run build --filter=shadmin-website
-	rm -rf ./public/assets ./public/img ./public/index.html
+	rm -rf ./public/assets ./public/img ./public/index.html ./public/docs
 	cp -r apps/website/dist/* ./public/
+	# SPA deep-link fallback for GitHub Pages: serve the website shell on any
+	# unknown path (e.g. /docs/array-field) so client routing resolves it.
+	cp ./public/index.html ./public/404.html
 
-build: build-website build-doc build-demo build-registry ## Build all components
+build: build-website build-demo build-registry ## Build all components
 
 typecheck: ## Run TypeScript type checking
 	@pnpm exec turbo run typecheck
-
-doc: ## launch doc web server
-	@pnpm --filter shadmin-doc run dev
-
-check-doc: ## Check the doc sidebar has no orphan pages
-	@pnpm --filter shadmin-doc run check-sidebar
-
-check-coverage: ## Run every docs/stories/specs/demo coverage check
-	@pnpm --filter shadmin-doc run check-coverage
-
-build-doc: check-coverage ## Build the doc website
-	pnpm exec turbo run build --filter=shadmin-doc
-	rm -rf ./public/docs
-	cp -r apps/docs/dist ./public/docs
