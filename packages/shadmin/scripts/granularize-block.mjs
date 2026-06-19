@@ -27,11 +27,8 @@ const SOURCE_EXTS = [".tsx", ".ts"];
 // (combobox was removed; it was dead.)
 const OUR_UI_ITEMS = new Set([
   "slot",
-  "color-picker",
   "direction",
-  "popover",
-  "dialog",
-  "tooltip",
+  "primitives",
 ]);
 
 // hooks/ files authored in this repo. Same treatment as OUR_UI_ITEMS for ui/.
