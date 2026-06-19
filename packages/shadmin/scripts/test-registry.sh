@@ -239,8 +239,23 @@ pnpm install
 echo "Configuring custom registry alias for namespaced dependencies"
 node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadmin': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
 
+echo "Simulating a BYO consumer: install STOCK dialog/popover/tooltip first"
+pnpm dlx shadcn@4.11.0 add -y dialog popover tooltip
+
 echo "Adding registry components"
-pnpm dlx shadcn@4.11.0 add -y http://localhost:8080/r/admin.json
+# --overwrite avoids interactive overwrite prompts when stock registryDependencies
+# (dialog/popover/tooltip) already exist. The BYO assertion below checks STRUCTURE,
+# not byte-identity: admin ships no custom primitives shim import into those files.
+pnpm dlx shadcn@4.11.0 add -y --overwrite http://localhost:8080/r/admin.json
+
+echo "Verifying @shadmin/admin does NOT inject our primitives shim into stock components"
+for f in dialog popover tooltip; do
+  grep -q 'from "@/components/ui/primitives"' "src/components/ui/$f.tsx" \
+    && { echo "FAIL: $f.tsx imports from our primitives shim (shadmin overrode stock)"; exit 1; }
+done
+test -f src/components/ui/primitives.tsx -o -f src/components/ui/primitives.ts \
+  || { echo "MISSING primitives"; exit 1; }
+echo "BYO assertions passed — stock primitives.ts/tsx present; no shim injected into dialog/popover/tooltip"
 
 echo "Building generated admin app"
 pnpm run build
