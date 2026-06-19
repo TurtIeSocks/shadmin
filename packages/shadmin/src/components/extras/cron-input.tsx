@@ -1,10 +1,6 @@
 import type * as React from "react";
 import type { InputProps } from "shadmin-core";
-import {
-  useInput,
-  useResourceContext,
-  ValidationError,
-} from "shadmin-core";
+import { useInput, useResourceContext, ValidationError } from "shadmin-core";
 import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";

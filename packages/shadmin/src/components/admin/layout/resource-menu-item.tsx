@@ -107,8 +107,7 @@ function ResourceMenuItem({
       <List />
     );
 
-  const resolvedLabel =
-    label !== undefined ? label : getResourceLabel(name, 2);
+  const resolvedLabel = label !== undefined ? label : getResourceLabel(name, 2);
 
   return (
     <SidebarMenuItem>

@@ -1,9 +1,5 @@
 import type { InputProps } from "shadmin-core";
-import {
-  useInput,
-  useResourceContext,
-  ValidationError,
-} from "shadmin-core";
+import { useInput, useResourceContext, ValidationError } from "shadmin-core";
 import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import type { UseEditorOptions } from "@tiptap/react";
 

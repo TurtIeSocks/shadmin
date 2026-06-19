@@ -19,13 +19,7 @@ import {
   useTranslate,
 } from "shadmin-core";
 import { useNavigate } from "react-router";
-import {
-  Bookmark,
-  BookmarkMinus,
-  BookmarkPlus,
-  Filter,
-  X,
-} from "lucide-react";
+import { Bookmark, BookmarkMinus, BookmarkPlus, Filter, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {

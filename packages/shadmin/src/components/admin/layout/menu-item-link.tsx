@@ -133,9 +133,7 @@ function MenuItemLink({
   const basename = useBasename();
   const navigate = useNavigate();
   const finalText =
-    typeof label === "string"
-      ? translate(label, { _: label })
-      : label;
+    typeof label === "string" ? translate(label, { _: label }) : label;
   const toPathname = typeof to === "string" ? to : to.pathname;
   const match = useMatch({
     path: toPathname,

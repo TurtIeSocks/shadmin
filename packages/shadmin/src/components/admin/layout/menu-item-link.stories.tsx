@@ -68,11 +68,7 @@ export const Multiple = () => (
   <SidebarWrapper>
     <MenuItemLink to="/" label="Home" icon={<Home />} />
     <MenuItemLink to="/posts" label="Posts" icon={<Book />} />
-    <MenuItemLink
-      to="/settings"
-      label="Settings"
-      icon={<Settings />}
-    />
+    <MenuItemLink to="/settings" label="Settings" icon={<Settings />} />
   </SidebarWrapper>
 );
 

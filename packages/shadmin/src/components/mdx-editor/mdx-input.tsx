@@ -4,11 +4,7 @@ import {
   type MDXEditorMethods,
   type MDXEditorProps,
 } from "@mdxeditor/editor";
-import {
-  useInput,
-  useResourceContext,
-  ValidationError,
-} from "shadmin-core";
+import { useInput, useResourceContext, ValidationError } from "shadmin-core";
 import type { InputProps } from "shadmin-core";
 import { FieldLabelText } from "@/components/admin/common/field-label-text";
 
