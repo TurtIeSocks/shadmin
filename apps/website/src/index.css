@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "../../../packages/shadmin/src/styles/glass.css";
+@plugin "@tailwindcss/typography";
+
+/* Typography ships `code::before/after { content: "`" }` — drop the literal
+   backticks around inline code (our MdxCode shim styles it as a pill). */
+.prose :is(code)::before,
+.prose :is(code)::after {
+  content: none;
+}
 
 @custom-variant dark (&:is(.dark *));
 
