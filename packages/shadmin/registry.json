@@ -219,6 +219,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/common/field-label-text.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/common/icon-button-with-tooltip.tsx",
           "type": "registry:component"
         },
@@ -1192,6 +1196,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
         "@shadmin/saved-queries",
@@ -1472,6 +1477,20 @@
           "type": "registry:component"
         }
       ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "field-label-text",
+      "type": "registry:component",
+      "title": "Field Label Text",
+      "files": [
+        {
+          "path": "src/components/admin/common/field-label-text.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -1908,6 +1927,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/lib-field-types",
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
@@ -2370,6 +2390,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
         "field",
@@ -2390,6 +2411,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-are-ids-equal",
         "@shadmin/lib-unknown-types",
@@ -2414,6 +2436,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-are-ids-equal",
         "@shadmin/lib-unknown-types",
@@ -2439,6 +2462,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-unknown-types",
         "field",
@@ -2459,6 +2483,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
         "checkbox",
@@ -2499,6 +2524,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
         "field",
@@ -2519,6 +2545,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
         "field",
@@ -2539,6 +2566,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
@@ -2594,6 +2622,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
         "field",
@@ -2613,7 +2642,12 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "field",
+        "input"
+      ],
       "dependencies": ["ra-core"],
       "categories": ["shadmin", "inputs"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -2648,6 +2682,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-sanitize-input-rest-props",
         "@shadmin/lib-utils",
@@ -2744,6 +2779,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
         "badge",
@@ -2768,6 +2804,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
@@ -2790,6 +2827,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "badge",
         "command",
@@ -2811,6 +2849,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-sanitize-input-rest-props",
         "@shadmin/lib-utils",
@@ -2832,7 +2871,12 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/input-helper-text", "field", "input"],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "field",
+        "input"
+      ],
       "dependencies": ["clsx", "ra-core"],
       "categories": ["shadmin", "inputs"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -2862,7 +2906,11 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils", "switch"],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/lib-utils",
+        "switch"
+      ],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -3282,6 +3330,7 @@
       "registryDependencies": [
         "@shadmin/bulk-actions-toolbar",
         "@shadmin/columns-button",
+        "@shadmin/field-label-text",
         "@shadmin/lib-unknown-types",
         "@shadmin/lib-utils",
         "@shadmin/number-field",
@@ -3700,8 +3749,10 @@
           "type": "registry:component"
         }
       ],
-      "registryDependencies": ["@shadmin/lib-utils"],
-      "dependencies": ["ra-core"],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/lib-utils"
+      ],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
