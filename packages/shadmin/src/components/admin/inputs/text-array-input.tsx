@@ -18,10 +18,10 @@ import type { InputProps } from "shadmin-core";
 import {
   useInput,
   useResourceContext,
-  FieldTitle,
   useTranslate,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
 
 type TagProps = { key: string | number; onDelete: () => void };
@@ -192,7 +192,7 @@ function TextArrayInput(props: TextArrayInputProps) {
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

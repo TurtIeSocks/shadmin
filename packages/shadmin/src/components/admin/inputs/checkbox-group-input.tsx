@@ -2,13 +2,13 @@ import * as React from "react";
 import type { ComponentProps } from "react";
 import type { ChoicesProps, InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useChoices,
   useChoicesContext,
   useGetRecordRepresentation,
   useInput,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { cn } from "@/lib/utils";
 import {
   Field,
@@ -154,7 +154,7 @@ function CheckboxGroupInput(inProps: CheckboxGroupInputProps) {
     <FieldSet className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLegend variant="label">
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

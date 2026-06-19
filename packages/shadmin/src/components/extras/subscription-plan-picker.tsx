@@ -1,10 +1,10 @@
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
@@ -58,7 +58,7 @@ function SubscriptionPlanPicker(props: SubscriptionPlanPickerProps) {
     >
       {label !== false && (
         <FieldLegend variant="label">
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

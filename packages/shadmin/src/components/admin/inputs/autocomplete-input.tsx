@@ -30,11 +30,11 @@ import {
   useGetRecordRepresentation,
   useInput,
   useTranslate,
-  FieldTitle,
   useEvent,
   useSupportCreateSuggestion,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import { PopoverPrimitive } from "@/components/ui/primitives";
 import type { UnknownValue } from "@/lib/unknown-types";
@@ -357,7 +357,7 @@ function AutocompleteInput(props: AutocompleteInputProps) {
       <Field className={props.className} data-invalid={invalid || undefined}>
         {props.label !== false && (
           <FieldLabel htmlFor={id}>
-            <FieldTitle
+            <FieldLabelText
               label={props.label}
               source={props.source ?? source}
               resource={resource}

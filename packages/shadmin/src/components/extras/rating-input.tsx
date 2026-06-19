@@ -1,11 +1,11 @@
 import type * as React from "react";
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import { cn } from "@/lib/utils";
@@ -49,7 +49,7 @@ function RatingInput(props: RatingInputProps) {
     >
       {label !== false && (
         <FieldLegend variant="label">
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

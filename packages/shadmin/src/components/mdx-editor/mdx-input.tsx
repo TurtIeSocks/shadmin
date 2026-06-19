@@ -5,12 +5,12 @@ import {
   type MDXEditorProps,
 } from "@mdxeditor/editor";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
 import type { InputProps } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
@@ -116,7 +116,7 @@ function MdxInput(props: MdxInputProps) {
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

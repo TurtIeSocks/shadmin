@@ -1,10 +1,10 @@
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
@@ -54,7 +54,7 @@ export function BlockEditorInput(props: BlockEditorInputProps) {
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

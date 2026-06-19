@@ -1,11 +1,11 @@
 import type * as React from "react";
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { ColorPicker } from "@/components/ui/color-picker";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
@@ -62,7 +62,7 @@ function ColorInput(props: ColorInputProps) {
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

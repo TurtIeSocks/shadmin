@@ -1,10 +1,10 @@
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import type { UseEditorOptions } from "@tiptap/react";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
@@ -59,7 +59,7 @@ function RichTextInput(props: RichTextInputProps) {
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

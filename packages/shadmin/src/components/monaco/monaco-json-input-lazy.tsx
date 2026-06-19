@@ -1,11 +1,11 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import {
-  FieldTitle,
   composeValidators,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { useFormContext } from "react-hook-form";
 import Editor, { type Monaco, loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
@@ -174,7 +174,7 @@ function MonacoJsonInputInner(props: MonacoJsonInputProps) {
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

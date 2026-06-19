@@ -28,11 +28,11 @@ import {
   useGetRecordRepresentation,
   useInput,
   useTranslate,
-  FieldTitle,
   useEvent,
   useSupportCreateSuggestion,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { areIdsEqual } from "@/lib/are-ids-equal";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import type { UnknownValue } from "@/lib/unknown-types";
@@ -379,7 +379,7 @@ function AutocompleteArrayInput(props: AutocompleteArrayInputProps) {
       <Field className={props.className} data-invalid={invalid || undefined}>
         {props.label !== false && (
           <FieldLabel htmlFor={id}>
-            <FieldTitle
+            <FieldLabelText
               label={props.label}
               source={props.source ?? source}
               resource={resource}

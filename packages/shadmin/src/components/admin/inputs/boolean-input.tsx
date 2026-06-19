@@ -2,7 +2,8 @@ import React, { useCallback } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import type { Validator } from "shadmin-core";
-import { useInput, FieldTitle, ValidationError } from "shadmin-core";
+import { useInput, ValidationError } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import type { UnknownValue } from "@/lib/unknown-types";
 import type { ComponentProps } from "react";
@@ -95,7 +96,7 @@ function BooleanInput(props: BooleanInputProps) {
           {...options}
         />
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

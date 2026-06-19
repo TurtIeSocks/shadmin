@@ -8,13 +8,13 @@ import type {
 import { Children, isValidElement, useEffect } from "react";
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   RecordContextProvider,
   shallowEqual,
   useInput,
   useTranslate,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import type {
   DropzoneOptions,
   FileRejection,
@@ -224,7 +224,7 @@ function FileInput(props: FileInputProps) {
         htmlFor={id}
         className={disabled || readOnly ? "cursor-default" : "cursor-pointer"}
       >
-        <FieldTitle
+        <FieldLabelText
           label={label}
           source={source}
           resource={resource}

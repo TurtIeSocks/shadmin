@@ -2,11 +2,11 @@ import type * as React from "react";
 import { useEffect, useState } from "react";
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import {
   AsYouType,
   getCountries,
@@ -87,7 +87,7 @@ function PhoneInput(props: PhoneInputProps) {
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}
