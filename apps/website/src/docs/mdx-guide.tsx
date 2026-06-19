@@ -1,10 +1,16 @@
 /**
- * MdxGuide — renders a guide MDX file by :slug route param.
+ * MdxGuide — renders a guide MDX file by the docs splat route param.
  *
- * import.meta.glob eagerly loads all .mdx files in ./content/.
- * remark-mdx-frontmatter exports frontmatter as a named export `frontmatter`.
+ * import.meta.glob eagerly loads all .mdx files under ./docs/content/ (incl.
+ * nested, e.g. supabase/*). remark-mdx-frontmatter exports the frontmatter as a
+ * named export `frontmatter`.
+ *
+ * When the slug matches a registry item, a shadcn install block is merged in
+ * above the prose (install + docs on one page).
  */
 import { useParams } from "react-router-dom";
+import { InstallCommand } from "./install-command";
+import { manifest } from "./manifest";
 
 interface GuideModule {
   default: React.ComponentType;
@@ -17,13 +23,17 @@ interface MdxGuideProps {
   guides: GuideMap;
 }
 
-export function MdxGuide({ guides }: MdxGuideProps) {
-  const { slug } = useParams<{ slug: string }>();
+const itemByName = new Map(manifest.items.map((item) => [item.name, item]));
 
-  // Match by basename — robust to the glob's path prefix (the glob is defined
-  // in app.tsx so keys look like "./docs/content/install.mdx").
-  const entry = Object.entries(guides).find(
-    ([key]) => key.replace(/\.mdx$/, "").endsWith(`/${slug}`),
+export function MdxGuide({ guides }: MdxGuideProps) {
+  // The docs MDX route is a splat ("*"), so the slug is params["*"], e.g.
+  // "array-field" or "supabase/getting-started".
+  const slug = useParams()["*"] ?? "";
+
+  // Match by full sub-path — the glob keys look like "./docs/content/x.mdx"
+  // or "./docs/content/supabase/x.mdx".
+  const entry = Object.entries(guides).find(([key]) =>
+    key.replace(/\.mdx$/, "").endsWith(`/${slug}`),
   );
   const mod = entry?.[1];
 
@@ -40,11 +50,20 @@ export function MdxGuide({ guides }: MdxGuideProps) {
 
   const Content = mod.default;
   const title = mod.frontmatter?.title;
+  const item = itemByName.get(slug);
 
   return (
     <article className="prose prose-neutral dark:prose-invert max-w-none">
       {title && (
         <h1 className="text-3xl font-bold tracking-tight mb-6">{title}</h1>
+      )}
+      {item && (
+        <div className="not-prose mb-8">
+          <p className="text-sm font-semibold mb-2 text-foreground">
+            Installation
+          </p>
+          <InstallCommand install={item.install} />
+        </div>
       )}
       <Content />
     </article>

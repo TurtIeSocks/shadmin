@@ -1,4 +1,12 @@
-import { useState, type ReactElement, type ReactNode, Children, isValidElement, useId, useRef } from "react";
+import {
+  useState,
+  type ReactElement,
+  type ReactNode,
+  Children,
+  isValidElement,
+  useId,
+  useRef,
+} from "react";
 import { cn } from "@/lib/utils";
 
 // ── TabItem ──────────────────────────────────────────────────────────────────
@@ -22,7 +30,10 @@ interface TabsProps {
 }
 
 function isTabItem(node: ReactNode): node is ReactElement<TabItemProps> {
-  return isValidElement(node) && (node.type as { displayName?: string }).displayName === "TabItem";
+  return (
+    isValidElement(node) &&
+    (node.type as { displayName?: string }).displayName === "TabItem"
+  );
 }
 
 export function Tabs({ children }: TabsProps) {
@@ -36,7 +47,8 @@ export function Tabs({ children }: TabsProps) {
   const handleKeyDown = (e: React.KeyboardEvent, i: number) => {
     let next = i;
     if (e.key === "ArrowRight") next = (i + 1) % items.length;
-    else if (e.key === "ArrowLeft") next = (i - 1 + items.length) % items.length;
+    else if (e.key === "ArrowLeft")
+      next = (i - 1 + items.length) % items.length;
     else if (e.key === "Home") next = 0;
     else if (e.key === "End") next = items.length - 1;
     else return;
@@ -64,7 +76,9 @@ export function Tabs({ children }: TabsProps) {
               aria-selected={selected}
               aria-controls={`${uid}-panel-${i}`}
               tabIndex={selected ? 0 : -1}
-              ref={(el) => { tabRefs.current[i] = el; }}
+              ref={(el) => {
+                tabRefs.current[i] = el;
+              }}
               type="button"
               onClick={() => setActive(i)}
               onKeyDown={(e) => handleKeyDown(e, i)}

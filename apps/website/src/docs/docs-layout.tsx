@@ -4,34 +4,20 @@ import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/aurora/glass-panel";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { manifest } from "./manifest";
-import type { NavGroup } from "./types";
+import { docsNav, type DocsNavGroup } from "./sidebar-nav";
 
-const nav = manifest.nav;
+const navItemClass = ({ isActive }: { isActive: boolean }) =>
+  cn(
+    "block rounded-lg px-2 py-1 text-sm transition-colors",
+    isActive
+      ? "bg-foreground/8 text-foreground font-medium"
+      : "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
+  );
 
-const GUIDES = [
-  { label: "Introduction", href: "/docs", end: true },
-  { label: "Installation", href: "/docs/install" },
-  { label: "Quick Start", href: "/docs/quick-start-guide" },
-  { label: "Admin", href: "/docs/admin" },
-  { label: "Resource", href: "/docs/resource" },
-  { label: "List", href: "/docs/list" },
-  { label: "Edit", href: "/docs/edit" },
-  { label: "Create", href: "/docs/create" },
-  { label: "Show", href: "/docs/show" },
-  { label: "Data Table", href: "/docs/data-table" },
-  { label: "Simple Form", href: "/docs/simple-form" },
-  { label: "Data Providers", href: "/docs/data-providers" },
-  { label: "Security", href: "/docs/security" },
-  { label: "Theming", href: "/docs/theming" },
-  { label: "Translation", href: "/docs/translation" },
-  { label: "Components", href: "/docs/components" },
-];
-
-function SidebarNavGroup({ group }: { group: NavGroup }) {
+function SidebarNavGroup({ group }: { group: DocsNavGroup }) {
   const location = useLocation();
   const isGroupActive = group.items.some(
-    (item) => location.pathname === `/docs/components/${item.name}`,
+    (item) => !item.external && location.pathname === `/docs/${item.slug}`,
   );
   const [open, setOpen] = useState(isGroupActive);
 
@@ -40,7 +26,7 @@ function SidebarNavGroup({ group }: { group: NavGroup }) {
   }, [isGroupActive]);
 
   return (
-    <div className="mb-4">
+    <div className="mb-3">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -58,23 +44,29 @@ function SidebarNavGroup({ group }: { group: NavGroup }) {
       </button>
       {open && (
         <ul className="mt-1 space-y-0.5 pl-2">
-          {group.items.map((item) => (
-            <li key={item.name}>
-              <NavLink
-                to={`/docs/components/${item.name}`}
-                className={({ isActive }) =>
-                  cn(
-                    "block rounded-lg px-2 py-1 text-sm transition-colors",
-                    isActive
-                      ? "bg-foreground/8 text-foreground font-medium"
-                      : "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
-                  )
-                }
-              >
-                {item.title}
-              </NavLink>
-            </li>
-          ))}
+          {group.items.map((item) =>
+            item.external ? (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block rounded-lg px-2 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors"
+                >
+                  {item.label}
+                  <span aria-hidden className="ml-1 opacity-50">
+                    ↗
+                  </span>
+                </a>
+              </li>
+            ) : (
+              <li key={item.slug}>
+                <NavLink to={`/docs/${item.slug}`} className={navItemClass}>
+                  {item.label}
+                </NavLink>
+              </li>
+            ),
+          )}
         </ul>
       )}
     </div>
@@ -83,41 +75,33 @@ function SidebarNavGroup({ group }: { group: NavGroup }) {
 
 function Sidebar() {
   return (
-    <nav aria-label="Documentation" className="h-full overflow-y-auto py-6 px-4">
-      {/* Guides section */}
+    <nav
+      aria-label="Documentation"
+      className="h-full overflow-y-auto py-6 px-4"
+    >
+      {/* Overview */}
       <div className="mb-6">
         <p className="mb-2 px-2 py-1.5 text-xs font-semibold tracking-wider uppercase text-muted-foreground">
-          Guides
+          Overview
         </p>
         <ul className="space-y-0.5">
-          {GUIDES.map((guide) => (
-            <li key={guide.href}>
-              <NavLink
-                to={guide.href}
-                end={guide.end ?? false}
-                className={({ isActive }) =>
-                  cn(
-                    "block rounded-lg px-2 py-1 text-sm transition-colors",
-                    isActive
-                      ? "bg-foreground/8 text-foreground font-medium"
-                      : "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
-                  )
-                }
-              >
-                {guide.label}
-              </NavLink>
-            </li>
-          ))}
+          <li>
+            <NavLink to="/docs" end className={navItemClass}>
+              Introduction
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/docs/components" className={navItemClass}>
+              All Components
+            </NavLink>
+          </li>
         </ul>
       </div>
 
-      {/* Component nav groups */}
+      {/* Ported sidebar groups */}
       <div>
-        <p className="mb-2 px-2 py-1.5 text-xs font-semibold tracking-wider uppercase text-muted-foreground">
-          Components
-        </p>
-        {nav.map((group) => (
-          <SidebarNavGroup key={group.category} group={group} />
+        {docsNav.map((group) => (
+          <SidebarNavGroup key={group.label} group={group} />
         ))}
       </div>
     </nav>
@@ -146,7 +130,10 @@ export function DocsLayout() {
       <div className="flex flex-1 mx-auto w-full max-w-7xl px-4 gap-6 py-8">
         {/* Desktop sidebar */}
         <aside className="hidden md:block w-60 shrink-0">
-          <GlassPanel level={2} className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-hidden">
+          <GlassPanel
+            level={2}
+            className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-hidden"
+          >
             <Sidebar />
           </GlassPanel>
         </aside>

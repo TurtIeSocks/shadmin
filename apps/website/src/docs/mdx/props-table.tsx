@@ -40,10 +40,10 @@ function kebabName(name: string): string {
 }
 
 // Import all props JSONs eagerly. Task 4 copies them to this location.
-const propModules = import.meta.glob<PropsEntry>(
-  "../content/props/*.json",
-  { eager: true, import: "default" },
-);
+const propModules = import.meta.glob<PropsEntry>("../content/props/*.json", {
+  eager: true,
+  import: "default",
+});
 
 const byComponent = new Map<string, PropsEntry>(
   Object.entries(propModules).map(([path, mod]) => {

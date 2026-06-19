@@ -58,7 +58,7 @@ export const DROP_SLUGS = new Set([
  * @param {string} slug - file slug (for context; not used in transforms currently)
  * @returns {string} transformed content
  */
-export function transformContent(raw, slug) {
+export function transformContent(raw, _slug) {
   const lines = raw.split("\n");
   const out = [];
 
@@ -107,7 +107,7 @@ export function transformContent(raw, slug) {
 
       // Asset import detection: import IDENT from './images/REST';
       const assetMatch = line.match(
-        /^import\s+(\w+)\s+from\s+['"]\.\/images\/([^'"]+)['"]\s*;?\s*$/
+        /^import\s+(\w+)\s+from\s+['"]\.\/images\/([^'"]+)['"]\s*;?\s*$/,
       );
       if (assetMatch) {
         const [, ident, rest] = assetMatch;
@@ -158,10 +158,18 @@ export function transformContent(raw, slug) {
 
     // Step 3a: Strip Astro-only imports
     if (
-      line.includes('import PropsTable from "../../components/props-table.astro"') ||
-      line.includes("import PropsTable from '../../components/props-table.astro'") ||
-      line.includes("import { Tabs, TabItem } from '@astrojs/starlight/components'") ||
-      line.includes('import { Tabs, TabItem } from "@astrojs/starlight/components"')
+      line.includes(
+        'import PropsTable from "../../components/props-table.astro"',
+      ) ||
+      line.includes(
+        "import PropsTable from '../../components/props-table.astro'",
+      ) ||
+      line.includes(
+        "import { Tabs, TabItem } from '@astrojs/starlight/components'",
+      ) ||
+      line.includes(
+        'import { Tabs, TabItem } from "@astrojs/starlight/components"',
+      )
     ) {
       continue; // strip line
     }
@@ -169,7 +177,7 @@ export function transformContent(raw, slug) {
     // Step 3b: Strip asset import lines (already recorded in assetImports)
     if (assetImports.size > 0) {
       const assetImportMatch = line.match(
-        /^import\s+(\w+)\s+from\s+['"]\.\/images\/([^'"]+)['"]\s*;?\s*$/
+        /^import\s+(\w+)\s+from\s+['"]\.\/images\/([^'"]+)['"]\s*;?\s*$/,
       );
       if (assetImportMatch && assetImports.has(assetImportMatch[1])) {
         continue; // strip line
@@ -183,27 +191,21 @@ export function transformContent(raw, slug) {
       for (const [ident, resolvedPath] of assetImports) {
         // Replace {IDENT} occurrences (in attribute positions or standalone)
         // Use a global replace — handle both src={ident} and standalone {ident}
-        transformed = transformed.replaceAll(
-          `{${ident}}`,
-          `"${resolvedPath}"`
-        );
+        transformed = transformed.replaceAll(`{${ident}}`, `"${resolvedPath}"`);
       }
     }
 
     // Step 5: Asset path rewrite — ./images/ → /docs/images/
     // Markdown links: ](./images/...)
-    transformed = transformed.replace(
-      /\]\(\.\/images\//g,
-      "](/docs/images/"
-    );
+    transformed = transformed.replace(/\]\(\.\/images\//g, "](/docs/images/");
     // HTML src attrs (double-quote and single-quote)
     transformed = transformed.replace(
       /src="\.\/images\//g,
-      'src="/docs/images/'
+      'src="/docs/images/',
     );
     transformed = transformed.replace(
       /src='\.\/images\//g,
-      "src='/docs/images/"
+      "src='/docs/images/",
     );
 
     // Step 6: HTML attr normalization — only on lines containing an HTML open tag
@@ -304,7 +306,11 @@ async function main() {
 
     const raw = fs.readFileSync(path.join(contentSrcFlat, entry), "utf8");
     const transformed = transformContent(raw, slug);
-    fs.writeFileSync(path.join(contentDest, `${slug}.mdx`), transformed, "utf8");
+    fs.writeFileSync(
+      path.join(contentDest, `${slug}.mdx`),
+      transformed,
+      "utf8",
+    );
     ported++;
   }
 
@@ -332,7 +338,7 @@ async function main() {
     fs.writeFileSync(
       path.join(contentDest, "supabase", `${base}.mdx`),
       transformed,
-      "utf8"
+      "utf8",
     );
     ported++;
   }
@@ -373,7 +379,7 @@ async function main() {
   const props = countFiles(propsDest);
 
   console.log(
-    `ported ${ported}, skipped ${skipped}, dropped ${dropped}, assets ${assets}, props ${props}`
+    `ported ${ported}, skipped ${skipped}, dropped ${dropped}, assets ${assets}, props ${props}`,
   );
 }
 
@@ -393,7 +399,8 @@ function countFiles(dir) {
 // Run main when invoked directly
 const isMain =
   process.argv[1] &&
-  path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
+  path.resolve(process.argv[1]) ===
+    path.resolve(fileURLToPath(import.meta.url));
 
 if (isMain) {
   main().catch((e) => {

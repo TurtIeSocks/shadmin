@@ -54,7 +54,10 @@ function MdxImg({ src, alt, ...rest }: React.ComponentPropsWithoutRef<"img">) {
 
 // ── Inline code (not inside a pre) ──────────────────────────────────────────
 
-function MdxCode({ children, ...rest }: React.ComponentPropsWithoutRef<"code">) {
+function MdxCode({
+  children,
+  ...rest
+}: React.ComponentPropsWithoutRef<"code">) {
   return (
     <code
       className="font-mono text-[0.875em] bg-muted/60 rounded px-1.5 py-0.5 text-foreground"

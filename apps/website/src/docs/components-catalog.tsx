@@ -18,8 +18,8 @@ export function ComponentsCatalog() {
         All <GradientText>Components</GradientText>
       </h1>
       <p className="text-muted-foreground mb-8">
-        {items.length} components across {nav.length} categories. Each
-        component is installable via shadcn CLI.
+        {items.length} components across {nav.length} categories. Each component
+        is installable via shadcn CLI.
       </p>
 
       <div className="space-y-10">
@@ -42,7 +42,7 @@ export function ComponentsCatalog() {
                 {groupItems.map((item) => (
                   <Link
                     key={item.name}
-                    to={`/docs/components/${item.name}`}
+                    to={`/docs/${item.name}`}
                     className="glass rounded-xl p-4 hover:bg-foreground/5 transition-colors group"
                   >
                     <p className="font-medium text-sm text-foreground group-hover:text-aurora transition-colors">

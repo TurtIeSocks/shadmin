@@ -7,7 +7,11 @@ import type { ComponentPropsWithoutRef, ReactElement } from "react";
 import { cn } from "@/lib/utils";
 
 /** Parse meta string: title="foo.ts" lang="json" diff */
-function parseCodeMeta(meta: string): { title?: string; lang?: string; diff?: boolean } {
+function parseCodeMeta(meta: string): {
+  title?: string;
+  lang?: string;
+  diff?: boolean;
+} {
   const result: { title?: string; lang?: string; diff?: boolean } = {};
   const titleMatch = /title=["']([^"']+)["']/.exec(meta);
   if (titleMatch) result.title = titleMatch[1];
@@ -52,7 +56,9 @@ export function CodeBlock({
     >
       {title && (
         <div className="flex items-center gap-2 border-b border-border/30 bg-muted/30 px-4 py-2">
-          <span className="text-xs text-muted-foreground font-mono">{title}</span>
+          <span className="text-xs text-muted-foreground font-mono">
+            {title}
+          </span>
         </div>
       )}
       <div className="overflow-x-auto text-sm">
@@ -92,7 +98,8 @@ export function MdxPre({ children, ...rest }: PreProps) {
   }
 
   const code = children as ReactElement<CodeElementProps>;
-  const codeProps: CodeElementProps = (code as ReactElement<CodeElementProps>).props ?? {};
+  const codeProps: CodeElementProps =
+    (code as ReactElement<CodeElementProps>).props ?? {};
   const rawChildren = codeProps["children"];
   const text = typeof rawChildren === "string" ? rawChildren : "";
 
@@ -103,7 +110,8 @@ export function MdxPre({ children, ...rest }: PreProps) {
   const lang = langMatch ? langMatch[1] : undefined;
 
   // Meta attrs from remarkCodeMeta plugin
-  const meta = typeof codeProps["data-meta"] === "string" ? codeProps["data-meta"] : "";
+  const meta =
+    typeof codeProps["data-meta"] === "string" ? codeProps["data-meta"] : "";
   const { title, lang: metaLang, diff } = parseCodeMeta(meta);
 
   // Trim trailing newline that remark adds

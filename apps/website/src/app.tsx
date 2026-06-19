@@ -9,10 +9,11 @@ import { ComponentPage } from "@/docs/component-page";
 import { MdxGuide } from "@/docs/mdx-guide";
 
 // Eagerly load all guide MDX modules so MdxGuide can look them up by slug.
+// `**` so nested content (e.g. supabase/*) is included.
 const guides = import.meta.glob<{
   default: React.ComponentType;
   frontmatter?: { title?: string; [key: string]: unknown };
-}>("./docs/content/*.mdx", { eager: true });
+}>("./docs/content/**/*.mdx", { eager: true });
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route index element={<DocsHome />} />
           <Route path="components" element={<ComponentsCatalog />} />
           <Route path="components/:name" element={<ComponentPage />} />
-          <Route path=":slug" element={<MdxGuide guides={guides} />} />
+          <Route path="*" element={<MdxGuide guides={guides} />} />
         </Route>
       </Routes>
     </>
