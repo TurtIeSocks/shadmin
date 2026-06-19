@@ -165,6 +165,43 @@ Mail <hi@example.com> for help.
     );
   });
 
+  test("fence-awareness: 4-backtick fence wrapping a 3-backtick fence stays fenced", () => {
+    const raw = [
+      "---",
+      "title: Test",
+      "---",
+      "",
+      "````tsx",
+      'import { Foo } from "x";',
+      "```tsx",
+      "const a = { b: 1 };",
+      "```",
+      "const c = { d: 2 };",
+      "````",
+      "",
+      "After { e: 3 } in prose.",
+    ].join("\n");
+    const result = transformContent(raw, "test");
+    // everything inside the 4-backtick fence keeps its braces verbatim
+    assert.ok(
+      result.includes('import { Foo } from "x";'),
+      "nested-fence import braces were wrongly escaped",
+    );
+    assert.ok(
+      result.includes("const a = { b: 1 };"),
+      "inner-fence braces were wrongly escaped",
+    );
+    assert.ok(
+      result.includes("const c = { d: 2 };"),
+      "outer-fence braces were wrongly escaped",
+    );
+    // prose after the closing 4-backtick fence is escaped
+    assert.ok(
+      result.includes("After \\{ e: 3 \\} in prose."),
+      "prose braces after nested fence were not escaped",
+    );
+  });
+
   test("brace escaping: prose {expr} escaped; inline code + fenced left alone", () => {
     const raw = `---
 title: Test

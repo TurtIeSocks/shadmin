@@ -26,17 +26,31 @@ interface MdxGuideProps {
 
 const itemByName = new Map(manifest.items.map((item) => [item.name, item]));
 
+// Map glob keys ("./docs/content/x.mdx", "./docs/content/supabase/x.mdx") to
+// exact slugs ("x", "supabase/x") so lookup can't ambiguously match a basename
+// shared by a root and a nested page (e.g. login-page vs supabase/login-page).
+// Cached by the guides object identity (stable module-level glob).
+let cachedGuides: GuideMap | null = null;
+let cachedSlugMap: Map<string, GuideModule> | null = null;
+function slugMap(guides: GuideMap): Map<string, GuideModule> {
+  if (guides !== cachedGuides || !cachedSlugMap) {
+    cachedSlugMap = new Map(
+      Object.entries(guides).map(([key, mod]) => [
+        key.replace(/^\.\/docs\/content\//, "").replace(/\.mdx$/, ""),
+        mod,
+      ]),
+    );
+    cachedGuides = guides;
+  }
+  return cachedSlugMap;
+}
+
 export function MdxGuide({ guides }: MdxGuideProps) {
   // The docs MDX route is a splat ("*"), so the slug is params["*"], e.g.
   // "array-field" or "supabase/getting-started".
   const slug = useParams()["*"] ?? "";
 
-  // Match by full sub-path — the glob keys look like "./docs/content/x.mdx"
-  // or "./docs/content/supabase/x.mdx".
-  const entry = Object.entries(guides).find(([key]) =>
-    key.replace(/\.mdx$/, "").endsWith(`/${slug}`),
-  );
-  const mod = entry?.[1];
+  const mod = slugMap(guides).get(slug);
 
   if (!mod) {
     return (

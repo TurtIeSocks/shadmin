@@ -62,7 +62,9 @@ export function transformContent(raw, _slug) {
   const lines = raw.split("\n");
   const out = [];
 
-  let inFence = false;
+  // 0 = not in a fence; N = inside a fence opened with N backticks. Length-aware
+  // so a nested shorter fence (```` wrapping ```) doesn't falsely close.
+  let fenceLen = 0;
   let inFrontmatter = false;
   let frontmatterDone = false;
   let frontmatterCount = 0;
@@ -74,7 +76,7 @@ export function transformContent(raw, _slug) {
 
   // Scan for asset imports outside fences
   {
-    let scanFence = false;
+    let scanFenceLen = 0;
     let scanFM = false;
     let scanFMCount = 0;
     let scanFMDone = false;
@@ -98,12 +100,16 @@ export function transformContent(raw, _slug) {
         if (scanFM) continue; // inside frontmatter
       }
 
-      // Fence toggle
-      if (/^\s*```/.test(line)) {
-        scanFence = !scanFence;
+      // Fence toggle (length-aware: a closing fence must be ≥ the opening run)
+      const scanFenceMatch = line.match(/^\s*(`{3,})/);
+      if (scanFenceMatch) {
+        const len = scanFenceMatch[1].length;
+        if (scanFenceLen === 0) scanFenceLen = len;
+        else if (len >= scanFenceLen) scanFenceLen = 0;
+        // shorter inner fence → content inside the outer fence
         continue;
       }
-      if (scanFence) continue;
+      if (scanFenceLen > 0) continue;
 
       // Asset import detection: import IDENT from './images/REST';
       const assetMatch = line.match(
@@ -141,15 +147,19 @@ export function transformContent(raw, _slug) {
       }
     }
 
-    // --- Fence toggle (outside frontmatter) ---
-    if (/^\s*```/.test(line)) {
-      inFence = !inFence;
+    // --- Fence toggle (outside frontmatter; length-aware) ---
+    const fenceMatch = line.match(/^\s*(`{3,})/);
+    if (fenceMatch) {
+      const len = fenceMatch[1].length;
+      if (fenceLen === 0) fenceLen = len;
+      else if (len >= fenceLen) fenceLen = 0;
+      // shorter inner fence → content; either way emit verbatim
       out.push(line);
       continue;
     }
 
     // --- Fenced: emit verbatim ---
-    if (inFence) {
+    if (fenceLen > 0) {
       out.push(line);
       continue;
     }
@@ -402,7 +412,6 @@ async function main() {
 
   if (fs.existsSync(imagesSrc1)) {
     fs.cpSync(imagesSrc1, imagesDest, { recursive: true });
-    assets += countFiles(imagesDest);
   }
   if (fs.existsSync(imagesSrc2)) {
     // public/images/** → public/docs/images/**
