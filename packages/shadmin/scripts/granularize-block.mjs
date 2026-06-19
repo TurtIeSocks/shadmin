@@ -17,13 +17,14 @@ const SOURCE_EXTS = [".tsx", ".ts"];
 // ui/ files authored in this repo (not pulled from shadcn upstream).
 // Imports of these resolve to `@shadmin/<name>` items shipped here.
 // Everything else under components/ui/ is assumed to be a shadcn upstream item
-// referenced by plain name (e.g. "popover", "dialog").
-// `popover`/`dialog`/`tooltip` are customized forks: they add extra
-// subcomponents and a `*Primitive` re-export that non-ui components import
-// directly (e.g. columns-button uses PopoverPrimitive.Portal, confirm uses
-// DialogPrimitive, the tiptap toolbar uses TooltipPrimitive's props type).
-// Stock shadcn primitives don't expose those, so these MUST ship as
-// @shadmin/* — consumers get OUR version, not shadcn's upstream primitive.
+// referenced by plain name (e.g. "popover", "dialog") — a consumer keeps their
+// OWN stock version (bring-your-own-ui).
+// `slot`/`direction` have no stock shadcn equivalent, so shipping them custom
+// can't clash. `primitives` is the single seam that re-exports the raw Radix
+// primitives non-ui code needs (PopoverPrimitive.Portal in columns-button,
+// DialogPrimitive in confirm, TooltipPrimitive's props type in the tiptap
+// toolbar); routing every reach-in through it lets `popover`/`dialog`/`tooltip`
+// ship as BARE STOCK deps instead of overwriting a consumer's own.
 // (combobox was removed; it was dead.)
 const OUR_UI_ITEMS = new Set([
   "slot",

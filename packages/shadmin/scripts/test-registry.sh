@@ -245,7 +245,9 @@ pnpm dlx shadcn@4.11.0 add -y dialog popover tooltip
 echo "Adding registry components"
 # --overwrite avoids interactive overwrite prompts when stock registryDependencies
 # (dialog/popover/tooltip) already exist. The BYO assertion below checks STRUCTURE,
-# not byte-identity: admin ships no custom primitives shim import into those files.
+# not byte-identity (the live shadcn registry isn't byte-stable): it confirms the
+# installed files carry no shadmin customization marker (a bare `*Primitive` export),
+# i.e. admin left the consumer's primitives stock.
 pnpm dlx shadcn@4.11.0 add -y --overwrite http://localhost:8080/r/admin.json
 
 echo "Verifying installed dialog/popover/tooltip are STOCK (no shadmin customization marker)"
