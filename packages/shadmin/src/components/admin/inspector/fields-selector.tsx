@@ -22,7 +22,7 @@ interface FieldsSelectorProps {
 interface SelectableField {
   /** Stable identifier used when storing the user's selection / order. */
   index: string;
-  /** Field source path (used for i18n via {@link FieldTitle}). */
+  /** Field source path (used for i18n via {@link FieldLabelText}). */
   source: string;
   /** Optional human label, overrides the source-based label. */
   label?: React.ReactNode;

@@ -40,7 +40,8 @@ type ResourceMenuItemProps = {
    */
   onClick?: () => void;
   /**
-   * Extra props forwarded to the underlying `<Tooltip>` wrapping the menu item.
+   * Extra props spread onto the underlying `<SidebarMenuButton>` (e.g. tooltip
+   * config, `dense`). Forwarded via the `...rest` spread.
    */
   tooltipProps?: Record<string, unknown>;
 };
