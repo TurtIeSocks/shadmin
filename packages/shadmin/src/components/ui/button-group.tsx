@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 
 const buttonGroupVariants = cva(
-  "flex w-fit items-stretch has-[>[data-slot=button-group]]:gap-2 *:focus-visible:relative *:focus-visible:z-10 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
+  "flex w-fit items-stretch has-[>[data-slot=button-group]]:gap-2 [&>*]:focus-visible:relative [&>*]:focus-visible:z-10 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
   {
     variants: {
       orientation: {
@@ -21,11 +21,11 @@ const buttonGroupVariants = cva(
   }
 )
 
-interface ButtonGroupProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof buttonGroupVariants> {}
-
-function ButtonGroup({ className, orientation, ...props }: ButtonGroupProps) {
+function ButtonGroup({
+  className,
+  orientation,
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>) {
   return (
     <div
       role="group"
@@ -37,15 +37,13 @@ function ButtonGroup({ className, orientation, ...props }: ButtonGroupProps) {
   )
 }
 
-interface ButtonGroupTextProps extends React.ComponentProps<"div"> {
-  asChild?: boolean
-}
-
 function ButtonGroupText({
   className,
   asChild = false,
   ...props
-}: ButtonGroupTextProps) {
+}: React.ComponentProps<"div"> & {
+  asChild?: boolean
+}) {
   const Comp = asChild ? Slot.Root : "div"
 
   return (
@@ -79,9 +77,7 @@ function ButtonGroupSeparator({
 
 export {
   ButtonGroup,
-  type ButtonGroupProps,
   ButtonGroupSeparator,
   ButtonGroupText,
-  type ButtonGroupTextProps,
   buttonGroupVariants,
 }

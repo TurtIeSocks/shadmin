@@ -43,15 +43,11 @@ const emptyMediaVariants = cva(
   }
 )
 
-interface EmptyMediaProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof emptyMediaVariants> {}
-
 function EmptyMedia({
   className,
   variant = "default",
   ...props
-}: EmptyMediaProps) {
+}: React.ComponentProps<"div"> & VariantProps<typeof emptyMediaVariants>) {
   return (
     <div
       data-slot="empty-icon"
@@ -105,5 +101,4 @@ export {
   EmptyDescription,
   EmptyContent,
   EmptyMedia,
-  type EmptyMediaProps,
 }

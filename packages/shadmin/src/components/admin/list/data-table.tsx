@@ -826,11 +826,7 @@ function DataTableHeadCell<
               onClick={handleSort}
             >
               {headerClassName?.includes("text-right") ? null : (
-                <FieldTitle
-                  label={label}
-                  source={source}
-                  resource={resource}
-                />
+                <FieldTitle label={label} source={source} resource={resource} />
               )}
               {sort.field === source ? (
                 sort.order === "ASC" ? (
@@ -840,11 +836,7 @@ function DataTableHeadCell<
                 )
               ) : null}
               {headerClassName?.includes("text-right") ? (
-                <FieldTitle
-                  label={label}
-                  source={source}
-                  resource={resource}
-                />
+                <FieldTitle label={label} source={source} resource={resource} />
               ) : null}
             </Button>
           </TooltipTrigger>

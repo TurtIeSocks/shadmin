@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui"
 
@@ -44,16 +42,13 @@ function AlertDialogOverlay({
   )
 }
 
-interface AlertDialogContentProps
-  extends React.ComponentProps<typeof AlertDialogPrimitive.Content> {
-  size?: "default" | "sm"
-}
-
 function AlertDialogContent({
   className,
   size = "default",
   ...props
-}: AlertDialogContentProps) {
+}: React.ComponentProps<typeof AlertDialogPrimitive.Content> & {
+  size?: "default" | "sm"
+}) {
   return (
     <AlertDialogPortal>
       <AlertDialogOverlay />
@@ -147,16 +142,13 @@ function AlertDialogMedia({
   )
 }
 
-interface AlertDialogActionProps
-  extends React.ComponentProps<typeof AlertDialogPrimitive.Action>,
-    Pick<React.ComponentProps<typeof Button>, "variant" | "size"> {}
-
 function AlertDialogAction({
   className,
   variant = "default",
   size = "default",
   ...props
-}: AlertDialogActionProps) {
+}: React.ComponentProps<typeof AlertDialogPrimitive.Action> &
+  Pick<React.ComponentProps<typeof Button>, "variant" | "size">) {
   return (
     <Button variant={variant} size={size} asChild>
       <AlertDialogPrimitive.Action
@@ -168,16 +160,13 @@ function AlertDialogAction({
   )
 }
 
-interface AlertDialogCancelProps
-  extends React.ComponentProps<typeof AlertDialogPrimitive.Cancel>,
-    Pick<React.ComponentProps<typeof Button>, "variant" | "size"> {}
-
 function AlertDialogCancel({
   className,
   variant = "outline",
   size = "default",
   ...props
-}: AlertDialogCancelProps) {
+}: React.ComponentProps<typeof AlertDialogPrimitive.Cancel> &
+  Pick<React.ComponentProps<typeof Button>, "variant" | "size">) {
   return (
     <Button variant={variant} size={size} asChild>
       <AlertDialogPrimitive.Cancel
@@ -192,11 +181,8 @@ function AlertDialogCancel({
 export {
   AlertDialog,
   AlertDialogAction,
-  type AlertDialogActionProps,
   AlertDialogCancel,
-  type AlertDialogCancelProps,
   AlertDialogContent,
-  type AlertDialogContentProps,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
