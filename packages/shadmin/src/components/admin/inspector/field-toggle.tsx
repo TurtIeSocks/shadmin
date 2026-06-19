@@ -1,5 +1,6 @@
 import * as React from "react";
-import { FieldTitle, useResourceContext } from "shadmin-core";
+import { useResourceContext } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { GripVertical } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
@@ -152,7 +153,7 @@ function FieldToggle(props: FieldToggleProps) {
           name={`${index}`}
         />
         <span className="text-sm">
-          <FieldTitle label={label} source={source} resource={resource} />
+          <FieldLabelText label={label} source={source} resource={resource} />
         </span>
       </label>
       {onMove && (

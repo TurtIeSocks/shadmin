@@ -22,7 +22,6 @@ import {
   DataTableBase,
   DataTableRenderContext,
   DataTableStoreContext,
-  FieldTitle,
   RecordContextProvider,
   useCanAccess,
   useDataTableCallbacksContext,
@@ -41,6 +40,7 @@ import {
   useTranslateLabel,
 } from "shadmin-core";
 import { useNavigate } from "react-router";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import {
   ArrowDownAZ,
   ArrowUpZA,
@@ -826,7 +826,7 @@ function DataTableHeadCell<
               onClick={handleSort}
             >
               {headerClassName?.includes("text-right") ? null : (
-                <FieldTitle label={label} source={source} resource={resource} />
+                <FieldLabelText label={label} source={source} resource={resource} />
               )}
               {sort.field === source ? (
                 sort.order === "ASC" ? (
@@ -836,7 +836,7 @@ function DataTableHeadCell<
                 )
               ) : null}
               {headerClassName?.includes("text-right") ? (
-                <FieldTitle label={label} source={source} resource={resource} />
+                <FieldLabelText label={label} source={source} resource={resource} />
               ) : null}
             </Button>
           </TooltipTrigger>
@@ -845,7 +845,7 @@ function DataTableHeadCell<
           </TooltipContent>
         </Tooltip>
       ) : (
-        <FieldTitle label={label} source={source} resource={resource} />
+        <FieldLabelText label={label} source={source} resource={resource} />
       )}
     </TableHead>
   );
