@@ -2,7 +2,7 @@ import { AlertCircle, CheckCircle } from "lucide-react";
 import { useTranslate } from "shadmin-core";
 import * as React from "react";
 import { type ComponentType, type MouseEventHandler, useCallback } from "react";
-import { DialogPrimitive } from "@/components/ui/dialog";
+import { DialogPrimitive } from "@/components/ui/primitives";
 
 import { Button } from "@/components/ui/button";
 import {

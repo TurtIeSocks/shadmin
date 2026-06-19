@@ -36,7 +36,7 @@ import {
   ValidationError,
 } from "shadmin-core";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
-import { PopoverPrimitive } from "@/components/ui/popover";
+import { PopoverPrimitive } from "@/components/ui/primitives";
 import type { UnknownValue } from "@/lib/unknown-types";
 
 /**

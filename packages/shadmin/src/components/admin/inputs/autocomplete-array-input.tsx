@@ -14,8 +14,8 @@ import {
   Popover,
   PopoverAnchor,
   PopoverContent,
-  PopoverPrimitive,
 } from "@/components/ui/popover";
+import { PopoverPrimitive } from "@/components/ui/primitives";
 import { Command as CommandPrimitive } from "cmdk";
 import type {
   ChoicesProps,

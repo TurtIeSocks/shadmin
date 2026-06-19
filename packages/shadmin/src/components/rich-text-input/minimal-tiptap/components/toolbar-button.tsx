@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { TooltipPrimitive } from "@/components/ui/tooltip";
+import type { TooltipPrimitive } from "@/components/ui/primitives";
 import {
   Tooltip,
   TooltipContent,
