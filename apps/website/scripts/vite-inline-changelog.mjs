@@ -19,6 +19,8 @@ export const viteInlineChangelog = {
   transform(code, id) {
     if (!id.endsWith("changelog.mdx")) return;
     const changelogPath = resolve(REPO_ROOT, "CHANGELOG.md");
+    // Re-run this transform in dev when the external CHANGELOG.md changes.
+    this.addWatchFile?.(changelogPath);
     let changelogContent = "";
     try {
       changelogContent = readFileSync(changelogPath, "utf-8");

@@ -166,9 +166,6 @@ importers:
 
   apps/website:
     dependencies:
-      '@mdx-js/rollup':
-        specifier: ^3.1.1
-        version: 3.1.1(rollup@4.60.2)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -196,25 +193,13 @@ importers:
       react-shiki:
         specifier: ^0.7.4
         version: 0.7.4(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      remark-directive:
-        specifier: ^4.0.0
-        version: 4.0.0
-      remark-frontmatter:
-        specifier: ^5.0.0
-        version: 5.0.0
-      remark-gfm:
-        specifier: ^4.0.1
-        version: 4.0.1
-      remark-mdx-frontmatter:
-        specifier: ^5.2.0
-        version: 5.2.0
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.5.0
-      unist-util-visit:
-        specifier: ^5.1.0
-        version: 5.1.0
     devDependencies:
+      '@mdx-js/rollup':
+        specifier: ^3.1.1
+        version: 3.1.1(rollup@4.60.2)
       '@tailwindcss/postcss':
         specifier: ^4.3.0
         version: 4.3.0
@@ -239,6 +224,18 @@ importers:
       postcss:
         specifier: ^8.4.40
         version: 8.5.10
+      remark-directive:
+        specifier: ^4.0.0
+        version: 4.0.0
+      remark-frontmatter:
+        specifier: ^5.0.0
+        version: 5.0.0
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1
+      remark-mdx-frontmatter:
+        specifier: ^5.2.0
+        version: 5.2.0
       tailwindcss:
         specifier: ^4.3.0
         version: 4.3.0
@@ -248,6 +245,9 @@ importers:
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
+      unist-util-visit:
+        specifier: ^5.1.0
+        version: 5.1.0
       vite:
         specifier: ^8.0.6
         version: 8.0.6(@types/node@22.19.12)(esbuild@0.27.7)(jiti@2.6.1)(yaml@2.9.0)

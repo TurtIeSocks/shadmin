@@ -19,8 +19,11 @@ function MdxLink({
   ...rest
 }: React.ComponentPropsWithoutRef<"a"> & { href?: string }) {
   const url = href ?? "";
-  const isInternal =
-    url.startsWith("/") || url.startsWith("#") || url.startsWith(".");
+  // Internal = root-relative path (what remark-relative-links produces from
+  // `./page`) or an in-page anchor. Everything else — http(s), mailto, and any
+  // surviving `../` — goes to a plain <a> (react-router <Link> would mis-resolve
+  // `../` against the current route).
+  const isInternal = url.startsWith("/") || url.startsWith("#");
   if (isInternal) {
     return (
       <Link to={url} {...rest}>
@@ -39,7 +42,6 @@ function MdxLink({
 
 function MdxImg({ src, alt, ...rest }: React.ComponentPropsWithoutRef<"img">) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
       alt={alt ?? ""}
