@@ -10,7 +10,21 @@ import type { NavGroup } from "./types";
 const nav = manifest.nav;
 
 const GUIDES = [
-  { label: "Introduction", href: "/docs" },
+  { label: "Introduction", href: "/docs", end: true },
+  { label: "Installation", href: "/docs/install" },
+  { label: "Quick Start", href: "/docs/quick-start-guide" },
+  { label: "Admin", href: "/docs/admin" },
+  { label: "Resource", href: "/docs/resource" },
+  { label: "List", href: "/docs/list" },
+  { label: "Edit", href: "/docs/edit" },
+  { label: "Create", href: "/docs/create" },
+  { label: "Show", href: "/docs/show" },
+  { label: "Data Table", href: "/docs/data-table" },
+  { label: "Simple Form", href: "/docs/simple-form" },
+  { label: "Data Providers", href: "/docs/data-providers" },
+  { label: "Security", href: "/docs/security" },
+  { label: "Theming", href: "/docs/theming" },
+  { label: "Translation", href: "/docs/translation" },
   { label: "Components", href: "/docs/components" },
 ];
 
@@ -80,7 +94,7 @@ function Sidebar() {
             <li key={guide.href}>
               <NavLink
                 to={guide.href}
-                end
+                end={guide.end ?? false}
                 className={({ isActive }) =>
                   cn(
                     "block rounded-lg px-2 py-1 text-sm transition-colors",
