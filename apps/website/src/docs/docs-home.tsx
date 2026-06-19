@@ -12,8 +12,7 @@ export function DocsHome() {
       <Eyebrow className="mb-4">Documentation</Eyebrow>
 
       <h1 className="text-3xl font-bold tracking-tight mb-4">
-        Welcome to{" "}
-        <GradientText>shadmin</GradientText>
+        Welcome to <GradientText>shadmin</GradientText>
       </h1>
 
       <p className="text-muted-foreground text-lg leading-relaxed mb-8">

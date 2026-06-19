@@ -50,10 +50,22 @@ describe("buildManifest", () => {
   it("install commands correct for all 4 managers", () => {
     const item = manifest.items.find((i) => i.name === "button-group");
     assert.ok(item, "button-group item present");
-    assert.equal(item.install.npm, "npx shadcn@latest add @shadmin/button-group");
-    assert.equal(item.install.pnpm, "pnpm dlx shadcn@latest add @shadmin/button-group");
-    assert.equal(item.install.yarn, "yarn dlx shadcn@latest add @shadmin/button-group");
-    assert.equal(item.install.bun, "bunx shadcn@latest add @shadmin/button-group");
+    assert.equal(
+      item.install.npm,
+      "npx shadcn@latest add @shadmin/button-group",
+    );
+    assert.equal(
+      item.install.pnpm,
+      "pnpm dlx shadcn@latest add @shadmin/button-group",
+    );
+    assert.equal(
+      item.install.yarn,
+      "yarn dlx shadcn@latest add @shadmin/button-group",
+    );
+    assert.equal(
+      item.install.bun,
+      "bunx shadcn@latest add @shadmin/button-group",
+    );
   });
 
   it("category falls back to misc when categories absent", () => {

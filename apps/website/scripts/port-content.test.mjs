@@ -20,16 +20,16 @@ title: Test
     // Outside fences: class= → className=
     assert.ok(
       result.includes('<div className="outside">'),
-      "outside class= not converted"
+      "outside class= not converted",
     );
     assert.ok(
       result.includes('<span className="also-outside">'),
-      "span outside class= not converted"
+      "span outside class= not converted",
     );
     // Inside fences: class= unchanged
     assert.ok(
       result.includes('<div class="inside">'),
-      "inside fence class= was incorrectly changed"
+      "inside fence class= was incorrectly changed",
     );
   });
 
@@ -46,12 +46,14 @@ Some text.
 `;
     const result = transformContent(raw, "test");
     assert.ok(
-      !result.includes('import PropsTable from "../../components/props-table.astro"'),
-      "astro import not stripped"
+      !result.includes(
+        'import PropsTable from "../../components/props-table.astro"',
+      ),
+      "astro import not stripped",
     );
     assert.ok(
       result.includes('<PropsTable name="MyComponent"/>'),
-      "PropsTable JSX usage was incorrectly removed"
+      "PropsTable JSX usage was incorrectly removed",
     );
   });
 
@@ -69,11 +71,11 @@ import video from './images/date-input.mp4';
     const result = transformContent(raw, "test");
     assert.ok(
       !result.includes("import video from './images/date-input.mp4'"),
-      "asset import line not removed"
+      "asset import line not removed",
     );
     assert.ok(
       result.includes('src="/docs/images/date-input.mp4"'),
-      "asset import not inlined as path"
+      "asset import not inlined as path",
     );
     assert.ok(!result.includes("{video}"), "{video} reference not replaced");
   });
@@ -91,15 +93,15 @@ title: Test
     const result = transformContent(raw, "test");
     assert.ok(
       result.includes("](/docs/images/screenshot.png)"),
-      "markdown image link not rewritten"
+      "markdown image link not rewritten",
     );
     assert.ok(
       result.includes('src="/docs/images/logo.svg"'),
-      "double-quote src not rewritten"
+      "double-quote src not rewritten",
     );
     assert.ok(
       result.includes("src='/docs/images/banner.png'"),
-      "single-quote src not rewritten"
+      "single-quote src not rewritten",
     );
   });
 
@@ -119,12 +121,48 @@ title: Test
     assert.ok(result.includes('htmlFor="y"'), "for= not → htmlFor=");
     assert.ok(result.includes("autoPlay"), "autoplay not → autoPlay");
     assert.ok(result.includes("playsInline"), "playsinline not → playsInline");
-    assert.ok(result.includes('frameBorder="0"'), "frameborder not → frameBorder");
-    assert.ok(result.includes("allowFullScreen"), "allowfullscreen not → allowFullScreen");
+    assert.ok(
+      result.includes('frameBorder="0"'),
+      "frameborder not → frameBorder",
+    );
+    assert.ok(
+      result.includes("allowFullScreen"),
+      "allowfullscreen not → allowFullScreen",
+    );
     assert.ok(result.includes('srcSet="a.png 1x"'), "srcset not → srcSet");
     assert.ok(result.includes('tabIndex="0"'), "tabindex not → tabIndex");
     assert.ok(result.includes('colSpan="2"'), "colspan not → colSpan");
     assert.ok(result.includes('rowSpan="3"'), "rowspan not → rowSpan");
+  });
+
+  test("autolinks: <url> and <email> → MDX-safe links; fenced ones untouched", () => {
+    const raw = `---
+title: Test
+---
+
+See <https://ui.shadcn.com/docs/installation/vite> for setup.
+
+Mail <hi@example.com> for help.
+
+\`\`\`html
+<https://keep-me-fenced.com>
+\`\`\`
+`;
+    const result = transformContent(raw, "test");
+    assert.ok(
+      result.includes(
+        "[https://ui.shadcn.com/docs/installation/vite](https://ui.shadcn.com/docs/installation/vite)",
+      ),
+      "url autolink not converted",
+    );
+    assert.ok(
+      result.includes("[hi@example.com](mailto:hi@example.com)"),
+      "email autolink not converted",
+    );
+    assert.ok(
+      result.includes("<https://keep-me-fenced.com>"),
+      "fenced autolink was incorrectly converted",
+    );
   });
 
   test("idempotency: running transformContent twice equals once", () => {
@@ -162,11 +200,11 @@ title: Test
     const result = transformContent(raw, "test");
     assert.ok(
       result.includes('<div class="inside-indented">'),
-      "indented fence class= was incorrectly changed"
+      "indented fence class= was incorrectly changed",
     );
     assert.ok(
       result.includes('<div className="outside">'),
-      "outside class= not converted after indented fence"
+      "outside class= not converted after indented fence",
     );
   });
 });

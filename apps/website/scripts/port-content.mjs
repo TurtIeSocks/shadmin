@@ -213,6 +213,15 @@ export function transformContent(raw, _slug) {
       transformed = normalizeAttrs(transformed);
     }
 
+    // Step 7: Markdown autolinks <url>/<email> → MDX-safe links.
+    // Markdown allows <https://x>, but MDX parses `<` as JSX and chokes on the
+    // `://`. Convert to [text](url) (the form MDX expects).
+    transformed = transformed.replace(/<(https?:\/\/[^>\s]+)>/g, "[$1]($1)");
+    transformed = transformed.replace(
+      /<([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})>/g,
+      "[$1](mailto:$1)",
+    );
+
     out.push(transformed);
   }
 

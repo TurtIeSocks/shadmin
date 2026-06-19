@@ -58,7 +58,10 @@ export function buildManifest(registry) {
     return {
       name,
       title: /** @type {string} */ (item.title ?? name),
-      description: item.description != null ? /** @type {string} */ (item.description) : null,
+      description:
+        item.description != null
+          ? /** @type {string} */ (item.description)
+          : null,
       type: /** @type {string} */ (item.type ?? "registry:block"),
       category:
         Array.isArray(item.categories) && item.categories.length >= 2
@@ -109,7 +112,10 @@ export function buildManifest(registry) {
 }
 
 async function main() {
-  const registryPath = resolve(__dirname, "../../../packages/shadmin/registry.json");
+  const registryPath = resolve(
+    __dirname,
+    "../../../packages/shadmin/registry.json",
+  );
   const outDir = resolve(__dirname, "../src/docs");
   const outPath = resolve(outDir, "registry-manifest.json");
 
@@ -119,15 +125,20 @@ async function main() {
   mkdirSync(outDir, { recursive: true });
   writeFileSync(outPath, JSON.stringify(manifest, null, 2) + "\n");
 
-  console.log(
-    `Generated ${manifest.items.length} items → ${outPath}`,
-  );
+  console.log(`Generated ${manifest.items.length} items → ${outPath}`);
   console.log(
     `Nav groups: ${manifest.nav.map((g) => `${g.category}(${g.items.length})`).join(", ")}`,
   );
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Only run when invoked directly (so importing buildManifest has no side effects).
+const isMain =
+  process.argv[1] &&
+  resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url));
+
+if (isMain) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

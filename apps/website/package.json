@@ -8,7 +8,11 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
-    "docs:manifest": "node scripts/generate-docs-manifest.mjs"
+    "test": "node --test scripts/*.test.mjs",
+    "docs:manifest": "node scripts/generate-docs-manifest.mjs",
+    "docs:check": "node scripts/check-manifest-drift.mjs",
+    "port:content": "node scripts/port-content.mjs",
+    "gen:nav": "node scripts/gen-sidebar-nav.mjs > src/docs/sidebar-nav.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
