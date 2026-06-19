@@ -1,0 +1,17 @@
+{
+  "name": "SupabaseLoginForm",
+  "props": [
+    {
+      "name": "disableForgotPassword",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "redirectTo",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

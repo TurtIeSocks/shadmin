@@ -1,0 +1,47 @@
+{
+  "name": "SelectArrayInput",
+  "props": [
+    {
+      "name": "create",
+      "type": "ReactElement",
+      "optional": true,
+      "comment": "React element rendered as an inline-create entry at the bottom of the options menu."
+    },
+    {
+      "name": "createHintValue",
+      "type": "string",
+      "optional": true,
+      "comment": "Internal sentinel placeholder value passed to ra-core to mark the create option; override only when it conflicts with a real choice value."
+    },
+    {
+      "name": "createItemLabel",
+      "type": "string",
+      "optional": true,
+      "comment": "Label for the create menu entry shown when the filter is non-empty. Defaults to the ra.action.create_item translation key."
+    },
+    {
+      "name": "createLabel",
+      "type": "string",
+      "optional": true,
+      "comment": "Hint label for the create menu entry shown when the filter is empty. Defaults to the ra.action.create translation key."
+    },
+    {
+      "name": "createValue",
+      "type": "string",
+      "optional": true,
+      "comment": "Sentinel value tagging the create option in the list. Defaults to '@@ra-create'; override only when that string conflicts with a real choice id."
+    },
+    {
+      "name": "InputLabelProps",
+      "type": "ComponentProps<typeof FormLabel>",
+      "optional": true,
+      "comment": "Props forwarded to the FormLabel element rendered above the trigger button (e.g. className, style)."
+    },
+    {
+      "name": "onCreate",
+      "type": "(filter?: string) => Promise<{ id: any; [key: string]: any }>",
+      "optional": true,
+      "comment": "Lightweight callback alternative to create; called with the filter string when the create entry is clicked, should return a new record whose id is then appended to the selection."
+    }
+  ]
+}

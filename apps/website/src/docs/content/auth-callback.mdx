@@ -1,0 +1,53 @@
+---
+title: "AuthCallback"
+---
+
+Redirection target used by external authentication services (e.g. OAuth) after a user has signed in. Displays a loading indicator while the `authProvider.handleCallback()` promise is in flight, then redirects to the admin app on success — or shows an [`<AuthError>`](./auth-error) on failure.
+
+## Usage
+
+`<AuthCallback>` is wired up by default as the `authCallbackPage` slot of the [`<Admin>`](./admin) component. You usually don't need to render it manually — it's the route hit by your auth provider's callback URL.
+
+```tsx
+import { Admin } from "@/components/admin";
+import { authProvider } from "./auth-provider";
+
+const App = () => (
+  <Admin dataProvider={dataProvider} authProvider={authProvider}>
+    ...
+  </Admin>
+);
+```
+
+If you need a custom callback screen (e.g. to display branding while the callback completes, or to start an onboarding flow), pass your own component to `<Admin authCallbackPage={...}>`:
+
+```tsx
+import { Admin } from "@/components/admin";
+import MyAuthCallbackPage from "./MyAuthCallbackPage";
+
+const App = () => (
+  <Admin authCallbackPage={MyAuthCallbackPage} authProvider={authProvider}>
+    ...
+  </Admin>
+);
+```
+
+The default implementation is a thin wrapper around the [`useHandleAuthCallback`](https://marmelab.com/ra-core/usehandleauthcallback/) hook:
+
+```tsx
+import { useHandleAuthCallback } from "ra-core";
+import { AuthError } from "@/components/admin/auth-error";
+import { Loading } from "@/components/admin/loading";
+
+export const AuthCallback = () => {
+  const { error } = useHandleAuthCallback();
+  if (error) {
+    return <AuthError message={(error as Error).message} />;
+  }
+  return <Loading />;
+};
+```
+
+## Props
+
+`<AuthCallback>` does not accept any props.

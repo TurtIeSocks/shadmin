@@ -1,0 +1,47 @@
+{
+  "name": "FileField",
+  "props": [
+    {
+      "name": "download",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "The component to display when the field value is empty. Defaults to empty string."
+    },
+    {
+      "name": "ping",
+      "type": "string",
+      "optional": true,
+      "comment": "Space-separated list of URLs to which a `POST` request is sent when the link is followed. Passes through to the underlying `<a>` element."
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "optional": true,
+      "comment": "Relationship of the linked URL (e.g. `noopener noreferrer`). Passes through to the underlying `<a>` element."
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "optional": true,
+      "comment": "The source of the link to the file, for an array of files."
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "title",
+      "type": "HintedString<ExtractRecordPaths<RecordType>>",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

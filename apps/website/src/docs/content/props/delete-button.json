@@ -1,0 +1,65 @@
+{
+  "name": "DeleteButton",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "mutationMode",
+      "type": "MutationMode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "mutationOptions",
+      "type": "UseDeleteOptions",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onClick",
+      "type": "React.ReactEventHandler<HTMLButtonElement>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "redirect",
+      "type": "RedirectionSideEffect",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "size",
+      "type": "\"default\" | \"sm\" | \"lg\" | \"icon\"",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "successMessage",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "variant",
+      "type": "\"default\" | \"destructive\" | \"outline\" | \"secondary\" | \"ghost\" | \"link\"",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

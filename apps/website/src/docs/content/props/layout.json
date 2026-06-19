@@ -1,0 +1,29 @@
+{
+  "name": "Layout",
+  "props": [
+    {
+      "name": "appBar",
+      "type": "ComponentType<AppBarProps>",
+      "optional": true,
+      "comment": "Replaces the default `<AppBar />` rendered at the top of the content area."
+    },
+    {
+      "name": "error",
+      "type": "ComponentType<ErrorProps>",
+      "optional": true,
+      "comment": "Replaces the default `<Error>` component rendered by the ErrorBoundary fallback."
+    },
+    {
+      "name": "menu",
+      "type": "ComponentType<MenuProps>",
+      "optional": true,
+      "comment": "Replaces the default `<Menu />` rendered inside the sidebar content area."
+    },
+    {
+      "name": "sidebar",
+      "type": "ComponentType<{ children?: ReactNode }>",
+      "optional": true,
+      "comment": "Replaces the default `<AppSidebar>` component."
+    }
+  ]
+}

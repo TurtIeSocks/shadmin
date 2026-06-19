@@ -1,0 +1,91 @@
+---
+title: "AppBar"
+---
+
+Header bar rendered at the top of the admin layout. Hosts the sidebar trigger, the title/breadcrumb slot, the locales menu, the theme toggle, the refresh button, and the user menu.
+
+## Usage
+
+`<AppBar>` is included in the default [`<Layout>`](./layout). It can be re-used when building a custom layout, or replaced entirely by passing children.
+
+```tsx
+import { AppBar } from "@/components/admin";
+
+const MyLayout = ({ children }) => (
+  <div className="flex flex-col h-svh">
+    <AppBar />
+    <main className="flex-1 px-4">{children}</main>
+  </div>
+);
+```
+
+Pass children to override the default content. The children replace all of: sidebar trigger, breadcrumb portal, title portal, locales menu, theme toggle, refresh button, and user menu.
+
+```tsx
+import {
+  AppBar,
+  SidebarToggleButton,
+  ThemeModeToggle,
+  TitlePortal,
+  UserMenu,
+} from "@/components/admin";
+
+const MinimalAppBar = () => (
+  <AppBar>
+    <SidebarToggleButton />
+    <TitlePortal />
+    <ThemeModeToggle />
+    <UserMenu />
+  </AppBar>
+);
+```
+
+## Props
+
+| Prop        | Required | Type               | Default                   | Description                                               |
+| ----------- | -------- | ------------------ | ------------------------- | --------------------------------------------------------- |
+| `children`  | Optional | `ReactNode`        | Default toolbar           | Replace the entire AppBar content                         |
+| `className` | Optional | `string`           | —                         | Extra Tailwind classes appended to the `<header>` element |
+| `toolbar`   | Optional | `ReactNode`        | Locales + Theme + Refresh | Replace the right-aligned action cluster                  |
+| `userMenu`  | Optional | `ReactNode\|false` | `<UserMenu />`            | Replace or suppress the user menu                         |
+
+Additional props are forwarded to the underlying `<header>` element.
+
+## `children`
+
+When `children` are provided, they replace the entire toolbar — `<AppBar>` only contributes the `<header>` wrapper with its default flex layout. Compose with [`<TitlePortal>`](./title-portal), [`<SidebarToggleButton>`](./sidebar-toggle-button), [`<UserMenu>`](./user-menu), and other building blocks to keep parity with the default behavior.
+
+## `toolbar`
+
+Pass any `ReactNode` to replace the default right-side action cluster (LocalesMenuButton + ThemeModeToggle + RefreshButton). Pass `null` to render nothing in that slot (the `userMenu` slot remains separate).
+
+````tsx
+import { AppBar, Layout, RefreshButton } from "@/components/admin";
+import { MyHelpButton } from "./my-help-button";
+
+const MyAppBar = () => (
+  <AppBar toolbar={<><MyHelpButton /><RefreshButton /></>} />
+);
+
+const MyLayout = (props) => <Layout {...props} appBar={MyAppBar} />;
+
+## `userMenu`
+
+Pass a `ReactNode` to replace the default [`<UserMenu />`](./user-menu), or `false` to suppress it entirely (useful when auth is disabled).
+
+```tsx
+import { AppBar, Layout } from "@/components/admin";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
+// Replace with a custom avatar button
+const MyUserMenu = () => (
+  <Avatar className="size-7 cursor-pointer">
+    <AvatarFallback>U</AvatarFallback>
+  </Avatar>
+);
+
+const MyAppBar = () => <AppBar userMenu={<MyUserMenu />} />;
+
+// Suppress entirely
+const NoUserMenuAppBar = () => <AppBar userMenu={false} />;
+````

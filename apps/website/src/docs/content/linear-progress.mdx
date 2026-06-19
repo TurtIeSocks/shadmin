@@ -1,0 +1,28 @@
+---
+title: "LinearProgress"
+---
+
+Linear progress bar with a delay before it appears, designed to replace an input or a field in a form layout while data is loading. The component reserves vertical space before the bar appears, so swapping it for the resolved value does not cause layout jumps.
+
+## Usage
+
+```tsx
+import { LinearProgress } from "@/components/admin/linear-progress";
+
+const ReferenceFieldFallback = () => <LinearProgress />;
+```
+
+The bar only appears after the `timeout` has elapsed (default: 1 second). Until then, a same-height invisible spacer is rendered. This avoids flashing the progress indicator for fast loads.
+
+## Props
+
+| Prop        | Required | Type     | Default | Description                                         |
+| ----------- | -------- | -------- | ------- | --------------------------------------------------- |
+| `timeout`   | Optional | `number` | `1000`  | Delay in milliseconds before showing the bar.       |
+| `className` | Optional | `string` | -       | Extra CSS class applied to the bar's outer element. |
+
+The component also forwards any additional `div` props (e.g. `id`, `aria-*`) to the wrapping element.
+
+## Customizing
+
+The default bar uses Tailwind classes (`bg-muted` track + `bg-primary` indicator) and CSS animation. To change its look, edit `@/components/admin/linear-progress.tsx` directly.

@@ -1,0 +1,34 @@
+---
+title: "ResourceMenuItem"
+---
+
+Sidebar entry that links to a resource's list view. Resolves the label, icon and route from the resource definition declared in `<Admin>`.
+
+## Usage
+
+`<ResourceMenuItem>` is used by [`<Menu>`](./menu) to render one entry per registered resource. You can also use it directly when building a custom sidebar:
+
+```tsx
+import { ResourceMenuItem } from "@/components/admin";
+
+const CustomMenu = () => (
+  <nav>
+    <ResourceMenuItem name="posts" />
+    <ResourceMenuItem name="comments" />
+  </nav>
+);
+```
+
+The component returns `null` when the user does not have `list` access (checked through `useCanAccess`). While the permission check is pending it renders a `<Skeleton>` placeholder.
+
+## Props
+
+| Prop        | Required | Type         | Default | Description                                                                      |
+| ----------- | -------- | ------------ | ------- | -------------------------------------------------------------------------------- |
+| `name`      | Required | `string`     | —       | Resource name registered via `<Resource name="…">`                               |
+| `className` | Optional | `string`     | —       | Extra Tailwind classes appended to the menu button                               |
+| `onClick`   | Optional | `() => void` | —       | Invoked after navigation; the default sidebar uses it to close the mobile drawer |
+
+## `name`
+
+The `name` prop must match a resource registered in `<Admin>`. The component reads the resource definition for the icon, label, and list path. If no resource by that name exists, `<ResourceMenuItem>` renders nothing.

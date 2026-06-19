@@ -1,0 +1,35 @@
+{
+  "name": "SimpleShowLayout",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "divider",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Divider element inserted between each field row."
+    },
+    {
+      "name": "record",
+      "type": "RaRecord",
+      "optional": true,
+      "comment": "Override the record from the RecordContext."
+    },
+    {
+      "name": "spacing",
+      "type": "number",
+      "optional": true,
+      "comment": "Gap between field rows using Tailwind gap-{n}. Defaults to 1."
+    }
+  ]
+}

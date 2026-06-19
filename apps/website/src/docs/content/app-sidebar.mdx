@@ -1,0 +1,209 @@
+---
+title: "AppSidebar"
+---
+
+Navigation sidebar displaying menu items, allowing users to navigate between different sections of the application. They can collapse it to an icon-only sidebar by clicking on the sidebar icon in the breadcrumb. On mobile, it renders as a collapsible drawer. `<AppSidebar>` leverages shadcn/ui's [Sidebar](https://ui.shadcn.com/docs/components/sidebar) component.
+
+![AppSidebar](/docs/images/app-sidebar.jpg)
+
+## Usage
+
+`<AppSidebar>` is included in the default [`<Layout>`](./layout) component. It includes:
+
+- the application name and logo, whicj is a link to the home page (`/`),
+- a link to the dashboard (if defined in [`<Admin dashboard>`](./admin)), and
+- links to all the list views defined in [`<Resource list>`](./resource) components.
+
+To customize all these elements, edit the `@/components/admin/app-sidebar.tsx` file.
+
+For example, to customize the app name and logo, edit the `SidebarHeader` section:
+
+```tsx {2,22-25}
+// in @/components/admin/app-sidebar.tsx
+import { Armchair } from "lucide-react";
+
+export function AppSidebar() {
+  const hasDashboard = useHasDashboard();
+  const resources = useResourceDefinitions();
+  const { openMobile, setOpenMobile } = useSidebar();
+  const handleClick = () => {
+    if (openMobile) {
+      setOpenMobile(false);
+    }
+  };
+  return (
+    <Sidebar variant="floating" collapsible="icon">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:p-1.5!"
+            >
+              <Link to="/">
+                <Armchair className="size-5!" />
+                <span className="text-base font-semibold">My Company</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>{/* Menu items */}</SidebarContent>
+      <SidebarFooter />
+    </Sidebar>
+  );
+}
+```
+
+To reorder the Resource menu items, reorder the `<Resource>` components in the [`<Admin>`](./admin) component.
+
+If you want to hide some resources from the sidebar, edit the `SidebarMenu` section and filter out the resources you don't want to display. For example, to hide the `categories` resource:
+
+```tsx {25}
+// in @/components/admin/app-sidebar.tsx
+export function AppSidebar() {
+  const hasDashboard = useHasDashboard();
+  const resources = useResourceDefinitions();
+  const { openMobile, setOpenMobile } = useSidebar();
+  const handleClick = () => {
+    if (openMobile) {
+      setOpenMobile(false);
+    }
+  };
+  return (
+    <Sidebar variant="floating" collapsible="icon">
+      <SidebarHeader>{/* App name and logo */}</SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {hasDashboard ? (
+                <DashboardMenuItem onClick={handleClick} />
+              ) : null}
+              {Object.keys(resources)
+                .filter((name) => resources[name].hasList)
+                .filter((name) => name !== "categories") // Hide categories resource
+                .map((name) => (
+                  <ResourceMenuItem
+                    key={name}
+                    name={name}
+                    onClick={handleClick}
+                  />
+                ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter />
+    </Sidebar>
+  );
+}
+```
+
+To customize the menu items, edit the `SidebarContent` section. For example, if you added a `settings` [`CustomRoute`](./custom-routes), here is how to add a link to it in the sidebar:
+
+```tsx {2-3,35-42}
+// in @/components/admin/app-sidebar.tsx
+import { Settings } from "lucide-react";
+import { Link } from "react-route";
+
+export function AppSidebar() {
+  const hasDashboard = useHasDashboard();
+  const resources = useResourceDefinitions();
+  const { openMobile, setOpenMobile } = useSidebar();
+  const handleClick = () => {
+    if (openMobile) {
+      setOpenMobile(false);
+    }
+  };
+  return (
+    <Sidebar variant="floating" collapsible="icon">
+      <SidebarHeader>{/* App name and logo */}</SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {hasDashboard ? (
+                <DashboardMenuItem onClick={handleClick} />
+              ) : null}
+              {Object.keys(resources)
+                .filter((name) => resources[name].hasList)
+                .map((name) => (
+                  <ResourceMenuItem
+                    key={name}
+                    name={name}
+                    onClick={handleClick}
+                  />
+                ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/settings">
+                    <Settings />
+                    <span>Settings</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+      <SidebarFooter />
+    </Sidebar>
+  );
+}
+```
+
+For more customization options, refer to the [shadcn/ui Sidebar documentation](https://ui.shadcn.com/docs/components/sidebar).
+
+## Props
+
+| Prop             | Required | Type      | Default | Description                                        |
+| ---------------- | -------- | --------- | ------- | -------------------------------------------------- |
+| `appBarAlwaysOn` | Optional | `boolean` | `false` | Signal that the AppBar is always visible on scroll |
+| `closedSize`     | Optional | `number`  | `55`    | Width in px of the collapsed icon-rail             |
+| `size`           | Optional | `number`  | `240`   | Width in px of the expanded sidebar                |
+
+## `size`
+
+Controls the width (in pixels) of the expanded sidebar. Defaults to `240`. Decrease for a more compact sidebar, increase for longer menu labels.
+
+```tsx
+import { AppSidebar, Layout } from "@/components/admin";
+
+const MyLayout = (props) => (
+  <Layout
+    {...props}
+    sidebar={(sidebarProps) => <AppSidebar {...sidebarProps} size={280} />}
+  />
+);
+```
+
+## `closedSize`
+
+Controls the width (in pixels) of the collapsed icon-only rail. Defaults to `55`. Increase this value to show wider icons or extra text badges in the collapsed state.
+
+```tsx
+import { AppSidebar, Layout } from "@/components/admin";
+
+const MyLayout = (props) => (
+  <Layout
+    {...props}
+    sidebar={(sidebarProps) => <AppSidebar {...sidebarProps} closedSize={72} />}
+  />
+);
+```
+
+## `appBarAlwaysOn`
+
+When `true`, signals to descendant components that the AppBar is pinned and never hidden by scroll. Descendants can use this flag to adjust top-offset spacing so content doesn't slide behind the always-visible header.
+
+```tsx
+import { Layout, AppSidebar } from "@/components/admin";
+
+const MyLayout = (props) => (
+  <Layout
+    {...props}
+    sidebar={(sidebarProps) => <AppSidebar {...sidebarProps} appBarAlwaysOn />}
+  />
+);
+```

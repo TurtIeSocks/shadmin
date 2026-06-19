@@ -4,7 +4,7 @@ title: "Edit"
 
 The `<Edit>` component is the main component for edition pages. It fetches a record based on the URL, prepares a form submit handler, and renders the page title and actions. It is not responsible for rendering the actual form - that's the job of its child component (usually a form component, like [`<SimpleForm>`](./SimpleForm.html)). This form component uses its children ([`<Input>`](./data-edition.mdx#inputs) components) to render each form input.
 
-![Edit view](./images/customers-edit.png)
+![Edit view](/docs/images/customers-edit.png)
 
 The `<Edit>` component calls `dataProvider.getOne()`, using the `id` from the URL. It creates a `RecordContext` with the result. It also creates a [`SaveContext`](https://marmelab.com/ra-core/usesavecontext/) containing a `save` callback, which calls `dataProvider.update()` when executed, and [an `EditContext`](https://marmelab.com/ra-core/useeditcontext/) containing both the record and the callback.
 
@@ -197,7 +197,7 @@ export const PostEdit = () => (
 
 The `<Edit>` component will render its children inside a `EditContext` provider, which the `save` function. Children can be any React node, but are usually a form component like [`<SimpleForm>`](./simple-form), or the headless [`<Form>`](https://marmelab.com/ra-core/form/) component.
 
-![](./images/customers-edit-content.png)
+![](/docs/images/customers-edit-content.png)
 
 ```tsx
 import { Edit, SimpleForm, TextInput, BooleanInput } from "@/components/admin";
@@ -258,7 +258,7 @@ export const PostEdit = () => (
 
 By default, the Edit component includes a toolbar with a button to navigate to the show view (if present) and a button to delete the current record.
 
-![](./images/customers-edit-actions.png)
+![](/docs/images/customers-edit-actions.png)
 
 You can replace these actions by your own elements using the `actions` prop:
 
@@ -537,7 +537,7 @@ If you want to have different failure side effects based on the button clicked b
 
 Once the `dataProvider.update()` request returns successfully, users see a success notification.
 
-![Edit notification](./images/update-notification.png)
+![Edit notification](/docs/images/update-notification.png)
 
 `<Edit>` uses two successive translation keys to build the success message:
 
@@ -690,7 +690,7 @@ const App = () => (
 
 Just like `<Edit>`, `<EditGuesser>` fetches the data. It then analyzes the response, and guesses the inputs it should use to display a basic `<SimpleForm>` with the data. It also dumps the components it has guessed in the console, so you can copy it into your own code.
 
-![Guessed Edit](./images/customers-edit-guesser.png)
+![Guessed Edit](/docs/images/customers-edit-guesser.png)
 
 ## Cleaning Up Empty Strings
 
@@ -954,7 +954,7 @@ If you want to subscribe to live updates the record, you can rely on the [`useSu
 
 As sample use case, let's show how to warn the user when the record they're editing has been updated by another user.
 
-![A notification alerting users that the record has changed inside an edit view](./images/edit-live-update.png)
+![A notification alerting users that the record has changed inside an edit view](/docs/images/edit-live-update.png)
 
 :::note
 This feature requires a valid [Enterprise Edition](https://marmelab.com/ra-enterprise/) subscription.

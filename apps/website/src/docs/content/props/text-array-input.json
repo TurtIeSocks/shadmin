@@ -1,0 +1,17 @@
+{
+  "name": "TextArrayInput",
+  "props": [
+    {
+      "name": "options",
+      "type": "string[]",
+      "optional": true,
+      "comment": "Preset suggestion strings shown in a dropdown below the input when the user starts typing."
+    },
+    {
+      "name": "renderTags",
+      "type": "(tags: string[], getTagProps: (tag: string, index: number) => { key: string | number; onDelete: () => void }) => ReactNode",
+      "optional": true,
+      "comment": "Custom renderer for selected-value chips; replaces the default Badge per tag."
+    }
+  ]
+}

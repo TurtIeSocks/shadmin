@@ -1,0 +1,71 @@
+---
+title: webSocketTransport
+---
+
+`webSocketTransport` creates a `RealtimeTransport` backed by a WebSocket connection. It reconnects automatically on unclean close, re-subscribes all active topics after reconnect, and buffers pending publishes until the socket is open.
+
+## Usage
+
+```tsx
+import { realtimeDataProvider, webSocketTransport } from "@/components/realtime";
+import base from "./my-rest-data-provider";
+
+const transport = webSocketTransport({
+  url: "wss://example.com/realtime",
+  getAuthToken: () => localStorage.getItem("token") ?? "",
+  reconnect: { maxAttempts: 10 },
+});
+
+const dataProvider = realtimeDataProvider(base, transport);
+```
+
+## Config
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `url` | `string` | — | WebSocket URL (`wss://…`) |
+| `protocols` | `string \| string[]` | — | Optional subprotocol(s) |
+| `getAuthToken` | `() => string \| Promise<string>` | — | Token factory for auth |
+| `authMode` | `"query" \| "subprotocol"` | `"query"` | How to attach the token |
+| `reconnect` | `WebSocketReconnectConfig` | see below | Reconnect behaviour |
+| `idleDisconnectMs` | `number` | `30000` | Disconnect when no subscriptions remain for this long |
+| `heartbeatMs` | `number` | `30000` | Interval between pings; `0` disables |
+| `onError` | `(err: RealtimeTransportError) => void` | — | Error callback |
+
+### `reconnect`
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `enabled` | `boolean` | `true` | Enable auto-reconnect |
+| `initialDelayMs` | `number` | `1000` | First retry delay |
+| `maxDelayMs` | `number` | `30000` | Cap on exponential back-off |
+| `maxAttempts` | `number` | `Infinity` | Give up after N attempts |
+| `jitter` | `number` | `0.3` | Fraction of delay added as random jitter |
+
+## Wire protocol
+
+**Client → server frames** (JSON, one per WebSocket message):
+
+```json
+{ "op": "subscribe",   "topic": "resource/posts" }
+{ "op": "unsubscribe", "topic": "resource/posts" }
+{ "op": "publish",     "topic": "resource/posts/42", "event": { "type": "updated", "payload": {} } }
+{ "op": "ping" }
+```
+
+**Server → client frames**:
+
+```json
+{ "topic": "resource/posts", "type": "created", "payload": { "ids": [42] } }
+{ "topic": "resource/posts/42", "type": "updated", "payload": { "id": 42, "data": { "title": "New title" } } }
+{ "op": "pong" }
+```
+
+Frames without both `topic` and `type` are silently ignored. The `meta` field on event frames is optional and passed through to subscribers.
+
+## Notes
+
+- `authMode: "query"` appends `?token=<value>` to the URL. `authMode: "subprotocol"` passes the token as an additional WebSocket subprotocol — useful when cookies are unavailable across origins.
+- The transport lazy-connects: the socket opens on the first `subscribe()` or `publish()` call, not at construction time.
+- Active topics are automatically re-sent as `subscribe` frames after every reconnect. Subscribers do not need to re-register.
+- Pending `publish()` calls made while disconnected are queued and flushed in order once the socket reopens.

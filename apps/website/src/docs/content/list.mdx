@@ -4,7 +4,7 @@ title: "List"
 
 The `<List>` component is the root component for list pages. It fetches a list of records from the data provider (via `ra-core` hooks), puts them in a [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html), renders a default layout (breadcrumb, title, action buttons, inline filters, pagination), then renders its children (usually a [`<DataTable>`](./data-table)).
 
-![Simple users list](./images/users-list.png)
+![Simple users list](/docs/images/users-list.png)
 
 ## Usage
 
@@ -150,7 +150,7 @@ export const PostList = () => (
 
 `<List>` itself doesn't render the list of records. It delegates this task to its children components. These children components grab the `data` from the [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html) and render them on screen.
 
-![List children](./images/users-list-items.png)
+![List children](/docs/images/users-list-items.png)
 
 shadmin provides several components that can read and display a list of records from a `ListContext`, each with a different layout:
 
@@ -221,7 +221,7 @@ You can also build contextual actions using anything from the list context (`isP
 
 The default title for a list view is the translation key `ra.page.list` that translates to [the plural name of the resource](https://marmelab.com/ra-core/translationtranslating/#translating-resource-and-field-names) (e.g. "Posts").
 
-![List title](./images/users-list-title.png)
+![List title](/docs/images/users-list-title.png)
 
 You can customize this title by providing a resource specific translation with the key `resources.RESOURCE.page.list` (e.g. `resources.posts.page.list`):
 
@@ -255,7 +255,7 @@ The title can be a string, a React element, or `false` to disable the title.
 
 By default, `<List>` displays a set of pagination controls at the bottom of the list.
 
-![Pagination in users list](./images/users-list-pagination.png)
+![Pagination in users list](/docs/images/users-list-pagination.png)
 
 The `pagination` prop allows to replace the default pagination controls by your own.
 
@@ -320,7 +320,7 @@ The actual filter parameter sent to the data provider is the result of the combi
 
 ## Filter Button / Form Combo
 
-<video controls autoplay playsinline muted loop>
+<video controls autoPlay playsInline muted loop>
     <source src="https://marmelab.com/react-admin/img/list_filter.mp4" type="video/mp4"/>
   Your browser does not support the video tag.
 </video>
@@ -364,7 +364,7 @@ export const PostList = () => (
 :::tip
 You can also display filters as a sidebar thanks to the [`<ToggleFilterButton>`](./toggle-filter-button) component:
 
-![Filter sidebar](./images/filter-sidebar.png)
+![Filter sidebar](/docs/images/filter-sidebar.png)
 :::
 
 For more details about customizing filters, see the [Filtering the List](https://marmelab.com/ra-core/filteringtutorial/) documentation.
@@ -691,7 +691,7 @@ Just like `<List>`, `<ListGuesser>` fetches the data. It then analyzes the respo
 
 When the data provider returns no records, `<ListGuesser>` renders an empty state by default. You can override it using the `empty` prop (including `empty={null}` to render nothing).
 
-![Guessed List](./images/posts-list-guesser.png)
+![Guessed List](/docs/images/posts-list-guesser.png)
 
 ## Live Updates
 

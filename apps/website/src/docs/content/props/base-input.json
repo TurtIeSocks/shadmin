@@ -1,0 +1,83 @@
+{
+  "name": "BaseInput",
+  "props": [
+    {
+      "name": "attribution",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "defaultCenter",
+      "type": "[number, number]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "helperText",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "pathOptions",
+      "type": "PathOptions",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "snapDistance",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "snappable",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "tileUrl",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "validate",
+      "type": "(v: unknown) => string | undefined | (v: unknown) => string | undefined[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "zoom",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

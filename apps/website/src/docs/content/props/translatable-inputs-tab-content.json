@@ -1,0 +1,41 @@
+{
+  "name": "TranslatableInputsTabContent",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "groupKey",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "locale",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "record",
+      "type": "RaRecord<Identifier>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

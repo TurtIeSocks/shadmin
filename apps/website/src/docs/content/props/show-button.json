@@ -1,0 +1,17 @@
+{
+  "name": "ShowButton",
+  "props": [
+    {
+      "name": "icon",
+      "type": "React.ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "scrollToTop",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+---
+title: "MonacoJsonInput"
+---
+
+Form input for JSON values powered by the [Monaco editor](https://microsoft.github.io/monaco-editor/) (the same editor that powers VS Code). Supports JSON Schema validation, syntax highlighting, error markers, and auto-grow.
+
+Monaco is heavy (~600 KB gzipped plus web workers), so this component is lazy-loaded behind a Suspense boundary. The chunk loads on first mount and is reused for subsequent mounts.
+
+## Usage
+
+```tsx
+import { Edit, SimpleForm } from "@/components/admin";
+import { MonacoJsonInput } from "@/components/monaco";
+
+const ProductEdit = () => (
+  <Edit>
+    <SimpleForm>
+      <MonacoJsonInput
+        source="metadata"
+        schema={{
+          type: "object",
+          properties: {
+            sku: { type: "string" },
+            price: { type: "number" },
+          },
+          required: ["sku", "price"],
+        }}
+        autoHeight
+      />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+## Value-shape detection
+
+`MonacoJsonInput` auto-detects whether the record's value is a **string** (raw JSON text) or an **object** (already parsed) on the first non-undefined value it sees, and locks that shape for the rest of the input's lifetime.
+
+- **Object mode** (default for objects, arrays, `null`, numbers, booleans): the editor displays `JSON.stringify(value, null, 2)`. On change, the editor text is parsed and the parsed value committed. Invalid JSON is **not** committed — the last good value remains, and the marker drives the form error.
+- **String mode** (when the initial value is a string): the editor text is committed verbatim every keystroke. Validation is non-blocking.
+
+## Props
+
+| Prop               | Required | Type                                          | Default  | Description                                                  |
+| ------------------ | -------- | --------------------------------------------- | -------- | ------------------------------------------------------------ |
+| `source`           | Required | `string`                                      | -        | Field name                                                   |
+| `schema`           | Optional | `object`                                      | -        | JSON Schema; editor content is validated against this schema |
+| `schemaUri`        | Optional | `string`                                      | -        | Remote schema URL (Monaco fetches it)                        |
+| `allowComments`    | Optional | `boolean`                                     | `false`  | Allow JSONC syntax (comments + trailing commas)              |
+| `autoHeight`       | Optional | `boolean`                                     | `false`  | Grow the editor with content                                 |
+| `height`           | Optional | `number \| string`                            | `300`    | Fixed height (only when `autoHeight=false`)                  |
+| `minHeight`        | Optional | `number \| string`                            | `120`    | Lower bound for `autoHeight`                                 |
+| `maxHeight`        | Optional | `number \| string`                            | `600`    | Upper bound for `autoHeight`                                 |
+| `showFormatButton` | Optional | `boolean`                                     | `true`   | Show a "Format" button overlay                               |
+| `readOnly`         | Optional | `boolean`                                     | `false`  | Disable editing                                              |
+| `className`        | Optional | `string`                                      | -        | Classes on the wrapping `<FormField>`                        |
+| `editorClassName`  | Optional | `string`                                      | -        | Classes on the editor's bordered wrapper                     |
+| `monacoOptions`    | Optional | `editor.IStandaloneEditorConstructionOptions` | -        | Escape hatch — merged into Monaco's options                  |
+| `validate`         | Optional | `Validator \| Validator[]`                    | -        | Composed AFTER the built-in schema validator                 |
+| `label`            | Optional | `string \| false`                             | Inferred | Custom or hidden label                                       |
+| `helperText`       | Optional | `ReactNode`                                   | -        | Help text under the editor                                   |
+| `defaultValue`     | Optional | `unknown`                                     | -        | Default value if the record's field is undefined             |
+
+## Schema validation
+
+When you pass `schema`, the editor uses Monaco's built-in JSON Schema diagnostics. Schema violations appear as red gutter markers AND as a form-level error. The form will refuse to submit while any marker has Error severity.
+
+The built-in schema validator is composed with your `validate` prop using `composeValidators` from ra-core. The schema validator runs first; if it returns an error, that wins. Otherwise, your custom validators run.
+
+In **string mode**, schema validation is skipped entirely (the editor content is treated as opaque text).
+
+## Suspense and lazy-loading
+
+This component wraps its heavy inner in a `React.Suspense` boundary with a skeleton fallback. You don't need to add your own Suspense — but if your page is already in a `React.lazy()` boundary, that's fine; React handles nested boundaries.
+
+The Monaco chunk is loaded on first mount of any `MonacoJsonInput` or `MonacoJsonField` and reused for the rest of the session.
+
+## Tips
+
+- Don't use this in List cells — it would spin up one Monaco instance per row. Use [`<JsonField>`](./json-field) instead.
+- For very large schemas, prefer `schemaUri` so Monaco caches the fetch.
+- The format button runs Monaco's built-in `editor.action.formatDocument` (Cmd/Ctrl+Shift+I).

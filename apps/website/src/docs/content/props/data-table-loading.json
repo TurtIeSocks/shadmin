@@ -1,0 +1,29 @@
+{
+  "name": "DataTableLoading",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "hasBulkActions",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "nbChildren",
+      "type": "number",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "nbFakeLines",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

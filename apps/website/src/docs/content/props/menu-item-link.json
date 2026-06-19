@@ -1,0 +1,53 @@
+{
+  "name": "MenuItemLink",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "Extra CSS class appended to the underlying `<SidebarMenuButton>`."
+    },
+    {
+      "name": "leftIcon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Icon rendered before `primaryText`. Pass a `lucide-react` icon (or any\nReactNode) sized to match other sidebar items."
+    },
+    {
+      "name": "keyboardShortcut",
+      "type": "string",
+      "optional": true,
+      "comment": "Keyboard shortcut string (e.g. `\"mod+k\"`, `\"shift+/\"`, `\"meta+s\"`). When pressed anywhere on the page, navigates to `to`. `mod` normalizes to `metaKey` on macOS, `ctrlKey` elsewhere."
+    },
+    {
+      "name": "keyboardShortcutRepresentation",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Visual representation of the keyboard shortcut rendered after the label. Defaults to `<KeyboardShortcut keyboardShortcut={keyboardShortcut} />`."
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "optional": true,
+      "comment": "Click handler invoked after the default navigation. The default\n`<AppSidebar>` uses this to close the mobile drawer."
+    },
+    {
+      "name": "primaryText",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": "The text rendered alongside `leftIcon`. Strings are not auto-translated;\npass a `<Translate>` element to localize."
+    },
+    {
+      "name": "to",
+      "type": "string",
+      "optional": false,
+      "comment": "Target path for the link. Compared against the current location to\nderive the active state."
+    },
+    {
+      "name": "tooltipProps",
+      "type": "Omit<ComponentProps<typeof Tooltip>, \"children\">",
+      "optional": true,
+      "comment": "Extra props forwarded to the `<Tooltip>` wrapping the menu item. Applies in both collapsed-sidebar and expanded-sidebar (when tooltipProps is provided) modes."
+    }
+  ]
+}

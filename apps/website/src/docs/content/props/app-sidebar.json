@@ -1,0 +1,23 @@
+{
+  "name": "AppSidebar",
+  "props": [
+    {
+      "name": "appBarAlwaysOn",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When `true`, signals that the AppBar is always visible (not hidden on scroll). Descendants can read this flag via props to adjust their top spacing."
+    },
+    {
+      "name": "closedSize",
+      "type": "number",
+      "optional": true,
+      "comment": "Width of the sidebar in its collapsed/icon-only state, in pixels. Defaults to 55. Applied as an inline style override on the underlying <Sidebar> element."
+    },
+    {
+      "name": "size",
+      "type": "number",
+      "optional": true,
+      "comment": "Width of the sidebar in its open/expanded state, in pixels. Defaults to 240. Applied as an inline style override on the underlying <Sidebar> element."
+    }
+  ]
+}

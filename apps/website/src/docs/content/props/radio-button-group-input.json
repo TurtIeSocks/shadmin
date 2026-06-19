@@ -1,0 +1,11 @@
+{
+  "name": "RadioButtonGroupInput",
+  "props": [
+    {
+      "name": "row",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

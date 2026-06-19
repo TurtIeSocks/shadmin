@@ -1,0 +1,35 @@
+{
+  "name": "LoginWithEmail",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "Extra class names applied to the `<Form>` element."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Forces the submit button into the loading state. When `onSubmit` is not\nprovided, the component manages its own loading state internally."
+    },
+    {
+      "name": "onSubmit",
+      "type": "(values: { email: string }) => void | Promise<void>",
+      "optional": true,
+      "comment": "Custom submit handler. When provided, it is called with the form values\n(`{ email }`) and is responsible for signing the user in. Useful for\nmagic-link or passwordless flows where the standard `useLogin()` flow\nneeds to be bypassed."
+    },
+    {
+      "name": "redirectTo",
+      "type": "string",
+      "optional": true,
+      "comment": "Path the user is redirected to after a successful sign in. Only used\nwhen `onSubmit` is omitted (default `useLogin()` flow)."
+    },
+    {
+      "name": "submitLabel",
+      "type": "string",
+      "optional": true,
+      "comment": "Label of the submit button. Defaults to the i18n key `ra.auth.sign_in`."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "SimpleFormConfigurable",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "omit",
+      "type": "string[]",
+      "optional": true,
+      "comment": "Inputs to hide by default. Users can re-enable them from the Inspector."
+    },
+    {
+      "name": "preferenceKey",
+      "type": "string",
+      "optional": true,
+      "comment": "Key used to store user preferences for this form. Defaults to\n`${resource}.simpleForm`. Pass a custom key when several\n`<SimpleFormConfigurable>` instances render in the same resource."
+    },
+    {
+      "name": "toolbar",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

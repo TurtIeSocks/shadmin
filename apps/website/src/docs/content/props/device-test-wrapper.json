@@ -1,0 +1,17 @@
+{
+  "name": "DeviceTestWrapper",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "width",
+      "type": "\"xs\" | \"sm\" | \"lg\" | \"md\" | \"xl\"",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

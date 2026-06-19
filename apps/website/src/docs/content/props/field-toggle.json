@@ -1,0 +1,41 @@
+{
+  "name": "FieldToggle",
+  "props": [
+    {
+      "name": "index",
+      "type": "string | number",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "onMove",
+      "type": "(dragIndex: string | number, dropIndex: string | number | null) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onToggle",
+      "type": "(event: boolean) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

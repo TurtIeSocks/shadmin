@@ -1,0 +1,17 @@
+{
+  "name": "FormToolbar",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

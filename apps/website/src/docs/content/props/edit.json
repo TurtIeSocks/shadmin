@@ -1,0 +1,71 @@
+{
+  "name": "Edit",
+  "props": [
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "aside",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Side panel rendered alongside the form."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the root element wrapping the form content. Defaults to 'div'."
+    },
+    {
+      "name": "disableBreadcrumb",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "emptyWhileLoading",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "error",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Content to display when a data-fetch error occurs. Defaults to a built-in error message."
+    },
+    {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Content to display when the browser is offline and the record is still loading."
+    },
+    {
+      "name": "render",
+      "type": "(controllerState: EditControllerResult) => ReactNode",
+      "optional": true,
+      "comment": "Render-prop alternative to children. Receives the full EditControllerResult."
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

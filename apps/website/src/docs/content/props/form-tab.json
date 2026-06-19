@@ -1,0 +1,89 @@
+{
+  "name": "FormTab",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "contentClassName",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "count",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "hidden",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "iconPosition",
+      "type": "\"end\" | \"top\" | \"bottom\" | \"start\"",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "intent",
+      "type": "\"content\" | \"header\"",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "string | ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "onChange",
+      "type": "(event: SyntheticEvent, value: unknown) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "path",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "syncWithLocation",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "value",
+      "type": "string | number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "CheckForApplicationUpdate",
+  "props": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When true, the polling is skipped."
+    },
+    {
+      "name": "interval",
+      "type": "number",
+      "optional": true,
+      "comment": "Interval in milliseconds between two checks. Defaults to 60000 (1 minute)."
+    },
+    {
+      "name": "notification",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Notification rendered when a new version is detected.\nDefaults to `<ApplicationUpdatedNotification />`."
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "optional": true,
+      "comment": "URL to download to check for code update. Defaults to\n`window.location.origin + \"/index.html\"`."
+    }
+  ]
+}

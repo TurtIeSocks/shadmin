@@ -1,0 +1,35 @@
+---
+title: "HideOnScroll"
+---
+
+Wrapper that hides its children when the user scrolls down past a threshold and reveals them again when scrolling back up. Useful for collapsible top bars and floating headers that need to free up vertical space when reading.
+
+## Usage
+
+```tsx
+import { HideOnScroll } from "@/components/admin/hide-on-scroll";
+
+const AppBar = () => (
+  <HideOnScroll>
+    <header className="sticky top-0 bg-background border-b">...</header>
+  </HideOnScroll>
+);
+```
+
+By default, the header is hidden once the user has scrolled more than 100 pixels down. Adjust the `threshold` prop to taste:
+
+```tsx
+<HideOnScroll threshold={300}>
+  <header>...</header>
+</HideOnScroll>
+```
+
+The wrapper applies a Tailwind `transition-transform` to animate the show/hide motion, so the children translate smoothly out of view when scrolling.
+
+## Props
+
+| Prop        | Required | Type        | Default | Description                                             |
+| ----------- | -------- | ----------- | ------- | ------------------------------------------------------- |
+| `children`  | Required | `ReactNode` | -       | Element to hide on scroll.                              |
+| `className` | Optional | `string`    | -       | Extra CSS class applied to the wrapping `div`.          |
+| `threshold` | Optional | `number`    | `100`   | Distance in pixels from the top before hiding kicks in. |

@@ -1,0 +1,35 @@
+{
+  "name": "MapWithSearch",
+  "props": [
+    {
+      "name": "addressSource",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "defaultZoom",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "latSource",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "lngSource",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

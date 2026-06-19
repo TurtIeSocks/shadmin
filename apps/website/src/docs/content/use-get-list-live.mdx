@@ -1,0 +1,40 @@
+---
+title: useGetListLive
+---
+
+`useGetListLive` is a drop-in replacement for `useGetList` that also subscribes to the resource topic and invalidates the query whenever a realtime event arrives or the transport reconnects.
+
+## Usage
+
+```tsx
+import { useGetListLive } from "@/components/realtime";
+
+function PostList() {
+  const { data, isPending, error } = useGetListLive("posts", {
+    sort: { field: "publishedAt", order: "DESC" },
+    pagination: { page: 1, perPage: 20 },
+  });
+
+  if (isPending) return <p>Loading…</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  return <ul>{data?.map((p) => <li key={p.id}>{p.title}</li>)}</ul>;
+}
+```
+
+## Params
+
+| Param | Required | Type | Description |
+|-------|----------|------|-------------|
+| `resource` | Required | `string` | Resource name |
+| `params` | Optional | `Partial<GetListParams>` | Sort, pagination, and filter params passed to `useGetList` |
+| `options` | Optional | `UseQueryOptions` | TanStack Query options forwarded to `useGetList` |
+
+## Returns
+
+Identical to `useGetList` — see the ra-core documentation for the full return shape.
+
+## Notes
+
+- The hook invalidates all queries keyed by `resource` (not just the exact query) when an event arrives, which refreshes related queries (e.g. different filter combinations) simultaneously.
+- `useOnReconnect` is called internally — any events missed during a disconnect are recovered when the connection resumes.
+- Use `<ListLive>` instead of this hook when you just need to upgrade an existing `<List>` page.

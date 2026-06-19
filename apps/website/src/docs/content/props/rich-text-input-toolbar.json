@@ -1,0 +1,11 @@
+{
+  "name": "RichTextInputToolbar",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}
