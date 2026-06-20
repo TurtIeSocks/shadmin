@@ -1,0 +1,82 @@
+---
+title: "DiffViewer"
+description: "<DiffViewer> compares two versions of a record and highlights added, removed, changed, and unchanged fields. Use it inside a <RecordTimeline> entry to show what changed in an audit-log update, or standalone to compare arbitrary objects."
+registry: "diff-viewer"
+---
+
+## Usage
+
+```tsx
+import { DiffViewer } from "@/components/admin";
+
+<DiffViewer
+  before={{ name: "Notebook", price: 9.99, stock: 12 }}
+  after={{ name: "Notebook Pro", price: 14.99, stock: 12 }}
+  mode="side-by-side"
+/>;
+```
+
+## Modes
+
+- **`side-by-side`** (default) — two-column layout with before on the left, after on the right, connected by an arrow.
+- **`inline`** — single column. Removed values render with strikethrough, added values with underline, and changed values show `before → after` together.
+
+## Diff statuses
+
+| Status      | When                                          | Visual             |
+| ----------- | --------------------------------------------- | ------------------ |
+| `unchanged` | Both values are strictly (or JSON) equal      | Neutral background |
+| `added`     | Field missing in `before`, present in `after` | Emerald            |
+| `removed`   | Field present in `before`, missing in `after` | Rose               |
+| `changed`   | Both present, values differ                   | Amber              |
+
+## Props
+
+| Prop         | Type                               | Default                            |
+| ------------ | ---------------------------------- | ---------------------------------- |
+| `before`     | `Record<string, unknown>`          | —                                  |
+| `after`      | `Record<string, unknown>`          | —                                  |
+| `fields`     | `string[]`                         | all keys (union of before + after) |
+| `labels`     | `Record<string, string>`           | `{}`                               |
+| `formatters` | `Record<string, (v) => ReactNode>` | `{}`                               |
+| `mode`       | `"inline" \| "side-by-side"`       | `"side-by-side"`                   |
+
+## Custom formatters
+
+Use `formatters` for non-string values:
+
+```tsx
+<DiffViewer
+  before={{ tags: ["a", "b"] }}
+  after={{ tags: ["a", "c"] }}
+  formatters={{ tags: (v) => (Array.isArray(v) ? v.join(", ") : "—") }}
+/>
+```
+
+## `fields`
+
+By default, `<DiffViewer>` shows the union of all keys from `before` and `after`. Pass an explicit `fields` array to control order and subset:
+
+```tsx
+<DiffViewer before={before} after={after} fields={["name", "price"]} />
+```
+
+## `labels`
+
+Override the display label for any field:
+
+```tsx
+<DiffViewer
+  before={before}
+  after={after}
+  labels={{ name: "Product Name", price: "Unit Price" }}
+/>
+```
+
+## i18n
+
+| Key                     | Default |
+| ----------------------- | ------- |
+| `ra.diff_viewer.field`  | Field   |
+| `ra.diff_viewer.before` | Before  |
+| `ra.diff_viewer.after`  | After   |

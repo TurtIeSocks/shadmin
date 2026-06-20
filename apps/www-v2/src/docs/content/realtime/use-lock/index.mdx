@@ -1,0 +1,57 @@
+---
+title: "useLock"
+description: "useLock returns a lock function for acquiring a record lock via the LockProvider configured on the data provider."
+---
+
+## Usage
+
+```tsx
+import { useLock } from "@/components/realtime";
+
+function LockButton({ resource, id }: { resource: string; id: number }) {
+  const { lock, isLoading, error } = useLock();
+
+  const handleLock = async () => {
+    try {
+      await lock(resource, { id });
+      console.log("locked!");
+    } catch (e) {
+      console.error("lock failed", e);
+    }
+  };
+
+  return (
+    <button onClick={handleLock} disabled={isLoading}>
+      Lock
+    </button>
+  );
+}
+```
+
+## Params
+
+None.
+
+## Returns
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `lock` | `(resource, params) => Promise<Lock>` | Acquires a lock |
+| `isLoading` | `boolean` | `true` while the lock call is in flight or identity is loading |
+| `error` | `Error \| null` | The last lock error |
+
+### `lock` signature
+
+```ts
+lock(
+  resource: string,
+  params: { id: Identifier; identity?: Identifier; meta?: Record<string, unknown> }
+): Promise<Lock>
+```
+
+## Notes
+
+- If `identity` is omitted from `params`, the hook falls back to `useGetIdentity()` from the auth provider. If no identity is available from either source, the call throws.
+- Throws `LockConflictError` (with `.existingLock`) when another user holds the lock.
+- Must be used inside an `<Admin>` or `CoreAdminContext`. Throws immediately at render time if no `DataProvider` is found.
+- For automatic lock-on-mount behaviour, use `useLockOnMount` or `<LockOnMount>` instead.

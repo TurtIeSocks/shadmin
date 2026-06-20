@@ -1,0 +1,49 @@
+---
+title: "Leaflet"
+description: "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadmin."
+registry: "leaflet-admin"
+---
+
+The `leaflet-admin` block provides Leaflet-based components for displaying and editing geographic data.
+
+```bash
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/leaflet-admin.json
+```
+
+## Components
+
+### Lat/Lng (coordinate pair fields)
+
+- [`<LatLngField>`](/docs/leaflet/lat-lng-field) — read-only map marker
+- [`<LatLngInput>`](/docs/leaflet/lat-lng-input) — draggable marker input
+
+### GeoJSON shape Fields & Inputs
+
+- [`<PointField>`](/docs/leaflet/point-field) / [`<PointInput>`](/docs/leaflet/point-input)
+- [`<MultiPointField>`](/docs/leaflet/multi-point-field) / [`<MultiPointInput>`](/docs/leaflet/multi-point-input)
+- [`<LineStringField>`](/docs/leaflet/line-string-field) / [`<LineStringInput>`](/docs/leaflet/line-string-input)
+- [`<MultiLineStringField>`](/docs/leaflet/multi-line-string-field) / [`<MultiLineStringInput>`](/docs/leaflet/multi-line-string-input)
+- [`<PolygonField>`](/docs/leaflet/polygon-field) / [`<PolygonInput>`](/docs/leaflet/polygon-input)
+- [`<MultiPolygonField>`](/docs/leaflet/multi-polygon-field) / [`<MultiPolygonInput>`](/docs/leaflet/multi-polygon-input)
+- [`<GeometryCollectionField>`](/docs/leaflet/geometry-collection-field) / [`<GeometryCollectionInput>`](/docs/leaflet/geometry-collection-input)
+- [`<BBoxField>`](/docs/leaflet/bbox-field) / [`<BBoxInput>`](/docs/leaflet/bbox-input)
+- [`<GeoJsonField>`](/docs/leaflet/geojson-field) / [`<GeoJsonInput>`](/docs/leaflet/geojson-input) — polymorphic
+- [`<FeatureField>`](/docs/leaflet/feature-field) / [`<FeatureInput>`](/docs/leaflet/feature-input) — `GeoJSON.Feature` with preserved `properties`
+- [`<FeatureCollectionField>`](/docs/leaflet/feature-collection-field) / [`<FeatureCollectionInput>`](/docs/leaflet/feature-collection-input) — multi-feature collections
+- [`<SimplifyInput>`](/docs/leaflet/simplify-input) — turf-driven geometry simplification with tolerance slider
+
+### Drawing & editing primitives (Geoman)
+
+- [`useGeomanRHF`](/docs/leaflet/use-geoman-rhf) — bridges Geoman draw/edit events to a React Hook Form field. Compose with `<FeatureGroup>` + `<GeomanControls>` from [`react-leaflet-geoman-v2`](https://www.npmjs.com/package/react-leaflet-geoman-v2).
+
+### OSM utilities
+
+- [`<OsmFeatureSubtract>`](/docs/leaflet/osm-feature-subtract)
+- [`<OsmFeatureAdd>`](/docs/leaflet/osm-feature-add)
+- [`useOverpass` / `useOsmFeatures` / `useOsmSnapToRoads`](/docs/leaflet/leaflet-osm)
+
+### Geocoding
+
+- [`<GeocodingInput>`](/docs/leaflet/geocoding-input)
+- [`<ReverseGeocodeField>`](/docs/leaflet/reverse-geocode-field)
+- [`<MapWithSearch>`](/docs/leaflet/map-with-search)

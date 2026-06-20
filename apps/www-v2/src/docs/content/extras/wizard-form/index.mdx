@@ -1,0 +1,128 @@
+---
+title: "WizardForm"
+description: "<WizardForm> is a modal multi-step form layout. Users compose <WizardForm.Step> around admin inputs; the wizard renders inside a dialog, gates progression on per-step validation, and submits via the ra-core save pipeline (when nested inside <Create>/<Edit>) or a custom onSubmit."
+registry: "wizard-form"
+---
+
+## Usage
+
+```tsx
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { WizardForm, TextInput, NumberInput } from "@/components/admin";
+import { required } from "ra-core";
+
+const CreateProductButton = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>New product</Button>
+      <WizardForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Create a product"
+        description="Three quick steps."
+        onSubmit={async (values) => {
+          // ...
+        }}
+      >
+        <WizardForm.Step label="Identity">
+          <TextInput source="reference" validate={required()} />
+          <TextInput source="name" validate={required()} />
+        </WizardForm.Step>
+        <WizardForm.Step label="Pricing">
+          <NumberInput source="price" validate={required()} />
+        </WizardForm.Step>
+        <WizardForm.Step label="Review">
+          <TextInput source="notes" />
+        </WizardForm.Step>
+      </WizardForm>
+    </>
+  );
+};
+```
+
+Inside a `<Create>` or `<Edit>` view, the `onSubmit` prop is optional — the wizard inherits the save context and calls `dataProvider.create` / `dataProvider.update` on Save.
+
+## Props
+
+| Prop            | Required | Type                          | Default             | Description                                                                                                 |
+| --------------- | -------- | ----------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `isOpen`        | Required | `boolean`                     | -                   | Controls dialog visibility.                                                                                 |
+| `onClose`       | Required | `() => void`                  | -                   | Called when the dialog requests to close. Also called by the default Cancel button after the form is reset. |
+| `title`         | Required | `ReactNode`                   | -                   | Dialog title.                                                                                               |
+| `description`   | Optional | `ReactNode`                   | -                   | Dialog description rendered under the title.                                                                |
+| `children`      | Required | `ReactNode`                   | -                   | One or more `<WizardForm.Step>` elements.                                                                   |
+| `className`     | Optional | `string`                      | -                   | Forwarded to `DialogContent`.                                                                               |
+| `progress`      | Optional | `"steps" \| "dots" \| "none"` | `"steps"`           | Visual progress indicator style.                                                                            |
+| `toolbar`       | Optional | `ReactNode \| false`          | `<WizardToolbar />` | Custom toolbar. `false` hides it.                                                                           |
+| `defaultValues` | Optional | `object \| function`          | -                   | Default values for the form (forwarded to `<Form>`).                                                        |
+| `onSubmit`      | Optional | `function`                    | -                   | Submit handler. Required outside `<Create>`/`<Edit>`.                                                       |
+| `validate`      | Optional | `function`                    | -                   | Form-level validation function.                                                                             |
+| `record`        | Optional | `object`                      | -                   | Initial record to populate the form.                                                                        |
+
+## `<WizardForm.Step>` Props
+
+| Prop             | Required | Type                     | Default | Description                                             |
+| ---------------- | -------- | ------------------------ | ------- | ------------------------------------------------------- |
+| `label`          | Required | `string \| ReactElement` | -       | Step label shown in the progress indicator.             |
+| `description`    | Optional | `string \| ReactElement` | -       | Description rendered above the step's children.         |
+| `optional`       | Optional | `boolean`                | `false` | Skip the validation gate when advancing past this step. |
+| `validateOnNext` | Optional | `boolean`                | `true`  | Validate the step's fields when Next is clicked.        |
+| `className`      | Optional | `string`                 | -       | Class applied to the step's content container.          |
+| `children`       | Optional | `ReactNode`              | -       | Any admin inputs.                                       |
+
+## `progress`
+
+Three modes:
+
+- `"steps"` (default) — numbered list with labels and a connector line between steps.
+- `"dots"` — compact dot indicator (labels are exposed to screen readers via `sr-only`).
+- `"none"` — no indicator at all.
+
+```tsx
+<WizardForm isOpen={open} onClose={close} title="Create" progress="dots">
+  {/* ... */}
+</WizardForm>
+```
+
+## Validation
+
+By default every step's required fields must be valid before Next advances the wizard. The wizard uses ra-core's `useFormGroups()` to discover which fields belong to the current step. Mark a step `optional` to bypass the gate, or `validateOnNext={false}` for finer-grained control.
+
+```tsx
+<WizardForm.Step label="Notes" optional>
+  <TextInput source="notes" />
+</WizardForm.Step>
+```
+
+If the final submit produces field errors (returned from `onSubmit` as `{ fieldName: errorMessage }` per ra-core's convention, or set via `<Create>`/`<Edit>`'s save context), the wizard jumps to the first step containing an errored field. Nested errors (e.g., `address.street`) are matched by prefix.
+
+## `toolbar`
+
+The default toolbar renders Cancel / Back / Next / Save based on the wizard's position. Cancel resets the form via `form.reset()` and then calls `onClose()` (it does NOT navigate the parent route — wizards are modal and ephemeral).
+
+Wrap or replace the default toolbar via the `toolbar` prop:
+
+```tsx
+import { WizardForm, WizardToolbar } from "@/components/admin";
+
+<WizardForm
+  isOpen={open}
+  onClose={close}
+  title="Create"
+  toolbar={
+    <div className="border-t pt-4">
+      <WizardToolbar />
+    </div>
+  }
+>
+  {/* ... */}
+</WizardForm>;
+```
+
+Set `toolbar={false}` to hide it entirely (useful when supplying your own buttons inside a step).
+
+## All steps stay mounted
+
+To match `<TabbedForm>`, every step renders even when inactive — inactive panels are hidden with `display:none` and `aria-hidden="true"`. This keeps react-hook-form's field registry intact across navigation, so values survive Back navigation and full-form validation runs on submit. Each step container also carries `role="group"` and `data-wizard-step` so styling and assistive technologies can target them.

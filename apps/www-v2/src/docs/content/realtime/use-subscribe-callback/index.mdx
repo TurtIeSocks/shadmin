@@ -1,0 +1,49 @@
+---
+title: "useSubscribeCallback"
+description: "useSubscribeCallback returns a stable subscribe function you can call imperatively to start a subscription and receive an Unsubscribe function back. Use it when you need to manage the subscription lifetime yourself (e.g. subscribing inside an event handler or effect)."
+---
+
+## Usage
+
+```tsx
+import { useSubscribeCallback } from "@/components/realtime";
+import { useEffect } from "react";
+
+function DynamicSubscriber({ topicId }: { topicId: string | null }) {
+  const subscribe = useSubscribeCallback();
+
+  useEffect(() => {
+    if (!topicId) return;
+    const unsubscribe = subscribe(`resource/items/${topicId}`, (event) => {
+      console.log("item event", event.type);
+    });
+    return unsubscribe;
+  }, [topicId, subscribe]);
+
+  return null;
+}
+```
+
+## Params
+
+None. The hook takes no arguments.
+
+## Returns
+
+A stable callback with signature:
+
+```ts
+(topic: string, callback: SubscriptionCallback) => Unsubscribe
+```
+
+| Value | Description |
+|-------|-------------|
+| `topic` | The topic to subscribe to |
+| `callback` | Called for each event on the topic |
+| returns `Unsubscribe` | Call to cancel the subscription |
+
+## Notes
+
+- The returned function is memoised with `useCallback` and only changes when the underlying `DataProvider` instance changes — safe to include in dependency arrays.
+- Throws at call time (not at hook call time) if the `DataProvider` does not implement `subscribe()`.
+- Prefer `useSubscribe` for component-lifetime subscriptions. Use `useSubscribeCallback` only when you need manual control over when the subscription starts and ends.

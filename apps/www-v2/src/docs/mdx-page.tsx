@@ -5,7 +5,7 @@ import { InstallCommand } from "./mdx/install-command";
 
 interface GuideModule {
   default: ComponentType;
-  frontmatter?: { title?: string; description?: string };
+  frontmatter?: { title?: string; description?: string; registry?: string };
 }
 const guides = import.meta.glob<GuideModule>("./content/**/*.mdx", {
   eager: true,
@@ -36,7 +36,7 @@ export default function MdxPage() {
   }
   const title = mod.frontmatter?.title;
   const description = mod.frontmatter?.description;
-  const install = installFor(slug);
+  const install = installFor(mod.frontmatter?.registry);
   const Content = mod.default;
   return (
     <article className="prose prose-neutral dark:prose-invert">

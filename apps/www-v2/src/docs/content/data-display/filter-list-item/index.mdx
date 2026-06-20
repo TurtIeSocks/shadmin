@@ -1,0 +1,92 @@
+---
+title: "FilterListItem"
+description: "Toggle button for a predefined filter preset, designed to be used inside a <FilterList>."
+registry: "filter-list-item"
+---
+
+## Usage
+
+Render `<FilterListItem>` elements as children of `<FilterList>`. Clicking on an item merges the given `value` into the current list filter. Clicking again removes it.
+
+```tsx
+import { Card } from "@/components/ui/card";
+import { Mail } from "lucide-react";
+import { FilterList, FilterListItem } from "@/components/admin";
+
+const FilterSidebar = () => (
+  <Card className="p-4">
+    <FilterList
+      label="Subscribed to newsletter"
+      icon={<Mail className="size-4" />}
+    >
+      <FilterListItem label="Yes" value={{ has_newsletter: true }} />
+      <FilterListItem label="No" value={{ has_newsletter: false }} />
+    </FilterList>
+  </Card>
+);
+```
+
+The `value` prop can contain multiple keys, useful to represent date ranges or complex filter presets:
+
+```tsx
+import { endOfYesterday, startOfWeek, subWeeks } from "date-fns";
+import { Clock } from "lucide-react";
+import { FilterList, FilterListItem } from "@/components/admin";
+
+const LastVisitedFilter = () => (
+  <FilterList label="Last visited" icon={<Clock className="size-4" />}>
+    <FilterListItem
+      label="Today"
+      value={{
+        last_seen_gte: endOfYesterday().toISOString(),
+        last_seen_lte: undefined,
+      }}
+    />
+    <FilterListItem
+      label="This week"
+      value={{
+        last_seen_gte: startOfWeek(new Date()).toISOString(),
+        last_seen_lte: undefined,
+      }}
+    />
+    <FilterListItem
+      label="Last week"
+      value={{
+        last_seen_gte: subWeeks(startOfWeek(new Date()), 1).toISOString(),
+        last_seen_lte: startOfWeek(new Date()).toISOString(),
+      }}
+    />
+  </FilterList>
+);
+```
+
+## Props
+
+| Prop           | Required | Type                          | Default        | Description                                                         |
+| -------------- | -------- | ----------------------------- | -------------- | ------------------------------------------------------------------- |
+| `label`        | Required | `ReactNode`                   | -              | Text or React element displayed in the item; strings are translated |
+| `value`        | Required | `object`                      | -              | Filter values toggled on click                                      |
+| `icon`         | Optional | `ReactNode`                   | -              | Icon displayed before the label                                     |
+| `isSelected`   | Optional | `(value, filters) => boolean` | shallow match  | Custom selection predicate                                          |
+| `toggleFilter` | Optional | `(value, filters) => object`  | shallow toggle | Custom toggle function                                              |
+| `className`    | Optional | `string`                      | -              | Extra Tailwind classes appended to the root element                 |
+
+## `isSelected`
+
+By default, `<FilterListItem>` considers itself selected when every key/value pair in `value` matches the current filters. Override `isSelected` to provide custom logic:
+
+```tsx
+<FilterListItem
+  label="High priority"
+  value={{ priority: "high" }}
+  isSelected={(value, filters) => filters.priority === value.priority}
+/>
+```
+
+## `toggleFilter`
+
+The default toggle merges `value` into the current filters when activating and removes the same keys when deactivating. Override `toggleFilter` for non-trivial behavior:
+
+```tsx
+<FilterListItem label="Reset all" value={{}} toggleFilter={() => ({})} />
+```

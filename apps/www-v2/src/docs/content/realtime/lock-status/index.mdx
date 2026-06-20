@@ -1,0 +1,54 @@
+---
+title: "LockStatus"
+description: "<LockStatus> fetches the live lock state for a record and renders a badge or custom content showing who holds the lock. It subscribes to lock events so the display updates in real time without polling."
+registry: "lock-status"
+---
+
+## Usage
+
+Show a live lock indicator on a show page:
+
+```tsx
+import { ShowLive } from "@/components/realtime";
+import { LockStatus } from "@/components/realtime";
+import { SimpleShowLayout, TextField } from "@/components/admin";
+
+export const PostShow = () => (
+  <ShowLive>
+    <SimpleShowLayout>
+      <LockStatus />
+      <TextField source="title" />
+    </SimpleShowLayout>
+  </ShowLive>
+);
+```
+
+### Custom rendering
+
+```tsx
+<LockStatus
+  renderLock={(lock) => (
+    <p className="text-sm text-amber-600">
+      Being edited by {String(lock.identity)}
+    </p>
+  )}
+  renderFree={() => (
+    <p className="text-sm text-green-600">Available for editing</p>
+  )}
+/>
+```
+
+## Props
+
+| Prop | Required | Type | Default | Description |
+|------|----------|------|---------|-------------|
+| `resource` | Optional | `string` | `ResourceContext` | Resource name. Falls back to context. |
+| `id` | Optional | `Identifier` | `RecordContext.id` | Record ID. Falls back to context. |
+| `renderLock` | Optional | `(lock: Lock) => ReactNode` | `<Badge>Locked by …</Badge>` | Rendered when the record is locked |
+| `renderFree` | Optional | `() => ReactNode` | nothing | Rendered when the record is not locked |
+
+## Notes
+
+- Uses `useGetLockLive` internally, so the status updates whenever a `locked` or `unlocked` event arrives on the `lock/<resource>/<id>` topic.
+- Renders `null` when `resource` or `id` are unavailable (no error thrown).
+- When neither `renderLock` nor `renderFree` are provided and the record is free, the component renders nothing.

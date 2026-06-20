@@ -1,0 +1,130 @@
+---
+title: "Assistant"
+description: "<Assistant> is a chat-style AI sidebar with pluggable LLM transport and tool-call support. The component handles the conversation UI, message streaming, and tool execution; you bring the AI provider via the transport prop (OpenAI, Anthropic, Vercel AI SDK, custom backend — your choice)."
+registry: "assistant"
+---
+
+## Usage
+
+```tsx
+import { Admin, Assistant, echoTransport } from "@/components/admin";
+
+const App = () => (
+  <Admin dataProvider={dp}>
+    <Resource name="products" />
+    <Assistant
+      transport={echoTransport}
+      tools={{
+        setFilter: {
+          description: "Apply a filter on the current list",
+          parameters: { field: "string", value: "string" },
+          handler: ({ field, value }) => {
+            // apply filter logic here
+          },
+        },
+      }}
+    />
+  </Admin>
+);
+```
+
+## Built-in `echoTransport`
+
+A no-op transport that simply echoes the user's last message. Use it for demos, snapshots, or when you haven't wired up a real LLM yet.
+
+```tsx
+import { Assistant, echoTransport } from "@/components/admin";
+
+<Assistant transport={echoTransport} />;
+```
+
+## Writing a real transport
+
+```ts
+import { type AssistantTransport } from "@/components/admin";
+import OpenAI from "openai";
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY! });
+
+const openaiTransport: AssistantTransport = {
+  async *send(messages, tools) {
+    const stream = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      stream: true,
+      messages: messages.map((m) =>
+        m.role === "tool"
+          ? {
+              role: "tool",
+              tool_call_id: m.toolName,
+              content: JSON.stringify(m.result),
+            }
+          : { role: m.role, content: m.content },
+      ),
+      tools: Object.entries(tools).map(([name, def]) => ({
+        type: "function",
+        function: {
+          name,
+          description: def.description,
+          parameters: { type: "object", properties: def.parameters },
+        },
+      })),
+    });
+    for await (const chunk of stream) {
+      const delta = chunk.choices[0]?.delta?.content;
+      if (delta) yield { type: "text", delta };
+      const toolCalls = chunk.choices[0]?.delta?.tool_calls;
+      if (toolCalls) {
+        for (const tc of toolCalls) {
+          if (tc.function?.name) {
+            yield {
+              type: "tool-call",
+              toolName: tc.function.name,
+              args: JSON.parse(tc.function.arguments ?? "{}"),
+            };
+          }
+        }
+      }
+    }
+    yield { type: "done" };
+  },
+};
+```
+
+## Props
+
+| Prop             | Type                                           | Default          |
+| ---------------- | ---------------------------------------------- | ---------------- |
+| `transport`      | `AssistantTransport`                           | required         |
+| `tools`          | `Record<string, ToolDefinition>`               | `{}`             |
+| `placement`      | `"bottom-right" \| "bottom-left" \| "sidebar"` | `"bottom-right"` |
+| `triggerLabel`   | `string`                                       | translated `Ask` |
+| `welcomeMessage` | `string`                                       | translated       |
+
+## Tool definitions
+
+```ts
+interface ToolDefinition {
+  description: string;
+  parameters: Record<string, string>; // keys are param names, values are types
+  handler: (args: Record<string, unknown>) => Promise<unknown> | unknown;
+}
+```
+
+When the LLM returns a `tool-call` chunk, the registered handler is invoked and its result is appended to the conversation as a `tool` message, then re-sent to the LLM on the next exchange.
+
+## `placement`
+
+Controls where the floating trigger button and chat panel appear:
+
+- `"bottom-right"` (default) — trigger and panel in the bottom-right corner
+- `"bottom-left"` — trigger and panel in the bottom-left corner
+- `"sidebar"` — trigger and panel anchored to the top-right (suitable for sidebar layouts)
+
+## i18n
+
+| Key                        | Default                |
+| -------------------------- | ---------------------- |
+| `ra.assistant.trigger`     | `Ask`                  |
+| `ra.assistant.welcome`     | `Hi! Ask me anything.` |
+| `ra.assistant.thinking`    | `Thinking…`            |
+| `ra.assistant.placeholder` | `Ask…`                 |

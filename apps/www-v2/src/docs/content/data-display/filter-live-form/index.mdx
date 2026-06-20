@@ -1,0 +1,49 @@
+---
+title: "FilterLiveForm"
+description: "Form whose inputs push their values to the surrounding <ListContext> filter state on every change."
+registry: "filter-live-form"
+---
+
+`<FilterLiveForm>` is re-exported from `ra-core` for convenience and pairs nicely with [`<FilterList>`](/docs/data-display/filter-list) and [`<FilterListSection>`](/docs/data-display/filter-list-section).
+
+## Usage
+
+Drop a `<FilterLiveForm>` inside any container that exposes a `ListContext` (typically the `aside` of a [`<List>`](/docs/page-components/list) view) and wrap one or more filter inputs:
+
+```tsx
+import { Card } from "@/components/ui/card";
+import { FilterLiveForm, TextInput } from "@/components/admin";
+
+const FilterSidebar = () => (
+  <Card className="p-4">
+    <FilterLiveForm>
+      <TextInput source="title" helperText={false} />
+      <TextInput source="author" helperText={false} />
+    </FilterLiveForm>
+  </Card>
+);
+```
+
+The form changes are debounced (500ms by default) before they are applied to the filter state.
+
+## Props
+
+| Prop            | Required | Type              | Default      | Description                                                     |
+| --------------- | -------- | ----------------- | ------------ | --------------------------------------------------------------- |
+| `children`      | Required | `ReactNode`       | -            | Filter inputs                                                   |
+| `debounce`      | Optional | `number \| false` | `500`        | Debounce delay in milliseconds, or `false` to apply immediately |
+| `validate`      | Optional | `ValidateForm`    | -            | Form validation callback                                        |
+| `resource`      | Optional | `string`          | from context | Override the resource name used by inputs                       |
+| `formComponent` | Optional | `ComponentType`   | `<form>`     | Custom form wrapper component                                   |
+
+## `debounce`
+
+Set `debounce` to a custom delay (in milliseconds) to reduce the number of list refreshes while users type:
+
+```tsx
+<FilterLiveForm debounce={300}>
+  <TextInput source="title" />
+</FilterLiveForm>
+```
+
+Set `debounce={false}` to apply changes immediately.

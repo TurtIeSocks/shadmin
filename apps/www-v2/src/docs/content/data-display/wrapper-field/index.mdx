@@ -1,0 +1,39 @@
+---
+title: "WrapperField"
+description: "A pass-through field that renders its children unchanged but participates in layout-level props (like label and source). Useful when you want a parent component (e.g. <SimpleShowLayout> or <DataTable>) to treat a group of fields as a single, labeled, sortable column."
+registry: "wrapper-field"
+---
+
+## Usage
+
+```tsx
+import { WrapperField, TextField } from "@/components/admin";
+
+<WrapperField label="Author" source="last_name">
+  <TextField source="first_name" /> <TextField source="last_name" />
+</WrapperField>;
+```
+
+## Props
+
+| Prop       | Required | Type        | Default | Description                        |
+| ---------- | -------- | ----------- | ------- | ---------------------------------- |
+| `children` | Required | `ReactNode` | -       | The fields to wrap                 |
+| `source`   | Optional | `string`    | -       | Source used for sortable headers   |
+| `label`    | Optional | `string`    | -       | Label exposed to the parent layout |
+
+`WrapperField` itself renders nothing other than its children — all other props are read by the parent container.
+
+## `source`
+
+Optional source used by parent components such as `<DataTable.Col>` to drive sortable column headers.
+
+```tsx
+<WrapperField source="last_name" label="Author">
+  <TextField source="first_name" /> <TextField source="last_name" />
+</WrapperField>
+```
+
+## `label`
+
+The label exposed to the parent layout (`<SimpleShowLayout>`, `<DataTable>`).

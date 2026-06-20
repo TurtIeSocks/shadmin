@@ -1,0 +1,51 @@
+---
+title: "TextArrayField"
+description: "Renders an array of scalar values as a horizontal list of shadcn <Badge> components. Useful for tags, genres, or similar short string arrays."
+registry: "text-array-field"
+---
+
+## Usage
+
+```tsx
+import { TextArrayField } from "@/components/admin";
+
+// record: { id: 123, genres: ['Fiction', 'Historical Fiction'] }
+<TextArrayField source="genres" />;
+```
+
+## Props
+
+| Prop           | Required | Type                                                     | Default             | Description                                             |
+| -------------- | -------- | -------------------------------------------------------- | ------------------- | ------------------------------------------------------- |
+| `source`       | Required | `string`                                                 | -                   | Field name                                              |
+| `record`       | Optional | `object`                                                 | Record from context | Explicit record                                         |
+| `defaultValue` | Optional | `any`                                                    | -                   | Fallback value                                          |
+| `empty`        | Optional | `ReactNode`                                              | -                   | Placeholder when value is missing or the array is empty |
+| `variant`      | Optional | `"default" \| "outline" \| "secondary" \| "destructive"` | `"outline"`         | Badge style                                             |
+| `className`    | Optional | `string`                                                 | -                   | Additional CSS classes                                  |
+
+Remaining props are forwarded to the wrapping `<div>`.
+
+## `source`
+
+Name of the array field on the record. Each item is rendered inside its own `<Badge>`.
+
+```tsx
+<TextArrayField source="tags" />
+```
+
+## `empty`
+
+Rendered when the value is missing or the array is empty. Strings are passed through the translator.
+
+```tsx
+<TextArrayField source="tags" empty="No tags" />
+```
+
+## `variant`
+
+Switches the visual style of the badges. Defaults to `"outline"`.
+
+```tsx
+<TextArrayField source="tags" variant="secondary" />
+```

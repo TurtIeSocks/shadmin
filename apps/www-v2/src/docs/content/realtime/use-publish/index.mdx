@@ -1,0 +1,48 @@
+---
+title: "usePublish"
+description: "usePublish returns a stable publish function that sends an event to a topic via the realtime transport."
+---
+
+## Usage
+
+```tsx
+import { usePublish } from "@/components/realtime";
+
+function NotifyButton() {
+  const publish = usePublish();
+
+  const handleClick = async () => {
+    await publish("resource/posts", {
+      type: "created",
+      payload: { ids: [42] },
+    });
+  };
+
+  return <button onClick={handleClick}>Notify</button>;
+}
+```
+
+## Params
+
+None. The hook takes no arguments.
+
+## Returns
+
+A stable async function with signature:
+
+```ts
+(topic: string, event: Omit<RealtimeEvent, "topic">) => Promise<void>
+```
+
+| Param | Description |
+|-------|-------------|
+| `topic` | The topic to publish to |
+| `event.type` | Event type string, e.g. `"created"`, `"updated"`, `"deleted"` |
+| `event.payload` | Arbitrary payload (type-safe when the generic `P` is specified) |
+| `event.meta` | Optional metadata object |
+
+## Notes
+
+- The returned function is memoised and only changes when the `DataProvider` instance changes.
+- Throws at call time if the `DataProvider` does not implement `publish()`. Wrap with `realtimeDataProvider()` to enable it.
+- In most apps you do not need `usePublish` directly. Use `addEventsForMutations` to broadcast events automatically on write operations.

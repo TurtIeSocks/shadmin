@@ -6,18 +6,12 @@ const names = new Set<string>(
   (registry as { items: RegistryItem[] }).items.map((i) => i.name),
 );
 
-function basename(slug: string): string {
-  const i = slug.lastIndexOf("/");
-  return i === -1 ? slug : slug.slice(i + 1);
-}
-
-export function installFor(slug: string): InstallCommands | null {
-  // Only component doc pages (under components/) map to installable registry
-  // items. Without this, a guide whose basename collides with a registry item
-  // name (admin, list, layout, edit, …) would render a spurious install block.
-  if (!slug.startsWith("components/")) return null;
-  const name = basename(slug);
-  if (!names.has(name)) return null;
+// Install commands are driven by a page's `registry` frontmatter field (set
+// during migration when the page documents a real registry component), not by
+// the slug — so guides whose basename collides with a component name never
+// render a spurious install block.
+export function installFor(name: string | undefined): InstallCommands | null {
+  if (!name || !names.has(name)) return null;
   const ref = `@shadmin/${name}`;
   return {
     npm: `npx shadcn@latest add ${ref}`,
