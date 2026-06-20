@@ -25,21 +25,24 @@ export default defineConfig({
     // @vitejs/plugin-react's babel transform (which otherwise tries to parse the
     // raw MDX frontmatter as JS and fails). Array order alone is insufficient in
     // dev — `enforce: "pre"` is required.
-    { enforce: "pre", ...mdx({
-      providerImportSource: "@/docs/mdx/mdx-components",
-      remarkPlugins: [
-        // Frontmatter first: parse `---` YAML out of the body + export it as
-        // `frontmatter` (so guide routes can render the title) — otherwise the
-        // raw `title: ...` leaks as visible body text.
-        remarkFrontmatter,
-        remarkMdxFrontmatter,
-        remarkGfm,
-        remarkDirective,
-        remarkCodeMeta,
-        remarkRelativeLinks,
-        remarkCalloutDirective,
-      ],
-    }) },
+    {
+      enforce: "pre",
+      ...mdx({
+        providerImportSource: "@/docs/mdx/mdx-components",
+        remarkPlugins: [
+          // Frontmatter first: parse `---` YAML out of the body + export it as
+          // `frontmatter` (so guide routes can render the title) — otherwise the
+          // raw `title: ...` leaks as visible body text.
+          remarkFrontmatter,
+          remarkMdxFrontmatter,
+          remarkGfm,
+          remarkDirective,
+          remarkCodeMeta,
+          remarkRelativeLinks,
+          remarkCalloutDirective,
+        ],
+      }),
+    },
     react({ include: /\.(jsx|js|mdx|md|tsx|ts)$/ }),
     tailwindcss(),
   ],
