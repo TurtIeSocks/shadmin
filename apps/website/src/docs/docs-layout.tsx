@@ -113,7 +113,7 @@ export function DocsLayout() {
         <aside className="hidden md:block w-60 shrink-0">
           <GlassPanel
             level={2}
-            className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto"
+            className="sticky max-h-[calc(100vh-7rem)] overflow-y-auto"
           >
             <Sidebar />
           </GlassPanel>
