@@ -1,5 +1,11 @@
-function App() {
-  return <div />;
-}
+import { Outlet } from "react-router-dom";
+import { SiteNav } from "@/components/site-nav";
 
-export default App;
+export function App() {
+  return (
+    <div className="min-h-dvh flex flex-col">
+      <SiteNav />
+      <Outlet />
+    </div>
+  );
+}
