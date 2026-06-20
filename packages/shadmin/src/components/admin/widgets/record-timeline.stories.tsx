@@ -10,7 +10,7 @@ import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { PlusIcon, EditIcon, TrashIcon } from "lucide-react";
 import { Admin } from "@/components/admin";
-import { RecordTimeline } from "@/components/extras";
+import { RecordTimeline } from "@/components/admin/widgets/record-timeline";
 
 const i18nProvider = polyglotI18nProvider(
   () => defaultMessages,

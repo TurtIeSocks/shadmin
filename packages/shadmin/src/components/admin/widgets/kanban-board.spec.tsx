@@ -11,7 +11,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import defaultMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { Admin } from "@/components/admin";
-import { KanbanBoard } from "@/components/extras";
+import { KanbanBoard } from "@/components/admin/widgets/kanban-board";
 import { List } from "@/components/admin/list/list";
 
 const COLUMNS = [

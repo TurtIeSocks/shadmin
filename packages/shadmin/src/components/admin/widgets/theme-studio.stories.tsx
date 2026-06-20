@@ -2,7 +2,7 @@ import type { PropsWithChildren } from "react";
 import { CoreAdminContext, memoryStore } from "shadmin-core";
 
 import { ThemeProvider } from "@/components/admin";
-import { ThemeStudio } from "@/components/extras/theme-studio";
+import { ThemeStudio } from "@/components/admin/widgets/theme-studio";
 
 export default {
   title: "Extras/ThemeStudio",

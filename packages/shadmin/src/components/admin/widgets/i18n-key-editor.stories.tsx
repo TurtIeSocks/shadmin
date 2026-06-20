@@ -8,7 +8,7 @@ import fakeRestProvider from "ra-data-fakerest";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import { ThemeProvider } from "@/components/admin";
-import { I18nKeyEditor } from "@/components/extras";
+import { I18nKeyEditor } from "@/components/admin/widgets/i18n-key-editor";
 
 const dataProvider = fakeRestProvider({}, false);
 

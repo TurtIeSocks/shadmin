@@ -17,13 +17,13 @@ import {
   ListGuesser,
   ShowGuesser,
 } from "@/components/admin";
-import { CommandMenu } from "@/components/extras/command-menu";
+import { CommandMenu } from "@/components/admin/widgets/command-menu";
 import {
   useCommandMenu,
   useRegisterCommand,
   RECENTS_KEY,
   type RecentEntry,
-} from "@/components/extras/command-menu-context";
+} from "@/components/admin/widgets/command-menu-context";
 
 const data = {
   products: [

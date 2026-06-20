@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/admin/layout/theme-provider";
 import {
   PermissionMatrix,
   type PermissionsState,
-} from "@/components/extras/permission-matrix";
+} from "@/components/admin/widgets/permission-matrix";
 import { i18nProvider } from "@/lib/i18n-provider";
 
 const roles = ["admin", "editor", "viewer"];

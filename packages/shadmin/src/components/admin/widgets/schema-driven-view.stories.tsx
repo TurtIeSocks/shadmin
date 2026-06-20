@@ -10,7 +10,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
 import { ThemeProvider } from "@/components/admin";
-import { SchemaDrivenView } from "@/components/extras";
+import { SchemaDrivenView } from "@/components/admin/widgets/schema-driven-view";
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 

@@ -2,7 +2,7 @@ import React from "react";
 import { CoreAdminContext } from "shadmin-core";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { ThemeProvider } from "@/components/admin/layout/theme-provider";
-import { DiffViewer } from "@/components/extras/diff-viewer";
+import { DiffViewer } from "@/components/admin/widgets/diff-viewer";
 
 export default {
   title: "Extras/DiffViewer",

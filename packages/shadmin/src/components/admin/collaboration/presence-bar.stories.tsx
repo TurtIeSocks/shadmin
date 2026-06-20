@@ -14,7 +14,7 @@ import {
   PresenceBar,
   type PresenceTransport,
   type PresenceState,
-} from "@/components/extras";
+} from "@/components/admin/collaboration/presence-bar";
 
 const i18nProvider = polyglotI18nProvider(
   () => defaultMessages,

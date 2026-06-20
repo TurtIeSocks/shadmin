@@ -215,6 +215,14 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/collaboration/comments-thread.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/collaboration/presence-bar.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/common/application-updated-notification.tsx",
           "type": "registry:component"
         },
@@ -852,6 +860,90 @@
         },
         {
           "path": "src/components/admin/views/translatable-fields.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/approval-queue.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/assistant-transport.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/assistant.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/command-menu-context.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/command-menu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/dashboard-charts.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/data-provider-devtools-context.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/data-provider-devtools.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/diff-viewer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/i18n-key-editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/in-place-editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/job-monitor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/kanban-board.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/layout-builder.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/onboarding-tour.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/permission-matrix.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/pivot-grid.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/record-timeline.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/schema-driven-view.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/theme-studio-vars.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/widgets/theme-studio.tsx",
           "type": "registry:component"
         },
         {
@@ -1578,6 +1670,41 @@
       ],
       "dependencies": ["inflection", "lucide-react", "ra-core"],
       "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "comments-thread",
+      "type": "registry:component",
+      "title": "Comments Thread",
+      "files": [
+        {
+          "path": "src/components/admin/collaboration/comments-thread.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "button",
+        "card",
+        "textarea"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "presence-bar",
+      "type": "registry:component",
+      "title": "Presence Bar",
+      "files": [
+        {
+          "path": "src/components/admin/collaboration/presence-bar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "avatar"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
@@ -4504,6 +4631,350 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "approval-queue",
+      "type": "registry:component",
+      "title": "Approval Queue",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/approval-queue.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "card", "textarea"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "assistant-transport",
+      "type": "registry:component",
+      "title": "Assistant Transport",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/assistant-transport.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "assistant",
+      "type": "registry:component",
+      "title": "Assistant",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/assistant.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/assistant-transport",
+        "@shadmin/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "command-menu-context",
+      "type": "registry:component",
+      "title": "Command Menu Context",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/command-menu-context.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "command-menu",
+      "type": "registry:component",
+      "title": "Command Menu",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/command-menu.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/command-menu-context",
+        "@shadmin/use-theme",
+        "command",
+        "kbd",
+        "sheet",
+        "use-mobile"
+      ],
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "dashboard-charts",
+      "type": "registry:component",
+      "title": "Dashboard Charts",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/dashboard-charts.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "card", "skeleton"],
+      "dependencies": ["lucide-react", "recharts"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "data-provider-devtools-context",
+      "type": "registry:component",
+      "title": "Data Provider Devtools Context",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/data-provider-devtools-context.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "data-provider-devtools",
+      "type": "registry:component",
+      "title": "Data Provider Devtools",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/data-provider-devtools.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/data-provider-devtools-context",
+        "@shadmin/lib-utils",
+        "button",
+        "card"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "diff-viewer",
+      "type": "registry:component",
+      "title": "Diff Viewer",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/diff-viewer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "i18n-key-editor",
+      "type": "registry:component",
+      "title": "I18n Key Editor",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/i18n-key-editor.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "button", "card", "input"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "in-place-editor",
+      "type": "registry:component",
+      "title": "In Place Editor",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/in-place-editor.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/text-field",
+        "@shadmin/text-input",
+        "button"
+      ],
+      "dependencies": ["lodash", "lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "job-monitor",
+      "type": "registry:component",
+      "title": "Job Monitor",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/job-monitor.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "badge",
+        "button",
+        "card",
+        "tabs"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "kanban-board",
+      "type": "registry:component",
+      "title": "Kanban Board",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/kanban-board.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["@dnd-kit/core", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "layout-builder",
+      "type": "registry:component",
+      "title": "Layout Builder",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/layout-builder.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "card"],
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities",
+        "lucide-react",
+        "ra-core"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "onboarding-tour",
+      "type": "registry:component",
+      "title": "Onboarding Tour",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/onboarding-tour.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "permission-matrix",
+      "type": "registry:component",
+      "title": "Permission Matrix",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/permission-matrix.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils", "checkbox", "tabs"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "pivot-grid",
+      "type": "registry:component",
+      "title": "Pivot Grid",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/pivot-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "record-timeline",
+      "type": "registry:component",
+      "title": "Record Timeline",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/record-timeline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["date-fns", "lucide-react", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "schema-driven-view",
+      "type": "registry:component",
+      "title": "Schema Driven View",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/schema-driven-view.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "theme-studio-vars",
+      "type": "registry:component",
+      "title": "Theme Studio Vars",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/theme-studio-vars.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/use-theme"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "theme-studio",
+      "type": "registry:component",
+      "title": "Theme Studio",
+      "files": [
+        {
+          "path": "src/components/admin/widgets/theme-studio.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/admin",
+        "@shadmin/lib-utils",
+        "@shadmin/theme-studio-vars",
+        "button",
+        "card",
+        "input"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "primitives",
       "type": "registry:ui",
       "title": "Primitives",
@@ -5397,99 +5868,7 @@
       ],
       "files": [
         {
-          "path": "src/components/extras/approval-queue.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/assistant-transport.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/assistant.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/command-menu-context.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/command-menu.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/comments-thread.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/dashboard-charts.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/data-provider-devtools-context.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/data-provider-devtools.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/diff-viewer.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/i18n-key-editor.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/in-place-editor.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/extras/index.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/job-monitor.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/kanban-board.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/layout-builder.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/onboarding-tour.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/permission-matrix.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/pivot-grid.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/presence-bar.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/record-timeline.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/schema-driven-view.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/theme-studio-vars.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/theme-studio.tsx",
           "type": "registry:component"
         },
         {

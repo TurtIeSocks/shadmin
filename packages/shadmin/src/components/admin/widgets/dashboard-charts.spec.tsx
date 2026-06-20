@@ -7,7 +7,7 @@ import {
   DonutChart,
   MetricCard,
   TrendChart,
-} from "@/components/extras";
+} from "@/components/admin/widgets/dashboard-charts";
 
 const trendData = [
   { date: "2026-01", revenue: 1000 },

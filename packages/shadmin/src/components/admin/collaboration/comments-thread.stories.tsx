@@ -8,7 +8,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
 import { ThemeProvider } from "@/components/admin";
-import { CommentsThread } from "@/components/extras";
+import { CommentsThread } from "@/components/admin/collaboration/comments-thread";
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 

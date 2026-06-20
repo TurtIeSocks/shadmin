@@ -40,7 +40,7 @@ const defaultStore = localStorageStore();
  * Wraps `CoreAdminContext` and applies shadmin's default `store`
  * and `i18nProvider`. Use this directly when you need to interleave a
  * context-providing wrapper (for example the `<CommandMenu>` palette from
- * `@/components/extras/command-menu`) between the data providers and the
+ * `@/components/admin/widgets/command-menu`) between the data providers and the
  * routed UI:
  *
  * @example
@@ -49,7 +49,7 @@ const defaultStore = localStorageStore();
  *   AdminUI,
  *   Resource,
  * } from "@/components/admin";
- * import { CommandMenu } from "@/components/extras/command-menu";
+ * import { CommandMenu } from "@/components/admin/widgets/command-menu";
  *
  * const App = () => (
  *   <AdminContext dataProvider={dataProvider}>
@@ -118,7 +118,7 @@ function AdminUI(props: AdminUIProps) {
  *
  * Reach for the lower-level {@link AdminContext} + {@link AdminUI} pair when
  * you need to inject a wrapping component (such as the cmd+K
- * `<CommandMenu>` palette from `@/components/extras/command-menu`) between
+ * `<CommandMenu>` palette from `@/components/admin/widgets/command-menu`) between
  * the providers and the routed UI.
  *
  * @see {@link https://shadmin.turtlesocks.dev/docs/admin Admin documentation}

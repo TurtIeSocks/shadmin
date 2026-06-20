@@ -9,7 +9,7 @@ import {
   DonutChart,
   MetricCard,
   TrendChart,
-} from "@/components/extras";
+} from "@/components/admin/widgets/dashboard-charts";
 
 export default { title: "Extras/DashboardCharts" };
 

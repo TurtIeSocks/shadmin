@@ -8,7 +8,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
 import { ThemeProvider } from "@/components/admin";
-import { ApprovalQueue } from "@/components/extras";
+import { ApprovalQueue } from "@/components/admin/widgets/approval-queue";
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 
