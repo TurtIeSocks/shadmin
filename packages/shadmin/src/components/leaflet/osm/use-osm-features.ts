@@ -4,7 +4,9 @@ import { useMemo } from "react";
 import osmtogeojson from "osmtogeojson";
 import buffer from "@turf/buffer";
 
+import type { UseQueryResult } from "@tanstack/react-query";
 import { useOverpass } from "./use-overpass";
+import type { OverpassResponse } from "./overpass-client";
 import {
   OSM_PRESETS,
   type OsmPresetDef,
@@ -24,11 +26,15 @@ interface OsmFeatureSources {
   tags?: ReadonlyArray<OsmTagInput>;
 }
 
+type OsmFeaturesResult = Omit<UseQueryResult<OverpassResponse>, "data"> & {
+  data: GeoJSON.FeatureCollection<GeoJSON.Polygon | GeoJSON.MultiPolygon> | null;
+};
+
 const useOsmFeatures = (
   bbox: GeoJSON.BBox | null,
   sources: OsmFeatureSources,
   opts: UseOsmFeaturesOptions = {},
-) => {
+): OsmFeaturesResult => {
   const presetsKey = sources.presets?.join("|") ?? "";
   const tagsKey = sources.tags?.join("|") ?? "";
   // biome-ignore lint/correctness/useExhaustiveDependencies: key on the joined string so a new array with identical contents doesn't produce a fresh memo; sources.presets is read fresh inside
@@ -127,4 +133,4 @@ function findPresetForFeature(
   return null;
 }
 
-export { type UseOsmFeaturesOptions, type OsmFeatureSources, useOsmFeatures };
+export { type UseOsmFeaturesOptions, type OsmFeatureSources, type OsmFeaturesResult, useOsmFeatures };
