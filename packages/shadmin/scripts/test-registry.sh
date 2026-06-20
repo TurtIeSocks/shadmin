@@ -280,6 +280,13 @@ test -f src/styles/glass.css || { echo "MISSING glass.css"; exit 1; }
 echo "Rebuilding admin app with style-glass installed"
 pnpm run build
 
+# NOTE: the `realtime` block is intentionally NOT installed here. Its headless
+# logic (hooks/transports) now lives in the `shadmin-core` workspace package,
+# which is private/unpublished, so a registry consumer cannot resolve it yet —
+# realtime is monorepo-internal until shadmin-core is published (then flip the
+# granularize shadmin-core->ra-core mapping). Do not add a realtime install
+# step until then; it would fail on the unresolvable shadmin-core dependency.
+
 cd ..
 
 echo "Creating new Vite app in a temp folder for rich-text-input block"

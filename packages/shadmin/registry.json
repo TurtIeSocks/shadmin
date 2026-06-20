@@ -6096,79 +6096,7 @@
       "devDependencies": ["mock-socket"],
       "files": [
         {
-          "path": "src/components/realtime/add-events-for-mutations.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/realtime/edit-live.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-get-list-live.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-get-lock-live.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-get-lock.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-get-locks-live.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-get-locks.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-get-many-live.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-get-one-live.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-lock-on-mount.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-lock.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-on-reconnect.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-publish.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-realtime-status.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-subscribe-callback.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-subscribe-to-record-list.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-subscribe-to-record.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-subscribe.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/hooks/use-unlock.ts",
           "type": "registry:component"
         },
         {
@@ -6192,39 +6120,7 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/realtime/realtime-data-provider.ts",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/realtime/show-live.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/topics.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/transports/broadcast-channel-transport.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/transports/fake-transport.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/transports/in-memory-lock-provider.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/transports/sse-transport.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/transports/websocket-transport.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/realtime/types.ts",
           "type": "registry:component"
         }
       ],
