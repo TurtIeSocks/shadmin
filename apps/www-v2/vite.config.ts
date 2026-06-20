@@ -12,6 +12,7 @@ import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
 import { remarkCodeMeta } from "./scripts/remark-code-meta.mjs";
 
 export default defineConfig({
+  ssgOptions: { dirStyle: "nested" },
   plugins: [
     {
       enforce: "pre",

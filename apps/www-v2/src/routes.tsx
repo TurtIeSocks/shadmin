@@ -4,6 +4,7 @@ import { Home } from "@/pages/home";
 import { DemoStub } from "@/pages/demo-stub";
 import { DocsLayout } from "@/docs/docs-layout";
 import { MdxPage } from "@/docs/mdx-page";
+import { docSlugs } from "@/docs/nav-content";
 
 export const routes: RouteRecord[] = [
   {
@@ -23,5 +24,7 @@ export const routes: RouteRecord[] = [
 
 // Expanded in Task 6 to enumerate every doc slug.
 export async function includedRoutes(paths: string[]) {
-  return paths;
+  const staticPaths = paths.filter((p) => !p.includes("*"));
+  const docPaths = docSlugs.map((s) => `/docs/${s}`);
+  return [...staticPaths, ...docPaths];
 }
