@@ -74,8 +74,10 @@ export const blocks = [
     granularize: true,
     cssVarsFromFile: "src/index.css",
     registryDependencies: [
+      "@shadmin/color-picker",
       "accordion",
       "alert",
+      "alert-dialog",
       "avatar",
       "badge",
       "breadcrumb",
@@ -93,6 +95,7 @@ export const blocks = [
       "label",
       "pagination",
       "popover",
+      "progress",
       "radio-group",
       "select",
       "separator",
@@ -107,14 +110,19 @@ export const blocks = [
       "tooltip",
     ],
     dependencies: [
+      "@dnd-kit/core",
+      "@dnd-kit/sortable",
+      "@dnd-kit/utilities",
       "@tanstack/react-query",
       "class-variance-authority",
       "clsx",
+      "cronstrue",
       "date-fns",
       "diacritic",
       "dompurify",
       "html-react-parser",
       "inflection",
+      "libphonenumber-js",
       "lodash",
       "lucide-react",
       "query-string",
@@ -276,24 +284,17 @@ export const blocks = [
     sourceDirs: [{ path: "src/components/csv-import", recursive: false }],
   },
   {
-    name: "extras",
-    type: "registry:block",
-    title: "Shadmin Extras",
-    categories: ["shadmin"],
-    description:
-      "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
-    registryDependencies: ["@shadmin/admin", "alert-dialog", "progress"],
-    dependencies: [
-      "@dnd-kit/core",
-      "@dnd-kit/sortable",
-      "@dnd-kit/utilities",
-      "cronstrue",
-      "libphonenumber-js",
-    ],
-    sourceDirs: [
-      { path: "src/components/extras", recursive: false },
-      { path: "src/components/ui/color-picker", recursive: false },
-    ],
+    // The former "extras" components now live under the granularized `admin`
+    // block (src/components/admin/{fields,inputs,buttons,list,form,widgets,
+    // collaboration}/), so each is its own @shadmin/<name> item. Only the
+    // shared color-picker UI primitive needs its own home: a small registry:ui
+    // block (one item, all 3 files) that color-input + theme-studio depend on
+    // via @shadmin/color-picker (color-picker is in granularize OUR_UI_ITEMS).
+    name: "color-picker",
+    type: "registry:ui",
+    title: "Color Picker",
+    categories: ["shadmin", "ui"],
+    sourceDirs: [{ path: "src/components/ui/color-picker", recursive: false }],
   },
   {
     name: "monaco",

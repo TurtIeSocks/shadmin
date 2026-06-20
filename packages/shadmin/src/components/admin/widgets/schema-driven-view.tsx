@@ -1,23 +1,21 @@
 "use client";
 
 import type { ReactNode } from "react";
-import {
-  BooleanField,
-  BooleanInput,
-  DataTable,
-  DateField,
-  DateInput,
-  EmailField,
-  NumberField,
-  NumberInput,
-  RecordField,
-  SelectField,
-  SelectInput,
-  SimpleForm,
-  SimpleShowLayout,
-  TextField,
-  TextInput,
-} from "@/components/admin";
+import { BooleanField } from "@/components/admin/fields/boolean-field";
+import { DateField } from "@/components/admin/fields/date-field";
+import { EmailField } from "@/components/admin/fields/email-field";
+import { NumberField } from "@/components/admin/fields/number-field";
+import { RecordField } from "@/components/admin/fields/record-field";
+import { SelectField } from "@/components/admin/fields/select-field";
+import { TextField } from "@/components/admin/fields/text-field";
+import { BooleanInput } from "@/components/admin/inputs/boolean-input";
+import { DateInput } from "@/components/admin/inputs/date-input";
+import { NumberInput } from "@/components/admin/inputs/number-input";
+import { SelectInput } from "@/components/admin/inputs/select-input";
+import { TextInput } from "@/components/admin/inputs/text-input";
+import { DataTable } from "@/components/admin/list/data-table";
+import { SimpleForm } from "@/components/admin/form/simple-form";
+import { SimpleShowLayout } from "@/components/admin/views/simple-show-layout";
 
 interface JsonSchemaProperty {
   type: "string" | "number" | "integer" | "boolean";

@@ -12,10 +12,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../ui/select";
-import { ThemeModeToggle } from "../../admin";
-import { Separator } from "../../ui/separator";
-import { ColorPicker } from "../../ui/color-picker";
+} from "@/components/ui/select";
+import { ThemeModeToggle } from "@/components/admin/layout/theme-mode-toggle";
+import { Separator } from "@/components/ui/separator";
+import { ColorPicker } from "@/components/ui/color-picker";
 import { useThemeVars, type ThemeVars } from "./theme-studio-vars";
 
 const CSS_UNITS = [

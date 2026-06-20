@@ -30,6 +30,7 @@ const OUR_UI_ITEMS = new Set([
   "slot",
   "direction",
   "primitives",
+  "color-picker",
 ]);
 
 // hooks/ files authored in this repo. Same treatment as OUR_UI_ITEMS for ui/.
@@ -106,12 +107,19 @@ const fileToItemRef = (absFile, repoRoot) => {
   if (rel.startsWith("..")) return null;
 
   const noExt = rel.replace(/\.(tsx?|ts)$/, "");
+
+  // An OUR ui item resolves even when the import lands on the dir's index
+  // barrel (e.g. color-picker/index.ts) — must precede the generic index skip.
+  if (noExt.startsWith("components/ui/")) {
+    const uiName = noExt.slice("components/ui/".length).split("/")[0];
+    if (OUR_UI_ITEMS.has(uiName)) return { kind: "ours", name: uiName };
+  }
+
   if (noExt.endsWith("/index")) return null;
 
   if (noExt.startsWith("components/ui/")) {
     const sub = noExt.slice("components/ui/".length);
     const name = sub.split("/")[0];
-    if (OUR_UI_ITEMS.has(name)) return { kind: "ours", name };
     return { kind: "shadcn", name };
   }
 

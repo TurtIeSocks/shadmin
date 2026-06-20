@@ -10,8 +10,10 @@
       "categories": ["shadmin", "dashboard"],
       "description": "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
       "registryDependencies": [
+        "@shadmin/color-picker",
         "accordion",
         "alert",
+        "alert-dialog",
         "avatar",
         "badge",
         "breadcrumb",
@@ -29,6 +31,7 @@
         "label",
         "pagination",
         "popover",
+        "progress",
         "radio-group",
         "select",
         "separator",
@@ -43,14 +46,19 @@
         "tooltip"
       ],
       "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities",
         "@tanstack/react-query",
         "class-variance-authority",
         "clsx",
+        "cronstrue",
         "date-fns",
         "diacritic",
         "dompurify",
         "html-react-parser",
         "inflection",
+        "libphonenumber-js",
         "lodash",
         "lucide-react",
         "query-string",
@@ -2998,6 +3006,7 @@
         }
       ],
       "registryDependencies": [
+        "@shadmin/color-picker",
         "@shadmin/field-label-text",
         "@shadmin/input-helper-text",
         "@shadmin/lib-utils",
@@ -4936,6 +4945,23 @@
           "type": "registry:component"
         }
       ],
+      "registryDependencies": [
+        "@shadmin/boolean-field",
+        "@shadmin/boolean-input",
+        "@shadmin/data-table",
+        "@shadmin/date-field",
+        "@shadmin/date-input",
+        "@shadmin/email-field",
+        "@shadmin/number-field",
+        "@shadmin/number-input",
+        "@shadmin/record-field",
+        "@shadmin/select-field",
+        "@shadmin/select-input",
+        "@shadmin/simple-form",
+        "@shadmin/simple-show-layout",
+        "@shadmin/text-field",
+        "@shadmin/text-input"
+      ],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -4964,12 +4990,15 @@
         }
       ],
       "registryDependencies": [
-        "@shadmin/admin",
+        "@shadmin/color-picker",
         "@shadmin/lib-utils",
+        "@shadmin/theme-mode-toggle",
         "@shadmin/theme-studio-vars",
         "button",
         "card",
-        "input"
+        "input",
+        "select",
+        "separator"
       ],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -5853,24 +5882,11 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
-      "name": "extras",
-      "type": "registry:block",
-      "title": "Shadmin Extras",
-      "categories": ["shadmin"],
-      "description": "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
-      "registryDependencies": ["@shadmin/admin", "alert-dialog", "progress"],
-      "dependencies": [
-        "@dnd-kit/core",
-        "@dnd-kit/sortable",
-        "@dnd-kit/utilities",
-        "cronstrue",
-        "libphonenumber-js"
-      ],
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "Color Picker",
+      "categories": ["shadmin", "ui"],
       "files": [
-        {
-          "path": "src/components/extras/index.ts",
-          "type": "registry:component"
-        },
         {
           "path": "src/components/ui/color-picker/color-picker.tsx",
           "type": "registry:component"
