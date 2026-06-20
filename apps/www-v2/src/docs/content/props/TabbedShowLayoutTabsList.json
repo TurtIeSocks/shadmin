@@ -1,0 +1,17 @@
+{
+  "name": "TabbedShowLayoutTabsList",
+  "props": [
+    {
+      "name": "syncWithLocation",
+      "type": "boolean",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "tabs",
+      "type": "ReactElement<ShowTabProps, string | JSXElementConstructor<any>>[]",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

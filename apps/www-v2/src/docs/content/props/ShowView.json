@@ -1,0 +1,47 @@
+{
+  "name": "ShowView",
+  "props": [
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "aside",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disableBreadcrumb",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

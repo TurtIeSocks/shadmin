@@ -1,0 +1,113 @@
+{
+  "name": "LineStringInput",
+  "props": [
+    {
+      "name": "attribution",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "collection",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "defaultCenter",
+      "type": "[number, number]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "geomanShapes",
+      "type": "GeomanShape[]",
+      "optional": true,
+      "comment": "Override the toolbar draw buttons. When omitted, derived from `shape`.\nUse when a single GeoJSON output type (e.g. Polygon) can be produced by\nmultiple draw modes (Polygon, Rectangle, Circle)."
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "helperText",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "pathOptions",
+      "type": "PathOptions",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "snapDistance",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "snappable",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "snapToRoads",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "tileUrl",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "validate",
+      "type": "(v: unknown) => string | undefined | (v: unknown) => string | undefined[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "valueParse",
+      "type": "(stored: unknown) => Geometry | null",
+      "optional": true,
+      "comment": "Optional inverse of `valueTransform` used during hydration. Forwarded to\n`useGeomanRHF`."
+    },
+    {
+      "name": "valueTransform",
+      "type": "(geom: Geometry, prev: unknown) => unknown",
+      "optional": true,
+      "comment": "Optional converter that transforms the drawn `GeoJSON.Geometry` into the\nshape stored in the form value. The second arg `prev` holds the current\nform value at persist time, letting transforms carry forward fields like\n`Feature.properties` across edits. Forwarded to `useGeomanRHF`."
+    },
+    {
+      "name": "zoom",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

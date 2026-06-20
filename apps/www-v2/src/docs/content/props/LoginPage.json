@@ -1,0 +1,17 @@
+{
+  "name": "LoginPage",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "redirectTo",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

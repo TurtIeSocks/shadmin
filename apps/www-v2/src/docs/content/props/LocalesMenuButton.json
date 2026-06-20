@@ -1,0 +1,23 @@
+{
+  "name": "LocalesMenuButton",
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Replaces the locale-code text in the trigger button when provided."
+    },
+    {
+      "name": "languages",
+      "type": "{ locale: string; name: string }[]",
+      "optional": true,
+      "comment": "Override the list of available languages instead of calling `useLocales()`."
+    },
+    {
+      "name": "ref",
+      "type": "Ref<HTMLButtonElement>",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

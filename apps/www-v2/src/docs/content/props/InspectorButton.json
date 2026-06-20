@@ -1,0 +1,41 @@
+{
+  "name": "InspectorButton",
+  "props": [
+    {
+      "name": "asChild",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Custom icon node. Defaults to the Settings icon."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "optional": true,
+      "comment": "Translation key for the tooltip and aria-label."
+    },
+    {
+      "name": "ref",
+      "type": "Ref<HTMLButtonElement>",
+      "optional": true,
+      "comment": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref)."
+    },
+    {
+      "name": "size",
+      "type": "\"default\" | \"sm\" | \"xs\" | \"lg\" | \"icon\" | \"icon-xs\" | \"icon-sm\" | \"icon-lg\" | null",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "variant",
+      "type": "\"link\" | \"default\" | \"secondary\" | \"destructive\" | \"outline\" | \"ghost\" | null",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

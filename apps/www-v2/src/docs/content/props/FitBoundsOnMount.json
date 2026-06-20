@@ -1,0 +1,23 @@
+{
+  "name": "FitBoundsOnMount",
+  "props": [
+    {
+      "name": "bounds",
+      "type": "LatLngBoundsExpression | null",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "maxZoom",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "padding",
+      "type": "PointTuple",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

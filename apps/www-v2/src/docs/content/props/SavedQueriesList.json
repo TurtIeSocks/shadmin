@@ -1,0 +1,11 @@
+{
+  "name": "SavedQueriesList",
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

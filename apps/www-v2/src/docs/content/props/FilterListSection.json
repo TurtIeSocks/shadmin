@@ -1,0 +1,23 @@
+{
+  "name": "FilterListSection",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

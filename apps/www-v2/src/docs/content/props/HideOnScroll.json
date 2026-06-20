@@ -1,0 +1,23 @@
+{
+  "name": "HideOnScroll",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "threshold",
+      "type": "number",
+      "optional": true,
+      "comment": "Pixel distance from the top of the viewport before hiding kicks in."
+    }
+  ]
+}

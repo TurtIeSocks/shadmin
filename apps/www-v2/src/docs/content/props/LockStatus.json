@@ -1,0 +1,29 @@
+{
+  "name": "LockStatus",
+  "props": [
+    {
+      "name": "id",
+      "type": "Identifier",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "renderFree",
+      "type": "() => ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "renderLock",
+      "type": "(lock: Lock) => ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

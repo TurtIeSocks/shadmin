@@ -1,0 +1,29 @@
+{
+  "name": "SubscriptionPlanPicker",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "plans",
+      "type": "readonly SubscriptionPlan[]",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "recommendedPlanId",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

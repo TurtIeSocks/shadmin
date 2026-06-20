@@ -1,0 +1,47 @@
+{
+  "name": "PivotGrid",
+  "props": [
+    {
+      "name": "aggregator",
+      "type": "PivotAggregator",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "columnField",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "data",
+      "type": "Record<string, unknown>[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "emptyLabel",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "formatter",
+      "type": "(value: number) => ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "rowField",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "valueField",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

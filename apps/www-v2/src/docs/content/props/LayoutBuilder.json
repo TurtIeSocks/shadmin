@@ -1,0 +1,41 @@
+{
+  "name": "LayoutBuilder",
+  "props": [
+    {
+      "name": "availableFields",
+      "type": "readonly string[]",
+      "optional": false,
+      "comment": "All fields available for the resource."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "defaultOrder",
+      "type": "readonly string[]",
+      "optional": true,
+      "comment": "Override the initial order."
+    },
+    {
+      "name": "mode",
+      "type": "\"list-columns\" | \"show-layout\" | \"edit-form\"",
+      "optional": true,
+      "comment": "Layout mode. Only `list-columns` is implemented in v1."
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": "Override resource."
+    },
+    {
+      "name": "storeKey",
+      "type": "string",
+      "optional": true,
+      "comment": "Override the auto-derived store key."
+    }
+  ]
+}

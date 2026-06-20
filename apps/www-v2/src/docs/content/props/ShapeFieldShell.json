@@ -1,0 +1,83 @@
+{
+  "name": "ShapeFieldShell",
+  "props": [
+    {
+      "name": "attribution",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "defaultCenter",
+      "type": "[number, number]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "emptyText",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "fitBounds",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "fitBoundsMaxZoom",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "fitBoundsPadding",
+      "type": "PointTuple",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "markerIcon",
+      "type": "Icon<IconOptions> | DivIcon",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "pathOptions",
+      "type": "PathOptions",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "testId",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "tileUrl",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "zoom",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

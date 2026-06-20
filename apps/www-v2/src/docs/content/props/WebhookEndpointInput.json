@@ -1,0 +1,29 @@
+{
+  "name": "WebhookEndpointInput",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "eventTypes",
+      "type": "readonly string[]",
+      "optional": false,
+      "comment": "Available event-type strings to surface as checkboxes."
+    },
+    {
+      "name": "onTestPing",
+      "type": "(url: string, secret: string) => void | Promise<void>",
+      "optional": true,
+      "comment": "Optional test-ping handler. When set, renders the test-ping button."
+    }
+  ]
+}

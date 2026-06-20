@@ -1,0 +1,17 @@
+{
+  "name": "TranslatableFieldsTab",
+  "props": [
+    {
+      "name": "groupKey",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "locale",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

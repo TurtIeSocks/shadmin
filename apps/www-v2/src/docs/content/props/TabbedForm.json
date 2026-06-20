@@ -1,0 +1,35 @@
+{
+  "name": "TabbedForm",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "syncWithLocation",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "tabs",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "toolbar",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

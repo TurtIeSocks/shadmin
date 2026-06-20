@@ -1,0 +1,41 @@
+{
+  "name": "ShowTab",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Fields/components to display in the tab panel."
+    },
+    {
+      "name": "contentClassName",
+      "type": "string",
+      "optional": true,
+      "comment": "Additional CSS class applied to the tab panel content wrapper."
+    },
+    {
+      "name": "count",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Optional count badge shown in the trigger, e.g. `count={27}`."
+    },
+    {
+      "name": "icon",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": "Icon displayed before the label."
+    },
+    {
+      "name": "label",
+      "type": "string | ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": false,
+      "comment": "Tab label shown in the trigger."
+    },
+    {
+      "name": "path",
+      "type": "string",
+      "optional": true,
+      "comment": "Custom URL segment for this tab (syncWithLocation only)."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "DualApprovalButton",
+  "props": [
+    {
+      "name": "approverSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field with the approver id array. Default `\"approvers\"`."
+    },
+    {
+      "name": "required",
+      "type": "number",
+      "optional": true,
+      "comment": "Total approvers required. Default `2`."
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": "Override resource."
+    },
+    {
+      "name": "statusSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field updated to `\"approved\"` when threshold reached. Default `\"status\"`."
+    }
+  ]
+}

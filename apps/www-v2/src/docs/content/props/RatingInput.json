@@ -1,0 +1,23 @@
+{
+  "name": "RatingInput",
+  "props": [
+    {
+      "name": "allowHalf",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

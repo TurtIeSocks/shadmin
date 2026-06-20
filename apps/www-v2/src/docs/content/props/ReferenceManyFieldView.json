@@ -1,0 +1,47 @@
+{
+  "name": "ReferenceManyFieldView",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "error",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "loading",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Component to display when offline and the request is pending or has stale placeholder data."
+    },
+    {
+      "name": "pagination",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "render",
+      "type": "(props: ListControllerResult<ReferenceRecordType>) => ReactNode",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

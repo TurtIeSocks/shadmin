@@ -1,0 +1,17 @@
+{
+  "name": "TranslatableInputsTabs",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "groupKey",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

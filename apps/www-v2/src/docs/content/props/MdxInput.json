@@ -1,0 +1,17 @@
+{
+  "name": "MdxInput",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "mdxProps",
+      "type": "LimitedMDXEditorProps",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

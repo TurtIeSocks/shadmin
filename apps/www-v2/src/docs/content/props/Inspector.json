@@ -1,0 +1,11 @@
+{
+  "name": "Inspector",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "Extra classes appended to the inspector card."
+    }
+  ]
+}

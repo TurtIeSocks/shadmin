@@ -1,0 +1,29 @@
+{
+  "name": "AccessDenied",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "textPrimary",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "textSecondary",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "PhoneInput",
+  "props": [
+    {
+      "name": "allowedCountries",
+      "type": "readonly CountryCode[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "defaultCountry",
+      "type": "CountryCode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

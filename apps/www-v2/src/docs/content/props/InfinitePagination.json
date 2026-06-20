@@ -1,0 +1,17 @@
+{
+  "name": "InfinitePagination",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "options",
+      "type": "IntersectionObserverInit",
+      "optional": true,
+      "comment": "Options forwarded to the underlying `IntersectionObserver` watching the\nsentinel element. Defaults to `{ threshold: 0 }`."
+    }
+  ]
+}

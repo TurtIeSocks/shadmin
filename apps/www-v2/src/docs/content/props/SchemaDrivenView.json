@@ -1,0 +1,23 @@
+{
+  "name": "SchemaDrivenView",
+  "props": [
+    {
+      "name": "mode",
+      "type": "\"list\" | \"show\" | \"edit\"",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "overrides",
+      "type": "Record<string, ReactNode>",
+      "optional": true,
+      "comment": "Map of property key → custom ReactNode used instead of the default mapping."
+    },
+    {
+      "name": "schema",
+      "type": "JsonSchema",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

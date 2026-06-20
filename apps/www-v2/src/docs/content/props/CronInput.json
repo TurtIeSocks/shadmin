@@ -1,0 +1,11 @@
+{
+  "name": "CronInput",
+  "props": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

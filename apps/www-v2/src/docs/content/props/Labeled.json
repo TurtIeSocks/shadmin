@@ -1,0 +1,59 @@
+{
+  "name": "Labeled",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactElement",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the wrapper element type. Defaults to `\"div\"`."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Expand the component to fill its container's width."
+    },
+    {
+      "name": "htmlFor",
+      "type": "string",
+      "optional": true,
+      "comment": "When provided, sets the `for` attribute on the rendered `<label>` so clicking it focuses the associated input."
+    },
+    {
+      "name": "isRequired",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Whether to show a required indicator."
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Set to `false` to hide the label entirely."
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": "Override the resource for label translation."
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": true,
+      "comment": "Override the source for label translation."
+    }
+  ]
+}

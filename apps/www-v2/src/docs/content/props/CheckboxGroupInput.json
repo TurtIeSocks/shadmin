@@ -1,0 +1,23 @@
+{
+  "name": "CheckboxGroupInput",
+  "props": [
+    {
+      "name": "labelPlacement",
+      "type": "\"end\" | \"bottom\" | \"top\" | \"start\"",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "options",
+      "type": "CheckboxProps & RefAttributes<HTMLButtonElement>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "row",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "name": "CalendarList",
+  "props": [
+    {
+      "name": "colorMap",
+      "type": "Record<string, string>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "colorSource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "defaultView",
+      "type": "CalendarView",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "endSource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "eventRenderer",
+      "type": "(props: EventRendererProps<R>) => ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "headerRenderer",
+      "type": "(props: HeaderRendererProps) => ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onDrop",
+      "type": "(record: R, range: { end?: string; start: string }) => void | Promise<void>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onSelectEvent",
+      "type": "(record: R) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onSelectSlot",
+      "type": "(slot: { allDay: boolean; endISO: string; startISO: string }) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "startSource",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "titleSource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "views",
+      "type": "CalendarView[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "weekStartsOn",
+      "type": "0 | 1 | 2 | 3 | 4 | 5 | 6",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}
