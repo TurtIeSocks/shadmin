@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/aurora/glass-panel";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { docsNav, type DocsNavGroup } from "./sidebar-nav";
+import { docsNav, type DocsNavGroup } from "./guides-nav";
 
 const navItemClass = ({ isActive }: { isActive: boolean }) =>
   cn(
@@ -17,7 +17,7 @@ const navItemClass = ({ isActive }: { isActive: boolean }) =>
 function SidebarNavGroup({ group }: { group: DocsNavGroup }) {
   const location = useLocation();
   const isGroupActive = group.items.some(
-    (item) => !item.external && location.pathname === `/docs/${item.slug}`,
+    (item) => location.pathname === `/docs/${item.slug}`,
   );
   const [open, setOpen] = useState(isGroupActive);
 
@@ -44,29 +44,13 @@ function SidebarNavGroup({ group }: { group: DocsNavGroup }) {
       </button>
       {open && (
         <ul className="mt-1 space-y-0.5 pl-2">
-          {group.items.map((item) =>
-            item.external ? (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block rounded-lg px-2 py-1 text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors"
-                >
-                  {item.label}
-                  <span aria-hidden className="ml-1 opacity-50">
-                    ↗
-                  </span>
-                </a>
-              </li>
-            ) : (
-              <li key={item.slug}>
-                <NavLink to={`/docs/${item.slug}`} className={navItemClass}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ),
-          )}
+          {group.items.map((item) => (
+            <li key={item.slug}>
+              <NavLink to={`/docs/${item.slug}`} className={navItemClass}>
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       )}
     </div>
@@ -137,14 +121,17 @@ export function DocsLayout() {
 
         {/* Mobile sidebar overlay */}
         {mobileSidebarOpen && (
-          <div
-            className="fixed inset-0 z-30 md:hidden"
-            onClick={() => setMobileSidebarOpen(false)}
-          >
-            <div
-              className="absolute left-0 top-0 bottom-0 w-72 z-40"
-              onClick={(e) => e.stopPropagation()}
-            >
+          <div className="fixed inset-0 z-30 md:hidden">
+            {/* Scrim: a real button so closing is keyboard-accessible. The
+                panel is a sibling (not a child), so clicks inside it don't
+                reach the scrim — no stopPropagation needed. */}
+            <button
+              type="button"
+              aria-label="Close navigation"
+              className="absolute inset-0 bg-background/40"
+              onClick={() => setMobileSidebarOpen(false)}
+            />
+            <div className="absolute left-0 top-0 bottom-0 w-72 z-40">
               <GlassPanel level={2} className="h-full overflow-y-auto">
                 <Sidebar />
               </GlassPanel>
