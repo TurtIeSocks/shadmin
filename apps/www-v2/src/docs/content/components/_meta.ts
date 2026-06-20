@@ -6,5 +6,4 @@ export default [
   { slug: "card", title: "Card" },
   { slug: "alert", title: "Alert" },
   { slug: "checkbox", title: "Checkbox" },
-  { slug: "_demo-admin-check", title: "Demo Admin Check" },
 ] satisfies MetaEntry[];
