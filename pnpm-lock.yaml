@@ -256,6 +256,9 @@ importers:
       react-resizable-panels:
         specifier: ^4.11.1
         version: 4.11.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-router:
+        specifier: ^7.18.0
+        version: 7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-router-dom:
         specifier: ^7.18.0
         version: 7.18.0(patch_hash=291a2f67761b4a6984fb47b4c70687cf30b94edf99bfc412eb46269e5eae95c5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
