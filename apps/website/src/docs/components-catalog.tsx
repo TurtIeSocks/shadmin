@@ -3,6 +3,7 @@ import { GradientText } from "@/components/aurora/gradient-text";
 import { Eyebrow } from "@/components/aurora/eyebrow";
 import { manifest } from "./manifest";
 import type { ManifestItem } from "./types";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const items = manifest.items;
 const nav = manifest.nav;
@@ -11,6 +12,7 @@ const nav = manifest.nav;
 const itemMap = new Map(items.map((item) => [item.name, item]));
 
 export function ComponentsCatalog() {
+  usePageTitle("All Components");
   return (
     <div>
       <Eyebrow className="mb-4">Component Catalog</Eyebrow>

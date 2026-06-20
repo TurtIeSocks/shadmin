@@ -254,6 +254,20 @@
       }
     },
     {
+      "name": "dual-approval-button",
+      "title": "Dual Approval Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/dual-approval-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/dual-approval-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/dual-approval-button",
+        "bun": "bunx shadcn@latest add @shadmin/dual-approval-button"
+      }
+    },
+    {
       "name": "edit-button",
       "title": "Edit Button",
       "description": null,
@@ -450,6 +464,20 @@
       }
     },
     {
+      "name": "status-transition-button",
+      "title": "Status Transition Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "buttons",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/status-transition-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/status-transition-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/status-transition-button",
+        "bun": "bunx shadcn@latest add @shadmin/status-transition-button"
+      }
+    },
+    {
       "name": "toggle-filter-button",
       "title": "Toggle Filter Button",
       "description": null,
@@ -475,6 +503,34 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/update-button",
         "yarn": "yarn dlx shadcn@latest add @shadmin/update-button",
         "bun": "bunx shadcn@latest add @shadmin/update-button"
+      }
+    },
+    {
+      "name": "comments-thread",
+      "title": "Comments Thread",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/comments-thread",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/comments-thread",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/comments-thread",
+        "bun": "bunx shadcn@latest add @shadmin/comments-thread"
+      }
+    },
+    {
+      "name": "presence-bar",
+      "title": "Presence Bar",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/presence-bar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/presence-bar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/presence-bar",
+        "bun": "bunx shadcn@latest add @shadmin/presence-bar"
       }
     },
     {
@@ -758,6 +814,20 @@
       }
     },
     {
+      "name": "api-key-field",
+      "title": "Api Key Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/api-key-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/api-key-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/api-key-field",
+        "bun": "bunx shadcn@latest add @shadmin/api-key-field"
+      }
+    },
+    {
       "name": "array-field",
       "title": "Array Field",
       "description": null,
@@ -814,6 +884,48 @@
       }
     },
     {
+      "name": "color-field",
+      "title": "Color Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/color-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/color-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/color-field",
+        "bun": "bunx shadcn@latest add @shadmin/color-field"
+      }
+    },
+    {
+      "name": "cron-field",
+      "title": "Cron Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/cron-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/cron-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/cron-field",
+        "bun": "bunx shadcn@latest add @shadmin/cron-field"
+      }
+    },
+    {
+      "name": "currency-field",
+      "title": "Currency Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/currency-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/currency-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/currency-field",
+        "bun": "bunx shadcn@latest add @shadmin/currency-field"
+      }
+    },
+    {
       "name": "date-field",
       "title": "Date Field",
       "description": null,
@@ -825,6 +937,20 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/date-field",
         "yarn": "yarn dlx shadcn@latest add @shadmin/date-field",
         "bun": "bunx shadcn@latest add @shadmin/date-field"
+      }
+    },
+    {
+      "name": "duration-field",
+      "title": "Duration Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/duration-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/duration-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/duration-field",
+        "bun": "bunx shadcn@latest add @shadmin/duration-field"
       }
     },
     {
@@ -895,6 +1021,34 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/number-field",
         "yarn": "yarn dlx shadcn@latest add @shadmin/number-field",
         "bun": "bunx shadcn@latest add @shadmin/number-field"
+      }
+    },
+    {
+      "name": "phone-field",
+      "title": "Phone Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/phone-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/phone-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/phone-field",
+        "bun": "bunx shadcn@latest add @shadmin/phone-field"
+      }
+    },
+    {
+      "name": "rating-field",
+      "title": "Rating Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/rating-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/rating-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/rating-field",
+        "bun": "bunx shadcn@latest add @shadmin/rating-field"
       }
     },
     {
@@ -996,6 +1150,20 @@
       }
     },
     {
+      "name": "subscription-plan-field",
+      "title": "Subscription Plan Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/subscription-plan-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/subscription-plan-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/subscription-plan-field",
+        "bun": "bunx shadcn@latest add @shadmin/subscription-plan-field"
+      }
+    },
+    {
       "name": "text-array-field",
       "title": "Text Array Field",
       "description": null,
@@ -1035,6 +1203,34 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/url-field",
         "yarn": "yarn dlx shadcn@latest add @shadmin/url-field",
         "bun": "bunx shadcn@latest add @shadmin/url-field"
+      }
+    },
+    {
+      "name": "usage-meter-field",
+      "title": "Usage Meter Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/usage-meter-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/usage-meter-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/usage-meter-field",
+        "bun": "bunx shadcn@latest add @shadmin/usage-meter-field"
+      }
+    },
+    {
+      "name": "webhook-endpoint-field",
+      "title": "Webhook Endpoint Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "fields",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/webhook-endpoint-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/webhook-endpoint-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/webhook-endpoint-field",
+        "bun": "bunx shadcn@latest add @shadmin/webhook-endpoint-field"
       }
     },
     {
@@ -1178,6 +1374,20 @@
       }
     },
     {
+      "name": "wizard-form",
+      "title": "Wizard Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/wizard-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/wizard-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/wizard-form",
+        "bun": "bunx shadcn@latest add @shadmin/wizard-form"
+      }
+    },
+    {
       "name": "edit-guesser",
       "title": "Edit Guesser",
       "description": null,
@@ -1231,6 +1441,20 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/show-guesser",
         "yarn": "yarn dlx shadcn@latest add @shadmin/show-guesser",
         "bun": "bunx shadcn@latest add @shadmin/show-guesser"
+      }
+    },
+    {
+      "name": "api-key-input",
+      "title": "Api Key Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/api-key-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/api-key-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/api-key-input",
+        "bun": "bunx shadcn@latest add @shadmin/api-key-input"
       }
     },
     {
@@ -1304,6 +1528,62 @@
       }
     },
     {
+      "name": "color-input",
+      "title": "Color Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/color-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/color-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/color-input",
+        "bun": "bunx shadcn@latest add @shadmin/color-input"
+      }
+    },
+    {
+      "name": "cron-input",
+      "title": "Cron Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/cron-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/cron-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/cron-input",
+        "bun": "bunx shadcn@latest add @shadmin/cron-input"
+      }
+    },
+    {
+      "name": "cron-utils",
+      "title": "Cron Utils",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/cron-utils",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/cron-utils",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/cron-utils",
+        "bun": "bunx shadcn@latest add @shadmin/cron-utils"
+      }
+    },
+    {
+      "name": "currency-input",
+      "title": "Currency Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/currency-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/currency-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/currency-input",
+        "bun": "bunx shadcn@latest add @shadmin/currency-input"
+      }
+    },
+    {
       "name": "datagrid-input",
       "title": "Datagrid Input",
       "description": null,
@@ -1343,6 +1623,34 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/date-time-input",
         "yarn": "yarn dlx shadcn@latest add @shadmin/date-time-input",
         "bun": "bunx shadcn@latest add @shadmin/date-time-input"
+      }
+    },
+    {
+      "name": "duration-input",
+      "title": "Duration Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/duration-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/duration-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/duration-input",
+        "bun": "bunx shadcn@latest add @shadmin/duration-input"
+      }
+    },
+    {
+      "name": "duration-utils",
+      "title": "Duration Utils",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/duration-utils",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/duration-utils",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/duration-utils",
+        "bun": "bunx shadcn@latest add @shadmin/duration-utils"
       }
     },
     {
@@ -1430,6 +1738,20 @@
       }
     },
     {
+      "name": "phone-input",
+      "title": "Phone Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/phone-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/phone-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/phone-input",
+        "bun": "bunx shadcn@latest add @shadmin/phone-input"
+      }
+    },
+    {
       "name": "radio-button-group-input",
       "title": "Radio Button Group Input",
       "description": null,
@@ -1441,6 +1763,20 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/radio-button-group-input",
         "yarn": "yarn dlx shadcn@latest add @shadmin/radio-button-group-input",
         "bun": "bunx shadcn@latest add @shadmin/radio-button-group-input"
+      }
+    },
+    {
+      "name": "rating-input",
+      "title": "Rating Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/rating-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/rating-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/rating-input",
+        "bun": "bunx shadcn@latest add @shadmin/rating-input"
       }
     },
     {
@@ -1528,6 +1864,20 @@
       }
     },
     {
+      "name": "subscription-plan-picker",
+      "title": "Subscription Plan Picker",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/subscription-plan-picker",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/subscription-plan-picker",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/subscription-plan-picker",
+        "bun": "bunx shadcn@latest add @shadmin/subscription-plan-picker"
+      }
+    },
+    {
       "name": "text-array-input",
       "title": "Text Array Input",
       "description": null,
@@ -1567,6 +1917,20 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/time-input",
         "yarn": "yarn dlx shadcn@latest add @shadmin/time-input",
         "bun": "bunx shadcn@latest add @shadmin/time-input"
+      }
+    },
+    {
+      "name": "webhook-endpoint-input",
+      "title": "Webhook Endpoint Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "inputs",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/webhook-endpoint-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/webhook-endpoint-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/webhook-endpoint-input",
+        "bun": "bunx shadcn@latest add @shadmin/webhook-endpoint-input"
       }
     },
     {
@@ -1892,6 +2256,34 @@
       }
     },
     {
+      "name": "bulk-edit-drawer",
+      "title": "Bulk Edit Drawer",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/bulk-edit-drawer",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/bulk-edit-drawer",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/bulk-edit-drawer",
+        "bun": "bunx shadcn@latest add @shadmin/bulk-edit-drawer"
+      }
+    },
+    {
+      "name": "calendar-list",
+      "title": "Calendar List",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/calendar-list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/calendar-list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/calendar-list",
+        "bun": "bunx shadcn@latest add @shadmin/calendar-list"
+      }
+    },
+    {
       "name": "count",
       "title": "Count",
       "description": null,
@@ -1973,6 +2365,20 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-list",
         "yarn": "yarn dlx shadcn@latest add @shadmin/filter-list",
         "bun": "bunx shadcn@latest add @shadmin/filter-list"
+      }
+    },
+    {
+      "name": "filter-live-form",
+      "title": "Filter Live Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/filter-live-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/filter-live-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/filter-live-form",
+        "bun": "bunx shadcn@latest add @shadmin/filter-live-form"
       }
     },
     {
@@ -2172,6 +2578,20 @@
       }
     },
     {
+      "name": "tree-list",
+      "title": "Tree List",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/tree-list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/tree-list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/tree-list",
+        "bun": "bunx shadcn@latest add @shadmin/tree-list"
+      }
+    },
+    {
       "name": "resource",
       "title": "Resource",
       "description": null,
@@ -2337,6 +2757,300 @@
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/translatable-fields",
         "yarn": "yarn dlx shadcn@latest add @shadmin/translatable-fields",
         "bun": "bunx shadcn@latest add @shadmin/translatable-fields"
+      }
+    },
+    {
+      "name": "approval-queue",
+      "title": "Approval Queue",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/approval-queue",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/approval-queue",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/approval-queue",
+        "bun": "bunx shadcn@latest add @shadmin/approval-queue"
+      }
+    },
+    {
+      "name": "assistant-transport",
+      "title": "Assistant Transport",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/assistant-transport",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/assistant-transport",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/assistant-transport",
+        "bun": "bunx shadcn@latest add @shadmin/assistant-transport"
+      }
+    },
+    {
+      "name": "assistant",
+      "title": "Assistant",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/assistant",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/assistant",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/assistant",
+        "bun": "bunx shadcn@latest add @shadmin/assistant"
+      }
+    },
+    {
+      "name": "command-menu-context",
+      "title": "Command Menu Context",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/command-menu-context",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/command-menu-context",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/command-menu-context",
+        "bun": "bunx shadcn@latest add @shadmin/command-menu-context"
+      }
+    },
+    {
+      "name": "command-menu",
+      "title": "Command Menu",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/command-menu",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/command-menu",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/command-menu",
+        "bun": "bunx shadcn@latest add @shadmin/command-menu"
+      }
+    },
+    {
+      "name": "dashboard-charts",
+      "title": "Dashboard Charts",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/dashboard-charts",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/dashboard-charts",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/dashboard-charts",
+        "bun": "bunx shadcn@latest add @shadmin/dashboard-charts"
+      }
+    },
+    {
+      "name": "data-provider-devtools-context",
+      "title": "Data Provider Devtools Context",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/data-provider-devtools-context",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/data-provider-devtools-context",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/data-provider-devtools-context",
+        "bun": "bunx shadcn@latest add @shadmin/data-provider-devtools-context"
+      }
+    },
+    {
+      "name": "data-provider-devtools",
+      "title": "Data Provider Devtools",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/data-provider-devtools",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/data-provider-devtools",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/data-provider-devtools",
+        "bun": "bunx shadcn@latest add @shadmin/data-provider-devtools"
+      }
+    },
+    {
+      "name": "diff-viewer",
+      "title": "Diff Viewer",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/diff-viewer",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/diff-viewer",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/diff-viewer",
+        "bun": "bunx shadcn@latest add @shadmin/diff-viewer"
+      }
+    },
+    {
+      "name": "i18n-key-editor",
+      "title": "I18n Key Editor",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/i18n-key-editor",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/i18n-key-editor",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/i18n-key-editor",
+        "bun": "bunx shadcn@latest add @shadmin/i18n-key-editor"
+      }
+    },
+    {
+      "name": "in-place-editor",
+      "title": "In Place Editor",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/in-place-editor",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/in-place-editor",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/in-place-editor",
+        "bun": "bunx shadcn@latest add @shadmin/in-place-editor"
+      }
+    },
+    {
+      "name": "job-monitor",
+      "title": "Job Monitor",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/job-monitor",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/job-monitor",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/job-monitor",
+        "bun": "bunx shadcn@latest add @shadmin/job-monitor"
+      }
+    },
+    {
+      "name": "kanban-board",
+      "title": "Kanban Board",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/kanban-board",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/kanban-board",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/kanban-board",
+        "bun": "bunx shadcn@latest add @shadmin/kanban-board"
+      }
+    },
+    {
+      "name": "layout-builder",
+      "title": "Layout Builder",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/layout-builder",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/layout-builder",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/layout-builder",
+        "bun": "bunx shadcn@latest add @shadmin/layout-builder"
+      }
+    },
+    {
+      "name": "onboarding-tour",
+      "title": "Onboarding Tour",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/onboarding-tour",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/onboarding-tour",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/onboarding-tour",
+        "bun": "bunx shadcn@latest add @shadmin/onboarding-tour"
+      }
+    },
+    {
+      "name": "permission-matrix",
+      "title": "Permission Matrix",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/permission-matrix",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/permission-matrix",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/permission-matrix",
+        "bun": "bunx shadcn@latest add @shadmin/permission-matrix"
+      }
+    },
+    {
+      "name": "pivot-grid",
+      "title": "Pivot Grid",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/pivot-grid",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/pivot-grid",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/pivot-grid",
+        "bun": "bunx shadcn@latest add @shadmin/pivot-grid"
+      }
+    },
+    {
+      "name": "record-timeline",
+      "title": "Record Timeline",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/record-timeline",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/record-timeline",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/record-timeline",
+        "bun": "bunx shadcn@latest add @shadmin/record-timeline"
+      }
+    },
+    {
+      "name": "schema-driven-view",
+      "title": "Schema Driven View",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/schema-driven-view",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/schema-driven-view",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/schema-driven-view",
+        "bun": "bunx shadcn@latest add @shadmin/schema-driven-view"
+      }
+    },
+    {
+      "name": "theme-studio-vars",
+      "title": "Theme Studio Vars",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-studio-vars",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-studio-vars",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-studio-vars",
+        "bun": "bunx shadcn@latest add @shadmin/theme-studio-vars"
+      }
+    },
+    {
+      "name": "theme-studio",
+      "title": "Theme Studio",
+      "description": null,
+      "type": "registry:component",
+      "category": "components",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/theme-studio",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/theme-studio",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/theme-studio",
+        "bun": "bunx shadcn@latest add @shadmin/theme-studio"
       }
     },
     {
@@ -2606,17 +3320,17 @@
       }
     },
     {
-      "name": "extras",
-      "title": "Shadmin Extras",
-      "description": "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
-      "type": "registry:block",
-      "category": "misc",
+      "name": "color-picker",
+      "title": "Color Picker",
+      "description": null,
+      "type": "registry:ui",
+      "category": "ui",
       "docs": null,
       "install": {
-        "npm": "npx shadcn@latest add @shadmin/extras",
-        "pnpm": "pnpm dlx shadcn@latest add @shadmin/extras",
-        "yarn": "yarn dlx shadcn@latest add @shadmin/extras",
-        "bun": "bunx shadcn@latest add @shadmin/extras"
+        "npm": "npx shadcn@latest add @shadmin/color-picker",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/color-picker",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/color-picker",
+        "bun": "bunx shadcn@latest add @shadmin/color-picker"
       }
     },
     {
@@ -2832,6 +3546,10 @@
       "label": "Fields",
       "items": [
         {
+          "name": "api-key-field",
+          "title": "Api Key Field"
+        },
+        {
           "name": "array-field",
           "title": "Array Field"
         },
@@ -2848,8 +3566,24 @@
           "title": "Chip Field"
         },
         {
+          "name": "color-field",
+          "title": "Color Field"
+        },
+        {
+          "name": "cron-field",
+          "title": "Cron Field"
+        },
+        {
+          "name": "currency-field",
+          "title": "Currency Field"
+        },
+        {
           "name": "date-field",
           "title": "Date Field"
+        },
+        {
+          "name": "duration-field",
+          "title": "Duration Field"
         },
         {
           "name": "email-field",
@@ -2870,6 +3604,14 @@
         {
           "name": "number-field",
           "title": "Number Field"
+        },
+        {
+          "name": "phone-field",
+          "title": "Phone Field"
+        },
+        {
+          "name": "rating-field",
+          "title": "Rating Field"
         },
         {
           "name": "record-field",
@@ -2900,6 +3642,10 @@
           "title": "Select Field"
         },
         {
+          "name": "subscription-plan-field",
+          "title": "Subscription Plan Field"
+        },
+        {
           "name": "text-array-field",
           "title": "Text Array Field"
         },
@@ -2912,6 +3658,14 @@
           "title": "Url Field"
         },
         {
+          "name": "usage-meter-field",
+          "title": "Usage Meter Field"
+        },
+        {
+          "name": "webhook-endpoint-field",
+          "title": "Webhook Endpoint Field"
+        },
+        {
           "name": "wrapper-field",
           "title": "Wrapper Field"
         }
@@ -2921,6 +3675,10 @@
       "category": "inputs",
       "label": "Inputs",
       "items": [
+        {
+          "name": "api-key-input",
+          "title": "Api Key Input"
+        },
         {
           "name": "array-input",
           "title": "Array Input"
@@ -2942,6 +3700,18 @@
           "title": "Checkbox Group Input"
         },
         {
+          "name": "color-input",
+          "title": "Color Input"
+        },
+        {
+          "name": "cron-input",
+          "title": "Cron Input"
+        },
+        {
+          "name": "currency-input",
+          "title": "Currency Input"
+        },
+        {
           "name": "datagrid-input",
           "title": "Datagrid Input"
         },
@@ -2952,6 +3722,10 @@
         {
           "name": "date-time-input",
           "title": "Date Time Input"
+        },
+        {
+          "name": "duration-input",
+          "title": "Duration Input"
         },
         {
           "name": "file-input",
@@ -2986,8 +3760,16 @@
           "title": "Password Input"
         },
         {
+          "name": "phone-input",
+          "title": "Phone Input"
+        },
+        {
           "name": "radio-button-group-input",
           "title": "Radio Button Group Input"
+        },
+        {
+          "name": "rating-input",
+          "title": "Rating Input"
         },
         {
           "name": "reference-array-input",
@@ -3028,6 +3810,10 @@
         {
           "name": "time-input",
           "title": "Time Input"
+        },
+        {
+          "name": "webhook-endpoint-input",
+          "title": "Webhook Endpoint Input"
         }
       ]
     },
@@ -3066,6 +3852,10 @@
         {
           "name": "delete-button",
           "title": "Delete Button"
+        },
+        {
+          "name": "dual-approval-button",
+          "title": "Dual Approval Button"
         },
         {
           "name": "edit-button",
@@ -3122,6 +3912,10 @@
         {
           "name": "sort-button",
           "title": "Sort Button"
+        },
+        {
+          "name": "status-transition-button",
+          "title": "Status Transition Button"
         },
         {
           "name": "toggle-filter-button",
@@ -3256,6 +4050,10 @@
       "label": "UI",
       "items": [
         {
+          "name": "color-picker",
+          "title": "Color Picker"
+        },
+        {
           "name": "primitives",
           "title": "Primitives"
         },
@@ -3334,8 +4132,28 @@
           "title": "Application Updated Notification"
         },
         {
+          "name": "approval-queue",
+          "title": "Approval Queue"
+        },
+        {
+          "name": "assistant",
+          "title": "Assistant"
+        },
+        {
+          "name": "assistant-transport",
+          "title": "Assistant Transport"
+        },
+        {
           "name": "bulk-actions-toolbar",
           "title": "Bulk Actions Toolbar"
+        },
+        {
+          "name": "bulk-edit-drawer",
+          "title": "Bulk Edit Drawer"
+        },
+        {
+          "name": "calendar-list",
+          "title": "Calendar List"
         },
         {
           "name": "card-content-inner",
@@ -3344,6 +4162,18 @@
         {
           "name": "check-for-application-update",
           "title": "Check For Application Update"
+        },
+        {
+          "name": "command-menu",
+          "title": "Command Menu"
+        },
+        {
+          "name": "command-menu-context",
+          "title": "Command Menu Context"
+        },
+        {
+          "name": "comments-thread",
+          "title": "Comments Thread"
         },
         {
           "name": "configurable",
@@ -3362,8 +4192,24 @@
           "title": "Create"
         },
         {
+          "name": "cron-utils",
+          "title": "Cron Utils"
+        },
+        {
+          "name": "dashboard-charts",
+          "title": "Dashboard Charts"
+        },
+        {
           "name": "dashboard-menu-item",
           "title": "Dashboard Menu Item"
+        },
+        {
+          "name": "data-provider-devtools",
+          "title": "Data Provider Devtools"
+        },
+        {
+          "name": "data-provider-devtools-context",
+          "title": "Data Provider Devtools Context"
         },
         {
           "name": "data-table",
@@ -3372,6 +4218,14 @@
         {
           "name": "device-test-wrapper",
           "title": "Device Test Wrapper"
+        },
+        {
+          "name": "diff-viewer",
+          "title": "Diff Viewer"
+        },
+        {
+          "name": "duration-utils",
+          "title": "Duration Utils"
         },
         {
           "name": "edit",
@@ -3418,6 +4272,10 @@
           "title": "Filter List Section"
         },
         {
+          "name": "filter-live-form",
+          "title": "Filter Live Form"
+        },
+        {
           "name": "filter-live-search",
           "title": "Filter Live Search"
         },
@@ -3430,8 +4288,16 @@
           "title": "Hide On Scroll"
         },
         {
+          "name": "i18n-key-editor",
+          "title": "I18n Key Editor"
+        },
+        {
           "name": "icon-button-with-tooltip",
           "title": "Icon Button With Tooltip"
+        },
+        {
+          "name": "in-place-editor",
+          "title": "In Place Editor"
         },
         {
           "name": "infinite-list",
@@ -3454,12 +4320,24 @@
           "title": "Inspector Root"
         },
         {
+          "name": "job-monitor",
+          "title": "Job Monitor"
+        },
+        {
+          "name": "kanban-board",
+          "title": "Kanban Board"
+        },
+        {
           "name": "keyboard-shortcut",
           "title": "Keyboard Shortcut"
         },
         {
           "name": "labeled",
           "title": "Labeled"
+        },
+        {
+          "name": "layout-builder",
+          "title": "Layout Builder"
         },
         {
           "name": "linear-progress",
@@ -3522,8 +4400,24 @@
           "title": "Offline"
         },
         {
+          "name": "onboarding-tour",
+          "title": "Onboarding Tour"
+        },
+        {
+          "name": "permission-matrix",
+          "title": "Permission Matrix"
+        },
+        {
+          "name": "pivot-grid",
+          "title": "Pivot Grid"
+        },
+        {
           "name": "placeholder",
           "title": "Placeholder"
+        },
+        {
+          "name": "presence-bar",
+          "title": "Presence Bar"
         },
         {
           "name": "prev-next-buttons",
@@ -3532,6 +4426,10 @@
         {
           "name": "ready",
           "title": "Ready"
+        },
+        {
+          "name": "record-timeline",
+          "title": "Record Timeline"
         },
         {
           "name": "reference-many-count",
@@ -3552,6 +4450,10 @@
         {
           "name": "saved-queries",
           "title": "Saved Queries"
+        },
+        {
+          "name": "schema-driven-view",
+          "title": "Schema Driven View"
         },
         {
           "name": "show",
@@ -3598,12 +4500,24 @@
           "title": "Spinner"
         },
         {
+          "name": "subscription-plan-picker",
+          "title": "Subscription Plan Picker"
+        },
+        {
           "name": "tabbed-form",
           "title": "Tabbed Form"
         },
         {
           "name": "tabbed-show-layout",
           "title": "Tabbed Show Layout"
+        },
+        {
+          "name": "theme-studio",
+          "title": "Theme Studio"
+        },
+        {
+          "name": "theme-studio-vars",
+          "title": "Theme Studio Vars"
         },
         {
           "name": "title",
@@ -3648,6 +4562,14 @@
         {
           "name": "translatable-inputs-tabs",
           "title": "Translatable Inputs Tabs"
+        },
+        {
+          "name": "tree-list",
+          "title": "Tree List"
+        },
+        {
+          "name": "wizard-form",
+          "title": "Wizard Form"
         }
       ]
     },
@@ -3668,10 +4590,6 @@
         {
           "name": "style-shadmin",
           "title": "Shadmin"
-        },
-        {
-          "name": "extras",
-          "title": "Shadmin Extras"
         }
       ]
     }

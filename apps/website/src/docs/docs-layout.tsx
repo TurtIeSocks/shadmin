@@ -32,10 +32,10 @@ function SidebarNavGroup({ group }: { group: DocsNavGroup }) {
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between px-2 py-1.5 text-xs font-semibold tracking-wider uppercase text-muted-foreground hover:text-foreground transition-colors"
       >
-        <span>{group.label}</span>
+        <span className="truncate">{group.label}</span>
         <span
           className={cn(
-            "transition-transform duration-200 text-muted-foreground",
+            "shrink-0 transition-transform duration-200 text-muted-foreground",
             open ? "rotate-90" : "",
           )}
         >
@@ -75,10 +75,7 @@ function SidebarNavGroup({ group }: { group: DocsNavGroup }) {
 
 function Sidebar() {
   return (
-    <nav
-      aria-label="Documentation"
-      className="h-full overflow-y-auto py-6 px-4"
-    >
+    <nav aria-label="Documentation" className="py-6 px-4">
       {/* Overview */}
       <div className="mb-6">
         <p className="mb-2 px-2 py-1.5 text-xs font-semibold tracking-wider uppercase text-muted-foreground">
@@ -132,7 +129,7 @@ export function DocsLayout() {
         <aside className="hidden md:block w-60 shrink-0">
           <GlassPanel
             level={2}
-            className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-hidden"
+            className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto"
           >
             <Sidebar />
           </GlassPanel>
@@ -148,7 +145,7 @@ export function DocsLayout() {
               className="absolute left-0 top-0 bottom-0 w-72 z-40"
               onClick={(e) => e.stopPropagation()}
             >
-              <GlassPanel level={2} className="h-full overflow-hidden">
+              <GlassPanel level={2} className="h-full overflow-y-auto">
                 <Sidebar />
               </GlassPanel>
             </div>
@@ -157,7 +154,7 @@ export function DocsLayout() {
 
         {/* Main content */}
         <main className="flex-1 min-w-0">
-          <GlassPanel level={2} className="min-h-96 p-6 md:p-8">
+          <GlassPanel level={2} className="p-6 md:p-8">
             <Outlet />
           </GlassPanel>
         </main>

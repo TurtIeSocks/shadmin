@@ -48,7 +48,7 @@ export const docsNav: DocsNavGroup[] = [
     ],
   },
   {
-    label: "Application configuration",
+    label: "App Config",
     items: [
       {
         slug: "admin",

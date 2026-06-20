@@ -136,7 +136,7 @@
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: oklch(0.95 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
@@ -169,6 +169,17 @@
 
 .font-heading {
   font-family: var(--font-heading);
+}
+
+/*
+ * Shiki dual-theme switch. react-shiki renders the light theme inline and stashes
+ * the dark palette in CSS vars (--shiki-dark / --shiki-dark-bg). Without this rule
+ * code blocks keep their bright github-light background in dark mode.
+ */
+.dark .shiki,
+.dark .shiki span {
+  background-color: var(--shiki-dark-bg) !important;
+  color: var(--shiki-dark) !important;
 }
 
 /*

@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { GradientText } from "@/components/aurora/gradient-text";
 import { Eyebrow } from "@/components/aurora/eyebrow";
 import { manifest } from "./manifest";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 export function DocsHome() {
+  usePageTitle("Documentation");
   const totalItems = manifest.items.length;
   const totalGroups = manifest.nav.length;
 

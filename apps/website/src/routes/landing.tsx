@@ -11,8 +11,21 @@ import { Backends } from "@/components/backends";
 import { Open } from "@/components/open";
 import { ByDevelopers } from "@/components/by-developers";
 import { GlassSeparator } from "@/components/aurora/glass-separator";
+import { usePageTitle } from "@/hooks/use-page-title";
+import { useEffect } from "react";
 
 export function Landing() {
+  usePageTitle();
+
+  // Hash links from other routes (e.g. "Features" → "/#features") hard-navigate
+  // here; the browser's native scroll fires before React mounts the target, so
+  // re-run it once the section exists.
+  useEffect(() => {
+    if (!window.location.hash) return;
+    const el = document.querySelector(window.location.hash);
+    if (el) requestAnimationFrame(() => el.scrollIntoView());
+  }, []);
+
   return (
     <>
       <Header />

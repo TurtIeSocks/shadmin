@@ -9,7 +9,7 @@ import { AuroraBadge } from "@/components/aurora/aurora-badge";
 import { GitHubWhite } from "./icons/github";
 
 const NAV_LINKS = [
-  { label: "Features", href: "#features", external: false },
+  { label: "Features", href: "/#features", external: false },
   { label: "Docs", href: "/docs", external: false },
   {
     label: "Demo",

@@ -1,10 +1,18 @@
 import { GlassPanel } from "@/components/aurora/glass-panel";
 import { GradientText } from "@/components/aurora/gradient-text";
 import { Reveal, RevealItem } from "@/components/aurora/reveal";
+import { manifest } from "@/docs/manifest";
+
+// Derived from the registry manifest (single source of truth) so these never
+// drift from the /docs counts. See generate-docs-manifest.mjs.
+const componentCount = manifest.items.length;
+const blockCount = manifest.items.filter(
+  (item) => item.type === "registry:block",
+).length;
 
 const stats = [
-  { value: "165", label: "Components" },
-  { value: "11", label: "Blocks" },
+  { value: String(componentCount), label: "Components" },
+  { value: String(blockCount), label: "Blocks" },
   { value: "100%", label: "Open source (MIT)" },
 ];
 

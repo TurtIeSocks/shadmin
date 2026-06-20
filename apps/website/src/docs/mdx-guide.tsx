@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { InstallCommand } from "./install-command";
 import { manifest } from "./manifest";
 import { MdxErrorBoundary } from "./mdx-error-boundary";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 interface GuideModule {
   default: React.ComponentType;
@@ -51,6 +52,8 @@ export function MdxGuide({ guides }: MdxGuideProps) {
   const slug = useParams()["*"] ?? "";
 
   const mod = slugMap(guides).get(slug);
+  const title = mod?.frontmatter?.title;
+  usePageTitle(mod ? (title ?? slug) : "Page not found");
 
   if (!mod) {
     return (
@@ -64,7 +67,6 @@ export function MdxGuide({ guides }: MdxGuideProps) {
   }
 
   const Content = mod.default;
-  const title = mod.frontmatter?.title;
   const item = itemByName.get(slug);
 
   return (
