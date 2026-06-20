@@ -2,9 +2,32 @@ import path from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import mdx from "@mdx-js/rollup";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+import remarkGfm from "remark-gfm";
+import remarkDirective from "remark-directive";
+import { remarkRelativeLinks } from "./scripts/remark-relative-links.mjs";
+import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
+import { remarkCodeMeta } from "./scripts/remark-code-meta.mjs";
 
 export default defineConfig({
   plugins: [
+    {
+      enforce: "pre",
+      ...mdx({
+        providerImportSource: "@/docs/mdx/mdx-components",
+        remarkPlugins: [
+          remarkFrontmatter,
+          remarkMdxFrontmatter,
+          remarkGfm,
+          remarkDirective,
+          remarkCodeMeta,
+          remarkRelativeLinks,
+          remarkCalloutDirective,
+        ],
+      }),
+    },
     react({ include: /\.(jsx|js|mdx|md|tsx|ts)$/ }),
     tailwindcss(),
   ],
