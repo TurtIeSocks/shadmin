@@ -115,7 +115,8 @@ const fileToItemRef = (absFile, repoRoot) => {
     if (OUR_UI_ITEMS.has(uiName)) return { kind: "ours", name: uiName };
   }
 
-  if (noExt.endsWith("/index")) return null;
+  // index barrels and type-only modules aren't installable components.
+  if (noExt.endsWith("/index") || noExt.endsWith("/types")) return null;
 
   if (noExt.startsWith("components/ui/")) {
     const sub = noExt.slice("components/ui/".length);
@@ -123,15 +124,21 @@ const fileToItemRef = (absFile, repoRoot) => {
     return { kind: "shadcn", name };
   }
 
-  if (noExt.startsWith("components/admin/")) {
-    // Name is the file BASENAME, decoupled from internal subdirs. This lets the
-    // source tree be organized (admin/inputs/, admin/fields/, …) while the
-    // emitted item name — and the consumer-facing install — stays flat. A
-    // global dedupe guard in generate-registry.mjs catches basename collisions.
-    return {
-      kind: "ours",
-      name: noExt.split("/").pop(),
-    };
+  // Any component outside ui/ (admin/, leaflet/, realtime/, supabase/,
+  // block-editor/, mdx-editor/, monaco/, rich-text-input/, …) granularizes to a
+  // flat @shadmin/<basename> item. Name is the file BASENAME, decoupled from
+  // internal subdirs, so the source tree stays organized (admin/inputs/,
+  // leaflet/coordinates/, …) while the emitted install name stays flat. The
+  // dedupe guard in generate-registry.mjs fails loud on any basename collision.
+  if (noExt.startsWith("components/")) {
+    const base = noExt.split("/").pop();
+    // supabase ships its OWN login-form/login-page/*-guesser that collide by
+    // basename with admin's; namespace the whole supabase block (supabase-<x>,
+    // matching its docs slugs) so installs stay unambiguous. admin stays flat.
+    if (noExt.startsWith("components/supabase/")) {
+      return { kind: "ours", name: `supabase-${base}` };
+    }
+    return { kind: "ours", name: base };
   }
 
   if (noExt.startsWith("hooks/")) {

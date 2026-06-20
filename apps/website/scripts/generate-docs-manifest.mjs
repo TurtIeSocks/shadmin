@@ -4,47 +4,98 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Catalog taxonomy mirrors the component directory tree, with admin's subdirs
+// flattened to top level (see deriveCategory). Order: admin core → admin facets
+// → standalone feature packages → primitives/libs → misc.
 const CATEGORY_ORDER = [
-  "dashboard",
+  "admin",
   "layout",
+  "list",
+  "views",
   "fields",
   "inputs",
+  "form",
   "buttons",
-  "data-providers",
-  "authentication",
-  "maps",
-  "editor",
-  "data-import",
+  "feedback",
+  "auth",
+  "guessers",
+  "inspector",
+  "widgets",
+  "collaboration",
+  "common",
+  "leaflet",
+  "block-editor",
+  "rich-text-input",
+  "mdx-editor",
+  "monaco",
+  "csv-import",
+  "realtime",
+  "supabase",
+  "ui",
+  "library",
+  "hooks",
   "theme",
   "style",
-  "ui",
-  "hooks",
-  "library",
-  "components",
   "example",
   "misc",
 ];
 
 const CATEGORY_LABELS = {
-  dashboard: "Dashboard",
+  admin: "Admin Core",
   layout: "Layout",
+  list: "List",
+  views: "Views",
   fields: "Fields",
   inputs: "Inputs",
+  form: "Form",
   buttons: "Buttons",
-  "data-providers": "Data Providers",
-  authentication: "Authentication",
-  maps: "Maps",
-  editor: "Editor",
-  "data-import": "Data Import",
-  theme: "Theme",
-  style: "Style",
-  ui: "UI",
-  hooks: "Hooks",
+  feedback: "Feedback",
+  auth: "Auth",
+  guessers: "Guessers",
+  inspector: "Inspector",
+  widgets: "Widgets",
+  collaboration: "Collaboration",
+  common: "Common",
+  leaflet: "Leaflet / Maps",
+  "block-editor": "Block Editor",
+  "rich-text-input": "Rich Text",
+  "mdx-editor": "MDX Editor",
+  monaco: "Monaco",
+  "csv-import": "CSV Import",
+  realtime: "Realtime",
+  supabase: "Supabase",
+  ui: "UI Primitives",
   library: "Library",
-  components: "Components",
+  hooks: "Hooks",
+  theme: "Themes",
+  style: "Styles",
   example: "Examples",
   misc: "Misc",
 };
+
+// Derive the docs category from an item's source directory, flattening admin's
+// subdirs to top level (admin/fields/* → "fields") so the catalog mirrors the
+// component tree. Non-component items (libs, hooks, themes, base styles) fall
+// back to their registry categories[1].
+function deriveCategory(item) {
+  const files = Array.isArray(item.files) ? item.files : [];
+  const comp = files
+    .map((f) => (typeof f === "string" ? f : f?.path))
+    .find((p) => p && p.includes("src/components/"));
+  if (comp) {
+    const m = comp.match(/src\/components\/([^/]+)(?:\/([^/]+))?/);
+    if (m) {
+      const [, top, rest] = m;
+      if (top === "admin") {
+        return rest && !/\.(tsx?|css)$/.test(rest) ? rest : "admin";
+      }
+      return top;
+    }
+  }
+  return Array.isArray(item.categories) && item.categories.length >= 2
+    ? item.categories[1]
+    : "misc";
+}
 
 /**
  * Pure transform — no I/O.
@@ -63,10 +114,7 @@ export function buildManifest(registry) {
           ? /** @type {string} */ (item.description)
           : null,
       type: /** @type {string} */ (item.type ?? "registry:block"),
-      category:
-        Array.isArray(item.categories) && item.categories.length >= 2
-          ? /** @type {string} */ (item.categories[1])
-          : "misc",
+      category: deriveCategory(item),
       docs: item.docs != null ? /** @type {string} */ (item.docs) : null,
       install: {
         npm: `npx shadcn@latest add ${base}`,

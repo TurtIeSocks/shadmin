@@ -6,7 +6,7 @@
       "title": "Shadmin Main Block",
       "description": "The Admin component, along with all the necessary components to create an admin (such as List, Edit, DataTable, TextField, TextInput, etc.)",
       "type": "registry:block",
-      "category": "dashboard",
+      "category": "admin",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/admin",
@@ -20,7 +20,7 @@
       "title": "Access Denied",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/access-denied",
@@ -34,7 +34,7 @@
       "title": "Auth Callback",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/auth-callback",
@@ -48,7 +48,7 @@
       "title": "Auth Error",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/auth-error",
@@ -62,7 +62,7 @@
       "title": "Auth Layout",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/auth-layout",
@@ -76,7 +76,7 @@
       "title": "Authentication Error",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/authentication-error",
@@ -90,7 +90,7 @@
       "title": "Login Form",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/login-form",
@@ -104,7 +104,7 @@
       "title": "Login Page",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/login-page",
@@ -118,7 +118,7 @@
       "title": "Login With Email",
       "description": null,
       "type": "registry:component",
-      "category": "authentication",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/login-with-email",
@@ -132,7 +132,7 @@
       "title": "Logout",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "auth",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/logout",
@@ -510,7 +510,7 @@
       "title": "Comments Thread",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "collaboration",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/comments-thread",
@@ -524,7 +524,7 @@
       "title": "Presence Bar",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "collaboration",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/presence-bar",
@@ -538,7 +538,7 @@
       "title": "Application Updated Notification",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/application-updated-notification",
@@ -552,7 +552,7 @@
       "title": "Check For Application Update",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/check-for-application-update",
@@ -566,7 +566,7 @@
       "title": "Device Test Wrapper",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/device-test-wrapper",
@@ -580,7 +580,7 @@
       "title": "Field Label Text",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/field-label-text",
@@ -594,7 +594,7 @@
       "title": "Icon Button With Tooltip",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/icon-button-with-tooltip",
@@ -608,7 +608,7 @@
       "title": "Input Helper Text",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/input-helper-text",
@@ -622,7 +622,7 @@
       "title": "Keyboard Shortcut",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/keyboard-shortcut",
@@ -636,7 +636,7 @@
       "title": "Link",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "common",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/link",
@@ -650,7 +650,7 @@
       "title": "Confirm",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/confirm",
@@ -664,7 +664,7 @@
       "title": "Empty",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/empty",
@@ -678,7 +678,7 @@
       "title": "Error",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/error",
@@ -692,7 +692,7 @@
       "title": "Linear Progress",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/linear-progress",
@@ -706,7 +706,7 @@
       "title": "Loading Indicator",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/loading-indicator",
@@ -720,7 +720,7 @@
       "title": "Loading",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/loading",
@@ -734,7 +734,7 @@
       "title": "Not Found",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/not-found",
@@ -748,7 +748,7 @@
       "title": "Notification",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/notification",
@@ -762,7 +762,7 @@
       "title": "Offline",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/offline",
@@ -776,7 +776,7 @@
       "title": "Placeholder",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/placeholder",
@@ -790,7 +790,7 @@
       "title": "Ready",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/ready",
@@ -804,7 +804,7 @@
       "title": "Spinner",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "feedback",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/spinner",
@@ -1252,7 +1252,7 @@
       "title": "Simple Form Configurable",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/simple-form-configurable",
@@ -1266,7 +1266,7 @@
       "title": "Simple Form Iterator",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/simple-form-iterator",
@@ -1280,7 +1280,7 @@
       "title": "Simple Form",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/simple-form",
@@ -1294,7 +1294,7 @@
       "title": "Tabbed Form",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/tabbed-form",
@@ -1308,7 +1308,7 @@
       "title": "Toolbar",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/toolbar",
@@ -1322,7 +1322,7 @@
       "title": "Translatable Inputs Tab Content",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-inputs-tab-content",
@@ -1336,7 +1336,7 @@
       "title": "Translatable Inputs Tab",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-inputs-tab",
@@ -1350,7 +1350,7 @@
       "title": "Translatable Inputs Tabs",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-inputs-tabs",
@@ -1364,7 +1364,7 @@
       "title": "Translatable Inputs",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-inputs",
@@ -1378,7 +1378,7 @@
       "title": "Wizard Form",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "form",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/wizard-form",
@@ -1392,7 +1392,7 @@
       "title": "Edit Guesser",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "guessers",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/edit-guesser",
@@ -1406,7 +1406,7 @@
       "title": "Guesser Empty",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "guessers",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/guesser-empty",
@@ -1420,7 +1420,7 @@
       "title": "List Guesser",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "guessers",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/list-guesser",
@@ -1434,7 +1434,7 @@
       "title": "Show Guesser",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "guessers",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/show-guesser",
@@ -1560,7 +1560,7 @@
       "title": "Cron Utils",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inputs",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/cron-utils",
@@ -1644,7 +1644,7 @@
       "title": "Duration Utils",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inputs",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/duration-utils",
@@ -1868,7 +1868,7 @@
       "title": "Subscription Plan Picker",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inputs",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/subscription-plan-picker",
@@ -1938,7 +1938,7 @@
       "title": "Configurable",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inspector",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/configurable",
@@ -1952,7 +1952,7 @@
       "title": "Field Toggle",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inspector",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/field-toggle",
@@ -1966,7 +1966,7 @@
       "title": "Fields Selector",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inspector",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/fields-selector",
@@ -1980,7 +1980,7 @@
       "title": "Inspector Root",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inspector",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/inspector-root",
@@ -1994,7 +1994,7 @@
       "title": "Inspector",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "inspector",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/inspector",
@@ -2050,7 +2050,7 @@
       "title": "Dashboard Menu Item",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/dashboard-menu-item",
@@ -2064,7 +2064,7 @@
       "title": "Hide On Scroll",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/hide-on-scroll",
@@ -2092,7 +2092,7 @@
       "title": "Menu Item Link",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/menu-item-link",
@@ -2120,7 +2120,7 @@
       "title": "Resource Menu Item Group",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/resource-menu-item-group",
@@ -2134,7 +2134,7 @@
       "title": "Resource Menu Item",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/resource-menu-item",
@@ -2148,7 +2148,7 @@
       "title": "Saved Queries",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/saved-queries",
@@ -2190,7 +2190,7 @@
       "title": "Title Portal",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/title-portal",
@@ -2204,7 +2204,7 @@
       "title": "Title",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "layout",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/title",
@@ -2246,7 +2246,7 @@
       "title": "Bulk Actions Toolbar",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/bulk-actions-toolbar",
@@ -2260,7 +2260,7 @@
       "title": "Bulk Edit Drawer",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/bulk-edit-drawer",
@@ -2274,7 +2274,7 @@
       "title": "Calendar List",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/calendar-list",
@@ -2288,7 +2288,7 @@
       "title": "Count",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/count",
@@ -2302,7 +2302,7 @@
       "title": "Data Table",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/data-table",
@@ -2316,7 +2316,7 @@
       "title": "Filter Form",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/filter-form",
@@ -2330,7 +2330,7 @@
       "title": "Filter List Item",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/filter-list-item",
@@ -2344,7 +2344,7 @@
       "title": "Filter List Section",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/filter-list-section",
@@ -2358,7 +2358,7 @@
       "title": "Filter List",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/filter-list",
@@ -2372,7 +2372,7 @@
       "title": "Filter Live Form",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/filter-live-form",
@@ -2386,7 +2386,7 @@
       "title": "Filter Live Search",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/filter-live-search",
@@ -2400,7 +2400,7 @@
       "title": "Infinite List",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/infinite-list",
@@ -2414,7 +2414,7 @@
       "title": "Infinite Pagination",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/infinite-pagination",
@@ -2428,7 +2428,7 @@
       "title": "List Actions",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/list-actions",
@@ -2442,7 +2442,7 @@
       "title": "List No Results",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/list-no-results",
@@ -2456,7 +2456,7 @@
       "title": "List Pagination",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/list-pagination",
@@ -2470,7 +2470,7 @@
       "title": "List Toolbar",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/list-toolbar",
@@ -2484,7 +2484,7 @@
       "title": "List",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/list",
@@ -2498,7 +2498,7 @@
       "title": "Prev Next Buttons",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/prev-next-buttons",
@@ -2512,7 +2512,7 @@
       "title": "Reference Many Count",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/reference-many-count",
@@ -2526,7 +2526,7 @@
       "title": "Simple List Item",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/simple-list-item",
@@ -2540,7 +2540,7 @@
       "title": "Simple List Loading",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/simple-list-loading",
@@ -2554,7 +2554,7 @@
       "title": "Simple List",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/simple-list",
@@ -2568,7 +2568,7 @@
       "title": "Single Field List",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/single-field-list",
@@ -2582,7 +2582,7 @@
       "title": "Tree List",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "list",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/tree-list",
@@ -2596,7 +2596,7 @@
       "title": "Resource",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "admin",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/resource",
@@ -2610,7 +2610,7 @@
       "title": "Card Content Inner",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/card-content-inner",
@@ -2624,7 +2624,7 @@
       "title": "Create",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/create",
@@ -2638,7 +2638,7 @@
       "title": "Edit",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/edit",
@@ -2652,7 +2652,7 @@
       "title": "Labeled",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/labeled",
@@ -2666,7 +2666,7 @@
       "title": "Show",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/show",
@@ -2680,7 +2680,7 @@
       "title": "Simple Show Layout",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/simple-show-layout",
@@ -2694,7 +2694,7 @@
       "title": "Tabbed Show Layout",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/tabbed-show-layout",
@@ -2708,7 +2708,7 @@
       "title": "Translatable Fields Tab Content",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-fields-tab-content",
@@ -2722,7 +2722,7 @@
       "title": "Translatable Fields Tab",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-fields-tab",
@@ -2736,7 +2736,7 @@
       "title": "Translatable Fields Tabs",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-fields-tabs",
@@ -2750,7 +2750,7 @@
       "title": "Translatable Fields",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "views",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/translatable-fields",
@@ -2764,7 +2764,7 @@
       "title": "Approval Queue",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/approval-queue",
@@ -2778,7 +2778,7 @@
       "title": "Assistant Transport",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/assistant-transport",
@@ -2792,7 +2792,7 @@
       "title": "Assistant",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/assistant",
@@ -2806,7 +2806,7 @@
       "title": "Command Menu Context",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/command-menu-context",
@@ -2820,7 +2820,7 @@
       "title": "Command Menu",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/command-menu",
@@ -2834,7 +2834,7 @@
       "title": "Dashboard Charts",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/dashboard-charts",
@@ -2848,7 +2848,7 @@
       "title": "Data Provider Devtools Context",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/data-provider-devtools-context",
@@ -2862,7 +2862,7 @@
       "title": "Data Provider Devtools",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/data-provider-devtools",
@@ -2876,7 +2876,7 @@
       "title": "Diff Viewer",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/diff-viewer",
@@ -2890,7 +2890,7 @@
       "title": "I18n Key Editor",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/i18n-key-editor",
@@ -2904,7 +2904,7 @@
       "title": "In Place Editor",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/in-place-editor",
@@ -2918,7 +2918,7 @@
       "title": "Job Monitor",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/job-monitor",
@@ -2932,7 +2932,7 @@
       "title": "Kanban Board",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/kanban-board",
@@ -2946,7 +2946,7 @@
       "title": "Layout Builder",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/layout-builder",
@@ -2960,7 +2960,7 @@
       "title": "Onboarding Tour",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/onboarding-tour",
@@ -2974,7 +2974,7 @@
       "title": "Permission Matrix",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/permission-matrix",
@@ -2988,7 +2988,7 @@
       "title": "Pivot Grid",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/pivot-grid",
@@ -3002,7 +3002,7 @@
       "title": "Record Timeline",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/record-timeline",
@@ -3016,7 +3016,7 @@
       "title": "Schema Driven View",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/schema-driven-view",
@@ -3030,7 +3030,7 @@
       "title": "Theme Studio Vars",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/theme-studio-vars",
@@ -3044,7 +3044,7 @@
       "title": "Theme Studio",
       "description": null,
       "type": "registry:component",
-      "category": "components",
+      "category": "widgets",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/theme-studio",
@@ -3254,7 +3254,7 @@
       "title": "RichTextInput",
       "description": "Optional rich text input for Shadmin. Includes the full Minimal TipTap block.",
       "type": "registry:block",
-      "category": "inputs",
+      "category": "rich-text-input",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/rich-text-input",
@@ -3268,7 +3268,7 @@
       "title": "BlockEditor",
       "description": "Optional block-based document editor (BlockEditorInput) and read-only renderer (BlockDocField) for Shadmin, powered by TipTap. Stores documents as TipTap JSON and ships an open `defineBlock` API with callout and reference-record blocks.",
       "type": "registry:block",
-      "category": "editor",
+      "category": "block-editor",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/block-editor",
@@ -3278,11 +3278,347 @@
       }
     },
     {
+      "name": "block-doc-field",
+      "title": "Block Doc Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-doc-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-doc-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-doc-field",
+        "bun": "bunx shadcn@latest add @shadmin/block-doc-field"
+      }
+    },
+    {
+      "name": "block-editor-input",
+      "title": "Block Editor Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-editor-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-editor-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-editor-input",
+        "bun": "bunx shadcn@latest add @shadmin/block-editor-input"
+      }
+    },
+    {
+      "name": "block-registry",
+      "title": "Block Registry",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-registry",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-registry",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-registry",
+        "bun": "bunx shadcn@latest add @shadmin/block-registry"
+      }
+    },
+    {
+      "name": "block-states",
+      "title": "Block States",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-states",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-states",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-states",
+        "bun": "bunx shadcn@latest add @shadmin/block-states"
+      }
+    },
+    {
+      "name": "callout",
+      "title": "Callout",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/callout",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/callout",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/callout",
+        "bun": "bunx shadcn@latest add @shadmin/callout"
+      }
+    },
+    {
+      "name": "chart",
+      "title": "Chart",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/chart",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/chart",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/chart",
+        "bun": "bunx shadcn@latest add @shadmin/chart"
+      }
+    },
+    {
+      "name": "data-blocks",
+      "title": "Data Blocks",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/data-blocks",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/data-blocks",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/data-blocks",
+        "bun": "bunx shadcn@latest add @shadmin/data-blocks"
+      }
+    },
+    {
+      "name": "embed",
+      "title": "Embed",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/embed",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/embed",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/embed",
+        "bun": "bunx shadcn@latest add @shadmin/embed"
+      }
+    },
+    {
+      "name": "image",
+      "title": "Image",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/image",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/image",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/image",
+        "bun": "bunx shadcn@latest add @shadmin/image"
+      }
+    },
+    {
+      "name": "record-list",
+      "title": "Record List",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/record-list",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/record-list",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/record-list",
+        "bun": "bunx shadcn@latest add @shadmin/record-list"
+      }
+    },
+    {
+      "name": "reference-record",
+      "title": "Reference Record",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reference-record",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reference-record",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reference-record",
+        "bun": "bunx shadcn@latest add @shadmin/reference-record"
+      }
+    },
+    {
+      "name": "toggle",
+      "title": "Toggle",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/toggle",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/toggle",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/toggle",
+        "bun": "bunx shadcn@latest add @shadmin/toggle"
+      }
+    },
+    {
+      "name": "auto-config-form",
+      "title": "Auto Config Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/auto-config-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/auto-config-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/auto-config-form",
+        "bun": "bunx shadcn@latest add @shadmin/auto-config-form"
+      }
+    },
+    {
+      "name": "block-config-popover",
+      "title": "Block Config Popover",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-config-popover",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-config-popover",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-config-popover",
+        "bun": "bunx shadcn@latest add @shadmin/block-config-popover"
+      }
+    },
+    {
+      "name": "block-gutter",
+      "title": "Block Gutter",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-gutter",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-gutter",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-gutter",
+        "bun": "bunx shadcn@latest add @shadmin/block-gutter"
+      }
+    },
+    {
+      "name": "block-toolbar",
+      "title": "Block Toolbar",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-toolbar",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-toolbar",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-toolbar",
+        "bun": "bunx shadcn@latest add @shadmin/block-toolbar"
+      }
+    },
+    {
+      "name": "catalog-picker",
+      "title": "Catalog Picker",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/catalog-picker",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/catalog-picker",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/catalog-picker",
+        "bun": "bunx shadcn@latest add @shadmin/catalog-picker"
+      }
+    },
+    {
+      "name": "constants",
+      "title": "Constants",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/constants",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/constants",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/constants",
+        "bun": "bunx shadcn@latest add @shadmin/constants"
+      }
+    },
+    {
+      "name": "define-block",
+      "title": "Define Block",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/define-block",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/define-block",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/define-block",
+        "bun": "bunx shadcn@latest add @shadmin/define-block"
+      }
+    },
+    {
+      "name": "base",
+      "title": "Base",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/base",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/base",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/base",
+        "bun": "bunx shadcn@latest add @shadmin/base"
+      }
+    },
+    {
+      "name": "block-node",
+      "title": "Block Node",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/block-node",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/block-node",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/block-node",
+        "bun": "bunx shadcn@latest add @shadmin/block-node"
+      }
+    },
+    {
+      "name": "slash-command",
+      "title": "Slash Command",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/slash-command",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/slash-command",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/slash-command",
+        "bun": "bunx shadcn@latest add @shadmin/slash-command"
+      }
+    },
+    {
+      "name": "unknown-block",
+      "title": "Unknown Block",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/unknown-block",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/unknown-block",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/unknown-block",
+        "bun": "bunx shadcn@latest add @shadmin/unknown-block"
+      }
+    },
+    {
+      "name": "use-block-editor",
+      "title": "Use Block Editor",
+      "description": null,
+      "type": "registry:component",
+      "category": "block-editor",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-block-editor",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-block-editor",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-block-editor",
+        "bun": "bunx shadcn@latest add @shadmin/use-block-editor"
+      }
+    },
+    {
       "name": "mdx-editor",
       "title": "MdxEditor",
       "description": "Optional markdown editor (MdxInput) and read-only renderer (MdxField) for Shadmin, powered by MDXEditor.",
       "type": "registry:block",
-      "category": "inputs",
+      "category": "mdx-editor",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/mdx-editor",
@@ -3296,7 +3632,7 @@
       "title": "LeafletAdmin",
       "description": "Optional Leaflet-based map fields, form inputs, drawing/editing primitives, OSM utilities, and geocoding for Shadmin.",
       "type": "registry:block",
-      "category": "maps",
+      "category": "leaflet",
       "docs": "Import Leaflet's stylesheet once in your app entry: `import \"leaflet/dist/leaflet.css\";`. Map components are client-only — disable SSR on routes that use them. Drawing/editing uses Geoman via `react-leaflet-geoman-v2`. Full docs: https://shadmin.turtlesocks.dev/docs/leaflet-admin",
       "install": {
         "npm": "npx shadcn@latest add @shadmin/leaflet-admin",
@@ -3306,11 +3642,683 @@
       }
     },
     {
+      "name": "lat-lng-field",
+      "title": "Lat Lng Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lat-lng-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lat-lng-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lat-lng-field",
+        "bun": "bunx shadcn@latest add @shadmin/lat-lng-field"
+      }
+    },
+    {
+      "name": "lat-lng-input",
+      "title": "Lat Lng Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lat-lng-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lat-lng-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lat-lng-input",
+        "bun": "bunx shadcn@latest add @shadmin/lat-lng-input"
+      }
+    },
+    {
+      "name": "feature-collection-field",
+      "title": "Feature Collection Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/feature-collection-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/feature-collection-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/feature-collection-field",
+        "bun": "bunx shadcn@latest add @shadmin/feature-collection-field"
+      }
+    },
+    {
+      "name": "feature-collection-input",
+      "title": "Feature Collection Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/feature-collection-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/feature-collection-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/feature-collection-input",
+        "bun": "bunx shadcn@latest add @shadmin/feature-collection-input"
+      }
+    },
+    {
+      "name": "feature-field",
+      "title": "Feature Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/feature-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/feature-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/feature-field",
+        "bun": "bunx shadcn@latest add @shadmin/feature-field"
+      }
+    },
+    {
+      "name": "feature-input",
+      "title": "Feature Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/feature-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/feature-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/feature-input",
+        "bun": "bunx shadcn@latest add @shadmin/feature-input"
+      }
+    },
+    {
+      "name": "geojson-field",
+      "title": "Geojson Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/geojson-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/geojson-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/geojson-field",
+        "bun": "bunx shadcn@latest add @shadmin/geojson-field"
+      }
+    },
+    {
+      "name": "geojson-input",
+      "title": "Geojson Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/geojson-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/geojson-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/geojson-input",
+        "bun": "bunx shadcn@latest add @shadmin/geojson-input"
+      }
+    },
+    {
+      "name": "geocoding-input",
+      "title": "Geocoding Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/geocoding-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/geocoding-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/geocoding-input",
+        "bun": "bunx shadcn@latest add @shadmin/geocoding-input"
+      }
+    },
+    {
+      "name": "map-with-search",
+      "title": "Map With Search",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/map-with-search",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/map-with-search",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/map-with-search",
+        "bun": "bunx shadcn@latest add @shadmin/map-with-search"
+      }
+    },
+    {
+      "name": "nominatim-client",
+      "title": "Nominatim Client",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/nominatim-client",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/nominatim-client",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/nominatim-client",
+        "bun": "bunx shadcn@latest add @shadmin/nominatim-client"
+      }
+    },
+    {
+      "name": "reverse-geocode-field",
+      "title": "Reverse Geocode Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/reverse-geocode-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/reverse-geocode-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/reverse-geocode-field",
+        "bun": "bunx shadcn@latest add @shadmin/reverse-geocode-field"
+      }
+    },
+    {
+      "name": "use-geocode",
+      "title": "Use Geocode",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-geocode",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-geocode",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-geocode",
+        "bun": "bunx shadcn@latest add @shadmin/use-geocode"
+      }
+    },
+    {
+      "name": "use-reverse-geocode",
+      "title": "Use Reverse Geocode",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-reverse-geocode",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-reverse-geocode",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-reverse-geocode",
+        "bun": "bunx shadcn@latest add @shadmin/use-reverse-geocode"
+      }
+    },
+    {
+      "name": "geoman-shape-mapping",
+      "title": "Geoman Shape Mapping",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/geoman-shape-mapping",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/geoman-shape-mapping",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/geoman-shape-mapping",
+        "bun": "bunx shadcn@latest add @shadmin/geoman-shape-mapping"
+      }
+    },
+    {
+      "name": "shape-constraints",
+      "title": "Shape Constraints",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/shape-constraints",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/shape-constraints",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/shape-constraints",
+        "bun": "bunx shadcn@latest add @shadmin/shape-constraints"
+      }
+    },
+    {
+      "name": "use-geoman-rhf",
+      "title": "Use Geoman Rhf",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-geoman-rhf",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-geoman-rhf",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-geoman-rhf",
+        "bun": "bunx shadcn@latest add @shadmin/use-geoman-rhf"
+      }
+    },
+    {
+      "name": "geometry-ops",
+      "title": "Geometry Ops",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/geometry-ops",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/geometry-ops",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/geometry-ops",
+        "bun": "bunx shadcn@latest add @shadmin/geometry-ops"
+      }
+    },
+    {
+      "name": "osm-feature-add",
+      "title": "Osm Feature Add",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/osm-feature-add",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/osm-feature-add",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/osm-feature-add",
+        "bun": "bunx shadcn@latest add @shadmin/osm-feature-add"
+      }
+    },
+    {
+      "name": "osm-feature-operator",
+      "title": "Osm Feature Operator",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/osm-feature-operator",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/osm-feature-operator",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/osm-feature-operator",
+        "bun": "bunx shadcn@latest add @shadmin/osm-feature-operator"
+      }
+    },
+    {
+      "name": "osm-feature-subtract",
+      "title": "Osm Feature Subtract",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/osm-feature-subtract",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/osm-feature-subtract",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/osm-feature-subtract",
+        "bun": "bunx shadcn@latest add @shadmin/osm-feature-subtract"
+      }
+    },
+    {
+      "name": "osm-presets",
+      "title": "Osm Presets",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/osm-presets",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/osm-presets",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/osm-presets",
+        "bun": "bunx shadcn@latest add @shadmin/osm-presets"
+      }
+    },
+    {
+      "name": "osm-tag-catalog",
+      "title": "Osm Tag Catalog",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/osm-tag-catalog",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/osm-tag-catalog",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/osm-tag-catalog",
+        "bun": "bunx shadcn@latest add @shadmin/osm-tag-catalog"
+      }
+    },
+    {
+      "name": "overpass-client",
+      "title": "Overpass Client",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/overpass-client",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/overpass-client",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/overpass-client",
+        "bun": "bunx shadcn@latest add @shadmin/overpass-client"
+      }
+    },
+    {
+      "name": "use-osm-features",
+      "title": "Use Osm Features",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-osm-features",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-osm-features",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-osm-features",
+        "bun": "bunx shadcn@latest add @shadmin/use-osm-features"
+      }
+    },
+    {
+      "name": "use-osm-snap-to-roads",
+      "title": "Use Osm Snap To Roads",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-osm-snap-to-roads",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-osm-snap-to-roads",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-osm-snap-to-roads",
+        "bun": "bunx shadcn@latest add @shadmin/use-osm-snap-to-roads"
+      }
+    },
+    {
+      "name": "use-overpass",
+      "title": "Use Overpass",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/use-overpass",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/use-overpass",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/use-overpass",
+        "bun": "bunx shadcn@latest add @shadmin/use-overpass"
+      }
+    },
+    {
+      "name": "bbox-field",
+      "title": "Bbox Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/bbox-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/bbox-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/bbox-field",
+        "bun": "bunx shadcn@latest add @shadmin/bbox-field"
+      }
+    },
+    {
+      "name": "bbox-input",
+      "title": "Bbox Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/bbox-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/bbox-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/bbox-input",
+        "bun": "bunx shadcn@latest add @shadmin/bbox-input"
+      }
+    },
+    {
+      "name": "geometry-collection-field",
+      "title": "Geometry Collection Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/geometry-collection-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/geometry-collection-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/geometry-collection-field",
+        "bun": "bunx shadcn@latest add @shadmin/geometry-collection-field"
+      }
+    },
+    {
+      "name": "geometry-collection-input",
+      "title": "Geometry Collection Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/geometry-collection-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/geometry-collection-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/geometry-collection-input",
+        "bun": "bunx shadcn@latest add @shadmin/geometry-collection-input"
+      }
+    },
+    {
+      "name": "line-string-field",
+      "title": "Line String Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/line-string-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/line-string-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/line-string-field",
+        "bun": "bunx shadcn@latest add @shadmin/line-string-field"
+      }
+    },
+    {
+      "name": "line-string-input",
+      "title": "Line String Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/line-string-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/line-string-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/line-string-input",
+        "bun": "bunx shadcn@latest add @shadmin/line-string-input"
+      }
+    },
+    {
+      "name": "multi-line-string-field",
+      "title": "Multi Line String Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/multi-line-string-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/multi-line-string-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/multi-line-string-field",
+        "bun": "bunx shadcn@latest add @shadmin/multi-line-string-field"
+      }
+    },
+    {
+      "name": "multi-line-string-input",
+      "title": "Multi Line String Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/multi-line-string-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/multi-line-string-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/multi-line-string-input",
+        "bun": "bunx shadcn@latest add @shadmin/multi-line-string-input"
+      }
+    },
+    {
+      "name": "multi-point-field",
+      "title": "Multi Point Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/multi-point-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/multi-point-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/multi-point-field",
+        "bun": "bunx shadcn@latest add @shadmin/multi-point-field"
+      }
+    },
+    {
+      "name": "multi-point-input",
+      "title": "Multi Point Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/multi-point-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/multi-point-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/multi-point-input",
+        "bun": "bunx shadcn@latest add @shadmin/multi-point-input"
+      }
+    },
+    {
+      "name": "multi-polygon-field",
+      "title": "Multi Polygon Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/multi-polygon-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/multi-polygon-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/multi-polygon-field",
+        "bun": "bunx shadcn@latest add @shadmin/multi-polygon-field"
+      }
+    },
+    {
+      "name": "multi-polygon-input",
+      "title": "Multi Polygon Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/multi-polygon-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/multi-polygon-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/multi-polygon-input",
+        "bun": "bunx shadcn@latest add @shadmin/multi-polygon-input"
+      }
+    },
+    {
+      "name": "point-field",
+      "title": "Point Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/point-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/point-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/point-field",
+        "bun": "bunx shadcn@latest add @shadmin/point-field"
+      }
+    },
+    {
+      "name": "point-input",
+      "title": "Point Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/point-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/point-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/point-input",
+        "bun": "bunx shadcn@latest add @shadmin/point-input"
+      }
+    },
+    {
+      "name": "polygon-field",
+      "title": "Polygon Field",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/polygon-field",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/polygon-field",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/polygon-field",
+        "bun": "bunx shadcn@latest add @shadmin/polygon-field"
+      }
+    },
+    {
+      "name": "polygon-input",
+      "title": "Polygon Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/polygon-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/polygon-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/polygon-input",
+        "bun": "bunx shadcn@latest add @shadmin/polygon-input"
+      }
+    },
+    {
+      "name": "shape-field-shell",
+      "title": "Shape Field Shell",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/shape-field-shell",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/shape-field-shell",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/shape-field-shell",
+        "bun": "bunx shadcn@latest add @shadmin/shape-field-shell"
+      }
+    },
+    {
+      "name": "shape-input-shell",
+      "title": "Shape Input Shell",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/shape-input-shell",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/shape-input-shell",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/shape-input-shell",
+        "bun": "bunx shadcn@latest add @shadmin/shape-input-shell"
+      }
+    },
+    {
+      "name": "shared-map",
+      "title": "Shared Map",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/shared-map",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/shared-map",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/shared-map",
+        "bun": "bunx shadcn@latest add @shadmin/shared-map"
+      }
+    },
+    {
+      "name": "shared",
+      "title": "Shared",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/shared",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/shared",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/shared",
+        "bun": "bunx shadcn@latest add @shadmin/shared"
+      }
+    },
+    {
+      "name": "simplify-input",
+      "title": "Simplify Input",
+      "description": null,
+      "type": "registry:component",
+      "category": "leaflet",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/simplify-input",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/simplify-input",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/simplify-input",
+        "bun": "bunx shadcn@latest add @shadmin/simplify-input"
+      }
+    },
+    {
       "name": "csv-import",
       "title": "CsvImport",
       "description": "Optional CSV import wizard (Upload → Map → Preview → Commit) for Shadmin. Validates rows against a zod schema and batches inserts via the data provider.",
       "type": "registry:block",
-      "category": "data-import",
+      "category": "csv-import",
       "docs": "Place `<CsvImport>` in a List's `actions` and pass a zod `schema`. Rows validate against the schema and batch through `dataProvider.createMany` (with a `create` fallback). Full docs: https://shadmin.turtlesocks.dev/docs/csv-import",
       "install": {
         "npm": "npx shadcn@latest add @shadmin/csv-import",
@@ -3338,7 +4346,7 @@
       "title": "Monaco JSON Field & Input",
       "description": "Optional Monaco-powered JSON field and input components (with lazy variants) for Shadmin.",
       "type": "registry:block",
-      "category": "inputs",
+      "category": "monaco",
       "docs": "Monaco loads its editor workers at runtime — works out of the box with Vite via `@monaco-editor/react`; other bundlers may need Monaco worker config. Prefer the `*Lazy` variants to code-split the editor out of your main bundle. Full docs: https://shadmin.turtlesocks.dev/docs/monaco-json-input",
       "install": {
         "npm": "npx shadcn@latest add @shadmin/monaco",
@@ -3352,8 +4360,8 @@
       "title": "Supabase Admin",
       "description": "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
       "type": "registry:block",
-      "category": "authentication",
-      "docs": "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase/getting-started",
+      "category": "supabase",
+      "docs": "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase-getting-started",
       "install": {
         "npm": "npx shadcn@latest add @shadmin/supabase",
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase",
@@ -3362,17 +4370,395 @@
       }
     },
     {
+      "name": "supabase-admin-guesser",
+      "title": "Supabase Admin Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-admin-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-admin-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-admin-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-admin-guesser"
+      }
+    },
+    {
+      "name": "supabase-create-guesser",
+      "title": "Supabase Create Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-create-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-create-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-create-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-create-guesser"
+      }
+    },
+    {
+      "name": "supabase-edit-field-types",
+      "title": "Supabase Edit Field Types",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-edit-field-types",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-edit-field-types",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-edit-field-types",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-edit-field-types"
+      }
+    },
+    {
+      "name": "supabase-edit-guesser",
+      "title": "Supabase Edit Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-edit-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-edit-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-edit-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-edit-guesser"
+      }
+    },
+    {
+      "name": "supabase-forgot-password-form",
+      "title": "Supabase Forgot Password Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-forgot-password-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-forgot-password-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-forgot-password-form",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-forgot-password-form"
+      }
+    },
+    {
+      "name": "supabase-forgot-password-page",
+      "title": "Supabase Forgot Password Page",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-forgot-password-page",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-forgot-password-page",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-forgot-password-page",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-forgot-password-page"
+      }
+    },
+    {
+      "name": "supabase-en",
+      "title": "Supabase En",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-en",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-en",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-en",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-en"
+      }
+    },
+    {
+      "name": "supabase-fr",
+      "title": "Supabase Fr",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-fr",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-fr",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-fr",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-fr"
+      }
+    },
+    {
+      "name": "supabase-icons",
+      "title": "Supabase Icons",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-icons",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-icons",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-icons",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-icons"
+      }
+    },
+    {
+      "name": "supabase-infer-element-from-type",
+      "title": "Supabase Infer Element From Type",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-infer-element-from-type",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-infer-element-from-type",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-infer-element-from-type",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-infer-element-from-type"
+      }
+    },
+    {
+      "name": "supabase-inferred-element",
+      "title": "Supabase Inferred Element",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-inferred-element",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-inferred-element",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-inferred-element",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-inferred-element"
+      }
+    },
+    {
+      "name": "supabase-list-field-types",
+      "title": "Supabase List Field Types",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-list-field-types",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-list-field-types",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-list-field-types",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-list-field-types"
+      }
+    },
+    {
+      "name": "supabase-list-guesser",
+      "title": "Supabase List Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-list-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-list-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-list-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-list-guesser"
+      }
+    },
+    {
+      "name": "supabase-login-form",
+      "title": "Supabase Login Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-login-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-login-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-login-form",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-login-form"
+      }
+    },
+    {
+      "name": "supabase-login-page",
+      "title": "Supabase Login Page",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-login-page",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-login-page",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-login-page",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-login-page"
+      }
+    },
+    {
+      "name": "supabase-set-password-form",
+      "title": "Supabase Set Password Form",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-set-password-form",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-set-password-form",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-set-password-form",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-set-password-form"
+      }
+    },
+    {
+      "name": "supabase-set-password-page",
+      "title": "Supabase Set Password Page",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-set-password-page",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-set-password-page",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-set-password-page",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-set-password-page"
+      }
+    },
+    {
+      "name": "supabase-show-field-types",
+      "title": "Supabase Show Field Types",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-show-field-types",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-show-field-types",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-show-field-types",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-show-field-types"
+      }
+    },
+    {
+      "name": "supabase-show-guesser",
+      "title": "Supabase Show Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-show-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-show-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-show-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-show-guesser"
+      }
+    },
+    {
+      "name": "supabase-social-auth-button",
+      "title": "Supabase Social Auth Button",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-social-auth-button",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-social-auth-button",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-social-auth-button",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-social-auth-button"
+      }
+    },
+    {
+      "name": "supabase-use-crud-guesser",
+      "title": "Supabase Use Crud Guesser",
+      "description": null,
+      "type": "registry:component",
+      "category": "supabase",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/supabase-use-crud-guesser",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/supabase-use-crud-guesser",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/supabase-use-crud-guesser",
+        "bun": "bunx shadcn@latest add @shadmin/supabase-use-crud-guesser"
+      }
+    },
+    {
       "name": "realtime",
       "title": "Shadmin Realtime",
       "description": "WebSocket/SSE/BroadcastChannel realtime extension for the dataProvider — live List/Edit/Show views, menu badges, record locks.",
       "type": "registry:block",
-      "category": "data-providers",
+      "category": "realtime",
       "docs": null,
       "install": {
         "npm": "npx shadcn@latest add @shadmin/realtime",
         "pnpm": "pnpm dlx shadcn@latest add @shadmin/realtime",
         "yarn": "yarn dlx shadcn@latest add @shadmin/realtime",
         "bun": "bunx shadcn@latest add @shadmin/realtime"
+      }
+    },
+    {
+      "name": "edit-live",
+      "title": "Edit Live",
+      "description": null,
+      "type": "registry:component",
+      "category": "realtime",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/edit-live",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/edit-live",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/edit-live",
+        "bun": "bunx shadcn@latest add @shadmin/edit-live"
+      }
+    },
+    {
+      "name": "list-live",
+      "title": "List Live",
+      "description": null,
+      "type": "registry:component",
+      "category": "realtime",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/list-live",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/list-live",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/list-live",
+        "bun": "bunx shadcn@latest add @shadmin/list-live"
+      }
+    },
+    {
+      "name": "lock-on-mount",
+      "title": "Lock On Mount",
+      "description": null,
+      "type": "registry:component",
+      "category": "realtime",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lock-on-mount",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lock-on-mount",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lock-on-mount",
+        "bun": "bunx shadcn@latest add @shadmin/lock-on-mount"
+      }
+    },
+    {
+      "name": "lock-status",
+      "title": "Lock Status",
+      "description": null,
+      "type": "registry:component",
+      "category": "realtime",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/lock-status",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/lock-status",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/lock-status",
+        "bun": "bunx shadcn@latest add @shadmin/lock-status"
+      }
+    },
+    {
+      "name": "menu-live",
+      "title": "Menu Live",
+      "description": null,
+      "type": "registry:component",
+      "category": "realtime",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/menu-live",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/menu-live",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/menu-live",
+        "bun": "bunx shadcn@latest add @shadmin/menu-live"
+      }
+    },
+    {
+      "name": "show-live",
+      "title": "Show Live",
+      "description": null,
+      "type": "registry:component",
+      "category": "realtime",
+      "docs": null,
+      "install": {
+        "npm": "npx shadcn@latest add @shadmin/show-live",
+        "pnpm": "pnpm dlx shadcn@latest add @shadmin/show-live",
+        "yarn": "yarn dlx shadcn@latest add @shadmin/show-live",
+        "bun": "bunx shadcn@latest add @shadmin/show-live"
       }
     },
     {
@@ -3394,7 +4780,7 @@
       "title": "Liquid Glass",
       "description": "Opt-in liquid-glass material for Shadmin: the layered, fallback-first 6-layer model (L1 blur → L2 specular/depth → L3 SVG refraction + iOS-accurate lens variant), with Tailwind v4 tokens/variants, a data-attribute skin for the highlight surfaces, pointer-tracking specular, and thin React helpers.",
       "type": "registry:style",
-      "category": "style",
+      "category": "ui",
       "docs": "Opt-in liquid-glass material (the 6-layer model from the liquid-glass-css design system). Import the stylesheet once in your app entry (`import \"@/styles/glass.css\"`; it also exposes Tailwind tokens — `backdrop-blur-glass`, `rounded-glass` — and `glass-light:` / `glass-tinted:` variants). Then either set `data-glass` on `<html>` to skin cards/dialogs/popovers/menus/sheets/the sidebar (rooted on `<html>` so portaled overlays are covered), or pick a level per element: `glass` (L1) for chips, `glass glass--l2` (specular + depth — the default for visible panels), `glass glass--l2 glass--l3` for a hero (SVG refraction; mount one `<GlassFilter />` near the root; degrades to L2 off-Chromium). In React, `glassClasses({ level })` / `<GlassPanel level={2}>` compose the classes, `useGlassPointer` drives `glass--interactive` specular, and `useGlassLens` + `<GlassLensFilter>` give the size-specific iOS-accurate `glass--lens` edge refraction. Full docs: https://shadmin.turtlesocks.dev/docs/glass",
       "install": {
         "npm": "npx shadcn@latest add @shadmin/style-glass",
@@ -3490,9 +4876,13 @@
   ],
   "nav": [
     {
-      "category": "dashboard",
-      "label": "Dashboard",
+      "category": "admin",
+      "label": "Admin Core",
       "items": [
+        {
+          "name": "resource",
+          "title": "Resource"
+        },
         {
           "name": "admin",
           "title": "Shadmin Main Block"
@@ -3516,12 +4906,36 @@
           "title": "Breadcrumb"
         },
         {
+          "name": "dashboard-menu-item",
+          "title": "Dashboard Menu Item"
+        },
+        {
+          "name": "hide-on-scroll",
+          "title": "Hide On Scroll"
+        },
+        {
           "name": "layout",
           "title": "Layout"
         },
         {
           "name": "menu",
           "title": "Menu"
+        },
+        {
+          "name": "menu-item-link",
+          "title": "Menu Item Link"
+        },
+        {
+          "name": "resource-menu-item",
+          "title": "Resource Menu Item"
+        },
+        {
+          "name": "resource-menu-item-group",
+          "title": "Resource Menu Item Group"
+        },
+        {
+          "name": "saved-queries",
+          "title": "Saved Queries"
         },
         {
           "name": "theme-mode-toggle",
@@ -3532,12 +4946,176 @@
           "title": "Theme Provider"
         },
         {
+          "name": "title",
+          "title": "Title"
+        },
+        {
+          "name": "title-portal",
+          "title": "Title Portal"
+        },
+        {
           "name": "top-toolbar",
           "title": "Top Toolbar"
         },
         {
           "name": "user-menu",
           "title": "User Menu"
+        }
+      ]
+    },
+    {
+      "category": "list",
+      "label": "List",
+      "items": [
+        {
+          "name": "bulk-actions-toolbar",
+          "title": "Bulk Actions Toolbar"
+        },
+        {
+          "name": "bulk-edit-drawer",
+          "title": "Bulk Edit Drawer"
+        },
+        {
+          "name": "calendar-list",
+          "title": "Calendar List"
+        },
+        {
+          "name": "count",
+          "title": "Count"
+        },
+        {
+          "name": "data-table",
+          "title": "Data Table"
+        },
+        {
+          "name": "filter-form",
+          "title": "Filter Form"
+        },
+        {
+          "name": "filter-list",
+          "title": "Filter List"
+        },
+        {
+          "name": "filter-list-item",
+          "title": "Filter List Item"
+        },
+        {
+          "name": "filter-list-section",
+          "title": "Filter List Section"
+        },
+        {
+          "name": "filter-live-form",
+          "title": "Filter Live Form"
+        },
+        {
+          "name": "filter-live-search",
+          "title": "Filter Live Search"
+        },
+        {
+          "name": "infinite-list",
+          "title": "Infinite List"
+        },
+        {
+          "name": "infinite-pagination",
+          "title": "Infinite Pagination"
+        },
+        {
+          "name": "list",
+          "title": "List"
+        },
+        {
+          "name": "list-actions",
+          "title": "List Actions"
+        },
+        {
+          "name": "list-no-results",
+          "title": "List No Results"
+        },
+        {
+          "name": "list-pagination",
+          "title": "List Pagination"
+        },
+        {
+          "name": "list-toolbar",
+          "title": "List Toolbar"
+        },
+        {
+          "name": "prev-next-buttons",
+          "title": "Prev Next Buttons"
+        },
+        {
+          "name": "reference-many-count",
+          "title": "Reference Many Count"
+        },
+        {
+          "name": "simple-list",
+          "title": "Simple List"
+        },
+        {
+          "name": "simple-list-item",
+          "title": "Simple List Item"
+        },
+        {
+          "name": "simple-list-loading",
+          "title": "Simple List Loading"
+        },
+        {
+          "name": "single-field-list",
+          "title": "Single Field List"
+        },
+        {
+          "name": "tree-list",
+          "title": "Tree List"
+        }
+      ]
+    },
+    {
+      "category": "views",
+      "label": "Views",
+      "items": [
+        {
+          "name": "card-content-inner",
+          "title": "Card Content Inner"
+        },
+        {
+          "name": "create",
+          "title": "Create"
+        },
+        {
+          "name": "edit",
+          "title": "Edit"
+        },
+        {
+          "name": "labeled",
+          "title": "Labeled"
+        },
+        {
+          "name": "show",
+          "title": "Show"
+        },
+        {
+          "name": "simple-show-layout",
+          "title": "Simple Show Layout"
+        },
+        {
+          "name": "tabbed-show-layout",
+          "title": "Tabbed Show Layout"
+        },
+        {
+          "name": "translatable-fields",
+          "title": "Translatable Fields"
+        },
+        {
+          "name": "translatable-fields-tab",
+          "title": "Translatable Fields Tab"
+        },
+        {
+          "name": "translatable-fields-tab-content",
+          "title": "Translatable Fields Tab Content"
+        },
+        {
+          "name": "translatable-fields-tabs",
+          "title": "Translatable Fields Tabs"
         }
       ]
     },
@@ -3708,6 +5286,10 @@
           "title": "Cron Input"
         },
         {
+          "name": "cron-utils",
+          "title": "Cron Utils"
+        },
+        {
           "name": "currency-input",
           "title": "Currency Input"
         },
@@ -3728,6 +5310,10 @@
           "title": "Duration Input"
         },
         {
+          "name": "duration-utils",
+          "title": "Duration Utils"
+        },
+        {
           "name": "file-input",
           "title": "File Input"
         },
@@ -3738,14 +5324,6 @@
         {
           "name": "loading-input",
           "title": "Loading Input"
-        },
-        {
-          "name": "mdx-editor",
-          "title": "MdxEditor"
-        },
-        {
-          "name": "monaco",
-          "title": "Monaco JSON Field & Input"
         },
         {
           "name": "nullable-boolean-input",
@@ -3784,10 +5362,6 @@
           "title": "Resettable Text Input"
         },
         {
-          "name": "rich-text-input",
-          "title": "RichTextInput"
-        },
-        {
           "name": "search-input",
           "title": "Search Input"
         },
@@ -3798,6 +5372,10 @@
         {
           "name": "select-input",
           "title": "Select Input"
+        },
+        {
+          "name": "subscription-plan-picker",
+          "title": "Subscription Plan Picker"
         },
         {
           "name": "text-array-input",
@@ -3814,6 +5392,52 @@
         {
           "name": "webhook-endpoint-input",
           "title": "Webhook Endpoint Input"
+        }
+      ]
+    },
+    {
+      "category": "form",
+      "label": "Form",
+      "items": [
+        {
+          "name": "simple-form",
+          "title": "Simple Form"
+        },
+        {
+          "name": "simple-form-configurable",
+          "title": "Simple Form Configurable"
+        },
+        {
+          "name": "simple-form-iterator",
+          "title": "Simple Form Iterator"
+        },
+        {
+          "name": "tabbed-form",
+          "title": "Tabbed Form"
+        },
+        {
+          "name": "toolbar",
+          "title": "Toolbar"
+        },
+        {
+          "name": "translatable-inputs",
+          "title": "Translatable Inputs"
+        },
+        {
+          "name": "translatable-inputs-tab",
+          "title": "Translatable Inputs Tab"
+        },
+        {
+          "name": "translatable-inputs-tab-content",
+          "title": "Translatable Inputs Tab Content"
+        },
+        {
+          "name": "translatable-inputs-tabs",
+          "title": "Translatable Inputs Tabs"
+        },
+        {
+          "name": "wizard-form",
+          "title": "Wizard Form"
         }
       ]
     },
@@ -3928,18 +5552,62 @@
       ]
     },
     {
-      "category": "data-providers",
-      "label": "Data Providers",
+      "category": "feedback",
+      "label": "Feedback",
       "items": [
         {
-          "name": "realtime",
-          "title": "Shadmin Realtime"
+          "name": "confirm",
+          "title": "Confirm"
+        },
+        {
+          "name": "empty",
+          "title": "Empty"
+        },
+        {
+          "name": "error",
+          "title": "Error"
+        },
+        {
+          "name": "linear-progress",
+          "title": "Linear Progress"
+        },
+        {
+          "name": "loading",
+          "title": "Loading"
+        },
+        {
+          "name": "loading-indicator",
+          "title": "Loading Indicator"
+        },
+        {
+          "name": "not-found",
+          "title": "Not Found"
+        },
+        {
+          "name": "notification",
+          "title": "Notification"
+        },
+        {
+          "name": "offline",
+          "title": "Offline"
+        },
+        {
+          "name": "placeholder",
+          "title": "Placeholder"
+        },
+        {
+          "name": "ready",
+          "title": "Ready"
+        },
+        {
+          "name": "spinner",
+          "title": "Spinner"
         }
       ]
     },
     {
-      "category": "authentication",
-      "label": "Authentication",
+      "category": "auth",
+      "label": "Auth",
       "items": [
         {
           "name": "access-denied",
@@ -3974,34 +5642,542 @@
           "title": "Login With Email"
         },
         {
-          "name": "supabase",
-          "title": "Supabase Admin"
+          "name": "logout",
+          "title": "Logout"
         }
       ]
     },
     {
-      "category": "maps",
-      "label": "Maps",
+      "category": "guessers",
+      "label": "Guessers",
       "items": [
+        {
+          "name": "edit-guesser",
+          "title": "Edit Guesser"
+        },
+        {
+          "name": "guesser-empty",
+          "title": "Guesser Empty"
+        },
+        {
+          "name": "list-guesser",
+          "title": "List Guesser"
+        },
+        {
+          "name": "show-guesser",
+          "title": "Show Guesser"
+        }
+      ]
+    },
+    {
+      "category": "inspector",
+      "label": "Inspector",
+      "items": [
+        {
+          "name": "configurable",
+          "title": "Configurable"
+        },
+        {
+          "name": "field-toggle",
+          "title": "Field Toggle"
+        },
+        {
+          "name": "fields-selector",
+          "title": "Fields Selector"
+        },
+        {
+          "name": "inspector",
+          "title": "Inspector"
+        },
+        {
+          "name": "inspector-root",
+          "title": "Inspector Root"
+        }
+      ]
+    },
+    {
+      "category": "widgets",
+      "label": "Widgets",
+      "items": [
+        {
+          "name": "approval-queue",
+          "title": "Approval Queue"
+        },
+        {
+          "name": "assistant",
+          "title": "Assistant"
+        },
+        {
+          "name": "assistant-transport",
+          "title": "Assistant Transport"
+        },
+        {
+          "name": "command-menu",
+          "title": "Command Menu"
+        },
+        {
+          "name": "command-menu-context",
+          "title": "Command Menu Context"
+        },
+        {
+          "name": "dashboard-charts",
+          "title": "Dashboard Charts"
+        },
+        {
+          "name": "data-provider-devtools",
+          "title": "Data Provider Devtools"
+        },
+        {
+          "name": "data-provider-devtools-context",
+          "title": "Data Provider Devtools Context"
+        },
+        {
+          "name": "diff-viewer",
+          "title": "Diff Viewer"
+        },
+        {
+          "name": "i18n-key-editor",
+          "title": "I18n Key Editor"
+        },
+        {
+          "name": "in-place-editor",
+          "title": "In Place Editor"
+        },
+        {
+          "name": "job-monitor",
+          "title": "Job Monitor"
+        },
+        {
+          "name": "kanban-board",
+          "title": "Kanban Board"
+        },
+        {
+          "name": "layout-builder",
+          "title": "Layout Builder"
+        },
+        {
+          "name": "onboarding-tour",
+          "title": "Onboarding Tour"
+        },
+        {
+          "name": "permission-matrix",
+          "title": "Permission Matrix"
+        },
+        {
+          "name": "pivot-grid",
+          "title": "Pivot Grid"
+        },
+        {
+          "name": "record-timeline",
+          "title": "Record Timeline"
+        },
+        {
+          "name": "schema-driven-view",
+          "title": "Schema Driven View"
+        },
+        {
+          "name": "theme-studio",
+          "title": "Theme Studio"
+        },
+        {
+          "name": "theme-studio-vars",
+          "title": "Theme Studio Vars"
+        }
+      ]
+    },
+    {
+      "category": "collaboration",
+      "label": "Collaboration",
+      "items": [
+        {
+          "name": "comments-thread",
+          "title": "Comments Thread"
+        },
+        {
+          "name": "presence-bar",
+          "title": "Presence Bar"
+        }
+      ]
+    },
+    {
+      "category": "common",
+      "label": "Common",
+      "items": [
+        {
+          "name": "application-updated-notification",
+          "title": "Application Updated Notification"
+        },
+        {
+          "name": "check-for-application-update",
+          "title": "Check For Application Update"
+        },
+        {
+          "name": "device-test-wrapper",
+          "title": "Device Test Wrapper"
+        },
+        {
+          "name": "field-label-text",
+          "title": "Field Label Text"
+        },
+        {
+          "name": "icon-button-with-tooltip",
+          "title": "Icon Button With Tooltip"
+        },
+        {
+          "name": "input-helper-text",
+          "title": "Input Helper Text"
+        },
+        {
+          "name": "keyboard-shortcut",
+          "title": "Keyboard Shortcut"
+        },
+        {
+          "name": "link",
+          "title": "Link"
+        }
+      ]
+    },
+    {
+      "category": "leaflet",
+      "label": "Leaflet / Maps",
+      "items": [
+        {
+          "name": "bbox-field",
+          "title": "Bbox Field"
+        },
+        {
+          "name": "bbox-input",
+          "title": "Bbox Input"
+        },
+        {
+          "name": "feature-collection-field",
+          "title": "Feature Collection Field"
+        },
+        {
+          "name": "feature-collection-input",
+          "title": "Feature Collection Input"
+        },
+        {
+          "name": "feature-field",
+          "title": "Feature Field"
+        },
+        {
+          "name": "feature-input",
+          "title": "Feature Input"
+        },
+        {
+          "name": "geocoding-input",
+          "title": "Geocoding Input"
+        },
+        {
+          "name": "geojson-field",
+          "title": "Geojson Field"
+        },
+        {
+          "name": "geojson-input",
+          "title": "Geojson Input"
+        },
+        {
+          "name": "geoman-shape-mapping",
+          "title": "Geoman Shape Mapping"
+        },
+        {
+          "name": "geometry-collection-field",
+          "title": "Geometry Collection Field"
+        },
+        {
+          "name": "geometry-collection-input",
+          "title": "Geometry Collection Input"
+        },
+        {
+          "name": "geometry-ops",
+          "title": "Geometry Ops"
+        },
+        {
+          "name": "lat-lng-field",
+          "title": "Lat Lng Field"
+        },
+        {
+          "name": "lat-lng-input",
+          "title": "Lat Lng Input"
+        },
         {
           "name": "leaflet-admin",
           "title": "LeafletAdmin"
+        },
+        {
+          "name": "line-string-field",
+          "title": "Line String Field"
+        },
+        {
+          "name": "line-string-input",
+          "title": "Line String Input"
+        },
+        {
+          "name": "map-with-search",
+          "title": "Map With Search"
+        },
+        {
+          "name": "multi-line-string-field",
+          "title": "Multi Line String Field"
+        },
+        {
+          "name": "multi-line-string-input",
+          "title": "Multi Line String Input"
+        },
+        {
+          "name": "multi-point-field",
+          "title": "Multi Point Field"
+        },
+        {
+          "name": "multi-point-input",
+          "title": "Multi Point Input"
+        },
+        {
+          "name": "multi-polygon-field",
+          "title": "Multi Polygon Field"
+        },
+        {
+          "name": "multi-polygon-input",
+          "title": "Multi Polygon Input"
+        },
+        {
+          "name": "nominatim-client",
+          "title": "Nominatim Client"
+        },
+        {
+          "name": "osm-feature-add",
+          "title": "Osm Feature Add"
+        },
+        {
+          "name": "osm-feature-operator",
+          "title": "Osm Feature Operator"
+        },
+        {
+          "name": "osm-feature-subtract",
+          "title": "Osm Feature Subtract"
+        },
+        {
+          "name": "osm-presets",
+          "title": "Osm Presets"
+        },
+        {
+          "name": "osm-tag-catalog",
+          "title": "Osm Tag Catalog"
+        },
+        {
+          "name": "overpass-client",
+          "title": "Overpass Client"
+        },
+        {
+          "name": "point-field",
+          "title": "Point Field"
+        },
+        {
+          "name": "point-input",
+          "title": "Point Input"
+        },
+        {
+          "name": "polygon-field",
+          "title": "Polygon Field"
+        },
+        {
+          "name": "polygon-input",
+          "title": "Polygon Input"
+        },
+        {
+          "name": "reverse-geocode-field",
+          "title": "Reverse Geocode Field"
+        },
+        {
+          "name": "shape-constraints",
+          "title": "Shape Constraints"
+        },
+        {
+          "name": "shape-field-shell",
+          "title": "Shape Field Shell"
+        },
+        {
+          "name": "shape-input-shell",
+          "title": "Shape Input Shell"
+        },
+        {
+          "name": "shared",
+          "title": "Shared"
+        },
+        {
+          "name": "shared-map",
+          "title": "Shared Map"
+        },
+        {
+          "name": "simplify-input",
+          "title": "Simplify Input"
+        },
+        {
+          "name": "use-geocode",
+          "title": "Use Geocode"
+        },
+        {
+          "name": "use-geoman-rhf",
+          "title": "Use Geoman Rhf"
+        },
+        {
+          "name": "use-osm-features",
+          "title": "Use Osm Features"
+        },
+        {
+          "name": "use-osm-snap-to-roads",
+          "title": "Use Osm Snap To Roads"
+        },
+        {
+          "name": "use-overpass",
+          "title": "Use Overpass"
+        },
+        {
+          "name": "use-reverse-geocode",
+          "title": "Use Reverse Geocode"
         }
       ]
     },
     {
-      "category": "editor",
-      "label": "Editor",
+      "category": "block-editor",
+      "label": "Block Editor",
       "items": [
+        {
+          "name": "auto-config-form",
+          "title": "Auto Config Form"
+        },
+        {
+          "name": "base",
+          "title": "Base"
+        },
+        {
+          "name": "block-config-popover",
+          "title": "Block Config Popover"
+        },
+        {
+          "name": "block-doc-field",
+          "title": "Block Doc Field"
+        },
+        {
+          "name": "block-editor-input",
+          "title": "Block Editor Input"
+        },
+        {
+          "name": "block-gutter",
+          "title": "Block Gutter"
+        },
+        {
+          "name": "block-node",
+          "title": "Block Node"
+        },
+        {
+          "name": "block-registry",
+          "title": "Block Registry"
+        },
+        {
+          "name": "block-states",
+          "title": "Block States"
+        },
+        {
+          "name": "block-toolbar",
+          "title": "Block Toolbar"
+        },
         {
           "name": "block-editor",
           "title": "BlockEditor"
+        },
+        {
+          "name": "callout",
+          "title": "Callout"
+        },
+        {
+          "name": "catalog-picker",
+          "title": "Catalog Picker"
+        },
+        {
+          "name": "chart",
+          "title": "Chart"
+        },
+        {
+          "name": "constants",
+          "title": "Constants"
+        },
+        {
+          "name": "data-blocks",
+          "title": "Data Blocks"
+        },
+        {
+          "name": "define-block",
+          "title": "Define Block"
+        },
+        {
+          "name": "embed",
+          "title": "Embed"
+        },
+        {
+          "name": "image",
+          "title": "Image"
+        },
+        {
+          "name": "record-list",
+          "title": "Record List"
+        },
+        {
+          "name": "reference-record",
+          "title": "Reference Record"
+        },
+        {
+          "name": "slash-command",
+          "title": "Slash Command"
+        },
+        {
+          "name": "toggle",
+          "title": "Toggle"
+        },
+        {
+          "name": "unknown-block",
+          "title": "Unknown Block"
+        },
+        {
+          "name": "use-block-editor",
+          "title": "Use Block Editor"
         }
       ]
     },
     {
-      "category": "data-import",
-      "label": "Data Import",
+      "category": "rich-text-input",
+      "label": "Rich Text",
+      "items": [
+        {
+          "name": "rich-text-input",
+          "title": "RichTextInput"
+        }
+      ]
+    },
+    {
+      "category": "mdx-editor",
+      "label": "MDX Editor",
+      "items": [
+        {
+          "name": "mdx-editor",
+          "title": "MdxEditor"
+        }
+      ]
+    },
+    {
+      "category": "monaco",
+      "label": "Monaco",
+      "items": [
+        {
+          "name": "monaco",
+          "title": "Monaco JSON Field & Input"
+        }
+      ]
+    },
+    {
+      "category": "csv-import",
+      "label": "CSV Import",
       "items": [
         {
           "name": "csv-import",
@@ -4010,48 +6186,144 @@
       ]
     },
     {
-      "category": "theme",
-      "label": "Theme",
+      "category": "realtime",
+      "label": "Realtime",
       "items": [
         {
-          "name": "theme-aurora",
-          "title": "Aurora Theme"
+          "name": "edit-live",
+          "title": "Edit Live"
         },
         {
-          "name": "theme-bw",
-          "title": "Black & White Theme"
+          "name": "list-live",
+          "title": "List Live"
         },
         {
-          "name": "theme-house",
-          "title": "House Theme"
+          "name": "lock-on-mount",
+          "title": "Lock On Mount"
         },
         {
-          "name": "theme-nano",
-          "title": "Nano Theme"
+          "name": "lock-status",
+          "title": "Lock Status"
         },
         {
-          "name": "theme-radiant",
-          "title": "Radiant Theme"
+          "name": "menu-live",
+          "title": "Menu Live"
+        },
+        {
+          "name": "realtime",
+          "title": "Shadmin Realtime"
+        },
+        {
+          "name": "show-live",
+          "title": "Show Live"
         }
       ]
     },
     {
-      "category": "style",
-      "label": "Style",
+      "category": "supabase",
+      "label": "Supabase",
       "items": [
         {
-          "name": "style-glass",
-          "title": "Liquid Glass"
+          "name": "supabase",
+          "title": "Supabase Admin"
+        },
+        {
+          "name": "supabase-admin-guesser",
+          "title": "Supabase Admin Guesser"
+        },
+        {
+          "name": "supabase-create-guesser",
+          "title": "Supabase Create Guesser"
+        },
+        {
+          "name": "supabase-edit-field-types",
+          "title": "Supabase Edit Field Types"
+        },
+        {
+          "name": "supabase-edit-guesser",
+          "title": "Supabase Edit Guesser"
+        },
+        {
+          "name": "supabase-en",
+          "title": "Supabase En"
+        },
+        {
+          "name": "supabase-forgot-password-form",
+          "title": "Supabase Forgot Password Form"
+        },
+        {
+          "name": "supabase-forgot-password-page",
+          "title": "Supabase Forgot Password Page"
+        },
+        {
+          "name": "supabase-fr",
+          "title": "Supabase Fr"
+        },
+        {
+          "name": "supabase-icons",
+          "title": "Supabase Icons"
+        },
+        {
+          "name": "supabase-infer-element-from-type",
+          "title": "Supabase Infer Element From Type"
+        },
+        {
+          "name": "supabase-inferred-element",
+          "title": "Supabase Inferred Element"
+        },
+        {
+          "name": "supabase-list-field-types",
+          "title": "Supabase List Field Types"
+        },
+        {
+          "name": "supabase-list-guesser",
+          "title": "Supabase List Guesser"
+        },
+        {
+          "name": "supabase-login-form",
+          "title": "Supabase Login Form"
+        },
+        {
+          "name": "supabase-login-page",
+          "title": "Supabase Login Page"
+        },
+        {
+          "name": "supabase-set-password-form",
+          "title": "Supabase Set Password Form"
+        },
+        {
+          "name": "supabase-set-password-page",
+          "title": "Supabase Set Password Page"
+        },
+        {
+          "name": "supabase-show-field-types",
+          "title": "Supabase Show Field Types"
+        },
+        {
+          "name": "supabase-show-guesser",
+          "title": "Supabase Show Guesser"
+        },
+        {
+          "name": "supabase-social-auth-button",
+          "title": "Supabase Social Auth Button"
+        },
+        {
+          "name": "supabase-use-crud-guesser",
+          "title": "Supabase Use Crud Guesser"
         }
       ]
     },
     {
       "category": "ui",
-      "label": "UI",
+      "label": "UI Primitives",
       "items": [
         {
           "name": "color-picker",
           "title": "Color Picker"
+        },
+        {
+          "name": "style-glass",
+          "title": "Liquid Glass"
         },
         {
           "name": "primitives",
@@ -4060,16 +6332,6 @@
         {
           "name": "slot",
           "title": "Slot"
-        }
-      ]
-    },
-    {
-      "category": "hooks",
-      "label": "Hooks",
-      "items": [
-        {
-          "name": "use-theme",
-          "title": "Use Theme"
         }
       ]
     },
@@ -4124,452 +6386,38 @@
       ]
     },
     {
-      "category": "components",
-      "label": "Components",
+      "category": "hooks",
+      "label": "Hooks",
       "items": [
         {
-          "name": "application-updated-notification",
-          "title": "Application Updated Notification"
-        },
-        {
-          "name": "approval-queue",
-          "title": "Approval Queue"
-        },
-        {
-          "name": "assistant",
-          "title": "Assistant"
-        },
-        {
-          "name": "assistant-transport",
-          "title": "Assistant Transport"
-        },
-        {
-          "name": "bulk-actions-toolbar",
-          "title": "Bulk Actions Toolbar"
-        },
-        {
-          "name": "bulk-edit-drawer",
-          "title": "Bulk Edit Drawer"
-        },
-        {
-          "name": "calendar-list",
-          "title": "Calendar List"
-        },
-        {
-          "name": "card-content-inner",
-          "title": "Card Content Inner"
-        },
-        {
-          "name": "check-for-application-update",
-          "title": "Check For Application Update"
-        },
-        {
-          "name": "command-menu",
-          "title": "Command Menu"
-        },
-        {
-          "name": "command-menu-context",
-          "title": "Command Menu Context"
-        },
-        {
-          "name": "comments-thread",
-          "title": "Comments Thread"
-        },
-        {
-          "name": "configurable",
-          "title": "Configurable"
-        },
-        {
-          "name": "confirm",
-          "title": "Confirm"
-        },
-        {
-          "name": "count",
-          "title": "Count"
-        },
-        {
-          "name": "create",
-          "title": "Create"
-        },
-        {
-          "name": "cron-utils",
-          "title": "Cron Utils"
-        },
-        {
-          "name": "dashboard-charts",
-          "title": "Dashboard Charts"
-        },
-        {
-          "name": "dashboard-menu-item",
-          "title": "Dashboard Menu Item"
-        },
-        {
-          "name": "data-provider-devtools",
-          "title": "Data Provider Devtools"
-        },
-        {
-          "name": "data-provider-devtools-context",
-          "title": "Data Provider Devtools Context"
-        },
-        {
-          "name": "data-table",
-          "title": "Data Table"
-        },
-        {
-          "name": "device-test-wrapper",
-          "title": "Device Test Wrapper"
-        },
-        {
-          "name": "diff-viewer",
-          "title": "Diff Viewer"
-        },
-        {
-          "name": "duration-utils",
-          "title": "Duration Utils"
-        },
-        {
-          "name": "edit",
-          "title": "Edit"
-        },
-        {
-          "name": "edit-guesser",
-          "title": "Edit Guesser"
-        },
-        {
-          "name": "empty",
-          "title": "Empty"
-        },
-        {
-          "name": "error",
-          "title": "Error"
-        },
-        {
-          "name": "field-label-text",
-          "title": "Field Label Text"
-        },
-        {
-          "name": "field-toggle",
-          "title": "Field Toggle"
-        },
-        {
-          "name": "fields-selector",
-          "title": "Fields Selector"
-        },
-        {
-          "name": "filter-form",
-          "title": "Filter Form"
-        },
-        {
-          "name": "filter-list",
-          "title": "Filter List"
-        },
-        {
-          "name": "filter-list-item",
-          "title": "Filter List Item"
-        },
-        {
-          "name": "filter-list-section",
-          "title": "Filter List Section"
-        },
-        {
-          "name": "filter-live-form",
-          "title": "Filter Live Form"
-        },
-        {
-          "name": "filter-live-search",
-          "title": "Filter Live Search"
-        },
-        {
-          "name": "guesser-empty",
-          "title": "Guesser Empty"
-        },
-        {
-          "name": "hide-on-scroll",
-          "title": "Hide On Scroll"
-        },
-        {
-          "name": "i18n-key-editor",
-          "title": "I18n Key Editor"
-        },
-        {
-          "name": "icon-button-with-tooltip",
-          "title": "Icon Button With Tooltip"
-        },
-        {
-          "name": "in-place-editor",
-          "title": "In Place Editor"
-        },
-        {
-          "name": "infinite-list",
-          "title": "Infinite List"
-        },
-        {
-          "name": "infinite-pagination",
-          "title": "Infinite Pagination"
-        },
-        {
-          "name": "input-helper-text",
-          "title": "Input Helper Text"
-        },
-        {
-          "name": "inspector",
-          "title": "Inspector"
-        },
-        {
-          "name": "inspector-root",
-          "title": "Inspector Root"
-        },
-        {
-          "name": "job-monitor",
-          "title": "Job Monitor"
-        },
-        {
-          "name": "kanban-board",
-          "title": "Kanban Board"
-        },
-        {
-          "name": "keyboard-shortcut",
-          "title": "Keyboard Shortcut"
-        },
-        {
-          "name": "labeled",
-          "title": "Labeled"
-        },
-        {
-          "name": "layout-builder",
-          "title": "Layout Builder"
-        },
-        {
-          "name": "linear-progress",
-          "title": "Linear Progress"
-        },
-        {
-          "name": "link",
-          "title": "Link"
-        },
-        {
-          "name": "list",
-          "title": "List"
-        },
-        {
-          "name": "list-actions",
-          "title": "List Actions"
-        },
-        {
-          "name": "list-guesser",
-          "title": "List Guesser"
-        },
-        {
-          "name": "list-no-results",
-          "title": "List No Results"
-        },
-        {
-          "name": "list-pagination",
-          "title": "List Pagination"
-        },
-        {
-          "name": "list-toolbar",
-          "title": "List Toolbar"
-        },
-        {
-          "name": "loading",
-          "title": "Loading"
-        },
-        {
-          "name": "loading-indicator",
-          "title": "Loading Indicator"
-        },
-        {
-          "name": "logout",
-          "title": "Logout"
-        },
-        {
-          "name": "menu-item-link",
-          "title": "Menu Item Link"
-        },
-        {
-          "name": "not-found",
-          "title": "Not Found"
-        },
-        {
-          "name": "notification",
-          "title": "Notification"
-        },
-        {
-          "name": "offline",
-          "title": "Offline"
-        },
-        {
-          "name": "onboarding-tour",
-          "title": "Onboarding Tour"
-        },
-        {
-          "name": "permission-matrix",
-          "title": "Permission Matrix"
-        },
-        {
-          "name": "pivot-grid",
-          "title": "Pivot Grid"
-        },
-        {
-          "name": "placeholder",
-          "title": "Placeholder"
-        },
-        {
-          "name": "presence-bar",
-          "title": "Presence Bar"
-        },
-        {
-          "name": "prev-next-buttons",
-          "title": "Prev Next Buttons"
-        },
-        {
-          "name": "ready",
-          "title": "Ready"
-        },
-        {
-          "name": "record-timeline",
-          "title": "Record Timeline"
-        },
-        {
-          "name": "reference-many-count",
-          "title": "Reference Many Count"
-        },
-        {
-          "name": "resource",
-          "title": "Resource"
-        },
-        {
-          "name": "resource-menu-item",
-          "title": "Resource Menu Item"
-        },
-        {
-          "name": "resource-menu-item-group",
-          "title": "Resource Menu Item Group"
-        },
-        {
-          "name": "saved-queries",
-          "title": "Saved Queries"
-        },
-        {
-          "name": "schema-driven-view",
-          "title": "Schema Driven View"
-        },
-        {
-          "name": "show",
-          "title": "Show"
-        },
-        {
-          "name": "show-guesser",
-          "title": "Show Guesser"
-        },
-        {
-          "name": "simple-form",
-          "title": "Simple Form"
-        },
-        {
-          "name": "simple-form-configurable",
-          "title": "Simple Form Configurable"
-        },
-        {
-          "name": "simple-form-iterator",
-          "title": "Simple Form Iterator"
-        },
-        {
-          "name": "simple-list",
-          "title": "Simple List"
-        },
-        {
-          "name": "simple-list-item",
-          "title": "Simple List Item"
-        },
-        {
-          "name": "simple-list-loading",
-          "title": "Simple List Loading"
-        },
-        {
-          "name": "simple-show-layout",
-          "title": "Simple Show Layout"
-        },
-        {
-          "name": "single-field-list",
-          "title": "Single Field List"
-        },
-        {
-          "name": "spinner",
-          "title": "Spinner"
-        },
-        {
-          "name": "subscription-plan-picker",
-          "title": "Subscription Plan Picker"
-        },
-        {
-          "name": "tabbed-form",
-          "title": "Tabbed Form"
-        },
-        {
-          "name": "tabbed-show-layout",
-          "title": "Tabbed Show Layout"
-        },
-        {
-          "name": "theme-studio",
-          "title": "Theme Studio"
-        },
-        {
-          "name": "theme-studio-vars",
-          "title": "Theme Studio Vars"
-        },
-        {
-          "name": "title",
-          "title": "Title"
-        },
-        {
-          "name": "title-portal",
-          "title": "Title Portal"
-        },
-        {
-          "name": "toolbar",
-          "title": "Toolbar"
-        },
-        {
-          "name": "translatable-fields",
-          "title": "Translatable Fields"
-        },
-        {
-          "name": "translatable-fields-tab",
-          "title": "Translatable Fields Tab"
-        },
-        {
-          "name": "translatable-fields-tab-content",
-          "title": "Translatable Fields Tab Content"
-        },
-        {
-          "name": "translatable-fields-tabs",
-          "title": "Translatable Fields Tabs"
-        },
-        {
-          "name": "translatable-inputs",
-          "title": "Translatable Inputs"
-        },
+          "name": "use-theme",
+          "title": "Use Theme"
+        }
+      ]
+    },
+    {
+      "category": "theme",
+      "label": "Themes",
+      "items": [
         {
-          "name": "translatable-inputs-tab",
-          "title": "Translatable Inputs Tab"
+          "name": "theme-aurora",
+          "title": "Aurora Theme"
         },
         {
-          "name": "translatable-inputs-tab-content",
-          "title": "Translatable Inputs Tab Content"
+          "name": "theme-bw",
+          "title": "Black & White Theme"
         },
         {
-          "name": "translatable-inputs-tabs",
-          "title": "Translatable Inputs Tabs"
+          "name": "theme-house",
+          "title": "House Theme"
         },
         {
-          "name": "tree-list",
-          "title": "Tree List"
+          "name": "theme-nano",
+          "title": "Nano Theme"
         },
         {
-          "name": "wizard-form",
-          "title": "Wizard Form"
+          "name": "theme-radiant",
+          "title": "Radiant Theme"
         }
       ]
     },

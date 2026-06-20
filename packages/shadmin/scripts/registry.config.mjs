@@ -199,6 +199,7 @@ export const blocks = [
   {
     name: "block-editor",
     type: "registry:block",
+    granularize: true,
     title: "BlockEditor",
     categories: ["shadmin", "editor"],
     description:
@@ -242,6 +243,7 @@ export const blocks = [
   {
     name: "leaflet-admin",
     type: "registry:block",
+    granularize: true,
     title: "LeafletAdmin",
     categories: ["shadmin", "maps"],
     docs: 'Import Leaflet\'s stylesheet once in your app entry: `import "leaflet/dist/leaflet.css";`. Map components are client-only — disable SSR on routes that use them. Drawing/editing uses Geoman via `react-leaflet-geoman-v2`. Full docs: https://shadmin.turtlesocks.dev/docs/leaflet-admin',
@@ -311,9 +313,10 @@ export const blocks = [
   {
     name: "supabase",
     type: "registry:block",
+    granularize: true,
     title: "Supabase Admin",
     categories: ["shadmin", "authentication", "data-providers"],
-    docs: "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase/getting-started",
+    docs: "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase-getting-started",
     description:
       "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
     registryDependencies: ["@shadmin/admin"],
@@ -333,6 +336,7 @@ export const blocks = [
   {
     name: "realtime",
     type: "registry:block",
+    granularize: true,
     title: "Shadmin Realtime",
     categories: ["shadmin", "data-providers"],
     description:

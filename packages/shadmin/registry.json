@@ -5596,6 +5596,425 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "block-doc-field",
+      "type": "registry:component",
+      "title": "Block Doc Field",
+      "files": [
+        {
+          "path": "src/components/block-editor/block-doc-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-editor",
+        "@shadmin/define-block",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["@tiptap/react", "lodash", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "block-editor-input",
+      "type": "registry:component",
+      "title": "Block Editor Input",
+      "files": [
+        {
+          "path": "src/components/block-editor/block-editor-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-editor",
+        "@shadmin/constants",
+        "@shadmin/define-block",
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "field"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "block-registry",
+      "type": "registry:component",
+      "title": "Block Registry",
+      "files": [
+        {
+          "path": "src/components/block-editor/block-registry.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/define-block"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "block-states",
+      "type": "registry:component",
+      "title": "Block States",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/block-states.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["skeleton"],
+      "dependencies": ["lucide-react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "callout",
+      "type": "registry:component",
+      "title": "Callout",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/callout.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-node",
+        "@shadmin/define-block",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["lucide-react", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "chart",
+      "type": "registry:component",
+      "title": "Chart",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/chart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-states",
+        "@shadmin/define-block",
+        "input",
+        "label",
+        "select"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "recharts", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "data-blocks",
+      "type": "registry:component",
+      "title": "Data Blocks",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/data-blocks.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/chart",
+        "@shadmin/define-block",
+        "@shadmin/record-list",
+        "@shadmin/reference-record"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "embed",
+      "type": "registry:component",
+      "title": "Embed",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/embed.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-states",
+        "@shadmin/define-block"
+      ],
+      "dependencies": ["lucide-react", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "image",
+      "type": "registry:component",
+      "title": "Image",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/image.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-states",
+        "@shadmin/define-block",
+        "input",
+        "label",
+        "slider"
+      ],
+      "dependencies": ["lucide-react", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "record-list",
+      "type": "registry:component",
+      "title": "Record List",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/record-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-states",
+        "@shadmin/define-block",
+        "input",
+        "label",
+        "table"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reference-record",
+      "type": "registry:component",
+      "title": "Reference Record",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/reference-record.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-states",
+        "@shadmin/define-block",
+        "card"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "toggle",
+      "type": "registry:component",
+      "title": "Toggle",
+      "files": [
+        {
+          "path": "src/components/block-editor/blocks/toggle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/block-node",
+        "@shadmin/define-block",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["lucide-react", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "auto-config-form",
+      "type": "registry:component",
+      "title": "Auto Config Form",
+      "files": [
+        {
+          "path": "src/components/block-editor/chrome/auto-config-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["input", "label", "select", "switch"],
+      "dependencies": ["zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "block-config-popover",
+      "type": "registry:component",
+      "title": "Block Config Popover",
+      "files": [
+        {
+          "path": "src/components/block-editor/chrome/block-config-popover.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/auto-config-form",
+        "@shadmin/define-block"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "block-gutter",
+      "type": "registry:component",
+      "title": "Block Gutter",
+      "files": [
+        {
+          "path": "src/components/block-editor/chrome/block-gutter.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": [
+        "@tiptap/extension-drag-handle-react",
+        "@tiptap/react",
+        "lucide-react"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "block-toolbar",
+      "type": "registry:component",
+      "title": "Block Toolbar",
+      "files": [
+        {
+          "path": "src/components/block-editor/chrome/block-toolbar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["@tiptap/pm", "@tiptap/react", "lucide-react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "catalog-picker",
+      "type": "registry:component",
+      "title": "Catalog Picker",
+      "files": [
+        {
+          "path": "src/components/block-editor/chrome/catalog-picker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/block-registry", "command"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "constants",
+      "type": "registry:component",
+      "title": "Constants",
+      "files": [
+        {
+          "path": "src/components/block-editor/constants.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@tiptap/react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "define-block",
+      "type": "registry:component",
+      "title": "Define Block",
+      "files": [
+        {
+          "path": "src/components/block-editor/define-block.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["lucide-react", "zod"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "base",
+      "type": "registry:component",
+      "title": "Base",
+      "files": [
+        {
+          "path": "src/components/block-editor/extensions/base.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@tiptap/extensions",
+        "@tiptap/react",
+        "@tiptap/starter-kit"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "block-node",
+      "type": "registry:component",
+      "title": "Block Node",
+      "files": [
+        {
+          "path": "src/components/block-editor/extensions/block-node.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/define-block"],
+      "dependencies": ["@tiptap/core", "@tiptap/react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "slash-command",
+      "type": "registry:component",
+      "title": "Slash Command",
+      "files": [
+        {
+          "path": "src/components/block-editor/extensions/slash-command.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@tiptap/core", "@tiptap/suggestion"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "unknown-block",
+      "type": "registry:component",
+      "title": "Unknown Block",
+      "files": [
+        {
+          "path": "src/components/block-editor/extensions/unknown-block.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@tiptap/core", "@tiptap/react", "lucide-react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "use-block-editor",
+      "type": "registry:component",
+      "title": "Use Block Editor",
+      "files": [
+        {
+          "path": "src/components/block-editor/use-block-editor.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/base",
+        "@shadmin/block-node",
+        "@shadmin/block-registry",
+        "@shadmin/constants",
+        "@shadmin/define-block",
+        "@shadmin/slash-command",
+        "@shadmin/unknown-block"
+      ],
+      "dependencies": ["@tiptap/core", "@tiptap/react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "mdx-editor",
       "type": "registry:block",
       "title": "MdxEditor",
@@ -5856,6 +6275,759 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "lat-lng-field",
+      "type": "registry:component",
+      "title": "Lat Lng Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/coordinates/lat-lng-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shared"],
+      "dependencies": ["ra-core", "react-leaflet"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "lat-lng-input",
+      "type": "registry:component",
+      "title": "Lat Lng Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/coordinates/lat-lng-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shared"],
+      "dependencies": ["leaflet", "react-hook-form", "react-leaflet"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "feature-collection-field",
+      "type": "registry:component",
+      "title": "Feature Collection Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/features/feature-collection-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "feature-collection-input",
+      "type": "registry:component",
+      "title": "Feature Collection Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/features/feature-collection-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/shared-map",
+        "@shadmin/use-geoman-rhf"
+      ],
+      "dependencies": [
+        "@geoman-io/leaflet-geoman-free",
+        "leaflet",
+        "react-leaflet",
+        "react-leaflet-geoman-v2"
+      ],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "feature-field",
+      "type": "registry:component",
+      "title": "Feature Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/features/feature-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "feature-input",
+      "type": "registry:component",
+      "title": "Feature Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/features/feature-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-input-shell"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "geojson-field",
+      "type": "registry:component",
+      "title": "Geojson Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/features/geojson-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "dependencies": ["leaflet"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "geojson-input",
+      "type": "registry:component",
+      "title": "Geojson Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/features/geojson-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/shared-map",
+        "@shadmin/use-geoman-rhf"
+      ],
+      "dependencies": [
+        "@geoman-io/leaflet-geoman-free",
+        "leaflet",
+        "react-leaflet",
+        "react-leaflet-geoman-v2"
+      ],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "geocoding-input",
+      "type": "registry:component",
+      "title": "Geocoding Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/geocoding/geocoding-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/use-geocode", "command"],
+      "dependencies": ["react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "map-with-search",
+      "type": "registry:component",
+      "title": "Map With Search",
+      "files": [
+        {
+          "path": "src/components/leaflet/geocoding/map-with-search.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/geocoding-input",
+        "@shadmin/lat-lng-input",
+        "@shadmin/use-reverse-geocode"
+      ],
+      "dependencies": ["react-hook-form"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "nominatim-client",
+      "type": "registry:component",
+      "title": "Nominatim Client",
+      "files": [
+        {
+          "path": "src/components/leaflet/geocoding/nominatim-client.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "reverse-geocode-field",
+      "type": "registry:component",
+      "title": "Reverse Geocode Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/geocoding/reverse-geocode-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/use-reverse-geocode", "skeleton"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "use-geocode",
+      "type": "registry:component",
+      "title": "Use Geocode",
+      "files": [
+        {
+          "path": "src/components/leaflet/geocoding/use-geocode.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/nominatim-client"],
+      "dependencies": ["@tanstack/react-query"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "use-reverse-geocode",
+      "type": "registry:component",
+      "title": "Use Reverse Geocode",
+      "files": [
+        {
+          "path": "src/components/leaflet/geocoding/use-reverse-geocode.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/nominatim-client"],
+      "dependencies": ["@tanstack/react-query"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "geoman-shape-mapping",
+      "type": "registry:component",
+      "title": "Geoman Shape Mapping",
+      "files": [
+        {
+          "path": "src/components/leaflet/geoman/geoman-shape-mapping.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["leaflet"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "shape-constraints",
+      "type": "registry:component",
+      "title": "Shape Constraints",
+      "files": [
+        {
+          "path": "src/components/leaflet/geoman/shape-constraints.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["@turf/area", "@turf/helpers"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "use-geoman-rhf",
+      "type": "registry:component",
+      "title": "Use Geoman Rhf",
+      "files": [
+        {
+          "path": "src/components/leaflet/geoman/use-geoman-rhf.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/geoman-shape-mapping"],
+      "dependencies": ["leaflet", "react-hook-form"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "geometry-ops",
+      "type": "registry:component",
+      "title": "Geometry Ops",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/geometry-ops.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@turf/area",
+        "@turf/bbox",
+        "@turf/difference",
+        "@turf/helpers",
+        "@turf/union"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "osm-feature-add",
+      "type": "registry:component",
+      "title": "Osm Feature Add",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/osm-feature-add.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/osm-feature-operator"],
+      "dependencies": ["lucide-react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "osm-feature-operator",
+      "type": "registry:component",
+      "title": "Osm Feature Operator",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/osm-feature-operator.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/geometry-ops",
+        "@shadmin/osm-presets",
+        "@shadmin/osm-tag-catalog",
+        "@shadmin/use-osm-features",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "osm-feature-subtract",
+      "type": "registry:component",
+      "title": "Osm Feature Subtract",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/osm-feature-subtract.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/osm-feature-operator"],
+      "dependencies": ["lucide-react"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "osm-presets",
+      "type": "registry:component",
+      "title": "Osm Presets",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/osm-presets.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/osm-tag-catalog"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "osm-tag-catalog",
+      "type": "registry:component",
+      "title": "Osm Tag Catalog",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/osm-tag-catalog.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/osm-presets"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "overpass-client",
+      "type": "registry:component",
+      "title": "Overpass Client",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/overpass-client.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "use-osm-features",
+      "type": "registry:component",
+      "title": "Use Osm Features",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/use-osm-features.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/osm-presets",
+        "@shadmin/osm-tag-catalog",
+        "@shadmin/use-overpass"
+      ],
+      "dependencies": ["@turf/buffer", "osmtogeojson"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "use-osm-snap-to-roads",
+      "type": "registry:component",
+      "title": "Use Osm Snap To Roads",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/use-osm-snap-to-roads.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "use-overpass",
+      "type": "registry:component",
+      "title": "Use Overpass",
+      "files": [
+        {
+          "path": "src/components/leaflet/osm/use-overpass.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/overpass-client"],
+      "dependencies": ["@tanstack/react-query"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "bbox-field",
+      "type": "registry:component",
+      "title": "Bbox Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/bbox-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "bbox-input",
+      "type": "registry:component",
+      "title": "Bbox Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/bbox-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/geometry-ops",
+        "@shadmin/shape-input-shell"
+      ],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "geometry-collection-field",
+      "type": "registry:component",
+      "title": "Geometry Collection Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/geometry-collection-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "geometry-collection-input",
+      "type": "registry:component",
+      "title": "Geometry Collection Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/geometry-collection-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/geojson-input"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "line-string-field",
+      "type": "registry:component",
+      "title": "Line String Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/line-string-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "line-string-input",
+      "type": "registry:component",
+      "title": "Line String Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/line-string-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/shape-input-shell",
+        "@shadmin/use-osm-snap-to-roads"
+      ],
+      "dependencies": ["react-hook-form"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "multi-line-string-field",
+      "type": "registry:component",
+      "title": "Multi Line String Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/multi-line-string-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "multi-line-string-input",
+      "type": "registry:component",
+      "title": "Multi Line String Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/multi-line-string-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-input-shell"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "multi-point-field",
+      "type": "registry:component",
+      "title": "Multi Point Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/multi-point-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "multi-point-input",
+      "type": "registry:component",
+      "title": "Multi Point Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/multi-point-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-input-shell"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "multi-polygon-field",
+      "type": "registry:component",
+      "title": "Multi Polygon Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/multi-polygon-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "multi-polygon-input",
+      "type": "registry:component",
+      "title": "Multi Polygon Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/multi-polygon-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-input-shell"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "point-field",
+      "type": "registry:component",
+      "title": "Point Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/point-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "dependencies": ["leaflet"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "point-input",
+      "type": "registry:component",
+      "title": "Point Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/point-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-input-shell"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "polygon-field",
+      "type": "registry:component",
+      "title": "Polygon Field",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/polygon-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-field-shell"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "polygon-input",
+      "type": "registry:component",
+      "title": "Polygon Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/polygon-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shape-input-shell"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "shape-field-shell",
+      "type": "registry:component",
+      "title": "Shape Field Shell",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/shape-field-shell.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shared", "@shadmin/shared-map"],
+      "dependencies": ["leaflet", "ra-core", "react-leaflet"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "shape-input-shell",
+      "type": "registry:component",
+      "title": "Shape Input Shell",
+      "files": [
+        {
+          "path": "src/components/leaflet/shapes/shape-input-shell.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/geoman-shape-mapping",
+        "@shadmin/shared-map",
+        "@shadmin/use-geoman-rhf"
+      ],
+      "dependencies": [
+        "@geoman-io/leaflet-geoman-free",
+        "leaflet",
+        "react-leaflet",
+        "react-leaflet-geoman-v2"
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "shared-map",
+      "type": "registry:component",
+      "title": "Shared Map",
+      "files": [
+        {
+          "path": "src/components/leaflet/shared-map.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/shared"],
+      "dependencies": ["leaflet", "react-leaflet"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "shared",
+      "type": "registry:component",
+      "title": "Shared",
+      "files": [
+        {
+          "path": "src/components/leaflet/shared.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["leaflet"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "simplify-input",
+      "type": "registry:component",
+      "title": "Simplify Input",
+      "files": [
+        {
+          "path": "src/components/leaflet/simplify/simplify-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/shared",
+        "@shadmin/shared-map",
+        "slider",
+        "toggle-group"
+      ],
+      "dependencies": [
+        "@turf/simplify",
+        "leaflet",
+        "react-hook-form",
+        "react-leaflet"
+      ],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "csv-import",
       "type": "registry:block",
       "title": "CsvImport",
@@ -5976,7 +7148,7 @@
       "type": "registry:block",
       "title": "Supabase Admin",
       "categories": ["shadmin", "authentication", "data-providers"],
-      "docs": "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase/getting-started",
+      "docs": "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase-getting-started",
       "description": "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
       "registryDependencies": ["@shadmin/admin"],
       "dependencies": [
@@ -6081,6 +7253,403 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "supabase-admin-guesser",
+      "type": "registry:component",
+      "title": "Supabase Admin Guesser",
+      "files": [
+        {
+          "path": "src/components/supabase/admin-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/admin",
+        "@shadmin/supabase-forgot-password-page",
+        "@shadmin/supabase-login-page",
+        "@shadmin/supabase-set-password-page",
+        "@shadmin/supabase-use-crud-guesser"
+      ],
+      "dependencies": ["ra-core", "react-router"],
+      "devDependencies": ["@supabase/supabase-js", "ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-create-guesser",
+      "type": "registry:component",
+      "title": "Supabase Create Guesser",
+      "files": [
+        {
+          "path": "src/components/supabase/create-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/create",
+        "@shadmin/loading",
+        "@shadmin/supabase-edit-field-types",
+        "@shadmin/supabase-infer-element-from-type",
+        "@shadmin/supabase-inferred-element"
+      ],
+      "dependencies": ["inflection", "ra-core"],
+      "devDependencies": ["ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-edit-field-types",
+      "type": "registry:component",
+      "title": "Supabase Edit Field Types",
+      "files": [
+        {
+          "path": "src/components/supabase/edit-field-types.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/autocomplete-array-input",
+        "@shadmin/autocomplete-input",
+        "@shadmin/boolean-input",
+        "@shadmin/date-input",
+        "@shadmin/lib-any",
+        "@shadmin/number-input",
+        "@shadmin/reference-array-input",
+        "@shadmin/reference-input",
+        "@shadmin/simple-form",
+        "@shadmin/text-input"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-edit-guesser",
+      "type": "registry:component",
+      "title": "Supabase Edit Guesser",
+      "files": [
+        {
+          "path": "src/components/supabase/edit-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/edit",
+        "@shadmin/loading",
+        "@shadmin/supabase-edit-field-types",
+        "@shadmin/supabase-infer-element-from-type",
+        "@shadmin/supabase-inferred-element"
+      ],
+      "dependencies": ["inflection", "ra-core"],
+      "devDependencies": ["ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-forgot-password-form",
+      "type": "registry:component",
+      "title": "Supabase Forgot Password Form",
+      "files": [
+        {
+          "path": "src/components/supabase/forgot-password-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/text-input", "button"],
+      "dependencies": ["ra-core", "react-hook-form", "react-router"],
+      "devDependencies": ["ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-forgot-password-page",
+      "type": "registry:component",
+      "title": "Supabase Forgot Password Page",
+      "files": [
+        {
+          "path": "src/components/supabase/forgot-password-page.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/auth-layout",
+        "@shadmin/supabase-forgot-password-form"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-en",
+      "type": "registry:component",
+      "title": "Supabase En",
+      "files": [
+        {
+          "path": "src/components/supabase/i18n/en.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-fr",
+      "type": "registry:component",
+      "title": "Supabase Fr",
+      "files": [
+        {
+          "path": "src/components/supabase/i18n/fr.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-icons",
+      "type": "registry:component",
+      "title": "Supabase Icons",
+      "files": [
+        {
+          "path": "src/components/supabase/icons.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-infer-element-from-type",
+      "type": "registry:component",
+      "title": "Supabase Infer Element From Type",
+      "files": [
+        {
+          "path": "src/components/supabase/infer-element-from-type.ts",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/supabase-inferred-element"],
+      "dependencies": ["inflection", "ra-core"],
+      "devDependencies": ["openapi-types"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-inferred-element",
+      "type": "registry:component",
+      "title": "Supabase Inferred Element",
+      "files": [
+        {
+          "path": "src/components/supabase/inferred-element.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-list-field-types",
+      "type": "registry:component",
+      "title": "Supabase List Field Types",
+      "files": [
+        {
+          "path": "src/components/supabase/list-field-types.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/data-table",
+        "@shadmin/date-field",
+        "@shadmin/email-field",
+        "@shadmin/lib-any",
+        "@shadmin/number-field",
+        "@shadmin/reference-array-field",
+        "@shadmin/reference-field",
+        "@shadmin/url-field"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-list-guesser",
+      "type": "registry:component",
+      "title": "Supabase List Guesser",
+      "files": [
+        {
+          "path": "src/components/supabase/list-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/guesser-empty",
+        "@shadmin/list",
+        "@shadmin/loading",
+        "@shadmin/supabase-infer-element-from-type",
+        "@shadmin/supabase-inferred-element",
+        "@shadmin/supabase-list-field-types"
+      ],
+      "dependencies": ["inflection", "ra-core"],
+      "devDependencies": ["ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-login-form",
+      "type": "registry:component",
+      "title": "Supabase Login Form",
+      "files": [
+        {
+          "path": "src/components/supabase/login-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/text-input", "button"],
+      "dependencies": ["ra-core", "react-hook-form", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-login-page",
+      "type": "registry:component",
+      "title": "Supabase Login Page",
+      "files": [
+        {
+          "path": "src/components/supabase/login-page.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/auth-layout",
+        "@shadmin/supabase-login-form",
+        "@shadmin/supabase-social-auth-button",
+        "separator"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-set-password-form",
+      "type": "registry:component",
+      "title": "Supabase Set Password Form",
+      "files": [
+        {
+          "path": "src/components/supabase/set-password-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/text-input", "button"],
+      "dependencies": ["ra-core", "react-hook-form"],
+      "devDependencies": ["ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-set-password-page",
+      "type": "registry:component",
+      "title": "Supabase Set Password Page",
+      "files": [
+        {
+          "path": "src/components/supabase/set-password-page.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/auth-layout",
+        "@shadmin/supabase-set-password-form"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-show-field-types",
+      "type": "registry:component",
+      "title": "Supabase Show Field Types",
+      "files": [
+        {
+          "path": "src/components/supabase/show-field-types.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/date-field",
+        "@shadmin/email-field",
+        "@shadmin/lib-any",
+        "@shadmin/number-field",
+        "@shadmin/record-field",
+        "@shadmin/reference-array-field",
+        "@shadmin/reference-field",
+        "@shadmin/url-field"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-show-guesser",
+      "type": "registry:component",
+      "title": "Supabase Show Guesser",
+      "files": [
+        {
+          "path": "src/components/supabase/show-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/loading",
+        "@shadmin/show",
+        "@shadmin/supabase-infer-element-from-type",
+        "@shadmin/supabase-inferred-element",
+        "@shadmin/supabase-show-field-types"
+      ],
+      "dependencies": ["inflection", "ra-core"],
+      "devDependencies": ["ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-social-auth-button",
+      "type": "registry:component",
+      "title": "Supabase Social Auth Button",
+      "files": [
+        {
+          "path": "src/components/supabase/social-auth-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/supabase-icons",
+        "button"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "supabase-use-crud-guesser",
+      "type": "registry:component",
+      "title": "Supabase Use Crud Guesser",
+      "files": [
+        {
+          "path": "src/components/supabase/use-crud-guesser.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/supabase-create-guesser",
+        "@shadmin/supabase-edit-guesser",
+        "@shadmin/supabase-list-guesser",
+        "@shadmin/supabase-show-guesser"
+      ],
+      "dependencies": ["ra-core"],
+      "devDependencies": ["ra-supabase-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "realtime",
       "type": "registry:block",
       "title": "Shadmin Realtime",
@@ -6124,6 +7693,96 @@
           "type": "registry:component"
         }
       ],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "edit-live",
+      "type": "registry:component",
+      "title": "Edit Live",
+      "files": [
+        {
+          "path": "src/components/realtime/edit-live.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/edit"],
+      "dependencies": ["@tanstack/react-query", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "list-live",
+      "type": "registry:component",
+      "title": "List Live",
+      "files": [
+        {
+          "path": "src/components/realtime/list-live.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/list"],
+      "dependencies": ["@tanstack/react-query", "ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "lock-on-mount",
+      "type": "registry:component",
+      "title": "Lock On Mount",
+      "files": [
+        {
+          "path": "src/components/realtime/lock-on-mount.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["alert", "skeleton"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "lock-status",
+      "type": "registry:component",
+      "title": "Lock Status",
+      "files": [
+        {
+          "path": "src/components/realtime/lock-status.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["badge"],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "menu-live",
+      "type": "registry:component",
+      "title": "Menu Live",
+      "files": [
+        {
+          "path": "src/components/realtime/menu-live.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["badge"],
+      "dependencies": ["ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "show-live",
+      "type": "registry:component",
+      "title": "Show Live",
+      "files": [
+        {
+          "path": "src/components/realtime/show-live.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/show"],
+      "dependencies": ["@tanstack/react-query", "ra-core"],
+      "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
