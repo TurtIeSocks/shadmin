@@ -17,6 +17,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* RR7 framework mode generates route types into .react-router/types */
+    "rootDirs": [".", "./.react-router/types"],
+    "types": ["vite/client"],
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -27,6 +31,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", ".react-router/types/**/*"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }

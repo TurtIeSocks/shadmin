@@ -1,7 +1,7 @@
 import path from "node:path";
+import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
@@ -12,12 +12,17 @@ import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
 import { remarkCodeMeta } from "./scripts/remark-code-meta.mjs";
 
 export default defineConfig({
-  ssgOptions: { dirStyle: "nested" },
-  // vite-react-ssg dev ignores the CLI --port flag; set it here. +100 from
-  // vite's default so it doesn't collide with a user-run server on 5173.
+  // +100 from vite's default so it doesn't collide with a user-run server on 5173.
   server: { port: 5273 },
-  preview: { port: 4273 },
+  optimizeDeps: {
+    // Pre-bundle react-shiki together with React so it shares the single
+    // optimized React chunk instead of inlining its own copy (which would null
+    // out the hooks dispatcher → "Cannot read properties of null (useState)").
+    include: ["react", "react-dom", "react/jsx-runtime", "react-shiki"],
+  },
   plugins: [
+    // MDX must compile .mdx → JSX BEFORE reactRouter()/React process it, hence
+    // enforce: "pre". reactRouter() supplies React + fast-refresh (no plugin-react).
     {
       enforce: "pre",
       ...mdx({
@@ -33,17 +38,16 @@ export default defineConfig({
         ],
       }),
     },
-    react({ include: /\.(jsx|js|mdx|md|tsx|ts)$/ }),
+    reactRouter(),
     tailwindcss(),
   ],
-  root: __dirname,
-  base: "./",
   resolve: {
+    // Force a single React instance. react-shiki (used in code blocks) would
+    // otherwise get pre-bundled against its own optimized React copy, breaking
+    // hooks in dev with "Cannot read properties of null (reading 'useState')".
+    dedupe: ["react", "react-dom", "react/jsx-runtime"],
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      // vite-react-ssg imports react-router-dom/server.js which doesn't exist in RR7.
-      // In RR7 these APIs moved to react-router (core). Alias to our shim.
-      "react-router-dom/server.js": path.resolve(__dirname, "./src/react-router-server-shim.ts"),
     },
   },
 });

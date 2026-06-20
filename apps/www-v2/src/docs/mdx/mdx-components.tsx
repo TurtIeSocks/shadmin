@@ -5,7 +5,7 @@
  * (the standard MDX provider contract).
  */
 import type { MDXComponents } from "mdx/types";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { MdxPre } from "./code-block";
 import { Tabs, TabItem } from "./tabs";
 import { Callout } from "./callout";
