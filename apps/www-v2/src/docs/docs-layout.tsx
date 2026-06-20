@@ -1,49 +1,88 @@
-import { NavLink, Outlet } from "react-router";
+import { ChevronRight } from "lucide-react";
+import { NavLink, Outlet, useLocation } from "react-router";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "shadmin/components/ui/collapsible";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "shadmin/components/ui/sidebar";
 import { navTree } from "./nav-content";
-import type { DocNode } from "./types";
-
-function NodeView({ node }: { node: DocNode }) {
-  if (node.kind === "group") {
-    return (
-      <div className="mb-4">
-        <p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">
-          {node.title}
-        </p>
-        <div>
-          {node.children.map((c) => (
-            <NodeView key={c.kind === "leaf" ? c.slug : c.dir} node={c} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-  return (
-    <NavLink
-      to={`/docs/${node.slug}`}
-      className={({ isActive }) =>
-        `block rounded px-2 py-1 text-sm ${isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground"}`
-      }
-    >
-      {node.title}
-    </NavLink>
-  );
-}
+import type { DocLeaf } from "./types";
 
 export default function DocsLayout() {
+  const { pathname } = useLocation();
+  const activeSlug = pathname.replace(/^\/docs\/?/, "").replace(/\/+$/, "");
+
   return (
-    <div className="mx-auto flex max-w-7xl gap-8 px-4 py-8">
-      <aside className="w-60 shrink-0">
-        <nav>
-          {navTree.map((n) => (
-            <NodeView key={n.dir} node={n} />
-          ))}
-        </nav>
-      </aside>
-      <div className="min-w-0 flex-1">
-        <div className="mx-auto w-full max-w-3xl">
+    <SidebarProvider className="min-h-0">
+      <Sidebar
+        collapsible="none"
+        className="sticky top-14 h-[calc(100svh-3.5rem)] border-r bg-transparent"
+      >
+        <SidebarContent className="gap-0 px-2 py-4">
+          {navTree.map((section) => {
+            const leaves = section.children.filter(
+              (c): c is DocLeaf => c.kind === "leaf",
+            );
+            const hasActive = leaves.some((l) => l.slug === activeSlug);
+            return (
+              <Collapsible
+                key={section.dir}
+                defaultOpen={hasActive || section.dir === "getting-started"}
+                className="group/collapsible"
+              >
+                <SidebarGroup className="py-0.5">
+                  <SidebarGroupLabel
+                    asChild
+                    className="cursor-pointer text-xs font-semibold uppercase tracking-wide hover:text-foreground"
+                  >
+                    <CollapsibleTrigger>
+                      {section.title}
+                      <ChevronRight className="ml-auto size-4 transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                    </CollapsibleTrigger>
+                  </SidebarGroupLabel>
+                  <CollapsibleContent>
+                    <SidebarGroupContent>
+                      <SidebarMenu>
+                        {leaves.map((leaf) => (
+                          <SidebarMenuItem key={leaf.slug}>
+                            <SidebarMenuButton
+                              asChild
+                              isActive={leaf.slug === activeSlug}
+                              size="sm"
+                            >
+                              <NavLink to={`/docs/${leaf.slug}`}>
+                                {leaf.title}
+                              </NavLink>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        ))}
+                      </SidebarMenu>
+                    </SidebarGroupContent>
+                  </CollapsibleContent>
+                </SidebarGroup>
+              </Collapsible>
+            );
+          })}
+        </SidebarContent>
+      </Sidebar>
+
+      <SidebarInset className="bg-transparent">
+        <div className="mx-auto w-full max-w-3xl px-6 py-10">
           <Outlet />
         </div>
-      </div>
-    </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
