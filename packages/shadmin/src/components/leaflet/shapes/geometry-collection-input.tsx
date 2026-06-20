@@ -1,6 +1,9 @@
 "use client";
 
-import { GeoJsonInput, type GeoJsonInputProps } from "../features/geojson-input";
+import {
+  GeoJsonInput,
+  type GeoJsonInputProps,
+} from "../features/geojson-input";
 import type { ShapeKind } from "../types";
 
 interface GeometryCollectionInputProps
