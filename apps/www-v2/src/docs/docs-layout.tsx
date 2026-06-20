@@ -7,17 +7,15 @@ function NodeView({ node }: { node: DocNode }) {
     return (
       <div className="mb-4">
         <p className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground">{node.title}</p>
-        <ul>{node.children.map((c) => <NodeView key={c.kind === "leaf" ? c.slug : c.dir} node={c} />)}</ul>
+        <div>{node.children.map((c) => <NodeView key={c.kind === "leaf" ? c.slug : c.dir} node={c} />)}</div>
       </div>
     );
   }
   return (
-    <li>
-      <NavLink to={`/docs/${node.slug}`}
-        className={({ isActive }) => `block rounded px-2 py-1 text-sm ${isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground"}`}>
-        {node.title}
-      </NavLink>
-    </li>
+    <NavLink to={`/docs/${node.slug}`}
+      className={({ isActive }) => `block rounded px-2 py-1 text-sm ${isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground"}`}>
+      {node.title}
+    </NavLink>
   );
 }
 

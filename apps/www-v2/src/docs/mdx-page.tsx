@@ -1,8 +1,9 @@
+import type { ComponentType } from "react";
 import { useParams } from "react-router-dom";
 import { installFor } from "./registry";
 import { InstallCommand } from "./mdx/install-command";
 
-interface GuideModule { default: React.ComponentType; frontmatter?: { title?: string }; }
+interface GuideModule { default: ComponentType; frontmatter?: { title?: string }; }
 const guides = import.meta.glob<GuideModule>("./content/**/*.mdx", { eager: true });
 
 const bySlug = new Map(
