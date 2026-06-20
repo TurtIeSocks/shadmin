@@ -12,7 +12,7 @@ This input allows editing values that are arrays of scalar values, e.g. `[123, 4
 
 In addition to the `source`, `<AutocompleteArrayInput>` requires one prop: the `choices` listing the possible values.
 
-```jsx
+```tsx
 import { AutocompleteArrayInput } from "@/components/admin";
 
 <AutocompleteArrayInput
@@ -38,7 +38,7 @@ By default, the possible choices are built from the `choices` prop, using:
 
 The form value for the source must be an array of the selected values, e.g.
 
-```jsx
+```tsx
 {
     id: 123,
     title: 'Lorem Ipsum',
@@ -93,7 +93,7 @@ The form value for the source must be an array of the selected values, e.g.
 
 The list of choices must be an array of objects - one object for each possible choice. In each object, `id` is the value, and the `name` is the label displayed to the user.
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="roles"
   choices={[
@@ -107,7 +107,7 @@ The list of choices must be an array of objects - one object for each possible c
 
 You can also use an array of objects with different properties for the label and value, given you specify the `optionText` and `optionValue` props:
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="roles"
   choices={[
@@ -123,7 +123,7 @@ You can also use an array of objects with different properties for the label and
 
 The choices are translated by default, so you can use translation identifiers as choices:
 
-```jsx
+```tsx
 const choices = [
   { id: "admin", name: "myroot.roles.admin" },
   { id: "u001", name: "myroot.roles.u001" },
@@ -136,7 +136,7 @@ You can opt-out of this translation by setting the `translateChoice` prop to `fa
 
 If you need to _fetch_ the options from another resource, you're actually editing a one-to-many or a many-to-many relationship. In this case, wrap the `<AutocompleteArrayInput>` in a [`<ReferenceArrayInput>`](./reference-array-input) component. You don't need to specify the `choices` prop - the parent component injects it based on the possible values of the related resource.
 
-```jsx
+```tsx
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <AutocompleteArrayInput />
 </ReferenceArrayInput>
@@ -144,7 +144,7 @@ If you need to _fetch_ the options from another resource, you're actually editin
 
 You can also pass an _array of strings_ for the choices:
 
-```jsx
+```tsx
 const roles = ["Admin", "Editor", "Moderator", "Reviewer"];
 <AutocompleteArrayInput source="roles" choices={roles} />;
 // is equivalent to
@@ -160,7 +160,7 @@ By default, the filter is built using the `q` parameter. This means that if the 
 
 You can customize the filter by setting the `filterToQuery` prop. It should be a function that returns a filter object.
 
-```jsx
+```tsx
 const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 
 <ReferenceArrayInput source="tag_ids" reference="tags">
@@ -172,7 +172,7 @@ const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 
 A gate function `(filter: string) => boolean` called before the dropdown opens. When it returns `false`, the dropdown stays closed regardless of focus state or other conditions. Use this to suppress suggestions until the user has typed a minimum number of characters.
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -184,7 +184,7 @@ A gate function `(filter: string) => boolean` called before the dropdown opens. 
 
 A callback `(filter: string) => void` fired on every keystroke with the current search text. Use this for server-side filtering when the component is **not** wrapped in a `<ReferenceArrayInput>` (which handles filtering automatically). No debounce is applied by the component — implement debouncing in the callback if needed.
 
-```jsx
+```tsx
 const [filter, setFilter] = useState("");
 
 <AutocompleteArrayInput
@@ -198,7 +198,7 @@ const [filter, setFilter] = useState("");
 
 When `true`, any text already present in the search input is selected when the input receives focus. This lets users immediately start typing a new query without having to manually clear the previous filter text.
 
-```jsx
+```tsx
 <AutocompleteArrayInput source="tags" choices={choices} selectOnFocus />
 ```
 
@@ -210,7 +210,7 @@ Determines how each choice's label is derived. Accepts:
 - A **function** `(choice) => string | ReactNode` — called with each choice object; return a string or element.
 - A **React element** — rendered inside a `RecordContext` containing the choice. When using an element, also pass `inputText` (for badge labels) and `matchSuggestion` (for filtering).
 
-```jsx
+```tsx
 <AutocompleteArrayInput source="tags" choices={choices} optionText="label" />
 ```
 
@@ -218,7 +218,7 @@ Determines how each choice's label is derived. Accepts:
 
 Accepted for API parity with `<AutocompleteInput>`. The array variant always opens its dropdown when the inline search input receives focus, so this prop is a no-op — passing it does not change behaviour but allows shared prop objects to be spread across both components without type errors.
 
-```jsx
+```tsx
 <AutocompleteArrayInput source="tags" choices={choices} openOnFocus />
 ```
 
@@ -226,7 +226,7 @@ Accepted for API parity with `<AutocompleteInput>`. The array variant always ope
 
 A simpler alternative to the `create` prop. Pass a callback `(filter) => newChoice | Promise<newChoice>` that receives the current filter text and returns (or resolves with) the new choice object. The returned object is automatically appended to the selection. Use `create` instead when you need a full custom UI (e.g. a dialog with multiple fields).
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -241,7 +241,7 @@ A simpler alternative to the `create` prop. Pass a callback `(filter) => newChoi
 
 The content rendered inside the dropdown when no choices match the current filter. Accepts a string or any React node. Defaults to the translation of `ra.navigation.no_results` ("No matching item found.").
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -253,7 +253,7 @@ The content rendered inside the dropdown when no choices match the current filte
 
 A custom filter function `(filter, choice) => boolean` that replaces the built-in substring match. Required when `optionText` is a React element (because the component cannot derive a text representation to search against). The function receives the current filter string and a choice object and must return `true` when the choice should be shown.
 
-```jsx
+```tsx
 const matchSuggestion = (filter, choice) =>
   choice.first_name.toLowerCase().includes(filter.toLowerCase()) ||
   choice.last_name.toLowerCase().includes(filter.toLowerCase());
@@ -269,7 +269,7 @@ const matchSuggestion = (filter, choice) =>
 
 When `true`, the dropdown only shows choices that are already in the selected values array. All other choices are hidden. Useful in read-heavy UIs where you want users to browse or remove current selections without seeing the full unselected list.
 
-```jsx
+```tsx
 <AutocompleteArrayInput source="tags" choices={choices} limitChoicesToValue />
 ```
 
@@ -277,7 +277,7 @@ When `true`, the dropdown only shows choices that are already in the selected va
 
 A custom comparator `(choiceValue, fieldValue) => boolean` that determines when a choice matches a value already in the field array. By default the component uses `areIdsEqual`, which does a loose `==` comparison so string and number IDs match. Override this when you need strict equality or a domain-specific comparison.
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -289,7 +289,7 @@ A custom comparator `(choiceValue, fieldValue) => boolean` that determines when 
 
 When `true`, pressing `Home` while the dropdown is open scrolls the option list to the first item, and pressing `End` scrolls to the last item. Useful for long lists where keyboard-only navigation is important.
 
-```jsx
+```tsx
 <AutocompleteArrayInput source="tags" choices={choices} handleHomeEndKeys />
 ```
 
@@ -297,7 +297,7 @@ When `true`, pressing `Home` while the dropdown is open scrolls the option list 
 
 Accepted for API parity with `<AutocompleteInput>` so code that passes `emptyText` to both variants compiles without errors. The array variant never renders a "(none)" entry — multiple values are deselected by clicking the × badge — so this prop has no visual effect.
 
-```jsx
+```tsx
 <AutocompleteArrayInput source="tags" choices={choices} emptyText="No tags" />
 ```
 
@@ -305,7 +305,7 @@ Accepted for API parity with `<AutocompleteInput>` so code that passes `emptyTex
 
 The sentinel string stored as the option value for the "create new option" item in the dropdown. Defaults to `"@@ra-create"`. Only override this when your actual choices contain that string as an ID.
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -321,7 +321,7 @@ The sentinel string stored as the option value for the "create new option" item 
 
 A hint label rendered as a menu item when the filter text is empty, letting users know they can type to create a new option. Unlike `createItemLabel`, this appears before the user has typed anything.
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -337,7 +337,7 @@ A hint label rendered as a menu item when the filter text is empty, letting user
 
 The label shown for the "Create …" menu item when the filter text is non-empty. Accepts a string (supports `%{item}` interpolation for the current filter) or a function `(filter) => ReactNode` for fully custom rendering. Defaults to the translation of `ra.action.create_item` ("Create %\{item\}").
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -353,7 +353,7 @@ The label shown for the "Create …" menu item when the filter text is non-empty
 
 An internal sentinel string passed to `useSupportCreateSuggestion` to identify the "create new option" item in the dropdown. You rarely need to set this — only override it when the default sentinel (`@@ra-create`) collides with a real choice value in your dataset.
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   choices={choices}
@@ -366,7 +366,7 @@ An internal sentinel string passed to `useSupportCreateSuggestion` to identify t
 
 Pass a React element to let users create a new option on the fly. `<AutocompleteArrayInput>` renders a "Create …" menu item at the bottom of the dropdown; clicking it mounts the element you provide. Use `useCreateSuggestionContext` inside the element to access the current filter text and the `onCreate` callback.
 
-```jsx
+```tsx
 import { useCreateSuggestionContext } from "ra-core";
 
 const CreateTag = () => {
@@ -399,7 +399,7 @@ const CreateTag = () => {
 
 When `true`, the filter text typed in the search input is cleared when the input loses focus. This means if the user opens the dropdown, types to narrow results, then clicks away without selecting, the filter resets to empty.
 
-```jsx
+```tsx
 <AutocompleteArrayInput source="tags" choices={choices} clearOnBlur />
 ```
 
@@ -418,7 +418,7 @@ So for instance, for editing the `tags` field of records looking like the follow
 
 You should use the following syntax:
 
-```jsx
+```tsx
 <AutocompleteArrayInput
   source="tags"
   parse={(value) => value && value.map((v) => ({ id: v }))}

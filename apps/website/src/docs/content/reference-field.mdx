@@ -21,7 +21,7 @@ For instance, let's consider a model where a `post` has one author from the `use
 
 In that case, use `<ReferenceField>` to display the post author's as follows:
 
-```jsx {9}
+```tsx {9}
 import { Show, ReferenceField, TextField, DateField } from "@/components/admin";
 
 export const PostShow = () => (
@@ -61,7 +61,7 @@ By default, `<ReferenceField>` renders the [`recordRepresentation`](https://marm
 
 So it's a good idea to configure the `<Resource recordRepresentation>` to render related records in a meaningful way. For instance, for the `users` resource, if you want the `<ReferenceField>` to display the full name of the author:
 
-```jsx
+```tsx
 <Resource
   name="users"
   list={UserList}
@@ -71,7 +71,7 @@ So it's a good idea to configure the `<Resource recordRepresentation>` to render
 
 If you pass a child component, `<ReferenceField>` will render it instead of the `recordRepresentation`. Usual child components for `<ReferenceField>` are other `<Field>` components (e.g. [`<TextField>`](./text-field)).
 
-```jsx
+```tsx
 <ReferenceField source="user_id" reference="users">
   <TextField source="name" />
 </ReferenceField>
@@ -81,7 +81,7 @@ Alternatively to `children`, pass a `render` prop. It will receive the `Referenc
 
 This allows to inline the render logic for the list of related records.
 
-```jsx
+```tsx
 <ReferenceField
   source="user_id"
   reference="users"
@@ -101,7 +101,7 @@ This allows to inline the render logic for the list of related records.
 
 Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
 
-```jsx
+```tsx
 <ReferenceField
   source="author_id"
   reference="authors"

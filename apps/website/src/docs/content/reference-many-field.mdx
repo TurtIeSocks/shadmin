@@ -21,7 +21,7 @@ For instance, if an `author` has many `books`, and each book resource exposes an
 
 `<ReferenceManyField>` can render the titles of all the books by a given author.
 
-```jsx {9-14}
+```tsx {9-14}
 import {
   Show,
   ReferenceManyField,
@@ -52,7 +52,7 @@ const AuthorShow = () => (
 
 You can also use `<ReferenceManyField>` in a list, e.g. to display the authors of the comments related to each post in a list by matching `post.id` to `comment.post_id`:
 
-```jsx {10-14}
+```tsx {10-14}
 import {
   List,
   DataTable,
@@ -105,7 +105,7 @@ export const PostList = () => (
 
 Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
 
-```jsx
+```tsx
 <ReferenceManyField
   reference="books"
   target="author_id"

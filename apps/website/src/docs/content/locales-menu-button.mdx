@@ -14,7 +14,7 @@ For most users, this component will be automatically added to the header of shad
 
 If you use the `ra-i18n-polyglot` package, you can pass the list of available locales as the third parameter of `polyglotI18nProvider`:
 
-```jsx
+```tsx
 // in src/App.js
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
@@ -41,7 +41,7 @@ const App = () => (
 
 For custom layouts, or to put the language switcher in a settings menu, simply render the component without props:
 
-```jsx
+```tsx
 import { LocalesMenuButton } from "@/components/admin";
 
 <LocalesMenuButton />;

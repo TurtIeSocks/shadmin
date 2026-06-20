@@ -14,7 +14,7 @@ import { BadgeField } from "@/components/admin";
 
 This field type is especially useful for one-to-many relationships, e.g. to display a list of books for a given author:
 
-```jsx
+```tsx
 <ReferenceManyField reference="books" target="author_id">
   <SingleFieldList>
     <BadgeField source="title" />

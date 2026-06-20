@@ -66,7 +66,7 @@ export const PostCreate = () => (
 
 To validate the form values, provide a `validate` function taking the record as input, and returning an object with error messages indexed by field. For instance:
 
-```jsx
+```tsx
 const validateUserCreation = (values) => {
   const errors = {};
   if (!values.firstName) {
@@ -114,7 +114,7 @@ Alternatively, you can specify a `validate` prop directly in `<Input>` component
 
 Example usage:
 
-```jsx
+```tsx
 import {
   required,
   minLength,
@@ -165,7 +165,7 @@ export const UserCreate = () => (
 :::tip
 If you pass a function as a message, Shadmin calls this function with `{ args, value, values,translate, ...props }` as argument. For instance:
 
-```jsx
+```tsx
 const message = ({ translate }) => translate("myroot.validation.email_invalid");
 const validateEmail = email(message);
 ```
@@ -174,7 +174,7 @@ const validateEmail = email(message);
 
 You can also define your own validator functions. These functions should return `undefined` when there is no error, or an error string.
 
-```jsx
+```tsx
 const required =
   (message = "Required") =>
   (value) =>
@@ -224,7 +224,7 @@ Input validation functions receive the current field value and the values of all
 :::tip
 If your admin has multi-language support, validator functions should return message _identifiers_ rather than messages themselves. Shadmin automatically passes these identifiers to the translation function:
 
-```jsx
+```tsx
 // in validators/required.js
 const required = () => (value, allValues, props) =>
   value ? undefined : "myroot.validation.required";
@@ -241,7 +241,7 @@ export default {
 
 If the translation depends on a variable, the validator can return an object rather than a translation identifier:
 
-```jsx
+```tsx
 // in validators/minLength.js
 const minLength = (min) => (value, allValues, props) =>
   value.length >= min
@@ -263,7 +263,7 @@ export default {
 :::tip
 Make sure to define validation functions or array of functions in a variable outside your component, instead of defining them directly in JSX. This can result in a new function or array at every render, and trigger infinite rerender.
 
-```jsx
+```tsx
 const validateStock = [required(), number(), minValue(0)];
 
 export const ProductEdit = () => (
@@ -293,7 +293,7 @@ The custom validator function can return a promise, e.g. to use server-side vali
 
 The form is prepopulated based on the current `RecordContext`. For new records, or for empty fields, you can define the default values using the `defaultValues` prop. It must be an object, or a function returning an object, specifying default values for the created record. For instance:
 
-```jsx
+```tsx
 const postDefaultValue = () => ({
   id: uuid(),
   created_at: new Date(),
@@ -317,7 +317,7 @@ You can include properties in the form `defaultValues` that are not listed as in
 
 You can also define default values at the input level using the `<Input defaultValue>` prop:
 
-```jsx
+```tsx
 export const PostCreate = () => (
   <Create>
     <SimpleForm>
@@ -393,7 +393,7 @@ const PostEdit = () => (
 
 The basic usage of `<SimpleForm>` is to pass Input components as children. For non-editable fields, you can pass `readOnly` inputs, or even a [`<RecordField>`](./record-field) component.
 
-```jsx
+```tsx
 import {
   Edit,
   SimpleForm,
@@ -417,7 +417,7 @@ const PostEdit = () => (
 
 You can grab the current form values using react-hook-form's [useWatch](https://react-hook-form.com/docs/usewatch) hook. This allows to link two inputs, e.g., a country and a city input:
 
-```jsx
+```tsx
 import { Edit, SimpleForm, SelectInput } from "@/components/admin";
 import { useWatch } from "react-hook-form";
 

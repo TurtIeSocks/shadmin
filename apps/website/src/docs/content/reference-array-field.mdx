@@ -33,7 +33,7 @@ A typical `post` record therefore looks like this:
 
 In that case, use `<ReferenceArrayField>` to display the post tag names as follows:
 
-```jsx {9}
+```tsx {9}
 import { List, DataTable, ReferenceArrayField } from "@/components/admin";
 
 export const PostList = () => (
@@ -56,7 +56,7 @@ export const PostList = () => (
 
 Configure the `<Resource recordRepresentation>` to render related records in a meaningful way. For instance, for the `tags` resource, if you want the `<ReferenceArrayField>` to display the tag `name`:
 
-```jsx
+```tsx
 <Resource name="tags" list={TagList} recordRepresentation="name" />
 ```
 
@@ -91,7 +91,7 @@ You can change how the list of related records is rendered by passing a custom c
 
 For instance, use a `<DataTable>` to render the related records in a table:
 
-```jsx {8-13}
+```tsx {8-13}
 import {
   Show,
   TextField,
@@ -153,7 +153,7 @@ export const PostShow = () => (
 
 Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
 
-```jsx
+```tsx
 <ReferenceArrayField
   reference="tags"
   source="tag_ids"

@@ -68,7 +68,7 @@ const record = {
 
 The list of choices must be an array of objects with at least two fields: one to use for the name, and the other to use for the value. By default, `<SelectArrayInput>` will use the `id` and `name` fields.
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "Tech" },
   { id: "lifestyle", name: "Lifestyle" },
@@ -79,7 +79,7 @@ const choices = [
 
 If the choices have different keys, use `optionText` and `optionValue`:
 
-```jsx
+```tsx
 const choices = [
   { _id: "tech", label: "Tech" },
   { _id: "lifestyle", label: "Lifestyle" },
@@ -96,7 +96,7 @@ const choices = [
 
 The choices are translated by default, so you can use translation identifiers as choices:
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "myroot.tags.tech" },
   { id: "lifestyle", name: "myroot.tags.lifestyle" },
@@ -108,7 +108,7 @@ You can opt out of this translation by setting the `translateChoice` prop to `fa
 
 To fetch the options from another resource, wrap `<SelectArrayInput>` in a [`<ReferenceArrayInput>`](./reference-array-input):
 
-```jsx
+```tsx
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <SelectArrayInput />
 </ReferenceArrayInput>
@@ -130,7 +130,7 @@ Text displayed in the trigger button when no value is selected. Defaults to a bl
 
 You can disable some choices by setting a `disabled` field to `true` (or by passing a custom field name with the `disableValue` prop):
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "Tech" },
   { id: "lifestyle", name: "Lifestyle" },
@@ -145,7 +145,7 @@ Lightweight callback alternative to [`create`](#create). Called with the current
 
 Use `onCreate` for simple one-step creation (e.g. a `prompt()` or a quick API call). For complex creation UI, use [`create`](#create) instead.
 
-```jsx
+```tsx
 <SelectArrayInput
   source="tags"
   choices={choices}
@@ -162,7 +162,7 @@ Use `onCreate` for simple one-step creation (e.g. a `prompt()` or a quick API ca
 
 Props forwarded directly to the `<FormLabel>` element rendered above the trigger button. Use this to add a custom `className`, `style`, or any other label attribute without reaching into the DOM manually.
 
-```jsx
+```tsx
 <SelectArrayInput
   source="tags"
   choices={choices}
@@ -174,7 +174,7 @@ Props forwarded directly to the `<FormLabel>` element rendered above the trigger
 
 Sentinel string used to identify the create option inside the options list. Defaults to `"@@ra-create"`. Override when your real dataset happens to contain that string as a valid choice id.
 
-```jsx
+```tsx
 <SelectArrayInput
   source="tags"
   choices={choices}
@@ -187,7 +187,7 @@ Sentinel string used to identify the create option inside the options list. Defa
 
 Label for the create menu entry shown when no filter has been typed (i.e. the dropdown just opened). Defaults to the `ra.action.create` translation key (typically `"Create"`). Pair with [`createItemLabel`](#createitemlabel) to cover both the empty and non-empty filter states.
 
-```jsx
+```tsx
 <SelectArrayInput
   source="tags"
   choices={choices}
@@ -200,7 +200,7 @@ Label for the create menu entry shown when no filter has been typed (i.e. the dr
 
 Label for the create menu entry that appears when the user has typed a filter string. Defaults to the `ra.action.create_item` translation key (typically `"Create %{item}"`). Use this to provide a custom label that includes context for your domain.
 
-```jsx
+```tsx
 <SelectArrayInput
   source="tags"
   choices={choices}
@@ -213,7 +213,7 @@ Label for the create menu entry that appears when the user has typed a filter st
 
 Internal sentinel string passed to ra-core's `useChoices` / `useSupportCreateSuggestion` to mark the "create" option while the create element is rendered. You rarely need to set this manually; override only when the default sentinel conflicts with a real option value in your dataset.
 
-```jsx
+```tsx
 <SelectArrayInput
   source="tags"
   choices={choices}
@@ -228,7 +228,7 @@ A React element rendered as a special entry at the bottom of the options list. W
 
 Use `create` when you need full UI control over the creation form. For a simple callback, prefer [`onCreate`](#oncreate).
 
-```jsx
+```tsx
 import { useState } from "react";
 
 const CreateTag = ({ onClose }) => {

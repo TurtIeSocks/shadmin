@@ -19,7 +19,7 @@ The `authProvider` acts as a bridge between shadmin and the authentication backe
 
 An Auth Provider must implement the following methods:
 
-```jsx
+```tsx
 const authProvider = {
   // Send username and password to the auth server and get back credentials
   async login(params) {
@@ -120,7 +120,7 @@ Use the `authProvider` to integrate shadmin with popular authorization solutions
 
 To use Access Control, the `authProvider` must implement a `canAccess` method with the following signature:
 
-```jsx
+```tsx
 type CanAccessParams = {
     action: string;
     resource: string;
@@ -134,7 +134,7 @@ React components will use this method to determine if the current user can perfo
 
 For example, let’s assume that the application receives a list of authorized resources on login. The `authProvider` would look like this:
 
-```jsx
+```tsx
 const authProvider = {
   async login({ username, password }) {
     // ...
@@ -160,7 +160,7 @@ const authProvider = {
 
 The page components (`<List>`, `<Create>`, `<Edit>`, and `<Show>`) have built-in access control. Before rendering them, shadmin calls `authProvider.canAccess()` with the appropriate action and resource parameters.
 
-```jsx
+```tsx
 <Resource
   name="posts"
   // available if canAccess({ action: 'list', resource: 'posts' }) returns true

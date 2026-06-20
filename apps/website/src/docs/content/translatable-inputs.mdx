@@ -26,7 +26,7 @@ title: "TranslatableInputs"
 
 Render translatable inputs by passing `locales` and one child per source:
 
-```jsx
+```tsx
 import { TranslatableInputs, TextInput } from "@/components/admin";
 
 const PostEdit = () => (
@@ -76,7 +76,7 @@ By default each tab is labeled by translating the key `ra.locales.${locale}`. If
 
 Each tab subscribes to a form group named `${groupKey}${locale}` via `useFormGroup`. When that group contains invalid inputs, the tab label is rendered in the `text-destructive` color so the user can quickly spot which locale needs attention.
 
-```jsx
+```tsx
 import { required } from "ra-core";
 import { TranslatableInputs, TextInput } from "@/components/admin";
 
@@ -91,7 +91,7 @@ When the user submits the form leaving `name.fr` empty, the `fr` tab label turns
 
 Pass any React element as the `selector` prop to replace the default tabs. Use `useTranslatableContext` to read and update the currently selected locale:
 
-```jsx
+```tsx
 import { useTranslatableContext } from "ra-core";
 import { TranslatableInputs, TextInput } from "@/components/admin";
 

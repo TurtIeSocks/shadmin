@@ -8,7 +8,7 @@ Displays the text for a value from a predefined list of `choices`.
 
 For instance, if the `gender` field can take values "M" and "F", here is how to display it as either "Male" or "Female":
 
-```jsx
+```tsx
 import { SelectField } from "@/components/admin";
 
 <SelectField
@@ -41,7 +41,7 @@ Additional props are passed to the underlying `<span>` element (e.g., `className
 
 You can customize the property to use for the lookup text instead of `name` using the `optionText` prop.
 
-```jsx
+```tsx
 const currencies = [
   // ...
   {
@@ -65,7 +65,7 @@ const currencies = [
 
 `optionText` also accepts a function, so you can shape the option text at will:
 
-```jsx
+```tsx
 const authors = [
   { id: 123, first_name: "Leo", last_name: "Tolstoi" },
   { id: 456, first_name: "Jane", last_name: "Austen" },
@@ -76,7 +76,7 @@ const optionRenderer = (choice) => `${choice.first_name} ${choice.last_name}`;
 
 `optionText` also accepts a React Element. Shadmin renders it once per choice, within a [`RecordContext`](https://marmelab.com/ra-core/userecordcontext/) containing the related choice. You can use Field components there.
 
-```jsx
+```tsx
 const choices = [
   { id: 123, first_name: "Leo", last_name: "Tolstoi" },
   { id: 456, first_name: "Jane", last_name: "Austen" },

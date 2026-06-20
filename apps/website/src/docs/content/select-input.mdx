@@ -74,7 +74,7 @@ Shadmin includes other components to edit such values:
 
 The list of choices must be an array of objects with at least two fields: one to use for the name, and the other to use for the value. By default, `<SelectInput>` will use the `id` and `name` fields.
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "Tech" },
   { id: "lifestyle", name: "Lifestyle" },
@@ -85,7 +85,7 @@ const choices = [
 
 If the choices have different keys, you can use `optionText` and `optionValue` to specify which fields to use for the name and value.
 
-```jsx
+```tsx
 const choices = [
   { _id: "tech", label: "Tech" },
   { _id: "lifestyle", label: "Lifestyle" },
@@ -102,7 +102,7 @@ const choices = [
 
 The choices are translated by default, so you can use translation identifiers as choices:
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "myroot.categories.tech" },
   { id: "lifestyle", name: "myroot.categories.lifestyle" },
@@ -114,7 +114,7 @@ You can opt-out of this translation by setting the `translateChoice` prop to `fa
 
 If you need to _fetch_ the options from another resource, you're usually editing a many-to-one or a one-to-one relationship. In this case, wrap the `<SelectInput>` in a [`<ReferenceInput>`](./reference-input). You don't need to specify the `source` and `choices` prop in this case - the parent component injects them based on the possible values of the related resource.
 
-```jsx
+```tsx
 <ReferenceInput label="Author" source="author_id" reference="authors">
   <SelectInput />
 </ReferenceInput>
@@ -122,7 +122,7 @@ If you need to _fetch_ the options from another resource, you're usually editing
 
 You can also pass an _array of strings_ for the choices:
 
-```jsx
+```tsx
 const categories = ["tech", "lifestyle", "people"];
 <SelectInput source="category" choices={categories} />;
 // is equivalent to

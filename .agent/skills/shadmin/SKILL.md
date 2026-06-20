@@ -15,7 +15,7 @@ Shadmin is a component library for building admin/CRUD applications using React,
 
 Components are imported from `@/components/admin/`, while ra-core hooks and utilities come from `ra-core`:
 
-```jsx
+```tsx
 // Admin components
 import { Admin } from "@/components/admin/admin";
 import { List } from "@/components/admin/list";
@@ -40,7 +40,7 @@ Shadmin never calls APIs directly. All communication goes through **providers** 
 
 Shadmin uses composition over configuration. Override behavior by passing child components, not by setting dozens of props:
 
-```jsx
+```tsx
 <Edit actions={<MyCustomActions />}>
   <SimpleForm>
     <TextInput source="title" />
@@ -72,7 +72,7 @@ When a component's UI doesn't fit, use the underlying hook instead of building f
 
 `<Resource>` declares CRUD routes automatically (`/posts`, `/posts/create`, `/posts/:id/edit`, `/posts/:id/show`). Use `<CustomRoutes>` for non-CRUD pages. Use `useCreatePath()` to build resource URLs and `<Link>` from react-router for navigation. The router is React Router v7. See [Routing](https://marmelab.com/ra-core/routing/).
 
-```jsx
+```tsx
 import { Resource, CustomRoutes } from "ra-core";
 import { Route } from "react-router";
 import { Admin } from "@/components/admin/admin";
@@ -93,7 +93,7 @@ export const App = () => (
 
 ### Query Hooks (Reading Data)
 
-```jsx
+```tsx
 const { data, total, isPending, error } = useGetList("posts", {
   pagination: { page: 1, perPage: 25 },
   sort: { field: "created_at", order: "DESC" },
@@ -119,7 +119,7 @@ All mutations return `[mutate, state]`. They support three **mutation modes**:
 - **optimistic**: Update UI immediately, revert on server error.
 - **undoable**: Update UI, show undo notification, commit after delay.
 
-```jsx
+```tsx
 const [create, { isPending }] = useCreate();
 const [update] = useUpdate();
 const [deleteOne] = useDelete();
@@ -158,7 +158,7 @@ Fetching all the data (including relationships) upfront for a given page is an a
 
 ### Displaying Related Records (Fields)
 
-```jsx
+```tsx
 {
   /* Show the company of the current record based on its company_id */
 }
@@ -188,7 +188,7 @@ See [ReferenceField](https://shadmin.turtlesocks.dev/docs/reference-field), [Ref
 
 ### Editing Related Records (Inputs)
 
-```jsx
+```tsx
 {
   /* Select from another resource (FK) */
 }
@@ -208,7 +208,7 @@ Forms are built on React Hook Form with Zod validation. Use `<SimpleForm>` for s
 
 Pass validators to input components: `required()`, `minLength(min)`, `maxLength(max)`, `minValue(min)`, `maxValue(max)`, `number()`, `email()`, `regex(pattern, message)`, or a custom function returning an error string.
 
-```jsx
+```tsx
 <TextInput source="title" validate={[required(), minLength(3)]} />
 ```
 
@@ -218,7 +218,7 @@ Use React Hook Form's `useWatch()` to create dynamic forms that react to field v
 
 Add filters to lists using the `filters` prop with an array of input components:
 
-```jsx
+```tsx
 import { List } from "@/components/admin/list";
 import { TextInput } from "@/components/admin/text-input";
 import { ReferenceInput } from "@/components/admin/reference-input";
@@ -242,7 +242,7 @@ export const ProductList = () => (
 
 Encapsulate resource components in index files for clean imports:
 
-```jsx
+```tsx
 // posts/index.ts
 export default {
   list: PostList,
@@ -305,7 +305,7 @@ See [Resource](https://shadmin.turtlesocks.dev/docs/resource), [RecordRepresenta
 
 Guessers auto-generate CRUD components from API responses and log the generated code to the console for copy-paste:
 
-```jsx
+```tsx
 // Temporarily use guessers during development
 <Resource
   name="products"
@@ -335,7 +335,7 @@ All components use Tailwind CSS classes. Override styles via the `className` pro
 
 Use the `cn()` utility from `@/lib/utils` to merge class names:
 
-```jsx
+```tsx
 import { cn } from "@/lib/utils";
 <div className={cn("base-class", condition && "conditional-class")} />;
 ```
@@ -344,7 +344,7 @@ import { cn } from "@/lib/utils";
 
 Extend the dataProvider with domain-specific methods:
 
-```jsx
+```tsx
 const dataProvider = {
   ...baseDataProvider,
   archivePost: async (id) => {
@@ -360,7 +360,7 @@ const dataProvider = {
 
 Use `useStore()` for persistent user preferences (theme, column visibility, saved filters):
 
-```jsx
+```tsx
 const [theme, setTheme] = useStore("theme", "light");
 ```
 
@@ -368,7 +368,7 @@ See [Store](https://marmelab.com/ra-core/store/).
 
 ## Notification, Redirect, Refresh
 
-```jsx
+```tsx
 const notify = useNotify();
 const redirect = useRedirect();
 const refresh = useRefresh();

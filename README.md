@@ -104,7 +104,7 @@ export const App = () => (
 
 The guessers will print out the guessed component code in the console. You can then copy and paste it into your code to create the components to use as list, edit and show view.
 
-```jsx
+```tsx
 // Example output
 Guessed List:
 

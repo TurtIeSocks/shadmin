@@ -10,7 +10,7 @@ The appearance of `<DateTimeInput>` depends on the browser, and falls back to a 
 
 ## Usage
 
-```jsx
+```tsx
 import { DateTimeInput } from "@/components/admin/date-time-input";
 
 <DateTimeInput source="published_at" />;
@@ -96,7 +96,7 @@ form input value (string) ---> parse ---> form state value
 
 To validate that a date is before or after a given date, use the `maxValue` and `minValue` validators with a date string.
 
-```jsx
+```tsx
 import { minValue } from "ra-core";
 import { DateTimeInput } from "@/components/admin/date-input";
 

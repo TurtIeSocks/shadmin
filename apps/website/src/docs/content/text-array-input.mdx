@@ -10,7 +10,7 @@ This input allows editing values that are arrays of strings, e.g. `["tag1", "tag
 
 ## Usage
 
-```jsx
+```tsx
 import { TextArrayInput } from "@/components/admin";
 
 <TextArrayInput source="tags" />;
@@ -50,7 +50,7 @@ Users type text and press Enter to add items. Items appear as removable badges. 
 
 Custom render function for the selected-value chips. When provided it replaces the default `<Badge>` per tag. Receives the full `tags` array and a `getTagProps(tag, index)` helper that returns `{ key, onDelete }`.
 
-```jsx
+```tsx
 import { Tag } from "lucide-react";
 
 <TextArrayInput
@@ -81,7 +81,7 @@ An array of preset suggestion strings. When the user types in the input, matchin
 
 Only suggestions that contain the typed text (case-insensitive) and are not already selected are shown.
 
-```jsx
+```tsx
 <TextArrayInput
   source="tags"
   options={["react", "typescript", "javascript", "css", "html"]}
@@ -90,7 +90,7 @@ Only suggestions that contain the typed text (case-insensitive) and are not alre
 
 ### Format and Parse
 
-```jsx
+```tsx
 <TextArrayInput
   source="tags"
   format={(v) => v?.map((tag) => tag.toLowerCase())}

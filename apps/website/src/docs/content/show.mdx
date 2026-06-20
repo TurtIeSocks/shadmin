@@ -18,7 +18,7 @@ The `<Show>` component is a page component that renders a single record.
 
 Here is the minimal code necessary to display a view to show a post:
 
-```jsx
+```tsx
 // in src/products.jsx
 import { RecordField } from "@/components/admin/record-field";
 import { NumberField } from "@/components/admin";
@@ -56,7 +56,7 @@ export const ProductShow = () => (
 
 Components using `<Show>` can be used as the `show` prop of a `<Resource>` component:
 
-```jsx
+```tsx
 // in src/App.jsx
 import { Admin } from "@/copmponents/admin";
 import { Resource } from "ra-core";

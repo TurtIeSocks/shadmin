@@ -26,7 +26,7 @@ title: "TranslatableFields"
 
 Render translatable fields by passing `locales` and one child per source:
 
-```jsx
+```tsx
 import { TranslatableFields, TextField } from "@/components/admin";
 
 const PostShow = () => (
@@ -77,7 +77,7 @@ By default each tab is labeled by translating the key `ra.locales.${groupKey}${l
 
 Pass any React element as the `selector` prop to replace the default tabs. Use `useTranslatableContext` to read and update the currently selected locale:
 
-```jsx
+```tsx
 import { useTranslatableContext } from "ra-core";
 import { TranslatableFields, TextField } from "@/components/admin";
 

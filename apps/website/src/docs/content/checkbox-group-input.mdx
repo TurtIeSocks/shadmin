@@ -92,7 +92,7 @@ Use the `row` prop to display the checkboxes horizontally instead of vertically.
 
 The list of choices must be an array of objects with at least two fields: one to use for the name, and the other to use for the value. By default, `<CheckboxGroupInput>` will use the `id` and `name` fields.
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "Tech" },
   { id: "lifestyle", name: "Lifestyle" },
@@ -103,7 +103,7 @@ const choices = [
 
 If the choices have different keys, use `optionText` and `optionValue`:
 
-```jsx
+```tsx
 const choices = [
   { _id: "tech", label: "Tech" },
   { _id: "lifestyle", label: "Lifestyle" },
@@ -120,7 +120,7 @@ const choices = [
 
 The choices are translated by default, so you can use translation identifiers as choices:
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "myroot.tags.tech" },
   { id: "lifestyle", name: "myroot.tags.lifestyle" },
@@ -132,7 +132,7 @@ You can opt out of this translation by setting the `translateChoice` prop to `fa
 
 To fetch the options from another resource, wrap `<CheckboxGroupInput>` in a [`<ReferenceArrayInput>`](./reference-array-input):
 
-```jsx
+```tsx
 <ReferenceArrayInput source="tag_ids" reference="tags">
   <CheckboxGroupInput />
 </ReferenceArrayInput>
@@ -142,7 +142,7 @@ To fetch the options from another resource, wrap `<CheckboxGroupInput>` in a [`<
 
 You can disable some choices by setting a `disabled` field to `true` (or by passing a custom field name with the `disableValue` prop):
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "Tech" },
   { id: "lifestyle", name: "Lifestyle" },

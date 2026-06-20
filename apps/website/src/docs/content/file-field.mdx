@@ -15,7 +15,7 @@ import { FileField } from '@/components/admin';
 
 The optional `title` prop points to the file title property, used for `title` attributes. It can either be a hard-written string, or a path within your JSON object:
 
-```jsx
+```tsx
 // { file: { url: 'doc.pdf', title: 'Presentation' } }
 
 <FileField source="file.url" title="file.title" />
@@ -41,7 +41,7 @@ If the record actually contains an array of files in its property defined by the
 
 You can optionally set the `target` prop to choose which window will the link try to open in.
 
-```jsx
+```tsx
 // Will make the file open in new window
 <FileField source="file.url" target="_blank" />
 ```

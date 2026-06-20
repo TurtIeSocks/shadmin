@@ -34,7 +34,7 @@ npm install ra-data-simple-rest
 
 Then, initialize the provider with the REST backend URL, and pass it as the `<Admin dataProvider>`:
 
-```jsx
+```tsx
 // in src/App.js
 import { Admin } from "@/components/admin";
 import { Resource } from "ra-core";
@@ -163,7 +163,7 @@ APIs are so diverse that quite often, none of the available Data Providers suit 
 
 A data provider must implement the following methods:
 
-```jsx
+```tsx
 const dataProvider = {
   // get a list of records based on sort, filter, and pagination
   getList: (resource, params) => Promise,
@@ -205,14 +205,14 @@ Shadmin provides one query hook for each of the Data Provider read methods. They
 
 Their input signature is the same as the related dataProvider method, i.e. they expect the resource name and the query parameters:
 
-```jsx
+```tsx
 const { isPending, error, data } = useGetOne(resource, { id });
 // calls dataProvider.getOne(resource, { id })
 ```
 
 For instance, here is how to fetch one User record on mount using the useGetOne hook:
 
-```jsx
+```tsx
 import { useGetOne } from "ra-core";
 import { Loading, Error } from "./MyComponents";
 
@@ -244,7 +244,7 @@ Mutation hooks are:
 
 Their input signature is the same as the related dataProvider method, e.g.:
 
-```jsx
+```tsx
 const [update, { isPending, error, data }] = useUpdate(resource, {
   id,
   data,
@@ -255,7 +255,7 @@ const [update, { isPending, error, data }] = useUpdate(resource, {
 
 For instance, here is a button that updates a comment record when clicked, using the useUpdate hook:
 
-```jsx
+```tsx
 import { useUpdate, useRecordContext } from "ra-core";
 
 const ApproveButton = () => {

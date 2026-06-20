@@ -37,7 +37,7 @@ To edit arrays of data embedded inside a record, `<ArrayInput>` creates a list o
 
 `<ArrayInput>` expects a single child, which must be a _form iterator_ component. A form iterator is a component rendering a field array (the object returned by react-hook-form's [`useFieldArray`](https://react-hook-form.com/docs/usefieldarray)). For instance, [the `<SimpleFormIterator>` component](#simpleformiterator) displays an array of Inputs in an unordered list (`<ul>`), one sub-form by list item (`<li>`). It also provides controls for adding and removing a sub-record.
 
-```jsx
+```tsx
 import {
   Edit,
   SimpleForm,
@@ -122,7 +122,7 @@ If you are using an `<ArrayInput>` inside a form with global validation, you nee
 
 If you need to disable the input, set the `<SimpleFormIterator disabled>` prop, and make the child inputs `readOnly`:
 
-```jsx
+```tsx
 const OrderEdit = () => (
   <Edit>
     <SimpleForm>

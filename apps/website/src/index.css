@@ -180,8 +180,14 @@
 .dark .shiki span {
   background-color: var(--shiki-dark-bg) !important;
   color: var(--shiki-dark) !important;
+  border-radius: var(--radius-2xl);
+  padding: 2px;
 }
 
+.languageLabel {
+  top: 1.25rem;
+  right: 1.75rem;
+}
 /*
  * Website-local marketing canvas. Kept local (NOT in the shared aurora.css) so
  * it doesn't bleed into the demo/components before their own redesign phases.

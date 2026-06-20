@@ -8,7 +8,7 @@ Form control that tets users choose a value in a list using a dropdown with auto
 
 In addition to the `source`, `<AutocompleteInput>` requires one prop: the `choices` listing the possible values.
 
-```jsx
+```tsx
 import { AutocompleteInput } from "@/components/admin";
 
 <AutocompleteInput
@@ -97,7 +97,7 @@ If you need to let users select more than one item in the list, check out the [`
 
 The list of choices must be an array of objects with at least two fields: one to use for the name, and the other to use for the value. By default, `<AutocompleteInput>` will use the `id` and `name` fields.
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "Tech" },
   { id: "lifestyle", name: "Lifestyle" },
@@ -108,7 +108,7 @@ const choices = [
 
 If the choices have different keys, you can use `optionText` and `optionValue` to specify which fields to use for the name and value.
 
-```jsx
+```tsx
 const choices = [
   { _id: "tech", label: "Tech" },
   { _id: "lifestyle", label: "Lifestyle" },
@@ -125,7 +125,7 @@ const choices = [
 
 The choices are translated by default, so you can use translation identifiers as choices:
 
-```jsx
+```tsx
 const choices = [
   { id: "tech", name: "myroot.categories.tech" },
   { id: "lifestyle", name: "myroot.categories.lifestyle" },
@@ -137,7 +137,7 @@ You can opt-out of this translation by setting the `translateChoice` prop to `fa
 
 If you need to _fetch_ the options from another resource, you're usually editing a many-to-one or a one-to-one relationship. In this case, wrap the `<AutocompleteInput>` in a [`<ReferenceInput>`](./reference-input). You don't need to specify the `source` and `choices` prop in this case - the parent component injects them based on the possible values of the related resource.
 
-```jsx
+```tsx
 <ReferenceInput label="Author" source="author_id" reference="authors">
   <AutocompleteInput />
 </ReferenceInput>
@@ -145,7 +145,7 @@ If you need to _fetch_ the options from another resource, you're usually editing
 
 You can also pass an _array of strings_ for the choices:
 
-```jsx
+```tsx
 const categories = ["tech", "lifestyle", "people"];
 <AutocompleteInput source="category" choices={categories} />;
 // is equivalent to
@@ -161,7 +161,7 @@ By default, the filter is built using the `q` parameter. This means that if the 
 
 You can customize the filter by setting the `filterToQuery` prop. It should be a function that returns a filter object.
 
-```jsx
+```tsx
 const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 
 <ReferenceInput label="Author" source="author_id" reference="authors">
@@ -212,7 +212,7 @@ You can pass a custom element as `optionText` to have `<AutocompleteInput>` rend
 
 However, as the underlying `<Autocomplete>` component requires that the current selection is a string, you must also pass a function as the `inputText` prop. This function should return a text representation of the current selection. You should also pass a `matchSuggestion` function to filter the choices based on the current selection.
 
-```jsx
+```tsx
 const choices = [
   { id: 123, first_name: "Leo", last_name: "Tolstoi", avatar: "/penguin" },
   { id: 456, first_name: "Jane", last_name: "Austen", avatar: "/panda" },
@@ -250,7 +250,7 @@ Make sure you pass stable references to the functions passed to the `inputText` 
 
 Make sure you also pass a stable reference to the element passed to the `optionText` prop by calling it outside the component render function like so:
 
-```jsx
+```tsx
 const OptionRenderer = () => {
   const record = useRecordContext();
   return (
@@ -350,7 +350,7 @@ If you just need to ask users for a single string to create the new option, you 
 
 When `true`, any text already present in the search input is selected when the input receives focus. This lets users immediately start typing a new query without having to manually clear the previous filter text.
 
-```jsx
+```tsx
 <AutocompleteInput source="category" choices={choices} selectOnFocus />
 ```
 
@@ -358,7 +358,7 @@ When `true`, any text already present in the search input is selected when the i
 
 When `true`, the dropdown opens automatically as soon as the search input gains focus. This saves the user an extra click when they tab into the field or click the trigger button.
 
-```jsx
+```tsx
 <AutocompleteInput source="category" choices={choices} openOnFocus />
 ```
 
@@ -366,7 +366,7 @@ When `true`, the dropdown opens automatically as soon as the search input gains 
 
 The content rendered inside the dropdown when no choices match the current filter. Accepts a string or any React node. Defaults to the translation of `ra.navigation.no_results` ("No matching item found.").
 
-```jsx
+```tsx
 <AutocompleteInput
   source="category"
   choices={choices}
@@ -378,7 +378,7 @@ The content rendered inside the dropdown when no choices match the current filte
 
 When `true`, the dropdown filters the displayed choices to only the one that matches the current field value. All other choices are hidden. This is useful in read-heavy UIs where you want to confirm the selection without presenting the full list.
 
-```jsx
+```tsx
 <AutocompleteInput source="category" choices={choices} limitChoicesToValue />
 ```
 
@@ -386,7 +386,7 @@ When `true`, the dropdown filters the displayed choices to only the one that mat
 
 A custom comparator function called with `(choiceValue, fieldValue)` that returns `true` when they should be considered equal. By default the component uses `areIdsEqual`, which does a loose `==` comparison so string and number IDs match. Override this when you need strict equality or a domain-specific comparison.
 
-```jsx
+```tsx
 <AutocompleteInput
   source="category"
   choices={choices}
@@ -398,7 +398,7 @@ A custom comparator function called with `(choiceValue, fieldValue)` that return
 
 When `true`, pressing the `Home` key while the dropdown is open scrolls the option list to the first item, and pressing `End` scrolls to the last item. Useful for long lists where keyboard-only navigation is important.
 
-```jsx
+```tsx
 <AutocompleteInput source="category" choices={choices} handleHomeEndKeys />
 ```
 
@@ -406,7 +406,7 @@ When `true`, pressing the `Home` key while the dropdown is open scrolls the opti
 
 The form value stored when the selection is cleared — either by selecting the `emptyText` entry or by re-clicking an already-selected choice on a non-required field. Defaults to `""`. Use `null` or `0` when your backend distinguishes an empty selection from an absent field.
 
-```jsx
+```tsx
 <AutocompleteInput
   source="category"
   choices={choices}
@@ -419,7 +419,7 @@ The form value stored when the selection is cleared — either by selecting the 
 
 When set, prepends a special "(none)" entry at the top of the dropdown for non-required fields. Selecting this entry sets the field value to `emptyValue` (defaults to `""`). Useful when users need a way to explicitly clear a previously chosen value.
 
-```jsx
+```tsx
 <AutocompleteInput
   source="category"
   choices={choices}
@@ -431,6 +431,6 @@ When set, prepends a special "(none)" entry at the top of the dropdown for non-r
 
 When `true`, the search text typed in the filter input is cleared when the input loses focus. This means if the user opens the dropdown, types to narrow results, then clicks away without selecting, the filter resets to empty.
 
-```jsx
+```tsx
 <AutocompleteInput source="category" choices={choices} clearOnBlur />
 ```

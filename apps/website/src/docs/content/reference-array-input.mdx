@@ -21,7 +21,7 @@ For instance, a post record has a `tag_ids` field, which is an array of foreign 
 
 To make the `tag_ids` for a `post` editable, use the following:
 
-```jsx
+```tsx
 import {
   Edit,
   SimpleForm,
@@ -96,7 +96,7 @@ You can tweak how `<ReferenceArrayInput>` fetches the possible values using the 
 
 Element rendered when the network is offline and the reference data is unavailable. Defaults to the inherited offline component from ra-core.
 
-```jsx
+```tsx
 <ReferenceArrayInput
   source="tag_ids"
   reference="tags"
@@ -114,7 +114,7 @@ If you want to format the input value before displaying it, you have to pass a c
 
 For instance, if you want to transform an option value before rendering, and the selection control is an `<AutocompleteArrayInput>` (the default), set [the `<AutocompleteArrayInput format>` prop](./autocomplete-array-input) as follows:
 
-```jsx
+```tsx
 import {
   ReferenceArrayInput,
   AutocompleteArrayInput,
@@ -131,7 +131,7 @@ import {
 
 In an `<Edit>` or `<Create>` view, the `label` prop has no effect. `<ReferenceArrayInput>` has no label, it simply renders its child (an `<AutocompleteArrayInput>` by default). If you need to customize the label, set the `label` prop on the child element:
 
-```jsx
+```tsx
 import {
   ReferenceArrayInput,
   AutocompleteArrayInput,
@@ -144,7 +144,7 @@ import {
 
 In a Filter form, Shadmin uses the `label` prop to set the Filter label. So in this case, the `label` prop is not ignored, but you also have to set it on the child input.
 
-```jsx
+```tsx
 const filters = [
   <ReferenceArrayInput label="Post tags" source="tags_ids" reference="tags">
     <AutocompleteArrayInput label="Post tags" />
@@ -160,7 +160,7 @@ If you want to change this behavior, you have to pass a custom `parse` prop to t
 
 For instance, if you want to transform an option value before submission, and the selection control is an `<AutocompleteArrayInput>` (the default), set [the `<AutocompleteArrayInput parse>` prop](./autocomplete-array-input) as follows:
 
-```jsx
+```tsx
 import {
   ReferenceArrayInput,
   AutocompleteArrayInput,
@@ -179,7 +179,7 @@ You can pass a validation function to `<ReferenceArrayInput>` _child component_,
 
 For instance, to make the selection required, and the selection control is an `<AutocompleteArrayInput>` (the default), set [the `<AutocompleteArrayInput validate>` prop](./autocomplete-array-input) as follows:
 
-```jsx
+```tsx
 import {
   ReferenceArrayInput,
   AutocompleteArrayInput,
@@ -197,7 +197,7 @@ By default, `<ReferenceArrayInput>` renders an `<AutocompleteArrayInput>`, which
 
 If you want to customize the conversion between the search term and the query filter to match the filtering capabilities of your API, use the [`<AutocompleteArrayInput filterToQuery>`](./autocomplete-array-input) prop.
 
-```jsx
+```tsx
 const filterToQuery = (searchText) => ({ name_ilike: `%${searchText}%` });
 
 <ReferenceArrayInput source="tags_ids" reference="tags">
