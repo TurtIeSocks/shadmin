@@ -12,7 +12,7 @@ import englishMessages from "ra-language-english";
 import fakeRestProvider from "ra-data-fakerest";
 
 import { NumberInput, TextInput, ThemeProvider } from "@/components/admin";
-import { BulkEditDrawer } from "@/components/extras";
+import { BulkEditDrawer } from "@/components/admin";
 
 export default { title: "Extras/BulkEditDrawer" };
 

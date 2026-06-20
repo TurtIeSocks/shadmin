@@ -6,7 +6,7 @@ import {
   ResourceContextProvider,
 } from "shadmin-core";
 import { ThemeProvider } from "@/components/admin/layout/theme-provider";
-import { WizardForm, WizardToolbar } from "@/components/extras/wizard-form";
+import { WizardForm, WizardToolbar } from "@/components/admin/form/wizard-form";
 import { TextInput } from "@/components/admin/inputs/text-input";
 import { i18nProvider } from "@/lib/i18n-provider";
 import type { UnknownRecord } from "@/lib/unknown-types";

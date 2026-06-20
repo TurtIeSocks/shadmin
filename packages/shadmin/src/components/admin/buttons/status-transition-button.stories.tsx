@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { StatusTransitionButton } from "@/components/extras";
+import { StatusTransitionButton } from "@/components/admin";
 
 export default { title: "Extras/StatusTransitionButton" };
 

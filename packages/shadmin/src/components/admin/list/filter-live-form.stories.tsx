@@ -14,7 +14,7 @@ import {
   ShowGuesser,
   TextInput,
 } from "@/components/admin";
-import { FilterLiveForm } from "@/components/extras";
+import { FilterLiveForm } from "@/components/admin";
 import { Card } from "@/components/ui/card";
 
 export default {

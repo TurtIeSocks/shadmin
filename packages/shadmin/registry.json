@@ -143,6 +143,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/buttons/dual-approval-button.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/buttons/edit-button.tsx",
           "type": "registry:component"
         },
@@ -196,6 +200,10 @@
         },
         {
           "path": "src/components/admin/buttons/sort-button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/buttons/status-transition-button.tsx",
           "type": "registry:component"
         },
         {
@@ -444,6 +452,10 @@
         },
         {
           "path": "src/components/admin/form/translatable-inputs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/form/wizard-form.tsx",
           "type": "registry:component"
         },
         {
@@ -699,6 +711,14 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/list/bulk-edit-drawer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/calendar-list.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/list/count.tsx",
           "type": "registry:component"
         },
@@ -720,6 +740,10 @@
         },
         {
           "path": "src/components/admin/list/filter-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/filter-live-form.tsx",
           "type": "registry:component"
         },
         {
@@ -776,6 +800,10 @@
         },
         {
           "path": "src/components/admin/list/single-field-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/list/tree-list.tsx",
           "type": "registry:component"
         },
         {
@@ -1240,6 +1268,21 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "dual-approval-button",
+      "type": "registry:component",
+      "title": "Dual Approval Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/dual-approval-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "edit-button",
       "type": "registry:component",
       "title": "Edit Button",
@@ -1480,6 +1523,21 @@
         "tooltip",
         "use-mobile"
       ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "buttons"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "status-transition-button",
+      "type": "registry:component",
+      "title": "Status Transition Button",
+      "files": [
+        {
+          "path": "src/components/admin/buttons/status-transition-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "dropdown-menu"],
       "dependencies": ["lucide-react", "ra-core"],
       "categories": ["shadmin", "buttons"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
@@ -2559,6 +2617,26 @@
         "tabs"
       ],
       "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "wizard-form",
+      "type": "registry:component",
+      "title": "Wizard Form",
+      "files": [
+        {
+          "path": "src/components/admin/form/wizard-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-utils",
+        "@shadmin/save-button",
+        "button",
+        "dialog"
+      ],
+      "dependencies": ["lucide-react", "ra-core", "react-hook-form"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -3791,6 +3869,36 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "bulk-edit-drawer",
+      "type": "registry:component",
+      "title": "Bulk Edit Drawer",
+      "files": [
+        {
+          "path": "src/components/admin/list/bulk-edit-drawer.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["button", "sheet"],
+      "dependencies": ["ra-core", "react-hook-form"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "calendar-list",
+      "type": "registry:component",
+      "title": "Calendar List",
+      "files": [
+        {
+          "path": "src/components/admin/list/calendar-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["@dnd-kit/core", "date-fns", "ra-core", "react-router"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "count",
       "type": "registry:component",
       "title": "Count",
@@ -3901,6 +4009,20 @@
         "@shadmin/filter-list-section",
         "@shadmin/lib-utils"
       ],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "filter-live-form",
+      "type": "registry:component",
+      "title": "Filter Live Form",
+      "files": [
+        {
+          "path": "src/components/admin/list/filter-live-form.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["ra-core"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -4161,6 +4283,21 @@
         "badge"
       ],
       "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "tree-list",
+      "type": "registry:component",
+      "title": "Tree List",
+      "files": [
+        {
+          "path": "src/components/admin/list/tree-list.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["@shadmin/lib-utils"],
+      "dependencies": ["lucide-react", "ra-core", "react-router"],
       "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -5272,14 +5409,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/extras/bulk-edit-drawer.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/calendar-list.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/extras/command-menu-context.ts",
           "type": "registry:component"
         },
@@ -5305,14 +5434,6 @@
         },
         {
           "path": "src/components/extras/diff-viewer.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/dual-approval-button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/filter-live-form.tsx",
           "type": "registry:component"
         },
         {
@@ -5364,23 +5485,11 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/extras/status-transition-button.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/extras/theme-studio-vars.ts",
           "type": "registry:component"
         },
         {
           "path": "src/components/extras/theme-studio.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/tree-list.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/wizard-form.tsx",
           "type": "registry:component"
         },
         {

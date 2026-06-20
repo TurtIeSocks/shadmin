@@ -11,7 +11,7 @@ import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import fakeRestDataProvider from "ra-data-fakerest";
 import { ThemeProvider } from "@/components/admin";
-import { DualApprovalButton } from "@/components/extras";
+import { DualApprovalButton } from "@/components/admin";
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 
