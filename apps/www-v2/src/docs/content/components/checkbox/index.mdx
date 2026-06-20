@@ -1,10 +1,7 @@
 ---
 title: "Checkbox"
+description: "A labelled toggle for boolean input, built on Radix UI Checkbox."
 ---
-
-# Checkbox
-
-A labelled toggle for boolean input.
 
 <ComponentPreview name="components/checkbox/basic" />
 
@@ -19,3 +16,16 @@ import { Label } from "shadmin/components/ui/label";
   <Label htmlFor="terms">Accept terms and conditions</Label>
 </div>
 ```
+
+## Props
+
+<PropsTable rows={[
+  { prop: "checked", type: "boolean | 'indeterminate'", default: "—", description: "Controlled checked state of the checkbox." },
+  { prop: "defaultChecked", type: "boolean", default: "false", description: "Uncontrolled initial checked state." },
+  { prop: "onCheckedChange", type: "(checked: boolean | 'indeterminate') => void", default: "—", description: "Callback fired when the checked state changes." },
+  { prop: "disabled", type: "boolean", default: "false", description: "Prevents interaction and reduces opacity." },
+  { prop: "required", type: "boolean", default: "false", description: "Marks the checkbox as required in a form." },
+  { prop: "name", type: "string", default: "—", description: "Name attribute for form submission." },
+  { prop: "value", type: "string", default: '"on"', description: "Value submitted with the form when checked." },
+  { prop: "className", type: "string", default: "—", description: "Additional CSS classes merged via cn()." },
+]} />

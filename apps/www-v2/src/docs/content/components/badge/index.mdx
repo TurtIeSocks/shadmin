@@ -1,10 +1,7 @@
 ---
 title: "Badge"
+description: "Small status chips for labelling content — new, beta, error, outline."
 ---
-
-# Badge
-
-Small status chips — new, beta, destructive, outline.
 
 <ComponentPreview name="components/badge/basic" />
 
@@ -18,3 +15,11 @@ import { Badge } from "shadmin/components/ui/badge";
 <Badge variant="destructive">Error</Badge>
 <Badge variant="outline">Outline</Badge>
 ```
+
+## Props
+
+<PropsTable rows={[
+  { prop: "variant", type: '"default" | "secondary" | "destructive" | "outline" | "ghost" | "link"', default: '"default"', description: "Visual style of the badge." },
+  { prop: "asChild", type: "boolean", default: "false", description: "Renders as its child element via Radix Slot." },
+  { prop: "className", type: "string", default: "—", description: "Additional CSS classes merged via cn()." },
+]} />

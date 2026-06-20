@@ -132,3 +132,26 @@
     @apply font-sans;
   }
 }
+
+/* ── rehype-pretty-code ────────────────────────────────────────────────────── */
+
+[data-rehype-pretty-code-figure] {
+  @apply my-4 overflow-hidden rounded-lg border border-border/40;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  @apply overflow-x-auto bg-card p-4 text-sm leading-relaxed;
+  background-color: oklch(0.145 0 0);
+}
+
+.dark [data-rehype-pretty-code-figure] pre {
+  background-color: oklch(0.145 0 0);
+}
+
+.shiki {
+  @apply overflow-x-auto;
+}
+
+[data-rehype-pretty-code-title] {
+  @apply flex items-center gap-2 border-b border-border/30 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground;
+}

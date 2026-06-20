@@ -1,10 +1,7 @@
 ---
 title: "Card"
+description: "Container with header, content, and footer slots for grouping related content."
 ---
-
-# Card
-
-Container with header, content, and footer slots.
 
 <ComponentPreview name="components/card/basic" />
 
@@ -15,13 +12,24 @@ import {
   Card,
   CardHeader,
   CardTitle,
+  CardDescription,
   CardContent,
+  CardFooter,
 } from "shadmin/components/ui/card";
 
 <Card>
   <CardHeader>
     <CardTitle>Card title</CardTitle>
+    <CardDescription>Optional description text.</CardDescription>
   </CardHeader>
   <CardContent>Card body content here.</CardContent>
+  <CardFooter>Footer actions</CardFooter>
 </Card>
 ```
+
+## Props
+
+<PropsTable rows={[
+  { prop: "className", type: "string", default: "—", description: "Additional CSS classes for the card root element." },
+  { prop: "children", type: "ReactNode", default: "—", description: "Card content — use CardHeader, CardContent, CardFooter sub-components." },
+]} />

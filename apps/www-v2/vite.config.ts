@@ -7,9 +7,9 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
+import rehypePrettyCode from "rehype-pretty-code";
 import { remarkRelativeLinks } from "./scripts/remark-relative-links.mjs";
 import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
-import { remarkCodeMeta } from "./scripts/remark-code-meta.mjs";
 
 export default defineConfig({
   // +100 from vite's default so it doesn't collide with a user-run server on 5173.
@@ -32,9 +32,11 @@ export default defineConfig({
           remarkMdxFrontmatter,
           remarkGfm,
           remarkDirective,
-          remarkCodeMeta,
           remarkRelativeLinks,
           remarkCalloutDirective,
+        ],
+        rehypePlugins: [
+          [rehypePrettyCode, { theme: "github-dark", keepBackground: false }],
         ],
       }),
     },

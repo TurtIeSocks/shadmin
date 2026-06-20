@@ -6,10 +6,10 @@
  */
 import type { MDXComponents } from "mdx/types";
 import { Link } from "react-router";
-import { MdxPre } from "./code-block";
 import { Tabs, TabItem } from "./tabs";
 import { Callout } from "./callout";
 import { ComponentPreview } from "./component-preview";
+import { PropsTable } from "./props-table";
 
 // ── Link shim: internal → react-router Link, external → <a> ────────────────
 
@@ -70,13 +70,13 @@ const components: MDXComponents = {
   // HTML overrides
   a: MdxLink,
   img: MdxImg,
-  pre: MdxPre,
   code: MdxCode,
   // Starlight-compat global components
   Tabs,
   TabItem,
   Callout,
   ComponentPreview,
+  PropsTable,
 };
 
 /**
