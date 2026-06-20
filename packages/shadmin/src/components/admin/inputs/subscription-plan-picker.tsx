@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldError, FieldLegend, FieldSet } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
-import type { SubscriptionPlan } from "./subscription-plan-field";
+import type { SubscriptionPlan } from "../fields/subscription-plan-field";
 import { cn } from "@/lib/utils";
 
 /**

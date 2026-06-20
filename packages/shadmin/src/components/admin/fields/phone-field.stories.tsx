@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { PhoneField } from "@/components/extras";
+import { PhoneField } from "@/components/admin";
 
 export default { title: "Data Display/PhoneField" };
 

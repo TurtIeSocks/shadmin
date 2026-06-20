@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { DurationInput } from "@/components/extras";
+import { DurationInput } from "@/components/admin";
 
 export default { title: "Data Edition/DurationInput" };
 

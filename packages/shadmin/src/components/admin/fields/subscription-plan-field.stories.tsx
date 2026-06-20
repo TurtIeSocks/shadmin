@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { SubscriptionPlanField } from "@/components/extras";
+import { SubscriptionPlanField } from "@/components/admin";
 
 export default {
   title: "Extras/SubscriptionPlanField",

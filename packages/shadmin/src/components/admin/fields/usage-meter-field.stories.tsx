@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { UsageMeterField } from "@/components/extras";
+import { UsageMeterField } from "@/components/admin";
 
 export default { title: "Data Display/UsageMeterField" };
 

@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { CronField } from "@/components/extras";
+import { CronField } from "@/components/admin";
 
 export default { title: "Data Display/CronField" };
 

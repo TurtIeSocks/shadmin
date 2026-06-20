@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { RatingInput } from "@/components/extras";
+import { RatingInput } from "@/components/admin";
 
 export default {
   title: "Data Edition/RatingInput",

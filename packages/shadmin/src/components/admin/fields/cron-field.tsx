@@ -6,7 +6,7 @@ import {
 } from "shadmin-core";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
-import { describeCron } from "./cron-utils";
+import { describeCron } from "../inputs/cron-utils";
 import { cn } from "@/lib/utils";
 
 interface CronFieldProps<RecordType extends UnknownRecord = UnknownRecord>

@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { WebhookEndpointInput } from "@/components/extras";
+import { WebhookEndpointInput } from "@/components/admin";
 
 export default { title: "Extras/WebhookEndpointInput" };
 
@@ -30,7 +30,7 @@ export const WithTestPing = () => (
     <WebhookEndpointInput
       source="endpoint"
       eventTypes={EVENT_TYPES}
-      onTestPing={async (url) => alert(`POST ${url}`)}
+      onTestPing={async (url: string) => alert(`POST ${url}`)}
     />
   </StoryAdmin>
 );

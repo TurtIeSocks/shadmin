@@ -287,6 +287,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/fields/api-key-field.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/fields/array-field.tsx",
           "type": "registry:component"
         },
@@ -303,7 +307,23 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/fields/color-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/cron-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/currency-field.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/fields/date-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/duration-field.tsx",
           "type": "registry:component"
         },
         {
@@ -324,6 +344,14 @@
         },
         {
           "path": "src/components/admin/fields/number-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/phone-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/rating-field.tsx",
           "type": "registry:component"
         },
         {
@@ -355,6 +383,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/fields/subscription-plan-field.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/fields/text-array-field.tsx",
           "type": "registry:component"
         },
@@ -364,6 +396,14 @@
         },
         {
           "path": "src/components/admin/fields/url-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/usage-meter-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/fields/webhook-endpoint-field.tsx",
           "type": "registry:component"
         },
         {
@@ -427,6 +467,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/inputs/api-key-input.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/inputs/array-input.tsx",
           "type": "registry:component"
         },
@@ -447,6 +491,22 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/inputs/color-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/inputs/cron-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/inputs/cron-utils.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/inputs/currency-input.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/inputs/datagrid-input.tsx",
           "type": "registry:component"
         },
@@ -456,6 +516,14 @@
         },
         {
           "path": "src/components/admin/inputs/date-time-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/inputs/duration-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/inputs/duration-utils.ts",
           "type": "registry:component"
         },
         {
@@ -483,7 +551,15 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/inputs/phone-input.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/inputs/radio-button-group-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/inputs/rating-input.tsx",
           "type": "registry:component"
         },
         {
@@ -511,6 +587,10 @@
           "type": "registry:component"
         },
         {
+          "path": "src/components/admin/inputs/subscription-plan-picker.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/components/admin/inputs/text-array-input.tsx",
           "type": "registry:component"
         },
@@ -520,6 +600,10 @@
         },
         {
           "path": "src/components/admin/inputs/time-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/admin/inputs/webhook-endpoint-input.tsx",
           "type": "registry:component"
         },
         {
@@ -1736,6 +1820,26 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "api-key-field",
+      "type": "registry:component",
+      "title": "Api Key Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/api-key-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "button"
+      ],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "array-field",
       "type": "registry:component",
       "title": "Array Field",
@@ -1805,6 +1909,62 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "color-field",
+      "type": "registry:component",
+      "title": "Color Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/color-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "cron-field",
+      "type": "registry:component",
+      "title": "Cron Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/cron-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/cron-utils",
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "currency-field",
+      "type": "registry:component",
+      "title": "Currency Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/currency-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "date-field",
       "type": "registry:component",
       "title": "Date Field",
@@ -1819,6 +1979,25 @@
         "@shadmin/lib-unknown-types"
       ],
       "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "duration-field",
+      "type": "registry:component",
+      "title": "Duration Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/duration-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/duration-utils",
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["date-fns", "ra-core"],
       "categories": ["shadmin", "fields"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -1905,6 +2084,42 @@
       "files": [
         {
           "path": "src/components/admin/fields/number-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "phone-field",
+      "type": "registry:component",
+      "title": "Phone Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/phone-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types"
+      ],
+      "dependencies": ["libphonenumber-js", "ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "rating-field",
+      "type": "registry:component",
+      "title": "Rating Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/rating-field.tsx",
           "type": "registry:component"
         }
       ],
@@ -2049,6 +2264,25 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "subscription-plan-field",
+      "type": "registry:component",
+      "title": "Subscription Plan Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/subscription-plan-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "badge"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "text-array-field",
       "type": "registry:component",
       "title": "Text Array Field",
@@ -2093,6 +2327,45 @@
       "files": [
         {
           "path": "src/components/admin/fields/url-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "usage-meter-field",
+      "type": "registry:component",
+      "title": "Usage Meter Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/usage-meter-field.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/lib-field-types",
+        "@shadmin/lib-unknown-types",
+        "@shadmin/lib-utils",
+        "progress"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "fields"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "webhook-endpoint-field",
+      "type": "registry:component",
+      "title": "Webhook Endpoint Field",
+      "files": [
+        {
+          "path": "src/components/admin/fields/webhook-endpoint-field.tsx",
           "type": "registry:component"
         }
       ],
@@ -2380,6 +2653,21 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "api-key-input",
+      "type": "registry:component",
+      "title": "Api Key Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/api-key-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": ["alert-dialog", "button"],
+      "dependencies": ["lucide-react", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "array-input",
       "type": "registry:component",
       "title": "Array Input",
@@ -2495,6 +2783,83 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "color-input",
+      "type": "registry:component",
+      "title": "Color Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/color-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "cron-input",
+      "type": "registry:component",
+      "title": "Cron Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/cron-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/cron-utils",
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "input"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "cron-utils",
+      "type": "registry:component",
+      "title": "Cron Utils",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/cron-utils.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["cronstrue"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "currency-input",
+      "type": "registry:component",
+      "title": "Currency Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/currency-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "input"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "datagrid-input",
       "type": "registry:component",
       "title": "Datagrid Input",
@@ -2553,6 +2918,41 @@
       ],
       "dependencies": ["ra-core"],
       "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "duration-input",
+      "type": "registry:component",
+      "title": "Duration Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/duration-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/duration-utils",
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "input"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "duration-utils",
+      "type": "registry:component",
+      "title": "Duration Utils",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/duration-utils.ts",
+          "type": "registry:component"
+        }
+      ],
+      "categories": ["shadmin", "components"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
@@ -2672,6 +3072,27 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "phone-input",
+      "type": "registry:component",
+      "title": "Phone Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/phone-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field",
+        "input"
+      ],
+      "dependencies": ["libphonenumber-js", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "radio-button-group-input",
       "type": "registry:component",
       "title": "Radio Button Group Input",
@@ -2689,6 +3110,26 @@
         "field",
         "radio-group",
         "skeleton"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "rating-input",
+      "type": "registry:component",
+      "title": "Rating Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/rating-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "field"
       ],
       "dependencies": ["ra-core"],
       "categories": ["shadmin", "inputs"],
@@ -2817,6 +3258,29 @@
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
     {
+      "name": "subscription-plan-picker",
+      "type": "registry:component",
+      "title": "Subscription Plan Picker",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/subscription-plan-picker.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "@shadmin/subscription-plan-field",
+        "button",
+        "card",
+        "field"
+      ],
+      "dependencies": ["ra-core"],
+      "categories": ["shadmin", "components"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
       "name": "text-array-input",
       "type": "registry:component",
       "title": "Text Array Input",
@@ -2878,6 +3342,30 @@
         "input"
       ],
       "dependencies": ["clsx", "ra-core"],
+      "categories": ["shadmin", "inputs"],
+      "author": "Shadmin <https://shadmin.turtlesocks.dev>"
+    },
+    {
+      "name": "webhook-endpoint-input",
+      "type": "registry:component",
+      "title": "Webhook Endpoint Input",
+      "files": [
+        {
+          "path": "src/components/admin/inputs/webhook-endpoint-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "@shadmin/field-label-text",
+        "@shadmin/input-helper-text",
+        "@shadmin/lib-utils",
+        "@shadmin/webhook-endpoint-field",
+        "button",
+        "checkbox",
+        "field",
+        "input"
+      ],
+      "dependencies": ["ra-core"],
       "categories": ["shadmin", "inputs"],
       "author": "Shadmin <https://shadmin.turtlesocks.dev>"
     },
@@ -4772,14 +5260,6 @@
       ],
       "files": [
         {
-          "path": "src/components/extras/api-key-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/api-key-input.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/extras/approval-queue.tsx",
           "type": "registry:component"
         },
@@ -4800,14 +5280,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/extras/color-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/color-input.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/extras/command-menu-context.ts",
           "type": "registry:component"
         },
@@ -4817,26 +5289,6 @@
         },
         {
           "path": "src/components/extras/comments-thread.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/cron-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/cron-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/cron-utils.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/currency-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/currency-input.tsx",
           "type": "registry:component"
         },
         {
@@ -4857,18 +5309,6 @@
         },
         {
           "path": "src/components/extras/dual-approval-button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/duration-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/duration-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/duration-utils.ts",
           "type": "registry:component"
         },
         {
@@ -4908,27 +5348,11 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/extras/phone-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/phone-input.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/extras/pivot-grid.tsx",
           "type": "registry:component"
         },
         {
           "path": "src/components/extras/presence-bar.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/rating-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/rating-input.tsx",
           "type": "registry:component"
         },
         {
@@ -4944,14 +5368,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/extras/subscription-plan-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/subscription-plan-picker.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/extras/theme-studio-vars.ts",
           "type": "registry:component"
         },
@@ -4961,18 +5377,6 @@
         },
         {
           "path": "src/components/extras/tree-list.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/usage-meter-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/webhook-endpoint-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/extras/webhook-endpoint-input.tsx",
           "type": "registry:component"
         },
         {

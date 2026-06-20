@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { RatingField } from "@/components/extras";
+import { RatingField } from "@/components/admin";
 
 export default {
   title: "Data Display/RatingField",

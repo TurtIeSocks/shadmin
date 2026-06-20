@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
-import type { WebhookEndpoint } from "./webhook-endpoint-field";
+import type { WebhookEndpoint } from "../fields/webhook-endpoint-field";
 import { cn } from "@/lib/utils";
 
 const DEFAULT_VALUE: WebhookEndpoint = {

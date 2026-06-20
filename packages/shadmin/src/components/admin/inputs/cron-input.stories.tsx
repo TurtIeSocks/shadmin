@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { CronInput } from "@/components/extras";
+import { CronInput } from "@/components/admin";
 
 export default { title: "Data Edition/CronInput" };
 

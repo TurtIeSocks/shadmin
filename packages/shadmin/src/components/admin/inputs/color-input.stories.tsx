@@ -1,5 +1,5 @@
 import { StoryAdmin } from "@/test/_test-helpers";
-import { ColorInput } from "@/components/extras";
+import { ColorInput } from "@/components/admin";
 
 export default { title: "Data Edition/ColorInput" };
 

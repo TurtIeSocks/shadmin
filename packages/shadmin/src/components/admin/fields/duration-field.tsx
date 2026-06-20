@@ -7,7 +7,7 @@ import {
 import { formatDuration } from "date-fns";
 import type { FieldProps } from "@/lib/field-types";
 import type { UnknownRecord } from "@/lib/unknown-types";
-import { compactDuration, parseIsoDuration } from "./duration-utils";
+import { compactDuration, parseIsoDuration } from "../inputs/duration-utils";
 
 interface DurationFieldProps<RecordType extends UnknownRecord = UnknownRecord>
   extends FieldProps<RecordType>,
