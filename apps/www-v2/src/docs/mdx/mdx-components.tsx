@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { MdxPre } from "./code-block";
 import { Tabs, TabItem } from "./tabs";
 import { Callout } from "./callout";
+import { ComponentPreview } from "./component-preview";
 
 // ── Link shim: internal → react-router Link, external → <a> ────────────────
 
@@ -75,6 +76,7 @@ const components: MDXComponents = {
   Tabs,
   TabItem,
   Callout,
+  ComponentPreview,
 };
 
 /**
