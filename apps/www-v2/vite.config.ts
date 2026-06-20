@@ -13,6 +13,10 @@ import { remarkCodeMeta } from "./scripts/remark-code-meta.mjs";
 
 export default defineConfig({
   ssgOptions: { dirStyle: "nested" },
+  // vite-react-ssg dev ignores the CLI --port flag; set it here. +100 from
+  // vite's default so it doesn't collide with a user-run server on 5173.
+  server: { port: 5273 },
+  preview: { port: 4273 },
   plugins: [
     {
       enforce: "pre",

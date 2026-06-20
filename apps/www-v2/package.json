@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite-react-ssg dev --port 5274",
+    "dev": "vite-react-ssg dev",
     "build": "vite-react-ssg build",
     "preview": "vite preview --port 4273",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",

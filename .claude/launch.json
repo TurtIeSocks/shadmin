@@ -24,6 +24,12 @@
       "runtimeExecutable": "make",
       "runtimeArgs": ["test-browser"],
       "port": 63315
+    },
+    {
+      "name": "www-v2",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "www-v2", "dev"],
+      "port": 5273
     }
   ]
 }
