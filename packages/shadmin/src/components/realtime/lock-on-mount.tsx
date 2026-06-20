@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 import type { Identifier } from "shadmin-core";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Lock } from "./types";
-import { LockConflictError } from "./types";
-import { useLockOnMount } from "./hooks/use-lock-on-mount";
+import type { Lock } from "shadmin-core";
+import { LockConflictError } from "shadmin-core";
+import { useLockOnMount } from "shadmin-core";
 
 export interface LockOnMountProps {
   children: ReactNode;

@@ -2,9 +2,9 @@ import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { ResourceContextProvider, RecordContextProvider } from "shadmin-core";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
-import { useLockOnMount } from "./use-lock-on-mount";
+import { fakeTransport } from "shadmin-core";
+import { inMemoryLockProvider } from "shadmin-core";
+import { useLockOnMount } from "shadmin-core";
 
 function Probe() {
   const { lock, lockError } = useLockOnMount({ identity: "alice" });

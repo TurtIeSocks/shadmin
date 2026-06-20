@@ -3,7 +3,7 @@ import { CoreAdminContext, memoryStore } from "shadmin-core";
 import polyglotI18nProvider from "ra-i18n-polyglot";
 import englishMessages from "ra-language-english";
 import { ThemeProvider } from "@/components/admin";
-import { realtimeDataProvider } from "@/components/realtime/realtime-data-provider";
+import { realtimeDataProvider } from "shadmin-core";
 import fakeRestProvider from "ra-data-fakerest";
 import { MenuLiveItemLink } from "@/components/realtime/menu-live";
 import { menuTransport } from "./__fixtures__/menu-live-fixtures";

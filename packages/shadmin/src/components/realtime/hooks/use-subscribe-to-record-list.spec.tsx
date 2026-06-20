@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { useState } from "react";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { useSubscribeToRecordList } from "./use-subscribe-to-record-list";
+import { fakeTransport } from "shadmin-core";
+import { useSubscribeToRecordList } from "shadmin-core";
 
 function Probe({ resource }: { resource: string }) {
   const [count, setCount] = useState(0);

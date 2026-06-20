@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { DataProviderContext } from "shadmin-core";
+import { DataProviderContext } from "ra-core";
 import type { RealtimeDataProvider, SubscriptionCallback } from "../types";
 
 export function useSubscribe<P = unknown>(

@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { useState } from "react";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { useOnReconnect } from "./use-on-reconnect";
+import { fakeTransport } from "shadmin-core";
+import { useOnReconnect } from "shadmin-core";
 
 function Probe() {
   const [count, setCount] = useState(0);

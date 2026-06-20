@@ -1,12 +1,12 @@
 import { useCallback, useContext, useState } from "react";
-import { DataProviderContext, useGetIdentity } from "shadmin-core";
-import type { Identifier } from "shadmin-core";
-import type { Lock, LockParams, RealtimeDataProvider } from "../types";
+import { DataProviderContext, useGetIdentity } from "ra-core";
+import type { Identifier } from "ra-core";
+import type { Lock, UnlockParams, RealtimeDataProvider } from "../types";
 
-export function useLock<R extends string = string>(): {
-  lock: (
+export function useUnlock<R extends string = string>(): {
+  unlock: (
     resource: R,
-    params: Omit<LockParams, "identity"> & { identity?: Identifier },
+    params: Omit<UnlockParams, "identity"> & { identity?: Identifier },
   ) => Promise<Lock>;
   isLoading: boolean;
   error: Error | null;
@@ -16,7 +16,7 @@ export function useLock<R extends string = string>(): {
   ) as RealtimeDataProvider<R> | null;
   if (!dataProvider) {
     throw new Error(
-      "useLock: no DataProvider found. Must be used inside an Admin or CoreAdminContext.",
+      "useUnlock: no DataProvider found. Must be used inside an Admin or CoreAdminContext.",
     );
   }
 
@@ -25,24 +25,24 @@ export function useLock<R extends string = string>(): {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const lock = useCallback(
+  const unlock = useCallback(
     async (
       resource: R,
-      params: Omit<LockParams, "identity"> & { identity?: Identifier },
+      params: Omit<UnlockParams, "identity"> & { identity?: Identifier },
     ): Promise<Lock> => {
       const identity = params.identity ?? defaultIdentity?.id;
       if (identity == null) {
         throw new Error(
-          "useLock: no identity available. Pass identity explicitly or configure an authProvider.",
+          "useUnlock: no identity available. Pass identity explicitly or configure an authProvider.",
         );
       }
       setIsLoading(true);
       setError(null);
       try {
-        const result = await dataProvider.lock(resource, {
+        const result = await dataProvider.unlock(resource, {
           ...params,
           identity,
-        } as LockParams);
+        } as UnlockParams);
         return result;
       } catch (e) {
         const err = e instanceof Error ? e : new Error(String(e));
@@ -55,5 +55,5 @@ export function useLock<R extends string = string>(): {
     [dataProvider, defaultIdentity?.id],
   );
 
-  return { lock, isLoading: isLoading || identityLoading, error };
+  return { unlock, isLoading: isLoading || identityLoading, error };
 }

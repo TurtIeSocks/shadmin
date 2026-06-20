@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import { DataProviderContext } from "shadmin-core";
+import { DataProviderContext } from "ra-core";
 import { useQuery } from "@tanstack/react-query";
-import type { Lock, RealtimeDataProvider } from "../types";
+import type { GetLockParams, Lock, RealtimeDataProvider } from "../types";
 
-export function useGetLocks(resource: string): {
-  data: Lock[] | undefined;
+export function useGetLock(
+  resource: string,
+  params: GetLockParams,
+): {
+  data: Lock | null | undefined;
   isLoading: boolean;
   isPending: boolean;
   error: Error | null;
@@ -14,13 +17,13 @@ export function useGetLocks(resource: string): {
   ) as RealtimeDataProvider | null;
   if (!dataProvider) {
     throw new Error(
-      "useGetLocks: no DataProvider found. Must be used inside an Admin or CoreAdminContext.",
+      "useGetLock: no DataProvider found. Must be used inside an Admin or CoreAdminContext.",
     );
   }
 
   const { data, isLoading, isPending, error } = useQuery({
-    queryKey: [resource, "locks"],
-    queryFn: () => dataProvider.getLocks(resource),
+    queryKey: [resource, "lock", params.id],
+    queryFn: () => dataProvider.getLock(resource, params),
   });
 
   return { data, isLoading, isPending, error: error as Error | null };

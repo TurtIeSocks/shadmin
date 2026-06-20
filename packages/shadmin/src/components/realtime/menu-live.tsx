@@ -2,9 +2,9 @@ import { useEffect, type ReactElement, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
 import { useStore } from "shadmin-core";
 import { Badge } from "@/components/ui/badge";
-import { resourceTopic } from "./topics";
-import type { RealtimeEventType } from "./types";
-import { useSubscribe } from "./hooks/use-subscribe";
+import { resourceTopic } from "shadmin-core";
+import type { RealtimeEventType } from "shadmin-core";
+import { useSubscribe } from "shadmin-core";
 
 export interface MenuLiveItemLinkProps {
   to: string;

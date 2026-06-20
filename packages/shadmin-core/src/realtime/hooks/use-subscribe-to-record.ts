@@ -1,4 +1,4 @@
-import type { Identifier } from "shadmin-core";
+import type { Identifier } from "ra-core";
 import { recordTopic } from "../topics";
 import type { SubscriptionCallback } from "../types";
 import { useSubscribe } from "./use-subscribe";

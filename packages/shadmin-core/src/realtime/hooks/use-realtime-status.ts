@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { DataProviderContext } from "shadmin-core";
+import { DataProviderContext } from "ra-core";
 import type {
   RealtimeConnectionStatus,
   RealtimeDataProvider,

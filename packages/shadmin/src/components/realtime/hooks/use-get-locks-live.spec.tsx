@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
-import { useGetLocksLive } from "./use-get-locks-live";
+import { fakeTransport } from "shadmin-core";
+import { inMemoryLockProvider } from "shadmin-core";
+import { useGetLocksLive } from "shadmin-core";
 
 function LocksLiveProbe() {
   const { data, isPending } = useGetLocksLive("posts");

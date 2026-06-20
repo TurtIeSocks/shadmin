@@ -494,9 +494,43 @@ importers:
 
   packages/shadmin-core:
     dependencies:
+      '@tanstack/react-query':
+        specifier: '>=5'
+        version: 5.101.0(react@19.1.0)
       ra-core:
         specifier: ^5.14.0
         version: 5.14.3(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      react:
+        specifier: '>=19'
+        version: 19.1.0
+    devDependencies:
+      '@types/node':
+        specifier: ^22.19.12
+        version: 22.19.12
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitest/browser':
+        specifier: ^3.2.4
+        version: 3.2.4(msw@2.12.7(@types/node@22.19.12)(typescript@5.7.3))(playwright@1.57.0)(vite@7.3.2(@types/node@22.19.12)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.9.0))(vitest@3.2.4)
+      mock-socket:
+        specifier: ^9.3.1
+        version: 9.3.1
+      playwright:
+        specifier: ^1.57.0
+        version: 1.57.0
+      ra-data-fakerest:
+        specifier: ^5.14.0
+        version: 5.14.3(ra-core@5.14.3(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0))
+      typescript:
+        specifier: ~5.7.2
+        version: 5.7.3
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.19.12)(@vitest/browser@3.2.4)(jiti@2.6.1)(lightningcss@1.32.0)(msw@2.12.7(@types/node@22.19.12)(typescript@5.7.3))(yaml@2.9.0)
 
 packages:
 
@@ -9474,6 +9508,25 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@vitest/browser@3.2.4(msw@2.12.7(@types/node@22.19.12)(typescript@5.7.3))(playwright@1.57.0)(vite@7.3.2(@types/node@22.19.12)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.9.0))(vitest@3.2.4)':
+    dependencies:
+      '@testing-library/dom': 10.4.0
+      '@testing-library/user-event': 14.6.1(@testing-library/dom@10.4.0)
+      '@vitest/mocker': 3.2.4(msw@2.12.7(@types/node@22.19.12)(typescript@5.7.3))(vite@7.3.2(@types/node@22.19.12)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.9.0))
+      '@vitest/utils': 3.2.4
+      magic-string: 0.30.21
+      sirv: 3.0.1
+      tinyrainbow: 2.0.0
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@22.19.12)(@vitest/browser@3.2.4)(jiti@2.6.1)(lightningcss@1.32.0)(msw@2.12.7(@types/node@22.19.12)(typescript@5.7.3))(yaml@2.9.0)
+      ws: 8.18.3
+    optionalDependencies:
+      playwright: 1.57.0
+    transitivePeerDependencies:
+      - bufferutil
+      - msw
+      - utf-8-validate
+      - vite
+
   '@vitest/browser@3.2.4(msw@2.12.7(@types/node@22.19.12)(typescript@5.7.3))(playwright@1.57.0)(vite@8.0.6(@types/node@22.19.12)(esbuild@0.27.7)(jiti@2.6.1)(yaml@2.9.0))(vitest@3.2.4)':
     dependencies:
       '@testing-library/dom': 10.4.0
@@ -11892,6 +11945,11 @@ snapshots:
     dependencies:
       fakerest: 4.2.0
       ra-core: 5.14.3(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.12.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+
+  ra-data-fakerest@5.14.3(ra-core@5.14.3(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)):
+    dependencies:
+      fakerest: 4.2.0
+      ra-core: 5.14.3(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
 
   ra-data-json-server@5.13.6(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.12.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0):
     dependencies:

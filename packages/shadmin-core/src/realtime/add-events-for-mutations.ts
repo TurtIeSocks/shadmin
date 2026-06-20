@@ -1,4 +1,4 @@
-import type { DataProvider } from "shadmin-core";
+import type { DataProvider } from "ra-core";
 import type { RealtimeDataProvider } from "./types";
 import { recordTopic, resourceTopic } from "./topics";
 

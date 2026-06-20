@@ -1,5 +1,5 @@
 import { useCallback, useContext } from "react";
-import { DataProviderContext } from "shadmin-core";
+import { DataProviderContext } from "ra-core";
 import type {
   RealtimeDataProvider,
   SubscriptionCallback,

@@ -1,5 +1,5 @@
-import { useGetOne } from "shadmin-core";
-import type { GetOneParams, RaRecord } from "shadmin-core";
+import { useGetOne } from "ra-core";
+import type { GetOneParams, RaRecord } from "ra-core";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSubscribeToRecord } from "./use-subscribe-to-record";
 import { useOnReconnect } from "./use-on-reconnect";

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import { useGetMany, DataProviderContext } from "shadmin-core";
-import type { GetManyParams, RaRecord } from "shadmin-core";
+import { useGetMany, DataProviderContext } from "ra-core";
+import type { GetManyParams, RaRecord } from "ra-core";
 import { useQueryClient } from "@tanstack/react-query";
 import { recordTopic } from "../topics";
 import type { RealtimeDataProvider } from "../types";

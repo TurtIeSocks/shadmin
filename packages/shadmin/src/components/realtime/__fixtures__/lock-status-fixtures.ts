@@ -1,5 +1,5 @@
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { inMemoryLockProvider } from "@/components/realtime/transports/in-memory-lock-provider";
+import { fakeTransport } from "shadmin-core";
+import { inMemoryLockProvider } from "shadmin-core";
 
 export const lsTransport = fakeTransport();
 export const lsLocks = inMemoryLockProvider({ publisher: lsTransport });

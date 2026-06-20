@@ -10,3 +10,7 @@
 // against the codebase: all consumers use named / `import type` / re-export
 // forms (no default or namespace imports), so this barrel is complete.
 export * from "ra-core";
+
+// In-house headless logic (the first real shadmin-core code beyond the ra-core
+// seam): the realtime hooks, transports, topics, types, and data-provider.
+export * from "./realtime";
