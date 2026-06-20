@@ -3,7 +3,7 @@
 import {
   ShapeFieldShell,
   type ShapeFieldShellProps,
-} from "./shapes/shape-field-shell";
+} from "../shapes/shape-field-shell";
 
 /**
  * Read-only Leaflet map that renders a `GeoJSON.Feature` stored at a record

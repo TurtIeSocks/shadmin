@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 
-import { LatLngInput } from "../lat-lng-input";
+import { LatLngInput } from "../coordinates/lat-lng-input";
 import { GeocodingInput } from "./geocoding-input";
 import { useReverseGeocode } from "./use-reverse-geocode";
 

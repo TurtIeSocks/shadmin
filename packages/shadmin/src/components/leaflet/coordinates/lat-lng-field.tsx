@@ -3,7 +3,7 @@
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useRecordContext } from "shadmin-core";
 
-import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "./shared";
+import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "../shared";
 
 interface LatLngFieldProps {
   latSource: string;

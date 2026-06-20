@@ -3,8 +3,8 @@
 import {
   ShapeInputShell,
   type ShapeInputShellProps,
-} from "./shapes/shape-input-shell";
-import type { ShapeKind } from "./types";
+} from "../shapes/shape-input-shell";
+import type { ShapeKind } from "../types";
 
 interface FeatureInputProps
   extends Omit<

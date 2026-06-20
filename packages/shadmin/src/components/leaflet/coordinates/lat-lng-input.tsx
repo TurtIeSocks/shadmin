@@ -11,7 +11,7 @@ import {
 } from "react-leaflet";
 import { useFormContext } from "react-hook-form";
 
-import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "./shared";
+import { DEFAULT_ATTRIBUTION, DEFAULT_TILE_URL, MarkerIcon } from "../shared";
 
 interface LatLngInputProps {
   latSource: string;

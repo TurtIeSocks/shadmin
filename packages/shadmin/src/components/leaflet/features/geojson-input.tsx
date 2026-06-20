@@ -6,9 +6,9 @@ import { FeatureGroup } from "react-leaflet";
 import { GeomanControls } from "react-leaflet-geoman-v2";
 import "@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css";
 
-import { BaseMap } from "./shared-map";
-import { useGeomanRHF } from "./geoman/use-geoman-rhf";
-import type { BaseInputProps, GeomanShape, ShapeKind } from "./types";
+import { BaseMap } from "../shared-map";
+import { useGeomanRHF } from "../geoman/use-geoman-rhf";
+import type { BaseInputProps, GeomanShape, ShapeKind } from "../types";
 
 /**
  * Maps GeoJSON shape kinds to the corresponding Geoman toolbar shape.

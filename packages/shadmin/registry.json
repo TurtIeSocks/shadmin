@@ -4528,19 +4528,35 @@
       "devDependencies": ["@types/leaflet"],
       "files": [
         {
-          "path": "src/components/leaflet/feature-collection-field.tsx",
+          "path": "src/components/leaflet/coordinates/lat-lng-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/feature-collection-input.tsx",
+          "path": "src/components/leaflet/coordinates/lat-lng-input.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/feature-field.tsx",
+          "path": "src/components/leaflet/features/feature-collection-field.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/feature-input.tsx",
+          "path": "src/components/leaflet/features/feature-collection-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/features/feature-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/features/feature-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/features/geojson-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/leaflet/features/geojson-input.tsx",
           "type": "registry:component"
         },
         {
@@ -4568,14 +4584,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/geojson-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/geojson-input.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/components/leaflet/geoman/geoman-shape-mapping.ts",
           "type": "registry:component"
         },
@@ -4589,14 +4597,6 @@
         },
         {
           "path": "src/components/leaflet/index.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/lat-lng-field.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/components/leaflet/lat-lng-input.tsx",
           "type": "registry:component"
         },
         {
@@ -4720,7 +4720,7 @@
           "type": "registry:component"
         },
         {
-          "path": "src/components/leaflet/simplify-input.tsx",
+          "path": "src/components/leaflet/simplify/simplify-input.tsx",
           "type": "registry:component"
         },
         {

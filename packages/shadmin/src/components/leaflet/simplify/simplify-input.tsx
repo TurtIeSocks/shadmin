@@ -6,11 +6,11 @@ import { GeoJSON } from "react-leaflet";
 import L from "leaflet";
 import simplify from "@turf/simplify";
 
-import { BaseMap, FitBoundsOnMount } from "./shared-map";
-import { MarkerIcon } from "./shared";
+import { BaseMap, FitBoundsOnMount } from "../shared-map";
+import { MarkerIcon } from "../shared";
 import { Slider } from "@/components/ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import type { BaseInputProps } from "./types";
+import type { BaseInputProps } from "../types";
 
 type SimplifyQuality = "Default" | "High";
 

@@ -5,7 +5,7 @@ import type * as L from "leaflet";
 import {
   ShapeFieldShell,
   type ShapeFieldShellProps,
-} from "./shapes/shape-field-shell";
+} from "../shapes/shape-field-shell";
 
 interface GeoJsonFieldProps extends Omit<ShapeFieldShellProps, "pathOptions"> {
   /**
