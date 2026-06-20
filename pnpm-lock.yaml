@@ -108,9 +108,6 @@ importers:
 
   apps/website:
     dependencies:
-      '@fontsource-variable/inter':
-        specifier: ^5.2.8
-        version: 5.2.8
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -141,9 +138,6 @@ importers:
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.5.0
-      vite-react-ssg:
-        specifier: 0.9.1-beta.1
-        version: 0.9.1-beta.1(prettier@3.8.1)(react-dom@19.1.0(react@19.1.0))(react-router-dom@7.18.0(patch_hash=291a2f67761b4a6984fb47b4c70687cf30b94edf99bfc412eb46269e5eae95c5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(vite@8.0.6(@types/node@22.19.12)(esbuild@0.27.7)(jiti@2.6.1)(yaml@2.9.0))
     devDependencies:
       '@mdx-js/rollup':
         specifier: ^3.1.1
