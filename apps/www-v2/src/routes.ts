@@ -1,12 +1,11 @@
-import {
-  type RouteConfig,
-  index,
-  route,
-  layout,
-} from "@react-router/dev/routes";
+import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 export default [
   index("pages/home.tsx"),
   route("demo", "pages/demo-stub.tsx"),
-  layout("docs/docs-layout.tsx", [route("docs/*", "docs/mdx-page.tsx")]),
+  // docs-layout renders the sidebar at /docs; index = overview, * = a page.
+  route("docs", "docs/docs-layout.tsx", [
+    index("docs/docs-index.tsx"),
+    route("*", "docs/mdx-page.tsx"),
+  ]),
 ] satisfies RouteConfig;

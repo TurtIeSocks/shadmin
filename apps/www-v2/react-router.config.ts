@@ -28,6 +28,6 @@ export default {
   appDirectory: "src",
   ssr: false, // SPA mode: no server runtime, static index.html per route + hydrate
   async prerender() {
-    return ["/", "/demo", ...docSlugs().map((s) => `/docs/${s}`)];
+    return ["/", "/demo", "/docs", ...docSlugs().map((s) => `/docs/${s}`)];
   },
 } satisfies Config;

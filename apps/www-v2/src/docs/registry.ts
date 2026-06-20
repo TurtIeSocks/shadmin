@@ -12,6 +12,10 @@ function basename(slug: string): string {
 }
 
 export function installFor(slug: string): InstallCommands | null {
+  // Only component doc pages (under components/) map to installable registry
+  // items. Without this, a guide whose basename collides with a registry item
+  // name (admin, list, layout, edit, …) would render a spurious install block.
+  if (!slug.startsWith("components/")) return null;
   const name = basename(slug);
   if (!names.has(name)) return null;
   const ref = `@shadmin/${name}`;
