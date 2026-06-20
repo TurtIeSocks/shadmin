@@ -232,6 +232,12 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      ra-core:
+        specifier: ^5.14.3
+        version: 5.14.3(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(patch_hash=291a2f67761b4a6984fb47b4c70687cf30b94edf99bfc412eb46269e5eae95c5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      ra-data-fakerest:
+        specifier: ^5.14.3
+        version: 5.14.3(ra-core@5.14.3(@tanstack/react-query@5.101.0(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.71.1(react@19.1.0))(react-router-dom@7.18.0(patch_hash=291a2f67761b4a6984fb47b4c70687cf30b94edf99bfc412eb46269e5eae95c5)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-router@7.18.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0))
       radix-ui:
         specifier: ^1.4.3
         version: 1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)

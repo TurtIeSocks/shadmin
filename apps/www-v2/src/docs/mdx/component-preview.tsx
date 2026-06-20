@@ -2,59 +2,68 @@
  * ComponentPreview — live component preview embedded in MDX docs.
  *
  * Usage in MDX:
- *   <ComponentPreview slug="components/button/basic" />
+ *   <ComponentPreview name="components/button/basic" />
  *
- * Demos live at: src/docs/content/<slug>/demos/<name>.tsx
+ * `name` format: "<component-dir>/<demo-file>" e.g. "components/button/basic"
+ * Demos live at: src/docs/content/<component-dir>/demos/<demo-file>.tsx
  * Each demo file must have a default export that is a React component.
  */
 import { useState, type ReactNode } from "react";
+import { ShikiHighlighter } from "react-shiki";
 import { cn } from "shadmin/lib/utils";
 
-// Eager-load all demo files so the registry is available at runtime.
-// The glob pattern must be a string literal for Vite to parse it statically.
+// Demo modules + their raw source, globbed from content.
 const demoModules = import.meta.glob<{ default: () => ReactNode }>(
   "../content/**/demos/*.tsx",
   { eager: true },
 );
 
-/** Convert slug + demo name → glob key */
-function slugToKey(slug: string, demo = "basic"): string {
-  return `../content/${slug}/demos/${demo}.tsx`;
+const demoSources = import.meta.glob("../content/**/demos/*.tsx", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+}) as Record<string, string>;
+
+/** Convert name "<component-dir>/<demo>" → glob key */
+function keyFor(name: string): string | undefined {
+  // name = "components/button/basic" → key = "../content/components/button/demos/basic.tsx"
+  const parts = name.split("/");
+  const demoFile = parts.pop()!;
+  const componentDir = parts.join("/");
+  const key = `../content/${componentDir}/demos/${demoFile}.tsx`;
+  if (demoModules[key]) return key;
+  // Fallback: try matching just the last segment as demo filename
+  return Object.keys(demoModules).find((k) =>
+    k.endsWith(`/demos/${demoFile}.tsx`),
+  );
 }
 
 interface ComponentPreviewProps {
-  /** Path relative to content/, without /demos/<name>.tsx.  e.g. "components/button" */
-  slug: string;
-  /** Demo variant name (default: "basic") */
-  demo?: string;
+  /** Path: "<component-dir>/<demo-file>" e.g. "components/button/basic" */
+  name: string;
   /** Optional extra className for the preview wrapper */
   className?: string;
 }
 
-export function ComponentPreview({
-  slug,
-  demo = "basic",
-  className,
-}: ComponentPreviewProps) {
+export function ComponentPreview({ name, className }: ComponentPreviewProps) {
   const [tab, setTab] = useState<"preview" | "code">("preview");
 
-  const key = slugToKey(slug, demo);
-  const mod = demoModules[key];
-
-  if (!mod) {
+  const key = keyFor(name);
+  if (!key) {
     return (
       <div className="my-4 rounded-lg border border-destructive/40 bg-destructive/5 p-4 text-sm text-destructive">
-        Demo not found: <code className="font-mono">{key}</code>
+        Demo not found: <code className="font-mono">{name}</code>
       </div>
     );
   }
 
-  const DemoComponent = mod.default;
+  const DemoComponent = demoModules[key].default;
+  const source = demoSources[key] ?? "";
 
   return (
     <div
       className={cn(
-        "my-6 overflow-hidden rounded-xl border border-border/50",
+        "not-prose my-6 overflow-hidden rounded-xl border border-border/50",
         className,
       )}
     >
@@ -84,11 +93,17 @@ export function ComponentPreview({
         </div>
       )}
 
-      {/* Code panel — stub: shows demo filename */}
+      {/* Code panel — react-shiki syntax highlighted source */}
       {tab === "code" && (
-        <div className="p-4 text-sm text-muted-foreground font-mono">
-          {/* TODO: add source display via raw import */}
-          {key.replace(/^\.\.\/content\//, "src/docs/content/")}
+        <div className="overflow-x-auto text-sm">
+          <ShikiHighlighter
+            language="tsx"
+            theme={{ light: "github-light", dark: "github-dark" }}
+            addDefaultStyles={false}
+            className="!bg-transparent p-4"
+          >
+            {source}
+          </ShikiHighlighter>
         </div>
       )}
     </div>
