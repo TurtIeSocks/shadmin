@@ -2,6 +2,8 @@ import type { RouteRecord } from "vite-react-ssg";
 import { App } from "@/app";
 import { Home } from "@/pages/home";
 import { DemoStub } from "@/pages/demo-stub";
+import { DocsLayout } from "@/docs/docs-layout";
+import { MdxPage } from "@/docs/mdx-page";
 
 export const routes: RouteRecord[] = [
   {
@@ -10,7 +12,11 @@ export const routes: RouteRecord[] = [
     children: [
       { index: true, element: <Home /> },
       { path: "demo", element: <DemoStub /> },
-      // /docs/* added in Task 5
+      {
+        path: "docs",
+        element: <DocsLayout />,
+        children: [{ path: "*", element: <MdxPage /> }],
+      },
     ],
   },
 ];

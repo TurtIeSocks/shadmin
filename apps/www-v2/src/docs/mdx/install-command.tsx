@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { cn } from "shadmin/lib/utils";
+import type { InstallCommands } from "@/docs/types";
 
-export interface InstallCommands {
-  npm: string;
-  pnpm: string;
-  yarn: string;
-  bun: string;
-}
+export type { InstallCommands };
 
 interface InstallCommandProps {
   install: InstallCommands;
