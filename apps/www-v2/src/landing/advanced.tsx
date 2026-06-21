@@ -4,8 +4,9 @@ import { links } from "./constants";
 import { CtaButton } from "./cta-button";
 import { DataTableMockup } from "./data-table-mockup";
 import { Reveal, RevealItem } from "./reveal";
-import { Heading, Lead, Section } from "./section";
+import { BezelPanel, Heading, Lead, Section } from "./section";
 
+/** "Advanced Capabilities" split: checklist of features beside a data-table mockup. */
 export function Advanced() {
   return (
     <Section>
@@ -45,9 +46,9 @@ export function Advanced() {
 
         {/* Mockup */}
         <Reveal delay={0.1}>
-          <RevealItem className="rounded-2xl bg-muted/40 p-1.5 ring-1 ring-border/60">
+          <BezelPanel>
             <DataTableMockup />
-          </RevealItem>
+          </BezelPanel>
         </Reveal>
       </div>
     </Section>

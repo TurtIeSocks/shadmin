@@ -1,5 +1,7 @@
-import { Reveal, RevealItem } from "./reveal";
-import { Heading, Lead, Section } from "./section";
+import { cn } from "shadmin/lib/utils";
+import { insetCard } from "./constants";
+import { Reveal } from "./reveal";
+import { BezelPanel, Heading, Lead, Section } from "./section";
 
 const stats = [
   { value: "40+", label: "Components" },
@@ -7,6 +9,7 @@ const stats = [
   { value: "100%", label: "Open source (MIT)" },
 ];
 
+/** "Open source, Open Code" headline above a row of three brand-gradient stat cards. */
 export function OpenSource() {
   return (
     <Section>
@@ -22,11 +25,8 @@ export function OpenSource() {
 
       <Reveal className="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-3">
         {stats.map((s) => (
-          <RevealItem
-            key={s.label}
-            className="rounded-2xl bg-muted/40 p-1.5 ring-1 ring-border/60"
-          >
-            <div className="rounded-[0.85rem] border border-border/40 bg-card px-6 py-10 text-center">
+          <BezelPanel key={s.label}>
+            <div className={cn("px-6 py-10 text-center", insetCard)}>
               <p className="text-5xl font-bold text-brand-gradient">
                 {s.value}
               </p>
@@ -34,7 +34,7 @@ export function OpenSource() {
                 {s.label}
               </p>
             </div>
-          </RevealItem>
+          </BezelPanel>
         ))}
       </Reveal>
     </Section>

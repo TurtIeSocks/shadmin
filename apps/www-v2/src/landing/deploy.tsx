@@ -1,5 +1,12 @@
 import { Reveal, RevealItem } from "./reveal";
-import { Eyebrow, Heading, Lead, Section } from "./section";
+import {
+  BezelPanel,
+  Eyebrow,
+  Heading,
+  Lead,
+  LogoChip,
+  Section,
+} from "./section";
 import { WindowChrome } from "./window-chrome";
 
 const deployLogos = [
@@ -9,6 +16,7 @@ const deployLogos = [
   { label: "Cloudflare", src: "/img/cloudflare-logo.svg" },
 ];
 
+/** "Host Anywhere" split: copy + host chips beside an install-command terminal. */
 export function Deploy() {
   return (
     <Section>
@@ -27,31 +35,19 @@ export function Deploy() {
 
           <RevealItem className="mt-8 flex flex-wrap items-center gap-3">
             {deployLogos.map((logo) => (
-              <span
+              <LogoChip
                 key={logo.label}
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card px-3.5 py-1.5 text-sm font-medium text-foreground"
-              >
-                <img
-                  src={logo.src}
-                  alt=""
-                  aria-hidden
-                  width={18}
-                  height={18}
-                  className={
-                    logo.silhouette
-                      ? "size-[18px] brightness-0 dark:invert"
-                      : "size-[18px]"
-                  }
-                />
-                {logo.label}
-              </span>
+                label={logo.label}
+                src={logo.src}
+                silhouette={logo.silhouette}
+              />
             ))}
           </RevealItem>
         </Reveal>
 
         {/* Terminal */}
         <Reveal delay={0.1}>
-          <RevealItem className="rounded-2xl bg-muted/40 p-1.5 ring-1 ring-border/60">
+          <BezelPanel>
             <WindowChrome title="Terminal">
               <div className="bg-zinc-950 p-5 font-mono text-sm leading-relaxed">
                 <span className="text-zinc-500">$ </span>
@@ -61,7 +57,7 @@ export function Deploy() {
                 </span>
               </div>
             </WindowChrome>
-          </RevealItem>
+          </BezelPanel>
         </Reveal>
       </div>
     </Section>

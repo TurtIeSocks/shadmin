@@ -6,13 +6,15 @@ import {
   Users,
 } from "lucide-react";
 import { cn } from "shadmin/lib/utils";
+import { insetCard } from "./constants";
+import { StatusBadge, type StatusTone } from "./status-badge";
 
 const nav = [
   { label: "Dashboard", icon: LayoutDashboard, active: true },
-  { label: "Orders", icon: ShoppingCart, active: false },
-  { label: "Products", icon: Package, active: false },
-  { label: "Customers", icon: Users, active: false },
-  { label: "Reviews", icon: Star, active: false },
+  { label: "Orders", icon: ShoppingCart },
+  { label: "Products", icon: Package },
+  { label: "Customers", icon: Users },
+  { label: "Reviews", icon: Star },
 ];
 
 const stats = [
@@ -21,28 +23,27 @@ const stats = [
   { label: "Customers", value: "12.4k" },
 ];
 
-const orders = [
-  { name: "Alice Kim", status: "Paid", amount: "$129", tone: "green" },
-  { name: "Ben Moss", status: "Paid", amount: "$89", tone: "green" },
-  { name: "Clara Sol", status: "Pending", amount: "$420", tone: "amber" },
-  { name: "Dan Tran", status: "Refunded", amount: "$57", tone: "red" },
-] as const;
-
-const badgeTone: Record<string, string> = {
-  green:
-    "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/20",
-  amber: "bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-amber-500/20",
-  red: "bg-rose-500/10 text-rose-600 dark:text-rose-400 ring-rose-500/20",
-};
+const orders: {
+  name: string;
+  status: string;
+  amount: string;
+  tone: StatusTone;
+}[] = [
+  { name: "Alice Kim", status: "Paid", amount: "$129", tone: "positive" },
+  { name: "Ben Moss", status: "Paid", amount: "$89", tone: "positive" },
+  { name: "Clara Sol", status: "Pending", amount: "$420", tone: "warning" },
+  { name: "Dan Tran", status: "Refunded", amount: "$57", tone: "negative" },
+];
 
 // 30-day revenue points, normalised into the SVG's 0..100 x / 0..40 y box.
-const spark =
-  "0,30 10,26 20,28 30,20 40,23 50,15 60,18 70,10 80,13 90,6 100,8";
+const spark = "0,30 10,26 20,28 30,20 40,23 50,15 60,18 70,10 80,13 90,6 100,8";
 
 /** Hand-coded mini admin dashboard — sidebar, stats, sparkline, orders table. */
 export function DashboardMockup() {
   return (
-    <div className="flex min-h-[22rem] overflow-hidden rounded-[0.85rem] border border-border/40 bg-card text-left">
+    <div
+      className={cn("flex min-h-[22rem] overflow-hidden text-left", insetCard)}
+    >
       {/* Sidebar */}
       <aside className="hidden w-44 shrink-0 flex-col border-r border-border/60 bg-muted/30 p-3 sm:flex">
         <div className="flex items-center gap-2 px-1 pb-3">
@@ -93,6 +94,9 @@ export function DashboardMockup() {
           <p className="mb-2 text-[11px] text-muted-foreground">
             Revenue · last 30 days
           </p>
+          {/* Decorative sample chart — the panel heading above labels it, so
+              the svg is hidden from assistive tech rather than titled. */}
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: decorative, aria-hidden */}
           <svg
             viewBox="0 0 100 40"
             preserveAspectRatio="none"
@@ -131,14 +135,7 @@ export function DashboardMockup() {
                     {o.name}
                   </td>
                   <td className="px-3 py-2">
-                    <span
-                      className={cn(
-                        "inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ring-inset",
-                        badgeTone[o.tone],
-                      )}
-                    >
-                      {o.status}
-                    </span>
+                    <StatusBadge tone={o.tone}>{o.status}</StatusBadge>
                   </td>
                   <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">
                     {o.amount}

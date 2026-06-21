@@ -1,5 +1,5 @@
-import { Reveal, RevealItem } from "./reveal";
-import { Heading, Lead, Section } from "./section";
+import { Reveal } from "./reveal";
+import { BezelPanel, Heading, Lead, Section } from "./section";
 import { WindowChrome } from "./window-chrome";
 
 // Syntax tint palette (works on a dark code surface in both themes).
@@ -9,6 +9,7 @@ const tag = "text-[#f472b6]"; // JSX tags — pink
 const attr = "text-[#7dd3fc]"; // attributes — sky
 const punct = "text-zinc-500";
 
+/** "Built by developers for developers" split: copy beside a syntax-highlighted App.tsx. */
 export function CodeShowcase() {
   return (
     <Section>
@@ -27,7 +28,7 @@ export function CodeShowcase() {
 
         {/* Code */}
         <Reveal delay={0.1}>
-          <RevealItem className="rounded-2xl bg-muted/40 p-1.5 ring-1 ring-border/60">
+          <BezelPanel>
             <WindowChrome title="App.tsx">
               <pre className="overflow-x-auto bg-zinc-950 p-5 font-mono text-sm leading-relaxed text-zinc-100">
                 <code>
@@ -87,7 +88,7 @@ export function CodeShowcase() {
                 </code>
               </pre>
             </WindowChrome>
-          </RevealItem>
+          </BezelPanel>
         </Reveal>
       </div>
     </Section>

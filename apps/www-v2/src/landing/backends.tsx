@@ -1,8 +1,21 @@
-import { ArrowDown, Database, LayoutDashboard } from "lucide-react";
-import { links } from "./constants";
+import {
+  ArrowDown,
+  Database,
+  LayoutDashboard,
+  type LucideIcon,
+} from "lucide-react";
+import { cn } from "shadmin/lib/utils";
+import { insetCard, links } from "./constants";
 import { CtaButton } from "./cta-button";
 import { Reveal, RevealItem } from "./reveal";
-import { Eyebrow, Heading, Lead, Section } from "./section";
+import {
+  BezelPanel,
+  Eyebrow,
+  Heading,
+  Lead,
+  LogoChip,
+  Section,
+} from "./section";
 
 const backendLogos = [
   { label: "Supabase", src: "/img/supabase-logo-icon.svg" },
@@ -12,22 +25,23 @@ const backendLogos = [
   { label: "Hasura", src: "/img/hasura-logo.svg" },
 ];
 
-function FlowBox({
-  label,
-  icon: Icon,
-  brand,
-}: {
+interface FlowBoxProps {
   label: string;
-  icon: typeof Database;
+  icon: LucideIcon;
+  /** Highlight as the brand-gradient node (the dataProvider in the diagram). */
   brand?: boolean;
-}) {
+}
+
+/** A single labelled node in the App → dataProvider → Backend flow diagram. */
+function FlowBox({ label, icon: Icon, brand }: FlowBoxProps) {
   return (
     <div
-      className={
+      className={cn(
+        "flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3",
         brand
-          ? "flex w-full items-center justify-center gap-2 rounded-xl bg-brand-gradient px-4 py-3 font-semibold text-white shadow-sm shadow-indigo-500/20"
-          : "flex w-full items-center justify-center gap-2 rounded-xl border border-border/60 bg-card px-4 py-3 font-medium text-foreground"
-      }
+          ? "bg-brand-gradient font-semibold text-white shadow-sm shadow-indigo-500/20"
+          : "border border-border/60 bg-card font-medium text-foreground",
+      )}
     >
       <Icon className="size-4" strokeWidth={1.75} />
       {label}
@@ -35,6 +49,7 @@ function FlowBox({
   );
 }
 
+/** Monospace code chip used as a connector caption in the flow diagram. */
 function MonoPill({ children }: { children: string }) {
   return (
     <span className="rounded-md border border-border/60 bg-muted/60 px-2.5 py-1 font-mono text-xs text-muted-foreground">
@@ -43,6 +58,7 @@ function MonoPill({ children }: { children: string }) {
   );
 }
 
+/** "Connect to Any Backend" split: copy + backend chips beside a flow diagram. */
 export function Backends() {
   return (
     <Section>
@@ -62,20 +78,7 @@ export function Backends() {
 
           <RevealItem className="mt-8 flex flex-wrap items-center gap-3">
             {backendLogos.map((logo) => (
-              <span
-                key={logo.label}
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card px-3.5 py-1.5 text-sm font-medium text-foreground"
-              >
-                <img
-                  src={logo.src}
-                  alt=""
-                  aria-hidden
-                  width={18}
-                  height={18}
-                  className="size-[18px]"
-                />
-                {logo.label}
-              </span>
+              <LogoChip key={logo.label} label={logo.label} src={logo.src} />
             ))}
             <span className="inline-flex items-center rounded-full border border-dashed border-border px-3.5 py-1.5 text-sm font-medium text-muted-foreground">
               Works with any REST or GraphQL API
@@ -89,8 +92,10 @@ export function Backends() {
 
         {/* Data-flow diagram */}
         <Reveal delay={0.1}>
-          <RevealItem className="rounded-2xl bg-muted/40 p-1.5 ring-1 ring-border/60">
-            <div className="flex flex-col items-center gap-3 rounded-[0.85rem] border border-border/40 bg-card p-6">
+          <BezelPanel>
+            <div
+              className={cn("flex flex-col items-center gap-3 p-6", insetCard)}
+            >
               <FlowBox label="Your App" icon={LayoutDashboard} />
               <MonoPill>useGetList(&apos;posts&apos;)</MonoPill>
               <ArrowDown
@@ -105,7 +110,7 @@ export function Backends() {
               />
               <FlowBox label="Your Backend" icon={Database} />
             </div>
-          </RevealItem>
+          </BezelPanel>
         </Reveal>
       </div>
     </Section>

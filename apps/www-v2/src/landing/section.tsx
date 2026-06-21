@@ -76,3 +76,50 @@ export function Section({ children, className, id }: SectionProps) {
     </section>
   );
 }
+
+interface LogoChipProps {
+  label: string;
+  src: string;
+  /** Render the icon as a theme-adaptive silhouette (brightness-0 dark:invert). */
+  silhouette?: boolean;
+}
+
+/** Pill chip with a backend/host logo + label, used in the integration rows. */
+export function LogoChip({ label, src, silhouette }: LogoChipProps) {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card px-3.5 py-1.5 text-sm font-medium text-foreground">
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        width={18}
+        height={18}
+        className={cn("size-[18px]", silhouette && "brightness-0 dark:invert")}
+      />
+      {label}
+    </span>
+  );
+}
+
+interface BezelPanelProps {
+  children: ReactNode;
+  className?: string;
+}
+
+/**
+ * Double-bezel frame for hero/feature mockups: a soft outer ring around an inset
+ * card surface, giving screenshots/code/diagrams depth. Renders as a `Reveal`
+ * stagger child so it animates in when it scrolls into view.
+ */
+export function BezelPanel({ children, className }: BezelPanelProps) {
+  return (
+    <RevealItem
+      className={cn(
+        "rounded-2xl bg-muted/40 p-1.5 ring-1 ring-border/60",
+        className,
+      )}
+    >
+      {children}
+    </RevealItem>
+  );
+}

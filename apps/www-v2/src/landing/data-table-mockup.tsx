@@ -1,30 +1,56 @@
 import { Check, Download, Filter, X } from "lucide-react";
 import { cn } from "shadmin/lib/utils";
+import { insetCard } from "./constants";
+import { StatusBadge, type StatusTone } from "./status-badge";
 
-const rows = [
-  { name: "Alice Kim", product: "Pro Plan", status: "Approved", selected: true },
-  { name: "Ben Moss", product: "Starter", status: "Approved", selected: true },
+const rows: {
+  name: string;
+  product: string;
+  status: string;
+  tone: StatusTone;
+  selected: boolean;
+}[] = [
+  {
+    name: "Alice Kim",
+    product: "Pro Plan",
+    status: "Approved",
+    tone: "positive",
+    selected: true,
+  },
+  {
+    name: "Ben Moss",
+    product: "Starter",
+    status: "Approved",
+    tone: "positive",
+    selected: true,
+  },
   {
     name: "Clara Sol",
     product: "Enterprise",
     status: "Pending",
+    tone: "warning",
     selected: false,
   },
-  { name: "Dan Tran", product: "Pro Plan", status: "Pending", selected: true },
-  { name: "Eva Lee", product: "Starter", status: "Rejected", selected: false },
-] as const;
-
-const statusTone: Record<string, string> = {
-  Approved:
-    "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/20",
-  Pending: "bg-amber-500/10 text-amber-600 dark:text-amber-400 ring-amber-500/20",
-  Rejected: "bg-rose-500/10 text-rose-600 dark:text-rose-400 ring-rose-500/20",
-};
+  {
+    name: "Dan Tran",
+    product: "Pro Plan",
+    status: "Pending",
+    tone: "warning",
+    selected: true,
+  },
+  {
+    name: "Eva Lee",
+    product: "Starter",
+    status: "Rejected",
+    tone: "negative",
+    selected: false,
+  },
+];
 
 /** Hand-coded orders data-table with toolbar + bulk-action bar. */
 export function DataTableMockup() {
   return (
-    <div className="overflow-hidden rounded-[0.85rem] border border-border/40 bg-card text-left">
+    <div className={cn("overflow-hidden text-left", insetCard)}>
       {/* Toolbar */}
       <div className="flex items-center gap-2 border-b border-border/60 px-3 py-2.5">
         <span className="text-sm font-semibold text-foreground">Orders</span>
@@ -82,14 +108,7 @@ export function DataTableMockup() {
               </td>
               <td className="px-3 py-2.5 text-muted-foreground">{r.product}</td>
               <td className="px-3 py-2.5">
-                <span
-                  className={cn(
-                    "inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ring-inset",
-                    statusTone[r.status],
-                  )}
-                >
-                  {r.status}
-                </span>
+                <StatusBadge tone={r.tone}>{r.status}</StatusBadge>
               </td>
             </tr>
           ))}
