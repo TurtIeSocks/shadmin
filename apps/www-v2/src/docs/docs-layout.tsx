@@ -29,7 +29,7 @@ import {
 } from "shadmin/components/ui/sidebar";
 import { navTree } from "./nav-content";
 import { Toc } from "./toc";
-import type { DocLeaf } from "./types";
+import type { DocNode } from "./types";
 
 interface NavProps {
   activeSlug: string;
@@ -38,15 +38,56 @@ interface NavProps {
   onNavigate?: () => void;
 }
 
+function NavChildren({
+  nodes,
+  depth,
+  ...nav
+}: { nodes: DocNode[]; depth: number } & NavProps) {
+  return (
+    <SidebarMenu>
+      {nodes.map((node) =>
+        node.kind === "leaf" ? (
+          <SidebarMenuItem key={node.slug}>
+            <SidebarMenuButton asChild isActive={node.slug === nav.activeSlug} size="sm">
+              <NavLink to={`/docs/${node.slug}`} onClick={nav.onNavigate} style={{ paddingLeft: `${depth * 0.75}rem` }}>
+                {node.title}
+              </NavLink>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        ) : (
+          <Collapsible
+            key={node.dir}
+            open={nav.open.has(node.dir)}
+            onOpenChange={(o) => nav.toggle(node.dir, o)}
+            className="group/sub"
+          >
+            <SidebarMenuItem>
+              <div className="flex items-center">
+                <SidebarMenuButton asChild isActive={!!node.indexSlug && node.indexSlug === nav.activeSlug} size="sm" className="flex-1">
+                  <NavLink to={`/docs/${node.indexSlug ?? node.dir}`} onClick={nav.onNavigate} style={{ paddingLeft: `${depth * 0.75}rem` }}>
+                    {node.title}
+                  </NavLink>
+                </SidebarMenuButton>
+                <CollapsibleTrigger className="px-1.5 text-muted-foreground hover:text-foreground">
+                  <ChevronRight className="size-4 transition-transform group-data-[state=open]/sub:rotate-90" />
+                </CollapsibleTrigger>
+              </div>
+              <CollapsibleContent>
+                <NavChildren nodes={node.children} depth={depth + 1} {...nav} />
+              </CollapsibleContent>
+            </SidebarMenuItem>
+          </Collapsible>
+        ),
+      )}
+    </SidebarMenu>
+  );
+}
+
 // Shared nav body — used by both the desktop sidebar and the mobile sheet.
 function SectionNav({ activeSlug, open, toggle, onNavigate }: NavProps) {
   return (
     <SidebarContent className="gap-0 px-2 py-4">
-      {navTree.map((section) => {
-        const leaves = section.children.filter(
-          (c): c is DocLeaf => c.kind === "leaf",
-        );
-        return (
+      {navTree.map((section) => (
           <Collapsible
             key={section.dir}
             open={open.has(section.dir)}
@@ -65,30 +106,22 @@ function SectionNav({ activeSlug, open, toggle, onNavigate }: NavProps) {
               </SidebarGroupLabel>
               <CollapsibleContent>
                 <SidebarGroupContent>
-                  <SidebarMenu>
-                    {leaves.map((leaf) => (
-                      <SidebarMenuItem key={leaf.slug}>
-                        <SidebarMenuButton
-                          asChild
-                          isActive={leaf.slug === activeSlug}
-                          size="sm"
-                        >
-                          <NavLink to={`/docs/${leaf.slug}`} onClick={onNavigate}>
-                            {leaf.title}
-                          </NavLink>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </SidebarMenu>
+                  <NavChildren nodes={section.children} depth={0} activeSlug={activeSlug} open={open} toggle={toggle} onNavigate={onNavigate} />
                 </SidebarGroupContent>
               </CollapsibleContent>
             </SidebarGroup>
           </Collapsible>
-        );
-      })}
+      ))}
     </SidebarContent>
   );
 }
+
+const ancestorDirs = (slug: string): string[] => {
+  const parts = slug.split("/");
+  const dirs: string[] = [];
+  for (let i = 1; i < parts.length; i++) dirs.push(parts.slice(0, i).join("/"));
+  return dirs; // e.g. "a/b/c" -> ["a","a/b"]
+};
 
 export default function DocsLayout() {
   const { pathname } = useLocation();
@@ -102,7 +135,7 @@ export default function DocsLayout() {
 
   // Controlled open state so the active section auto-opens on client-side nav.
   const [open, setOpen] = useState<Set<string>>(
-    () => new Set([activeSection, "getting-started"].filter(Boolean) as string[]),
+    () => new Set([...ancestorDirs(activeSlug), "getting-started"].filter(Boolean) as string[]),
   );
 
   useEffect(() => {
@@ -111,7 +144,10 @@ export default function DocsLayout() {
         prev.has(activeSection) ? prev : new Set(prev).add(activeSection),
       );
     }
-  }, [activeSection]);
+    for (const dir of ancestorDirs(activeSlug)) {
+      setOpen((prev) => prev.has(dir) ? prev : new Set(prev).add(dir));
+    }
+  }, [activeSection, activeSlug]);
   // Close the mobile sheet whenever the route changes.
   useEffect(() => setSheetOpen(false), [pathname, setSheetOpen]);
 
