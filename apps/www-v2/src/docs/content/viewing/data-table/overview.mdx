@@ -1,0 +1,116 @@
+---
+title: "Overview"
+description: "The DataTable component — usage, props, and cell rendering."
+---
+
+## Usage
+
+Use `<DataTable>` inside a `ListContext` (e.g., as a descendent of [`<List>`](/docs/page-components/list) or [`<ReferenceManyField>`](/docs/viewing/reference-many-field)). Define the table columns with its children using `<DataTable.Col>` components:
+
+```tsx
+import {
+  List,
+  DataTable,
+  ReferenceField,
+  EditButton,
+} from "@/components/admin";
+
+export const PostList = () => (
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col label="User">
+        <ReferenceField source="user_id" reference="users" />
+      </DataTable.Col>
+      <DataTable.Col source="title" />
+      <DataTable.Col>
+        <EditButton />
+      </DataTable.Col>
+    </DataTable>
+  </List>
+);
+```
+
+Each `<DataTable.Col>` child defines how to label the column header, either via the `label` prop, or by humanizing the `source` prop.
+
+`<DataTable.Col>` also defines where to get the value for each cell in that column (either via `source`, a `render` prop, or a child component). `<DataTable>` renders each row in a `RecordContext`, so any Field component can be used inside `<DataTable.Col>`.
+
+It also accepts additional props to configure the behavior of that specific column, such as sorting, styling, etc.
+
+## Props
+
+| Prop                 | Required | Type                 | Default                | Description                                                                |
+| -------------------- | -------- | -------------------- | ---------------------- | -------------------------------------------------------------------------- |
+| `children`           | Required | `ReactNode`          | -                      | Column definitions (`DataTable.Col` / custom)                              |
+| `bulkActionButtons`  | Optional | `ReactNode \| false` | Bulk Delete and Export | Custom bulk action buttons or disable with `false`                         |
+| `bulkActionsToolbar` | Optional | `ReactNode`          | -                      | Full custom toolbar (overrides default)                                    |
+| `className`          | Optional | `string`             | -                      | Wrapper classes                                                            |
+| `empty`              | Optional | Element              | `<Empty>`              | The component to render when the list is empty.                            |
+| `hiddenColumns`      | Optional | Array                | `[]`                   | The list of columns to hide by default (to be used with `ColumnsButton`) . |
+| `isRowSelectable`    | Optional | Function             | `() => true`           | A function that returns whether a row is selectable.                       |
+| `rowClassName`       | Optional | `(record) => string` | -                      | Dynamic row classes                                                        |
+| `rowClick`           | Optional | mixed                | `show`                 | The action to trigger when the user clicks on a row.                       |
+| `storeKey`           | Optional | `string`             | `<resource>.datatable` | Persistence key for column state                                           |
+
+## Cell Rendering
+
+For non-numeric values, use `<DataTable.Col>`. It lets you define how the data renders in 4 different ways:
+
+- By passing a `source` prop and no child.
+
+```tsx
+<DataTable.Col source="firstName" />
+```
+
+- By passing child elements (e.g. `<ReferenceField>`, `<DateField>`, etc.).
+
+```tsx
+<DataTable.Col source="lastName">
+  <TextField source="firstName" /> <TextField source="lastName" />
+</DataTable.Col>
+```
+
+- By using the `field` prop to specify a field component.
+
+```tsx
+<DataTable.Col source="createdAt" field={DateField} />
+```
+
+- By passing a `render` prop to define a custom rendering function.
+
+```tsx
+<DataTable.Col
+  label="Name"
+  source="lastName"
+  render={(record) => `${record.firstName} ${record.lastName}`}
+/>
+```
+
+Even when using `children`, `field`, or `render`, you can still pass a `source` prop to define the column label and enable sorting on that column.
+
+`<DataTable.Col>` accepts the following additional props:
+
+| Prop                   | Required | Type                 | Description                           |
+| ---------------------- | -------- | -------------------- | ------------------------------------- |
+| `headerClassName`      | Optional | `string`             | Extra header cell classes             |
+| `cellClassName`        | Optional | `string`             | Extra body cell classes               |
+| `conditionalClassName` | Optional | `(record) => string` | Adds per-row class                    |
+| `disableSort`          | Optional | `boolean`            | Disable sorting on this column        |
+| `sortByOrder`          | Optional | `"ASC"\|"DESC"`      | Initial sort order when first clicked |
+| `label`                | Optional | `ReactNode`          | Header label (i18n key or node)       |
+
+For numeric values, prefer `<DataTable.NumberCol>`. It is right-aligned and uses `<NumberField>` to format the value. You can pass an `options` prop to configure the number format.
+
+```tsx
+<DataTable.NumberCol
+  source="amount"
+  options={{ style: "currency", currency: "USD" }}
+/>
+```
+
+`<DataTable.NumberCol>` accepts the following props, in addition to those of `<DataTable.Col>`:
+
+| Prop      | Type                       | Description    |
+| --------- | -------------------------- | -------------- |
+| `locales` | `string \| string[]`       | Intl locales   |
+| `options` | `Intl.NumberFormatOptions` | Format options |

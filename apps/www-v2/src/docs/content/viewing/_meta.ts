@@ -12,7 +12,7 @@ export default [
   { slug: "count", title: "Count" },
   { slug: "cron-field", title: "CronField" },
   { slug: "currency-field", title: "CurrencyField" },
-  { slug: "data-table", title: "DataTable" },
+  { dir: "data-table", title: "DataTable" },
   { slug: "date-field", title: "DateField" },
   { slug: "duration-field", title: "DurationField" },
   { slug: "email-field", title: "EmailField" },
