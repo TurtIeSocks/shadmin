@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import { cn } from "shadmin/lib/utils";
+import { DocSearch } from "@/components/doc-search";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
@@ -31,7 +32,8 @@ export function SiteNav() {
             </li>
           ))}
         </ul>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-2">
+          <DocSearch />
           <ThemeToggle />
         </div>
       </nav>
