@@ -77,6 +77,19 @@ export function Section({ children, className, id }: SectionProps) {
   );
 }
 
+/**
+ * Section-to-section divider: a center-tapered hairline with a small brand-gradient
+ * gem at the middle (the brand-language successor to v1's glass separator).
+ */
+export function SectionDivider() {
+  return (
+    <div className="relative mx-auto w-full max-w-5xl px-6" aria-hidden>
+      <hr className="m-0 h-px border-0 bg-border [mask-image:linear-gradient(to_right,transparent,black_14%,black_86%,transparent)]" />
+      <span className="absolute left-1/2 top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-[3px] bg-brand-gradient shadow-[0_0_16px_1px_rgba(139,92,246,0.5)] ring-1 ring-white/30" />
+    </div>
+  );
+}
+
 interface LogoChipProps {
   label: string;
   src: string;

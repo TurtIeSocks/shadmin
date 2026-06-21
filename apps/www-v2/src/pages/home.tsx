@@ -8,6 +8,7 @@ import { FinalCta } from "@/landing/final-cta";
 import { Hero } from "@/landing/hero";
 import { LandingFooter } from "@/landing/landing-footer";
 import { OpenSource } from "@/landing/open-source";
+import { SectionDivider } from "@/landing/section";
 import { TechLogos } from "@/landing/tech-logos";
 import { Why } from "@/landing/why";
 
@@ -26,13 +27,21 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <SectionDivider />
       <TechLogos />
+      <SectionDivider />
       <Features />
+      <SectionDivider />
       <Advanced />
+      <SectionDivider />
       <Backends />
+      <SectionDivider />
       <Deploy />
+      <SectionDivider />
       <OpenSource />
+      <SectionDivider />
       <Why />
+      <SectionDivider />
       <CodeShowcase />
       <FinalCta />
       <LandingFooter />

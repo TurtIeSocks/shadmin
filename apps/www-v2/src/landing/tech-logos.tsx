@@ -1,6 +1,5 @@
-import { cn } from "shadmin/lib/utils";
-import { Eyebrow, Heading, Lead, Section } from "./section";
 import { Reveal, RevealItem } from "./reveal";
+import { Eyebrow, Heading, Lead, Section } from "./section";
 import { techLogos } from "./tech-logos.data";
 
 /** "The Stack" — grid of the libraries Shadmin is built on. */
@@ -29,10 +28,10 @@ export function TechLogos() {
               alt={logo.label}
               width={56}
               height={56}
-              className={cn(
-                "size-14 opacity-65 transition-opacity duration-300 group-hover:opacity-100",
-                logo.silhouette && "brightness-0 dark:invert",
-              )}
+              // Uniform theme-adaptive silhouette: brightness-0 forces any source
+              // color to black (visible on light), dark:invert flips it to white
+              // (visible on dark) — so every logo reads in both modes.
+              className="size-14 opacity-65 brightness-0 transition-opacity duration-300 group-hover:opacity-100 dark:invert"
             />
             <span className="text-xs font-medium text-muted-foreground">
               {logo.label}
