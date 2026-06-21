@@ -305,22 +305,28 @@
 .bento-card::before {
   background-image: radial-gradient(
     circle at 1px 1px,
-    color-mix(in oklch, var(--foreground) 13%, transparent) 1px,
+    color-mix(in oklch, var(--foreground) 10%, transparent) 1px,
     transparent 0
   );
-  background-size: 18px 18px;
+  background-size: 22px 22px;
   -webkit-mask-image: radial-gradient(130% 90% at 0% 0%, black, transparent 70%);
   mask-image: radial-gradient(130% 90% at 0% 0%, black, transparent 70%);
 }
+/* The glow reads as light cast from BEHIND the icon: a fixed-size circle
+   (rem, not %) centred on the icon chip (p-5 padding = 1.25rem + half of the
+   size-10 chip = 1.25rem → 2.5rem in), so it's the same physical size and
+   position on every card regardless of card size. Always faintly lit; the
+   "lamp" brightens on hover. */
 .bento-card::after {
   background: radial-gradient(
-    55% 55% at 0% 0%,
-    color-mix(in oklch, var(--brand-from) 22%, transparent),
-    transparent 72%
+    circle 11rem at 2.5rem 2.5rem,
+    color-mix(in oklch, var(--brand-from) 38%, transparent) 0%,
+    color-mix(in oklch, var(--brand-from) 12%, transparent) 34%,
+    transparent 70%
   );
-  opacity: 0.3;
-  transition: opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  opacity: 0.65;
+  transition: opacity 0.45s cubic-bezier(0.32, 0.72, 0, 1);
 }
 .bento-card:hover::after {
-  opacity: 0.85;
+  opacity: 1;
 }
