@@ -32,6 +32,12 @@ export interface NavTreeProps {
   onNavigate?: () => void;
   /** Optional badge/indicator per leaf slug — return `null` for nothing. */
   badgeFor?: (slug: string) => ReactNode;
+  /**
+   * When true, clicking a top-level section toggles its collapsible instead of
+   * navigating to a section index. Use for the gallery (no category landing
+   * page); docs leaves it off so sections link to their landing.
+   */
+  sectionAsToggle?: boolean;
 }
 
 interface SubProps {
@@ -115,6 +121,7 @@ export function NavTree({
   onToggle,
   onNavigate,
   badgeFor,
+  sectionAsToggle,
 }: NavTreeProps) {
   return (
     <SidebarGroup>
@@ -132,22 +139,40 @@ export function NavTree({
                 className="group/section"
               >
                 <SidebarMenuItem>
-                  <SidebarMenuButton
-                    asChild
-                    tooltip={section.title}
-                    isActive={to === activeSlug}
-                  >
-                    <NavLink to={hrefFor(to)} onClick={onNavigate}>
-                      {Icon ? <Icon /> : null}
-                      <span>{section.title}</span>
-                    </NavLink>
-                  </SidebarMenuButton>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuAction className="transition-transform group-data-[state=open]/section:rotate-90">
-                      <ChevronRight />
-                      <span className="sr-only">Toggle {section.title}</span>
-                    </SidebarMenuAction>
-                  </CollapsibleTrigger>
+                  {sectionAsToggle ? (
+                    // Gallery: the whole section row toggles its sub-list (no
+                    // category landing page to navigate to).
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton tooltip={section.title}>
+                        {Icon ? <Icon /> : null}
+                        <span>{section.title}</span>
+                        <ChevronRight className="ml-auto transition-transform group-data-[state=open]/section:rotate-90" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                  ) : (
+                    // Docs: the section links to its landing; a separate chevron
+                    // toggles the sub-list.
+                    <>
+                      <SidebarMenuButton
+                        asChild
+                        tooltip={section.title}
+                        isActive={to === activeSlug}
+                      >
+                        <NavLink to={hrefFor(to)} onClick={onNavigate}>
+                          {Icon ? <Icon /> : null}
+                          <span>{section.title}</span>
+                        </NavLink>
+                      </SidebarMenuButton>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuAction className="transition-transform group-data-[state=open]/section:rotate-90">
+                          <ChevronRight />
+                          <span className="sr-only">
+                            Toggle {section.title}
+                          </span>
+                        </SidebarMenuAction>
+                      </CollapsibleTrigger>
+                    </>
+                  )}
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       {section.children.map((child) => (

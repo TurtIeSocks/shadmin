@@ -138,6 +138,7 @@ export function DemoSidebarContent() {
           openDirs={openDirs}
           onToggle={onToggle}
           badgeFor={(slug) => (missingSet.has(slug) ? <UncoveredDot /> : null)}
+          sectionAsToggle
         />
       </SidebarGroup>
 

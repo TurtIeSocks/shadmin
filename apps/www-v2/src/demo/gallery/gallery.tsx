@@ -20,6 +20,21 @@ import { ExampleFrame } from "./example-frame";
 const exampleSlugSet = new Set(exampleSlugs);
 const componentDocSlugSet = new Set(componentDocSlugs);
 
+// Cache one STABLE lazy component per example key. Creating lazy() inside
+// render gives a fresh component identity every render, so React's Suspense
+// never settles on the new example during client-side navigation — the page
+// shows stale content until a hard reload. A module-level cache keyed by the
+// example key makes each example's lazy stable, so soft nav swaps cleanly.
+const lazyCache = new Map<string, ComponentType>();
+function getExampleComponent(key: string): ComponentType {
+  let C = lazyCache.get(key);
+  if (!C) {
+    C = lazy(exampleModules[key] as () => Promise<{ default: ComponentType }>);
+    lazyCache.set(key, C);
+  }
+  return C;
+}
+
 export default function Gallery() {
   const slug = (useParams()["*"] ?? "").replace(/\/+$/, "");
 
@@ -37,14 +52,12 @@ export default function Gallery() {
 
   if (hasExample) {
     const rawSource = exampleRawSources[key] ?? "";
-
-    // Lazy-load the example component
-    const ExampleComponent = lazy(() =>
-      (exampleModules[key] as () => Promise<{ default: ComponentType }>)(),
-    );
+    const ExampleComponent = getExampleComponent(key);
 
     return (
-      <div className="p-8 max-w-4xl">
+      // key={slug} forces a clean remount per example so nothing leaks across
+      // client-side navigations.
+      <div key={slug} className="p-8 max-w-4xl">
         <ExampleFrame
           slug={slug}
           component={
