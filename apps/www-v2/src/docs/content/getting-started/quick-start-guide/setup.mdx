@@ -1,0 +1,265 @@
+---
+title: "1. Setup"
+description: "Install shadmin and point it at an API data source."
+---
+
+## Setting Up
+
+Follow the [installation instructions](/docs/getting-started/install) to install `shadmin` in your project with Next.js, Vite.js, Remix, Tanstack Start, or any other framework of your choice.
+
+You should end up with a welcome screen like this:
+
+![Welcome to shadmin!](/docs/images/welcome.png)
+
+## Using an API as the Data Source
+
+`shadmin` apps are single-page applications (SPA) that run in the browser and fetch data from an API. Since there is no single standard for data exchanges between systems, `shadmin` uses an adapter to communicate with your API—this adapter is called a [Data Provider](/docs/app-config/data-providers).
+
+For this tutorial, we'll use [JSONPlaceholder](https://jsonplaceholder.typicode.com/), a fake REST API designed for prototyping and testing. Here is a sample response:
+
+```shell
+curl https://jsonplaceholder.typicode.com/users/2
+```
+
+```json
+{
+  "id": 2,
+  "name": "Ervin Howell",
+  "username": "Antonette",
+  "email": "Shanna@melissa.tv",
+  "address": {
+    "street": "Victor Plains",
+    "suite": "Suite 879",
+    "city": "Wisokyburgh",
+    "zipcode": "90566-7771",
+    "geo": {
+      "lat": "-43.9509",
+      "lng": "-34.4618"
+    }
+  },
+  "phone": "010-692-6593 x09125",
+  "website": "anastasia.net",
+  "company": {
+    "name": "Deckow-Crist",
+    "catchPhrase": "Proactive didactic contingency",
+    "bs": "synergize scalable supply-chains"
+  }
+}
+```
+
+_JSONPlaceholder_ provides endpoints for users, posts, and comments. The admin app we'll build will allow you to Create, Retrieve, Update, and Delete (CRUD) these resources.
+
+We'll use a third-party package, `ra-data-json-server` to map the JSONPlaceholder API to the `shadmin` CRUD API. There are [dozens of data provider packages](/docs/app-config/data-providers#supported-data-provider-backends) for various APIs and databases. You can also create your own if necessary. For now, let's make sure the app connects to JSONPlaceholder.
+
+```shell
+npm install ra-data-json-server
+# or
+yarn add ra-data-json-server
+```
+
+Create `dataProvider.ts` next to `App.tsx`, where you can define your data provider using JSONPlaceholder.
+
+<Tabs>
+  <TabItem label="Next">
+```tsx title="app/admin/dataProvider.ts"
+import jsonServerProvider from "ra-data-json-server";
+
+export const dataProvider = jsonServerProvider(
+    process.env.NEXT_PUBLIC_JSON_SERVER_URL
+);
+```
+The `process.env.NEXT_PUBLIC_JSON_SERVER_URL` expression is an [environment variable](https://nextjs.org/docs/pages/guides/environment-variables) that must be set in the `.env` file located at the project root.
+
+```dotenv
+NEXT_PUBLIC_JSON_SERVER_URL="https://jsonplaceholder.typicode.com"
+```
+
+Now, you can use this data provider in your admin app.
+
+```tsx
+// app/admin/App.tsx
+import { Admin } from "@/components/admin";
+import { dataProvider } from "./data-provider";
+
+const App = () => <Admin dataProvider={dataProvider}></Admin>;
+
+export default App;
+```
+    </TabItem>
+    <TabItem label="Vite">
+```tsx title="src/dataProvider.ts"
+import jsonServerProvider from 'ra-data-json-server';
+
+export const dataProvider = jsonServerProvider(
+    import.meta.env.VITE_JSON_SERVER_URL
+);
+```
+The `import.meta.env.VITE_JSON_SERVER_URL` expression is a [Vite environment variable](https://vitejs.dev/guide/env-and-mode.html) that must be set in the `.env` file located at the project root.
+
+```dotenv
+VITE_JSON_SERVER_URL="https://jsonplaceholder.typicode.com"
+```
+
+Now, you can use this data provider in your admin app.
+
+```tsx
+// src/App.tsx
+import { Admin } from "@/components/admin";
+import { dataProvider } from "./data-provider";
+
+const App = () => <Admin dataProvider={dataProvider}></Admin>;
+
+export default App;
+```
+    </TabItem>
+    <TabItem label="React Router">
+```tsx title="app/admin/dataProvider.ts"
+import jsonServerProvider from 'ra-data-json-server';
+
+export const dataProvider = jsonServerProvider(
+    import.meta.env.VITE_JSON_SERVER_URL
+);
+```
+The `import.meta.env.VITE_JSON_SERVER_URL` expression is a [Vite environment variable](https://vitejs.dev/guide/env-and-mode.html) that must be set in the `.env` file located at the project root.
+
+```dotenv
+VITE_JSON_SERVER_URL="https://jsonplaceholder.typicode.com"
+```
+
+Now, you can use this data provider in your admin app.
+
+```tsx
+// app/admin/App.tsx
+import { Admin } from "~/components/admin";
+import { dataProvider } from "./data-provider";
+
+const App = () => <Admin basename="/admin" dataProvider={dataProvider}></Admin>;
+
+export default App;
+```
+    </TabItem>
+    <TabItem label="Tanstack Start">
+```tsx title="src/dataProvider.ts"
+import jsonServerProvider from 'ra-data-json-server';
+
+export const dataProvider = jsonServerProvider(
+    import.meta.env.VITE_JSON_SERVER_URL
+);
+```
+The `import.meta.env.VITE_JSON_SERVER_URL` expression is a [Vite environment variable](https://vitejs.dev/guide/env-and-mode.html) that must be set in the `.env` file located at the project root.
+
+```dotenv
+VITE_JSON_SERVER_URL="https://jsonplaceholder.typicode.com"
+```
+
+Now, you can use this data provider in your admin app.
+
+```tsx title="src/routes/index.tsx"
+import { tanStackRouterProvider } from "ra-router-tanstack";
+import { createFileRoute } from "@tanstack/react-router";
+import { Admin } from "@/components/admin";
+import { dataProvider } from "@/data-provider.ts";
+
+export const Route = createFileRoute("/")({ component: App });
+
+export function App() {
+  return (
+    <Admin
+      routerProvider={tanStackRouterProvider}
+      dataProvider={dataProvider}
+    ></Admin>
+  );
+}
+```
+    </TabItem>
+</Tabs>
+
+## Mapping API Endpoints with Resources
+
+Let's add a list of users.
+
+The `<Admin>` component expects one or more [`<Resource>`](/docs/app-config/resource) child components. Each resource maps a name to an API endpoint. To add a resource named `users`, edit the `App.tsx` file as follows:
+
+<Tabs>
+  <TabItem label="Next">
+```diff lang="tsx"
+// app/admin/App.tsx
++import { Resource } from "ra-core";
+-import { Admin } from "@/components/admin";
++import { Admin, ListGuesser } from "@/components/admin";
+import { dataProvider } from "./data-provider";
+
+const App = () => (
+    <Admin dataProvider={dataProvider}>
++       <Resource name="users" list={ListGuesser} />
+    </Admin>
+);
+
+export default App;
+```
+    </TabItem>
+    <TabItem label="Vite">
+```diff lang="tsx"
+// src/App.tsx
++import { Resource } from "ra-core";
+-import { Admin } from "@/components/admin";
++import { Admin, ListGuesser } from "@/components/admin";
+import { dataProvider } from "./data-provider";
+
+const App = () => (
+    <Admin dataProvider={dataProvider}>
++       <Resource name="users" list={ListGuesser} />
+    </Admin>
+);
+
+export default App;
+```
+    </TabItem>
+    <TabItem label="React Router">
+```diff lang="tsx"
+// app/admin/App.tsx
++import { Resource } from "ra-core";
+-import { Admin } from "~/components/admin";
++import { Admin, ListGuesser } from "~/components/admin";
+import { dataProvider } from "./data-provider";
+
+const App = () => (
+    <Admin basename="/admin" dataProvider={dataProvider}>
++       <Resource name="users" list={ListGuesser} />
+    </Admin>
+);
+
+export default App;
+```
+    </TabItem>
+    <TabItem label="Tanstack Start">
+```diff lang="tsx" title="src/routes/index.tsx"
++import { Resource } from "ra-core";
+import { tanStackRouterProvider } from "ra-router-tanstack";
+import { createFileRoute } from "@tanstack/react-router";
+-import { Admin } from "@/components/admin";
++import { Admin, ListGuesser } from "@/components/admin";
+import { dataProvider } from "@/data-provider.ts";
+
+export const Route = createFileRoute("/")({ component: App });
+
+export function App() {
+  return (
+    <Admin routerProvider={tanStackRouterProvider} dataProvider={dataProvider}>
++      <Resource name={"users"} list={ListGuesser} />
+    </Admin>
+  );
+}
+```
+     </TabItem>
+</Tabs>
+
+The `<Resource name="users" />` line instructs `shadmin` to fetch "users" from the [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users) URL. The `<Resource>` component also defines which React components to use for each CRUD operation (`list`, `create`, `edit`, and `show`).
+
+`list={ListGuesser}` tells `shadmin` to use the `<ListGuesser>` component to display the list of users. This component _guesses_ the configuration for the list, including column names and types, based on the data fetched from the API.
+
+Now, your app can display a list of users:
+
+![Users list](/docs/images/users-list.png)
+
+The list is already functional: you can sort it by clicking on the column headers or navigate through pages using the pagination controls. If you open the network tab in your browser's developer tools, you'll see that every user action on the list triggers a corresponding HTTP request to `https://jsonplaceholder.typicode.com/users` with updated parameters. The data provider handles these requests, translating user actions into API calls that the backend understands.
