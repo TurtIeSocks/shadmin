@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "shadmin/components/ui/breadcrumb";
+import { CategoryIndex } from "./category-index";
 import { navTree } from "./nav-content";
 import { installFor } from "./registry";
 import { InstallCommand } from "./mdx/install-command";
@@ -32,6 +33,11 @@ const bySlug = new Map(
 
 export default function MdxPage() {
   const slug = (useParams()["*"] ?? "").replace(/\/+$/, "");
+
+  // A bare section slug (e.g. /docs/data-display) renders that category's index.
+  const section = navTree.find((g) => g.dir === slug);
+  if (section) return <CategoryIndex section={section} />;
+
   const mod = bySlug.get(slug);
   if (!mod) {
     return (
@@ -47,7 +53,8 @@ export default function MdxPage() {
   const description = mod.frontmatter?.description;
   const install = installFor(mod.frontmatter?.registry);
   const Content = mod.default;
-  const sectionTitle = navTree.find((g) => g.dir === slug.split("/")[0])?.title;
+  const sectionDir = slug.split("/")[0];
+  const sectionTitle = navTree.find((g) => g.dir === sectionDir)?.title;
   return (
     <article className="prose prose-neutral dark:prose-invert">
       <Breadcrumb className="not-prose mb-4">
@@ -60,7 +67,11 @@ export default function MdxPage() {
           {sectionTitle && (
             <>
               <BreadcrumbSeparator />
-              <BreadcrumbItem>{sectionTitle}</BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to={`/docs/${sectionDir}`}>{sectionTitle}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
             </>
           )}
           {title && (

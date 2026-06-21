@@ -24,10 +24,24 @@ function docSlugs(): string[] {
   return out;
 }
 
+// Top-level content folders → category index pages (/docs/<section>).
+function sectionDirs(): string[] {
+  const root = join(import.meta.dirname, "src/docs/content");
+  return readdirSync(root, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name);
+}
+
 export default {
   appDirectory: "src",
   ssr: false, // SPA mode: no server runtime, static index.html per route + hydrate
   async prerender() {
-    return ["/", "/demo", "/docs", ...docSlugs().map((s) => `/docs/${s}`)];
+    return [
+      "/",
+      "/demo",
+      "/docs",
+      ...sectionDirs().map((d) => `/docs/${d}`),
+      ...docSlugs().map((s) => `/docs/${s}`),
+    ];
   },
 } satisfies Config;

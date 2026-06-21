@@ -1,46 +1,8 @@
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Blocks,
-  Boxes,
-  Database,
-  FileSpreadsheet,
-  FileText,
-  LayoutDashboard,
-  type LucideIcon,
-  Map,
-  PanelsTopLeft,
-  RadioTower,
-  Rocket,
-  Settings2,
-  Sparkles,
-  SquarePen,
-  Table2,
-  Type,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
 import { navTree } from "./nav-content";
+import { fallbackIcon, SECTION_META } from "./section-meta";
 import type { DocLeaf } from "./types";
-
-// Per-section icon + one-line blurb (keyed by folder). Title + page count + the
-// first-page href are derived from navTree.
-const SECTION_META: Record<string, { icon: LucideIcon; blurb: string }> = {
-  "getting-started": { icon: Rocket, blurb: "Install shadmin and scaffold your first admin in minutes." },
-  "app-config": { icon: Settings2, blurb: "Wire up the Admin, resources, data providers, auth, and i18n." },
-  "page-components": { icon: LayoutDashboard, blurb: "List, Create, Edit, and Show — the screens of every CRUD app." },
-  "data-display": { icon: Table2, blurb: "Tables, fields, and read-only views for presenting records." },
-  "data-edition": { icon: SquarePen, blurb: "Forms and inputs for creating and updating records." },
-  leaflet: { icon: Map, blurb: "Interactive maps, markers, and geocoding with Leaflet." },
-  extras: { icon: Sparkles, blurb: "Power-ups: schema-driven views, guessers, and more." },
-  "csv-import": { icon: FileSpreadsheet, blurb: "Bulk-import records straight from CSV files." },
-  "mdx-editor": { icon: FileText, blurb: "Author MDX content with a rich WYSIWYG editor." },
-  "rich-text-input": { icon: Type, blurb: "A TipTap-based rich text input for your forms." },
-  "block-editor": { icon: Blocks, blurb: "Notion-style block editing for structured content." },
-  realtime: { icon: RadioTower, blurb: "Live updates, locks, and presence over your data provider." },
-  "ui-layout": { icon: PanelsTopLeft, blurb: "App shell, sidebar, theming, and the shadcn primitives." },
-  supabase: { icon: Database, blurb: "Drop-in Supabase auth and data-provider integration." },
-  misc: { icon: Boxes, blurb: "Everything else — MCP, the changelog, and odds and ends." },
-};
 
 const ease = "cubic-bezier(0.32,0.72,0,1)";
 
@@ -48,12 +10,12 @@ export default function DocsIndex() {
   const sections = navTree
     .map((g) => {
       const leaves = g.children.filter((c): c is DocLeaf => c.kind === "leaf");
-      return { dir: g.dir, title: g.title, count: leaves.length, first: leaves[0]?.slug };
+      return { dir: g.dir, title: g.title, count: leaves.length };
     })
-    .filter((s) => s.count > 0 && s.first);
+    .filter((s) => s.count > 0);
 
   const componentsHref =
-    sections.find((s) => s.dir === "page-components")?.first ?? sections[0]?.first;
+    sections.find((s) => s.dir === "page-components")?.dir ?? sections[0]?.dir;
 
   return (
     <div className="not-prose">
@@ -96,12 +58,12 @@ export default function DocsIndex() {
       {/* Section cards (double-bezel) */}
       <div className="mt-14 grid gap-4 sm:grid-cols-2">
         {sections.map((s, i) => {
-          const meta = SECTION_META[s.dir] ?? { icon: Boxes, blurb: "" };
+          const meta = SECTION_META[s.dir] ?? { icon: fallbackIcon, blurb: "" };
           const Icon = meta.icon;
           return (
             <Link
               key={s.dir}
-              to={`/docs/${s.first}`}
+              to={`/docs/${s.dir}`}
               className="group block rounded-2xl bg-muted/40 p-1.5 ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-0.5 hover:bg-muted hover:ring-border"
               style={{
                 transitionTimingFunction: ease,

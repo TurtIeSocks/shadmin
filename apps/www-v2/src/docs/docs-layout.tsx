@@ -93,9 +93,10 @@ function SectionNav({ activeSlug, open, toggle, onNavigate }: NavProps) {
 export default function DocsLayout() {
   const { pathname } = useLocation();
   const activeSlug = pathname.replace(/^\/docs\/?/, "").replace(/\/+$/, "");
-  const activeSection = navTree.find((s) =>
-    s.children.some((c) => c.kind === "leaf" && c.slug === activeSlug),
-  )?.dir;
+  const activeSection =
+    navTree.find((s) =>
+      s.children.some((c) => c.kind === "leaf" && c.slug === activeSlug),
+    )?.dir ?? navTree.find((s) => s.dir === activeSlug)?.dir;
 
   const { navOpen, sheetOpen, setSheetOpen } = useDocsUI();
 
