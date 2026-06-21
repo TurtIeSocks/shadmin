@@ -1,1 +1,20 @@
-/* Demo theme overrides — filled in Task 4 */
+/* Demo admin theme: shadcn --primary driven by the brand violet (#8b5cf6 =
+   oklch(0.606 0.219 292.7)), so buttons / active nav / charts read purple to
+   match the site. Scoped to the `.theme-demo` wrapper that DemoLayout renders
+   around the whole /demo subtree.
+
+   Dark mode: the `.dark` class lives on <html> (set by root.tsx's theme
+   script), while `.theme-demo` is an inner div — so the dark override is
+   `.dark .theme-demo` (ancestor), NOT `.theme-demo.dark` (same element). */
+.theme-demo {
+  --primary: oklch(0.606 0.219 292.7);
+  --primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.606 0.219 292.7);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.606 0.219 292.7);
+}
+.dark .theme-demo {
+  --primary: oklch(0.7 0.17 293);
+  --sidebar-primary: oklch(0.7 0.17 293);
+  --ring: oklch(0.7 0.17 293);
+}
