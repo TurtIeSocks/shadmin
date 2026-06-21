@@ -240,3 +240,49 @@
     animation: none !important;
   }
 }
+
+/* Landing scroll-reveal (see src/landing/reveal.tsx). The hidden state is gated
+   on the `.js` class (set before paint in root.tsx), so the prerendered / no-JS
+   page renders fully visible — only JS hides-then-reveals. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.js [data-reveal]:not([data-shown]) > * {
+  opacity: 0;
+}
+.js [data-reveal][data-shown] > * {
+  animation: reveal-up 0.7s cubic-bezier(0.32, 0.72, 0, 1) both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+.js [data-reveal][data-shown] > *:nth-child(2) {
+  animation-delay: calc(var(--reveal-delay, 0s) + 0.06s);
+}
+.js [data-reveal][data-shown] > *:nth-child(3) {
+  animation-delay: calc(var(--reveal-delay, 0s) + 0.12s);
+}
+.js [data-reveal][data-shown] > *:nth-child(4) {
+  animation-delay: calc(var(--reveal-delay, 0s) + 0.18s);
+}
+.js [data-reveal][data-shown] > *:nth-child(5) {
+  animation-delay: calc(var(--reveal-delay, 0s) + 0.24s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] > *,
+  .js [data-reveal][data-shown] > * {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

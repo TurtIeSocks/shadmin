@@ -1,9 +1,6 @@
 /** Shared brand motion ease — matches docs-index.tsx. */
 export const ease = "cubic-bezier(0.32,0.72,0,1)";
 
-/** framer-motion tuple form of the same curve. */
-export const easeArr = [0.32, 0.72, 0, 1] as const;
-
 /**
  * Inner card surface that sits inside a `BezelPanel` (and is reused by the
  * mockups' window chrome): subtle border + card background + the shared

@@ -9,6 +9,9 @@ import "./index.css";
 // markup is corrected to the user's preference before paint. Shares the "theme"
 // localStorage key with next-themes; supports light / dark / system.
 const themeScript = `(() => {
+  // Mark JS as active so scroll-reveal content is hidden (then animated in) only
+  // when JS can reveal it again — without JS the content stays visible.
+  document.documentElement.classList.add("js");
   try {
     const t = localStorage.getItem("theme") || "system";
     const sys = window.matchMedia("(prefers-color-scheme: dark)").matches;

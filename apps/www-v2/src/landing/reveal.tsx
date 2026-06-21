@@ -1,90 +1,93 @@
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
-import { easeArr } from "./constants";
+import { type ReactNode, useEffect, useRef, useState } from "react";
+import { cn } from "shadmin/lib/utils";
+
+type RevealTag = "div" | "section" | "span" | "li" | "ul";
 
 interface RevealProps {
   children: ReactNode;
   className?: string;
-  /** Delay before this block's children begin staggering in (seconds). */
+  /** Render as a different element than the default `div`. */
+  as?: RevealTag;
+  /** Extra delay (seconds) before this block's children begin animating in. */
   delay?: number;
-  /** Render as an inline element instead of the default block. */
-  as?: "div" | "section" | "span" | "li" | "ul";
+  /**
+   * Animate on mount instead of on scroll-into-view. Use for above-the-fold
+   * content (e.g. the hero) so it reveals on load without waiting for the
+   * IntersectionObserver.
+   */
+  immediate?: boolean;
 }
 
-const containerVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.06, delayChildren: 0 } },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
-  show: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: easeArr },
-  },
-};
-
 /**
- * Scroll-reveal container. Fades + lifts + un-blurs its children once when they
- * enter the viewport, staggering them. Respects `prefers-reduced-motion`: when
- * reduced, it renders a static, fully-visible block with no transform/filter.
+ * Scroll-reveal block. Its direct children fade + lift + un-blur (staggered)
+ * the first time the block enters the viewport.
+ *
+ * Robust by design: the hidden state is applied via CSS gated on the `.js`
+ * class (set before paint in root.tsx), so the prerendered / no-JS page renders
+ * fully visible — only JS hides-then-reveals. The animation is a CSS keyframe
+ * (`reveal-up` in index.css), which is reliable across SSR/hydration and
+ * respects `prefers-reduced-motion`.
  */
 export function Reveal({
   children,
   className,
+  as: As = "div",
   delay = 0,
-  as = "div",
+  immediate = false,
 }: RevealProps) {
-  const reduced = useReducedMotion();
-  const Comp = motion[as];
+  const ref = useRef<HTMLElement>(null);
+  const [shown, setShown] = useState(false);
 
-  if (reduced) {
-    const Static = as;
-    return <Static className={className}>{children}</Static>;
-  }
+  useEffect(() => {
+    if (immediate) {
+      setShown(true);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -80px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [immediate]);
 
   return (
-    <Comp
+    <As
+      ref={ref as never}
+      data-reveal=""
+      data-shown={shown ? "" : undefined}
       className={className}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ delayChildren: delay }}
+      style={delay ? ({ "--reveal-delay": `${delay}s` } as never) : undefined}
     >
       {children}
-    </Comp>
+    </As>
   );
 }
+
+type RevealItemTag = "div" | "span" | "li" | "h1" | "h2" | "p" | "a";
 
 interface RevealItemProps {
   children: ReactNode;
   className?: string;
-  as?: "div" | "span" | "li" | "h1" | "h2" | "p" | "a";
+  as?: RevealItemTag;
 }
 
 /**
- * A single staggered child of `Reveal`. Outside a `Reveal` (or under reduced
- * motion) it still renders, just without entrance animation.
+ * A direct child of `Reveal` that participates in the staggered entrance. It is
+ * a plain element — the parent `Reveal` drives the animation via CSS, so this
+ * stays framework-light and renders normally outside a `Reveal`.
  */
 export function RevealItem({
   children,
   className,
-  as = "div",
+  as: As = "div",
 }: RevealItemProps) {
-  const reduced = useReducedMotion();
-  const Comp = motion[as];
-
-  if (reduced) {
-    const Static = as;
-    return <Static className={className}>{children}</Static>;
-  }
-
-  return (
-    <Comp className={className} variants={itemVariants}>
-      {children}
-    </Comp>
-  );
+  return <As className={cn(className)}>{children}</As>;
 }

@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
       <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        <Reveal>
+        <Reveal immediate>
           <Eyebrow>Open source · shadcn registry</Eyebrow>
 
           <RevealItem
@@ -37,7 +37,7 @@ export function Hero() {
         </Reveal>
 
         {/* Dashboard mockup in a double-bezel panel */}
-        <Reveal delay={0.1} className="mt-16">
+        <Reveal delay={0.1} className="mt-16" immediate>
           <BezelPanel>
             <DashboardMockup />
           </BezelPanel>
