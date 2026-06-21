@@ -8,6 +8,7 @@ import type { MDXComponents } from "mdx/types";
 import { Link } from "react-router";
 import { Tabs, TabItem } from "./tabs";
 import { Callout } from "./callout";
+import { Cards, Card } from "./cards";
 import { ComponentPreview } from "./component-preview";
 import { PropsTable } from "./props-table";
 
@@ -84,6 +85,8 @@ const components: MDXComponents = {
   Tabs,
   TabItem,
   Callout,
+  Cards,
+  Card,
   ComponentPreview,
   PropsTable,
 };
