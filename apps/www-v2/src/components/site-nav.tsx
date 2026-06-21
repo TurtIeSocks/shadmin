@@ -56,7 +56,7 @@ export function SiteNav() {
   return (
     <NavBar
       left={
-        <Link to="/" className="text-base">
+        <Link to="/" className="flex items-center text-base">
           <Brand />
         </Link>
       }

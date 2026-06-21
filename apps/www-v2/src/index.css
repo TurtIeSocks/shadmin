@@ -303,6 +303,8 @@
   pointer-events: none;
 }
 .bento-card::before {
+  /* inset a gutter so the grid doesn't crowd the card border */
+  inset: 1rem;
   background-image: radial-gradient(
     circle at 1px 1px,
     color-mix(in oklch, var(--foreground) 10%, transparent) 1px,
