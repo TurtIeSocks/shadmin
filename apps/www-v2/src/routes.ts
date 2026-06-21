@@ -4,7 +4,7 @@ export default [
   index("pages/home.tsx"),
   route("demo", "demo/demo-layout.tsx", [
     index("demo/launcher.tsx"),
-    // route("login", "demo/login.tsx"),                 // Task 5
+    route("login", "demo/login.tsx"),
     // route("app/*", "demo/app/app-routes.tsx"),        // Task 6
     // route("components/*", "demo/gallery/gallery.tsx"), // Task 8
     // route("features/*", "demo/features/features.tsx"), // Phase 3
