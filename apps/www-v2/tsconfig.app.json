@@ -36,7 +36,13 @@
         "../../packages/shadmin/src/components/admin/*"
       ],
       "shadmin/leaflet": ["../../packages/shadmin/src/leaflet/index.ts"],
-      "shadmin/leaflet/*": ["../../packages/shadmin/src/leaflet/*"]
+      "shadmin/leaflet/*": ["../../packages/shadmin/src/leaflet/*"],
+      "shadmin/components/monaco": [
+        "../../packages/shadmin/src/components/monaco/index.ts"
+      ],
+      "shadmin/components/monaco/*": [
+        "../../packages/shadmin/src/components/monaco/*"
+      ]
     }
   },
   "include": ["src", ".react-router/types/**/*", "../../packages/shadmin/src"],
