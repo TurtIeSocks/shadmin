@@ -6,6 +6,6 @@ export default [
   { slug: "custom-routes", title: "CustomRoutes" },
   { slug: "data-providers", title: "Data Fetching & Data Providers" },
   { slug: "security", title: "Security & Auth Providers" },
-  { slug: "translation", title: "'I18N'" },
+  { slug: "translation", title: "I18N" },
   { slug: "themes", title: "Themes" },
 ] satisfies MetaEntry[];
