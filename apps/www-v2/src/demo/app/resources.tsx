@@ -8,6 +8,18 @@ import {
   Users,
 } from "lucide-react";
 
+import { CustomersCreate } from "./customers/customers-create";
+import { CustomersEdit } from "./customers/customers-edit";
+import { CustomersList } from "./customers/customers-list";
+import { CustomersShow } from "./customers/customers-show";
+import { OrdersEdit } from "./orders/orders-edit";
+import { OrdersList } from "./orders/orders-list";
+import { OrdersShow } from "./orders/orders-show";
+import { ProductsCreate } from "./products/products-create";
+import { ProductsEdit } from "./products/products-edit";
+import { ProductsList } from "./products/products-list";
+import { ProductsShow } from "./products/products-show";
+
 /**
  * A demo resource entry: the four CRUD page components (any may be omitted while
  * Task 7 fills the real pages), plus sidebar presentation (`icon` + `label`).
@@ -45,10 +57,10 @@ export const demoResources: Record<string, DemoResource> = {
   customers: {
     label: "Customers",
     icon: <Users />,
-    list: stub("customers", "list"),
-    edit: stub("customers", "edit"),
-    show: stub("customers", "show"),
-    create: stub("customers", "create"),
+    list: CustomersList,
+    edit: CustomersEdit,
+    show: CustomersShow,
+    create: CustomersCreate,
   },
   categories: {
     label: "Categories",
@@ -61,18 +73,17 @@ export const demoResources: Record<string, DemoResource> = {
   products: {
     label: "Products",
     icon: <Package />,
-    list: stub("products", "list"),
-    edit: stub("products", "edit"),
-    show: stub("products", "show"),
-    create: stub("products", "create"),
+    list: ProductsList,
+    edit: ProductsEdit,
+    show: ProductsShow,
+    create: ProductsCreate,
   },
   orders: {
     label: "Orders",
     icon: <ShoppingCart />,
-    list: stub("orders", "list"),
-    edit: stub("orders", "edit"),
-    show: stub("orders", "show"),
-    create: stub("orders", "create"),
+    list: OrdersList,
+    edit: OrdersEdit,
+    show: OrdersShow,
   },
   reviews: {
     label: "Reviews",
