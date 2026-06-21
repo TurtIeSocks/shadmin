@@ -163,3 +163,28 @@
 [data-rehype-pretty-code-title] {
   @apply flex items-center gap-2 border-b border-border/30 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground;
 }
+
+/* ── docs prose tables (the hand-authored markdown prop tables) ──────────────
+   Styled to match the <PropsTable> component so prop docs look consistent
+   whether a page uses markdown tables or the component. */
+
+.prose table {
+  @apply my-6 w-full overflow-hidden rounded-lg border border-border/60 text-sm;
+  border-collapse: collapse;
+}
+
+.prose thead {
+  @apply bg-muted/40;
+}
+
+.prose th {
+  @apply border-b border-border/60 px-4 py-2 text-left font-semibold text-foreground;
+}
+
+.prose td {
+  @apply border-t border-border/40 px-4 py-2 align-top text-muted-foreground;
+}
+
+.prose td:first-child {
+  @apply font-mono text-xs text-foreground;
+}
