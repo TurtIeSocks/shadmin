@@ -34,7 +34,7 @@ export function Features() {
             <RevealItem
               key={f.title}
               className={cn(
-                "group flex overflow-hidden rounded-xl border border-border/60 bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-border",
+                "bento-card group relative flex overflow-hidden rounded-xl border border-border/60 bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-border",
                 f.flexRow ? "flex-row justify-between" : "flex-col",
                 COL_START[f.col],
                 ROW_START[f.row],

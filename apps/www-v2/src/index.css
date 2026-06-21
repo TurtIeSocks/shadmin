@@ -286,3 +286,41 @@
     filter: none !important;
   }
 }
+
+/* Bento card texture: a faint dot grid fading from the top-left + a soft brand
+   glow behind the icon that intensifies on hover. Both pseudo-layers sit behind
+   the card content (z-index -1 inside the card's own stacking context). */
+.bento-card {
+  isolation: isolate;
+}
+.bento-card::before,
+.bento-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.bento-card::before {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in oklch, var(--foreground) 13%, transparent) 1px,
+    transparent 0
+  );
+  background-size: 18px 18px;
+  -webkit-mask-image: radial-gradient(130% 90% at 0% 0%, black, transparent 70%);
+  mask-image: radial-gradient(130% 90% at 0% 0%, black, transparent 70%);
+}
+.bento-card::after {
+  background: radial-gradient(
+    55% 55% at 0% 0%,
+    color-mix(in oklch, var(--brand-from) 22%, transparent),
+    transparent 72%
+  );
+  opacity: 0.3;
+  transition: opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.bento-card:hover::after {
+  opacity: 0.85;
+}
