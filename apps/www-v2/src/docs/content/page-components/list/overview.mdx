@@ -1,0 +1,146 @@
+---
+title: "Overview"
+description: "The List page component — usage and core props."
+---
+
+![Simple users list](/docs/images/users-list.png)
+
+## Usage
+
+Here is a minimal example to display a list of users with a [`<DataTable>`](/docs/viewing/data-table):
+
+```tsx
+// in src/users.jsx
+import { DataTable, List } from "@/components/admin";
+
+export const UserList = () => (
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="name" />
+      <DataTable.Col source="username" />
+      <DataTable.Col source="email" />
+      <DataTable.Col source="address.street" />
+      <DataTable.Col source="phone" />
+      <DataTable.Col source="website" />
+      <DataTable.Col source="company.name" />
+    </DataTable>
+  </List>
+);
+
+// in src/App.jsx
+import { Admin } from "@/components/admin";
+import { Resource } from "ra-core";
+import jsonServerProvider from "ra-data-json-server";
+
+import { UserList } from "./users";
+
+const App = () => (
+  <Admin
+    dataProvider={jsonServerProvider("https://jsonplaceholder.typicode.com")}
+  >
+    <Resource name="users" list={UserList} />
+  </Admin>
+);
+
+export default App;
+```
+
+That's enough to display a basic list with sorting and pagination.
+
+You can find more advanced examples of `<List>` usage in the [demo](https://shadmin.turtlesocks.dev/demo).
+
+## Props
+
+| Prop                      | Required   | Type                           | Default                                        | Description                                                                          |
+| --- | --- | --- | --- | --- |
+| `children`                | Optional\* | `ReactNode`                    | -                                              | Component(s) that display the records (e.g. `<DataTable>`)                           |
+| `render`                  | Optional\* | `(ctx) => ReactNode`           | -                                              | Alternate render function receiving the list context                                 |
+| `actions`                 | Optional   | `ReactNode`                    | default action bar                             | Custom actions area (right side of header)                                           |
+| `aside`                   | Optional   | `ReactNode`                    | -                                              | Side panel rendered alongside the list content                                       |
+| `component`               | Optional   | `ElementType`                  | `"div"`                                        | Override the root element wrapping the list content                                  |
+| `empty`                   | Optional   | `ReactNode \| false`           | `<Empty />`                                    | Replacement for the default empty-state component                                    |
+| `debounce`                | Optional   | `number`                       | `500`                                          | Debounce (ms) for filter & sort changes                                              |
+| `disableAuthentication`   | Optional   | `boolean`                      | `false`                                        | Skip auth check for this page                                                        |
+| `disableBreadcrumb`       | Optional   | `boolean`                      | `false`                                        | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
+| `disableSyncWithLocation` | Optional   | `boolean`                      | `false`                                        | Keep list params local (not in the URL)                                              |
+| `exporter`                | Optional   | `false                         \| (records, fetchRelated, dataProvider) => void` | -                                                                                    | Custom export logic (set `false` to hide Export button)        |
+| `filters`                 | Optional   | `ReactElement[]`               | -                                              | Array of filter input elements (displayed inline)                                    |
+| `filter`                  | Optional   | `object`                       | -                                              | Permanent filters always applied                                                     |
+| `filterDefaultValues`     | Optional   | `object`                       | -                                              | Initial filter form values                                                           |
+| `pagination`              | Optional   | `ReactNode`                    | `<ListPagination />`                           | Custom pagination component                                                          |
+| `perPage`                 | Optional   | `number`                       | `10`                                           | Records per page                                                                     |
+| `queryOptions`            | Optional   | `object`                       | -                                              | Extra TanStack Query options                                                         |
+| `resource`                | Optional   | `string`                       | inferred                                       | Resource name, defaults to the current `<ResourceContext>`                           |
+| `sort`                    | Optional   | `{ field: string; order: 'ASC' \| 'DESC' }`                                      | -                                                                                    | Initial sort                                                   |
+| `storeKey`                | Optional   | `string                        \| false`                                         | derived                                                                              | Storage key for persisted params; `false` disables persistence |
+| `title`                   | Optional   | `string                        \| ReactNode                                      \| false`                                                                               | resource plural label                                          | Page title |
+
+`*` Provide either `children` or `render`.
+
+These props will soon be supported: `emptyWhileLoading`.
+
+## `empty`
+
+When the list has no records and no active filters, `<List>` renders the default [`<Empty>`](/docs/ui-layout/empty) component. Pass a custom node to replace it, or `false` to suppress it entirely:
+
+```tsx
+import { List, DataTable } from "@/components/admin";
+
+export const PostList = () => (
+  <List
+    empty={
+      <p className="text-center py-8 text-muted-foreground">
+        No posts yet. Create your first one!
+      </p>
+    }
+  >
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </List>
+);
+```
+
+## `component`
+
+By default, `<List>` wraps the list content in a `<div>`. Pass any React element type to `component` to replace it:
+
+```tsx
+import { List, DataTable } from "@/components/admin";
+import { Card } from "@/components/ui/card";
+
+export const PostList = () => (
+  <List component={Card}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </List>
+);
+```
+
+## `aside`
+
+Pass any React node as `aside` to display a side panel next to the list. The aside floats to the right in a flex row alongside the list content:
+
+```tsx
+import { List, DataTable } from "@/components/admin";
+
+const ListHelp = () => (
+  <div className="p-4 bg-muted rounded text-sm w-64">
+    <p className="font-medium mb-2">Tips</p>
+    <p>Use the filters above to narrow your search.</p>
+  </div>
+);
+
+export const PostList = () => (
+  <List aside={<ListHelp />}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+    </DataTable>
+  </List>
+);
+```

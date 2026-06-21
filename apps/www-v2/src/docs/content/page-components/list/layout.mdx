@@ -1,0 +1,109 @@
+---
+title: "Layout & Title"
+description: "Customize the list's content area, actions toolbar, and title."
+---
+
+## Main Content Area
+
+`<List>` itself doesn't render the list of records. It delegates this task to its children components. These children components grab the `data` from the [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html) and render them on screen.
+
+![List children](/docs/images/users-list-items.png)
+
+shadmin provides several components that can read and display a list of records from a `ListContext`, each with a different layout:
+
+- [`<DataTable>`](/docs/viewing/data-table) displays records in a table
+- [`<SingleFieldList>`](/docs/viewing/single-field-list) displays records inline, showing one field per record
+
+Alternatively to `children`, you can pass a `render` prop to `<List>`. It will receive the [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html#return-value) as its argument, and should return a React node. This allows to inline the render logic for the list page.
+
+```tsx
+const PostList = () => (
+  <List
+    render={({ isPending, error, data }) => {
+      if (isPending) {
+        return <div>Loading...</div>;
+      }
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      }
+      return (
+        <ul>
+          {data.map((post) => (
+            <li key={post.id}>
+              <strong>{post.title}</strong> - {post.author}
+            </li>
+          ))}
+        </ul>
+      );
+    }}
+  />
+);
+```
+
+:::note
+When receiving a `render` prop, the `<List>` component will ignore the `children` prop.
+:::
+
+## Actions toolbar
+
+By default the page header shows a toolbar with 2 buttons:
+
+- `<CreateButton>` (if the resource has a create view)
+- `<ExportButton>` (unless `exporter={false}`)
+
+Provide an `actions` prop to completely replace that area:
+
+```tsx
+import {
+  List,
+  CreateButton,
+  ExportButton,
+  ColumnsButton,
+} from "@/components/admin";
+
+const MyActions = () => (
+  <div className="flex items-center gap-2">
+    <ColumnsButton />
+    <CreateButton />
+    <ExportButton />
+  </div>
+);
+
+export const PostList = () => <List actions={<MyActions />}>...</List>;
+```
+
+You can also build contextual actions using anything from the list context (`isPending`, `total`, `selectedIds`, etc.).
+
+## Page Title
+
+The default title for a list view is the translation key `ra.page.list` that translates to [the plural name of the resource](https://marmelab.com/ra-core/translationtranslating/#translating-resource-and-field-names) (e.g. "Posts").
+
+![List title](/docs/images/users-list-title.png)
+
+You can customize this title by providing a resource specific translation with the key `resources.RESOURCE.page.list` (e.g. `resources.posts.page.list`):
+
+```js
+// in src/i18n/en.js
+import englishMessages from 'ra-language-english';
+
+export const en = {
+    ...englishMessages,
+    resources: {
+        posts: {
+            name: 'Post |||| Posts',
+            page: {
+                list: 'Post list'
+            }
+        },
+    },
+    ...
+};
+```
+
+You can also customize this title by specifying a custom `title` prop:
+
+```tsx
+export const PostList = () => <List title="List of posts">...</List>;
+```
+
+The title can be a string, a React element, or `false` to disable the title.

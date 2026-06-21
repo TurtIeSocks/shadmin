@@ -1,0 +1,265 @@
+---
+title: "Advanced"
+description: "Scaffolding, live updates, empty/controlled/headless, and access control."
+---
+
+## Scaffolding a List page
+
+You can use `<ListGuesser>` to quickly bootstrap a List view on top of an existing API, without adding the fields one by one.
+
+```tsx
+// in src/App.js
+import { Admin, ListGuesser } from "@/components/admin";
+import { Resource } from "ra-core";
+import { dataProvider } from "./data-provider";
+
+const App = () => (
+  <Admin dataProvider={dataProvider}>
+    {/* ... */}
+    <Resource name="posts" list={ListGuesser} />
+  </Admin>
+);
+```
+
+Just like `<List>`, `<ListGuesser>` fetches the data. It then analyzes the response, and guesses the fields it should use to display a basic `<DataTable>` with the data. It also dumps the components it has guessed in the console, so you can copy it into your own code.
+
+When the data provider returns no records, `<ListGuesser>` renders an empty state by default. You can override it using the `empty` prop (including `empty={null}` to render nothing).
+
+![Guessed List](/docs/images/posts-list-guesser.png)
+
+## Live Updates
+
+Shadmin offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
+
+If you want to subscribe to live updates on the list of records, add [the `<ListLiveUpdate>` component](https://marmelab.com/ra-core/listliveupdate/) in your `<List>` children.
+
+```tsx {2,7}
+import { List } from "@/components/admin";
+import { ListLiveUpdate } from "@react-admin/ra-core-ee";
+
+const PostList = () => (
+  <List>
+    ...
+    <ListLiveUpdate />
+  </List>
+);
+```
+
+The list will automatically update when a new record is created, or an existing record is updated or deleted (check out the [CRUD events format](./realtime-features.md#crud-events) for details)
+
+:::note
+This feature requires a valid [Enterprise Edition](https://marmelab.com/ra-enterprise/) subscription.
+:::
+
+## Rendering An Empty List
+
+When there is no data, shadmin displays a special page inviting the user to create the first record. This page can be customized using [the `empty` prop](#empty).
+
+You can set the `empty` props value to `false` to disable the empty page and render the list layout instead.
+
+```tsx
+import { List } from "@/components/admin";
+
+const ProductList = () => <List empty={false}>...</List>;
+```
+
+## Controlled Mode
+
+`<List>` deduces the resource and the list parameters from the URL. This is fine for a page showing a single list of records, but if you need to display more than one list in a page, you probably want to define the list parameters yourself.
+
+In that case, use the [`resource`](#resource), [`sort`](#sort), [`filter`](#filter-permanent-filter), and [`perPage`](#perpage) props to set the list parameters.
+
+```tsx
+import { List, DataTable, DateField } from "@/components/admin";
+
+const Dashboard = () => (
+  <div className="space-y-10">
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest posts</h2>
+      <List
+        resource="posts"
+        sort={{ field: "published_at", order: "DESC" }}
+        filter={{ is_published: true }}
+        perPage={10}
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="title" />
+          <DataTable.NumberCol source="views" />
+          <DataTable.Col source="published_at" field={DateField} />
+        </DataTable>
+      </List>
+    </section>
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest comments</h2>
+      <List
+        resource="comments"
+        sort={{ field: "published_at", order: "DESC" }}
+        perPage={10}
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="author.name" />
+          <DataTable.Col source="body" />
+          <DataTable.Col source="published_at" field={DateField} />
+        </DataTable>
+      </List>
+    </section>
+  </div>
+);
+```
+
+:::note
+If you need to set the list parameters to render a list of records _related to another record_, there are better components than `<List>` for that. Check out the following components, specialized in fetching and displaying a list of related records:
+
+- [`<ReferenceArrayField>`](/docs/viewing/reference-array-field),
+- [`<ReferenceManyField>`](/docs/viewing/reference-many-field),
+
+:::
+
+If the `<List>` children allow to _modify_ the list state (i.e. if they let users change the sort order, the filters, the selection, or the pagination), then you should also use the [`disableSyncWithLocation`](#disablesyncwithlocation) prop to prevent shadmin from changing the URL. This is the case e.g. if you use a `<DataTable>`, which lets users sort the list by clicking on column headers.
+
+```tsx
+import { List, DataTable, DateField } from "@/components/admin";
+
+const Dashboard = () => (
+  <div className="space-y-10">
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest posts</h2>
+      <List
+        resource="posts"
+        sort={{ field: "published_at", order: "DESC" }}
+        filter={{ is_published: true }}
+        perPage={10}
+        disableSyncWithLocation
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="title" />
+          <DataTable.NumberCol source="views" />
+        </DataTable>
+      </List>
+    </section>
+    <section>
+      <h2 className="text-lg font-semibold mb-3">Latest comments</h2>
+      <List
+        resource="comments"
+        sort={{ field: "published_at", order: "DESC" }}
+        perPage={10}
+        disableSyncWithLocation
+      >
+        <DataTable bulkActionButtons={false} size="sm">
+          <DataTable.Col source="author.name" />
+          <DataTable.Col source="body" />
+          <DataTable.Col source="published_at" field={DateField} />
+        </DataTable>
+      </List>
+    </section>
+  </div>
+);
+```
+
+:::note
+If you render more than one `<DataTable>` for the same resource in the same page, they will share the selection state (i.e. the checked checkboxes). This is a design choice because if row selection is not tied to a resource, then when a user deletes a record it may remain selected without any ability to unselect it. You can get rid of the checkboxes by setting `<DataTable bulkActionButtons={false}>`.
+:::
+
+## Headless Version
+
+Besides fetching a list of records from the data provider, `<List>` renders the default list page layout (title, buttons, filters, a `<Card>`, pagination) and its children. If you need a custom list layout, you may prefer [the `<ListBase>` component](https://marmelab.com/ra-core/listbase/), which only renders its children in a [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html).
+
+```tsx
+import { ListBase, WithListContext } from "ra-core";
+
+const ProductList = () => (
+  <ListBase>
+    <div className="space-y-6">
+      <h2 className="text-xl font-semibold tracking-tight">All products</h2>
+      <WithListContext
+        render={({ isPending, data }) =>
+          !isPending && (
+            <ul className="space-y-2">
+              {data.map((product) => (
+                <li
+                  key={product.id}
+                  className="rounded-md border p-3 bg-background"
+                >
+                  <span className="font-medium">{product.name}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      />
+      <WithListContext
+        render={({ isPending, total }) =>
+          !isPending && (
+            <p className="text-sm text-muted-foreground">{total} results</p>
+          )
+        }
+      />
+    </div>
+  </ListBase>
+);
+```
+
+The previous example leverages [`<WithListContext>`](https://marmelab.com/ra-core/withlistcontext/) to grab the data that `<ListBase>` stores in the `ListContext`.
+
+If you don't need the `ListContext`, you can use [the `useListController` hook](https://marmelab.com/ra-core/uselistcontroller/), which does the same data fetching as `<ListBase>` but lets you render the content.
+
+```tsx
+import { useListController } from "@/components/admin";
+import { Card, CardContent, Container, Stack, Typography } from "@mui/material";
+
+const ProductList = () => {
+  const { isPending, data, total } = useListController();
+  return (
+    <Container>
+      <Typography variant="h4">All products</Typography>
+      {!isPending && (
+        <Stack spacing={1}>
+          {data.map((product) => (
+            <Card key={product.id}>
+              <CardContent>
+                <Typography>{product.name}</Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Stack>
+      )}
+      {!isPending && <Typography>{total} results</Typography>}
+    </Container>
+  );
+};
+```
+
+`useListController` returns callbacks to sort, filter, and paginate the list, so you can build a complete List page. Check [the `useListController`hook documentation](https://marmelab.com/ra-core/uselistcontroller/) for details.
+
+## Access Control
+
+If your `authProvider` implements [Access Control](https://marmelab.com/ra-core/permissions/#access-control), `<List>` will only render if the user can access the resource with the "list" action.
+
+For instance, to render the `<PostList>` page below:
+
+```tsx
+import { List, DataTable } from "@/components/admin";
+
+// Resource name is "posts"
+const PostList = () => (
+  <List>
+    <DataTable>
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="published_at" />
+    </DataTable>
+  </List>
+);
+```
+
+`<List>` will call `authProvider.canAccess()` using the following parameters:
+
+```tsx
+{ action: "list", resource: "posts" }
+```
+
+Users without access will be redirected to the [Access Denied page](https://marmelab.com/ra-core/coreadmin/#accessdenied).
+
+:::note
+Access control is disabled when you use [the `disableAuthentication` prop](#disableauthentication).
+:::

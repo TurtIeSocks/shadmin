@@ -1,0 +1,118 @@
+---
+title: "Filtering & Sorting"
+description: "Pagination, sorting, permanent filters, and the filter button/form combo."
+---
+
+## Pagination
+
+By default, `<List>` displays a set of pagination controls at the bottom of the list.
+
+![Pagination in users list](/docs/images/users-list-pagination.png)
+
+The `pagination` prop allows to replace the default pagination controls by your own.
+
+```tsx
+// in src/MyPagination.js
+import { List, ListPagination } from "@/components/admin";
+
+const PostPagination = () => (
+  <ListPagination rowsPerPageOptions={[10, 25, 50, 100]} />
+);
+
+export const PostList = () => <List pagination={<PostPagination />}>...</List>;
+```
+
+By default, the list paginates results by groups of 10. You can override this setting by specifying the `perPage` prop:
+
+```tsx
+// in src/posts.js
+export const PostList = () => <List perPage={25}>...</List>;
+```
+
+:::note
+The default pagination component's `rowsPerPageOptions` includes options of 5, 10, 25 and 50. If you set your List `perPage` to a value not in that set, you must also customize the pagination so that it allows this value, or else there will be an error.
+
+```diff
+// in src/MyPagination.js
+-import { List } from '@/components/admin';
++import { List, ListPagination } from '@/components/admin';
+
+export const PostList = () => (
+-    <List perPage={6}>
++    <List perPage={6} pagination={<ListPagination rowsPerPageOptions={[6, 12, 24, 36]} />}>
+        ...
+    </List>
+);
+```
+
+:::
+
+## Sort
+
+Pass an object literal as the `sort` prop to determine the default `field` and `order` used for sorting:
+
+```tsx
+export const PostList = () => (
+  <List sort={{ field: "published_at", order: "DESC" }}>...</List>
+);
+```
+
+`sort` defines the _default_ sort order ; users can change the sort order, e.g. by clicking on column headers when using a `<DataTable>`, or by selecting another option in the `<SortButton>`.
+
+## Permanent Filter
+
+You can choose to always filter the list, without letting the user disable this filter - for instance to display only published posts. Write the filter to be passed to the data provider in the `filter` props:
+
+```tsx
+// in src/posts.js
+export const PostList = () => <List filter={{ is_published: true }}>...</List>;
+```
+
+The actual filter parameter sent to the data provider is the result of the combination of the _user_ filters (the ones set through the `filters` component form), and the _permanent_ filter. The user cannot override the permanent filters set by way of `filter`.
+
+## Filter Button / Form Combo
+
+
+You can add an array of filter Inputs to the List using the `filters` prop:
+
+```tsx
+const postFilters = [
+  <SearchInput source="q" alwaysOn />,
+  <TextInput label="Title" source="title" defaultValue="Hello, World!" />,
+];
+
+export const PostList = () => <List filters={postFilters}>...</List>;
+```
+
+:::tip
+Don't mix up this `filters` prop, expecting an array of `<Input>` elements, with the `filter` props, which expects an object to define permanent filters (see below).
+:::
+
+:::tip
+Filters will render as disabled inputs or menu items (depending on filter context) if passed the prop `disabled`.
+:::
+
+Filter Inputs are regular inputs. `<List>` hides them all by default, except those that have the `alwaysOn` prop. Note that inputs with `alwaysOn` don't accept `defaultValue`. You have to use the `filterDefaultValues` for those.
+
+```tsx
+// in src/posts.js
+const postFilters = [
+  <TextInput label="Search" source="q" alwaysOn />,
+  <BooleanInput source="is_published" alwaysOn />,
+  <TextInput source="title" defaultValue="Hello, World!" />,
+];
+
+export const PostList = () => (
+  <List filters={postFilters} filterDefaultValues={{ is_published: true }}>
+    ...
+  </List>
+);
+```
+
+:::tip
+You can also display filters as a sidebar thanks to the [`<ToggleFilterButton>`](/docs/viewing/toggle-filter-button) component:
+
+![Filter sidebar](/docs/images/filter-sidebar.png)
+:::
+
+For more details about customizing filters, see the [Filtering the List](https://marmelab.com/ra-core/filteringtutorial/) documentation.
