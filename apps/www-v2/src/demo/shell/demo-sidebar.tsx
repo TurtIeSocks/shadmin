@@ -18,6 +18,7 @@ import {
   galleryNav,
 } from "../gallery/examples-nav";
 import { demoResources } from "../app/resources";
+import { FEATURES } from "../features/features-nav";
 
 /** Missing slugs set — used for coverage dot rendering. */
 const { missing: missingSlugs } = coverageReport(
@@ -133,15 +134,28 @@ export function DemoSidebarContent() {
         />
       </SidebarGroup>
 
-      {/* --- Features zone (placeholder) ----------------------------- */}
+      {/* --- Features zone ------------------------------------------- */}
       <SidebarGroup className="py-0.5">
         <SidebarGroupLabel className="text-xs font-semibold uppercase tracking-wide">
           Features
         </SidebarGroupLabel>
         <SidebarGroupContent>
-          <p className="px-2 py-1.5 text-xs text-muted-foreground">
-            Coming soon
-          </p>
+          <SidebarMenu>
+            {FEATURES.map((feature) => {
+              const to = `/demo/features/${feature.slug}`;
+              const Icon = feature.icon;
+              return (
+                <SidebarMenuItem key={feature.slug}>
+                  <SidebarMenuButton asChild isActive={isActive(to)}>
+                    <Link to={to}>
+                      <Icon />
+                      <span>{feature.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              );
+            })}
+          </SidebarMenu>
         </SidebarGroupContent>
       </SidebarGroup>
     </>

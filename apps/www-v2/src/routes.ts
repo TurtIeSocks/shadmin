@@ -10,7 +10,7 @@ export default [
     route("", "demo/shell/demo-shell.tsx", [
       route("app/*", "demo/app/app-routes.tsx"),
       route("components/*", "demo/gallery/gallery.tsx"),
-      // route("features/*", "demo/features/features.tsx"), // Phase 3
+      route("features/*", "demo/features/features.tsx"),
     ]),
   ]),
   // docs-layout renders the sidebar at /docs; index = overview, * = a page.

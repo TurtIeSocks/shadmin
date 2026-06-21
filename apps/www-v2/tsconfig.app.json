@@ -35,8 +35,12 @@
       "shadmin/components/admin/*": [
         "../../packages/shadmin/src/components/admin/*"
       ],
-      "shadmin/leaflet": ["../../packages/shadmin/src/leaflet/index.ts"],
-      "shadmin/leaflet/*": ["../../packages/shadmin/src/leaflet/*"],
+      "shadmin/components/leaflet": [
+        "../../packages/shadmin/src/components/leaflet/index.ts"
+      ],
+      "shadmin/components/leaflet/*": [
+        "../../packages/shadmin/src/components/leaflet/*"
+      ],
       "shadmin/components/monaco": [
         "../../packages/shadmin/src/components/monaco/index.ts"
       ],
