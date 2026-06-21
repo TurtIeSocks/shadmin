@@ -44,7 +44,7 @@ export default [
   { slug: "select-array-input", title: "SelectArrayInput" },
   { slug: "select-input", title: "SelectInput" },
   { slug: "show-button", title: "ShowButton" },
-  { slug: "simple-form", title: "SimpleForm" },
+  { dir: "simple-form", title: "SimpleForm" },
   { slug: "simple-form-configurable", title: "SimpleFormConfigurable" },
   { slug: "simple-form-iterator", title: "SimpleFormIterator" },
   { slug: "tabbed-form", title: "TabbedForm" },
