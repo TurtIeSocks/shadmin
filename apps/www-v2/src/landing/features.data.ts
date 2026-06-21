@@ -43,14 +43,14 @@ export const features: Feature[] = [
   },
   {
     title: "Command Menu",
-    description:
-      "A ⌘K command palette for instant keyboard-driven navigation",
+    description: "A ⌘K command palette for instant keyboard-driven navigation",
     icon: Command,
     span: "wide",
   },
   {
     title: "AI-Ready",
-    description: "Ships with an MCP server — scaffold and edit admin UIs with AI",
+    description:
+      "Ships with an MCP server — scaffold and edit admin UIs with AI",
     icon: Sparkles,
     span: "large",
   },

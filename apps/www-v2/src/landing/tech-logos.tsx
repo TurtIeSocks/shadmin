@@ -3,6 +3,7 @@ import { Eyebrow, Heading, Lead, Section } from "./section";
 import { Reveal, RevealItem } from "./reveal";
 import { techLogos } from "./tech-logos.data";
 
+/** "The Stack" — grid of the libraries Shadmin is built on. */
 export function TechLogos() {
   return (
     <Section>

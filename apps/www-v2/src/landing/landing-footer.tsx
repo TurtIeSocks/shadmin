@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { Brand } from "@/components/brand";
 import { links } from "./constants";
 
+/** Landing-page footer: brand mark, primary nav links, and copyright line. */
 export function LandingFooter() {
   return (
     <footer className="border-t border-border/60">

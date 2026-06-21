@@ -11,6 +11,7 @@ import { OpenSource } from "@/landing/open-source";
 import { TechLogos } from "@/landing/tech-logos";
 import { Why } from "@/landing/why";
 
+// biome-ignore lint/style/useComponentExportOnlyModules: `meta` is a React Router route export and must live in the route module.
 export const meta: MetaFunction = () => [
   { title: "Shadmin — Open-source shadcn admin components" },
   {
@@ -20,6 +21,7 @@ export const meta: MetaFunction = () => [
   },
 ];
 
+/** Marketing landing page — composes the landing sections top to bottom. */
 export default function Home() {
   return (
     <main>

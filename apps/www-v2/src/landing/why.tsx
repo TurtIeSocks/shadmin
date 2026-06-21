@@ -2,6 +2,7 @@ import { Reveal, RevealItem } from "./reveal";
 import { Heading, Section } from "./section";
 import { whyReasons } from "./why.data";
 
+/** "Why choose Shadmin?" — three-column grid of reason cards. */
 export function Why() {
   return (
     <Section>

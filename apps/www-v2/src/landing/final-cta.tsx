@@ -2,6 +2,7 @@ import { links } from "./constants";
 import { CtaButton } from "./cta-button";
 import { Reveal, RevealItem } from "./reveal";
 
+/** Closing full-bleed brand-gradient panel with the primary "Get started" CTA. */
 export function FinalCta() {
   return (
     <section className="px-4 pb-24 sm:px-6 lg:px-8">

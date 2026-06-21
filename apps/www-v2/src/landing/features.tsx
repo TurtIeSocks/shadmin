@@ -3,6 +3,7 @@ import { features, spanClasses } from "./features.data";
 import { Reveal, RevealItem } from "./reveal";
 import { Eyebrow, Heading, Lead, Section } from "./section";
 
+/** "Beyond UI Elements" — asymmetric bento grid of the kit's headline features. */
 export function Features() {
   return (
     <Section>
