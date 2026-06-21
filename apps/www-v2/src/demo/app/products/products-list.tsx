@@ -19,11 +19,7 @@ const STATUS_CHOICES = [
 
 const filters = [
   <TextInput key="q" source="q" placeholder="Search" label={false} alwaysOn />,
-  <ReferenceInput
-    key="category_id"
-    source="category_id"
-    reference="categories"
-  >
+  <ReferenceInput key="category_id" source="category_id" reference="categories">
     <AutocompleteInput placeholder="Category" label={false} />
   </ReferenceInput>,
   <SelectInput key="status" source="status" choices={STATUS_CHOICES} />,

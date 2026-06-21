@@ -30,7 +30,11 @@ export const ProductsCreate = () => (
         <NumberInput source="price" />
         <NumberInput source="stock" />
       </div>
-      <SelectInput source="status" choices={STATUS_CHOICES} defaultValue="draft" />
+      <SelectInput
+        source="status"
+        choices={STATUS_CHOICES}
+        defaultValue="draft"
+      />
       <ColorInput source="color" />
       <ReferenceArrayInput source="tag_ids" reference="tags">
         <AutocompleteArrayInput label="Tags" />
