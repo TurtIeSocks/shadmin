@@ -27,6 +27,7 @@ import {
   SidebarProvider,
 } from "shadmin/components/ui/sidebar";
 import { navTree } from "./nav-content";
+import { Toc } from "./toc";
 import type { DocLeaf } from "./types";
 
 interface NavProps {
@@ -180,8 +181,13 @@ export default function DocsLayout() {
           </Button>
         </div>
 
-        <div className="mx-auto w-full max-w-3xl px-6 py-10">
-          <Outlet />
+        <div className="mx-auto w-full max-w-6xl px-6 py-10">
+          <div className="flex justify-center gap-12">
+            <div className="w-full min-w-0 max-w-3xl">
+              <Outlet />
+            </div>
+            <Toc />
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>

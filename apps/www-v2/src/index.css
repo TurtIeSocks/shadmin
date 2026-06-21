@@ -195,3 +195,8 @@
 .prose td:first-child {
   @apply font-mono text-xs text-foreground;
 }
+
+/* offset anchor jumps so headings clear the sticky nav + utility bar */
+.prose :is(h1, h2, h3, h4) {
+  scroll-margin-top: 6rem;
+}

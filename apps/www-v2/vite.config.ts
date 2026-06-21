@@ -8,6 +8,7 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
 import { remarkRelativeLinks } from "./scripts/remark-relative-links.mjs";
 import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
 
@@ -36,6 +37,7 @@ export default defineConfig({
           remarkCalloutDirective,
         ],
         rehypePlugins: [
+          rehypeSlug,
           [
             rehypePrettyCode,
             {
