@@ -1,8 +1,8 @@
-import { ChevronRight, Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router";
+import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { cn } from "shadmin/lib/utils";
-import { Button } from "shadmin/components/ui/button";
+import { useDocsUI } from "@/components/docs-ui-context";
 import {
   Collapsible,
   CollapsibleContent,
@@ -12,7 +12,6 @@ import {
   Sheet,
   SheetContent,
   SheetTitle,
-  SheetTrigger,
 } from "shadmin/components/ui/sheet";
 import {
   Sidebar,
@@ -41,6 +40,13 @@ interface NavProps {
 function SectionNav({ activeSlug, open, toggle, onNavigate }: NavProps) {
   return (
     <SidebarContent className="gap-0 px-2 py-4">
+      <Link
+        to="/"
+        onClick={onNavigate}
+        className="mb-3 px-2 text-lg font-semibold text-foreground"
+      >
+        shadmin
+      </Link>
       {navTree.map((section) => {
         const leaves = section.children.filter(
           (c): c is DocLeaf => c.kind === "leaf",
@@ -96,26 +102,12 @@ export default function DocsLayout() {
     s.children.some((c) => c.kind === "leaf" && c.slug === activeSlug),
   )?.dir;
 
+  const { navOpen, sheetOpen, setSheetOpen } = useDocsUI();
+
   // Controlled open state so the active section auto-opens on client-side nav.
   const [open, setOpen] = useState<Set<string>>(
     () => new Set([activeSection, "getting-started"].filter(Boolean) as string[]),
   );
-  const [sheetOpen, setSheetOpen] = useState(false);
-  // Desktop sidebar collapse (persisted). Defaults open; read pref on mount.
-  const [navOpen, setNavOpen] = useState(true);
-  useEffect(() => {
-    if (localStorage.getItem("docs-nav-open") === "false") setNavOpen(false);
-  }, []);
-  const toggleNav = () =>
-    setNavOpen((v) => {
-      const next = !v;
-      try {
-        localStorage.setItem("docs-nav-open", String(next));
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
 
   useEffect(() => {
     if (activeSection) {
@@ -125,7 +117,7 @@ export default function DocsLayout() {
     }
   }, [activeSection]);
   // Close the mobile sheet whenever the route changes.
-  useEffect(() => setSheetOpen(false), [pathname]);
+  useEffect(() => setSheetOpen(false), [pathname, setSheetOpen]);
 
   const toggle = (dir: string, isOpen: boolean) =>
     setOpen((prev) => {
@@ -137,7 +129,7 @@ export default function DocsLayout() {
 
   return (
     <SidebarProvider className="min-h-0">
-      {/* Desktop sidebar (hidden on mobile; collapsible via the toolbar toggle) */}
+      {/* Desktop sidebar (hidden on mobile; collapse toggle lives in the nav) */}
       <Sidebar
         collapsible="none"
         className={cn(
@@ -149,37 +141,18 @@ export default function DocsLayout() {
       </Sidebar>
 
       <SidebarInset className="bg-transparent">
-        {/* Utility bar: mobile sheet trigger + desktop collapse toggle */}
-        <div className="sticky top-14 z-20 flex items-center gap-1 border-b bg-background/80 px-4 py-2 backdrop-blur">
-          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetTrigger className="inline-flex items-center gap-2 text-sm font-medium md:hidden">
-              <Menu className="size-4" />
-              Menu
-            </SheetTrigger>
-            <SheetContent side="left" className="w-72 overflow-y-auto p-0">
-              <SheetTitle className="sr-only">Documentation navigation</SheetTitle>
-              <SectionNav
-                activeSlug={activeSlug}
-                open={open}
-                toggle={toggle}
-                onNavigate={() => setSheetOpen(false)}
-              />
-            </SheetContent>
-          </Sheet>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hidden size-7 md:inline-flex"
-            onClick={toggleNav}
-            aria-label={navOpen ? "Collapse sidebar" : "Expand sidebar"}
-          >
-            {navOpen ? (
-              <PanelLeftClose className="size-4" />
-            ) : (
-              <PanelLeftOpen className="size-4" />
-            )}
-          </Button>
-        </div>
+        {/* Mobile nav sheet — opened from the nav's Menu button (via context) */}
+        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+          <SheetContent side="left" className="w-72 overflow-y-auto p-0">
+            <SheetTitle className="sr-only">Documentation navigation</SheetTitle>
+            <SectionNav
+              activeSlug={activeSlug}
+              open={open}
+              toggle={toggle}
+              onNavigate={() => setSheetOpen(false)}
+            />
+          </SheetContent>
+        </Sheet>
 
         <div className="mx-auto w-full max-w-6xl px-6 py-10">
           <div className="flex justify-center gap-12">

@@ -1,6 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import type { LinksFunction, MetaFunction } from "react-router";
+import { DocsUIProvider } from "@/components/docs-ui-provider";
 import { SiteNav } from "@/components/site-nav";
 import "./index.css";
 
@@ -69,10 +70,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-dvh flex flex-col">
-            <SiteNav />
-            {children}
-          </div>
+          <DocsUIProvider>
+            <div className="min-h-dvh flex flex-col">
+              <SiteNav />
+              {children}
+            </div>
+          </DocsUIProvider>
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
