@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
-import type { ReactNode } from "react";
+import { type ReactNode, useContext } from "react";
 import { Link } from "react-router";
+import { CardDescriptions } from "./card-context";
 
 const ease = "cubic-bezier(0.32,0.72,0,1)";
 const cardClass =
@@ -19,9 +20,14 @@ interface CardProps {
   children?: ReactNode;
 }
 
-/** A single linked card. External hrefs open in a new tab; internal use Link. */
+/** A single linked card. External hrefs open in a new tab; internal use Link.
+ *  With no body, an internal card auto-fills the target's frontmatter description. */
 export function Card({ title, href, children }: CardProps) {
   const external = /^https?:\/\//.test(href);
+  const descriptions = useContext(CardDescriptions);
+  const desc =
+    children ??
+    (external ? undefined : descriptions.get(href.replace(/^\/docs\//, "")));
   const body = (
     <>
       <div className="flex items-center gap-2">
@@ -32,9 +38,9 @@ export function Card({ title, href, children }: CardProps) {
           style={{ transitionTimingFunction: ease }}
         />
       </div>
-      {children && (
-        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-          {children}
+      {desc && (
+        <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+          {desc}
         </p>
       )}
     </>

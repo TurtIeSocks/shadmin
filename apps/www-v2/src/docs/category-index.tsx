@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "shadmin/components/ui/breadcrumb";
+import { CardDescriptions } from "./mdx/card-context";
 import { introBySection } from "./nav-content";
 import { fallbackIcon, SECTION_META } from "./section-meta";
 import type { DocGroup } from "./types";
@@ -70,9 +71,11 @@ export function CategoryIndex({ section }: { section: DocGroup }) {
       )}
 
       {Intro ? (
-        <article className="prose prose-neutral mt-10 max-w-none dark:prose-invert">
-          <Intro />
-        </article>
+        <CardDescriptions.Provider value={descBySlug}>
+          <article className="prose prose-neutral mt-10 max-w-none dark:prose-invert">
+            <Intro />
+          </article>
+        </CardDescriptions.Provider>
       ) : (
         <div className="mt-10 grid gap-3 sm:grid-cols-2">
           {cards.map((card, i) => {
