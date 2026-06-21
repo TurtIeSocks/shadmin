@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import { cn } from "shadmin/lib/utils";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
   { to: "/", label: "Home", end: true },
@@ -30,6 +31,9 @@ export function SiteNav() {
             </li>
           ))}
         </ul>
+        <div className="ml-auto">
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
   );

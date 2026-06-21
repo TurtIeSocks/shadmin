@@ -1,15 +1,17 @@
+import { ThemeProvider } from "next-themes";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import type { LinksFunction, MetaFunction } from "react-router";
 import { SiteNav } from "@/components/site-nav";
 import "./index.css";
 
-// Dark-theme bootstrap script, carried over from the old index.html. Runs before
-// hydration so the page never flashes light. Inlined via dangerouslySetInnerHTML
-// so RR7 emits it verbatim into the prerendered <head>.
+// No-flash theme bootstrap. Runs before hydration so the prerendered (default)
+// markup is corrected to the user's preference before paint. Shares the "theme"
+// localStorage key with next-themes; supports light / dark / system.
 const themeScript = `(() => {
   try {
-    const t = localStorage.getItem("theme");
-    document.documentElement.classList.toggle("dark", t !== "light");
+    const t = localStorage.getItem("theme") || "system";
+    const sys = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.classList.toggle("dark", t === "dark" || (t === "system" && sys));
   } catch {
     document.documentElement.classList.add("dark");
   }
@@ -52,7 +54,7 @@ export const links: LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,10 +63,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <div className="min-h-dvh flex flex-col">
-          <SiteNav />
-          {children}
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-dvh flex flex-col">
+            <SiteNav />
+            {children}
+          </div>
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

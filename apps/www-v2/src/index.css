@@ -140,12 +140,20 @@
 }
 
 [data-rehype-pretty-code-figure] pre {
-  @apply overflow-x-auto bg-card p-4 text-sm leading-relaxed;
-  background-color: oklch(0.145 0 0);
+  @apply overflow-x-auto p-4 text-sm leading-relaxed;
+  background-color: var(--muted);
 }
 
-.dark [data-rehype-pretty-code-figure] pre {
-  background-color: oklch(0.145 0 0);
+/* Dual-theme shiki (github-light / github-dark): tokens carry both --shiki-light
+   and --shiki-dark vars. Use light by default, swap under .dark. */
+[data-rehype-pretty-code-figure] code[data-theme*=" "],
+[data-rehype-pretty-code-figure] code[data-theme*=" "] span {
+  color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] code[data-theme*=" "],
+.dark [data-rehype-pretty-code-figure] code[data-theme*=" "] span {
+  color: var(--shiki-dark);
 }
 
 .shiki {

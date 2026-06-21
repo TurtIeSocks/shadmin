@@ -36,7 +36,13 @@ export default defineConfig({
           remarkCalloutDirective,
         ],
         rehypePlugins: [
-          [rehypePrettyCode, { theme: "github-dark", keepBackground: false }],
+          [
+            rehypePrettyCode,
+            {
+              theme: { light: "github-light", dark: "github-dark" },
+              keepBackground: false,
+            },
+          ],
         ],
       }),
     },
