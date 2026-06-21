@@ -5,9 +5,13 @@ export default [
   route("demo", "demo/demo-layout.tsx", [
     index("demo/launcher.tsx"),
     route("login", "demo/login.tsx"),
-    // route("app/*", "demo/app/app-routes.tsx"),        // Task 6
-    // route("components/*", "demo/gallery/gallery.tsx"), // Task 8
-    // route("features/*", "demo/features/features.tsx"), // Phase 3
+    // Pathless SHELL route: app/components/features get the flagship chrome
+    // (Layout + 3-zone sidebar); login + launcher stay bare under DemoLayout.
+    route("", "demo/shell/demo-shell.tsx", [
+      route("app/*", "demo/app/app-routes.tsx"),
+      // route("components/*", "demo/gallery/gallery.tsx"), // Task 8
+      // route("features/*", "demo/features/features.tsx"), // Phase 3
+    ]),
   ]),
   // docs-layout renders the sidebar at /docs; index = overview, * = a page.
   route("docs", "docs/docs-layout.tsx", [
