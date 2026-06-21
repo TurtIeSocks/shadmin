@@ -5,8 +5,8 @@ export default function Example() {
   return (
     <SidebarProvider>
       <ResourceMenuItemGroup
-        label="Content"
-        resources={["posts", "comments"]}
+        label="Catalog"
+        resources={["products", "categories", "orders"]}
       />
     </SidebarProvider>
   );

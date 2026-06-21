@@ -1,3 +1,5 @@
+import { WifiOff } from "lucide-react";
+
 export default function Example() {
   return (
     <div>
@@ -6,7 +8,8 @@ export default function Example() {
       </p>
       <div className="rounded border overflow-hidden">
         <div className="bg-destructive text-destructive-foreground px-4 py-2 text-sm text-center flex items-center justify-center gap-2">
-          You are offline
+          <WifiOff className="size-4 shrink-0" aria-hidden="true" />
+          <span>You are offline</span>
         </div>
       </div>
     </div>

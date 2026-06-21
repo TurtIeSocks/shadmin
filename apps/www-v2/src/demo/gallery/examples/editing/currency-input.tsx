@@ -3,9 +3,9 @@ import { CurrencyInput } from "shadmin/components/admin";
 
 export default function CurrencyInputExample() {
   return (
-    <RecordContextProvider value={{ id: 1, price: 4999 }}>
+    <RecordContextProvider value={{ id: 1, price: 49.99 }}>
       <Form>
-        <CurrencyInput source="price" />
+        <CurrencyInput source="price" currency="USD" />
       </Form>
     </RecordContextProvider>
   );

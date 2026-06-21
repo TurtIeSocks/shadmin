@@ -4,7 +4,12 @@ export default function SimpleListItemExample() {
   return (
     <ul className="rounded-md border divide-y">
       <SimpleListItem
-        record={{ id: 1, first_name: "Jane Doe", email: "jane@example.com" }}
+        record={{
+          id: 1,
+          first_name: "Jane",
+          last_name: "Doe",
+          email: "jane@example.com",
+        }}
         resource="customers"
         linkType={false}
       >
@@ -14,7 +19,12 @@ export default function SimpleListItemExample() {
         </span>
       </SimpleListItem>
       <SimpleListItem
-        record={{ id: 2, first_name: "John Smith", email: "john@example.com" }}
+        record={{
+          id: 2,
+          first_name: "John",
+          last_name: "Smith",
+          email: "john@example.com",
+        }}
         resource="customers"
         linkType={false}
       >

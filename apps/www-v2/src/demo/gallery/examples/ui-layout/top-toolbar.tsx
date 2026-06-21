@@ -7,7 +7,7 @@ import { ResourceContextProvider } from "shadmin-core";
 
 export default function Example() {
   return (
-    <ResourceContextProvider value="posts">
+    <ResourceContextProvider value="products">
       <TopToolbar>
         <CreateButton />
         <RefreshButton />

@@ -3,7 +3,7 @@ import { Empty } from "shadmin/components/admin";
 
 export default function Example() {
   return (
-    <ResourceContextProvider value="posts">
+    <ResourceContextProvider value="orders">
       <Empty hasCreate={false} />
     </ResourceContextProvider>
   );

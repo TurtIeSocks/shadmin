@@ -3,7 +3,7 @@ import { ListNoResults } from "shadmin/components/admin";
 
 export default function Example() {
   return (
-    <ResourceContextProvider value="posts">
+    <ResourceContextProvider value="orders">
       <ListNoResults filterValues={{ status: "draft" }} setFilters={() => {}} />
     </ResourceContextProvider>
   );

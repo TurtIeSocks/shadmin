@@ -6,8 +6,8 @@ export default function Example() {
   return (
     <SidebarProvider>
       <SidebarMenu>
-        <ResourceContextProvider value="posts">
-          <ResourceMenuItem name="posts" label="Posts" />
+        <ResourceContextProvider value="products">
+          <ResourceMenuItem name="products" label="Products" />
         </ResourceContextProvider>
       </SidebarMenu>
     </SidebarProvider>

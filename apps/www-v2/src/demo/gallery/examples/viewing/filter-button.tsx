@@ -10,7 +10,11 @@ export default function FilterButtonExample() {
     <List
       resource="orders"
       disableSyncWithLocation
-      filters={[<TextInput key="q" label="Search" source="q" alwaysOn />]}
+      filters={[
+        <TextInput key="q" label="Search" source="q" alwaysOn />,
+        <TextInput key="status" label="Status" source="status" />,
+        <TextInput key="reference" label="Reference" source="reference" />,
+      ]}
       actions={<FilterButton />}
     >
       <DataTable>

@@ -5,11 +5,11 @@ export default function SimpleFormExample() {
   return (
     <ResourceContextProvider value="orders">
       <RecordContextProvider
-        value={{ id: 1, reference: "ORD-001", status: "active" }}
+        value={{ id: 1, reference: "ORD-001", returned: true }}
       >
         <SimpleForm>
           <TextInput source="reference" />
-          <BooleanInput source="status" />
+          <BooleanInput source="returned" />
         </SimpleForm>
       </RecordContextProvider>
     </ResourceContextProvider>
