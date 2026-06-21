@@ -1,4 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
+import type { RaRecord, ResourceDefinition } from "shadmin-core";
 import {
   FolderTree,
   Package,
@@ -42,6 +43,9 @@ export interface DemoResource {
   create?: ComponentType;
   icon: ReactNode;
   label: string;
+  /** How a record of this resource renders when referenced (e.g. in a
+   *  ReferenceField). Without it, references show `#<id>`. */
+  recordRepresentation?: string | ((record: RaRecord) => string);
 }
 
 /**
@@ -55,6 +59,8 @@ export const demoResources: Record<string, DemoResource> = {
   customers: {
     label: "Customers",
     icon: <Users />,
+    recordRepresentation: (r) =>
+      [r.first_name, r.last_name].filter(Boolean).join(" ") || `#${r.id}`,
     list: CustomersList,
     edit: CustomersEdit,
     show: CustomersShow,
@@ -63,6 +69,7 @@ export const demoResources: Record<string, DemoResource> = {
   categories: {
     label: "Categories",
     icon: <FolderTree />,
+    recordRepresentation: "name",
     list: CategoriesList,
     edit: CategoriesEdit,
     show: CategoriesShow,
@@ -71,6 +78,7 @@ export const demoResources: Record<string, DemoResource> = {
   products: {
     label: "Products",
     icon: <Package />,
+    recordRepresentation: "reference",
     list: ProductsList,
     edit: ProductsEdit,
     show: ProductsShow,
@@ -79,6 +87,7 @@ export const demoResources: Record<string, DemoResource> = {
   orders: {
     label: "Orders",
     icon: <ShoppingCart />,
+    recordRepresentation: (r) => `Order ${r.reference ?? `#${r.id}`}`,
     list: OrdersList,
     edit: OrdersEdit,
     show: OrdersShow,
@@ -86,6 +95,7 @@ export const demoResources: Record<string, DemoResource> = {
   reviews: {
     label: "Reviews",
     icon: <Star />,
+    recordRepresentation: (r) => `Review #${r.id}`,
     list: ReviewsList,
     edit: ReviewsEdit,
     show: ReviewsShow,
@@ -93,6 +103,7 @@ export const demoResources: Record<string, DemoResource> = {
   tags: {
     label: "Tags",
     icon: <Tag />,
+    recordRepresentation: "name",
     list: TagsList,
     edit: TagsEdit,
     show: TagsShow,
@@ -101,3 +112,24 @@ export const demoResources: Record<string, DemoResource> = {
 };
 
 export const demoResourceNames = Object.keys(demoResources);
+
+/**
+ * ra-core ResourceDefinitions derived from the registry — passed to a
+ * `<ResourceDefinitionContextProvider>` in demo-layout so References resolve to
+ * a readable representation (a name) instead of `#<id>`.
+ */
+export const resourceDefinitions: Record<string, ResourceDefinition> =
+  Object.fromEntries(
+    Object.entries(demoResources).map(([name, r]) => [
+      name,
+      {
+        name,
+        hasList: !!r.list,
+        hasCreate: !!r.create,
+        hasEdit: !!r.edit,
+        hasShow: !!r.show,
+        icon: r.icon,
+        recordRepresentation: r.recordRepresentation,
+      } satisfies ResourceDefinition,
+    ]),
+  );

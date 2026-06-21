@@ -1,8 +1,12 @@
-import { CoreAdminContext } from "shadmin-core";
+import {
+  CoreAdminContext,
+  ResourceDefinitionContextProvider,
+} from "shadmin-core";
 import { Outlet } from "react-router";
 import { dataProvider } from "./data/data-provider";
 import { authProvider } from "./data/auth-provider";
 import { i18nProvider } from "./data/i18n-provider";
+import { resourceDefinitions } from "./app/resources";
 import "./demo-theme.css";
 
 // CoreAdminContext is safe inside React Router framework mode:
@@ -18,9 +22,14 @@ export default function DemoLayout() {
       i18nProvider={i18nProvider}
       basename="/demo"
     >
-      <div className="theme-demo">
-        <Outlet />
-      </div>
+      {/* Register resource definitions (recordRepresentation, hasList, …) so
+          References resolve to a name instead of `#<id>`. Nested inside
+          CoreAdminContext's own (empty) provider, so these win. */}
+      <ResourceDefinitionContextProvider definitions={resourceDefinitions}>
+        <div className="theme-demo">
+          <Outlet />
+        </div>
+      </ResourceDefinitionContextProvider>
     </CoreAdminContext>
   );
 }

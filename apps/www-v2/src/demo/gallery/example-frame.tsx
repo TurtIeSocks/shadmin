@@ -58,7 +58,11 @@ export function ExampleFrame({
       >
         <Tabs>
           <TabItem label="Preview">
-            <div className="flex min-h-32 items-center justify-center p-8">
+            {/* Block (not flex-row): admin components like <List> return a
+                Fragment of siblings (toolbar, form, table) — a row-flex frame
+                would lay them out side by side. Block flow lets each example
+                control its own layout and take full width. */}
+            <div className="min-h-32 p-6">
               <Suspense
                 fallback={
                   <div className="text-sm text-muted-foreground">Loading…</div>
