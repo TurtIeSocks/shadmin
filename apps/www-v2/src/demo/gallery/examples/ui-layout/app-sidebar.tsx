@@ -3,8 +3,10 @@ import { SidebarProvider } from "shadmin/components/ui/sidebar";
 
 export default function Example() {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-    </SidebarProvider>
+    <div className="h-80 overflow-hidden rounded border">
+      <SidebarProvider>
+        <AppSidebar />
+      </SidebarProvider>
+    </div>
   );
 }

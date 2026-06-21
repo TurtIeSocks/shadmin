@@ -11,6 +11,10 @@ export default function ReferenceOneFieldExample() {
           reference="orders"
           target="customer_id"
           label="Latest order"
+          loading={<p className="text-sm text-muted-foreground">Loading…</p>}
+          empty={
+            <p className="text-sm text-muted-foreground">No order found.</p>
+          }
         >
           <TextField source="reference" />
         </ReferenceOneField>

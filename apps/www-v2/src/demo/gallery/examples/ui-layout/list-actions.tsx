@@ -1,10 +1,17 @@
-import { ResourceContextProvider } from "shadmin-core";
-import { ListActions } from "shadmin/components/admin";
+import {
+  List,
+  ListActions,
+  CreateButton,
+  ExportButton,
+} from "shadmin/components/admin";
 
 export default function Example() {
   return (
-    <ResourceContextProvider value="orders">
-      <ListActions hasCreate exporter={false} />
-    </ResourceContextProvider>
+    <List resource="orders" disableSyncWithLocation actions={false}>
+      <ListActions hasCreate>
+        <CreateButton resource="orders" />
+        <ExportButton resource="orders" />
+      </ListActions>
+    </List>
   );
 }

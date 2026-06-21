@@ -1,5 +1,9 @@
 import { RecordContextProvider } from "shadmin-core";
-import { ArrayField, ChipField } from "shadmin/components/admin";
+import {
+  ArrayField,
+  SingleFieldList,
+  ChipField,
+} from "shadmin/components/admin";
 
 export default function ArrayFieldExample() {
   return (
@@ -10,7 +14,9 @@ export default function ArrayFieldExample() {
       }}
     >
       <ArrayField source="tags">
-        <ChipField source="name" />
+        <SingleFieldList>
+          <ChipField source="name" />
+        </SingleFieldList>
       </ArrayField>
     </RecordContextProvider>
   );

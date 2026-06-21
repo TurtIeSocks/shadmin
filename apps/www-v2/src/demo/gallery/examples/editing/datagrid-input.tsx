@@ -7,10 +7,12 @@ const users = [
   { id: 3, name: "Grace Hopper", role: "Engineer" },
 ];
 
+const defaultValues = { members: [1, 3] };
+
 export default function DatagridInputExample() {
   return (
-    <RecordContextProvider value={{ id: 1, members: [1, 3] }}>
-      <Form>
+    <RecordContextProvider value={{ id: 1, ...defaultValues }}>
+      <Form defaultValues={defaultValues}>
         <DatagridInput source="members" choices={users}>
           <DataTable.Col source="name" />
           <DataTable.Col source="role" />
