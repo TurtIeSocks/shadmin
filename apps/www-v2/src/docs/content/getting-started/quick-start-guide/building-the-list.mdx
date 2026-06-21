@@ -205,7 +205,7 @@ export const UserList = () => (
 );
 ```
 
-The root component, [`<List>`](/docs/page-components/list), reads the query parameters, fetches data from the API, and places the data in a React context. It also provides callbacks for filtering, pagination, and sorting, allowing child components to access and modify the list parameters. `<List>` performs many tasks, but its syntax remains straightforward:
+The root component, [`<List>`](/docs/page-components/list/overview), reads the query parameters, fetches data from the API, and places the data in a React context. It also provides callbacks for filtering, pagination, and sorting, allowing child components to access and modify the list parameters. `<List>` performs many tasks, but its syntax remains straightforward:
 
 ```tsx
 <List>
@@ -215,7 +215,7 @@ The root component, [`<List>`](/docs/page-components/list), reads the query para
 
 This demonstrates the goal of `shadmin`: helping developers build sophisticated applications with simple syntax.
 
-In most frameworks, "simple" often implies limited capabilities, making it challenging to extend beyond basic features. `shadmin` addresses this through _composition_. `<List>` handles data fetching, while rendering is delegated to its child—in this case, [`<DataTable>`](/docs/viewing/data-table). Essentially, the code composes the functionalities of `<List>` and `<DataTable>` functionalities.
+In most frameworks, "simple" often implies limited capabilities, making it challenging to extend beyond basic features. `shadmin` addresses this through _composition_. `<List>` handles data fetching, while rendering is delegated to its child—in this case, [`<DataTable>`](/docs/viewing/data-table/overview). Essentially, the code composes the functionalities of `<List>` and `<DataTable>` functionalities.
 
 ## Selecting Columns
 
@@ -242,7 +242,7 @@ In `shadmin`, most configuration is done through components. Instead of using a 
 
 ## Writing A Custom Field
 
-The columns are rendered by the [`<DataTable.Col>`](/docs/viewing/data-table#datatablecol) component. By default, it renders the value as a simple string. You can customize how each column is rendered by passing a custom React component as [the `field` prop](/docs/viewing/data-table#field).
+The columns are rendered by the [`<DataTable.Col>`](/docs/viewing/data-table/overview) component. By default, it renders the value as a simple string. You can customize how each column is rendered by passing a custom React component as [the `field` prop](/docs/viewing/data-table/overview).
 
 Field components can read the `record` fetched from the API (e.g. `{ "id": 2, "name": "Ervin Howell", "website": "anastasia.net", ... }`) using a custom context, and use the `source` prop (e.g. `website`) to get the value they should display (e.g. "anastasia.net").
 

@@ -67,7 +67,7 @@ const OrderEdit = () => (
 `<SimpleFormIterator>` will transform the source of its child Input components into nested inputs (`items.0.name`). Check [the `<SimpleFormIterator>` documentation](#simpleformiterator) below for details about how to customize the sub form layout.
 
 :::note
-Using [`shouldUnregister`](https://react-hook-form.com/docs/useform#shouldUnregister) should be avoided when using `<ArrayInput>` (which internally uses `useFieldArray`) as the unregister function gets called after input unmount/remount and reorder. This limitation is mentioned in the react-hook-form [documentation](https://react-hook-form.com/docs/usecontroller#props). If you are in such a situation, you can use [the `<Edit transform>` prop](/docs/page-components/edit) prop to manually clean the submitted values.
+Using [`shouldUnregister`](https://react-hook-form.com/docs/useform#shouldUnregister) should be avoided when using `<ArrayInput>` (which internally uses `useFieldArray`) as the unregister function gets called after input unmount/remount and reorder. This limitation is mentioned in the react-hook-form [documentation](https://react-hook-form.com/docs/usecontroller#props). If you are in such a situation, you can use [the `<Edit transform>` prop](/docs/page-components/edit/overview) prop to manually clean the submitted values.
 :::
 
 ## Props

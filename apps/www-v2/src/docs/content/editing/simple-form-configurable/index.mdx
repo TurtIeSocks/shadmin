@@ -45,7 +45,7 @@ When the user toggles edit mode (via the `<InspectorButton>` in the app bar), a 
 | `children`      | Required | `ReactNode`       | -                        | The inputs (or any element with a `source` prop).                                |
 | `preferenceKey` | Optional | `string`          | `${resource}.simpleForm` | Storage key for user preferences.                                                |
 | `omit`          | Optional | `string[]`        | -                        | Sources hidden by default. Users can re-enable them from the inspector.          |
-| ...rest         | -        | `SimpleFormProps` | -                        | All other props are forwarded to the underlying [`<SimpleForm>`](/docs/editing/simple-form). |
+| ...rest         | -        | `SimpleFormProps` | -                        | All other props are forwarded to the underlying [`<SimpleForm>`](/docs/editing/simple-form/overview). |
 
 ## `preferenceKey`
 
@@ -88,4 +88,4 @@ On first mount, it walks its children and writes an `availableInputs` array of `
 ## See also
 
 - [`<Inspector>`](/docs/ui-layout/inspector) for the full configurable system
-- [`<SimpleForm>`](/docs/editing/simple-form) for the underlying form layout
+- [`<SimpleForm>`](/docs/editing/simple-form/overview) for the underlying form layout
