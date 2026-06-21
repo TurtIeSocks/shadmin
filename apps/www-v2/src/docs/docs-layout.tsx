@@ -1,7 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
-import { cn } from "shadmin/lib/utils";
 import { Brand } from "@/components/brand";
 import { useDocsUI } from "@/components/docs-ui-context";
 import { DocsTopBar } from "@/components/site-nav";
@@ -171,7 +170,7 @@ export default function DocsLayout() {
       s.children.some((c) => c.kind === "leaf" && c.slug === activeSlug),
     )?.dir ?? navTree.find((s) => s.dir === activeSlug)?.dir;
 
-  const { navOpen, sheetOpen, setSheetOpen } = useDocsUI();
+  const { navOpen, toggleNav, sheetOpen, setSheetOpen } = useDocsUI();
 
   // Controlled open state so the active section auto-opens on client-side nav.
   const [open, setOpen] = useState<Set<string>>(
@@ -205,15 +204,17 @@ export default function DocsLayout() {
     });
 
   return (
-    <SidebarProvider>
-      {/* Full-height sidebar (hidden on mobile; collapse toggle is in the bar) */}
-      <Sidebar
-        collapsible="none"
-        className={cn(
-          "sticky top-0 hidden h-svh border-r bg-transparent md:flex",
-          !navOpen && "md:hidden",
-        )}
-      >
+    <SidebarProvider
+      // Drive the native offcanvas collapse from our persisted navOpen so the
+      // sidebar animates its width open/closed (gap div + slide), like the
+      // shadcn sidebar blocks. Mobile keeps the custom Sheet below.
+      open={navOpen}
+      onOpenChange={(o) => {
+        if (o !== navOpen) toggleNav();
+      }}
+    >
+      {/* Full-height sidebar; offcanvas = animated width, hidden on mobile. */}
+      <Sidebar collapsible="offcanvas">
         <SidebarHeader className="border-b p-0">
           <div className="flex h-14 items-center px-4">
             <Link to="/" className="text-base">
