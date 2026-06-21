@@ -45,11 +45,12 @@ function NavBar({ left }: { left: ReactNode }) {
   );
 }
 
-// Global nav — only for non-docs routes. Docs renders its own bar inside the
-// SiteShell inset header (sidebar trigger + breadcrumb + actions).
+// Global nav — only for non-docs/demo routes. Both Docs and Demo render their
+// own bar inside the SiteShell inset header (sidebar trigger + breadcrumb +
+// actions), so the top NavBar must not double-render over them.
 export function SiteNav() {
   const { pathname } = useLocation();
-  if (pathname.startsWith("/docs")) return null;
+  if (pathname.startsWith("/docs") || pathname.startsWith("/demo")) return null;
   return (
     <NavBar
       left={
