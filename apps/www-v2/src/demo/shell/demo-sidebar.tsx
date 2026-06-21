@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { LayoutDashboard } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import {
@@ -8,7 +9,31 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "shadmin/components/ui/sidebar";
+import { NavTree } from "@/components/site-shell/nav-tree";
+import { navTree } from "@/docs/nav-content";
+import { SECTION_META } from "@/docs/section-meta";
+import { coverageReport } from "../gallery/coverage";
+import { componentDocSlugs, exampleSlugs } from "../gallery/examples-nav";
 import { demoResources } from "../app/resources";
+
+/** Component categories surfaced in the gallery. */
+const GALLERY_CATEGORIES = new Set([
+  "viewing",
+  "editing",
+  "page-components",
+  "ui-layout",
+  "widgets",
+]);
+
+/** Filtered navTree — only the 5 component-category sections. */
+const galleryTree = navTree.filter((s) => GALLERY_CATEGORIES.has(s.dir));
+
+/** Missing slugs set — used for coverage dot rendering. */
+const { missing: missingSlugs } = coverageReport(
+  componentDocSlugs,
+  exampleSlugs,
+);
+const missingSet = new Set(missingSlugs);
 
 /**
  * Returns an `isActive(to, exact?)` predicate bound to the current pathname.
@@ -21,17 +46,49 @@ function useIsActive() {
     exact ? current === to : current === to || current.startsWith(`${to}/`);
 }
 
+/** Slug segment after /demo/components/ (or "") */
+function useActiveComponentSlug() {
+  const { pathname } = useLocation();
+  const match = pathname.match(/^\/demo\/components\/(.+)$/);
+  return match?.[1] ?? "";
+}
+
+/** Small muted dot shown on gallery leaves not yet covered by an example. */
+function UncoveredDot() {
+  return (
+    <span
+      title="not yet covered"
+      className="ml-auto inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/40"
+    />
+  );
+}
+
 /**
  * The demo's 3-zone sidebar content — designed to be passed as children of
  * `<SiteSidebar>` (which provides the surrounding `<Sidebar>` shell).
  *
  * Zones:
  * - **App** — Dashboard link + the six demo resources from `demoResources`.
- * - **Components** — placeholder (filled in Phase 2 from the gallery tree).
+ * - **Components** — gallery tree (5 categories) with coverage dot indicators.
  * - **Features** — placeholder (filled in Phase 3).
  */
 export function DemoSidebarContent() {
   const isActive = useIsActive();
+  const activeSlug = useActiveComponentSlug();
+
+  // Open-state for the gallery NavTree (mirror docs-layout pattern).
+  const [openDirs, setOpenDirs] = useState<Set<string>>(
+    () => new Set<string>(),
+  );
+
+  function onToggle(dir: string, open: boolean) {
+    setOpenDirs((prev) => {
+      const next = new Set(prev);
+      if (open) next.add(dir);
+      else next.delete(dir);
+      return next;
+    });
+  }
 
   return (
     <>
@@ -68,16 +125,20 @@ export function DemoSidebarContent() {
         </SidebarGroupContent>
       </SidebarGroup>
 
-      {/* --- Components zone (placeholder) ---------------------------- */}
+      {/* --- Components zone ------------------------------------------ */}
       <SidebarGroup className="py-0.5">
         <SidebarGroupLabel className="text-xs font-semibold uppercase tracking-wide">
           Components
         </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <p className="px-2 py-1.5 text-xs text-muted-foreground">
-            Coming soon
-          </p>
-        </SidebarGroupContent>
+        <NavTree
+          tree={galleryTree}
+          hrefFor={(s) => `/demo/components/${s}`}
+          iconFor={(dir) => SECTION_META[dir]?.icon}
+          activeSlug={activeSlug}
+          openDirs={openDirs}
+          onToggle={onToggle}
+          badgeFor={(slug) => (missingSet.has(slug) ? <UncoveredDot /> : null)}
+        />
       </SidebarGroup>
 
       {/* --- Features zone (placeholder) ----------------------------- */}

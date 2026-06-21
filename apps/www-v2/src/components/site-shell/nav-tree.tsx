@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import type { ComponentType, ReactNode } from "react";
 import { ChevronRight } from "lucide-react";
 import { NavLink } from "react-router";
 import {
@@ -30,6 +30,8 @@ export interface NavTreeProps {
   openDirs: Set<string>;
   onToggle: (dir: string, open: boolean) => void;
   onNavigate?: () => void;
+  /** Optional badge/indicator per leaf slug — return `null` for nothing. */
+  badgeFor?: (slug: string) => ReactNode;
 }
 
 interface SubProps {
@@ -38,6 +40,7 @@ interface SubProps {
   openDirs: Set<string>;
   onToggle: (dir: string, open: boolean) => void;
   onNavigate?: () => void;
+  badgeFor?: (slug: string) => ReactNode;
 }
 
 /**
@@ -52,6 +55,7 @@ function NavSubNode({ node, ...p }: { node: DocNode } & SubProps) {
         <SidebarMenuSubButton asChild isActive={node.slug === p.activeSlug}>
           <NavLink to={p.hrefFor(node.slug)} onClick={p.onNavigate}>
             {node.title}
+            {p.badgeFor?.(node.slug)}
           </NavLink>
         </SidebarMenuSubButton>
       </SidebarMenuSubItem>
@@ -110,6 +114,7 @@ export function NavTree({
   openDirs,
   onToggle,
   onNavigate,
+  badgeFor,
 }: NavTreeProps) {
   return (
     <SidebarGroup>
@@ -154,6 +159,7 @@ export function NavTree({
                           openDirs={openDirs}
                           onToggle={onToggle}
                           onNavigate={onNavigate}
+                          badgeFor={badgeFor}
                         />
                       ))}
                     </SidebarMenuSub>
