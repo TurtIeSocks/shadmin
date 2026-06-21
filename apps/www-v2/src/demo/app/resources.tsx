@@ -8,6 +8,10 @@ import {
   Users,
 } from "lucide-react";
 
+import { CategoriesCreate } from "./categories/categories-create";
+import { CategoriesEdit } from "./categories/categories-edit";
+import { CategoriesList } from "./categories/categories-list";
+import { CategoriesShow } from "./categories/categories-show";
 import { CustomersCreate } from "./customers/customers-create";
 import { CustomersEdit } from "./customers/customers-edit";
 import { CustomersList } from "./customers/customers-list";
@@ -19,6 +23,13 @@ import { ProductsCreate } from "./products/products-create";
 import { ProductsEdit } from "./products/products-edit";
 import { ProductsList } from "./products/products-list";
 import { ProductsShow } from "./products/products-show";
+import { ReviewsEdit } from "./reviews/reviews-edit";
+import { ReviewsList } from "./reviews/reviews-list";
+import { ReviewsShow } from "./reviews/reviews-show";
+import { TagsCreate } from "./tags/tags-create";
+import { TagsEdit } from "./tags/tags-edit";
+import { TagsList } from "./tags/tags-list";
+import { TagsShow } from "./tags/tags-show";
 
 /**
  * A demo resource entry: the four CRUD page components (any may be omitted while
@@ -32,19 +43,6 @@ export interface DemoResource {
   icon: ReactNode;
   label: string;
 }
-
-// --- Stub pages -------------------------------------------------------------
-// Task 7 swaps these for real <List>/<Edit>/<Show>/<Create> pages. They exist
-// now so routing + the shell can be verified end-to-end.
-const stub = (name: string, view: string): ComponentType => {
-  const Stub = () => (
-    <div className="p-6 text-sm text-muted-foreground">
-      {name} {view} — coming in Task 7
-    </div>
-  );
-  Stub.displayName = `${name}-${view}-stub`;
-  return Stub;
-};
 
 /**
  * Registry of the six demo resources, keyed by resource name (the same name the
@@ -65,10 +63,10 @@ export const demoResources: Record<string, DemoResource> = {
   categories: {
     label: "Categories",
     icon: <FolderTree />,
-    list: stub("categories", "list"),
-    edit: stub("categories", "edit"),
-    show: stub("categories", "show"),
-    create: stub("categories", "create"),
+    list: CategoriesList,
+    edit: CategoriesEdit,
+    show: CategoriesShow,
+    create: CategoriesCreate,
   },
   products: {
     label: "Products",
@@ -88,18 +86,17 @@ export const demoResources: Record<string, DemoResource> = {
   reviews: {
     label: "Reviews",
     icon: <Star />,
-    list: stub("reviews", "list"),
-    edit: stub("reviews", "edit"),
-    show: stub("reviews", "show"),
-    create: stub("reviews", "create"),
+    list: ReviewsList,
+    edit: ReviewsEdit,
+    show: ReviewsShow,
   },
   tags: {
     label: "Tags",
     icon: <Tag />,
-    list: stub("tags", "list"),
-    edit: stub("tags", "edit"),
-    show: stub("tags", "show"),
-    create: stub("tags", "create"),
+    list: TagsList,
+    edit: TagsEdit,
+    show: TagsShow,
+    create: TagsCreate,
   },
 };
 

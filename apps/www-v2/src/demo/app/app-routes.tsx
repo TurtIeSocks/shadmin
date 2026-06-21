@@ -1,21 +1,7 @@
 import { ResourceContextProvider } from "shadmin-core";
 import { Navigate, Route, Routes, useParams } from "react-router";
 import { demoResources } from "./resources";
-
-/**
- * Dashboard placeholder for `/demo/app`. Task 7 fills the real dashboard.
- */
-function Dashboard() {
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Welcome to the admin demo. Pick a resource from the sidebar to browse,
-        create, edit, and inspect records.
-      </p>
-    </div>
-  );
-}
+import { Dashboard } from "./dashboard/dashboard";
 
 /**
  * Resolves a single CRUD page for the resource named in the URL.
