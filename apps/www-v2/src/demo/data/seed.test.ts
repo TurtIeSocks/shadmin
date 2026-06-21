@@ -44,4 +44,15 @@ test("products carry the coverage attributes", () => {
 test("reviews reference both customer and product", () => {
   const r = buildSeedData().reviews[0] as Record<string, unknown>;
   assert.ok("customer_id" in r && "product_id" in r && "rating" in r);
+  assert.ok("approved" in r, "review.approved");
+});
+
+test("order items carry the referenced product's unit price", () => {
+  const d = buildSeedData();
+  const priceById = new Map(d.products.map((p: any) => [p.id, Number(p.price)]));
+  const order = d.orders.find((o: any) => Array.isArray(o.items) && o.items.length > 0) as any;
+  assert.ok(order, "an order with items exists");
+  for (const it of order.items) {
+    assert.equal(Number(it.unitPrice), priceById.get(it.product_id) ?? 0);
+  }
 });

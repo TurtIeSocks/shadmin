@@ -111,9 +111,11 @@ export function buildSeedData(): SeedData {
   });
 
   // --- categories: add parent_id (first 3 are roots, rest reference them), color ---
+  const rootIds = raw.categories.slice(0, 3).map((c) => c.id);
+  const rootIdSet = new Set(rootIds);
   const categories = raw.categories.map((cat) => ({
     ...cat,
-    parent_id: cat.id < 3 ? null : cat.id % 3,
+    parent_id: rootIdSet.has(cat.id) ? null : rootIds[cat.id % 3],
     color: pickHex(cat.id),
   }));
 
@@ -137,6 +139,7 @@ export function buildSeedData(): SeedData {
   }));
 
   // --- orders: add items (mapped from basket), deliveryTime, trackingUrl ---
+  const productById = new Map(products.map((p) => [p.id, p]));
   const orders = raw.orders.map((o) => {
     const basket = (o.basket ?? []) as Array<{
       product_id: number;
@@ -147,9 +150,9 @@ export function buildSeedData(): SeedData {
       items: basket.map((b) => ({
         product_id: b.product_id,
         qty: b.quantity,
-        unitPrice:
-          (products[b.product_id % products.length] as Record<string, unknown>)
-            ?.price ?? 0,
+        unitPrice: Number(
+          (productById.get(b.product_id) as Record<string, unknown>)?.price ?? 0,
+        ),
       })),
       deliveryTime: ((o.id % 5) + 1) * 24 * 3600,
       trackingUrl: `https://tracking.shadmin.dev/${o.reference}`,
