@@ -13,6 +13,7 @@ import { navTree } from "./nav-content";
 import { findGroup } from "./nav-sequence";
 import { installFor } from "./registry";
 import { InstallCommand } from "./mdx/install-command";
+import { PrevNext } from "./prev-next";
 
 interface GuideModule {
   default: ComponentType;
@@ -124,6 +125,7 @@ export default function MdxPage() {
         </div>
       )}
       <Content />
+      <PrevNext slug={slug} />
     </article>
   );
 }
