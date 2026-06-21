@@ -87,7 +87,7 @@ export const demoResources: Record<string, DemoResource> = {
   orders: {
     label: "Orders",
     icon: <ShoppingCart />,
-    recordRepresentation: (r) => `Order ${r.reference ?? `#${r.id}`}`,
+    recordRepresentation: (r) => r.reference ?? `#${r.id}`,
     list: OrdersList,
     edit: OrdersEdit,
     show: OrdersShow,
@@ -95,7 +95,7 @@ export const demoResources: Record<string, DemoResource> = {
   reviews: {
     label: "Reviews",
     icon: <Star />,
-    recordRepresentation: (r) => `Review #${r.id}`,
+    recordRepresentation: (r) => `#${r.id}`,
     list: ReviewsList,
     edit: ReviewsEdit,
     show: ReviewsShow,

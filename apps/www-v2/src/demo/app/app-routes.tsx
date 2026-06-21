@@ -35,9 +35,12 @@ function ResourcePage({ view }: { view: "list" | "create" | "edit" | "show" }) {
   const element =
     view === "edit" || view === "show" ? <Component key={id} /> : <Component />;
 
+  // Page padding lives here (not in each List/Edit/Show) so every resource CRUD
+  // page is consistently inset — matching the Dashboard's own p-6. The shell
+  // adds none, and gallery/dashboard pad themselves on their own routes.
   return (
     <ResourceContextProvider value={resource}>
-      {element}
+      <div className="p-6">{element}</div>
     </ResourceContextProvider>
   );
 }
