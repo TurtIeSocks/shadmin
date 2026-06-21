@@ -1,5 +1,10 @@
 @import "tailwindcss";
 @source "../node_modules/shadmin/dist";
+/* The /demo area renders shadmin admin/leaflet/etc. from SOURCE (excluded from
+   dist), so Tailwind must scan the source too — otherwise admin-only utility
+   classes (e.g. the skip-nav button's -top-24/z-5000) are never generated and
+   those components render mis-styled. See shadmin-source-resolver.mjs. */
+@source "../../../packages/shadmin/src/components";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
