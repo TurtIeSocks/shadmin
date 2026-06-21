@@ -1,22 +1,39 @@
+import type { MetaFunction } from "react-router";
+import { Advanced } from "@/landing/advanced";
+import { Backends } from "@/landing/backends";
+import { CodeShowcase } from "@/landing/code-showcase";
+import { Deploy } from "@/landing/deploy";
+import { Features } from "@/landing/features";
+import { FinalCta } from "@/landing/final-cta";
+import { Hero } from "@/landing/hero";
+import { LandingFooter } from "@/landing/landing-footer";
+import { OpenSource } from "@/landing/open-source";
+import { TechLogos } from "@/landing/tech-logos";
+import { Why } from "@/landing/why";
+
+export const meta: MetaFunction = () => [
+  { title: "Shadmin — Open-source shadcn admin components" },
+  {
+    name: "description",
+    content:
+      "Production-ready shadcn blocks for internal tools, dashboards, B2B apps, and admin panels with React.",
+  },
+];
+
 export default function Home() {
   return (
-    <main className="mx-auto max-w-7xl px-4 py-16">
-      <div className="flex items-center gap-4">
-        <img
-          src="/shadmin-mark.svg"
-          alt=""
-          aria-hidden
-          className="size-12"
-          width={48}
-          height={48}
-        />
-        <h1 className="text-4xl font-bold tracking-tight">
-          shad<span className="text-brand-gradient">min</span>
-        </h1>
-      </div>
-      <p className="mt-4 text-muted-foreground">
-        shadcn-native admin kit. Landing content lands in Phase 2.
-      </p>
+    <main>
+      <Hero />
+      <TechLogos />
+      <Features />
+      <Advanced />
+      <Backends />
+      <Deploy />
+      <OpenSource />
+      <Why />
+      <CodeShowcase />
+      <FinalCta />
+      <LandingFooter />
     </main>
   );
 }
