@@ -77,7 +77,7 @@ export function PropsTable({ rows, name }: PropsTableProps) {
         </thead>
         <tbody>
           {resolved.map((row, i) => (
-            <tr key={row.prop} className={i % 2 === 0 ? "bg-background" : "bg-muted/20"}>
+            <tr key={row.prop} className={i % 2 === 0 ? "bg-background" : "bg-muted/40"}>
               <td className="px-4 py-2 font-mono text-xs text-foreground">
                 {row.prop}
               </td>

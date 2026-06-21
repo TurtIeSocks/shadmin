@@ -31,19 +31,19 @@ export function InstallCommand({ install }: InstallCommandProps) {
   }
 
   return (
-    <div className="rounded-xl overflow-hidden border border-border/40">
-      {/* Tab bar */}
-      <div className="flex items-center border-b border-border/40 px-1 pt-1 gap-0.5">
+    <div className="rounded-xl overflow-hidden border border-border">
+      {/* Tab bar — active tab marked with a primary underline (high contrast) */}
+      <div className="flex items-center gap-1 border-b border-border px-2">
         {TABS.map((tab) => (
           <button
             key={tab.key}
             type="button"
             onClick={() => setActive(tab.key)}
             className={cn(
-              "px-3 py-1.5 text-xs font-medium rounded-t-md transition-colors",
+              "-mb-px border-b-2 px-2.5 py-2 text-xs font-medium transition-colors",
               active === tab.key
-                ? "bg-foreground/8 text-foreground"
-                : "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
+                ? "border-primary text-foreground"
+                : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
             {tab.label}
@@ -64,7 +64,7 @@ export function InstallCommand({ install }: InstallCommandProps) {
             "shrink-0 rounded-lg px-2.5 py-1 text-xs font-medium transition-colors",
             copied
               ? "bg-green-500/15 text-green-600 dark:text-green-400"
-              : "text-muted-foreground hover:text-foreground hover:bg-foreground/8",
+              : "text-muted-foreground hover:text-foreground hover:bg-muted",
           )}
         >
           {copied ? "Copied!" : "Copy"}

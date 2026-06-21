@@ -1,6 +1,8 @@
-import { ChevronRight, Menu } from "lucide-react";
+import { ChevronRight, Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router";
+import { cn } from "shadmin/lib/utils";
+import { Button } from "shadmin/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
@@ -98,6 +100,21 @@ export default function DocsLayout() {
     () => new Set([activeSection, "getting-started"].filter(Boolean) as string[]),
   );
   const [sheetOpen, setSheetOpen] = useState(false);
+  // Desktop sidebar collapse (persisted). Defaults open; read pref on mount.
+  const [navOpen, setNavOpen] = useState(true);
+  useEffect(() => {
+    if (localStorage.getItem("docs-nav-open") === "false") setNavOpen(false);
+  }, []);
+  const toggleNav = () =>
+    setNavOpen((v) => {
+      const next = !v;
+      try {
+        localStorage.setItem("docs-nav-open", String(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
 
   useEffect(() => {
     if (activeSection) {
@@ -119,19 +136,22 @@ export default function DocsLayout() {
 
   return (
     <SidebarProvider className="min-h-0">
-      {/* Desktop sidebar (hidden on mobile) */}
+      {/* Desktop sidebar (hidden on mobile; collapsible via the toolbar toggle) */}
       <Sidebar
         collapsible="none"
-        className="sticky top-14 hidden h-[calc(100svh-3.5rem)] border-r bg-transparent md:flex"
+        className={cn(
+          "sticky top-14 hidden h-[calc(100svh-3.5rem)] border-r bg-transparent md:flex",
+          !navOpen && "md:hidden",
+        )}
       >
         <SectionNav activeSlug={activeSlug} open={open} toggle={toggle} />
       </Sidebar>
 
       <SidebarInset className="bg-transparent">
-        {/* Mobile menu bar with a sheet trigger */}
-        <div className="sticky top-14 z-20 flex items-center border-b bg-background/80 px-4 py-2 backdrop-blur md:hidden">
+        {/* Utility bar: mobile sheet trigger + desktop collapse toggle */}
+        <div className="sticky top-14 z-20 flex items-center gap-1 border-b bg-background/80 px-4 py-2 backdrop-blur">
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetTrigger className="inline-flex items-center gap-2 text-sm font-medium">
+            <SheetTrigger className="inline-flex items-center gap-2 text-sm font-medium md:hidden">
               <Menu className="size-4" />
               Menu
             </SheetTrigger>
@@ -145,6 +165,19 @@ export default function DocsLayout() {
               />
             </SheetContent>
           </Sheet>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hidden size-7 md:inline-flex"
+            onClick={toggleNav}
+            aria-label={navOpen ? "Collapse sidebar" : "Expand sidebar"}
+          >
+            {navOpen ? (
+              <PanelLeftClose className="size-4" />
+            ) : (
+              <PanelLeftOpen className="size-4" />
+            )}
+          </Button>
         </div>
 
         <div className="mx-auto w-full max-w-3xl px-6 py-10">

@@ -58,7 +58,7 @@ export function DocSearch() {
       >
         <Search className="size-4" />
         <span className="hidden sm:inline">Search docs…</span>
-        <kbd className="ml-auto hidden rounded border bg-background px-1.5 font-mono text-[10px] sm:inline">
+        <kbd className="ml-auto hidden rounded border bg-background px-1.5 font-mono text-xs sm:inline">
           ⌘K
         </kbd>
       </button>

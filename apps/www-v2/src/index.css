@@ -62,12 +62,12 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.5 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: oklch(0.87 0 0);
+  --input: oklch(0.87 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -81,7 +81,7 @@
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-border: oklch(0.87 0 0);
   --sidebar-ring: oklch(0.708 0 0)
 }
 
@@ -136,12 +136,14 @@
 /* ── rehype-pretty-code ────────────────────────────────────────────────────── */
 
 [data-rehype-pretty-code-figure] {
-  @apply my-4 overflow-hidden rounded-lg border border-border/40;
+  @apply my-4 overflow-hidden rounded-lg border border-border;
 }
 
 [data-rehype-pretty-code-figure] pre {
   @apply overflow-x-auto p-4 text-sm leading-relaxed;
-  background-color: var(--muted);
+  /* github-light/github-dark tokens are tuned for a near-background surface;
+     a gray --muted bg drops comment-token contrast below AA. */
+  background-color: var(--background);
 }
 
 /* Dual-theme shiki (github-light / github-dark): tokens carry both --shiki-light
@@ -161,7 +163,7 @@
 }
 
 [data-rehype-pretty-code-title] {
-  @apply flex items-center gap-2 border-b border-border/30 bg-muted/30 px-4 py-2 font-mono text-xs text-muted-foreground;
+  @apply flex items-center gap-2 border-b border-border bg-muted px-4 py-2 font-mono text-xs text-foreground;
 }
 
 /* ── docs prose tables (the hand-authored markdown prop tables) ──────────────
@@ -169,20 +171,25 @@
    whether a page uses markdown tables or the component. */
 
 .prose table {
-  @apply my-6 w-full overflow-hidden rounded-lg border border-border/60 text-sm;
+  @apply my-6 w-full overflow-hidden rounded-lg border border-border text-sm;
   border-collapse: collapse;
 }
 
 .prose thead {
-  @apply bg-muted/40;
+  @apply bg-muted;
 }
 
 .prose th {
-  @apply border-b border-border/60 px-4 py-2 text-left font-semibold text-foreground;
+  @apply border-b border-border px-4 py-2 text-left font-semibold text-foreground;
 }
 
 .prose td {
-  @apply border-t border-border/40 px-4 py-2 align-top text-muted-foreground;
+  @apply border-t border-border/60 px-4 py-2 align-top text-muted-foreground;
+}
+
+/* zebra striping */
+.prose tbody tr:nth-child(even) {
+  @apply bg-muted/40;
 }
 
 .prose td:first-child {
