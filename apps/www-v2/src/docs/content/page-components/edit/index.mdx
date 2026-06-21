@@ -195,7 +195,7 @@ export const PostEdit = () => (
 
 ## Main Content Area
 
-The `<Edit>` component will render its children inside a `EditContext` provider, which the `save` function. Children can be any React node, but are usually a form component like [`<SimpleForm>`](/docs/data-edition/simple-form), or the headless [`<Form>`](https://marmelab.com/ra-core/form/) component.
+The `<Edit>` component will render its children inside a `EditContext` provider, which the `save` function. Children can be any React node, but are usually a form component like [`<SimpleForm>`](/docs/editing/simple-form), or the headless [`<Form>`](https://marmelab.com/ra-core/form/) component.
 
 ![](/docs/images/customers-edit-content.png)
 
@@ -283,10 +283,10 @@ export const PostEdit = () => <Edit actions={<PostEditActions />}>...</Edit>;
 
 Common buttons used as Edit actions are:
 
-- [`<CreateButton>`](/docs/data-edition/create-button) to create a new record
+- [`<CreateButton>`](/docs/editing/create-button) to create a new record
 - [`<ListButton>`](/docs/ui-layout/list-button) to go back to the list
-- [`<ShowButton>`](/docs/data-edition/show-button) to go to the show page
-- [`<DeleteButton>`](/docs/data-edition/delete-button) to delete the current record
+- [`<ShowButton>`](/docs/editing/show-button) to go to the show page
+- [`<DeleteButton>`](/docs/editing/delete-button) to delete the current record
 
 And you can add your own button, leveraging the `useRecordContext()` hook:
 
@@ -483,7 +483,7 @@ const PostEdit = () => {
 :::
 
 :::tip
-If you want to have different success side effects based on the button clicked by the user (e.g. if the creation form displays two submit buttons, one to "save and redirect to the list", and another to "save and display an empty form"), you can set the `mutationOptions` prop on [the `<SaveButton>` component](/docs/data-edition/save-button), too.
+If you want to have different success side effects based on the button clicked by the user (e.g. if the creation form displays two submit buttons, one to "save and redirect to the list", and another to "save and display an empty form"), you can set the `mutationOptions` prop on [the `<SaveButton>` component](/docs/editing/save-button), too.
 :::
 
 Similarly, you can override the failure side effects with an `onError` option. By default, when the save action fails at the dataProvider level, Shadmin shows a notification error.
@@ -652,7 +652,7 @@ export const UserEdit = () => {
 The `transform` function can also return a `Promise`, which allows you to do all sorts of asynchronous calls (e.g. to the `dataProvider`) during the transformation.
 
 :::tip
-If you want to have different transformations based on the button clicked by the user (e.g. if the creation form displays two submit buttons, one to "save", and another to "save and notify other admins"), you can set the `transform` prop on [the `<SaveButton>` component](/docs/data-edition/save-button), too.
+If you want to have different transformations based on the button clicked by the user (e.g. if the creation form displays two submit buttons, one to "save", and another to "save and notify other admins"), you can set the `transform` prop on [the `<SaveButton>` component](/docs/editing/save-button), too.
 :::
 
 :::tip

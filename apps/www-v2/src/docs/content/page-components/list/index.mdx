@@ -8,7 +8,7 @@ registry: "list"
 
 ## Usage
 
-Here is a minimal example to display a list of users with a [`<DataTable>`](/docs/data-display/data-table):
+Here is a minimal example to display a list of users with a [`<DataTable>`](/docs/viewing/data-table):
 
 ```tsx
 // in src/users.jsx
@@ -154,8 +154,8 @@ export const PostList = () => (
 
 shadmin provides several components that can read and display a list of records from a `ListContext`, each with a different layout:
 
-- [`<DataTable>`](/docs/data-display/data-table) displays records in a table
-- [`<SingleFieldList>`](/docs/data-display/single-field-list) displays records inline, showing one field per record
+- [`<DataTable>`](/docs/viewing/data-table) displays records in a table
+- [`<SingleFieldList>`](/docs/viewing/single-field-list) displays records inline, showing one field per record
 
 Alternatively to `children`, you can pass a `render` prop to `<List>`. It will receive the [`ListContext`](https://marmelab.com/ra-core/uselistcontext/.html#return-value) as its argument, and should return a React node. This allows to inline the render logic for the list page.
 
@@ -362,7 +362,7 @@ export const PostList = () => (
 ```
 
 :::tip
-You can also display filters as a sidebar thanks to the [`<ToggleFilterButton>`](/docs/data-display/toggle-filter-button) component:
+You can also display filters as a sidebar thanks to the [`<ToggleFilterButton>`](/docs/viewing/toggle-filter-button) component:
 
 ![Filter sidebar](/docs/images/filter-sidebar.png)
 :::
@@ -776,8 +776,8 @@ const Dashboard = () => (
 :::note
 If you need to set the list parameters to render a list of records _related to another record_, there are better components than `<List>` for that. Check out the following components, specialized in fetching and displaying a list of related records:
 
-- [`<ReferenceArrayField>`](/docs/data-display/reference-array-field),
-- [`<ReferenceManyField>`](/docs/data-display/reference-many-field),
+- [`<ReferenceArrayField>`](/docs/viewing/reference-array-field),
+- [`<ReferenceManyField>`](/docs/viewing/reference-many-field),
 
 :::
 

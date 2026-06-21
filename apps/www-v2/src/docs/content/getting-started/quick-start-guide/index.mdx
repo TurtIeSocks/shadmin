@@ -476,7 +476,7 @@ The root component, [`<List>`](/docs/page-components/list), reads the query para
 
 This demonstrates the goal of `shadmin`: helping developers build sophisticated applications with simple syntax.
 
-In most frameworks, "simple" often implies limited capabilities, making it challenging to extend beyond basic features. `shadmin` addresses this through _composition_. `<List>` handles data fetching, while rendering is delegated to its child—in this case, [`<DataTable>`](/docs/data-display/data-table). Essentially, the code composes the functionalities of `<List>` and `<DataTable>` functionalities.
+In most frameworks, "simple" often implies limited capabilities, making it challenging to extend beyond basic features. `shadmin` addresses this through _composition_. `<List>` handles data fetching, while rendering is delegated to its child—in this case, [`<DataTable>`](/docs/viewing/data-table). Essentially, the code composes the functionalities of `<List>` and `<DataTable>` functionalities.
 
 ## Selecting Columns
 
@@ -503,7 +503,7 @@ In `shadmin`, most configuration is done through components. Instead of using a 
 
 ## Writing A Custom Field
 
-The columns are rendered by the [`<DataTable.Col>`](/docs/data-display/data-table#datatablecol) component. By default, it renders the value as a simple string. You can customize how each column is rendered by passing a custom React component as [the `field` prop](/docs/data-display/data-table#field).
+The columns are rendered by the [`<DataTable.Col>`](/docs/viewing/data-table#datatablecol) component. By default, it renders the value as a simple string. You can customize how each column is rendered by passing a custom React component as [the `field` prop](/docs/viewing/data-table#field).
 
 Field components can read the `record` fetched from the API (e.g. `{ "id": 2, "name": "Ervin Howell", "website": "anastasia.net", ... }`) using a custom context, and use the `source` prop (e.g. `website`) to get the value they should display (e.g. "anastasia.net").
 
@@ -582,7 +582,7 @@ const App = () => (
 
 ![Guessed posts list](/docs/images/posts-list-guesser.png)
 
-The `ListGuesser` suggests using a [`<ReferenceField>`](/docs/data-display/reference-field) for the `userId` field.
+The `ListGuesser` suggests using a [`<ReferenceField>`](/docs/viewing/reference-field) for the `userId` field.
 Let's play with this new field by creating the `PostList` component based on the code dumped by the guesser:
 
 ```tsx
@@ -817,7 +817,7 @@ export const PostEdit = () => (
 );
 ```
 
-If you've understood the `<List>` component, the `<Edit>` component will be no surprise. It's responsible for fetching the record and displaying the page title. It passes the record down to the [`<SimpleForm>`](/docs/data-edition/simple-form) component, which is responsible for the form layout, default values, and validation. Just like `<DataTable>`, `<SimpleForm>` uses its children to determine the form inputs to display. It expects [_input components_](/docs/data-edition/data-edition#inputs) as children. `<TextInput>` and `<ReferenceInput>` are such inputs.
+If you've understood the `<List>` component, the `<Edit>` component will be no surprise. It's responsible for fetching the record and displaying the page title. It passes the record down to the [`<SimpleForm>`](/docs/editing/simple-form) component, which is responsible for the form layout, default values, and validation. Just like `<DataTable>`, `<SimpleForm>` uses its children to determine the form inputs to display. It expects [_input components_](/docs/editing/data-edition#inputs) as children. `<TextInput>` and `<ReferenceInput>` are such inputs.
 
 The `<ReferenceInput>` takes the same props as the `<ReferenceField>` (used earlier in the `<PostList>` page). `<ReferenceInput>` uses these props to fetch the API for possible references related to the current record (in this case, possible `users` for the current `post`). It then creates a context with the possible choices and renders an `<AutocompleteInput>`, which is responsible for displaying the choices and letting the user select one.
 

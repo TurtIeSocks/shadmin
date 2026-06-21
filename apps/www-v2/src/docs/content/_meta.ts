@@ -3,9 +3,9 @@ import type { MetaEntry } from "@/docs/types";
 export default [
   { dir: "getting-started", title: "Getting Started" },
   { dir: "app-config", title: "App Config" },
-  { dir: "page-components", title: "Page components" },
-  { dir: "data-display", title: "Viewing" },
-  { dir: "data-edition", title: "Editing" },
+  { dir: "page-components", title: "Page Components" },
+  { dir: "viewing", title: "Viewing" },
+  { dir: "editing", title: "Editing" },
   { dir: "widgets", title: "Widgets" },
   { dir: "leaflet", title: "Map (Leaflet)" },
   { dir: "csv-import", title: "CSV Import" },

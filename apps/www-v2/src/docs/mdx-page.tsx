@@ -34,7 +34,7 @@ const bySlug = new Map(
 export default function MdxPage() {
   const slug = (useParams()["*"] ?? "").replace(/\/+$/, "");
 
-  // A bare section slug (e.g. /docs/data-display) renders that category's index.
+  // A bare section slug (e.g. /docs/viewing) renders that category's index.
   const section = navTree.find((g) => g.dir === slug);
   if (section) return <CategoryIndex section={section} />;
 
