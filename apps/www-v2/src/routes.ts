@@ -16,6 +16,7 @@ export default [
   // docs-layout renders the sidebar at /docs; index = overview, * = a page.
   route("docs", "docs/docs-layout.tsx", [
     index("docs/docs-index.tsx"),
+    route("components", "docs/docs-components.tsx"), // component directory splash
     route("*", "docs/mdx-page.tsx"),
   ]),
 ] satisfies RouteConfig;

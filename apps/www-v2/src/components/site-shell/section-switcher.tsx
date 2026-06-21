@@ -1,6 +1,12 @@
 import * as React from "react";
 import { useLocation, Link } from "react-router";
-import { ChevronsUpDown, Home, BookOpen, LayoutDashboard } from "lucide-react";
+import {
+  ChevronsUpDown,
+  Home,
+  BookOpen,
+  LayoutDashboard,
+  Boxes,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,9 +30,12 @@ const SECTIONS: Section[] = [
   { label: "Home", href: "/", icon: Home },
   { label: "Docs", href: "/docs", icon: BookOpen },
   { label: "Demo", href: "/demo", icon: LayoutDashboard },
+  { label: "Components", href: "/docs/components", icon: Boxes },
 ];
 
 function getActiveSection(pathname: string): Section {
+  // Components is a /docs subpath — match it before the generic /docs check.
+  if (pathname.startsWith("/docs/components")) return SECTIONS[3];
   if (pathname.startsWith("/docs")) return SECTIONS[1];
   if (pathname.startsWith("/demo")) return SECTIONS[2];
   return SECTIONS[0];
