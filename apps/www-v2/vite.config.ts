@@ -22,6 +22,9 @@ export default defineConfig({
     // Pre-bundle react-shiki together with React so it shares the single
     // optimized React chunk instead of inlining its own copy (which would null
     // out the hooks dispatcher → "Cannot read properties of null (useState)").
+    // The /demo area's ra-core/admin deps are handled by react-router's
+    // `future.unstable_optimizeDeps` (see react-router.config.ts), which runs
+    // the optimizer over route modules so they dedupe against this same React.
     include: ["react", "react-dom", "react/jsx-runtime", "react-shiki"],
   },
   plugins: [

@@ -35,6 +35,11 @@ function sectionDirs(): string[] {
 export default {
   appDirectory: "src",
   ssr: false, // SPA mode: no server runtime, static index.html per route + hydrate
+  // Let Vite's dep optimizer process route modules. Without this, the /demo
+  // route's ra-core/admin imports aren't pre-bundled with the app's React, so
+  // the admin tree renders against a 2nd React instance → "Cannot read
+  // properties of null (reading 'useMemo')" on every admin hook in dev.
+  future: { unstable_optimizeDeps: true },
   async prerender() {
     return [
       "/",
