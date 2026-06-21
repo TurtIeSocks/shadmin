@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link } from "react-router";
 import {
   Breadcrumb,
@@ -8,87 +9,72 @@ import {
   BreadcrumbSeparator,
 } from "shadmin/components/ui/breadcrumb";
 import { navTree } from "./nav-content";
-import type { DocGroup, DocNode } from "./types";
-
-/** Walk the tree to find the group containing `slug` and the matching leaf/group. */
-function findBreadcrumb(
-  slug: string,
-): { section: DocGroup; page: DocNode } | null {
-  for (const section of navTree) {
-    for (const child of section.children) {
-      if (child.kind === "leaf" && child.slug === slug) {
-        return { section, page: child };
-      }
-      if (child.kind === "group") {
-        // Check group index slug
-        if (child.indexSlug === slug || child.dir === slug) {
-          return { section, page: child };
-        }
-        // Check group children
-        for (const grandchild of child.children) {
-          if (grandchild.kind === "leaf" && grandchild.slug === slug) {
-            return { section, page: grandchild };
-          }
-        }
-      }
-    }
-    // Check if slug matches the section index
-    if (section.indexSlug === slug || section.dir === slug) {
-      return { section, page: section };
-    }
-  }
-  return null;
-}
+import { findGroup, leafTitle } from "./nav-sequence";
 
 interface DocsBreadcrumbProps {
-  /** Active doc slug (e.g. "getting-started/install") */
+  /** Active doc slug, e.g. "page-components/list/overview" ("" on the index). */
   slug: string;
 }
 
+/**
+ * Full-path docs breadcrumb shown in the SiteShell inset header:
+ * `Docs › <section> › [<group>] › <page>`. Always starts at the docs home; each
+ * ancestor links to its index. Shares the path logic the in-content breadcrumb
+ * used before it moved into the header.
+ */
 export function DocsBreadcrumb({ slug }: DocsBreadcrumbProps) {
-  if (!slug) {
-    return (
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbPage>Documentation</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    );
-  }
+  const parts = slug ? slug.split("/") : [];
+  // Ancestors (everything but the last segment) → linked crumbs.
+  const crumbs = parts
+    .slice(0, -1)
+    .map((_, i) => {
+      const dir = parts.slice(0, i + 1).join("/");
+      if (i === 0) {
+        const sec = navTree.find((g) => g.dir === dir);
+        return sec ? { to: `/docs/${dir}`, label: sec.title } : null;
+      }
+      const g = findGroup(navTree, dir);
+      return g?.indexSlug
+        ? { to: `/docs/${g.indexSlug}`, label: g.title }
+        : null;
+    })
+    .filter(Boolean) as { to: string; label: string }[];
 
-  const found = findBreadcrumb(slug);
-  if (!found) {
-    return (
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link to="/docs">Docs</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    );
-  }
-
-  const { section, page } = found;
-  const isSection = page === section;
+  // The final segment's label: a leaf page, or a section/group landing.
+  const leaf = slug
+    ? (leafTitle(slug, navTree) ??
+      navTree.find((g) => g.dir === slug)?.title ??
+      findGroup(navTree, slug)?.title ??
+      null)
+    : null;
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link to="/docs">{section.title}</Link>
-          </BreadcrumbLink>
+          {slug ? (
+            <BreadcrumbLink asChild>
+              <Link to="/docs">Docs</Link>
+            </BreadcrumbLink>
+          ) : (
+            <BreadcrumbPage>Docs</BreadcrumbPage>
+          )}
         </BreadcrumbItem>
-        {!isSection && (
+        {crumbs.map((crumb) => (
+          <Fragment key={crumb.to}>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to={crumb.to}>{crumb.label}</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Fragment>
+        ))}
+        {leaf && (
           <>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>{page.title}</BreadcrumbPage>
+              <BreadcrumbPage>{leaf}</BreadcrumbPage>
             </BreadcrumbItem>
           </>
         )}

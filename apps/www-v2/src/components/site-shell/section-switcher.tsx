@@ -48,13 +48,15 @@ export function SectionSwitcher() {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+              <div className="bg-brand-gradient flex aspect-square size-8 items-center justify-center rounded-lg text-white">
                 <active.icon className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{active.label}</span>
+                <span className="truncate font-semibold">
+                  shad<span className="text-brand-gradient">min</span>
+                </span>
                 <span className="truncate text-xs text-muted-foreground">
-                  shadmin
+                  {active.label}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />

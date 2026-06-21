@@ -1,4 +1,4 @@
-import type { ReactNode, CSSProperties } from "react";
+import type { ReactNode } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -18,22 +18,13 @@ interface SiteSidebarProps {
 }
 
 /**
- * Shared floating sidebar shell used by both Docs and Demo layouts.
- * Renders as `variant="floating" collapsible="icon"`.
+ * Shared sidebar shell used by both Docs and Demo layouts.
+ * Renders as `collapsible="icon"` (collapses to an icon rail).
  * `SidebarRail` lives here (requires Sidebar context from useSidebar).
  */
 export function SiteSidebar({ header, children, footer }: SiteSidebarProps) {
   return (
-    <Sidebar
-      variant="floating"
-      collapsible="icon"
-      style={
-        {
-          "--sidebar-width": "16rem",
-          "--sidebar-width-icon": "3.5rem",
-        } as CSSProperties
-      }
-    >
+    <Sidebar collapsible="icon">
       <SidebarHeader>{header ?? <SectionSwitcher />}</SidebarHeader>
       <SidebarContent>{children}</SidebarContent>
       <SidebarFooter>{footer}</SidebarFooter>

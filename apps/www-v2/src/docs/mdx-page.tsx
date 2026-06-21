@@ -1,16 +1,8 @@
-import { Fragment, type ComponentType } from "react";
-import { Link, Navigate, useParams } from "react-router";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "shadmin/components/ui/breadcrumb";
+import type { ComponentType } from "react";
+import { Navigate, useParams } from "react-router";
 import { CategoryIndex } from "./category-index";
 import { introSlugToSection, navTree } from "./nav-content";
-import { findGroup, leafTitle } from "./nav-sequence";
+import { findGroup } from "./nav-sequence";
 import { installFor } from "./registry";
 import { InstallCommand } from "./mdx/install-command";
 import { PrevNext } from "./prev-next";
@@ -42,7 +34,8 @@ export default function MdxPage() {
 
   // A bare split-page group URL (e.g. /docs/page-components/edit) redirects to its index.
   const group = findGroup(navTree, slug);
-  if (group?.indexSlug) return <Navigate to={`/docs/${group.indexSlug}`} replace />;
+  if (group?.indexSlug)
+    return <Navigate to={`/docs/${group.indexSlug}`} replace />;
 
   // An intro page (frontmatter `index: true`) lives in its section's landing,
   // so its own URL redirects there to avoid duplicate content.
@@ -64,46 +57,8 @@ export default function MdxPage() {
   const description = mod.frontmatter?.description;
   const install = installFor(mod.frontmatter?.registry);
   const Content = mod.default;
-  const parts = slug.split("/");
-  const crumbs = parts.slice(0, -1).map((_, i) => {
-    const dir = parts.slice(0, i + 1).join("/");
-    if (i === 0) {
-      const sec = navTree.find((g) => g.dir === dir);
-      return sec ? { to: `/docs/${dir}`, label: sec.title } : null;
-    }
-    const g = findGroup(navTree, dir);
-    return g?.indexSlug ? { to: `/docs/${g.indexSlug}`, label: g.title } : null;
-  }).filter(Boolean) as { to: string; label: string }[];
-  const leafLabel = title ?? leafTitle(slug, navTree);
   return (
     <article className="prose prose-neutral dark:prose-invert">
-      <Breadcrumb className="not-prose mb-4">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link to="/docs">Docs</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          {crumbs.map((crumb) => (
-            <Fragment key={crumb.to}>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to={crumb.to}>{crumb.label}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-            </Fragment>
-          ))}
-          {leafLabel && (
-            <>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{leafLabel}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </>
-          )}
-        </BreadcrumbList>
-      </Breadcrumb>
       {title && (
         <h1 className="mb-2 text-3xl font-bold tracking-tight">{title}</h1>
       )}

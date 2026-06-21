@@ -7,6 +7,7 @@ import { NavTree } from "@/components/site-shell/nav-tree";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { navTree } from "./nav-content";
 import { DocsBreadcrumb } from "./docs-breadcrumb";
+import { SECTION_META } from "./section-meta";
 import { Toc } from "./toc";
 
 const ancestorDirs = (slug: string): string[] => {
@@ -65,6 +66,7 @@ export default function DocsLayout() {
           <NavTree
             tree={navTree}
             hrefFor={(s) => `/docs/${s}`}
+            iconFor={(dir) => SECTION_META[dir]?.icon}
             activeSlug={activeSlug}
             openDirs={openDirs}
             onToggle={onToggle}
