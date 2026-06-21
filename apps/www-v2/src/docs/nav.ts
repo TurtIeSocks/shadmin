@@ -7,7 +7,7 @@ function titleize(s: string): string {
 function firstLeafSlug(nodes: DocNode[]): string | undefined {
   for (const n of nodes) {
     if (n.kind === "leaf") return n.slug;
-    const s = n.indexSlug ?? firstLeafSlug(n.children);
+    const s = firstLeafSlug(n.children);
     if (s) return s;
   }
   return undefined;

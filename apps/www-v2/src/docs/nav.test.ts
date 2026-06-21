@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildNavTree } from "./nav.ts";
+import type { DocGroup } from "./types.ts";
 
 test("buildNavTree orders by _meta then alpha, nests dirs", () => {
   const slugs = [
@@ -47,7 +48,7 @@ test("buildNavTree sets indexSlug to a group's first leaf descendant", () => {
   const tree = buildNavTree(slugs, metas, (s) => s.split("/").pop()!);
   const section = tree.find((g) => g.dir === "page-components")!;
   const editGroup = section.children.find(
-    (c): c is import("./types").DocGroup => c.kind === "group" && c.dir === "page-components/edit",
+    (c): c is DocGroup => c.kind === "group" && c.dir === "page-components/edit",
   )!;
   assert.equal(editGroup.indexSlug, "page-components/edit/overview");
 });

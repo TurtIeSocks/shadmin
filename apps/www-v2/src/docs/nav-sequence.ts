@@ -1,4 +1,4 @@
-import type { DocGroup, DocNode } from "./types";
+import type { DocGroup, DocLeaf, DocNode } from "./types";
 
 export function findGroup(nodes: DocNode[], dir: string): DocGroup | undefined {
   for (const n of nodes) {
@@ -10,18 +10,33 @@ export function findGroup(nodes: DocNode[], dir: string): DocGroup | undefined {
   return undefined;
 }
 
+/** The display title of the leaf with this slug, searched anywhere in the tree. */
+export function leafTitle(slug: string, nodes: DocNode[]): string | undefined {
+  for (const n of nodes) {
+    if (n.kind === "leaf") {
+      if (n.slug === slug) return n.title;
+    } else {
+      const t = leafTitle(slug, n.children);
+      if (t) return t;
+    }
+  }
+  return undefined;
+}
+
 /** Prev/next sibling sub-page within `slug`'s parent group. Only meaningful for
- *  split sub-pages, whose parent dir is itself nested (contains a "/"). */
+ *  split sub-pages — pages whose parent is a nested page-group, not a
+ *  top-level section. */
 export function prevNext(
   slug: string,
   tree: DocGroup[],
 ): { prev?: string; next?: string } {
   const parentDir = slug.split("/").slice(0, -1).join("/");
-  if (!parentDir.includes("/")) return {}; // section-level page, not a split set
+  // No parent, or parent is a top-level section → not part of a split set.
+  if (!parentDir || tree.some((s) => s.dir === parentDir)) return {};
   const group = findGroup(tree, parentDir);
   if (!group) return {};
   const leaves = group.children
-    .filter((c): c is import("./types").DocLeaf => c.kind === "leaf")
+    .filter((c): c is DocLeaf => c.kind === "leaf")
     .map((c) => c.slug);
   const i = leaves.indexOf(slug);
   if (i === -1) return {};

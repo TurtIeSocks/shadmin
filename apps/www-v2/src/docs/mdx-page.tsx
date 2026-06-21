@@ -10,7 +10,7 @@ import {
 } from "shadmin/components/ui/breadcrumb";
 import { CategoryIndex } from "./category-index";
 import { navTree } from "./nav-content";
-import { findGroup } from "./nav-sequence";
+import { findGroup, leafTitle } from "./nav-sequence";
 import { installFor } from "./registry";
 import { InstallCommand } from "./mdx/install-command";
 import { PrevNext } from "./prev-next";
@@ -32,19 +32,6 @@ const bySlug = new Map(
     m,
   ]),
 );
-
-function titleForLeaf(slug: string): string | undefined {
-  // walk the tree for a leaf with this slug
-  const visit = (nodes: (typeof navTree)[number]["children"]): string | undefined => {
-    for (const n of nodes) {
-      if (n.kind === "leaf" && n.slug === slug) return n.title;
-      if (n.kind === "group") { const t = visit(n.children); if (t) return t; }
-    }
-    return undefined;
-  };
-  for (const sec of navTree) { if (sec.dir === slug.split("/")[0]) { const t = visit(sec.children); if (t) return t; } }
-  return undefined;
-}
 
 export default function MdxPage() {
   const slug = (useParams()["*"] ?? "").replace(/\/+$/, "");
@@ -82,7 +69,7 @@ export default function MdxPage() {
     const g = findGroup(navTree, dir);
     return g?.indexSlug ? { to: `/docs/${g.indexSlug}`, label: g.title } : null;
   }).filter(Boolean) as { to: string; label: string }[];
-  const leafTitle = title ?? titleForLeaf(slug);
+  const leafLabel = title ?? leafTitle(slug, navTree);
   return (
     <article className="prose prose-neutral dark:prose-invert">
       <Breadcrumb className="not-prose mb-4">
@@ -102,11 +89,11 @@ export default function MdxPage() {
               </BreadcrumbItem>
             </Fragment>
           ))}
-          {leafTitle && (
+          {leafLabel && (
             <>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>{leafTitle}</BreadcrumbPage>
+                <BreadcrumbPage>{leafLabel}</BreadcrumbPage>
               </BreadcrumbItem>
             </>
           )}

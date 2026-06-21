@@ -1,19 +1,10 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { navTree } from "./nav-content";
-import { prevNext } from "./nav-sequence";
-import type { DocNode } from "./types";
+import { leafTitle, prevNext } from "./nav-sequence";
 
-function titleOf(slug: string): string {
-  const visit = (nodes: DocNode[]): string | undefined => {
-    for (const n of nodes) {
-      if (n.kind === "leaf" && n.slug === slug) return n.title;
-      if (n.kind === "group") { const t = visit(n.children); if (t) return t; }
-    }
-    return undefined;
-  };
-  return visit(navTree) ?? slug.split("/").pop()!;
-}
+const titleOf = (slug: string): string =>
+  leafTitle(slug, navTree) ?? slug.split("/").pop()!;
 
 export function PrevNext({ slug }: { slug: string }) {
   const { prev, next } = prevNext(slug, navTree);
