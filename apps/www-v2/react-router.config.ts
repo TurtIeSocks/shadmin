@@ -38,7 +38,6 @@ export default {
   async prerender() {
     return [
       "/",
-      "/demo",
       "/docs",
       ...sectionDirs().map((d) => `/docs/${d}`),
       ...docSlugs().map((s) => `/docs/${s}`),
