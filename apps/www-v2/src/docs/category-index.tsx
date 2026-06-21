@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "shadmin/components/ui/breadcrumb";
 import { fallbackIcon, SECTION_META } from "./section-meta";
-import type { DocGroup, DocLeaf } from "./types";
+import type { DocGroup } from "./types";
 
 // Page descriptions for the cards (from frontmatter).
 const frontmatter = import.meta.glob<{ frontmatter?: { description?: string } }>(
@@ -31,7 +31,11 @@ const ease = "cubic-bezier(0.32,0.72,0,1)";
 export function CategoryIndex({ section }: { section: DocGroup }) {
   const meta = SECTION_META[section.dir];
   const Icon = meta?.icon ?? fallbackIcon;
-  const leaves = section.children.filter((c): c is DocLeaf => c.kind === "leaf");
+  const cards = section.children.flatMap((c) =>
+    c.kind === "leaf"
+      ? [{ to: `/docs/${c.slug}`, title: c.title, slug: c.slug }]
+      : c.indexSlug ? [{ to: `/docs/${c.indexSlug}`, title: c.title, slug: c.indexSlug }] : [],
+  );
 
   return (
     <div className="not-prose">
@@ -62,12 +66,12 @@ export function CategoryIndex({ section }: { section: DocGroup }) {
       )}
 
       <div className="mt-10 grid gap-3 sm:grid-cols-2">
-        {leaves.map((leaf, i) => {
-          const desc = descBySlug.get(leaf.slug);
+        {cards.map((card, i) => {
+          const desc = descBySlug.get(card.slug);
           return (
             <Link
-              key={leaf.slug}
-              to={`/docs/${leaf.slug}`}
+              key={card.slug}
+              to={card.to}
               className="group block rounded-xl border border-border/60 bg-card p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-border hover:bg-muted/40"
               style={{
                 transitionTimingFunction: ease,
@@ -76,7 +80,7 @@ export function CategoryIndex({ section }: { section: DocGroup }) {
               }}
             >
               <div className="flex items-center gap-2">
-                <span className="font-medium text-foreground">{leaf.title}</span>
+                <span className="font-medium text-foreground">{card.title}</span>
                 <ArrowUpRight
                   className="ml-auto size-4 text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
                   strokeWidth={1.5}
