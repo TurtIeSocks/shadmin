@@ -1,22 +1,27 @@
-import { RecordContextProvider, Form } from "shadmin-core";
+import { RecordContextProvider, ResourceContextProvider } from "shadmin-core";
 import {
   ArrayInput,
+  SimpleForm,
   SimpleFormIterator,
   TextInput,
 } from "shadmin/components/admin";
 
-const defaultValues = { tags: [{ name: "tech" }, { name: "news" }] };
+// SimpleForm (not a bare Form) seeds its defaultValues from the record, and the
+// iterator items require a ResourceContextProvider (see SimpleFormIterator src).
+const record = { id: 1, tags: [{ name: "tech" }, { name: "news" }] };
 
 export default function ArrayInputExample() {
   return (
-    <RecordContextProvider value={{ id: 1, ...defaultValues }}>
-      <Form defaultValues={defaultValues}>
-        <ArrayInput source="tags">
-          <SimpleFormIterator>
-            <TextInput source="name" />
-          </SimpleFormIterator>
-        </ArrayInput>
-      </Form>
-    </RecordContextProvider>
+    <ResourceContextProvider value="products">
+      <RecordContextProvider value={record}>
+        <SimpleForm toolbar={false}>
+          <ArrayInput source="tags">
+            <SimpleFormIterator>
+              <TextInput source="name" />
+            </SimpleFormIterator>
+          </ArrayInput>
+        </SimpleForm>
+      </RecordContextProvider>
+    </ResourceContextProvider>
   );
 }

@@ -1,12 +1,16 @@
-import { RecordContextProvider, Form } from "shadmin-core";
+import { RecordContextProvider, ResourceContextProvider } from "shadmin-core";
 import {
   ArrayInput,
+  NumberInput,
+  SimpleForm,
   SimpleFormIterator,
   TextInput,
-  NumberInput,
 } from "shadmin/components/admin";
 
-const defaultValues = {
+// SimpleForm seeds defaultValues from the record; the iterator items need a
+// ResourceContextProvider to mount.
+const record = {
+  id: 1,
   items: [
     { label: "Widget A", quantity: 2 },
     { label: "Widget B", quantity: 5 },
@@ -15,15 +19,17 @@ const defaultValues = {
 
 export default function SimpleFormIteratorExample() {
   return (
-    <RecordContextProvider value={{ id: 1, ...defaultValues }}>
-      <Form defaultValues={defaultValues}>
-        <ArrayInput source="items">
-          <SimpleFormIterator>
-            <TextInput source="label" />
-            <NumberInput source="quantity" />
-          </SimpleFormIterator>
-        </ArrayInput>
-      </Form>
-    </RecordContextProvider>
+    <ResourceContextProvider value="products">
+      <RecordContextProvider value={record}>
+        <SimpleForm toolbar={false}>
+          <ArrayInput source="items">
+            <SimpleFormIterator>
+              <TextInput source="label" />
+              <NumberInput source="quantity" />
+            </SimpleFormIterator>
+          </ArrayInput>
+        </SimpleForm>
+      </RecordContextProvider>
+    </ResourceContextProvider>
   );
 }

@@ -1,5 +1,5 @@
-import { RecordContextProvider, Form } from "shadmin-core";
-import { DatagridInput, DataTable } from "shadmin/components/admin";
+import { RecordContextProvider, ResourceContextProvider } from "shadmin-core";
+import { DataTable, DatagridInput, SimpleForm } from "shadmin/components/admin";
 
 const users = [
   { id: 1, name: "Ada Lovelace", role: "Engineer" },
@@ -7,17 +7,17 @@ const users = [
   { id: 3, name: "Grace Hopper", role: "Engineer" },
 ];
 
-const defaultValues = { members: [1, 3] };
-
 export default function DatagridInputExample() {
   return (
-    <RecordContextProvider value={{ id: 1, ...defaultValues }}>
-      <Form defaultValues={defaultValues}>
-        <DatagridInput source="members" choices={users}>
-          <DataTable.Col source="name" />
-          <DataTable.Col source="role" />
-        </DatagridInput>
-      </Form>
-    </RecordContextProvider>
+    <ResourceContextProvider value="products">
+      <RecordContextProvider value={{ id: 1, members: [1, 3] }}>
+        <SimpleForm toolbar={false}>
+          <DatagridInput source="members" choices={users}>
+            <DataTable.Col source="name" />
+            <DataTable.Col source="role" />
+          </DatagridInput>
+        </SimpleForm>
+      </RecordContextProvider>
+    </ResourceContextProvider>
   );
 }
