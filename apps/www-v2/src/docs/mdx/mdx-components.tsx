@@ -37,6 +37,15 @@ function MdxLink({
 // ── Image shim ───────────────────────────────────────────────────────────────
 
 function MdxImg({ src, alt, ...rest }: React.ComponentPropsWithoutRef<"img">) {
+  // TODO(screenshots): the migrated docs reference ~124 marmelab images under
+  // /docs/images/* (UI screenshots + backend/auth logos) that we don't ship.
+  // Suppress them site-wide until we regenerate our own from apps/demo. The
+  // refs stay in the MDX (grep "/docs/images/") so each is findable later;
+  // drop this guard once the real images live in public/docs/images/.
+  // See memory: project_docs_images_pending.
+  if (typeof src === "string" && src.startsWith("/docs/images/")) {
+    return null;
+  }
   return (
     <img
       src={src}
