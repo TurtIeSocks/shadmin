@@ -703,10 +703,6 @@ export default App;
 
 Now you can click on a user in the list to see their details:
 
-<video controls autoPlay playsInline muted loop>
-  <source src="https://github.com/user-attachments/assets/26dd16e2-8da8-4ee4-9f0d-4353af8a2298" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
 
 Just like for other guessed components, you can customize the show view by copying the code logged to the console by the `<ShowGuesser>` and modifying it to suit your needs.
 
@@ -736,10 +732,6 @@ const App = () => (
 
 Users can display the edit page by clicking on the Edit button in the posts list.
 
-<video controls autoPlay playsInline muted loop>
-  <source src="https://github.com/user-attachments/assets/3642747a-9155-4e5d-8cdc-9dbb3c936e8b" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
 
 The form is already functional. It issues `PUT` requests to the REST API upon submission. The `userId` is editable in an autocomplete input, and Shadmin automatically fetches the possible values.
 
@@ -891,10 +883,6 @@ const App = () => (
 
 `shadmin` automatically adds a "create" button on top of the posts list to give access to the post `create` page. And the creation form works; it issues a `POST` request to the REST API upon submission.
 
-<video controls autoPlay playsInline muted loop>
-  <source src="https://github.com/user-attachments/assets/7a4cb133-9243-47bd-adb0-8e0e90a73193" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
 
 ## Optimistic Rendering And Undo
 
@@ -906,10 +894,6 @@ That's because `shadmin` uses _optimistic updates_. When a user edits a record a
 
 But there is an additional benefit: it also allows the "Undo" feature. Undo is already functional in the admin at this point. Try editing a record, then hit the "Undo" link in the black confirmation box before it slides out. You'll see that the app does not send the `UPDATE` query to the API and displays the non-modified data.
 
-<video controls autoPlay playsInline muted loop>
-  <source src="https://github.com/user-attachments/assets/9e5fd3ad-b585-4ee6-af50-655ec5a01b5a" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
 
 Even though updates appear immediately due to optimistic rendering, `shadmin` only sends them to the server after a short delay (about 5 seconds). During this delay, the user can undo the action, and `shadmin` will never send the update.
 
@@ -943,10 +927,6 @@ export const PostList = () => (
 
 This displays a Filter button on top of the posts list. When clicked, it reveals the filter form:
 
-<video controls autoPlay playsInline muted loop>
-  <source src="https://github.com/user-attachments/assets/d5786c07-d23f-4990-9e2a-62d07504e018" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
 
 The first filter, 'q', takes advantage of a full-text functionality offered by JSONPlaceholder. The second filter on `userId` is already populated with possible users since it's a `<ReferenceInput>`.
 
@@ -986,10 +966,6 @@ const App = () => (
 );
 ```
 
-<video controls autoPlay playsInline muted loop>
-  <source src="https://github.com/user-attachments/assets/26ec2d40-df9f-4a68-822c-c69cf008680e" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
 
 ## Using a Custom Home Page
 
