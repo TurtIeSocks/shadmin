@@ -1,7 +1,6 @@
 import type { MetaEntry } from "@/docs/types";
 
 export default [
-  { slug: "data-edition", title: "Introduction" },
   { slug: "array-input", title: "ArrayInput" },
   { slug: "autocomplete-array-input", title: "AutocompleteArrayInput" },
   { slug: "autocomplete-input", title: "AutocompleteInput" },

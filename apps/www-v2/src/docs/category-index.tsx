@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "shadmin/components/ui/breadcrumb";
+import { introBySection } from "./nav-content";
 import { fallbackIcon, SECTION_META } from "./section-meta";
 import type { DocGroup } from "./types";
 
@@ -31,6 +32,9 @@ const ease = "cubic-bezier(0.32,0.72,0,1)";
 export function CategoryIndex({ section }: { section: DocGroup }) {
   const meta = SECTION_META[section.dir];
   const Icon = meta?.icon ?? fallbackIcon;
+  // Sections with a curated intro page (frontmatter `index: true`) render that
+  // content as their landing; the rest fall back to an auto card grid.
+  const Intro = introBySection[section.dir];
   const cards = section.children.flatMap((c) =>
     c.kind === "leaf"
       ? [{ to: `/docs/${c.slug}`, title: c.title, slug: c.slug }]
@@ -65,8 +69,13 @@ export function CategoryIndex({ section }: { section: DocGroup }) {
         <p className="mt-3 max-w-lg text-muted-foreground">{meta.blurb}</p>
       )}
 
-      <div className="mt-10 grid gap-3 sm:grid-cols-2">
-        {cards.map((card, i) => {
+      {Intro ? (
+        <article className="prose prose-neutral mt-10 max-w-none dark:prose-invert">
+          <Intro />
+        </article>
+      ) : (
+        <div className="mt-10 grid gap-3 sm:grid-cols-2">
+          {cards.map((card, i) => {
           const desc = descBySlug.get(card.slug);
           return (
             <Link
@@ -94,8 +103,9 @@ export function CategoryIndex({ section }: { section: DocGroup }) {
               )}
             </Link>
           );
-        })}
-      </div>
+          })}
+        </div>
+      )}
     </div>
   );
 }

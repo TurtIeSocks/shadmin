@@ -1,7 +1,6 @@
 import type { MetaEntry } from "@/docs/types";
 
 export default [
-  { slug: "data-display", title: "Introduction" },
   { slug: "array-field", title: "ArrayField" },
   { slug: "badge-field", title: "BadgeField" },
   { slug: "boolean-field", title: "BooleanField" },

@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "shadmin/components/ui/breadcrumb";
 import { CategoryIndex } from "./category-index";
-import { navTree } from "./nav-content";
+import { introSlugToSection, navTree } from "./nav-content";
 import { findGroup, leafTitle } from "./nav-sequence";
 import { installFor } from "./registry";
 import { InstallCommand } from "./mdx/install-command";
@@ -43,6 +43,11 @@ export default function MdxPage() {
   // A bare split-page group URL (e.g. /docs/page-components/edit) redirects to its index.
   const group = findGroup(navTree, slug);
   if (group?.indexSlug) return <Navigate to={`/docs/${group.indexSlug}`} replace />;
+
+  // An intro page (frontmatter `index: true`) lives in its section's landing,
+  // so its own URL redirects there to avoid duplicate content.
+  const introSection = introSlugToSection[slug];
+  if (introSection) return <Navigate to={`/docs/${introSection}`} replace />;
 
   const mod = bySlug.get(slug);
   if (!mod) {
