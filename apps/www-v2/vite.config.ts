@@ -11,6 +11,9 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { remarkRelativeLinks } from "./scripts/remark-relative-links.mjs";
 import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
+import { shadminSourcePlugin } from "./scripts/shadmin-source-resolver.mjs";
+
+const shadminSrc = path.resolve(__dirname, "../../packages/shadmin/src");
 
 export default defineConfig({
   // +100 from vite's default so it doesn't collide with a user-run server on 5173.
@@ -22,6 +25,12 @@ export default defineConfig({
     include: ["react", "react-dom", "react/jsx-runtime", "react-shiki"],
   },
   plugins: [
+    // Must be first: resolves `@/` importer-aware (shadmin src vs www-v2 src)
+    // and scoped `shadmin/components/admin/*` + `shadmin/leaflet/*` to source.
+    shadminSourcePlugin({
+      shadminSrc,
+      wwwSrc: path.resolve(__dirname, "./src"),
+    }),
     // MDX must compile .mdx → JSX BEFORE reactRouter()/React process it, hence
     // enforce: "pre". reactRouter() supplies React + fast-refresh (no plugin-react).
     {
@@ -56,8 +65,6 @@ export default defineConfig({
     // otherwise get pre-bundled against its own optimized React copy, breaking
     // hooks in dev with "Cannot read properties of null (reading 'useState')".
     dedupe: ["react", "react-dom", "react/jsx-runtime"],
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    // `@/` alias removed — handled by shadminSourcePlugin (importer-aware).
   },
 });

@@ -28,9 +28,17 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*", "../../packages/shadmin/src/*"],
+      "shadmin/components/admin": [
+        "../../packages/shadmin/src/components/admin/index.ts"
+      ],
+      "shadmin/components/admin/*": [
+        "../../packages/shadmin/src/components/admin/*"
+      ],
+      "shadmin/leaflet": ["../../packages/shadmin/src/leaflet/index.ts"],
+      "shadmin/leaflet/*": ["../../packages/shadmin/src/leaflet/*"]
     }
   },
-  "include": ["src", ".react-router/types/**/*"],
+  "include": ["src", ".react-router/types/**/*", "../../packages/shadmin/src"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }
