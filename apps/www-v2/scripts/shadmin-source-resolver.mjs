@@ -9,19 +9,61 @@ export function resolveAtImport(importer, { shadminSrc, wwwSrc }) {
 }
 
 /**
+ * shadmin component groups that www-v2 resolves to SOURCE rather than the
+ * package's dist.
+ *
+ * Two reasons a group lives here:
+ *  1. NOT built to dist at all (admin, block-editor, csv-import, leaflet,
+ *     monaco, realtime, supabase) — shadmin's wildcard `./components/*` export
+ *     points at a dist path that doesn't exist, so a bare
+ *     `shadmin/components/admin` import would 404.
+ *  2. `ui` IS in dist, but the admin SOURCE we fold into www-v2 imports ui via
+ *     `@/components/ui/*` (→ src, a hard shadcn-registry constraint). If www-v2
+ *     code imported ui from dist instead, context-providing primitives
+ *     (SidebarProvider, Tooltip, Dialog…) would be TWO different modules with
+ *     TWO contexts → "useSidebar must be used within a SidebarProvider". Pinning
+ *     ui to src gives one ui module shared across admin source + www-v2 code.
+ *
+ * The dist-built leaf editors (`mdx-editor`, `rich-text-input`) are absent —
+ * they don't share React context across the seam, so they keep resolving to
+ * dist via node_modules.
+ */
+export const SRC_ONLY_COMPONENT_GROUPS = [
+  "admin",
+  "block-editor",
+  "csv-import",
+  "leaflet",
+  "monaco",
+  "realtime",
+  "supabase",
+  "ui",
+];
+
+/**
+ * Resolve a `shadmin/components/<group>` (bare barrel) or
+ * `shadmin/components/<group>/<subpath>` specifier to its source path, but only
+ * for the src-only groups. Returns the absolute source path, or null if the
+ * specifier isn't a src-only shadmin component import (caller falls through to
+ * Vite's default resolution → dist via node_modules).
+ */
+export function resolveScopedShadmin(source, { shadminSrc }) {
+  const m = source.match(/^shadmin\/components\/([^/]+)(?:\/(.*))?$/);
+  if (!m) return null;
+  const [, group, sub] = m;
+  if (!SRC_ONLY_COMPONENT_GROUPS.includes(group)) return null;
+  return path.join(shadminSrc, "components", group, sub ?? "");
+}
+
+/**
  * Vite plugin: importer-aware `@/` (shadmin src vs www-v2 src) + scoped source
- * aliases for the dist-EXCLUDED parts of shadmin (admin, leaflet). The public
- * API (shadmin/components/ui/*, shadmin/lib/*) is intentionally NOT aliased so
- * it keeps resolving to the built dist via node_modules.
+ * aliases for the dist-EXCLUDED shadmin component groups (see
+ * SRC_ONLY_COMPONENT_GROUPS). Handles both the bare barrel
+ * (`shadmin/components/admin`) and deep paths
+ * (`shadmin/components/admin/list/list`). The public API
+ * (`shadmin/components/ui/*`, `shadmin/lib/*`) is NOT aliased so it keeps
+ * resolving to the built dist via node_modules.
  */
 export function shadminSourcePlugin({ shadminSrc, wwwSrc }) {
-  const scoped = [
-    {
-      prefix: "shadmin/components/admin/",
-      base: path.join(shadminSrc, "components/admin/"),
-    },
-    { prefix: "shadmin/leaflet/", base: path.join(shadminSrc, "leaflet/") },
-  ];
   return {
     name: "shadmin-source-resolver",
     enforce: "pre",
@@ -33,14 +75,9 @@ export function shadminSourcePlugin({ shadminSrc, wwwSrc }) {
           skipSelf: true,
         });
       }
-      for (const { prefix, base } of scoped) {
-        if (source.startsWith(prefix)) {
-          return this.resolve(
-            path.join(base, source.slice(prefix.length)),
-            importer,
-            { skipSelf: true },
-          );
-        }
+      const scoped = resolveScopedShadmin(source, { shadminSrc });
+      if (scoped) {
+        return this.resolve(scoped, importer, { skipSelf: true });
       }
       return null;
     },
