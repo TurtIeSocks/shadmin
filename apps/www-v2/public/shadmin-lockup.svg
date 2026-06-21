@@ -1,0 +1,22 @@
+<svg width="320" height="76" viewBox="0 0 320 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shadmin-mk" x1="0" y1="0" x2="76" y2="76" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8b5cf6"></stop>
+      <stop offset="1" stop-color="#4f46e5"></stop>
+    </linearGradient>
+    <linearGradient id="shadmin-wd" x1="220" y1="20" x2="312" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8b5cf6"></stop>
+      <stop offset="1" stop-color="#4f46e5"></stop>
+    </linearGradient>
+  </defs>
+  
+  <rect x="2" y="2" width="72" height="72" rx="18" fill="url(#shadmin-mk)"></rect>
+  <rect x="18" y="20" width="13" height="36" rx="4" fill="#ffffff"></rect>
+  <rect x="36" y="20" width="22" height="13" rx="4" fill="#ffffff" opacity="0.6"></rect>
+  <rect x="36" y="38" width="22" height="6" rx="3" fill="#ffffff" opacity="0.38"></rect>
+  <rect x="36" y="48" width="14" height="6" rx="3" fill="#ffffff" opacity="0.38"></rect>
+  
+  <text x="96" y="38" dy="0.34em" font-family="Geist, &#39;Geist Sans&#39;, system-ui, sans-serif" font-size="46" font-weight="600" letter-spacing="-1.8">
+    <tspan fill="#0a0a0a">shad</tspan><tspan fill="url(#shadmin-wd)">min</tspan>
+  </text>
+</svg>
