@@ -11,6 +11,7 @@
 import { useState, type ReactNode } from "react";
 import { ShikiHighlighter } from "react-shiki";
 import { cn } from "shadmin/lib/utils";
+import { SHIKI_THEME } from "@/lib/shiki-theme";
 
 // Demo modules + their raw source, globbed from content.
 const demoModules = import.meta.glob<{ default: () => ReactNode }>(
@@ -98,7 +99,7 @@ export function ComponentPreview({ name, className }: ComponentPreviewProps) {
         <div className="overflow-x-auto text-sm">
           <ShikiHighlighter
             language="tsx"
-            theme={{ light: "github-light", dark: "github-dark" }}
+            theme={SHIKI_THEME}
             addDefaultStyles={false}
             className="!bg-transparent p-4"
           >

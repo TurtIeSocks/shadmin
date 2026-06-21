@@ -190,6 +190,21 @@
   @apply overflow-x-auto;
 }
 
+/* react-shiki <ShikiHighlighter> dual-theme output (docs ComponentPreview +
+   gallery ExampleFrame): it inline-styles the light theme on <pre>/<span> and
+   stashes the dark theme in --shiki-dark / --shiki-dark-bg vars. Nothing swaps
+   them, so it stays light in dark mode. Force a transparent, panel-blended
+   surface in both modes and swap the token colors under .dark. !important is
+   required to beat react-shiki's inline styles (the Tailwind `!bg-transparent`
+   class on these is dead — v4 wants the suffix form `bg-transparent!`). */
+.shiki {
+  background-color: transparent !important;
+}
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
 [data-rehype-pretty-code-title] {
   @apply flex items-center gap-2 border-b border-border bg-muted px-4 py-2 font-mono text-xs text-foreground;
 }

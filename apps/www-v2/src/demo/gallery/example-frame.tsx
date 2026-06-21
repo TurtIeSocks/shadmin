@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import { ShikiHighlighter } from "react-shiki";
 import { cn } from "shadmin/lib/utils";
 import { Tabs, TabItem } from "@/docs/mdx/tabs";
+import { SHIKI_THEME } from "@/lib/shiki-theme";
 
 interface ExampleFrameProps {
   /** The slug, e.g. "viewing/text-field" */
@@ -51,11 +52,7 @@ export function ExampleFrame({
       </div>
 
       {/* Preview + code tabs — same outer shell as ComponentPreview */}
-      <div
-        className={cn(
-          "not-prose overflow-hidden rounded-xl border border-border/50",
-        )}
-      >
+      <div className={cn("not-prose overflow-hidden ")}>
         <Tabs>
           <TabItem label="Preview">
             {/* Block (not flex-row): admin components like <List> return a
@@ -76,7 +73,7 @@ export function ExampleFrame({
             <div className="overflow-x-auto text-sm">
               <ShikiHighlighter
                 language="tsx"
-                theme={{ light: "github-light", dark: "github-dark" }}
+                theme={SHIKI_THEME}
                 addDefaultStyles={false}
                 className="!bg-transparent p-4"
               >
