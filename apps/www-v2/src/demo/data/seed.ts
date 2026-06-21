@@ -151,7 +151,8 @@ export function buildSeedData(): SeedData {
         product_id: b.product_id,
         qty: b.quantity,
         unitPrice: Number(
-          (productById.get(b.product_id) as Record<string, unknown>)?.price ?? 0,
+          (productById.get(b.product_id) as Record<string, unknown>)?.price ??
+            0,
         ),
       })),
       deliveryTime: ((o.id % 5) + 1) * 24 * 3600,

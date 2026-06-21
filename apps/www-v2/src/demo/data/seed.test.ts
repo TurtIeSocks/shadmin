@@ -49,10 +49,12 @@ test("reviews reference both customer and product", () => {
 
 test("order items carry the referenced product's unit price", () => {
   const d = buildSeedData();
-  const priceById = new Map(d.products.map((p: any) => [p.id, Number(p.price)]));
-  const order = d.orders.find((o: any) => Array.isArray(o.items) && o.items.length > 0) as any;
+  const priceById = new Map(d.products.map((p) => [p.id, Number(p.price)]));
+  const order = d.orders.find(
+    (o) => Array.isArray(o.items) && (o.items as unknown[]).length > 0,
+  );
   assert.ok(order, "an order with items exists");
-  for (const it of order.items) {
+  for (const it of order.items as Array<Record<string, unknown>>) {
     assert.equal(Number(it.unitPrice), priceById.get(it.product_id) ?? 0);
   }
 });
