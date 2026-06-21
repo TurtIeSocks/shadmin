@@ -216,7 +216,7 @@ export const CustomerEdit = () => (
 );
 ```
 
-Alternatively to `children`, you can use a `render` prop. It will receive the [`EditContext`](./useEditContext.md#return-value) as its argument, and should return a React node.
+Alternatively to `children`, you can use a `render` prop. It will receive the [`EditContext`](https://marmelab.com/react-admin/useEditContext.html#return-value) as its argument, and should return a React node.
 
 This allows to inline the render logic for the edition page.
 
@@ -369,7 +369,7 @@ export const PostEdit = () => <Edit title={false}>...</Edit>;
 
 `<Edit>` calls `dataProvider.getOne()` on mount via react-query's `useQuery` hook. You can customize the options you pass to this hook by setting the `queryOptions` prop.
 
-This can be useful e.g. to pass [a custom `meta`](./Actions.md#meta-parameter) to the `dataProvider.getOne()` call.
+This can be useful e.g. to pass [a custom `meta`](https://marmelab.com/react-admin/Actions.html#meta-parameter) to the `dataProvider.getOne()` call.
 
 ```tsx
 import { Edit, SimpleForm } from "@/components/admin";
@@ -393,7 +393,7 @@ Refer to the [useQuery documentation](https://tanstack.com/query/v5/docs/react/r
 
 ## Mutation Options
 
-`<Edit>` calls `dataProvider.update()` via react-query's `useMutation` hook. You can customize the options you pass to this hook, e.g. to pass [a custom `meta`](./Actions.md#meta-parameter) to the `dataProvider.update()` call.
+`<Edit>` calls `dataProvider.update()` via react-query's `useMutation` hook. You can customize the options you pass to this hook, e.g. to pass [a custom `meta`](https://marmelab.com/react-admin/Actions.html#meta-parameter) to the `dataProvider.update()` call.
 
 ```tsx
 import { Edit, SimpleForm } from "@/components/admin";
@@ -455,7 +455,7 @@ If you just want to customize the redirect behavior, you can use [the `redirect`
 :::
 
 :::tip
-When you use `mutationMode="pessimistic"`, the `onSuccess` function receives the response from the `dataProvider.update()` call, which is the created/edited record (see [the dataProvider documentation for details](./DataProviderWriting.md#update)). You can use that response in the success side effects:
+When you use `mutationMode="pessimistic"`, the `onSuccess` function receives the response from the `dataProvider.update()` call, which is the created/edited record (see [the dataProvider documentation for details](https://marmelab.com/react-admin/DataProviderWriting.html#update)). You can use that response in the success side effects:
 
 ```tsx
 import { Edit, SimpleForm } from "@/components/admin";
@@ -511,7 +511,7 @@ const PostEdit = () => {
 };
 ```
 
-The `onError` function receives the error from the `dataProvider.update()` call. It is a JavaScript Error object (see [the dataProvider documentation for details](./data-providers.md/#writing-a-data-provider)).
+The `onError` function receives the error from the `dataProvider.update()` call. It is a JavaScript Error object (see [the dataProvider documentation for details](/docs/app-config/data-providers#writing-a-data-provider)).
 
 The default `onError` function is:
 
@@ -672,7 +672,7 @@ export const UserEdit = () => {
 
 ## Scaffolding An Edit Page
 
-You can use [`<EditGuesser>`](./EditGuesser.md) to quickly bootstrap an Edit view on top of an existing API, without adding the inputs one by one.
+You can use [`<EditGuesser>`](https://marmelab.com/react-admin/EditGuesser.html) to quickly bootstrap an Edit view on top of an existing API, without adding the inputs one by one.
 
 ```tsx
 // in src/App.js

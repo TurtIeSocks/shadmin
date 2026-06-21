@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router";
 import {
   Collapsible,
@@ -23,6 +24,22 @@ import type { DocLeaf } from "./types";
 export default function DocsLayout() {
   const { pathname } = useLocation();
   const activeSlug = pathname.replace(/^\/docs\/?/, "").replace(/\/+$/, "");
+  const activeSection = navTree.find((s) =>
+    s.children.some((c) => c.kind === "leaf" && c.slug === activeSlug),
+  )?.dir;
+
+  // Controlled open state so the active section auto-opens on client-side nav
+  // (an uncontrolled defaultOpen only applies at mount). Users can still toggle.
+  const [open, setOpen] = useState<Set<string>>(
+    () => new Set([activeSection, "getting-started"].filter(Boolean) as string[]),
+  );
+  useEffect(() => {
+    if (activeSection) {
+      setOpen((prev) =>
+        prev.has(activeSection) ? prev : new Set(prev).add(activeSection),
+      );
+    }
+  }, [activeSection]);
 
   return (
     <SidebarProvider className="min-h-0">
@@ -35,11 +52,18 @@ export default function DocsLayout() {
             const leaves = section.children.filter(
               (c): c is DocLeaf => c.kind === "leaf",
             );
-            const hasActive = leaves.some((l) => l.slug === activeSlug);
             return (
               <Collapsible
                 key={section.dir}
-                defaultOpen={hasActive || section.dir === "getting-started"}
+                open={open.has(section.dir)}
+                onOpenChange={(o) =>
+                  setOpen((prev) => {
+                    const next = new Set(prev);
+                    if (o) next.add(section.dir);
+                    else next.delete(section.dir);
+                    return next;
+                  })
+                }
                 className="group/collapsible"
               >
                 <SidebarGroup className="py-0.5">
