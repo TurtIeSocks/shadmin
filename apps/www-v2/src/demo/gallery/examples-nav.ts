@@ -8,6 +8,8 @@
  */
 
 import type { ReactNode } from "react";
+import { navTree } from "@/docs/nav-content";
+import type { DocGroup, DocNode } from "@/docs/types";
 
 // Lazy component modules — loaded on demand per gallery route.
 export const exampleModules = import.meta.glob<{
@@ -47,11 +49,28 @@ const COMPONENT_CATEGORIES = new Set([
   "widgets",
 ]);
 
-// Import nav data at module level (Vite-side only).
-// docSlugs is already filtered (no intro pages).
-import { docSlugs } from "@/docs/nav-content";
+/**
+ * The gallery nav is intentionally 2-tier (category → component). The docs split
+ * some components (List, Edit, DataTable, SimpleForm) into multiple sub-pages
+ * for prose length — but those all render ~the same live component, so the
+ * gallery shows ONE example per component instead. Flatten any split-page group
+ * to a single leaf (slug = the group's dir, e.g. "page-components/list"); the
+ * "View docs →" link still points at the full written breakdown.
+ */
+function flattenChild(node: DocNode): DocNode {
+  return node.kind === "leaf"
+    ? node
+    : { kind: "leaf", slug: node.dir, title: node.title };
+}
 
-/** Docs slugs belonging to component categories — the radar baseline. */
-export const componentDocSlugs: string[] = docSlugs.filter((s) =>
-  COMPONENT_CATEGORIES.has(s.split("/")[0]),
+export const galleryNav: DocGroup[] = navTree
+  .filter((section) => COMPONENT_CATEGORIES.has(section.dir))
+  .map((section) => ({
+    ...section,
+    children: section.children.map(flattenChild),
+  }));
+
+/** Flattened component slugs (one per component) — the coverage radar baseline. */
+export const componentDocSlugs: string[] = galleryNav.flatMap((section) =>
+  section.children.map((c) => (c.kind === "leaf" ? c.slug : c.dir)),
 );

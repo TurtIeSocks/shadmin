@@ -10,23 +10,14 @@ import {
   SidebarMenuItem,
 } from "shadmin/components/ui/sidebar";
 import { NavTree } from "@/components/site-shell/nav-tree";
-import { navTree } from "@/docs/nav-content";
 import { SECTION_META } from "@/docs/section-meta";
 import { coverageReport } from "../gallery/coverage";
-import { componentDocSlugs, exampleSlugs } from "../gallery/examples-nav";
+import {
+  componentDocSlugs,
+  exampleSlugs,
+  galleryNav,
+} from "../gallery/examples-nav";
 import { demoResources } from "../app/resources";
-
-/** Component categories surfaced in the gallery. */
-const GALLERY_CATEGORIES = new Set([
-  "viewing",
-  "editing",
-  "page-components",
-  "ui-layout",
-  "widgets",
-]);
-
-/** Filtered navTree — only the 5 component-category sections. */
-const galleryTree = navTree.filter((s) => GALLERY_CATEGORIES.has(s.dir));
 
 /** Missing slugs set — used for coverage dot rendering. */
 const { missing: missingSlugs } = coverageReport(
@@ -131,7 +122,7 @@ export function DemoSidebarContent() {
           Components
         </SidebarGroupLabel>
         <NavTree
-          tree={galleryTree}
+          tree={galleryNav}
           hrefFor={(s) => `/demo/components/${s}`}
           iconFor={(dir) => SECTION_META[dir]?.icon}
           activeSlug={activeSlug}
