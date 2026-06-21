@@ -1,4 +1,4 @@
-import { Confirm } from "shadmin/components/admin";
+import { Confirm } from "shadmin/components/admin/feedback/confirm";
 
 export default function Example() {
   return (
