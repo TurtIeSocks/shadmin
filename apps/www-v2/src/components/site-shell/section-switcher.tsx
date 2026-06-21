@@ -30,12 +30,17 @@ const SECTIONS: Section[] = [
   { label: "Home", href: "/", icon: Home },
   { label: "Docs", href: "/docs", icon: BookOpen },
   { label: "Demo", href: "/demo", icon: LayoutDashboard },
-  { label: "Components", href: "/docs/components", icon: Boxes },
+  { label: "Components", href: "/demo/components", icon: Boxes },
 ];
 
 function getActiveSection(pathname: string): Section {
-  // Components is a /docs subpath — match it before the generic /docs check.
-  if (pathname.startsWith("/docs/components")) return SECTIONS[3];
+  // Components lives under both /demo/components (gallery) and /docs/components
+  // — match either before the generic /demo and /docs section checks.
+  if (
+    pathname.startsWith("/demo/components") ||
+    pathname.startsWith("/docs/components")
+  )
+    return SECTIONS[3];
   if (pathname.startsWith("/docs")) return SECTIONS[1];
   if (pathname.startsWith("/demo")) return SECTIONS[2];
   return SECTIONS[0];

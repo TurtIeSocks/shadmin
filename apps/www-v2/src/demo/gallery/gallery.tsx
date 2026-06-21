@@ -16,6 +16,7 @@ import {
   slugToKey,
 } from "./examples-nav";
 import { ExampleFrame } from "./example-frame";
+import { ComponentDirectory } from "@/docs/component-directory";
 
 const exampleSlugSet = new Set(exampleSlugs);
 const componentDocSlugSet = new Set(componentDocSlugs);
@@ -42,10 +43,11 @@ export default function Gallery() {
   const hasExample = exampleSlugSet.has(slug);
   const isKnownDoc = componentDocSlugSet.has(slug);
 
+  // Gallery landing: the component directory, linking into the live examples.
   if (!slug) {
     return (
-      <div className="p-8 text-muted-foreground">
-        Select a component from the sidebar.
+      <div className="mx-auto max-w-5xl p-6 lg:p-8">
+        <ComponentDirectory basePath="/demo/components" />
       </div>
     );
   }
