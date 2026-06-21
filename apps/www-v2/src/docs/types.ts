@@ -7,5 +7,5 @@ export type MetaEntry =
   | { dir: string; title?: string };
 
 export interface DocLeaf { kind: "leaf"; slug: string; title: string; }
-export interface DocGroup { kind: "group"; dir: string; title: string; children: DocNode[]; }
+export interface DocGroup { kind: "group"; dir: string; title: string; indexSlug?: string; children: DocNode[]; }
 export type DocNode = DocLeaf | DocGroup;

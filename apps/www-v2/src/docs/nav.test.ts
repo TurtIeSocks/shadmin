@@ -32,3 +32,22 @@ test("buildNavTree orders by _meta then alpha, nests dirs", () => {
     "components/array-input",
   ]);
 });
+
+test("buildNavTree sets indexSlug to a group's first leaf descendant", () => {
+  const slugs = [
+    "page-components/edit/overview",
+    "page-components/edit/layout",
+    "page-components/show",
+  ];
+  const metas = {
+    "": [{ dir: "page-components", title: "Page Components" }],
+    "page-components": [{ dir: "edit", title: "Edit" }, { slug: "show", title: "Show" }],
+    "page-components/edit": [{ slug: "overview" }, { slug: "layout" }],
+  };
+  const tree = buildNavTree(slugs, metas, (s) => s.split("/").pop()!);
+  const section = tree.find((g) => g.dir === "page-components")!;
+  const editGroup = section.children.find(
+    (c): c is import("./types").DocGroup => c.kind === "group" && c.dir === "page-components/edit",
+  )!;
+  assert.equal(editGroup.indexSlug, "page-components/edit/overview");
+});

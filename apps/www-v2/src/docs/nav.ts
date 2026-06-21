@@ -4,6 +4,15 @@ function titleize(s: string): string {
   return s.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function firstLeafSlug(nodes: DocNode[]): string | undefined {
+  for (const n of nodes) {
+    if (n.kind === "leaf") return n.slug;
+    const s = n.indexSlug ?? firstLeafSlug(n.children);
+    if (s) return s;
+  }
+  return undefined;
+}
+
 // metas: keyed by dir path ("" = root), value = that folder's _meta entries.
 // Pure + testable. Files/dirs not named in _meta are appended alphabetically.
 export function buildNavTree(
@@ -39,7 +48,8 @@ export function buildNavTree(
       } else {
         const full = prefix === "" ? e.dir : `${prefix}/${e.dir}`;
         if (dirNames.has(full)) {
-          ordered.push({ kind: "group", dir: full, title: e.title ?? titleize(e.dir), children: build(full) });
+          const children = build(full);
+          ordered.push({ kind: "group", dir: full, title: e.title ?? titleize(e.dir), indexSlug: firstLeafSlug(children), children });
           usedDir.add(full);
         }
       }
@@ -48,7 +58,10 @@ export function buildNavTree(
     [...leafSlugs].filter((s) => !usedLeaf.has(s)).sort()
       .forEach((s) => ordered.push({ kind: "leaf", slug: s, title: titleOf(s) }));
     [...dirNames].filter((d) => !usedDir.has(d)).sort()
-      .forEach((d) => ordered.push({ kind: "group", dir: d, title: titleize(d.split("/").pop()!), children: build(d) }));
+      .forEach((d) => {
+        const children = build(d);
+        ordered.push({ kind: "group", dir: d, title: titleize(d.split("/").pop()!), indexSlug: firstLeafSlug(children), children });
+      });
 
     return ordered;
   }
