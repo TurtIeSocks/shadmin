@@ -6,8 +6,8 @@ export default [
   { dir: "page-components", title: "Page components" },
   { dir: "data-display", title: "Data Display" },
   { dir: "data-edition", title: "Data Edition" },
+  { dir: "widgets", title: "Widgets" },
   { dir: "leaflet", title: "Map (Leaflet)" },
-  { dir: "extras", title: "Extras" },
   { dir: "csv-import", title: "CSV Import" },
   { dir: "mdx-editor", title: "MDX Editor" },
   { dir: "rich-text-input", title: "Rich Text Input" },
@@ -15,5 +15,4 @@ export default [
   { dir: "realtime", title: "Realtime" },
   { dir: "ui-layout", title: "UI & Layout" },
   { dir: "supabase", title: "Supabase" },
-  { dir: "misc", title: "Misc" },
 ] satisfies MetaEntry[];
