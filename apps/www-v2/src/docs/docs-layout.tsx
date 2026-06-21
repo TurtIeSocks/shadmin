@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { cn } from "shadmin/lib/utils";
+import { Brand } from "@/components/brand";
 import { useDocsUI } from "@/components/docs-ui-context";
 import { DocsTopBar } from "@/components/site-nav";
 import {
@@ -215,8 +216,8 @@ export default function DocsLayout() {
       >
         <SidebarHeader className="border-b p-0">
           <div className="flex h-14 items-center px-4">
-            <Link to="/" className="text-base font-semibold text-foreground">
-              shadmin
+            <Link to="/" className="text-base">
+              <Brand />
             </Link>
           </div>
         </SidebarHeader>
@@ -237,9 +238,9 @@ export default function DocsLayout() {
               <Link
                 to="/"
                 onClick={() => setSheetOpen(false)}
-                className="text-base font-semibold"
+                className="text-base"
               >
-                shadmin
+                <Brand />
               </Link>
             </div>
             <SectionNav

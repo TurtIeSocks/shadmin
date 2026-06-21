@@ -20,7 +20,7 @@ export default function DocsIndex() {
   return (
     <div className="not-prose">
       {/* Hero */}
-      <span className="inline-block rounded-full bg-muted px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+      <span className="inline-block rounded-full bg-muted px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-gradient">
         Documentation
       </span>
       <h1 className="mt-5 max-w-xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
@@ -34,12 +34,12 @@ export default function DocsIndex() {
       <div className="mt-7 flex flex-wrap items-center gap-3">
         <Link
           to="/docs/getting-started/install"
-          className="group inline-flex items-center gap-2.5 rounded-full bg-primary py-2.5 pl-5 pr-2.5 text-sm font-medium text-primary-foreground transition-transform duration-300 active:scale-[0.98]"
+          className="group inline-flex items-center gap-2.5 rounded-full bg-brand-gradient py-2.5 pl-5 pr-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-500/20 transition-transform duration-300 active:scale-[0.98]"
           style={{ transitionTimingFunction: ease }}
         >
           Get started
           <span
-            className="flex size-6 items-center justify-center rounded-full bg-primary-foreground/15 transition-transform duration-300 group-hover:translate-x-0.5"
+            className="flex size-6 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover:translate-x-0.5"
             style={{ transitionTimingFunction: ease }}
           >
             <ArrowRight className="size-3.5" strokeWidth={2} />
@@ -73,7 +73,7 @@ export default function DocsIndex() {
             >
               <div className="h-full rounded-[0.85rem] border border-border/40 bg-card p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-foreground">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-sm shadow-indigo-500/20">
                     <Icon className="size-[1.15rem]" strokeWidth={1.5} />
                   </span>
                   <span className="font-semibold leading-tight text-foreground">

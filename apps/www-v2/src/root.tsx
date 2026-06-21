@@ -40,7 +40,7 @@ export const meta: MetaFunction = () => [
 ];
 
 export const links: LinksFunction = () => [
-  { rel: "icon", type: "image/svg+xml", href: "/img/icon.png" },
+  { rel: "icon", type: "image/svg+xml", href: "/shadmin-favicon.svg" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

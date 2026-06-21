@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { cn } from "shadmin/lib/utils";
 import { Button } from "shadmin/components/ui/button";
+import { Brand } from "@/components/brand";
 import { DocSearch } from "@/components/doc-search";
 import { useDocsUI } from "@/components/docs-ui-context";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -55,8 +56,8 @@ export function SiteNav() {
   return (
     <NavBar
       left={
-        <Link to="/" className="font-semibold">
-          shadmin
+        <Link to="/" className="text-base">
+          <Brand />
         </Link>
       }
     />

@@ -54,7 +54,7 @@ export function CategoryIndex({ section }: { section: DocGroup }) {
       </Breadcrumb>
 
       <div className="flex items-center gap-3">
-        <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-foreground">
+        <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-sm shadow-indigo-500/20">
           <Icon className="size-5" strokeWidth={1.5} />
         </span>
         <h1 className="text-3xl font-bold tracking-tight text-foreground">

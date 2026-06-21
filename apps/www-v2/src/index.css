@@ -50,6 +50,29 @@
   --radius-4xl: calc(var(--radius) * 2.6)
 }
 
+/* Brand gradient — violet (#8b5cf6) → indigo (#4f46e5), matching the logo mark. */
+:root {
+  --brand-from: #8b5cf6;
+  --brand-to: #4f46e5;
+  --brand-gradient: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+}
+
+@utility bg-brand-gradient {
+  background-image: var(--brand-gradient);
+}
+
+@utility text-brand-gradient {
+  background-image: var(--brand-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@utility ring-brand {
+  --tw-ring-color: var(--brand-to);
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
