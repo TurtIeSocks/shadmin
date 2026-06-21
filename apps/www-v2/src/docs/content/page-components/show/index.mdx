@@ -96,7 +96,7 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 ## Props
 
 | Prop                    | Required         | Type                         | Default      | Description                                                                          |
-| ----------------------- | ---------------- | ---------------------------- | ------------ | ------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------------------------------- |
+| --- | --- | --- | --- | --- |
 | `children`              | Optional&nbsp;\* | `ReactNode`                  |              | The components rendering the record fields                                           |
 | `render`                | Optional&nbsp;\* | `(showContext) => ReactNode` |              | A function rendering the record fields, receive the show context as its argument     |
 | `actions`               | Optional         | `ReactElement`               |              | The actions to display in the toolbar                                                |
@@ -108,10 +108,10 @@ Just like `<Show>`, `<ShowGuesser>` fetches the data. It then analyzes the respo
 | `disableBreadcrumb`     | Optional         | `boolean`                    | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
 | `emptyWhileLoading`     | Optional         | `boolean`                    |              | Set to `true` to return `null` while the show is loading                             |
 | `offline`               | Optional         | `ReactNode`                  | default msg  | Content to display when the browser is offline and the record is still loading       |
-| `id`                    | Optional         | `string                      | number`      |                                                                                      | The record id. If not provided, it will be deduced from the URL |
+| `id`                    | Optional         | `string                      \| number`      |                                                                                      | The record id. If not provided, it will be deduced from the URL |
 | `queryOptions`          | Optional         | `object`                     |              | The options to pass to the `useQuery` hook                                           |
 | `resource`              | Optional         | `string`                     |              | The resource name, e.g. `posts`                                                      |
-| `title`                 | Optional         | `string                      | ReactElement | false`                                                                               |                                                                 | The title to display in the App Bar |
+| `title`                 | Optional         | `string                      \| ReactElement \| false`                                                                               |                                                                 | The title to display in the App Bar |
 
 `*` You must provide either `children` or `render`.
 

@@ -54,7 +54,7 @@ You can find more advanced examples of `<List>` usage in the [demo](https://shad
 ## Props
 
 | Prop                      | Required   | Type                           | Default                                        | Description                                                                          |
-| ------------------------- | ---------- | ------------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------- | ---------- |
+| --- | --- | --- | --- | --- |
 | `children`                | Optional\* | `ReactNode`                    | -                                              | Component(s) that display the records (e.g. `<DataTable>`)                           |
 | `render`                  | Optional\* | `(ctx) => ReactNode`           | -                                              | Alternate render function receiving the list context                                 |
 | `actions`                 | Optional   | `ReactNode`                    | default action bar                             | Custom actions area (right side of header)                                           |
@@ -65,7 +65,7 @@ You can find more advanced examples of `<List>` usage in the [demo](https://shad
 | `disableAuthentication`   | Optional   | `boolean`                      | `false`                                        | Skip auth check for this page                                                        |
 | `disableBreadcrumb`       | Optional   | `boolean`                      | `false`                                        | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
 | `disableSyncWithLocation` | Optional   | `boolean`                      | `false`                                        | Keep list params local (not in the URL)                                              |
-| `exporter`                | Optional   | `false                         | (records, fetchRelated, dataProvider) => void` | -                                                                                    | Custom export logic (set `false` to hide Export button)        |
+| `exporter`                | Optional   | `false                         \| (records, fetchRelated, dataProvider) => void` | -                                                                                    | Custom export logic (set `false` to hide Export button)        |
 | `filters`                 | Optional   | `ReactElement[]`               | -                                              | Array of filter input elements (displayed inline)                                    |
 | `filter`                  | Optional   | `object`                       | -                                              | Permanent filters always applied                                                     |
 | `filterDefaultValues`     | Optional   | `object`                       | -                                              | Initial filter form values                                                           |
@@ -73,9 +73,9 @@ You can find more advanced examples of `<List>` usage in the [demo](https://shad
 | `perPage`                 | Optional   | `number`                       | `10`                                           | Records per page                                                                     |
 | `queryOptions`            | Optional   | `object`                       | -                                              | Extra TanStack Query options                                                         |
 | `resource`                | Optional   | `string`                       | inferred                                       | Resource name, defaults to the current `<ResourceContext>`                           |
-| `sort`                    | Optional   | `{ field: string; order: 'ASC' | 'DESC' }`                                      | -                                                                                    | Initial sort                                                   |
-| `storeKey`                | Optional   | `string                        | false`                                         | derived                                                                              | Storage key for persisted params; `false` disables persistence |
-| `title`                   | Optional   | `string                        | ReactNode                                      | false`                                                                               | resource plural label                                          | Page title |
+| `sort`                    | Optional   | `{ field: string; order: 'ASC' \| 'DESC' }`                                      | -                                                                                    | Initial sort                                                   |
+| `storeKey`                | Optional   | `string                        \| false`                                         | derived                                                                              | Storage key for persisted params; `false` disables persistence |
+| `title`                   | Optional   | `string                        \| ReactNode                                      \| false`                                                                               | resource plural label                                          | Page title |
 
 `*` Provide either `children` or `render`.
 
