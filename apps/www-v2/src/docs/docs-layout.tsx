@@ -1,159 +1,13 @@
-import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router";
-import { Brand } from "@/components/brand";
-import { useDocsUI } from "@/components/docs-ui-context";
-import { DocsTopBar } from "@/components/site-nav";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "shadmin/components/ui/collapsible";
-import { Sheet, SheetContent, SheetTitle } from "shadmin/components/ui/sheet";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-} from "shadmin/components/ui/sidebar";
+import { Outlet, useLocation } from "react-router";
+import { DocSearch } from "@/components/doc-search";
+import { SiteShell } from "@/components/site-shell/site-shell";
+import { SiteSidebar } from "@/components/site-shell/site-sidebar";
+import { NavTree } from "@/components/site-shell/nav-tree";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { navTree } from "./nav-content";
+import { DocsBreadcrumb } from "./docs-breadcrumb";
 import { Toc } from "./toc";
-import type { DocNode } from "./types";
-
-interface NavProps {
-  activeSlug: string;
-  open: Set<string>;
-  toggle: (dir: string, isOpen: boolean) => void;
-  onNavigate?: () => void;
-}
-
-// A navigable sub-page link (used inside a SidebarMenuSub). Groups link to
-// their Overview (indexSlug); leaves link to themselves.
-function NavSubLink({ node, ...nav }: { node: DocNode } & NavProps) {
-  const to = node.kind === "leaf" ? node.slug : (node.indexSlug ?? node.dir);
-  return (
-    <SidebarMenuSubItem>
-      <SidebarMenuSubButton asChild isActive={to === nav.activeSlug}>
-        <NavLink to={`/docs/${to}`} onClick={nav.onNavigate}>
-          {node.title}
-        </NavLink>
-      </SidebarMenuSubButton>
-    </SidebarMenuSubItem>
-  );
-}
-
-// Renders a section's children as menu items inside ONE <SidebarMenu>.
-// Leaves are plain items; split pages are collapsible items whose label
-// navigates to their Overview and whose chevron action toggles the sub-list.
-function NavItems({ nodes, ...nav }: { nodes: DocNode[] } & NavProps) {
-  return nodes.map((node) =>
-    node.kind === "leaf" ? (
-      <SidebarMenuItem key={node.slug}>
-        <SidebarMenuButton
-          asChild
-          size="sm"
-          isActive={node.slug === nav.activeSlug}
-        >
-          <NavLink to={`/docs/${node.slug}`} onClick={nav.onNavigate}>
-            {node.title}
-          </NavLink>
-        </SidebarMenuButton>
-      </SidebarMenuItem>
-    ) : (
-      <Collapsible
-        key={node.dir}
-        asChild
-        open={nav.open.has(node.dir)}
-        onOpenChange={(o) => nav.toggle(node.dir, o)}
-        className="group/collapsible"
-      >
-        <SidebarMenuItem>
-          <SidebarMenuButton
-            asChild
-            size="sm"
-            isActive={!!node.indexSlug && node.indexSlug === nav.activeSlug}
-          >
-            <NavLink
-              to={`/docs/${node.indexSlug ?? node.dir}`}
-              onClick={nav.onNavigate}
-            >
-              {node.title}
-            </NavLink>
-          </SidebarMenuButton>
-          <CollapsibleTrigger asChild>
-            <SidebarMenuAction className="transition-transform group-data-[state=open]/collapsible:rotate-90">
-              <ChevronRight />
-              <span className="sr-only">Toggle {node.title}</span>
-            </SidebarMenuAction>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <SidebarMenuSub>
-              {node.children.map((child) => (
-                <NavSubLink
-                  key={child.kind === "leaf" ? child.slug : child.dir}
-                  node={child}
-                  {...nav}
-                />
-              ))}
-            </SidebarMenuSub>
-          </CollapsibleContent>
-        </SidebarMenuItem>
-      </Collapsible>
-    ),
-  );
-}
-
-// Shared nav body — used by both the desktop sidebar and the mobile sheet.
-function SectionNav({ activeSlug, open, toggle, onNavigate }: NavProps) {
-  return (
-    <SidebarContent className="gap-0 px-2 py-4">
-      {navTree.map((section) => (
-        <Collapsible
-          key={section.dir}
-          open={open.has(section.dir)}
-          onOpenChange={(o) => toggle(section.dir, o)}
-          className="group/collapsible"
-        >
-          <SidebarGroup className="py-0.5">
-            <SidebarGroupLabel
-              asChild
-              className="cursor-pointer text-xs font-semibold uppercase tracking-wide hover:text-foreground"
-            >
-              <CollapsibleTrigger>
-                {section.title}
-                <ChevronRight className="ml-auto size-4 transition-transform group-data-[state=open]/collapsible:rotate-90" />
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  <NavItems
-                    nodes={section.children}
-                    activeSlug={activeSlug}
-                    open={open}
-                    toggle={toggle}
-                    onNavigate={onNavigate}
-                  />
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-      ))}
-    </SidebarContent>
-  );
-}
 
 const ancestorDirs = (slug: string): string[] => {
   const parts = slug.split("/");
@@ -165,15 +19,17 @@ const ancestorDirs = (slug: string): string[] => {
 export default function DocsLayout() {
   const { pathname } = useLocation();
   const activeSlug = pathname.replace(/^\/docs\/?/, "").replace(/\/+$/, "");
+
+  // Collapse sidebar by default on the /docs index page.
+  const isIndex = activeSlug === "";
+
   const activeSection =
     navTree.find((s) =>
       s.children.some((c) => c.kind === "leaf" && c.slug === activeSlug),
     )?.dir ?? navTree.find((s) => s.dir === activeSlug)?.dir;
 
-  const { navOpen, toggleNav, sheetOpen, setSheetOpen } = useDocsUI();
-
   // Controlled open state so the active section auto-opens on client-side nav.
-  const [open, setOpen] = useState<Set<string>>(
+  const [openDirs, setOpenDirs] = useState<Set<string>>(
     () =>
       new Set(
         [...ancestorDirs(activeSlug), "getting-started"].filter(
@@ -184,19 +40,17 @@ export default function DocsLayout() {
 
   useEffect(() => {
     if (activeSection) {
-      setOpen((prev) =>
+      setOpenDirs((prev) =>
         prev.has(activeSection) ? prev : new Set(prev).add(activeSection),
       );
     }
     for (const dir of ancestorDirs(activeSlug)) {
-      setOpen((prev) => (prev.has(dir) ? prev : new Set(prev).add(dir)));
+      setOpenDirs((prev) => (prev.has(dir) ? prev : new Set(prev).add(dir)));
     }
   }, [activeSection, activeSlug]);
-  // Close the mobile sheet whenever the route changes.
-  useEffect(() => setSheetOpen(false), [pathname, setSheetOpen]);
 
-  const toggle = (dir: string, isOpen: boolean) =>
-    setOpen((prev) => {
+  const onToggle = (dir: string, isOpen: boolean) =>
+    setOpenDirs((prev) => {
       const next = new Set(prev);
       if (isOpen) next.add(dir);
       else next.delete(dir);
@@ -204,64 +58,35 @@ export default function DocsLayout() {
     });
 
   return (
-    <SidebarProvider
-      // Drive the native offcanvas collapse from our persisted navOpen so the
-      // sidebar animates its width open/closed (gap div + slide), like the
-      // shadcn sidebar blocks. Mobile keeps the custom Sheet below.
-      open={navOpen}
-      onOpenChange={(o) => {
-        if (o !== navOpen) toggleNav();
-      }}
+    <SiteShell
+      defaultOpen={!isIndex}
+      sidebar={
+        <SiteSidebar>
+          <NavTree
+            tree={navTree}
+            hrefFor={(s) => `/docs/${s}`}
+            activeSlug={activeSlug}
+            openDirs={openDirs}
+            onToggle={onToggle}
+          />
+        </SiteSidebar>
+      }
+      breadcrumb={<DocsBreadcrumb slug={activeSlug} />}
+      actions={
+        <>
+          <DocSearch />
+          <ThemeToggle />
+        </>
+      }
     >
-      {/* Full-height sidebar; offcanvas = animated width, hidden on mobile. */}
-      <Sidebar collapsible="offcanvas">
-        <SidebarHeader className="border-b p-0">
-          <div className="flex h-14 items-center px-4">
-            <Link to="/" className="text-base">
-              <Brand />
-            </Link>
+      <div className="mx-auto w-full max-w-6xl px-6 py-10">
+        <div className="flex justify-center gap-12">
+          <div className="w-full min-w-0 max-w-3xl">
+            <Outlet />
           </div>
-        </SidebarHeader>
-        <SectionNav activeSlug={activeSlug} open={open} toggle={toggle} />
-      </Sidebar>
-
-      <SidebarInset className="bg-transparent">
-        {/* Top bar over the content column (sidebar trigger + nav + search) */}
-        <DocsTopBar />
-
-        {/* Mobile nav sheet — opened from the bar's Menu button (via context) */}
-        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-          <SheetContent side="left" className="w-72 overflow-y-auto p-0">
-            <SheetTitle className="sr-only">
-              Documentation navigation
-            </SheetTitle>
-            <div className="flex h-14 items-center border-b px-4">
-              <Link
-                to="/"
-                onClick={() => setSheetOpen(false)}
-                className="text-base"
-              >
-                <Brand />
-              </Link>
-            </div>
-            <SectionNav
-              activeSlug={activeSlug}
-              open={open}
-              toggle={toggle}
-              onNavigate={() => setSheetOpen(false)}
-            />
-          </SheetContent>
-        </Sheet>
-
-        <div className="mx-auto w-full max-w-6xl px-6 py-10">
-          <div className="flex justify-center gap-12">
-            <div className="w-full min-w-0 max-w-3xl">
-              <Outlet />
-            </div>
-            <Toc />
-          </div>
+          <Toc />
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+      </div>
+    </SiteShell>
   );
 }
