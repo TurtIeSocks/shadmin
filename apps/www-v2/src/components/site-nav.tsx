@@ -1,4 +1,5 @@
 import { Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import type { ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { cn } from "shadmin/lib/utils";
 import { Button } from "shadmin/components/ui/button";
@@ -12,45 +13,13 @@ const links = [
   { to: "/demo", label: "Demo" },
 ];
 
-export function SiteNav() {
-  const { pathname } = useLocation();
-  const isDocs = pathname.startsWith("/docs");
-  const { navOpen, toggleNav, setSheetOpen } = useDocsUI();
-
+// Shared bar: a left slot (brand or sidebar controls), the nav links, then
+// search + theme toggle pinned far right.
+function NavBar({ left }: { left: ReactNode }) {
   return (
     <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur">
       <nav className="flex h-14 items-center gap-4 px-4">
-        {/* Left: on docs, the sidebar controls; elsewhere, the wordmark. */}
-        {isDocs ? (
-          <>
-            <button
-              type="button"
-              onClick={() => setSheetOpen(true)}
-              aria-label="Open navigation"
-              className="inline-flex size-9 items-center justify-center rounded-md text-foreground hover:bg-accent md:hidden"
-            >
-              <Menu className="size-4" />
-            </button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hidden md:inline-flex"
-              onClick={toggleNav}
-              aria-label={navOpen ? "Collapse sidebar" : "Expand sidebar"}
-            >
-              {navOpen ? (
-                <PanelLeftClose className="size-4" />
-              ) : (
-                <PanelLeftOpen className="size-4" />
-              )}
-            </Button>
-          </>
-        ) : (
-          <Link to="/" className="font-semibold">
-            shadmin
-          </Link>
-        )}
-
+        {left}
         <ul className="flex items-center gap-4">
           {links.map((l) => (
             <li key={l.to}>
@@ -69,12 +38,61 @@ export function SiteNav() {
             </li>
           ))}
         </ul>
-
         <div className="ml-auto flex items-center gap-2">
           <DocSearch />
           <ThemeToggle />
         </div>
       </nav>
     </header>
+  );
+}
+
+// Global nav — only for non-docs routes. Docs renders its own bar inside the
+// app shell (DocsTopBar) so the sidebar can run full-height beside it.
+export function SiteNav() {
+  const { pathname } = useLocation();
+  if (pathname.startsWith("/docs")) return null;
+  return (
+    <NavBar
+      left={
+        <Link to="/" className="font-semibold">
+          shadmin
+        </Link>
+      }
+    />
+  );
+}
+
+// Docs top bar — rendered inside the SidebarInset, over the content column.
+export function DocsTopBar() {
+  const { navOpen, toggleNav, setSheetOpen } = useDocsUI();
+  return (
+    <NavBar
+      left={
+        <>
+          <button
+            type="button"
+            onClick={() => setSheetOpen(true)}
+            aria-label="Open navigation"
+            className="inline-flex size-9 items-center justify-center rounded-md text-foreground hover:bg-accent md:hidden"
+          >
+            <Menu className="size-4" />
+          </button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hidden md:inline-flex"
+            onClick={toggleNav}
+            aria-label={navOpen ? "Collapse sidebar" : "Expand sidebar"}
+          >
+            {navOpen ? (
+              <PanelLeftClose className="size-4" />
+            ) : (
+              <PanelLeftOpen className="size-4" />
+            )}
+          </Button>
+        </>
+      }
+    />
   );
 }

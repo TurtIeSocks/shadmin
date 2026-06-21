@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { cn } from "shadmin/lib/utils";
 import { useDocsUI } from "@/components/docs-ui-context";
+import { DocsTopBar } from "@/components/site-nav";
 import {
   Collapsible,
   CollapsibleContent,
@@ -19,6 +20,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
@@ -40,13 +42,6 @@ interface NavProps {
 function SectionNav({ activeSlug, open, toggle, onNavigate }: NavProps) {
   return (
     <SidebarContent className="gap-0 px-2 py-4">
-      <Link
-        to="/"
-        onClick={onNavigate}
-        className="mb-3 px-2 text-lg font-semibold text-foreground"
-      >
-        shadmin
-      </Link>
       {navTree.map((section) => {
         const leaves = section.children.filter(
           (c): c is DocLeaf => c.kind === "leaf",
@@ -128,23 +123,42 @@ export default function DocsLayout() {
     });
 
   return (
-    <SidebarProvider className="min-h-0">
-      {/* Desktop sidebar (hidden on mobile; collapse toggle lives in the nav) */}
+    <SidebarProvider>
+      {/* Full-height sidebar (hidden on mobile; collapse toggle is in the bar) */}
       <Sidebar
         collapsible="none"
         className={cn(
-          "sticky top-14 hidden h-[calc(100svh-3.5rem)] border-r bg-transparent md:flex",
+          "sticky top-0 hidden h-svh border-r bg-transparent md:flex",
           !navOpen && "md:hidden",
         )}
       >
+        <SidebarHeader className="border-b p-0">
+          <div className="flex h-14 items-center px-4">
+            <Link to="/" className="text-base font-semibold text-foreground">
+              shadmin
+            </Link>
+          </div>
+        </SidebarHeader>
         <SectionNav activeSlug={activeSlug} open={open} toggle={toggle} />
       </Sidebar>
 
       <SidebarInset className="bg-transparent">
-        {/* Mobile nav sheet — opened from the nav's Menu button (via context) */}
+        {/* Top bar over the content column (sidebar trigger + nav + search) */}
+        <DocsTopBar />
+
+        {/* Mobile nav sheet — opened from the bar's Menu button (via context) */}
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetContent side="left" className="w-72 overflow-y-auto p-0">
             <SheetTitle className="sr-only">Documentation navigation</SheetTitle>
+            <div className="flex h-14 items-center border-b px-4">
+              <Link
+                to="/"
+                onClick={() => setSheetOpen(false)}
+                className="text-base font-semibold"
+              >
+                shadmin
+              </Link>
+            </div>
             <SectionNav
               activeSlug={activeSlug}
               open={open}
