@@ -3,10 +3,10 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 export default [
   index("pages/home.tsx"),
   route("demo", "demo/demo-layout.tsx", [
-    index("demo/launcher.tsx"),
+    index("demo/demo-index.tsx"), // redirects /demo → /demo/app
     route("login", "demo/login.tsx"),
     // Pathless SHELL route: app/components/features get the flagship chrome
-    // (Layout + 3-zone sidebar); login + launcher stay bare under DemoLayout.
+    // (Layout + 3-zone sidebar); login stays bare under DemoLayout.
     route("", "demo/shell/demo-shell.tsx", [
       route("app/*", "demo/app/app-routes.tsx"),
       route("components/*", "demo/gallery/gallery.tsx"),
