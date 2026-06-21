@@ -1,0 +1,92 @@
+/**
+ * gallery.tsx — route module for /demo/components/*
+ *
+ * Slug routing:
+ *   - slug has an example → render ExampleFrame (lazy component + raw source)
+ *   - slug is a known docs component slug with NO example → amber "Not yet covered" stub
+ *   - unknown slug → 404-style message
+ */
+import { Suspense, lazy, type ComponentType } from "react";
+import { useParams } from "react-router";
+import {
+  exampleModules,
+  exampleRawSources,
+  exampleSlugs,
+  componentDocSlugs,
+  slugToKey,
+} from "./examples-nav";
+import { ExampleFrame } from "./example-frame";
+
+const exampleSlugSet = new Set(exampleSlugs);
+const componentDocSlugSet = new Set(componentDocSlugs);
+
+export default function Gallery() {
+  const slug = (useParams()["*"] ?? "").replace(/\/+$/, "");
+
+  const key = slugToKey(slug);
+  const hasExample = exampleSlugSet.has(slug);
+  const isKnownDoc = componentDocSlugSet.has(slug);
+
+  if (!slug) {
+    return (
+      <div className="p-8 text-muted-foreground">
+        Select a component from the sidebar.
+      </div>
+    );
+  }
+
+  if (hasExample) {
+    const rawSource = exampleRawSources[key] ?? "";
+
+    // Lazy-load the example component
+    const ExampleComponent = lazy(() =>
+      (exampleModules[key] as () => Promise<{ default: ComponentType }>)(),
+    );
+
+    return (
+      <div className="p-8 max-w-4xl">
+        <ExampleFrame
+          slug={slug}
+          component={
+            <Suspense
+              fallback={
+                <span className="text-sm text-muted-foreground">Loading…</span>
+              }
+            >
+              <ExampleComponent />
+            </Suspense>
+          }
+          source={rawSource}
+        />
+      </div>
+    );
+  }
+
+  if (isKnownDoc) {
+    return (
+      <div className="p-8 max-w-4xl">
+        <div className="rounded-xl border border-amber-400/60 bg-amber-50 p-6 dark:bg-amber-950/30">
+          <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">
+            Not yet covered
+          </p>
+          <p className="mt-1 text-sm text-amber-600 dark:text-amber-500">
+            No demo example exists for{" "}
+            <code className="font-mono font-medium">{slug}</code> yet.
+          </p>
+          <a
+            href={`/docs/${slug}`}
+            className="mt-3 inline-block text-sm underline text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-200 transition-colors"
+          >
+            View docs →
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-8 text-muted-foreground">
+      Unknown component: <code className="font-mono">{slug}</code>
+    </div>
+  );
+}

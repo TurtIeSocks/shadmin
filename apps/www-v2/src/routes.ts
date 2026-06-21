@@ -9,7 +9,7 @@ export default [
     // (Layout + 3-zone sidebar); login + launcher stay bare under DemoLayout.
     route("", "demo/shell/demo-shell.tsx", [
       route("app/*", "demo/app/app-routes.tsx"),
-      // route("components/*", "demo/gallery/gallery.tsx"), // Task 8
+      route("components/*", "demo/gallery/gallery.tsx"),
       // route("features/*", "demo/features/features.tsx"), // Phase 3
     ]),
   ]),
