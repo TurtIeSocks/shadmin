@@ -145,7 +145,14 @@ let written = 0;
 const seen = new Set();
 
 for (const { componentName, iface } of walk(doc)) {
-  if (seen.has(componentName)) continue;
+  if (seen.has(componentName)) {
+    // First-seen-wins. If two source modules export the same `*Props` name,
+    // warn loudly rather than silently attaching the wrong table to a component.
+    console.warn(
+      `warning: duplicate props interface "${componentName}Props" — keeping the first; the later one is ignored. Disambiguate the source export names.`,
+    );
+    continue;
+  }
   seen.add(componentName);
 
   // Interfaces have `children`; type aliases sometimes resolve to an inline
