@@ -1,5 +1,14 @@
 import type { ComponentType } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "shadmin/components/ui/breadcrumb";
+import { navTree } from "./nav-content";
 import { installFor } from "./registry";
 import { InstallCommand } from "./mdx/install-command";
 
@@ -38,8 +47,32 @@ export default function MdxPage() {
   const description = mod.frontmatter?.description;
   const install = installFor(mod.frontmatter?.registry);
   const Content = mod.default;
+  const sectionTitle = navTree.find((g) => g.dir === slug.split("/")[0])?.title;
   return (
     <article className="prose prose-neutral dark:prose-invert">
+      <Breadcrumb className="not-prose mb-4">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link to="/docs">Docs</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          {sectionTitle && (
+            <>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>{sectionTitle}</BreadcrumbItem>
+            </>
+          )}
+          {title && (
+            <>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{title}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </>
+          )}
+        </BreadcrumbList>
+      </Breadcrumb>
       {title && (
         <h1 className="mb-2 text-3xl font-bold tracking-tight">{title}</h1>
       )}
