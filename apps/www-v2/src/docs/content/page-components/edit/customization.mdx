@@ -1,0 +1,247 @@
+---
+title: "Customization"
+description: "Scaffolding, prefilling, linking inputs, controlled and headless modes."
+---
+
+## Scaffolding An Edit Page
+
+You can use [`<EditGuesser>`](https://marmelab.com/react-admin/EditGuesser.html) to quickly bootstrap an Edit view on top of an existing API, without adding the inputs one by one.
+
+```tsx
+// in src/App.js
+import { Admin, EditGuesser } from "@/components/admin";
+import { Resource } from "ra-core";
+import dataProvider from "./data-provider";
+
+const App = () => (
+  <Admin dataProvider={dataProvider}>
+    {/* ... */}
+    <Resource name="customers" edit={EditGuesser} />
+  </Admin>
+);
+```
+
+Just like `<Edit>`, `<EditGuesser>` fetches the data. It then analyzes the response, and guesses the inputs it should use to display a basic `<SimpleForm>` with the data. It also dumps the components it has guessed in the console, so you can copy it into your own code.
+
+![Guessed Edit](/docs/images/customers-edit-guesser.png)
+
+## Cleaning Up Empty Strings
+
+As a reminder, HTML form inputs always return strings, even for numbers and booleans. So the empty value for a text input is the empty string, not `null` or `undefined`. This means that the data sent to `dataProvider.update()` will contain empty strings:
+
+```js
+{
+    title: '',
+    average_note: '',
+    body: '',
+    // etc.
+}
+```
+
+If you prefer to have `null` values, or to omit the key for empty values, use [the `transform` prop](#transform) to sanitize the form data before submission:
+
+```tsx
+export const UserEdit = () => {
+  const transform = (data) => {
+    const sanitizedData = {};
+    for (const key in data) {
+      if (typeof data[key] === "string" && data[key].trim().length === 0)
+        continue;
+      sanitizedData[key] = data[key];
+    }
+    return sanitizedData;
+  };
+  return <Edit transform={transform}>...</Edit>;
+};
+```
+
+As an alternative, you can clean up empty values at the input level, using [the `parse` prop](https://marmelab.com/ra-core/useinput/#parse).
+
+## Prefilling the Form
+
+You sometimes need to pre-populate the form changes to a record. For instance, to revert a record to a previous version, or to make some changes while letting users modify others fields as well.
+
+By default, the `<Edit>` view starts with the current `record`. However, if the `location` object (injected by [react-router-dom](https://reactrouter.com/6.28.0/start/concepts#locations)) contains a `record` in its `state`, the `<Edit>` view uses that `record` to prefill the form.
+
+That means that if you want to create a link to an edition view, modifying immediately _some_ values, all you have to do is to set the `state` prop of the `<EditButton>`:
+
+```tsx
+import * as React from "react";
+import { EditButton, DataTable, List } from "@/components/admin";
+
+const ApproveButton = () => (
+  <EditButton state={{ record: { status: "approved" } }} />
+);
+
+export default PostList = () => (
+  <List>
+    <DataTable>
+      ...
+      <DataTable.Col>
+        <ApproveButton />
+      </DataTable.Col>
+    </DataTable>
+  </List>
+);
+```
+
+:::tip
+The `<Edit>` component also watches the "source" parameter of `location.search` (the query string in the URL) in addition to `location.state` (a cross-page message hidden in the router memory). So the `ApproveButton` could also be written as:
+
+```tsx
+import { EditButton } from "@/components/admin";
+
+const ApproveButton = () => (
+  <EditButton
+    to={{
+      search: `?source=${JSON.stringify({ status: "approved" })}`,
+    }}
+  />
+);
+```
+
+:::
+
+Should you use the location `state` or the location `search`? The latter modifies the URL, so it's only necessary if you want to build cross-application links (e.g. from one admin to the other). In general, using the location `state` is a safe bet.
+
+## Linking Two Inputs
+
+Edition forms often contain linked inputs, e.g. country and city (the choices of the latter depending on the value of the former).
+
+Shadmin relies on [react-hook-form](https://react-hook-form.com/) for form handling. You can grab the current form values using react-hook-form's [useWatch](https://react-hook-form.com/docs/usewatch) hook.
+
+```tsx
+import { Edit, SimpleForm, SelectInput } from "@/components/admin";
+import { useWatch } from "react-hook-form";
+
+const countries = ["USA", "UK", "France"];
+const cities = {
+  USA: ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix"],
+  UK: ["London", "Birmingham", "Glasgow", "Liverpool", "Bristol"],
+  France: ["Paris", "Marseille", "Lyon", "Toulouse", "Nice"],
+};
+const toChoices = (items) => items.map((item) => ({ id: item, name: item }));
+
+const CityInput = () => {
+  const country = useWatch({ name: "country" });
+  return (
+    <SelectInput
+      choices={country ? toChoices(cities[country]) : []}
+      source="cities"
+    />
+  );
+};
+
+const OrderEdit = () => (
+  <Edit>
+    <SimpleForm>
+      <SelectInput source="country" choices={toChoices(countries)} />
+      <CityInput />
+    </SimpleForm>
+  </Edit>
+);
+
+export default OrderEdit;
+```
+
+:::tip
+If you'd like to avoid creating an intermediate component like `<CityInput>`, or are using an `<ArrayInput>`, you can use the [`<FormDataConsumer>`](https://marmelab.com/react-admin/Inputs.html#linking-two-inputs) component as an alternative.
+:::
+
+## Controlled Mode
+
+`<Edit>` deduces the resource and the record id from the URL. This is fine for an edition page, but if you need to let users edit records from another page, you probably want to define the edit parameters yourself.
+
+In that case, use the `resource` and `id` props to set the edit parameters regardless of the URL.
+
+```tsx
+import { Edit, SimpleForm, TextInput, SelectInput } from "@/components/admin";
+
+export const BookEdit = ({ id }) => (
+  <Edit resource="books" id={id} redirect={false}>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="author" />
+      <SelectInput
+        source="availability"
+        choices={[
+          { id: "in_stock", name: "In stock" },
+          { id: "out_of_stock", name: "Out of stock" },
+          { id: "out_of_print", name: "Out of print" },
+        ]}
+      />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+:::tip
+You probably also want to customize [the `redirect` prop](#redirection-after-submission) if you embed an `<Edit>` component in another page.
+:::
+
+## Headless Version
+
+Besides fetching a record and preparing a save handler, `<Edit>` renders the default edition page layout (title, actions, a Material UI `<Card>`) and its children. If you need a custom edition layout, you may prefer [the `<EditBase>` component](https://marmelab.com/ra-core/editbase/), which only renders its children in an [`EditContext`](https://marmelab.com/ra-core/useeditcontext/).
+
+```tsx
+import { EditBase } from "ra-core";
+import { SelectInput, SimpleForm, TextInput } from "@/components/admin";
+import { Card, CardContent } from "@/commponents/ui";
+
+export const BookEdit = () => (
+  <EditBase>
+    <h1>Book Edition</h1>
+    <Card>
+      <CardContent>
+        <SimpleForm>
+          <TextInput source="title" />
+          <TextInput source="author" />
+          <SelectInput
+            source="availability"
+            choices={[
+              { id: "in_stock", name: "In stock" },
+              { id: "out_of_stock", name: "Out of stock" },
+              { id: "out_of_print", name: "Out of print" },
+            ]}
+          />
+        </SimpleForm>
+      </CardContent>
+    </Card>
+  </EditBase>
+);
+```
+
+In the previous example, `<SimpleForm>` grabs the record and the save handler from the `EditContext`.
+
+If you don't need the `EditContext`, you can use [the `useEditController` hook](https://marmelab.com/ra-core/useeditcontroller/), which does the same data fetching as `<EditBase>` but lets you render the content.
+
+```tsx
+import { useEditController } from "ra-core";
+import { SelectInput, SimpleForm, TextInput } from "@/components/admin";
+import { Card, CardContent } from "@/components/ui";
+
+export const BookEdit = () => {
+  const { record, save } = useEditController();
+  return (
+    <>
+      <h1>Edit book {record?.title}</h1>
+      <Card>
+        <CardContent>
+          <SimpleForm record={record} onSubmit={(values) => save(values)}>
+            <TextInput source="title" />
+            <TextInput source="author" />
+            <SelectInput
+              source="availability"
+              choices={[
+                { id: "in_stock", name: "In stock" },
+                { id: "out_of_stock", name: "Out of stock" },
+                { id: "out_of_print", name: "Out of print" },
+              ]}
+            />
+          </SimpleForm>
+        </CardContent>
+      </Card>
+    </>
+  );
+};
+```
