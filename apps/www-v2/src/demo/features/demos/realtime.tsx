@@ -15,6 +15,8 @@ import {
   realtimeDataProvider,
 } from "shadmin/components/realtime";
 import { Button } from "shadmin/components/ui/button";
+import { authProvider } from "../../data/auth-provider";
+import { i18nProvider } from "../../data/i18n-provider";
 import { localStorageDataProvider } from "../realtime-data/local-storage-data-provider";
 import { realtimeSeed } from "../realtime-data/seed";
 
@@ -71,7 +73,14 @@ function PostControls() {
  */
 export default function RealtimeDemo() {
   return (
-    <CoreAdminContext dataProvider={liveDataProvider}>
+    // i18nProvider + authProvider must be passed explicitly: this nested
+    // CoreAdminContext shadows DemoLayout's, so without them useTranslate has no
+    // catalog and the list renders raw keys (ra.page.list, resources.posts.*).
+    <CoreAdminContext
+      dataProvider={liveDataProvider}
+      i18nProvider={i18nProvider}
+      authProvider={authProvider}
+    >
       <ResourceContextProvider value="posts">
         <div className="space-y-4">
           <div className="rounded-lg border bg-muted/30 p-3 text-sm text-muted-foreground">
