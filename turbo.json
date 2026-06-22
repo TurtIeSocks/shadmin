@@ -13,7 +13,9 @@
       "outputs": ["dist/r/**"]
     },
     "typecheck": {},
-    "test": {},
+    "test": {
+      "dependsOn": ["^build"]
+    },
     "check-coverage": {
       "inputs": [
         "$TURBO_DEFAULT$",
