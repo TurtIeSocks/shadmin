@@ -6,6 +6,7 @@ import {
   BookOpen,
   LayoutDashboard,
   Boxes,
+  Sparkles,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -31,16 +32,18 @@ const SECTIONS: Section[] = [
   { label: "Docs", href: "/docs", icon: BookOpen },
   { label: "Demo", href: "/demo", icon: LayoutDashboard },
   { label: "Components", href: "/demo/components", icon: Boxes },
+  { label: "Features", href: "/demo/features", icon: Sparkles },
 ];
 
 function getActiveSection(pathname: string): Section {
-  // Components lives under both /demo/components (gallery) and /docs/components
-  // — match either before the generic /demo and /docs section checks.
+  // Components and Features are /demo subpaths — match them (and the
+  // /docs/components mirror) before the generic /demo and /docs checks.
   if (
     pathname.startsWith("/demo/components") ||
     pathname.startsWith("/docs/components")
   )
     return SECTIONS[3];
+  if (pathname.startsWith("/demo/features")) return SECTIONS[4];
   if (pathname.startsWith("/docs")) return SECTIONS[1];
   if (pathname.startsWith("/demo")) return SECTIONS[2];
   return SECTIONS[0];
