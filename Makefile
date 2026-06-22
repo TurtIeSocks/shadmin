@@ -10,17 +10,12 @@ install-browsers: ## Install Playwright browsers
 	@pnpm --filter shadmin exec playwright install --with-deps chromium
 
 run:
-	pnpm exec turbo run dev --filter=shadmin-demo
+	pnpm exec turbo run dev --filter=website
 
 start: run
 
 lint: ## Run linter
 	pnpm run lint
-
-build-demo: ## Build the demo
-	pnpm exec turbo run build --filter=shadmin-demo
-	rm -rf ./public/demo
-	cp -r apps/demo/dist ./public/demo
 
 build-registry: ## Build the UI registry
 	pnpm exec turbo run registry:build --filter=shadmin
@@ -49,19 +44,18 @@ storybook: ## Start the storybook
 	pnpm --filter shadmin run storybook
 
 run-website: ## Run the website in development mode
-	pnpm exec turbo run dev --filter=shadmin-website
+	pnpm exec turbo run dev --filter=website
 
 start-website: run-website
 
-build-website: ## Build the website (incl. /docs SPA) -> ./public
-	pnpm exec turbo run build --filter=shadmin-website
-	rm -rf ./public/assets ./public/img ./public/index.html ./public/docs
-	cp -r apps/website/dist/* ./public/
-	# SPA deep-link fallback for GitHub Pages: serve the website shell on any
-	# unknown path (e.g. /docs/array-field) so client routing resolves it.
-	cp ./public/index.html ./public/404.html
+build-website: ## Build the unified site (landing + /docs + /demo SPA) -> ./public
+	pnpm exec turbo run build --filter=website
+	rm -rf ./public/assets ./public/img ./public/docs ./public/index.html ./public/404.html ./public/__spa-fallback.html
+	# react-router build (ssr:false) emits the static site to build/client,
+	# including __spa-fallback.html + 404.html for GitHub Pages deep-link refreshes.
+	cp -r apps/website/build/client/* ./public/
 
-build: build-website build-demo build-registry ## Build all components
+build: build-website build-registry ## Build all components
 
 typecheck: ## Run TypeScript type checking
 	@pnpm exec turbo run typecheck
