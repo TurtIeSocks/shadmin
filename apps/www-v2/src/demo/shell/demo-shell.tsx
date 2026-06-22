@@ -1,4 +1,5 @@
 import { Outlet } from "react-router";
+import { DocSearch } from "@/components/doc-search";
 import { SiteShell } from "@/components/site-shell/site-shell";
 import { SiteSidebar } from "@/components/site-shell/site-sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -23,7 +24,12 @@ export default function DemoShell() {
           <DemoSidebarContent />
         </SiteSidebar>
       }
-      actions={<ThemeToggle />}
+      actions={
+        <>
+          <DocSearch />
+          <ThemeToggle />
+        </>
+      }
     >
       <Outlet />
     </SiteShell>

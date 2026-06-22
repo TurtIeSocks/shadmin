@@ -1,4 +1,9 @@
-import { CornerDownLeft, Search } from "lucide-react";
+import {
+  CornerDownLeft,
+  LayoutDashboard,
+  Search,
+  Sparkles,
+} from "lucide-react";
 import { type ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import {
@@ -20,10 +25,14 @@ import { searchIndex } from "@/docs/search-index";
 const EASE = "cubic-bezier(0.32,0.72,0,1)";
 
 // searchIndex carries the section *title*; SECTION_META is keyed by *dir*, so
-// resolve the icon through navTree once.
-const iconByTitle = new Map(
-  navTree.map((s) => [s.title, SECTION_META[s.dir]?.icon ?? fallbackIcon]),
-);
+// resolve the icon through navTree once. The demo zones get their own icons.
+const iconByTitle = new Map<string, typeof fallbackIcon>([
+  ...navTree.map(
+    (s) => [s.title, SECTION_META[s.dir]?.icon ?? fallbackIcon] as const,
+  ),
+  ["Demo · App", LayoutDashboard],
+  ["Demo · Features", Sparkles],
+]);
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
@@ -63,9 +72,9 @@ export function DocSearch() {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
-  const go = (slug: string) => {
+  const go = (path: string) => {
     setOpen(false);
-    navigate(`/docs/${slug}`);
+    navigate(path);
   };
 
   return (
@@ -136,12 +145,12 @@ export function DocSearch() {
                 const Icon = iconByTitle.get(e.section) ?? fallbackIcon;
                 return (
                   <CommandItem
-                    key={e.slug}
-                    // title first (so substring scoring ranks it) + slug for a
+                    key={e.path}
+                    // title first (so substring scoring ranks it) + path for a
                     // unique value; section/description as secondary matches.
-                    value={`${e.title} ${e.slug}`}
+                    value={`${e.title} ${e.path}`}
                     keywords={[e.section, e.description]}
-                    onSelect={() => go(e.slug)}
+                    onSelect={() => go(e.path)}
                     style={{ transitionTimingFunction: EASE }}
                     className="group/item gap-3 rounded-lg px-2.5 py-2 transition-colors duration-200 data-[selected=true]:bg-primary/10"
                   >
