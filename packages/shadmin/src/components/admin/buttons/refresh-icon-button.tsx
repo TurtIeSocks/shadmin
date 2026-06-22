@@ -6,7 +6,6 @@ import { useRefresh, useTranslate } from "shadmin-core";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
@@ -61,25 +60,23 @@ function RefreshIconButton(props: RefreshIconButtonProps) {
   );
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            ref={ref}
-            variant="ghost"
-            size="icon"
-            type="button"
-            aria-label={translatedLabel}
-            className={className}
-            onClick={handleClick}
-            {...rest}
-          >
-            {icon}
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>{translatedLabel}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          ref={ref}
+          variant="ghost"
+          size="icon"
+          type="button"
+          aria-label={translatedLabel}
+          className={className}
+          onClick={handleClick}
+          {...rest}
+        >
+          {icon}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{translatedLabel}</TooltipContent>
+    </Tooltip>
   );
 }
 

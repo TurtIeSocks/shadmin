@@ -6,7 +6,6 @@ import type {
   SupportCreateSuggestionOptions,
 } from "shadmin-core";
 import {
-  FieldTitle,
   useChoices,
   useChoicesContext,
   useGetRecordRepresentation,
@@ -15,6 +14,7 @@ import {
   useTranslate,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
 import { Badge } from "@/components/ui/badge";
@@ -202,7 +202,7 @@ function SelectArrayInput(props: SelectArrayInputProps) {
       >
         {label !== false && label !== "" && (
           <FieldLabel htmlFor={id}>
-            <FieldTitle
+            <FieldLabelText
               label={label}
               source={source}
               resource={resourceProp}
@@ -244,7 +244,7 @@ function SelectArrayInput(props: SelectArrayInputProps) {
     >
       {label !== false && label !== "" && (
         <FieldLabel htmlFor={id} {...InputLabelProps}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resourceProp}

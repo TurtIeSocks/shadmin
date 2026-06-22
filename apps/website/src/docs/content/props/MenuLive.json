@@ -1,0 +1,11 @@
+{
+  "name": "MenuLive",
+  "props": [
+    {
+      "name": "items",
+      "type": "readonly MenuLiveItemLinkProps[]",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

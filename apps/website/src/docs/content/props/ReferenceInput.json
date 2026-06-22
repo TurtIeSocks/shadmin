@@ -1,0 +1,17 @@
+{
+  "name": "ReferenceInput",
+  "props": [
+    {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Component to display when offline and the request is pending or has stale placeholder data."
+    },
+    {
+      "name": "validate",
+      "type": "undefined",
+      "optional": true,
+      "comment": "Call validate on the child component instead"
+    }
+  ]
+}

@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import { useResourceContext, useRecordContext } from "shadmin-core";
 import { useQueryClient } from "@tanstack/react-query";
 import { Show, type ShowProps } from "@/components/admin/views/show";
-import { useSubscribeToRecord } from "./hooks/use-subscribe-to-record";
-import { useOnReconnect } from "./hooks/use-on-reconnect";
+import { useSubscribeToRecord } from "shadmin-core";
+import { useOnReconnect } from "shadmin-core";
 
 export function ShowLive(props: ShowProps & { children?: ReactNode }) {
   return (

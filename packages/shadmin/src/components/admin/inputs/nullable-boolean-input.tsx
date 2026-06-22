@@ -1,11 +1,11 @@
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useInput,
   useResourceContext,
   useTranslate,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import {
   Select,
@@ -115,7 +115,7 @@ function NullableBooleanInput(props: NullableBooleanInputProps) {
     >
       {label !== false && label !== "" && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={sourceProp}
             resource={resource}

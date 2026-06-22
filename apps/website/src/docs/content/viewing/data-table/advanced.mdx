@@ -1,0 +1,272 @@
+---
+title: "Advanced"
+description: "Bulk actions, access control, TypeScript, and custom DataTables."
+---
+
+## Bulk Actions
+
+Bulk action buttons appear when users select one or several rows. Clicking on a bulk action button affects all the selected records. This is useful for actions like mass deletion or mass edition.
+
+You can disable this feature by setting the `bulkActionButtons` prop to `false`:
+
+```tsx
+import { DataTable, List } from "@/components/admin";
+
+export const PostList = () => (
+  <List>
+    <DataTable bulkActionButtons={false}>...</DataTable>
+  </List>
+);
+```
+
+By default, all DataTables have a two bulk action buttons: bulk export and bulk delete. You can add other bulk action buttons by passing a custom element as the `<DataTable bulkActionButtons>` prop:
+
+```tsx
+import {
+  List,
+  DataTable,
+  BulkDeleteButton,
+  BulkExportButton,
+} from "@/components/admin";
+
+const PostBulkActionButtons = () => (
+  <>
+    <ResetViewsButton />
+    <BulkDeleteButton />
+    <BulkExportButton />
+  </>
+);
+
+export const PostList = () => (
+  <List>
+    <DataTable bulkActionButtons={<PostBulkActionButtons />}>...</DataTable>
+  </List>
+);
+```
+
+Shadmin provides two bulk action buttons that you can use in data tables:
+
+- [`<BulkDeleteButton>`](/docs/editing/bulk-delete-button) (enabled by default)
+- [`<BulkExportButton>`](/docs/editing/bulk-export-button) to export only the selection
+
+You can write a custom bulk action button components using the [`useListContext`](https://marmelab.com/ra-core/uselistcontext/.md) hook to get the following data and callbacks:
+
+- `selectedIds`: the identifiers of the currently selected items.
+- `onUnselectItems`: a callback to empty the selection.
+- `resource`: the currently displayed resource (e.g., `posts`, `comments`, etc.)
+- `filterValues`: the filter values. This can be useful if you want to apply your action on all items matching the filter.
+
+Here is an example leveraging the `useUpdateMany` hook, which sets the `views` property of all posts to `0`:
+
+```tsx
+import {
+  useListContext,
+  useUpdateMany,
+  useRefresh,
+  useNotify,
+  useUnselectAll,
+} from "ra-core";
+import { Button } from "@/components/admin";
+import { EyeOff } from "lucide-react";
+
+const ResetViewsButton = () => {
+  const { selectedIds } = useListContext();
+  const refresh = useRefresh();
+  const notify = useNotify();
+  const unselectAll = useUnselectAll("posts");
+  const [updateMany, { isPending }] = useUpdateMany();
+  const handleClick = () => {
+    updateMany(
+      "posts",
+      { ids: selectedIds, data: { views: 0 } },
+      {
+        onSuccess: () => {
+          notify("Posts updated", { undoable: true });
+          unselectAll();
+        },
+        onError: () => {
+          notify("Error: posts not updated", { type: "error" });
+          refresh();
+        },
+        mutationMode: "undoable",
+      },
+    );
+  };
+
+  return (
+    <Button onClick={handleClick} disabled={isPending}>
+      <EyeOff /> Reset views
+    </Button>
+  );
+};
+```
+
+:::tip
+Users can select a range of rows by pressing the shift key while clicking a row checkbox.
+:::
+
+## Access Control
+
+If you need to hide some columns based on a set of permissions, wrap these columns with `<CanAccess>`.
+
+```tsx
+import { CanAccess } from "ra-core";
+
+const ProductList = () => (
+  <List>
+    <DataTable>
+      <CanAccess action="read" resource="products.thumbnail">
+        <DataTable.Col source="thumbnail" field={ImageField} />
+      </CanAccess>
+      <CanAccess action="read" resource="products.reference">
+        <DataTable.Col source="reference" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.category_id">
+        <DataTable.Col source="category_id">
+          <ReferenceField source="category_id" reference="categories" />
+        </DataTable.Col>
+      </CanAccess>
+      <CanAccess action="read" resource="products.width">
+        <DataTable.NumberCol source="width" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.height">
+        <DataTable.NumberCol source="height" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.price">
+        <DataTable.NumberCol source="price" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.description">
+        <DataTable.Col source="description" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.stock">
+        <DataTable.NumberCol source="stock" />
+      </CanAccess>
+      <CanAccess action="read" resource="products.sales">
+        <DataTable.NumberCol source="sales" />
+      </CanAccess>
+    </DataTable>
+  </List>
+);
+```
+
+## Typescript
+
+`<DataTable.Col>` and `<DataTable.NumberCol>` are generic components, You can pass a type parameter to get hints for the `source` prop and type safety for the `record` argument of the `render` and `rowSx` functions.
+
+The most convenient way to benefit from this capability is to alias column components for your resource:
+
+```tsx
+import { List, DataTable, ReferenceField } from "@/components/admin";
+import { type Review } from "../types";
+
+const Column = DataTable.Col<Review>;
+
+const ReviewList = () => (
+  <List>
+    <DataTable>
+      <Column source="date" field={DateField} />
+      <Column source="customer_id">
+        <ReferenceField source="customer_id" reference="customers" />
+      </Column>
+      <Column source="product_id">
+        <ReferenceField source="product_id" reference="products" />
+      </Column>
+      <Column source="rating" field={StarRatingField} />
+      <Column
+        source="comment"
+        render={(record) => record.comment.substr(0, 10) + "..."}
+      />
+      <Column source="status" />
+    </DataTable>
+  </List>
+);
+```
+
+`<DataTable>` is also a generic component. You can pass a type parameter to get autocompletion and type safety for its props.
+
+```tsx
+import { List, DataTable } from "@/components/admin";
+import { type Review } from "../types";
+
+const ReviewList = () => (
+  <List>
+    <DataTable<Review>
+      // TypeScript knows that record type is Review
+      rowSx={(record) => ({
+        backgroundColor: record.status === "approved" ? "green" : "red",
+      })}
+    >
+      ...
+    </DataTable>
+  </List>
+);
+```
+
+## Composing a custom DataTable
+
+For advanced use cases, `<DataTable>`'s internal building blocks are exported individually so you can assemble a fully custom layout while reusing the standard cells, headers, and selection logic.
+
+| Export                    | Role                                                                                                              |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [`DataTableRoot`](#)      | Wrapper element with the standard rounded border.                                                                 |
+| [`DataTableHead`](#)      | Header row, renders column headers and a "select all" checkbox when bulk actions are enabled.                     |
+| [`DataTableBody`](#)      | Body, renders one `<DataTableRow>` per record in the current page.                                                |
+| [`DataTableRow`](#)       | A single row. Wires up row click navigation and renders a `<SelectRowCheckbox>` when bulk actions are enabled.    |
+| [`DataTableHeadCell`](#)  | A header cell. Renders the column label and sort button.                                                          |
+| [`DataTableCell`](#)      | A body cell. Renders the column value via `children`, `render`, `field`, or `source`.                             |
+| [`DataTableEmpty`](#)     | Default placeholder shown when there are no records.                                                              |
+| [`DataTableLoading`](#)   | Skeleton placeholder shown while data is loading. Waits 1 second before appearing to avoid flashes on fast loads. |
+| [`SelectPageCheckbox`](#) | Checkbox in the header that selects/deselects all rows on the current page.                                       |
+| [`SelectRowCheckbox`](#)  | Checkbox in a row that selects/deselects that row.                                                                |
+
+Here is a small example showing how to assemble a custom layout using these granular exports:
+
+```tsx
+import {
+  DataTableBody,
+  DataTableColumn,
+  DataTableHead,
+  DataTableRoot,
+  List,
+} from "@/components/admin";
+import { DataTableRenderContext } from "ra-core";
+import { Table } from "@/components/ui/table";
+
+const columns = (
+  <>
+    <DataTableColumn source="id" />
+    <DataTableColumn source="title" />
+    <DataTableColumn label="Author" source="author.name" />
+    <DataTableColumn source="year" />
+  </>
+);
+
+const CustomDataTable = () => (
+  <DataTableRoot>
+    <Table>
+      <DataTableRenderContext.Provider value="header">
+        <DataTableHead>{columns}</DataTableHead>
+      </DataTableRenderContext.Provider>
+      <DataTableRenderContext.Provider value="data">
+        <DataTableBody>{columns}</DataTableBody>
+      </DataTableRenderContext.Provider>
+    </Table>
+  </DataTableRoot>
+);
+
+const BookList = () => (
+  <List>
+    <CustomDataTable />
+  </List>
+);
+```
+
+`<DataTableLoading>` can be used to provide a custom skeleton screen while data is loading:
+
+```tsx
+import { DataTableLoading } from "@/components/admin";
+
+const MyLoadingState = () => (
+  <DataTableLoading nbChildren={4} nbFakeLines={5} hasBulkActions />
+);
+```

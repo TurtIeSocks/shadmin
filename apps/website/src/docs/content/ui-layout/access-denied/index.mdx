@@ -1,0 +1,59 @@
+---
+title: "AccessDenied"
+description: "Full-page error screen displayed when the current user does not have permission to access a resource. Renders a centered lock icon, a primary heading, and a secondary message."
+registry: "access-denied"
+---
+
+## Usage
+
+```tsx
+import { AccessDenied } from "@/components/admin/access-denied";
+
+const Forbidden = () => <AccessDenied />;
+```
+
+You can customize all texts and the icon:
+
+```tsx
+import { ShieldOff } from "lucide-react";
+import { AccessDenied } from "@/components/admin/access-denied";
+
+const CustomForbidden = () => (
+  <AccessDenied
+    icon={<ShieldOff className="w-32 h-32" />}
+    textPrimary="Not allowed"
+    textSecondary="You do not have access to this resource."
+  />
+);
+```
+
+The text props accept either i18n keys or raw strings — `useTranslate()` is called with a fallback that displays the value as-is when no matching translation exists.
+
+## Props
+
+<PropsTable name="AccessDenied" />
+
+## `icon`
+
+Icon shown above the heading. Defaults to a 32×32 `<Lock />` from `lucide-react`. Pass any React node — typically another `lucide-react` icon — to convey a different access-control context (server outage, locked record, paywall).
+
+```tsx
+import { ShieldOff } from "lucide-react";
+
+<AccessDenied icon={<ShieldOff className="size-32" />} />;
+```
+
+## `textPrimary` and `textSecondary`
+
+Heading and body text. Both default to i18n keys (`ra.page.access_denied`, `ra.message.access_denied`) that `useTranslate()` resolves. Pass a raw string if you do not want to register a translation:
+
+```tsx
+<AccessDenied
+  textPrimary="Not allowed"
+  textSecondary="You do not have access to this resource."
+/>
+```
+
+## `className`
+
+Extra Tailwind / CSS class applied to the wrapping element. Merges with the component's default centered-layout classes via `cn()`.

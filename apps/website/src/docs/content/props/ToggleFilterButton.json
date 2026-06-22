@@ -1,0 +1,29 @@
+{
+  "name": "ToggleFilterButton",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "label",
+      "type": "string | ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "size",
+      "type": "\"default\" | \"sm\" | \"lg\" | \"icon\" | null",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "value",
+      "type": "UnknownRecord",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

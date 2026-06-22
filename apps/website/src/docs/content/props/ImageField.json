@@ -1,0 +1,77 @@
+{
+  "name": "ImageField",
+  "props": [
+    {
+      "name": "cellClassName",
+      "type": "string",
+      "optional": true,
+      "comment": "A class name to apply to the cell element when used inside <DataTable>."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "A class name to apply to the root div element"
+    },
+    {
+      "name": "defaultValue",
+      "type": "unknown",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "The component to display when the field value is empty. Defaults to empty string."
+    },
+    {
+      "name": "headerClassName",
+      "type": "string",
+      "optional": true,
+      "comment": "A class name to apply to the header cell element when used inside <DataTable>."
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Label to use as column header when using <DataTable> or <SimpleShowLayout>.\nDefaults to the capitalized field name. Set to false to disable the label."
+    },
+    {
+      "name": "sortable",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Set it to false to disable the click handler on the column header when used inside <DataTable>."
+    },
+    {
+      "name": "sortBy",
+      "type": "string",
+      "optional": true,
+      "comment": "The field to use for sorting when users click this column head, if sortable."
+    },
+    {
+      "name": "sortByOrder",
+      "type": "SortOrder",
+      "optional": true,
+      "comment": "The order used for sorting when users click this column head, if sortable."
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "optional": true,
+      "comment": "The text alignment for the cell content, when used inside <DataTable>."
+    },
+    {
+      "name": "title",
+      "type": "HintedString<ExtractRecordPaths<RecordType>>",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

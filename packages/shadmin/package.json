@@ -3,7 +3,16 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "files": ["dist"],
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./components/*": { "types": "./dist/components/*.d.ts", "import": "./dist/components/*.js" },
+    "./hooks/*": { "types": "./dist/hooks/*.d.ts", "import": "./dist/hooks/*.js" },
+    "./lib/*": { "types": "./dist/lib/*.d.ts", "import": "./dist/lib/*.js" },
+    "./styles/*": "./dist/styles/*"
+  },
   "scripts": {
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json --resolve-full-paths && node scripts/copy-styles.mjs",
     "registry:generate": "node ./scripts/generate-registry.mjs",
     "registry:build": "node ./scripts/build-registry.mjs",
     "storybook": "storybook dev -p 6006",
@@ -85,7 +94,7 @@
     "ra-i18n-polyglot": "^5.14.0",
     "ra-language-english": "^5.14.0",
     "radix-ui": "^1.4.3",
-    "react-day-picker": "^10.0.0",
+    "react-day-picker": "^10.0.1",
     "react-dropzone": "^14.3.8",
     "react-hook-form": "^7.71.1",
     "react-leaflet": "^5.0.0",
@@ -134,6 +143,7 @@
     "typescript": "~5.7.2",
     "vite": "^8.0.6",
     "vitest": "^3.2.4",
-    "vitest-browser-react": "^1.0.1"
+    "vitest-browser-react": "^1.0.1",
+    "tsc-alias": "^1.8.10"
   }
 }

@@ -1,11 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
-import { PointInputBasic } from "../leaflet-shapes.stories";
+
+import { Basic } from "./point-input.stories";
 
 describe("<PointInput />", () => {
-  it("renders the labeled map input", async () => {
-    const screen = render(<PointInputBasic />);
+  it("renders the labeled map input with a Leaflet container", async () => {
+    const screen = render(<Basic />);
     await expect.element(screen.getByText("Pick a point")).toBeInTheDocument();
-    await expect.element(screen.getByTestId("point-input")).toBeInTheDocument();
+    const wrapper = await screen.getByTestId("point-input");
+    await expect.element(wrapper).toBeInTheDocument();
+    expect(
+      wrapper.element().querySelector(".leaflet-container"),
+    ).not.toBeNull();
   });
 });

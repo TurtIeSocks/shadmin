@@ -1,13 +1,13 @@
 import * as React from "react";
 import type { InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   isRequired,
   useSourceContext,
   sanitizeInputRestProps,
   ArrayInputBase,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { useFormContext, useFormState } from "react-hook-form";
 
 import { cn } from "@/lib/utils";
@@ -91,7 +91,7 @@ function ArrayInput(props: ArrayInputProps) {
       {...sanitizeInputRestProps(rest)}
     >
       <FieldLabel className="text-muted-foreground text-sm">
-        <FieldTitle
+        <FieldLabelText
           label={label}
           source={arraySource}
           resource={resourceFromProps}

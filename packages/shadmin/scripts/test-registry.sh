@@ -203,8 +203,9 @@ setup_temp_app() {
   cp ./components.json "$target_dir"
   cp ./package-test.json "$target_dir/package.json"
 
-  # generic scaffold files from the demo app (no monorepo content in these)
-  cp ../../apps/demo/index.html ../../apps/demo/tsconfig.json ../../apps/demo/tsconfig.node.json "$target_dir"
+  # generic Vite scaffold files (no monorepo content) — kept as fixtures so the
+  # registry test doesn't depend on any app being present in the workspace.
+  cp ./scripts/registry-test-fixtures/index.html ./scripts/registry-test-fixtures/tsconfig.json ./scripts/registry-test-fixtures/tsconfig.node.json "$target_dir"
 
   # monorepo-shaped configs get standalone replacements instead
   write_standalone_configs "$target_dir"
@@ -218,7 +219,7 @@ setup_temp_app() {
   # the styles dir (themes + glass.css) comes too so theme/style imports resolve.
   cp ./src/index.css ./src/vite-env.d.ts "$target_dir/src"
   cp -R ./src/styles "$target_dir/src/styles"
-  cp ../../apps/demo/src/main.tsx "$target_dir/src"
+  cp ./scripts/registry-test-fixtures/src/main.tsx "$target_dir/src"
   write_app_sources "$target_dir" "$app_variant"
 }
 
@@ -239,8 +240,29 @@ pnpm install
 echo "Configuring custom registry alias for namespaced dependencies"
 node -e "const fs = require('fs'); const path = './components.json'; const json = JSON.parse(fs.readFileSync(path, 'utf8')); json.registries = { ...(json.registries || {}), '@shadmin': 'http://localhost:8080/r/{name}.json' }; fs.writeFileSync(path, JSON.stringify(json, null, 2));"
 
+echo "Simulating a BYO consumer: install STOCK dialog/popover/tooltip first"
+pnpm dlx shadcn@4.11.0 add -y dialog popover tooltip
+
 echo "Adding registry components"
-pnpm dlx shadcn@4.11.0 add -y http://localhost:8080/r/admin.json
+# --overwrite avoids interactive overwrite prompts when stock registryDependencies
+# (dialog/popover/tooltip) already exist. The BYO assertion below checks STRUCTURE,
+# not byte-identity (the live shadcn registry isn't byte-stable): it confirms the
+# installed files carry no shadmin customization marker (a bare `*Primitive` export),
+# i.e. admin left the consumer's primitives stock.
+pnpm dlx shadcn@4.11.0 add -y --overwrite http://localhost:8080/r/admin.json
+
+echo "Verifying installed dialog/popover/tooltip are STOCK (no shadmin customization marker)"
+for f in dialog popover tooltip; do
+  # Our old custom versions re-exported the raw primitive (a bare `XPrimitive,` line in
+  # the export block); stock shadcn never does. Its presence means admin shipped a custom
+  # override instead of letting the consumer keep stock.
+  if grep -Eq '^[[:space:]]*(Dialog|Popover|Tooltip)Primitive,?[[:space:]]*$' "src/components/ui/$f.tsx"; then
+    echo "FAIL: src/components/ui/$f.tsx re-exports a *Primitive — @shadmin shipped a custom override, not stock"; exit 1;
+  fi
+done
+test -f src/components/ui/primitives.ts \
+  || { echo "MISSING src/components/ui/primitives.ts"; exit 1; }
+echo "BYO assertions passed — installed primitives are stock; @shadmin/primitives seam present"
 
 echo "Building generated admin app"
 pnpm run build
@@ -258,6 +280,13 @@ test -f src/styles/glass.css || { echo "MISSING glass.css"; exit 1; }
 
 echo "Rebuilding admin app with style-glass installed"
 pnpm run build
+
+# NOTE: the `realtime` block is intentionally NOT installed here. Its headless
+# logic (hooks/transports) now lives in the `shadmin-core` workspace package,
+# which is private/unpublished, so a registry consumer cannot resolve it yet —
+# realtime is monorepo-internal until shadmin-core is published (then flip the
+# granularize shadmin-core->ra-core mapping). Do not add a realtime install
+# step until then; it would fail on the unresolvable shadmin-core dependency.
 
 cd ..
 

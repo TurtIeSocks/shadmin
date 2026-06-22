@@ -1,0 +1,207 @@
+---
+title: "Advanced"
+description: "Access control, live updates, and record locking."
+---
+
+## Access Control
+
+If your `authProvider` implements [Access Control](/docs/app-config/security#access-control), `<Edit>` will only render if the user has the "edit" access to the related resource.
+
+For instance, for the `<PostEdit>`page below:
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+
+// Resource name is "posts"
+const PostEdit = () => (
+  <Edit>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="author" />
+      <TextInput source="published_at" />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+`<Edit>` will call `authProvider.canAccess()` using the following parameters:
+
+```tsx
+{ action: "edit", resource: "posts" }
+```
+
+Users without access will be redirected to the [Access Denied page](/docs/app-config/admin).
+
+:::note
+Access control is disabled when you use the `disableAuthentication` prop.
+:::
+
+## Live Updates
+
+Shadmin offers [Realtime features](./realtime-features) to automatically refresh the data on screen when it has been changed by another user.
+
+If you want to subscribe to live updates the record, you can rely on the [`useSubscribeToRecord`](https://marmelab.com/ra-core/usesubscribetorecord/) hook.
+
+As sample use case, let's show how to warn the user when the record they're editing has been updated by another user.
+
+![A notification alerting users that the record has changed inside an edit view](/docs/images/edit-live-update.png)
+
+:::note
+This feature requires a valid [Enterprise Edition](https://marmelab.com/ra-enterprise/) subscription.
+:::
+
+First, create an `EditLiveUpdate` component that uses the `useSubscribeToRecord` hook to subscribe to updates on the current record. When an update is received, it shows a notification with a "Refresh" button that refetches the record when clicked.
+
+```tsx
+// src/components/admin/edit-live-update.tsx
+
+import { useSubscribeToRecord } from "@react-admin/ra-core-ee";
+import { useCloseNotification, useEditContext, useNotify } from "ra-core";
+import { useCallback, useMemo, useRef } from "react";
+import { Button } from "./button";
+
+export function EditLiveUpdate() {
+  const hasNotifiedRef = useRef(false);
+  const notify = useNotify();
+
+  const { refetch } = useEditContext();
+
+  const notificationContent = useMemo(() => {
+    return (
+      <RecordUpdatedNotification
+        refetch={async () => {
+          await refetch();
+          hasNotifiedRef.current = false;
+        }}
+      />
+    );
+  }, [refetch]);
+
+  const onLiveUpdate = useCallback(() => {
+    if (hasNotifiedRef.current) {
+      return;
+    }
+
+    hasNotifiedRef.current = true;
+    notify(notificationContent, {
+      type: "warning",
+      autoHideDuration: null,
+    });
+  }, [notify, notificationContent]);
+
+  useSubscribeToRecord(onLiveUpdate);
+
+  return null;
+}
+
+function RecordUpdatedNotification({
+  refetch,
+}: RecordUpdatedNotificationProps) {
+  const close = useCloseNotification();
+  const handleClick = async () => {
+    await refetch();
+    close();
+  };
+
+  return (
+    <div className="h-6 inline-flex items-center">
+      <span>Record has been updated</span>
+      <Button
+        onClick={handleClick}
+        className="absolute top-50% right-4 h-6 px-2"
+      >
+        Refresh
+      </Button>
+    </div>
+  );
+}
+
+type RecordUpdatedNotificationProps = {
+  refetch(): Promise<void>;
+};
+```
+
+Then, add the `<EditLiveUpdate>` in your `<Edit>` children:
+
+```tsx
+import { Edit } from "@/components/admin/edit";
+import { EditLiveUpdate } from "@/components/admin/edit-live-update";
+
+const PostList = () => (
+  <Edit>
+    ...
+    <EditLiveUpdate />
+  </Edit>
+);
+```
+
+To trigger warning with `<EditLiveUpdate>` with the record changes, the API has to publish events containing at least the followings:
+
+```js
+{
+    topic : '/resource/{resource}/{id}',
+    event: {
+        type: 'updated',
+        payload: { ids: [{listOfRecordIdentifiers}]},
+    }
+}
+```
+
+## Locking Edition
+
+Shadmin offers [Content locking features](./realtime-features) to automatically place a lock on a record when a user is editing it, preventing other users from editing the same record concurrently.
+
+To avoid concurrent edition of the same record by multiple users, you can use [the `useLockOnCall` hook](https://marmelab.com/ra-core/uselockoncall/) inside your `<Edit>` view.
+
+:::note
+This feature requires a valid [Enterprise Edition](https://marmelab.com/ra-enterprise/) subscription.
+:::
+
+For example, the following form locks a ticket record when the user focuses on the message input. If another user has already locked the ticket, the form inputs are disabled:
+
+```tsx
+import { Form, useCreate, useGetIdentity, useRecordContext } from "ra-core";
+import { useGetLockLive, useLockOnCall } from "@react-admin/ra-core-ee";
+import { TextInput, SelectInput, SaveButton } from "@components/admin";
+
+export const NewMessageForm = () => {
+  const record = useRecordContext();
+
+  const { identity } = useGetIdentity();
+  const { data: lock } = useGetLockLive("tickets", { id: record.id });
+  const isLocked = lock && lock.identity !== identity?.id;
+
+  const [doLock] = useLockOnCall({ resource: "tickets" });
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <TextInput
+        source="message"
+        multiline
+        onFocus={doLock}
+        disabled={isLocked}
+      />
+      <SelectInput
+        source="status"
+        choices={statusChoices}
+        onFocus={doLock}
+        disabled={isLocked}
+      />
+      <SaveButton disabled={isLocked} />
+    </Form>
+  );
+};
+```
+
+Use it in your `<Edit>` view as follows:
+
+```tsx
+import { Edit } from "@/components/admin/edit";
+import { NewMessageForm } from "./NewMessageForm";
+
+const PostEdit = () => (
+  <Edit>
+    <NewMessageForm />
+  </Edit>
+);
+```

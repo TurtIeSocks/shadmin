@@ -4,7 +4,7 @@ import { render } from "vitest-browser-react";
 import { Basic as FilterListBasic } from "@/components/admin/list/filter-list.stories";
 import { Basic as FilterListItemBasic } from "@/components/admin/list/filter-list-item.stories";
 import { Basic as FilterListSectionBasic } from "@/components/admin/list/filter-list-section.stories";
-import { Basic as FilterLiveFormBasic } from "@/components/extras/filter-live-form.stories";
+import { Basic as FilterLiveFormBasic } from "@/components/admin/list/filter-live-form.stories";
 import { Basic as FilterLiveSearchBasic } from "@/components/admin/list/filter-live-search.stories";
 
 describe("<FilterList /> family", () => {

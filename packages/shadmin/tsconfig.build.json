@@ -1,0 +1,33 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "outDir": "dist",
+    "rootDir": "src",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "rewriteRelativeImportExtensions": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": false
+  },
+  "include": ["src"],
+  "exclude": [
+    "src/**/*.stories.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/test/**",
+    "src/examples/**",
+    "src/**/*-env.d.ts",
+    "src/components/admin/**",
+    "src/components/block-editor/**",
+    "src/components/csv-import/**",
+    "src/components/leaflet/**",
+    "src/components/mdx-editor/**",
+    "src/components/monaco/**",
+    "src/components/realtime/**",
+    "src/components/rich-text-input/**",
+    "src/components/supabase/**"
+  ]
+}

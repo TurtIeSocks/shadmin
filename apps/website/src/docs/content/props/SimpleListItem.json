@@ -1,0 +1,41 @@
+{
+  "name": "SimpleListItem",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": "Content rendered inside the item. Typically the inner row markup\nproduced by `<SimpleList>`."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "linkType",
+      "type": "false | \"show\" | \"edit\"",
+      "optional": true,
+      "comment": "Where to link when the user clicks the item. Defaults to `\"edit\"`, or\n`\"show\"` when the resource has no edit view. Pass `false` to disable\nthe link entirely."
+    },
+    {
+      "name": "record",
+      "type": "RecordType",
+      "optional": true,
+      "comment": "The record to display. If omitted, the item reads it from the current\n`<RecordContext>`."
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": "The resource the record belongs to. If omitted, the item reads it from\nthe current `<ResourceContext>`."
+    },
+    {
+      "name": "rowIndex",
+      "type": "number",
+      "optional": true,
+      "comment": "Optional zero-based index of the row inside its list."
+    }
+  ]
+}

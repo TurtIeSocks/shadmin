@@ -1,0 +1,17 @@
+{
+  "name": "Error",
+  "props": [
+    {
+      "name": "errorInfo",
+      "type": "ErrorInfo",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "When provided, injects a `<Title>` portal to update the app-bar page title.\nPass `false` to explicitly suppress a title."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ElementType, ReactElement } from "react";
-import { FieldTitle } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { cn } from "@/lib/utils";
 
 /**
@@ -65,7 +65,7 @@ function Labeled({
           htmlFor={htmlFor}
           className="text-muted-foreground text-xs font-medium"
         >
-          <FieldTitle
+          <FieldLabelText
             label={label ?? childLabel}
             source={
               source ??

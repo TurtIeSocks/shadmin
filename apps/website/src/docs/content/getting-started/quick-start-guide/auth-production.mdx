@@ -1,0 +1,214 @@
+---
+title: "5. Auth & Production"
+description: "Add authentication and connect to a real API."
+---
+
+## Adding Authentication
+
+Most admin apps require authentication. `shadmin` can check user credentials before displaying a page and redirect to a login page when the REST API returns a 403 error code.
+
+`shadmin` makes no assumption about your authentication strategy (basic auth, OAuth, custom route, etc.), but gives you the ability to add the auth logic at the right place - using [the `authProvider` object](/docs/app-config/security).
+
+For this tutorial, since there is no public authentication API, we can use a fake authentication provider that accepts every login request and stores the `username` in `localStorage`. Each page change will require that `localStorage` contains a `username` item.
+
+The `authProvider` must expose 4 async methods:
+
+```tsx
+// authProvider.ts
+import { AuthProvider } from "ra-core";
+
+export const authProvider: AuthProvider = {
+    // called when the user attempts to log in
+    async login({ username, password }) {
+        // accept all username/password combinations
+        if (false) {
+            throw new Error("Invalid credentials, please try again");
+        }
+        localStorage.setItem("username", username);
+    },
+    // called when the user clicks on the logout button
+    async logout() {
+        localStorage.removeItem("username");
+    },
+    // called when the API returns an error
+    async checkError({ status }: { status: number }) {
+        if (status === 401 || status === 403) {
+            localStorage.removeItem("username");
+            throw new Error("Session expired");
+        }
+    },
+    // called when the user navigates to a new location, to check for authentication
+    async checkAuth() {
+        if (!localStorage.getItem("username")) {
+            throw new Error("Authentication required");
+        }
+    },
+};
+```
+
+To enable this authentication strategy, pass the `authProvider` to the `<Admin>` component:
+
+```diff lang="tsx"
+// App.tsx
++import { authProvider } from "./auth-provider";
+
+const App = () => (
+    <Admin
++        authProvider={authProvider}
+        dataProvider={dataProvider}
+        dashboard={Dashboard}
+    >
+        /* ... */
+    </Admin>
+);
+```
+
+Once the app reloads, it's now behind a login form that accepts everyone.
+
+![Login form](/docs/images/login.jpg)
+
+## Connecting To A Real API
+
+Here is the elephant in the room of this tutorial. In real-world projects, the dialect of your API (REST? GraphQL? Something else?) won't match the JSONPlaceholder dialect. [Writing a Data Provider](/docs/app-config/data-providers#writing-a-data-provider) is probably the first thing you'll have to do to make `shadmin` work, unless your API backend is already supported ([see the list here](/docs/app-config/data-providers#supported-data-provider-backends)). Depending on your API, this can require a few hours of additional work.
+
+`shadmin` delegates every data query to a Data Provider object, which acts as an adapter to your API. This makes `shadmin` capable of mapping any API dialect, using endpoints from several domains, etc.
+
+For instance, let's imagine you have to use the `my.api.url` REST API, which expects the following parameters:
+
+<div className="no-td-limit">
+
+| Action              | Expected API request                                                                    |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| Get list            | `GET http://my.api.url/posts?sort=["title","ASC"]&range=[0, 24]&filter={"title":"bar"}` |
+| Get one record      | `GET http://my.api.url/posts/123`                                                       |
+| Get several records | `GET http://my.api.url/posts?filter={"id":[123,456,789]}`                               |
+| Get related records | `GET http://my.api.url/posts?filter={"author_id":345}`                                  |
+| Create a record     | `POST http://my.api.url/posts`                                                          |
+| Update a record     | `PUT http://my.api.url/posts/123`                                                       |
+| Update records      | `PUT http://my.api.url/posts?filter={"id":[123,124,125]}`                               |
+| Delete a record     | `DELETE http://my.api.url/posts/123`                                                    |
+| Delete records      | `DELETE http://my.api.url/posts?filter={"id":[123,124,125]}`                            |
+
+</div>
+
+`shadmin` calls the Data Provider with one method for each of the actions on this list and expects a Promise in return. These methods are called `getList`, `getOne`, `getMany`, `getManyReference`, `create`, `update`, `updateMany`, `delete`, and `deleteMany`. It's the Data Provider's job to emit HTTP requests and transform the response into the format expected by `shadmin`.
+
+The code for a Data Provider for the `my.api.url` API is as follows:
+
+```tsx
+// dataProvider.ts
+import { DataProvider, fetchUtils } from "ra-core";
+import { stringify } from "query-string";
+
+const apiUrl = 'https://my.api.url/';
+const httpClient = fetchUtils.fetchJson;
+
+export const dataProvider: DataProvider = {
+    getList: (resource, params) => {
+        const { page, perPage } = params.pagination;
+        const { field, order } = params.sort;
+        const query = {
+            sort: JSON.stringify([field, order]),
+            range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
+            filter: JSON.stringify(params.filter),
+        };
+        const url = `${apiUrl}/${resource}?${stringify(query)}`;
+
+        return httpClient(url).then(({ headers, json }) => ({
+            data: json,
+            total: parseInt((headers.get('content-range') || "0").split('/').pop() || '0', 10),
+        }));
+    },
+
+    getOne: (resource, params) =>
+        httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
+            data: json,
+        })),
+
+    getMany: (resource, params) => {
+        const query = {
+            filter: JSON.stringify({ id: params.ids }),
+        };
+        const url = `${apiUrl}/${resource}?${stringify(query)}`;
+        return httpClient(url).then(({ json }) => ({ data: json }));
+    },
+
+    getManyReference: (resource, params) => {
+        const { page, perPage } = params.pagination;
+        const { field, order } = params.sort;
+        const query = {
+            sort: JSON.stringify([field, order]),
+            range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
+            filter: JSON.stringify({
+                ...params.filter,
+                [params.target]: params.id,
+            }),
+        };
+        const url = `${apiUrl}/${resource}?${stringify(query)}`;
+
+        return httpClient(url).then(({ headers, json }) => ({
+            data: json,
+            total: parseInt((headers.get('content-range') || "0").split('/').pop() || '0', 10),
+        }));
+    },
+
+    update: (resource, params) =>
+        httpClient(`${apiUrl}/${resource}/${params.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(params.data),
+        }).then(({ json }) => ({ data: json })),
+
+    updateMany: (resource, params) => {
+        const query = {
+            filter: JSON.stringify({ id: params.ids}),
+        };
+        return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
+            method: 'PUT',
+            body: JSON.stringify(params.data),
+        }).then(({ json }) => ({ data: json }));
+    },
+
+    create: (resource, params) =>
+        httpClient(`${apiUrl}/${resource}`, {
+            method: 'POST',
+            body: JSON.stringify(params.data),
+        }).then(({ json }) => ({
+            data: { ...params.data, id: json.id } as any,
+        })),
+
+    delete: (resource, params) =>
+        httpClient(`${apiUrl}/${resource}/${params.id}`, {
+            method: 'DELETE',
+        }).then(({ json }) => ({ data: json })),
+
+    deleteMany: (resource, params) => {
+        const query = {
+            filter: JSON.stringify({ id: params.ids}),
+        };
+        return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
+            method: 'DELETE',
+        }).then(({ json }) => ({ data: json }));
+    }
+};
+```
+
+**Tip**: `fetchUtils.fetchJson()` is just a shortcut for `fetch().then(r => r.json())`, plus control of the HTTP response code to throw an `HTTPError` in case of a 4xx or 5xx response. Feel free to use `fetch()` directly if it doesn't suit your needs.
+
+Using this provider instead of the previous `jsonServerProvider` is just a matter of switching a function:
+
+```tsx
+// App.tsx
+import { dataProvider } from './data-provider';
+
+const App = () => (
+  <Admin dataProvider={dataProvider}>
+    // ...
+  </Admin>
+);
+```
+
+## Conclusion
+
+`shadmin` was built with customization in mind. You can replace any `shadmin` component with a component of your own, for instance, to display a custom list layout or a different edit form for a given resource.
+
+Now that you've completed the tutorial, continue your journey with the [Guides and Concepts](/docs/getting-started/guides-and-concepts) section.

@@ -1,0 +1,176 @@
+---
+title: "Layout & Title"
+description: "Customize the edit page's content area, actions toolbar, and title."
+---
+
+## Main Content Area
+
+The `<Edit>` component will render its children inside a `EditContext` provider, which the `save` function. Children can be any React node, but are usually a form component like [`<SimpleForm>`](/docs/editing/simple-form/overview), or the headless [`<Form>`](https://marmelab.com/ra-core/form/) component.
+
+![](/docs/images/customers-edit-content.png)
+
+```tsx
+import { Edit, SimpleForm, TextInput, BooleanInput } from "@/components/admin";
+import { required } from "ra-core";
+
+export const CustomerEdit = () => (
+  <Edit>
+    <SimpleForm>
+      <TextInput source="first_name" validate={required()} />
+      <TextInput source="last_name" validate={required()} />
+      <TextInput source="email" validate={required()} />
+      <BooleanInput source="has_ordered" />
+      <TextInput multiline source="notes" />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+Alternatively to `children`, you can use a `render` prop. It will receive the [`EditContext`](https://marmelab.com/react-admin/useEditContext.html#return-value) as its argument, and should return a React node.
+
+This allows to inline the render logic for the edition page.
+
+```tsx
+export const PostEdit = () => (
+  <Edit
+    render={({ isPending, record, save, saving }) => (
+      <div>
+        <h1>Edit Post</h1>
+        {!isPending && (
+          <form onSubmit={save}>
+            <input
+              type="text"
+              name="title"
+              defaultValue={record.title}
+              required
+            />
+            <textarea name="teaser" defaultValue={record.teaser} rows={3} />
+            <textarea name="body" defaultValue={record.body} rows={5} />
+            <input
+              type="date"
+              name="published_at"
+              defaultValue={redord.published_at}
+            />
+            <button type="submit" disabled={saving}>
+              {saving ? "Saving..." : "Save"}
+            </button>
+          </form>
+        )}
+      </div>
+    )}
+  />
+);
+```
+
+**Tip**: When receiving a `render` prop, the `<Edit>` component will ignore the `children` prop.
+
+## Actions Toolbar
+
+By default, the Edit component includes a toolbar with a button to navigate to the show view (if present) and a button to delete the current record.
+
+![](/docs/images/customers-edit-actions.png)
+
+You can replace these actions by your own elements using the `actions` prop:
+
+```tsx
+import {
+  Edit,
+  ShowButton,
+  CreateButton,
+  DeleteButton,
+} from "@/components/admin";
+
+const PostEditActions = () => (
+  <div className="flex items-center gap-2">
+    <ShowButton />
+    <CreateButton />
+    <DeleteButton />
+  </div>
+);
+
+export const PostEdit = () => <Edit actions={<PostEditActions />}>...</Edit>;
+```
+
+Common buttons used as Edit actions are:
+
+- [`<CreateButton>`](/docs/editing/create-button) to create a new record
+- [`<ListButton>`](/docs/ui-layout/list-button) to go back to the list
+- [`<ShowButton>`](/docs/editing/show-button) to go to the show page
+- [`<DeleteButton>`](/docs/editing/delete-button) to delete the current record
+
+And you can add your own button, leveraging the `useRecordContext()` hook:
+
+```tsx
+import { useRecordContext, useUpdate, useNotify } from "ra-core";
+import { Button } from "@a/components/ui";
+
+const ResetViewsButton = () => {
+  const record = useRecordContext();
+  const [update, { isPending }] = useUpdate();
+  const notify = useNotify();
+  const handleClick = () => {
+    update(
+      "posts",
+      { id: record.id, data: { views: 0 }, previousData: record },
+      {
+        onSuccess: () => {
+          notify("Views reset");
+        },
+        onFailure: (error) => notify(`Error: ${error.message}`, "warning"),
+      },
+    );
+  };
+  return (
+    <Button onClick={handleClick} disabled={isPending}>
+      Reset views
+    </Button>
+  );
+};
+```
+
+## Page Title
+
+By default, the title for the Edit view is the translation key `ra.page.edit` that translates to "Edit [resource_name] [record representation]". Check the [`<Resource recordRepresentation>`](https://marmelab.com/ra-core/resource/#recordrepresentation) prop for more details.
+
+You can customize this title by providing a resource specific translation with the key `resources.RESOURCE.page.edit` (e.g. `resources.posts.page.edit`):
+
+```js
+// in src/i18n/en.js
+import englishMessages from 'ra-language-english';
+
+export const en = {
+    ...englishMessages,
+    resources: {
+        posts: {
+            name: 'Post |||| Posts',
+            page: {
+                edit: 'Update post "%{recordRepresentation}"'
+            }
+        },
+    },
+    ...
+};
+```
+
+You can also customize this title by specifying a custom `title` string:
+
+```tsx
+export const PostEdit = () => <Edit title="Edit post">...</Edit>;
+```
+
+More interestingly, you can pass an element as `title`. This element can access the current record via `useRecordContext`. This allows to customize the title according to the current record:
+
+```tsx
+const PostTitle = () => {
+  const record = useRecordContext();
+  return <span>Post {record ? `"${record.title}"` : ""}</span>;
+};
+
+export const PostEdit = () => <Edit title={<PostTitle />}>...</Edit>;
+```
+
+Finally, you can also pass `false` to disable the title:
+
+```tsx
+export const PostEdit = () => <Edit title={false}>...</Edit>;
+```

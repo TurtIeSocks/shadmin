@@ -19,4 +19,4 @@ function Label({
   )
 }
 
-export { Label, LabelPrimitive }
+export { Label }

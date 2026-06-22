@@ -74,8 +74,10 @@ export const blocks = [
     granularize: true,
     cssVarsFromFile: "src/index.css",
     registryDependencies: [
+      "@shadmin/color-picker",
       "accordion",
       "alert",
+      "alert-dialog",
       "avatar",
       "badge",
       "breadcrumb",
@@ -84,6 +86,7 @@ export const blocks = [
       "checkbox",
       "collapsible",
       "command",
+      "dialog",
       "drawer",
       "dropdown-menu",
       "field",
@@ -91,6 +94,8 @@ export const blocks = [
       "kbd",
       "label",
       "pagination",
+      "popover",
+      "progress",
       "radio-group",
       "select",
       "separator",
@@ -102,16 +107,22 @@ export const blocks = [
       "table",
       "tabs",
       "textarea",
+      "tooltip",
     ],
     dependencies: [
+      "@dnd-kit/core",
+      "@dnd-kit/sortable",
+      "@dnd-kit/utilities",
       "@tanstack/react-query",
       "class-variance-authority",
       "clsx",
+      "cronstrue",
       "date-fns",
       "diacritic",
       "dompurify",
       "html-react-parser",
       "inflection",
+      "libphonenumber-js",
       "lodash",
       "lucide-react",
       "query-string",
@@ -129,9 +140,7 @@ export const blocks = [
     extraFiles: [
       { path: "rules/AGENTS.md", type: "registry:file", target: "~/AGENTS.md" },
       { path: "src/components/ui/slot.tsx", type: "registry:ui" },
-      { path: "src/components/ui/popover.tsx", type: "registry:ui" },
-      { path: "src/components/ui/dialog.tsx", type: "registry:ui" },
-      { path: "src/components/ui/tooltip.tsx", type: "registry:ui" },
+      { path: "src/components/ui/primitives.ts", type: "registry:ui" },
       { path: "src/hooks/use-theme.ts", type: "registry:component" },
       { path: "src/lib/any.ts", type: "registry:lib" },
       { path: "src/lib/are-ids-equal.ts", type: "registry:lib" },
@@ -190,6 +199,7 @@ export const blocks = [
   {
     name: "block-editor",
     type: "registry:block",
+    granularize: true,
     title: "BlockEditor",
     categories: ["shadmin", "editor"],
     description:
@@ -233,6 +243,7 @@ export const blocks = [
   {
     name: "leaflet-admin",
     type: "registry:block",
+    granularize: true,
     title: "LeafletAdmin",
     categories: ["shadmin", "maps"],
     docs: 'Import Leaflet\'s stylesheet once in your app entry: `import "leaflet/dist/leaflet.css";`. Map components are client-only — disable SSR on routes that use them. Drawing/editing uses Geoman via `react-leaflet-geoman-v2`. Full docs: https://shadmin.turtlesocks.dev/docs/leaflet-admin',
@@ -275,24 +286,17 @@ export const blocks = [
     sourceDirs: [{ path: "src/components/csv-import", recursive: false }],
   },
   {
-    name: "extras",
-    type: "registry:block",
-    title: "Shadmin Extras",
-    categories: ["shadmin"],
-    description:
-      "Optional higher-level admin components (kanban, command menu, calendar, scheduling, presence, approvals, cron/duration/phone/color/rating inputs, theme studio, etc.) for Shadmin.",
-    registryDependencies: ["@shadmin/admin", "alert-dialog", "progress"],
-    dependencies: [
-      "@dnd-kit/core",
-      "@dnd-kit/sortable",
-      "@dnd-kit/utilities",
-      "cronstrue",
-      "libphonenumber-js",
-    ],
-    sourceDirs: [
-      { path: "src/components/extras", recursive: false },
-      { path: "src/components/ui/color-picker", recursive: false },
-    ],
+    // The former "extras" components now live under the granularized `admin`
+    // block (src/components/admin/{fields,inputs,buttons,list,form,widgets,
+    // collaboration}/), so each is its own @shadmin/<name> item. Only the
+    // shared color-picker UI primitive needs its own home: a small registry:ui
+    // block (one item, all 3 files) that color-input + theme-studio depend on
+    // via @shadmin/color-picker (color-picker is in granularize OUR_UI_ITEMS).
+    name: "color-picker",
+    type: "registry:ui",
+    title: "Color Picker",
+    categories: ["shadmin", "ui"],
+    sourceDirs: [{ path: "src/components/ui/color-picker", recursive: false }],
   },
   {
     name: "monaco",
@@ -309,9 +313,10 @@ export const blocks = [
   {
     name: "supabase",
     type: "registry:block",
+    granularize: true,
     title: "Supabase Admin",
     categories: ["shadmin", "authentication", "data-providers"],
-    docs: "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase/getting-started",
+    docs: "Pass a Supabase data + auth provider to `<Admin>` and set your Supabase URL/key. Auth pages and CRUD guessers read your Supabase schema. Setup guide: https://shadmin.turtlesocks.dev/docs/supabase-getting-started",
     description:
       "Optional Supabase integration for Shadmin: auth pages (login, forgot/set password, social auth) and CRUD guessers driven by the Supabase schema.",
     registryDependencies: ["@shadmin/admin"],
@@ -331,6 +336,7 @@ export const blocks = [
   {
     name: "realtime",
     type: "registry:block",
+    granularize: true,
     title: "Shadmin Realtime",
     categories: ["shadmin", "data-providers"],
     description:

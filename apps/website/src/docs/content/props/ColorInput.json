@@ -1,0 +1,23 @@
+{
+  "name": "ColorInput",
+  "props": [
+    {
+      "name": "mode",
+      "type": "keyof ColorStringMap",
+      "optional": true,
+      "comment": "Force the picker to output values in a specific mode."
+    },
+    {
+      "name": "native",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Replace the popover picker with the browser's native `<input type=\"color\">`."
+    },
+    {
+      "name": "swatches",
+      "type": "readonly string[]",
+      "optional": true,
+      "comment": "Quick-set color buttons rendered next to the picker trigger."
+    }
+  ]
+}

@@ -24,7 +24,7 @@ import {
   type ExtractRecordPaths,
 } from "shadmin-core";
 import { Columns, Search } from "lucide-react";
-import { PopoverPrimitive } from "@/components/ui/popover";
+import { PopoverPrimitive } from "@/components/ui/primitives";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

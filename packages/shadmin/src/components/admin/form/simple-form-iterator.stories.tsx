@@ -14,6 +14,7 @@ import { ArrayInput } from "@/components/admin/inputs/array-input";
 import { TextInput } from "@/components/admin/inputs/text-input";
 import { NumberInput } from "@/components/admin/inputs/number-input";
 import { ThemeProvider } from "@/components/admin/layout/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export default {
   title: "Data Edition/SimpleFormIterator",
@@ -38,23 +39,25 @@ const Wrapper = ({
   record = defaultRecord,
 }: React.PropsWithChildren<{ record?: Record<string, unknown> }>) => (
   <ThemeProvider>
-    <CoreAdminContext
-      i18nProvider={polyglotI18nProvider(
-        () => defaultMessages,
-        "en",
-        undefined,
-        {
-          allowMissing: true,
-        },
-      )}
-      store={memoryStore()}
-    >
-      <ResourceContextProvider value="posts">
-        <RecordContextProvider value={record}>
-          <div className="p-4 max-w-lg">{children}</div>
-        </RecordContextProvider>
-      </ResourceContextProvider>
-    </CoreAdminContext>
+    <TooltipProvider>
+      <CoreAdminContext
+        i18nProvider={polyglotI18nProvider(
+          () => defaultMessages,
+          "en",
+          undefined,
+          {
+            allowMissing: true,
+          },
+        )}
+        store={memoryStore()}
+      >
+        <ResourceContextProvider value="posts">
+          <RecordContextProvider value={record}>
+            <div className="p-4 max-w-lg">{children}</div>
+          </RecordContextProvider>
+        </ResourceContextProvider>
+      </CoreAdminContext>
+    </TooltipProvider>
   </ThemeProvider>
 );
 

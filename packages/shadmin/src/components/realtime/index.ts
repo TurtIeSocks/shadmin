@@ -1,3 +1,53 @@
+// Realtime UI components (live-updating List/Edit/Show/Menu, lock status/mount).
+// The headless realtime logic — hooks, transports, topics, types, and the
+// realtime data-provider wrapper — now lives in `shadmin-core`; these components
+// consume it from there. The non-component API is re-exported below so the old
+// `@/components/realtime` barrel surface is preserved.
+
+export { ListLive } from "./list-live";
+export { EditLive } from "./edit-live";
+export { ShowLive } from "./show-live";
+export {
+  MenuLive,
+  MenuLiveItemLink,
+  type MenuLiveProps,
+  type MenuLiveItemLinkProps,
+} from "./menu-live";
+export { LockOnMount, type LockOnMountProps } from "./lock-on-mount";
+export { LockStatus, type LockStatusProps } from "./lock-status";
+
+// Headless realtime API (now sourced from shadmin-core).
+export {
+  realtimeDataProvider,
+  addEventsForMutations,
+  resourceTopic,
+  recordTopic,
+  lockResourceTopic,
+  lockTopic,
+  fakeTransport,
+  broadcastChannelTransport,
+  webSocketTransport,
+  sseTransport,
+  inMemoryLockProvider,
+  LockConflictError,
+  useSubscribe,
+  useSubscribeToRecord,
+  useSubscribeToRecordList,
+  useSubscribeCallback,
+  usePublish,
+  useOnReconnect,
+  useRealtimeStatus,
+  useGetListLive,
+  useGetOneLive,
+  useGetManyLive,
+  useLock,
+  useUnlock,
+  useGetLock,
+  useGetLocks,
+  useGetLockLive,
+  useGetLocksLive,
+  useLockOnMount,
+} from "shadmin-core";
 export type {
   RealtimeEvent,
   RealtimeEventType,
@@ -15,72 +65,13 @@ export type {
   LockProvider,
   RealtimeDataProvider,
   RealtimeDataProviderOptions,
-} from "./types";
-export { LockConflictError } from "./types";
-
-export { realtimeDataProvider } from "./realtime-data-provider";
-export { addEventsForMutations } from "./add-events-for-mutations";
-
-export {
-  resourceTopic,
-  recordTopic,
-  lockResourceTopic,
-  lockTopic,
-} from "./topics";
-
-export {
-  fakeTransport,
-  type FakeTransport,
-  type FakeTransportConfig,
-} from "./transports/fake-transport";
-export {
-  broadcastChannelTransport,
-  type BroadcastChannelTransportConfig,
-} from "./transports/broadcast-channel-transport";
-export {
-  webSocketTransport,
-  type WebSocketTransportConfig,
-  type WebSocketReconnectConfig,
-} from "./transports/websocket-transport";
-export {
-  sseTransport,
-  type SSETransportConfig,
-  type SSEReconnectConfig,
-} from "./transports/sse-transport";
-export {
-  inMemoryLockProvider,
-  type InMemoryLockProviderOptions,
-} from "./transports/in-memory-lock-provider";
-
-export { useSubscribe } from "./hooks/use-subscribe";
-export { useSubscribeToRecord } from "./hooks/use-subscribe-to-record";
-export { useSubscribeToRecordList } from "./hooks/use-subscribe-to-record-list";
-export { useSubscribeCallback } from "./hooks/use-subscribe-callback";
-export { usePublish } from "./hooks/use-publish";
-export { useOnReconnect } from "./hooks/use-on-reconnect";
-export { useRealtimeStatus } from "./hooks/use-realtime-status";
-export { useGetListLive } from "./hooks/use-get-list-live";
-export { useGetOneLive } from "./hooks/use-get-one-live";
-export { useGetManyLive } from "./hooks/use-get-many-live";
-export { useLock } from "./hooks/use-lock";
-export { useUnlock } from "./hooks/use-unlock";
-export { useGetLock } from "./hooks/use-get-lock";
-export { useGetLocks } from "./hooks/use-get-locks";
-export { useGetLockLive } from "./hooks/use-get-lock-live";
-export { useGetLocksLive } from "./hooks/use-get-locks-live";
-export {
-  useLockOnMount,
-  type UseLockOnMountOptions,
-} from "./hooks/use-lock-on-mount";
-
-export { ListLive } from "./list-live";
-export { EditLive } from "./edit-live";
-export { ShowLive } from "./show-live";
-export {
-  MenuLive,
-  MenuLiveItemLink,
-  type MenuLiveProps,
-  type MenuLiveItemLinkProps,
-} from "./menu-live";
-export { LockOnMount, type LockOnMountProps } from "./lock-on-mount";
-export { LockStatus, type LockStatusProps } from "./lock-status";
+  FakeTransport,
+  FakeTransportConfig,
+  BroadcastChannelTransportConfig,
+  WebSocketTransportConfig,
+  WebSocketReconnectConfig,
+  SSETransportConfig,
+  SSEReconnectConfig,
+  InMemoryLockProviderOptions,
+  UseLockOnMountOptions,
+} from "shadmin-core";

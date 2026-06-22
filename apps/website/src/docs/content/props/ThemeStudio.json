@@ -1,0 +1,23 @@
+{
+  "name": "ThemeStudio",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "Optional class applied to the outer card."
+    },
+    {
+      "name": "showExport",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Whether to render the Export button. Defaults to `true`."
+    },
+    {
+      "name": "showThemeModeToggle",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Whether to render the ThemeModeToggle button. Defaults to `true`."
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+---
+title: "Data & Mutations"
+description: "Fetching, mutation options, side effects, redirection, and data transforms."
+---
+
+## Data Fetching Options
+
+`<Edit>` calls `dataProvider.getOne()` on mount via react-query's `useQuery` hook. You can customize the options you pass to this hook by setting the `queryOptions` prop.
+
+This can be useful e.g. to pass [a custom `meta`](https://marmelab.com/react-admin/Actions.html#meta-parameter) to the `dataProvider.getOne()` call.
+
+```tsx
+import { Edit, SimpleForm } from "@/components/admin";
+
+export const PostEdit = () => (
+  <Edit queryOptions={{ meta: { foo: "bar" } }}>
+    <SimpleForm>...</SimpleForm>
+  </Edit>
+);
+```
+
+You can also use `queryOptions` to force a refetch on reconnect:
+
+```tsx
+const PostEdit = () => (
+  <Edit queryOptions={{ refetchOnReconnect: true }}>...</Edit>
+);
+```
+
+Refer to the [useQuery documentation](https://tanstack.com/query/v5/docs/react/reference/useQuery) in the react-query website for a list of the possible options.
+
+## Mutation Options
+
+`<Edit>` calls `dataProvider.update()` via react-query's `useMutation` hook. You can customize the options you pass to this hook, e.g. to pass [a custom `meta`](https://marmelab.com/react-admin/Actions.html#meta-parameter) to the `dataProvider.update()` call.
+
+```tsx
+import { Edit, SimpleForm } from "@/components/admin";
+
+const PostEdit = () => (
+  <Edit mutationOptions={{ meta: { foo: "bar" } }}>
+    <SimpleForm>...</SimpleForm>
+  </Edit>
+);
+```
+
+Refer to the [useMutation documentation](https://tanstack.com/query/v5/docs/react/reference/useMutation) in the react-query website for a list of the possible options.
+
+You can also use `mutationOptions` to override success or error side effects.
+
+## Success and Error Side Effects
+
+By default, when the save action succeeds, Shadmin shows a notification, and redirects to the list page.
+
+You can override this behavior and pass custom success side effects by providing a `mutationOptions` prop with an `onSuccess` key:
+
+```tsx
+import { Edit, SimpleForm } from "@/components/admin";
+import { useNotify, useRefresh, useRedirect } from "ra-core";
+
+const PostEdit = () => {
+  const notify = useNotify();
+  const refresh = useRefresh();
+  const redirect = useRedirect();
+
+  const onSuccess = () => {
+    notify(`Changes saved`);
+    redirect("/posts");
+    refresh();
+  };
+
+  return (
+    <Edit mutationOptions={{ onSuccess }}>
+      <SimpleForm>...</SimpleForm>
+    </Edit>
+  );
+};
+```
+
+The default `onSuccess` function is:
+
+```js
+() => {
+  notify("ra.notification.updated", {
+    messageArgs: { smart_count: 1 },
+    undoable: mutationMode === "undoable",
+  });
+  redirect("list", resource, data.id, data);
+};
+```
+
+:::tip
+If you just want to customize the redirect behavior, you can use [the `redirect` prop](#redirect) instead.
+:::
+
+:::tip
+When you use `mutationMode="pessimistic"`, the `onSuccess` function receives the response from the `dataProvider.update()` call, which is the created/edited record (see [the dataProvider documentation for details](https://marmelab.com/react-admin/DataProviderWriting.html#update)). You can use that response in the success side effects:
+
+```tsx
+import { Edit, SimpleForm } from "@/components/admin";
+import { useNotify, useRefresh, useRedirect } from "ra-core";
+
+const PostEdit = () => {
+  const notify = useNotify();
+  const refresh = useRefresh();
+  const redirect = useRedirect();
+
+  const onSuccess = (data) => {
+    notify(`Changes to post "${data.title}" saved`);
+    redirect("/posts");
+    refresh();
+  };
+
+  return (
+    <Edit mutationOptions={{ onSuccess }} mutationMode="pessimistic">
+      <SimpleForm>...</SimpleForm>
+    </Edit>
+  );
+};
+```
+
+:::
+
+:::tip
+If you want to have different success side effects based on the button clicked by the user (e.g. if the creation form displays two submit buttons, one to "save and redirect to the list", and another to "save and display an empty form"), you can set the `mutationOptions` prop on [the `<SaveButton>` component](/docs/editing/save-button), too.
+:::
+
+Similarly, you can override the failure side effects with an `onError` option. By default, when the save action fails at the dataProvider level, Shadmin shows a notification error.
+
+```tsx
+import { Edit, SimpleForm } from "@/components/admin";
+import { useNotify, useRefresh, useRedirect } from "ra-core";
+
+const PostEdit = () => {
+  const notify = useNotify();
+  const refresh = useRefresh();
+  const redirect = useRedirect();
+
+  const onError = (error) => {
+    notify(`Could not edit post: ${error.message}`);
+    redirect("/posts");
+    refresh();
+  };
+
+  return (
+    <Edit mutationOptions={{ onError }}>
+      <SimpleForm>...</SimpleForm>
+    </Edit>
+  );
+};
+```
+
+The `onError` function receives the error from the `dataProvider.update()` call. It is a JavaScript Error object (see [the dataProvider documentation for details](/docs/app-config/data-providers#writing-a-data-provider)).
+
+The default `onError` function is:
+
+```tsx
+(error) => {
+  notify(
+    typeof error === "string"
+      ? error
+      : error.message || "ra.notification.http_error",
+    { type: "error" },
+  );
+  if (mutationMode === "undoable" || mutationMode === "pessimistic") {
+    refresh();
+  }
+};
+```
+
+:::tip
+If you want to have different failure side effects based on the button clicked by the user, you can set the `mutationOptions` prop on the `<SaveButton>` component, too.
+:::
+
+## Changing The Notification Message
+
+Once the `dataProvider.update()` request returns successfully, users see a success notification.
+
+![Edit notification](/docs/images/update-notification.png)
+
+`<Edit>` uses two successive translation keys to build the success message:
+
+- `resources.{resource}.notifications.updated` as a first choice
+- `ra.notification.updated` as a fallback
+
+To customize the notification message, you can set custom translation for these keys in your i18nProvider.
+
+**Tip**: If you choose to use a custom translation, be aware that Shadmin uses the same translation message for the `<BulkUpdateButton>`, so the message must support [pluralization](https://marmelab.com/ra-core/translationtranslating/#interpolation-pluralization-and-default-translation):
+
+```tsx
+const englishMessages = {
+  resources: {
+    orders: {
+      notifications: {
+        updated: "Order updated |||| %{smart_count} orders updated",
+        // ...
+      },
+    },
+  },
+};
+```
+
+Alternately, you can customize this message by passing a custom success side effect function in [the `mutationOptions` prop](#mutationoptions):
+
+```tsx
+import { Edit, SimpleForm } from "@/components/admin";
+import { useNotify, useRedirect } from "ra-core";
+
+const OrderEdit = () => {
+  const notify = useNotify();
+  const redirect = useRedirect();
+
+  const onSuccess = () => {
+    notify(`Order updated successfully`);
+    redirect("list", "orders");
+  };
+
+  return (
+    <Edit mutationOptions={{ onSuccess }}>
+      <SimpleForm>...</SimpleForm>
+    </Edit>
+  );
+};
+```
+
+:::tip
+In `optimistic` and `undoable` mutation modes, Shadmin calls the `onSuccess` callback method with no argument. In `pessimistic` mode, it calls it with the response returned by the dataProvider as argument.
+:::
+
+You can do the same for error notifications, by passing a custom `onError` callback.
+
+:::tip
+When calling `notify()`, the notification message will be translated.
+:::
+
+## Redirection After Submission
+
+By default, submitting the form in the `<Edit>` view redirects to the `<List>` view.
+
+You can customize the redirection by setting the `redirect` prop to one of the following values:
+
+- `'list'`: redirect to the List view (the default)
+- `'show'`: redirect to the Show view
+- `false`: do not redirect
+- A function `(resource, id, data) => string` to redirect to different targets depending on the record
+
+```tsx
+const PostEdit = () => <Edit redirect="show">...</Edit>;
+```
+
+:::note
+The `redirect` prop is ignored if you set [the `mutationOptions` prop](#mutationoptions). See that prop for how to set a different redirection path in that case.
+:::
+
+## Mutation Mode
+
+The `<Edit>` view exposes two buttons, Save and Delete, which perform "mutations" (i.e. they alter the data). Shadmin offers three modes for mutations. The mode determines when the side effects (redirection, notifications, etc.) are executed:
+
+- `pessimistic`: The mutation is passed to the dataProvider first. When the dataProvider returns successfully, the mutation is applied locally, and the side effects are executed.
+- `optimistic`: The mutation is applied locally and the side effects are executed immediately. Then the mutation is passed to the dataProvider. If the dataProvider returns successfully, nothing happens (as the mutation was already applied locally). If the dataProvider returns in error, the page is refreshed and an error notification is shown.
+- `undoable` (default): The mutation is applied locally and the side effects are executed immediately. Then a notification is shown with an undo button. If the user clicks on undo, the mutation is never sent to the dataProvider, and the page is refreshed. Otherwise, after a 5 seconds delay, the mutation is passed to the dataProvider. If the dataProvider returns successfully, nothing happens (as the mutation was already applied locally). If the dataProvider returns in error, the page is refreshed and an error notification is shown.
+
+By default, pages using `<Edit>` use the `undoable` mutation mode. This is part of the "optimistic rendering" strategy of Shadmin; it makes user interactions more reactive.
+
+You can change this default by setting the `mutationMode` prop - and this affects both the Save and Delete buttons. For instance, to remove the ability to undo the changes, use the `optimistic` mode:
+
+```tsx
+const PostEdit = () => <Edit mutationMode="optimistic">// ...</Edit>;
+```
+
+And to make both the Save and Delete actions blocking, and wait for the dataProvider response to continue, use the `pessimistic` mode:
+
+```tsx
+const PostEdit = () => <Edit mutationMode="pessimistic">// ...</Edit>;
+```
+
+## Transforming Data
+
+To transform a record after the user has submitted the form but before the record is passed to `dataProvider.update()`, use the `transform` prop. It expects a function taking a record as argument, and returning a modified record. For instance, to add a computed field upon edition:
+
+```tsx
+export const UserEdit = () => {
+  const transform = (data) => ({
+    ...data,
+    fullName: `${data.firstName} ${data.lastName}`,
+  });
+  return <Edit transform={transform}>...</Edit>;
+};
+```
+
+The `transform` function can also return a `Promise`, which allows you to do all sorts of asynchronous calls (e.g. to the `dataProvider`) during the transformation.
+
+:::tip
+If you want to have different transformations based on the button clicked by the user (e.g. if the creation form displays two submit buttons, one to "save", and another to "save and notify other admins"), you can set the `transform` prop on [the `<SaveButton>` component](/docs/editing/save-button), too.
+:::
+
+:::tip
+The `transform` function also get the `previousData` in its second argument:
+
+```tsx
+export const UserEdit = () => {
+  const transform = (data, { previousData }) => ({
+    ...data,
+    avoidChangeField: previousData.avoidChangeField,
+  });
+  return <Edit transform={transform}>...</Edit>;
+};
+```
+
+:::

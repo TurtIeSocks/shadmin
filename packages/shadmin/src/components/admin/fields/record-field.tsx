@@ -2,11 +2,11 @@ import type { ReactNode, ElementType, HTMLAttributes } from "react";
 import { createElement } from "react";
 import type { ExtractRecordPaths, HintedString } from "shadmin-core";
 import {
-  FieldTitle,
   useRecordContext,
   useResourceContext,
   useTranslate,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { cn } from "@/lib/utils";
 
 import { TextField } from "@/components/admin/fields/text-field";
@@ -95,7 +95,7 @@ function RecordField<RecordType extends UnknownRecord = UnknownRecord>(
             "text-muted-foreground",
           )}
         >
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

@@ -2,8 +2,8 @@ import { describe, it, expect, vi } from "vitest";
 import { render } from "vitest-browser-react";
 import { useState } from "react";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { useSubscribe } from "./use-subscribe";
+import { fakeTransport } from "shadmin-core";
+import { useSubscribe } from "shadmin-core";
 
 function CountingProbe({
   topic,

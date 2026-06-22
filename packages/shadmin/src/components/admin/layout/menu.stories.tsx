@@ -145,11 +145,7 @@ export const Custom = () => (
           <Menu>
             <Menu.DashboardItem />
             <Menu.ResourceItem name="posts" />
-            <Menu.Item
-              to="/settings"
-              primaryText="Settings"
-              leftIcon={<Settings />}
-            />
+            <Menu.Item to="/settings" label="Settings" icon={<Settings />} />
           </Menu>,
         )
       }

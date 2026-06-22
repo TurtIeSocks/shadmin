@@ -1,0 +1,53 @@
+{
+  "name": "BlockEditor",
+  "props": [
+    {
+      "name": "blocks",
+      "type": "BlockDefinition[]",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "editable",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onBlur",
+      "type": "() => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onChange",
+      "type": "(value: JSONContent) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "onCreate",
+      "type": "(editor: Editor) => void",
+      "optional": true,
+      "comment": "Fired once the editor instance exists — for imperative access."
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "value",
+      "type": "JSONContent",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

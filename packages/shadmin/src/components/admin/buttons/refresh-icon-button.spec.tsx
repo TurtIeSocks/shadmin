@@ -7,6 +7,7 @@ import {
 } from "@/components/admin/buttons/refresh-icon-button.stories";
 import { RefreshIconButton } from "@/components/admin/buttons/refresh-icon-button";
 import { ThemeProvider } from "@/components/admin/layout/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { CoreAdminContext, memoryStore } from "shadmin-core";
 import { MemoryRouter } from "react-router";
 import polyglotI18nProvider from "ra-i18n-polyglot";
@@ -39,9 +40,11 @@ describe("<RefreshIconButton />", () => {
     const screen = render(
       <MemoryRouter>
         <ThemeProvider>
-          <CoreAdminContext i18nProvider={i18nProvider} store={memoryStore()}>
-            <RefreshIconButton onClick={handleClick} />
-          </CoreAdminContext>
+          <TooltipProvider>
+            <CoreAdminContext i18nProvider={i18nProvider} store={memoryStore()}>
+              <RefreshIconButton onClick={handleClick} />
+            </CoreAdminContext>
+          </TooltipProvider>
         </ThemeProvider>
       </MemoryRouter>,
     );

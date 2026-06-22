@@ -17,21 +17,20 @@ const SOURCE_EXTS = [".tsx", ".ts"];
 // ui/ files authored in this repo (not pulled from shadcn upstream).
 // Imports of these resolve to `@shadmin/<name>` items shipped here.
 // Everything else under components/ui/ is assumed to be a shadcn upstream item
-// referenced by plain name (e.g. "popover", "dialog").
-// `popover`/`dialog`/`tooltip` are customized forks: they add extra
-// subcomponents and a `*Primitive` re-export that non-ui components import
-// directly (e.g. columns-button uses PopoverPrimitive.Portal, confirm uses
-// DialogPrimitive, the tiptap toolbar uses TooltipPrimitive's props type).
-// Stock shadcn primitives don't expose those, so these MUST ship as
-// @shadmin/* — consumers get OUR version, not shadcn's upstream primitive.
+// referenced by plain name (e.g. "popover", "dialog") — a consumer keeps their
+// OWN stock version (bring-your-own-ui).
+// `slot`/`direction` have no stock shadcn equivalent, so shipping them custom
+// can't clash. `primitives` is the single seam that re-exports the raw Radix
+// primitives non-ui code needs (PopoverPrimitive.Portal in columns-button,
+// DialogPrimitive in confirm, TooltipPrimitive's props type in the tiptap
+// toolbar); routing every reach-in through it lets `popover`/`dialog`/`tooltip`
+// ship as BARE STOCK deps instead of overwriting a consumer's own.
 // (combobox was removed; it was dead.)
 const OUR_UI_ITEMS = new Set([
   "slot",
-  "color-picker",
   "direction",
-  "popover",
-  "dialog",
-  "tooltip",
+  "primitives",
+  "color-picker",
 ]);
 
 // hooks/ files authored in this repo. Same treatment as OUR_UI_ITEMS for ui/.
@@ -108,24 +107,38 @@ const fileToItemRef = (absFile, repoRoot) => {
   if (rel.startsWith("..")) return null;
 
   const noExt = rel.replace(/\.(tsx?|ts)$/, "");
-  if (noExt.endsWith("/index")) return null;
+
+  // An OUR ui item resolves even when the import lands on the dir's index
+  // barrel (e.g. color-picker/index.ts) — must precede the generic index skip.
+  if (noExt.startsWith("components/ui/")) {
+    const uiName = noExt.slice("components/ui/".length).split("/")[0];
+    if (OUR_UI_ITEMS.has(uiName)) return { kind: "ours", name: uiName };
+  }
+
+  // index barrels and type-only modules aren't installable components.
+  if (noExt.endsWith("/index") || noExt.endsWith("/types")) return null;
 
   if (noExt.startsWith("components/ui/")) {
     const sub = noExt.slice("components/ui/".length);
     const name = sub.split("/")[0];
-    if (OUR_UI_ITEMS.has(name)) return { kind: "ours", name };
     return { kind: "shadcn", name };
   }
 
-  if (noExt.startsWith("components/admin/")) {
-    // Name is the file BASENAME, decoupled from internal subdirs. This lets the
-    // source tree be organized (admin/inputs/, admin/fields/, …) while the
-    // emitted item name — and the consumer-facing install — stays flat. A
-    // global dedupe guard in generate-registry.mjs catches basename collisions.
-    return {
-      kind: "ours",
-      name: noExt.split("/").pop(),
-    };
+  // Any component outside ui/ (admin/, leaflet/, realtime/, supabase/,
+  // block-editor/, mdx-editor/, monaco/, rich-text-input/, …) granularizes to a
+  // flat @shadmin/<basename> item. Name is the file BASENAME, decoupled from
+  // internal subdirs, so the source tree stays organized (admin/inputs/,
+  // leaflet/coordinates/, …) while the emitted install name stays flat. The
+  // dedupe guard in generate-registry.mjs fails loud on any basename collision.
+  if (noExt.startsWith("components/")) {
+    const base = noExt.split("/").pop();
+    // supabase ships its OWN login-form/login-page/*-guesser that collide by
+    // basename with admin's; namespace the whole supabase block (supabase-<x>,
+    // matching its docs slugs) so installs stay unambiguous. admin stays flat.
+    if (noExt.startsWith("components/supabase/")) {
+      return { kind: "ours", name: `supabase-${base}` };
+    }
+    return { kind: "ours", name: base };
   }
 
   if (noExt.startsWith("hooks/")) {

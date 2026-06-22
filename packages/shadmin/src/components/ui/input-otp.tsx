@@ -6,11 +6,13 @@ import { MinusIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-type InputOTPProps = React.ComponentProps<typeof OTPInput> & {
+function InputOTP({
+  className,
+  containerClassName,
+  ...props
+}: React.ComponentProps<typeof OTPInput> & {
   containerClassName?: string
-}
-
-function InputOTP({ className, containerClassName, ...props }: InputOTPProps) {
+}) {
   return (
     <OTPInput
       data-slot="input-otp"
@@ -34,11 +36,13 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-interface InputOTPSlotProps extends React.ComponentProps<"div"> {
+function InputOTPSlot({
+  index,
+  className,
+  ...props
+}: React.ComponentProps<"div"> & {
   index: number
-}
-
-function InputOTPSlot({ index, className, ...props }: InputOTPSlotProps) {
+}) {
   const inputOTPContext = React.useContext(OTPInputContext)
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {}
 
@@ -47,7 +51,7 @@ function InputOTPSlot({ index, className, ...props }: InputOTPSlotProps) {
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "relative flex size-9 items-center justify-center border-y border-r border-input text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40",
+        "relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40",
         className
       )}
       {...props}
@@ -70,11 +74,4 @@ function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export {
-  InputOTP,
-  type InputOTPProps,
-  InputOTPGroup,
-  InputOTPSlot,
-  type InputOTPSlotProps,
-  InputOTPSeparator,
-}
+export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }

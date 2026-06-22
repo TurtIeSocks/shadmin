@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "turbo run dev --filter=shadmin-demo",
+    "dev": "turbo run dev --filter=website",
     "lint": "biome check .",
     "format": "biome check --write .",
     "build": "turbo run build",
@@ -19,6 +19,12 @@
     "shadcn": "^4.11.0",
     "turbo": "^2.5.0",
     "typescript": "~5.7.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "react-router": "^7.18.0",
+      "react-router-dom": "^7.18.0"
+    }
   },
   "packageManager": "pnpm@10.14.0-0+sha512.2cd47a0cbf5f1d1de7693a88307a0ede5be94e0d3b34853d800ee775efbea0650cb562b77605ec80bc8d925f5cd27c4dfe8bb04d3a0b76090784c664450d32d6"
 }

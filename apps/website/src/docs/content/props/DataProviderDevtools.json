@@ -1,0 +1,29 @@
+{
+  "name": "DataProviderDevtools",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Initial open state. Default `true`."
+    },
+    {
+      "name": "keyboardShortcut",
+      "type": "string",
+      "optional": true,
+      "comment": "Keyboard shortcut to toggle. Default `\"ctrl+shift+d\"`."
+    },
+    {
+      "name": "maxLogs",
+      "type": "number",
+      "optional": true,
+      "comment": "Maximum logs retained. Default `50`."
+    }
+  ]
+}

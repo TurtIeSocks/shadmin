@@ -1,0 +1,35 @@
+---
+title: "useGetManyLive"
+description: "useGetManyLive is a drop-in replacement for useGetMany that subscribes to the individual record topic for every ID in params.ids and re-fetches when any of them changes."
+---
+
+## Usage
+
+```tsx
+import { useGetManyLive } from "@/components/realtime";
+
+function PostTitles({ ids }: { ids: number[] }) {
+  const { data, isPending } = useGetManyLive("posts", { ids });
+
+  if (isPending) return <p>Loading…</p>;
+  return <ul>{data?.map((p) => <li key={p.id}>{p.title}</li>)}</ul>;
+}
+```
+
+## Params
+
+| Param | Required | Type | Description |
+|-------|----------|------|-------------|
+| `resource` | Required | `string` | Resource name |
+| `params` | Required | `GetManyParams` | Must include `ids` array |
+| `options` | Optional | `UseQueryOptions` | TanStack Query options forwarded to `useGetMany` |
+
+## Returns
+
+Identical to `useGetMany`.
+
+## Notes
+
+- A separate subscription is created for each ID in `params.ids`. The subscriptions are re-created when the `ids` array changes (by JSON-equality comparison).
+- All subscriptions invalidate all queries keyed by `resource`, not just the individual IDs — this is intentional to keep related list views in sync.
+- `useOnReconnect` is called internally to recover missed events.

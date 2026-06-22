@@ -1,0 +1,59 @@
+{
+  "name": "JobMonitor",
+  "props": [
+    {
+      "name": "actions",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When false, hides retry/cancel buttons. Default `true`."
+    },
+    {
+      "name": "attemptsSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the attempt count. Default `\"attempts\"`."
+    },
+    {
+      "name": "errorSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the last-error string. Default `\"lastError\"`."
+    },
+    {
+      "name": "payloadSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the payload object. Default `\"payload\"`."
+    },
+    {
+      "name": "pollInterval",
+      "type": "number",
+      "optional": true,
+      "comment": "Polling interval in ms. `0` disables polling. Default `5000`."
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": "Override resource (defaults to surrounding ResourceContext)."
+    },
+    {
+      "name": "statusSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the status string. Default `\"status\"`."
+    },
+    {
+      "name": "tabs",
+      "type": "JobStatus[]",
+      "optional": true,
+      "comment": "Status tabs to surface, in order. Default `[\"running\",\"queued\",\"failed\",\"done\"]`."
+    },
+    {
+      "name": "typeSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the job kind / type. Default `\"type\"`."
+    }
+  ]
+}

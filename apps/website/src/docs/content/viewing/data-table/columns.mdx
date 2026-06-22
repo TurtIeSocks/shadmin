@@ -1,0 +1,217 @@
+---
+title: "Columns"
+description: "Sorting, row expansion, and showing/hiding/reordering columns."
+---
+
+## Sorting
+
+The column headers are buttons that allow users to change the list sort field and order. This feature requires no configuration and works out of the box.
+
+It is possible to disable sorting for a specific `<DataTable.Col>` by passing a `sortable` property set to `false`:
+
+```tsx {4}
+export const PostList = () => (
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" sortable={false} />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="body" />
+    </DataTable>
+  </List>
+);
+```
+
+By default, a column is sorted by the `<DataTable.Col source>` property.
+
+For example, the following column displays the full name of a contact and is sortable by their last name:
+
+```tsx {3}
+<DataTable.Col
+  label="Name"
+  source="lastName"
+  render={(record) => `${record.firstName} ${record.lastName}`}
+/>
+```
+
+An action column should not be sortable, so you don't need to specify a `source`:
+
+```tsx
+<DataTable.Col>
+  <EditButton />
+  <DeleteButton />
+</DataTable.Col>
+```
+
+You can also use a different `source` for the column and its child. This is very useful for reference fields, where users expect the column to be sortable by the reference (e.g., `author.name`) rather than the foreign key (e.g., `author_id`):
+
+```tsx
+<DataTable.Col source="authors(name)" label="Author">
+  <ReferenceField source="author_id" reference="authors" />
+</DataTable.Col>
+```
+
+:::note
+Support for sorting by related fields depends on the data provider.
+:::
+
+By default, when the user clicks on a column header, the list becomes sorted in ascending order. You change this behavior by setting the `sortByOrder` prop to `"DESC"` in a `<DataTable.Col>` element:
+
+```tsx
+<DataTable.Col source="published_at" sortByOrder="DESC" />
+```
+
+## Row Expansion
+
+Pass an `expand` prop to show a detail panel below each row when the user clicks the chevron toggle:
+
+```tsx
+import { DataTable, List } from "@/components/admin";
+
+const BookDetails = () => (
+  <div className="p-4">
+    <TextField source="description" />
+  </div>
+);
+
+export const BookList = () => (
+  <List>
+    <DataTable expand={<BookDetails />}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
+);
+```
+
+### Expand-all header button
+
+When `expand` is provided and `expandSingle` is `false` (the default), the expand-column header renders an **ExpandAllButton** — a `<ChevronsUpDown>` icon button that toggles all rows at once:
+
+- If **any** rows are currently expanded → click **collapses all** rows.
+- If **no** rows are expanded → click **expands all** rows (respecting `isRowExpandable` if set).
+
+When `expandSingle={true}` the header is empty — there is no point in "expand all" when only one row can be open at a time.
+
+```tsx
+// Multi-row expand (default) — header shows the ExpandAllButton
+<DataTable expand={<BookDetails />}>...</DataTable>
+
+// Single-row expand — header is empty, no ExpandAllButton
+<DataTable expand={<BookDetails />} expandSingle>...</DataTable>
+```
+
+### `expand`
+
+| Prop              | Required | Type                                                    | Default | Description                                                                                                                           |
+| ----------------- | -------- | ------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `expand`          | Optional | `ReactElement \| ComponentType<{id, record, resource}>` | —       | Element or component rendered as the expand panel under each row. When provided, a chevron column is added to every row.              |
+| `expandSingle`    | Optional | `boolean`                                               | `false` | When `true`, expanding a row collapses any other open row so only one is expanded at a time. Also hides the expand-all header button. |
+| `isRowExpandable` | Optional | `(record) => boolean`                                   | —       | Predicate that hides the chevron for rows that should not be expandable.                                                              |
+
+## Hiding or Reordering Columns
+
+You can let end users customize the fields displayed in the `<DataTable>` by using the [`<ColumnsButton>`](/docs/viewing/columns-button) in the `<List actions>`. When users click on this button, they can show / hide columns and reorder them.
+
+```tsx
+import { ColumnsButton, List, DataTable } from "@/components/admin";
+
+const PostListActions = () => (
+  <div className="flex items-center gap-2">
+    <ColumnsButton />
+  </div>
+);
+
+const PostList = () => (
+  <List actions={<PostListActions />}>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
+);
+```
+
+By default, `<DataTable>` renders all `<DataTable.Col>` children. But you can also omit some of them by setting the `hiddenColumns` prop. Hidden columns are still displayed in the `<ColumnsButton>` dialog, so users can show them again.
+
+```tsx
+const PostList = () => (
+  <List actions={<PostListActions />}>
+    <DataTable hiddenColumns={["id", "author"]}>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
+);
+```
+
+If you render more than one `<DataTable>` in the same page, you must pass a unique `storeKey` prop to each one:
+
+```tsx
+const PostList = () => (
+  <List>
+    <DataTable storeKey="posts.DataTable">...</DataTable>
+  </List>
+);
+```
+
+If you include a [`<ColumnsButton>`](/docs/viewing/columns-button) in a page that has more than one `<DataTable>`, you have to link the two components by giving them the same `storeKey`:
+
+```tsx
+const PostListActions = () => (
+  <TopToolbar>
+    <ColumnsButton storeKey="posts.DataTable" />
+  </TopToolbar>
+);
+
+const PostList = () => (
+  <List actions={<PostListActions />}>
+    <DataTable storeKey="posts.DataTable">...</DataTable>
+  </List>
+);
+```
+
+## Conditional Formatting
+
+You can change the style of a row based on the record values by using the `rowClassName` prop. This prop is a function that takes the current record as an argument and returns a string.
+
+```tsx
+import { DataTable, List } from "@/components/admin";
+
+export const PostList = () => (
+  <List>
+    <DataTable
+      rowClassName={(record) =>
+        record.is_published ? "bg-white" : "bg-gray-50"
+      }
+    >
+      ...
+    </DataTable>
+  </List>
+);
+```
+
+You can also change the style of a specific cell based on the record values by using the `conditionalClassName` prop of `<DataTable.Col>`. This prop is a function that takes the current record as an argument and returns a string.
+
+```tsx
+import { DataTable, List } from "@/components/admin";
+
+export const PostList = () => (
+  <List>
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col
+        source="views"
+        conditionalClassName={(record) =>
+          record.views > 1000 ? "font-bold" : ""
+        }
+      />
+    </DataTable>
+  </List>
+);
+```

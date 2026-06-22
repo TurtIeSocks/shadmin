@@ -1,0 +1,29 @@
+{
+  "name": "CurrencyInput",
+  "props": [
+    {
+      "name": "currencies",
+      "type": "readonly string[]",
+      "optional": true,
+      "comment": "Provide to enable currency selection; stores composite { amount, currency }."
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "optional": true,
+      "comment": "ISO-4217 currency code when storage is a plain number."
+    },
+    {
+      "name": "displayLocale",
+      "type": "string",
+      "optional": true,
+      "comment": "Override the user's app locale for formatting symbol/step."
+    },
+    {
+      "name": "storeAsMinorUnits",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Multiply displayed major units by 100 on write so storage is integer cents."
+    }
+  ]
+}

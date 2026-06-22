@@ -3,8 +3,8 @@ import { render } from "vitest-browser-react";
 import { useState } from "react";
 import type { Identifier } from "shadmin-core";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { useSubscribeToRecord } from "./use-subscribe-to-record";
+import { fakeTransport } from "shadmin-core";
+import { useSubscribeToRecord } from "shadmin-core";
 
 function Probe({ resource, id }: { resource: string; id?: Identifier }) {
   const [count, setCount] = useState(0);

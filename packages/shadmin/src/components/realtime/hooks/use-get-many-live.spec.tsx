@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import fakeRestProvider from "ra-data-fakerest";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { useGetManyLive } from "./use-get-many-live";
+import { fakeTransport } from "shadmin-core";
+import { useGetManyLive } from "shadmin-core";
 
 function ManyProbe() {
   const { data, isPending } = useGetManyLive<{ id: number; title: string }>(

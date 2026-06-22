@@ -11,7 +11,6 @@ import isEqual from "lodash/isEqual";
 import queryString from "query-string";
 import {
   extractValidSavedQueries,
-  FieldTitle,
   type SavedQuery,
   useFilterContext,
   useListContext,
@@ -20,23 +19,18 @@ import {
   useTranslate,
 } from "shadmin-core";
 import { useNavigate } from "react-router";
-import {
-  Bookmark,
-  BookmarkMinus,
-  BookmarkPlus,
-  Check,
-  Filter,
-  X,
-} from "lucide-react";
+import { Bookmark, BookmarkMinus, BookmarkPlus, Filter, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import {
   AddSavedQueryDialog,
   RemoveSavedQueryDialog,
@@ -354,46 +348,22 @@ function FilterButtonMenuItem(props: FilterButtonMenuItemProps) {
   );
 
   return (
-    <div
-      className={cn(
-        "new-filter-item flex items-center px-2 py-1.5 text-sm cursor-pointer hover:bg-accent rounded-sm",
-        filter.props.disabled && "opacity-50 cursor-not-allowed",
-      )}
+    <DropdownMenuCheckboxItem
+      className="new-filter-item"
+      checked={displayed}
+      onCheckedChange={(next) => (next ? handleShow() : handleHide())}
+      onSelect={(e) => e.preventDefault()}
+      disabled={filter.props.disabled}
       data-key={filter.props.source}
       data-default-value={filter.props.defaultValue}
-      onClick={
-        filter.props.disabled ? undefined : displayed ? handleHide : handleShow
-      }
-      onKeyDown={
-        filter.props.disabled
-          ? undefined
-          : (e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                if (displayed) {
-                  handleHide();
-                } else {
-                  handleShow();
-                }
-              }
-            }
-      }
       ref={setRefs}
-      role="menuitemcheckbox"
-      aria-checked={displayed}
-      tabIndex={-1}
     >
-      <div className="flex items-center justify-center size-4 mr-2">
-        {displayed && <Check className="size-3" />}
-      </div>
-      <div>
-        <FieldTitle
-          label={filter.props.label}
-          source={filter.props.source}
-          resource={resource}
-        />
-      </div>
-    </div>
+      <FieldLabelText
+        label={filter.props.label}
+        source={filter.props.source}
+        resource={resource}
+      />
+    </DropdownMenuCheckboxItem>
   );
 }
 

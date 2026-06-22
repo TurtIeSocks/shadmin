@@ -5,7 +5,6 @@ import type {
   SupportCreateSuggestionOptions,
 } from "shadmin-core";
 import {
-  FieldTitle,
   useChoices,
   useChoicesContext,
   useGetRecordRepresentation,
@@ -14,6 +13,7 @@ import {
   useTranslate,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import type { ComponentProps, ReactElement } from "react";
 import { useCallback, useEffect } from "react";
 
@@ -221,7 +221,7 @@ function SelectInput(props: SelectInputProps) {
       >
         {label !== "" && label !== false && (
           <FieldLabel htmlFor={id}>
-            <FieldTitle
+            <FieldLabelText
               label={label}
               source={source}
               resource={resourceProp}
@@ -264,7 +264,7 @@ function SelectInput(props: SelectInputProps) {
       >
         {label !== "" && label !== false && (
           <FieldLabel htmlFor={id}>
-            <FieldTitle
+            <FieldLabelText
               label={label}
               source={source}
               resource={resourceProp}

@@ -1,0 +1,11 @@
+<svg width="40" height="40" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shadmin-fav" x1="0" y1="0" x2="76" y2="76" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8b5cf6"></stop>
+      <stop offset="1" stop-color="#4f46e5"></stop>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="72" height="72" rx="18" fill="url(#shadmin-fav)"></rect>
+  <rect x="18" y="22" width="12" height="32" rx="4" fill="#ffffff"></rect>
+  <rect x="35" y="22" width="23" height="32" rx="4" fill="#ffffff" opacity="0.5"></rect>
+</svg>

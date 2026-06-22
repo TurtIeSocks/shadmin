@@ -4,6 +4,7 @@ import { CoreAdminContext, RecordContextProvider } from "shadmin-core";
 import { Heart, HeartOff } from "lucide-react";
 import { i18nProvider } from "@/lib/i18n-provider";
 import { BooleanField, ThemeProvider } from "@/components/admin";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export default {
   title: "Data Display/BooleanField",
@@ -19,9 +20,11 @@ const Wrapper = ({
   record = defaultRecord,
 }: React.PropsWithChildren<{ record?: RaRecord }>) => (
   <ThemeProvider>
-    <CoreAdminContext i18nProvider={i18nProvider}>
-      <RecordContextProvider value={record}>{children}</RecordContextProvider>
-    </CoreAdminContext>
+    <TooltipProvider>
+      <CoreAdminContext i18nProvider={i18nProvider}>
+        <RecordContextProvider value={record}>{children}</RecordContextProvider>
+      </CoreAdminContext>
+    </TooltipProvider>
   </ThemeProvider>
 );
 

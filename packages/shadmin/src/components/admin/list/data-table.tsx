@@ -22,7 +22,6 @@ import {
   DataTableBase,
   DataTableRenderContext,
   DataTableStoreContext,
-  FieldTitle,
   RecordContextProvider,
   useCanAccess,
   useDataTableCallbacksContext,
@@ -41,6 +40,7 @@ import {
   useTranslateLabel,
 } from "shadmin-core";
 import { useNavigate } from "react-router";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import {
   ArrowDownAZ,
   ArrowUpZA,
@@ -65,7 +65,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
@@ -817,46 +816,44 @@ function DataTableHeadCell<
   return (
     <TableHead className={cn(className, headerClassName)}>
       {handleSort && sort && !disableSort && source ? (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="-ml-3 -mr-3 h-8 data-[state=open]:bg-accent cursor-pointer"
-                data-field={source}
-                onClick={handleSort}
-              >
-                {headerClassName?.includes("text-right") ? null : (
-                  <FieldTitle
-                    label={label}
-                    source={source}
-                    resource={resource}
-                  />
-                )}
-                {sort.field === source ? (
-                  sort.order === "ASC" ? (
-                    <ArrowDownAZ className="size-6" />
-                  ) : (
-                    <ArrowUpZA className="size-6" />
-                  )
-                ) : null}
-                {headerClassName?.includes("text-right") ? (
-                  <FieldTitle
-                    label={label}
-                    source={source}
-                    resource={resource}
-                  />
-                ) : null}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{sortLabel}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="-ml-3 -mr-3 h-8 data-[state=open]:bg-accent cursor-pointer"
+              data-field={source}
+              onClick={handleSort}
+            >
+              {headerClassName?.includes("text-right") ? null : (
+                <FieldLabelText
+                  label={label}
+                  source={source}
+                  resource={resource}
+                />
+              )}
+              {sort.field === source ? (
+                sort.order === "ASC" ? (
+                  <ArrowDownAZ className="size-6" />
+                ) : (
+                  <ArrowUpZA className="size-6" />
+                )
+              ) : null}
+              {headerClassName?.includes("text-right") ? (
+                <FieldLabelText
+                  label={label}
+                  source={source}
+                  resource={resource}
+                />
+              ) : null}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{sortLabel}</p>
+          </TooltipContent>
+        </Tooltip>
       ) : (
-        <FieldTitle label={label} source={source} resource={resource} />
+        <FieldLabelText label={label} source={source} resource={resource} />
       )}
     </TableHead>
   );

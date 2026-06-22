@@ -13,6 +13,7 @@ import { NotFound } from "@/components/admin/feedback/not-found";
 import { Ready } from "@/components/admin/feedback/ready";
 import { ThemeProvider } from "@/components/admin/layout/theme-provider";
 import { AuthCallback } from "@/components/admin/auth/auth-callback";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 /**
  * Props accepted by the `<Admin>` component on top of ra-core's `CoreAdminProps`.
@@ -39,7 +40,7 @@ const defaultStore = localStorageStore();
  * Wraps `CoreAdminContext` and applies shadmin's default `store`
  * and `i18nProvider`. Use this directly when you need to interleave a
  * context-providing wrapper (for example the `<CommandMenu>` palette from
- * `@/components/extras/command-menu`) between the data providers and the
+ * `@/components/admin/widgets/command-menu`) between the data providers and the
  * routed UI:
  *
  * @example
@@ -48,7 +49,7 @@ const defaultStore = localStorageStore();
  *   AdminUI,
  *   Resource,
  * } from "@/components/admin";
- * import { CommandMenu } from "@/components/extras/command-menu";
+ * import { CommandMenu } from "@/components/admin/widgets/command-menu";
  *
  * const App = () => (
  *   <AdminContext dataProvider={dataProvider}>
@@ -92,16 +93,18 @@ function AdminUI(props: AdminUIProps) {
 
   return (
     <ThemeProvider>
-      <CoreAdminUI
-        authCallbackPage={authCallbackPage}
-        catchAll={catchAll}
-        layout={layout}
-        loginPage={loginPage}
-        ready={ready}
-        title={title}
-        {...rest}
-        disableTelemetry // forced off: the kit never pings an external telemetry endpoint
-      />
+      <TooltipProvider>
+        <CoreAdminUI
+          authCallbackPage={authCallbackPage}
+          catchAll={catchAll}
+          layout={layout}
+          loginPage={loginPage}
+          ready={ready}
+          title={title}
+          {...rest}
+          disableTelemetry // forced off: the kit never pings an external telemetry endpoint
+        />
+      </TooltipProvider>
     </ThemeProvider>
   );
 }
@@ -115,7 +118,7 @@ function AdminUI(props: AdminUIProps) {
  *
  * Reach for the lower-level {@link AdminContext} + {@link AdminUI} pair when
  * you need to inject a wrapping component (such as the cmd+K
- * `<CommandMenu>` palette from `@/components/extras/command-menu`) between
+ * `<CommandMenu>` palette from `@/components/admin/widgets/command-menu`) between
  * the providers and the routed UI.
  *
  * @see {@link https://shadmin.turtlesocks.dev/docs/admin Admin documentation}

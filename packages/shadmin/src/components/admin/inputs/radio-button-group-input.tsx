@@ -1,12 +1,12 @@
 import * as React from "react";
 import type { ChoicesProps, InputProps } from "shadmin-core";
 import {
-  FieldTitle,
   useChoices,
   useChoicesContext,
   useInput,
   ValidationError,
 } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { cn } from "@/lib/utils";
 import { sanitizeInputRestProps } from "@/lib/sanitize-input-rest-props";
 import {
@@ -148,7 +148,7 @@ function RadioButtonGroupInput(inProps: RadioButtonGroupInputProps) {
     <FieldSet className={className} data-invalid={invalid || undefined}>
       {label && (
         <FieldLegend variant="label">
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

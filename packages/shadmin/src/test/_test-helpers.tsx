@@ -11,15 +11,9 @@ import fakeRestProvider from "ra-data-fakerest";
 import { TestMemoryRouter } from "shadmin-core";
 
 import { ThemeProvider, SimpleForm, Create } from "@/components/admin";
-import { realtimeDataProvider } from "@/components/realtime/realtime-data-provider";
-import {
-  fakeTransport,
-  type FakeTransport,
-} from "@/components/realtime/transports/fake-transport";
-import type {
-  LockProvider,
-  RealtimeTransport,
-} from "@/components/realtime/types";
+import { realtimeDataProvider } from "shadmin-core";
+import { fakeTransport, type FakeTransport } from "shadmin-core";
+import type { LockProvider, RealtimeTransport } from "shadmin-core";
 
 const i18nProvider = polyglotI18nProvider(() => englishMessages);
 const defaultDataProvider = fakeRestProvider({}, false);

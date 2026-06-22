@@ -1,0 +1,23 @@
+{
+  "name": "BlockEditorInput",
+  "props": [
+    {
+      "name": "blocks",
+      "type": "BlockDefinition[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

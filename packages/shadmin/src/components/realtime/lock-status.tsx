@@ -5,8 +5,8 @@ import {
   useResourceContext,
 } from "shadmin-core";
 import { Badge } from "@/components/ui/badge";
-import type { Lock } from "./types";
-import { useGetLockLive } from "./hooks/use-get-lock-live";
+import type { Lock } from "shadmin-core";
+import { useGetLockLive } from "shadmin-core";
 
 export interface LockStatusProps {
   resource?: string;

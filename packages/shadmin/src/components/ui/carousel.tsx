@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -14,21 +12,21 @@ type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
 
-interface CarouselProps {
+type CarouselProps = {
   opts?: CarouselOptions
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
 }
 
-interface CarouselContextProps extends CarouselProps {
+type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
   api: ReturnType<typeof useEmblaCarousel>[1]
   scrollPrev: () => void
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
-}
+} & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
@@ -42,10 +40,6 @@ function useCarousel() {
   return context
 }
 
-interface CarouselComponentProps
-  extends React.ComponentProps<"div">,
-    CarouselProps {}
-
 function Carousel({
   orientation = "horizontal",
   opts,
@@ -54,7 +48,7 @@ function Carousel({
   className,
   children,
   ...props
-}: CarouselComponentProps) {
+}: React.ComponentProps<"div"> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,

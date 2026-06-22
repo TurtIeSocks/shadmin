@@ -1,0 +1,342 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ThemeModeToggle } from "@/components/admin/layout/theme-mode-toggle";
+import { Separator } from "@/components/ui/separator";
+import { ColorPicker } from "@/components/ui/color-picker";
+import { useThemeVars, type ThemeVars } from "./theme-studio-vars";
+
+const CSS_UNITS = [
+  "%",
+  "cap",
+  "ch",
+  "cm",
+  "cqb",
+  "cqh",
+  "cqi",
+  "cqmax",
+  "cqmin",
+  "cqw",
+  "deg",
+  "dpcm",
+  "dpi",
+  "dppx",
+  "dvb",
+  "dvh",
+  "dvi",
+  "dvmax",
+  "dvmin",
+  "dvw",
+  "em",
+  "ex",
+  "fr",
+  "grad",
+  "Hz",
+  "ic",
+  "in",
+  "kHz",
+  "lh",
+  "lvb",
+  "lvh",
+  "lvi",
+  "lvmax",
+  "lvmin",
+  "lvw",
+  "mm",
+  "ms",
+  "pc",
+  "pt",
+  "px",
+  "Q",
+  "rad",
+  "rcap",
+  "rch",
+  "rem",
+  "rex",
+  "ric",
+  "rlh",
+  "s",
+  "svb",
+  "svh",
+  "svi",
+  "svmax",
+  "svmin",
+  "svw",
+  "turn",
+  "vb",
+  "vh",
+  "vi",
+  "vmax",
+  "vmin",
+  "vw",
+  "x",
+];
+
+const CSS_WIDE_KEYWORDS = new Set([
+  "inherit",
+  "initial",
+  "unset",
+  "revert",
+  "revert-layer",
+]);
+
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const UNIT_RE_PART = CSS_UNITS.slice()
+  .sort((a, b) => b.length - a.length)
+  .map(escapeRegExp)
+  .join("|");
+
+const CSS_NUMBER_RE_PART = String.raw`[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?`;
+
+const MEASUREMENT_RE = new RegExp(
+  String.raw`^(${CSS_NUMBER_RE_PART})\s*(${UNIT_RE_PART})$`,
+  "i",
+);
+
+interface ThemeStudioProps {
+  /** Whether to render the Export button. Defaults to `true`. */
+  showExport?: boolean;
+  /** Whether to render the ThemeModeToggle button. Defaults to `true`. */
+  showThemeModeToggle?: boolean;
+  /** Optional class applied to the outer card. */
+  className?: string;
+}
+
+/**
+ * Live editor for the active theme's semantic CSS custom properties.
+ *
+ * Token values are seeded from `getComputedStyle(:root)` for the active mode
+ * (see `useThemeVars`). Edits are written straight to
+ * `document.documentElement.style`, which overrides any active `.theme-*`
+ * class, so the surrounding UI reflects changes instantly — no rebuild, no
+ * reload.
+ *
+ * Color rows mount a `<ColorPicker>` keyed by the variable name; measurement
+ * rows expose a numeric input plus a unit select. The Export button copies a
+ * CSS `:root {}` / `.dark {}` snippet to the clipboard so edits can be pasted
+ * back into source.
+ *
+ * Requires a surrounding `<ThemeProvider>` so the active light/dark mode can be
+ * resolved.
+ *
+ * @example
+ * ```tsx
+ * import { ThemeProvider } from "@/components/admin";
+ * import { ThemeStudio } from "@/components/admin/widgets/theme-studio";
+ *
+ * <ThemeProvider>
+ *   <ThemeStudio />
+ * </ThemeProvider>;
+ * ```
+ */
+const ThemeStudio = ({
+  showExport = true,
+  showThemeModeToggle = true,
+  className,
+}: ThemeStudioProps) => {
+  const { vars, setVar, light, dark } = useThemeVars();
+
+  const { colors, measurements } = useMemo(() => {
+    const values = Object.entries(vars).reduce(
+      (acc, [name, value]) => {
+        if (isCssColor(value)) {
+          acc.colors.push([name, value]);
+        } else {
+          acc.measurements.push([name, value]);
+        }
+        return acc;
+      },
+      { colors: [], measurements: [] } as {
+        colors: [string, string][];
+        measurements: [string, string][];
+      },
+    );
+    values.colors.sort(([a], [b]) => a.localeCompare(b));
+    values.measurements.sort(([a], [b]) => a.localeCompare(b));
+
+    return values;
+  }, [vars]);
+
+  return (
+    <Card
+      data-slot="theme-studio"
+      className={cn("max-h-[60vh] overflow-y-auto", className)}
+    >
+      <CardHeader className="flex flex-row items-center justify-between">
+        <CardTitle className="text-sm grow">Theme Studio</CardTitle>
+        {showThemeModeToggle && <ThemeModeToggle />}
+        {showExport && <ThemeExport light={light} dark={dark} />}
+      </CardHeader>
+      <CardContent>
+        <ul className="flex flex-col gap-2">
+          {measurements.map(([name, value]) => (
+            <MeasurementInput
+              key={name}
+              name={name}
+              value={value}
+              update={setVar}
+            />
+          ))}
+          <Separator className="my-4" />
+          {colors.map(([name, value]) => (
+            <ColorInput key={name} name={name} value={value} update={setVar} />
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
+  );
+};
+
+interface CssInputProps {
+  name: string;
+  value: string;
+  update: (name: string, next: string) => void;
+}
+
+function CssVarLabel({ children }: React.PropsWithChildren) {
+  return (
+    <span className="w-44 shrink-0 truncate font-mono text-xs">{children}</span>
+  );
+}
+
+function ColorInput({ name, value, update }: CssInputProps) {
+  return (
+    <li
+      data-theme-var={name}
+      data-value={value}
+      className="flex items-center gap-2"
+    >
+      <ColorPicker
+        value={value}
+        onChange={(next) => update(name, next)}
+        aria-label={`Open color picker for ${name}`}
+      />
+      <CssVarLabel>{name}</CssVarLabel>
+      <Input
+        value={value}
+        type="text"
+        onChange={(e) => update(name, e.target.value)}
+        className="font-mono text-xs"
+        aria-label={name}
+      />
+    </li>
+  );
+}
+
+function MeasurementInput({ name, value, update }: CssInputProps) {
+  const parsed = parseMeasurement(value);
+  const num = parsed?.[0] ?? "";
+  const unit = parsed?.[1] ?? "";
+
+  return (
+    <li
+      data-theme-var={name}
+      data-value={value}
+      className="flex items-center gap-2"
+    >
+      <span aria-hidden="true" className="inline-block h-4 w-4 shrink-0" />
+      <CssVarLabel>{name}</CssVarLabel>
+      <Input
+        value={num}
+        type="number"
+        step={0.1}
+        onChange={(e) => update(name, `${e.target.value}${unit}`)}
+        className="font-mono text-xs"
+        aria-label={name}
+      />
+      <Select value={unit} onValueChange={(u) => update(name, `${num}${u}`)}>
+        <SelectTrigger className="h-8 w-fit">
+          <SelectValue placeholder={unit} />
+        </SelectTrigger>
+        <SelectContent side="top">
+          {CSS_UNITS.map((u) => (
+            <SelectItem key={u} value={u}>
+              {u}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </li>
+  );
+}
+
+function ThemeExport({ light, dark }: { light: ThemeVars; dark: ThemeVars }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleExport = async () => {
+    const block = (selector: string, map: ThemeVars) => {
+      const keys = Object.keys(map);
+      if (keys.length === 0) return "";
+      const body = keys.map((k) => `  ${k}: ${map[k]};`).join("\n");
+      return `${selector} {\n${body}\n}`;
+    };
+    const snippet = [block(":root", light), block(".dark", dark)]
+      .filter(Boolean)
+      .join("\n\n");
+    try {
+      await navigator.clipboard.writeText(snippet);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* clipboard write can fail in some environments — swallow silently. */
+    }
+  };
+
+  return (
+    <Button
+      size="sm"
+      variant="outline"
+      data-theme-export
+      onClick={handleExport}
+    >
+      {copied ? "Copied!" : "Export"}
+    </Button>
+  );
+}
+
+function isCssColor(value: string): boolean {
+  const trimmed = value.trim();
+
+  if (!trimmed || CSS_WIDE_KEYWORDS.has(trimmed.toLowerCase())) {
+    return false;
+  }
+
+  if (/^var\(/i.test(trimmed)) {
+    return false;
+  }
+
+  if (typeof CSS !== "undefined" && typeof CSS.supports === "function") {
+    return CSS.supports("color", trimmed);
+  }
+
+  return /^(?:#(?:[\da-f]{3,4}|[\da-f]{6}|[\da-f]{8})|(?:rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|device-cmyk|color-mix)\(|transparent|currentColor\b)/i.test(
+    trimmed,
+  );
+}
+
+function parseMeasurement(value: string) {
+  const trimmed = value.trim();
+  const match = trimmed.match(MEASUREMENT_RE);
+
+  if (!match) {
+    return null;
+  }
+
+  return [match[1], match[2]] as const;
+}
+
+export { type ThemeStudioProps, ThemeStudio };

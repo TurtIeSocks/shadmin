@@ -1,0 +1,39 @@
+---
+title: "MonacoJsonField"
+description: "Read-only Monaco viewer for JSON values. Use in Show or Edit detail contexts where a rich, syntax-highlighted, scrollable view of the JSON is wanted."
+---
+
+Monaco is lazy-loaded the same way as [`<MonacoJsonInput>`](/docs/editing/monaco-json-input).
+
+## Usage
+
+```tsx
+import { Show, SimpleShowLayout } from "@/components/admin";
+import { MonacoJsonField } from "@/components/monaco";
+
+const ProductShow = () => (
+  <Show>
+    <SimpleShowLayout>
+      <MonacoJsonField source="metadata" />
+    </SimpleShowLayout>
+  </Show>
+);
+```
+
+## Props
+
+| Prop            | Required | Type                                          | Default | Description                                        |
+| --------------- | -------- | --------------------------------------------- | ------- | -------------------------------------------------- |
+| `source`        | Required | `string`                                      | -       | Field name                                         |
+| `autoHeight`    | Optional | `boolean`                                     | `true`  | Fit container to content height                    |
+| `height`        | Optional | `number \| string`                            | `200`   | Fixed height (when `autoHeight=false`)             |
+| `maxHeight`     | Optional | `number \| string`                            | `400`   | Upper bound for `autoHeight`                       |
+| `className`     | Optional | `string`                                      | -       | Classes on the wrapper                             |
+| `monacoOptions` | Optional | `editor.IStandaloneEditorConstructionOptions` | -       | Escape hatch — merged into Monaco's options        |
+| `record`        | Optional | `object`                                      | Context | Record to read from (defaults to RecordContext)    |
+| `defaultValue`  | Optional | `unknown`                                     | -       | Fallback when the field is missing from the record |
+
+## Tips
+
+- For List cells, use [`<JsonField>`](/docs/viewing/json-field) instead — it has no Monaco dependency.
+- Both string and object values are accepted. Strings are displayed verbatim; objects are stringified with 2-space indent.

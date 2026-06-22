@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { useEffect, useState } from "react";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { useSubscribeCallback } from "./use-subscribe-callback";
+import { fakeTransport } from "shadmin-core";
+import { useSubscribeCallback } from "shadmin-core";
 
 function ImperativeProbe() {
   const subscribe = useSubscribeCallback();

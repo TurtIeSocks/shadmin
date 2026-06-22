@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
@@ -63,24 +62,22 @@ function InspectorButton({
   const translatedLabel = translate(label, { _: "Configure mode" });
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            ref={ref}
-            variant="ghost"
-            size="icon"
-            aria-label={translatedLabel}
-            aria-pressed={isEnabled}
-            {...props}
-            onClick={handleClick}
-          >
-            {icon}
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>{translatedLabel}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          ref={ref}
+          variant="ghost"
+          size="icon"
+          aria-label={translatedLabel}
+          aria-pressed={isEnabled}
+          {...props}
+          onClick={handleClick}
+        >
+          {icon}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{translatedLabel}</TooltipContent>
+    </Tooltip>
   );
 }
 

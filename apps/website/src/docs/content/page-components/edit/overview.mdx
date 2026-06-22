@@ -1,0 +1,194 @@
+---
+title: "Overview"
+description: "The Edit page component — usage and core props."
+registry: "edit"
+---
+
+![Edit view](/docs/images/customers-edit.png)
+
+The `<Edit>` component calls `dataProvider.getOne()`, using the `id` from the URL. It creates a `RecordContext` with the result. It also creates a [`SaveContext`](https://marmelab.com/ra-core/usesavecontext/) containing a `save` callback, which calls `dataProvider.update()` when executed, and [an `EditContext`](https://marmelab.com/ra-core/useeditcontext/) containing both the record and the callback.
+
+## Usage
+
+Wrap the `<Edit>` component around the form you want to create, then pass it as `edit` prop of a given `<Resource>`. `<Edit>` requires no prop by default - it deduces the `resource` and the `id` from the current URL.
+
+For instance, the following component will render an edition form for posts when users browse to `/posts/edit/1234`:
+
+```tsx
+// in src/customers.js
+import { Edit, SimpleForm, BooleanInput, TextInput } from "@/components/admin";
+import { required } from "ra-core";
+
+export const CustomerEdit = () => (
+  <Edit>
+    <SimpleForm>
+      <TextInput source="first_name" validate={required()} />
+      <TextInput source="last_name" validate={required()} />
+      <TextInput source="email" validate={required()} />
+      <BooleanInput source="has_ordered" />
+      <TextInput multiline source="notes" />
+    </SimpleForm>
+  </Edit>
+);
+
+// in src/App.js
+import { Admin } from "@/components/admin";
+import { Resource } from "ra-core";
+
+import { dataProvider } from "./data-provider";
+import { CustomerEdit } from "./customers";
+
+const App = () => (
+  <Admin dataProvider={dataProvider}>
+    <Resource name="customers" edit={CustomerEdit} />
+  </Admin>
+);
+
+export default App;
+```
+
+## Props
+
+You can customize the `<Edit>` component using the following props:
+
+| Prop                    | Required         | Type                                          | Default      | Description                                                                          |
+| ----------------------- | ---------------- | --------------------------------------------- | ------------ | ------------------------------------------------------------------------------------ |
+| `children`              | Optional&nbsp;\* | `ReactNode`                                   | -            | The components that render the form                                                  |
+| `render`                | Optional&nbsp;\* | `function`                                    | -            | Function to render the form, receives the editContext as argument                    |
+| `actions`               | Optional         | `ReactNode`                                   | -            | Override the actions toolbar with a custom component                                 |
+| `aside`                 | Optional         | `ReactNode`                                   | -            | Side panel rendered alongside the form                                               |
+| `component`             | Optional         | `ElementType`                                 | `"div"`      | Override the root element wrapping the form content                                  |
+| `className`             | Optional         | `string`                                      | -            | Passed to the root component                                                         |
+| `error`                 | Optional         | `ReactNode`                                   | default msg  | Content to display when a data-fetch error occurs                                    |
+| `disableAuthentication` | Optional         | `boolean`                                     | `false`      | Disable the authentication check                                                     |
+| `disableBreadcrumb`     | Optional         | `boolean`                                     | `false`      | Set to `true` to define a custom breadcrumb for the page, instead of the default one |
+| `emptyWhileLoading`     | Optional         | `boolean`                                     | `false`      | Set to `true` to return `null` while the edit is loading                             |
+| `id`                    | Optional         | `string`/`number`                             | -            | The id of the record to edit                                                         |
+| `offline`               | Optional         | `ReactNode`                                   | default msg  | Content to display when the browser is offline and the record is still loading       |
+| `mutationMode`          | Optional         | `'undoable' \| 'optimistic' \| 'pessimistic'` | `'undoable'` | Switch to optimistic or pessimistic mutations                                        |
+| `mutationOptions`       | Optional         | `object`                                      | -            | Options for the `dataProvider.update()` call                                         |
+| `queryOptions`          | Optional         | `object`                                      | -            | Options for the `dataProvider.getOne()` call                                         |
+| `redirect`              | Optional         | `'list' \| 'show' \| false \| function`       | `'list'`     | Change the redirect location after successful update                                 |
+| `resource`              | Optional         | `string`                                      | -            | Override the name of the resource to edit                                            |
+| `title`                 | Optional         | `string`/`ReactNode`/`false`                  | -            | Override the page title                                                              |
+| `transform`             | Optional         | `function`                                    | -            | Transform the form data before calling `dataProvider.update()`                       |
+
+`*` You must provide either `children` or `render`.
+
+## `render`
+
+An alternative to `children`. Pass a function that receives the full [`EditControllerResult`](https://marmelab.com/ra-core/useeditcontroller/) and returns a React node. Use it when you need full control over the edit page UI:
+
+```tsx
+import { Edit } from "@/components/admin";
+
+export const PostEdit = () => (
+  <Edit
+    render={({ record, saving }) => (
+      <div>
+        <h1>Edit: {record?.title}</h1>
+        <form>
+          <input name="title" defaultValue={record?.title} />
+          <button type="submit" disabled={saving}>
+            {saving ? "Saving…" : "Save"}
+          </button>
+        </form>
+      </div>
+    )}
+  />
+);
+```
+
+When `render` is provided, `children` is ignored.
+
+## `offline`
+
+When the browser goes offline while the record is still loading (`isPaused && isPending`), `<Edit>` shows a default "Offline — waiting for connection…" message. Override it with any `ReactNode`:
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+
+export const PostEdit = () => (
+  <Edit
+    offline={
+      <p className="text-muted-foreground p-4">
+        You appear to be offline. Reconnect to continue editing.
+      </p>
+    }
+  >
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+Set `offline={false}` to suppress the offline state entirely.
+
+## `error`
+
+When `dataProvider.getOne()` fails, `<Edit>` renders a default error message. Pass a custom `ReactNode` to `error` to replace it:
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+
+export const PostEdit = () => (
+  <Edit
+    error={
+      <p className="text-destructive p-4">
+        Failed to load post. Please try again.
+      </p>
+    }
+  >
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+Set `error={false}` to suppress the error message entirely.
+
+## `component`
+
+By default, `<Edit>` wraps the form content in a `<div>`. Pass any React element type to `component` to replace it — for example a `<Card>`:
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+import { Card } from "@/components/ui/card";
+
+export const PostEdit = () => (
+  <Edit component={Card}>
+    <SimpleForm>
+      <TextInput source="title" />
+    </SimpleForm>
+  </Edit>
+);
+```
+
+## `aside`
+
+Pass any React node as `aside` to render a side panel alongside the form. The aside floats to the right in a flex row — the form takes `flex-1` and the aside gets a fixed `w-64` width.
+
+```tsx
+import { Edit, SimpleForm, TextInput } from "@/components/admin";
+
+const EditNotes = () => (
+  <div className="p-4 bg-muted rounded text-sm">
+    <p className="font-medium mb-2">Editing tips</p>
+    <ul className="list-disc pl-4 space-y-1">
+      <li>Changes are undoable for 5 seconds.</li>
+      <li>Delete removes the record permanently.</li>
+    </ul>
+  </div>
+);
+
+export const PostEdit = () => (
+  <Edit aside={<EditNotes />}>
+    <SimpleForm>
+      <TextInput source="title" />
+      <TextInput source="body" multiline />
+    </SimpleForm>
+  </Edit>
+);
+```

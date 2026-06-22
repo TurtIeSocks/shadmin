@@ -1,0 +1,17 @@
+{
+  "name": "ReferenceArrayInput",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Component to display when offline and the request is pending or has stale placeholder data."
+    }
+  ]
+}

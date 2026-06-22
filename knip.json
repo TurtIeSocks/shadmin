@@ -39,7 +39,6 @@
       "entry": ["src/**/*.{ts,tsx}"],
       "project": ["src/**/*.{ts,tsx}"],
       "ignoreDependencies": ["tailwindcss", "tw-animate-css"]
-    },
-    "apps/docs": { "ignore": ["**"] }
+    }
   }
 }

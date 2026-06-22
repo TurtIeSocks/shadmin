@@ -1,0 +1,17 @@
+{
+  "name": "PrevNextButtons",
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "ref",
+      "type": "Ref<HTMLElement>",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

@@ -1,3 +1,3 @@
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
+import { fakeTransport } from "shadmin-core";
 
 export const menuTransport = fakeTransport();

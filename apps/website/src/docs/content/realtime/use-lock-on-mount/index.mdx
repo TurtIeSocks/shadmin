@@ -1,0 +1,47 @@
+---
+title: "useLockOnMount"
+description: "useLockOnMount acquires a record lock when the component mounts and releases it automatically on unmount. It falls back to the current ResourceContext, RecordContext, and authProvider identity when explicit options are not provided."
+---
+
+## Usage
+
+```tsx
+import { useLockOnMount } from "@/components/realtime";
+import { LockConflictError } from "@/components/realtime";
+
+function EditGuard({ children }: { children: React.ReactNode }) {
+  const { lock, isLocking, lockError } = useLockOnMount();
+
+  if (isLocking) return <p>Acquiring lock…</p>;
+  if (lockError instanceof LockConflictError) {
+    return <p>Locked by {String(lockError.existingLock.identity)}</p>;
+  }
+  if (lock) return <>{children}</>;
+  return null;
+}
+```
+
+## Params (options object)
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `resource` | `string` | `ResourceContext` | Resource to lock. Falls back to context. |
+| `id` | `Identifier` | `RecordContext.id` | Record ID. Falls back to context. |
+| `identity` | `Identifier` | `useGetIdentity()` | User identity. Falls back to auth provider. |
+| `meta` | `Record<string, unknown>` | — | Forwarded to `lock()` |
+| `onLockError` | `(error: Error) => void` | — | Called if the lock call fails |
+
+## Returns
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `lock` | `Lock \| null` | The held lock, or `null` while locking or on error |
+| `isLocking` | `boolean` | `true` while the lock request is in flight |
+| `lockError` | `Error \| null` | The lock error (often `LockConflictError`) |
+
+## Notes
+
+- The lock is released by calling `unlock()` in the `useEffect` cleanup. If the component unmounts before the lock call completes, the unlock is cancelled — no dangling lock.
+- If `resource`, `id`, or `identity` are all unavailable at mount time, the effect is skipped until they become available.
+- `LockConflictError` on `lockError` means another user holds the lock — check `.existingLock.identity` to display who.
+- For a declarative version, see `<LockOnMount>`.

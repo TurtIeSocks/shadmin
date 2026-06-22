@@ -1,0 +1,17 @@
+{
+  "name": "RadioButtonGroupInput",
+  "props": [
+    {
+      "name": "options",
+      "type": "RadioGroupProps & RefAttributes<HTMLDivElement>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "row",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

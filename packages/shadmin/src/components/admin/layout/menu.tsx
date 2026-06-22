@@ -84,8 +84,8 @@ const getResourceMenuGroups = (
  *   <Menu>
  *     <Menu.DashboardItem />
  *     <Menu.ResourceItem name="posts" />
- *     <Menu.Item to="/settings" primaryText="Settings" leftIcon={<Settings />} />
- *     <Menu.Item to="/books" primaryText="Books" leftIcon={<Book />} />
+ *     <Menu.Item to="/settings" label="Settings" icon={<Settings />} />
+ *     <Menu.Item to="/books" label="Books" icon={<Book />} />
  *   </Menu>
  * );
  */

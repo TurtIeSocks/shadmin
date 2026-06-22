@@ -1,0 +1,29 @@
+{
+  "name": "I18nKeyEditor",
+  "props": [
+    {
+      "name": "baseProvider",
+      "type": "I18nProvider",
+      "optional": false,
+      "comment": "The original i18nProvider being wrapped."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Initial panel state."
+    },
+    {
+      "name": "showExport",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Show the Export-to-clipboard button."
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "name": "ReferenceManyCount",
+  "props": [
+    {
+      "name": "cellClassName",
+      "type": "string",
+      "optional": true,
+      "comment": "A class name to apply to the cell element when used inside <DataTable>."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": "A class name to apply to the root div element"
+    },
+    {
+      "name": "filter",
+      "type": "UnknownRecord",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "headerClassName",
+      "type": "string",
+      "optional": true,
+      "comment": "A class name to apply to the header cell element when used inside <DataTable>."
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Label to use as column header when using <DataTable> or <SimpleShowLayout>.\nDefaults to the capitalized field name. Set to false to disable the label."
+    },
+    {
+      "name": "link",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "offline",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Component to display when offline and the request is pending or has stale placeholder data."
+    },
+    {
+      "name": "record",
+      "type": "RecordType",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "reference",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "sort",
+      "type": "SortPayload",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "sortable",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Set it to false to disable the click handler on the column header when used inside <DataTable>."
+    },
+    {
+      "name": "sortBy",
+      "type": "string",
+      "optional": true,
+      "comment": "The field to use for sorting when users click this column head, if sortable."
+    },
+    {
+      "name": "sortByOrder",
+      "type": "SortOrder",
+      "optional": true,
+      "comment": "The order used for sorting when users click this column head, if sortable."
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    },
+    {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "optional": true,
+      "comment": "The text alignment for the cell content, when used inside <DataTable>."
+    },
+    {
+      "name": "timeout",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

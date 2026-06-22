@@ -1,0 +1,29 @@
+{
+  "name": "BlockDocField",
+  "props": [
+    {
+      "name": "blocks",
+      "type": "BlockDefinition[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "record",
+      "type": "RecordType",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": false,
+      "comment": ""
+    }
+  ]
+}

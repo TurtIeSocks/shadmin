@@ -1,0 +1,23 @@
+{
+  "name": "CommentsThread",
+  "props": [
+    {
+      "name": "reference",
+      "type": "string",
+      "optional": false,
+      "comment": "Comments sub-resource name (e.g. \"comments\")."
+    },
+    {
+      "name": "resolvable",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When true, each unresolved comment shows a \"Mark resolved\" button."
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "optional": false,
+      "comment": "Field on the comment record that holds the parent record id."
+    }
+  ]
+}

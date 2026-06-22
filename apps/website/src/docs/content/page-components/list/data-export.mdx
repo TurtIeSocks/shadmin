@@ -1,0 +1,304 @@
+---
+title: "Data & Export"
+description: "Exporting data, fetching options, and parameter persistence."
+---
+
+## Exported Data
+
+Among the default list actions, shadmin includes an `<ExportButton>`.
+
+By default, clicking this button will:
+
+1. Call the `dataProvider` with the current sort and filter (but without pagination),
+2. Transform the result into a CSV string,
+3. Download the CSV file.
+
+The columns of the CSV file match all the fields of the records in the `dataProvider` response. That means that the export doesn't take into account the selection and ordering of fields in your `<List>` via `Field` components. If you want to customize the result, pass a custom `exporter` function to the `<List>`. This function will receive the data from the `dataProvider` (after step 1) and replace steps 2-3 (i.e. it's in charge of transforming, converting, and downloading the file).
+
+:::tip
+The `<ExportButton>` is disabled when there is no record in the current `<List>`.
+:::
+
+:::tip
+For CSV conversion, you can import [jsonexport](https://github.com/kauegimenes/jsonexport#browser-import-examples), a JSON to CSV converter which is already a shadmin dependency. And for CSV download, take advantage of shadmin's `downloadCSV` function.
+
+Here is an example for a Posts exporter, omitting, adding, and reordering fields:
+
+```tsx
+// in PostList.js
+import { List } from '@/components/admin';
+import { downloadCSV } ffrom 'ra-core';
+import jsonExport from 'jsonexport/dist';
+
+const exporter = posts => {
+    const postsForExport = posts.map(post => {
+        const { backlinks, author, ...postForExport } = post; // omit backlinks and author
+        postForExport.author_name = post.author.name; // add a field
+        return postForExport;
+    });
+    jsonExport(postsForExport, {
+        headers: ['id', 'title', 'author_name', 'body'] // order fields in the export
+    }, (err, csv) => {
+        downloadCSV(csv, 'posts'); // download as 'posts.csv` file
+    });
+};
+
+const PostList = () => (
+    <List exporter={exporter}>
+        ...
+    </List>
+)
+```
+
+:::
+
+In many cases, you'll need more than simple object manipulation. You'll need to _augment_ your objects based on relationships. For instance, the export for comments should include the title of the related post - but the export only exposes a `post_id` by default. For that purpose, the exporter receives a `fetchRelatedRecords` function as the second parameter. It fetches related records using your `dataProvider.getMany()` method and returns a promise.
+
+Here is an example for a Comments exporter, fetching related Posts:
+
+```tsx
+// in CommentList.js
+import { List } from "@/components/admin";
+import { downloadCSV, type FetchRelatedRecords } from "ra-core";
+import jsonExport from "jsonexport/dist";
+
+const exporter = async (
+  comments: Comments[],
+  fetchRelatedRecords: FetchRelatedRecords,
+) => {
+  // will call dataProvider.getMany('posts', { ids: records.map(record => record.post_id) }),
+  // ignoring duplicate and empty post_id
+  const posts = await fetchRelatedRecords<Post>(comments, "post_id", "posts");
+  const commentsWithPostTitle = comments.map((comment) => ({
+    ...comment,
+    post_title: posts[comment.post_id].title,
+  }));
+  return jsonExport(
+    commentsWithPostTitle,
+    {
+      headers: ["id", "post_id", "post_title", "body"],
+    },
+    (err, csv) => {
+      downloadCSV(csv, "comments");
+    },
+  );
+};
+
+const CommentList = () => <List exporter={exporter}>...</List>;
+```
+
+:::tip
+If you need to call another verb in the exporter, take advantage of the third parameter passed to the function: it's the `dataProvider` function.
+:::
+
+:::tip
+The `<ExportButton>` limits the main request to the `dataProvider` to 1,000 records. If you want to increase or decrease this limit, pass a `maxResults` prop to the `<ExportButton>` in a custom `<ListActions>` component.
+:::
+
+:::tip
+shadmin also provides a `<BulkExportButton>` component that depends on the `exporter`, and that you can use in the `bulkActionButtons` prop of the `<DataTable>` component.
+:::
+
+:::tip
+For complex (or large) exports, fetching all the related records and assembling them client-side can be slow. In that case, create the CSV on the server side, and replace the `<ExportButton>` component by a custom one, fetching the CSV route.
+:::
+
+:::tip
+You may also remove the `<ExportButton>` by passing `false` to the `exporter` prop: `exporter={false}`.
+:::
+
+## Data Fetching Options
+
+`<List>` accepts a `queryOptions` prop to pass [query options](https://marmelab.com/ra-core/actions/#query-options) to the react-query client. Check react-query's [`useQuery` documentation](https://tanstack.com/query/v5/docs/react/reference/useQuery) for the list of available options.
+
+This can be useful e.g. to pass [a custom `meta`](https://marmelab.com/ra-core/actions/#meta-parameter) to the `dataProvider.getList()` call.
+
+```tsx
+import { List } from "@/components/admin";
+
+const PostList = () => <List queryOptions={{ meta: { foo: "bar" } }}>...</List>;
+```
+
+With this option, shadmin will call `dataProvider.getList()` on mount with the `meta: { foo: 'bar' }` option.
+
+You can also use the `queryOptions` prop to override the default error side effect. By default, when the `dataProvider.getList()` call fails, shadmin shows an error notification. Here is how to show a custom notification instead:
+
+```tsx
+import { useNotify, useRedirect, List } from "@/components/admin";
+
+const PostList = () => {
+  const notify = useNotify();
+  const redirect = useRedirect();
+
+  const onError = (error) => {
+    notify(`Could not load list: ${error.message}`, { type: "error" });
+    redirect("/dashboard");
+  };
+
+  return <List queryOptions={{ onError }}>...</List>;
+};
+```
+
+The `onError` function receives the error from the dataProvider call (`dataProvider.getList()`), which is a JavaScript Error object (see [the dataProvider documentation for details](https://marmelab.com/ra-core/dataproviderwriting/#error-format)).
+
+If `dataProvider.getList()` returns additional metadata in the response under the `meta` key, you can access it in the list view using the `meta` property of the `ListContext`.
+
+![List metadata](https://marmelab.com/react-admin/img/List-facets.png)
+
+This is often used by APIs to return facets, aggregations, statistics, or other metadata about the list of records.
+
+```tsx
+// dataProvider.getLists('books') returns response like
+// {
+//     data: [ ... ],
+//     total: 293,
+//     meta: {
+//         genres: [
+//             { value: 'Fictions', count: 134 },
+//             { value: 'Essays', count: 24 },
+//         ],
+//         centuries: [
+//             { value: '18th', count: 23 },
+//             { value: '19th', count: 78 },
+//             { value: '20th', count: 57 },
+//             { value: '21st', count: 34 },
+//         ],
+//     },
+// }
+const Facets = () => {
+  const { isPending, error, meta } = useListContext();
+  if (isPending || error) return null;
+  return (
+    <div className="space-y-4 rounded-md border p-4 bg-background">
+      <div>
+        <h4 className="text-sm font-semibold tracking-wide text-foreground/80 mb-2">
+          Genres
+        </h4>
+        <ul className="space-y-1 text-sm">
+          {meta.genres.map((facet) => (
+            <li key={facet.value}>
+              <Link href="#" className="hover:underline">
+                {facet.value}{" "}
+                <span className="text-muted-foreground">({facet.count})</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 className="text-sm font-semibold tracking-wide text-foreground/80 mb-2">
+          Century
+        </h4>
+        <ul className="space-y-1 text-sm">
+          {meta.centuries.map((facet) => (
+            <li key={facet.value}>
+              <Link href="#" className="hover:underline">
+                {facet.value}{" "}
+                <span className="text-muted-foreground">({facet.count})</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+```
+
+You might want to allow data to be fetched only when at least some filters have been set. You can leverage TanStack react-query `enabled` option for that. It accepts a function that receives the query as its only parameter. As shadmin always format the `queryKey` as `[ResourceName, DataProviderMethod, DataProviderParams]`, you can check that there is at least a filter in this function:
+
+```tsx
+export const PostList = () => (
+  <List
+    filters={postFilter}
+    queryOptions={{
+      enabled: (query) => {
+        const listParams = query.queryKey[2] as GetListParams;
+        return listParams.filter.q?.length > 2;
+      },
+    }}
+    render={(context) =>
+      context.filterValues.q?.length > 2 ? (
+        <CardContentInner>Type a search term to fetch data</CardContentInner>
+      ) : (
+        <Datagrid>{/* your fields */}</Datagrid>
+      )
+    }
+  />
+);
+```
+
+:::note
+Notice we display some custom UI when there is no filter. This is because otherwise, users would see the loading UI as Tanstack Query will set the `isPending` property of the underlying query to `true` if the query isn't enabled.
+:::
+
+## Parameters Persistence
+
+By default, when users change the list parameters (sort, pagination, filters), shadmin stores them in localStorage so that users can come back to the list and find it in the same state as when they left it, using the internal [Store](https://marmelab.com/ra-core/store/).
+
+Shadmin uses the current resource as the identifier to store the list parameters (under the key `${resource}.listParams`).
+
+If you want to display multiple lists of the same resource and keep distinct store states for each of them (filters, sorting and pagination), you must give each list a unique `storeKey` property. You can also disable the persistence of list parameters and selection in the store by setting the `storeKey` prop to `false`.
+
+In the example below, both lists `NewerBooks` and `OlderBooks` use the same resource ('books'), but their list parameters are stored separately (under the store keys `'newerBooks'` and `'olderBooks'` respectively). This allows to use both components in the same app, each having its own state (filters, sorting and pagination).
+
+```tsx
+import {
+  Admin,
+  CustomRoutes,
+  Resource,
+  List,
+  DataTable,
+} from "@/components/admin";
+import { Route } from "react-router";
+
+const NewerBooks = () => (
+  <List
+    resource="books"
+    storeKey="newerBooks"
+    sort={{ field: "year", order: "DESC" }}
+  >
+    <DataTable>
+      <DataTable.Col source="id" />
+      <DataTable.Col source="title" />
+      <DataTable.Col source="author" />
+      <DataTable.Col source="year" />
+    </DataTable>
+  </List>
+);
+
+const OlderBooks = () => (
+  <List
+    resource="books"
+    storeKey="olderBooks"
+    sort={{ field: "year", order: "ASC" }}
+  >
+    <DataTable>
+      <DataTable source="id" />
+      <DataTable source="title" />
+      <DataTable source="author" />
+      <DataTable source="year" />
+    </DataTable>
+  </List>
+);
+
+const Admin = () => {
+  return (
+    <Admin dataProvider={dataProvider}>
+      <CustomRoutes>
+        <Route path="/newerBooks" element={<NewerBooks />} />
+        <Route path="/olderBooks" element={<OlderBooks />} />
+      </CustomRoutes>
+      <Resource name="books" />
+    </Admin>
+  );
+};
+```
+
+:::tip
+The `storeKey` is actually passed to the underlying `useListController` hook, which you can use directly for more complex scenarios. See the [`useListController` doc](https://marmelab.com/ra-core/uselistcontroller/#storekey) for more info.
+:::
+
+:::note
+_Selection state_ will remain linked to a resource-based key regardless of the specified `storeKey` string. This is a design choice because if row selection is not tied to a resource, then when a user deletes a record it may remain selected without any ability to unselect it. If you want to allow custom `storeKey`'s for managing selection state, you will have to implement your own `useListController` hook and pass a custom key to the `useRecordSelection` hook. You will then need to implement your own `DeleteButton` and `BulkDeleteButton` to manually unselect rows when deleting records. You can still opt out of all store interactions including selection if you set it to `false`.
+:::

@@ -1,0 +1,105 @@
+---
+title: "4. Polish"
+description: "Add search and filters, custom menu icons, and a home page."
+---
+
+## Adding Search And Filters To The List
+
+Let's get back to the post list for a minute. It offers sorting and pagination, but one feature is missing: the ability to search content.
+
+`shadmin` can use input components to create a multi-criteria search engine in the list view. Pass an array of such input components to the List `filters` prop to enable filtering:
+
+```tsx
+// posts.tsx
+const postFilters = [
+    <TextInput source="q" label="Search" key="q" />,
+    <ReferenceInput source="userId" reference="users" key="userId">
+        <AutocompleteInput label="User" />
+    </ReferenceInput>,
+];
+
+export const PostList = () => (
+    <List filters={postFilters}>
+        /* ... */
+    </List>
+);
+```
+
+This displays a Filter button on top of the posts list. When clicked, it reveals the filter form:
+
+
+The first filter, 'q', takes advantage of a full-text functionality offered by JSONPlaceholder. The second filter on `userId` is already populated with possible users since it's a `<ReferenceInput>`.
+
+Filters are "search-as-you-type", meaning that when the user enters new values in the filter form, the list refreshes (via an API request) immediately.
+
+**Tip**: The `label` property can be used on any input to customize its label.
+
+## Customizing the Menu Icons
+
+The sidebar menu shows the same icon for both posts and users. Customizing the menu icon is just a matter of passing an `icon` attribute to each `<Resource>`:
+
+```diff lang="tsx"
+// App.tsx
+import { Resource } from "ra-core";
++import { StickyNoteIcon, UsersIcon } from "lucide-react";
+import { Admin, ShowGuesser } from "@/components/admin";
+import { dataProvider } from "./data-provider";
+import { PostCreate, PostEdit, PostList } from "./posts";
+import { UserList } from "./users";
+
+const App = () => (
+    <Admin dataProvider={dataProvider}>
+        <Resource
+            name="posts"
++            icon={StickyNoteIcon}
+            list={PostList}
+            edit={PostEdit}
+            create={PostCreate}
+        />
+        <Resource
+            name="users"
++            icon={UsersIcon}
+            list={UserList}
+            show={ShowGuesser}
+        />
+    </Admin>
+);
+```
+
+
+## Using a Custom Home Page
+
+By default, `shadmin` displays the list page of the first `Resource` element as the home page. If you want to display a custom component instead, pass it in the `dashboard` prop of the `<Admin>` component.
+
+```tsx
+// dashboard.tsx
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+
+export const Dashboard = () => (
+    <Card>
+        <CardHeader>
+            <CardTitle>Welcome to the administration</CardTitle>
+        </CardHeader>
+        <CardContent>Lorem ipsum dolor sit amet...</CardContent>
+    </Card>
+);
+```
+
+```diff lang="tsx"
+// App.tsx
++import { Dashboard } from './dashboard';
+
+const App = () => (
+-    <Admin dataProvider={dataProvider}>
++    <Admin dataProvider={dataProvider} dashboard={Dashboard}>
+        /* ... */
+    </Admin>
+);
+```
+
+![Custom home page](/docs/images/dashboard.png)

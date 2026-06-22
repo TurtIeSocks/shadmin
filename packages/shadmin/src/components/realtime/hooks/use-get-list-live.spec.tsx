@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import fakeRestProvider from "ra-data-fakerest";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { useGetListLive } from "./use-get-list-live";
+import { fakeTransport } from "shadmin-core";
+import { useGetListLive } from "shadmin-core";
 
 function ListProbe() {
   const { data, isPending } = useGetListLive("posts", {

@@ -2,14 +2,14 @@ import { useEffect, type ReactElement, type ReactNode } from "react";
 import { Link, useLocation } from "react-router";
 import { useStore } from "shadmin-core";
 import { Badge } from "@/components/ui/badge";
-import { resourceTopic } from "./topics";
-import type { RealtimeEventType } from "./types";
-import { useSubscribe } from "./hooks/use-subscribe";
+import { resourceTopic } from "shadmin-core";
+import type { RealtimeEventType } from "shadmin-core";
+import { useSubscribe } from "shadmin-core";
 
 export interface MenuLiveItemLinkProps {
   to: string;
   resource: string;
-  primaryText: ReactNode;
+  label: ReactNode;
   icon?: ReactNode;
   events?: RealtimeEventType[];
   badgeLabel?: (count: number) => ReactNode;
@@ -18,7 +18,7 @@ export interface MenuLiveItemLinkProps {
 export function MenuLiveItemLink({
   to,
   resource,
-  primaryText,
+  label,
   icon,
   events = ["created"],
   badgeLabel,
@@ -38,7 +38,7 @@ export function MenuLiveItemLink({
   }, [pathname, to, count, setCount]);
 
   const safeCount = count ?? 0;
-  const label = badgeLabel
+  const badgeText = badgeLabel
     ? badgeLabel(safeCount)
     : safeCount > 99
       ? "99+"
@@ -47,10 +47,10 @@ export function MenuLiveItemLink({
   return (
     <Link to={to} className="flex items-center gap-2">
       {icon}
-      <span>{primaryText}</span>
+      <span>{label}</span>
       {safeCount > 0 && (
         <Badge data-testid="menu-live-badge" variant="secondary">
-          {label}
+          {badgeText}
         </Badge>
       )}
     </Link>

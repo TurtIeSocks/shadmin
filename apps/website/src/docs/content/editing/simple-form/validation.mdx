@@ -1,0 +1,231 @@
+---
+title: "Validation"
+description: "Validate SimpleForm inputs with schemas or per-field rules."
+---
+
+## Validation
+
+To validate the form values, provide a `validate` function taking the record as input, and returning an object with error messages indexed by field. For instance:
+
+```tsx
+const validateUserCreation = (values) => {
+  const errors = {};
+  if (!values.firstName) {
+    errors.firstName = "The firstName is required";
+  }
+  if (!values.age) {
+    // You can return translation keys
+    errors.age = "ra.validation.required";
+  } else if (values.age < 18) {
+    // Or an object if the translation messages need parameters
+    errors.age = {
+      message: "ra.validation.minValue",
+      args: { min: 18 },
+    };
+  }
+  return errors;
+};
+
+export const UserCreate = () => (
+  <Create>
+    <SimpleForm validate={validateUserCreation}>
+      <TextInput label="First Name" source="firstName" />
+      <TextInput label="Age" source="age" />
+    </SimpleForm>
+  </Create>
+);
+```
+
+:::tip
+The `validate` function can return a promise for asynchronous validation. See [the Server-Side Validation section](https://marmelab.com/ra-core/validation/#server-side-validation) in the Validation documentation.
+:::
+
+Alternatively, you can specify a `validate` prop directly in `<Input>` components, taking either a function or an array of functions. Ra-core already bundles a few validator functions, that you can just require, and use as input-level validators:
+
+- `required(message)` if the field is mandatory,
+- `minValue(min, message)` to specify a minimum value for integers,
+- `maxValue(max, message)` to specify a maximum value for integers,
+- `minLength(min, message)` to specify a minimum length for strings,
+- `maxLength(max, message)` to specify a maximum length for strings,
+- `number(message)` to check that the input is a valid number,
+- `email(message)` to check that the input is a valid email address,
+- `regex(pattern, message)` to validate that the input matches a regex,
+- `choices(list, message)` to validate that the input is within a given list,
+- `unique()` to validate that the input is unique (see [`useUnique`](https://marmelab.com/react-admin/useUnique.html)),
+
+Example usage:
+
+```tsx
+import {
+  required,
+  minLength,
+  maxLength,
+  minValue,
+  maxValue,
+  number,
+  regex,
+  email,
+  choices,
+} from "ra-core";
+
+const validateFirstName = [required(), minLength(2), maxLength(15)];
+const validateEmail = email();
+const validateAge = [number(), minValue(18)];
+const validateZipCode = regex(/^\d{5}$/, "Must be a valid Zip Code");
+const validateGender = choices(
+  ["m", "f", "nc"],
+  "Please choose one of the values",
+);
+
+export const UserCreate = () => (
+  <Create>
+    <SimpleForm>
+      <TextInput
+        label="First Name"
+        source="firstName"
+        validate={validateFirstName}
+      />
+      <TextInput label="Email" source="email" validate={validateEmail} />
+      <TextInput label="Age" source="age" validate={validateAge} />
+      <TextInput label="Zip Code" source="zip" validate={validateZipCode} />
+      <SelectInput
+        label="Gender"
+        source="gender"
+        choices={[
+          { id: "m", name: "Male" },
+          { id: "f", name: "Female" },
+          { id: "nc", name: "Prefer not say" },
+        ]}
+        validate={validateGender}
+      />
+    </SimpleForm>
+  </Create>
+);
+```
+
+:::tip
+If you pass a function as a message, Shadmin calls this function with `{ args, value, values,translate, ...props }` as argument. For instance:
+
+```tsx
+const message = ({ translate }) => translate("myroot.validation.email_invalid");
+const validateEmail = email(message);
+```
+
+:::
+
+You can also define your own validator functions. These functions should return `undefined` when there is no error, or an error string.
+
+```tsx
+const required =
+  (message = "Required") =>
+  (value) =>
+    value ? undefined : message;
+const maxLength =
+  (max, message = "Too short") =>
+  (value) =>
+    value && value.length > max ? message : undefined;
+const number =
+  (message = "Must be a number") =>
+  (value) =>
+    value && isNaN(Number(value)) ? message : undefined;
+const minValue =
+  (min, message = "Too small") =>
+  (value) =>
+    value && value < min ? message : undefined;
+
+const ageValidation = (value, allValues) => {
+  if (!value) {
+    return "The age is required";
+  }
+  if (value < 18) {
+    return "Must be over 18";
+  }
+  return undefined;
+};
+
+const validateFirstName = [required(), maxLength(15)];
+const validateAge = [required(), number(), ageValidation];
+
+export const UserCreate = () => (
+  <Create>
+    <SimpleForm>
+      <TextInput
+        label="First Name"
+        source="firstName"
+        validate={validateFirstName}
+      />
+      <TextInput label="Age" source="age" validate={validateAge} />
+    </SimpleForm>
+  </Create>
+);
+```
+
+Input validation functions receive the current field value and the values of all fields of the current record. This allows for complex validation scenarios (e.g. validate that two passwords are the same).
+
+:::tip
+If your admin has multi-language support, validator functions should return message _identifiers_ rather than messages themselves. Shadmin automatically passes these identifiers to the translation function:
+
+```tsx
+// in validators/required.js
+const required = () => (value, allValues, props) =>
+  value ? undefined : "myroot.validation.required";
+
+// in i18n/en.json
+export default {
+  myroot: {
+    validation: {
+      required: "Required field",
+    },
+  },
+};
+```
+
+If the translation depends on a variable, the validator can return an object rather than a translation identifier:
+
+```tsx
+// in validators/minLength.js
+const minLength = (min) => (value, allValues, props) =>
+  value.length >= min
+    ? undefined
+    : { message: "myroot.validation.minLength", args: { min } };
+
+// in i18n/en.js
+export default {
+  myroot: {
+    validation: {
+      minLength: "Must be %{min} characters at least",
+    },
+  },
+};
+```
+
+:::
+
+:::tip
+Make sure to define validation functions or array of functions in a variable outside your component, instead of defining them directly in JSX. This can result in a new function or array at every render, and trigger infinite rerender.
+
+```tsx
+const validateStock = [required(), number(), minValue(0)];
+
+export const ProductEdit = () => (
+  <Edit>
+    <SimpleForm defaultValues={{ stock: 0 }}>
+      ...
+      {/* do this */}
+      <NumberInput source="stock" validate={validateStock} />
+      {/* don't do that */}
+      <NumberInput
+        source="stock"
+        validate={[required(), number(), minValue(0)]}
+      />
+      ...
+    </SimpleForm>
+  </Edit>
+);
+```
+
+:::
+
+:::tip
+The custom validator function can return a promise, e.g. to use server-side validation. See next section for details.
+:::

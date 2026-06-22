@@ -1,0 +1,65 @@
+---
+title: "MenuLive"
+description: "<MenuLive> renders a navigation menu where each item shows a badge with the count of unread realtime events since the user last visited that route. The count resets automatically when the user navigates to the resource."
+registry: "menu-live"
+---
+
+## Usage
+
+```tsx
+import { MenuLive } from "@/components/realtime";
+import { Users, FileText } from "lucide-react";
+
+export function AppMenu() {
+  return (
+    <MenuLive
+      items={[
+        { to: "/posts", resource: "posts", primaryText: "Posts", icon: <FileText /> },
+        { to: "/users", resource: "users", primaryText: "Users", icon: <Users /> },
+      ]}
+    />
+  );
+}
+```
+
+### Single item
+
+Use `<MenuLiveItemLink>` directly when you need just one live link:
+
+```tsx
+import { MenuLiveItemLink } from "@/components/realtime";
+
+<MenuLiveItemLink
+  to="/posts"
+  resource="posts"
+  primaryText="Posts"
+  events={["created"]}
+  badgeLabel={(n) => `${n} new`}
+/>
+```
+
+## Props
+
+### `<MenuLive>`
+
+| Prop | Required | Type | Description |
+|------|----------|------|-------------|
+| `items` | Required | `ReadonlyArray<MenuLiveItemLinkProps>` | Array of item descriptors |
+
+### `<MenuLiveItemLink>`
+
+| Prop | Required | Type | Default | Description |
+|------|----------|------|---------|-------------|
+| `to` | Required | `string` | — | Target route (link `href`) |
+| `resource` | Required | `string` | — | Resource name used for the subscription topic |
+| `primaryText` | Required | `ReactNode` | — | Label shown in the menu |
+| `icon` | Optional | `ReactNode` | — | Icon shown before the label |
+| `events` | Optional | `RealtimeEventType[]` | `["created"]` | Which event types increment the counter |
+| `badgeLabel` | Optional | `(count: number) => ReactNode` | `count` (capped at `"99+"`) | Custom badge content |
+
+## Notes
+
+- The unread count is stored in the ra-core `Store` under key `realtime.unread.<resource>`, so it survives component re-renders but is cleared on page reload.
+- The counter resets to zero automatically when `pathname.startsWith(to)` — i.e. when the user is on the resource route.
+- By default only `"created"` events increment the counter. Pass `events={["created", "updated"]}` to include updates.
+- The badge is not rendered when the count is zero.

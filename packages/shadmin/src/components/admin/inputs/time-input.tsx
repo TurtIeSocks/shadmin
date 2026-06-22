@@ -1,7 +1,8 @@
 import * as React from "react";
 import clsx from "clsx";
 import type { InputProps } from "shadmin-core";
-import { useInput, FieldTitle, ValidationError } from "shadmin-core";
+import { useInput, ValidationError } from "shadmin-core";
+import { FieldLabelText } from "@/components/admin/common/field-label-text";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { InputHelperText } from "@/components/admin/common/input-helper-text";
@@ -146,7 +147,7 @@ function TimeInput({
     <Field className={className} data-invalid={invalid || undefined}>
       {label !== false && (
         <FieldLabel htmlFor={id}>
-          <FieldTitle
+          <FieldLabelText
             label={label}
             source={source}
             resource={resource}

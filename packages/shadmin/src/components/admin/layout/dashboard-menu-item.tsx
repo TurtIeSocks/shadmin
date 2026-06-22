@@ -3,7 +3,7 @@ import { House } from "lucide-react";
 import { useBasename, useTranslate } from "shadmin-core";
 import { MenuItemLink } from "@/components/admin/layout/menu-item-link";
 
-const defaultLeftIcon = <House />;
+const defaultIcon = <House />;
 
 type DashboardMenuItemProps = {
   /**
@@ -18,13 +18,13 @@ type DashboardMenuItemProps = {
   /**
    * Replaces the default `<House />` icon. Pass any ReactNode.
    */
-  leftIcon?: ReactNode;
+  icon?: ReactNode;
   /**
    * Replaces the default translated label (`ra.page.dashboard`). Strings are
    * passed through `useTranslate` with the string itself as fallback; ReactNodes
    * are rendered as-is.
    */
-  primaryText?: ReactNode;
+  label?: ReactNode;
 };
 
 /**
@@ -49,22 +49,22 @@ type DashboardMenuItemProps = {
 function DashboardMenuItem({
   className,
   onClick,
-  leftIcon,
-  primaryText,
+  icon,
+  label,
 }: DashboardMenuItemProps) {
   const translate = useTranslate();
   const basename = useBasename();
   const finalText =
-    primaryText === undefined
+    label === undefined
       ? translate("ra.page.dashboard", { _: "Dashboard" })
-      : typeof primaryText === "string"
-        ? translate(primaryText, { _: primaryText })
-        : primaryText;
+      : typeof label === "string"
+        ? translate(label, { _: label })
+        : label;
   return (
     <MenuItemLink
       to={`${basename}/`}
-      primaryText={finalText}
-      leftIcon={leftIcon ?? defaultLeftIcon}
+      label={finalText}
+      icon={icon ?? defaultIcon}
       className={className}
       onClick={onClick}
     />

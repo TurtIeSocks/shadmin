@@ -1,0 +1,45 @@
+---
+title: "useGetLocks"
+description: "useGetLocks fetches all current locks for a resource. It is a one-time query — use useGetLocksLive for a live view."
+---
+
+## Usage
+
+```tsx
+import { useGetLocks } from "@/components/realtime";
+
+function LockedRecordsList() {
+  const { data: locks, isPending } = useGetLocks("posts");
+
+  if (isPending) return <p>Loading…</p>;
+  return (
+    <ul>
+      {locks?.map((lock) => (
+        <li key={String(lock.recordId)}>
+          Record {String(lock.recordId)} locked by {String(lock.identity)}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## Params
+
+| Param | Required | Type | Description |
+|-------|----------|------|-------------|
+| `resource` | Required | `string` | Resource name |
+
+## Returns
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `data` | `Lock[] \| undefined` | All locks for the resource (`undefined` while loading) |
+| `isLoading` | `boolean` | `true` on initial load |
+| `isPending` | `boolean` | `true` while there is no data yet |
+| `error` | `Error \| null` | Fetch error |
+
+## Notes
+
+- Backed by TanStack Query with key `[resource, "locks"]`.
+- For a live view that updates when locks change, use `useGetLocksLive`.

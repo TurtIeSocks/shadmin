@@ -1,0 +1,41 @@
+{
+  "name": "StatusTransitionButton",
+  "props": [
+    {
+      "name": "confirm",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Show a native `confirm()` before firing the update."
+    },
+    {
+      "name": "guards",
+      "type": "Record<string, (record: RaRecord) => boolean>",
+      "optional": true,
+      "comment": "Optional `${from}->${to}` predicates to allow/block specific moves."
+    },
+    {
+      "name": "onTransition",
+      "type": "(from: string, to: string, record: RaRecord) => void",
+      "optional": true,
+      "comment": "Side-effect hook fired after the update is dispatched."
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": "Override resource (defaults to the surrounding `<ResourceContext>`)."
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the current state. Defaults to `\"status\"`."
+    },
+    {
+      "name": "transitions",
+      "type": "Record<string, readonly string[]>",
+      "optional": false,
+      "comment": "Map of state → allowed next states."
+    }
+  ]
+}

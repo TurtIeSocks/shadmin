@@ -1,0 +1,53 @@
+{
+  "name": "ApprovalQueue",
+  "props": [
+    {
+      "name": "approverSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field receiving the current user's id on approve/reject. Default `\"approverId\"`."
+    },
+    {
+      "name": "decidedAtSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field receiving the decision timestamp. Default `\"decidedAt\"`."
+    },
+    {
+      "name": "noteSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field receiving the optional reason note. Default `\"approverNote\"`."
+    },
+    {
+      "name": "requireReason",
+      "type": "boolean",
+      "optional": true,
+      "comment": "When true, reject (and approve, if you choose) require a reason note."
+    },
+    {
+      "name": "rowExtra",
+      "type": "(record: RaRecord) => ReactNode",
+      "optional": true,
+      "comment": "Optional custom slot rendered between header and action row."
+    },
+    {
+      "name": "statusSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the approval status. Default `\"status\"`."
+    },
+    {
+      "name": "subtitleSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Optional subtitle / secondary text field."
+    },
+    {
+      "name": "titleSource",
+      "type": "string",
+      "optional": true,
+      "comment": "Record field holding the human-readable title. Default `\"title\"`."
+    }
+  ]
+}

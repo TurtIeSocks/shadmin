@@ -34,7 +34,6 @@ import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Confirm } from "@/components/admin/feedback/confirm";
@@ -279,23 +278,21 @@ function AddItemButton(props: React.ComponentProps<"button">) {
   const { className, ...rest } = props;
   const translate = useTranslate();
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={() => add()}
-            className={cn("button-add", `button-add-${source}`, className)}
-            {...rest}
-          >
-            <PlusCircle className="size-5" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>{translate("ra.action.add")}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          onClick={() => add()}
+          className={cn("button-add", `button-add-${source}`, className)}
+          {...rest}
+        >
+          <PlusCircle className="size-5" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{translate("ra.action.add")}</TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -399,18 +396,16 @@ interface SimpleFormIteratorClearButtonProp {
 function ClearArrayButton(props: React.ComponentProps<"button">) {
   const translate = useTranslate();
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button type="button" variant="ghost" size="icon" {...props}>
-            <Trash className="size-5 text-destructive" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          {translate("ra.action.clear_array_input")}
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button type="button" variant="ghost" size="icon" {...props}>
+          <Trash className="size-5 text-destructive" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        {translate("ra.action.clear_array_input")}
+      </TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -436,27 +431,25 @@ function RemoveItemButton(props: React.ComponentProps<"button">) {
   const translate = useTranslate();
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={() => remove()}
-            className={cn(
-              "button-remove",
-              `button-remove-${source}-${index}`,
-              className,
-            )}
-            {...rest}
-          >
-            <XCircle className="size-5 text-destructive" />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>{translate("ra.action.remove")}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          onClick={() => remove()}
+          className={cn(
+            "button-remove",
+            `button-remove-${source}-${index}`,
+            className,
+          )}
+          {...rest}
+        >
+          <XCircle className="size-5 text-destructive" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{translate("ra.action.remove")}</TooltipContent>
+    </Tooltip>
   );
 }
 

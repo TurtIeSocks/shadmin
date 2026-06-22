@@ -25,11 +25,11 @@ type ResourceMenuItemProps = {
   /**
    * Override the label. Defaults to the pluralised resource label.
    */
-  primaryText?: ReactNode;
+  label?: ReactNode;
   /**
    * Override the icon. Defaults to the resource icon or `<List />`.
    */
-  leftIcon?: ReactNode;
+  icon?: ReactNode;
   /**
    * Extra CSS class appended to the underlying menu button.
    */
@@ -39,8 +39,11 @@ type ResourceMenuItemProps = {
    * `<AppSidebar>` uses this to close the mobile drawer.
    */
   onClick?: () => void;
-  /** Additional props forwarded to the underlying element (dense, tooltipProps, etc.). */
-  [rest: string]: unknown;
+  /**
+   * Extra props spread onto the underlying `<SidebarMenuButton>` (e.g. tooltip
+   * config, `dense`). Forwarded via the `...rest` spread.
+   */
+  tooltipProps?: Record<string, unknown>;
 };
 
 /**
@@ -65,8 +68,8 @@ type ResourceMenuItemProps = {
  */
 function ResourceMenuItem({
   name,
-  primaryText,
-  leftIcon,
+  label,
+  icon,
   className,
   onClick,
   ...rest
@@ -96,17 +99,16 @@ function ResourceMenuItem({
     onClick?.();
   };
 
-  const icon =
-    leftIcon !== undefined ? (
-      leftIcon
+  const resolvedIcon =
+    icon !== undefined ? (
+      icon
     ) : resources[name].icon ? (
       createElement(resources[name].icon)
     ) : (
       <List />
     );
 
-  const label =
-    primaryText !== undefined ? primaryText : getResourceLabel(name, 2);
+  const resolvedLabel = label !== undefined ? label : getResourceLabel(name, 2);
 
   return (
     <SidebarMenuItem>
@@ -117,8 +119,8 @@ function ResourceMenuItem({
         {...rest}
       >
         <Link to={to} state={{ _scrollToTop: true }} onClick={handleClick}>
-          {icon}
-          {label}
+          {resolvedIcon}
+          {resolvedLabel}
         </Link>
       </SidebarMenuButton>
     </SidebarMenuItem>

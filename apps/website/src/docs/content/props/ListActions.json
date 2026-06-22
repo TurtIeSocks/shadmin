@@ -1,0 +1,71 @@
+{
+  "name": "ListActions",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "displayedFilters",
+      "type": "Record<string, boolean>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "exporter",
+      "type": "boolean | Exporter",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "filters",
+      "type": "ReactElement<unknown, string | JSXElementConstructor<any>> | ReactNode[]",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "filterValues",
+      "type": "Record<string, unknown>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "hasCreate",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "permanentFilter",
+      "type": "Record<string, unknown>",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "resource",
+      "type": "string",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "showFilter",
+      "type": "(filterName: string) => void",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "total",
+      "type": "number",
+      "optional": true,
+      "comment": ""
+    }
+  ]
+}

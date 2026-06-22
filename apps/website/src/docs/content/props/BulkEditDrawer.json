@@ -1,0 +1,41 @@
+{
+  "name": "BulkEditDrawer",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "optional": false,
+      "comment": "Form inputs to render inside the sheet."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": "Disable the trigger regardless of selection."
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Trigger button label. Defaults to `\"Edit selected\"`."
+    },
+    {
+      "name": "onSuccess",
+      "type": "(diff: Record<string, unknown>, ids: readonly string | number[]) => void",
+      "optional": true,
+      "comment": "Side-effect after successful updateMany."
+    },
+    {
+      "name": "side",
+      "type": "\"left\" | \"right\" | \"bottom\" | \"top\"",
+      "optional": true,
+      "comment": "Sheet side. Default `\"right\"`."
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "optional": true,
+      "comment": "Sheet header title. Defaults to `label`."
+    }
+  ]
+}

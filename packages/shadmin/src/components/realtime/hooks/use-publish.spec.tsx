@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render } from "vitest-browser-react";
 import { useEffect } from "react";
 import { RealtimeStoryAdmin } from "@/test/_test-helpers";
-import { fakeTransport } from "@/components/realtime/transports/fake-transport";
-import { usePublish } from "./use-publish";
+import { fakeTransport } from "shadmin-core";
+import { usePublish } from "shadmin-core";
 
 function Publisher() {
   const publish = usePublish();

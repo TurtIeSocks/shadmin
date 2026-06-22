@@ -1,0 +1,17 @@
+{
+  "name": "DurationInput",
+  "props": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "comment": ""
+    },
+    {
+      "name": "units",
+      "type": "readonly Unit[]",
+      "optional": true,
+      "comment": "Which units to expose. Default `[\"d\",\"h\",\"m\",\"s\"]`."
+    }
+  ]
+}
