@@ -1,10 +1,16 @@
-import type { ReactNode } from "react";
+import { type ReactNode, useSyncExternalStore } from "react";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "shadmin/components/ui/sidebar";
 import { Separator } from "shadmin/components/ui/separator";
+import {
+  getSidebarOpen,
+  getSidebarOpenServer,
+  setSidebarOpen,
+  subscribeSidebar,
+} from "./sidebar-state";
 
 interface SiteShellProps {
   /** The sidebar element — pass `<SiteSidebar>` (already contains SidebarRail). */
@@ -17,8 +23,6 @@ interface SiteShellProps {
   breadcrumb?: ReactNode;
   /** Right-aligned action buttons / controls in the inset header. */
   actions?: ReactNode;
-  /** Controls the initial open state of SidebarProvider. Defaults to true. */
-  defaultOpen?: boolean;
   children: ReactNode;
 }
 
@@ -39,9 +43,15 @@ export function SiteShell({
   sidebar,
   breadcrumb,
   actions,
-  defaultOpen = true,
   children,
 }: SiteShellProps) {
+  // Controlled by the shared, persisted store so docs ⇄ demo navigation keeps
+  // the same open/collapsed state and it survives reloads (see sidebar-state).
+  const open = useSyncExternalStore(
+    subscribeSidebar,
+    getSidebarOpen,
+    getSidebarOpenServer,
+  );
   return (
     // h-svh + overflow-hidden locks the shell to the viewport so the sidebar
     // (fixed) and the inset header stay put; scrolling is delegated to the
@@ -49,7 +59,8 @@ export function SiteShell({
     // the full viewport there — the landing page (which needs document scroll)
     // never mounts SiteShell.
     <SidebarProvider
-      defaultOpen={defaultOpen}
+      open={open}
+      onOpenChange={setSidebarOpen}
       className="h-svh overflow-hidden"
     >
       {sidebar}

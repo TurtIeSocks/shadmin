@@ -21,9 +21,6 @@ export default function DocsLayout() {
   const { pathname } = useLocation();
   const activeSlug = pathname.replace(/^\/docs\/?/, "").replace(/\/+$/, "");
 
-  // Collapse sidebar by default on the /docs index page.
-  const isIndex = activeSlug === "";
-
   const activeSection =
     navTree.find((s) =>
       s.children.some((c) => c.kind === "leaf" && c.slug === activeSlug),
@@ -60,7 +57,6 @@ export default function DocsLayout() {
 
   return (
     <SiteShell
-      defaultOpen={!isIndex}
       sidebar={
         <SiteSidebar>
           <NavTree
