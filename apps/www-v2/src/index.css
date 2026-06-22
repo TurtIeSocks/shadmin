@@ -239,6 +239,14 @@
   @apply font-mono text-xs text-foreground;
 }
 
+/* @tailwindcss/typography wraps inline <code> in literal backtick characters
+   via ::before/::after content. Our MdxCode renders a styled chip, so the
+   backticks are noise (e.g. the props tables showed `titleSource`). Drop them. */
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
 /* offset anchor jumps so headings clear the sticky nav + utility bar */
 .prose :is(h1, h2, h3, h4) {
   scroll-margin-top: 6rem;
