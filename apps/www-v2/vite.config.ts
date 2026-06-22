@@ -12,6 +12,7 @@ import rehypeSlug from "rehype-slug";
 import { remarkRelativeLinks } from "./scripts/remark-relative-links.mjs";
 import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
 import { shadminSourcePlugin } from "./scripts/shadmin-source-resolver.mjs";
+import { SHIKI_THEME } from "./src/lib/shiki-theme";
 
 const shadminSrc = path.resolve(__dirname, "../../packages/shadmin/src");
 
@@ -53,7 +54,9 @@ export default defineConfig({
           [
             rehypePrettyCode,
             {
-              theme: { light: "github-light", dark: "github-dark" },
+              // Same theme as the react-shiki code blocks (SHIKI_THEME), so
+              // docs MDX fenced blocks match ExampleFrame/ComponentPreview.
+              theme: { ...SHIKI_THEME },
               keepBackground: false,
             },
           ],

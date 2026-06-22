@@ -1,9 +1,13 @@
 /**
- * Shared react-shiki dual-theme for all code blocks (docs ComponentPreview +
- * gallery ExampleFrame), so the two never drift. VS Code's default Light+/Dark+
- * palette — teal components, orange strings, light-blue attributes.
+ * The single shiki dual-theme for EVERY code block on the site, so they never
+ * drift. Consumed by both highlighting paths:
+ *   - react-shiki <ShikiHighlighter> (docs ComponentPreview, gallery
+ *     ExampleFrame, landing CodeShowcase) — paired with the `.dark .shiki`
+ *     color swap in index.css.
+ *   - rehype-pretty-code (docs MDX fenced blocks) — imported in vite.config.ts;
+ *     its `--shiki-light` / `--shiki-dark` token vars are swapped by the
+ *     `[data-rehype-pretty-code-figure]` rules in index.css.
  *
- * Paired with the `.dark .shiki` color swap in index.css, which activates the
- * `--shiki-dark` token vars under the `.dark` class.
+ * Palette: Atom One Light (light) + VS Code Dark+ (dark).
  */
 export const SHIKI_THEME = { light: "one-light", dark: "dark-plus" } as const;
