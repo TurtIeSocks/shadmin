@@ -104,13 +104,19 @@ export function DocSearch() {
             className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-gradient opacity-70"
           />
 
-          <Command filter={score} className="bg-transparent">
+          {/* Roomier input row: shadcn's CommandInput wrapper is a cramped
+              fixed h-9/px-3 — restyle it via the parent (taller, more padding,
+              wider icon gap) without forking the shared component. */}
+          <Command
+            filter={score}
+            className="bg-transparent [&_[data-slot=command-input-wrapper]]:h-16 [&_[data-slot=command-input-wrapper]]:gap-3 [&_[data-slot=command-input-wrapper]]:border-white/5 [&_[data-slot=command-input-wrapper]]:px-5 [&_[data-slot=command-input-wrapper]_svg]:size-[18px] [&_[data-slot=command-input-wrapper]_svg]:opacity-60"
+          >
             <div className="relative">
               <CommandInput
                 placeholder="Search documentation…"
-                className="h-12 text-base"
+                className="h-16 pr-14 text-base"
               />
-              <kbd className="absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-[5px] border border-border/60 bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:block">
+              <kbd className="absolute right-5 top-1/2 hidden -translate-y-1/2 rounded-[5px] border border-border/60 bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:block">
                 esc
               </kbd>
             </div>
