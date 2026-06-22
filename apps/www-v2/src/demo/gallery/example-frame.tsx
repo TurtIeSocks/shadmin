@@ -75,7 +75,7 @@ export function ExampleFrame({
                 language="tsx"
                 theme={SHIKI_THEME}
                 addDefaultStyles={false}
-                className="!bg-transparent p-4"
+                className="bg-transparent! p-4"
               >
                 {source}
               </ShikiHighlighter>

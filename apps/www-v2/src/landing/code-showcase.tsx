@@ -1,13 +1,19 @@
+import { ShikiHighlighter } from "react-shiki";
+import { SHIKI_THEME } from "@/lib/shiki-theme";
 import { Reveal } from "./reveal";
-import { BezelPanel, Heading, Lead, Section } from "./section";
+import { Heading, Lead, Section } from "./section";
+import { BezelPanel } from "./section";
 import { WindowChrome } from "./window-chrome";
 
-// Syntax tint palette (works on a dark code surface in both themes).
-const kw = "text-[#a78bfa]"; // keywords — brand violet
-const str = "text-[#34d399]"; // strings — green
-const tag = "text-[#f472b6]"; // JSX tags — pink
-const attr = "text-[#7dd3fc]"; // attributes — sky
-const punct = "text-zinc-500";
+const APP_TSX = `import { Admin, Resource } from "shadmin";
+
+export const App = () => (
+  <Admin dataProvider={dataProvider}>
+    <Resource name="products" list={ProductList} edit={ProductEdit} />
+    <Resource name="orders" list={OrderList} />
+  </Admin>
+);
+`;
 
 /** "Built by developers for developers" split: copy beside a syntax-highlighted App.tsx. */
 export function CodeShowcase() {
@@ -26,67 +32,21 @@ export function CodeShowcase() {
           </Lead>
         </Reveal>
 
-        {/* Code */}
+        {/* Code — same react-shiki highlighting as the docs/demo code blocks
+            (SHIKI_THEME: light-plus / dark-plus, transparent over the card). */}
         <Reveal delay={0.1}>
           <BezelPanel>
             <WindowChrome title="App.tsx">
-              <pre className="overflow-x-auto bg-zinc-950 p-5 font-mono text-sm leading-relaxed text-zinc-100">
-                <code>
-                  <span className={kw}>import</span> {"{ "}
-                  <span className="text-zinc-100">Admin, Resource</span>
-                  {" }"} <span className={kw}>from</span>{" "}
-                  <span className={str}>&quot;shadmin&quot;</span>
-                  <span className={punct}>;</span>
-                  {"\n\n"}
-                  <span className={kw}>export const</span>{" "}
-                  <span className="text-zinc-100">App</span>{" "}
-                  <span className={punct}>= () =&gt; (</span>
-                  {"\n  "}
-                  <span className={punct}>&lt;</span>
-                  <span className={tag}>Admin</span>{" "}
-                  <span className={attr}>dataProvider</span>
-                  <span className={punct}>=</span>
-                  <span className={punct}>{"{"}</span>
-                  <span className="text-zinc-100">dataProvider</span>
-                  <span className={punct}>{"}"}</span>
-                  <span className={punct}>&gt;</span>
-                  {"\n    "}
-                  <span className={punct}>&lt;</span>
-                  <span className={tag}>Resource</span>{" "}
-                  <span className={attr}>name</span>
-                  <span className={punct}>=</span>
-                  <span className={str}>&quot;products&quot;</span>{" "}
-                  <span className={attr}>list</span>
-                  <span className={punct}>=</span>
-                  <span className={punct}>{"{"}</span>
-                  <span className="text-zinc-100">ProductList</span>
-                  <span className={punct}>{"}"}</span>{" "}
-                  <span className={attr}>edit</span>
-                  <span className={punct}>=</span>
-                  <span className={punct}>{"{"}</span>
-                  <span className="text-zinc-100">ProductEdit</span>
-                  <span className={punct}>{"}"}</span>{" "}
-                  <span className={punct}>/&gt;</span>
-                  {"\n    "}
-                  <span className={punct}>&lt;</span>
-                  <span className={tag}>Resource</span>{" "}
-                  <span className={attr}>name</span>
-                  <span className={punct}>=</span>
-                  <span className={str}>&quot;orders&quot;</span>{" "}
-                  <span className={attr}>list</span>
-                  <span className={punct}>=</span>
-                  <span className={punct}>{"{"}</span>
-                  <span className="text-zinc-100">OrderList</span>
-                  <span className={punct}>{"}"}</span>{" "}
-                  <span className={punct}>/&gt;</span>
-                  {"\n  "}
-                  <span className={punct}>&lt;/</span>
-                  <span className={tag}>Admin</span>
-                  <span className={punct}>&gt;</span>
-                  {"\n"}
-                  <span className={punct}>);</span>
-                </code>
-              </pre>
+              <div className="overflow-x-auto text-sm leading-relaxed">
+                <ShikiHighlighter
+                  language="tsx"
+                  theme={SHIKI_THEME}
+                  addDefaultStyles={false}
+                  className="!bg-transparent p-5"
+                >
+                  {APP_TSX}
+                </ShikiHighlighter>
+              </div>
             </WindowChrome>
           </BezelPanel>
         </Reveal>
