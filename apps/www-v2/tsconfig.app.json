@@ -41,6 +41,36 @@
       "shadmin/components/leaflet/*": [
         "../../packages/shadmin/src/components/leaflet/*"
       ],
+      "shadmin/components/csv-import": [
+        "../../packages/shadmin/src/components/csv-import/index.ts"
+      ],
+      "shadmin/components/csv-import/*": [
+        "../../packages/shadmin/src/components/csv-import/*"
+      ],
+      "shadmin/components/block-editor": [
+        "../../packages/shadmin/src/components/block-editor/index.ts"
+      ],
+      "shadmin/components/block-editor/*": [
+        "../../packages/shadmin/src/components/block-editor/*"
+      ],
+      "shadmin/components/realtime": [
+        "../../packages/shadmin/src/components/realtime/index.ts"
+      ],
+      "shadmin/components/realtime/*": [
+        "../../packages/shadmin/src/components/realtime/*"
+      ],
+      "shadmin/components/rich-text-input": [
+        "../../packages/shadmin/src/components/rich-text-input/index.ts"
+      ],
+      "shadmin/components/rich-text-input/*": [
+        "../../packages/shadmin/src/components/rich-text-input/*"
+      ],
+      "shadmin/components/mdx-editor": [
+        "../../packages/shadmin/src/components/mdx-editor/index.ts"
+      ],
+      "shadmin/components/mdx-editor/*": [
+        "../../packages/shadmin/src/components/mdx-editor/*"
+      ],
       "shadmin/components/monaco": [
         "../../packages/shadmin/src/components/monaco/index.ts"
       ],

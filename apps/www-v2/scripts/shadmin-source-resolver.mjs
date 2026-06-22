@@ -14,27 +14,26 @@ export function resolveAtImport(importer, { shadminSrc, wwwSrc }) {
  *
  * Two reasons a group lives here:
  *  1. NOT built to dist at all (admin, block-editor, csv-import, leaflet,
- *     monaco, realtime, supabase) — shadmin's wildcard `./components/*` export
- *     points at a dist path that doesn't exist, so a bare
- *     `shadmin/components/admin` import would 404.
+ *     mdx-editor, monaco, realtime, rich-text-input, supabase) — shadmin's
+ *     wildcard `./components/*` export points at a dist path that doesn't
+ *     exist (these groups are excluded from tsconfig.build), so a bare
+ *     `shadmin/components/<group>` import would 404. Resolving to source fixes it.
  *  2. `ui` IS in dist, but the admin SOURCE we fold into www-v2 imports ui via
  *     `@/components/ui/*` (→ src, a hard shadcn-registry constraint). If www-v2
  *     code imported ui from dist instead, context-providing primitives
  *     (SidebarProvider, Tooltip, Dialog…) would be TWO different modules with
  *     TWO contexts → "useSidebar must be used within a SidebarProvider". Pinning
  *     ui to src gives one ui module shared across admin source + www-v2 code.
- *
- * The dist-built leaf editors (`mdx-editor`, `rich-text-input`) are absent —
- * they don't share React context across the seam, so they keep resolving to
- * dist via node_modules.
  */
 export const SRC_ONLY_COMPONENT_GROUPS = [
   "admin",
   "block-editor",
   "csv-import",
   "leaflet",
+  "mdx-editor",
   "monaco",
   "realtime",
+  "rich-text-input",
   "supabase",
   "ui",
 ];

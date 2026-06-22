@@ -1,4 +1,14 @@
-import { Map as MapIcon, type LucideIcon } from "lucide-react";
+import {
+  Blocks,
+  FileSpreadsheet,
+  FileText,
+  Languages,
+  Map as MapIcon,
+  Palette,
+  RadioTower,
+  Type,
+  type LucideIcon,
+} from "lucide-react";
 
 /**
  * One feature demo: a bigger-than-one-component integration shown end-to-end.
@@ -19,6 +29,50 @@ export const FEATURES: FeatureMeta[] = [
     icon: MapIcon,
     blurb:
       "Plot records on an interactive Leaflet map, straight from the data.",
+  },
+  {
+    slug: "realtime",
+    title: "Realtime",
+    icon: RadioTower,
+    blurb:
+      "Cross-tab live updates over a BroadcastChannel — edit here, see it there.",
+  },
+  {
+    slug: "csv-import",
+    title: "CSV Import",
+    icon: FileSpreadsheet,
+    blurb: "Bulk-import rows from a CSV straight into a resource list.",
+  },
+  {
+    slug: "mdx-editor",
+    title: "MDX Editor",
+    icon: FileText,
+    blurb: "Author MDX content with a rich WYSIWYG editor inside a form.",
+  },
+  {
+    slug: "rich-text",
+    title: "Rich Text",
+    icon: Type,
+    blurb: "A TipTap-powered rich text input with a formatting toolbar.",
+  },
+  {
+    slug: "block-editor",
+    title: "Block Editor",
+    icon: Blocks,
+    blurb: "Notion-style block editing for structured documents.",
+  },
+  {
+    slug: "themes",
+    title: "Themes",
+    icon: Palette,
+    blurb: "Swap shadcn theme presets live and watch the UI restyle.",
+  },
+  {
+    slug: "i18n",
+    title: "I18N",
+    icon: Languages,
+    blurb:
+      "Switch locale (English / French) and translate fields per-language.",
   },
 ];
 
