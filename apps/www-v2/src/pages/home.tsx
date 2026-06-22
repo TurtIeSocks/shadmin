@@ -6,6 +6,7 @@ import { Deploy } from "@/landing/deploy";
 import { Features } from "@/landing/features";
 import { FinalCta } from "@/landing/final-cta";
 import { Hero } from "@/landing/hero";
+import { LandingBackdrop } from "@/landing/landing-backdrop";
 import { LandingFooter } from "@/landing/landing-footer";
 import { OpenSource } from "@/landing/open-source";
 import { SectionDivider } from "@/landing/section";
@@ -26,6 +27,7 @@ export const meta: MetaFunction = () => [
 export default function Home() {
   return (
     <main>
+      <LandingBackdrop />
       <Hero />
       <SectionDivider />
       <TechLogos />
