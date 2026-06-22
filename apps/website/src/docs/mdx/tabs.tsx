@@ -7,7 +7,7 @@ import {
   useId,
   useRef,
 } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "shadmin/lib/utils";
 
 // ── TabItem ──────────────────────────────────────────────────────────────────
 
@@ -58,7 +58,7 @@ export function Tabs({ children }: TabsProps) {
   };
 
   return (
-    <div className="glass my-4 overflow-hidden rounded-lg border border-border/40">
+    <div className="my-4 overflow-hidden rounded-lg border border-border/40">
       {/* Tab bar */}
       <div
         role="tablist"

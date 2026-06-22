@@ -1,33 +1,11 @@
-export interface InstallCommands {
-  npm: string;
-  pnpm: string;
-  yarn: string;
-  bun: string;
-}
+export interface InstallCommands { npm: string; pnpm: string; yarn: string; bun: string; }
 
-export interface ManifestItem {
-  name: string;
-  title: string;
-  description: string | null;
-  type: string;
-  category: string;
-  docs: string | null;
-  install: InstallCommands;
-}
+// One entry in a folder's _meta.ts. `slug` = an .mdx in this folder;
+// `dir` = a subfolder. `title` overrides the auto title.
+export type MetaEntry =
+  | { slug: string; title?: string }
+  | { dir: string; title?: string };
 
-export interface NavItem {
-  name: string;
-  title: string;
-}
-
-export interface NavGroup {
-  category: string;
-  label: string;
-  items: NavItem[];
-}
-
-export interface RegistryManifest {
-  generatedAt: string | null;
-  items: ManifestItem[];
-  nav: NavGroup[];
-}
+export interface DocLeaf { kind: "leaf"; slug: string; title: string; }
+export interface DocGroup { kind: "group"; dir: string; title: string; indexSlug?: string; children: DocNode[]; }
+export type DocNode = DocLeaf | DocGroup;

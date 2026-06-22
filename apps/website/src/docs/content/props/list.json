@@ -11,7 +11,7 @@
       "name": "aside",
       "type": "ReactNode",
       "optional": true,
-      "comment": "Side panel rendered alongside the list content."
+      "comment": ""
     },
     {
       "name": "className",
@@ -23,19 +23,13 @@
       "name": "component",
       "type": "ElementType",
       "optional": true,
-      "comment": "Override the root element wrapping the list content. Defaults to 'div'."
+      "comment": ""
     },
     {
       "name": "disableBreadcrumb",
       "type": "boolean",
       "optional": true,
       "comment": ""
-    },
-    {
-      "name": "empty",
-      "type": "ReactNode | false",
-      "optional": true,
-      "comment": "Replacement for the default empty-state component. Set to false to suppress it."
     },
     {
       "name": "filters",

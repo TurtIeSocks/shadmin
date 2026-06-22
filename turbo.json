@@ -18,8 +18,7 @@
       "inputs": [
         "$TURBO_DEFAULT$",
         "$TURBO_ROOT$/packages/shadmin/src/**",
-        "$TURBO_ROOT$/packages/shadmin/registry.json",
-        "$TURBO_ROOT$/apps/demo/src/**"
+        "$TURBO_ROOT$/packages/shadmin/registry.json"
       ]
     },
     "dev": { "cache": false, "persistent": true },

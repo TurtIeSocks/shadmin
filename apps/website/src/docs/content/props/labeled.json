@@ -14,10 +14,22 @@
       "comment": ""
     },
     {
+      "name": "component",
+      "type": "ElementType",
+      "optional": true,
+      "comment": "Override the wrapper element type. Defaults to `\"div\"`."
+    },
+    {
       "name": "fullWidth",
       "type": "boolean",
       "optional": true,
       "comment": "Expand the component to fill its container's width."
+    },
+    {
+      "name": "htmlFor",
+      "type": "string",
+      "optional": true,
+      "comment": "When provided, sets the `for` attribute on the rendered `<label>` so clicking it focuses the associated input."
     },
     {
       "name": "isRequired",

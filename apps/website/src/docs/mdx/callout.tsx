@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "shadmin/lib/utils";
 import type { ReactNode } from "react";
 
 export type CalloutType = "note" | "tip" | "warning" | "danger";
@@ -34,7 +34,7 @@ export function Callout({ type = "note", children }: CalloutProps) {
   const t = type in STYLES ? type : ("note" as CalloutType);
   return (
     <aside
-      className={cn("glass my-4 flex gap-3 rounded-lg border p-4", STYLES[t])}
+      className={cn("my-4 flex gap-3 rounded-lg border p-4", STYLES[t])}
       role="note"
       aria-label={LABEL[t]}
     >

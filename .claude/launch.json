@@ -26,15 +26,15 @@
       "port": 63315
     },
     {
-      "name": "www-v2",
+      "name": "website",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "www-v2", "dev"],
+      "runtimeArgs": ["--filter", "website", "dev"],
       "port": 5273
     },
     {
-      "name": "www-v2-build",
+      "name": "website-build",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "www-v2", "preview"],
+      "runtimeArgs": ["--filter", "website", "preview"],
       "port": 4273
     }
   ]

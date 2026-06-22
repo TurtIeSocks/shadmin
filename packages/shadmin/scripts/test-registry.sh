@@ -203,8 +203,9 @@ setup_temp_app() {
   cp ./components.json "$target_dir"
   cp ./package-test.json "$target_dir/package.json"
 
-  # generic scaffold files from the demo app (no monorepo content in these)
-  cp ../../apps/demo/index.html ../../apps/demo/tsconfig.json ../../apps/demo/tsconfig.node.json "$target_dir"
+  # generic Vite scaffold files (no monorepo content) — kept as fixtures so the
+  # registry test doesn't depend on any app being present in the workspace.
+  cp ./scripts/registry-test-fixtures/index.html ./scripts/registry-test-fixtures/tsconfig.json ./scripts/registry-test-fixtures/tsconfig.node.json "$target_dir"
 
   # monorepo-shaped configs get standalone replacements instead
   write_standalone_configs "$target_dir"
@@ -218,7 +219,7 @@ setup_temp_app() {
   # the styles dir (themes + glass.css) comes too so theme/style imports resolve.
   cp ./src/index.css ./src/vite-env.d.ts "$target_dir/src"
   cp -R ./src/styles "$target_dir/src/styles"
-  cp ../../apps/demo/src/main.tsx "$target_dir/src"
+  cp ./scripts/registry-test-fixtures/src/main.tsx "$target_dir/src"
   write_app_sources "$target_dir" "$app_variant"
 }
 

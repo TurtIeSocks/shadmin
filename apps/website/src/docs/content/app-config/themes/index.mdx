@@ -1,0 +1,105 @@
+---
+title: "Themes"
+description: "Shadmin uses native shadcn theming. A theme is a set of CSS custom properties (--primary, --background, …) living in your stylesheet — not a runtime JavaScript object. The default palette ships in src/index.css (:root for light, .dark for dark) and every component renders against it."
+---
+
+Alternate palettes are distributed through the registry as `registry:theme`
+items. Installing one merges its variables into your own `globals.css`, so the
+choice is made at install time and baked into your CSS — exactly like picking a
+theme on [ui.shadcn.com/themes](https://ui.shadcn.com/themes).
+
+> **Light/dark mode** is a separate concern from the palette. `<ThemeProvider>`
+> still manages the `light`/`dark`/`system` mode and toggles the `.dark` class on
+> `<html>`. See [ThemeMode Toggle](/docs/ui-layout/theme-mode-toggle). Each palette below
+> defines both its light and dark variables.
+
+## Built-in palettes
+
+| Theme | Registry item | Character |
+| --- | --- | --- |
+| **aurora** | `theme-aurora` | Shadmin's signature look — violet/teal palette **plus** the aurora gradient and liquid-glass utilities (`glass`, `bezel`, `text-aurora`, `bg-aurora`). |
+| **bw** | `theme-bw` | High-contrast monochrome, no chroma, sharp `0.25rem` radius. |
+| **nano** | `theme-nano` | Cool slate neutrals, tight radius — for information-dense views. |
+| **radiant** | `theme-radiant` | Vivid violet/cyan/lime acid palette, generous radii. |
+| **house** | `theme-house` | Warm orange/coral palette with rounded corners. |
+
+The **default** (shadcn-neutral) palette needs no install — it's already in your
+`src/index.css`.
+
+## Installing a palette
+
+Add a theme item with the shadcn CLI:
+
+```bash
+npx shadcn@latest add https://shadmin.turtlesocks.dev/r/theme-aurora.json
+```
+
+If you've registered the shadmin namespace in `components.json` (see the
+[Registry/MCP](/docs/misc/mcp) page), the short form works too:
+
+```bash
+npx shadcn@latest add @shadmin/theme-aurora
+```
+
+The CLI rewrites your `globals.css`: the palette's variables are merged into
+`:root` and `.dark` (overwriting the matching tokens), and `theme-aurora`
+additionally appends its gradient/glass `@utility` rules and the `--aurora`
+token to `@theme inline`, so Tailwind v4 generates the real `.glass` /
+`.bg-aurora` / `.text-aurora` classes. **Installing a theme is destructive** —
+it overwrites your current token values. To switch palettes later, re-run `add`
+with a different theme.
+
+## Authoring your own palette
+
+A theme is just CSS. The native approach is to edit the `:root` / `.dark`
+blocks in your own `globals.css` directly:
+
+```css
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.98 0.02 220);
+  --foreground: oklch(0.2 0.05 230);
+  --primary: oklch(0.45 0.15 230);
+  --primary-foreground: oklch(0.98 0.02 220);
+  /* …the rest of the shadcn tokens */
+}
+.dark {
+  --background: oklch(0.18 0.04 230);
+  --foreground: oklch(0.95 0.02 220);
+  --primary: oklch(0.7 0.18 220);
+  --primary-foreground: oklch(0.15 0.04 230);
+  /* … */
+}
+```
+
+For the full list of tokens shadmin understands, copy the `:root` and `.dark`
+blocks from `src/index.css` as a starting point and adjust values to taste. The
+[ThemeStudio](/docs/extras/theme-studio) component lets you tune these live in the browser
+and copy the resulting CSS snippet back into source.
+
+## Runtime palette switching (advanced)
+
+The distributed package has **no runtime palette layer** — switching at runtime
+is an app-level pattern, not a built-in. If you want a live theme picker (like
+the one in the shadmin demo), author each palette as a **scoped class** so
+several can coexist in one stylesheet, then toggle the class on `<html>`:
+
+```css
+/* src/styles/themes/aurora.css */
+.theme-aurora      { --primary: oklch(0.52 0.17 286); /* …light */ }
+.theme-aurora.dark { --primary: oklch(0.70 0.15 286); /* …dark  */ }
+```
+
+```ts
+// flip the active palette (clear the others first), then persist the choice
+document.documentElement.classList.remove("theme-aurora", "theme-bw" /* … */);
+document.documentElement.classList.add("theme-aurora");
+```
+
+`.theme-<name>` (specificity 0,1,0) wins the source-order tie with `:root`, and
+`.theme-<name>.dark` (0,2,0) beats the base `.dark` block in dark mode — provided
+the palette files are imported **after** `index.css`. The demo's Themes feature
+implements exactly this in
+[`apps/website/src/demo/features/demos/themes.tsx`](https://github.com/TurtIeSocks/shadmin/blob/main/apps/website/src/demo/features/demos/themes.tsx).
+The registry `theme-*` items above are generated from these same scoped CSS
+files.
