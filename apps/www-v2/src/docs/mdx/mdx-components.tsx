@@ -58,12 +58,19 @@ function MdxImg({ src, alt, ...rest }: React.ComponentPropsWithoutRef<"img">) {
   );
 }
 
-// ── Inline code (not inside a pre) ──────────────────────────────────────────
+// ── Code: chip only for INLINE code ─────────────────────────────────────────
 
 function MdxCode({
   children,
   ...rest
 }: React.ComponentPropsWithoutRef<"code">) {
+  // rehype-pretty-code block code (inside <pre>) carries data-language; the
+  // <pre> + shiki tokens already style it. Only inline code gets the chip —
+  // applying the chip's bg/radius/smaller-text to a multi-line block mangles it.
+  const isBlock = "data-language" in rest;
+  if (isBlock) {
+    return <code {...rest}>{children}</code>;
+  }
   return (
     <code
       className="font-mono text-[0.875em] bg-muted/60 rounded px-1.5 py-0.5"
