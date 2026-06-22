@@ -38,6 +38,12 @@ export interface NavTreeProps {
    * page); docs leaves it off so sections link to their landing.
    */
   sectionAsToggle?: boolean;
+  /**
+   * Class for the rendered `<SidebarGroup>`. Docs uses NavTree as the sole
+   * group (default `p-2` padding); the demo nests it under its own
+   * `<SidebarGroup>` + label, so it passes `p-0` to avoid double padding.
+   */
+  className?: string;
 }
 
 interface SubProps {
@@ -122,9 +128,10 @@ export function NavTree({
   onNavigate,
   badgeFor,
   sectionAsToggle,
+  className,
 }: NavTreeProps) {
   return (
-    <SidebarGroup>
+    <SidebarGroup className={className}>
       <SidebarGroupContent>
         <SidebarMenu>
           {tree.map((section) => {

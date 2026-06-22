@@ -131,6 +131,10 @@ export function DemoSidebarContent() {
           onToggle={onToggle}
           badgeFor={(slug) => (missingSet.has(slug) ? <UncoveredDot /> : null)}
           sectionAsToggle
+          // Flatten NavTree's own SidebarGroup padding: it's nested under this
+          // zone's <SidebarGroup className="py-0.5">, so its default p-2 would
+          // double-inset Components vs the App/Features zones.
+          className="p-0"
         />
       </SidebarGroup>
 
