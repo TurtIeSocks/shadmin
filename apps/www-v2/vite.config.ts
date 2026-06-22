@@ -11,6 +11,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { remarkRelativeLinks } from "./scripts/remark-relative-links.mjs";
 import { remarkCalloutDirective } from "./scripts/remark-callout-directive.mjs";
+import { remarkNeutralizeTextDirectives } from "./scripts/remark-neutralize-text-directives.mjs";
 import { shadminSourcePlugin } from "./scripts/shadmin-source-resolver.mjs";
 import { SHIKI_THEME } from "./src/lib/shiki-theme";
 
@@ -48,6 +49,9 @@ export default defineConfig({
           remarkDirective,
           remarkRelativeLinks,
           remarkCalloutDirective,
+          // After callouts claim their container directives, revert any stray
+          // text/leaf directives (e.g. `:3000` in a URL) back to literal text.
+          remarkNeutralizeTextDirectives,
         ],
         rehypePlugins: [
           rehypeSlug,
