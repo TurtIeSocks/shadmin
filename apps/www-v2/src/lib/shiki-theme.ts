@@ -10,4 +10,4 @@
  *
  * Palette: Atom One Light (light) + VS Code Dark+ (dark).
  */
-export const SHIKI_THEME = { light: "one-light", dark: "dark-plus" } as const;
+export const SHIKI_THEME = { light: "light-plus", dark: "dark-plus" } as const;
