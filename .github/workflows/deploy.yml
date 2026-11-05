@@ -1,6 +1,6 @@
-# Deploy the assembled site (website + /docs + /demo + /r) to GitHub Pages.
-# `make build` builds each app and stacks them into ./public; that folder is
-# uploaded as the Pages artifact. Requires Settings > Pages > Source = "GitHub Actions".
+# Shadmin is archived: Pages now serves a redirect to chelone.dev. The last
+# deploy of the full site is in this workflow's git history.
+# Requires Settings > Pages > Source = "GitHub Actions".
 name: Deploy Shadmin
 
 on:
@@ -25,23 +25,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - name: Install dependencies
-        run: pnpm i --frozen-lockfile
-      - name: Build site (website + docs + demo + registry -> ./public)
-        run: make build
+      # Pages serves 404.html for every deep link, so old URLs redirect too.
+      - name: Assemble redirect
+        run: cp redirect/index.html redirect/404.html
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./redirect
 
   deploy:
     needs: build
