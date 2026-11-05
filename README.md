@@ -1,5 +1,8 @@
 # Shadmin
 
+> [!IMPORTANT]
+> Shadmin is archived and no longer maintained. Development continues in [Chelone](https://chelone.dev) ([chelonejs/chelone](https://github.com/chelonejs/chelone)), a headless admin engine with React and Vue adapters.
+
 ![Screenshot](./public/shadmin.webp)
 
 A component kit to build your Admin app with [shadcn/ui](https://ui.shadcn.com/).
